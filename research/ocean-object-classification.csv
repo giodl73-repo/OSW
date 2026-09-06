@@ -1,0 +1,111 @@
+object_id,preferred_name,object_type,identity_test,geometry,time_behavior,coverage,mobility,external_anchor,guide,status
+OBJ001,water mass,material_body,property_signature,volume,seasonal,partial,evolves,CF/NVS,01,established
+OBJ002,mode water,material_body,property_signature,volume,seasonal,partial,evolves,CF/NVS,01,established
+OBJ003,overflow water,material_body,property_signature,volume,days_months,partial,advects,CF/NVS,01,established
+OBJ004,river plume,material_body,source_tracer,volume,days_months,partial,advects,NVS,10,established
+OBJ005,hydrothermal plume,material_body,source_tracer,volume,days_months,sparse,advects,NVS,10,established
+OBJ006,mixed layer,layer_interface,vertical_structure,volume,seasonal,exhaustive,evolves,CF/GOOS,01,established
+OBJ007,thermocline,layer_interface,vertical_gradient,surface,seasonal,partial,evolves,CF/GOOS,01,established
+OBJ008,halocline,layer_interface,vertical_gradient,surface,seasonal,partial,evolves,CF/GOOS,01,established
+OBJ009,pycnocline,layer_interface,vertical_gradient,surface,seasonal,partial,evolves,CF/GOOS,01,established
+OBJ010,isopycnal layer,layer_interface,property_signature,volume,days_months,partial,evolves,CF/NVS,01,established
+OBJ011,sea surface,layer_interface,geographic_convention,surface,instantaneous,exhaustive,evolves,CF/IHO,01,established
+OBJ012,front,gradient_boundary,horizontal_gradient,curve,days_months,partial,evolves,CF/NVS,02,established
+OBJ013,density front,gradient_boundary,horizontal_gradient,surface,days_months,partial,evolves,CF/NVS,02,established
+OBJ014,shelf-break front,gradient_boundary,horizontal_gradient,curve,seasonal,partial,evolves,NVS,02,established
+OBJ015,ice-edge front,gradient_boundary,horizontal_gradient,curve,days_months,partial,evolves,GOOS/NVS,11,established
+OBJ016,plume edge,gradient_boundary,horizontal_gradient,surface,days_months,partial,evolves,NVS,10,established
+OBJ017,current,flow_structure,velocity_pattern,pathway,days_months,partial,advects,CF/NVS,02,established
+OBJ018,jet,flow_structure,velocity_pattern,pathway,days_months,partial,evolves,CF/NVS,02,established
+OBJ019,boundary current,flow_structure,velocity_pattern,pathway,seasonal,partial,evolves,CF/NVS,02,established
+OBJ020,gyre,flow_structure,velocity_pattern,volume,climatic_reference,partial,evolves,NVS,02,established
+OBJ021,eddy,flow_structure,velocity_pattern,volume,days_months,sparse,advects,CF/NVS,03,established
+OBJ022,ring,flow_structure,velocity_pattern,volume,days_months,sparse,advects,NVS,03,established
+OBJ023,recirculation,flow_structure,velocity_pattern,volume,days_months,partial,evolves,NVS,03,established
+OBJ024,filament,flow_structure,horizontal_gradient,surface,days_months,sparse,advects,NVS,03,established
+OBJ025,upwelling,flow_structure,vertical_velocity,volume,days_months,partial,evolves,CF/GOOS,10,established
+OBJ026,downwelling,flow_structure,vertical_velocity,volume,days_months,partial,evolves,CF/GOOS,10,established
+OBJ027,coherent set,connectivity_structure,trajectory_coherence,volume,user_declared,partial,advects,literature,03,established
+OBJ028,transport barrier,connectivity_structure,trajectory_coherence,surface,user_declared,partial,evolves,literature,03,established
+OBJ029,attracting LCS,connectivity_structure,trajectory_coherence,surface,user_declared,sparse,evolves,literature,03,established
+OBJ030,repelling LCS,connectivity_structure,trajectory_coherence,surface,user_declared,sparse,evolves,literature,03,established
+OBJ031,pathway,connectivity_structure,trajectory_coherence,pathway,user_declared,partial,advects,literature,03,established
+OBJ032,gate,flux_budget_construct,section_integral,surface,user_declared,construct_only,fixed,OSW/literature,04,established
+OBJ033,native grid face,flux_budget_construct,section_integral,surface,instantaneous,construct_only,fixed,CF/model,04,established
+OBJ034,transport branch,flux_budget_construct,section_integral,surface,user_declared,construct_only,evolves,OSW/literature,04,established
+OBJ035,control volume,flux_budget_construct,closed_budget,volume,user_declared,construct_only,fixed,CF/literature,04,established
+OBJ036,relay,flux_budget_construct,closed_budget,network,user_declared,construct_only,evolves,OSW local,04,osw_construct
+OBJ037,convergence region,flux_budget_construct,closed_budget,volume,user_declared,construct_only,evolves,CF/literature,04,established
+OBJ038,mixing,process,transformation_rate,volume,instantaneous,partial,evolves,CF/GOOS,05,established
+OBJ039,diffusion,process,transformation_rate,volume,instantaneous,partial,evolves,CF,05,established
+OBJ040,entrainment,process,transformation_rate,surface,days_months,partial,evolves,CF/NVS,05,established
+OBJ041,convection,process,vertical_velocity,volume,days_months,partial,evolves,CF/NVS,05,established
+OBJ042,subduction,process,transformation_rate,surface,seasonal,partial,evolves,CF/NVS,05,established
+OBJ043,water-mass transformation,process,transformation_rate,property_space,seasonal,partial,evolves,CF/literature,05,established
+OBJ044,water-mass formation,process,transformation_rate,property_space,seasonal,partial,evolves,CF/literature,05,established
+OBJ045,overturning,process,streamfunction,property_space,climatic_reference,partial,evolves,CF/GOOS,05,established
+OBJ046,marine heatwave,event_classified_state,anomaly_threshold,event_field,days_months,event_only,evolves,literature,06,established
+OBJ047,marine cold spell,event_classified_state,anomaly_threshold,event_field,days_months,event_only,evolves,literature,06,established
+OBJ048,phytoplankton bloom,event_classified_state,anomaly_threshold,event_field,days_months,event_only,evolves,GOOS/NVS,06,established
+OBJ049,El Niño warm event,event_classified_state,coupled_index,event_field,interannual,event_only,evolves,NOAA/WMO,06,established
+OBJ050,dynamic seascape class,event_classified_state,ecological_classifier,surface,days_months,exhaustive,evolves,NOAA MBON,06,established
+OBJ051,hypoxic event,event_classified_state,absolute_threshold,volume,days_months,event_only,evolves,GOOS/NVS,06,established
+OBJ052,ocean basin,reference_geography,geographic_convention,volume,climatic_reference,exhaustive,fixed,Marine Regions/SeaVoX,06,established
+OBJ053,named sea,reference_geography,geographic_convention,volume,climatic_reference,partial,fixed,Marine Regions/SeaVoX,06,established
+OBJ054,Longhurst province,reference_geography,ecological_classifier,surface,climatic_reference,exhaustive,fixed,literature,06,established
+OBJ055,marine ecoregion,reference_geography,ecological_classifier,surface,climatic_reference,exhaustive,fixed,Marine Regions/literature,06,established
+OBJ056,ocean realm,reference_geography,geographic_convention,surface,climatic_reference,exhaustive,fixed,Marine Regions/literature,06,established
+OBJ057,continental shelf,substrate_feature,terrain_geometry,surface,geological,partial,fixed,GEBCO/IHO,08,established
+OBJ058,continental slope,substrate_feature,terrain_geometry,surface,geological,partial,fixed,GEBCO/IHO,08,established
+OBJ059,continental rise,substrate_feature,terrain_geometry,surface,geological,partial,fixed,GEBCO/IHO,08,established
+OBJ060,abyssal plain,substrate_feature,terrain_geometry,surface,geological,partial,fixed,GEBCO/IHO,08,established
+OBJ061,mid-ocean ridge,substrate_feature,terrain_geometry,surface,geological,sparse,fixed,GEBCO/IHO,08,established
+OBJ062,ocean trench,substrate_feature,terrain_geometry,surface,geological,sparse,fixed,GEBCO/IHO,08,established
+OBJ063,seamount,substrate_feature,terrain_geometry,surface,geological,sparse,fixed,GEBCO/IHO,08,established
+OBJ064,submarine canyon,substrate_feature,terrain_geometry,surface,geological,sparse,fixed,GEBCO/IHO,08,established
+OBJ065,wind wave,wave_oscillation,spectral_phase,surface,periodic,partial,oscillates,CF/GOOS,09,established
+OBJ066,swell,wave_oscillation,spectral_phase,surface,periodic,partial,oscillates,CF/GOOS,09,established
+OBJ067,tide,wave_oscillation,spectral_phase,surface,periodic,exhaustive,oscillates,CF/IHO,09,established
+OBJ068,internal wave,wave_oscillation,spectral_phase,surface,periodic,partial,oscillates,CF/NVS,09,established
+OBJ069,Rossby wave,wave_oscillation,spectral_phase,surface,periodic,partial,propagates,CF/NVS,09,established
+OBJ070,sea-ice cover,phase_cover_object,phase_fraction,surface,seasonal,partial,evolves,CF/GOOS,11,established
+OBJ071,polynya,phase_cover_object,phase_fraction,surface,days_months,event_only,evolves,CF/NVS,11,established
+OBJ072,ice-shelf cavity,phase_cover_object,terrain_geometry,volume,climatic_reference,sparse,evolves,Marine Regions/NVS,11,established
+OBJ073,sill,substrate_feature,terrain_geometry,surface,geological,sparse,fixed,GEBCO/IHO,08,established
+OBJ074,surface gravity wave,wave_oscillation,spectral_phase,surface,periodic,partial,propagates,CF/GOOS,09,established
+OBJ075,tidal current,flow_structure,velocity_pattern,pathway,periodic,partial,oscillates,CF/IHO,09,established
+OBJ076,Kelvin wave,wave_oscillation,spectral_phase,pathway,days_months,partial,propagates,CF/NVS,09,established
+OBJ077,inertial oscillation,wave_oscillation,spectral_phase,volume,days_months,partial,oscillates,CF/NVS,09,established
+OBJ078,tsunami,wave_oscillation,spectral_phase,surface,hours_days,event_only,propagates,NOAA/IOC,09,established
+OBJ079,storm surge,event_classified_state,anomaly_threshold,event_field,hours_days,event_only,evolves,NOAA/WMO,09,established
+OBJ080,seiche,wave_oscillation,spectral_phase,surface,hours_days,event_only,oscillates,NOAA/USGS,09,established
+OBJ081,buoyant plume,material_body,source_tracer,volume,days_months,partial,advects,NVS/literature,10,established
+OBJ082,meltwater plume,material_body,source_tracer,volume,days_months,sparse,advects,CF/NVS,10,established
+OBJ083,intrusion,material_body,property_signature,volume,days_months,partial,advects,NVS/literature,10,established
+OBJ084,coastal upwelling,flow_structure,vertical_velocity,volume,days_months,partial,evolves,CF/GOOS,10,established
+OBJ085,equatorial upwelling,flow_structure,vertical_velocity,volume,seasonal,partial,evolves,CF/GOOS,10,established
+OBJ086,Ekman pumping,process,vertical_velocity,surface,days_months,partial,evolves,CF/literature,10,established
+OBJ087,isopycnal heave,process,vertical_displacement,surface,days_months,partial,evolves,CF/literature,10,established
+OBJ088,turbidity current,flow_structure,velocity_pattern,pathway,hours_days,sparse,advects,USGS/NVS,10,established
+OBJ089,sea-ice floe,phase_cover_object,phase_fraction,surface,days_months,sparse,advects,WMO/NVS,11,established
+OBJ090,fast ice,phase_cover_object,phase_fraction,surface,seasonal,partial,evolves,WMO/NVS,11,established
+OBJ091,pack ice,phase_cover_object,phase_fraction,surface,seasonal,partial,advects,WMO/NVS,11,established
+OBJ092,lead,phase_cover_object,phase_fraction,pathway,hours_days,event_only,evolves,WMO/NVS,11,established
+OBJ093,ice shelf,phase_cover_object,terrain_geometry,volume,climatic_reference,partial,evolves,NSIDC/GLIMS,11,established
+OBJ094,grounding line,contact_boundary,terrain_geometry,curve,climatic_reference,sparse,evolves,GLIMS/MEaSUREs,11,established
+OBJ095,brine rejection,process,transformation_rate,surface,seasonal,partial,evolves,CF/literature,11,established
+OBJ096,basal melting,process,transformation_rate,surface,seasonal,partial,evolves,CF/GOOS,11,established
+OBJ097,oxygen minimum zone,layer_interface,vertical_structure,volume,climatic_reference,partial,evolves,GOOS/NOAA,12,established
+OBJ098,anoxic event,event_classified_state,absolute_threshold,volume,days_months,event_only,evolves,GOOS/NVS,12,established
+OBJ099,nutrient pool,flux_budget_construct,inventory_integral,volume,user_declared,construct_only,evolves,GOOS/CF,12,established
+OBJ100,deep chlorophyll maximum,layer_interface,vertical_structure,surface,seasonal,partial,evolves,GOOS/NVS,12,established
+OBJ101,harmful algal bloom,event_classified_state,impact_classifier,event_field,days_months,event_only,evolves,NOAA/GOOS,12,established
+OBJ102,phytoplankton community,material_body,ecological_classifier,volume,days_months,partial,advects,GOOS/NVS,12,established
+OBJ103,dissolved inorganic carbon pool,flux_budget_construct,inventory_integral,volume,user_declared,construct_only,evolves,GOOS/IOCCP,12,established
+OBJ104,air-sea carbon dioxide flux,flux_budget_construct,surface_flux,surface,instantaneous,construct_only,evolves,CF/IOCCP,12,established
+OBJ105,primary production,process,transformation_rate,volume,seasonal,partial,evolves,GOOS/CF,12,established
+OBJ106,biological carbon pump,process,transformation_rate,volume,climatic_reference,partial,evolves,GOOS/literature,12,established
+OBJ107,volume transport,flux_budget_construct,section_integral,surface,instantaneous,construct_only,evolves,CF/literature,04,established
+OBJ108,heat transport,flux_budget_construct,section_integral,surface,instantaneous,construct_only,evolves,CF/literature,04,established
+OBJ109,ocean heat content,flux_budget_construct,inventory_integral,volume,user_declared,construct_only,evolves,GOOS/NOAA,05,established
+OBJ110,ocean surface heat flux,flux_budget_construct,surface_flux,surface,instantaneous,construct_only,evolves,GOOS/CF,05,established

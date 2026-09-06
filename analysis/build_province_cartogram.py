@@ -90,6 +90,112 @@ COLORS = {
     "Coastal": ("#72d3b0", "#052219"),
 }
 
+BASIN_TONES = {
+    "Pacific": "#c8dce3",
+    "Atlantic": "#d6e1d5",
+    "Indian": "#e7dcc5",
+    "Southern": "#d9e7ea",
+    "Arctic": "#e8e9df",
+}
+
+# Eleven ecological realms are useful as a grouping layer, but the mapped
+# regions below are strictly contiguous in the original nearest-seed geometry.
+# Each tuple is: code, display name, color, member states, label anchor state.
+CONTIGUOUS_REGIONS = [
+    ("AAP", "Arctic–Atlantic Polar", "#9ecae1", ("ARCT", "BPLR", "SARC"), "SARC"),
+    ("NPP", "North Pacific Polar", "#6baed6", ("BERS",), "BERS"),
+    ("ANP", "Antarctic Polar", "#c6dbef", ("ANTA", "APLR"), "ANTA"),
+    ("NPW", "North Pacific Westerlies", "#4e79a7", ("KURO", "NPPF", "NPSE", "NPSW", "PSAE", "PSAW"), "NPPF"),
+    ("TAW", "Tasman Westerlies", "#a0cbe8", ("TASM",), "TASM"),
+    ("PT", "Pacific Trades", "#59a14f", ("ARCH", "NPTG", "PEQD", "PNEC", "SPSG", "WARM"), "PNEC"),
+    ("OCT", "Oceanic California Trades", "#8cd17d", ("OCAL",), "OCAL"),
+    ("EPC", "Eastern Pacific Coastal", "#b6992d", ("ALSK", "CAMR", "CCAL", "HUMB"), "HUMB"),
+    ("WPC", "Western Pacific Coastal", "#f1ce63", ("CHIN", "SUND"), "SUND"),
+    ("SWPC", "Southwest Pacific Coastal", "#499894", ("AUSE", "NEWZ"), "NEWZ"),
+    ("NAW", "North Atlantic Westerlies", "#b07aa1", ("GFST", "NADR", "NAST E", "NAST W"), "NADR"),
+    ("MW", "Mediterranean Westerlies", "#d4a6c8", ("MEDI",), "MEDI"),
+    ("OAT", "Open Atlantic Trades", "#e15759", ("ETRA", "NATR", "SATL", "WTRA"), "WTRA"),
+    ("CT", "Caribbean Trades", "#ff9d9a", ("CARB",), "CARB"),
+    ("NWAC", "Northwest Atlantic Coastal", "#79706e", ("NWCS",), "NWCS"),
+    ("WAC", "Western Atlantic Coastal", "#9c755f", ("BRAZ", "FKLD", "GUIA"), "BRAZ"),
+    ("EAC", "Eastern Atlantic Coastal", "#d7b5a6", ("BENG", "CNRY", "GUIN", "NECS"), "BENG"),
+    ("ARW", "Arabian Westerlies", "#f28e2b", ("ARAB",), "ARAB"),
+    ("IT", "Indian Trades", "#ffbe7d", ("ISSG", "MONS"), "ISSG"),
+    ("AIC", "Afro-Asian Indian Coastal", "#edc948", ("EAFR", "IND E", "IND W", "REDS"), "IND W"),
+    ("SEIC", "Southeast Indian Coastal", "#f4d166", ("AUSW",), "AUSW"),
+    ("SW", "Southern Westerlies", "#76b7b2", ("SANT", "SSTC"), "SANT"),
+]
+
+REGION_SYSTEM_VERSION = "osw-regions-v0.1"
+REGION_CLASSIFICATION_STATUS = "provisional OSW organizational construct"
+REGION_GEOMETRY_STATUS = "original nearest-seed cells; not published Longhurst boundaries"
+REGION_TOPOLOGY_DEFINITION = "connected before land masking and projection interruption"
+
+REGION_TONES = {name: tone for _, name, tone, _, _ in CONTIGUOUS_REGIONS}
+REGION_COUNTS = {name: len(states) for _, name, _, states, _ in CONTIGUOUS_REGIONS}
+REGION_CODES = {name: code for code, name, _, _, _ in CONTIGUOUS_REGIONS}
+STATE_REGIONS = {
+    state: name
+    for _, name, _, states, _ in CONTIGUOUS_REGIONS
+    for state in states
+}
+REGION_MARKERS = [(code, name, anchor) for code, name, _, _, anchor in CONTIGUOUS_REGIONS]
+
+_classic_codes = {code for provinces in PROVINCES.values() for code, _, _ in provinces}
+if set(STATE_REGIONS) != _classic_codes or len(STATE_REGIONS) != 56:
+    missing = sorted(_classic_codes - set(STATE_REGIONS))
+    extra = sorted(set(STATE_REGIONS) - _classic_codes)
+    raise ValueError(f"22-region contract must cover all 56 states exactly once; missing={missing}, extra={extra}")
+
+
+def realm_name(basin: str, biome: str) -> str:
+    return "Polar" if biome == "Polar" else f"{basin} {biome}"
+
+
+def region_parent_realm(member_codes: tuple[str, ...]) -> str:
+    state_realms = {
+        realm_name(basin, biome)
+        for basin, provinces in PROVINCES.items()
+        for code, _, biome in provinces
+        if code in member_codes
+    }
+    if len(state_realms) != 1:
+        raise ValueError(f"Region crosses organizational realms: {member_codes} -> {sorted(state_realms)}")
+    return next(iter(state_realms))
+
+
+def region_name(code: str) -> str:
+    return STATE_REGIONS[code]
+
+
+def region_class_slug(name: str) -> str:
+    return name.lower().replace(" ", "-").replace("–", "-")
+
+
+def region_slug(code: str) -> str:
+    return region_class_slug(region_name(code))
+
+
+def region_fill_css() -> str:
+    return "\n".join(
+        f'.province.region-{region_class_slug(name)} path {{ fill:{tone}; }}'
+        for name, tone in REGION_TONES.items()
+    )
+
+
+def region_legend_svg() -> str:
+    items = []
+    for index, (name, tone) in enumerate(REGION_TONES.items()):
+        row, column = divmod(index, 4)
+        x, y = column * 190, 20 + row * 22
+        count = REGION_COUNTS[name]
+        code = REGION_CODES[name]
+        items.append(
+            f'<rect x="{x}" y="{y - 11}" width="14" height="14" rx="2" fill="{tone}"/>'
+            f'<text x="{x + 22}" y="{y}" fill="#8da9a9" font-size="8.5">{code} · {name.upper()} {count}</text>'
+        )
+    return "".join(items)
+
 SOURCE_COMMIT = "ca96624a56bd078437bca8184e78163e5039ad19"
 SOURCE_URL = f"https://raw.githubusercontent.com/nvkelso/natural-earth-vector/{SOURCE_COMMIT}/geojson/ne_110m_land.geojson"
 EXPECTED_SOURCE_SHA256 = "9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9"
@@ -375,8 +481,8 @@ def coastal_state_geometry(
     height: float = 644.0,
     latitude_top: float = 84.0,
     latitude_bottom: float = -72.0,
-) -> tuple[str, list[str]]:
-    """Build 56 periodic nearest-seed states and their label positions."""
+) -> tuple[str, list[str], str, str]:
+    """Build states, labels, and the two higher levels of map boundaries."""
 
     def project(longitude: float, latitude: float) -> tuple[float, float]:
         x = left + ((longitude + 180.0) % 360.0) / 360.0 * width
@@ -396,6 +502,7 @@ def coastal_state_geometry(
 
     state_groups = []
     labels = []
+    edges: dict[tuple[tuple[float, float], tuple[float, float]], list[tuple[str, str, str]]] = {}
     for code, name, biome, basin, seed_x, seed_y in seeds:
         pieces = []
         focus_box = None
@@ -418,6 +525,12 @@ def coastal_state_geometry(
                     break
             if len(polygon) >= 3:
                 pieces.append("M" + " L".join(f"{x:.1f},{y:.1f}" for x, y in polygon) + " Z")
+                rounded = [(round(x, 1), round(y, 1)) for x, y in polygon]
+                for start, end in zip(rounded, rounded[1:] + rounded[:1]):
+                    if start == end:
+                        continue
+                    key = (start, end) if start < end else (end, start)
+                    edges.setdefault(key, []).append((code, basin, biome))
                 if abs(target_x - seed_x) < 0.01:
                     xs, ys = [point[0] for point in polygon], [point[1] for point in polygon]
                     focus_box = (min(xs), min(ys), max(xs), max(ys))
@@ -426,18 +539,53 @@ def coastal_state_geometry(
         if focus_box is None:
             focus_box = (seed_x - 35, seed_y - 35, seed_x + 35, seed_y + 35)
         viewbox = " ".join(f"{value:.1f}" for value in focus_box)
+        region = region_name(code)
+        realm = realm_name(basin, biome)
         state_groups.append(
-            f'<g id="province-{safe_id}" class="province {biome.lower()}" tabindex="0" role="button" '
+            f'<g id="province-{safe_id}" class="province {biome.lower()} basin-{basin.lower()} region-{region_slug(code)}" tabindex="0" role="button" '
             f'data-code="{safe_code}" data-name="{safe_name}" data-basin="{html.escape(basin)}" '
-            f'data-biome="{html.escape(biome)}" data-viewbox="{viewbox}" aria-label="Zoom to {safe_code}, {safe_name}">'
-            f'<title>{safe_code} — {safe_name} · {basin} · approximate coastal-state cartogram</title>'
+            f'data-biome="{html.escape(biome)}" data-realm="{html.escape(realm)}" data-region="{html.escape(region)}" data-viewbox="{viewbox}" aria-label="Zoom to {safe_code}, {safe_name}">'
+            f'<title>{safe_code} — {safe_name} · {region} · approximate coastal-state cartogram</title>'
             f'<path d="{" ".join(pieces)}"/>'
             f'</g>'
         )
         labels.append(
             f'<text x="{seed_x:.1f}" y="{seed_y + 4:.1f}" data-code="{safe_code}">{safe_code}</text>'
         )
-    return "".join(state_groups), labels
+    realm_segments = []
+    region_segments = []
+    for (start, end), owners in edges.items():
+        unique = {(code, basin, biome) for code, basin, biome in owners}
+        if len({code for code, _, _ in unique}) < 2:
+            continue
+        realms = {realm_name(basin, biome) for _, basin, biome in unique}
+        regions = {region_name(code) for code, _, _ in unique}
+        command = f"M{start[0]:.1f},{start[1]:.1f}L{end[0]:.1f},{end[1]:.1f}"
+        if len(realms) > 1:
+            realm_segments.append(command)
+        elif len(regions) > 1:
+            region_segments.append(command)
+    return "".join(state_groups), labels, " ".join(realm_segments), " ".join(region_segments)
+
+
+def region_labels(
+    left: float,
+    top: float,
+    width: float,
+    height: float,
+    latitude_top: float,
+    latitude_bottom: float,
+) -> str:
+    """Place a keyed region identifier in every disconnected visible piece."""
+    result = []
+    for label, name, code in REGION_MARKERS:
+        longitude, latitude = PROVINCE_SEEDS[code]
+        x = left + (longitude + 180.0) / 360.0 * width
+        y = top + (latitude_top - latitude) / (latitude_top - latitude_bottom) * height
+        result.append(
+            f'<text x="{x:.1f}" y="{y - 9:.1f}" aria-label="{name}"><title>{name}</title>{label}</text>'
+        )
+    return "".join(result)
 
 
 def projected_land_path(
@@ -466,65 +614,97 @@ def projected_land_path(
 
 def build_coastal_states_svg(geojson: dict, source_sha256: str) -> str:
     """Build the coast-owned province study requested after the lakes draft."""
-    states, labels = coastal_state_geometry()
+    states, labels, realm_boundaries, region_boundaries = coastal_state_geometry()
     land = projected_land_path(geojson)
+    map_region_labels = region_labels(92, 174, 1416, 644, 84, -72)
+    fill_css = region_fill_css()
+    legend = region_legend_svg()
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
-  <title id="title">OSW 56 coastal states study</title>
-  <desc id="desc">A monochrome ocean-first map in which 56 approximate province states cover the world ocean. Real Natural Earth land is removed from the states, so coastal provinces inherit recognizable coastline edges. Internal boundaries are original nearest-seed approximations, not scientific Longhurst geometry.</desc>
-  <metadata>Original OSW nearest-seed state geometry, MIT licensed. Coast edges use public-domain Natural Earth 1:110m land geometry, commit {SOURCE_COMMIT}, SHA-256 {source_sha256}, {SOURCE_URL}. Province seeds are approximate geographic placements; no geographic Longhurst boundary dataset is reproduced.</metadata>
+  <title id="title">OSW 56 COAST-OWNED STATES study</title>
+  <desc id="desc">An ocean-first map in which eleven provisional OSW organizational realms contain 22 contiguous schematic regions and 56 classic province identities. Region membership is connected before land masking; visible pieces can be separated by continents. Real Natural Earth land is removed from the states, so coastal provinces inherit recognizable coastline edges. Internal boundaries are original nearest-seed approximations, not scientific Longhurst geometry, and do not support area or boundary measurement.</desc>
+  <metadata>Original OSW nearest-seed state geometry, MIT licensed. Coast edges use public-domain Natural Earth 1:110m land geometry, commit {SOURCE_COMMIT}, SHA-256 {source_sha256}, {SOURCE_URL}. Province seeds are approximate geographic placements; no geographic Longhurst boundary dataset is reproduced. Region system: {REGION_SYSTEM_VERSION}, {REGION_CLASSIFICATION_STATUS}; {REGION_TOPOLOGY_DEFINITION}.</metadata>
   <defs>
+    <pattern id="land-hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(28)">
+      <rect width="10" height="10" fill="#f3f4f1"/>
+      <path d="M0 0V10" fill="none" stroke="#aebbb7" stroke-width=".8" stroke-opacity=".18"/>
+    </pattern>
     <mask id="ocean-only" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="1000">
       <rect x="92" y="174" width="1416" height="644" fill="white"/>
       <path d="{land}" fill="black" fill-rule="evenodd"/>
     </mask>
   </defs>
   <style>
-    .province path {{ fill:#d7dfdc; stroke:#183239; stroke-width:3.2; stroke-linejoin:round; vector-effect:non-scaling-stroke; }}
+    .province path {{ stroke:#71878a; stroke-width:.28; stroke-opacity:.58; stroke-linejoin:round; vector-effect:non-scaling-stroke; }}
+    {fill_css}
     .province:hover path,.province:focus path {{ fill:#f4f6f3; stroke:#07191e; stroke-width:6; }}
     .province:focus {{ outline:none; }}
-    .labels text {{ fill:#10272d; font:900 10.5px ui-monospace,Consolas,monospace; text-anchor:middle; paint-order:stroke; stroke:#d7dfdc; stroke-width:3.2px; stroke-linejoin:round; pointer-events:none; }}
-    .land-outline {{ fill:none; stroke:#879b9b; stroke-width:2; stroke-linejoin:round; vector-effect:non-scaling-stroke; }}
+    .labels text {{ fill:#19353b; fill-opacity:.72; font:700 9px ui-monospace,Consolas,monospace; text-anchor:middle; paint-order:stroke; stroke:#edf2ed; stroke-opacity:.8; stroke-width:2.2px; stroke-linejoin:round; pointer-events:none; }}
+    .region-labels text {{ fill:#102d34; fill-opacity:.82; font:900 12px ui-monospace,Consolas,monospace; letter-spacing:1px; text-anchor:middle; paint-order:stroke; stroke:#f3f5f1; stroke-opacity:.9; stroke-width:3px; pointer-events:none; }}
+    .realm-boundary-casing {{ fill:none; stroke:#f2f4ee; stroke-width:5.2; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; pointer-events:none; }}
+    .realm-boundaries {{ fill:none; stroke:#09232a; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; pointer-events:none; }}
+    .region-boundary-casing {{ fill:none; stroke:#f2f4ee; stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; pointer-events:none; }}
+    .region-boundaries {{ fill:none; stroke:#304b51; stroke-width:1.05; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; pointer-events:none; }}
+    .land-context {{ fill:url(#land-hatch); pointer-events:none; }}
+    .land-outline {{ fill:none; stroke:#899a96; stroke-width:.9; stroke-opacity:.48; stroke-linejoin:round; vector-effect:non-scaling-stroke; }}
   </style>
   <rect width="1600" height="1000" fill="#06171c"/>
-  <text x="72" y="70" fill="#b9cdca" font-family="ui-monospace,Consolas,monospace" font-size="13" font-weight="900" letter-spacing="2.2">EXPERIMENT 03C · COAST-OWNED STATES</text>
-  <text x="72" y="123" fill="#eef4f1" font-family="Inter,Arial,sans-serif" font-size="46" font-weight="900" letter-spacing="-2">THE COAST BELONGS TO THE PROVINCE</text>
+  <text x="72" y="70" fill="#b9cdca" font-family="ui-monospace,Consolas,monospace" font-size="13" font-weight="900" letter-spacing="2.2">11 ORGANIZATIONAL REALMS · 22 CONTIGUOUS SCHEMATIC REGIONS · 56 CLASSIC PROVINCE IDENTITIES</text>
+  <text x="72" y="123" fill="#eef4f1" font-family="Inter,Arial,sans-serif" font-size="46" font-weight="900" letter-spacing="-2">A WORLD OF OCEAN STATES</text>
   <text x="1528" y="75" fill="#eef4f1" font-family="Inter,Arial,sans-serif" font-size="42" font-weight="950" text-anchor="end">56</text>
   <text x="1528" y="98" fill="#8da9a9" font-family="ui-monospace,Consolas,monospace" font-size="10" font-weight="800" letter-spacing="1.5" text-anchor="end">APPROXIMATE OCEAN STATES</text>
-  <g mask="url(#ocean-only)">{states}</g>
-  <path class="land-outline" d="{land}" fill-rule="evenodd" aria-label="Continents as negative-space lakes"/>
+  <g mask="url(#ocean-only)">{states}<path class="region-boundary-casing" d="{region_boundaries}"/><path class="region-boundaries" d="{region_boundaries}"/><path class="realm-boundary-casing" d="{realm_boundaries}"/><path class="realm-boundaries" d="{realm_boundaries}"/><g class="region-labels">{map_region_labels}</g></g>
+  <path class="land-context" d="{land}" fill-rule="evenodd" aria-hidden="true"/>
+  <path class="land-outline" d="{land}" fill-rule="evenodd" aria-label="Continents as quiet hatched background context"/>
   <g class="labels" mask="url(#ocean-only)">{''.join(labels)}</g>
-  <g transform="translate(92 872)" font-family="ui-monospace,Consolas,monospace">
-    <text fill="#b9cdca" font-size="11" font-weight="900" letter-spacing="1.6">COAST-OWNED GEOMETRY</text>
-    <text y="25" fill="#8da9a9" font-size="11">ALSK INHERITS ALASKA · HUMB INHERITS PERU/CHILE · BENG INHERITS SOUTHWEST AFRICA</text>
+  <g transform="translate(92 824)" font-family="ui-monospace,Consolas,monospace">
+    <text fill="#b9cdca" font-size="11" font-weight="900" letter-spacing="1.6">22 CONTIGUOUS SCHEMATIC REGIONS · COLOR + CODE + NAME</text>
+    {legend}
   </g>
   <g transform="translate(844 866)" font-family="ui-monospace,Consolas,monospace" font-size="10">
-    <text fill="#eef4f1" font-weight="900" letter-spacing="1.4">ORIGINAL SCHEMATIC CARTOGRAM · NOT LONGHURST BOUNDARIES</text>
-    <text y="22" fill="#8da9a9">Real coast edges; approximate nearest-seed internal borders and contacts.</text>
-    <text y="38" fill="#8da9a9">The coastline is clipped into each province rather than overlaid as decoration.</text>
+    <text fill="#eef4f1" font-weight="900" letter-spacing="1.4">MAP GRAMMAR</text>
+    <path d="M0 23H72" stroke="#f2f4ee" stroke-width="5.2"/><path d="M0 23H72" stroke="#09232a" stroke-width="1.9"/><text x="86" y="27" fill="#b9cdca">REALM BORDER</text>
+    <path d="M0 46H72" stroke="#f2f4ee" stroke-width="3.2"/><path d="M0 46H72" stroke="#304b51" stroke-width="1.05"/><text x="86" y="50" fill="#8da9a9">SCHEMATIC-REGION BORDER</text>
+    <path d="M0 69H72" stroke="#71878a" stroke-width=".28" stroke-opacity=".58"/><text x="86" y="73" fill="#8da9a9">OCEAN-STATE BORDER</text>
+    <text x="320" y="27" fill="#8da9a9">Real coast edges; approximate nearest-seed internal borders</text>
+    <text x="320" y="43" fill="#8da9a9">and contacts.</text>
   </g>
-  <text x="92" y="966" fill="#617d80" font-family="ui-monospace,Consolas,monospace" font-size="9">CLASSIC 56-PROVINCE VOCABULARY · NATURAL EARTH COASTS · ORIGINAL OSW STATE GEOMETRY</text>
+  <text x="92" y="976" fill="#617d80" font-family="ui-monospace,Consolas,monospace" font-size="9">PROVISIONAL OSW ORGANIZATION · CONTIGUITY PRECEDES LAND MASKING · VISIBLE PIECES MAY SEPARATE AT LAND</text>
+  <text x="92" y="992" fill="#617d80" font-family="ui-monospace,Consolas,monospace" font-size="9">CLASSIC 56-PROVINCE IDENTITIES · NATURAL EARTH COASTS · ORIGINAL NON-METRIC OSW STATE GEOMETRY</text>
 </svg>'''
 
 
 def build_interactive_states_svg(geojson: dict, source_sha256: str) -> str:
     """Build the Atlas 10 province ground in its existing 1600×1050 frame."""
-    states, labels = coastal_state_geometry(60, 90, 1480, 740, 90, -90)
+    states, labels, realm_boundaries, region_boundaries = coastal_state_geometry(60, 90, 1480, 740, 90, -90)
     land = projected_land_path(geojson, 60, 90, 1480, 740, 90, -90)
+    map_region_labels = region_labels(60, 90, 1480, 740, 90, -90)
+    fill_css = region_fill_css()
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050" role="img" aria-labelledby="title desc">
   <title id="title">Interactive OSW 56-province ground</title>
   <desc id="desc">Selectable approximate ocean states with real coast-owned edges, aligned to every Atlas 10 conceptual and observed layer.</desc>
   <metadata>Original OSW nearest-seed geometry. Natural Earth 1:110m land, public domain, commit {SOURCE_COMMIT}, SHA-256 {source_sha256}. No geographic Longhurst boundary dataset is reproduced.</metadata>
-  <defs><mask id="interactive-ocean-only"><rect x="60" y="90" width="1480" height="740" fill="white"/><path d="{land}" fill="black" fill-rule="evenodd"/></mask></defs>
+  <defs>
+    <pattern id="interactive-land-hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(28)"><rect width="10" height="10" fill="#f3f4f1"/><path d="M0 0V10" fill="none" stroke="#aebbb7" stroke-width=".8" stroke-opacity=".18"/></pattern>
+    <mask id="interactive-ocean-only"><rect x="60" y="90" width="1480" height="740" fill="white"/><path d="{land}" fill="black" fill-rule="evenodd"/></mask>
+  </defs>
   <style>
     .map-field {{ fill:#0b242b; }}
-    .province path {{ fill:#d7dfdc; stroke:#183239; stroke-width:3; stroke-linejoin:round; vector-effect:non-scaling-stroke; transition:fill .15s,stroke .15s; }}
+    .province path {{ stroke:#71878a; stroke-width:.28; stroke-opacity:.58; stroke-linejoin:round; vector-effect:non-scaling-stroke; transition:fill .15s,stroke .15s; }}
+    {fill_css}
     .province:hover path,.province:focus path,.province.selected path {{ fill:#f4f6f3; stroke:#ffb454; stroke-width:5; }}
     .province:focus {{ outline:none; }}
-    .province-labels text {{ fill:#10272d; font:900 10.5px ui-monospace,Consolas,monospace; text-anchor:middle; paint-order:stroke; stroke:#d7dfdc; stroke-width:3.2px; pointer-events:none; }}
-    .land-outline {{ fill:none; stroke:#879b9b; stroke-width:2; stroke-linejoin:round; vector-effect:non-scaling-stroke; pointer-events:none; }}
+    .province-labels text {{ fill:#19353b; fill-opacity:.72; font:700 9px ui-monospace,Consolas,monospace; text-anchor:middle; paint-order:stroke; stroke:#d7dfdc; stroke-opacity:.8; stroke-width:2.2px; pointer-events:none; }}
+    .region-labels text {{ fill:#102d34; fill-opacity:.82; font:900 12px ui-monospace,Consolas,monospace; letter-spacing:1px; text-anchor:middle; paint-order:stroke; stroke:#f3f5f1; stroke-opacity:.9; stroke-width:3px; pointer-events:none; }}
+    .realm-boundary-casing {{ fill:none; stroke:#f2f4ee; stroke-width:5.2; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; pointer-events:none; }}
+    .realm-boundaries {{ fill:none; stroke:#09232a; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; pointer-events:none; }}
+    .region-boundary-casing {{ fill:none; stroke:#f2f4ee; stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; pointer-events:none; }}
+    .region-boundaries {{ fill:none; stroke:#304b51; stroke-width:1.05; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; pointer-events:none; }}
+    .land-context {{ fill:url(#interactive-land-hatch); pointer-events:none; }}
+    .land-outline {{ fill:none; stroke:#899a96; stroke-width:.9; stroke-opacity:.48; stroke-linejoin:round; vector-effect:non-scaling-stroke; pointer-events:none; }}
   </style>
   <rect class="map-field" x="60" y="90" width="1480" height="740" rx="28"/>
-  <g class="province-field" mask="url(#interactive-ocean-only)">{states}</g>
+  <g class="province-field" mask="url(#interactive-ocean-only)">{states}<path class="region-boundary-casing" d="{region_boundaries}"/><path class="region-boundaries" d="{region_boundaries}"/><path class="realm-boundary-casing" d="{realm_boundaries}"/><path class="realm-boundaries" d="{realm_boundaries}"/><g class="region-labels">{map_region_labels}</g></g>
+  <path class="land-context" d="{land}" fill-rule="evenodd"/>
   <path class="land-outline" d="{land}" fill-rule="evenodd"/>
   <g class="province-labels" mask="url(#interactive-ocean-only)">{''.join(labels)}</g>
   <rect class="map-frame" x="60" y="90" width="1480" height="740" rx="28" fill="none" stroke="#456972" stroke-width="2"/>
@@ -674,6 +854,11 @@ def main() -> None:
         type=pathlib.Path,
         default=pathlib.Path(__file__).resolve().parents[1] / "research" / "longhurst-province-reference.csv",
     )
+    parser.add_argument(
+        "--region-catalog-output",
+        type=pathlib.Path,
+        default=pathlib.Path(__file__).resolve().parents[1] / "research" / "osw-region-reference.csv",
+    )
     args = parser.parse_args()
     payload = args.land_geojson.read_bytes()
     digest = hashlib.sha256(payload).hexdigest()
@@ -690,11 +875,24 @@ def main() -> None:
         for basin, provinces in PROVINCES.items():
             for code, province, biome in provinces:
                 writer.writerow((code, province, basin, biome, "classic 56-province reference", "OSW non-metric cartogram"))
+    with args.region_catalog_output.open("w", encoding="utf-8", newline="") as destination:
+        writer = csv.writer(destination, lineterminator="\n")
+        writer.writerow((
+            "code", "region", "parent_realm", "color", "member_state_codes", "state_count",
+            "label_anchor", "classification_status", "geometry_status", "topology_definition", "version",
+        ))
+        for code, region, tone, members, anchor in CONTIGUOUS_REGIONS:
+            writer.writerow((
+                code, region, region_parent_realm(members), tone, "|".join(members), len(members), anchor,
+                REGION_CLASSIFICATION_STATUS, REGION_GEOMETRY_STATUS, REGION_TOPOLOGY_DEFINITION,
+                REGION_SYSTEM_VERSION,
+            ))
     print(args.output)
     print(args.lakes_output)
     print(args.coastal_states_output)
     print(args.interactive_states_output)
     print(args.catalog_output)
+    print(args.region_catalog_output)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,54 @@
+{
+  "schema": "oceanlines.osw.m3-nemo-face-thickness-candidate.v1",
+  "status": "synthetic_candidate_not_accepted_for_ORAS5_transport",
+  "input_sha256": "13793b48cdd20e06b7df7bfb986353560877a405ce44dd8dc3c6f9c73031bbf9",
+  "input_schema": "oceanlines.osw.m3-nemo-partial-step-fixture.v1",
+  "shape": [
+    3,
+    2,
+    3
+  ],
+  "u_shape": [
+    3,
+    2,
+    2
+  ],
+  "v_shape": [
+    3,
+    1,
+    3
+  ],
+  "u_face_thickness_m": [
+    10.0,
+    0.0,
+    10.0,
+    6.0,
+    12.0,
+    0.0,
+    20.0,
+    0.0,
+    0.0,
+    0.0,
+    35.0,
+    0.0
+  ],
+  "v_face_thickness_m": [
+    10.0,
+    10.0,
+    0.0,
+    20.0,
+    12.0,
+    0.0,
+    25.0,
+    0.0,
+    0.0
+  ],
+  "fallback_bottom_cell_count": 1,
+  "checks": {
+    "u_nonnegative": true,
+    "v_nonnegative": true,
+    "terminal_face_copying": false,
+    "operator": "minimum of the two adjacent reconstructed T-cell thicknesses"
+  },
+  "boundary": "Synthetic verification of an interior-face partial-step reconstruction candidate. It excludes terminal faces and does not establish equivalence to the precise ORAS5 configuration, validate a remote mesh, extract a section, or calculate transport."
+}

@@ -1,0 +1,1224 @@
+{
+  "schema": "osw.ocean-object-lineage-family.v1",
+  "detection_id": "OSW-D7",
+  "status": "exact_overlap_lineage_family",
+  "object_id": "OBJ046",
+  "object_name": "marine heatwave",
+  "source_artifacts": [
+    {
+      "path": "atlas/data/noaa-crw-mhw-point-north-atlantic-2026.json",
+      "sha256": "c1cf0af0b18b262718ca31b0efa6f0ff98f81db17f345fa4c748f12ff0a6b8f1"
+    },
+    {
+      "path": "research/osw-d3-noaa-crw-mhw-lineage-2026.json",
+      "sha256": "3c9a0d64b367f88316ca75ac21b35c7a99fd9e2b7bc5f9639c6ca66e0438cb52"
+    }
+  ],
+  "method": {
+    "seed": "four-neighbor component containing the OSW-D1 anchor on 2026-07-23",
+    "family_expansion": "retain every distinct four-neighbor component on the adjacent day that shares at least one exact native-grid cell with any current family node",
+    "edge": "directed chronological exact-overlap relation with two-sided overlap metrics",
+    "longitude_periodicity": true,
+    "pruning": "none beyond reachability from the seed and exact adjacent-day overlap"
+  },
+  "tracked_window": {
+    "start": "2026-07-21",
+    "end": "2026-08-10",
+    "day_count": 21,
+    "preceding_stop": {
+      "date": "2026-07-20",
+      "reason": "no exact-overlap component is reachable from the adjacent family nodes"
+    },
+    "following_stop": {
+      "date": "2026-08-11",
+      "reason": "no exact-overlap component is reachable from the adjacent family nodes"
+    }
+  },
+  "summary": {
+    "node_count": 28,
+    "edge_count": 29,
+    "primary_branch_node_count": 21,
+    "off_primary_node_count": 7,
+    "maximum_components_on_one_day": 4,
+    "split_node_count": 5,
+    "merge_node_count": 1,
+    "off_primary_terminal_node_count": 5,
+    "off_primary_merge_back_node_count": 2,
+    "largest_off_primary_component_pixels": 54
+  },
+  "components_per_day": [
+    {
+      "date": "2026-07-21",
+      "component_count": 1
+    },
+    {
+      "date": "2026-07-22",
+      "component_count": 1
+    },
+    {
+      "date": "2026-07-23",
+      "component_count": 1
+    },
+    {
+      "date": "2026-07-24",
+      "component_count": 1
+    },
+    {
+      "date": "2026-07-25",
+      "component_count": 1
+    },
+    {
+      "date": "2026-07-26",
+      "component_count": 1
+    },
+    {
+      "date": "2026-07-27",
+      "component_count": 1
+    },
+    {
+      "date": "2026-07-28",
+      "component_count": 1
+    },
+    {
+      "date": "2026-07-29",
+      "component_count": 2
+    },
+    {
+      "date": "2026-07-30",
+      "component_count": 4
+    },
+    {
+      "date": "2026-07-31",
+      "component_count": 1
+    },
+    {
+      "date": "2026-08-01",
+      "component_count": 1
+    },
+    {
+      "date": "2026-08-02",
+      "component_count": 1
+    },
+    {
+      "date": "2026-08-03",
+      "component_count": 2
+    },
+    {
+      "date": "2026-08-04",
+      "component_count": 1
+    },
+    {
+      "date": "2026-08-05",
+      "component_count": 2
+    },
+    {
+      "date": "2026-08-06",
+      "component_count": 1
+    },
+    {
+      "date": "2026-08-07",
+      "component_count": 1
+    },
+    {
+      "date": "2026-08-08",
+      "component_count": 2
+    },
+    {
+      "date": "2026-08-09",
+      "component_count": 1
+    },
+    {
+      "date": "2026-08-10",
+      "component_count": 1
+    }
+  ],
+  "split_nodes": [
+    "2026-07-28-C01",
+    "2026-07-29-C01",
+    "2026-08-02-C01",
+    "2026-08-04-C01",
+    "2026-08-07-C01"
+  ],
+  "merge_nodes": [
+    "2026-07-31-C01"
+  ],
+  "nodes": [
+    {
+      "node_id": "2026-07-21-C01",
+      "date": "2026-07-21",
+      "component_rank_by_size": 1,
+      "component_sha256": "b42a359c83a4fb105baa3cf15c58b17d09650da776ca4a8e51094c26eb7813e0",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 114,
+        "area_km2": 2621.6,
+        "centroid": {
+          "latitude_degrees_north": 41.929,
+          "longitude_degrees_east": -50.621
+        },
+        "bounds_cell_centers": {
+          "south": 41.725,
+          "north": 42.125,
+          "west": -51.175,
+          "east": -50.175
+        },
+        "category_pixel_counts": {
+          "1": 114
+        },
+        "category_areas_km2": {
+          "1": 2621.6
+        },
+        "maximum_category": 1,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-07-22-C01",
+      "date": "2026-07-22",
+      "component_rank_by_size": 1,
+      "component_sha256": "8729beec8272e839b29335c4878ea9bf7bc5188656769ba1bd535d91a4be2d69",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 161,
+        "area_km2": 3701.6,
+        "centroid": {
+          "latitude_degrees_north": 41.945,
+          "longitude_degrees_east": -50.803
+        },
+        "bounds_cell_centers": {
+          "south": 41.725,
+          "north": 42.125,
+          "west": -51.375,
+          "east": -50.225
+        },
+        "category_pixel_counts": {
+          "1": 161
+        },
+        "category_areas_km2": {
+          "1": 3701.6
+        },
+        "maximum_category": 1,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-07-23-C01",
+      "date": "2026-07-23",
+      "component_rank_by_size": 1,
+      "component_sha256": "d11eb88cf75415b224ac797020632f15343df2b9ce53d3b16a5afc51b02e2bfb",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 519,
+        "area_km2": 11927.1,
+        "centroid": {
+          "latitude_degrees_north": 41.972,
+          "longitude_degrees_east": -50.358
+        },
+        "bounds_cell_centers": {
+          "south": 41.475,
+          "north": 42.475,
+          "west": -51.275,
+          "east": -49.275
+        },
+        "category_pixel_counts": {
+          "1": 519
+        },
+        "category_areas_km2": {
+          "1": 11927.1
+        },
+        "maximum_category": 1,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-07-24-C01",
+      "date": "2026-07-24",
+      "component_rank_by_size": 1,
+      "component_sha256": "a92b8f8fee179f5faa67679dede66b87dfc1e8617e56ee3acee305dbd07a7cd6",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 1222,
+        "area_km2": 28120.4,
+        "centroid": {
+          "latitude_degrees_north": 41.882,
+          "longitude_degrees_east": -50.241
+        },
+        "bounds_cell_centers": {
+          "south": 40.775,
+          "north": 43.025,
+          "west": -51.525,
+          "east": -48.775
+        },
+        "category_pixel_counts": {
+          "1": 989,
+          "2": 233
+        },
+        "category_areas_km2": {
+          "1": 22770.5,
+          "2": 5349.9
+        },
+        "maximum_category": 2,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-07-25-C01",
+      "date": "2026-07-25",
+      "component_rank_by_size": 1,
+      "component_sha256": "5521eb01a27ca072197b599d271053738607213971b8efcad9ce1f3ff3d797ff",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 1938,
+        "area_km2": 44585.8,
+        "centroid": {
+          "latitude_degrees_north": 41.897,
+          "longitude_degrees_east": -50.487
+        },
+        "bounds_cell_centers": {
+          "south": 40.825,
+          "north": 43.025,
+          "west": -52.925,
+          "east": -47.875
+        },
+        "category_pixel_counts": {
+          "1": 1598,
+          "2": 340
+        },
+        "category_areas_km2": {
+          "1": 36782.1,
+          "2": 7803.8
+        },
+        "maximum_category": 2,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-07-26-C01",
+      "date": "2026-07-26",
+      "component_rank_by_size": 1,
+      "component_sha256": "40cb26d52cd0e87977b0fcd72489392adefaa2ab1dfa4161268bd29875f43536",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 1388,
+        "area_km2": 31953.6,
+        "centroid": {
+          "latitude_degrees_north": 41.856,
+          "longitude_degrees_east": -49.915
+        },
+        "bounds_cell_centers": {
+          "south": 40.875,
+          "north": 42.825,
+          "west": -51.925,
+          "east": -47.475
+        },
+        "category_pixel_counts": {
+          "1": 1213,
+          "2": 175
+        },
+        "category_areas_km2": {
+          "1": 27937.3,
+          "2": 4016.2
+        },
+        "maximum_category": 2,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-07-27-C01",
+      "date": "2026-07-27",
+      "component_rank_by_size": 1,
+      "component_sha256": "bf76a7a6fbce00c85c456dbf6ac3f00395d65e1096c5807e2ffb93b94f322a13",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 876,
+        "area_km2": 20122.0,
+        "centroid": {
+          "latitude_degrees_north": 41.999,
+          "longitude_degrees_east": -49.856
+        },
+        "bounds_cell_centers": {
+          "south": 41.275,
+          "north": 42.775,
+          "west": -51.075,
+          "east": -48.325
+        },
+        "category_pixel_counts": {
+          "1": 725,
+          "2": 151
+        },
+        "category_areas_km2": {
+          "1": 16661.3,
+          "2": 3460.8
+        },
+        "maximum_category": 2,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-07-28-C01",
+      "date": "2026-07-28",
+      "component_rank_by_size": 1,
+      "component_sha256": "d087f49dc1ab03f4a206c3b8d16db5cf9befb8ea084ace550f276089301b31b1",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 2101,
+        "area_km2": 48441.1,
+        "centroid": {
+          "latitude_degrees_north": 41.748,
+          "longitude_degrees_east": -49.692
+        },
+        "bounds_cell_centers": {
+          "south": 39.825,
+          "north": 43.625,
+          "west": -51.375,
+          "east": -46.925
+        },
+        "category_pixel_counts": {
+          "1": 2051,
+          "2": 50
+        },
+        "category_areas_km2": {
+          "1": 47295.5,
+          "2": 1145.6
+        },
+        "maximum_category": 2,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-07-29-C01",
+      "date": "2026-07-29",
+      "component_rank_by_size": 1,
+      "component_sha256": "d3e1ebcda04682bda26bcbf24bb275e418d2c7699e3bdd4e66681f79e8027712",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 1565,
+        "area_km2": 36182.1,
+        "centroid": {
+          "latitude_degrees_north": 41.578,
+          "longitude_degrees_east": -49.396
+        },
+        "bounds_cell_centers": {
+          "south": 39.925,
+          "north": 42.775,
+          "west": -51.175,
+          "east": -46.875
+        },
+        "category_pixel_counts": {
+          "1": 1546,
+          "2": 19
+        },
+        "category_areas_km2": {
+          "1": 35746.8,
+          "2": 435.4
+        },
+        "maximum_category": 2,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-07-29-C02",
+      "date": "2026-07-29",
+      "component_rank_by_size": 2,
+      "component_sha256": "8c38543007426ab60c90ad9a6a796dd3f3773ee740d3dfc59e43ef9f7110f6fa",
+      "on_d3_primary_branch": false,
+      "summary": {
+        "pixel_count": 25,
+        "area_km2": 559.5,
+        "centroid": {
+          "latitude_degrees_north": 43.611,
+          "longitude_degrees_east": -50.523
+        },
+        "bounds_cell_centers": {
+          "south": 43.475,
+          "north": 43.725,
+          "west": -50.675,
+          "east": -50.375
+        },
+        "category_pixel_counts": {
+          "1": 25
+        },
+        "category_areas_km2": {
+          "1": 559.5
+        },
+        "maximum_category": 1,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-07-30-C01",
+      "date": "2026-07-30",
+      "component_rank_by_size": 1,
+      "component_sha256": "6c2f10ffc69d1f0a5c2e3020919bc102d278a14a49d6bf6e9cb2b9f33eb9dbf4",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 1233,
+        "area_km2": 28610.7,
+        "centroid": {
+          "latitude_degrees_north": 41.342,
+          "longitude_degrees_east": -49.47
+        },
+        "bounds_cell_centers": {
+          "south": 39.825,
+          "north": 42.275,
+          "west": -50.925,
+          "east": -48.175
+        },
+        "category_pixel_counts": {
+          "1": 1233
+        },
+        "category_areas_km2": {
+          "1": 28610.7
+        },
+        "maximum_category": 1,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-07-30-C02",
+      "date": "2026-07-30",
+      "component_rank_by_size": 2,
+      "component_sha256": "e8f50447cdc797b70e5c6d157104cc39997e28d406a57d8a2bd015e2dac3d5f3",
+      "on_d3_primary_branch": false,
+      "summary": {
+        "pixel_count": 20,
+        "area_km2": 464.5,
+        "centroid": {
+          "latitude_degrees_north": 41.295,
+          "longitude_degrees_east": -46.92
+        },
+        "bounds_cell_centers": {
+          "south": 41.175,
+          "north": 41.425,
+          "west": -47.025,
+          "east": -46.825
+        },
+        "category_pixel_counts": {
+          "1": 20
+        },
+        "category_areas_km2": {
+          "1": 464.5
+        },
+        "maximum_category": 1,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-07-30-C03",
+      "date": "2026-07-30",
+      "component_rank_by_size": 3,
+      "component_sha256": "67ad1a5681d964640011b8396ea1873fed0eb8bdac1231877ec376d41f8d1ac9",
+      "on_d3_primary_branch": false,
+      "summary": {
+        "pixel_count": 12,
+        "area_km2": 279.1,
+        "centroid": {
+          "latitude_degrees_north": 41.2,
+          "longitude_degrees_east": -48.1
+        },
+        "bounds_cell_centers": {
+          "south": 41.175,
+          "north": 41.225,
+          "west": -48.225,
+          "east": -47.975
+        },
+        "category_pixel_counts": {
+          "1": 12
+        },
+        "category_areas_km2": {
+          "1": 279.1
+        },
+        "maximum_category": 1,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-07-30-C04",
+      "date": "2026-07-30",
+      "component_rank_by_size": 4,
+      "component_sha256": "a1f4b5d86a4d97401ddf8b5349275954fb720d000c7e2a7ad3f97137b2c33055",
+      "on_d3_primary_branch": false,
+      "summary": {
+        "pixel_count": 1,
+        "area_km2": 23.2,
+        "centroid": {
+          "latitude_degrees_north": 41.225,
+          "longitude_degrees_east": -48.325
+        },
+        "bounds_cell_centers": {
+          "south": 41.225,
+          "north": 41.225,
+          "west": -48.325,
+          "east": -48.325
+        },
+        "category_pixel_counts": {
+          "1": 1
+        },
+        "category_areas_km2": {
+          "1": 23.2
+        },
+        "maximum_category": 1,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-07-31-C01",
+      "date": "2026-07-31",
+      "component_rank_by_size": 1,
+      "component_sha256": "44496af33cb70cb83775622c35ab7b00a8a23064e9f0d251143a42fa218d6e5b",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 1619,
+        "area_km2": 37551.5,
+        "centroid": {
+          "latitude_degrees_north": 41.367,
+          "longitude_degrees_east": -49.365
+        },
+        "bounds_cell_centers": {
+          "south": 39.625,
+          "north": 42.525,
+          "west": -51.025,
+          "east": -47.775
+        },
+        "category_pixel_counts": {
+          "1": 1619
+        },
+        "category_areas_km2": {
+          "1": 37551.5
+        },
+        "maximum_category": 1,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-08-01-C01",
+      "date": "2026-08-01",
+      "component_rank_by_size": 1,
+      "component_sha256": "17ce7a064cb5b97c396572e12ea7e14db5aa4c82d1214edc6cf2ac62d9189387",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 1769,
+        "area_km2": 41025.3,
+        "centroid": {
+          "latitude_degrees_north": 41.375,
+          "longitude_degrees_east": -49.33
+        },
+        "bounds_cell_centers": {
+          "south": 39.625,
+          "north": 42.575,
+          "west": -51.225,
+          "east": -47.675
+        },
+        "category_pixel_counts": {
+          "1": 1766,
+          "2": 3
+        },
+        "category_areas_km2": {
+          "1": 40956.3,
+          "2": 69.0
+        },
+        "maximum_category": 2,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-08-02-C01",
+      "date": "2026-08-02",
+      "component_rank_by_size": 1,
+      "component_sha256": "536be810550116e2becff6f4acb40a9ff92497d7e9dbefc76422576079f36181",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 2133,
+        "area_km2": 49439.2,
+        "centroid": {
+          "latitude_degrees_north": 41.41,
+          "longitude_degrees_east": -49.344
+        },
+        "bounds_cell_centers": {
+          "south": 39.625,
+          "north": 42.925,
+          "west": -51.225,
+          "east": -47.375
+        },
+        "category_pixel_counts": {
+          "1": 1857,
+          "2": 276
+        },
+        "category_areas_km2": {
+          "1": 43103.1,
+          "2": 6336.1
+        },
+        "maximum_category": 2,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-08-03-C01",
+      "date": "2026-08-03",
+      "component_rank_by_size": 1,
+      "component_sha256": "fed46273ff34c221bce4771fda0cc5ada7e6619dddd2eae9a8aba55193967839",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 1977,
+        "area_km2": 45979.4,
+        "centroid": {
+          "latitude_degrees_north": 41.186,
+          "longitude_degrees_east": -49.16
+        },
+        "bounds_cell_centers": {
+          "south": 39.475,
+          "north": 42.525,
+          "west": -51.025,
+          "east": -47.475
+        },
+        "category_pixel_counts": {
+          "1": 1806,
+          "2": 171
+        },
+        "category_areas_km2": {
+          "1": 42050.9,
+          "2": 3928.5
+        },
+        "maximum_category": 2,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-08-03-C02",
+      "date": "2026-08-03",
+      "component_rank_by_size": 2,
+      "component_sha256": "de45023610d6e821b84e384e43cbee3db90611003cf09c36eb48800a13a0974e",
+      "on_d3_primary_branch": false,
+      "summary": {
+        "pixel_count": 1,
+        "area_km2": 23.7,
+        "centroid": {
+          "latitude_degrees_north": 40.025,
+          "longitude_degrees_east": -47.775
+        },
+        "bounds_cell_centers": {
+          "south": 40.025,
+          "north": 40.025,
+          "west": -47.775,
+          "east": -47.775
+        },
+        "category_pixel_counts": {
+          "1": 1
+        },
+        "category_areas_km2": {
+          "1": 23.7
+        },
+        "maximum_category": 1,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-08-04-C01",
+      "date": "2026-08-04",
+      "component_rank_by_size": 1,
+      "component_sha256": "61dd155da6e2dc1323cc6749bffa3615c35cf2ced7a342df885c67ea5e529f45",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 1663,
+        "area_km2": 38565.1,
+        "centroid": {
+          "latitude_degrees_north": 41.377,
+          "longitude_degrees_east": -49.306
+        },
+        "bounds_cell_centers": {
+          "south": 39.825,
+          "north": 42.625,
+          "west": -51.075,
+          "east": -47.775
+        },
+        "category_pixel_counts": {
+          "1": 1614,
+          "2": 49
+        },
+        "category_areas_km2": {
+          "1": 37443.3,
+          "2": 1121.8
+        },
+        "maximum_category": 2,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-08-05-C01",
+      "date": "2026-08-05",
+      "component_rank_by_size": 1,
+      "component_sha256": "3de456701c340ac94c366b13371a1e8a3809e7efa53104bfc75819fcc1f2a671",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 1784,
+        "area_km2": 41378.1,
+        "centroid": {
+          "latitude_degrees_north": 41.365,
+          "longitude_degrees_east": -49.174
+        },
+        "bounds_cell_centers": {
+          "south": 39.775,
+          "north": 42.675,
+          "west": -51.225,
+          "east": -47.575
+        },
+        "category_pixel_counts": {
+          "1": 1614,
+          "2": 170
+        },
+        "category_areas_km2": {
+          "1": 37488.0,
+          "2": 3890.0
+        },
+        "maximum_category": 2,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-08-05-C02",
+      "date": "2026-08-05",
+      "component_rank_by_size": 2,
+      "component_sha256": "295a09e03452b5c16a1433e0218f91fe4b3959bba194ede501e09e228eeee25f",
+      "on_d3_primary_branch": false,
+      "summary": {
+        "pixel_count": 1,
+        "area_km2": 23.1,
+        "centroid": {
+          "latitude_degrees_north": 41.525,
+          "longitude_degrees_east": -49.525
+        },
+        "bounds_cell_centers": {
+          "south": 41.525,
+          "north": 41.525,
+          "west": -49.525,
+          "east": -49.525
+        },
+        "category_pixel_counts": {
+          "1": 1
+        },
+        "category_areas_km2": {
+          "1": 23.1
+        },
+        "maximum_category": 1,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-08-06-C01",
+      "date": "2026-08-06",
+      "component_rank_by_size": 1,
+      "component_sha256": "8507373bcb89bc836c1a590c867576b8a0c914ce26451db37c201b24803bab56",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 1530,
+        "area_km2": 35382.6,
+        "centroid": {
+          "latitude_degrees_north": 41.56,
+          "longitude_degrees_east": -49.21
+        },
+        "bounds_cell_centers": {
+          "south": 40.325,
+          "north": 42.675,
+          "west": -51.175,
+          "east": -47.675
+        },
+        "category_pixel_counts": {
+          "1": 1378,
+          "2": 152
+        },
+        "category_areas_km2": {
+          "1": 31907.0,
+          "2": 3475.7
+        },
+        "maximum_category": 2,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-08-07-C01",
+      "date": "2026-08-07",
+      "component_rank_by_size": 1,
+      "component_sha256": "d0bcbe4f3e108e54bdf410843465baa505c8542f5eac1f4d3c93592b02e5bfed",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 1088,
+        "area_km2": 25138.7,
+        "centroid": {
+          "latitude_degrees_north": 41.619,
+          "longitude_degrees_east": -49.15
+        },
+        "bounds_cell_centers": {
+          "south": 40.375,
+          "north": 42.575,
+          "west": -50.925,
+          "east": -47.625
+        },
+        "category_pixel_counts": {
+          "1": 1031,
+          "2": 57
+        },
+        "category_areas_km2": {
+          "1": 23835.8,
+          "2": 1302.9
+        },
+        "maximum_category": 2,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-08-08-C01",
+      "date": "2026-08-08",
+      "component_rank_by_size": 1,
+      "component_sha256": "4fba67f9b787d89007d2d891bf2fafef37780d5c20a49c604baabb20393c6ed6",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 219,
+        "area_km2": 5017.5,
+        "centroid": {
+          "latitude_degrees_north": 42.167,
+          "longitude_degrees_east": -49.738
+        },
+        "bounds_cell_centers": {
+          "south": 41.825,
+          "north": 42.475,
+          "west": -50.325,
+          "east": -49.175
+        },
+        "category_pixel_counts": {
+          "1": 219
+        },
+        "category_areas_km2": {
+          "1": 5017.5
+        },
+        "maximum_category": 1,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-08-08-C02",
+      "date": "2026-08-08",
+      "component_rank_by_size": 2,
+      "component_sha256": "b319e1d667c830d4cdea8f878a709a143fcfe8c3d1f8903d4d6aa2bdeb3a4297",
+      "on_d3_primary_branch": false,
+      "summary": {
+        "pixel_count": 54,
+        "area_km2": 1253.6,
+        "centroid": {
+          "latitude_degrees_north": 41.319,
+          "longitude_degrees_east": -48.214
+        },
+        "bounds_cell_centers": {
+          "south": 41.125,
+          "north": 41.475,
+          "west": -48.525,
+          "east": -47.975
+        },
+        "category_pixel_counts": {
+          "1": 54
+        },
+        "category_areas_km2": {
+          "1": 1253.6
+        },
+        "maximum_category": 1,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-08-09-C01",
+      "date": "2026-08-09",
+      "component_rank_by_size": 1,
+      "component_sha256": "383ab51cd2e74f0378755465b6889e3bcfec6987a99c3e7f143bc9318a144604",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 167,
+        "area_km2": 3821.9,
+        "centroid": {
+          "latitude_degrees_north": 42.236,
+          "longitude_degrees_east": -49.737
+        },
+        "bounds_cell_centers": {
+          "south": 41.825,
+          "north": 42.525,
+          "west": -50.325,
+          "east": -49.275
+        },
+        "category_pixel_counts": {
+          "1": 167
+        },
+        "category_areas_km2": {
+          "1": 3821.9
+        },
+        "maximum_category": 1,
+        "touches_global_grid_edge": false
+      }
+    },
+    {
+      "node_id": "2026-08-10-C01",
+      "date": "2026-08-10",
+      "component_rank_by_size": 1,
+      "component_sha256": "e7a6782132eee43b0d4f27a5588f33bfc38f4bf8f8a74ef818d25e21987d310b",
+      "on_d3_primary_branch": true,
+      "summary": {
+        "pixel_count": 145,
+        "area_km2": 3323.3,
+        "centroid": {
+          "latitude_degrees_north": 42.142,
+          "longitude_degrees_east": -49.636
+        },
+        "bounds_cell_centers": {
+          "south": 41.725,
+          "north": 42.475,
+          "west": -50.225,
+          "east": -48.925
+        },
+        "category_pixel_counts": {
+          "1": 145
+        },
+        "category_areas_km2": {
+          "1": 3323.3
+        },
+        "maximum_category": 1,
+        "touches_global_grid_edge": false
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "2026-07-21-C01",
+      "to": "2026-07-22-C01",
+      "intersection_pixels": 103,
+      "iou": 0.5988,
+      "source_retained_fraction": 0.9035,
+      "target_inherited_fraction": 0.6398
+    },
+    {
+      "from": "2026-07-22-C01",
+      "to": "2026-07-23-C01",
+      "intersection_pixels": 152,
+      "iou": 0.2879,
+      "source_retained_fraction": 0.9441,
+      "target_inherited_fraction": 0.2929
+    },
+    {
+      "from": "2026-07-23-C01",
+      "to": "2026-07-24-C01",
+      "intersection_pixels": 518,
+      "iou": 0.4235,
+      "source_retained_fraction": 0.9981,
+      "target_inherited_fraction": 0.4239
+    },
+    {
+      "from": "2026-07-24-C01",
+      "to": "2026-07-25-C01",
+      "intersection_pixels": 1208,
+      "iou": 0.6189,
+      "source_retained_fraction": 0.9885,
+      "target_inherited_fraction": 0.6233
+    },
+    {
+      "from": "2026-07-25-C01",
+      "to": "2026-07-26-C01",
+      "intersection_pixels": 1267,
+      "iou": 0.6153,
+      "source_retained_fraction": 0.6538,
+      "target_inherited_fraction": 0.9128
+    },
+    {
+      "from": "2026-07-26-C01",
+      "to": "2026-07-27-C01",
+      "intersection_pixels": 822,
+      "iou": 0.57,
+      "source_retained_fraction": 0.5922,
+      "target_inherited_fraction": 0.9384
+    },
+    {
+      "from": "2026-07-27-C01",
+      "to": "2026-07-28-C01",
+      "intersection_pixels": 872,
+      "iou": 0.4143,
+      "source_retained_fraction": 0.9954,
+      "target_inherited_fraction": 0.415
+    },
+    {
+      "from": "2026-07-28-C01",
+      "to": "2026-07-29-C02",
+      "intersection_pixels": 13,
+      "iou": 0.0062,
+      "source_retained_fraction": 0.0062,
+      "target_inherited_fraction": 0.52
+    },
+    {
+      "from": "2026-07-28-C01",
+      "to": "2026-07-29-C01",
+      "intersection_pixels": 1390,
+      "iou": 0.6107,
+      "source_retained_fraction": 0.6616,
+      "target_inherited_fraction": 0.8882
+    },
+    {
+      "from": "2026-07-29-C01",
+      "to": "2026-07-30-C03",
+      "intersection_pixels": 12,
+      "iou": 0.0077,
+      "source_retained_fraction": 0.0077,
+      "target_inherited_fraction": 1.0
+    },
+    {
+      "from": "2026-07-29-C01",
+      "to": "2026-07-30-C01",
+      "intersection_pixels": 1011,
+      "iou": 0.5658,
+      "source_retained_fraction": 0.646,
+      "target_inherited_fraction": 0.82
+    },
+    {
+      "from": "2026-07-29-C01",
+      "to": "2026-07-30-C04",
+      "intersection_pixels": 1,
+      "iou": 0.0006,
+      "source_retained_fraction": 0.0006,
+      "target_inherited_fraction": 1.0
+    },
+    {
+      "from": "2026-07-29-C01",
+      "to": "2026-07-30-C02",
+      "intersection_pixels": 8,
+      "iou": 0.0051,
+      "source_retained_fraction": 0.0051,
+      "target_inherited_fraction": 0.4
+    },
+    {
+      "from": "2026-07-30-C03",
+      "to": "2026-07-31-C01",
+      "intersection_pixels": 10,
+      "iou": 0.0062,
+      "source_retained_fraction": 0.8333,
+      "target_inherited_fraction": 0.0062
+    },
+    {
+      "from": "2026-07-30-C01",
+      "to": "2026-07-31-C01",
+      "intersection_pixels": 1164,
+      "iou": 0.6896,
+      "source_retained_fraction": 0.944,
+      "target_inherited_fraction": 0.719
+    },
+    {
+      "from": "2026-07-30-C04",
+      "to": "2026-07-31-C01",
+      "intersection_pixels": 1,
+      "iou": 0.0006,
+      "source_retained_fraction": 1.0,
+      "target_inherited_fraction": 0.0006
+    },
+    {
+      "from": "2026-07-31-C01",
+      "to": "2026-08-01-C01",
+      "intersection_pixels": 1545,
+      "iou": 0.8383,
+      "source_retained_fraction": 0.9543,
+      "target_inherited_fraction": 0.8734
+    },
+    {
+      "from": "2026-08-01-C01",
+      "to": "2026-08-02-C01",
+      "intersection_pixels": 1731,
+      "iou": 0.7973,
+      "source_retained_fraction": 0.9785,
+      "target_inherited_fraction": 0.8115
+    },
+    {
+      "from": "2026-08-02-C01",
+      "to": "2026-08-03-C02",
+      "intersection_pixels": 1,
+      "iou": 0.0005,
+      "source_retained_fraction": 0.0005,
+      "target_inherited_fraction": 1.0
+    },
+    {
+      "from": "2026-08-02-C01",
+      "to": "2026-08-03-C01",
+      "intersection_pixels": 1749,
+      "iou": 0.7408,
+      "source_retained_fraction": 0.82,
+      "target_inherited_fraction": 0.8847
+    },
+    {
+      "from": "2026-08-03-C01",
+      "to": "2026-08-04-C01",
+      "intersection_pixels": 1595,
+      "iou": 0.78,
+      "source_retained_fraction": 0.8068,
+      "target_inherited_fraction": 0.9591
+    },
+    {
+      "from": "2026-08-04-C01",
+      "to": "2026-08-05-C02",
+      "intersection_pixels": 1,
+      "iou": 0.0006,
+      "source_retained_fraction": 0.0006,
+      "target_inherited_fraction": 1.0
+    },
+    {
+      "from": "2026-08-04-C01",
+      "to": "2026-08-05-C01",
+      "intersection_pixels": 1557,
+      "iou": 0.8238,
+      "source_retained_fraction": 0.9363,
+      "target_inherited_fraction": 0.8728
+    },
+    {
+      "from": "2026-08-05-C01",
+      "to": "2026-08-06-C01",
+      "intersection_pixels": 1471,
+      "iou": 0.7982,
+      "source_retained_fraction": 0.8246,
+      "target_inherited_fraction": 0.9614
+    },
+    {
+      "from": "2026-08-06-C01",
+      "to": "2026-08-07-C01",
+      "intersection_pixels": 1083,
+      "iou": 0.7055,
+      "source_retained_fraction": 0.7078,
+      "target_inherited_fraction": 0.9954
+    },
+    {
+      "from": "2026-08-07-C01",
+      "to": "2026-08-08-C01",
+      "intersection_pixels": 216,
+      "iou": 0.198,
+      "source_retained_fraction": 0.1985,
+      "target_inherited_fraction": 0.9863
+    },
+    {
+      "from": "2026-08-07-C01",
+      "to": "2026-08-08-C02",
+      "intersection_pixels": 54,
+      "iou": 0.0496,
+      "source_retained_fraction": 0.0496,
+      "target_inherited_fraction": 1.0
+    },
+    {
+      "from": "2026-08-08-C01",
+      "to": "2026-08-09-C01",
+      "intersection_pixels": 152,
+      "iou": 0.6496,
+      "source_retained_fraction": 0.6941,
+      "target_inherited_fraction": 0.9102
+    },
+    {
+      "from": "2026-08-09-C01",
+      "to": "2026-08-10-C01",
+      "intersection_pixels": 124,
+      "iou": 0.6596,
+      "source_retained_fraction": 0.7425,
+      "target_inherited_fraction": 0.8552
+    }
+  ],
+  "identity_evaluation": {
+    "result": "pass",
+    "finding": "Every adjacent-day branch reachable from the anchor under the declared exact-overlap rule is retained as a lineage family; D3 remains one explicit primary path through it."
+  },
+  "boundary": "This graph is a genealogy of connected threshold-state footprints, not a materially conserved body of water. Graph membership depends on four-neighbor connectivity, daily cadence, exact-overlap reachability, source window, and no size pruning. Tiny branches remain visible by design. The graph does not bridge the August 11 threshold gap or establish forcing, advection, subsurface extent, impacts, or a unique event ontology."
+}

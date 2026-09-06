@@ -1,0 +1,85 @@
+{
+  "schema": "oceanlines.oras5.drake-budget-state.v1",
+  "status": "compact_native_monthly_control_box_state",
+  "month": "201803",
+  "retrieved_at": "2026-08-30T18:32:44.911546+00:00",
+  "mesh_receipt": {
+    "path": "research\\osw-m3-oras5-drake-mesh.json",
+    "sha256": "56a7cb9d7fd859a291c60c3b83f2a45a22437c56588aa2f5d9768950cfa5d0fb",
+    "mesh_output_sha256": "a575659f2249a60ce01ecfc71fc489d17f8476d1a41dfb116b25c349ddcb0824"
+  },
+  "fields": {
+    "votemper": {
+      "url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/votemper/opa0/votemper_ORAS5_1m_201803_grid_T_02.nc",
+      "local_window": {
+        "y_start": 53,
+        "y_stop_exclusive": 141,
+        "x_start": 56,
+        "x_stop_exclusive": 74
+      },
+      "global_window": {
+        "y_start": 141,
+        "y_stop_exclusive": 229,
+        "x_start": 872,
+        "x_stop_exclusive": 890
+      },
+      "units": "C",
+      "long_name": "Temperature",
+      "shape": [
+        75,
+        88,
+        18
+      ]
+    },
+    "vozocrtx": {
+      "url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/vozocrtx/opa0/vozocrtx_ORAS5_1m_201803_grid_U_02.nc",
+      "local_window": {
+        "y_start": 54,
+        "y_stop_exclusive": 140,
+        "x_start": 56,
+        "x_stop_exclusive": 73
+      },
+      "global_window": {
+        "y_start": 142,
+        "y_stop_exclusive": 228,
+        "x_start": 872,
+        "x_stop_exclusive": 889
+      },
+      "units": "m/s",
+      "long_name": "Zonal Current",
+      "shape": [
+        75,
+        86,
+        17
+      ]
+    },
+    "vomecrty": {
+      "url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/vomecrty/opa0/vomecrty_ORAS5_1m_201803_grid_V_02.nc",
+      "local_window": {
+        "y_start": 53,
+        "y_stop_exclusive": 140,
+        "x_start": 57,
+        "x_stop_exclusive": 73
+      },
+      "global_window": {
+        "y_start": 141,
+        "y_stop_exclusive": 228,
+        "x_start": 873,
+        "x_stop_exclusive": 889
+      },
+      "units": "m/s",
+      "long_name": "Meridional Current",
+      "shape": [
+        75,
+        87,
+        16
+      ]
+    }
+  },
+  "output": {
+    "path": "atlas\\data\\oras5-drake-budget-state-201803.nc",
+    "bytes": 806902,
+    "sha256": "8e74328181ad107794c093233fc201a46f740a42313f697ed481bb474cd6b43f"
+  },
+  "boundary": "Compact native monthly windows sufficient for the declared control-box storage and offline advective boundaries. No surface, ice, mixing, diffusion, or model-native tracer-budget terms."
+}

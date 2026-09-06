@@ -1,0 +1,89 @@
+{
+  "schema": "osw.oras5.native-budget-availability.v1",
+  "status": "live_native_grid_catalog_audited",
+  "retrieved_at": "2026-09-05T00:00:00Z",
+  "catalog": {
+    "url": "https://icdc.cen.uni-hamburg.de/thredds/catalog/ftpthredds/EASYInit/oras5/ORCA025/catalog.xml",
+    "sha256": "434dc273badce76309ce33c43dc73a37a025716bff327d9cb18fcfe4bacf21ae",
+    "variable_family_count": 23,
+    "variable_families": [
+      "iicethic",
+      "iicevelu",
+      "iicevelv",
+      "ileadfra",
+      "mesh",
+      "so20chgt",
+      "sohefldo",
+      "sohtc300",
+      "sohtc700",
+      "sohtcbtm",
+      "sometauy",
+      "somxl010",
+      "sosaline",
+      "sossheig",
+      "sosstsst",
+      "sowaflup",
+      "sozotaux",
+      "vomecrtn",
+      "vomecrty",
+      "vosaline",
+      "votemper",
+      "vozocrte",
+      "vozocrtx"
+    ]
+  },
+  "required_native_terms": {
+    "temperature_tendency": {
+      "available": false,
+      "candidate_names": [
+        "temperature_tendency",
+        "votemptend",
+        "ttrd"
+      ]
+    },
+    "native_tracer_advection": {
+      "available": false,
+      "candidate_names": [
+        "temperature_advection",
+        "advective_temperature_tendency",
+        "ttrdadv"
+      ]
+    },
+    "vertical_mixing": {
+      "available": false,
+      "candidate_names": [
+        "vertical_mixing_temperature_tendency",
+        "ttrd_zdf"
+      ]
+    },
+    "lateral_diffusion": {
+      "available": false,
+      "candidate_names": [
+        "lateral_diffusion_temperature_tendency",
+        "ttrd_ldf"
+      ]
+    },
+    "sea_ice_heat_exchange": {
+      "available": false,
+      "candidate_names": [
+        "ice_ocean_heat_flux",
+        "sea_ice_heat_flux"
+      ]
+    },
+    "assimilation_increment": {
+      "available": false,
+      "candidate_names": [
+        "temperature_analysis_increment",
+        "assimilation_increment"
+      ]
+    }
+  },
+  "archived_partial_diagnostics": {
+    "surface_heat_flux": true,
+    "total_column_heat_content": true,
+    "potential_temperature_state": true,
+    "native_grid_velocity_state": true
+  },
+  "conclusion": "The public ICDC ORCA025 monthly archive supports an independent storage check and offline advection, but exposes none of the model-native tendency, mixing, diffusion, sea-ice heat-exchange, or assimilation-increment families required to close and decompose the regional heat budget.",
+  "boundary": "Absence from this public catalog is an archive-availability result, not proof that the ORAS5 production system never computed these terms or that they cannot be obtained from ECMWF by another route."
+}

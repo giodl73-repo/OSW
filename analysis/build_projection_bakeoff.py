@@ -18,6 +18,8 @@ from typing import Callable, Iterable, Iterator, Sequence
 
 from pyproj import CRS, Transformer
 
+from build_province_cartogram import REGION_CODES, REGION_COUNTS, REGION_MARKERS, REGION_TONES, PROVINCES, PROVINCE_SEEDS, clip_half_plane, realm_name, region_class_slug, region_name, region_slug
+
 
 SOURCE_COMMIT = "ca96624a56bd078437bca8184e78163e5039ad19"
 SOURCE_URL = f"https://raw.githubusercontent.com/nvkelso/natural-earth-vector/{SOURCE_COMMIT}/geojson/ne_110m_land.geojson"
@@ -25,6 +27,12 @@ EXPECTED_SOURCE_SHA256 = "9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85
 WIDTH = 900
 HEIGHT = 760
 MAP_BOX = (42.0, 112.0, 816.0, 530.0)
+STATE_CANVAS = (1200, 1360)
+STATE_MAP_BOX = (56.0, 360.0, 1088.0, 706.0)
+NORTH_POLAR_BOX = (660.0, 150.0, 156.0, 156.0)
+SOUTH_POLAR_BOX = (902.0, 150.0, 156.0, 156.0)
+NORTH_POLAR_CUTOFF = 48.0
+SOUTH_POLAR_CUTOFF = -45.0
 Point = tuple[float, float]
 Projector = Callable[[float, float], Point]
 
@@ -38,6 +46,16 @@ class Candidate:
     tradeoff: str
     projector: Projector
     frame: str
+
+
+@dataclass(frozen=True)
+class StateCandidate:
+    slug: str
+    title: str
+    subtitle: str
+    property_label: str
+    tradeoff: str
+    proj4: str
 
 
 HEAT_POLYGONS: list[list[Point]] = [
@@ -281,6 +299,409 @@ def svg_path(segments: Iterable[Sequence[Point]], screen: Callable[[Point], Poin
     return "".join(commands)
 
 
+def filled_svg_path(segments: Iterable[Sequence[Point]], screen: Callable[[Point], Point]) -> str:
+    """Close every visible projected fragment against its projection seam."""
+    commands: list[str] = []
+    for segment in segments:
+        if len(segment) < 3:
+            continue
+        first_x, first_y = screen(segment[0])
+        commands.append(f"M{first_x:.1f},{first_y:.1f}")
+        for point in segment[1:]:
+            x, y = screen(point)
+            commands.append(f"L{x:.1f},{y:.1f}")
+        commands.append("Z")
+    return "".join(commands)
+
+
+def state_projection_candidates() -> list[StateCandidate]:
+    return [
+        StateCandidate(
+            "mollweide-oceanic",
+            "OCEANIC MOLLWEIDE",
+            "Six ocean-emphasis lobes",
+            "EQUAL-AREA · INTERRUPTED",
+            "More room for ocean states; continuity pays at the lobe cuts.",
+            "+proj=imoll_o +lon_0=-160 +R=1 +units=m +no_defs",
+        ),
+        StateCandidate(
+            "oblique-cea",
+            "OBLIQUE OCEAN STRIP",
+            "Drake Passage to Indonesian Throughflow axis",
+            "EQUAL-AREA · GREAT-CIRCLE AXIS",
+            "A long connected ocean corridor; polar and off-axis shape is strongly transformed.",
+            "+proj=ocea +lat_1=-56 +lon_1=-68 +lat_2=-3 +lon_2=123 +R=1 +units=m +no_defs",
+        ),
+    ]
+
+
+def geographic_state_geometry() -> tuple[list[dict], list[tuple[Point, Point]], list[tuple[Point, Point]]]:
+    """Create periodic nearest-seed cells directly in longitude/latitude space."""
+    seeds = []
+    for basin, provinces in PROVINCES.items():
+        for code, name, biome in provinces:
+            longitude, latitude = PROVINCE_SEEDS[code]
+            seeds.append((code, name, biome, basin, longitude, latitude))
+
+    states: list[dict] = []
+    edge_owners: dict[tuple[Point, Point], list[tuple[str, str, str]]] = {}
+    for code, name, biome, basin, seed_lon, seed_lat in seeds:
+        pieces: list[list[Point]] = []
+        for target_lon in (seed_lon - 360.0, seed_lon, seed_lon + 360.0):
+            polygon: list[Point] = [(-180.0, -89.5), (180.0, -89.5), (180.0, 89.5), (-180.0, 89.5)]
+            for other_code, _, _, _, other_lon, other_lat in seeds:
+                for competitor_lon in (other_lon - 360.0, other_lon, other_lon + 360.0):
+                    if other_code == code and abs(competitor_lon - target_lon) < 0.01:
+                        continue
+                    normal_x = competitor_lon - target_lon
+                    normal_y = other_lat - seed_lat
+                    limit = ((competitor_lon * competitor_lon + other_lat * other_lat)
+                             - (target_lon * target_lon + seed_lat * seed_lat)) / 2.0
+                    polygon = clip_half_plane(polygon, normal_x, normal_y, limit)
+                    if not polygon:
+                        break
+                if not polygon:
+                    break
+            if len(polygon) < 3:
+                continue
+            pieces.append(polygon)
+            rounded = [(round(x, 5), round(y, 5)) for x, y in polygon]
+            for start, end in zip(rounded, rounded[1:] + rounded[:1]):
+                if start == end:
+                    continue
+                key = (start, end) if start < end else (end, start)
+                edge_owners.setdefault(key, []).append((code, basin, biome))
+        states.append({
+            "code": code, "name": name, "biome": biome, "basin": basin,
+            "seed": (seed_lon, seed_lat), "pieces": pieces,
+        })
+
+    realm_edges: list[tuple[Point, Point]] = []
+    region_edges: list[tuple[Point, Point]] = []
+    adjacency: dict[str, set[str]] = {state["code"]: set() for state in states}
+    for edge, owners in edge_owners.items():
+        unique = set(owners)
+        owner_codes = {code for code, _, _ in unique}
+        if len(owner_codes) < 2:
+            continue
+        for code in owner_codes:
+            adjacency[code].update(owner_codes - {code})
+        realms = {realm_name(basin, biome) for _, basin, biome in unique}
+        regions = {region_name(code) for code, _, _ in unique}
+        if len(realms) > 1:
+            realm_edges.append(edge)
+        elif len(regions) > 1:
+            region_edges.append(edge)
+
+    for region in REGION_TONES:
+        members = {state["code"] for state in states if region_name(state["code"]) == region}
+        reached = set()
+        stack = [next(iter(members))]
+        while stack:
+            current = stack.pop()
+            if current in reached:
+                continue
+            reached.add(current)
+            stack.extend((adjacency[current] & members) - reached)
+        if reached != members:
+            raise ValueError(f"Mapped region is multipart: {region}: {sorted(members - reached)}")
+    return states, realm_edges, region_edges
+
+
+def clip_geographic_polygon(
+    polygon: Sequence[Point], west: float, east: float, south: float, north: float,
+) -> list[Point]:
+    """Sutherland–Hodgman clip used to cut fills at projection zone seams."""
+    points = list(polygon)
+    if points and points[0] == points[-1]:
+        points.pop()
+
+    def clip_edge(source, inside, intersection):
+        if not source:
+            return []
+        output = []
+        previous = source[-1]
+        previous_inside = inside(previous)
+        for current in source:
+            current_inside = inside(current)
+            if current_inside:
+                if not previous_inside:
+                    output.append(intersection(previous, current))
+                output.append(current)
+            elif previous_inside:
+                output.append(intersection(previous, current))
+            previous, previous_inside = current, current_inside
+        return output
+
+    def vertical(boundary):
+        def intersect(start, end):
+            fraction = (boundary - start[0]) / (end[0] - start[0]) if end[0] != start[0] else 0
+            return boundary, start[1] + fraction * (end[1] - start[1])
+        return intersect
+
+    def horizontal(boundary):
+        def intersect(start, end):
+            fraction = (boundary - start[1]) / (end[1] - start[1]) if end[1] != start[1] else 0
+            return start[0] + fraction * (end[0] - start[0]), boundary
+        return intersect
+
+    points = clip_edge(points, lambda point: point[0] >= west, vertical(west))
+    points = clip_edge(points, lambda point: point[0] <= east, vertical(east))
+    points = clip_edge(points, lambda point: point[1] >= south, horizontal(south))
+    return clip_edge(points, lambda point: point[1] <= north, horizontal(north))
+
+
+def oceanic_mollweide_pieces(polygon: Sequence[Point], central_longitude: float = -160.0) -> list[list[Point]]:
+    """Clip a geographic polygon into the six PROJ imoll_o zones."""
+    relative: list[Point] = []
+    previous_longitude: float | None = None
+    for longitude, latitude in polygon:
+        value = (longitude - central_longitude + 180.0) % 360.0 - 180.0
+        if previous_longitude is not None:
+            while value - previous_longitude > 180.0:
+                value -= 360.0
+            while value - previous_longitude < -180.0:
+                value += 360.0
+        relative.append((value, latitude))
+        previous_longitude = value
+
+    zones = [
+        (-180.0, -90.0, 0.0, 89.5), (-90.0, 60.0, 0.0, 89.5), (60.0, 180.0, 0.0, 89.5),
+        (-180.0, -60.0, -89.5, 0.0), (-60.0, 90.0, -89.5, 0.0), (90.0, 180.0, -89.5, 0.0),
+    ]
+    pieces: list[list[Point]] = []
+    for shift in (-360.0, 0.0, 360.0):
+        shifted = [(longitude + shift, latitude) for longitude, latitude in relative]
+        for west, east, south, north in zones:
+            clipped = clip_geographic_polygon(shifted, west, east, south, north)
+            if len(clipped) >= 3:
+                # PROJ assigns exact seam coordinates to one neighboring zone.
+                # Nudge clipped vertices into their intended zone so a fill
+                # cannot jump horizontally to a different Mollweide lobe.
+                epsilon = 1e-5
+                interior = []
+                for longitude, latitude in clipped:
+                    if abs(longitude - west) < epsilon:
+                        longitude += epsilon
+                    if abs(longitude - east) < epsilon:
+                        longitude -= epsilon
+                    if north == 0.0 and abs(latitude) < epsilon:
+                        latitude = -epsilon
+                    interior.append((longitude + central_longitude, latitude))
+                pieces.append(interior)
+    return pieces
+
+
+def projected_polygon_fill(
+    polygon: Sequence[Point],
+    candidate: StateCandidate,
+    project: Projector,
+    bounds: tuple[float, float, float, float],
+    screen: Callable[[Point], Point],
+) -> str:
+    geographic_pieces = oceanic_mollweide_pieces(polygon) if candidate.slug == "mollweide-oceanic" else [list(polygon)]
+    commands = []
+    for piece in geographic_pieces:
+        if candidate.slug == "mollweide-oceanic":
+            projected = []
+            for longitude, latitude in densify(piece, step=1.0, close=True):
+                point = project(longitude, max(-89.499, min(89.499, latitude)))
+                if math.isfinite(point[0]) and math.isfinite(point[1]):
+                    projected.append(point)
+            segments = [projected]
+        else:
+            segments = projected_segments(piece, project, bounds, close=True)
+        commands.append(filled_svg_path(segments, screen))
+    return "".join(commands)
+
+
+def projected_edge_path(
+    edges: Sequence[tuple[Point, Point]],
+    candidate: StateCandidate,
+    project: Projector,
+    bounds: tuple[float, float, float, float],
+    screen: Callable[[Point], Point],
+) -> str:
+    if candidate.slug != "mollweide-oceanic":
+        return "".join(line_path([start, end], project, bounds, screen) for start, end in edges)
+
+    commands = []
+    for start, end in edges:
+        segments: list[list[Point]] = []
+        segment: list[Point] = []
+        previous_zone = None
+        for longitude, latitude in densify([start, end], step=0.5):
+            relative = (longitude + 160.0 + 180.0) % 360.0 - 180.0
+            if latitude >= 0:
+                zone = 1 if relative <= -90 else 3 if relative >= 60 else 2
+            else:
+                zone = 4 if relative <= -60 else 6 if relative >= 90 else 5
+            if previous_zone is not None and zone != previous_zone:
+                if len(segment) >= 2:
+                    segments.append(segment)
+                segment = []
+            point = project(longitude, latitude)
+            if math.isfinite(point[0]) and math.isfinite(point[1]):
+                segment.append(point)
+            previous_zone = zone
+        if len(segment) >= 2:
+            segments.append(segment)
+        commands.append(svg_path(segments, screen))
+    return "".join(commands)
+
+
+def render_state_projection(
+    candidate: StateCandidate,
+    geojson: dict,
+    source_sha256: str,
+    show_hairlines: bool = True,
+) -> str:
+    project = pyproj_projector(candidate.proj4)
+    bounds = raw_bounds(project)
+    state_map_box = STATE_MAP_BOX
+    map_x, map_y, map_width, map_height = state_map_box
+    screen = screen_transform(bounds, box=state_map_box)
+    states, realm_edges, region_edges = geographic_state_geometry()
+
+    province_groups = []
+    province_labels = []
+    for state in states:
+        paths = []
+        for polygon in state["pieces"]:
+            paths.append(projected_polygon_fill(polygon, candidate, project, bounds, screen))
+        province_groups.append(
+            f'<g class="province {state["biome"].lower()} basin-{state["basin"].lower()} region-{region_slug(state["code"])}" '
+            f'data-code="{state["code"]}" data-basin="{state["basin"]}" data-biome="{state["biome"]}" data-realm="{realm_name(state["basin"], state["biome"])}" data-region="{region_name(state["code"])}">'
+            f'<title>{state["code"]} — {state["name"]} · {region_name(state["code"])} · approximate nearest-seed state</title>'
+            f'<path d="{"".join(paths)}"/></g>'
+        )
+        label_point = project(*state["seed"])
+        if math.isfinite(label_point[0]) and math.isfinite(label_point[1]):
+            label_x, label_y = screen(label_point)
+            province_labels.append(f'<text x="{label_x:.1f}" y="{label_y + 2.5:.1f}">{state["code"]}</text>')
+
+    land_paths = []
+    for ring in all_rings(geojson):
+        land_paths.append(projected_polygon_fill(ring, candidate, project, bounds, screen))
+    land = "".join(land_paths)
+    realm_path = projected_edge_path(realm_edges, candidate, project, bounds, screen)
+    region_path = projected_edge_path(region_edges, candidate, project, bounds, screen)
+
+    map_region_labels = []
+    for label, name, code in REGION_MARKERS:
+        longitude, latitude = PROVINCE_SEEDS[code]
+        point = project(longitude, latitude)
+        if math.isfinite(point[0]) and math.isfinite(point[1]):
+            x, y = screen(point)
+            map_region_labels.append(
+                f'<text x="{x:.1f}" y="{y - 6:.1f}" aria-label="{name}"><title>{name}</title>{label}</text>'
+            )
+
+    hairline_rule = "stroke:#71878a; stroke-width:.25; stroke-opacity:.55;" if show_hairlines else "stroke-width:1; stroke-opacity:1;"
+    region_strokes = {
+        name: f" stroke:{tone};" if not show_hairlines else ""
+        for name, tone in REGION_TONES.items()
+    }
+    hairline_label = "STATE HAIRLINES ON" if show_hairlines else "STATE HAIRLINES OFF"
+    fill_rules = "\n".join(
+        f'.province.region-{region_class_slug(name)} path {{ fill:{tone};{region_strokes[name]} }}'
+        for name, tone in REGION_TONES.items()
+    )
+    legend_items = []
+    for index, (name, tone) in enumerate(REGION_TONES.items()):
+        row, column = divmod(index, 4)
+        x, y = column * 272, row * 24
+        legend_items.append(
+            f'<g aria-label="{REGION_CODES[name]} — {name}, {REGION_COUNTS[name]} states">'
+            f'<rect x="{x}" y="{y}" width="14" height="14" rx="2" fill="{tone}"/>'
+            f'<text class="legend-code" x="{x + 21}" y="{y + 11}">{REGION_CODES[name]}</text>'
+            f'<text class="legend-name" x="{x + 61}" y="{y + 11}">{name.upper()}</text>'
+            f'<text class="legend-count" x="{x + 260}" y="{y + 11}">{REGION_COUNTS[name]}</text></g>'
+        )
+    legend = "".join(legend_items)
+    north_cap = render_polar_cap(
+        states, geojson, north=True, box=NORTH_POLAR_BOX, show_hairlines=show_hairlines,
+    )
+    south_cap = render_polar_cap(
+        states, geojson, north=False, box=SOUTH_POLAR_BOX, show_hairlines=show_hairlines,
+    )
+    state_key_opacity = "1" if show_hairlines else ".22"
+    state_key_label = "STATE BORDER" if show_hairlines else "STATE BORDER · HIDDEN"
+
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{STATE_CANVAS[0]}" height="{STATE_CANVAS[1]}" viewBox="0 0 {STATE_CANVAS[0]} {STATE_CANVAS[1]}" role="img" aria-labelledby="title desc">
+  <title id="title">{candidate.title} 56-state projection study</title>
+  <desc id="desc">A provisional OSW hierarchy of 11 organizational realms, 22 contiguous schematic regions, and 56 classic province identities transformed into {candidate.title}. The 22 regions are connected before land masking and projection interruption; visible pieces can be separated by continents or lobe seams. White hatched continents are background context. Province cells are an original nearest-seed approximation, not published Longhurst boundaries, and do not support area or boundary measurement. State hairlines are {'shown' if show_hairlines else 'hidden'}.</desc>
+  <metadata>Natural Earth 1:110m land, public domain, commit {SOURCE_COMMIT}, SHA-256 {source_sha256}. Original OSW geographic nearest-seed state geometry; no geographic Longhurst boundary dataset is reproduced. Main projection: {candidate.proj4}. North inset: Lambert azimuthal equal-area, +proj=laea +lat_0=90 +lon_0=0, 48N to 90N. South inset: Lambert azimuthal equal-area, +proj=laea +lat_0=-90 +lon_0=0, 45S to 90S. Region system: provisional osw-regions-v0.1; connected in the unmasked, pre-projection seed topology.</metadata>
+  <defs>
+    <clipPath id="state-map-clip"><rect x="{map_x:g}" y="{map_y:g}" width="{map_width:g}" height="{map_height:g}" rx="20"/></clipPath>
+    <clipPath id="north-polar-clip"><circle cx="738" cy="228" r="78"/></clipPath>
+    <clipPath id="south-polar-clip"><circle cx="980" cy="228" r="78"/></clipPath>
+    <pattern id="state-land-hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(28)"><rect width="9" height="9" fill="#f3f4f1"/><path d="M0 0V9" stroke="#aebbb7" stroke-width=".7" stroke-opacity=".16"/></pattern>
+    <style>
+      text {{ font-family:Inter,ui-sans-serif,system-ui,sans-serif; }}
+      .province path {{ {hairline_rule} stroke-linejoin:round; vector-effect:non-scaling-stroke; }}
+      {fill_rules}
+      .realm-casing {{ fill:none; stroke:#f2f4ee; stroke-width:4.3; stroke-linejoin:round; vector-effect:non-scaling-stroke; }}
+      .realm-boundaries {{ fill:none; stroke:#09232a; stroke-width:1.7; stroke-linejoin:round; vector-effect:non-scaling-stroke; }}
+      .region-casing {{ fill:none; stroke:#f2f4ee; stroke-width:2.8; stroke-linejoin:round; vector-effect:non-scaling-stroke; }}
+      .region-boundaries {{ fill:none; stroke:#304b51; stroke-width:.9; stroke-linejoin:round; vector-effect:non-scaling-stroke; }}
+      .land {{ fill:url(#state-land-hatch); stroke:#899a96; stroke-width:.8; stroke-opacity:.45; vector-effect:non-scaling-stroke; }}
+      .state-labels text {{ fill:#19353b; fill-opacity:.62; font:650 7.4px ui-monospace,Consolas,monospace; text-anchor:middle; paint-order:stroke; stroke:#edf2ed; stroke-opacity:.82; stroke-width:1.8px; pointer-events:none; }}
+      .region-labels text {{ fill:#102d34; fill-opacity:.94; font:950 10px ui-monospace,Consolas,monospace; letter-spacing:1px; text-anchor:middle; paint-order:stroke; stroke:#f3f5f1; stroke-opacity:.96; stroke-width:2.8px; pointer-events:none; }}
+      .polar-cap-land {{ fill:url(#state-land-hatch); stroke:#899a96; stroke-width:.55; stroke-opacity:.55; vector-effect:non-scaling-stroke; }}
+      .polar-cap-labels text {{ fill:#102d34; font:900 10px ui-monospace,Consolas,monospace; text-anchor:middle; paint-order:stroke; stroke:#f3f5f1; stroke-width:2.2px; }}
+      .legend-code {{ fill:#eef9f7; font-weight:950; }}
+      .legend-name {{ fill:#9bb2b1; font-weight:650; }}
+      .legend-count {{ fill:#67e4da; font-weight:900; text-anchor:end; }}
+    </style>
+  </defs>
+  <rect width="{STATE_CANVAS[0]}" height="{STATE_CANVAS[1]}" fill="#06171c"/>
+  <text x="56" y="45" fill="#67e4da" font-size="15" font-weight="900" letter-spacing="3">OSW / OCEAN STATES OF THE WORLD</text>
+  <text x="56" y="82" fill="#eef9f7" font-size="32" font-weight="900">{candidate.title}</text>
+  <text x="56" y="108" fill="#8da9a9" font-size="12">56 classic province identities · provisional OSW organization and geometry</text>
+  <rect x="904" y="31" width="240" height="27" rx="13.5" fill="#2b2420" stroke="#ffb454" stroke-opacity=".7"/>
+  <text x="1024" y="49" text-anchor="middle" fill="#ffb454" font-size="10" font-weight="950" letter-spacing="1.5">SCHEMATIC · PROVISIONAL</text>
+  <text x="1144" y="82" text-anchor="end" fill="#eef9f7" font-size="12" font-weight="900" letter-spacing="1.4">{candidate.property_label}</text>
+  <text x="1144" y="104" text-anchor="end" fill="#8da9a9" font-size="11">{candidate.subtitle} · {hairline_label}</text>
+  <g class="polar-inset" aria-label="Polar Realm top-down views">
+    <rect x="56" y="124" width="1088" height="210" rx="20" fill="#0d252b" stroke="#49666b" stroke-width="1.2"/>
+    <text x="78" y="157" fill="#67e4da" font-size="11" font-weight="900" letter-spacing="1.6">POLAR REALM · EQUAL-AREA TOP-DOWN</text>
+    <text x="78" y="184" fill="#eef9f7" font-size="18" font-weight="850">Three schematic regions at two ends of Earth</text>
+    <text x="78" y="214" fill="#b8cbca" font-size="11"><tspan font-weight="900">AAP</tspan> · Arctic–Atlantic Polar</text>
+    <text x="78" y="237" fill="#b8cbca" font-size="11"><tspan font-weight="900">NPP</tspan> · North Pacific Polar</text>
+    <text x="78" y="260" fill="#b8cbca" font-size="11"><tspan font-weight="900">ANP</tspan> · Antarctic Polar</text>
+    <text x="78" y="294" fill="#718d8f" font-size="9.5">Insets restore polar adjacency hidden by the interrupted world view.</text>
+    <text x="78" y="313" fill="#718d8f" font-size="9.5">They do not repair lobe seams or convert schematic cells into measured boundaries.</text>
+    <g clip-path="url(#north-polar-clip)">{north_cap}</g><circle cx="738" cy="228" r="78" fill="none" stroke="#9ab0b0" stroke-width="1"/>
+    <text x="738" y="321" text-anchor="middle" fill="#8da9a9" font-size="9" font-weight="800" letter-spacing="1">NORTH · LAEA · 48°N–90°N</text>
+    <g clip-path="url(#south-polar-clip)">{south_cap}</g><circle cx="980" cy="228" r="78" fill="none" stroke="#9ab0b0" stroke-width="1"/>
+    <text x="980" y="321" text-anchor="middle" fill="#8da9a9" font-size="9" font-weight="800" letter-spacing="1">SOUTH · LAEA · 45°S–90°S</text>
+  </g>
+  <g clip-path="url(#state-map-clip)">
+    <rect x="{map_x:g}" y="{map_y:g}" width="{map_width:g}" height="{map_height:g}" fill="#112a30"/>
+    {''.join(province_groups)}
+    <path class="region-casing" d="{region_path}"/><path class="region-boundaries" d="{region_path}"/><path class="realm-casing" d="{realm_path}"/><path class="realm-boundaries" d="{realm_path}"/>
+    <path class="land" d="{land}" fill-rule="evenodd"/>
+    <g class="state-labels">{''.join(province_labels)}</g>
+    <g class="region-labels">{''.join(map_region_labels)}</g>
+  </g>
+  <rect x="{map_x:g}" y="{map_y:g}" width="{map_width:g}" height="{map_height:g}" rx="20" fill="none" stroke="#49666b" stroke-width="1.5"/>
+  <text x="56" y="1104" fill="#eef9f7" font-size="16" font-weight="800">Equal-area ocean view; lobe cuts interrupt some neighborhoods.</text>
+  <g transform="translate(56 1128)" aria-label="Boundary hierarchy key" font-size="10" font-weight="800">
+    <path d="M0 0H46" stroke="#f2f4ee" stroke-width="5"/><path d="M0 0H46" stroke="#09232a" stroke-width="1.7"/><text x="58" y="4" fill="#b9cdca">REALM</text>
+    <path d="M170 0H216" stroke="#f2f4ee" stroke-width="3"/><path d="M170 0H216" stroke="#304b51" stroke-width=".9"/><text x="228" y="4" fill="#b9cdca">SCHEMATIC REGION</text>
+    <path d="M410 0H456" stroke="#71878a" stroke-width=".35" stroke-opacity="{state_key_opacity}"/><text x="468" y="4" fill="#b9cdca">{state_key_label}</text>
+    <text x="1144" y="4" text-anchor="end" fill="#718d8f">WHITE LAND = GEOGRAPHIC ANCHOR</text>
+  </g>
+  <g transform="translate(56 1170)" font-size="10">
+    <text y="-14" fill="#b9cdca" font-size="11" font-weight="900" letter-spacing="1.2">11 ORGANIZATIONAL REALMS · 22 CONTIGUOUS SCHEMATIC REGIONS · 56 CLASSIC PROVINCE IDENTITIES</text>
+    {legend}
+  </g>
+  <text x="56" y="1328" fill="#718d8f" font-size="9.5">CONTIGUITY IS DEFINED BEFORE LAND MASKING AND PROJECTION INTERRUPTION · VISIBLE PIECES MAY SEPARATE AT LAND OR LOBE SEAMS</text>
+  <text x="56" y="1349" fill="#718d8f" font-size="9.5">NOT PUBLISHED LONGHURST BOUNDARIES · NO AREA OR BOUNDARY MEASUREMENT FROM APPROXIMATE CELLS · SAME WHITE-LAND TREATMENT</text>
+</svg>'''
+
+
 def line_path(points: Sequence[Point], project: Projector, bounds: tuple[float, float, float, float], screen: Callable[[Point], Point]) -> str:
     return svg_path(projected_segments(points, project, bounds), screen)
 
@@ -292,6 +713,60 @@ def geographic_circle(longitude: float, latitude: float, radius_degrees: float) 
         radians = math.radians(angle)
         points.append((longitude + radius_degrees * math.cos(radians) / longitude_scale, latitude + radius_degrees * math.sin(radians)))
     return points
+
+
+def render_polar_cap(
+    states: list[dict],
+    geojson: dict,
+    *,
+    north: bool,
+    box: tuple[float, float, float, float],
+    show_hairlines: bool,
+) -> str:
+    """Render a top-down polar cap using the same state and region system."""
+    latitude_edge = NORTH_POLAR_CUTOFF if north else SOUTH_POLAR_CUTOFF
+    extent = (-180.0, latitude_edge if north else -89.5, 180.0, 89.5 if north else latitude_edge)
+    latitude_0 = 90 if north else -90
+    project = pyproj_projector(f"+proj=laea +lat_0={latitude_0} +lon_0=0 +R=1 +units=m +no_defs")
+    bounds = local_bounds(project, extent)
+    screen = screen_transform(bounds, box=box)
+    south, north_edge = (latitude_edge, 89.5) if north else (-89.5, latitude_edge)
+
+    cells = []
+    for state in states:
+        commands = []
+        for polygon in state["pieces"]:
+            clipped = clip_geographic_polygon(polygon, -180.0, 180.0, south, north_edge)
+            if len(clipped) >= 3:
+                commands.append(filled_svg_path(projected_segments(clipped, project, bounds, close=True), screen))
+        if not any(commands):
+            continue
+        tone = REGION_TONES[region_name(state["code"])]
+        stroke = "#71878a" if show_hairlines else tone
+        opacity = ".58" if show_hairlines else "1"
+        cells.append(
+            f'<path d="{"".join(commands)}" fill="{tone}" stroke="{stroke}" stroke-width=".35" '
+            f'stroke-opacity="{opacity}" vector-effect="non-scaling-stroke"><title>{state["code"]} — {state["name"]}</title></path>'
+        )
+
+    land_commands = []
+    for ring in all_rings(geojson):
+        clipped = clip_geographic_polygon(ring, -180.0, 180.0, south, north_edge)
+        if len(clipped) >= 3:
+            land_commands.append(filled_svg_path(projected_segments(clipped, project, bounds, close=True), screen))
+
+    labels = []
+    polar_markers = (("AAP", "SARC"), ("NPP", "BERS")) if north else (("ANP", "ANTA"),)
+    for label, code in polar_markers:
+        point = project(*PROVINCE_SEEDS[code])
+        x, y = screen(point)
+        labels.append(f'<text x="{x:.1f}" y="{y:.1f}">{label}</text>')
+
+    return (
+        f'<g class="polar-cap-cells">{"".join(cells)}</g>'
+        f'<path class="polar-cap-land" d="{"".join(land_commands)}" fill-rule="evenodd"/>'
+        f'<g class="polar-cap-labels">{"".join(labels)}</g>'
+    )
 
 
 def geographic_blob(longitude: float, latitude: float, radius_degrees: float) -> list[Point]:
@@ -537,6 +1012,15 @@ def main() -> None:
     for candidate in candidates():
         output = args.output_dir / f"osw-projection-{candidate.slug}.svg"
         output.write_text(render_candidate(candidate, geojson, digest), encoding="utf-8", newline="\n")
+    for candidate in state_projection_candidates():
+        output = args.output_dir / f"osw-state-projection-{candidate.slug}.svg"
+        output.write_text(render_state_projection(candidate, geojson, digest), encoding="utf-8", newline="\n")
+        no_hairlines_output = args.output_dir / f"osw-state-projection-{candidate.slug}-no-hairlines.svg"
+        no_hairlines_output.write_text(
+            render_state_projection(candidate, geojson, digest, show_hairlines=False),
+            encoding="utf-8",
+            newline="\n",
+        )
     heatplates_output = args.output_dir / "osw-heatplates.svg"
     heatplates_output.write_text(render_heatplates(geojson, digest), encoding="utf-8", newline="\n")
 

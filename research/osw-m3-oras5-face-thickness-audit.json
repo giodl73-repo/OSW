@@ -1,0 +1,29 @@
+{
+  "schema": "oceanlines.osw.m3-nemo-face-thickness-audit.v1",
+  "status": "candidate_passes_native_geometry_consistency",
+  "fallback_bottom_cell_count": 0,
+  "wet_face_count": {
+    "u": 1734557,
+    "v": 1739887
+  },
+  "mask_mismatch_count": {
+    "u": 0,
+    "v": 0
+  },
+  "maximum_face_column_depth_residual_m": 7.105427357601002e-15,
+  "wet_face_area_m2": {
+    "u_minimum": 9252.099890473954,
+    "u_maximum": 7797118.460574586,
+    "v_minimum": 9271.204829908405,
+    "v_maximum": 7784766.732071605,
+    "all_finite_positive": true
+  },
+  "terminal_face_copying": false,
+  "source": {
+    "path": "atlas\\data\\oras5-drake-mesh.nc",
+    "sha256": "a575659f2249a60ce01ecfc71fc489d17f8476d1a41dfb116b25c349ddcb0824"
+  },
+  "method": "Reconstruct T thickness from e3t_0, mbathy, and e3t_ps; set each interior U/V thickness to the minimum of its two adjacent T-cell thicknesses.",
+  "next_test": "compare reconstructed face thickness or transport against an independently generated ORCA025 reference",
+  "boundary": "A mask/depth/area consistency pass supports internal geometry but does not prove exact ORAS5 configuration equivalence, state-field alignment, section topology, or transport."
+}

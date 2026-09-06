@@ -339,6 +339,69 @@ class AtlasTests(unittest.TestCase):
             self.assertGreaterEqual(figure.count('class="shelf"'), 3)
             self.assertNotIn("stroke-width:45", figure)
 
+    def test_state_projection_bakeoff_transforms_the_same_56_state_system(self):
+        page = (ROOT / "projections" / "index.html").read_text(encoding="utf-8")
+        builder = (ROOT / "analysis" / "build_projection_bakeoff.py").read_text(encoding="utf-8")
+        source_register = (ROOT / "SOURCE-REGISTER.md").read_text(encoding="utf-8")
+        mollweide = (ROOT / "figures" / "osw-state-projection-mollweide-oceanic.svg").read_text(encoding="utf-8")
+        oblique = (ROOT / "figures" / "osw-state-projection-oblique-cea.svg").read_text(encoding="utf-8")
+        for figure in (mollweide, oblique):
+            self.assertEqual(56, figure.count('class="province '))
+            for token in ('class="realm-boundaries"', 'class="realm-casing"', 'class="region-boundaries"', 'class="region-casing"', 'class="land"', "same white-land treatment", "not published Longhurst boundaries", "SCHEMATIC · PROVISIONAL", "22 contiguous schematic regions", "connected before land masking and projection interruption"):
+                self.assertIn(token.lower(), figure.lower())
+        for slug in ("mollweide-oceanic", "oblique-cea"):
+            no_hairlines = (ROOT / "figures" / f"osw-state-projection-{slug}-no-hairlines.svg").read_text(encoding="utf-8")
+            self.assertEqual(56, no_hairlines.count('class="province '))
+            self.assertIn("stroke:#4e79a7", no_hairlines)
+            self.assertIn("STATE HAIRLINES OFF", no_hairlines)
+        for token in ("STATE PROJECTION BAKEOFF", "Oceanic Mollweide", "Oblique Ocean Strip", "Drake-to-Indonesia", "leading projection for the Ocean States view", "LEADING", 'data-state-lines="on"', 'data-state-lines="off"', "data-lines-off-src"):
+            self.assertIn(token, page)
+        for token in ("POLAR REALM · EQUAL-AREA TOP-DOWN", "Arctic–Atlantic Polar", "North Pacific Polar", "Antarctic Polar", 'id="north-polar-clip"', 'id="south-polar-clip"', "48°N–90°N", "45°S–90°S", "+proj=laea +lat_0=90", "+proj=laea +lat_0=-90"):
+            self.assertIn(token, mollweide)
+        for token in ("REALM", "SCHEMATIC REGION", "STATE BORDER", "WHITE LAND = GEOGRAPHIC ANCHOR"):
+            self.assertIn(token, mollweide)
+        self.assertIn('width="1200" height="1360"', mollweide)
+        for token in ("+proj=imoll_o +lon_0=-160", "+proj=ocea +lat_1=-56 +lon_1=-68 +lat_2=-3 +lon_2=123", "oceanic_mollweide_pieces"):
+            self.assertIn(token, builder)
+        for token in ("P6", "P7", "documented zone limits", "two-point axis"):
+            self.assertIn(token, source_register)
+        history = (ROOT / "HISTORY.md").read_text(encoding="utf-8")
+        self.assertIn("Oceanic Mollweide wins the state map", history)
+        self.assertIn("The third seminal moment", history)
+        self.assertIn("Complete surface identity", history)
+        self.assertIn("Coast-owned form", history)
+        self.assertIn("An ocean-state world map", history)
+        self.assertIn("PELAGOS retains its separate role", history)
+
+    def test_observational_fields_run_through_one_ocean_state_projection(self):
+        page = (ROOT / "projections" / "index.html").read_text(encoding="utf-8")
+        builder = (ROOT / "analysis" / "build_state_data_views.py").read_text(encoding="utf-8")
+        slugs = ("sst", "sst-anomaly", "sst-error", "argo-10", "argo-300", "argo-700", "argo-1000")
+        figures = {
+            slug: (ROOT / "figures" / f"osw-state-data-{slug}.svg").read_text(encoding="utf-8")
+            for slug in slugs
+        }
+        self.assertEqual(7, len(figures))
+        for slug, figure in figures.items():
+            self.assertIn(f'data-view="{slug}"', figure)
+            self.assertIn('data-source-grid="direct"', figure)
+            self.assertIn('data-state-count="56"', figure)
+            for token in ("DATA PRIMARY · STATES REFERENCE", "DIRECT GRID PROJECTION", "NO STATE AGGREGATION", "POLAR MIRRORS · SAME FIELD", "+proj=imoll_o +lon_0=-160", "provisional osw-regions-v0.1"):
+                self.assertIn(token.lower(), figure.lower())
+            self.assertIn('class="data-field"', figure)
+            self.assertIn('class="state-lines"', figure)
+            self.assertIn('class="region-lines"', figure)
+            self.assertIn('class="realm-lines"', figure)
+        self.assertIn("1971–2000", figures["sst-anomaly"])
+        self.assertIn("not forecast error", figures["sst-error"].lower())
+        for slug in ("argo-10", "argo-300", "argo-700", "argo-1000"):
+            self.assertIn("64.5°S", figures[slug])
+            self.assertIn("outside coverage", figures[slug])
+        for token in ("EXPERIMENT 05 · DATA THROUGH THE STATES", "Now make the map carry evidence.", 'id="state-data-image"', 'data-state-data="sst"', 'data-state-data="argo-1000"', "No value is averaged by state"):
+            self.assertIn(token, page)
+        for token in ("TEMPERATURE_PALETTE", "ANOMALY_PALETTE", "ERROR_PALETTE", "grouped_main_field", "grouped_polar_field", "EXPECTED_SOURCE_SHA256"):
+            self.assertIn(token, builder)
+
     def test_heatplates_prioritize_shape_without_implying_cross_panel_area(self):
         page = (ROOT / "projections" / "index.html").read_text(encoding="utf-8")
         figure_path = ROOT / "figures" / "osw-heatplates.svg"
@@ -361,10 +424,12 @@ class AtlasTests(unittest.TestCase):
         coastal_states_path = ROOT / "figures" / "osw-province-atlas-coastal-states.svg"
         builder = (ROOT / "analysis" / "build_province_cartogram.py").read_text(encoding="utf-8")
         catalog_path = ROOT / "research" / "longhurst-province-reference.csv"
+        region_catalog_path = ROOT / "research" / "osw-region-reference.csv"
         self.assertTrue(figure_path.is_file())
         self.assertTrue(lakes_path.is_file())
         self.assertTrue(coastal_states_path.is_file())
         self.assertTrue(catalog_path.is_file())
+        self.assertTrue(region_catalog_path.is_file())
         figure = figure_path.read_text(encoding="utf-8")
         lakes = lakes_path.read_text(encoding="utf-8")
         coastal_states = coastal_states_path.read_text(encoding="utf-8")
@@ -390,7 +455,26 @@ class AtlasTests(unittest.TestCase):
         self.assertIn("osw-province-atlas-lakes.svg", page)
         for token in ("COAST-OWNED STATES", 'mask id="ocean-only"', "ALSK inherits Alaska", "nearest-seed internal borders"):
             self.assertIn(token, coastal_states + page)
+        for token in ("11 ORGANIZATIONAL REALMS · 22 CONTIGUOUS SCHEMATIC REGIONS · 56 CLASSIC PROVINCE IDENTITIES", 'class="realm-boundary-casing"', 'class="realm-boundaries"', 'class="region-boundary-casing"', 'class="region-boundaries"', 'class="region-labels"', 'class="land-context"', 'pattern id="land-hatch"', "REALM BORDER", "SCHEMATIC-REGION BORDER", "OCEAN-STATE BORDER", "ARCTIC–ATLANTIC POLAR 3", "EASTERN PACIFIC COASTAL 4", "NORTH ATLANTIC WESTERLIES 4", "INDIAN TRADES 2", "SOUTHERN WESTERLIES 2"):
+            self.assertIn(token, coastal_states)
+        regions = re.findall(r'data-region="([^"]+)"', coastal_states)
+        self.assertEqual(56, len(regions))
+        self.assertEqual(22, len(set(regions)))
+        for basin in ("pacific", "atlantic", "indian", "southern", "arctic"):
+            self.assertIn(f"basin-{basin}", coastal_states)
         self.assertIn("osw-province-atlas-coastal-states.svg", page)
+        with region_catalog_path.open(encoding="utf-8", newline="") as source:
+            region_rows = list(csv.DictReader(source))
+        self.assertEqual(22, len(region_rows))
+        self.assertEqual(22, len({row["code"] for row in region_rows}))
+        self.assertEqual(22, len({row["color"] for row in region_rows}))
+        member_codes = [code for row in region_rows for code in row["member_state_codes"].split("|")]
+        self.assertEqual(56, len(member_codes))
+        self.assertEqual(56, len(set(member_codes)))
+        self.assertTrue(all(row["label_anchor"] in row["member_state_codes"].split("|") for row in region_rows))
+        self.assertTrue(all(row["classification_status"] == "provisional OSW organizational construct" for row in region_rows))
+        self.assertTrue(all(row["topology_definition"] == "connected before land masking and projection interruption" for row in region_rows))
+        self.assertIn("osw-region-reference.csv", page)
 
     def test_province_atlas_breakthrough_is_preserved_in_project_history(self):
         history = (ROOT / "HISTORY.md").read_text(encoding="utf-8")

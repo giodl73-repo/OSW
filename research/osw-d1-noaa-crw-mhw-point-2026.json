@@ -1,0 +1,210 @@
+{
+  "schema": "osw.detected-ocean-object.v1",
+  "detection_id": "OSW-D1",
+  "status": "detected_object",
+  "object_id": "OBJ046",
+  "object_name": "marine heatwave",
+  "evidence_origin": "derived_observation_product",
+  "source_artifact": "atlas/data/noaa-crw-mhw-point-north-atlantic-2026.json",
+  "source_artifact_sha256": "c1cf0af0b18b262718ca31b0efa6f0ff98f81db17f345fa4c748f12ff0a6b8f1",
+  "coordinate": {
+    "latitude_degrees_north": 42.125,
+    "longitude_degrees_east": -49.875
+  },
+  "method": {
+    "upstream_threshold": "NOAA CRW seasonally varying local 90th-percentile category product",
+    "upstream_climatology": "CoralTemp SST, 1985-01-01 through 2012-12-31; 11-day daily windows",
+    "minimum_duration_days": 5,
+    "join_events_across_gaps_days": 2,
+    "osw_event_rule": "unmasked category greater than zero for at least five contiguous days; retain qualifying runs before joining across gaps"
+  },
+  "event_window": {
+    "start": "2026-07-20",
+    "end": "2026-08-20",
+    "day_count": 32
+  },
+  "event_count": 1,
+  "events": [
+    {
+      "start_date": "2026-07-23",
+      "end_date": "2026-08-18",
+      "duration_days": 27,
+      "maximum_category": 2,
+      "category_day_counts": {
+        "0": 1,
+        "1": 15,
+        "2": 11
+      },
+      "left_censored": false,
+      "right_censored": false
+    }
+  ],
+  "identity_evaluation": {
+    "result": "pass",
+    "test": "SST exceeds a seasonally varying local high-percentile threshold for the required duration under a declared gap rule.",
+    "finding": "1 duration-qualified event(s) detected at the declared NOAA CRW pixel."
+  },
+  "daily_categories": [
+    [
+      "2026-07-20",
+      0,
+      0
+    ],
+    [
+      "2026-07-21",
+      0,
+      0
+    ],
+    [
+      "2026-07-22",
+      0,
+      0
+    ],
+    [
+      "2026-07-23",
+      1,
+      0
+    ],
+    [
+      "2026-07-24",
+      2,
+      0
+    ],
+    [
+      "2026-07-25",
+      2,
+      0
+    ],
+    [
+      "2026-07-26",
+      2,
+      0
+    ],
+    [
+      "2026-07-27",
+      2,
+      0
+    ],
+    [
+      "2026-07-28",
+      2,
+      0
+    ],
+    [
+      "2026-07-29",
+      2,
+      0
+    ],
+    [
+      "2026-07-30",
+      1,
+      0
+    ],
+    [
+      "2026-07-31",
+      1,
+      0
+    ],
+    [
+      "2026-08-01",
+      1,
+      0
+    ],
+    [
+      "2026-08-02",
+      2,
+      0
+    ],
+    [
+      "2026-08-03",
+      2,
+      0
+    ],
+    [
+      "2026-08-04",
+      2,
+      0
+    ],
+    [
+      "2026-08-05",
+      2,
+      0
+    ],
+    [
+      "2026-08-06",
+      2,
+      0
+    ],
+    [
+      "2026-08-07",
+      1,
+      0
+    ],
+    [
+      "2026-08-08",
+      1,
+      0
+    ],
+    [
+      "2026-08-09",
+      1,
+      0
+    ],
+    [
+      "2026-08-10",
+      1,
+      0
+    ],
+    [
+      "2026-08-11",
+      0,
+      0
+    ],
+    [
+      "2026-08-12",
+      1,
+      0
+    ],
+    [
+      "2026-08-13",
+      1,
+      0
+    ],
+    [
+      "2026-08-14",
+      1,
+      0
+    ],
+    [
+      "2026-08-15",
+      1,
+      0
+    ],
+    [
+      "2026-08-16",
+      1,
+      0
+    ],
+    [
+      "2026-08-17",
+      1,
+      0
+    ],
+    [
+      "2026-08-18",
+      1,
+      0
+    ],
+    [
+      "2026-08-19",
+      0,
+      0
+    ],
+    [
+      "2026-08-20",
+      1,
+      0
+    ]
+  ],
+  "boundary": "A duration-qualified detection at one 0.05-degree pixel of a NOAA derived surface product. It is not a spatial footprint, independent raw-SST reimplementation, subsurface heatwave, heat content, transport, causal attribution, or ecological-impact estimate. An event touching a window edge is explicitly censored."
+}

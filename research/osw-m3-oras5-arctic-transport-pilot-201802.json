@@ -1,0 +1,296 @@
+{
+  "schema": "oceanlines.osw.m3-oras5-arctic-transport-pilot.v1",
+  "status": "one_month_three_section_transport_pilot_passes_internal_audits",
+  "month": "201802",
+  "sources": {
+    "mesh": {
+      "path": "atlas\\data\\oras5-arctic-entrances-mesh.nc",
+      "sha256": "8d0252a368a2b6eae8f6db5713ae7c369560c41a7503a697af9057c3e5809eaa"
+    },
+    "state": {
+      "path": "atlas\\data\\oras5-arctic-entrances-state-201802.nc",
+      "sha256": "e2b20aa06bac24f87e68d951678aabc4110ed6c0f799af5ce0b123ca14075a83"
+    }
+  },
+  "sections": {
+    "fram": {
+      "name": "Fram Strait",
+      "semantics": "land-bounded native V-face gateway",
+      "face_count": 60,
+      "wet_cell_count": 2373,
+      "volume_transport_Sv": {
+        "positive_Sv": 6.208664543214699,
+        "negative_Sv": -6.6579369537496795,
+        "net_Sv": -0.4492724105349816
+      },
+      "transport_weighted_temperature_degC": {
+        "positive_branch": 2.0882544636851725,
+        "negative_branch": 0.02694988663889539,
+        "net": -28.458993919778987
+      },
+      "heat_transport_PW": {
+        "-1.9": {
+          "reference_temperature_degC": -1.9,
+          "positive_PW": 0.10151776118523868,
+          "negative_PW": -0.05259822334458973,
+          "net_PW": 0.04891953784064895
+        },
+        "0.0": {
+          "reference_temperature_degC": 0.0,
+          "positive_PW": 0.05315481242952471,
+          "negative_PW": -0.0007356268922055432,
+          "net_PW": 0.05241918553731916
+        },
+        "2.0": {
+          "reference_temperature_degC": 2.0,
+          "positive_PW": 0.002246445318246856,
+          "negative_PW": 0.05385657989977781,
+          "net_PW": 0.05610302521802467
+        }
+      },
+      "atlantic_water_comparison_class": {
+        "threshold": {
+          "temperature_gt_degC": 2.0,
+          "salinity_gt_PSU": 34.8
+        },
+        "wet_cell_count": 881,
+        "positive_Sv": 4.169520024120822,
+        "negative_Sv": -0.3923854620752238,
+        "net_Sv": 3.7771345620455983,
+        "net_heat_PW_at_0C": 0.049940220384219386,
+        "positive_fraction_of_full_positive": 0.6715647133291476
+      },
+      "maximum_reference_identity_residual_W": 0.0146484375,
+      "input": {
+        "path": "research\\osw-m3-oras5-arctic-fram-section-input-201802.json",
+        "sha256": "670fb4a33191a9585e52ef7322b12470a413e022c127e9042cef7b4c5870ca42"
+      },
+      "transport": {
+        "path": "research\\osw-m3-oras5-arctic-fram-transport-201802.json",
+        "sha256": "35e4faeb53894bfb2d0fcf5af79651b3330bf2cb53875e59a57830ef469e4a57"
+      }
+    },
+    "barents-proxy": {
+      "name": "Fugloya-Bear observational proxy",
+      "semantics": "open virtual-endpoint comparison section; model water may bypass either endpoint",
+      "face_count": 43,
+      "wet_cell_count": 1395,
+      "volume_transport_Sv": {
+        "positive_Sv": 4.060128857809767,
+        "negative_Sv": -0.8292504515279197,
+        "net_Sv": 3.2308784062818474
+      },
+      "transport_weighted_temperature_degC": {
+        "positive_branch": 5.328948174111732,
+        "negative_branch": 4.5003494973872415,
+        "net": 5.541619695724322
+      },
+      "heat_transport_PW": {
+        "-1.9": {
+          "reference_temperature_degC": -1.9,
+          "positive_PW": 0.12033055078302514,
+          "negative_PW": -0.021759573695218443,
+          "net_PW": 0.0985709770878067
+        },
+        "0.0": {
+          "reference_temperature_degC": 0.0,
+          "positive_PW": 0.08870381325757029,
+          "negative_PW": -0.015300053002201254,
+          "net_PW": 0.07340376025536904
+        },
+        "2.0": {
+          "reference_temperature_degC": 2.0,
+          "positive_PW": 0.055412510599196774,
+          "negative_PW": -0.008500557535867374,
+          "net_PW": 0.0469119530633294
+        }
+      },
+      "atlantic_water_comparison_class": {
+        "threshold": {
+          "temperature_gt_degC": 3.0,
+          "salinity_gt_PSU": 34.8
+        },
+        "wet_cell_count": 862,
+        "positive_Sv": 3.0443499848296933,
+        "negative_Sv": -0.7448132179602421,
+        "net_Sv": 2.299536766869451,
+        "net_heat_PW_at_0C": 0.052308480842829894,
+        "positive_fraction_of_full_positive": 0.7498160997954053
+      },
+      "maximum_reference_identity_residual_W": 0.01171875,
+      "input": {
+        "path": "research\\osw-m3-oras5-arctic-barents-proxy-section-input-201802.json",
+        "sha256": "75398a5549bb3976278f4dbad2af1a6a2357a35c173b730b50d442974bbfc64e"
+      },
+      "transport": {
+        "path": "research\\osw-m3-oras5-arctic-barents-proxy-transport-201802.json",
+        "sha256": "f1a69ad954d1bd8128d08565eff25b3e5ee0fefed40f20243323479928994ea4"
+      }
+    },
+    "barents-closure": {
+      "name": "Norway-Svalbard model closure",
+      "semantics": "land-to-land model-grid boundary; not the observational Fugloya-Bear section",
+      "face_count": 73,
+      "wet_cell_count": 2217,
+      "volume_transport_Sv": {
+        "positive_Sv": 5.453146403470294,
+        "negative_Sv": -1.815513232927903,
+        "net_Sv": 3.637633170542391
+      },
+      "transport_weighted_temperature_degC": {
+        "positive_branch": 4.897102687248954,
+        "negative_branch": 3.8051688885649058,
+        "net": 5.442077996206931
+      },
+      "heat_transport_PW": {
+        "-1.9": {
+          "reference_temperature_degC": -1.9,
+          "positive_PW": 0.15196093773050684,
+          "negative_PW": -0.042464782127563994,
+          "net_PW": 0.10949615560294285
+        },
+        "0.0": {
+          "reference_temperature_degC": 0.0,
+          "positive_PW": 0.10948316521875723,
+          "negative_PW": -0.028322679129686425,
+          "net_PW": 0.08116048608907081
+        },
+        "2.0": {
+          "reference_temperature_degC": 2.0,
+          "positive_PW": 0.06476972046954711,
+          "negative_PW": -0.013436254921394247,
+          "net_PW": 0.051333465548152865
+        }
+      },
+      "atlantic_water_comparison_class": {
+        "threshold": {
+          "temperature_gt_degC": 3.0,
+          "salinity_gt_PSU": 34.8
+        },
+        "wet_cell_count": 1175,
+        "positive_Sv": 3.8268156827923105,
+        "negative_Sv": -1.0925539083998506,
+        "net_Sv": 2.73426177439246,
+        "net_heat_PW_at_0C": 0.05959721844166589,
+        "positive_fraction_of_full_positive": 0.7017628722304222
+      },
+      "maximum_reference_identity_residual_W": 0.01171875,
+      "input": {
+        "path": "research\\osw-m3-oras5-arctic-barents-closure-section-input-201802.json",
+        "sha256": "891715847e5c4607d5826c92939371ab5816540493ff6b8c8058b748007c699d"
+      },
+      "transport": {
+        "path": "research\\osw-m3-oras5-arctic-barents-closure-transport-201802.json",
+        "sha256": "ac6487c7bcbed6b5f1f24616925f233a9f202f166a6c1549834085b7d985ed3d"
+      }
+    }
+  },
+  "barents_definition_difference": {
+    "closure_minus_proxy_net_Sv": 0.4067547642605436,
+    "percent_of_proxy_net": 12.589602984429373,
+    "interpretation": "endpoint/section semantics difference, not an uncertainty interval"
+  },
+  "tracer_collocation_sensitivity": {
+    "fram": [
+      {
+        "collocation": "mean",
+        "net_volume_Sv": -0.4492724105349816,
+        "net_heat_PW_at_0C": 0.05241918553731916,
+        "heat_difference_from_mean_PW": 0.0,
+        "heat_difference_from_mean_percent": 0.0
+      },
+      {
+        "collocation": "negative_side",
+        "net_volume_Sv": -0.4492724105349816,
+        "net_heat_PW_at_0C": 0.05223479107016176,
+        "heat_difference_from_mean_PW": -0.0001843944671574005,
+        "heat_difference_from_mean_percent": -0.35176904270312104
+      },
+      {
+        "collocation": "positive_side",
+        "net_volume_Sv": -0.4492724105349816,
+        "net_heat_PW_at_0C": 0.052603580436626586,
+        "heat_difference_from_mean_PW": 0.0001843948993074246,
+        "heat_difference_from_mean_percent": 0.3517698671150604
+      },
+      {
+        "collocation": "upwind",
+        "net_volume_Sv": -0.4492724105349816,
+        "net_heat_PW_at_0C": 0.05300258647391797,
+        "heat_difference_from_mean_PW": 0.0005834009365988102,
+        "heat_difference_from_mean_percent": 1.1129530736097863
+      }
+    ],
+    "barents-proxy": [
+      {
+        "collocation": "mean",
+        "net_volume_Sv": 3.2308784062818474,
+        "net_heat_PW_at_0C": 0.07340376025536904,
+        "heat_difference_from_mean_PW": 0.0,
+        "heat_difference_from_mean_percent": 0.0
+      },
+      {
+        "collocation": "negative_side",
+        "net_volume_Sv": 3.2308784062818474,
+        "net_heat_PW_at_0C": 0.07363548373047325,
+        "heat_difference_from_mean_PW": 0.0002317234751042091,
+        "heat_difference_from_mean_percent": 0.31568338501740434
+      },
+      {
+        "collocation": "positive_side",
+        "net_volume_Sv": 3.2308784062818474,
+        "net_heat_PW_at_0C": 0.07317203707392049,
+        "heat_difference_from_mean_PW": -0.00023172318144855375,
+        "heat_difference_from_mean_percent": -0.3156829849620743
+      },
+      {
+        "collocation": "upwind",
+        "net_volume_Sv": 3.2308784062818474,
+        "net_heat_PW_at_0C": 0.07361790696452078,
+        "heat_difference_from_mean_PW": 0.00021414670915173573,
+        "heat_difference_from_mean_percent": 0.2917380641083332
+      }
+    ],
+    "barents-closure": [
+      {
+        "collocation": "mean",
+        "net_volume_Sv": 3.637633170542391,
+        "net_heat_PW_at_0C": 0.08116048608907081,
+        "heat_difference_from_mean_PW": 0.0,
+        "heat_difference_from_mean_percent": 0.0
+      },
+      {
+        "collocation": "negative_side",
+        "net_volume_Sv": 3.637633170542391,
+        "net_heat_PW_at_0C": 0.08173045479712757,
+        "heat_difference_from_mean_PW": 0.0005699687080567561,
+        "heat_difference_from_mean_percent": 0.7022736500508823
+      },
+      {
+        "collocation": "positive_side",
+        "net_volume_Sv": 3.637633170542391,
+        "net_heat_PW_at_0C": 0.08059051754173628,
+        "heat_difference_from_mean_PW": -0.000569968547334529,
+        "heat_difference_from_mean_percent": -0.7022734520207387
+      },
+      {
+        "collocation": "upwind",
+        "net_volume_Sv": 3.637633170542391,
+        "net_heat_PW_at_0C": 0.08254680935293107,
+        "heat_difference_from_mean_PW": 0.0013863232638602618,
+        "heat_difference_from_mean_percent": 1.7081258758588758
+      }
+    ]
+  },
+  "checks": {
+    "all_reference_identity_residuals_below_1W": true,
+    "volume_invariant_to_tracer_collocation": true,
+    "maximum_absolute_collocation_heat_shift_percent": 1.7081258758588758
+  },
+  "classification_source": {
+    "title": "Fu et al. (2023), Pulses of Cold Atlantic Water in the Arctic Ocean From an Ocean Model Simulation",
+    "doi": "https://doi.org/10.1029/2023JC019663",
+    "use": "comparison classes only: Fram T>2C/S>34.8; Barents T>3C/S>34.8"
+  },
+  "boundary": "One February 2018 ORAS5 ensemble member. Reference-relative advective heat transport is not heat convergence. The Atlantic Water thresholds are literature comparison classes, not universal water-mass boundaries. Fram's small net volume is the residual of large opposing branches, so its net transport-weighted temperature is unstable."
+}

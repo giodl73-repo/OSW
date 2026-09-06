@@ -1,0 +1,145 @@
+{
+  "schema": "osw.oras5.nordic-surface-heat-analysis.v1",
+  "status": "twelve_month_native_surface_flux_integrated_over_closed_room",
+  "sign_convention": "positive downward into the ocean; negative means net ocean heat loss to the overlying system",
+  "field_units": "W/m2",
+  "inside_wet_t_cell_count": 12550,
+  "room_surface_area_m2": 2712908634023.8174,
+  "months": [
+    {
+      "month": "201801",
+      "days": 31,
+      "valid_inside_cell_count": 12550,
+      "valid_area_fraction": 1.0,
+      "area_mean_flux_W_m2": -129.35731316613266,
+      "integrated_downward_power_TW": -350.9345717625241,
+      "monthly_downward_energy_ZJ": -0.9399431570087445
+    },
+    {
+      "month": "201802",
+      "days": 28,
+      "valid_inside_cell_count": 12550,
+      "valid_area_fraction": 1.0,
+      "area_mean_flux_W_m2": -90.55426443056425,
+      "integrated_downward_power_TW": -245.6654458213536,
+      "monthly_downward_energy_ZJ": -0.5943138465310186
+    },
+    {
+      "month": "201803",
+      "days": 31,
+      "valid_inside_cell_count": 12550,
+      "valid_area_fraction": 1.0,
+      "area_mean_flux_W_m2": -141.41865416097102,
+      "integrated_downward_power_TW": -383.6558878853265,
+      "monthly_downward_energy_ZJ": -1.0275839301120584
+    },
+    {
+      "month": "201804",
+      "days": 30,
+      "valid_inside_cell_count": 12550,
+      "valid_area_fraction": 1.0,
+      "area_mean_flux_W_m2": -9.652670910122367,
+      "integrated_downward_power_TW": -26.186814253461506,
+      "monthly_downward_energy_ZJ": -0.06787622254497222
+    },
+    {
+      "month": "201805",
+      "days": 31,
+      "valid_inside_cell_count": 12550,
+      "valid_area_fraction": 1.0,
+      "area_mean_flux_W_m2": 102.49074359206655,
+      "integrated_downward_power_TW": 278.04802319843856,
+      "monthly_downward_energy_ZJ": 0.7447238253346978
+    },
+    {
+      "month": "201806",
+      "days": 30,
+      "valid_inside_cell_count": 12550,
+      "valid_area_fraction": 1.0,
+      "area_mean_flux_W_m2": 95.38374317258017,
+      "integrated_downward_power_TW": 258.7673803984031,
+      "monthly_downward_energy_ZJ": 0.6707250499926608
+    },
+    {
+      "month": "201807",
+      "days": 31,
+      "valid_inside_cell_count": 12550,
+      "valid_area_fraction": 1.0,
+      "area_mean_flux_W_m2": 118.32206737721951,
+      "integrated_downward_power_TW": 320.9969581832067,
+      "monthly_downward_energy_ZJ": 0.8597582527979007
+    },
+    {
+      "month": "201808",
+      "days": 31,
+      "valid_inside_cell_count": 12550,
+      "valid_area_fraction": 1.0,
+      "area_mean_flux_W_m2": 37.371644613655484,
+      "integrated_downward_power_TW": 101.38585734005565,
+      "monthly_downward_energy_ZJ": 0.2715518802996051
+    },
+    {
+      "month": "201809",
+      "days": 30,
+      "valid_inside_cell_count": 12550,
+      "valid_area_fraction": 1.0,
+      "area_mean_flux_W_m2": -80.90960956173318,
+      "integrated_downward_power_TW": -219.50037835552195,
+      "monthly_downward_energy_ZJ": -0.5689449806975129
+    },
+    {
+      "month": "201810",
+      "days": 31,
+      "valid_inside_cell_count": 12550,
+      "valid_area_fraction": 1.0,
+      "area_mean_flux_W_m2": -122.99459040546648,
+      "integrated_downward_power_TW": -333.673086249213,
+      "monthly_downward_energy_ZJ": -0.8937099942098921
+    },
+    {
+      "month": "201811",
+      "days": 30,
+      "valid_inside_cell_count": 12550,
+      "valid_area_fraction": 1.0,
+      "area_mean_flux_W_m2": -115.221180449798,
+      "integrated_downward_power_TW": -312.58453526467326,
+      "monthly_downward_energy_ZJ": -0.810219115406033
+    },
+    {
+      "month": "201812",
+      "days": 31,
+      "valid_inside_cell_count": 12550,
+      "valid_area_fraction": 1.0,
+      "area_mean_flux_W_m2": -139.50351768253736,
+      "integrated_downward_power_TW": -378.46029759764986,
+      "monthly_downward_energy_ZJ": -1.0136680610855453
+    }
+  ],
+  "time_weighted_2018": {
+    "area_mean_flux_W_m2": -39.38435383924697,
+    "integrated_downward_power_TW": -106.84615357594218,
+    "net_downward_energy_ZJ": -3.369500299170913,
+    "warming_month_count": 4,
+    "cooling_month_count": 8
+  },
+  "checks": {
+    "month_count": 12,
+    "all_months_cover_complete_room": true,
+    "control_cell_count_matches": true
+  },
+  "sources": {
+    "control_volume": {
+      "path": "research/osw-m4-oras5-nordic-control-volume.json",
+      "sha256": "c7438e5e3abb591e2b681d00026886e398a55426388cb53485455d811274ab4d"
+    },
+    "t_metrics": {
+      "path": "atlas/data/oras5-nordic-t-metrics.nc",
+      "sha256": "64c7b8cd817655158f835dc104aea7e253950b3b6fb81ed2e949a2dbb1156242"
+    },
+    "surface_heat": {
+      "path": "atlas/data/oras5-nordic-surface-heat-2018.nc",
+      "sha256": "6e8415a43fdddc2008fbd64b65978b5ef563ea9a4fd7533a8ad7338286881632"
+    }
+  },
+  "boundary": "One ORAS5 member and one year of monthly-mean reanalysis surface forcing. This is not a climatology, observation-only estimate, advective convergence, storage tendency, complete budget, causal attribution, or Arctic delivery."
+}

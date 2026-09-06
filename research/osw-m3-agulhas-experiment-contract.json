@@ -1,0 +1,132 @@
+{
+  "schema": "oceanlines.osw.m3-agulhas-leakage-experiment-contract.v1",
+  "status": "reference_geometry_acquired_raw_3d_velocity_unavailable_for_new_execution",
+  "research_questions": {
+    "exchange": "How much transport of Agulhas Current origin crosses the GoodHope section within four years?",
+    "retention": "How much crosses GoodHope an odd number of times and therefore remains in the South Atlantic at experiment end?",
+    "transformation": "How do transport-weighted temperature, salinity, and density classes change between release and GoodHope crossing?",
+    "heat": "What reference-relative advective heat signal accompanies qualified transport, under separately declared temperature and reference conventions?"
+  },
+  "reference_design": {
+    "release": {
+      "primary_section": "full width and depth of southward Agulhas Current at 32S",
+      "sensitivity_section": "ACT section near 34S",
+      "cadence": "every five days for one complete release year",
+      "weighting": "particle count and individual weight derived from southward native-cell volume transport at each release"
+    },
+    "advection": {
+      "dimension": "three-dimensional time-varying native velocity",
+      "duration": "four years after each release",
+      "saved_cadence": "daily particle position, potential temperature, and salinity",
+      "crossing_log": "ordered timestamp and direction for every GoodHope crossing; do not store terminal fate only"
+    },
+    "destination": {
+      "section": "published composite GoodHope exit: archived West and Northwest sections west of the retroflection through the Cape Basin",
+      "geometry_status": "resolved for replication by CC BY 4.0 GEOMAR Parcels_sections_32S.nc: 53 West and 2 Northwest coordinate records; a new run must map these coordinates to its own native grid",
+      "geometry_artifact": "atlas/data/geomar-agulhas/Parcels_sections_32S.nc",
+      "exchange_definition": "at least one GoodHope crossing within four years",
+      "retention_definition": "odd number of GoodHope crossings within four years"
+    },
+    "time_reference": "release year for annual transport series"
+  },
+  "dataset_requirements": {
+    "continuous_span": "at least five continuous years for each one-year release cohort",
+    "variables": [
+      "native 3-D u",
+      "native 3-D v",
+      "vertical velocity or validated 3-D advection equivalent",
+      "potential temperature",
+      "salinity"
+    ],
+    "geometry": [
+      "native staggered coordinates",
+      "horizontal face widths",
+      "layer thickness or interfaces",
+      "wet masks",
+      "bathymetry"
+    ],
+    "temporal_resolution": "five days or finer for velocity and release weighting",
+    "mesoscale_requirement": "eddy-rich field capable of representing rings, cyclones, filaments, and direct leakage; resolution sensitivity required",
+    "domain": "contains the complete 32S and ACT release sections, retroflection, return-current exit, Cape Basin, and GoodHope section with a buffer"
+  },
+  "required_outputs": {
+    "transport": "sum native-cell particle volume-transport weights by release year and qualification rule",
+    "crossing_parity": "all-crossing and odd-crossing estimates reported side by side",
+    "section_sensitivity": "32S and ACT release estimates remain separate",
+    "transit_time": "transport-weighted distribution from release to first GoodHope crossing, retaining the four-year censored tail",
+    "thermohaline": "transport-weighted theta/S/density classes at release and first GoodHope crossing",
+    "heat": "optional until density, heat capacity, temperature variable, reference temperature, and crossing-time convention are frozen"
+  },
+  "acceptance_tests": [
+    "native release-cell transport sums reproduce the signed Agulhas Current section total",
+    "particle weights sum back to every sampled release-section transport within declared tolerance",
+    "GoodHope geometry has a pinned source and exact vertices mapped reproducibly to the target native grid",
+    "every crossing has direction and time; parity is reproducible from the event log",
+    "all-crossing and odd-crossing estimates are both emitted and never silently substituted",
+    "32S versus ACT and integration-duration sensitivity are reported before a preferred estimate",
+    "temperature-salinity bins sum back to qualified volume transport",
+    "heat output passes the reference-temperature identity with matched net volume transport"
+  ],
+  "m2_gap_audit": [
+    {
+      "dimension": "release",
+      "m2": "four surface centers with equal-count neighborhoods",
+      "m3": "full-width/full-depth native 32S section with transport weights",
+      "verdict": "fail"
+    },
+    {
+      "dimension": "time",
+      "m2": "three dates and 150-day paths",
+      "m3": "five-day releases for one year and four-year advection",
+      "verdict": "fail"
+    },
+    {
+      "dimension": "velocity",
+      "m2": "nominal-15-m horizontal OSCAR",
+      "m3": "time-varying 3-D eddy-rich velocity",
+      "verdict": "fail"
+    },
+    {
+      "dimension": "destination",
+      "m2": "straight 12/15/18E thresholds",
+      "m3": "archived West + Northwest GoodHope composite mapped to target grid",
+      "verdict": "resolved_for_replication"
+    },
+    {
+      "dimension": "identity",
+      "m2": "first threshold encounter",
+      "m3": "Indian-origin transport with complete crossing event log and parity",
+      "verdict": "fail"
+    },
+    {
+      "dimension": "thermodynamics",
+      "m2": "none",
+      "m3": "temperature, salinity, density classes; heat only under explicit convention",
+      "verdict": "fail"
+    }
+  ],
+  "literature_facts_used": [
+    "Schmidt et al. report transit times from less than one month to several years; the modal interval is about 160–170 days and more than half the transport reaches GoodHope within roughly 280–300 days.",
+    "Schmidt et al. find that moving the release from 32S to ACT changes mean leakage transport, while crossing parity also changes the mean.",
+    "Schmidt et al. recommend release-year attribution for particles crossing GoodHope within four years; odd crossings are required for an overturning-retention question.",
+    "Daher et al. show different surface and intermediate-depth leakage behavior and distinct northward versus northwestward Cape Basin routes."
+  ],
+  "sources": [
+    {
+      "citation": "Schmidt et al. 2021",
+      "doi": "https://doi.org/10.5194/os-17-1067-2021",
+      "role": "reference Lagrangian design and experiment-sensitivity findings"
+    },
+    {
+      "citation": "Schwarzkopf et al. 2022",
+      "doi": "https://doi.org/10.1038/s43247-022-00643-y",
+      "role": "application of five-day, full-width/full-depth 32S releases and four-year GoodHope sampling"
+    },
+    {
+      "citation": "Daher et al. 2020",
+      "doi": "https://doi.org/10.1029/2019JC015753",
+      "role": "observational float/drifter leakage, depth dependence, ACT and GoodHope comparison"
+    }
+  ],
+  "boundary": "This artifact specifies a new experiment and contains no raw M3 velocity or new OSW leakage, volume, heat, or AMOC estimate. The published section geometry and derived INALT20/Parcels outputs are now acquired for attributed replication; a new execution still requires eddy-rich 3-D velocity and target-grid section mapping."
+}

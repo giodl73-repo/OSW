@@ -1,0 +1,6236 @@
+{
+  "schema": "oceanlines.osw.m2-pathway-pilot.v1",
+  "status": "historical deterministic surface-pathway method pilot",
+  "velocity_source": {
+    "schema": "oceanlines.oscar.historical-timeseries.v1",
+    "dataset_id": "yearly_336c_0b32_9cd3",
+    "source_version": "2017.0",
+    "source_sha256": "804d1a86592e81d720fc6beaf57e3c7b13a55dbf30605abcfd3dc406cf7fcda3",
+    "field_sha256": "4e8097deef965b3156617be10cc7b40252bfbfdfc6fda7e1f23a7c9f6faff42d",
+    "nominal_depth_m": 15,
+    "shape": [
+      71,
+      76,
+      121
+    ],
+    "sampled_extent": {
+      "north": -45.0,
+      "south": -70.0,
+      "west": 280.0,
+      "east": 320.0
+    },
+    "native_resolution_degrees": 0.3333333333333333,
+    "space_stride": 1
+  },
+  "solver_contract": {
+    "integration": "forward fourth-order Runge-Kutta on spherical latitude/longitude rates",
+    "duration_days": 30,
+    "timestep_hours": 3,
+    "output_interval_hours": 24,
+    "spatial_interpolation": "bilinear; all four corners must have jointly finite u and v",
+    "temporal_interpolation": "linear between adjacent OSCAR timestamps",
+    "coastal_behavior": "terminate before any RK4 stage with an invalid wet stencil or outside domain",
+    "diffusion": "none",
+    "random_seed": null,
+    "release_depth_m": 15,
+    "integration_direction": "forward"
+  },
+  "release_contract": {
+    "name": "wet interior of schematic Drake Passage surface section",
+    "start": {
+      "latitude": -56.5,
+      "longitude": 293.0
+    },
+    "stop": {
+      "latitude": -61.9,
+      "longitude": 299.3
+    },
+    "count_per_time": 10,
+    "times": [
+      "2017-12-16T00:00:00Z",
+      "2018-03-18T00:00:00Z",
+      "2018-06-17T00:00:00Z",
+      "2018-09-16T00:00:00Z"
+    ],
+    "weighting": "equal-count method ensemble; not area, volume, or transport weighted"
+  },
+  "summary": {
+    "released": 40,
+    "completed": 35,
+    "terminated": 5,
+    "completion_fraction": 0.875
+  },
+  "tracks": [
+    {
+      "id": "2017-12-16-01",
+      "release_time": "2017-12-16T00:00:00Z",
+      "release_index": 1,
+      "release_latitude": -56.5,
+      "release_longitude": 293.0,
+      "status": "terminated_invalid_wet_stencil_or_domain",
+      "integrated_hours": 159,
+      "travelled_km": 150.626,
+      "points": [
+        {
+          "time": "2017-12-16T00:00:00Z",
+          "latitude": -56.5,
+          "longitude": 293.0
+        },
+        {
+          "time": "2017-12-17T00:00:00Z",
+          "latitude": -56.393092,
+          "longitude": 293.255442
+        },
+        {
+          "time": "2017-12-18T00:00:00Z",
+          "latitude": -56.286325,
+          "longitude": 293.479585
+        },
+        {
+          "time": "2017-12-19T00:00:00Z",
+          "latitude": -56.155209,
+          "longitude": 293.639122
+        },
+        {
+          "time": "2017-12-20T00:00:00Z",
+          "latitude": -55.966181,
+          "longitude": 293.761277
+        },
+        {
+          "time": "2017-12-21T00:00:00Z",
+          "latitude": -55.729785,
+          "longitude": 293.858441
+        },
+        {
+          "time": "2017-12-22T00:00:00Z",
+          "latitude": -55.482671,
+          "longitude": 293.980186
+        }
+      ]
+    },
+    {
+      "id": "2017-12-16-02",
+      "release_time": "2017-12-16T00:00:00Z",
+      "release_index": 2,
+      "release_latitude": -57.1,
+      "release_longitude": 293.7,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 491.274,
+      "points": [
+        {
+          "time": "2017-12-16T00:00:00Z",
+          "latitude": -57.1,
+          "longitude": 293.7
+        },
+        {
+          "time": "2017-12-17T00:00:00Z",
+          "latitude": -57.062864,
+          "longitude": 294.178215
+        },
+        {
+          "time": "2017-12-18T00:00:00Z",
+          "latitude": -56.945856,
+          "longitude": 294.68868
+        },
+        {
+          "time": "2017-12-19T00:00:00Z",
+          "latitude": -56.824005,
+          "longitude": 295.162581
+        },
+        {
+          "time": "2017-12-20T00:00:00Z",
+          "latitude": -56.721065,
+          "longitude": 295.557255
+        },
+        {
+          "time": "2017-12-21T00:00:00Z",
+          "latitude": -56.609728,
+          "longitude": 295.857573
+        },
+        {
+          "time": "2017-12-22T00:00:00Z",
+          "latitude": -56.542402,
+          "longitude": 296.110721
+        },
+        {
+          "time": "2017-12-23T00:00:00Z",
+          "latitude": -56.507544,
+          "longitude": 296.361539
+        },
+        {
+          "time": "2017-12-24T00:00:00Z",
+          "latitude": -56.45271,
+          "longitude": 296.595491
+        },
+        {
+          "time": "2017-12-25T00:00:00Z",
+          "latitude": -56.346447,
+          "longitude": 296.735004
+        },
+        {
+          "time": "2017-12-26T00:00:00Z",
+          "latitude": -56.204742,
+          "longitude": 296.755964
+        },
+        {
+          "time": "2017-12-27T00:00:00Z",
+          "latitude": -56.074008,
+          "longitude": 296.704127
+        },
+        {
+          "time": "2017-12-28T00:00:00Z",
+          "latitude": -55.99338,
+          "longitude": 296.590833
+        },
+        {
+          "time": "2017-12-29T00:00:00Z",
+          "latitude": -55.987364,
+          "longitude": 296.46415
+        },
+        {
+          "time": "2017-12-30T00:00:00Z",
+          "latitude": -56.059756,
+          "longitude": 296.366264
+        },
+        {
+          "time": "2017-12-31T00:00:00Z",
+          "latitude": -56.178197,
+          "longitude": 296.357512
+        },
+        {
+          "time": "2018-01-01T00:00:00Z",
+          "latitude": -56.293057,
+          "longitude": 296.455833
+        },
+        {
+          "time": "2018-01-02T00:00:00Z",
+          "latitude": -56.359943,
+          "longitude": 296.644537
+        },
+        {
+          "time": "2018-01-03T00:00:00Z",
+          "latitude": -56.3488,
+          "longitude": 296.862092
+        },
+        {
+          "time": "2018-01-04T00:00:00Z",
+          "latitude": -56.25266,
+          "longitude": 297.007563
+        },
+        {
+          "time": "2018-01-05T00:00:00Z",
+          "latitude": -56.108986,
+          "longitude": 297.027971
+        },
+        {
+          "time": "2018-01-06T00:00:00Z",
+          "latitude": -55.981841,
+          "longitude": 296.912932
+        },
+        {
+          "time": "2018-01-07T00:00:00Z",
+          "latitude": -55.943299,
+          "longitude": 296.771532
+        },
+        {
+          "time": "2018-01-08T00:00:00Z",
+          "latitude": -55.996937,
+          "longitude": 296.683302
+        },
+        {
+          "time": "2018-01-09T00:00:00Z",
+          "latitude": -56.110399,
+          "longitude": 296.700741
+        },
+        {
+          "time": "2018-01-10T00:00:00Z",
+          "latitude": -56.217341,
+          "longitude": 296.856239
+        },
+        {
+          "time": "2018-01-11T00:00:00Z",
+          "latitude": -56.287044,
+          "longitude": 297.128348
+        },
+        {
+          "time": "2018-01-12T00:00:00Z",
+          "latitude": -56.299948,
+          "longitude": 297.431842
+        },
+        {
+          "time": "2018-01-13T00:00:00Z",
+          "latitude": -56.250983,
+          "longitude": 297.657583
+        },
+        {
+          "time": "2018-01-14T00:00:00Z",
+          "latitude": -56.167859,
+          "longitude": 297.776876
+        },
+        {
+          "time": "2018-01-15T00:00:00Z",
+          "latitude": -56.085848,
+          "longitude": 297.803601
+        }
+      ]
+    },
+    {
+      "id": "2017-12-16-03",
+      "release_time": "2017-12-16T00:00:00Z",
+      "release_index": 3,
+      "release_latitude": -57.7,
+      "release_longitude": 294.4,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 1041.591,
+      "points": [
+        {
+          "time": "2017-12-16T00:00:00Z",
+          "latitude": -57.7,
+          "longitude": 294.4
+        },
+        {
+          "time": "2017-12-17T00:00:00Z",
+          "latitude": -57.529377,
+          "longitude": 295.08719
+        },
+        {
+          "time": "2017-12-18T00:00:00Z",
+          "latitude": -57.357401,
+          "longitude": 295.883859
+        },
+        {
+          "time": "2017-12-19T00:00:00Z",
+          "latitude": -57.239163,
+          "longitude": 296.733816
+        },
+        {
+          "time": "2017-12-20T00:00:00Z",
+          "latitude": -57.264096,
+          "longitude": 297.406931
+        },
+        {
+          "time": "2017-12-21T00:00:00Z",
+          "latitude": -57.231811,
+          "longitude": 297.844853
+        },
+        {
+          "time": "2017-12-22T00:00:00Z",
+          "latitude": -57.095425,
+          "longitude": 298.096654
+        },
+        {
+          "time": "2017-12-23T00:00:00Z",
+          "latitude": -56.890482,
+          "longitude": 298.190183
+        },
+        {
+          "time": "2017-12-24T00:00:00Z",
+          "latitude": -56.612277,
+          "longitude": 298.16661
+        },
+        {
+          "time": "2017-12-25T00:00:00Z",
+          "latitude": -56.284132,
+          "longitude": 298.122348
+        },
+        {
+          "time": "2017-12-26T00:00:00Z",
+          "latitude": -55.986836,
+          "longitude": 298.125609
+        },
+        {
+          "time": "2017-12-27T00:00:00Z",
+          "latitude": -55.767381,
+          "longitude": 298.1807
+        },
+        {
+          "time": "2017-12-28T00:00:00Z",
+          "latitude": -55.628553,
+          "longitude": 298.284335
+        },
+        {
+          "time": "2017-12-29T00:00:00Z",
+          "latitude": -55.555802,
+          "longitude": 298.480419
+        },
+        {
+          "time": "2017-12-30T00:00:00Z",
+          "latitude": -55.52733,
+          "longitude": 298.752956
+        },
+        {
+          "time": "2017-12-31T00:00:00Z",
+          "latitude": -55.51743,
+          "longitude": 299.084701
+        },
+        {
+          "time": "2018-01-01T00:00:00Z",
+          "latitude": -55.52557,
+          "longitude": 299.485463
+        },
+        {
+          "time": "2018-01-02T00:00:00Z",
+          "latitude": -55.582983,
+          "longitude": 299.939556
+        },
+        {
+          "time": "2018-01-03T00:00:00Z",
+          "latitude": -55.682992,
+          "longitude": 300.414615
+        },
+        {
+          "time": "2018-01-04T00:00:00Z",
+          "latitude": -55.814725,
+          "longitude": 300.888291
+        },
+        {
+          "time": "2018-01-05T00:00:00Z",
+          "latitude": -55.973547,
+          "longitude": 301.336553
+        },
+        {
+          "time": "2018-01-06T00:00:00Z",
+          "latitude": -56.156585,
+          "longitude": 301.758088
+        },
+        {
+          "time": "2018-01-07T00:00:00Z",
+          "latitude": -56.345736,
+          "longitude": 302.0996
+        },
+        {
+          "time": "2018-01-08T00:00:00Z",
+          "latitude": -56.474927,
+          "longitude": 302.451835
+        },
+        {
+          "time": "2018-01-09T00:00:00Z",
+          "latitude": -56.495766,
+          "longitude": 302.895643
+        },
+        {
+          "time": "2018-01-10T00:00:00Z",
+          "latitude": -56.372501,
+          "longitude": 303.481122
+        },
+        {
+          "time": "2018-01-11T00:00:00Z",
+          "latitude": -56.13169,
+          "longitude": 304.239752
+        },
+        {
+          "time": "2018-01-12T00:00:00Z",
+          "latitude": -55.706916,
+          "longitude": 305.02665
+        },
+        {
+          "time": "2018-01-13T00:00:00Z",
+          "latitude": -55.216905,
+          "longitude": 305.432848
+        },
+        {
+          "time": "2018-01-14T00:00:00Z",
+          "latitude": -54.770793,
+          "longitude": 305.577586
+        },
+        {
+          "time": "2018-01-15T00:00:00Z",
+          "latitude": -54.40146,
+          "longitude": 305.716151
+        }
+      ]
+    },
+    {
+      "id": "2017-12-16-04",
+      "release_time": "2017-12-16T00:00:00Z",
+      "release_index": 4,
+      "release_latitude": -58.3,
+      "release_longitude": 295.1,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 864.009,
+      "points": [
+        {
+          "time": "2017-12-16T00:00:00Z",
+          "latitude": -58.3,
+          "longitude": 295.1
+        },
+        {
+          "time": "2017-12-17T00:00:00Z",
+          "latitude": -58.091269,
+          "longitude": 295.29256
+        },
+        {
+          "time": "2017-12-18T00:00:00Z",
+          "latitude": -57.875745,
+          "longitude": 295.612056
+        },
+        {
+          "time": "2017-12-19T00:00:00Z",
+          "latitude": -57.72491,
+          "longitude": 296.107636
+        },
+        {
+          "time": "2017-12-20T00:00:00Z",
+          "latitude": -57.654877,
+          "longitude": 296.620791
+        },
+        {
+          "time": "2017-12-21T00:00:00Z",
+          "latitude": -57.764662,
+          "longitude": 296.987619
+        },
+        {
+          "time": "2017-12-22T00:00:00Z",
+          "latitude": -57.965217,
+          "longitude": 297.189634
+        },
+        {
+          "time": "2017-12-23T00:00:00Z",
+          "latitude": -58.152787,
+          "longitude": 297.358812
+        },
+        {
+          "time": "2017-12-24T00:00:00Z",
+          "latitude": -58.319483,
+          "longitude": 297.624147
+        },
+        {
+          "time": "2017-12-25T00:00:00Z",
+          "latitude": -58.44225,
+          "longitude": 297.968328
+        },
+        {
+          "time": "2017-12-26T00:00:00Z",
+          "latitude": -58.43786,
+          "longitude": 298.339586
+        },
+        {
+          "time": "2017-12-27T00:00:00Z",
+          "latitude": -58.274793,
+          "longitude": 298.62455
+        },
+        {
+          "time": "2017-12-28T00:00:00Z",
+          "latitude": -58.047535,
+          "longitude": 298.801492
+        },
+        {
+          "time": "2017-12-29T00:00:00Z",
+          "latitude": -57.820455,
+          "longitude": 298.914062
+        },
+        {
+          "time": "2017-12-30T00:00:00Z",
+          "latitude": -57.594261,
+          "longitude": 299.05342
+        },
+        {
+          "time": "2017-12-31T00:00:00Z",
+          "latitude": -57.391688,
+          "longitude": 299.242608
+        },
+        {
+          "time": "2018-01-01T00:00:00Z",
+          "latitude": -57.252954,
+          "longitude": 299.485796
+        },
+        {
+          "time": "2018-01-02T00:00:00Z",
+          "latitude": -57.212791,
+          "longitude": 299.723314
+        },
+        {
+          "time": "2018-01-03T00:00:00Z",
+          "latitude": -57.249001,
+          "longitude": 299.982958
+        },
+        {
+          "time": "2018-01-04T00:00:00Z",
+          "latitude": -57.328948,
+          "longitude": 300.292954
+        },
+        {
+          "time": "2018-01-05T00:00:00Z",
+          "latitude": -57.387455,
+          "longitude": 300.648396
+        },
+        {
+          "time": "2018-01-06T00:00:00Z",
+          "latitude": -57.400895,
+          "longitude": 301.046863
+        },
+        {
+          "time": "2018-01-07T00:00:00Z",
+          "latitude": -57.401098,
+          "longitude": 301.492438
+        },
+        {
+          "time": "2018-01-08T00:00:00Z",
+          "latitude": -57.379896,
+          "longitude": 301.948877
+        },
+        {
+          "time": "2018-01-09T00:00:00Z",
+          "latitude": -57.301835,
+          "longitude": 302.394033
+        },
+        {
+          "time": "2018-01-10T00:00:00Z",
+          "latitude": -57.172705,
+          "longitude": 302.828164
+        },
+        {
+          "time": "2018-01-11T00:00:00Z",
+          "latitude": -57.022263,
+          "longitude": 303.237449
+        },
+        {
+          "time": "2018-01-12T00:00:00Z",
+          "latitude": -56.839156,
+          "longitude": 303.619136
+        },
+        {
+          "time": "2018-01-13T00:00:00Z",
+          "latitude": -56.585326,
+          "longitude": 304.060532
+        },
+        {
+          "time": "2018-01-14T00:00:00Z",
+          "latitude": -56.203885,
+          "longitude": 304.758975
+        },
+        {
+          "time": "2018-01-15T00:00:00Z",
+          "latitude": -55.719247,
+          "longitude": 305.570462
+        }
+      ]
+    },
+    {
+      "id": "2017-12-16-05",
+      "release_time": "2017-12-16T00:00:00Z",
+      "release_index": 5,
+      "release_latitude": -58.9,
+      "release_longitude": 295.8,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 926.858,
+      "points": [
+        {
+          "time": "2017-12-16T00:00:00Z",
+          "latitude": -58.9,
+          "longitude": 295.8
+        },
+        {
+          "time": "2017-12-17T00:00:00Z",
+          "latitude": -58.596209,
+          "longitude": 295.962758
+        },
+        {
+          "time": "2017-12-18T00:00:00Z",
+          "latitude": -58.430139,
+          "longitude": 296.200267
+        },
+        {
+          "time": "2017-12-19T00:00:00Z",
+          "latitude": -58.423994,
+          "longitude": 296.478937
+        },
+        {
+          "time": "2017-12-20T00:00:00Z",
+          "latitude": -58.527599,
+          "longitude": 296.791578
+        },
+        {
+          "time": "2017-12-21T00:00:00Z",
+          "latitude": -58.69631,
+          "longitude": 297.195177
+        },
+        {
+          "time": "2017-12-22T00:00:00Z",
+          "latitude": -58.882657,
+          "longitude": 297.583821
+        },
+        {
+          "time": "2017-12-23T00:00:00Z",
+          "latitude": -59.025618,
+          "longitude": 297.949143
+        },
+        {
+          "time": "2017-12-24T00:00:00Z",
+          "latitude": -59.081418,
+          "longitude": 298.342921
+        },
+        {
+          "time": "2017-12-25T00:00:00Z",
+          "latitude": -59.077835,
+          "longitude": 298.734426
+        },
+        {
+          "time": "2017-12-26T00:00:00Z",
+          "latitude": -59.023259,
+          "longitude": 299.059078
+        },
+        {
+          "time": "2017-12-27T00:00:00Z",
+          "latitude": -58.907982,
+          "longitude": 299.313755
+        },
+        {
+          "time": "2017-12-28T00:00:00Z",
+          "latitude": -58.736257,
+          "longitude": 299.531088
+        },
+        {
+          "time": "2017-12-29T00:00:00Z",
+          "latitude": -58.517883,
+          "longitude": 299.734085
+        },
+        {
+          "time": "2017-12-30T00:00:00Z",
+          "latitude": -58.291936,
+          "longitude": 299.941514
+        },
+        {
+          "time": "2017-12-31T00:00:00Z",
+          "latitude": -58.113692,
+          "longitude": 300.180222
+        },
+        {
+          "time": "2018-01-01T00:00:00Z",
+          "latitude": -57.975807,
+          "longitude": 300.492323
+        },
+        {
+          "time": "2018-01-02T00:00:00Z",
+          "latitude": -57.857277,
+          "longitude": 300.890851
+        },
+        {
+          "time": "2018-01-03T00:00:00Z",
+          "latitude": -57.791299,
+          "longitude": 301.373484
+        },
+        {
+          "time": "2018-01-04T00:00:00Z",
+          "latitude": -57.766433,
+          "longitude": 301.915004
+        },
+        {
+          "time": "2018-01-05T00:00:00Z",
+          "latitude": -57.682687,
+          "longitude": 302.480675
+        },
+        {
+          "time": "2018-01-06T00:00:00Z",
+          "latitude": -57.56155,
+          "longitude": 303.039188
+        },
+        {
+          "time": "2018-01-07T00:00:00Z",
+          "latitude": -57.436482,
+          "longitude": 303.480273
+        },
+        {
+          "time": "2018-01-08T00:00:00Z",
+          "latitude": -57.252522,
+          "longitude": 303.80334
+        },
+        {
+          "time": "2018-01-09T00:00:00Z",
+          "latitude": -57.010077,
+          "longitude": 304.081731
+        },
+        {
+          "time": "2018-01-10T00:00:00Z",
+          "latitude": -56.672365,
+          "longitude": 304.428636
+        },
+        {
+          "time": "2018-01-11T00:00:00Z",
+          "latitude": -56.251484,
+          "longitude": 305.067198
+        },
+        {
+          "time": "2018-01-12T00:00:00Z",
+          "latitude": -55.909512,
+          "longitude": 305.765616
+        },
+        {
+          "time": "2018-01-13T00:00:00Z",
+          "latitude": -55.610235,
+          "longitude": 306.217752
+        },
+        {
+          "time": "2018-01-14T00:00:00Z",
+          "latitude": -55.291591,
+          "longitude": 306.504253
+        },
+        {
+          "time": "2018-01-15T00:00:00Z",
+          "latitude": -55.023716,
+          "longitude": 306.833323
+        }
+      ]
+    },
+    {
+      "id": "2017-12-16-06",
+      "release_time": "2017-12-16T00:00:00Z",
+      "release_index": 6,
+      "release_latitude": -59.5,
+      "release_longitude": 296.5,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 673.222,
+      "points": [
+        {
+          "time": "2017-12-16T00:00:00Z",
+          "latitude": -59.5,
+          "longitude": 296.5
+        },
+        {
+          "time": "2017-12-17T00:00:00Z",
+          "latitude": -59.470042,
+          "longitude": 296.372333
+        },
+        {
+          "time": "2017-12-18T00:00:00Z",
+          "latitude": -59.387351,
+          "longitude": 296.254103
+        },
+        {
+          "time": "2017-12-19T00:00:00Z",
+          "latitude": -59.234627,
+          "longitude": 296.172124
+        },
+        {
+          "time": "2017-12-20T00:00:00Z",
+          "latitude": -59.027943,
+          "longitude": 296.174363
+        },
+        {
+          "time": "2017-12-21T00:00:00Z",
+          "latitude": -58.820638,
+          "longitude": 296.270753
+        },
+        {
+          "time": "2017-12-22T00:00:00Z",
+          "latitude": -58.706106,
+          "longitude": 296.477622
+        },
+        {
+          "time": "2017-12-23T00:00:00Z",
+          "latitude": -58.724934,
+          "longitude": 296.792583
+        },
+        {
+          "time": "2017-12-24T00:00:00Z",
+          "latitude": -58.831849,
+          "longitude": 297.15528
+        },
+        {
+          "time": "2017-12-25T00:00:00Z",
+          "latitude": -58.98487,
+          "longitude": 297.503745
+        },
+        {
+          "time": "2017-12-26T00:00:00Z",
+          "latitude": -59.129748,
+          "longitude": 297.812043
+        },
+        {
+          "time": "2017-12-27T00:00:00Z",
+          "latitude": -59.207285,
+          "longitude": 298.118211
+        },
+        {
+          "time": "2017-12-28T00:00:00Z",
+          "latitude": -59.248933,
+          "longitude": 298.469028
+        },
+        {
+          "time": "2017-12-29T00:00:00Z",
+          "latitude": -59.288144,
+          "longitude": 298.813524
+        },
+        {
+          "time": "2017-12-30T00:00:00Z",
+          "latitude": -59.326291,
+          "longitude": 299.101555
+        },
+        {
+          "time": "2017-12-31T00:00:00Z",
+          "latitude": -59.345645,
+          "longitude": 299.329982
+        },
+        {
+          "time": "2018-01-01T00:00:00Z",
+          "latitude": -59.330344,
+          "longitude": 299.509486
+        },
+        {
+          "time": "2018-01-02T00:00:00Z",
+          "latitude": -59.268336,
+          "longitude": 299.647802
+        },
+        {
+          "time": "2018-01-03T00:00:00Z",
+          "latitude": -59.157107,
+          "longitude": 299.771693
+        },
+        {
+          "time": "2018-01-04T00:00:00Z",
+          "latitude": -58.987326,
+          "longitude": 299.915849
+        },
+        {
+          "time": "2018-01-05T00:00:00Z",
+          "latitude": -58.762989,
+          "longitude": 300.107141
+        },
+        {
+          "time": "2018-01-06T00:00:00Z",
+          "latitude": -58.521979,
+          "longitude": 300.378573
+        },
+        {
+          "time": "2018-01-07T00:00:00Z",
+          "latitude": -58.30836,
+          "longitude": 300.683568
+        },
+        {
+          "time": "2018-01-08T00:00:00Z",
+          "latitude": -58.127338,
+          "longitude": 301.024212
+        },
+        {
+          "time": "2018-01-09T00:00:00Z",
+          "latitude": -58.000231,
+          "longitude": 301.4238
+        },
+        {
+          "time": "2018-01-10T00:00:00Z",
+          "latitude": -57.932294,
+          "longitude": 301.916466
+        },
+        {
+          "time": "2018-01-11T00:00:00Z",
+          "latitude": -57.844587,
+          "longitude": 302.4731
+        },
+        {
+          "time": "2018-01-12T00:00:00Z",
+          "latitude": -57.722191,
+          "longitude": 303.042832
+        },
+        {
+          "time": "2018-01-13T00:00:00Z",
+          "latitude": -57.645246,
+          "longitude": 303.588633
+        },
+        {
+          "time": "2018-01-14T00:00:00Z",
+          "latitude": -57.536954,
+          "longitude": 304.005685
+        },
+        {
+          "time": "2018-01-15T00:00:00Z",
+          "latitude": -57.370612,
+          "longitude": 304.311355
+        }
+      ]
+    },
+    {
+      "id": "2017-12-16-07",
+      "release_time": "2017-12-16T00:00:00Z",
+      "release_index": 7,
+      "release_latitude": -60.1,
+      "release_longitude": 297.2,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 164.227,
+      "points": [
+        {
+          "time": "2017-12-16T00:00:00Z",
+          "latitude": -60.1,
+          "longitude": 297.2
+        },
+        {
+          "time": "2017-12-17T00:00:00Z",
+          "latitude": -60.086269,
+          "longitude": 297.274008
+        },
+        {
+          "time": "2017-12-18T00:00:00Z",
+          "latitude": -60.067464,
+          "longitude": 297.339289
+        },
+        {
+          "time": "2017-12-19T00:00:00Z",
+          "latitude": -60.036573,
+          "longitude": 297.387929
+        },
+        {
+          "time": "2017-12-20T00:00:00Z",
+          "latitude": -59.987434,
+          "longitude": 297.413401
+        },
+        {
+          "time": "2017-12-21T00:00:00Z",
+          "latitude": -59.930495,
+          "longitude": 297.422489
+        },
+        {
+          "time": "2017-12-22T00:00:00Z",
+          "latitude": -59.872382,
+          "longitude": 297.415738
+        },
+        {
+          "time": "2017-12-23T00:00:00Z",
+          "latitude": -59.814435,
+          "longitude": 297.389803
+        },
+        {
+          "time": "2017-12-24T00:00:00Z",
+          "latitude": -59.760423,
+          "longitude": 297.340232
+        },
+        {
+          "time": "2017-12-25T00:00:00Z",
+          "latitude": -59.711067,
+          "longitude": 297.261428
+        },
+        {
+          "time": "2017-12-26T00:00:00Z",
+          "latitude": -59.663526,
+          "longitude": 297.149208
+        },
+        {
+          "time": "2017-12-27T00:00:00Z",
+          "latitude": -59.619862,
+          "longitude": 297.019428
+        },
+        {
+          "time": "2017-12-28T00:00:00Z",
+          "latitude": -59.576575,
+          "longitude": 296.892719
+        },
+        {
+          "time": "2017-12-29T00:00:00Z",
+          "latitude": -59.531806,
+          "longitude": 296.776027
+        },
+        {
+          "time": "2017-12-30T00:00:00Z",
+          "latitude": -59.486446,
+          "longitude": 296.666107
+        },
+        {
+          "time": "2017-12-31T00:00:00Z",
+          "latitude": -59.443389,
+          "longitude": 296.564318
+        },
+        {
+          "time": "2018-01-01T00:00:00Z",
+          "latitude": -59.407192,
+          "longitude": 296.472409
+        },
+        {
+          "time": "2018-01-02T00:00:00Z",
+          "latitude": -59.379903,
+          "longitude": 296.390772
+        },
+        {
+          "time": "2018-01-03T00:00:00Z",
+          "latitude": -59.360402,
+          "longitude": 296.31995
+        },
+        {
+          "time": "2018-01-04T00:00:00Z",
+          "latitude": -59.340608,
+          "longitude": 296.259957
+        },
+        {
+          "time": "2018-01-05T00:00:00Z",
+          "latitude": -59.31655,
+          "longitude": 296.211514
+        },
+        {
+          "time": "2018-01-06T00:00:00Z",
+          "latitude": -59.287084,
+          "longitude": 296.18167
+        },
+        {
+          "time": "2018-01-07T00:00:00Z",
+          "latitude": -59.252364,
+          "longitude": 296.170166
+        },
+        {
+          "time": "2018-01-08T00:00:00Z",
+          "latitude": -59.213448,
+          "longitude": 296.176786
+        },
+        {
+          "time": "2018-01-09T00:00:00Z",
+          "latitude": -59.174623,
+          "longitude": 296.200511
+        },
+        {
+          "time": "2018-01-10T00:00:00Z",
+          "latitude": -59.140633,
+          "longitude": 296.238227
+        },
+        {
+          "time": "2018-01-11T00:00:00Z",
+          "latitude": -59.115914,
+          "longitude": 296.285225
+        },
+        {
+          "time": "2018-01-12T00:00:00Z",
+          "latitude": -59.100486,
+          "longitude": 296.336714
+        },
+        {
+          "time": "2018-01-13T00:00:00Z",
+          "latitude": -59.088587,
+          "longitude": 296.391113
+        },
+        {
+          "time": "2018-01-14T00:00:00Z",
+          "latitude": -59.07838,
+          "longitude": 296.448611
+        },
+        {
+          "time": "2018-01-15T00:00:00Z",
+          "latitude": -59.071148,
+          "longitude": 296.509112
+        }
+      ]
+    },
+    {
+      "id": "2017-12-16-08",
+      "release_time": "2017-12-16T00:00:00Z",
+      "release_index": 8,
+      "release_latitude": -60.7,
+      "release_longitude": 297.90000000000003,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 472.529,
+      "points": [
+        {
+          "time": "2017-12-16T00:00:00Z",
+          "latitude": -60.7,
+          "longitude": 297.90000000000003
+        },
+        {
+          "time": "2017-12-17T00:00:00Z",
+          "latitude": -60.787441,
+          "longitude": 298.193518
+        },
+        {
+          "time": "2017-12-18T00:00:00Z",
+          "latitude": -60.792589,
+          "longitude": 298.433781
+        },
+        {
+          "time": "2017-12-19T00:00:00Z",
+          "latitude": -60.71259,
+          "longitude": 298.583655
+        },
+        {
+          "time": "2017-12-20T00:00:00Z",
+          "latitude": -60.573778,
+          "longitude": 298.599433
+        },
+        {
+          "time": "2017-12-21T00:00:00Z",
+          "latitude": -60.418765,
+          "longitude": 298.501489
+        },
+        {
+          "time": "2017-12-22T00:00:00Z",
+          "latitude": -60.25501,
+          "longitude": 298.303279
+        },
+        {
+          "time": "2017-12-23T00:00:00Z",
+          "latitude": -60.109789,
+          "longitude": 298.150587
+        },
+        {
+          "time": "2017-12-24T00:00:00Z",
+          "latitude": -59.952431,
+          "longitude": 298.045667
+        },
+        {
+          "time": "2017-12-25T00:00:00Z",
+          "latitude": -59.793559,
+          "longitude": 298.013351
+        },
+        {
+          "time": "2017-12-26T00:00:00Z",
+          "latitude": -59.64784,
+          "longitude": 298.062007
+        },
+        {
+          "time": "2017-12-27T00:00:00Z",
+          "latitude": -59.554322,
+          "longitude": 298.195513
+        },
+        {
+          "time": "2017-12-28T00:00:00Z",
+          "latitude": -59.515437,
+          "longitude": 298.405775
+        },
+        {
+          "time": "2017-12-29T00:00:00Z",
+          "latitude": -59.526925,
+          "longitude": 298.659955
+        },
+        {
+          "time": "2017-12-30T00:00:00Z",
+          "latitude": -59.576261,
+          "longitude": 298.917837
+        },
+        {
+          "time": "2017-12-31T00:00:00Z",
+          "latitude": -59.647007,
+          "longitude": 299.160137
+        },
+        {
+          "time": "2018-01-01T00:00:00Z",
+          "latitude": -59.725771,
+          "longitude": 299.375586
+        },
+        {
+          "time": "2018-01-02T00:00:00Z",
+          "latitude": -59.788602,
+          "longitude": 299.539019
+        },
+        {
+          "time": "2018-01-03T00:00:00Z",
+          "latitude": -59.835844,
+          "longitude": 299.669223
+        },
+        {
+          "time": "2018-01-04T00:00:00Z",
+          "latitude": -59.86103,
+          "longitude": 299.780263
+        },
+        {
+          "time": "2018-01-05T00:00:00Z",
+          "latitude": -59.854279,
+          "longitude": 299.874034
+        },
+        {
+          "time": "2018-01-06T00:00:00Z",
+          "latitude": -59.816285,
+          "longitude": 299.948436
+        },
+        {
+          "time": "2018-01-07T00:00:00Z",
+          "latitude": -59.74765,
+          "longitude": 299.993804
+        },
+        {
+          "time": "2018-01-08T00:00:00Z",
+          "latitude": -59.653566,
+          "longitude": 300.00056
+        },
+        {
+          "time": "2018-01-09T00:00:00Z",
+          "latitude": -59.540245,
+          "longitude": 299.986472
+        },
+        {
+          "time": "2018-01-10T00:00:00Z",
+          "latitude": -59.408084,
+          "longitude": 299.967921
+        },
+        {
+          "time": "2018-01-11T00:00:00Z",
+          "latitude": -59.254848,
+          "longitude": 299.959854
+        },
+        {
+          "time": "2018-01-12T00:00:00Z",
+          "latitude": -59.067675,
+          "longitude": 300.031554
+        },
+        {
+          "time": "2018-01-13T00:00:00Z",
+          "latitude": -58.839049,
+          "longitude": 300.223158
+        },
+        {
+          "time": "2018-01-14T00:00:00Z",
+          "latitude": -58.606858,
+          "longitude": 300.575569
+        },
+        {
+          "time": "2018-01-15T00:00:00Z",
+          "latitude": -58.43057,
+          "longitude": 301.0061
+        }
+      ]
+    },
+    {
+      "id": "2017-12-16-09",
+      "release_time": "2017-12-16T00:00:00Z",
+      "release_index": 9,
+      "release_latitude": -61.3,
+      "release_longitude": 298.6,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 341.802,
+      "points": [
+        {
+          "time": "2017-12-16T00:00:00Z",
+          "latitude": -61.3,
+          "longitude": 298.6
+        },
+        {
+          "time": "2017-12-17T00:00:00Z",
+          "latitude": -61.251633,
+          "longitude": 298.911839
+        },
+        {
+          "time": "2017-12-18T00:00:00Z",
+          "latitude": -61.175006,
+          "longitude": 299.182205
+        },
+        {
+          "time": "2017-12-19T00:00:00Z",
+          "latitude": -61.102698,
+          "longitude": 299.41912
+        },
+        {
+          "time": "2017-12-20T00:00:00Z",
+          "latitude": -61.05105,
+          "longitude": 299.63626
+        },
+        {
+          "time": "2017-12-21T00:00:00Z",
+          "latitude": -61.025425,
+          "longitude": 299.837615
+        },
+        {
+          "time": "2017-12-22T00:00:00Z",
+          "latitude": -61.022131,
+          "longitude": 300.027038
+        },
+        {
+          "time": "2017-12-23T00:00:00Z",
+          "latitude": -61.02767,
+          "longitude": 300.211182
+        },
+        {
+          "time": "2017-12-24T00:00:00Z",
+          "latitude": -61.034071,
+          "longitude": 300.39509
+        },
+        {
+          "time": "2017-12-25T00:00:00Z",
+          "latitude": -61.027313,
+          "longitude": 300.59145
+        },
+        {
+          "time": "2017-12-26T00:00:00Z",
+          "latitude": -61.005713,
+          "longitude": 300.809424
+        },
+        {
+          "time": "2017-12-27T00:00:00Z",
+          "latitude": -60.970817,
+          "longitude": 301.060692
+        },
+        {
+          "time": "2017-12-28T00:00:00Z",
+          "latitude": -60.937332,
+          "longitude": 301.334408
+        },
+        {
+          "time": "2017-12-29T00:00:00Z",
+          "latitude": -60.910977,
+          "longitude": 301.613462
+        },
+        {
+          "time": "2017-12-30T00:00:00Z",
+          "latitude": -60.889697,
+          "longitude": 301.872186
+        },
+        {
+          "time": "2017-12-31T00:00:00Z",
+          "latitude": -60.870175,
+          "longitude": 302.094832
+        },
+        {
+          "time": "2018-01-01T00:00:00Z",
+          "latitude": -60.851221,
+          "longitude": 302.284159
+        },
+        {
+          "time": "2018-01-02T00:00:00Z",
+          "latitude": -60.830016,
+          "longitude": 302.448716
+        },
+        {
+          "time": "2018-01-03T00:00:00Z",
+          "latitude": -60.796603,
+          "longitude": 302.59363
+        },
+        {
+          "time": "2018-01-04T00:00:00Z",
+          "latitude": -60.749547,
+          "longitude": 302.712724
+        },
+        {
+          "time": "2018-01-05T00:00:00Z",
+          "latitude": -60.683964,
+          "longitude": 302.804191
+        },
+        {
+          "time": "2018-01-06T00:00:00Z",
+          "latitude": -60.60581,
+          "longitude": 302.861826
+        },
+        {
+          "time": "2018-01-07T00:00:00Z",
+          "latitude": -60.528229,
+          "longitude": 302.878405
+        },
+        {
+          "time": "2018-01-08T00:00:00Z",
+          "latitude": -60.457829,
+          "longitude": 302.849229
+        },
+        {
+          "time": "2018-01-09T00:00:00Z",
+          "latitude": -60.397273,
+          "longitude": 302.770789
+        },
+        {
+          "time": "2018-01-10T00:00:00Z",
+          "latitude": -60.345877,
+          "longitude": 302.638326
+        },
+        {
+          "time": "2018-01-11T00:00:00Z",
+          "latitude": -60.299889,
+          "longitude": 302.47091
+        },
+        {
+          "time": "2018-01-12T00:00:00Z",
+          "latitude": -60.257873,
+          "longitude": 302.297463
+        },
+        {
+          "time": "2018-01-13T00:00:00Z",
+          "latitude": -60.212044,
+          "longitude": 302.127619
+        },
+        {
+          "time": "2018-01-14T00:00:00Z",
+          "latitude": -60.154014,
+          "longitude": 301.961664
+        },
+        {
+          "time": "2018-01-15T00:00:00Z",
+          "latitude": -60.080009,
+          "longitude": 301.797065
+        }
+      ]
+    },
+    {
+      "id": "2017-12-16-10",
+      "release_time": "2017-12-16T00:00:00Z",
+      "release_index": 10,
+      "release_latitude": -61.9,
+      "release_longitude": 299.3,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 302.937,
+      "points": [
+        {
+          "time": "2017-12-16T00:00:00Z",
+          "latitude": -61.9,
+          "longitude": 299.3
+        },
+        {
+          "time": "2017-12-17T00:00:00Z",
+          "latitude": -61.888561,
+          "longitude": 299.382785
+        },
+        {
+          "time": "2017-12-18T00:00:00Z",
+          "latitude": -61.87725,
+          "longitude": 299.469187
+        },
+        {
+          "time": "2017-12-19T00:00:00Z",
+          "latitude": -61.865747,
+          "longitude": 299.559096
+        },
+        {
+          "time": "2017-12-20T00:00:00Z",
+          "latitude": -61.853872,
+          "longitude": 299.652063
+        },
+        {
+          "time": "2017-12-21T00:00:00Z",
+          "latitude": -61.840319,
+          "longitude": 299.749097
+        },
+        {
+          "time": "2017-12-22T00:00:00Z",
+          "latitude": -61.822393,
+          "longitude": 299.853888
+        },
+        {
+          "time": "2017-12-23T00:00:00Z",
+          "latitude": -61.798837,
+          "longitude": 299.968143
+        },
+        {
+          "time": "2017-12-24T00:00:00Z",
+          "latitude": -61.768318,
+          "longitude": 300.09271
+        },
+        {
+          "time": "2017-12-25T00:00:00Z",
+          "latitude": -61.729878,
+          "longitude": 300.228695
+        },
+        {
+          "time": "2017-12-26T00:00:00Z",
+          "latitude": -61.683046,
+          "longitude": 300.376059
+        },
+        {
+          "time": "2017-12-27T00:00:00Z",
+          "latitude": -61.635915,
+          "longitude": 300.527565
+        },
+        {
+          "time": "2017-12-28T00:00:00Z",
+          "latitude": -61.589903,
+          "longitude": 300.687645
+        },
+        {
+          "time": "2017-12-29T00:00:00Z",
+          "latitude": -61.545798,
+          "longitude": 300.841898
+        },
+        {
+          "time": "2017-12-30T00:00:00Z",
+          "latitude": -61.50226,
+          "longitude": 300.987626
+        },
+        {
+          "time": "2017-12-31T00:00:00Z",
+          "latitude": -61.460263,
+          "longitude": 301.131105
+        },
+        {
+          "time": "2018-01-01T00:00:00Z",
+          "latitude": -61.427031,
+          "longitude": 301.273238
+        },
+        {
+          "time": "2018-01-02T00:00:00Z",
+          "latitude": -61.402026,
+          "longitude": 301.415217
+        },
+        {
+          "time": "2018-01-03T00:00:00Z",
+          "latitude": -61.382109,
+          "longitude": 301.561017
+        },
+        {
+          "time": "2018-01-04T00:00:00Z",
+          "latitude": -61.368618,
+          "longitude": 301.709356
+        },
+        {
+          "time": "2018-01-05T00:00:00Z",
+          "latitude": -61.358198,
+          "longitude": 301.869294
+        },
+        {
+          "time": "2018-01-06T00:00:00Z",
+          "latitude": -61.349815,
+          "longitude": 302.047811
+        },
+        {
+          "time": "2018-01-07T00:00:00Z",
+          "latitude": -61.339374,
+          "longitude": 302.245675
+        },
+        {
+          "time": "2018-01-08T00:00:00Z",
+          "latitude": -61.324421,
+          "longitude": 302.460308
+        },
+        {
+          "time": "2018-01-09T00:00:00Z",
+          "latitude": -61.29533,
+          "longitude": 302.677496
+        },
+        {
+          "time": "2018-01-10T00:00:00Z",
+          "latitude": -61.240998,
+          "longitude": 302.884214
+        },
+        {
+          "time": "2018-01-11T00:00:00Z",
+          "latitude": -61.145855,
+          "longitude": 303.083308
+        },
+        {
+          "time": "2018-01-12T00:00:00Z",
+          "latitude": -61.007769,
+          "longitude": 303.298492
+        },
+        {
+          "time": "2018-01-13T00:00:00Z",
+          "latitude": -60.84853,
+          "longitude": 303.515636
+        },
+        {
+          "time": "2018-01-14T00:00:00Z",
+          "latitude": -60.693623,
+          "longitude": 303.727346
+        },
+        {
+          "time": "2018-01-15T00:00:00Z",
+          "latitude": -60.542414,
+          "longitude": 303.929607
+        }
+      ]
+    },
+    {
+      "id": "2018-03-18-01",
+      "release_time": "2018-03-18T00:00:00Z",
+      "release_index": 1,
+      "release_latitude": -56.5,
+      "release_longitude": 293.0,
+      "status": "terminated_invalid_wet_stencil_or_domain",
+      "integrated_hours": 150,
+      "travelled_km": 148.835,
+      "points": [
+        {
+          "time": "2018-03-18T00:00:00Z",
+          "latitude": -56.5,
+          "longitude": 293.0
+        },
+        {
+          "time": "2018-03-19T00:00:00Z",
+          "latitude": -56.34697,
+          "longitude": 293.297854
+        },
+        {
+          "time": "2018-03-20T00:00:00Z",
+          "latitude": -56.171798,
+          "longitude": 293.525704
+        },
+        {
+          "time": "2018-03-21T00:00:00Z",
+          "latitude": -55.962348,
+          "longitude": 293.680099
+        },
+        {
+          "time": "2018-03-22T00:00:00Z",
+          "latitude": -55.740071,
+          "longitude": 293.780142
+        },
+        {
+          "time": "2018-03-23T00:00:00Z",
+          "latitude": -55.531682,
+          "longitude": 293.873028
+        },
+        {
+          "time": "2018-03-24T00:00:00Z",
+          "latitude": -55.373328,
+          "longitude": 294.030092
+        }
+      ]
+    },
+    {
+      "id": "2018-03-18-02",
+      "release_time": "2018-03-18T00:00:00Z",
+      "release_index": 2,
+      "release_latitude": -57.1,
+      "release_longitude": 293.7,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 1296.374,
+      "points": [
+        {
+          "time": "2018-03-18T00:00:00Z",
+          "latitude": -57.1,
+          "longitude": 293.7
+        },
+        {
+          "time": "2018-03-19T00:00:00Z",
+          "latitude": -56.79907,
+          "longitude": 294.321778
+        },
+        {
+          "time": "2018-03-20T00:00:00Z",
+          "latitude": -56.479786,
+          "longitude": 294.966658
+        },
+        {
+          "time": "2018-03-21T00:00:00Z",
+          "latitude": -56.133839,
+          "longitude": 295.504945
+        },
+        {
+          "time": "2018-03-22T00:00:00Z",
+          "latitude": -55.6763,
+          "longitude": 295.845837
+        },
+        {
+          "time": "2018-03-23T00:00:00Z",
+          "latitude": -55.278612,
+          "longitude": 296.355629
+        },
+        {
+          "time": "2018-03-24T00:00:00Z",
+          "latitude": -55.047585,
+          "longitude": 296.993151
+        },
+        {
+          "time": "2018-03-25T00:00:00Z",
+          "latitude": -55.007075,
+          "longitude": 297.64659
+        },
+        {
+          "time": "2018-03-26T00:00:00Z",
+          "latitude": -55.063724,
+          "longitude": 298.29107
+        },
+        {
+          "time": "2018-03-27T00:00:00Z",
+          "latitude": -55.205007,
+          "longitude": 298.839566
+        },
+        {
+          "time": "2018-03-28T00:00:00Z",
+          "latitude": -55.447055,
+          "longitude": 299.273047
+        },
+        {
+          "time": "2018-03-29T00:00:00Z",
+          "latitude": -55.738216,
+          "longitude": 299.609079
+        },
+        {
+          "time": "2018-03-30T00:00:00Z",
+          "latitude": -55.95902,
+          "longitude": 300.002337
+        },
+        {
+          "time": "2018-03-31T00:00:00Z",
+          "latitude": -56.135408,
+          "longitude": 300.529211
+        },
+        {
+          "time": "2018-04-01T00:00:00Z",
+          "latitude": -56.19496,
+          "longitude": 301.216764
+        },
+        {
+          "time": "2018-04-02T00:00:00Z",
+          "latitude": -56.035702,
+          "longitude": 302.044542
+        },
+        {
+          "time": "2018-04-03T00:00:00Z",
+          "latitude": -55.794225,
+          "longitude": 302.863721
+        },
+        {
+          "time": "2018-04-04T00:00:00Z",
+          "latitude": -55.695653,
+          "longitude": 303.505896
+        },
+        {
+          "time": "2018-04-05T00:00:00Z",
+          "latitude": -55.700415,
+          "longitude": 304.060417
+        },
+        {
+          "time": "2018-04-06T00:00:00Z",
+          "latitude": -55.801131,
+          "longitude": 304.573675
+        },
+        {
+          "time": "2018-04-07T00:00:00Z",
+          "latitude": -55.997844,
+          "longitude": 305.103077
+        },
+        {
+          "time": "2018-04-08T00:00:00Z",
+          "latitude": -56.174567,
+          "longitude": 305.66652
+        },
+        {
+          "time": "2018-04-09T00:00:00Z",
+          "latitude": -56.249364,
+          "longitude": 306.323745
+        },
+        {
+          "time": "2018-04-10T00:00:00Z",
+          "latitude": -56.207253,
+          "longitude": 307.007629
+        },
+        {
+          "time": "2018-04-11T00:00:00Z",
+          "latitude": -55.879899,
+          "longitude": 307.399409
+        },
+        {
+          "time": "2018-04-12T00:00:00Z",
+          "latitude": -55.407946,
+          "longitude": 307.323066
+        },
+        {
+          "time": "2018-04-13T00:00:00Z",
+          "latitude": -55.031612,
+          "longitude": 307.017014
+        },
+        {
+          "time": "2018-04-14T00:00:00Z",
+          "latitude": -54.846164,
+          "longitude": 306.589434
+        },
+        {
+          "time": "2018-04-15T00:00:00Z",
+          "latitude": -54.826353,
+          "longitude": 306.084949
+        },
+        {
+          "time": "2018-04-16T00:00:00Z",
+          "latitude": -54.773381,
+          "longitude": 305.643898
+        },
+        {
+          "time": "2018-04-17T00:00:00Z",
+          "latitude": -54.546945,
+          "longitude": 305.213113
+        }
+      ]
+    },
+    {
+      "id": "2018-03-18-03",
+      "release_time": "2018-03-18T00:00:00Z",
+      "release_index": 3,
+      "release_latitude": -57.7,
+      "release_longitude": 294.4,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 605.713,
+      "points": [
+        {
+          "time": "2018-03-18T00:00:00Z",
+          "latitude": -57.7,
+          "longitude": 294.4
+        },
+        {
+          "time": "2018-03-19T00:00:00Z",
+          "latitude": -57.673596,
+          "longitude": 294.339468
+        },
+        {
+          "time": "2018-03-20T00:00:00Z",
+          "latitude": -57.632604,
+          "longitude": 294.302696
+        },
+        {
+          "time": "2018-03-21T00:00:00Z",
+          "latitude": -57.558978,
+          "longitude": 294.316449
+        },
+        {
+          "time": "2018-03-22T00:00:00Z",
+          "latitude": -57.437437,
+          "longitude": 294.392258
+        },
+        {
+          "time": "2018-03-23T00:00:00Z",
+          "latitude": -57.269285,
+          "longitude": 294.547235
+        },
+        {
+          "time": "2018-03-24T00:00:00Z",
+          "latitude": -57.074971,
+          "longitude": 294.816821
+        },
+        {
+          "time": "2018-03-25T00:00:00Z",
+          "latitude": -56.917362,
+          "longitude": 295.191653
+        },
+        {
+          "time": "2018-03-26T00:00:00Z",
+          "latitude": -56.851798,
+          "longitude": 295.56638
+        },
+        {
+          "time": "2018-03-27T00:00:00Z",
+          "latitude": -56.936437,
+          "longitude": 295.846059
+        },
+        {
+          "time": "2018-03-28T00:00:00Z",
+          "latitude": -57.154348,
+          "longitude": 296.068116
+        },
+        {
+          "time": "2018-03-29T00:00:00Z",
+          "latitude": -57.370495,
+          "longitude": 296.397433
+        },
+        {
+          "time": "2018-03-30T00:00:00Z",
+          "latitude": -57.43815,
+          "longitude": 296.849335
+        },
+        {
+          "time": "2018-03-31T00:00:00Z",
+          "latitude": -57.266679,
+          "longitude": 297.282966
+        },
+        {
+          "time": "2018-04-01T00:00:00Z",
+          "latitude": -57.045077,
+          "longitude": 297.614094
+        },
+        {
+          "time": "2018-04-02T00:00:00Z",
+          "latitude": -56.951296,
+          "longitude": 297.936674
+        },
+        {
+          "time": "2018-04-03T00:00:00Z",
+          "latitude": -56.963366,
+          "longitude": 298.261922
+        },
+        {
+          "time": "2018-04-04T00:00:00Z",
+          "latitude": -56.993119,
+          "longitude": 298.600101
+        },
+        {
+          "time": "2018-04-05T00:00:00Z",
+          "latitude": -56.986552,
+          "longitude": 298.915044
+        },
+        {
+          "time": "2018-04-06T00:00:00Z",
+          "latitude": -56.947983,
+          "longitude": 299.159418
+        },
+        {
+          "time": "2018-04-07T00:00:00Z",
+          "latitude": -56.902741,
+          "longitude": 299.311844
+        },
+        {
+          "time": "2018-04-08T00:00:00Z",
+          "latitude": -56.868328,
+          "longitude": 299.403007
+        },
+        {
+          "time": "2018-04-09T00:00:00Z",
+          "latitude": -56.856072,
+          "longitude": 299.478166
+        },
+        {
+          "time": "2018-04-10T00:00:00Z",
+          "latitude": -56.875337,
+          "longitude": 299.568413
+        },
+        {
+          "time": "2018-04-11T00:00:00Z",
+          "latitude": -56.933156,
+          "longitude": 299.702363
+        },
+        {
+          "time": "2018-04-12T00:00:00Z",
+          "latitude": -57.023215,
+          "longitude": 299.908521
+        },
+        {
+          "time": "2018-04-13T00:00:00Z",
+          "latitude": -57.110681,
+          "longitude": 300.206257
+        },
+        {
+          "time": "2018-04-14T00:00:00Z",
+          "latitude": -57.164416,
+          "longitude": 300.591252
+        },
+        {
+          "time": "2018-04-15T00:00:00Z",
+          "latitude": -57.186868,
+          "longitude": 301.053147
+        },
+        {
+          "time": "2018-04-16T00:00:00Z",
+          "latitude": -57.123749,
+          "longitude": 301.594956
+        },
+        {
+          "time": "2018-04-17T00:00:00Z",
+          "latitude": -56.896,
+          "longitude": 302.130202
+        }
+      ]
+    },
+    {
+      "id": "2018-03-18-04",
+      "release_time": "2018-03-18T00:00:00Z",
+      "release_index": 4,
+      "release_latitude": -58.3,
+      "release_longitude": 295.1,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 512.451,
+      "points": [
+        {
+          "time": "2018-03-18T00:00:00Z",
+          "latitude": -58.3,
+          "longitude": 295.1
+        },
+        {
+          "time": "2018-03-19T00:00:00Z",
+          "latitude": -58.184885,
+          "longitude": 295.075349
+        },
+        {
+          "time": "2018-03-20T00:00:00Z",
+          "latitude": -58.05791,
+          "longitude": 294.975592
+        },
+        {
+          "time": "2018-03-21T00:00:00Z",
+          "latitude": -57.948616,
+          "longitude": 294.817706
+        },
+        {
+          "time": "2018-03-22T00:00:00Z",
+          "latitude": -57.878417,
+          "longitude": 294.676591
+        },
+        {
+          "time": "2018-03-23T00:00:00Z",
+          "latitude": -57.828158,
+          "longitude": 294.553436
+        },
+        {
+          "time": "2018-03-24T00:00:00Z",
+          "latitude": -57.780629,
+          "longitude": 294.453974
+        },
+        {
+          "time": "2018-03-25T00:00:00Z",
+          "latitude": -57.728005,
+          "longitude": 294.376455
+        },
+        {
+          "time": "2018-03-26T00:00:00Z",
+          "latitude": -57.664619,
+          "longitude": 294.315098
+        },
+        {
+          "time": "2018-03-27T00:00:00Z",
+          "latitude": -57.569997,
+          "longitude": 294.305037
+        },
+        {
+          "time": "2018-03-28T00:00:00Z",
+          "latitude": -57.415215,
+          "longitude": 294.367751
+        },
+        {
+          "time": "2018-03-29T00:00:00Z",
+          "latitude": -57.188776,
+          "longitude": 294.527015
+        },
+        {
+          "time": "2018-03-30T00:00:00Z",
+          "latitude": -56.931417,
+          "longitude": 294.856652
+        },
+        {
+          "time": "2018-03-31T00:00:00Z",
+          "latitude": -56.756606,
+          "longitude": 295.314354
+        },
+        {
+          "time": "2018-04-01T00:00:00Z",
+          "latitude": -56.722315,
+          "longitude": 295.718365
+        },
+        {
+          "time": "2018-04-02T00:00:00Z",
+          "latitude": -56.849094,
+          "longitude": 295.95642
+        },
+        {
+          "time": "2018-04-03T00:00:00Z",
+          "latitude": -57.113048,
+          "longitude": 296.148875
+        },
+        {
+          "time": "2018-04-04T00:00:00Z",
+          "latitude": -57.352152,
+          "longitude": 296.480083
+        },
+        {
+          "time": "2018-04-05T00:00:00Z",
+          "latitude": -57.414309,
+          "longitude": 296.930064
+        },
+        {
+          "time": "2018-04-06T00:00:00Z",
+          "latitude": -57.241934,
+          "longitude": 297.304793
+        },
+        {
+          "time": "2018-04-07T00:00:00Z",
+          "latitude": -56.962309,
+          "longitude": 297.442764
+        },
+        {
+          "time": "2018-04-08T00:00:00Z",
+          "latitude": -56.746441,
+          "longitude": 297.448476
+        },
+        {
+          "time": "2018-04-09T00:00:00Z",
+          "latitude": -56.586088,
+          "longitude": 297.395939
+        },
+        {
+          "time": "2018-04-10T00:00:00Z",
+          "latitude": -56.46846,
+          "longitude": 297.356538
+        },
+        {
+          "time": "2018-04-11T00:00:00Z",
+          "latitude": -56.391908,
+          "longitude": 297.344823
+        },
+        {
+          "time": "2018-04-12T00:00:00Z",
+          "latitude": -56.348299,
+          "longitude": 297.360497
+        },
+        {
+          "time": "2018-04-13T00:00:00Z",
+          "latitude": -56.319459,
+          "longitude": 297.396486
+        },
+        {
+          "time": "2018-04-14T00:00:00Z",
+          "latitude": -56.288301,
+          "longitude": 297.451232
+        },
+        {
+          "time": "2018-04-15T00:00:00Z",
+          "latitude": -56.25867,
+          "longitude": 297.526787
+        },
+        {
+          "time": "2018-04-16T00:00:00Z",
+          "latitude": -56.234384,
+          "longitude": 297.62271
+        },
+        {
+          "time": "2018-04-17T00:00:00Z",
+          "latitude": -56.215037,
+          "longitude": 297.738678
+        }
+      ]
+    },
+    {
+      "id": "2018-03-18-05",
+      "release_time": "2018-03-18T00:00:00Z",
+      "release_index": 5,
+      "release_latitude": -58.9,
+      "release_longitude": 295.8,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 711.264,
+      "points": [
+        {
+          "time": "2018-03-18T00:00:00Z",
+          "latitude": -58.9,
+          "longitude": 295.8
+        },
+        {
+          "time": "2018-03-19T00:00:00Z",
+          "latitude": -58.771204,
+          "longitude": 296.066395
+        },
+        {
+          "time": "2018-03-20T00:00:00Z",
+          "latitude": -58.634022,
+          "longitude": 296.267385
+        },
+        {
+          "time": "2018-03-21T00:00:00Z",
+          "latitude": -58.524003,
+          "longitude": 296.408403
+        },
+        {
+          "time": "2018-03-22T00:00:00Z",
+          "latitude": -58.443686,
+          "longitude": 296.532402
+        },
+        {
+          "time": "2018-03-23T00:00:00Z",
+          "latitude": -58.395415,
+          "longitude": 296.657425
+        },
+        {
+          "time": "2018-03-24T00:00:00Z",
+          "latitude": -58.368749,
+          "longitude": 296.799979
+        },
+        {
+          "time": "2018-03-25T00:00:00Z",
+          "latitude": -58.350555,
+          "longitude": 296.967794
+        },
+        {
+          "time": "2018-03-26T00:00:00Z",
+          "latitude": -58.334962,
+          "longitude": 297.154587
+        },
+        {
+          "time": "2018-03-27T00:00:00Z",
+          "latitude": -58.300604,
+          "longitude": 297.352848
+        },
+        {
+          "time": "2018-03-28T00:00:00Z",
+          "latitude": -58.232965,
+          "longitude": 297.561812
+        },
+        {
+          "time": "2018-03-29T00:00:00Z",
+          "latitude": -58.12823,
+          "longitude": 297.772615
+        },
+        {
+          "time": "2018-03-30T00:00:00Z",
+          "latitude": -57.993208,
+          "longitude": 297.975554
+        },
+        {
+          "time": "2018-03-31T00:00:00Z",
+          "latitude": -57.853771,
+          "longitude": 298.185429
+        },
+        {
+          "time": "2018-04-01T00:00:00Z",
+          "latitude": -57.749322,
+          "longitude": 298.442147
+        },
+        {
+          "time": "2018-04-02T00:00:00Z",
+          "latitude": -57.667814,
+          "longitude": 298.782565
+        },
+        {
+          "time": "2018-04-03T00:00:00Z",
+          "latitude": -57.576035,
+          "longitude": 299.219996
+        },
+        {
+          "time": "2018-04-04T00:00:00Z",
+          "latitude": -57.513821,
+          "longitude": 299.706799
+        },
+        {
+          "time": "2018-04-05T00:00:00Z",
+          "latitude": -57.465998,
+          "longitude": 300.185765
+        },
+        {
+          "time": "2018-04-06T00:00:00Z",
+          "latitude": -57.38627,
+          "longitude": 300.643717
+        },
+        {
+          "time": "2018-04-07T00:00:00Z",
+          "latitude": -57.295518,
+          "longitude": 301.069822
+        },
+        {
+          "time": "2018-04-08T00:00:00Z",
+          "latitude": -57.183227,
+          "longitude": 301.517054
+        },
+        {
+          "time": "2018-04-09T00:00:00Z",
+          "latitude": -57.001892,
+          "longitude": 301.971113
+        },
+        {
+          "time": "2018-04-10T00:00:00Z",
+          "latitude": -56.767061,
+          "longitude": 302.406268
+        },
+        {
+          "time": "2018-04-11T00:00:00Z",
+          "latitude": -56.490504,
+          "longitude": 302.805171
+        },
+        {
+          "time": "2018-04-12T00:00:00Z",
+          "latitude": -56.281043,
+          "longitude": 303.254987
+        },
+        {
+          "time": "2018-04-13T00:00:00Z",
+          "latitude": -56.118,
+          "longitude": 303.698178
+        },
+        {
+          "time": "2018-04-14T00:00:00Z",
+          "latitude": -55.987078,
+          "longitude": 304.178717
+        },
+        {
+          "time": "2018-04-15T00:00:00Z",
+          "latitude": -55.97915,
+          "longitude": 304.704016
+        },
+        {
+          "time": "2018-04-16T00:00:00Z",
+          "latitude": -56.06816,
+          "longitude": 305.188913
+        },
+        {
+          "time": "2018-04-17T00:00:00Z",
+          "latitude": -56.161259,
+          "longitude": 305.660067
+        }
+      ]
+    },
+    {
+      "id": "2018-03-18-06",
+      "release_time": "2018-03-18T00:00:00Z",
+      "release_index": 6,
+      "release_latitude": -59.5,
+      "release_longitude": 296.5,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 874.26,
+      "points": [
+        {
+          "time": "2018-03-18T00:00:00Z",
+          "latitude": -59.5,
+          "longitude": 296.5
+        },
+        {
+          "time": "2018-03-19T00:00:00Z",
+          "latitude": -59.353728,
+          "longitude": 296.923511
+        },
+        {
+          "time": "2018-03-20T00:00:00Z",
+          "latitude": -59.227064,
+          "longitude": 297.391127
+        },
+        {
+          "time": "2018-03-21T00:00:00Z",
+          "latitude": -59.099381,
+          "longitude": 297.789418
+        },
+        {
+          "time": "2018-03-22T00:00:00Z",
+          "latitude": -58.968663,
+          "longitude": 298.089879
+        },
+        {
+          "time": "2018-03-23T00:00:00Z",
+          "latitude": -58.817655,
+          "longitude": 298.324365
+        },
+        {
+          "time": "2018-03-24T00:00:00Z",
+          "latitude": -58.624052,
+          "longitude": 298.497568
+        },
+        {
+          "time": "2018-03-25T00:00:00Z",
+          "latitude": -58.399947,
+          "longitude": 298.712926
+        },
+        {
+          "time": "2018-03-26T00:00:00Z",
+          "latitude": -58.1905,
+          "longitude": 299.048564
+        },
+        {
+          "time": "2018-03-27T00:00:00Z",
+          "latitude": -58.054628,
+          "longitude": 299.486212
+        },
+        {
+          "time": "2018-03-28T00:00:00Z",
+          "latitude": -58.007829,
+          "longitude": 299.960625
+        },
+        {
+          "time": "2018-03-29T00:00:00Z",
+          "latitude": -57.963658,
+          "longitude": 300.373438
+        },
+        {
+          "time": "2018-03-30T00:00:00Z",
+          "latitude": -57.89226,
+          "longitude": 300.737672
+        },
+        {
+          "time": "2018-03-31T00:00:00Z",
+          "latitude": -57.810614,
+          "longitude": 301.098787
+        },
+        {
+          "time": "2018-04-01T00:00:00Z",
+          "latitude": -57.721863,
+          "longitude": 301.479278
+        },
+        {
+          "time": "2018-04-02T00:00:00Z",
+          "latitude": -57.630769,
+          "longitude": 301.876904
+        },
+        {
+          "time": "2018-04-03T00:00:00Z",
+          "latitude": -57.553353,
+          "longitude": 302.255353
+        },
+        {
+          "time": "2018-04-04T00:00:00Z",
+          "latitude": -57.480695,
+          "longitude": 302.626273
+        },
+        {
+          "time": "2018-04-05T00:00:00Z",
+          "latitude": -57.399134,
+          "longitude": 303.010755
+        },
+        {
+          "time": "2018-04-06T00:00:00Z",
+          "latitude": -57.321948,
+          "longitude": 303.435667
+        },
+        {
+          "time": "2018-04-07T00:00:00Z",
+          "latitude": -57.259197,
+          "longitude": 303.938957
+        },
+        {
+          "time": "2018-04-08T00:00:00Z",
+          "latitude": -57.109977,
+          "longitude": 304.459456
+        },
+        {
+          "time": "2018-04-09T00:00:00Z",
+          "latitude": -56.947034,
+          "longitude": 304.93867
+        },
+        {
+          "time": "2018-04-10T00:00:00Z",
+          "latitude": -56.935976,
+          "longitude": 305.524832
+        },
+        {
+          "time": "2018-04-11T00:00:00Z",
+          "latitude": -56.92478,
+          "longitude": 306.204955
+        },
+        {
+          "time": "2018-04-12T00:00:00Z",
+          "latitude": -56.949507,
+          "longitude": 306.937182
+        },
+        {
+          "time": "2018-04-13T00:00:00Z",
+          "latitude": -56.864467,
+          "longitude": 307.66557
+        },
+        {
+          "time": "2018-04-14T00:00:00Z",
+          "latitude": -56.688399,
+          "longitude": 308.222479
+        },
+        {
+          "time": "2018-04-15T00:00:00Z",
+          "latitude": -56.523978,
+          "longitude": 308.629796
+        },
+        {
+          "time": "2018-04-16T00:00:00Z",
+          "latitude": -56.45443,
+          "longitude": 308.968503
+        },
+        {
+          "time": "2018-04-17T00:00:00Z",
+          "latitude": -56.46883,
+          "longitude": 309.324507
+        }
+      ]
+    },
+    {
+      "id": "2018-03-18-07",
+      "release_time": "2018-03-18T00:00:00Z",
+      "release_index": 7,
+      "release_latitude": -60.1,
+      "release_longitude": 297.2,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 142.635,
+      "points": [
+        {
+          "time": "2018-03-18T00:00:00Z",
+          "latitude": -60.1,
+          "longitude": 297.2
+        },
+        {
+          "time": "2018-03-19T00:00:00Z",
+          "latitude": -60.03512,
+          "longitude": 297.299555
+        },
+        {
+          "time": "2018-03-20T00:00:00Z",
+          "latitude": -59.981697,
+          "longitude": 297.418778
+        },
+        {
+          "time": "2018-03-21T00:00:00Z",
+          "latitude": -59.942031,
+          "longitude": 297.567122
+        },
+        {
+          "time": "2018-03-22T00:00:00Z",
+          "latitude": -59.918555,
+          "longitude": 297.734041
+        },
+        {
+          "time": "2018-03-23T00:00:00Z",
+          "latitude": -59.909691,
+          "longitude": 297.906611
+        },
+        {
+          "time": "2018-03-24T00:00:00Z",
+          "latitude": -59.913903,
+          "longitude": 298.07283
+        },
+        {
+          "time": "2018-03-25T00:00:00Z",
+          "latitude": -59.924331,
+          "longitude": 298.227566
+        },
+        {
+          "time": "2018-03-26T00:00:00Z",
+          "latitude": -59.938422,
+          "longitude": 298.369654
+        },
+        {
+          "time": "2018-03-27T00:00:00Z",
+          "latitude": -59.954646,
+          "longitude": 298.496284
+        },
+        {
+          "time": "2018-03-28T00:00:00Z",
+          "latitude": -59.97391,
+          "longitude": 298.605262
+        },
+        {
+          "time": "2018-03-29T00:00:00Z",
+          "latitude": -59.996579,
+          "longitude": 298.688171
+        },
+        {
+          "time": "2018-03-30T00:00:00Z",
+          "latitude": -60.021816,
+          "longitude": 298.74502
+        },
+        {
+          "time": "2018-03-31T00:00:00Z",
+          "latitude": -60.048407,
+          "longitude": 298.787415
+        },
+        {
+          "time": "2018-04-01T00:00:00Z",
+          "latitude": -60.075373,
+          "longitude": 298.817129
+        },
+        {
+          "time": "2018-04-02T00:00:00Z",
+          "latitude": -60.10171,
+          "longitude": 298.835111
+        },
+        {
+          "time": "2018-04-03T00:00:00Z",
+          "latitude": -60.126759,
+          "longitude": 298.843844
+        },
+        {
+          "time": "2018-04-04T00:00:00Z",
+          "latitude": -60.150084,
+          "longitude": 298.845979
+        },
+        {
+          "time": "2018-04-05T00:00:00Z",
+          "latitude": -60.171368,
+          "longitude": 298.842097
+        },
+        {
+          "time": "2018-04-06T00:00:00Z",
+          "latitude": -60.190675,
+          "longitude": 298.832613
+        },
+        {
+          "time": "2018-04-07T00:00:00Z",
+          "latitude": -60.208434,
+          "longitude": 298.817877
+        },
+        {
+          "time": "2018-04-08T00:00:00Z",
+          "latitude": -60.224414,
+          "longitude": 298.802892
+        },
+        {
+          "time": "2018-04-09T00:00:00Z",
+          "latitude": -60.238235,
+          "longitude": 298.793634
+        },
+        {
+          "time": "2018-04-10T00:00:00Z",
+          "latitude": -60.24985,
+          "longitude": 298.791623
+        },
+        {
+          "time": "2018-04-11T00:00:00Z",
+          "latitude": -60.258468,
+          "longitude": 298.797847
+        },
+        {
+          "time": "2018-04-12T00:00:00Z",
+          "latitude": -60.262594,
+          "longitude": 298.812534
+        },
+        {
+          "time": "2018-04-13T00:00:00Z",
+          "latitude": -60.259564,
+          "longitude": 298.836188
+        },
+        {
+          "time": "2018-04-14T00:00:00Z",
+          "latitude": -60.247031,
+          "longitude": 298.868538
+        },
+        {
+          "time": "2018-04-15T00:00:00Z",
+          "latitude": -60.223993,
+          "longitude": 298.907894
+        },
+        {
+          "time": "2018-04-16T00:00:00Z",
+          "latitude": -60.18997,
+          "longitude": 298.952912
+        },
+        {
+          "time": "2018-04-17T00:00:00Z",
+          "latitude": -60.144753,
+          "longitude": 299.003157
+        }
+      ]
+    },
+    {
+      "id": "2018-03-18-08",
+      "release_time": "2018-03-18T00:00:00Z",
+      "release_index": 8,
+      "release_latitude": -60.7,
+      "release_longitude": 297.90000000000003,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 163.055,
+      "points": [
+        {
+          "time": "2018-03-18T00:00:00Z",
+          "latitude": -60.7,
+          "longitude": 297.90000000000003
+        },
+        {
+          "time": "2018-03-19T00:00:00Z",
+          "latitude": -60.679987,
+          "longitude": 297.835947
+        },
+        {
+          "time": "2018-03-20T00:00:00Z",
+          "latitude": -60.662491,
+          "longitude": 297.764403
+        },
+        {
+          "time": "2018-03-21T00:00:00Z",
+          "latitude": -60.647246,
+          "longitude": 297.684856
+        },
+        {
+          "time": "2018-03-22T00:00:00Z",
+          "latitude": -60.63389,
+          "longitude": 297.599204
+        },
+        {
+          "time": "2018-03-23T00:00:00Z",
+          "latitude": -60.621088,
+          "longitude": 297.513852
+        },
+        {
+          "time": "2018-03-24T00:00:00Z",
+          "latitude": -60.608089,
+          "longitude": 297.432697
+        },
+        {
+          "time": "2018-03-25T00:00:00Z",
+          "latitude": -60.594496,
+          "longitude": 297.358247
+        },
+        {
+          "time": "2018-03-26T00:00:00Z",
+          "latitude": -60.580164,
+          "longitude": 297.289678
+        },
+        {
+          "time": "2018-03-27T00:00:00Z",
+          "latitude": -60.565374,
+          "longitude": 297.228491
+        },
+        {
+          "time": "2018-03-28T00:00:00Z",
+          "latitude": -60.55044,
+          "longitude": 297.174257
+        },
+        {
+          "time": "2018-03-29T00:00:00Z",
+          "latitude": -60.534491,
+          "longitude": 297.122769
+        },
+        {
+          "time": "2018-03-30T00:00:00Z",
+          "latitude": -60.516522,
+          "longitude": 297.06943
+        },
+        {
+          "time": "2018-03-31T00:00:00Z",
+          "latitude": -60.496676,
+          "longitude": 297.01334
+        },
+        {
+          "time": "2018-04-01T00:00:00Z",
+          "latitude": -60.475408,
+          "longitude": 296.954089
+        },
+        {
+          "time": "2018-04-02T00:00:00Z",
+          "latitude": -60.453826,
+          "longitude": 296.891715
+        },
+        {
+          "time": "2018-04-03T00:00:00Z",
+          "latitude": -60.433124,
+          "longitude": 296.828766
+        },
+        {
+          "time": "2018-04-04T00:00:00Z",
+          "latitude": -60.414348,
+          "longitude": 296.7671
+        },
+        {
+          "time": "2018-04-05T00:00:00Z",
+          "latitude": -60.398247,
+          "longitude": 296.70546
+        },
+        {
+          "time": "2018-04-06T00:00:00Z",
+          "latitude": -60.384803,
+          "longitude": 296.642069
+        },
+        {
+          "time": "2018-04-07T00:00:00Z",
+          "latitude": -60.36993,
+          "longitude": 296.57456
+        },
+        {
+          "time": "2018-04-08T00:00:00Z",
+          "latitude": -60.350612,
+          "longitude": 296.504436
+        },
+        {
+          "time": "2018-04-09T00:00:00Z",
+          "latitude": -60.325038,
+          "longitude": 296.434456
+        },
+        {
+          "time": "2018-04-10T00:00:00Z",
+          "latitude": -60.291546,
+          "longitude": 296.365764
+        },
+        {
+          "time": "2018-04-11T00:00:00Z",
+          "latitude": -60.248389,
+          "longitude": 296.302509
+        },
+        {
+          "time": "2018-04-12T00:00:00Z",
+          "latitude": -60.192451,
+          "longitude": 296.253507
+        },
+        {
+          "time": "2018-04-13T00:00:00Z",
+          "latitude": -60.124189,
+          "longitude": 296.226487
+        },
+        {
+          "time": "2018-04-14T00:00:00Z",
+          "latitude": -60.043848,
+          "longitude": 296.225381
+        },
+        {
+          "time": "2018-04-15T00:00:00Z",
+          "latitude": -59.950737,
+          "longitude": 296.246424
+        },
+        {
+          "time": "2018-04-16T00:00:00Z",
+          "latitude": -59.840297,
+          "longitude": 296.275931
+        },
+        {
+          "time": "2018-04-17T00:00:00Z",
+          "latitude": -59.710474,
+          "longitude": 296.305961
+        }
+      ]
+    },
+    {
+      "id": "2018-03-18-09",
+      "release_time": "2018-03-18T00:00:00Z",
+      "release_index": 9,
+      "release_latitude": -61.3,
+      "release_longitude": 298.6,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 460.215,
+      "points": [
+        {
+          "time": "2018-03-18T00:00:00Z",
+          "latitude": -61.3,
+          "longitude": 298.6
+        },
+        {
+          "time": "2018-03-19T00:00:00Z",
+          "latitude": -61.164002,
+          "longitude": 298.640769
+        },
+        {
+          "time": "2018-03-20T00:00:00Z",
+          "latitude": -61.036299,
+          "longitude": 298.727234
+        },
+        {
+          "time": "2018-03-21T00:00:00Z",
+          "latitude": -60.926055,
+          "longitude": 298.852851
+        },
+        {
+          "time": "2018-03-22T00:00:00Z",
+          "latitude": -60.843568,
+          "longitude": 299.001365
+        },
+        {
+          "time": "2018-03-23T00:00:00Z",
+          "latitude": -60.784001,
+          "longitude": 299.181337
+        },
+        {
+          "time": "2018-03-24T00:00:00Z",
+          "latitude": -60.740438,
+          "longitude": 299.402497
+        },
+        {
+          "time": "2018-03-25T00:00:00Z",
+          "latitude": -60.713673,
+          "longitude": 299.684213
+        },
+        {
+          "time": "2018-03-26T00:00:00Z",
+          "latitude": -60.695696,
+          "longitude": 300.032672
+        },
+        {
+          "time": "2018-03-27T00:00:00Z",
+          "latitude": -60.656263,
+          "longitude": 300.414688
+        },
+        {
+          "time": "2018-03-28T00:00:00Z",
+          "latitude": -60.593265,
+          "longitude": 300.751686
+        },
+        {
+          "time": "2018-03-29T00:00:00Z",
+          "latitude": -60.528629,
+          "longitude": 301.031209
+        },
+        {
+          "time": "2018-03-30T00:00:00Z",
+          "latitude": -60.458029,
+          "longitude": 301.26832
+        },
+        {
+          "time": "2018-03-31T00:00:00Z",
+          "latitude": -60.368332,
+          "longitude": 301.468479
+        },
+        {
+          "time": "2018-04-01T00:00:00Z",
+          "latitude": -60.256073,
+          "longitude": 301.604912
+        },
+        {
+          "time": "2018-04-02T00:00:00Z",
+          "latitude": -60.119052,
+          "longitude": 301.627387
+        },
+        {
+          "time": "2018-04-03T00:00:00Z",
+          "latitude": -59.966919,
+          "longitude": 301.540806
+        },
+        {
+          "time": "2018-04-04T00:00:00Z",
+          "latitude": -59.828602,
+          "longitude": 301.40902
+        },
+        {
+          "time": "2018-04-05T00:00:00Z",
+          "latitude": -59.703402,
+          "longitude": 301.245473
+        },
+        {
+          "time": "2018-04-06T00:00:00Z",
+          "latitude": -59.589941,
+          "longitude": 301.071575
+        },
+        {
+          "time": "2018-04-07T00:00:00Z",
+          "latitude": -59.481185,
+          "longitude": 300.943434
+        },
+        {
+          "time": "2018-04-08T00:00:00Z",
+          "latitude": -59.35386,
+          "longitude": 300.857985
+        },
+        {
+          "time": "2018-04-09T00:00:00Z",
+          "latitude": -59.201839,
+          "longitude": 300.811466
+        },
+        {
+          "time": "2018-04-10T00:00:00Z",
+          "latitude": -59.047364,
+          "longitude": 300.813926
+        },
+        {
+          "time": "2018-04-11T00:00:00Z",
+          "latitude": -58.907907,
+          "longitude": 300.865107
+        },
+        {
+          "time": "2018-04-12T00:00:00Z",
+          "latitude": -58.810061,
+          "longitude": 300.95655
+        },
+        {
+          "time": "2018-04-13T00:00:00Z",
+          "latitude": -58.758694,
+          "longitude": 301.089516
+        },
+        {
+          "time": "2018-04-14T00:00:00Z",
+          "latitude": -58.735147,
+          "longitude": 301.272204
+        },
+        {
+          "time": "2018-04-15T00:00:00Z",
+          "latitude": -58.73028,
+          "longitude": 301.502128
+        },
+        {
+          "time": "2018-04-16T00:00:00Z",
+          "latitude": -58.714075,
+          "longitude": 301.771805
+        },
+        {
+          "time": "2018-04-17T00:00:00Z",
+          "latitude": -58.677561,
+          "longitude": 302.074945
+        }
+      ]
+    },
+    {
+      "id": "2018-03-18-10",
+      "release_time": "2018-03-18T00:00:00Z",
+      "release_index": 10,
+      "release_latitude": -61.9,
+      "release_longitude": 299.3,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 216.135,
+      "points": [
+        {
+          "time": "2018-03-18T00:00:00Z",
+          "latitude": -61.9,
+          "longitude": 299.3
+        },
+        {
+          "time": "2018-03-19T00:00:00Z",
+          "latitude": -61.873151,
+          "longitude": 299.373602
+        },
+        {
+          "time": "2018-03-20T00:00:00Z",
+          "latitude": -61.846653,
+          "longitude": 299.451039
+        },
+        {
+          "time": "2018-03-21T00:00:00Z",
+          "latitude": -61.820552,
+          "longitude": 299.532439
+        },
+        {
+          "time": "2018-03-22T00:00:00Z",
+          "latitude": -61.795517,
+          "longitude": 299.617283
+        },
+        {
+          "time": "2018-03-23T00:00:00Z",
+          "latitude": -61.771726,
+          "longitude": 299.705987
+        },
+        {
+          "time": "2018-03-24T00:00:00Z",
+          "latitude": -61.747431,
+          "longitude": 299.805876
+        },
+        {
+          "time": "2018-03-25T00:00:00Z",
+          "latitude": -61.723341,
+          "longitude": 299.919158
+        },
+        {
+          "time": "2018-03-26T00:00:00Z",
+          "latitude": -61.699202,
+          "longitude": 300.046903
+        },
+        {
+          "time": "2018-03-27T00:00:00Z",
+          "latitude": -61.667508,
+          "longitude": 300.197295
+        },
+        {
+          "time": "2018-03-28T00:00:00Z",
+          "latitude": -61.627013,
+          "longitude": 300.370191
+        },
+        {
+          "time": "2018-03-29T00:00:00Z",
+          "latitude": -61.582489,
+          "longitude": 300.552617
+        },
+        {
+          "time": "2018-03-30T00:00:00Z",
+          "latitude": -61.534553,
+          "longitude": 300.734373
+        },
+        {
+          "time": "2018-03-31T00:00:00Z",
+          "latitude": -61.487284,
+          "longitude": 300.899462
+        },
+        {
+          "time": "2018-04-01T00:00:00Z",
+          "latitude": -61.438021,
+          "longitude": 301.048839
+        },
+        {
+          "time": "2018-04-02T00:00:00Z",
+          "latitude": -61.392201,
+          "longitude": 301.183685
+        },
+        {
+          "time": "2018-04-03T00:00:00Z",
+          "latitude": -61.35018,
+          "longitude": 301.309488
+        },
+        {
+          "time": "2018-04-04T00:00:00Z",
+          "latitude": -61.311988,
+          "longitude": 301.42901
+        },
+        {
+          "time": "2018-04-05T00:00:00Z",
+          "latitude": -61.283047,
+          "longitude": 301.53708
+        },
+        {
+          "time": "2018-04-06T00:00:00Z",
+          "latitude": -61.262955,
+          "longitude": 301.636001
+        },
+        {
+          "time": "2018-04-07T00:00:00Z",
+          "latitude": -61.250064,
+          "longitude": 301.729249
+        },
+        {
+          "time": "2018-04-08T00:00:00Z",
+          "latitude": -61.240559,
+          "longitude": 301.824017
+        },
+        {
+          "time": "2018-04-09T00:00:00Z",
+          "latitude": -61.23347,
+          "longitude": 301.924263
+        },
+        {
+          "time": "2018-04-10T00:00:00Z",
+          "latitude": -61.228705,
+          "longitude": 302.03126
+        },
+        {
+          "time": "2018-04-11T00:00:00Z",
+          "latitude": -61.225868,
+          "longitude": 302.143128
+        },
+        {
+          "time": "2018-04-12T00:00:00Z",
+          "latitude": -61.225117,
+          "longitude": 302.259598
+        },
+        {
+          "time": "2018-04-13T00:00:00Z",
+          "latitude": -61.227154,
+          "longitude": 302.383628
+        },
+        {
+          "time": "2018-04-14T00:00:00Z",
+          "latitude": -61.229717,
+          "longitude": 302.51802
+        },
+        {
+          "time": "2018-04-15T00:00:00Z",
+          "latitude": -61.232451,
+          "longitude": 302.664138
+        },
+        {
+          "time": "2018-04-16T00:00:00Z",
+          "latitude": -61.229696,
+          "longitude": 302.821956
+        },
+        {
+          "time": "2018-04-17T00:00:00Z",
+          "latitude": -61.215013,
+          "longitude": 302.993095
+        }
+      ]
+    },
+    {
+      "id": "2018-06-17-01",
+      "release_time": "2018-06-17T00:00:00Z",
+      "release_index": 1,
+      "release_latitude": -56.5,
+      "release_longitude": 293.0,
+      "status": "terminated_invalid_wet_stencil_or_domain",
+      "integrated_hours": 171,
+      "travelled_km": 161.316,
+      "points": [
+        {
+          "time": "2018-06-17T00:00:00Z",
+          "latitude": -56.5,
+          "longitude": 293.0
+        },
+        {
+          "time": "2018-06-18T00:00:00Z",
+          "latitude": -56.376301,
+          "longitude": 293.352465
+        },
+        {
+          "time": "2018-06-19T00:00:00Z",
+          "latitude": -56.268068,
+          "longitude": 293.657751
+        },
+        {
+          "time": "2018-06-20T00:00:00Z",
+          "latitude": -56.134462,
+          "longitude": 293.884361
+        },
+        {
+          "time": "2018-06-21T00:00:00Z",
+          "latitude": -55.969236,
+          "longitude": 294.042374
+        },
+        {
+          "time": "2018-06-22T00:00:00Z",
+          "latitude": -55.769803,
+          "longitude": 294.140286
+        },
+        {
+          "time": "2018-06-23T00:00:00Z",
+          "latitude": -55.552902,
+          "longitude": 294.189371
+        },
+        {
+          "time": "2018-06-24T00:00:00Z",
+          "latitude": -55.361131,
+          "longitude": 294.274425
+        }
+      ]
+    },
+    {
+      "id": "2018-06-17-02",
+      "release_time": "2018-06-17T00:00:00Z",
+      "release_index": 2,
+      "release_latitude": -57.1,
+      "release_longitude": 293.7,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 790.932,
+      "points": [
+        {
+          "time": "2018-06-17T00:00:00Z",
+          "latitude": -57.1,
+          "longitude": 293.7
+        },
+        {
+          "time": "2018-06-18T00:00:00Z",
+          "latitude": -56.884719,
+          "longitude": 294.235085
+        },
+        {
+          "time": "2018-06-19T00:00:00Z",
+          "latitude": -56.650233,
+          "longitude": 294.808073
+        },
+        {
+          "time": "2018-06-20T00:00:00Z",
+          "latitude": -56.342403,
+          "longitude": 295.207936
+        },
+        {
+          "time": "2018-06-21T00:00:00Z",
+          "latitude": -56.011793,
+          "longitude": 295.373582
+        },
+        {
+          "time": "2018-06-22T00:00:00Z",
+          "latitude": -55.780613,
+          "longitude": 295.504808
+        },
+        {
+          "time": "2018-06-23T00:00:00Z",
+          "latitude": -55.659145,
+          "longitude": 295.724603
+        },
+        {
+          "time": "2018-06-24T00:00:00Z",
+          "latitude": -55.55512,
+          "longitude": 296.063366
+        },
+        {
+          "time": "2018-06-25T00:00:00Z",
+          "latitude": -55.416198,
+          "longitude": 296.493344
+        },
+        {
+          "time": "2018-06-26T00:00:00Z",
+          "latitude": -55.255572,
+          "longitude": 296.99909
+        },
+        {
+          "time": "2018-06-27T00:00:00Z",
+          "latitude": -55.091838,
+          "longitude": 297.536941
+        },
+        {
+          "time": "2018-06-28T00:00:00Z",
+          "latitude": -54.997447,
+          "longitude": 298.122134
+        },
+        {
+          "time": "2018-06-29T00:00:00Z",
+          "latitude": -55.006097,
+          "longitude": 298.748843
+        },
+        {
+          "time": "2018-06-30T00:00:00Z",
+          "latitude": -55.152862,
+          "longitude": 299.271954
+        },
+        {
+          "time": "2018-07-01T00:00:00Z",
+          "latitude": -55.442683,
+          "longitude": 299.634298
+        },
+        {
+          "time": "2018-07-02T00:00:00Z",
+          "latitude": -55.672894,
+          "longitude": 299.951039
+        },
+        {
+          "time": "2018-07-03T00:00:00Z",
+          "latitude": -55.800963,
+          "longitude": 300.184389
+        },
+        {
+          "time": "2018-07-04T00:00:00Z",
+          "latitude": -55.911847,
+          "longitude": 300.323461
+        },
+        {
+          "time": "2018-07-05T00:00:00Z",
+          "latitude": -56.059206,
+          "longitude": 300.402926
+        },
+        {
+          "time": "2018-07-06T00:00:00Z",
+          "latitude": -56.192677,
+          "longitude": 300.530127
+        },
+        {
+          "time": "2018-07-07T00:00:00Z",
+          "latitude": -56.262949,
+          "longitude": 300.761977
+        },
+        {
+          "time": "2018-07-08T00:00:00Z",
+          "latitude": -56.231034,
+          "longitude": 301.139557
+        },
+        {
+          "time": "2018-07-09T00:00:00Z",
+          "latitude": -56.117164,
+          "longitude": 301.578325
+        },
+        {
+          "time": "2018-07-10T00:00:00Z",
+          "latitude": -55.9681,
+          "longitude": 301.953705
+        },
+        {
+          "time": "2018-07-11T00:00:00Z",
+          "latitude": -55.799895,
+          "longitude": 302.214237
+        },
+        {
+          "time": "2018-07-12T00:00:00Z",
+          "latitude": -55.665471,
+          "longitude": 302.256785
+        },
+        {
+          "time": "2018-07-13T00:00:00Z",
+          "latitude": -55.608787,
+          "longitude": 302.16099
+        },
+        {
+          "time": "2018-07-14T00:00:00Z",
+          "latitude": -55.602928,
+          "longitude": 302.019011
+        },
+        {
+          "time": "2018-07-15T00:00:00Z",
+          "latitude": -55.606357,
+          "longitude": 301.832645
+        },
+        {
+          "time": "2018-07-16T00:00:00Z",
+          "latitude": -55.573484,
+          "longitude": 301.667393
+        },
+        {
+          "time": "2018-07-17T00:00:00Z",
+          "latitude": -55.504231,
+          "longitude": 301.575694
+        }
+      ]
+    },
+    {
+      "id": "2018-06-17-03",
+      "release_time": "2018-06-17T00:00:00Z",
+      "release_index": 3,
+      "release_latitude": -57.7,
+      "release_longitude": 294.4,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 927.687,
+      "points": [
+        {
+          "time": "2018-06-17T00:00:00Z",
+          "latitude": -57.7,
+          "longitude": 294.4
+        },
+        {
+          "time": "2018-06-18T00:00:00Z",
+          "latitude": -57.590402,
+          "longitude": 294.807932
+        },
+        {
+          "time": "2018-06-19T00:00:00Z",
+          "latitude": -57.604681,
+          "longitude": 295.17742
+        },
+        {
+          "time": "2018-06-20T00:00:00Z",
+          "latitude": -57.693826,
+          "longitude": 295.537019
+        },
+        {
+          "time": "2018-06-21T00:00:00Z",
+          "latitude": -57.787965,
+          "longitude": 295.977538
+        },
+        {
+          "time": "2018-06-22T00:00:00Z",
+          "latitude": -57.854237,
+          "longitude": 296.583145
+        },
+        {
+          "time": "2018-06-23T00:00:00Z",
+          "latitude": -57.777072,
+          "longitude": 297.327105
+        },
+        {
+          "time": "2018-06-24T00:00:00Z",
+          "latitude": -57.522833,
+          "longitude": 297.957313
+        },
+        {
+          "time": "2018-06-25T00:00:00Z",
+          "latitude": -57.232554,
+          "longitude": 298.341347
+        },
+        {
+          "time": "2018-06-26T00:00:00Z",
+          "latitude": -57.053482,
+          "longitude": 298.647808
+        },
+        {
+          "time": "2018-06-27T00:00:00Z",
+          "latitude": -57.051574,
+          "longitude": 299.065307
+        },
+        {
+          "time": "2018-06-28T00:00:00Z",
+          "latitude": -57.060835,
+          "longitude": 299.692431
+        },
+        {
+          "time": "2018-06-29T00:00:00Z",
+          "latitude": -56.922736,
+          "longitude": 300.447859
+        },
+        {
+          "time": "2018-06-30T00:00:00Z",
+          "latitude": -56.721749,
+          "longitude": 301.213845
+        },
+        {
+          "time": "2018-07-01T00:00:00Z",
+          "latitude": -56.545209,
+          "longitude": 301.870092
+        },
+        {
+          "time": "2018-07-02T00:00:00Z",
+          "latitude": -56.466649,
+          "longitude": 302.334714
+        },
+        {
+          "time": "2018-07-03T00:00:00Z",
+          "latitude": -56.48271,
+          "longitude": 302.691924
+        },
+        {
+          "time": "2018-07-04T00:00:00Z",
+          "latitude": -56.55105,
+          "longitude": 302.979232
+        },
+        {
+          "time": "2018-07-05T00:00:00Z",
+          "latitude": -56.648657,
+          "longitude": 303.241834
+        },
+        {
+          "time": "2018-07-06T00:00:00Z",
+          "latitude": -56.720418,
+          "longitude": 303.518882
+        },
+        {
+          "time": "2018-07-07T00:00:00Z",
+          "latitude": -56.703651,
+          "longitude": 303.840971
+        },
+        {
+          "time": "2018-07-08T00:00:00Z",
+          "latitude": -56.598175,
+          "longitude": 304.199635
+        },
+        {
+          "time": "2018-07-09T00:00:00Z",
+          "latitude": -56.433012,
+          "longitude": 304.542605
+        },
+        {
+          "time": "2018-07-10T00:00:00Z",
+          "latitude": -56.240487,
+          "longitude": 304.827703
+        },
+        {
+          "time": "2018-07-11T00:00:00Z",
+          "latitude": -56.04993,
+          "longitude": 304.986322
+        },
+        {
+          "time": "2018-07-12T00:00:00Z",
+          "latitude": -55.884402,
+          "longitude": 304.971869
+        },
+        {
+          "time": "2018-07-13T00:00:00Z",
+          "latitude": -55.733215,
+          "longitude": 304.867257
+        },
+        {
+          "time": "2018-07-14T00:00:00Z",
+          "latitude": -55.540076,
+          "longitude": 304.776732
+        },
+        {
+          "time": "2018-07-15T00:00:00Z",
+          "latitude": -55.256982,
+          "longitude": 304.862394
+        },
+        {
+          "time": "2018-07-16T00:00:00Z",
+          "latitude": -54.901183,
+          "longitude": 305.223765
+        },
+        {
+          "time": "2018-07-17T00:00:00Z",
+          "latitude": -54.623947,
+          "longitude": 305.829791
+        }
+      ]
+    },
+    {
+      "id": "2018-06-17-04",
+      "release_time": "2018-06-17T00:00:00Z",
+      "release_index": 4,
+      "release_latitude": -58.3,
+      "release_longitude": 295.1,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 635.474,
+      "points": [
+        {
+          "time": "2018-06-17T00:00:00Z",
+          "latitude": -58.3,
+          "longitude": 295.1
+        },
+        {
+          "time": "2018-06-18T00:00:00Z",
+          "latitude": -58.280793,
+          "longitude": 295.210662
+        },
+        {
+          "time": "2018-06-19T00:00:00Z",
+          "latitude": -58.264302,
+          "longitude": 295.370811
+        },
+        {
+          "time": "2018-06-20T00:00:00Z",
+          "latitude": -58.243721,
+          "longitude": 295.589499
+        },
+        {
+          "time": "2018-06-21T00:00:00Z",
+          "latitude": -58.216781,
+          "longitude": 295.881975
+        },
+        {
+          "time": "2018-06-22T00:00:00Z",
+          "latitude": -58.184121,
+          "longitude": 296.274642
+        },
+        {
+          "time": "2018-06-23T00:00:00Z",
+          "latitude": -58.139503,
+          "longitude": 296.794874
+        },
+        {
+          "time": "2018-06-24T00:00:00Z",
+          "latitude": -58.061353,
+          "longitude": 297.368601
+        },
+        {
+          "time": "2018-06-25T00:00:00Z",
+          "latitude": -58.007972,
+          "longitude": 297.830908
+        },
+        {
+          "time": "2018-06-26T00:00:00Z",
+          "latitude": -57.949376,
+          "longitude": 298.161158
+        },
+        {
+          "time": "2018-06-27T00:00:00Z",
+          "latitude": -57.883808,
+          "longitude": 298.443545
+        },
+        {
+          "time": "2018-06-28T00:00:00Z",
+          "latitude": -57.841176,
+          "longitude": 298.703238
+        },
+        {
+          "time": "2018-06-29T00:00:00Z",
+          "latitude": -57.820926,
+          "longitude": 298.932394
+        },
+        {
+          "time": "2018-06-30T00:00:00Z",
+          "latitude": -57.812775,
+          "longitude": 299.132478
+        },
+        {
+          "time": "2018-07-01T00:00:00Z",
+          "latitude": -57.818312,
+          "longitude": 299.299577
+        },
+        {
+          "time": "2018-07-02T00:00:00Z",
+          "latitude": -57.833395,
+          "longitude": 299.444002
+        },
+        {
+          "time": "2018-07-03T00:00:00Z",
+          "latitude": -57.84672,
+          "longitude": 299.574109
+        },
+        {
+          "time": "2018-07-04T00:00:00Z",
+          "latitude": -57.851895,
+          "longitude": 299.69958
+        },
+        {
+          "time": "2018-07-05T00:00:00Z",
+          "latitude": -57.828271,
+          "longitude": 299.833059
+        },
+        {
+          "time": "2018-07-06T00:00:00Z",
+          "latitude": -57.766242,
+          "longitude": 299.978098
+        },
+        {
+          "time": "2018-07-07T00:00:00Z",
+          "latitude": -57.673069,
+          "longitude": 300.142075
+        },
+        {
+          "time": "2018-07-08T00:00:00Z",
+          "latitude": -57.56582,
+          "longitude": 300.36562
+        },
+        {
+          "time": "2018-07-09T00:00:00Z",
+          "latitude": -57.44126,
+          "longitude": 300.672831
+        },
+        {
+          "time": "2018-07-10T00:00:00Z",
+          "latitude": -57.285012,
+          "longitude": 300.984056
+        },
+        {
+          "time": "2018-07-11T00:00:00Z",
+          "latitude": -57.055415,
+          "longitude": 301.341625
+        },
+        {
+          "time": "2018-07-12T00:00:00Z",
+          "latitude": -56.776516,
+          "longitude": 301.841398
+        },
+        {
+          "time": "2018-07-13T00:00:00Z",
+          "latitude": -56.476743,
+          "longitude": 302.572927
+        },
+        {
+          "time": "2018-07-14T00:00:00Z",
+          "latitude": -56.333781,
+          "longitude": 303.290684
+        },
+        {
+          "time": "2018-07-15T00:00:00Z",
+          "latitude": -56.322391,
+          "longitude": 303.799298
+        },
+        {
+          "time": "2018-07-16T00:00:00Z",
+          "latitude": -56.387029,
+          "longitude": 304.164684
+        },
+        {
+          "time": "2018-07-17T00:00:00Z",
+          "latitude": -56.507535,
+          "longitude": 304.446958
+        }
+      ]
+    },
+    {
+      "id": "2018-06-17-05",
+      "release_time": "2018-06-17T00:00:00Z",
+      "release_index": 5,
+      "release_latitude": -58.9,
+      "release_longitude": 295.8,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 585.852,
+      "points": [
+        {
+          "time": "2018-06-17T00:00:00Z",
+          "latitude": -58.9,
+          "longitude": 295.8
+        },
+        {
+          "time": "2018-06-18T00:00:00Z",
+          "latitude": -58.732748,
+          "longitude": 296.035459
+        },
+        {
+          "time": "2018-06-19T00:00:00Z",
+          "latitude": -58.604647,
+          "longitude": 296.304792
+        },
+        {
+          "time": "2018-06-20T00:00:00Z",
+          "latitude": -58.520432,
+          "longitude": 296.633011
+        },
+        {
+          "time": "2018-06-21T00:00:00Z",
+          "latitude": -58.464844,
+          "longitude": 297.000333
+        },
+        {
+          "time": "2018-06-22T00:00:00Z",
+          "latitude": -58.464149,
+          "longitude": 297.357438
+        },
+        {
+          "time": "2018-06-23T00:00:00Z",
+          "latitude": -58.527542,
+          "longitude": 297.664848
+        },
+        {
+          "time": "2018-06-24T00:00:00Z",
+          "latitude": -58.609576,
+          "longitude": 297.931983
+        },
+        {
+          "time": "2018-06-25T00:00:00Z",
+          "latitude": -58.682992,
+          "longitude": 298.174787
+        },
+        {
+          "time": "2018-06-26T00:00:00Z",
+          "latitude": -58.746812,
+          "longitude": 298.387849
+        },
+        {
+          "time": "2018-06-27T00:00:00Z",
+          "latitude": -58.819638,
+          "longitude": 298.583502
+        },
+        {
+          "time": "2018-06-28T00:00:00Z",
+          "latitude": -58.908243,
+          "longitude": 298.784153
+        },
+        {
+          "time": "2018-06-29T00:00:00Z",
+          "latitude": -59.002874,
+          "longitude": 299.006693
+        },
+        {
+          "time": "2018-06-30T00:00:00Z",
+          "latitude": -59.083848,
+          "longitude": 299.233296
+        },
+        {
+          "time": "2018-07-01T00:00:00Z",
+          "latitude": -59.129923,
+          "longitude": 299.447594
+        },
+        {
+          "time": "2018-07-02T00:00:00Z",
+          "latitude": -59.11119,
+          "longitude": 299.660499
+        },
+        {
+          "time": "2018-07-03T00:00:00Z",
+          "latitude": -59.019554,
+          "longitude": 299.881557
+        },
+        {
+          "time": "2018-07-04T00:00:00Z",
+          "latitude": -58.846011,
+          "longitude": 300.115948
+        },
+        {
+          "time": "2018-07-05T00:00:00Z",
+          "latitude": -58.595643,
+          "longitude": 300.363527
+        },
+        {
+          "time": "2018-07-06T00:00:00Z",
+          "latitude": -58.306146,
+          "longitude": 300.627922
+        },
+        {
+          "time": "2018-07-07T00:00:00Z",
+          "latitude": -58.040136,
+          "longitude": 300.917285
+        },
+        {
+          "time": "2018-07-08T00:00:00Z",
+          "latitude": -57.828112,
+          "longitude": 301.247243
+        },
+        {
+          "time": "2018-07-09T00:00:00Z",
+          "latitude": -57.659922,
+          "longitude": 301.575692
+        },
+        {
+          "time": "2018-07-10T00:00:00Z",
+          "latitude": -57.5779,
+          "longitude": 301.861401
+        },
+        {
+          "time": "2018-07-11T00:00:00Z",
+          "latitude": -57.603094,
+          "longitude": 302.086599
+        },
+        {
+          "time": "2018-07-12T00:00:00Z",
+          "latitude": -57.716091,
+          "longitude": 302.276098
+        },
+        {
+          "time": "2018-07-13T00:00:00Z",
+          "latitude": -57.887205,
+          "longitude": 302.403816
+        },
+        {
+          "time": "2018-07-14T00:00:00Z",
+          "latitude": -58.031162,
+          "longitude": 302.496802
+        },
+        {
+          "time": "2018-07-15T00:00:00Z",
+          "latitude": -58.110274,
+          "longitude": 302.61016
+        },
+        {
+          "time": "2018-07-16T00:00:00Z",
+          "latitude": -58.121321,
+          "longitude": 302.768965
+        },
+        {
+          "time": "2018-07-17T00:00:00Z",
+          "latitude": -58.061786,
+          "longitude": 302.989286
+        }
+      ]
+    },
+    {
+      "id": "2018-06-17-06",
+      "release_time": "2018-06-17T00:00:00Z",
+      "release_index": 6,
+      "release_latitude": -59.5,
+      "release_longitude": 296.5,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 170.291,
+      "points": [
+        {
+          "time": "2018-06-17T00:00:00Z",
+          "latitude": -59.5,
+          "longitude": 296.5
+        },
+        {
+          "time": "2018-06-18T00:00:00Z",
+          "latitude": -59.548638,
+          "longitude": 296.582279
+        },
+        {
+          "time": "2018-06-19T00:00:00Z",
+          "latitude": -59.614354,
+          "longitude": 296.662572
+        },
+        {
+          "time": "2018-06-20T00:00:00Z",
+          "latitude": -59.691069,
+          "longitude": 296.742039
+        },
+        {
+          "time": "2018-06-21T00:00:00Z",
+          "latitude": -59.75815,
+          "longitude": 296.825227
+        },
+        {
+          "time": "2018-06-22T00:00:00Z",
+          "latitude": -59.813929,
+          "longitude": 296.915129
+        },
+        {
+          "time": "2018-06-23T00:00:00Z",
+          "latitude": -59.858694,
+          "longitude": 297.016082
+        },
+        {
+          "time": "2018-06-24T00:00:00Z",
+          "latitude": -59.89293,
+          "longitude": 297.122477
+        },
+        {
+          "time": "2018-06-25T00:00:00Z",
+          "latitude": -59.918308,
+          "longitude": 297.228558
+        },
+        {
+          "time": "2018-06-26T00:00:00Z",
+          "latitude": -59.936175,
+          "longitude": 297.334201
+        },
+        {
+          "time": "2018-06-27T00:00:00Z",
+          "latitude": -59.944014,
+          "longitude": 297.434597
+        },
+        {
+          "time": "2018-06-28T00:00:00Z",
+          "latitude": -59.940359,
+          "longitude": 297.526561
+        },
+        {
+          "time": "2018-06-29T00:00:00Z",
+          "latitude": -59.928514,
+          "longitude": 297.613839
+        },
+        {
+          "time": "2018-06-30T00:00:00Z",
+          "latitude": -59.910508,
+          "longitude": 297.699265
+        },
+        {
+          "time": "2018-07-01T00:00:00Z",
+          "latitude": -59.887143,
+          "longitude": 297.78467
+        },
+        {
+          "time": "2018-07-02T00:00:00Z",
+          "latitude": -59.856918,
+          "longitude": 297.871186
+        },
+        {
+          "time": "2018-07-03T00:00:00Z",
+          "latitude": -59.81917,
+          "longitude": 297.959321
+        },
+        {
+          "time": "2018-07-04T00:00:00Z",
+          "latitude": -59.776064,
+          "longitude": 298.049454
+        },
+        {
+          "time": "2018-07-05T00:00:00Z",
+          "latitude": -59.735923,
+          "longitude": 298.140204
+        },
+        {
+          "time": "2018-07-06T00:00:00Z",
+          "latitude": -59.697701,
+          "longitude": 298.230331
+        },
+        {
+          "time": "2018-07-07T00:00:00Z",
+          "latitude": -59.658933,
+          "longitude": 298.318232
+        },
+        {
+          "time": "2018-07-08T00:00:00Z",
+          "latitude": -59.622281,
+          "longitude": 298.398452
+        },
+        {
+          "time": "2018-07-09T00:00:00Z",
+          "latitude": -59.594815,
+          "longitude": 298.469234
+        },
+        {
+          "time": "2018-07-10T00:00:00Z",
+          "latitude": -59.574227,
+          "longitude": 298.531804
+        },
+        {
+          "time": "2018-07-11T00:00:00Z",
+          "latitude": -59.55792,
+          "longitude": 298.586949
+        },
+        {
+          "time": "2018-07-12T00:00:00Z",
+          "latitude": -59.543302,
+          "longitude": 298.635091
+        },
+        {
+          "time": "2018-07-13T00:00:00Z",
+          "latitude": -59.531568,
+          "longitude": 298.678745
+        },
+        {
+          "time": "2018-07-14T00:00:00Z",
+          "latitude": -59.524404,
+          "longitude": 298.721717
+        },
+        {
+          "time": "2018-07-15T00:00:00Z",
+          "latitude": -59.520265,
+          "longitude": 298.765224
+        },
+        {
+          "time": "2018-07-16T00:00:00Z",
+          "latitude": -59.51741,
+          "longitude": 298.809923
+        },
+        {
+          "time": "2018-07-17T00:00:00Z",
+          "latitude": -59.513684,
+          "longitude": 298.856054
+        }
+      ]
+    },
+    {
+      "id": "2018-06-17-07",
+      "release_time": "2018-06-17T00:00:00Z",
+      "release_index": 7,
+      "release_latitude": -60.1,
+      "release_longitude": 297.2,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 139.563,
+      "points": [
+        {
+          "time": "2018-06-17T00:00:00Z",
+          "latitude": -60.1,
+          "longitude": 297.2
+        },
+        {
+          "time": "2018-06-18T00:00:00Z",
+          "latitude": -60.118415,
+          "longitude": 297.330453
+        },
+        {
+          "time": "2018-06-19T00:00:00Z",
+          "latitude": -60.135368,
+          "longitude": 297.440976
+        },
+        {
+          "time": "2018-06-20T00:00:00Z",
+          "latitude": -60.144789,
+          "longitude": 297.532524
+        },
+        {
+          "time": "2018-06-21T00:00:00Z",
+          "latitude": -60.147657,
+          "longitude": 297.608979
+        },
+        {
+          "time": "2018-06-22T00:00:00Z",
+          "latitude": -60.144572,
+          "longitude": 297.673193
+        },
+        {
+          "time": "2018-06-23T00:00:00Z",
+          "latitude": -60.134718,
+          "longitude": 297.729319
+        },
+        {
+          "time": "2018-06-24T00:00:00Z",
+          "latitude": -60.11652,
+          "longitude": 297.780782
+        },
+        {
+          "time": "2018-06-25T00:00:00Z",
+          "latitude": -60.089585,
+          "longitude": 297.828939
+        },
+        {
+          "time": "2018-06-26T00:00:00Z",
+          "latitude": -60.053603,
+          "longitude": 297.874675
+        },
+        {
+          "time": "2018-06-27T00:00:00Z",
+          "latitude": -60.008365,
+          "longitude": 297.918332
+        },
+        {
+          "time": "2018-06-28T00:00:00Z",
+          "latitude": -59.956564,
+          "longitude": 297.963754
+        },
+        {
+          "time": "2018-06-29T00:00:00Z",
+          "latitude": -59.900526,
+          "longitude": 298.016206
+        },
+        {
+          "time": "2018-06-30T00:00:00Z",
+          "latitude": -59.846347,
+          "longitude": 298.076088
+        },
+        {
+          "time": "2018-07-01T00:00:00Z",
+          "latitude": -59.794852,
+          "longitude": 298.14276
+        },
+        {
+          "time": "2018-07-02T00:00:00Z",
+          "latitude": -59.744013,
+          "longitude": 298.215161
+        },
+        {
+          "time": "2018-07-03T00:00:00Z",
+          "latitude": -59.693706,
+          "longitude": 298.292436
+        },
+        {
+          "time": "2018-07-04T00:00:00Z",
+          "latitude": -59.64568,
+          "longitude": 298.372571
+        },
+        {
+          "time": "2018-07-05T00:00:00Z",
+          "latitude": -59.608385,
+          "longitude": 298.447453
+        },
+        {
+          "time": "2018-07-06T00:00:00Z",
+          "latitude": -59.579243,
+          "longitude": 298.514047
+        },
+        {
+          "time": "2018-07-07T00:00:00Z",
+          "latitude": -59.553534,
+          "longitude": 298.570091
+        },
+        {
+          "time": "2018-07-08T00:00:00Z",
+          "latitude": -59.530297,
+          "longitude": 298.616382
+        },
+        {
+          "time": "2018-07-09T00:00:00Z",
+          "latitude": -59.510016,
+          "longitude": 298.655583
+        },
+        {
+          "time": "2018-07-10T00:00:00Z",
+          "latitude": -59.490069,
+          "longitude": 298.688108
+        },
+        {
+          "time": "2018-07-11T00:00:00Z",
+          "latitude": -59.467943,
+          "longitude": 298.714274
+        },
+        {
+          "time": "2018-07-12T00:00:00Z",
+          "latitude": -59.44144,
+          "longitude": 298.732633
+        },
+        {
+          "time": "2018-07-13T00:00:00Z",
+          "latitude": -59.413753,
+          "longitude": 298.746877
+        },
+        {
+          "time": "2018-07-14T00:00:00Z",
+          "latitude": -59.389848,
+          "longitude": 298.762776
+        },
+        {
+          "time": "2018-07-15T00:00:00Z",
+          "latitude": -59.369861,
+          "longitude": 298.781274
+        },
+        {
+          "time": "2018-07-16T00:00:00Z",
+          "latitude": -59.353395,
+          "longitude": 298.802764
+        },
+        {
+          "time": "2018-07-17T00:00:00Z",
+          "latitude": -59.339465,
+          "longitude": 298.827115
+        }
+      ]
+    },
+    {
+      "id": "2018-06-17-08",
+      "release_time": "2018-06-17T00:00:00Z",
+      "release_index": 8,
+      "release_latitude": -60.7,
+      "release_longitude": 297.90000000000003,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 69.675,
+      "points": [
+        {
+          "time": "2018-06-17T00:00:00Z",
+          "latitude": -60.7,
+          "longitude": 297.90000000000003
+        },
+        {
+          "time": "2018-06-18T00:00:00Z",
+          "latitude": -60.662667,
+          "longitude": 297.893255
+        },
+        {
+          "time": "2018-06-19T00:00:00Z",
+          "latitude": -60.628893,
+          "longitude": 297.888983
+        },
+        {
+          "time": "2018-06-20T00:00:00Z",
+          "latitude": -60.597498,
+          "longitude": 297.89057
+        },
+        {
+          "time": "2018-06-21T00:00:00Z",
+          "latitude": -60.567975,
+          "longitude": 297.896816
+        },
+        {
+          "time": "2018-06-22T00:00:00Z",
+          "latitude": -60.539898,
+          "longitude": 297.90641
+        },
+        {
+          "time": "2018-06-23T00:00:00Z",
+          "latitude": -60.512422,
+          "longitude": 297.918815
+        },
+        {
+          "time": "2018-06-24T00:00:00Z",
+          "latitude": -60.484856,
+          "longitude": 297.933795
+        },
+        {
+          "time": "2018-06-25T00:00:00Z",
+          "latitude": -60.45715,
+          "longitude": 297.950391
+        },
+        {
+          "time": "2018-06-26T00:00:00Z",
+          "latitude": -60.429296,
+          "longitude": 297.967641
+        },
+        {
+          "time": "2018-06-27T00:00:00Z",
+          "latitude": -60.401289,
+          "longitude": 297.984624
+        },
+        {
+          "time": "2018-06-28T00:00:00Z",
+          "latitude": -60.375314,
+          "longitude": 298.002649
+        },
+        {
+          "time": "2018-06-29T00:00:00Z",
+          "latitude": -60.355859,
+          "longitude": 298.023865
+        },
+        {
+          "time": "2018-06-30T00:00:00Z",
+          "latitude": -60.343794,
+          "longitude": 298.048471
+        },
+        {
+          "time": "2018-07-01T00:00:00Z",
+          "latitude": -60.338217,
+          "longitude": 298.076451
+        },
+        {
+          "time": "2018-07-02T00:00:00Z",
+          "latitude": -60.33818,
+          "longitude": 298.107577
+        },
+        {
+          "time": "2018-07-03T00:00:00Z",
+          "latitude": -60.342387,
+          "longitude": 298.1391
+        },
+        {
+          "time": "2018-07-04T00:00:00Z",
+          "latitude": -60.349325,
+          "longitude": 298.16859
+        },
+        {
+          "time": "2018-07-05T00:00:00Z",
+          "latitude": -60.357868,
+          "longitude": 298.196102
+        },
+        {
+          "time": "2018-07-06T00:00:00Z",
+          "latitude": -60.367065,
+          "longitude": 298.221605
+        },
+        {
+          "time": "2018-07-07T00:00:00Z",
+          "latitude": -60.376117,
+          "longitude": 298.245017
+        },
+        {
+          "time": "2018-07-08T00:00:00Z",
+          "latitude": -60.384229,
+          "longitude": 298.26257
+        },
+        {
+          "time": "2018-07-09T00:00:00Z",
+          "latitude": -60.390977,
+          "longitude": 298.270495
+        },
+        {
+          "time": "2018-07-10T00:00:00Z",
+          "latitude": -60.396389,
+          "longitude": 298.268644
+        },
+        {
+          "time": "2018-07-11T00:00:00Z",
+          "latitude": -60.400718,
+          "longitude": 298.256827
+        },
+        {
+          "time": "2018-07-12T00:00:00Z",
+          "latitude": -60.404449,
+          "longitude": 298.234822
+        },
+        {
+          "time": "2018-07-13T00:00:00Z",
+          "latitude": -60.40904,
+          "longitude": 298.205764
+        },
+        {
+          "time": "2018-07-14T00:00:00Z",
+          "latitude": -60.415577,
+          "longitude": 298.172911
+        },
+        {
+          "time": "2018-07-15T00:00:00Z",
+          "latitude": -60.424241,
+          "longitude": 298.136225
+        },
+        {
+          "time": "2018-07-16T00:00:00Z",
+          "latitude": -60.435326,
+          "longitude": 298.095734
+        },
+        {
+          "time": "2018-07-17T00:00:00Z",
+          "latitude": -60.449278,
+          "longitude": 298.051548
+        }
+      ]
+    },
+    {
+      "id": "2018-06-17-09",
+      "release_time": "2018-06-17T00:00:00Z",
+      "release_index": 9,
+      "release_latitude": -61.3,
+      "release_longitude": 298.6,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 251.054,
+      "points": [
+        {
+          "time": "2018-06-17T00:00:00Z",
+          "latitude": -61.3,
+          "longitude": 298.6
+        },
+        {
+          "time": "2018-06-18T00:00:00Z",
+          "latitude": -61.227394,
+          "longitude": 298.687919
+        },
+        {
+          "time": "2018-06-19T00:00:00Z",
+          "latitude": -61.163106,
+          "longitude": 298.775337
+        },
+        {
+          "time": "2018-06-20T00:00:00Z",
+          "latitude": -61.106918,
+          "longitude": 298.864592
+        },
+        {
+          "time": "2018-06-21T00:00:00Z",
+          "latitude": -61.056614,
+          "longitude": 298.958899
+        },
+        {
+          "time": "2018-06-22T00:00:00Z",
+          "latitude": -61.010791,
+          "longitude": 299.059014
+        },
+        {
+          "time": "2018-06-23T00:00:00Z",
+          "latitude": -60.971576,
+          "longitude": 299.154699
+        },
+        {
+          "time": "2018-06-24T00:00:00Z",
+          "latitude": -60.937313,
+          "longitude": 299.250645
+        },
+        {
+          "time": "2018-06-25T00:00:00Z",
+          "latitude": -60.902951,
+          "longitude": 299.351066
+        },
+        {
+          "time": "2018-06-26T00:00:00Z",
+          "latitude": -60.870656,
+          "longitude": 299.453671
+        },
+        {
+          "time": "2018-06-27T00:00:00Z",
+          "latitude": -60.842382,
+          "longitude": 299.555651
+        },
+        {
+          "time": "2018-06-28T00:00:00Z",
+          "latitude": -60.815602,
+          "longitude": 299.658679
+        },
+        {
+          "time": "2018-06-29T00:00:00Z",
+          "latitude": -60.787049,
+          "longitude": 299.764622
+        },
+        {
+          "time": "2018-06-30T00:00:00Z",
+          "latitude": -60.756499,
+          "longitude": 299.871606
+        },
+        {
+          "time": "2018-07-01T00:00:00Z",
+          "latitude": -60.725076,
+          "longitude": 299.9773
+        },
+        {
+          "time": "2018-07-02T00:00:00Z",
+          "latitude": -60.690907,
+          "longitude": 300.081638
+        },
+        {
+          "time": "2018-07-03T00:00:00Z",
+          "latitude": -60.649387,
+          "longitude": 300.18824
+        },
+        {
+          "time": "2018-07-04T00:00:00Z",
+          "latitude": -60.60243,
+          "longitude": 300.301224
+        },
+        {
+          "time": "2018-07-05T00:00:00Z",
+          "latitude": -60.551075,
+          "longitude": 300.431028
+        },
+        {
+          "time": "2018-07-06T00:00:00Z",
+          "latitude": -60.499043,
+          "longitude": 300.589946
+        },
+        {
+          "time": "2018-07-07T00:00:00Z",
+          "latitude": -60.451543,
+          "longitude": 300.777612
+        },
+        {
+          "time": "2018-07-08T00:00:00Z",
+          "latitude": -60.410488,
+          "longitude": 300.984089
+        },
+        {
+          "time": "2018-07-09T00:00:00Z",
+          "latitude": -60.376047,
+          "longitude": 301.194356
+        },
+        {
+          "time": "2018-07-10T00:00:00Z",
+          "latitude": -60.346958,
+          "longitude": 301.398383
+        },
+        {
+          "time": "2018-07-11T00:00:00Z",
+          "latitude": -60.324753,
+          "longitude": 301.587128
+        },
+        {
+          "time": "2018-07-12T00:00:00Z",
+          "latitude": -60.307166,
+          "longitude": 301.754073
+        },
+        {
+          "time": "2018-07-13T00:00:00Z",
+          "latitude": -60.293122,
+          "longitude": 301.907648
+        },
+        {
+          "time": "2018-07-14T00:00:00Z",
+          "latitude": -60.27907,
+          "longitude": 302.056304
+        },
+        {
+          "time": "2018-07-15T00:00:00Z",
+          "latitude": -60.26183,
+          "longitude": 302.202366
+        },
+        {
+          "time": "2018-07-16T00:00:00Z",
+          "latitude": -60.238716,
+          "longitude": 302.344396
+        },
+        {
+          "time": "2018-07-17T00:00:00Z",
+          "latitude": -60.21206,
+          "longitude": 302.481045
+        }
+      ]
+    },
+    {
+      "id": "2018-06-17-10",
+      "release_time": "2018-06-17T00:00:00Z",
+      "release_index": 10,
+      "release_latitude": -61.9,
+      "release_longitude": 299.3,
+      "status": "terminated_invalid_wet_stencil_or_domain",
+      "integrated_hours": 546,
+      "travelled_km": 103.086,
+      "points": [
+        {
+          "time": "2018-06-17T00:00:00Z",
+          "latitude": -61.9,
+          "longitude": 299.3
+        },
+        {
+          "time": "2018-06-18T00:00:00Z",
+          "latitude": -61.903425,
+          "longitude": 299.353827
+        },
+        {
+          "time": "2018-06-19T00:00:00Z",
+          "latitude": -61.911114,
+          "longitude": 299.403488
+        },
+        {
+          "time": "2018-06-20T00:00:00Z",
+          "latitude": -61.922073,
+          "longitude": 299.448867
+        },
+        {
+          "time": "2018-06-21T00:00:00Z",
+          "latitude": -61.93602,
+          "longitude": 299.489918
+        },
+        {
+          "time": "2018-06-22T00:00:00Z",
+          "latitude": -61.952658,
+          "longitude": 299.526661
+        },
+        {
+          "time": "2018-06-23T00:00:00Z",
+          "latitude": -61.969562,
+          "longitude": 299.561366
+        },
+        {
+          "time": "2018-06-24T00:00:00Z",
+          "latitude": -61.984203,
+          "longitude": 299.596543
+        },
+        {
+          "time": "2018-06-25T00:00:00Z",
+          "latitude": -61.996077,
+          "longitude": 299.632606
+        },
+        {
+          "time": "2018-06-26T00:00:00Z",
+          "latitude": -62.004375,
+          "longitude": 299.67036
+        },
+        {
+          "time": "2018-06-27T00:00:00Z",
+          "latitude": -62.007005,
+          "longitude": 299.712602
+        },
+        {
+          "time": "2018-06-28T00:00:00Z",
+          "latitude": -62.003285,
+          "longitude": 299.760212
+        },
+        {
+          "time": "2018-06-29T00:00:00Z",
+          "latitude": -61.993196,
+          "longitude": 299.813751
+        },
+        {
+          "time": "2018-06-30T00:00:00Z",
+          "latitude": -61.976037,
+          "longitude": 299.876095
+        },
+        {
+          "time": "2018-07-01T00:00:00Z",
+          "latitude": -61.951951,
+          "longitude": 299.949365
+        },
+        {
+          "time": "2018-07-02T00:00:00Z",
+          "latitude": -61.921685,
+          "longitude": 300.035803
+        },
+        {
+          "time": "2018-07-03T00:00:00Z",
+          "latitude": -61.885357,
+          "longitude": 300.136988
+        },
+        {
+          "time": "2018-07-04T00:00:00Z",
+          "latitude": -61.842914,
+          "longitude": 300.252229
+        },
+        {
+          "time": "2018-07-05T00:00:00Z",
+          "latitude": -61.796419,
+          "longitude": 300.382021
+        },
+        {
+          "time": "2018-07-06T00:00:00Z",
+          "latitude": -61.75553,
+          "longitude": 300.523332
+        },
+        {
+          "time": "2018-07-07T00:00:00Z",
+          "latitude": -61.723061,
+          "longitude": 300.672492
+        },
+        {
+          "time": "2018-07-08T00:00:00Z",
+          "latitude": -61.699502,
+          "longitude": 300.811179
+        },
+        {
+          "time": "2018-07-09T00:00:00Z",
+          "latitude": -61.683829,
+          "longitude": 300.925081
+        }
+      ]
+    },
+    {
+      "id": "2018-09-16-01",
+      "release_time": "2018-09-16T00:00:00Z",
+      "release_index": 1,
+      "release_latitude": -56.5,
+      "release_longitude": 293.0,
+      "status": "terminated_invalid_wet_stencil_or_domain",
+      "integrated_hours": 174,
+      "travelled_km": 99.724,
+      "points": [
+        {
+          "time": "2018-09-16T00:00:00Z",
+          "latitude": -56.5,
+          "longitude": 293.0
+        },
+        {
+          "time": "2018-09-17T00:00:00Z",
+          "latitude": -56.407455,
+          "longitude": 293.137792
+        },
+        {
+          "time": "2018-09-18T00:00:00Z",
+          "latitude": -56.304331,
+          "longitude": 293.23661
+        },
+        {
+          "time": "2018-09-19T00:00:00Z",
+          "latitude": -56.192126,
+          "longitude": 293.309417
+        },
+        {
+          "time": "2018-09-20T00:00:00Z",
+          "latitude": -56.064163,
+          "longitude": 293.368456
+        },
+        {
+          "time": "2018-09-21T00:00:00Z",
+          "latitude": -55.930104,
+          "longitude": 293.405119
+        },
+        {
+          "time": "2018-09-22T00:00:00Z",
+          "latitude": -55.807378,
+          "longitude": 293.400617
+        },
+        {
+          "time": "2018-09-23T00:00:00Z",
+          "latitude": -55.691036,
+          "longitude": 293.354006
+        }
+      ]
+    },
+    {
+      "id": "2018-09-16-02",
+      "release_time": "2018-09-16T00:00:00Z",
+      "release_index": 2,
+      "release_latitude": -57.1,
+      "release_longitude": 293.7,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 457.972,
+      "points": [
+        {
+          "time": "2018-09-16T00:00:00Z",
+          "latitude": -57.1,
+          "longitude": 293.7
+        },
+        {
+          "time": "2018-09-17T00:00:00Z",
+          "latitude": -56.900121,
+          "longitude": 294.194821
+        },
+        {
+          "time": "2018-09-18T00:00:00Z",
+          "latitude": -56.592533,
+          "longitude": 294.514823
+        },
+        {
+          "time": "2018-09-19T00:00:00Z",
+          "latitude": -56.273448,
+          "longitude": 294.684535
+        },
+        {
+          "time": "2018-09-20T00:00:00Z",
+          "latitude": -55.982783,
+          "longitude": 294.737542
+        },
+        {
+          "time": "2018-09-21T00:00:00Z",
+          "latitude": -55.732978,
+          "longitude": 294.767341
+        },
+        {
+          "time": "2018-09-22T00:00:00Z",
+          "latitude": -55.529452,
+          "longitude": 294.865496
+        },
+        {
+          "time": "2018-09-23T00:00:00Z",
+          "latitude": -55.361419,
+          "longitude": 295.082658
+        },
+        {
+          "time": "2018-09-24T00:00:00Z",
+          "latitude": -55.1991,
+          "longitude": 295.413241
+        },
+        {
+          "time": "2018-09-25T00:00:00Z",
+          "latitude": -55.020986,
+          "longitude": 295.765112
+        },
+        {
+          "time": "2018-09-26T00:00:00Z",
+          "latitude": -54.880955,
+          "longitude": 296.159097
+        },
+        {
+          "time": "2018-09-27T00:00:00Z",
+          "latitude": -54.726207,
+          "longitude": 296.540753
+        },
+        {
+          "time": "2018-09-28T00:00:00Z",
+          "latitude": -54.589526,
+          "longitude": 296.839663
+        },
+        {
+          "time": "2018-09-29T00:00:00Z",
+          "latitude": -54.498004,
+          "longitude": 297.073743
+        },
+        {
+          "time": "2018-09-30T00:00:00Z",
+          "latitude": -54.439785,
+          "longitude": 297.267276
+        },
+        {
+          "time": "2018-10-01T00:00:00Z",
+          "latitude": -54.403291,
+          "longitude": 297.433959
+        },
+        {
+          "time": "2018-10-02T00:00:00Z",
+          "latitude": -54.373128,
+          "longitude": 297.563876
+        },
+        {
+          "time": "2018-10-03T00:00:00Z",
+          "latitude": -54.345414,
+          "longitude": 297.65504
+        },
+        {
+          "time": "2018-10-04T00:00:00Z",
+          "latitude": -54.31779,
+          "longitude": 297.714959
+        },
+        {
+          "time": "2018-10-05T00:00:00Z",
+          "latitude": -54.288168,
+          "longitude": 297.761982
+        },
+        {
+          "time": "2018-10-06T00:00:00Z",
+          "latitude": -54.25672,
+          "longitude": 297.799298
+        },
+        {
+          "time": "2018-10-07T00:00:00Z",
+          "latitude": -54.226463,
+          "longitude": 297.828346
+        },
+        {
+          "time": "2018-10-08T00:00:00Z",
+          "latitude": -54.200361,
+          "longitude": 297.851568
+        },
+        {
+          "time": "2018-10-09T00:00:00Z",
+          "latitude": -54.178595,
+          "longitude": 297.870736
+        },
+        {
+          "time": "2018-10-10T00:00:00Z",
+          "latitude": -54.161276,
+          "longitude": 297.887355
+        },
+        {
+          "time": "2018-10-11T00:00:00Z",
+          "latitude": -54.148501,
+          "longitude": 297.902604
+        },
+        {
+          "time": "2018-10-12T00:00:00Z",
+          "latitude": -54.140411,
+          "longitude": 297.918573
+        },
+        {
+          "time": "2018-10-13T00:00:00Z",
+          "latitude": -54.137226,
+          "longitude": 297.936623
+        },
+        {
+          "time": "2018-10-14T00:00:00Z",
+          "latitude": -54.139277,
+          "longitude": 297.956543
+        },
+        {
+          "time": "2018-10-15T00:00:00Z",
+          "latitude": -54.147077,
+          "longitude": 297.9781
+        },
+        {
+          "time": "2018-10-16T00:00:00Z",
+          "latitude": -54.161379,
+          "longitude": 298.001079
+        }
+      ]
+    },
+    {
+      "id": "2018-09-16-03",
+      "release_time": "2018-09-16T00:00:00Z",
+      "release_index": 3,
+      "release_latitude": -57.7,
+      "release_longitude": 294.4,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 574.843,
+      "points": [
+        {
+          "time": "2018-09-16T00:00:00Z",
+          "latitude": -57.7,
+          "longitude": 294.4
+        },
+        {
+          "time": "2018-09-17T00:00:00Z",
+          "latitude": -57.522771,
+          "longitude": 294.842647
+        },
+        {
+          "time": "2018-09-18T00:00:00Z",
+          "latitude": -57.302845,
+          "longitude": 295.212531
+        },
+        {
+          "time": "2018-09-19T00:00:00Z",
+          "latitude": -57.045902,
+          "longitude": 295.521622
+        },
+        {
+          "time": "2018-09-20T00:00:00Z",
+          "latitude": -56.794231,
+          "longitude": 295.821424
+        },
+        {
+          "time": "2018-09-21T00:00:00Z",
+          "latitude": -56.547889,
+          "longitude": 296.096568
+        },
+        {
+          "time": "2018-09-22T00:00:00Z",
+          "latitude": -56.366657,
+          "longitude": 296.380889
+        },
+        {
+          "time": "2018-09-23T00:00:00Z",
+          "latitude": -56.285492,
+          "longitude": 296.723736
+        },
+        {
+          "time": "2018-09-24T00:00:00Z",
+          "latitude": -56.333882,
+          "longitude": 297.102731
+        },
+        {
+          "time": "2018-09-25T00:00:00Z",
+          "latitude": -56.517891,
+          "longitude": 297.46436
+        },
+        {
+          "time": "2018-09-26T00:00:00Z",
+          "latitude": -56.779254,
+          "longitude": 297.65825
+        },
+        {
+          "time": "2018-09-27T00:00:00Z",
+          "latitude": -57.043856,
+          "longitude": 297.67559
+        },
+        {
+          "time": "2018-09-28T00:00:00Z",
+          "latitude": -57.272883,
+          "longitude": 297.633845
+        },
+        {
+          "time": "2018-09-29T00:00:00Z",
+          "latitude": -57.476677,
+          "longitude": 297.616987
+        },
+        {
+          "time": "2018-09-30T00:00:00Z",
+          "latitude": -57.644609,
+          "longitude": 297.646636
+        },
+        {
+          "time": "2018-10-01T00:00:00Z",
+          "latitude": -57.773672,
+          "longitude": 297.748218
+        },
+        {
+          "time": "2018-10-02T00:00:00Z",
+          "latitude": -57.860831,
+          "longitude": 297.913707
+        },
+        {
+          "time": "2018-10-03T00:00:00Z",
+          "latitude": -57.896883,
+          "longitude": 298.127124
+        },
+        {
+          "time": "2018-10-04T00:00:00Z",
+          "latitude": -57.874343,
+          "longitude": 298.357806
+        },
+        {
+          "time": "2018-10-05T00:00:00Z",
+          "latitude": -57.806308,
+          "longitude": 298.579844
+        },
+        {
+          "time": "2018-10-06T00:00:00Z",
+          "latitude": -57.700818,
+          "longitude": 298.774403
+        },
+        {
+          "time": "2018-10-07T00:00:00Z",
+          "latitude": -57.590324,
+          "longitude": 298.919376
+        },
+        {
+          "time": "2018-10-08T00:00:00Z",
+          "latitude": -57.482048,
+          "longitude": 299.015137
+        },
+        {
+          "time": "2018-10-09T00:00:00Z",
+          "latitude": -57.375744,
+          "longitude": 299.077178
+        },
+        {
+          "time": "2018-10-10T00:00:00Z",
+          "latitude": -57.278308,
+          "longitude": 299.109664
+        },
+        {
+          "time": "2018-10-11T00:00:00Z",
+          "latitude": -57.205091,
+          "longitude": 299.116866
+        },
+        {
+          "time": "2018-10-12T00:00:00Z",
+          "latitude": -57.149764,
+          "longitude": 299.105212
+        },
+        {
+          "time": "2018-10-13T00:00:00Z",
+          "latitude": -57.106601,
+          "longitude": 299.075797
+        },
+        {
+          "time": "2018-10-14T00:00:00Z",
+          "latitude": -57.074753,
+          "longitude": 299.026138
+        },
+        {
+          "time": "2018-10-15T00:00:00Z",
+          "latitude": -57.054299,
+          "longitude": 298.952425
+        },
+        {
+          "time": "2018-10-16T00:00:00Z",
+          "latitude": -57.044466,
+          "longitude": 298.848249
+        }
+      ]
+    },
+    {
+      "id": "2018-09-16-04",
+      "release_time": "2018-09-16T00:00:00Z",
+      "release_index": 4,
+      "release_latitude": -58.3,
+      "release_longitude": 295.1,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 683.026,
+      "points": [
+        {
+          "time": "2018-09-16T00:00:00Z",
+          "latitude": -58.3,
+          "longitude": 295.1
+        },
+        {
+          "time": "2018-09-17T00:00:00Z",
+          "latitude": -58.200718,
+          "longitude": 295.199426
+        },
+        {
+          "time": "2018-09-18T00:00:00Z",
+          "latitude": -58.111028,
+          "longitude": 295.32171
+        },
+        {
+          "time": "2018-09-19T00:00:00Z",
+          "latitude": -58.032138,
+          "longitude": 295.442305
+        },
+        {
+          "time": "2018-09-20T00:00:00Z",
+          "latitude": -57.963093,
+          "longitude": 295.546093
+        },
+        {
+          "time": "2018-09-21T00:00:00Z",
+          "latitude": -57.894198,
+          "longitude": 295.649194
+        },
+        {
+          "time": "2018-09-22T00:00:00Z",
+          "latitude": -57.828916,
+          "longitude": 295.750657
+        },
+        {
+          "time": "2018-09-23T00:00:00Z",
+          "latitude": -57.776865,
+          "longitude": 295.846205
+        },
+        {
+          "time": "2018-09-24T00:00:00Z",
+          "latitude": -57.744038,
+          "longitude": 295.934906
+        },
+        {
+          "time": "2018-09-25T00:00:00Z",
+          "latitude": -57.732988,
+          "longitude": 296.018647
+        },
+        {
+          "time": "2018-09-26T00:00:00Z",
+          "latitude": -57.742814,
+          "longitude": 296.100489
+        },
+        {
+          "time": "2018-09-27T00:00:00Z",
+          "latitude": -57.767342,
+          "longitude": 296.179436
+        },
+        {
+          "time": "2018-09-28T00:00:00Z",
+          "latitude": -57.802438,
+          "longitude": 296.254669
+        },
+        {
+          "time": "2018-09-29T00:00:00Z",
+          "latitude": -57.846984,
+          "longitude": 296.332028
+        },
+        {
+          "time": "2018-09-30T00:00:00Z",
+          "latitude": -57.904139,
+          "longitude": 296.41568
+        },
+        {
+          "time": "2018-10-01T00:00:00Z",
+          "latitude": -57.978175,
+          "longitude": 296.514646
+        },
+        {
+          "time": "2018-10-02T00:00:00Z",
+          "latitude": -58.067501,
+          "longitude": 296.660959
+        },
+        {
+          "time": "2018-10-03T00:00:00Z",
+          "latitude": -58.17965,
+          "longitude": 296.906472
+        },
+        {
+          "time": "2018-10-04T00:00:00Z",
+          "latitude": -58.341209,
+          "longitude": 297.291236
+        },
+        {
+          "time": "2018-10-05T00:00:00Z",
+          "latitude": -58.495213,
+          "longitude": 297.762518
+        },
+        {
+          "time": "2018-10-06T00:00:00Z",
+          "latitude": -58.586086,
+          "longitude": 298.280405
+        },
+        {
+          "time": "2018-10-07T00:00:00Z",
+          "latitude": -58.596055,
+          "longitude": 298.800454
+        },
+        {
+          "time": "2018-10-08T00:00:00Z",
+          "latitude": -58.534627,
+          "longitude": 299.300822
+        },
+        {
+          "time": "2018-10-09T00:00:00Z",
+          "latitude": -58.376004,
+          "longitude": 299.768083
+        },
+        {
+          "time": "2018-10-10T00:00:00Z",
+          "latitude": -58.138917,
+          "longitude": 300.221214
+        },
+        {
+          "time": "2018-10-11T00:00:00Z",
+          "latitude": -57.881735,
+          "longitude": 300.619575
+        },
+        {
+          "time": "2018-10-12T00:00:00Z",
+          "latitude": -57.605668,
+          "longitude": 300.990659
+        },
+        {
+          "time": "2018-10-13T00:00:00Z",
+          "latitude": -57.375998,
+          "longitude": 301.566134
+        },
+        {
+          "time": "2018-10-14T00:00:00Z",
+          "latitude": -57.193213,
+          "longitude": 302.508077
+        },
+        {
+          "time": "2018-10-15T00:00:00Z",
+          "latitude": -56.979116,
+          "longitude": 303.452785
+        },
+        {
+          "time": "2018-10-16T00:00:00Z",
+          "latitude": -56.572194,
+          "longitude": 304.118993
+        }
+      ]
+    },
+    {
+      "id": "2018-09-16-05",
+      "release_time": "2018-09-16T00:00:00Z",
+      "release_index": 5,
+      "release_latitude": -58.9,
+      "release_longitude": 295.8,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 816.876,
+      "points": [
+        {
+          "time": "2018-09-16T00:00:00Z",
+          "latitude": -58.9,
+          "longitude": 295.8
+        },
+        {
+          "time": "2018-09-17T00:00:00Z",
+          "latitude": -58.768358,
+          "longitude": 296.125894
+        },
+        {
+          "time": "2018-09-18T00:00:00Z",
+          "latitude": -58.769438,
+          "longitude": 296.51148
+        },
+        {
+          "time": "2018-09-19T00:00:00Z",
+          "latitude": -58.879844,
+          "longitude": 296.880752
+        },
+        {
+          "time": "2018-09-20T00:00:00Z",
+          "latitude": -59.0109,
+          "longitude": 297.226299
+        },
+        {
+          "time": "2018-09-21T00:00:00Z",
+          "latitude": -59.119384,
+          "longitude": 297.569981
+        },
+        {
+          "time": "2018-09-22T00:00:00Z",
+          "latitude": -59.196317,
+          "longitude": 297.884136
+        },
+        {
+          "time": "2018-09-23T00:00:00Z",
+          "latitude": -59.229864,
+          "longitude": 298.176222
+        },
+        {
+          "time": "2018-09-24T00:00:00Z",
+          "latitude": -59.227098,
+          "longitude": 298.481138
+        },
+        {
+          "time": "2018-09-25T00:00:00Z",
+          "latitude": -59.18829,
+          "longitude": 298.820852
+        },
+        {
+          "time": "2018-09-26T00:00:00Z",
+          "latitude": -59.092419,
+          "longitude": 299.199232
+        },
+        {
+          "time": "2018-09-27T00:00:00Z",
+          "latitude": -58.910548,
+          "longitude": 299.597554
+        },
+        {
+          "time": "2018-09-28T00:00:00Z",
+          "latitude": -58.647375,
+          "longitude": 299.946599
+        },
+        {
+          "time": "2018-09-29T00:00:00Z",
+          "latitude": -58.340524,
+          "longitude": 300.279116
+        },
+        {
+          "time": "2018-09-30T00:00:00Z",
+          "latitude": -58.041881,
+          "longitude": 300.680243
+        },
+        {
+          "time": "2018-10-01T00:00:00Z",
+          "latitude": -57.813691,
+          "longitude": 301.223752
+        },
+        {
+          "time": "2018-10-02T00:00:00Z",
+          "latitude": -57.67387,
+          "longitude": 301.870208
+        },
+        {
+          "time": "2018-10-03T00:00:00Z",
+          "latitude": -57.562266,
+          "longitude": 302.42118
+        },
+        {
+          "time": "2018-10-04T00:00:00Z",
+          "latitude": -57.514321,
+          "longitude": 302.930107
+        },
+        {
+          "time": "2018-10-05T00:00:00Z",
+          "latitude": -57.3835,
+          "longitude": 303.403884
+        },
+        {
+          "time": "2018-10-06T00:00:00Z",
+          "latitude": -57.184051,
+          "longitude": 303.795278
+        },
+        {
+          "time": "2018-10-07T00:00:00Z",
+          "latitude": -56.957737,
+          "longitude": 304.082749
+        },
+        {
+          "time": "2018-10-08T00:00:00Z",
+          "latitude": -56.707875,
+          "longitude": 304.318275
+        },
+        {
+          "time": "2018-10-09T00:00:00Z",
+          "latitude": -56.447499,
+          "longitude": 304.541727
+        },
+        {
+          "time": "2018-10-10T00:00:00Z",
+          "latitude": -56.21744,
+          "longitude": 304.776171
+        },
+        {
+          "time": "2018-10-11T00:00:00Z",
+          "latitude": -56.074066,
+          "longitude": 305.039936
+        },
+        {
+          "time": "2018-10-12T00:00:00Z",
+          "latitude": -55.991223,
+          "longitude": 305.310609
+        },
+        {
+          "time": "2018-10-13T00:00:00Z",
+          "latitude": -55.968692,
+          "longitude": 305.583653
+        },
+        {
+          "time": "2018-10-14T00:00:00Z",
+          "latitude": -56.01324,
+          "longitude": 305.851863
+        },
+        {
+          "time": "2018-10-15T00:00:00Z",
+          "latitude": -56.114587,
+          "longitude": 306.110329
+        },
+        {
+          "time": "2018-10-16T00:00:00Z",
+          "latitude": -56.233777,
+          "longitude": 306.358196
+        }
+      ]
+    },
+    {
+      "id": "2018-09-16-06",
+      "release_time": "2018-09-16T00:00:00Z",
+      "release_index": 6,
+      "release_latitude": -59.5,
+      "release_longitude": 296.5,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 290.371,
+      "points": [
+        {
+          "time": "2018-09-16T00:00:00Z",
+          "latitude": -59.5,
+          "longitude": 296.5
+        },
+        {
+          "time": "2018-09-17T00:00:00Z",
+          "latitude": -59.469661,
+          "longitude": 296.459848
+        },
+        {
+          "time": "2018-09-18T00:00:00Z",
+          "latitude": -59.432212,
+          "longitude": 296.419903
+        },
+        {
+          "time": "2018-09-19T00:00:00Z",
+          "latitude": -59.387571,
+          "longitude": 296.379974
+        },
+        {
+          "time": "2018-09-20T00:00:00Z",
+          "latitude": -59.335667,
+          "longitude": 296.339263
+        },
+        {
+          "time": "2018-09-21T00:00:00Z",
+          "latitude": -59.275727,
+          "longitude": 296.312425
+        },
+        {
+          "time": "2018-09-22T00:00:00Z",
+          "latitude": -59.214003,
+          "longitude": 296.323344
+        },
+        {
+          "time": "2018-09-23T00:00:00Z",
+          "latitude": -59.161219,
+          "longitude": 296.372716
+        },
+        {
+          "time": "2018-09-24T00:00:00Z",
+          "latitude": -59.122523,
+          "longitude": 296.455327
+        },
+        {
+          "time": "2018-09-25T00:00:00Z",
+          "latitude": -59.102274,
+          "longitude": 296.562332
+        },
+        {
+          "time": "2018-09-26T00:00:00Z",
+          "latitude": -59.101544,
+          "longitude": 296.684325
+        },
+        {
+          "time": "2018-09-27T00:00:00Z",
+          "latitude": -59.117616,
+          "longitude": 296.825384
+        },
+        {
+          "time": "2018-09-28T00:00:00Z",
+          "latitude": -59.14905,
+          "longitude": 296.985282
+        },
+        {
+          "time": "2018-09-29T00:00:00Z",
+          "latitude": -59.188724,
+          "longitude": 297.154676
+        },
+        {
+          "time": "2018-09-30T00:00:00Z",
+          "latitude": -59.227983,
+          "longitude": 297.324393
+        },
+        {
+          "time": "2018-10-01T00:00:00Z",
+          "latitude": -59.260366,
+          "longitude": 297.48269
+        },
+        {
+          "time": "2018-10-02T00:00:00Z",
+          "latitude": -59.283769,
+          "longitude": 297.627478
+        },
+        {
+          "time": "2018-10-03T00:00:00Z",
+          "latitude": -59.299942,
+          "longitude": 297.761902
+        },
+        {
+          "time": "2018-10-04T00:00:00Z",
+          "latitude": -59.306445,
+          "longitude": 297.892973
+        },
+        {
+          "time": "2018-10-05T00:00:00Z",
+          "latitude": -59.301622,
+          "longitude": 298.027858
+        },
+        {
+          "time": "2018-10-06T00:00:00Z",
+          "latitude": -59.29403,
+          "longitude": 298.177843
+        },
+        {
+          "time": "2018-10-07T00:00:00Z",
+          "latitude": -59.291434,
+          "longitude": 298.347224
+        },
+        {
+          "time": "2018-10-08T00:00:00Z",
+          "latitude": -59.295401,
+          "longitude": 298.535921
+        },
+        {
+          "time": "2018-10-09T00:00:00Z",
+          "latitude": -59.304271,
+          "longitude": 298.739176
+        },
+        {
+          "time": "2018-10-10T00:00:00Z",
+          "latitude": -59.309356,
+          "longitude": 298.9417
+        },
+        {
+          "time": "2018-10-11T00:00:00Z",
+          "latitude": -59.305877,
+          "longitude": 299.140987
+        },
+        {
+          "time": "2018-10-12T00:00:00Z",
+          "latitude": -59.292465,
+          "longitude": 299.338852
+        },
+        {
+          "time": "2018-10-13T00:00:00Z",
+          "latitude": -59.259635,
+          "longitude": 299.546036
+        },
+        {
+          "time": "2018-10-14T00:00:00Z",
+          "latitude": -59.198291,
+          "longitude": 299.771314
+        },
+        {
+          "time": "2018-10-15T00:00:00Z",
+          "latitude": -59.079795,
+          "longitude": 300.014807
+        },
+        {
+          "time": "2018-10-16T00:00:00Z",
+          "latitude": -58.877213,
+          "longitude": 300.312853
+        }
+      ]
+    },
+    {
+      "id": "2018-09-16-07",
+      "release_time": "2018-09-16T00:00:00Z",
+      "release_index": 7,
+      "release_latitude": -60.1,
+      "release_longitude": 297.2,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 151.549,
+      "points": [
+        {
+          "time": "2018-09-16T00:00:00Z",
+          "latitude": -60.1,
+          "longitude": 297.2
+        },
+        {
+          "time": "2018-09-17T00:00:00Z",
+          "latitude": -60.054727,
+          "longitude": 297.146969
+        },
+        {
+          "time": "2018-09-18T00:00:00Z",
+          "latitude": -60.004965,
+          "longitude": 297.097105
+        },
+        {
+          "time": "2018-09-19T00:00:00Z",
+          "latitude": -59.9553,
+          "longitude": 297.045777
+        },
+        {
+          "time": "2018-09-20T00:00:00Z",
+          "latitude": -59.910551,
+          "longitude": 296.990886
+        },
+        {
+          "time": "2018-09-21T00:00:00Z",
+          "latitude": -59.870454,
+          "longitude": 296.933695
+        },
+        {
+          "time": "2018-09-22T00:00:00Z",
+          "latitude": -59.83352,
+          "longitude": 296.876013
+        },
+        {
+          "time": "2018-09-23T00:00:00Z",
+          "latitude": -59.798518,
+          "longitude": 296.81864
+        },
+        {
+          "time": "2018-09-24T00:00:00Z",
+          "latitude": -59.764144,
+          "longitude": 296.763127
+        },
+        {
+          "time": "2018-09-25T00:00:00Z",
+          "latitude": -59.729533,
+          "longitude": 296.712525
+        },
+        {
+          "time": "2018-09-26T00:00:00Z",
+          "latitude": -59.694498,
+          "longitude": 296.671181
+        },
+        {
+          "time": "2018-09-27T00:00:00Z",
+          "latitude": -59.656693,
+          "longitude": 296.635753
+        },
+        {
+          "time": "2018-09-28T00:00:00Z",
+          "latitude": -59.613514,
+          "longitude": 296.596581
+        },
+        {
+          "time": "2018-09-29T00:00:00Z",
+          "latitude": -59.566169,
+          "longitude": 296.557158
+        },
+        {
+          "time": "2018-09-30T00:00:00Z",
+          "latitude": -59.516801,
+          "longitude": 296.52403
+        },
+        {
+          "time": "2018-10-01T00:00:00Z",
+          "latitude": -59.468343,
+          "longitude": 296.504068
+        },
+        {
+          "time": "2018-10-02T00:00:00Z",
+          "latitude": -59.422767,
+          "longitude": 296.494513
+        },
+        {
+          "time": "2018-10-03T00:00:00Z",
+          "latitude": -59.380622,
+          "longitude": 296.48827
+        },
+        {
+          "time": "2018-10-04T00:00:00Z",
+          "latitude": -59.342824,
+          "longitude": 296.484757
+        },
+        {
+          "time": "2018-10-05T00:00:00Z",
+          "latitude": -59.308251,
+          "longitude": 296.483937
+        },
+        {
+          "time": "2018-10-06T00:00:00Z",
+          "latitude": -59.273483,
+          "longitude": 296.491986
+        },
+        {
+          "time": "2018-10-07T00:00:00Z",
+          "latitude": -59.23798,
+          "longitude": 296.512456
+        },
+        {
+          "time": "2018-10-08T00:00:00Z",
+          "latitude": -59.203553,
+          "longitude": 296.548868
+        },
+        {
+          "time": "2018-10-09T00:00:00Z",
+          "latitude": -59.176516,
+          "longitude": 296.60351
+        },
+        {
+          "time": "2018-10-10T00:00:00Z",
+          "latitude": -59.162586,
+          "longitude": 296.670648
+        },
+        {
+          "time": "2018-10-11T00:00:00Z",
+          "latitude": -59.160259,
+          "longitude": 296.744905
+        },
+        {
+          "time": "2018-10-12T00:00:00Z",
+          "latitude": -59.161719,
+          "longitude": 296.822701
+        },
+        {
+          "time": "2018-10-13T00:00:00Z",
+          "latitude": -59.161695,
+          "longitude": 296.904424
+        },
+        {
+          "time": "2018-10-14T00:00:00Z",
+          "latitude": -59.160867,
+          "longitude": 296.9953
+        },
+        {
+          "time": "2018-10-15T00:00:00Z",
+          "latitude": -59.157988,
+          "longitude": 297.100565
+        },
+        {
+          "time": "2018-10-16T00:00:00Z",
+          "latitude": -59.153818,
+          "longitude": 297.227379
+        }
+      ]
+    },
+    {
+      "id": "2018-09-16-08",
+      "release_time": "2018-09-16T00:00:00Z",
+      "release_index": 8,
+      "release_latitude": -60.7,
+      "release_longitude": 297.90000000000003,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 452.11,
+      "points": [
+        {
+          "time": "2018-09-16T00:00:00Z",
+          "latitude": -60.7,
+          "longitude": 297.90000000000003
+        },
+        {
+          "time": "2018-09-17T00:00:00Z",
+          "latitude": -60.632232,
+          "longitude": 297.866265
+        },
+        {
+          "time": "2018-09-18T00:00:00Z",
+          "latitude": -60.572316,
+          "longitude": 297.81404
+        },
+        {
+          "time": "2018-09-19T00:00:00Z",
+          "latitude": -60.517168,
+          "longitude": 297.742665
+        },
+        {
+          "time": "2018-09-20T00:00:00Z",
+          "latitude": -60.462824,
+          "longitude": 297.646771
+        },
+        {
+          "time": "2018-09-21T00:00:00Z",
+          "latitude": -60.411407,
+          "longitude": 297.525319
+        },
+        {
+          "time": "2018-09-22T00:00:00Z",
+          "latitude": -60.361931,
+          "longitude": 297.381204
+        },
+        {
+          "time": "2018-09-23T00:00:00Z",
+          "latitude": -60.309924,
+          "longitude": 297.224705
+        },
+        {
+          "time": "2018-09-24T00:00:00Z",
+          "latitude": -60.258891,
+          "longitude": 297.086204
+        },
+        {
+          "time": "2018-09-25T00:00:00Z",
+          "latitude": -60.209823,
+          "longitude": 296.955893
+        },
+        {
+          "time": "2018-09-26T00:00:00Z",
+          "latitude": -60.15776,
+          "longitude": 296.820027
+        },
+        {
+          "time": "2018-09-27T00:00:00Z",
+          "latitude": -60.098273,
+          "longitude": 296.669735
+        },
+        {
+          "time": "2018-09-28T00:00:00Z",
+          "latitude": -60.024007,
+          "longitude": 296.495128
+        },
+        {
+          "time": "2018-09-29T00:00:00Z",
+          "latitude": -59.927223,
+          "longitude": 296.29777
+        },
+        {
+          "time": "2018-09-30T00:00:00Z",
+          "latitude": -59.807939,
+          "longitude": 296.120308
+        },
+        {
+          "time": "2018-10-01T00:00:00Z",
+          "latitude": -59.666117,
+          "longitude": 295.955216
+        },
+        {
+          "time": "2018-10-02T00:00:00Z",
+          "latitude": -59.496609,
+          "longitude": 295.845076
+        },
+        {
+          "time": "2018-10-03T00:00:00Z",
+          "latitude": -59.309668,
+          "longitude": 295.84759
+        },
+        {
+          "time": "2018-10-04T00:00:00Z",
+          "latitude": -59.124155,
+          "longitude": 295.973115
+        },
+        {
+          "time": "2018-10-05T00:00:00Z",
+          "latitude": -58.964034,
+          "longitude": 296.220989
+        },
+        {
+          "time": "2018-10-06T00:00:00Z",
+          "latitude": -58.871766,
+          "longitude": 296.523654
+        },
+        {
+          "time": "2018-10-07T00:00:00Z",
+          "latitude": -58.873775,
+          "longitude": 296.839611
+        },
+        {
+          "time": "2018-10-08T00:00:00Z",
+          "latitude": -58.944199,
+          "longitude": 297.149935
+        },
+        {
+          "time": "2018-10-09T00:00:00Z",
+          "latitude": -59.021072,
+          "longitude": 297.457566
+        },
+        {
+          "time": "2018-10-10T00:00:00Z",
+          "latitude": -59.075557,
+          "longitude": 297.761672
+        },
+        {
+          "time": "2018-10-11T00:00:00Z",
+          "latitude": -59.103989,
+          "longitude": 298.076697
+        },
+        {
+          "time": "2018-10-12T00:00:00Z",
+          "latitude": -59.134575,
+          "longitude": 298.407253
+        },
+        {
+          "time": "2018-10-13T00:00:00Z",
+          "latitude": -59.167095,
+          "longitude": 298.730576
+        },
+        {
+          "time": "2018-10-14T00:00:00Z",
+          "latitude": -59.173045,
+          "longitude": 299.034931
+        },
+        {
+          "time": "2018-10-15T00:00:00Z",
+          "latitude": -59.147165,
+          "longitude": 299.332086
+        },
+        {
+          "time": "2018-10-16T00:00:00Z",
+          "latitude": -59.091051,
+          "longitude": 299.639257
+        }
+      ]
+    },
+    {
+      "id": "2018-09-16-09",
+      "release_time": "2018-09-16T00:00:00Z",
+      "release_index": 9,
+      "release_latitude": -61.3,
+      "release_longitude": 298.6,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 433.731,
+      "points": [
+        {
+          "time": "2018-09-16T00:00:00Z",
+          "latitude": -61.3,
+          "longitude": 298.6
+        },
+        {
+          "time": "2018-09-17T00:00:00Z",
+          "latitude": -61.165885,
+          "longitude": 298.748591
+        },
+        {
+          "time": "2018-09-18T00:00:00Z",
+          "latitude": -61.006323,
+          "longitude": 298.846021
+        },
+        {
+          "time": "2018-09-19T00:00:00Z",
+          "latitude": -60.818341,
+          "longitude": 298.901223
+        },
+        {
+          "time": "2018-09-20T00:00:00Z",
+          "latitude": -60.607456,
+          "longitude": 298.928478
+        },
+        {
+          "time": "2018-09-21T00:00:00Z",
+          "latitude": -60.40816,
+          "longitude": 298.977624
+        },
+        {
+          "time": "2018-09-22T00:00:00Z",
+          "latitude": -60.236776,
+          "longitude": 299.078818
+        },
+        {
+          "time": "2018-09-23T00:00:00Z",
+          "latitude": -60.120325,
+          "longitude": 299.214786
+        },
+        {
+          "time": "2018-09-24T00:00:00Z",
+          "latitude": -60.051924,
+          "longitude": 299.386549
+        },
+        {
+          "time": "2018-09-25T00:00:00Z",
+          "latitude": -60.031289,
+          "longitude": 299.580079
+        },
+        {
+          "time": "2018-09-26T00:00:00Z",
+          "latitude": -60.050269,
+          "longitude": 299.779639
+        },
+        {
+          "time": "2018-09-27T00:00:00Z",
+          "latitude": -60.096815,
+          "longitude": 299.949235
+        },
+        {
+          "time": "2018-09-28T00:00:00Z",
+          "latitude": -60.176998,
+          "longitude": 300.08682
+        },
+        {
+          "time": "2018-09-29T00:00:00Z",
+          "latitude": -60.290071,
+          "longitude": 300.19334
+        },
+        {
+          "time": "2018-09-30T00:00:00Z",
+          "latitude": -60.439868,
+          "longitude": 300.269322
+        },
+        {
+          "time": "2018-10-01T00:00:00Z",
+          "latitude": -60.601795,
+          "longitude": 300.303657
+        },
+        {
+          "time": "2018-10-02T00:00:00Z",
+          "latitude": -60.764104,
+          "longitude": 300.32459
+        },
+        {
+          "time": "2018-10-03T00:00:00Z",
+          "latitude": -60.891218,
+          "longitude": 300.387701
+        },
+        {
+          "time": "2018-10-04T00:00:00Z",
+          "latitude": -60.977477,
+          "longitude": 300.499573
+        },
+        {
+          "time": "2018-10-05T00:00:00Z",
+          "latitude": -61.023661,
+          "longitude": 300.661994
+        },
+        {
+          "time": "2018-10-06T00:00:00Z",
+          "latitude": -61.029977,
+          "longitude": 300.86883
+        },
+        {
+          "time": "2018-10-07T00:00:00Z",
+          "latitude": -60.998502,
+          "longitude": 301.111605
+        },
+        {
+          "time": "2018-10-08T00:00:00Z",
+          "latitude": -60.936576,
+          "longitude": 301.364718
+        },
+        {
+          "time": "2018-10-09T00:00:00Z",
+          "latitude": -60.861243,
+          "longitude": 301.600442
+        },
+        {
+          "time": "2018-10-10T00:00:00Z",
+          "latitude": -60.784744,
+          "longitude": 301.811576
+        },
+        {
+          "time": "2018-10-11T00:00:00Z",
+          "latitude": -60.714283,
+          "longitude": 301.991781
+        },
+        {
+          "time": "2018-10-12T00:00:00Z",
+          "latitude": -60.64486,
+          "longitude": 302.139605
+        },
+        {
+          "time": "2018-10-13T00:00:00Z",
+          "latitude": -60.567268,
+          "longitude": 302.228795
+        },
+        {
+          "time": "2018-10-14T00:00:00Z",
+          "latitude": -60.481132,
+          "longitude": 302.242984
+        },
+        {
+          "time": "2018-10-15T00:00:00Z",
+          "latitude": -60.390873,
+          "longitude": 302.181937
+        },
+        {
+          "time": "2018-10-16T00:00:00Z",
+          "latitude": -60.302191,
+          "longitude": 302.060195
+        }
+      ]
+    },
+    {
+      "id": "2018-09-16-10",
+      "release_time": "2018-09-16T00:00:00Z",
+      "release_index": 10,
+      "release_latitude": -61.9,
+      "release_longitude": 299.3,
+      "status": "completed",
+      "integrated_hours": 720,
+      "travelled_km": 336.46,
+      "points": [
+        {
+          "time": "2018-09-16T00:00:00Z",
+          "latitude": -61.9,
+          "longitude": 299.3
+        },
+        {
+          "time": "2018-09-17T00:00:00Z",
+          "latitude": -61.848482,
+          "longitude": 299.399908
+        },
+        {
+          "time": "2018-09-18T00:00:00Z",
+          "latitude": -61.794933,
+          "longitude": 299.503643
+        },
+        {
+          "time": "2018-09-19T00:00:00Z",
+          "latitude": -61.741717,
+          "longitude": 299.612807
+        },
+        {
+          "time": "2018-09-20T00:00:00Z",
+          "latitude": -61.691733,
+          "longitude": 299.728987
+        },
+        {
+          "time": "2018-09-21T00:00:00Z",
+          "latitude": -61.650868,
+          "longitude": 299.855221
+        },
+        {
+          "time": "2018-09-22T00:00:00Z",
+          "latitude": -61.622795,
+          "longitude": 299.987539
+        },
+        {
+          "time": "2018-09-23T00:00:00Z",
+          "latitude": -61.602935,
+          "longitude": 300.131696
+        },
+        {
+          "time": "2018-09-24T00:00:00Z",
+          "latitude": -61.584575,
+          "longitude": 300.295093
+        },
+        {
+          "time": "2018-09-25T00:00:00Z",
+          "latitude": -61.565515,
+          "longitude": 300.482973
+        },
+        {
+          "time": "2018-09-26T00:00:00Z",
+          "latitude": -61.53908,
+          "longitude": 300.697411
+        },
+        {
+          "time": "2018-09-27T00:00:00Z",
+          "latitude": -61.501628,
+          "longitude": 300.919765
+        },
+        {
+          "time": "2018-09-28T00:00:00Z",
+          "latitude": -61.448879,
+          "longitude": 301.141364
+        },
+        {
+          "time": "2018-09-29T00:00:00Z",
+          "latitude": -61.379298,
+          "longitude": 301.362832
+        },
+        {
+          "time": "2018-09-30T00:00:00Z",
+          "latitude": -61.301175,
+          "longitude": 301.589344
+        },
+        {
+          "time": "2018-10-01T00:00:00Z",
+          "latitude": -61.229184,
+          "longitude": 301.807836
+        },
+        {
+          "time": "2018-10-02T00:00:00Z",
+          "latitude": -61.16648,
+          "longitude": 302.026976
+        },
+        {
+          "time": "2018-10-03T00:00:00Z",
+          "latitude": -61.107695,
+          "longitude": 302.244074
+        },
+        {
+          "time": "2018-10-04T00:00:00Z",
+          "latitude": -61.052023,
+          "longitude": 302.45851
+        },
+        {
+          "time": "2018-10-05T00:00:00Z",
+          "latitude": -60.997846,
+          "longitude": 302.673809
+        },
+        {
+          "time": "2018-10-06T00:00:00Z",
+          "latitude": -60.941469,
+          "longitude": 302.872049
+        },
+        {
+          "time": "2018-10-07T00:00:00Z",
+          "latitude": -60.878882,
+          "longitude": 303.03916
+        },
+        {
+          "time": "2018-10-08T00:00:00Z",
+          "latitude": -60.806961,
+          "longitude": 303.180051
+        },
+        {
+          "time": "2018-10-09T00:00:00Z",
+          "latitude": -60.725529,
+          "longitude": 303.297742
+        },
+        {
+          "time": "2018-10-10T00:00:00Z",
+          "latitude": -60.636075,
+          "longitude": 303.392259
+        },
+        {
+          "time": "2018-10-11T00:00:00Z",
+          "latitude": -60.551003,
+          "longitude": 303.429874
+        },
+        {
+          "time": "2018-10-12T00:00:00Z",
+          "latitude": -60.469382,
+          "longitude": 303.408141
+        },
+        {
+          "time": "2018-10-13T00:00:00Z",
+          "latitude": -60.384931,
+          "longitude": 303.328498
+        },
+        {
+          "time": "2018-10-14T00:00:00Z",
+          "latitude": -60.294823,
+          "longitude": 303.183744
+        },
+        {
+          "time": "2018-10-15T00:00:00Z",
+          "latitude": -60.207394,
+          "longitude": 303.011346
+        },
+        {
+          "time": "2018-10-16T00:00:00Z",
+          "latitude": -60.116334,
+          "longitude": 302.817458
+        }
+      ]
+    }
+  ],
+  "boundary": "Kinematic surface tracks through one historical year of older OSCAR data. Track count and distance are not water-mass volume, residence, Lagrangian coherence, current boundary, temperature advection, full-depth circulation, or heat transport."
+}
