@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="OSW Ocean Column Address workbench: pair one of 56 surface province identities with one of five declared depth bands.">
+  <title>Ocean Column Address — OSW</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>html,body{max-width:100%;overflow-x:hidden}.hero>*,.workbench>*{min-width:0}.controls select{min-width:0;max-width:100%}.data-notes{margin-top:16px;padding:13px 15px;border:1px solid #36565d;border-radius:10px;color:var(--muted);font-size:13px;line-height:1.5}.data-notes summary{cursor:pointer;color:var(--ink);font-weight:800}.data-notes a{color:var(--teal)}@media(max-width:560px){.masthead{flex-wrap:wrap}.masthead nav{order:3;width:100%;margin-left:0;justify-content:space-between}.hero,.workbench{width:100%}}</style>
+</head>
+<body>
+  <header class="masthead">
+    <a class="wordmark" href="../README.md">OSW</a>
+    <p>Ocean States of the World</p>
+    <nav aria-label="Project guide">
+      <a href="../atlas/">Atlas</a>
+      <a href="../guides/15-OCEAN-COLUMN-ADDRESS.md">Definition</a>
+      <a href="README.md">Method</a>
+      <a href="../research/ocean-column-address-v1.json">Contract</a>
+    </nav>
+    <span>REFERENCE LAB · V1</span>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">THE OCEAN GAINS A VERTICAL ADDRESS</p>
+        <h1 id="page-title">Every wet place has a surface address—and a depth.</h1>
+        <p class="dek">Choose a province and depth band. Then add physical overlays without confusing a stable address with changing ocean structure.</p>
+      </div>
+      <p class="formula"><span>HORIZONTAL REFERENCE</span><b>×</b><span>DEPTH BAND</span><strong>= COLUMN ADDRESS</strong></p>
+    </section>
+
+    <section class="workbench" aria-labelledby="workbench-title">
+      <div class="controls">
+        <p class="eyebrow">ADDRESS BUILDER</p>
+        <h2 id="workbench-title">Compose one address class</h2>
+        <label for="province-select">Horizontal province
+          <select id="province-select"></select>
+        </label>
+        <fieldset>
+          <legend>Vertical depth band</legend>
+          <div id="band-controls" class="band-controls"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Physical teaching overlays</legend>
+          <p>These hypothetical ranges can overlap the address and one another.</p>
+          <div id="overlay-controls" class="overlay-controls"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Vertical display scale</legend>
+          <div class="scale-controls">
+            <button type="button" data-scale="readable" aria-pressed="true">Readable bands</button>
+            <button type="button" data-scale="linear" aria-pressed="false">Linear depth</button>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="viewer">
+        <div class="viewer-heading">
+          <div><p class="eyebrow">SELECTED ADDRESS</p><h2 id="address-title">Loading…</h2></div>
+          <span id="scale-badge">EQUAL-BAND DISPLAY · NOT TO SCALE</span>
+        </div>
+        <svg id="column-svg" viewBox="0 0 960 690" role="img" aria-labelledby="svg-title svg-desc">
+          <title id="svg-title">Ocean column address teaching section</title>
+          <desc id="svg-desc">Five depth bands shown in shelf, basin, and trench example columns. Selected address and enabled conceptual overlays are described below.</desc>
+        </svg>
+        <output id="address-readout" tabindex="-1" aria-live="polite"></output>
+        <p class="boundary"><strong>Evidence boundary:</strong> the province identity is a reference label. Selecting a province × band composes an address class; without measured bathymetry it does not establish that the combination contains wet volume. The three seabeds and physical overlays are teaching examples—not local bathymetry, observations, detected regimes, heat content, or transport.</p>
+        <details class="data-notes">
+          <summary>Data identity and next evidence step</summary>
+          <p>The 56 names come from OSW's classic province reference directory. Exact interval semantics come from the edition-1 JSON contract. Both source checksums are embedded in the generated browser bundle.</p>
+          <p>Real province-specific occupancy requires a versioned bathymetry grid, exact horizontal geometry, cell bounds, masks, and a reproducible intersection. GEBCO remains the candidate source; this stage does not download or imply it.</p>
+          <p><a href="../research/longhurst-province-reference.csv">Province directory</a> · <a href="../research/ocean-column-address-v1.json">Address contract</a> · <a href="../SOURCE-REGISTER.md">Source register</a></p>
+        </details>
+      </div>
+    </section>
+
+    <section class="reading" aria-labelledby="reading-title">
+      <div><p class="eyebrow">HOW TO READ IT</p><h2 id="reading-title">The address stays still. The ocean moves through it.</h2></div>
+      <div class="reading-grid">
+        <article><b>01</b><h3>Reference</h3><p>One declared province and one declared half-open depth interval identify an address class; occupancy still requires bathymetry.</p></article>
+        <article><b>02</b><h3>Truncation</h3><p>Bathymetry ends a local column. A 90 m shelf contains only the epipelagic band.</p></article>
+        <article><b>03</b><h3>Overlay</h3><p>Mixed layers, gradients, water masses, and bottom influence follow independent evidence.</p></article>
+        <article><b>04</b><h3>Unknown</h3><p>Missing or invalid water remains unclassified; it is never filled merely to complete the picture.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer><p>OSW Ocean Column Address edition 1 · conceptual viewer · no navigation use</p><a href="../LICENSE">MIT · Gio Della-Libera</a></footer>
+  <noscript>The interactive address builder requires JavaScript. Read the complete definition in Guide 15.</noscript>
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>

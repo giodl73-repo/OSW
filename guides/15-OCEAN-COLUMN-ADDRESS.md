@@ -148,6 +148,10 @@ truncated depth bands; selecting a band should reveal measured properties and
 physical overlays with missing data visible. The address remains stable while
 mixed layers, water masses, anomalies, and currents change through it.
 
+[Open the first Ocean Column Address workbench](../column/). It uses shelf,
+basin, and trench teaching columns to establish the interaction grammar; their
+seabeds and overlays are explicitly conceptual, not province-specific data.
+
 ## Planetary boundary
 
 Edition 1 is Earth ocean geography. Its sunlight labels, metre cutoffs, solid

@@ -65,6 +65,10 @@ budgets remain distinct object types with distinct identity tests.
 - Ocean Column Address edition 1 pairs a declared horizontal reference with one
   of five bathymetry-truncated pelagic depth bands; physical column regimes
   remain overlapping diagnosed layers.
+- The first browser workbench now establishes address selection, bathymetric
+  truncation archetypes, scale comparison, and independent physical-overlay
+  controls. Real province-specific occupancy remains gated on exact geometry
+  and a versioned bathymetry intersection.
 - 36 shaped ocean features span waters, flows, edges, floor, life, and events.
 - Six conceptual lenses and multiple observed fields share an ocean-first map.
 - The 11 realms and 22 contiguous regions are OSW organizational constructs,

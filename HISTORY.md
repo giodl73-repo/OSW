@@ -22,6 +22,14 @@ coordinate requirements, and the boundary against false full-depth ecological
 or transport claims. Six new reference terms bring the editorial registry to
 116 objects and 112 relations.
 
+The first browser workbench turns that definition into an inspectable grammar:
+all 56 reference identities can pair with any edition-1 band, shelf/basin/trench
+teaching columns demonstrate bathymetric truncation, and independent regime
+overlays can be switched on without changing the address. The workbench also
+makes an important absence visible: selecting a cross-product class does not
+prove it is occupied. Exact province geometry and versioned bathymetry must be
+intersected before OSW can claim local wet volume.
+
 ## 2026-09-05 — Ocean objects become a field guide
 
 The maps produced a larger question: are OSW's jets, bands, water masses, and
