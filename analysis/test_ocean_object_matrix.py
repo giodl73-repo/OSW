@@ -19,9 +19,9 @@ def load_builder():
 
 def test_object_matrix_contract():
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
-    assert summary["object_count"] == 110
+    assert summary["object_count"] == 116
     assert summary["type_count"] == 13
-    assert sum(summary["counts_by_type"].values()) == 110
+    assert sum(summary["counts_by_type"].values()) == 116
     assert len(summary["identity_tests"]) == 24
     text = SVG.read_text(encoding="utf-8")
     assert "CONCEPTUAL MATRIX · NOT A MAP OR NATURAL HIERARCHY" in text

@@ -4,6 +4,24 @@ This record preserves changes in the project's way of seeing the ocean, not
 only software releases. Atlas version status remains in `README.md` and
 `PREVIEW-STATUS.md`.
 
+## 2026-09-08 — The ocean gains a vertical address
+
+The 56-province reference answered “where on the ocean surface?” but left the
+water beneath it without a complete address. OSW now pairs any declared
+horizontal reference with one of five conventional pelagic depth bands. The
+result assigns every valid wet voxel exactly one horizontal × vertical address,
+truncated honestly by bathymetry.
+
+The distinction that makes the system useful is also its limit: depth bands are
+reference geography, while mixed layers, thermoclines, haloclines, pycnoclines,
+water masses, and bottom boundary layers are diagnosed physical overlays. They
+may cross, overlap, disappear, or depend on a stated criterion. The new address
+therefore covers the ocean without claiming to have partitioned all of its
+physics. Guide 15 records edition-1 intervals, endpoint rules, masks, vertical
+coordinate requirements, and the boundary against false full-depth ecological
+or transport claims. Six new reference terms bring the editorial registry to
+116 objects and 112 relations.
+
 ## 2026-09-05 — Ocean objects become a field guide
 
 The maps produced a larger question: are OSW's jets, bands, water masses, and

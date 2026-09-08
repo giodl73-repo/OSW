@@ -69,10 +69,10 @@ them overlap while preserving what evidence each label requires.
 ## The v0.1 registry
 
 The machine-readable [object registry](research/ocean-object-classification.csv)
-contains **110 core terms across 13 types**. Its companion
-[relationship registry](research/ocean-object-relations.csv) records 107 explicit
-connections among those terms. One hundred ten is an editorial coverage count, not a
-claim that nature contains exactly 110 ocean objects. New terms can be added
+contains **116 core terms across 13 types**. Its companion
+[relationship registry](research/ocean-object-relations.csv) records 112 explicit
+connections among those terms. One hundred sixteen is an editorial coverage count, not a
+claim that nature contains exactly 116 ocean objects. New terms can be added
 only when their primary type, identity test, geometry, time behavior, coverage,
 mobility, evidence status, and external anchor are declared.
 
@@ -118,9 +118,18 @@ An object type does not automatically tile the ocean.
 | `sparse` | discrete named or detected features occur within a wider background |
 | `construct_only` | geometry exists because an analysis declares it |
 
-Only an exhaustive layer can behave like a complete state map. Longhurst
+Only an exhaustive declared partition can behave like a complete state map. Longhurst
 provinces can do that under their ecological reference rule. Eddies, fronts,
 heatwaves, gates, and plumes cannot—and should not be padded until they do.
+
+## A complete three-dimensional address, not a complete physical theory
+
+OSW's [ocean column address](guides/15-OCEAN-COLUMN-ADDRESS.md) combines one
+declared horizontal reference membership with one conventional pelagic depth
+band. That product can exhaustively index valid wet volume. Its completeness is
+cartographic: it does not make Longhurst ecology valid at depth or make mixed
+layers, thermoclines, water masses, and bottom boundary layers mutually
+exclusive. Those remain physical overlays with their own identity tests.
 
 ## Interoperability boundary
 

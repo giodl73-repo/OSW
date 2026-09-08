@@ -62,6 +62,9 @@ budgets remain distinct object types with distinct identity tests.
 ### Atlas vocabulary
 
 - 56 classic Longhurst province identities provide the reference directory.
+- Ocean Column Address edition 1 pairs a declared horizontal reference with one
+  of five bathymetry-truncated pelagic depth bands; physical column regimes
+  remain overlapping diagnosed layers.
 - 36 shaped ocean features span waters, flows, edges, floor, life, and events.
 - Six conceptual lenses and multiple observed fields share an ocean-first map.
 - The 11 realms and 22 contiguous regions are OSW organizational constructs,

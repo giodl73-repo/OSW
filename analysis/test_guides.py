@@ -1,4 +1,5 @@
 import csv
+import json
 import pathlib
 import re
 
@@ -20,6 +21,7 @@ PAGES = tuple(GUIDES / f"{number:02d}-{slug}.md" for number, slug in (
     (12, "LIFE-OXYGEN-NUTRIENTS-AND-CARBON"),
     (13, "HOW-TO-NAME-AN-OCEAN-PATCH"),
     (14, "EVIDENCE-RECEIPTS"),
+    (15, "OCEAN-COLUMN-ADDRESS"),
 ))
 REGISTRY = ROOT / "research" / "ocean-object-classification.csv"
 RELATIONS = ROOT / "research" / "ocean-object-relations.csv"
@@ -150,7 +152,7 @@ def test_ocean_object_classification_registry() -> None:
     with REGISTRY.open(encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle))
 
-    assert len(rows) == 110
+    assert len(rows) == 116
     assert len({row["object_id"] for row in rows}) == len(rows)
     assert len({row["preferred_name"].casefold() for row in rows}) == len(rows)
     assert {row["object_type"] for row in rows} == OBJECT_TYPES
@@ -166,21 +168,46 @@ def test_ocean_object_classification_registry() -> None:
 
     classification = (ROOT / "CLASSIFICATION.md").read_text(encoding="utf-8")
     normalized_classification = " ".join(classification.split())
-    assert "110 core terms across 13 types" in classification
+    assert "116 core terms across 13 types" in classification
     assert REGISTRY.name in classification
-    assert "not a claim that nature contains exactly 110" in normalized_classification
+    assert "not a claim that nature contains exactly 116" in normalized_classification
 
     with RELATIONS.open(encoding="utf-8", newline="") as handle:
         relations = list(csv.DictReader(handle))
 
     object_ids = {row["object_id"] for row in rows}
-    assert len(relations) == 107
+    assert len(relations) == 112
     assert len({row["relation_id"] for row in relations}) == len(relations)
     assert {row["predicate"] for row in relations} <= RELATION_PREDICATES
     assert all(row["subject_id"] in object_ids and row["object_id"] in object_ids for row in relations)
     assert all(row["subject_id"] != row["object_id"] for row in relations)
     assert all(row["qualification"] and row["status"] for row in relations)
-    assert "107 explicit" in classification
+    assert "112 explicit" in classification
+
+
+def test_ocean_column_address_contract() -> None:
+    contract_path = ROOT / "research" / "ocean-column-address-v1.json"
+    contract = json.loads(contract_path.read_text(encoding="utf-8"))
+    bands = contract["bands"]
+
+    assert contract["schema"] == "osw-ocean-column-address-v1"
+    assert contract["status"] == "reference_geography"
+    assert len(bands) == 5
+    assert bands[0]["lower_m"] == 0
+    assert bands[-1]["upper_m"] is None
+    assert all(
+        left["upper_m"] == right["lower_m"]
+        for left, right in zip(bands, bands[1:])
+    )
+    assert [band["object_id"] for band in bands] == [
+        "OBJ112", "OBJ113", "OBJ114", "OBJ115", "OBJ116"
+    ]
+    assert "exactly one address" in contract["domain"]["coverage"]
+
+    guide = (GUIDES / "15-OCEAN-COLUMN-ADDRESS.md").read_text(encoding="utf-8")
+    assert contract_path.name in guide
+    assert "reference geography" in guide.casefold()
+    assert "do not transfer directly" in guide
 
 
 def test_source_register_ids_are_unique() -> None:

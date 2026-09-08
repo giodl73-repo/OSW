@@ -30,7 +30,7 @@ synthesis; an integrated quantity can come from any suitable source.
 
 For the formal type × identity-test system behind these chapters, open
 [Classifying Ocean Objects](../CLASSIFICATION.md) and its
-[110-term registry](../research/ocean-object-classification.csv). The companion
+[116-term registry](../research/ocean-object-classification.csv). The companion
 [relationship registry](../research/ocean-object-relations.csv) records how
 objects carry, bound, transform, steer, overlap, and measure one another.
 
@@ -52,6 +52,7 @@ objects carry, bound, transform, steer, overlap, and measure one another.
 | Is it oxygen structure, biomass, bloom, chemical pool, or flux? | [Life, oxygen, nutrients, and carbon](12-LIFE-OXYGEN-NUTRIENTS-AND-CARBON.md) |
 | What evidence lets me name any mapped patch? | [How to name an ocean patch](13-HOW-TO-NAME-AN-OCEAN-PATCH.md) |
 | What did this particular dataset actually earn? | [Evidence receipts](14-EVIDENCE-RECEIPTS.md) |
+| Where is this wet volume horizontally and vertically? | [Ocean column address](15-OCEAN-COLUMN-ADDRESS.md) |
 
 ## Start with the object families
 
@@ -66,7 +67,7 @@ objects carry, bound, transform, steer, overlap, and measure one another.
 | Geography | How can the ocean be exhaustively indexed? | basins, Longhurst provinces, dynamic seascapes |
 | Event | What unusual condition is happening now? | marine heatwaves, cold spells, blooms |
 
-## The fourteen guides
+## The fifteen guides
 
 1. [Water Masses and Layers](01-WATER-MASSES-AND-LAYERS.md) — property-defined bodies in three dimensions.
 2. [Fronts, Jets, and Bands](02-FRONTS-JETS-AND-BANDS.md) — boundaries and the fast flows that often follow them.
@@ -80,8 +81,9 @@ objects carry, bound, transform, steer, overlap, and measure one another.
 10. [Plumes, Upwelling, and Vertical Exchange](10-PLUMES-UPWELLING-AND-VERTICAL-EXCHANGE.md) — source-tagged bodies, vertical-motion fields, reversible heave, and cross-density transformation.
 11. [Sea Ice, Polynyas, and Ocean Cavities](11-SEA-ICE-POLYNYAS-AND-OCEAN-CAVITIES.md) — frozen cover, persistent openings, floating roofs, liquid cavities, and phase-change exchange.
 12. [Life, Oxygen, Nutrients, and Carbon](12-LIFE-OXYGEN-NUTRIENTS-AND-CARBON.md) — persistent chemical structure, thresholded events, biological proxies, inventories, and fluxes.
-13. [How to Name an Ocean Patch](13-HOW-TO-NAME-AN-OCEAN-PATCH.md) — the decision ladder and visual matrix across all 110 objects.
+13. [How to Name an Ocean Patch](13-HOW-TO-NAME-AN-OCEAN-PATCH.md) — the decision ladder and visual matrix across all 116 objects.
 14. [Evidence Receipts](14-EVIDENCE-RECEIPTS.md) — origin × claim stage × identity-test results for real OSW layers.
+15. [Ocean Column Address](15-OCEAN-COLUMN-ADDRESS.md) — a complete horizontal × vertical reference without turning depth bands into physical walls.
 
 ## One parcel, several objects
 
