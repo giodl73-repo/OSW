@@ -13,6 +13,8 @@ backward compatibility.
 
 [![validate](https://github.com/giodl73-repo/OSW/actions/workflows/validate.yml/badge.svg)](https://github.com/giodl73-repo/OSW/actions/workflows/validate.yml)
 
+**[See what OSW is building next ->](ROADMAP.md)**
+
 ## Enter the Ocean States
 
 **[Explore 56 ocean states, 36 shaped features, and the Atlas 10 depth ladder →](atlas/)**
@@ -137,6 +139,7 @@ the continents visual control.
 
 | If you want to… | Go here |
 |---|---|
+| See the current priorities and next site milestone | [Central roadmap](ROADMAP.md) |
 | See the idea in one image | [Full fluid-geography map](figures/osw-fluid-geography.svg) |
 | Understand the Province Atlas breakthrough and its next promise | [Project history](HISTORY.md) and [shape-system plan](plans/province-atlas-shape-system.md) |
 | Compare ocean-first world geometries and the 56-province cartogram | [Projection laboratory](projections/) |
