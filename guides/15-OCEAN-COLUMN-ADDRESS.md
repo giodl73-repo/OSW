@@ -148,9 +148,10 @@ truncated depth bands; selecting a band should reveal measured properties and
 physical overlays with missing data visible. The address remains stable while
 mixed layers, water masses, anomalies, and currents change through it.
 
-[Open the first Ocean Column Address workbench](../column/). It uses shelf,
-basin, and trench teaching columns to establish the interaction grammar; their
-seabeds and overlays are explicitly conceptual, not province-specific data.
+[Open the Ocean Column Address workbench](../column/). It compares one measured
+GEBCO_2026 cell nearest the selected approximate province seed with shelf,
+basin, and trench teaching columns. The single cell is not province-wide
+bathymetry; the other seabeds and all regime overlays remain conceptual.
 
 ## Planetary boundary
 

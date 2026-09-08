@@ -6,7 +6,7 @@
   <meta name="description" content="OSW Ocean Column Address workbench: pair one of 56 surface province identities with one of five declared depth bands.">
   <title>Ocean Column Address — OSW</title>
   <link rel="stylesheet" href="styles.css">
-  <style>html,body{max-width:100%;overflow-x:hidden}.hero>*,.workbench>*{min-width:0}.controls select{min-width:0;max-width:100%}.data-notes{margin-top:16px;padding:13px 15px;border:1px solid #36565d;border-radius:10px;color:var(--muted);font-size:13px;line-height:1.5}.data-notes summary{cursor:pointer;color:var(--ink);font-weight:800}.data-notes a{color:var(--teal)}@media(max-width:560px){.masthead{flex-wrap:wrap}.masthead nav{order:3;width:100%;margin-left:0;justify-content:space-between}.hero,.workbench{width:100%}}</style>
+  <style>html,body{max-width:100%;overflow-x:hidden}.hero>*,.workbench>*{min-width:0}.controls select{min-width:0;max-width:100%}.seed-status{margin:-8px 0 14px;color:var(--gold);font:800 11px ui-monospace,monospace;letter-spacing:.8px}.nonwet{fill:url(#bottom-pattern);stroke:#d7a07b;stroke-width:2}.nonwet-label{fill:#ffd0ac;font:900 12px ui-monospace,monospace;letter-spacing:1px}.data-notes{margin-top:16px;padding:13px 15px;border:1px solid #36565d;border-radius:10px;color:var(--muted);font-size:13px;line-height:1.5}.data-notes summary{cursor:pointer;color:var(--ink);font-weight:800}.data-notes a{color:var(--teal)}@media(max-width:560px){.masthead{flex-wrap:wrap}.masthead nav{order:3;width:100%;margin-left:0;justify-content:space-between}.hero,.workbench{width:100%}}</style>
 </head>
 <body>
   <header class="masthead">
@@ -61,17 +61,18 @@
           <div><p class="eyebrow">SELECTED ADDRESS</p><h2 id="address-title">Loading…</h2></div>
           <span id="scale-badge">EQUAL-BAND DISPLAY · NOT TO SCALE</span>
         </div>
+        <p id="seed-status" class="seed-status">Loading GEBCO seed cell…</p>
         <svg id="column-svg" viewBox="0 0 960 690" role="img" aria-labelledby="svg-title svg-desc">
           <title id="svg-title">Ocean column address teaching section</title>
           <desc id="svg-desc">Five depth bands shown in shelf, basin, and trench example columns. Selected address and enabled conceptual overlays are described below.</desc>
         </svg>
         <output id="address-readout" tabindex="-1" aria-live="polite"></output>
-        <p class="boundary"><strong>Evidence boundary:</strong> the province identity is a reference label. Selecting a province × band composes an address class; without measured bathymetry it does not establish that the combination contains wet volume. The three seabeds and physical overlays are teaching examples—not local bathymetry, observations, detected regimes, heat content, or transport.</p>
+        <p class="boundary"><strong>Evidence boundary:</strong> the selected GEBCO value describes one grid cell nearest an approximate display seed—not a province mean, range, profile, volume, or occupancy fraction. The other three seabeds and all physical overlays remain teaching examples, not observed regimes, heat content, or transport.</p>
         <details class="data-notes">
           <summary>Data identity and next evidence step</summary>
-          <p>The 56 names come from OSW's classic province reference directory. Exact interval semantics come from the edition-1 JSON contract. Both source checksums are embedded in the generated browser bundle.</p>
-          <p>Real province-specific occupancy requires a versioned bathymetry grid, exact horizontal geometry, cell bounds, masks, and a reproducible intersection. GEBCO remains the candidate source; this stage does not download or imply it.</p>
-          <p><a href="../research/longhurst-province-reference.csv">Province directory</a> · <a href="../research/ocean-column-address-v1.json">Address contract</a> · <a href="../SOURCE-REGISTER.md">Source register</a></p>
+          <p>The 56 names come from OSW's classic province reference directory. Exact interval semantics come from the edition-1 JSON contract. The selected seed cell comes from the public-domain GEBCO_2026 Grid through CEDA OPeNDAP. Source paths, release, acquisition time, DOI, and checksums are embedded in the generated browser bundle.</p>
+          <p>Real province-wide occupancy still requires exact horizontal geometry, cell bounds, masks, and a reproducible intersection across all cells. Three non-wet seed results are retained rather than moved offshore.</p>
+          <p><a href="../research/gebco-2026-province-seed-depths.csv">56-cell depth table</a> · <a href="../research/gebco-2026-province-seed-depths-source.json">raw query receipts</a> · <a href="../research/ocean-column-address-v1.json">address contract</a> · <a href="../SOURCE-REGISTER.md">source register</a></p>
         </details>
       </div>
     </section>

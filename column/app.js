@@ -56,9 +56,11 @@ function defs() {
 function render() {
   svg.replaceChildren(defs());
   const bands = data.column_address.bands;
-  const columns = data.teaching_columns;
-  const widths = 190;
-  const xs = [190, 455, 720];
+  const province = data.provinces.find(item => item.code === selectedProvince);
+  const measurement = province.seed_measurement;
+  const columns = [{id:"seed",name:"Selected seed cell",bottom_m:measurement.water_depth_m,cell_state:measurement.cell_state,elevation_m:measurement.elevation_m,measured:true}, ...data.teaching_columns];
+  const widths = 160;
+  const xs = [120, 330, 540, 750];
 
   svg.append(el("text", {x:28,y:58,class:"axis-title"}, "DECLARED DEPTH ↓"));
   const depthTicks = scaleMode === "linear" ? [0,1000,2000,3000,4000,5000,6000,7000,8000] : [0,200,1000,4000,6000,8000];
@@ -70,9 +72,18 @@ function render() {
 
   columns.forEach((column, columnIndex) => {
     const x = xs[columnIndex];
-    const floorY = yForDepth(column.bottom_m);
+    const floorY = yForDepth(column.bottom_m ?? 0);
     svg.append(el("text", {x:x+widths/2,y:35,class:"column-title"}, column.name));
-    svg.append(el("text", {x:x+widths/2,y:55,class:"column-note"}, `${column.bottom_m.toLocaleString()} m teaching depth`));
+    const columnNote = column.measured
+      ? (column.cell_state === "wet" ? `GEBCO 2026 · ${column.bottom_m.toLocaleString()} m` : `GEBCO 2026 · +${column.elevation_m.toLocaleString()} m`)
+      : `${column.bottom_m.toLocaleString()} m teaching depth`;
+    svg.append(el("text", {x:x+widths/2,y:55,class:"column-note"}, columnNote));
+    if (column.cell_state === "non_wet_seed") {
+      svg.append(el("rect", {x,y:92,width:widths,height:548,class:"nonwet"}));
+      svg.append(el("text", {x:x+widths/2,y:340,class:"nonwet-label","text-anchor":"middle"}, "NON-WET SEED"));
+      svg.append(el("text", {x:x+widths/2,y:360,class:"column-note"}, "retained · not moved"));
+      return;
+    }
     bands.forEach((band, index) => {
       if (band.lower_m >= column.bottom_m) return;
       const bandBottom = Math.min(band.upper_m ?? 8000, column.bottom_m);
@@ -83,13 +94,14 @@ function render() {
       svg.append(rect);
       if (y2-y1 > 28) svg.append(el("text", {x:x+10,y:y1+20,class:"band-label"}, band.name.toUpperCase()));
     });
-    drawOverlays(x, widths, column.bottom_m);
+    drawOverlays(x, widths, column.bottom_m, column.measured);
     svg.append(el("path", {d:`M${x-8} ${floorY}H${x+widths+8}V640H${x-8}Z`,class:"seabed"}));
   });
   updateReadout();
 }
 
-function drawOverlays(x, width, bottom) {
+function drawOverlays(x, width, bottom, measured = false) {
+  if (measured) return;
   const active = new Set([...document.querySelectorAll("#overlay-controls input:checked")].map(input => input.value));
   data.physical_overlays.forEach((overlay, index) => {
     if (!active.has(overlay.id)) return;
@@ -112,11 +124,25 @@ function selectBand(id, announce = true) {
 function updateReadout() {
   const province = data.provinces.find(item => item.code === selectedProvince);
   const band = data.column_address.bands.find(item => item.object_id === selectedBand);
+  const measurement = province.seed_measurement;
   const active = [...document.querySelectorAll("#overlay-controls input:checked")].map(input => overlayLabel(data.physical_overlays.find(item => item.id === input.value)));
   const overlaySentence = active.length ? ` Enabled hypothetical overlays: ${active.join(", ")}.` : " No physical teaching overlays enabled.";
+  let measuredSentence;
+  if (measurement.cell_state !== "wet") {
+    measuredSentence = ` The nearest GEBCO seed cell is non-wet at +${measurement.elevation_m.toLocaleString()} m; it supplies no water-column occupancy and was not moved offshore.`;
+  } else if (band.lower_m >= measurement.water_depth_m) {
+    measuredSentence = ` The nearest GEBCO seed cell is ${measurement.water_depth_m.toLocaleString()} m deep and does not reach this band.`;
+  } else if (band.upper_m === null || band.upper_m > measurement.water_depth_m) {
+    measuredSentence = ` The nearest GEBCO seed cell is ${measurement.water_depth_m.toLocaleString()} m deep and contains only the upper, bathymetry-truncated part of this band.`;
+  } else {
+    measuredSentence = ` The nearest GEBCO seed cell is ${measurement.water_depth_m.toLocaleString()} m deep and spans this complete reference band.`;
+  }
   document.querySelector("#address-title").textContent = `${province.code} × ${band.name}`;
-  document.querySelector("#address-readout").textContent = `${province.province} (${province.code}) · ${province.basin} / ${province.biome} reference · ${bandLabel(band)}. This composes an address class; occupancy at this depth is unverified until bathymetry and exact horizontal geometry are intersected. It is not a detected physical regime.${overlaySentence}`;
-  document.querySelector("#svg-desc").textContent = `${band.name} is selected for ${province.province}. Shelf, basin, and trench teaching columns show bathymetric truncation. Enabled overlays are conceptual and are also reported by their checked controls.`;
+  document.querySelector("#seed-status").textContent = measurement.cell_state === "wet"
+    ? `ONE GEBCO SEED CELL · ${measurement.sampled_latitude.toFixed(4)}°, ${measurement.sampled_longitude.toFixed(4)}° · ${measurement.water_depth_m.toLocaleString()} M DEEP · TID ${measurement.tid_code} ${measurement.tid_class.replaceAll("_", " ").toUpperCase()}`
+    : `NON-WET SEED CELL · ${measurement.sampled_latitude.toFixed(4)}°, ${measurement.sampled_longitude.toFixed(4)}° · +${measurement.elevation_m.toLocaleString()} M · TID ${measurement.tid_code} LAND`;
+  document.querySelector("#address-readout").textContent = `${province.province} (${province.code}) · ${province.basin} / ${province.biome} reference · ${bandLabel(band)}.${measuredSentence} GEBCO source type: TID ${measurement.tid_code}, ${measurement.tid_definition}. This single-cell result is not province-wide and is not a detected physical regime.${overlaySentence}`;
+  document.querySelector("#svg-desc").textContent = `${band.name} is selected for ${province.province}. One GEBCO seed cell and three conceptual shelf, basin, and trench columns show bathymetric truncation. Enabled overlays apply only to teaching columns.`;
 }
 
 function updateUrl() {

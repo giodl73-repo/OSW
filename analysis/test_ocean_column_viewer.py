@@ -31,7 +31,11 @@ def test_column_viewer_data_contract():
     assert len({item["code"] for item in payload["provinces"]}) == 56
     assert len(payload["column_address"]["bands"]) == 5
     assert [item["bottom_m"] for item in payload["teaching_columns"]] == [90, 4800, 8000]
-    assert "not local bathymetry" in payload["boundary"]
+    assert "one grid cell" in payload["boundary"]
+    assert "not a province mean" in payload["boundary"]
+    assert sum(item["seed_measurement"]["cell_state"] == "wet" for item in payload["provinces"]) == 53
+    assert payload["provenance"]["seed_source_release"] == "GEBCO_2026"
+    assert all("tid_code" in item["seed_measurement"] for item in payload["provinces"])
 
 
 def test_column_viewer_build_is_deterministic(tmp_path):
@@ -45,9 +49,9 @@ def test_column_viewer_accessible_interaction_contract():
     html = (ROOT / "column" / "index.html").read_text(encoding="utf-8")
     app = (ROOT / "column" / "app.js").read_text(encoding="utf-8")
     css = (ROOT / "column" / "styles.css").read_text(encoding="utf-8")
-    for token in ('id="province-select"', 'id="band-controls"', 'id="overlay-controls"', 'aria-live="polite"', 'role="img"', "Evidence boundary", "does not establish that the combination contains wet volume"):
+    for token in ('id="province-select"', 'id="band-controls"', 'id="overlay-controls"', 'id="seed-status"', 'aria-live="polite"', 'role="img"', "Evidence boundary", "not a province mean"):
         assert token in html
-    for token in ("history.replaceState", 'event.key === "Enter"', "aria-pressed", "updateReadout", "not a detected physical regime", "occupancy at this depth is unverified", "overlaySentence"):
+    for token in ("history.replaceState", 'event.key === "Enter"', "aria-pressed", "updateReadout", "not a detected physical regime", "does not reach this band", "bathymetry-truncated part", "not province-wide", "overlaySentence"):
         assert token in app
     assert '.focus()' not in app
     assert "overflow-x:hidden" in html

@@ -30,6 +30,17 @@ makes an important absence visible: selecting a cross-product class does not
 prove it is occupied. Exact province geometry and versioned bathymetry must be
 intersected before OSW can claim local wet volume.
 
+The next evidence step samples GEBCO_2026 at the nearest 15-arc-second pixel
+center to each approximate OSW seed. Fifty-three seeds return bathymetric depth;
+NEWZ, NWCS, and REDS return positive elevation and remain visibly non-wet rather
+than being nudged offshore. The result upgrades one column in the workbench
+from illustration to a measured grid cell while preserving the harder limit:
+one seed is not a province mean, extent, profile, or occupancy fraction.
+The matching Type Identifier cells prevent “GEBCO value” from becoming a false
+synonym for direct sounding: 28 seeds use direct-measurement codes, 24 use
+indirect or interpolated codes, one uses a mixed/unknown pre-generated grid,
+and three are land.
+
 ## 2026-09-05 — Ocean objects become a field guide
 
 The maps produced a larger question: are OSW's jets, bands, water masses, and
