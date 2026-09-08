@@ -41,6 +41,7 @@ class QuantityClass(ClosedValue):
     TEMPERATURE = "temperature"
     TEMPERATURE_ANOMALY = "temperature_anomaly"
     HEAT_CONTENT = "heat_content"
+    SURFACE_HEAT_FLUX = "surface_heat_flux"
     STORAGE_TENDENCY = "storage_tendency"
     VELOCITY = "velocity"
     VOLUME_TRANSPORT = "volume_transport"
