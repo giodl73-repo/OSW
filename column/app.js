@@ -1,12 +1,16 @@
 "use strict";
 
 const data = window.OSW_COLUMN_DATA;
+const bathy = window.OSW_BATHY_NEIGHBORHOODS;
 const svg = document.querySelector("#column-svg");
 const NS = "http://www.w3.org/2000/svg";
 const bandColors = ["#256f82", "#24576d", "#173f58", "#102f47", "#0a2338"];
 let selectedProvince = "NADR";
 let selectedBand = "OBJ113";
 let scaleMode = "readable";
+let neighborhoodMode = "depth";
+const depthMapColors = {land:"#dad6c8",epipelagic:"#3b91a2",mesopelagic:"#2c7087",bathypelagic:"#1e506d",abyssopelagic:"#163a59",hadalpelagic:"#0a203b"};
+const sourceMapColors = {land:"#dad6c8",direct_measurement:"#5bd8ce",indirect_or_interpolated:"#e8b960",mixed_or_unknown:"#b49ae8"};
 
 function el(name, attrs = {}, text = "") {
   const node = document.createElementNS(NS, name);
@@ -35,6 +39,23 @@ function yForDepth(depth) {
   if (index < 0) index = 4;
   const fraction = (depth - bounds[index]) / (bounds[index + 1] - bounds[index]);
   return top + (index + Math.max(0, Math.min(1, fraction))) * segment;
+}
+
+function seafloorBand(elevation) {
+  if (elevation >= 0) return "land";
+  const depth = -elevation;
+  if (depth < 200) return "epipelagic";
+  if (depth < 1000) return "mesopelagic";
+  if (depth < 4000) return "bathypelagic";
+  if (depth < 6000) return "abyssopelagic";
+  return "hadalpelagic";
+}
+
+function sourceClass(tid) {
+  if (tid === 0) return "land";
+  if (tid >= 10 && tid <= 17) return "direct_measurement";
+  if (tid >= 40 && tid <= 46) return "indirect_or_interpolated";
+  return "mixed_or_unknown";
 }
 
 function defs() {
@@ -97,7 +118,46 @@ function render() {
     drawOverlays(x, widths, column.bottom_m, column.measured);
     svg.append(el("path", {d:`M${x-8} ${floorY}H${x+widths+8}V640H${x-8}Z`,class:"seabed"}));
   });
+  renderNeighborhood();
   updateReadout();
+}
+
+function renderNeighborhood() {
+  const neighborhood = bathy.neighborhoods[selectedProvince];
+  const canvas = document.querySelector("#neighborhood-canvas");
+  const context = canvas.getContext("2d");
+  const size = bathy.shape[0], cell = canvas.width / size;
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  for (let row = 0; row < size; row += 1) {
+    for (let column = 0; column < size; column += 1) {
+      const sourceIndex = row * size + column;
+      const displayRow = size - 1 - row;
+      const key = neighborhoodMode === "depth" ? seafloorBand(neighborhood.elevation_m[sourceIndex]) : sourceClass(neighborhood.tid[sourceIndex]);
+      context.fillStyle = (neighborhoodMode === "depth" ? depthMapColors : sourceMapColors)[key];
+      context.fillRect(column * cell, displayRow * cell, Math.ceil(cell), Math.ceil(cell));
+    }
+  }
+  const center = Math.floor(size / 2);
+  context.strokeStyle = "#fff0a0"; context.lineWidth = 5;
+  context.strokeRect(center * cell + 2, center * cell + 2, cell - 4, cell - 4);
+  context.fillStyle = "#eef9f7"; context.font = "900 22px ui-monospace, monospace";
+  context.fillText("N", 14, 28); context.fillText("E", canvas.width - 30, canvas.height - 14);
+
+  const legendEntries = neighborhoodMode === "depth"
+    ? [["land","land/non-wet"],["epipelagic","bottom <200 m"],["mesopelagic","bottom 200–<1,000 m"],["bathypelagic","bottom 1,000–<4,000 m"],["abyssopelagic","bottom 4,000–<6,000 m"],["hadalpelagic","bottom ≥6,000 m"]]
+    : [["land","land"],["direct_measurement","direct measurement"],["indirect_or_interpolated","indirect/interpolated"],["mixed_or_unknown","mixed/unknown"]];
+  const legend = document.querySelector("#neighborhood-legend");
+  legend.replaceChildren(...legendEntries.map(([key, label]) => {
+    const span = document.createElement("span"), swatch = document.createElement("i");
+    swatch.style.background = (neighborhoodMode === "depth" ? depthMapColors : sourceMapColors)[key];
+    span.append(swatch, document.createTextNode(label)); return span;
+  }));
+  const summary = neighborhood.summary;
+  const detail = neighborhoodMode === "depth"
+    ? `Wet depths range from ${summary.minimum_wet_depth_m?.toLocaleString() ?? "none"} to ${summary.maximum_wet_depth_m?.toLocaleString() ?? "none"} m.`
+    : `${summary.counts_by_tid_class.direct_measurement ?? 0} direct, ${summary.counts_by_tid_class.indirect_or_interpolated ?? 0} indirect/interpolated, ${summary.counts_by_tid_class.mixed_or_unknown ?? 0} mixed/unknown, and ${summary.counts_by_tid_class.land ?? 0} land source cells.`;
+  document.querySelector("#neighborhood-summary").textContent = `${selectedProvince}: ${summary.wet_sample_count.toLocaleString()} wet and ${summary.land_sample_count.toLocaleString()} land samples among ${summary.sample_count.toLocaleString()} regular grid points from ${summary.latitude_bounds[0].toFixed(2)}° to ${summary.latitude_bounds[1].toFixed(2)}° latitude and ${summary.longitude_bounds[0].toFixed(2)}° to ${summary.longitude_bounds[1].toFixed(2)}° longitude. ${detail} These counts describe the seed neighborhood, not the province.`;
+  canvas.setAttribute("aria-label", `${selectedProvince} GEBCO seed-neighborhood ${neighborhoodMode} map. ${document.querySelector("#neighborhood-summary").textContent}`);
 }
 
 function drawOverlays(x, width, bottom, measured = false) {
@@ -156,6 +216,7 @@ function init() {
   const params = new URLSearchParams(location.search);
   if (data.provinces.some(item => item.code === params.get("province"))) selectedProvince = params.get("province");
   if (data.column_address.bands.some(item => item.object_id === params.get("band"))) selectedBand = params.get("band");
+  if (["depth", "source"].includes(params.get("neighborhood"))) neighborhoodMode = params.get("neighborhood");
 
   const provinceSelect = document.querySelector("#province-select");
   data.provinces.forEach(province => {
@@ -191,6 +252,15 @@ function init() {
     document.querySelector("#scale-badge").textContent = scaleMode === "linear" ? "LINEAR DEPTH · 0–8,000 M" : "EQUAL-BAND DISPLAY · NOT TO SCALE";
     render();
   }));
+  document.querySelectorAll("[data-neighborhood-mode]").forEach(button => {
+    button.setAttribute("aria-pressed", String(button.dataset.neighborhoodMode === neighborhoodMode));
+    button.addEventListener("click", () => {
+      neighborhoodMode = button.dataset.neighborhoodMode;
+      document.querySelectorAll("[data-neighborhood-mode]").forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+      const url = new URL(window.location.href); url.searchParams.set("neighborhood", neighborhoodMode); history.replaceState(null, "", url);
+      renderNeighborhood();
+    });
+  });
   render();
 }
 

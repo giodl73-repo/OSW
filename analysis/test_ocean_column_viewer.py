@@ -49,9 +49,9 @@ def test_column_viewer_accessible_interaction_contract():
     html = (ROOT / "column" / "index.html").read_text(encoding="utf-8")
     app = (ROOT / "column" / "app.js").read_text(encoding="utf-8")
     css = (ROOT / "column" / "styles.css").read_text(encoding="utf-8")
-    for token in ('id="province-select"', 'id="band-controls"', 'id="overlay-controls"', 'id="seed-status"', 'aria-live="polite"', 'role="img"', "Evidence boundary", "not a province mean"):
+    for token in ('id="province-select"', 'id="band-controls"', 'id="overlay-controls"', 'id="seed-status"', 'id="neighborhood-canvas"', 'data-neighborhood-mode="depth"', 'data-neighborhood-mode="source"', 'aria-live="polite"', 'role="img"', "Evidence boundary", "not a province mean", 'src="neighborhoods.js"'):
         assert token in html
-    for token in ("history.replaceState", 'event.key === "Enter"', "aria-pressed", "updateReadout", "not a detected physical regime", "does not reach this band", "bathymetry-truncated part", "not province-wide", "overlaySentence"):
+    for token in ("history.replaceState", 'event.key === "Enter"', "aria-pressed", "updateReadout", "renderNeighborhood", "not a detected physical regime", "does not reach this band", "bathymetry-truncated part", "not province-wide", "not the province", "overlaySentence"):
         assert token in app
     assert '.focus()' not in app
     assert "overflow-x:hidden" in html

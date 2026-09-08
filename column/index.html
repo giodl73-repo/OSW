@@ -6,7 +6,7 @@
   <meta name="description" content="OSW Ocean Column Address workbench: pair one of 56 surface province identities with one of five declared depth bands.">
   <title>Ocean Column Address — OSW</title>
   <link rel="stylesheet" href="styles.css">
-  <style>html,body{max-width:100%;overflow-x:hidden}.hero>*,.workbench>*{min-width:0}.controls select{min-width:0;max-width:100%}.seed-status{margin:-8px 0 14px;color:var(--gold);font:800 11px ui-monospace,monospace;letter-spacing:.8px}.nonwet{fill:url(#bottom-pattern);stroke:#d7a07b;stroke-width:2}.nonwet-label{fill:#ffd0ac;font:900 12px ui-monospace,monospace;letter-spacing:1px}.data-notes{margin-top:16px;padding:13px 15px;border:1px solid #36565d;border-radius:10px;color:var(--muted);font-size:13px;line-height:1.5}.data-notes summary{cursor:pointer;color:var(--ink);font-weight:800}.data-notes a{color:var(--teal)}@media(max-width:560px){.masthead{flex-wrap:wrap}.masthead nav{order:3;width:100%;margin-left:0;justify-content:space-between}.hero,.workbench{width:100%}}</style>
+  <style>html,body{max-width:100%;overflow-x:hidden}.hero>*,.workbench>*{min-width:0}.controls select{min-width:0;max-width:100%}.seed-status{margin:-8px 0 14px;color:var(--gold);font:800 11px ui-monospace,monospace;letter-spacing:.8px}.nonwet{fill:url(#bottom-pattern);stroke:#d7a07b;stroke-width:2}.nonwet-label{fill:#ffd0ac;font:900 12px ui-monospace,monospace;letter-spacing:1px}.neighborhood{margin-top:18px;padding:16px;border:1px solid #36565d;border-radius:14px;background:#071b21}.neighborhood-heading{display:flex;justify-content:space-between;gap:16px;align-items:start}.neighborhood-heading h3{margin:0}.neighborhood-modes{display:flex;gap:7px}.neighborhood-modes button{padding:7px 9px;border:1px solid #496b70;border-radius:7px;background:#0a1d23;color:var(--ink)}.neighborhood-modes button[aria-pressed=true]{border-color:var(--gold);color:#fff2b0}.neighborhood canvas{display:block;width:min(100%,620px);height:auto;margin:16px auto;border:1px solid #496b70;background:#05141a;image-rendering:pixelated}.neighborhood-legend{display:flex;flex-wrap:wrap;gap:8px 14px;color:var(--muted);font-size:12px}.neighborhood-legend span{display:inline-flex;align-items:center;gap:6px}.neighborhood-legend i{width:13px;height:13px;border:1px solid #8ba1a0}.neighborhood output{display:block;margin-top:12px;color:var(--ink);line-height:1.5}.neighborhood-note{color:var(--muted);font-size:12px}.data-notes{margin-top:16px;padding:13px 15px;border:1px solid #36565d;border-radius:10px;color:var(--muted);font-size:13px;line-height:1.5}.data-notes summary{cursor:pointer;color:var(--ink);font-weight:800}.data-notes a{color:var(--teal)}@media(max-width:700px){.neighborhood-heading{display:block}.neighborhood-modes{margin-top:10px;flex-wrap:wrap}}@media(max-width:560px){.masthead{flex-wrap:wrap}.masthead nav{order:3;width:100%;margin-left:0;justify-content:space-between}.hero,.workbench{width:100%}}</style>
 </head>
 <body>
   <header class="masthead">
@@ -66,6 +66,19 @@
           <title id="svg-title">Ocean column address teaching section</title>
           <desc id="svg-desc">Five depth bands shown in shelf, basin, and trench example columns. Selected address and enabled conceptual overlays are described below.</desc>
         </svg>
+        <section class="neighborhood" aria-labelledby="neighborhood-title">
+          <div class="neighborhood-heading">
+            <div><p class="eyebrow">8° × 8° SEED NEIGHBORHOOD</p><h3 id="neighborhood-title">Local seafloor shape</h3></div>
+            <div class="neighborhood-modes" role="group" aria-label="Neighborhood map mode">
+              <button type="button" data-neighborhood-mode="depth" aria-pressed="true">Seafloor depth</button>
+              <button type="button" data-neighborhood-mode="source" aria-pressed="false">Source type</button>
+            </div>
+          </div>
+          <canvas id="neighborhood-canvas" width="660" height="660" role="img" aria-labelledby="neighborhood-title" aria-describedby="neighborhood-summary neighborhood-note"></canvas>
+          <div id="neighborhood-legend" class="neighborhood-legend" aria-label="Neighborhood legend"></div>
+          <output id="neighborhood-summary" aria-live="polite"></output>
+          <p id="neighborhood-note" class="neighborhood-note">Regular 0.25° longitude/latitude samples shown north-up. Cell counts are not area fractions; east–west scale varies with latitude. Gold square marks the approximate OSW seed cell.</p>
+        </section>
         <output id="address-readout" tabindex="-1" aria-live="polite"></output>
         <p class="boundary"><strong>Evidence boundary:</strong> the selected GEBCO value describes one grid cell nearest an approximate display seed—not a province mean, range, profile, volume, or occupancy fraction. The other three seabeds and all physical overlays remain teaching examples, not observed regimes, heat content, or transport.</p>
         <details class="data-notes">
@@ -91,6 +104,7 @@
   <footer><p>OSW Ocean Column Address edition 1 · conceptual viewer · no navigation use</p><a href="../LICENSE">MIT · Gio Della-Libera</a></footer>
   <noscript>The interactive address builder requires JavaScript. Read the complete definition in Guide 15.</noscript>
   <script src="data.js" defer></script>
+  <script src="neighborhoods.js" defer></script>
   <script src="app.js" defer></script>
 </body>
 </html>

@@ -41,6 +41,14 @@ synonym for direct sounding: 28 seeds use direct-measurement codes, 24 use
 indirect or interpolated codes, one uses a mixed/unknown pre-generated grid,
 and three are land.
 
+The point screen then widens into 56 local bathymetry neighborhoods. Each uses
+1,089 paired elevation/TID samples across an 8° × 8° window, enough to reveal
+nearby shelves, slopes, basins, trenches, and land contact without inventing a
+province outline. Twenty-nine windows are fully wet at this sampling and 27
+mix land and water. Their 60,984 grid points are longitude/latitude samples—not
+equal-area fractions or province statistics—and the workbench says so beside
+both the depth-class and source-type views.
+
 ## 2026-09-05 — Ocean objects become a field guide
 
 The maps produced a larger question: are OSW's jets, bands, water masses, and

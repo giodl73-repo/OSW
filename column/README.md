@@ -33,10 +33,25 @@ chosen only to demonstrate overlap.
 explicitly non-linear. “Linear depth” maps 0–8,000 m proportionally and exposes
 how thin the upper bands become at full-ocean scale.
 
+## Seed neighborhoods
+
+Each approximate seed also has an 8° × 8° geographic window sampled every
+0.25°: 33 × 33 or 1,089 elevation cells plus matching TID cells. Across all 56
+windows that is 60,984 paired samples. Twenty-nine windows are entirely wet at
+this sampling; 27 contain both land and water; none is entirely dry. The source
+classes are 22,430 direct-measurement, 32,855 indirect/interpolated, 1,139
+mixed/unknown, and 4,560 land samples.
+
+The neighborhood map can show either the depth band reached by the seafloor or
+the GEBCO source class. It is a regular longitude/latitude display, not an
+equal-area map: pixel counts and proportions are sample counts, never area
+fractions. The window does not follow or estimate province boundaries.
+
 ## Rebuild and verify
 
 ```powershell
 python analysis/build_ocean_column_viewer.py
+python analysis/build_gebco_province_seed_neighborhoods.py
 node --check column/app.js
 python -m pytest analysis/test_ocean_column_viewer.py -q
 ```
@@ -45,7 +60,9 @@ Refresh the source only as an explicit network operation:
 
 ```powershell
 python analysis/acquire_gebco_province_seed_depths.py
+python analysis/acquire_gebco_province_seed_neighborhoods.py
 python analysis/build_gebco_province_seed_depths.py
+python analysis/build_gebco_province_seed_neighborhoods.py
 python analysis/build_ocean_column_viewer.py
 ```
 

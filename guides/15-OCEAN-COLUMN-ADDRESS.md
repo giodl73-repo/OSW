@@ -152,6 +152,9 @@ mixed layers, water masses, anomalies, and currents change through it.
 GEBCO_2026 cell nearest the selected approximate province seed with shelf,
 basin, and trench teaching columns. The single cell is not province-wide
 bathymetry; the other seabeds and all regime overlays remain conceptual.
+An accompanying 8° × 8° seed-neighborhood view reveals local bathymetric shape
+and GEBCO source type at 0.25° spacing without treating its grid-cell counts as
+province area or occupancy.
 
 ## Planetary boundary
 
