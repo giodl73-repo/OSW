@@ -1,7 +1,6 @@
 # Ocean-State Exchange Research Program
 
-Status: Stages 0-6 complete; Stage 7 implemented and at its native role gate;
-final repository audit pending
+Status: Complete; Stages 0-7 and the final repository audit passed
 
 Date: 2026-09-08
 
@@ -448,3 +447,19 @@ grid compatibility, and control feasibility. The decision record must explain
 why the chosen edge can test the method and name at least one attractive edge
 that was rejected. Then admit hydrographic and velocity sources through their
 own evidence and licensing gates before beginning Stages 3 or 4.
+
+## Program closeout
+
+The bounded program completed on 2026-09-08. Its final synthesis covers all
+128 source-geometry edges: 127 physical interpretations remain `unknown`, one
+16-face segment of `SANT--SSTC` is demoted as a persistent-temperature-front
+candidate, and zero source edges are changed. This is a successful negative
+and uncertainty-preserving result, not a revised global zoning system.
+
+The exact committed content passed a clean LF-checkout audit with 557 pytest
+tests plus 60 subtests, 362 standard-library unittest tests, Python bytecode
+compilation, JavaScript syntax checks for all seven browser entry and stage
+files, and `git diff --check`. Stage-specific and final `.roles` reviews found
+no P1 blockers. Repository completion does not imply owner approval, external
+scientific review, publication authorization, or adoption of the candidate
+overlay.
