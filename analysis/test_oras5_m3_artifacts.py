@@ -16,6 +16,9 @@ def load(name):
 
 
 def sha256_file(path):
+    # Receipts created on either host OS may contain the other platform's
+    # separator. Treat receipt paths as repository-relative portable paths.
+    path = pathlib.Path(str(path).replace("\\", "/"))
     digest = hashlib.sha256()
     with path.open("rb") as stream:
         for block in iter(lambda: stream.read(1024 * 1024), b""):

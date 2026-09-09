@@ -30,6 +30,11 @@ def sha256_file(path):
     return digest.hexdigest()
 
 
+def resolve_receipt_path(root, value):
+    """Resolve a repository-relative receipt path on either Windows or POSIX."""
+    return pathlib.Path(root).joinpath(*pathlib.PurePosixPath(str(value).replace("\\", "/")).parts)
+
+
 def mean_range(values):
     return {"sample_mean": statistics.fmean(values), "minimum": min(values), "maximum": max(values)}
 
@@ -41,7 +46,7 @@ def run(root=ROOT):
     for month in MONTHS:
         receipt_path = root / f"research/osw-m3-oras5-arctic-entrances-state-{month}.json"
         receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
-        state_path = root / receipt["output"]["path"]
+        state_path = resolve_receipt_path(root, receipt["output"]["path"])
         if sha256_file(state_path) != receipt["output"]["sha256"]:
             raise ValueError(f"{month} state file does not match its retrieval receipt")
         state_files.append({
