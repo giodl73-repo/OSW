@@ -1,6 +1,6 @@
-# OCEANLINES Review Roles
+# OSW Review Roles
 
-Eight functional lenses govern OCEANLINES atlas reviews. They are not personas
+Eight functional lenses govern OSW atlas reviews. They are not personas
 or simulated real people, and they do not replace external scientific peer
 review. They make the repository's own quality claims explicit and testable.
 

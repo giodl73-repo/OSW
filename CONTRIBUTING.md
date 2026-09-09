@@ -1,6 +1,6 @@
 # Contributing
 
-OCEANLINES welcomes corrections, source improvements, map concepts, and
+OSW welcomes corrections, source improvements, map concepts, and
 reproducible data layers.
 
 Every contribution should preserve these boundaries:

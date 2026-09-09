@@ -1,0 +1,111 @@
+{
+  "schema": "osw.oras5.nordic-budget-state.v1",
+  "status": "compact_native_monthly_nordic_budget_state",
+  "month": "201812",
+  "retrieved_at": "2026-09-05T00:00:00Z",
+  "mesh_receipt": {
+    "path": "research/osw-m4-oras5-nordic-seas-mesh.json",
+    "sha256": "9e33d620770fb41f1a40e5fa09d6eda8cd9f44c3af8092cef36ebe66c19421a8",
+    "mesh_output_sha256": "059b31cc41502d633c259a3e7f7e45c240f1f940b6c35a3400d1c6d756d2ea1e"
+  },
+  "control_volume": {
+    "path": "research/osw-m4-oras5-nordic-control-volume.json",
+    "sha256": "c7438e5e3abb591e2b681d00026886e398a55426388cb53485455d811274ab4d"
+  },
+  "fields": {
+    "votemper": {
+      "url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/votemper/opa0/votemper_ORAS5_1m_201812_grid_T_02.nc",
+      "local_window": {
+        "y_start": 32,
+        "y_stop_exclusive": 179,
+        "x_start": 35,
+        "x_stop_exclusive": 182
+      },
+      "global_window": {
+        "y_start": 784,
+        "y_stop_exclusive": 931,
+        "x_start": 1019,
+        "x_stop_exclusive": 1166
+      },
+      "units": "C",
+      "long_name": "Temperature",
+      "shape": [
+        75,
+        147,
+        147
+      ]
+    },
+    "vosaline": {
+      "url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/vosaline/opa0/vosaline_ORAS5_1m_201812_grid_T_02.nc",
+      "local_window": {
+        "y_start": 32,
+        "y_stop_exclusive": 179,
+        "x_start": 35,
+        "x_stop_exclusive": 182
+      },
+      "global_window": {
+        "y_start": 784,
+        "y_stop_exclusive": 931,
+        "x_start": 1019,
+        "x_stop_exclusive": 1166
+      },
+      "units": "PSU",
+      "long_name": "Salinity",
+      "shape": [
+        75,
+        147,
+        147
+      ]
+    },
+    "vozocrtx": {
+      "url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/vozocrtx/opa0/vozocrtx_ORAS5_1m_201812_grid_U_02.nc",
+      "local_window": {
+        "y_start": 33,
+        "y_stop_exclusive": 174,
+        "x_start": 35,
+        "x_stop_exclusive": 180
+      },
+      "global_window": {
+        "y_start": 785,
+        "y_stop_exclusive": 926,
+        "x_start": 1019,
+        "x_stop_exclusive": 1164
+      },
+      "units": "m/s",
+      "long_name": "Zonal Current",
+      "shape": [
+        75,
+        141,
+        145
+      ]
+    },
+    "vomecrty": {
+      "url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/vomecrty/opa0/vomecrty_ORAS5_1m_201812_grid_V_02.nc",
+      "local_window": {
+        "y_start": 32,
+        "y_stop_exclusive": 178,
+        "x_start": 35,
+        "x_stop_exclusive": 182
+      },
+      "global_window": {
+        "y_start": 784,
+        "y_stop_exclusive": 930,
+        "x_start": 1019,
+        "x_stop_exclusive": 1166
+      },
+      "units": "m/s",
+      "long_name": "Meridional Current",
+      "shape": [
+        75,
+        146,
+        147
+      ]
+    }
+  },
+  "output": {
+    "path": "atlas/data/oras5-nordic-budget-state-201812.nc",
+    "bytes": 8877359,
+    "sha256": "1b9608695f5f3735f4eeb3ce3e0e7da7a29270b155643d492ad89dce8dbec8c5"
+  },
+  "boundary": "One monthly assimilative-reanalysis member. Windows are sufficient for the exact control-volume storage state and five offline advective boundaries, but contain no surface, ice, mixing, diffusion, assimilation, or model-native tracer-advection terms."
+}

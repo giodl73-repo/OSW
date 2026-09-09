@@ -327,7 +327,7 @@ Reject or rewrite a “heat zone” claim when any of the following occurs:
 > flow more strongly than they stop it, and their most consequential heat may
 > be hidden vertically rather than visible at the surface.
 
-The [OCEANLINES prediction
+The [OSW prediction
 set](PREDICTIONS.md)
 now registers vertical-identity, leakage-hot-spot, freshwater-hidden-heat, and
 jovicline-mechanism tests with valid negative and unresolved outcomes.

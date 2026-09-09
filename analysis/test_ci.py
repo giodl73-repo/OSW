@@ -21,6 +21,7 @@ class CiContractTests(unittest.TestCase):
         source = WORKFLOW.read_text(encoding="utf-8")
         self.assertIn("requirements-observations.txt", source)
         self.assertIn("test_netcdf_fixture_preserves_dimensions_order_and_mask", source)
+        self.assertIn("test_fixture_selects_exact_pressure_stride_and_mask", source)
         self.assertIn("permissions:\n  contents: read", source)
 
 

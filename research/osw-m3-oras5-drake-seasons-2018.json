@@ -1,0 +1,149 @@
+{
+  "schema": "oceanlines.osw.m3-drake-seasonal-synthesis.v1",
+  "status": "four sampled monthly native-section calculations",
+  "gate": {
+    "local_x": 64,
+    "local_y_start": 53,
+    "local_y_stop_exclusive": 140,
+    "segment_count": 87,
+    "positive_normal": "native +i / approximately eastward"
+  },
+  "rows": [
+    {
+      "month": "201802",
+      "label": "February",
+      "positive_Sv": 221.43094351145587,
+      "negative_Sv": -97.14045816208123,
+      "net_Sv": 124.29048534937463,
+      "positive_temperature_degC": 2.023002543464558,
+      "negative_temperature_degC": 1.2155791229451278,
+      "net_temperature_degC": 2.6540523038672106,
+      "net_heat_PW_by_reference_degC": {
+        "-1.9": 2.3205817602516134,
+        "0.0": 1.3524098881951725,
+        "5.0": -1.1954108277428301
+      },
+      "input_sha256": "824a8233f28bd81116095a6f4b36248e15b612b68a49f5359b34d9571baf6bc3"
+    },
+    {
+      "month": "201805",
+      "label": "May",
+      "positive_Sv": 229.87919580884972,
+      "negative_Sv": -107.31887709769381,
+      "net_Sv": 122.5603187111559,
+      "positive_temperature_degC": 1.965466580901927,
+      "negative_temperature_degC": 1.190543843266146,
+      "net_temperature_degC": 2.644020936137729,
+      "net_heat_PW_by_reference_degC": {
+        "-1.9": 2.2832379880718414,
+        "0.0": 1.3285434040667363,
+        "5.0": -1.1838107643677513
+      },
+      "input_sha256": "63f90403d7c07e251017fb2ffaeeb7519716b4c4a7d190c9d95b781844c83864"
+    },
+    {
+      "month": "201808",
+      "label": "August",
+      "positive_Sv": 216.9592897479422,
+      "negative_Sv": -94.83615089499466,
+      "net_Sv": 122.12313885294752,
+      "positive_temperature_degC": 1.9201437478999868,
+      "negative_temperature_degC": 1.1893300334341146,
+      "net_temperature_degC": 2.4876656798794166,
+      "net_heat_PW_by_reference_degC": {
+        "-1.9": 2.1968098302942347,
+        "0.0": 1.2455206979659585,
+        "5.0": -1.2578717555295047
+      },
+      "input_sha256": "e04cb62d7b4bc90fb902e0960eeacb9e3bd01a483fdee59fd3adb70327c32367"
+    },
+    {
+      "month": "201811",
+      "label": "November",
+      "positive_Sv": 225.66434417137467,
+      "negative_Sv": -97.89877777103516,
+      "net_Sv": 127.76556640033952,
+      "positive_temperature_degC": 1.882729755184575,
+      "negative_temperature_degC": 1.1625969730707446,
+      "net_temperature_degC": 2.434522551851673,
+      "net_heat_PW_by_reference_degC": {
+        "-1.9": 2.2704715671512883,
+        "0.0": 1.2752302398810944,
+        "5.0": -1.343825884514154
+      },
+      "input_sha256": "8c5f9d7c7e191296cf0f53eaac60566d9cd9b722925c1b9cca1b021fece29d0b"
+    }
+  ],
+  "summary": {
+    "net_volume_Sv": {
+      "mean": 124.18487732845439,
+      "minimum": 122.12313885294752,
+      "maximum": 127.76556640033952,
+      "range": 5.642427547392003
+    },
+    "positive_volume_Sv": {
+      "mean": 223.48344330990562,
+      "minimum": 216.9592897479422,
+      "maximum": 229.87919580884972,
+      "range": 12.919906060907522
+    },
+    "negative_volume_Sv": {
+      "mean": -99.29856598145122,
+      "minimum": -107.31887709769381,
+      "maximum": -94.83615089499466,
+      "range": 12.482726202699155
+    },
+    "net_temperature_degC": {
+      "mean": 2.555065367934007,
+      "minimum": 2.434522551851673,
+      "maximum": 2.6540523038672106,
+      "range": 0.21952975201553748
+    },
+    "net_heat_PW_by_reference_degC": {
+      "-1.9": {
+        "mean": 2.2677752864422445,
+        "minimum": 2.1968098302942347,
+        "maximum": 2.3205817602516134,
+        "range": 0.12377192995737873
+      },
+      "0.0": {
+        "mean": 1.3004260575272404,
+        "minimum": 1.2455206979659585,
+        "maximum": 1.3524098881951725,
+        "range": 0.10688919022921395
+      },
+      "5.0": {
+        "mean": -1.24522980803856,
+        "minimum": -1.343825884514154,
+        "maximum": -1.1838107643677513,
+        "range": 0.16001512014640262
+      }
+    }
+  },
+  "benchmark_context": {
+    "older_canonical_mean_Sv": 134.0,
+    "older_canonical_standard_deviation_Sv": 11.2,
+    "newer_cDrake_mean_Sv": 173.3,
+    "newer_cDrake_uncertainty_Sv": 10.7,
+    "interpretation": "Noncontemporaneous, method-different context only; not validation targets."
+  },
+  "boundary": "Four sampled 2018 monthly means from one assimilative-reanalysis member and one grid-aligned gate. Not an annual mean, climatology, ensemble uncertainty, mass closure, eddy heat flux, convergence, or Antarctic heat-delivery estimate.",
+  "sources": [
+    {
+      "path": "research\\osw-m3-oras5-drake-transport-201802.json",
+      "sha256": "9a0b7bb85d2fe58af2fdbad1a9d86688eac27bfea08ea148ffe24d74e88cebbd"
+    },
+    {
+      "path": "research\\osw-m3-oras5-drake-transport-201805.json",
+      "sha256": "05738d12e68db76689e4db5e4da2170c4a635b5924b82384f161e21e63e8156e"
+    },
+    {
+      "path": "research\\osw-m3-oras5-drake-transport-201808.json",
+      "sha256": "d9f9e83a3b823a759bf7403679dca5032bcd3fd35625bab4bd73fa5e03f77442"
+    },
+    {
+      "path": "research\\osw-m3-oras5-drake-transport-201811.json",
+      "sha256": "1c5078f64dd5e9b313bcdf8da76a778357e0a0a00e76ee328cf91c464f4ea577"
+    }
+  ]
+}

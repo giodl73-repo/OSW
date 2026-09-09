@@ -1,0 +1,47 @@
+{
+  "schema": "oceanlines.oras5.request-manifest.v1",
+  "status": "download_not_executed",
+  "dataset": "reanalysis-oras5",
+  "dataset_doi": "10.24381/cds.67e8eeb7",
+  "catalogue_url": "https://cds.climate.copernicus.eu/datasets/reanalysis-oras5",
+  "request": {
+    "product_type": [
+      "operational"
+    ],
+    "vertical_resolution": [
+      "all_levels"
+    ],
+    "variable": [
+      "potential_temperature",
+      "zonal_velocity",
+      "meridional_velocity"
+    ],
+    "year": [
+      "2018"
+    ],
+    "month": [
+      "02",
+      "05",
+      "08",
+      "11"
+    ]
+  },
+  "request_sha256": "3087350e3a207e8ceb7c909c9213ec9700f414382c97f55bac84d543f68e5366",
+  "pilot": {
+    "name": "M3 Drake Passage seasonal all-level intake",
+    "section_geometry": "not supplied by this request",
+    "seasonal_sampling": "February, May, August, and November monthly means"
+  },
+  "required_companion_geometry": [
+    "native U/V face coordinates and staggering declaration",
+    "U/V horizontal face widths",
+    "U/V layer thicknesses or exact cell bounds",
+    "U/V wet fractions or masks"
+  ],
+  "companion_geometry_candidate": {
+    "source": "University of Hamburg ICDC THREDDS ORAS5 ORCA025 mesh catalogue",
+    "url": "https://icdc.cen.uni-hamburg.de/thredds/catalog/ftpthredds/EASYInit/oras5/ORCA025/mesh/catalog.html",
+    "status": "candidate_requires_native_U_V_vertical_metric_audit"
+  },
+  "boundary": "This is a retrieval manifest, not a transport result. ORAS5 temperature and velocity files must not be converted to section transport until native face geometry, wet masks, vertical metrics, section orientation, and grid staggering pass the M3 readiness audit."
+}

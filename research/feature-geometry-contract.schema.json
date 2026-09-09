@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://osw.local/feature-geometry-contract.schema.json",
+  "title": "OSW feature geometry admission record",
+  "type": "object",
+  "required": [
+    "feature_id", "geometry_edition", "evidence_class", "geometry_basis",
+    "provider", "product", "variable", "version", "source_url", "license_id",
+    "compatibility", "decision_authority", "decision_date", "citation",
+    "acquired_at", "source_checksum", "crs", "longitude_convention",
+    "depth_layer", "time_interval", "baseline_threshold", "missing_values",
+    "simplification_tolerance", "transform_command", "output_checksum",
+    "reviewer_status", "geometry_path"
+  ],
+  "properties": {
+    "feature_id": {"type": "string", "minLength": 1},
+    "evidence_class": {"enum": ["CONCEPTUAL", "SYNTHESIS", "OBSERVATIONAL", "MODELED/MIXED"]},
+    "geometry_basis": {"enum": ["illustrative", "observed", "diagnosed", "modeled"]},
+    "compatibility": {"enum": ["compatible", "incompatible", "review-required"]},
+    "longitude_convention": {"enum": ["-180_to_180", "0_to_360"]},
+    "reviewer_status": {"enum": ["draft", "reviewed", "admitted", "rejected"]},
+    "source_checksum": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "output_checksum": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  },
+  "additionalProperties": false
+}

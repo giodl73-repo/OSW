@@ -1,0 +1,131 @@
+{
+  "schema": "oceanlines.oras5.drake-mesh-subset.v1",
+  "status": "native_mesh_subset_not_yet_accepted_for_transport",
+  "source_url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/mesh/mesh_mask.nc",
+  "retrieved_at": "2026-08-30T00:00:00-07:00",
+  "target_bounds_deg": {
+    "west": -80.0,
+    "east": -45.0,
+    "south": -70.0,
+    "north": -50.0
+  },
+  "coarse_discovery_stride": 8,
+  "native_index_box": {
+    "y_start": 88,
+    "y_stop_exclusive": 288,
+    "x_start": 816,
+    "x_stop_exclusive": 992
+  },
+  "shape": [
+    75,
+    200,
+    176
+  ],
+  "coordinate_extent_deg": {
+    "west": -83.25,
+    "east": -39.5,
+    "south": -71.0233154296875,
+    "north": -46.569602966308594
+  },
+  "variables": {
+    "glamt": {
+      "shape": [
+        200,
+        176
+      ],
+      "units": null
+    },
+    "gphit": {
+      "shape": [
+        200,
+        176
+      ],
+      "units": null
+    },
+    "glamu": {
+      "shape": [
+        200,
+        176
+      ],
+      "units": null
+    },
+    "gphiu": {
+      "shape": [
+        200,
+        176
+      ],
+      "units": null
+    },
+    "glamv": {
+      "shape": [
+        200,
+        176
+      ],
+      "units": null
+    },
+    "gphiv": {
+      "shape": [
+        200,
+        176
+      ],
+      "units": null
+    },
+    "e2u": {
+      "shape": [
+        200,
+        176
+      ],
+      "units": null
+    },
+    "e1v": {
+      "shape": [
+        200,
+        176
+      ],
+      "units": null
+    },
+    "mbathy": {
+      "shape": [
+        200,
+        176
+      ],
+      "units": null
+    },
+    "e3t_ps": {
+      "shape": [
+        200,
+        176
+      ],
+      "units": null
+    },
+    "umask": {
+      "shape": [
+        75,
+        200,
+        176
+      ],
+      "units": null
+    },
+    "vmask": {
+      "shape": [
+        75,
+        200,
+        176
+      ],
+      "units": null
+    },
+    "e3t_0": {
+      "shape": [
+        75
+      ],
+      "units": null
+    }
+  },
+  "output": {
+    "path": "atlas\\data\\oras5-drake-mesh.nc",
+    "bytes": 431050,
+    "sha256": "a575659f2249a60ce01ecfc71fc489d17f8476d1a41dfb116b25c349ddcb0824"
+  },
+  "next_test": "reconstruct interior U/V thickness and audit mask/depth/face-area conservation",
+  "boundary": "Public native-grid mesh subset only. It contains no ORAS5 temperature or velocity, does not validate the face-thickness reconstruction, and cannot produce transport."
+}

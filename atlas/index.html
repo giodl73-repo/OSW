@@ -3,68 +3,150 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An interactive atlas of ocean heat geography with polar-ring comparisons across the latitude ladder.">
-  <title>OCEANLINES — Mapping Earth's Hidden Waterworld</title>
+  <meta name="description" content="Atlas 10 research preview: an interactive atlas of ocean heat geography with surface observations, a four-level Argo anomaly ladder, and optional polar diagnostics.">
+  <title>OSW Atlas 10 Preview — Ocean States of the World</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23071b22'/%3E%3Cpath d='M10 34c8-10 15-10 23 0s15 10 21 0' fill='none' stroke='%235ee2d6' stroke-width='7'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="masthead">
-    <a class="wordmark" href="../README.md" aria-label="OCEANLINES home">OCEANLINES</a>
-    <p>Mapping Earth's Hidden Waterworld</p>
-    <span class="edition">ATLAS 07 · POLAR MIRRORS</span>
+    <a class="wordmark" href="../README.md" aria-label="OSW home">OSW</a>
+    <p>Ocean States of the World</p>
+    <nav class="project-nav" aria-label="Project guide">
+      <a href="../figures/osw-fluid-geography.svg" target="_blank" rel="noopener">Map</a>
+      <a href="../column/">Column</a>
+      <a href="../HEATMASS.md">Field guide</a>
+      <a class="research-link" href="../research/">Research note</a>
+      <a class="method-link" href="README.md">Method</a>
+      <a href="../SOURCE-REGISTER.md">Sources</a>
+    </nav>
+    <span class="edition">ATLAS 10 · DEPTH LADDER</span>
   </header>
   <main>
     <section class="hero" aria-labelledby="atlas-title">
       <div class="hero-copy">
         <p class="eyebrow">A fluid geography</p>
         <h1 id="atlas-title">The ocean has continents,<br>rivers, islands, and gates.</h1>
-        <p class="dek">Not of land—of stored heat, moving water, temporary anomalies,
-          submerged layers, and the narrow passages that rearrange them.</p>
+        <p class="dek">Not one geography but six overlapping ones: named waters,
+          flows, edges, seafloor, living chemistry, and temporary events.</p>
       </div>
       <div class="readout" aria-label="Atlas scope">
-        <span><strong id="visible-count">12</strong> named zones</span>
-        <span><strong>4</strong> evidence classes</span>
-        <span><strong>0</strong> false precision</span>
+        <span><strong id="visible-count">12</strong> matching features</span>
+        <span><strong>36</strong> curated records</span>
+        <span><strong>Limits</strong> stated beside every view</span>
       </div>
     </section>
-    <nav class="lenses" aria-label="Atlas lens">
-      <button class="lens active" data-lens="all" aria-pressed="true"><span>00</span> All lines</button>
-      <button class="lens" data-lens="heatmass" aria-pressed="false"><span>01</span> HEATMASS</button>
-      <button class="lens" data-lens="oceanrealms" aria-pressed="false"><span>02</span> OCEANREALMS</button>
-      <button class="lens" data-lens="oceanbelts" aria-pressed="false"><span>03</span> OCEANBELTS <small>reading lens</small></button>
+    <nav class="lenses" aria-label="Ocean geography lens">
+      <button class="lens" data-lens="all" aria-pressed="false"><span>00</span> ALL FEATURES</button>
+      <button class="lens active" data-lens="waters" aria-pressed="true"><span>01</span> WATERS <small>masses + reservoirs</small></button>
+      <button class="lens" data-lens="flows" aria-pressed="false"><span>02</span> FLOWS <small>currents + gyres</small></button>
+      <button class="lens" data-lens="edges" aria-pressed="false"><span>03</span> EDGES <small>fronts + gates</small></button>
+      <button class="lens" data-lens="floor" aria-pressed="false"><span>04</span> FLOOR <small>ridges + trenches</small></button>
+      <button class="lens" data-lens="life" aria-pressed="false"><span>05</span> LIFE <small>oxygen + productivity</small></button>
+      <button class="lens" data-lens="events" aria-pressed="false"><span>06</span> EVENTS <small>temporary anomalies</small></button>
     </nav>
+    <form class="geography-filters" id="geography-filters">
+      <p><strong>CURATED OCEAN GEOGRAPHY</strong><span>Overlapping lenses—not exclusive countries.</span></p>
+      <label>Depth<select id="filter-depth"><option value="all">All depths</option><option value="surface">Surface</option><option value="upper">Upper ocean</option><option value="intermediate">Intermediate</option><option value="deep">Deep</option><option value="bottom">Bottom</option><option value="full-column">Full column</option><option value="seabed">Seabed</option></select></label>
+      <label>Property<select id="filter-property"><option value="all">All properties</option><option value="warm">Warm</option><option value="cold">Cold</option><option value="fresh">Fresh</option><option value="salty">Salty</option><option value="dynamic">Dynamic</option><option value="low-oxygen">Low oxygen</option><option value="nutrient-rich">Nutrient rich</option><option value="nutrient-poor">Nutrient poor</option><option value="relief">Seafloor relief</option></select></label>
+      <label>Clock<select id="filter-clock"><option value="all">All clocks</option><option value="persistent">Persistent</option><option value="seasonal">Seasonal</option><option value="interannual">Interannual</option><option value="episodic">Episodic</option><option value="geologic">Geologic</option></select></label>
+      <button type="reset">Reset to waters</button>
+      <output id="filter-status" aria-live="polite">12 matching water features.</output>
+    </form>
+    <nav class="legacy-studies" aria-label="Original OSW studies">Original studies: <a href="../HEATMASS.md">HEATMASS</a><a href="../OCEANREALMS.md">OCEANREALMS</a><a href="../OCEANBELTS.md">OCEANBELTS</a></nav>
+    <div class="feature-legend" aria-label="Geographic feature legend"><span data-lens="waters">WATERS</span><span data-lens="flows">FLOWS</span><span data-lens="edges">EDGES</span><span data-lens="floor">FLOOR</span><span data-lens="life">LIFE</span><span data-lens="events">EVENTS</span></div>
     <section class="atlas-shell" aria-label="Interactive ocean heat atlas">
       <div class="map-panel">
+        <details class="how-explore">
+          <summary>How to explore this fluid map</summary>
+          <div><p><strong>Place first</strong> Select an ocean state to see which schematic objects overlap it.</p><p><strong>Object first</strong> Select a water, flow, edge, relief, life zone, or event to see the states it crosses.</p><p><strong>Shape first</strong> Choose Fluid shapes to remove the province puzzle while keeping dark land and ghost coastlines.</p></div>
+        </details>
         <div class="map-modes" role="group" aria-label="Map evidence mode">
           <button class="map-mode active" data-mode="conceptual" aria-pressed="true">Conceptual geography</button>
           <button class="map-mode" data-mode="sst" aria-pressed="false">Observed SST</button>
           <button class="map-mode" data-mode="anomaly" aria-pressed="false">SST anomaly</button>
+          <button class="map-mode" data-mode="argo700" aria-pressed="false">Argo depth anomaly</button>
           <button class="map-mode" data-mode="error" aria-pressed="false">Estimated error</button>
         </div>
+        <div class="argo-depths" id="argo-depths" role="group" aria-label="Argo pressure level" hidden>
+          <span>PRESSURE LADDER</span>
+          <button type="button" data-pressure="10" aria-pressed="false">10 dbar <small>near surface</small></button>
+          <button type="button" data-pressure="300" aria-pressed="false">300 dbar <small>upper thermocline</small></button>
+          <button type="button" data-pressure="700" aria-pressed="true">700 dbar <small>intermediate</small></button>
+          <button type="button" data-pressure="1000" aria-pressed="false">1000 dbar <small>deep</small></button>
+        </div>
+        <div class="conceptual-views" id="conceptual-views" role="group" aria-label="Conceptual map ground">
+          <span>PROVINCE GROUND</span>
+          <button type="button" data-conceptual-view="reference" aria-pressed="false">Ocean states <small>coast-owned edges</small></button>
+          <button type="button" data-conceptual-view="water-first" aria-pressed="true">Quiet states <small>feature-reading default</small></button>
+          <button type="button" data-conceptual-view="shape-first" aria-pressed="false">Fluid shapes <small>ghost coastlines only</small></button>
+        </div>
+        <div class="province-controls" id="province-controls">
+          <p><strong>56 APPROXIMATE OCEAN STATES</strong><span id="province-status" tabindex="-1" aria-live="polite">Select a province to inspect and zoom.</span></p>
+          <label for="province-select">Province <select id="province-select"><option value="all">All 56 provinces</option></select></label>
+          <button type="button" id="province-reset" disabled>Return to all 56</button>
+        </div>
         <div class="map-stage" id="map-stage">
-          <img id="conceptual-map" src="../figures/planetary-heat-geography.svg"
-            alt="Conceptual world map of ocean heat reservoirs, pathways, anomalies, buried layers, and gates.">
+          <div class="map-viewport" id="map-viewport">
+          <div id="province-map-host" class="province-map-host"><img id="conceptual-map" src="../figures/osw-province-atlas-interactive.svg"
+            alt="Interactive map of 56 approximate ocean provinces with coast-owned edges."></div>
+          <div id="feature-shape-host" class="feature-shape-host"><img src="../figures/osw-atlas-feature-shapes.svg"
+            alt="Schematic geographic shapes for 36 selectable waters, flows, edges, seafloor features, living systems, and events."></div>
+          <div class="ocean-basin-labels" id="ocean-basin-labels" aria-hidden="true"><span class="np">NORTH PACIFIC</span><span class="sp">SOUTH PACIFIC</span><span class="na">NORTH ATLANTIC</span><span class="sa">SOUTH ATLANTIC</span><span class="io">INDIAN OCEAN</span><span class="so">SOUTHERN OCEAN</span><span class="ao">ARCTIC OCEAN</span></div>
           <canvas id="sst-canvas" width="720" height="360" hidden
             aria-label="NOAA OISST surface field for 1 August 2026, displayed on a two-degree equirectangular grid."
             aria-describedby="map-a11y-summary projection-note"></canvas>
-          <div id="markers" class="markers" aria-label="Selectable ocean zones"></div>
+          <div class="map-reference-labels" id="map-reference-labels" hidden aria-hidden="true">
+            <span class="basin pacific">PACIFIC</span>
+            <span class="basin atlantic">ATLANTIC</span>
+            <span class="basin indian">INDIAN</span>
+            <span class="latitude north-30">30°N</span>
+            <span class="latitude equator">EQUATOR</span>
+            <span class="latitude south-30">30°S</span>
+            <span class="longitude west-90">90°W</span>
+            <span class="longitude prime">0°</span>
+            <span class="longitude east-90">90°E</span>
+          </div>
+          </div>
           <div class="observed-stamp" id="observed-stamp" hidden>
             <strong id="observed-title">OBSERVATIONAL · SURFACE</strong>
             <span id="observed-status">NOAA OISST v2.1 · FINAL · 2026-08-01</span>
           </div>
         </div>
         <div class="temperature-key" id="temperature-key" hidden aria-label="Sea surface temperature color scale">
-          <span id="scale-min">−2°C</span><i></i><span id="scale-max">32°C</span>
+          <i></i>
+          <div class="temperature-ticks"><span id="scale-min">−2°C</span><span id="scale-mid">15°C</span><span id="scale-max">32°C</span></div>
         </div>
-        <p class="map-note" id="map-note"><span></span> Schematic, permeable, moving regions · not fixed boundaries · not a live analysis</p>
+        <p class="map-note" id="map-note"><span></span> Selectable shapes are schematic geographic indexes—not observed boundaries · conceptual, overlapping geography · land-subtracted at the shared Natural Earth coastline</p>
+        <section class="relation-panel" id="relation-panel" aria-labelledby="relation-title">
+          <div class="relation-heading">
+            <div><p class="eyebrow">Place ↔ object</p><h3 id="relation-title">Schematic rendered overlap</h3></div>
+            <div class="relation-actions"><button type="button" id="relation-clear">Clear spotlight</button><button type="button" id="relation-export" disabled>Export 36 × 56 CSV</button></div>
+          </div>
+          <p id="relation-summary" aria-live="polite">Loading the relationship between 36 feature shapes and 56 ocean states…</p>
+          <div class="relation-lists">
+            <section aria-labelledby="overlap-title"><h4 id="overlap-title">Overlaps</h4><div id="relation-overlaps" class="relation-buttons"></div></section>
+            <section aria-labelledby="near-title"><h4 id="near-title">Near-contacts</h4><div id="relation-near" class="relation-buttons"></div></section>
+          </div>
+          <p class="relation-method">This is a sampled relationship between two schematic display layers—not observed membership, transport, or a physical boundary.</p>
+        </section>
+        <div class="conceptual-actions" id="conceptual-actions">
+          <a id="full-size-conceptual-map" href="../figures/osw-province-atlas-coastal-states.svg" target="_blank" rel="noopener">Open the full-size province map ↗</a>
+          <a href="../projections/">Open projection laboratory →</a>
+          <details class="zone-directory">
+            <summary id="directory-summary">Browse 12 matching features as text</summary>
+            <ol id="zone-directory-list"></ol>
+          </details>
+        </div>
         <section class="map-data-summary" id="map-data-summary" hidden aria-labelledby="map-data-title">
-          <h3 id="map-data-title">Non-color map summary</h3>
-          <p id="map-a11y-summary">Select an observed layer for a text summary by latitude band.</p>
+          <h3 id="map-data-title">How to read this observed map</h3>
+          <p id="map-insight" class="map-insight">Select an observed layer for its main conclusion and limits.</p>
+          <p id="map-a11y-summary">Non-color map summary: select an observed layer for a text summary by latitude band.</p>
           <p id="projection-note">Equirectangular display; the antimeridian is the left/right seam and 0° longitude is centered.</p>
           <form class="coordinate-probe" id="coordinate-probe">
             <fieldset>
               <legend>Inspect one display cell</legend>
-              <p>Click the observed map or enter coordinates. The probe snaps to the nearest two-degree display cell and reports all three surface fields together.</p>
+              <p>Click the observed map or enter coordinates. The probe samples each product on its own nearest display cell and reports the surface fields plus the four-level Argo anomaly profile.</p>
               <div class="probe-controls">
                 <label for="probe-lat">Latitude
                   <input id="probe-lat" name="lat" type="number" min="-90" max="90" step="any" inputmode="decimal" value="0" required>
@@ -77,20 +159,23 @@
               <output id="probe-result" for="probe-lat probe-lon" aria-live="polite">No cell selected yet.</output>
             </fieldset>
           </form>
-          <section class="ring-comparison" aria-labelledby="ring-title">
+          <section class="ring-comparison" id="ring-comparison" aria-labelledby="ring-title">
             <div class="ring-heading">
               <div>
                 <h3 id="ring-title">Compare latitude rings</h3>
                 <p>Trace the displayed surface field around the same requested latitude north and south. Land-or-missing gaps expose analyzed-water continuity; they do not measure currents or heat transport.</p>
               </div>
-              <form id="ring-form" class="ring-form">
-                <label for="ring-lat">Latitude magnitude
-                  <span><input id="ring-lat" name="ring" type="number" min="0" max="89" step="any" inputmode="decimal" value="64" required> °N / °S</span>
-                </label>
-                <button type="submit">Compare rings</button>
-              </form>
             </div>
             <output id="ring-summary" for="ring-lat" aria-live="polite">Select an observed layer to compare latitude rings.</output>
+            <details class="ring-workbench">
+              <summary>Inspect the paired rings</summary>
+              <div class="ring-workbench-body">
+            <form id="ring-form" class="ring-form">
+              <label for="ring-lat">Latitude magnitude
+                <span><input id="ring-lat" name="ring" type="number" min="0" max="89" step="any" inputmode="decimal" value="64" required> °N / °S</span>
+              </label>
+              <button type="submit">Compare rings</button>
+            </form>
             <div class="ring-strips">
               <figure><figcaption id="north-ring-label">Northern ring</figcaption><canvas id="north-ring" width="720" height="44" role="img" aria-labelledby="north-ring-label" aria-describedby="ring-summary"></canvas></figure>
               <figure><figcaption id="south-ring-label">Southern ring</figcaption><canvas id="south-ring" width="720" height="44" role="img" aria-labelledby="south-ring-label" aria-describedby="ring-summary"></canvas></figure>
@@ -102,6 +187,9 @@
                 <tbody id="ring-body"></tbody>
               </table>
             </div>
+            <details class="advanced-diagnostics">
+              <summary>Open polar mirrors and the latitude continuity ladder</summary>
+              <div class="advanced-diagnostics-body">
             <section class="polar-mirror-section" aria-labelledby="polar-mirror-title">
               <h4 id="polar-mirror-title">Polar mirrors</h4>
               <p>View the active surface field from 40° to each pole. Both panels keep 0° longitude at the top and 90°E at the right for direct comparison; this intentionally mirrors the southern cap relative to a conventional globe view.</p>
@@ -130,6 +218,10 @@
                 </div>
               </details>
             </section>
+              </div>
+            </details>
+              </div>
+            </details>
           </section>
           <div class="summary-table-wrap">
             <table>
@@ -143,11 +235,19 @@
       <aside class="zone-panel" id="zone-panel" aria-live="polite">
         <p class="zone-index" id="zone-index">SELECT A LINE</p>
         <h2 id="zone-name">Read the moving map</h2>
-        <p class="zone-kind" id="zone-kind">Start with any numbered marker.</p>
-        <p class="zone-summary" id="zone-summary">Each zone is classified by role, depth,
+        <p class="zone-kind" id="zone-kind">Start with any geographic feature shape.</p>
+        <div class="zone-tools">
+          <span class="evidence-badge" id="evidence-badge" data-evidence="conceptual">CONCEPTUAL</span>
+          <button type="button" id="feature-zoom">Zoom to this shape</button>
+        </div>
+        <p class="evidence-note">Evidence type qualifies the named phenomenon—not the drawn footprint or a confidence score.</p>
+        <p class="zone-summary" id="zone-summary">Each feature is classified by lens, role, depth,
           persistence, and evidence—not by color alone.</p>
         <dl class="zone-facts">
+          <div><dt>LENS</dt><dd id="zone-lens">overlapping ocean geography</dd></div>
           <div><dt>ROLE</dt><dd id="zone-role">reservoir · pathway · anomaly · gate</dd></div>
+          <div><dt>BASIS</dt><dd id="zone-basis">how the feature is recognized</dd></div>
+          <div><dt>PROPERTY</dt><dd id="zone-property">temperature, salinity, motion, chemistry, or relief</dd></div>
           <div><dt>DEPTH</dt><dd id="zone-depth">declared for every zone</dd></div>
           <div><dt>CLOCK</dt><dd id="zone-clock">persistent or transient</dd></div>
           <div><dt>EVIDENCE</dt><dd id="zone-evidence">conceptual atlas</dd></div>
@@ -160,15 +260,14 @@
       </aside>
     </section>
     <section class="grammar" aria-labelledby="grammar-title">
-      <div><div><p class="eyebrow">The map grammar</p><h2 id="grammar-title">Seven shapes of ocean heat</h2></div></div>
+      <div><div><p class="eyebrow">The map grammar</p><h2 id="grammar-title">Six overlapping geographies of the ocean</h2><p class="dek">The same coordinate may belong to several at once. <a href="../HEATMASS.md">The original seven-shape heat grammar remains available.</a></p></div></div>
       <div class="grammar-grid">
-        <article><b>01</b><h3>CONTINENT</h3><p>Persistent or seasonal reservoir</p></article>
-        <article><b>02</b><h3>RIVER</h3><p>Current carrying water and energy</p></article>
-        <article><b>03</b><h3>ISLAND</h3><p>Moving warm-core ring or eddy</p></article>
-        <article><b>04</b><h3>BLOB</h3><p>Temporary regional anomaly</p></article>
-        <article><b>05</b><h3>TONGUE</h3><p>Basin-scale anomaly extending east</p></article>
-        <article><b>06</b><h3>BURIED</h3><p>Warm layer beneath a cold or fresh lid</p></article>
-        <article><b>07</b><h3>GATE</h3><p>Narrow section controlling exchange</p></article>
+        <article><b>01</b><h3>WATERS</h3><p>Three-dimensional masses and reservoirs</p></article>
+        <article><b>02</b><h3>FLOWS</h3><p>Currents, gyres, eddies, and overturning</p></article>
+        <article><b>03</b><h3>EDGES</h3><p>Fronts, seams, layer boundaries, and gates</p></article>
+        <article><b>04</b><h3>FLOOR</h3><p>Basins, ridges, trenches, and plateaus</p></article>
+        <article><b>05</b><h3>LIFE</h3><p>Oxygen, nutrients, productivity, and habitat</p></article>
+        <article><b>06</b><h3>EVENTS</h3><p>Heatwaves, cold tongues, plumes, and anomalies</p></article>
       </div>
     </section>
     <section class="firewall" aria-labelledby="firewall-title">
@@ -182,11 +281,16 @@
       </div>
     </section>
   </main>
-  <footer><strong>OCEANLINES</strong><p>Atlas 07 aligns northern and southern polar caps without turning visual symmetry into physical equivalence.</p><a href="../LICENSE">MIT · Gio Della-Libera</a></footer>
+  <footer><strong>OSW</strong><p>Atlas 10 compares four pressure-level anomalies from one Argo product; the ladder is not heat content, transport, or Antarctic shelf delivery. Polar mirrors remain a geometry comparison, not physical equivalence.</p><a href="../LICENSE">MIT · Gio Della-Libera</a></footer>
   <noscript>This atlas requires JavaScript for zone selection. The complete map remains visible above.</noscript>
   <script src="data/oisst-2026-08-01.js" defer></script>
   <script src="data/oisst-anomaly-2026-08-01.js" defer></script>
   <script src="data/oisst-error-2026-08-01.js" defer></script>
+  <script src="data/argo-temperature-anomaly-10dbar-2026-07.js" defer></script>
+  <script src="data/argo-temperature-anomaly-300dbar-2026-07.js" defer></script>
+  <script src="data/argo-temperature-anomaly-700dbar-2026-07.js" defer></script>
+  <script src="data/argo-temperature-anomaly-1000dbar-2026-07.js" defer></script>
+  <script src="data/relation-smoke-fixture.js" defer></script>
   <script src="app.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Research note for OSW Atlas 08: question, evidence classes, data receipts, limitations, and next tests.">
+  <title>OSW Research Note — Atlas 08</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="wordmark" href="../README.md">OSW</a>
+    <nav aria-label="Project routes">
+      <a href="../atlas/">Atlas</a>
+      <a href="../figures/osw-fluid-geography.svg">Map</a>
+      <a href="../atlas/README.md">Methods</a>
+      <a href="../SOURCE-REGISTER.md">Sources</a>
+    </nav>
+    <span>RESEARCH NOTE · ATLAS 08</span>
+  </header>
+
+  <main>
+    <article>
+      <header class="hero">
+        <p class="eyebrow">Research object and evidence boundary</p>
+        <h1>A map for asking better ocean-heat questions.</h1>
+        <p class="lede">OSW tests whether a fluid-geography vocabulary—reservoirs,
+          pathways, anomalies, buried layers, fronts, and gates—can organize
+          observations without confusing temperature, heat content, and transport.</p>
+        <dl class="status-grid">
+          <div><dt>Current stage</dt><dd>Observation-class atlas framework</dd></div>
+          <div><dt>Implemented data</dt><dd>NOAA OISST v2.1 surface fields</dd></div>
+          <div><dt>Conceptual objects</dt><dd>36 curated ocean features across six overlapping lenses</dd></div>
+          <div><dt>Release status</dt><dd>Public review branch; Atlas 07 remains released</dd></div>
+        </dl>
+      </header>
+
+      <section aria-labelledby="question">
+        <p class="section-number">01 · QUESTION</p>
+        <h2 id="question">What is the atlas testing?</h2>
+        <p>The organizing hypothesis is that ocean heat becomes easier to reason about
+          when maps separate three physically different objects:</p>
+        <ol class="questions">
+          <li><strong>Storage</strong><span>Heat content integrated through a declared volume.</span></li>
+          <li><strong>Transport</strong><span>Heat flux through a declared section, requiring velocity and temperature.</span></li>
+          <li><strong>Anomaly</strong><span>Departure from a declared climatology at a declared depth and time.</span></li>
+        </ol>
+        <p class="boundary"><strong>Current limit:</strong> Atlas 08 demonstrates the
+          visual grammar and co-located surface inspection. It does not yet diagnose a
+          full-depth heat budget or validate the twelve original conceptual footprints.</p>
+      </section>
+
+      <section aria-labelledby="claims">
+        <p class="section-number">02 · CLAIMS LEDGER</p>
+        <h2 id="claims">What can be concluded now?</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Statement</th><th>Class</th><th>Supported by</th><th>Does not establish</th></tr></thead>
+            <tbody>
+              <tr><td>Land–ocean geometry differs strongly between counterpart northern and southern latitude rows.</td><td><span class="tag observed">Observed-product geometry</span></td><td>Fixed OISST analyzed-water mask and complete paired-row scan; front context from <a href="https://doi.org/10.1016/0967-0637(95)00021-W">Orsi et al. (1995)</a> and <a href="https://doi.org/10.1029/2008JC005108">Sokolov &amp; Rintoul (2009)</a>.</td><td>ACC strength, frontal permeability, heat content, or transport.</td></tr>
+              <tr><td>Absolute SST, SST anomaly, and estimated analysis error tell different stories at the same cell.</td><td><span class="tag observed">Observed surface fields</span></td><td>Co-located NOAA OISST variables <code>sst</code>, <code>anom</code>, and <code>err</code>; heat-observing context from <a href="https://doi.org/10.3389/fmars.2019.00416">Palmer et al. (2019)</a>.</td><td>Subsurface conditions, causal attribution, or total energy.</td></tr>
+              <tr><td>Reservoir/pathway/anomaly/gate is a useful map vocabulary.</td><td><span class="tag conceptual">Explanatory synthesis</span></td><td>Mechanism-separated visual grammar informed by <a href="https://doi.org/10.1029/2022RG000781">Bennetts et al. (2024)</a>.</td><td>Optimal classification, fixed boundaries, or exhaustive coverage.</td></tr>
+              <tr><td>Closing Drake Passage would reorganize Southern Ocean climate.</td><td><span class="tag modeled">Model counterfactual</span></td><td><a href="https://doi.org/10.1175/JCLI-D-15-0554.1">England et al. (2017)</a>, read with the gateway-only challenge from <a href="https://doi.org/10.1038/nature13597">Goldner et al. (2014)</a>.</td><td>A feasible intervention, unique outcome, or modern ice-loss forecast.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section aria-labelledby="receipt">
+        <p class="section-number">03 · REPRODUCTION RECEIPT</p>
+        <h2 id="receipt">What exact bytes are displayed?</h2>
+        <p>The three surface layers are final NOAA/NCEI OISST v2.1 AVHRR-only
+          fields for 2026-08-01, retrieved 2026-08-21 14:00 UTC. Native 0.25° data
+          are sampled every eighth cell onto a 90 × 180, 2° display grid. Missing and
+          land values remain explicit. Dataset DOI:
+          <a href="https://doi.org/10.25921/RE9P-PT57">10.25921/RE9P-PT57</a>.</p>
+        <p>The depth ladder is the July 2026 Scripps RG Argo monthly extension,
+          retrieved 2026-08-28 19:02:31 UTC. It samples the native 1° potential-
+          temperature anomaly at 10, 300, 700, and 1000 dbar every second grid cell. Its climatological
+          reference is the RG 2019 mean and annual cycle derived from 2004–2018 Argo
+          data. The 64.5°S limit excludes the Antarctic shelf and ice cavities.</p>
+        <div class="table-wrap">
+          <table class="receipts">
+            <thead><tr><th>Variable</th><th>Reference</th><th>Source-response SHA-256</th><th>Artifact</th></tr></thead>
+            <tbody>
+              <tr><td><code>sst</code> · °C</td><td>Absolute surface temperature</td><td><code class="hash">54fde8766119da6856fff827b64946626eae3f61959792f962f296efb5baacd3</code></td><td><a href="../atlas/data/oisst-2026-08-01.js">snapshot</a></td></tr>
+              <tr><td><code>anom</code> · °C</td><td>1971–2000 climatological mean</td><td><code class="hash">a6756b88ecfe5e3c0307b7566ba142e3f9ddb8ebaa8823a5d08f9d3a3a1529e2</code></td><td><a href="../atlas/data/oisst-anomaly-2026-08-01.js">snapshot</a></td></tr>
+              <tr><td><code>err</code> · °C</td><td>Product-estimated analysis error</td><td><code class="hash">24ae585b4b591b19d7b360fe8df3f9620e28f9754e8aa3e21bcb0860bc864ba6</code></td><td><a href="../atlas/data/oisst-error-2026-08-01.js">snapshot</a></td></tr>
+              <tr><td><code>ARGO_TEMPERATURE_ANOMALY</code> · °C · 10 dbar</td><td>RG 2019 mean and annual cycle from 2004–2018</td><td><code class="hash">5a19dc77aaccecfd7e6aec34e80e42e1cbd83642c3f08a94d98c7018f631bb5c</code></td><td><a href="../atlas/data/argo-temperature-anomaly-10dbar-2026-07.js">snapshot</a></td></tr>
+              <tr><td><code>ARGO_TEMPERATURE_ANOMALY</code> · °C · 300 dbar</td><td>same RG reference and source bytes</td><td><code class="hash">5a19dc77aaccecfd7e6aec34e80e42e1cbd83642c3f08a94d98c7018f631bb5c</code></td><td><a href="../atlas/data/argo-temperature-anomaly-300dbar-2026-07.js">snapshot</a></td></tr>
+              <tr><td><code>ARGO_TEMPERATURE_ANOMALY</code> · °C · 700 dbar</td><td>same RG reference and source bytes</td><td><code class="hash">5a19dc77aaccecfd7e6aec34e80e42e1cbd83642c3f08a94d98c7018f631bb5c</code></td><td><a href="../atlas/data/argo-temperature-anomaly-700dbar-2026-07.js">snapshot</a></td></tr>
+              <tr><td><code>ARGO_TEMPERATURE_ANOMALY</code> · °C · 1000 dbar</td><td>same RG reference and source bytes</td><td><code class="hash">5a19dc77aaccecfd7e6aec34e80e42e1cbd83642c3f08a94d98c7018f631bb5c</code></td><td><a href="../atlas/data/argo-temperature-anomaly-1000dbar-2026-07.js">snapshot</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fineprint">The committed artifacts contain the complete checksums,
+          NCSS query URLs, schema identifiers, units, shape, precision, and inferential
+          boundary. The conceptual basemap uses checksum-pinned Natural Earth 1:110m
+          public-domain land geometry; authored fluid overlays are schematic.</p>
+        <nav class="downloads" aria-label="Machine-readable evidence">
+          <a href="zone-catalog.csv" download><strong>Download 36-feature catalog</strong><span>CSV with lens, properties, identifying basis, depth, persistence, evidence, source, and inferential boundary.</span></a>
+          <a href="claims-ledger.csv" download><strong>Download claims ledger</strong><span>CSV with four statements, evidence classes, non-claims, and DOI mappings.</span></a>
+        </nav>
+      </section>
+
+      <section aria-labelledby="literature">
+        <p class="section-number">04 · LITERATURE SPINE</p>
+        <h2 id="literature">Which papers carry the argument?</h2>
+        <div class="literature-grid">
+          <article><p>Front definitions</p><h3><a href="https://doi.org/10.1016/0967-0637(95)00021-W">Orsi, Whitworth &amp; Nowlin (1995)</a></h3><span>Hydrographic definitions of the major ACC fronts; climatological paths are not fixed material contours.</span></article>
+          <article><p>Multiple jets</p><h3><a href="https://doi.org/10.1029/2008JC005108">Sokolov &amp; Rintoul (2009)</a></h3><span>Circumpolar fronts branch, merge, diverge, and respond to bathymetry.</span></article>
+          <article><p>Observed exchange</p><h3><a href="https://doi.org/10.1175/JPO-D-19-0266.1">Gutierrez-Villanueva et al. (2020)</a></h3><span>Upper-ocean eddy heat flux crosses the ACC in Drake Passage and varies in time.</span></article>
+          <article><p>Regional barriers</p><h3><a href="https://doi.org/10.1029/2018RG000624">Thompson et al. (2018)</a></h3><span>Cross-slope exchange depends on eddies, tides, overflows, and regional dynamics.</span></article>
+          <article><p>Coupled counterfactual</p><h3><a href="https://doi.org/10.1175/JCLI-D-15-0554.1">England et al. (2017)</a></h3><span>Drake closure produces large modeled changes mediated by ice–atmosphere feedbacks.</span></article>
+          <article><p>Contrary constraint</p><h3><a href="https://doi.org/10.1038/nature13597">Goldner, Herold &amp; Huber (2014)</a></h3><span>Gateway state alone does not explain Eocene–Oligocene circulation change.</span></article>
+          <article><p>Heat observation</p><h3><a href="https://doi.org/10.3389/fmars.2019.00416">Palmer et al. (2019)</a></h3><span>Regional heat storage requires depth-resolved, uncertainty-aware observing coverage.</span></article>
+          <article><p>System synthesis</p><h3><a href="https://doi.org/10.1029/2022RG000781">Bennetts et al. (2024)</a></h3><span>Connects Southern Ocean circulation, cryosphere, mixing, waves, and their unresolved feedbacks.</span></article>
+          <article><p>Depth-product method</p><h3><a href="https://doi.org/10.1016/j.pocean.2009.03.004">Roemmich &amp; Gilson (2009)</a></h3><span>Defines the Argo-only mean, annual cycle, and objective-mapping approach behind the RG pressure-level product.</span></article>
+        </div>
+        <p>The original 15-source mechanism audit is available in the <a href="../signals/discover/literature/ocean-heat-geography-citation-spine-literature-2026-08-28.md">literature map</a>; the implemented Argo product adds its method paper here.</p>
+        <nav class="downloads" aria-label="Literature resources">
+          <a href="../REFERENCES.bib" download><strong>Download BibTeX</strong><span>Import all 16 references into a citation manager.</span></a>
+          <a href="../REVIEW-GUIDE.md"><strong>Optional review guide</strong><span>Five bounded questions; no endorsement or collaboration requested.</span></a>
+        </nav>
+      </section>
+
+      <section aria-labelledby="next">
+        <p class="section-number">05 · QUANTITATIVE PATH</p>
+        <h2 id="next">What would turn the map into a heat-budget study?</h2>
+        <div class="next-grid">
+          <article><span>1</span><h3>Resolve vertical structure</h3><p>Extend the four-level anomaly ladder toward a full profile and salinity, with uncertainty and coverage.</p></article>
+          <article><span>2</span><h3>Diagnose transport</h3><p>Define sections and integrate velocity-weighted heat flux using a dynamically consistent state estimate.</p></article>
+          <article><span>3</span><h3>Test gates and barriers</h3><p>Add bathymetry, sea ice, fronts, and controlled perturbations rather than inferring barriers from color.</p></article>
+          <article><span>4</span><h3>Compare budgets</h3><p>Close regional storage, advection, mixing, and surface-flux terms with propagated uncertainty.</p></article>
+        </div>
+        <p>Predeclared tests and stop conditions are in
+          <a href="../PREDICTIONS.md">Predictions</a> and
+          <a href="../EXPERIMENTS.md">Causal Heat Experiments</a>.</p>
+      </section>
+
+      <section aria-labelledby="inspect">
+        <p class="section-number">06 · INSPECTION ROUTES</p>
+        <h2 id="inspect">Follow the evidence, not just the picture.</h2>
+        <nav class="routes" aria-label="Research inspection routes">
+          <a href="../atlas/"><strong>Interactive Atlas</strong><span>Inspect co-located fields, cells, latitude rings, and polar mirrors.</span></a>
+          <a href="../atlas/README.md"><strong>Methods</strong><span>Read projections, transformations, thresholds, and rebuild commands.</span></a>
+          <a href="../SOURCE-REGISTER.md"><strong>Source register</strong><span>Trace every admitted claim and its explicit boundary.</span></a>
+          <a href="../signals/roles/check/ocean-first-fluid-geography-roles-check-2026-08-28.md"><strong>Internal review</strong><span>See the eight-lens scientific, cartographic, accessibility, and reproducibility check.</span></a>
+        </nav>
+      </section>
+
+      <footer>
+        <p><strong>Suggested citation:</strong> Della-Libera, G. (2026),
+          <em>OSW: Ocean States of the World</em>, version 0.8.0,
+          MIT License. See <a href="../CITATION.cff">CITATION.cff</a> and cite NOAA OISST separately when using its layers.</p>
+        <p>OSW internal review organizes quality control; it does not replace external scientific peer review.</p>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>

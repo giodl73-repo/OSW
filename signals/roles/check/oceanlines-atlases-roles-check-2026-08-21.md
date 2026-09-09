@@ -1,6 +1,6 @@
 ---
 skill: roles-check
-topic: oceanlines-atlases
+topic: osw-atlases
 date: 2026-08-21
 reviewed_atlas_commit: 3769594
 role_set_commit: 262f3e7

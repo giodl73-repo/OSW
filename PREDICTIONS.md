@@ -1,4 +1,4 @@
-# OCEANLINES Predictions
+# OSW Predictions
 
 These tests convert the atlas vocabulary into claims that can fail. They do
 not assume that Antarctic water masses and gas-giant belts share one material

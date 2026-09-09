@@ -1,0 +1,48 @@
+{
+  "schema": "oceanlines.oras5.nordic-seas-t-metrics.v1",
+  "status": "native_t_cell_metric_companion",
+  "source_url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/mesh/mesh_mask.nc",
+  "retrieved_at": "2026-09-05T00:00:00Z",
+  "native_index_box": {
+    "y_start": 752,
+    "y_stop_exclusive": 1008,
+    "x_start": 984,
+    "x_stop_exclusive": 1280
+  },
+  "shape": [
+    256,
+    296
+  ],
+  "variables": {
+    "e1t": {
+      "shape": [
+        256,
+        296
+      ],
+      "units": null
+    },
+    "e2t": {
+      "shape": [
+        256,
+        296
+      ],
+      "units": null
+    }
+  },
+  "t_cell_area_m2": {
+    "minimum_m2": 117895719.9133501,
+    "maximum_m2": 317564391.9653549,
+    "all_finite_positive": true
+  },
+  "mesh_receipt": {
+    "path": "research\\osw-m4-oras5-nordic-seas-mesh.json",
+    "sha256": "9e33d620770fb41f1a40e5fa09d6eda8cd9f44c3af8092cef36ebe66c19421a8",
+    "mesh_output_sha256": "059b31cc41502d633c259a3e7f7e45c240f1f940b6c35a3400d1c6d756d2ea1e"
+  },
+  "output": {
+    "path": "atlas\\data\\oras5-nordic-t-metrics.nc",
+    "bytes": 322730,
+    "sha256": "64c7b8cd817655158f835dc104aea7e253950b3b6fb81ed2e949a2dbb1156242"
+  },
+  "boundary": "Native T-cell horizontal metrics aligned to the existing nordic-seas subset. They provide area geometry but do not establish heat-content tendency, complete tracer-budget closure, or heat delivery."
+}

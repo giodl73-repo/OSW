@@ -1,0 +1,73 @@
+{
+  "schema": "oceanlines.oras5.arctic-entrances-state-subset.v1",
+  "status": "native_monthly_arctic_state_subset_not_yet_sectioned",
+  "month": "201802",
+  "source": "University of Hamburg ICDC ORAS5 ORCA025 ensemble member opa0",
+  "retrieved_at": "2026-09-05T14:11:14.260568+00:00",
+  "mesh_receipt": "research\\osw-m3-oras5-arctic-entrances-mesh.json",
+  "mesh_sha256": "8d0252a368a2b6eae8f6db5713ae7c369560c41a7503a697af9057c3e5809eaa",
+  "native_index_box": {
+    "y_start": 816,
+    "y_stop_exclusive": 1016,
+    "x_start": 1032,
+    "x_stop_exclusive": 1272
+  },
+  "shape": [
+    75,
+    200,
+    240
+  ],
+  "fields": {
+    "votemper": {
+      "url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/votemper/opa0/votemper_ORAS5_1m_201802_grid_T_02.nc",
+      "source_dimensions": [
+        "time_counter",
+        "deptht",
+        "y",
+        "x"
+      ],
+      "units": "C",
+      "long_name": "Temperature"
+    },
+    "vosaline": {
+      "url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/vosaline/opa0/vosaline_ORAS5_1m_201802_grid_T_02.nc",
+      "source_dimensions": [
+        "time_counter",
+        "deptht",
+        "y",
+        "x"
+      ],
+      "units": "PSU",
+      "long_name": "Salinity"
+    },
+    "vozocrtx": {
+      "url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/vozocrtx/opa0/vozocrtx_ORAS5_1m_201802_grid_U_02.nc",
+      "source_dimensions": [
+        "time_counter",
+        "depthu",
+        "y",
+        "x"
+      ],
+      "units": "m/s",
+      "long_name": "Zonal Current"
+    },
+    "vomecrty": {
+      "url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/vomecrty/opa0/vomecrty_ORAS5_1m_201802_grid_V_02.nc",
+      "source_dimensions": [
+        "time_counter",
+        "depthv",
+        "y",
+        "x"
+      ],
+      "units": "m/s",
+      "long_name": "Meridional Current"
+    }
+  },
+  "output": {
+    "path": "atlas\\data\\oras5-arctic-entrances-state-201802.nc",
+    "bytes": 15925407,
+    "sha256": "e2b20aa06bac24f87e68d951678aabc4110ed6c0f799af5ce0b123ca14075a83"
+  },
+  "next_test": "extract Fram and both Barents face paths with signed velocity and adjacent-cell T/S collocation",
+  "boundary": "One monthly assimilative-reanalysis member on the native grid. This is not an observation-only field, climatology, accepted section transport, convergence, or Arctic heat budget."
+}

@@ -78,7 +78,7 @@ def build_ncss_query(date: str, stride: int, variable: str = "sst") -> str:
 def fetch(url: str) -> bytes:
     request = urllib.request.Request(
         url,
-        headers={"User-Agent": "OCEANLINES/0.1 (public research atlas)"},
+        headers={"User-Agent": "OSW/0.1 (public research atlas)"},
     )
     with urllib.request.urlopen(request, timeout=120) as response:
         return response.read()

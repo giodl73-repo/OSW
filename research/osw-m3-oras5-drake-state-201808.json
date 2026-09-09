@@ -1,0 +1,62 @@
+{
+  "schema": "oceanlines.oras5.drake-state-subset.v1",
+  "status": "native_monthly_state_subset_not_yet_sectioned",
+  "month": "201808",
+  "source": "University of Hamburg ICDC ORAS5 ORCA025 ensemble member opa0",
+  "retrieved_at": "2026-08-30T00:00:00-07:00",
+  "mesh_receipt": "research\\osw-m3-oras5-drake-mesh.json",
+  "mesh_sha256": "a575659f2249a60ce01ecfc71fc489d17f8476d1a41dfb116b25c349ddcb0824",
+  "native_index_box": {
+    "y_start": 88,
+    "y_stop_exclusive": 288,
+    "x_start": 816,
+    "x_stop_exclusive": 992
+  },
+  "shape": [
+    75,
+    200,
+    176
+  ],
+  "fields": {
+    "votemper": {
+      "url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/votemper/opa0/votemper_ORAS5_1m_201808_grid_T_02.nc",
+      "source_dimensions": [
+        "time_counter",
+        "deptht",
+        "y",
+        "x"
+      ],
+      "units": "C",
+      "long_name": "Temperature"
+    },
+    "vozocrtx": {
+      "url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/vozocrtx/opa0/vozocrtx_ORAS5_1m_201808_grid_U_02.nc",
+      "source_dimensions": [
+        "time_counter",
+        "depthu",
+        "y",
+        "x"
+      ],
+      "units": "m/s",
+      "long_name": "Zonal Current"
+    },
+    "vomecrty": {
+      "url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/vomecrty/opa0/vomecrty_ORAS5_1m_201808_grid_V_02.nc",
+      "source_dimensions": [
+        "time_counter",
+        "depthv",
+        "y",
+        "x"
+      ],
+      "units": "m/s",
+      "long_name": "Meridional Current"
+    }
+  },
+  "output": {
+    "path": "atlas\\data\\oras5-drake-state-201808.nc",
+    "bytes": 17311926,
+    "sha256": "92a39a07152f7bb03479bad0b8e10910eb5302e5999c8ed300b25f7e61ead756"
+  },
+  "next_test": "define a native-face Drake section and collocate T-point temperature to its U/V faces",
+  "boundary": "One monthly assimilative-reanalysis member on the native grid. This is not an observation-only field, climatology, section transport, mass closure, or heat budget."
+}

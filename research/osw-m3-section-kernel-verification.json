@@ -1,0 +1,104 @@
+{
+  "schema": "oceanlines.osw.m3-section-transport.v1",
+  "status": "section transport calculation",
+  "input_schema": "oceanlines.osw.m3-section-input.synthetic.v1",
+  "input_sha256": "257d64a8a0d8b76b4458590afe19d30590d14d301c46962a5118935e23d65241",
+  "section": {
+    "name": "synthetic balanced verification section",
+    "normal_positive_toward": "east",
+    "geometry_status": "synthetic rectangular faces; not Drake Passage"
+  },
+  "source": {
+    "kind": "synthetic verification fixture",
+    "dataset": null,
+    "time": null
+  },
+  "temperature_contract": {
+    "variable": "synthetic potential temperature",
+    "scale": "potential temperature",
+    "units": "degree_Celsius"
+  },
+  "normal_velocity_contract": {
+    "variable": "synthetic face-normal velocity",
+    "units": "m s-1",
+    "positive_toward": "east"
+  },
+  "constants": {
+    "density_kg_m3": 1027.0,
+    "heat_capacity_J_kg_K": 3992.0
+  },
+  "shape": [
+    2,
+    2
+  ],
+  "wet_cell_count": 4,
+  "wet_area_m2": 60000.0,
+  "volume_transport": {
+    "positive_Sv": 0.02,
+    "negative_Sv": -0.02,
+    "net_Sv": 0.0
+  },
+  "transport_weighted_temperature_degC": {
+    "positive_branch": 3.5,
+    "negative_branch": 1.5,
+    "net": null
+  },
+  "reference_relative_heat_transport": [
+    {
+      "reference_temperature_degC": -1.9,
+      "positive_PW": 0.000442776672,
+      "negative_PW": -0.000278785312,
+      "net_PW": 0.00016399136
+    },
+    {
+      "reference_temperature_degC": 0.0,
+      "positive_PW": 0.00028698488,
+      "negative_PW": -0.00012299352,
+      "net_PW": 0.00016399136
+    },
+    {
+      "reference_temperature_degC": 5.0,
+      "positive_PW": -0.00012299352,
+      "negative_PW": 0.00028698488,
+      "net_PW": 0.00016399136
+    }
+  ],
+  "reference_change_audit": [
+    {
+      "from_degC": -1.9,
+      "to_degC": 0.0,
+      "expected_change_W": -0.0,
+      "actual_change_W": 0.0,
+      "identity_residual_W": 0.0
+    },
+    {
+      "from_degC": 0.0,
+      "to_degC": 5.0,
+      "expected_change_W": -0.0,
+      "actual_change_W": 0.0,
+      "identity_residual_W": 0.0
+    }
+  ],
+  "layers": [
+    {
+      "level": 0,
+      "thickness_m": 10.0,
+      "wet_area_m2": 20000.0,
+      "volume_Sv": 0.0,
+      "temperature_transport_degC_Sv": 0.02
+    },
+    {
+      "level": 1,
+      "thickness_m": 20.0,
+      "wet_area_m2": 40000.0,
+      "volume_Sv": 0.0,
+      "temperature_transport_degC_Sv": 0.02
+    }
+  ],
+  "mass_closure": {
+    "status": "not_evaluable_from_one_open_section",
+    "residual_Sv": null,
+    "requirement": "pair with every other open boundary and storage tendency of a closed control volume"
+  },
+  "boundary": "Advective section transport using declared normal velocity, potential temperature, wet-face geometry, constant density, and constant heat capacity. Heat transport is reference-temperature dependent when net volume transport is nonzero. One open section does not establish mass closure, convergence, eddy covariance, diffusive transport, ice-shelf delivery, or a complete heat budget."
+}

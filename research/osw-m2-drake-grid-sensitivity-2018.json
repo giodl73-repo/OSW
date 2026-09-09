@@ -1,0 +1,85 @@
+{
+  "schema": "oceanlines.osw.m2-grid-sensitivity.v1",
+  "status": "spatial-sampling sensitivity diagnostic for historical surface-pathway method pilot",
+  "reference": {
+    "label": "native approximately one-third degree",
+    "velocity_source": {
+      "schema": "oceanlines.oscar.historical-timeseries.v1",
+      "dataset_id": "yearly_336c_0b32_9cd3",
+      "source_version": "2017.0",
+      "source_sha256": "804d1a86592e81d720fc6beaf57e3c7b13a55dbf30605abcfd3dc406cf7fcda3",
+      "field_sha256": "4e8097deef965b3156617be10cc7b40252bfbfdfc6fda7e1f23a7c9f6faff42d",
+      "nominal_depth_m": 15,
+      "shape": [
+        71,
+        76,
+        121
+      ],
+      "sampled_extent": {
+        "north": -45.0,
+        "south": -70.0,
+        "west": 280.0,
+        "east": 320.0
+      },
+      "native_resolution_degrees": 0.3333333333333333,
+      "space_stride": 1
+    },
+    "summary": {
+      "released": 40,
+      "completed": 35,
+      "terminated": 5,
+      "completion_fraction": 0.875
+    }
+  },
+  "comparison": {
+    "label": "coarsened approximately two-thirds degree",
+    "velocity_source": {
+      "schema": "oceanlines.oscar.historical-timeseries.v1",
+      "dataset_id": "yearly_336c_0b32_9cd3",
+      "source_version": "2017.0",
+      "source_sha256": "0f3d530c9a707e76b452f3ab4b844f47c6260fa59d1e0830c9ec6c983c4365cb",
+      "field_sha256": "a02fba46dce38be800628453d6c5b173e2b1e6653322ac54aa1fbb924a3b9ac1",
+      "nominal_depth_m": 15,
+      "shape": [
+        71,
+        38,
+        61
+      ],
+      "sampled_extent": {
+        "north": -45.0,
+        "south": -69.66666666666667,
+        "west": 280.0,
+        "east": 320.0
+      },
+      "native_resolution_degrees": 0.3333333333333333,
+      "space_stride": 2
+    },
+    "summary": {
+      "released": 40,
+      "completed": 35,
+      "terminated": 5,
+      "completion_fraction": 0.875
+    }
+  },
+  "release_count": 40,
+  "status_disagreement_count": 2,
+  "status_disagreements": [
+    {
+      "id": "2018-06-17-10",
+      "reference_status": "terminated_invalid_wet_stencil_or_domain",
+      "comparison_status": "completed"
+    },
+    {
+      "id": "2018-09-16-02",
+      "reference_status": "completed",
+      "comparison_status": "terminated_invalid_wet_stencil_or_domain"
+    }
+  ],
+  "common_completed_tracks": 34,
+  "common_completed_endpoint_separation_km": {
+    "median": 79.00733766797109,
+    "p95_nearest_rank": 180.95612707854406,
+    "maximum": 310.68476164959264
+  },
+  "interpretation": "The coarsened and native-resolution fields yield the same aggregate completion count but not the same track identities or endpoint geography. Aggregate agreement therefore does not validate coarse path shapes; the native regional field remains primary."
+}

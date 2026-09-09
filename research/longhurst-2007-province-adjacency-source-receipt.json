@@ -1,0 +1,57 @@
+{
+  "schema": "osw-longhurst-2007-province-adjacency-source-receipt-v1",
+  "acquired_utc": "2026-09-09T04:08:55.232453+00:00",
+  "source_payload_posture": "provider bytes omitted; exact URL, response metadata, byte count, SHA-256, normalized topology derivative, and full committed-grid equivalence retained",
+  "source": {
+    "provider": "Flanders Marine Institute (VLIZ), Marine Regions",
+    "product": "Longhurst Provinces Version 4, March 2010",
+    "url": "https://geo.vliz.be/geoserver/MarineRegions/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=MarineRegions:longhurst&outputFormat=application/json",
+    "feature_count": 54,
+    "crs": "EPSG:4326",
+    "license": "CC BY 4.0 under the current Marine Regions license statement; attribution required",
+    "citation": "Flanders Marine Institute (2009). Longhurst Provinces. Available online at https://www.marineregions.org/. Consulted on 2026-09-09.",
+    "response_bytes": 4970812,
+    "response_sha256": "ecb8a061d43fda23e1b52928a8684dbb4fbdedb0a045dbf472e7f67e96702fe9",
+    "normalized_repaired_geometry_sha256": "b9140d36e487ccb1e2e7cfc28faf9c5fc2877b37dee708486ba73fa26b1d8f7c",
+    "headers": {
+      "content_type": "application/json;charset=UTF-8",
+      "etag": null,
+      "last_modified": null
+    }
+  },
+  "compatibility": {
+    "earlier_raw_response_sha256": "a7f254c5890848de9706c17927416a414b8f430e5d9e6c3337df9825bd5604a4",
+    "raw_response_bytes_match": false,
+    "full_assignment_grid_match": true,
+    "matching_cells": 1036800,
+    "total_cells": 1036800,
+    "interpretation": "The mutable WFS response bytes differ from the earlier receipt, while all 1,036,800 Version 4 assignments on the committed 0.25-degree analysis grid are identical. This establishes grid-level geometry compatibility, not byte identity or native-coordinate identity."
+  },
+  "geometry_repairs": [
+    {
+      "source_code": "ALSK",
+      "reason": "Ring Self-intersection[-162.81609965 54.49999955]",
+      "operation": "GEOS make_valid; retain and union polygonal parts",
+      "relative_planar_area_change": -0.0
+    },
+    {
+      "source_code": "NECS",
+      "reason": "Ring Self-intersection[10.97944551 54.38055455]",
+      "operation": "GEOS make_valid; retain and union polygonal parts",
+      "relative_planar_area_change": 0.0
+    },
+    {
+      "source_code": "SUND",
+      "reason": "Ring Self-intersection[120.49999961 8.4999995]",
+      "operation": "GEOS make_valid; retain and union polygonal parts",
+      "relative_planar_area_change": 0.0
+    }
+  ],
+  "outputs": {
+    "adjacency": "research/longhurst-2007-province-adjacency.json",
+    "adjacency_sha256": "f835b46d5ba7b4385b033f41cab7aaf459e856bf4a4bde803a558c1b97625f3f",
+    "rejected": "research/longhurst-2007-province-adjacency-rejected.json",
+    "rejected_sha256": "8f85bef12a8083d663c1382e94f72ce0cb49d072f4d2bd3f7dfe556eef094a27"
+  },
+  "boundary": "A deterministic graph of shared static Version 4 polygon edges. It does not identify a material wall, current, front, gateway, water mass, ecological interaction, volume exchange, heat transport, retention, causation, or full-depth coherence. Shared-edge length is spherical great-circle segment length of the encoded common source boundary, not navigational or coast-resolution geometry."
+}

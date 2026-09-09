@@ -1,6 +1,6 @@
 ---
 skill: discover-websearch
-topic: oceanlines-atlas-v0
+topic: osw-atlas-v0
 date: 2026-08-21
 claims_checked: 4
 confirmed: 4

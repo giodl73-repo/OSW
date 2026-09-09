@@ -1,0 +1,2276 @@
+{
+  "schema": "osw.ocean-object-branch-sensitivity.v1",
+  "detection_id": "OSW-D6",
+  "status": "branch_policy_bakeoff",
+  "object_id": "OBJ046",
+  "object_name": "marine heatwave",
+  "source_artifacts": [
+    {
+      "path": "atlas/data/noaa-crw-mhw-point-north-atlantic-2026.json",
+      "sha256": "c1cf0af0b18b262718ca31b0efa6f0ff98f81db17f345fa4c748f12ff0a6b8f1"
+    },
+    {
+      "path": "research/osw-d3-noaa-crw-mhw-lineage-2026.json",
+      "sha256": "3c9a0d64b367f88316ca75ac21b35c7a99fd9e2b7bc5f9639c6ca66e0438cb52"
+    }
+  ],
+  "controlled_choices": {
+    "seed": "four-neighbor component containing the OSW-D1 anchor on 2026-07-23",
+    "minimum_overlap": "at least one exact native-grid cell",
+    "branch_policies": [
+      {
+        "policy_id": "greatest_intersection",
+        "label": "largest shared footprint"
+      },
+      {
+        "policy_id": "greatest_iou",
+        "label": "best proportional shape match"
+      },
+      {
+        "policy_id": "greatest_candidate_inherited_fraction",
+        "label": "purest inherited candidate"
+      },
+      {
+        "policy_id": "largest_overlapping_component",
+        "label": "largest overlapping component"
+      }
+    ],
+    "selection_direction": "each policy is applied outward from the anchor independently forward and backward",
+    "longitude_periodicity": true
+  },
+  "results": [
+    {
+      "policy_id": "greatest_intersection",
+      "label": "largest shared footprint",
+      "tracked_window": {
+        "start": "2026-07-21",
+        "end": "2026-08-10",
+        "day_count": 21
+      },
+      "forward_stop": {
+        "date": "2026-08-11",
+        "reason": "no exact-overlap candidate"
+      },
+      "backward_stop": {
+        "date": "2026-07-20",
+        "reason": "no exact-overlap candidate"
+      },
+      "branch_ambiguous_transition_count": 5,
+      "selected_component_sha256_by_date": {
+        "2026-07-21": "b42a359c83a4fb105baa3cf15c58b17d09650da776ca4a8e51094c26eb7813e0",
+        "2026-07-22": "8729beec8272e839b29335c4878ea9bf7bc5188656769ba1bd535d91a4be2d69",
+        "2026-07-23": "d11eb88cf75415b224ac797020632f15343df2b9ce53d3b16a5afc51b02e2bfb",
+        "2026-07-24": "a92b8f8fee179f5faa67679dede66b87dfc1e8617e56ee3acee305dbd07a7cd6",
+        "2026-07-25": "5521eb01a27ca072197b599d271053738607213971b8efcad9ce1f3ff3d797ff",
+        "2026-07-26": "40cb26d52cd0e87977b0fcd72489392adefaa2ab1dfa4161268bd29875f43536",
+        "2026-07-27": "bf76a7a6fbce00c85c456dbf6ac3f00395d65e1096c5807e2ffb93b94f322a13",
+        "2026-07-28": "d087f49dc1ab03f4a206c3b8d16db5cf9befb8ea084ace550f276089301b31b1",
+        "2026-07-29": "d3e1ebcda04682bda26bcbf24bb275e418d2c7699e3bdd4e66681f79e8027712",
+        "2026-07-30": "6c2f10ffc69d1f0a5c2e3020919bc102d278a14a49d6bf6e9cb2b9f33eb9dbf4",
+        "2026-07-31": "44496af33cb70cb83775622c35ab7b00a8a23064e9f0d251143a42fa218d6e5b",
+        "2026-08-01": "17ce7a064cb5b97c396572e12ea7e14db5aa4c82d1214edc6cf2ac62d9189387",
+        "2026-08-02": "536be810550116e2becff6f4acb40a9ff92497d7e9dbefc76422576079f36181",
+        "2026-08-03": "fed46273ff34c221bce4771fda0cc5ada7e6619dddd2eae9a8aba55193967839",
+        "2026-08-04": "61dd155da6e2dc1323cc6749bffa3615c35cf2ced7a342df885c67ea5e529f45",
+        "2026-08-05": "3de456701c340ac94c366b13371a1e8a3809e7efa53104bfc75819fcc1f2a671",
+        "2026-08-06": "8507373bcb89bc836c1a590c867576b8a0c914ce26451db37c201b24803bab56",
+        "2026-08-07": "d0bcbe4f3e108e54bdf410843465baa505c8542f5eac1f4d3c93592b02e5bfed",
+        "2026-08-08": "4fba67f9b787d89007d2d891bf2fafef37780d5c20a49c604baabb20393c6ed6",
+        "2026-08-09": "383ab51cd2e74f0378755465b6889e3bcfec6987a99c3e7f143bc9318a144604",
+        "2026-08-10": "e7a6782132eee43b0d4f27a5588f33bfc38f4bf8f8a74ef818d25e21987d310b"
+      },
+      "differs_from_baseline_on_dates": [],
+      "transitions": [
+        {
+          "extension_direction": "backward",
+          "seed_side_date": "2026-07-22",
+          "candidate_date": "2026-07-21",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 114,
+            "intersection_pixels": 103,
+            "iou": 0.5988,
+            "seed_side_retained_fraction": 0.6398,
+            "candidate_inherited_fraction": 0.9035,
+            "component_sha256": "b42a359c83a4fb105baa3cf15c58b17d09650da776ca4a8e51094c26eb7813e0"
+          },
+          "candidates": [
+            {
+              "pixel_count": 114,
+              "intersection_pixels": 103,
+              "iou": 0.5988,
+              "seed_side_retained_fraction": 0.6398,
+              "candidate_inherited_fraction": 0.9035,
+              "component_sha256": "b42a359c83a4fb105baa3cf15c58b17d09650da776ca4a8e51094c26eb7813e0"
+            }
+          ]
+        },
+        {
+          "extension_direction": "backward",
+          "seed_side_date": "2026-07-23",
+          "candidate_date": "2026-07-22",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 161,
+            "intersection_pixels": 152,
+            "iou": 0.2879,
+            "seed_side_retained_fraction": 0.2929,
+            "candidate_inherited_fraction": 0.9441,
+            "component_sha256": "8729beec8272e839b29335c4878ea9bf7bc5188656769ba1bd535d91a4be2d69"
+          },
+          "candidates": [
+            {
+              "pixel_count": 161,
+              "intersection_pixels": 152,
+              "iou": 0.2879,
+              "seed_side_retained_fraction": 0.2929,
+              "candidate_inherited_fraction": 0.9441,
+              "component_sha256": "8729beec8272e839b29335c4878ea9bf7bc5188656769ba1bd535d91a4be2d69"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-23",
+          "candidate_date": "2026-07-24",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1222,
+            "intersection_pixels": 518,
+            "iou": 0.4235,
+            "seed_side_retained_fraction": 0.9981,
+            "candidate_inherited_fraction": 0.4239,
+            "component_sha256": "a92b8f8fee179f5faa67679dede66b87dfc1e8617e56ee3acee305dbd07a7cd6"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1222,
+              "intersection_pixels": 518,
+              "iou": 0.4235,
+              "seed_side_retained_fraction": 0.9981,
+              "candidate_inherited_fraction": 0.4239,
+              "component_sha256": "a92b8f8fee179f5faa67679dede66b87dfc1e8617e56ee3acee305dbd07a7cd6"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-24",
+          "candidate_date": "2026-07-25",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1938,
+            "intersection_pixels": 1208,
+            "iou": 0.6189,
+            "seed_side_retained_fraction": 0.9885,
+            "candidate_inherited_fraction": 0.6233,
+            "component_sha256": "5521eb01a27ca072197b599d271053738607213971b8efcad9ce1f3ff3d797ff"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1938,
+              "intersection_pixels": 1208,
+              "iou": 0.6189,
+              "seed_side_retained_fraction": 0.9885,
+              "candidate_inherited_fraction": 0.6233,
+              "component_sha256": "5521eb01a27ca072197b599d271053738607213971b8efcad9ce1f3ff3d797ff"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-25",
+          "candidate_date": "2026-07-26",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1388,
+            "intersection_pixels": 1267,
+            "iou": 0.6153,
+            "seed_side_retained_fraction": 0.6538,
+            "candidate_inherited_fraction": 0.9128,
+            "component_sha256": "40cb26d52cd0e87977b0fcd72489392adefaa2ab1dfa4161268bd29875f43536"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1388,
+              "intersection_pixels": 1267,
+              "iou": 0.6153,
+              "seed_side_retained_fraction": 0.6538,
+              "candidate_inherited_fraction": 0.9128,
+              "component_sha256": "40cb26d52cd0e87977b0fcd72489392adefaa2ab1dfa4161268bd29875f43536"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-26",
+          "candidate_date": "2026-07-27",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 876,
+            "intersection_pixels": 822,
+            "iou": 0.57,
+            "seed_side_retained_fraction": 0.5922,
+            "candidate_inherited_fraction": 0.9384,
+            "component_sha256": "bf76a7a6fbce00c85c456dbf6ac3f00395d65e1096c5807e2ffb93b94f322a13"
+          },
+          "candidates": [
+            {
+              "pixel_count": 876,
+              "intersection_pixels": 822,
+              "iou": 0.57,
+              "seed_side_retained_fraction": 0.5922,
+              "candidate_inherited_fraction": 0.9384,
+              "component_sha256": "bf76a7a6fbce00c85c456dbf6ac3f00395d65e1096c5807e2ffb93b94f322a13"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-27",
+          "candidate_date": "2026-07-28",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 2101,
+            "intersection_pixels": 872,
+            "iou": 0.4143,
+            "seed_side_retained_fraction": 0.9954,
+            "candidate_inherited_fraction": 0.415,
+            "component_sha256": "d087f49dc1ab03f4a206c3b8d16db5cf9befb8ea084ace550f276089301b31b1"
+          },
+          "candidates": [
+            {
+              "pixel_count": 2101,
+              "intersection_pixels": 872,
+              "iou": 0.4143,
+              "seed_side_retained_fraction": 0.9954,
+              "candidate_inherited_fraction": 0.415,
+              "component_sha256": "d087f49dc1ab03f4a206c3b8d16db5cf9befb8ea084ace550f276089301b31b1"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-28",
+          "candidate_date": "2026-07-29",
+          "candidate_count": 2,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 1565,
+            "intersection_pixels": 1390,
+            "iou": 0.6107,
+            "seed_side_retained_fraction": 0.6616,
+            "candidate_inherited_fraction": 0.8882,
+            "component_sha256": "d3e1ebcda04682bda26bcbf24bb275e418d2c7699e3bdd4e66681f79e8027712"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1565,
+              "intersection_pixels": 1390,
+              "iou": 0.6107,
+              "seed_side_retained_fraction": 0.6616,
+              "candidate_inherited_fraction": 0.8882,
+              "component_sha256": "d3e1ebcda04682bda26bcbf24bb275e418d2c7699e3bdd4e66681f79e8027712"
+            },
+            {
+              "pixel_count": 25,
+              "intersection_pixels": 13,
+              "iou": 0.0062,
+              "seed_side_retained_fraction": 0.0062,
+              "candidate_inherited_fraction": 0.52,
+              "component_sha256": "8c38543007426ab60c90ad9a6a796dd3f3773ee740d3dfc59e43ef9f7110f6fa"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-29",
+          "candidate_date": "2026-07-30",
+          "candidate_count": 4,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 1233,
+            "intersection_pixels": 1011,
+            "iou": 0.5658,
+            "seed_side_retained_fraction": 0.646,
+            "candidate_inherited_fraction": 0.82,
+            "component_sha256": "6c2f10ffc69d1f0a5c2e3020919bc102d278a14a49d6bf6e9cb2b9f33eb9dbf4"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1233,
+              "intersection_pixels": 1011,
+              "iou": 0.5658,
+              "seed_side_retained_fraction": 0.646,
+              "candidate_inherited_fraction": 0.82,
+              "component_sha256": "6c2f10ffc69d1f0a5c2e3020919bc102d278a14a49d6bf6e9cb2b9f33eb9dbf4"
+            },
+            {
+              "pixel_count": 12,
+              "intersection_pixels": 12,
+              "iou": 0.0077,
+              "seed_side_retained_fraction": 0.0077,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "67ad1a5681d964640011b8396ea1873fed0eb8bdac1231877ec376d41f8d1ac9"
+            },
+            {
+              "pixel_count": 20,
+              "intersection_pixels": 8,
+              "iou": 0.0051,
+              "seed_side_retained_fraction": 0.0051,
+              "candidate_inherited_fraction": 0.4,
+              "component_sha256": "e8f50447cdc797b70e5c6d157104cc39997e28d406a57d8a2bd015e2dac3d5f3"
+            },
+            {
+              "pixel_count": 1,
+              "intersection_pixels": 1,
+              "iou": 0.0006,
+              "seed_side_retained_fraction": 0.0006,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "a1f4b5d86a4d97401ddf8b5349275954fb720d000c7e2a7ad3f97137b2c33055"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-30",
+          "candidate_date": "2026-07-31",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1619,
+            "intersection_pixels": 1164,
+            "iou": 0.6896,
+            "seed_side_retained_fraction": 0.944,
+            "candidate_inherited_fraction": 0.719,
+            "component_sha256": "44496af33cb70cb83775622c35ab7b00a8a23064e9f0d251143a42fa218d6e5b"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1619,
+              "intersection_pixels": 1164,
+              "iou": 0.6896,
+              "seed_side_retained_fraction": 0.944,
+              "candidate_inherited_fraction": 0.719,
+              "component_sha256": "44496af33cb70cb83775622c35ab7b00a8a23064e9f0d251143a42fa218d6e5b"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-31",
+          "candidate_date": "2026-08-01",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1769,
+            "intersection_pixels": 1545,
+            "iou": 0.8383,
+            "seed_side_retained_fraction": 0.9543,
+            "candidate_inherited_fraction": 0.8734,
+            "component_sha256": "17ce7a064cb5b97c396572e12ea7e14db5aa4c82d1214edc6cf2ac62d9189387"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1769,
+              "intersection_pixels": 1545,
+              "iou": 0.8383,
+              "seed_side_retained_fraction": 0.9543,
+              "candidate_inherited_fraction": 0.8734,
+              "component_sha256": "17ce7a064cb5b97c396572e12ea7e14db5aa4c82d1214edc6cf2ac62d9189387"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-01",
+          "candidate_date": "2026-08-02",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 2133,
+            "intersection_pixels": 1731,
+            "iou": 0.7973,
+            "seed_side_retained_fraction": 0.9785,
+            "candidate_inherited_fraction": 0.8115,
+            "component_sha256": "536be810550116e2becff6f4acb40a9ff92497d7e9dbefc76422576079f36181"
+          },
+          "candidates": [
+            {
+              "pixel_count": 2133,
+              "intersection_pixels": 1731,
+              "iou": 0.7973,
+              "seed_side_retained_fraction": 0.9785,
+              "candidate_inherited_fraction": 0.8115,
+              "component_sha256": "536be810550116e2becff6f4acb40a9ff92497d7e9dbefc76422576079f36181"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-02",
+          "candidate_date": "2026-08-03",
+          "candidate_count": 2,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 1977,
+            "intersection_pixels": 1749,
+            "iou": 0.7408,
+            "seed_side_retained_fraction": 0.82,
+            "candidate_inherited_fraction": 0.8847,
+            "component_sha256": "fed46273ff34c221bce4771fda0cc5ada7e6619dddd2eae9a8aba55193967839"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1977,
+              "intersection_pixels": 1749,
+              "iou": 0.7408,
+              "seed_side_retained_fraction": 0.82,
+              "candidate_inherited_fraction": 0.8847,
+              "component_sha256": "fed46273ff34c221bce4771fda0cc5ada7e6619dddd2eae9a8aba55193967839"
+            },
+            {
+              "pixel_count": 1,
+              "intersection_pixels": 1,
+              "iou": 0.0005,
+              "seed_side_retained_fraction": 0.0005,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "de45023610d6e821b84e384e43cbee3db90611003cf09c36eb48800a13a0974e"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-03",
+          "candidate_date": "2026-08-04",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1663,
+            "intersection_pixels": 1595,
+            "iou": 0.78,
+            "seed_side_retained_fraction": 0.8068,
+            "candidate_inherited_fraction": 0.9591,
+            "component_sha256": "61dd155da6e2dc1323cc6749bffa3615c35cf2ced7a342df885c67ea5e529f45"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1663,
+              "intersection_pixels": 1595,
+              "iou": 0.78,
+              "seed_side_retained_fraction": 0.8068,
+              "candidate_inherited_fraction": 0.9591,
+              "component_sha256": "61dd155da6e2dc1323cc6749bffa3615c35cf2ced7a342df885c67ea5e529f45"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-04",
+          "candidate_date": "2026-08-05",
+          "candidate_count": 2,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 1784,
+            "intersection_pixels": 1557,
+            "iou": 0.8238,
+            "seed_side_retained_fraction": 0.9363,
+            "candidate_inherited_fraction": 0.8728,
+            "component_sha256": "3de456701c340ac94c366b13371a1e8a3809e7efa53104bfc75819fcc1f2a671"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1784,
+              "intersection_pixels": 1557,
+              "iou": 0.8238,
+              "seed_side_retained_fraction": 0.9363,
+              "candidate_inherited_fraction": 0.8728,
+              "component_sha256": "3de456701c340ac94c366b13371a1e8a3809e7efa53104bfc75819fcc1f2a671"
+            },
+            {
+              "pixel_count": 1,
+              "intersection_pixels": 1,
+              "iou": 0.0006,
+              "seed_side_retained_fraction": 0.0006,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "295a09e03452b5c16a1433e0218f91fe4b3959bba194ede501e09e228eeee25f"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-05",
+          "candidate_date": "2026-08-06",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1530,
+            "intersection_pixels": 1471,
+            "iou": 0.7982,
+            "seed_side_retained_fraction": 0.8246,
+            "candidate_inherited_fraction": 0.9614,
+            "component_sha256": "8507373bcb89bc836c1a590c867576b8a0c914ce26451db37c201b24803bab56"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1530,
+              "intersection_pixels": 1471,
+              "iou": 0.7982,
+              "seed_side_retained_fraction": 0.8246,
+              "candidate_inherited_fraction": 0.9614,
+              "component_sha256": "8507373bcb89bc836c1a590c867576b8a0c914ce26451db37c201b24803bab56"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-06",
+          "candidate_date": "2026-08-07",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1088,
+            "intersection_pixels": 1083,
+            "iou": 0.7055,
+            "seed_side_retained_fraction": 0.7078,
+            "candidate_inherited_fraction": 0.9954,
+            "component_sha256": "d0bcbe4f3e108e54bdf410843465baa505c8542f5eac1f4d3c93592b02e5bfed"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1088,
+              "intersection_pixels": 1083,
+              "iou": 0.7055,
+              "seed_side_retained_fraction": 0.7078,
+              "candidate_inherited_fraction": 0.9954,
+              "component_sha256": "d0bcbe4f3e108e54bdf410843465baa505c8542f5eac1f4d3c93592b02e5bfed"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-07",
+          "candidate_date": "2026-08-08",
+          "candidate_count": 2,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 219,
+            "intersection_pixels": 216,
+            "iou": 0.198,
+            "seed_side_retained_fraction": 0.1985,
+            "candidate_inherited_fraction": 0.9863,
+            "component_sha256": "4fba67f9b787d89007d2d891bf2fafef37780d5c20a49c604baabb20393c6ed6"
+          },
+          "candidates": [
+            {
+              "pixel_count": 219,
+              "intersection_pixels": 216,
+              "iou": 0.198,
+              "seed_side_retained_fraction": 0.1985,
+              "candidate_inherited_fraction": 0.9863,
+              "component_sha256": "4fba67f9b787d89007d2d891bf2fafef37780d5c20a49c604baabb20393c6ed6"
+            },
+            {
+              "pixel_count": 54,
+              "intersection_pixels": 54,
+              "iou": 0.0496,
+              "seed_side_retained_fraction": 0.0496,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "b319e1d667c830d4cdea8f878a709a143fcfe8c3d1f8903d4d6aa2bdeb3a4297"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-08",
+          "candidate_date": "2026-08-09",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 167,
+            "intersection_pixels": 152,
+            "iou": 0.6496,
+            "seed_side_retained_fraction": 0.6941,
+            "candidate_inherited_fraction": 0.9102,
+            "component_sha256": "383ab51cd2e74f0378755465b6889e3bcfec6987a99c3e7f143bc9318a144604"
+          },
+          "candidates": [
+            {
+              "pixel_count": 167,
+              "intersection_pixels": 152,
+              "iou": 0.6496,
+              "seed_side_retained_fraction": 0.6941,
+              "candidate_inherited_fraction": 0.9102,
+              "component_sha256": "383ab51cd2e74f0378755465b6889e3bcfec6987a99c3e7f143bc9318a144604"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-09",
+          "candidate_date": "2026-08-10",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 145,
+            "intersection_pixels": 124,
+            "iou": 0.6596,
+            "seed_side_retained_fraction": 0.7425,
+            "candidate_inherited_fraction": 0.8552,
+            "component_sha256": "e7a6782132eee43b0d4f27a5588f33bfc38f4bf8f8a74ef818d25e21987d310b"
+          },
+          "candidates": [
+            {
+              "pixel_count": 145,
+              "intersection_pixels": 124,
+              "iou": 0.6596,
+              "seed_side_retained_fraction": 0.7425,
+              "candidate_inherited_fraction": 0.8552,
+              "component_sha256": "e7a6782132eee43b0d4f27a5588f33bfc38f4bf8f8a74ef818d25e21987d310b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "policy_id": "greatest_iou",
+      "label": "best proportional shape match",
+      "tracked_window": {
+        "start": "2026-07-21",
+        "end": "2026-08-10",
+        "day_count": 21
+      },
+      "forward_stop": {
+        "date": "2026-08-11",
+        "reason": "no exact-overlap candidate"
+      },
+      "backward_stop": {
+        "date": "2026-07-20",
+        "reason": "no exact-overlap candidate"
+      },
+      "branch_ambiguous_transition_count": 5,
+      "selected_component_sha256_by_date": {
+        "2026-07-21": "b42a359c83a4fb105baa3cf15c58b17d09650da776ca4a8e51094c26eb7813e0",
+        "2026-07-22": "8729beec8272e839b29335c4878ea9bf7bc5188656769ba1bd535d91a4be2d69",
+        "2026-07-23": "d11eb88cf75415b224ac797020632f15343df2b9ce53d3b16a5afc51b02e2bfb",
+        "2026-07-24": "a92b8f8fee179f5faa67679dede66b87dfc1e8617e56ee3acee305dbd07a7cd6",
+        "2026-07-25": "5521eb01a27ca072197b599d271053738607213971b8efcad9ce1f3ff3d797ff",
+        "2026-07-26": "40cb26d52cd0e87977b0fcd72489392adefaa2ab1dfa4161268bd29875f43536",
+        "2026-07-27": "bf76a7a6fbce00c85c456dbf6ac3f00395d65e1096c5807e2ffb93b94f322a13",
+        "2026-07-28": "d087f49dc1ab03f4a206c3b8d16db5cf9befb8ea084ace550f276089301b31b1",
+        "2026-07-29": "d3e1ebcda04682bda26bcbf24bb275e418d2c7699e3bdd4e66681f79e8027712",
+        "2026-07-30": "6c2f10ffc69d1f0a5c2e3020919bc102d278a14a49d6bf6e9cb2b9f33eb9dbf4",
+        "2026-07-31": "44496af33cb70cb83775622c35ab7b00a8a23064e9f0d251143a42fa218d6e5b",
+        "2026-08-01": "17ce7a064cb5b97c396572e12ea7e14db5aa4c82d1214edc6cf2ac62d9189387",
+        "2026-08-02": "536be810550116e2becff6f4acb40a9ff92497d7e9dbefc76422576079f36181",
+        "2026-08-03": "fed46273ff34c221bce4771fda0cc5ada7e6619dddd2eae9a8aba55193967839",
+        "2026-08-04": "61dd155da6e2dc1323cc6749bffa3615c35cf2ced7a342df885c67ea5e529f45",
+        "2026-08-05": "3de456701c340ac94c366b13371a1e8a3809e7efa53104bfc75819fcc1f2a671",
+        "2026-08-06": "8507373bcb89bc836c1a590c867576b8a0c914ce26451db37c201b24803bab56",
+        "2026-08-07": "d0bcbe4f3e108e54bdf410843465baa505c8542f5eac1f4d3c93592b02e5bfed",
+        "2026-08-08": "4fba67f9b787d89007d2d891bf2fafef37780d5c20a49c604baabb20393c6ed6",
+        "2026-08-09": "383ab51cd2e74f0378755465b6889e3bcfec6987a99c3e7f143bc9318a144604",
+        "2026-08-10": "e7a6782132eee43b0d4f27a5588f33bfc38f4bf8f8a74ef818d25e21987d310b"
+      },
+      "differs_from_baseline_on_dates": [],
+      "transitions": [
+        {
+          "extension_direction": "backward",
+          "seed_side_date": "2026-07-22",
+          "candidate_date": "2026-07-21",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 114,
+            "intersection_pixels": 103,
+            "iou": 0.5988,
+            "seed_side_retained_fraction": 0.6398,
+            "candidate_inherited_fraction": 0.9035,
+            "component_sha256": "b42a359c83a4fb105baa3cf15c58b17d09650da776ca4a8e51094c26eb7813e0"
+          },
+          "candidates": [
+            {
+              "pixel_count": 114,
+              "intersection_pixels": 103,
+              "iou": 0.5988,
+              "seed_side_retained_fraction": 0.6398,
+              "candidate_inherited_fraction": 0.9035,
+              "component_sha256": "b42a359c83a4fb105baa3cf15c58b17d09650da776ca4a8e51094c26eb7813e0"
+            }
+          ]
+        },
+        {
+          "extension_direction": "backward",
+          "seed_side_date": "2026-07-23",
+          "candidate_date": "2026-07-22",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 161,
+            "intersection_pixels": 152,
+            "iou": 0.2879,
+            "seed_side_retained_fraction": 0.2929,
+            "candidate_inherited_fraction": 0.9441,
+            "component_sha256": "8729beec8272e839b29335c4878ea9bf7bc5188656769ba1bd535d91a4be2d69"
+          },
+          "candidates": [
+            {
+              "pixel_count": 161,
+              "intersection_pixels": 152,
+              "iou": 0.2879,
+              "seed_side_retained_fraction": 0.2929,
+              "candidate_inherited_fraction": 0.9441,
+              "component_sha256": "8729beec8272e839b29335c4878ea9bf7bc5188656769ba1bd535d91a4be2d69"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-23",
+          "candidate_date": "2026-07-24",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1222,
+            "intersection_pixels": 518,
+            "iou": 0.4235,
+            "seed_side_retained_fraction": 0.9981,
+            "candidate_inherited_fraction": 0.4239,
+            "component_sha256": "a92b8f8fee179f5faa67679dede66b87dfc1e8617e56ee3acee305dbd07a7cd6"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1222,
+              "intersection_pixels": 518,
+              "iou": 0.4235,
+              "seed_side_retained_fraction": 0.9981,
+              "candidate_inherited_fraction": 0.4239,
+              "component_sha256": "a92b8f8fee179f5faa67679dede66b87dfc1e8617e56ee3acee305dbd07a7cd6"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-24",
+          "candidate_date": "2026-07-25",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1938,
+            "intersection_pixels": 1208,
+            "iou": 0.6189,
+            "seed_side_retained_fraction": 0.9885,
+            "candidate_inherited_fraction": 0.6233,
+            "component_sha256": "5521eb01a27ca072197b599d271053738607213971b8efcad9ce1f3ff3d797ff"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1938,
+              "intersection_pixels": 1208,
+              "iou": 0.6189,
+              "seed_side_retained_fraction": 0.9885,
+              "candidate_inherited_fraction": 0.6233,
+              "component_sha256": "5521eb01a27ca072197b599d271053738607213971b8efcad9ce1f3ff3d797ff"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-25",
+          "candidate_date": "2026-07-26",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1388,
+            "intersection_pixels": 1267,
+            "iou": 0.6153,
+            "seed_side_retained_fraction": 0.6538,
+            "candidate_inherited_fraction": 0.9128,
+            "component_sha256": "40cb26d52cd0e87977b0fcd72489392adefaa2ab1dfa4161268bd29875f43536"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1388,
+              "intersection_pixels": 1267,
+              "iou": 0.6153,
+              "seed_side_retained_fraction": 0.6538,
+              "candidate_inherited_fraction": 0.9128,
+              "component_sha256": "40cb26d52cd0e87977b0fcd72489392adefaa2ab1dfa4161268bd29875f43536"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-26",
+          "candidate_date": "2026-07-27",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 876,
+            "intersection_pixels": 822,
+            "iou": 0.57,
+            "seed_side_retained_fraction": 0.5922,
+            "candidate_inherited_fraction": 0.9384,
+            "component_sha256": "bf76a7a6fbce00c85c456dbf6ac3f00395d65e1096c5807e2ffb93b94f322a13"
+          },
+          "candidates": [
+            {
+              "pixel_count": 876,
+              "intersection_pixels": 822,
+              "iou": 0.57,
+              "seed_side_retained_fraction": 0.5922,
+              "candidate_inherited_fraction": 0.9384,
+              "component_sha256": "bf76a7a6fbce00c85c456dbf6ac3f00395d65e1096c5807e2ffb93b94f322a13"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-27",
+          "candidate_date": "2026-07-28",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 2101,
+            "intersection_pixels": 872,
+            "iou": 0.4143,
+            "seed_side_retained_fraction": 0.9954,
+            "candidate_inherited_fraction": 0.415,
+            "component_sha256": "d087f49dc1ab03f4a206c3b8d16db5cf9befb8ea084ace550f276089301b31b1"
+          },
+          "candidates": [
+            {
+              "pixel_count": 2101,
+              "intersection_pixels": 872,
+              "iou": 0.4143,
+              "seed_side_retained_fraction": 0.9954,
+              "candidate_inherited_fraction": 0.415,
+              "component_sha256": "d087f49dc1ab03f4a206c3b8d16db5cf9befb8ea084ace550f276089301b31b1"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-28",
+          "candidate_date": "2026-07-29",
+          "candidate_count": 2,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 1565,
+            "intersection_pixels": 1390,
+            "iou": 0.6107,
+            "seed_side_retained_fraction": 0.6616,
+            "candidate_inherited_fraction": 0.8882,
+            "component_sha256": "d3e1ebcda04682bda26bcbf24bb275e418d2c7699e3bdd4e66681f79e8027712"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1565,
+              "intersection_pixels": 1390,
+              "iou": 0.6107,
+              "seed_side_retained_fraction": 0.6616,
+              "candidate_inherited_fraction": 0.8882,
+              "component_sha256": "d3e1ebcda04682bda26bcbf24bb275e418d2c7699e3bdd4e66681f79e8027712"
+            },
+            {
+              "pixel_count": 25,
+              "intersection_pixels": 13,
+              "iou": 0.0062,
+              "seed_side_retained_fraction": 0.0062,
+              "candidate_inherited_fraction": 0.52,
+              "component_sha256": "8c38543007426ab60c90ad9a6a796dd3f3773ee740d3dfc59e43ef9f7110f6fa"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-29",
+          "candidate_date": "2026-07-30",
+          "candidate_count": 4,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 1233,
+            "intersection_pixels": 1011,
+            "iou": 0.5658,
+            "seed_side_retained_fraction": 0.646,
+            "candidate_inherited_fraction": 0.82,
+            "component_sha256": "6c2f10ffc69d1f0a5c2e3020919bc102d278a14a49d6bf6e9cb2b9f33eb9dbf4"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1233,
+              "intersection_pixels": 1011,
+              "iou": 0.5658,
+              "seed_side_retained_fraction": 0.646,
+              "candidate_inherited_fraction": 0.82,
+              "component_sha256": "6c2f10ffc69d1f0a5c2e3020919bc102d278a14a49d6bf6e9cb2b9f33eb9dbf4"
+            },
+            {
+              "pixel_count": 12,
+              "intersection_pixels": 12,
+              "iou": 0.0077,
+              "seed_side_retained_fraction": 0.0077,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "67ad1a5681d964640011b8396ea1873fed0eb8bdac1231877ec376d41f8d1ac9"
+            },
+            {
+              "pixel_count": 20,
+              "intersection_pixels": 8,
+              "iou": 0.0051,
+              "seed_side_retained_fraction": 0.0051,
+              "candidate_inherited_fraction": 0.4,
+              "component_sha256": "e8f50447cdc797b70e5c6d157104cc39997e28d406a57d8a2bd015e2dac3d5f3"
+            },
+            {
+              "pixel_count": 1,
+              "intersection_pixels": 1,
+              "iou": 0.0006,
+              "seed_side_retained_fraction": 0.0006,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "a1f4b5d86a4d97401ddf8b5349275954fb720d000c7e2a7ad3f97137b2c33055"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-30",
+          "candidate_date": "2026-07-31",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1619,
+            "intersection_pixels": 1164,
+            "iou": 0.6896,
+            "seed_side_retained_fraction": 0.944,
+            "candidate_inherited_fraction": 0.719,
+            "component_sha256": "44496af33cb70cb83775622c35ab7b00a8a23064e9f0d251143a42fa218d6e5b"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1619,
+              "intersection_pixels": 1164,
+              "iou": 0.6896,
+              "seed_side_retained_fraction": 0.944,
+              "candidate_inherited_fraction": 0.719,
+              "component_sha256": "44496af33cb70cb83775622c35ab7b00a8a23064e9f0d251143a42fa218d6e5b"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-31",
+          "candidate_date": "2026-08-01",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1769,
+            "intersection_pixels": 1545,
+            "iou": 0.8383,
+            "seed_side_retained_fraction": 0.9543,
+            "candidate_inherited_fraction": 0.8734,
+            "component_sha256": "17ce7a064cb5b97c396572e12ea7e14db5aa4c82d1214edc6cf2ac62d9189387"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1769,
+              "intersection_pixels": 1545,
+              "iou": 0.8383,
+              "seed_side_retained_fraction": 0.9543,
+              "candidate_inherited_fraction": 0.8734,
+              "component_sha256": "17ce7a064cb5b97c396572e12ea7e14db5aa4c82d1214edc6cf2ac62d9189387"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-01",
+          "candidate_date": "2026-08-02",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 2133,
+            "intersection_pixels": 1731,
+            "iou": 0.7973,
+            "seed_side_retained_fraction": 0.9785,
+            "candidate_inherited_fraction": 0.8115,
+            "component_sha256": "536be810550116e2becff6f4acb40a9ff92497d7e9dbefc76422576079f36181"
+          },
+          "candidates": [
+            {
+              "pixel_count": 2133,
+              "intersection_pixels": 1731,
+              "iou": 0.7973,
+              "seed_side_retained_fraction": 0.9785,
+              "candidate_inherited_fraction": 0.8115,
+              "component_sha256": "536be810550116e2becff6f4acb40a9ff92497d7e9dbefc76422576079f36181"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-02",
+          "candidate_date": "2026-08-03",
+          "candidate_count": 2,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 1977,
+            "intersection_pixels": 1749,
+            "iou": 0.7408,
+            "seed_side_retained_fraction": 0.82,
+            "candidate_inherited_fraction": 0.8847,
+            "component_sha256": "fed46273ff34c221bce4771fda0cc5ada7e6619dddd2eae9a8aba55193967839"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1977,
+              "intersection_pixels": 1749,
+              "iou": 0.7408,
+              "seed_side_retained_fraction": 0.82,
+              "candidate_inherited_fraction": 0.8847,
+              "component_sha256": "fed46273ff34c221bce4771fda0cc5ada7e6619dddd2eae9a8aba55193967839"
+            },
+            {
+              "pixel_count": 1,
+              "intersection_pixels": 1,
+              "iou": 0.0005,
+              "seed_side_retained_fraction": 0.0005,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "de45023610d6e821b84e384e43cbee3db90611003cf09c36eb48800a13a0974e"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-03",
+          "candidate_date": "2026-08-04",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1663,
+            "intersection_pixels": 1595,
+            "iou": 0.78,
+            "seed_side_retained_fraction": 0.8068,
+            "candidate_inherited_fraction": 0.9591,
+            "component_sha256": "61dd155da6e2dc1323cc6749bffa3615c35cf2ced7a342df885c67ea5e529f45"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1663,
+              "intersection_pixels": 1595,
+              "iou": 0.78,
+              "seed_side_retained_fraction": 0.8068,
+              "candidate_inherited_fraction": 0.9591,
+              "component_sha256": "61dd155da6e2dc1323cc6749bffa3615c35cf2ced7a342df885c67ea5e529f45"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-04",
+          "candidate_date": "2026-08-05",
+          "candidate_count": 2,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 1784,
+            "intersection_pixels": 1557,
+            "iou": 0.8238,
+            "seed_side_retained_fraction": 0.9363,
+            "candidate_inherited_fraction": 0.8728,
+            "component_sha256": "3de456701c340ac94c366b13371a1e8a3809e7efa53104bfc75819fcc1f2a671"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1784,
+              "intersection_pixels": 1557,
+              "iou": 0.8238,
+              "seed_side_retained_fraction": 0.9363,
+              "candidate_inherited_fraction": 0.8728,
+              "component_sha256": "3de456701c340ac94c366b13371a1e8a3809e7efa53104bfc75819fcc1f2a671"
+            },
+            {
+              "pixel_count": 1,
+              "intersection_pixels": 1,
+              "iou": 0.0006,
+              "seed_side_retained_fraction": 0.0006,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "295a09e03452b5c16a1433e0218f91fe4b3959bba194ede501e09e228eeee25f"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-05",
+          "candidate_date": "2026-08-06",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1530,
+            "intersection_pixels": 1471,
+            "iou": 0.7982,
+            "seed_side_retained_fraction": 0.8246,
+            "candidate_inherited_fraction": 0.9614,
+            "component_sha256": "8507373bcb89bc836c1a590c867576b8a0c914ce26451db37c201b24803bab56"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1530,
+              "intersection_pixels": 1471,
+              "iou": 0.7982,
+              "seed_side_retained_fraction": 0.8246,
+              "candidate_inherited_fraction": 0.9614,
+              "component_sha256": "8507373bcb89bc836c1a590c867576b8a0c914ce26451db37c201b24803bab56"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-06",
+          "candidate_date": "2026-08-07",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1088,
+            "intersection_pixels": 1083,
+            "iou": 0.7055,
+            "seed_side_retained_fraction": 0.7078,
+            "candidate_inherited_fraction": 0.9954,
+            "component_sha256": "d0bcbe4f3e108e54bdf410843465baa505c8542f5eac1f4d3c93592b02e5bfed"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1088,
+              "intersection_pixels": 1083,
+              "iou": 0.7055,
+              "seed_side_retained_fraction": 0.7078,
+              "candidate_inherited_fraction": 0.9954,
+              "component_sha256": "d0bcbe4f3e108e54bdf410843465baa505c8542f5eac1f4d3c93592b02e5bfed"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-07",
+          "candidate_date": "2026-08-08",
+          "candidate_count": 2,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 219,
+            "intersection_pixels": 216,
+            "iou": 0.198,
+            "seed_side_retained_fraction": 0.1985,
+            "candidate_inherited_fraction": 0.9863,
+            "component_sha256": "4fba67f9b787d89007d2d891bf2fafef37780d5c20a49c604baabb20393c6ed6"
+          },
+          "candidates": [
+            {
+              "pixel_count": 219,
+              "intersection_pixels": 216,
+              "iou": 0.198,
+              "seed_side_retained_fraction": 0.1985,
+              "candidate_inherited_fraction": 0.9863,
+              "component_sha256": "4fba67f9b787d89007d2d891bf2fafef37780d5c20a49c604baabb20393c6ed6"
+            },
+            {
+              "pixel_count": 54,
+              "intersection_pixels": 54,
+              "iou": 0.0496,
+              "seed_side_retained_fraction": 0.0496,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "b319e1d667c830d4cdea8f878a709a143fcfe8c3d1f8903d4d6aa2bdeb3a4297"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-08",
+          "candidate_date": "2026-08-09",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 167,
+            "intersection_pixels": 152,
+            "iou": 0.6496,
+            "seed_side_retained_fraction": 0.6941,
+            "candidate_inherited_fraction": 0.9102,
+            "component_sha256": "383ab51cd2e74f0378755465b6889e3bcfec6987a99c3e7f143bc9318a144604"
+          },
+          "candidates": [
+            {
+              "pixel_count": 167,
+              "intersection_pixels": 152,
+              "iou": 0.6496,
+              "seed_side_retained_fraction": 0.6941,
+              "candidate_inherited_fraction": 0.9102,
+              "component_sha256": "383ab51cd2e74f0378755465b6889e3bcfec6987a99c3e7f143bc9318a144604"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-09",
+          "candidate_date": "2026-08-10",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 145,
+            "intersection_pixels": 124,
+            "iou": 0.6596,
+            "seed_side_retained_fraction": 0.7425,
+            "candidate_inherited_fraction": 0.8552,
+            "component_sha256": "e7a6782132eee43b0d4f27a5588f33bfc38f4bf8f8a74ef818d25e21987d310b"
+          },
+          "candidates": [
+            {
+              "pixel_count": 145,
+              "intersection_pixels": 124,
+              "iou": 0.6596,
+              "seed_side_retained_fraction": 0.7425,
+              "candidate_inherited_fraction": 0.8552,
+              "component_sha256": "e7a6782132eee43b0d4f27a5588f33bfc38f4bf8f8a74ef818d25e21987d310b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "policy_id": "greatest_candidate_inherited_fraction",
+      "label": "purest inherited candidate",
+      "tracked_window": {
+        "start": "2026-07-21",
+        "end": "2026-08-03",
+        "day_count": 14
+      },
+      "forward_stop": {
+        "date": "2026-08-04",
+        "reason": "no exact-overlap candidate"
+      },
+      "backward_stop": {
+        "date": "2026-07-20",
+        "reason": "no exact-overlap candidate"
+      },
+      "branch_ambiguous_transition_count": 3,
+      "selected_component_sha256_by_date": {
+        "2026-07-21": "b42a359c83a4fb105baa3cf15c58b17d09650da776ca4a8e51094c26eb7813e0",
+        "2026-07-22": "8729beec8272e839b29335c4878ea9bf7bc5188656769ba1bd535d91a4be2d69",
+        "2026-07-23": "d11eb88cf75415b224ac797020632f15343df2b9ce53d3b16a5afc51b02e2bfb",
+        "2026-07-24": "a92b8f8fee179f5faa67679dede66b87dfc1e8617e56ee3acee305dbd07a7cd6",
+        "2026-07-25": "5521eb01a27ca072197b599d271053738607213971b8efcad9ce1f3ff3d797ff",
+        "2026-07-26": "40cb26d52cd0e87977b0fcd72489392adefaa2ab1dfa4161268bd29875f43536",
+        "2026-07-27": "bf76a7a6fbce00c85c456dbf6ac3f00395d65e1096c5807e2ffb93b94f322a13",
+        "2026-07-28": "d087f49dc1ab03f4a206c3b8d16db5cf9befb8ea084ace550f276089301b31b1",
+        "2026-07-29": "d3e1ebcda04682bda26bcbf24bb275e418d2c7699e3bdd4e66681f79e8027712",
+        "2026-07-30": "67ad1a5681d964640011b8396ea1873fed0eb8bdac1231877ec376d41f8d1ac9",
+        "2026-07-31": "44496af33cb70cb83775622c35ab7b00a8a23064e9f0d251143a42fa218d6e5b",
+        "2026-08-01": "17ce7a064cb5b97c396572e12ea7e14db5aa4c82d1214edc6cf2ac62d9189387",
+        "2026-08-02": "536be810550116e2becff6f4acb40a9ff92497d7e9dbefc76422576079f36181",
+        "2026-08-03": "de45023610d6e821b84e384e43cbee3db90611003cf09c36eb48800a13a0974e"
+      },
+      "differs_from_baseline_on_dates": [
+        "2026-07-30",
+        "2026-08-03"
+      ],
+      "transitions": [
+        {
+          "extension_direction": "backward",
+          "seed_side_date": "2026-07-22",
+          "candidate_date": "2026-07-21",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 114,
+            "intersection_pixels": 103,
+            "iou": 0.5988,
+            "seed_side_retained_fraction": 0.6398,
+            "candidate_inherited_fraction": 0.9035,
+            "component_sha256": "b42a359c83a4fb105baa3cf15c58b17d09650da776ca4a8e51094c26eb7813e0"
+          },
+          "candidates": [
+            {
+              "pixel_count": 114,
+              "intersection_pixels": 103,
+              "iou": 0.5988,
+              "seed_side_retained_fraction": 0.6398,
+              "candidate_inherited_fraction": 0.9035,
+              "component_sha256": "b42a359c83a4fb105baa3cf15c58b17d09650da776ca4a8e51094c26eb7813e0"
+            }
+          ]
+        },
+        {
+          "extension_direction": "backward",
+          "seed_side_date": "2026-07-23",
+          "candidate_date": "2026-07-22",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 161,
+            "intersection_pixels": 152,
+            "iou": 0.2879,
+            "seed_side_retained_fraction": 0.2929,
+            "candidate_inherited_fraction": 0.9441,
+            "component_sha256": "8729beec8272e839b29335c4878ea9bf7bc5188656769ba1bd535d91a4be2d69"
+          },
+          "candidates": [
+            {
+              "pixel_count": 161,
+              "intersection_pixels": 152,
+              "iou": 0.2879,
+              "seed_side_retained_fraction": 0.2929,
+              "candidate_inherited_fraction": 0.9441,
+              "component_sha256": "8729beec8272e839b29335c4878ea9bf7bc5188656769ba1bd535d91a4be2d69"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-23",
+          "candidate_date": "2026-07-24",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1222,
+            "intersection_pixels": 518,
+            "iou": 0.4235,
+            "seed_side_retained_fraction": 0.9981,
+            "candidate_inherited_fraction": 0.4239,
+            "component_sha256": "a92b8f8fee179f5faa67679dede66b87dfc1e8617e56ee3acee305dbd07a7cd6"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1222,
+              "intersection_pixels": 518,
+              "iou": 0.4235,
+              "seed_side_retained_fraction": 0.9981,
+              "candidate_inherited_fraction": 0.4239,
+              "component_sha256": "a92b8f8fee179f5faa67679dede66b87dfc1e8617e56ee3acee305dbd07a7cd6"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-24",
+          "candidate_date": "2026-07-25",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1938,
+            "intersection_pixels": 1208,
+            "iou": 0.6189,
+            "seed_side_retained_fraction": 0.9885,
+            "candidate_inherited_fraction": 0.6233,
+            "component_sha256": "5521eb01a27ca072197b599d271053738607213971b8efcad9ce1f3ff3d797ff"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1938,
+              "intersection_pixels": 1208,
+              "iou": 0.6189,
+              "seed_side_retained_fraction": 0.9885,
+              "candidate_inherited_fraction": 0.6233,
+              "component_sha256": "5521eb01a27ca072197b599d271053738607213971b8efcad9ce1f3ff3d797ff"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-25",
+          "candidate_date": "2026-07-26",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1388,
+            "intersection_pixels": 1267,
+            "iou": 0.6153,
+            "seed_side_retained_fraction": 0.6538,
+            "candidate_inherited_fraction": 0.9128,
+            "component_sha256": "40cb26d52cd0e87977b0fcd72489392adefaa2ab1dfa4161268bd29875f43536"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1388,
+              "intersection_pixels": 1267,
+              "iou": 0.6153,
+              "seed_side_retained_fraction": 0.6538,
+              "candidate_inherited_fraction": 0.9128,
+              "component_sha256": "40cb26d52cd0e87977b0fcd72489392adefaa2ab1dfa4161268bd29875f43536"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-26",
+          "candidate_date": "2026-07-27",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 876,
+            "intersection_pixels": 822,
+            "iou": 0.57,
+            "seed_side_retained_fraction": 0.5922,
+            "candidate_inherited_fraction": 0.9384,
+            "component_sha256": "bf76a7a6fbce00c85c456dbf6ac3f00395d65e1096c5807e2ffb93b94f322a13"
+          },
+          "candidates": [
+            {
+              "pixel_count": 876,
+              "intersection_pixels": 822,
+              "iou": 0.57,
+              "seed_side_retained_fraction": 0.5922,
+              "candidate_inherited_fraction": 0.9384,
+              "component_sha256": "bf76a7a6fbce00c85c456dbf6ac3f00395d65e1096c5807e2ffb93b94f322a13"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-27",
+          "candidate_date": "2026-07-28",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 2101,
+            "intersection_pixels": 872,
+            "iou": 0.4143,
+            "seed_side_retained_fraction": 0.9954,
+            "candidate_inherited_fraction": 0.415,
+            "component_sha256": "d087f49dc1ab03f4a206c3b8d16db5cf9befb8ea084ace550f276089301b31b1"
+          },
+          "candidates": [
+            {
+              "pixel_count": 2101,
+              "intersection_pixels": 872,
+              "iou": 0.4143,
+              "seed_side_retained_fraction": 0.9954,
+              "candidate_inherited_fraction": 0.415,
+              "component_sha256": "d087f49dc1ab03f4a206c3b8d16db5cf9befb8ea084ace550f276089301b31b1"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-28",
+          "candidate_date": "2026-07-29",
+          "candidate_count": 2,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 1565,
+            "intersection_pixels": 1390,
+            "iou": 0.6107,
+            "seed_side_retained_fraction": 0.6616,
+            "candidate_inherited_fraction": 0.8882,
+            "component_sha256": "d3e1ebcda04682bda26bcbf24bb275e418d2c7699e3bdd4e66681f79e8027712"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1565,
+              "intersection_pixels": 1390,
+              "iou": 0.6107,
+              "seed_side_retained_fraction": 0.6616,
+              "candidate_inherited_fraction": 0.8882,
+              "component_sha256": "d3e1ebcda04682bda26bcbf24bb275e418d2c7699e3bdd4e66681f79e8027712"
+            },
+            {
+              "pixel_count": 25,
+              "intersection_pixels": 13,
+              "iou": 0.0062,
+              "seed_side_retained_fraction": 0.0062,
+              "candidate_inherited_fraction": 0.52,
+              "component_sha256": "8c38543007426ab60c90ad9a6a796dd3f3773ee740d3dfc59e43ef9f7110f6fa"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-29",
+          "candidate_date": "2026-07-30",
+          "candidate_count": 4,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 12,
+            "intersection_pixels": 12,
+            "iou": 0.0077,
+            "seed_side_retained_fraction": 0.0077,
+            "candidate_inherited_fraction": 1.0,
+            "component_sha256": "67ad1a5681d964640011b8396ea1873fed0eb8bdac1231877ec376d41f8d1ac9"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1233,
+              "intersection_pixels": 1011,
+              "iou": 0.5658,
+              "seed_side_retained_fraction": 0.646,
+              "candidate_inherited_fraction": 0.82,
+              "component_sha256": "6c2f10ffc69d1f0a5c2e3020919bc102d278a14a49d6bf6e9cb2b9f33eb9dbf4"
+            },
+            {
+              "pixel_count": 12,
+              "intersection_pixels": 12,
+              "iou": 0.0077,
+              "seed_side_retained_fraction": 0.0077,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "67ad1a5681d964640011b8396ea1873fed0eb8bdac1231877ec376d41f8d1ac9"
+            },
+            {
+              "pixel_count": 20,
+              "intersection_pixels": 8,
+              "iou": 0.0051,
+              "seed_side_retained_fraction": 0.0051,
+              "candidate_inherited_fraction": 0.4,
+              "component_sha256": "e8f50447cdc797b70e5c6d157104cc39997e28d406a57d8a2bd015e2dac3d5f3"
+            },
+            {
+              "pixel_count": 1,
+              "intersection_pixels": 1,
+              "iou": 0.0006,
+              "seed_side_retained_fraction": 0.0006,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "a1f4b5d86a4d97401ddf8b5349275954fb720d000c7e2a7ad3f97137b2c33055"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-30",
+          "candidate_date": "2026-07-31",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1619,
+            "intersection_pixels": 10,
+            "iou": 0.0062,
+            "seed_side_retained_fraction": 0.8333,
+            "candidate_inherited_fraction": 0.0062,
+            "component_sha256": "44496af33cb70cb83775622c35ab7b00a8a23064e9f0d251143a42fa218d6e5b"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1619,
+              "intersection_pixels": 10,
+              "iou": 0.0062,
+              "seed_side_retained_fraction": 0.8333,
+              "candidate_inherited_fraction": 0.0062,
+              "component_sha256": "44496af33cb70cb83775622c35ab7b00a8a23064e9f0d251143a42fa218d6e5b"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-31",
+          "candidate_date": "2026-08-01",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1769,
+            "intersection_pixels": 1545,
+            "iou": 0.8383,
+            "seed_side_retained_fraction": 0.9543,
+            "candidate_inherited_fraction": 0.8734,
+            "component_sha256": "17ce7a064cb5b97c396572e12ea7e14db5aa4c82d1214edc6cf2ac62d9189387"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1769,
+              "intersection_pixels": 1545,
+              "iou": 0.8383,
+              "seed_side_retained_fraction": 0.9543,
+              "candidate_inherited_fraction": 0.8734,
+              "component_sha256": "17ce7a064cb5b97c396572e12ea7e14db5aa4c82d1214edc6cf2ac62d9189387"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-01",
+          "candidate_date": "2026-08-02",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 2133,
+            "intersection_pixels": 1731,
+            "iou": 0.7973,
+            "seed_side_retained_fraction": 0.9785,
+            "candidate_inherited_fraction": 0.8115,
+            "component_sha256": "536be810550116e2becff6f4acb40a9ff92497d7e9dbefc76422576079f36181"
+          },
+          "candidates": [
+            {
+              "pixel_count": 2133,
+              "intersection_pixels": 1731,
+              "iou": 0.7973,
+              "seed_side_retained_fraction": 0.9785,
+              "candidate_inherited_fraction": 0.8115,
+              "component_sha256": "536be810550116e2becff6f4acb40a9ff92497d7e9dbefc76422576079f36181"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-02",
+          "candidate_date": "2026-08-03",
+          "candidate_count": 2,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 1,
+            "intersection_pixels": 1,
+            "iou": 0.0005,
+            "seed_side_retained_fraction": 0.0005,
+            "candidate_inherited_fraction": 1.0,
+            "component_sha256": "de45023610d6e821b84e384e43cbee3db90611003cf09c36eb48800a13a0974e"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1977,
+              "intersection_pixels": 1749,
+              "iou": 0.7408,
+              "seed_side_retained_fraction": 0.82,
+              "candidate_inherited_fraction": 0.8847,
+              "component_sha256": "fed46273ff34c221bce4771fda0cc5ada7e6619dddd2eae9a8aba55193967839"
+            },
+            {
+              "pixel_count": 1,
+              "intersection_pixels": 1,
+              "iou": 0.0005,
+              "seed_side_retained_fraction": 0.0005,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "de45023610d6e821b84e384e43cbee3db90611003cf09c36eb48800a13a0974e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "policy_id": "largest_overlapping_component",
+      "label": "largest overlapping component",
+      "tracked_window": {
+        "start": "2026-07-21",
+        "end": "2026-08-10",
+        "day_count": 21
+      },
+      "forward_stop": {
+        "date": "2026-08-11",
+        "reason": "no exact-overlap candidate"
+      },
+      "backward_stop": {
+        "date": "2026-07-20",
+        "reason": "no exact-overlap candidate"
+      },
+      "branch_ambiguous_transition_count": 5,
+      "selected_component_sha256_by_date": {
+        "2026-07-21": "b42a359c83a4fb105baa3cf15c58b17d09650da776ca4a8e51094c26eb7813e0",
+        "2026-07-22": "8729beec8272e839b29335c4878ea9bf7bc5188656769ba1bd535d91a4be2d69",
+        "2026-07-23": "d11eb88cf75415b224ac797020632f15343df2b9ce53d3b16a5afc51b02e2bfb",
+        "2026-07-24": "a92b8f8fee179f5faa67679dede66b87dfc1e8617e56ee3acee305dbd07a7cd6",
+        "2026-07-25": "5521eb01a27ca072197b599d271053738607213971b8efcad9ce1f3ff3d797ff",
+        "2026-07-26": "40cb26d52cd0e87977b0fcd72489392adefaa2ab1dfa4161268bd29875f43536",
+        "2026-07-27": "bf76a7a6fbce00c85c456dbf6ac3f00395d65e1096c5807e2ffb93b94f322a13",
+        "2026-07-28": "d087f49dc1ab03f4a206c3b8d16db5cf9befb8ea084ace550f276089301b31b1",
+        "2026-07-29": "d3e1ebcda04682bda26bcbf24bb275e418d2c7699e3bdd4e66681f79e8027712",
+        "2026-07-30": "6c2f10ffc69d1f0a5c2e3020919bc102d278a14a49d6bf6e9cb2b9f33eb9dbf4",
+        "2026-07-31": "44496af33cb70cb83775622c35ab7b00a8a23064e9f0d251143a42fa218d6e5b",
+        "2026-08-01": "17ce7a064cb5b97c396572e12ea7e14db5aa4c82d1214edc6cf2ac62d9189387",
+        "2026-08-02": "536be810550116e2becff6f4acb40a9ff92497d7e9dbefc76422576079f36181",
+        "2026-08-03": "fed46273ff34c221bce4771fda0cc5ada7e6619dddd2eae9a8aba55193967839",
+        "2026-08-04": "61dd155da6e2dc1323cc6749bffa3615c35cf2ced7a342df885c67ea5e529f45",
+        "2026-08-05": "3de456701c340ac94c366b13371a1e8a3809e7efa53104bfc75819fcc1f2a671",
+        "2026-08-06": "8507373bcb89bc836c1a590c867576b8a0c914ce26451db37c201b24803bab56",
+        "2026-08-07": "d0bcbe4f3e108e54bdf410843465baa505c8542f5eac1f4d3c93592b02e5bfed",
+        "2026-08-08": "4fba67f9b787d89007d2d891bf2fafef37780d5c20a49c604baabb20393c6ed6",
+        "2026-08-09": "383ab51cd2e74f0378755465b6889e3bcfec6987a99c3e7f143bc9318a144604",
+        "2026-08-10": "e7a6782132eee43b0d4f27a5588f33bfc38f4bf8f8a74ef818d25e21987d310b"
+      },
+      "differs_from_baseline_on_dates": [],
+      "transitions": [
+        {
+          "extension_direction": "backward",
+          "seed_side_date": "2026-07-22",
+          "candidate_date": "2026-07-21",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 114,
+            "intersection_pixels": 103,
+            "iou": 0.5988,
+            "seed_side_retained_fraction": 0.6398,
+            "candidate_inherited_fraction": 0.9035,
+            "component_sha256": "b42a359c83a4fb105baa3cf15c58b17d09650da776ca4a8e51094c26eb7813e0"
+          },
+          "candidates": [
+            {
+              "pixel_count": 114,
+              "intersection_pixels": 103,
+              "iou": 0.5988,
+              "seed_side_retained_fraction": 0.6398,
+              "candidate_inherited_fraction": 0.9035,
+              "component_sha256": "b42a359c83a4fb105baa3cf15c58b17d09650da776ca4a8e51094c26eb7813e0"
+            }
+          ]
+        },
+        {
+          "extension_direction": "backward",
+          "seed_side_date": "2026-07-23",
+          "candidate_date": "2026-07-22",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 161,
+            "intersection_pixels": 152,
+            "iou": 0.2879,
+            "seed_side_retained_fraction": 0.2929,
+            "candidate_inherited_fraction": 0.9441,
+            "component_sha256": "8729beec8272e839b29335c4878ea9bf7bc5188656769ba1bd535d91a4be2d69"
+          },
+          "candidates": [
+            {
+              "pixel_count": 161,
+              "intersection_pixels": 152,
+              "iou": 0.2879,
+              "seed_side_retained_fraction": 0.2929,
+              "candidate_inherited_fraction": 0.9441,
+              "component_sha256": "8729beec8272e839b29335c4878ea9bf7bc5188656769ba1bd535d91a4be2d69"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-23",
+          "candidate_date": "2026-07-24",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1222,
+            "intersection_pixels": 518,
+            "iou": 0.4235,
+            "seed_side_retained_fraction": 0.9981,
+            "candidate_inherited_fraction": 0.4239,
+            "component_sha256": "a92b8f8fee179f5faa67679dede66b87dfc1e8617e56ee3acee305dbd07a7cd6"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1222,
+              "intersection_pixels": 518,
+              "iou": 0.4235,
+              "seed_side_retained_fraction": 0.9981,
+              "candidate_inherited_fraction": 0.4239,
+              "component_sha256": "a92b8f8fee179f5faa67679dede66b87dfc1e8617e56ee3acee305dbd07a7cd6"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-24",
+          "candidate_date": "2026-07-25",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1938,
+            "intersection_pixels": 1208,
+            "iou": 0.6189,
+            "seed_side_retained_fraction": 0.9885,
+            "candidate_inherited_fraction": 0.6233,
+            "component_sha256": "5521eb01a27ca072197b599d271053738607213971b8efcad9ce1f3ff3d797ff"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1938,
+              "intersection_pixels": 1208,
+              "iou": 0.6189,
+              "seed_side_retained_fraction": 0.9885,
+              "candidate_inherited_fraction": 0.6233,
+              "component_sha256": "5521eb01a27ca072197b599d271053738607213971b8efcad9ce1f3ff3d797ff"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-25",
+          "candidate_date": "2026-07-26",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1388,
+            "intersection_pixels": 1267,
+            "iou": 0.6153,
+            "seed_side_retained_fraction": 0.6538,
+            "candidate_inherited_fraction": 0.9128,
+            "component_sha256": "40cb26d52cd0e87977b0fcd72489392adefaa2ab1dfa4161268bd29875f43536"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1388,
+              "intersection_pixels": 1267,
+              "iou": 0.6153,
+              "seed_side_retained_fraction": 0.6538,
+              "candidate_inherited_fraction": 0.9128,
+              "component_sha256": "40cb26d52cd0e87977b0fcd72489392adefaa2ab1dfa4161268bd29875f43536"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-26",
+          "candidate_date": "2026-07-27",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 876,
+            "intersection_pixels": 822,
+            "iou": 0.57,
+            "seed_side_retained_fraction": 0.5922,
+            "candidate_inherited_fraction": 0.9384,
+            "component_sha256": "bf76a7a6fbce00c85c456dbf6ac3f00395d65e1096c5807e2ffb93b94f322a13"
+          },
+          "candidates": [
+            {
+              "pixel_count": 876,
+              "intersection_pixels": 822,
+              "iou": 0.57,
+              "seed_side_retained_fraction": 0.5922,
+              "candidate_inherited_fraction": 0.9384,
+              "component_sha256": "bf76a7a6fbce00c85c456dbf6ac3f00395d65e1096c5807e2ffb93b94f322a13"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-27",
+          "candidate_date": "2026-07-28",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 2101,
+            "intersection_pixels": 872,
+            "iou": 0.4143,
+            "seed_side_retained_fraction": 0.9954,
+            "candidate_inherited_fraction": 0.415,
+            "component_sha256": "d087f49dc1ab03f4a206c3b8d16db5cf9befb8ea084ace550f276089301b31b1"
+          },
+          "candidates": [
+            {
+              "pixel_count": 2101,
+              "intersection_pixels": 872,
+              "iou": 0.4143,
+              "seed_side_retained_fraction": 0.9954,
+              "candidate_inherited_fraction": 0.415,
+              "component_sha256": "d087f49dc1ab03f4a206c3b8d16db5cf9befb8ea084ace550f276089301b31b1"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-28",
+          "candidate_date": "2026-07-29",
+          "candidate_count": 2,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 1565,
+            "intersection_pixels": 1390,
+            "iou": 0.6107,
+            "seed_side_retained_fraction": 0.6616,
+            "candidate_inherited_fraction": 0.8882,
+            "component_sha256": "d3e1ebcda04682bda26bcbf24bb275e418d2c7699e3bdd4e66681f79e8027712"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1565,
+              "intersection_pixels": 1390,
+              "iou": 0.6107,
+              "seed_side_retained_fraction": 0.6616,
+              "candidate_inherited_fraction": 0.8882,
+              "component_sha256": "d3e1ebcda04682bda26bcbf24bb275e418d2c7699e3bdd4e66681f79e8027712"
+            },
+            {
+              "pixel_count": 25,
+              "intersection_pixels": 13,
+              "iou": 0.0062,
+              "seed_side_retained_fraction": 0.0062,
+              "candidate_inherited_fraction": 0.52,
+              "component_sha256": "8c38543007426ab60c90ad9a6a796dd3f3773ee740d3dfc59e43ef9f7110f6fa"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-29",
+          "candidate_date": "2026-07-30",
+          "candidate_count": 4,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 1233,
+            "intersection_pixels": 1011,
+            "iou": 0.5658,
+            "seed_side_retained_fraction": 0.646,
+            "candidate_inherited_fraction": 0.82,
+            "component_sha256": "6c2f10ffc69d1f0a5c2e3020919bc102d278a14a49d6bf6e9cb2b9f33eb9dbf4"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1233,
+              "intersection_pixels": 1011,
+              "iou": 0.5658,
+              "seed_side_retained_fraction": 0.646,
+              "candidate_inherited_fraction": 0.82,
+              "component_sha256": "6c2f10ffc69d1f0a5c2e3020919bc102d278a14a49d6bf6e9cb2b9f33eb9dbf4"
+            },
+            {
+              "pixel_count": 12,
+              "intersection_pixels": 12,
+              "iou": 0.0077,
+              "seed_side_retained_fraction": 0.0077,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "67ad1a5681d964640011b8396ea1873fed0eb8bdac1231877ec376d41f8d1ac9"
+            },
+            {
+              "pixel_count": 20,
+              "intersection_pixels": 8,
+              "iou": 0.0051,
+              "seed_side_retained_fraction": 0.0051,
+              "candidate_inherited_fraction": 0.4,
+              "component_sha256": "e8f50447cdc797b70e5c6d157104cc39997e28d406a57d8a2bd015e2dac3d5f3"
+            },
+            {
+              "pixel_count": 1,
+              "intersection_pixels": 1,
+              "iou": 0.0006,
+              "seed_side_retained_fraction": 0.0006,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "a1f4b5d86a4d97401ddf8b5349275954fb720d000c7e2a7ad3f97137b2c33055"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-30",
+          "candidate_date": "2026-07-31",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1619,
+            "intersection_pixels": 1164,
+            "iou": 0.6896,
+            "seed_side_retained_fraction": 0.944,
+            "candidate_inherited_fraction": 0.719,
+            "component_sha256": "44496af33cb70cb83775622c35ab7b00a8a23064e9f0d251143a42fa218d6e5b"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1619,
+              "intersection_pixels": 1164,
+              "iou": 0.6896,
+              "seed_side_retained_fraction": 0.944,
+              "candidate_inherited_fraction": 0.719,
+              "component_sha256": "44496af33cb70cb83775622c35ab7b00a8a23064e9f0d251143a42fa218d6e5b"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-07-31",
+          "candidate_date": "2026-08-01",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1769,
+            "intersection_pixels": 1545,
+            "iou": 0.8383,
+            "seed_side_retained_fraction": 0.9543,
+            "candidate_inherited_fraction": 0.8734,
+            "component_sha256": "17ce7a064cb5b97c396572e12ea7e14db5aa4c82d1214edc6cf2ac62d9189387"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1769,
+              "intersection_pixels": 1545,
+              "iou": 0.8383,
+              "seed_side_retained_fraction": 0.9543,
+              "candidate_inherited_fraction": 0.8734,
+              "component_sha256": "17ce7a064cb5b97c396572e12ea7e14db5aa4c82d1214edc6cf2ac62d9189387"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-01",
+          "candidate_date": "2026-08-02",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 2133,
+            "intersection_pixels": 1731,
+            "iou": 0.7973,
+            "seed_side_retained_fraction": 0.9785,
+            "candidate_inherited_fraction": 0.8115,
+            "component_sha256": "536be810550116e2becff6f4acb40a9ff92497d7e9dbefc76422576079f36181"
+          },
+          "candidates": [
+            {
+              "pixel_count": 2133,
+              "intersection_pixels": 1731,
+              "iou": 0.7973,
+              "seed_side_retained_fraction": 0.9785,
+              "candidate_inherited_fraction": 0.8115,
+              "component_sha256": "536be810550116e2becff6f4acb40a9ff92497d7e9dbefc76422576079f36181"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-02",
+          "candidate_date": "2026-08-03",
+          "candidate_count": 2,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 1977,
+            "intersection_pixels": 1749,
+            "iou": 0.7408,
+            "seed_side_retained_fraction": 0.82,
+            "candidate_inherited_fraction": 0.8847,
+            "component_sha256": "fed46273ff34c221bce4771fda0cc5ada7e6619dddd2eae9a8aba55193967839"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1977,
+              "intersection_pixels": 1749,
+              "iou": 0.7408,
+              "seed_side_retained_fraction": 0.82,
+              "candidate_inherited_fraction": 0.8847,
+              "component_sha256": "fed46273ff34c221bce4771fda0cc5ada7e6619dddd2eae9a8aba55193967839"
+            },
+            {
+              "pixel_count": 1,
+              "intersection_pixels": 1,
+              "iou": 0.0005,
+              "seed_side_retained_fraction": 0.0005,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "de45023610d6e821b84e384e43cbee3db90611003cf09c36eb48800a13a0974e"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-03",
+          "candidate_date": "2026-08-04",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1663,
+            "intersection_pixels": 1595,
+            "iou": 0.78,
+            "seed_side_retained_fraction": 0.8068,
+            "candidate_inherited_fraction": 0.9591,
+            "component_sha256": "61dd155da6e2dc1323cc6749bffa3615c35cf2ced7a342df885c67ea5e529f45"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1663,
+              "intersection_pixels": 1595,
+              "iou": 0.78,
+              "seed_side_retained_fraction": 0.8068,
+              "candidate_inherited_fraction": 0.9591,
+              "component_sha256": "61dd155da6e2dc1323cc6749bffa3615c35cf2ced7a342df885c67ea5e529f45"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-04",
+          "candidate_date": "2026-08-05",
+          "candidate_count": 2,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 1784,
+            "intersection_pixels": 1557,
+            "iou": 0.8238,
+            "seed_side_retained_fraction": 0.9363,
+            "candidate_inherited_fraction": 0.8728,
+            "component_sha256": "3de456701c340ac94c366b13371a1e8a3809e7efa53104bfc75819fcc1f2a671"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1784,
+              "intersection_pixels": 1557,
+              "iou": 0.8238,
+              "seed_side_retained_fraction": 0.9363,
+              "candidate_inherited_fraction": 0.8728,
+              "component_sha256": "3de456701c340ac94c366b13371a1e8a3809e7efa53104bfc75819fcc1f2a671"
+            },
+            {
+              "pixel_count": 1,
+              "intersection_pixels": 1,
+              "iou": 0.0006,
+              "seed_side_retained_fraction": 0.0006,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "295a09e03452b5c16a1433e0218f91fe4b3959bba194ede501e09e228eeee25f"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-05",
+          "candidate_date": "2026-08-06",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1530,
+            "intersection_pixels": 1471,
+            "iou": 0.7982,
+            "seed_side_retained_fraction": 0.8246,
+            "candidate_inherited_fraction": 0.9614,
+            "component_sha256": "8507373bcb89bc836c1a590c867576b8a0c914ce26451db37c201b24803bab56"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1530,
+              "intersection_pixels": 1471,
+              "iou": 0.7982,
+              "seed_side_retained_fraction": 0.8246,
+              "candidate_inherited_fraction": 0.9614,
+              "component_sha256": "8507373bcb89bc836c1a590c867576b8a0c914ce26451db37c201b24803bab56"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-06",
+          "candidate_date": "2026-08-07",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 1088,
+            "intersection_pixels": 1083,
+            "iou": 0.7055,
+            "seed_side_retained_fraction": 0.7078,
+            "candidate_inherited_fraction": 0.9954,
+            "component_sha256": "d0bcbe4f3e108e54bdf410843465baa505c8542f5eac1f4d3c93592b02e5bfed"
+          },
+          "candidates": [
+            {
+              "pixel_count": 1088,
+              "intersection_pixels": 1083,
+              "iou": 0.7055,
+              "seed_side_retained_fraction": 0.7078,
+              "candidate_inherited_fraction": 0.9954,
+              "component_sha256": "d0bcbe4f3e108e54bdf410843465baa505c8542f5eac1f4d3c93592b02e5bfed"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-07",
+          "candidate_date": "2026-08-08",
+          "candidate_count": 2,
+          "branch_ambiguity": true,
+          "selected": {
+            "pixel_count": 219,
+            "intersection_pixels": 216,
+            "iou": 0.198,
+            "seed_side_retained_fraction": 0.1985,
+            "candidate_inherited_fraction": 0.9863,
+            "component_sha256": "4fba67f9b787d89007d2d891bf2fafef37780d5c20a49c604baabb20393c6ed6"
+          },
+          "candidates": [
+            {
+              "pixel_count": 219,
+              "intersection_pixels": 216,
+              "iou": 0.198,
+              "seed_side_retained_fraction": 0.1985,
+              "candidate_inherited_fraction": 0.9863,
+              "component_sha256": "4fba67f9b787d89007d2d891bf2fafef37780d5c20a49c604baabb20393c6ed6"
+            },
+            {
+              "pixel_count": 54,
+              "intersection_pixels": 54,
+              "iou": 0.0496,
+              "seed_side_retained_fraction": 0.0496,
+              "candidate_inherited_fraction": 1.0,
+              "component_sha256": "b319e1d667c830d4cdea8f878a709a143fcfe8c3d1f8903d4d6aa2bdeb3a4297"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-08",
+          "candidate_date": "2026-08-09",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 167,
+            "intersection_pixels": 152,
+            "iou": 0.6496,
+            "seed_side_retained_fraction": 0.6941,
+            "candidate_inherited_fraction": 0.9102,
+            "component_sha256": "383ab51cd2e74f0378755465b6889e3bcfec6987a99c3e7f143bc9318a144604"
+          },
+          "candidates": [
+            {
+              "pixel_count": 167,
+              "intersection_pixels": 152,
+              "iou": 0.6496,
+              "seed_side_retained_fraction": 0.6941,
+              "candidate_inherited_fraction": 0.9102,
+              "component_sha256": "383ab51cd2e74f0378755465b6889e3bcfec6987a99c3e7f143bc9318a144604"
+            }
+          ]
+        },
+        {
+          "extension_direction": "forward",
+          "seed_side_date": "2026-08-09",
+          "candidate_date": "2026-08-10",
+          "candidate_count": 1,
+          "branch_ambiguity": false,
+          "selected": {
+            "pixel_count": 145,
+            "intersection_pixels": 124,
+            "iou": 0.6596,
+            "seed_side_retained_fraction": 0.7425,
+            "candidate_inherited_fraction": 0.8552,
+            "component_sha256": "e7a6782132eee43b0d4f27a5588f33bfc38f4bf8f8a74ef818d25e21987d310b"
+          },
+          "candidates": [
+            {
+              "pixel_count": 145,
+              "intersection_pixels": 124,
+              "iou": 0.6596,
+              "seed_side_retained_fraction": 0.7425,
+              "candidate_inherited_fraction": 0.8552,
+              "component_sha256": "e7a6782132eee43b0d4f27a5588f33bfc38f4bf8f8a74ef818d25e21987d310b"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "comparison_to_greatest_intersection": [
+    {
+      "policy_id": "greatest_iou",
+      "same_tracked_window": true,
+      "same_daily_components": true,
+      "differing_daily_component_count": 0,
+      "first_differing_date": null
+    },
+    {
+      "policy_id": "greatest_candidate_inherited_fraction",
+      "same_tracked_window": false,
+      "same_daily_components": false,
+      "differing_daily_component_count": 2,
+      "first_differing_date": "2026-07-30"
+    },
+    {
+      "policy_id": "largest_overlapping_component",
+      "same_tracked_window": true,
+      "same_daily_components": true,
+      "differing_daily_component_count": 0,
+      "first_differing_date": null
+    }
+  ],
+  "identity_evaluation": {
+    "result": "policy_dependent",
+    "finding": "Four declared split/merge branch-selection policies are compared cell for cell; matching lifetimes can coexist with different selected daily components."
+  },
+  "boundary": "This bakeoff follows exact-overlap threshold-state components, not water parcels. The four scores are an illustrative diagnostic set, not uniquely correct tracking laws. A policy is applied in extension direction from the anchor, which is not equivalent to reconstructing a causal history backward in time. Connectivity, gap, minimum-overlap, forcing, advection, subsurface continuity, attribution, and impacts remain separate tests."
+}

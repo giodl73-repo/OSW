@@ -1,0 +1,251 @@
+{
+  "schema": "oceanlines.osw.m3-oras5-arctic-section-geometry-audit.v1",
+  "status": "three_sections_pass_internal_full_depth_geometry",
+  "sources": {
+    "mesh": {
+      "path": "atlas\\data\\oras5-arctic-entrances-mesh.nc",
+      "sha256": "8d0252a368a2b6eae8f6db5713ae7c369560c41a7503a697af9057c3e5809eaa"
+    },
+    "readiness": {
+      "path": "research\\osw-m3-oras5-arctic-gate-readiness.json",
+      "sha256": "761c1dcb988f9782ce969bf2c315bc1bd4cd388c7e9b80318d761c029f297fda"
+    },
+    "bakeoff": {
+      "path": "research\\osw-m3-oras5-barents-section-bakeoff.json",
+      "sha256": "0e08f947b35cb9e202409e83816a2f6dcf0302e8123e7a69e4489fc3764063d9"
+    }
+  },
+  "reconstruction": {
+    "operator": "minimum reconstructed thickness of the two adjacent T cells at each interior U/V face",
+    "fallback_bottom_cell_count": 0,
+    "reference_level_count": 75,
+    "depth_bins_m": [
+      [
+        0,
+        100
+      ],
+      [
+        100,
+        300
+      ],
+      [
+        300,
+        700
+      ],
+      [
+        700,
+        1500
+      ],
+      [
+        1500,
+        3000
+      ],
+      [
+        3000,
+        null
+      ]
+    ]
+  },
+  "sections": [
+    {
+      "name": "Fram Strait",
+      "semantics": "land-bounded 60-face V-row; branch decomposition still required",
+      "land_bounded_at_surface": true,
+      "horizontal_face_count": 60,
+      "u_face_count": 0,
+      "v_face_count": 60,
+      "wet_3d_cell_count": 2373,
+      "maximum_wet_level_count": 58,
+      "column_depth_m": {
+        "minimum": 11.990557660069229,
+        "maximum": 2577.346412787162,
+        "mean": 1056.2417646956008
+      },
+      "column_area_m2": {
+        "minimum": 151723.30589012662,
+        "maximum": 33079581.76988089,
+        "mean": 13572226.330214182
+      },
+      "total_section_area_m2": 814333579.812851,
+      "depth_bins": [
+        {
+          "lower_m": 0,
+          "upper_m": 100,
+          "area_m2": 73493979.31028882,
+          "fraction": 0.090250458942365
+        },
+        {
+          "lower_m": 100,
+          "upper_m": 300,
+          "area_m2": 89400593.83844924,
+          "fraction": 0.10978374962628357
+        },
+        {
+          "lower_m": 300,
+          "upper_m": 700,
+          "area_m2": 159815353.91210163,
+          "fraction": 0.1962529335322635
+        },
+        {
+          "lower_m": 700,
+          "upper_m": 1500,
+          "area_m2": 230899378.74030787,
+          "fraction": 0.28354397321227115
+        },
+        {
+          "lower_m": 1500,
+          "upper_m": 3000,
+          "area_m2": 260724274.0117034,
+          "fraction": 0.3201688846868168
+        },
+        {
+          "lower_m": 3000,
+          "upper_m": null,
+          "area_m2": 0.0,
+          "fraction": 0.0
+        }
+      ],
+      "checks": {
+        "mask_mismatch_count": 0,
+        "wet_area_finite_positive": true,
+        "depth_bin_area_residual_m2": 0.0,
+        "depth_bins_reproduce_total": true,
+        "all_widths_finite_positive": true
+      }
+    },
+    {
+      "name": "Fugloya-Bear observational proxy",
+      "semantics": "open virtual-endpoint comparison section; model water may bypass either endpoint",
+      "land_bounded_at_surface": false,
+      "horizontal_face_count": 43,
+      "u_face_count": 23,
+      "v_face_count": 20,
+      "wet_3d_cell_count": 1395,
+      "maximum_wet_level_count": 39,
+      "column_depth_m": {
+        "minimum": 44.097873716104715,
+        "maximum": 443.5614448495519,
+        "mean": 267.7523972005047
+      },
+      "column_area_m2": {
+        "minimum": 583647.5889023093,
+        "maximum": 6305627.086349783,
+        "mean": 3750962.946747626
+      },
+      "total_section_area_m2": 161291406.71014792,
+      "depth_bins": [
+        {
+          "lower_m": 0,
+          "upper_m": 100,
+          "area_m2": 59368558.0172687,
+          "fraction": 0.36808258560208484
+        },
+        {
+          "lower_m": 100,
+          "upper_m": 300,
+          "area_m2": 77456461.95569578,
+          "fraction": 0.48022683623121054
+        },
+        {
+          "lower_m": 300,
+          "upper_m": 700,
+          "area_m2": 24466386.73718345,
+          "fraction": 0.1516905781667047
+        },
+        {
+          "lower_m": 700,
+          "upper_m": 1500,
+          "area_m2": 0.0,
+          "fraction": 0.0
+        },
+        {
+          "lower_m": 1500,
+          "upper_m": 3000,
+          "area_m2": 0.0,
+          "fraction": 0.0
+        },
+        {
+          "lower_m": 3000,
+          "upper_m": null,
+          "area_m2": 0.0,
+          "fraction": 0.0
+        }
+      ],
+      "checks": {
+        "mask_mismatch_count": 0,
+        "wet_area_finite_positive": true,
+        "depth_bin_area_residual_m2": 0.0,
+        "depth_bins_reproduce_total": true,
+        "all_widths_finite_positive": true
+      }
+    },
+    {
+      "name": "Norway-Svalbard model closure",
+      "semantics": "land-to-land model-grid boundary; not the observational Fugloya-Bear section",
+      "land_bounded_at_surface": true,
+      "horizontal_face_count": 73,
+      "u_face_count": 36,
+      "v_face_count": 37,
+      "wet_3d_cell_count": 2217,
+      "maximum_wet_level_count": 38,
+      "column_depth_m": {
+        "minimum": 11.990557660069229,
+        "maximum": 432.0791159115913,
+        "mean": 220.28356175510766
+      },
+      "column_area_m2": {
+        "minimum": 173195.85369152523,
+        "maximum": 6213101.257133836,
+        "mean": 3070410.460753042
+      },
+      "total_section_area_m2": 224139963.63497204,
+      "depth_bins": [
+        {
+          "lower_m": 0,
+          "upper_m": 100,
+          "area_m2": 99762218.52239612,
+          "fraction": 0.445088938645792
+        },
+        {
+          "lower_m": 100,
+          "upper_m": 300,
+          "area_m2": 101610541.17629106,
+          "fraction": 0.4533352264738077
+        },
+        {
+          "lower_m": 300,
+          "upper_m": 700,
+          "area_m2": 22767203.93628489,
+          "fraction": 0.10157583488040048
+        },
+        {
+          "lower_m": 700,
+          "upper_m": 1500,
+          "area_m2": 0.0,
+          "fraction": 0.0
+        },
+        {
+          "lower_m": 1500,
+          "upper_m": 3000,
+          "area_m2": 0.0,
+          "fraction": 0.0
+        },
+        {
+          "lower_m": 3000,
+          "upper_m": null,
+          "area_m2": 0.0,
+          "fraction": 0.0
+        }
+      ],
+      "checks": {
+        "mask_mismatch_count": 0,
+        "wet_area_finite_positive": true,
+        "depth_bin_area_residual_m2": -2.9802322387695312e-08,
+        "depth_bins_reproduce_total": true,
+        "all_widths_finite_positive": true
+      }
+    }
+  ],
+  "all_sections_pass": true,
+  "boundary": "Internal native mask/thickness/area consistency only. Passing does not independently validate exact ORAS5 face thickness, choose between Barents semantics, align state fields, or calculate volume, heat, uncertainty, or Arctic delivery."
+}

@@ -1,0 +1,372 @@
+{
+  "schema": "osw.ocean-object-tracking-sensitivity.v1",
+  "detection_id": "OSW-D5",
+  "status": "tracking_policy_bakeoff",
+  "object_id": "OBJ046",
+  "object_name": "marine heatwave",
+  "source_artifacts": [
+    {
+      "path": "atlas/data/noaa-crw-mhw-point-north-atlantic-2026.json",
+      "sha256": "c1cf0af0b18b262718ca31b0efa6f0ff98f81db17f345fa4c748f12ff0a6b8f1"
+    },
+    {
+      "path": "research/osw-d3-noaa-crw-mhw-lineage-2026.json",
+      "sha256": "3c9a0d64b367f88316ca75ac21b35c7a99fd9e2b7bc5f9639c6ca66e0438cb52"
+    },
+    {
+      "path": "research/osw-d4-noaa-crw-mhw-gap-identity-2026.json",
+      "sha256": "3ec1055e9ed2c7e52def41ee0f0438e9a70d81ab68df6fafe086410cb9c76dcc"
+    }
+  ],
+  "controlled_choices": {
+    "seed": "component containing the OSW-D1 anchor on 2026-07-23",
+    "branch_selection": "greatest exact native-pixel intersection; held fixed before applying acceptance thresholds",
+    "connectivity_values": [
+      4,
+      8
+    ],
+    "threshold_policies": [
+      {
+        "policy_id": "any_exact_overlap",
+        "metric": "intersection_pixels",
+        "minimum": 1
+      },
+      {
+        "policy_id": "iou_0_10",
+        "metric": "iou",
+        "minimum": 0.1
+      },
+      {
+        "policy_id": "iou_0_20",
+        "metric": "iou",
+        "minimum": 0.2
+      },
+      {
+        "policy_id": "iou_0_25",
+        "metric": "iou",
+        "minimum": 0.25
+      },
+      {
+        "policy_id": "iou_0_50",
+        "metric": "iou",
+        "minimum": 0.5
+      }
+    ],
+    "threshold_selection": "illustrative diagnostic sweep, not a literature-calibrated or uniquely preferred set",
+    "longitude_periodicity": true
+  },
+  "results": [
+    {
+      "connectivity": 4,
+      "adjacency": "edge",
+      "unconstrained_greatest_intersection_window": {
+        "start": "2026-07-21",
+        "end": "2026-08-10",
+        "day_count": 21
+      },
+      "tracked_component_sha256_by_date": {
+        "2026-07-21": "b42a359c83a4fb105baa3cf15c58b17d09650da776ca4a8e51094c26eb7813e0",
+        "2026-07-22": "8729beec8272e839b29335c4878ea9bf7bc5188656769ba1bd535d91a4be2d69",
+        "2026-07-23": "d11eb88cf75415b224ac797020632f15343df2b9ce53d3b16a5afc51b02e2bfb",
+        "2026-07-24": "a92b8f8fee179f5faa67679dede66b87dfc1e8617e56ee3acee305dbd07a7cd6",
+        "2026-07-25": "5521eb01a27ca072197b599d271053738607213971b8efcad9ce1f3ff3d797ff",
+        "2026-07-26": "40cb26d52cd0e87977b0fcd72489392adefaa2ab1dfa4161268bd29875f43536",
+        "2026-07-27": "bf76a7a6fbce00c85c456dbf6ac3f00395d65e1096c5807e2ffb93b94f322a13",
+        "2026-07-28": "d087f49dc1ab03f4a206c3b8d16db5cf9befb8ea084ace550f276089301b31b1",
+        "2026-07-29": "d3e1ebcda04682bda26bcbf24bb275e418d2c7699e3bdd4e66681f79e8027712",
+        "2026-07-30": "6c2f10ffc69d1f0a5c2e3020919bc102d278a14a49d6bf6e9cb2b9f33eb9dbf4",
+        "2026-07-31": "44496af33cb70cb83775622c35ab7b00a8a23064e9f0d251143a42fa218d6e5b",
+        "2026-08-01": "17ce7a064cb5b97c396572e12ea7e14db5aa4c82d1214edc6cf2ac62d9189387",
+        "2026-08-02": "536be810550116e2becff6f4acb40a9ff92497d7e9dbefc76422576079f36181",
+        "2026-08-03": "fed46273ff34c221bce4771fda0cc5ada7e6619dddd2eae9a8aba55193967839",
+        "2026-08-04": "61dd155da6e2dc1323cc6749bffa3615c35cf2ced7a342df885c67ea5e529f45",
+        "2026-08-05": "3de456701c340ac94c366b13371a1e8a3809e7efa53104bfc75819fcc1f2a671",
+        "2026-08-06": "8507373bcb89bc836c1a590c867576b8a0c914ce26451db37c201b24803bab56",
+        "2026-08-07": "d0bcbe4f3e108e54bdf410843465baa505c8542f5eac1f4d3c93592b02e5bfed",
+        "2026-08-08": "4fba67f9b787d89007d2d891bf2fafef37780d5c20a49c604baabb20393c6ed6",
+        "2026-08-09": "383ab51cd2e74f0378755465b6889e3bcfec6987a99c3e7f143bc9318a144604",
+        "2026-08-10": "e7a6782132eee43b0d4f27a5588f33bfc38f4bf8f8a74ef818d25e21987d310b"
+      },
+      "threshold_windows": [
+        {
+          "policy_id": "any_exact_overlap",
+          "metric": "intersection_pixels",
+          "minimum": 1,
+          "start": "2026-07-21",
+          "end": "2026-08-10",
+          "day_count": 21,
+          "minimum_intersection_pixels": 103,
+          "minimum_iou": 0.198,
+          "break_before": null,
+          "break_after": null
+        },
+        {
+          "policy_id": "iou_0_10",
+          "metric": "iou",
+          "minimum": 0.1,
+          "start": "2026-07-21",
+          "end": "2026-08-10",
+          "day_count": 21,
+          "minimum_intersection_pixels": 103,
+          "minimum_iou": 0.198,
+          "break_before": null,
+          "break_after": null
+        },
+        {
+          "policy_id": "iou_0_20",
+          "metric": "iou",
+          "minimum": 0.2,
+          "start": "2026-07-21",
+          "end": "2026-08-07",
+          "day_count": 18,
+          "minimum_intersection_pixels": 103,
+          "minimum_iou": 0.2879,
+          "break_before": null,
+          "break_after": {
+            "from": "2026-08-07",
+            "to": "2026-08-08",
+            "intersection_pixels": 216,
+            "iou": 0.198,
+            "tested_metric": "iou",
+            "tested_value": 0.198,
+            "required_minimum": 0.2
+          }
+        },
+        {
+          "policy_id": "iou_0_25",
+          "metric": "iou",
+          "minimum": 0.25,
+          "start": "2026-07-21",
+          "end": "2026-08-07",
+          "day_count": 18,
+          "minimum_intersection_pixels": 103,
+          "minimum_iou": 0.2879,
+          "break_before": null,
+          "break_after": {
+            "from": "2026-08-07",
+            "to": "2026-08-08",
+            "intersection_pixels": 216,
+            "iou": 0.198,
+            "tested_metric": "iou",
+            "tested_value": 0.198,
+            "required_minimum": 0.25
+          }
+        },
+        {
+          "policy_id": "iou_0_50",
+          "metric": "iou",
+          "minimum": 0.5,
+          "start": "2026-07-23",
+          "end": "2026-07-23",
+          "day_count": 1,
+          "minimum_intersection_pixels": null,
+          "minimum_iou": 1.0,
+          "break_before": {
+            "from": "2026-07-22",
+            "to": "2026-07-23",
+            "intersection_pixels": 152,
+            "iou": 0.2879,
+            "tested_metric": "iou",
+            "tested_value": 0.2879,
+            "required_minimum": 0.5
+          },
+          "break_after": {
+            "from": "2026-07-23",
+            "to": "2026-07-24",
+            "intersection_pixels": 518,
+            "iou": 0.4235,
+            "tested_metric": "iou",
+            "tested_value": 0.4235,
+            "required_minimum": 0.5
+          }
+        }
+      ],
+      "gap_bridge": {
+        "pre_gap_pixels": 145,
+        "post_gap_pixels": 457,
+        "intersection_pixels": 122,
+        "iou": 0.2542,
+        "pre_gap_retained_fraction": 0.8414,
+        "post_gap_inherited_fraction": 0.267,
+        "pre_gap_component_sha256": "e7a6782132eee43b0d4f27a5588f33bfc38f4bf8f8a74ef818d25e21987d310b",
+        "post_gap_component_sha256": "316b959f8f9438678bd8c5476abfa5dc03cf8ca14644c157913d778a451b3b76"
+      }
+    },
+    {
+      "connectivity": 8,
+      "adjacency": "edge_or_corner",
+      "unconstrained_greatest_intersection_window": {
+        "start": "2026-07-21",
+        "end": "2026-08-10",
+        "day_count": 21
+      },
+      "tracked_component_sha256_by_date": {
+        "2026-07-21": "b42a359c83a4fb105baa3cf15c58b17d09650da776ca4a8e51094c26eb7813e0",
+        "2026-07-22": "8729beec8272e839b29335c4878ea9bf7bc5188656769ba1bd535d91a4be2d69",
+        "2026-07-23": "d11eb88cf75415b224ac797020632f15343df2b9ce53d3b16a5afc51b02e2bfb",
+        "2026-07-24": "a92b8f8fee179f5faa67679dede66b87dfc1e8617e56ee3acee305dbd07a7cd6",
+        "2026-07-25": "5521eb01a27ca072197b599d271053738607213971b8efcad9ce1f3ff3d797ff",
+        "2026-07-26": "40cb26d52cd0e87977b0fcd72489392adefaa2ab1dfa4161268bd29875f43536",
+        "2026-07-27": "bf76a7a6fbce00c85c456dbf6ac3f00395d65e1096c5807e2ffb93b94f322a13",
+        "2026-07-28": "d087f49dc1ab03f4a206c3b8d16db5cf9befb8ea084ace550f276089301b31b1",
+        "2026-07-29": "d3e1ebcda04682bda26bcbf24bb275e418d2c7699e3bdd4e66681f79e8027712",
+        "2026-07-30": "503834253b2322493e5c679f73b81153c3d955074a07c0007c389ec4ec4f5161",
+        "2026-07-31": "44496af33cb70cb83775622c35ab7b00a8a23064e9f0d251143a42fa218d6e5b",
+        "2026-08-01": "17ce7a064cb5b97c396572e12ea7e14db5aa4c82d1214edc6cf2ac62d9189387",
+        "2026-08-02": "536be810550116e2becff6f4acb40a9ff92497d7e9dbefc76422576079f36181",
+        "2026-08-03": "dd8b921cebe7ce7071c8a3f89bd4c952a33df2378142b584ab09187c551b961a",
+        "2026-08-04": "61dd155da6e2dc1323cc6749bffa3615c35cf2ced7a342df885c67ea5e529f45",
+        "2026-08-05": "be8bfdb9e006332dc62af10a9f266444efb299109dffb9f27c97adc5d40c72db",
+        "2026-08-06": "8507373bcb89bc836c1a590c867576b8a0c914ce26451db37c201b24803bab56",
+        "2026-08-07": "d0bcbe4f3e108e54bdf410843465baa505c8542f5eac1f4d3c93592b02e5bfed",
+        "2026-08-08": "4fba67f9b787d89007d2d891bf2fafef37780d5c20a49c604baabb20393c6ed6",
+        "2026-08-09": "383ab51cd2e74f0378755465b6889e3bcfec6987a99c3e7f143bc9318a144604",
+        "2026-08-10": "e7a6782132eee43b0d4f27a5588f33bfc38f4bf8f8a74ef818d25e21987d310b"
+      },
+      "threshold_windows": [
+        {
+          "policy_id": "any_exact_overlap",
+          "metric": "intersection_pixels",
+          "minimum": 1,
+          "start": "2026-07-21",
+          "end": "2026-08-10",
+          "day_count": 21,
+          "minimum_intersection_pixels": 103,
+          "minimum_iou": 0.198,
+          "break_before": null,
+          "break_after": null
+        },
+        {
+          "policy_id": "iou_0_10",
+          "metric": "iou",
+          "minimum": 0.1,
+          "start": "2026-07-21",
+          "end": "2026-08-10",
+          "day_count": 21,
+          "minimum_intersection_pixels": 103,
+          "minimum_iou": 0.198,
+          "break_before": null,
+          "break_after": null
+        },
+        {
+          "policy_id": "iou_0_20",
+          "metric": "iou",
+          "minimum": 0.2,
+          "start": "2026-07-21",
+          "end": "2026-08-07",
+          "day_count": 18,
+          "minimum_intersection_pixels": 103,
+          "minimum_iou": 0.2879,
+          "break_before": null,
+          "break_after": {
+            "from": "2026-08-07",
+            "to": "2026-08-08",
+            "intersection_pixels": 216,
+            "iou": 0.198,
+            "tested_metric": "iou",
+            "tested_value": 0.198,
+            "required_minimum": 0.2
+          }
+        },
+        {
+          "policy_id": "iou_0_25",
+          "metric": "iou",
+          "minimum": 0.25,
+          "start": "2026-07-21",
+          "end": "2026-08-07",
+          "day_count": 18,
+          "minimum_intersection_pixels": 103,
+          "minimum_iou": 0.2879,
+          "break_before": null,
+          "break_after": {
+            "from": "2026-08-07",
+            "to": "2026-08-08",
+            "intersection_pixels": 216,
+            "iou": 0.198,
+            "tested_metric": "iou",
+            "tested_value": 0.198,
+            "required_minimum": 0.25
+          }
+        },
+        {
+          "policy_id": "iou_0_50",
+          "metric": "iou",
+          "minimum": 0.5,
+          "start": "2026-07-23",
+          "end": "2026-07-23",
+          "day_count": 1,
+          "minimum_intersection_pixels": null,
+          "minimum_iou": 1.0,
+          "break_before": {
+            "from": "2026-07-22",
+            "to": "2026-07-23",
+            "intersection_pixels": 152,
+            "iou": 0.2879,
+            "tested_metric": "iou",
+            "tested_value": 0.2879,
+            "required_minimum": 0.5
+          },
+          "break_after": {
+            "from": "2026-07-23",
+            "to": "2026-07-24",
+            "intersection_pixels": 518,
+            "iou": 0.4235,
+            "tested_metric": "iou",
+            "tested_value": 0.4235,
+            "required_minimum": 0.5
+          }
+        }
+      ],
+      "gap_bridge": {
+        "pre_gap_pixels": 145,
+        "post_gap_pixels": 457,
+        "intersection_pixels": 122,
+        "iou": 0.2542,
+        "pre_gap_retained_fraction": 0.8414,
+        "post_gap_inherited_fraction": 0.267,
+        "pre_gap_component_sha256": "e7a6782132eee43b0d4f27a5588f33bfc38f4bf8f8a74ef818d25e21987d310b",
+        "post_gap_component_sha256": "316b959f8f9438678bd8c5476abfa5dc03cf8ca14644c157913d778a451b3b76"
+      }
+    }
+  ],
+  "cross_connectivity_comparison": {
+    "tracked_dates_equal": true,
+    "daily_components_equal": false,
+    "tracked_day_count": 21,
+    "equal_daily_component_count": 18,
+    "differing_daily_component_count": 3,
+    "daily_component_differences": [
+      {
+        "date": "2026-07-30",
+        "four_neighbor_pixels": 1233,
+        "eight_neighbor_pixels": 1234,
+        "intersection_pixels": 1233,
+        "iou": 0.9992,
+        "symmetric_difference_pixels": 1
+      },
+      {
+        "date": "2026-08-03",
+        "four_neighbor_pixels": 1977,
+        "eight_neighbor_pixels": 1978,
+        "intersection_pixels": 1977,
+        "iou": 0.9995,
+        "symmetric_difference_pixels": 1
+      },
+      {
+        "date": "2026-08-05",
+        "four_neighbor_pixels": 1784,
+        "eight_neighbor_pixels": 1785,
+        "intersection_pixels": 1784,
+        "iou": 0.9994,
+        "symmetric_difference_pixels": 1
+      }
+    ],
+    "pre_gap_components_equal": true,
+    "post_gap_components_equal": true
+  },
+  "identity_evaluation": {
+    "result": "policy_dependent",
+    "finding": "The lineage lifetime is evaluated under ten declared connectivity-by-overlap policies; agreement identifies robust days and divergence identifies convention-sensitive edges."
+  },
+  "boundary": "This sensitivity concerns the identity of connected threshold-state footprints, not material water parcels. Eight-neighbor adjacency can join corner-touching cells, and stricter overlap can truncate a lineage even when some exact cells persist. The experiment holds greatest-intersection branch selection fixed and does not test forcing, advection, subsurface continuity, impacts, or a uniquely correct tracking policy."
+}

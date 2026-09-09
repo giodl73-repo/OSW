@@ -1,0 +1,97 @@
+{
+  "schema": "osw-longhurst-2007-continuous-hypsometry-source-receipt-v1",
+  "acquired_utc": "2026-09-09T04:09:29.197802+00:00",
+  "source_payload_posture": "provider bytes omitted; exact queries, response metadata, byte counts, SHA-256, compatibility checks, and compact derived curves retained",
+  "sources": {
+    "geometry": {
+      "provider": "Flanders Marine Institute (VLIZ), Marine Regions",
+      "product": "Longhurst Provinces Version 4, March 2010",
+      "url": "https://geo.vliz.be/geoserver/MarineRegions/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=MarineRegions:longhurst&outputFormat=application/json",
+      "response_bytes": 4970812,
+      "response_sha256": "6ad33f84a6794934288aabed0abc19e03e9e8a65aea4818e7e3cce015a8328ec",
+      "normalized_repaired_geometry_sha256": "b9140d36e487ccb1e2e7cfc28faf9c5fc2877b37dee708486ba73fa26b1d8f7c",
+      "headers": {
+        "content_type": "application/json;charset=UTF-8",
+        "etag": null,
+        "last_modified": null
+      },
+      "license": "CC BY 4.0 under the current Marine Regions license statement; attribution required",
+      "citation": "Flanders Marine Institute (2009). Longhurst Provinces. Available online at https://www.marineregions.org/. Consulted on 2026-09-09."
+    },
+    "elevation": {
+      "provider": "GEBCO via CEDA OPeNDAP",
+      "product": "GEBCO_2026 Grid, ice-surface-elevation version",
+      "url": "https://dap.ceda.ac.uk/thredds/dodsC/bodc/gebco/global/gebco_2026/ice_surface_elevation/netcdf/GEBCO_2026.nc.ascii?elevation[30:60:43170][30:60:86370]",
+      "doi": "10.5285/4f68d5c7-45eb-f999-e063-7086abc036fa",
+      "response_bytes": 6527462,
+      "response_sha256": "335cd8ef2535566858e6e9ccfdcadce575ee031cc9cb433db425154e76ac02c7",
+      "headers": {
+        "content_type": "text/plain",
+        "etag": null,
+        "last_modified": null
+      },
+      "license": "public domain with requested attribution and disclaimer"
+    }
+  },
+  "compatibility": {
+    "SUND": {
+      "wet_sample_count_match": true,
+      "minimum_depth_match": true,
+      "maximum_depth_match": true,
+      "mean_depth_match": true
+    },
+    "NADR": {
+      "wet_sample_count_match": true,
+      "minimum_depth_match": true,
+      "maximum_depth_match": true,
+      "mean_depth_match": true
+    },
+    "SPSG": {
+      "wet_sample_count_match": true,
+      "minimum_depth_match": true,
+      "maximum_depth_match": true,
+      "mean_depth_match": true
+    },
+    "ANTA": {
+      "wet_sample_count_match": true,
+      "minimum_depth_match": true,
+      "maximum_depth_match": true,
+      "mean_depth_match": true
+    },
+    "NPPF": {
+      "wet_sample_count_match": true,
+      "minimum_depth_match": true,
+      "maximum_depth_match": true,
+      "mean_depth_match": true
+    },
+    "NECS": {
+      "wet_sample_count_match": true,
+      "minimum_depth_match": true,
+      "maximum_depth_match": true,
+      "mean_depth_match": true
+    }
+  },
+  "geometry_repairs": [
+    {
+      "source_code": "ALSK",
+      "reason": "Ring Self-intersection[-162.81609965 54.49999955]",
+      "operation": "GEOS make_valid; retain and union polygonal parts",
+      "relative_planar_area_change": -0.0
+    },
+    {
+      "source_code": "NECS",
+      "reason": "Ring Self-intersection[10.97944551 54.38055455]",
+      "operation": "GEOS make_valid; retain and union polygonal parts",
+      "relative_planar_area_change": 0.0
+    },
+    {
+      "source_code": "SUND",
+      "reason": "Ring Self-intersection[120.49999961 8.4999995]",
+      "operation": "GEOS make_valid; retain and union polygonal parts",
+      "relative_planar_area_change": 0.0
+    }
+  ],
+  "output": "research/longhurst-2007-province-continuous-hypsometry-prototype.json",
+  "output_sha256": "8d1e5c7cbd480f379a895a097258b0e7b7f58b9f44e15ee95a882a7dfff933e3",
+  "boundary": "Representative sampled seafloor-depth distributions and one grid-resolution screen, not exact polygon hypsometry, native-resolution bathymetry, uncertainty, geomorphic identity, ecological depth extent, water-mass structure, heat content, transport, or global 54-province completion. The 0.5-degree difference measures declared grid sensitivity only."
+}

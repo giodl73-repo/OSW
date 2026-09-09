@@ -1,0 +1,973 @@
+{
+  "schema": "osw.ocean-object-evidence-receipts.v1",
+  "purpose": "Separate where evidence came from, what claim stage it reached, and whether a named object's identity test passed.",
+  "vocabularies": {
+    "evidence_origin": [
+      "observational_analysis",
+      "derived_observation_product",
+      "assimilative_reanalysis",
+      "operational_assimilative_model",
+      "operational_forecast_model",
+      "simulation",
+      "conceptual_synthesis"
+    ],
+    "claim_stage": [
+      "field",
+      "candidate",
+      "detected_object",
+      "tracked_object",
+      "identity_sensitivity",
+      "integrated_quantity",
+      "mechanism_hypothesis"
+    ],
+    "evidence_status": [
+      "supported",
+      "supported_with_boundary",
+      "provisional",
+      "insufficient"
+    ],
+    "identity_result": [
+      "pass",
+      "fail",
+      "not_tested",
+      "policy_dependent"
+    ]
+  },
+  "receipt_count": 18,
+  "receipts": [
+    {
+      "receipt_id": "OER001",
+      "title": "One-day OISST anomaly field",
+      "primary_claim": "observationally constrained sea-surface temperature anomaly field",
+      "evidence_origin": "observational_analysis",
+      "claim_stage": "field",
+      "evidence_status": "supported_with_boundary",
+      "representation": "gridded_surface_raster",
+      "registry_matches": [],
+      "source_artifact": {
+        "path": "atlas/data/oisst-anomaly-2026-08-01.js",
+        "artifact_sha256": "d7b57a22a5d6c3488ba32633b32aa5be3faddf3dc19ad2d42a94384b719b6156",
+        "embedded_schema": "oceanlines.oisst.snapshot.v2",
+        "upstream_response_sha256": "a6756b88ecfe5e3c0307b7566ba142e3f9ddb8ebaa8823a5d08f9d3a3a1529e2"
+      },
+      "measurement": {
+        "variable": "sea surface temperature anomaly",
+        "units": "degree_C",
+        "vertical_support": "sea surface",
+        "time_support": "2026-08-01",
+        "spatial_support": "90 x 180 display grid at 8-cell stride",
+        "baseline": "1971-2000 climatological mean"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ046",
+          "preferred_name": "marine heatwave",
+          "required_identity_test": "anomaly_threshold",
+          "result": "not_tested",
+          "finding": "One anomaly day does not test event duration and the full marine-heatwave threshold rule."
+        }
+      ],
+      "supports": [
+        "where the mapped surface was warmer or cooler than the declared climatology on the stated day"
+      ],
+      "does_not_support": [
+        "marine heatwave",
+        "ocean heat content",
+        "heat transport",
+        "causal attribution"
+      ],
+      "next_evidence": "Apply a documented percentile, duration, gap, and spatial rule to a continuous daily series.",
+      "boundary": "SST anomaly is departure from a historical surface climatology, not absolute temperature, heat content, or attribution."
+    },
+    {
+      "receipt_id": "OER002",
+      "title": "One-level Argo temperature-anomaly analysis",
+      "primary_claim": "observationally constrained potential-temperature anomaly at 300 dbar",
+      "evidence_origin": "observational_analysis",
+      "claim_stage": "field",
+      "evidence_status": "supported_with_boundary",
+      "representation": "gridded_pressure_surface_raster",
+      "registry_matches": [],
+      "source_artifact": {
+        "path": "atlas/data/argo-temperature-anomaly-300dbar-2026-07.js",
+        "artifact_sha256": "980b84a2936a507d5593228830bb877665c966546098a4bb2692b070ad9fcd98",
+        "embedded_schema": "oceanlines.argo.pressure-anomaly.v1",
+        "upstream_response_sha256": "5a19dc77aaccecfd7e6aec34e80e42e1cbd83642c3f08a94d98c7018f631bb5c"
+      },
+      "measurement": {
+        "variable": "potential temperature anomaly",
+        "units": "degree_C",
+        "vertical_support": "300 dbar pressure surface",
+        "time_support": "2026-07",
+        "spatial_support": "73 x 180 objectively mapped grid ending at 64.5 degrees south",
+        "baseline": "RG 2019 mean and annual cycle derived from 2004-2018 Argo data"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ001",
+          "preferred_name": "water mass",
+          "required_identity_test": "property_signature",
+          "result": "not_tested",
+          "finding": "One temperature anomaly level does not establish a volumetric temperature-salinity or source signature."
+        },
+        {
+          "object_id": "OBJ109",
+          "preferred_name": "ocean heat content",
+          "required_identity_test": "inventory_integral",
+          "result": "not_tested",
+          "finding": "Heat content requires vertical integration, density/heat-capacity convention, geometry, and a reference state."
+        }
+      ],
+      "supports": [
+        "the sign and magnitude of mapped temperature anomaly at the declared pressure and month"
+      ],
+      "does_not_support": [
+        "water mass",
+        "absolute temperature",
+        "ocean heat content",
+        "heat transport",
+        "Antarctic shelf delivery"
+      ],
+      "next_evidence": "Combine quality-controlled vertical temperature and salinity profiles with layer geometry and an explicit heat-content convention.",
+      "boundary": "Objectively mapped Argo anomaly at one pressure level; not absolute temperature, raw-float coverage, heat content, transport, or Antarctic shelf and cavity heat delivery. The RG grid ends at 64.5 degrees south and smooths unresolved spatial structure."
+    },
+    {
+      "receipt_id": "OER003",
+      "title": "February 2018 Arctic gateway transports",
+      "primary_claim": "reanalysis-derived volume and reference-relative advective heat transport across three declared native-grid sections",
+      "evidence_origin": "assimilative_reanalysis",
+      "claim_stage": "integrated_quantity",
+      "evidence_status": "supported_with_boundary",
+      "representation": "section_integrals",
+      "registry_matches": [
+        "OBJ032",
+        "OBJ107",
+        "OBJ108"
+      ],
+      "source_artifact": {
+        "path": "research/osw-m3-oras5-arctic-transport-pilot-201802.json",
+        "artifact_sha256": "4bbcbcef7f80e21bd5cb23cf53487c66e2146321fb25e69b4e64100a9231d5d2",
+        "embedded_schema": "oceanlines.osw.m3-oras5-arctic-transport-pilot.v1"
+      },
+      "measurement": {
+        "variable": "normal velocity, wet face area, potential temperature, and salinity comparison classes",
+        "units": "Sv and PW",
+        "vertical_support": "full wet model section",
+        "time_support": "201802",
+        "spatial_support": "Fram Strait plus two explicitly different Barents section meanings",
+        "baseline": "heat transport shown for -1.9, 0, and 2 degrees C reference temperatures"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ032",
+          "preferred_name": "gate",
+          "required_identity_test": "section_integral",
+          "result": "pass",
+          "finding": "Each section has explicit native-face geometry, orientation, wet cells, and semantics."
+        },
+        {
+          "object_id": "OBJ107",
+          "preferred_name": "volume transport",
+          "required_identity_test": "section_integral",
+          "result": "pass",
+          "finding": "Normal velocity is integrated over wet face area with signed branches and net transport."
+        },
+        {
+          "object_id": "OBJ108",
+          "preferred_name": "heat transport",
+          "required_identity_test": "section_integral",
+          "result": "pass",
+          "finding": "Velocity, temperature, face area, sign, and reference temperature are integrated and sensitivity-tested."
+        }
+      ],
+      "supports": [
+        "one-month reanalysis gateway volume transport",
+        "one-month reference-relative advective heat transport",
+        "opposing signed branches"
+      ],
+      "does_not_support": [
+        "heat convergence",
+        "heat storage tendency",
+        "causal attribution",
+        "climatology",
+        "universal Atlantic Water boundary"
+      ],
+      "next_evidence": "Close a control volume with all boundary sections, surface exchange, storage tendency, and compatible time sampling.",
+      "boundary": "One February 2018 ORAS5 ensemble member. Reference-relative advective heat transport is not heat convergence. The Atlantic Water thresholds are literature comparison classes, not universal water-mass boundaries. Fram's small net volume is the residual of large opposing branches, so its net transport-weighted temperature is unstable."
+    },
+    {
+      "receipt_id": "OER004",
+      "title": "2018 Nordic ocean-surface heat exchange",
+      "primary_claim": "reanalysis-derived ocean surface heat flux integrated over a declared Nordic control area",
+      "evidence_origin": "assimilative_reanalysis",
+      "claim_stage": "integrated_quantity",
+      "evidence_status": "supported_with_boundary",
+      "representation": "area_integral_time_series",
+      "registry_matches": [
+        "OBJ035",
+        "OBJ110"
+      ],
+      "source_artifact": {
+        "path": "research/osw-m4-oras5-nordic-surface-heat-2018.json",
+        "artifact_sha256": "78af9585b0fe1d07eed7f7958326f915f2e06d6a0359e511bf73f4ed148af20c",
+        "embedded_schema": "osw.oras5.nordic-surface-heat-analysis.v1"
+      },
+      "measurement": {
+        "variable": "net downward ocean surface heat flux",
+        "units": "W m-2, TW, and ZJ",
+        "vertical_support": "air-ocean surface boundary",
+        "time_support": "twelve monthly means in 2018",
+        "spatial_support": "12550 wet T cells; 2.713e+12 m2",
+        "baseline": "positive downward into the ocean"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ035",
+          "preferred_name": "control volume",
+          "required_identity_test": "closed_budget",
+          "result": "pass",
+          "finding": "The surface integral uses the exact wet-cell footprint of a separately receipted control volume."
+        },
+        {
+          "object_id": "OBJ110",
+          "preferred_name": "ocean surface heat flux",
+          "required_identity_test": "surface_flux",
+          "result": "pass",
+          "finding": "Flux density is integrated with native cell areas, sign convention, valid coverage, and monthly duration."
+        },
+        {
+          "object_id": "OBJ109",
+          "preferred_name": "ocean heat content",
+          "required_identity_test": "inventory_integral",
+          "result": "not_tested",
+          "finding": "Surface exchange is one tendency term and does not measure the room's heat inventory or storage change."
+        }
+      ],
+      "supports": [
+        "2018 monthly and annual surface heat exchange over the declared room"
+      ],
+      "does_not_support": [
+        "ocean heat content",
+        "advective convergence",
+        "complete heat budget",
+        "Arctic heat delivery",
+        "causal attribution"
+      ],
+      "next_evidence": "Add full-depth heat-content tendency and consistently sampled advective and unresolved boundary terms.",
+      "boundary": "One ORAS5 member and one year of monthly-mean reanalysis surface forcing. This is not a climatology, observation-only estimate, advective convergence, storage tendency, complete budget, causal attribution, or Arctic delivery."
+    },
+    {
+      "receipt_id": "OER005",
+      "title": "July\u2013August 2026 North Atlantic marine heatwave detection",
+      "primary_claim": "duration-qualified marine heatwave at one NOAA CRW surface pixel",
+      "evidence_origin": "derived_observation_product",
+      "claim_stage": "detected_object",
+      "evidence_status": "supported_with_boundary",
+      "representation": "point_event_time_series",
+      "registry_matches": [
+        "OBJ046"
+      ],
+      "source_artifact": {
+        "path": "research/osw-d1-noaa-crw-mhw-point-2026.json",
+        "artifact_sha256": "8a1c43bffd6796f2741b9962135ed256cca6b8b98c89dd831f615008f059c2d8",
+        "embedded_schema": "osw.detected-ocean-object.v1"
+      },
+      "measurement": {
+        "variable": "NOAA CRW daily marine heatwave category",
+        "units": "ordinal category 0\u20135",
+        "vertical_support": "sea surface",
+        "time_support": "2026-07-20 through 2026-08-20",
+        "spatial_support": "one exact 0.05-degree pixel at 42.125 degrees north, 49.875 degrees west",
+        "baseline": "CoralTemp SST, 1985-01-01 through 2012-12-31; 11-day daily windows"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ046",
+          "preferred_name": "marine heatwave",
+          "required_identity_test": "anomaly_threshold",
+          "result": "pass",
+          "finding": "1 duration-qualified event(s) detected at the declared NOAA CRW pixel."
+        }
+      ],
+      "supports": [
+        "one duration-qualified surface marine heatwave at the declared pixel and window",
+        "daily NOAA intensity categories within the event"
+      ],
+      "does_not_support": [
+        "spatial heatwave footprint",
+        "subsurface marine heatwave",
+        "ocean heat content",
+        "heat transport",
+        "causal attribution",
+        "ecological impact"
+      ],
+      "next_evidence": "Detect adjacent pixels with the same rule, define spatial connectivity, and track the resulting footprint through time.",
+      "boundary": "A duration-qualified detection at one 0.05-degree pixel of a NOAA derived surface product. It is not a spatial footprint, independent raw-SST reimplementation, subsurface heatwave, heat content, transport, causal attribution, or ecological-impact estimate. An event touching a window edge is explicitly censored."
+    },
+    {
+      "receipt_id": "OER006",
+      "title": "1 August 2026 connected North Atlantic marine-heatwave footprint",
+      "primary_claim": "daily connected marine-heatwave footprint containing the duration-qualified anchor pixel",
+      "evidence_origin": "derived_observation_product",
+      "claim_stage": "detected_object",
+      "evidence_status": "supported_with_boundary",
+      "representation": "native_grid_connected_component",
+      "registry_matches": [
+        "OBJ046"
+      ],
+      "source_artifact": {
+        "path": "research/osw-d2-noaa-crw-mhw-footprint-20260801.json",
+        "artifact_sha256": "472164b97206c1837682488d847440a5c103502c2a5d03a709378b1dd5868aa3",
+        "embedded_schema": "osw.detected-ocean-footprint.v1"
+      },
+      "measurement": {
+        "variable": "NOAA CRW daily marine heatwave category",
+        "units": "ordinal category 0\u20135 and square kilometres",
+        "vertical_support": "sea surface",
+        "time_support": "2026-08-01",
+        "spatial_support": "1769 four-neighbor connected native 0.05-degree pixels; 41025.3 km2",
+        "baseline": "NOAA CRW CoralTemp 1985\u20132012 climatology; component is anchored to duration-qualified OSW-D1"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ046",
+          "preferred_name": "marine heatwave",
+          "required_identity_test": "anomaly_threshold",
+          "result": "pass",
+          "finding": "1769 connected pixels cover 41,025.3 km2 on 2026-08-01. The anchor's duration test passes in OER005."
+        }
+      ],
+      "supports": [
+        "one connected daily surface footprint containing the OSW-D1 event anchor",
+        "native-grid area and category composition on the declared day"
+      ],
+      "does_not_support": [
+        "one spatiotemporally tracked footprint across the full event",
+        "subsurface marine heatwave",
+        "material water mass",
+        "ocean heat content",
+        "heat transport",
+        "causal attribution",
+        "ecological impact"
+      ],
+      "next_evidence": "Connect daily components through time with a declared overlap, split, merge, minimum-area, and persistence policy.",
+      "boundary": "One daily surface footprint connected by grid-edge adjacency and anchored to OSW-D1. It is not yet a tracked spatiotemporal object, material water mass, subsurface volume, heat inventory, transport estimate, mechanism, attribution, or impact. Connectivity and resolution choices can merge or split patches."
+    },
+    {
+      "receipt_id": "OER007",
+      "title": "July\u2013August 2026 primary-overlap North Atlantic heatwave lineage",
+      "primary_claim": "one explicitly governed lineage of inherited daily marine-heatwave footprints",
+      "evidence_origin": "derived_observation_product",
+      "claim_stage": "tracked_object",
+      "evidence_status": "supported_with_boundary",
+      "representation": "time_ordered_connected_components",
+      "registry_matches": [
+        "OBJ046"
+      ],
+      "source_artifact": {
+        "path": "research/osw-d3-noaa-crw-mhw-lineage-2026.json",
+        "artifact_sha256": "3c9a0d64b367f88316ca75ac21b35c7a99fd9e2b7bc5f9639c6ca66e0438cb52",
+        "embedded_schema": "osw.tracked-ocean-footprint.v1"
+      },
+      "measurement": {
+        "variable": "NOAA CRW daily marine heatwave categories linked by exact native-pixel overlap",
+        "units": "days, pixels, square kilometres, overlap fractions, and centroid kilometres",
+        "vertical_support": "sea surface",
+        "time_support": "2026-07-21 through 2026-08-10",
+        "spatial_support": "21 daily native-grid connected components",
+        "baseline": "NOAA CRW CoralTemp 1985\u20132012 climatology; OSW greatest-intersection lineage policy"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ046",
+          "preferred_name": "marine heatwave",
+          "required_identity_test": "anomaly_threshold",
+          "result": "pass",
+          "finding": "21 daily footprints form one explicit primary-overlap lineage from 2026-07-21 through 2026-08-10."
+        }
+      ],
+      "supports": [
+        "one reproducible primary-overlap footprint lineage",
+        "daily shape, area, centroid, intensity composition, and transition diagnostics",
+        "a spatial break on 2026-08-11 under exact-overlap inheritance"
+      ],
+      "does_not_support": [
+        "one inevitable event identity under every tracking policy",
+        "reconnection across the point event's category-zero gap",
+        "material parcel advection",
+        "subsurface extent",
+        "heat content",
+        "heat transport",
+        "causal attribution",
+        "ecological impact"
+      ],
+      "next_evidence": "Run connectivity, minimum-overlap, split/merge, and gap-bridging sensitivities; independently seed the post-gap footprint and compare the two lineages.",
+      "boundary": "A grid-overlap lineage of thresholded surface states, not a materially advected water body. One-pixel overlap is permissive; reported IoU and inheritance minima reveal weak links. The lineage is censored wherever it reaches the 32-day source window. Alternative connectivity, size, overlap, split, and merge policies may produce different systems."
+    },
+    {
+      "receipt_id": "OER008",
+      "title": "August 2026 temporal-gap identity bakeoff",
+      "primary_claim": "marine-heatwave footprint identity changes under two declared temporal-continuity policies",
+      "evidence_origin": "derived_observation_product",
+      "claim_stage": "identity_sensitivity",
+      "evidence_status": "supported_with_boundary",
+      "representation": "policy_bakeoff_with_exact_overlap",
+      "registry_matches": [
+        "OBJ046"
+      ],
+      "source_artifact": {
+        "path": "research/osw-d4-noaa-crw-mhw-gap-identity-2026.json",
+        "artifact_sha256": "3ec1055e9ed2c7e52def41ee0f0438e9a70d81ab68df6fafe086410cb9c76dcc",
+        "embedded_schema": "osw.ocean-object-identity-sensitivity.v1"
+      },
+      "measurement": {
+        "variable": "NOAA CRW daily marine heatwave categories and native-pixel footprint overlap",
+        "units": "pixels and overlap fractions",
+        "vertical_support": "sea surface",
+        "time_support": "2026-08-10 through 2026-08-12, with post-gap lineage checked through 2026-08-18",
+        "spatial_support": "pre-gap and post-gap native-grid four-neighbor components",
+        "baseline": "NOAA CRW CoralTemp 1985\u20132012 climatology; zero- versus one-day gap policies"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ046",
+          "preferred_name": "marine heatwave",
+          "required_identity_test": "anomaly_threshold",
+          "result": "policy_dependent",
+          "finding": "The two duration-qualified runs are separate under uninterrupted daily inheritance and one event under a declared one-day temporal-gap rule; no spatial displacement allowance is needed."
+        }
+      ],
+      "supports": [
+        "separation under uninterrupted daily inheritance",
+        "reconnection under a declared one-day temporal gap",
+        "122 exact shared pixels requiring zero spatial dilation"
+      ],
+      "does_not_support": [
+        "continuous threshold evidence on August 11",
+        "a uniquely correct identity policy",
+        "materially identical water parcels",
+        "subsurface continuity",
+        "mechanism",
+        "causal attribution",
+        "ecological impact"
+      ],
+      "next_evidence": "Test minimum-overlap thresholds and alternative connectivity, then compare physical drivers before choosing a public event-naming policy.",
+      "boundary": "This is an identity-policy sensitivity, not evidence that threshold-state pixels contain the same water parcels or causal mechanism. The reconnection is supported by strong exact geographic overlap but still crosses one day with no threshold-active inheritance. Different minimum-overlap, duration, connectivity, and gap rules can change the answer."
+    },
+    {
+      "receipt_id": "OER009",
+      "title": "North Atlantic heatwave tracking-policy robustness bakeoff",
+      "primary_claim": "marine-heatwave lineage lifetime sensitivity to spatial connectivity and minimum overlap",
+      "evidence_origin": "derived_observation_product",
+      "claim_stage": "identity_sensitivity",
+      "evidence_status": "supported_with_boundary",
+      "representation": "connectivity_by_overlap_policy_matrix",
+      "registry_matches": [
+        "OBJ046"
+      ],
+      "source_artifact": {
+        "path": "research/osw-d5-noaa-crw-mhw-tracking-sensitivity-2026.json",
+        "artifact_sha256": "f8039a9a2233d120d379e6cde471ca700998a438d668c0ddbc86b6982747cdee",
+        "embedded_schema": "osw.ocean-object-tracking-sensitivity.v1"
+      },
+      "measurement": {
+        "variable": "NOAA CRW daily marine heatwave categories linked by native-grid overlap",
+        "units": "days, pixels, and intersection-over-union",
+        "vertical_support": "sea surface",
+        "time_support": "2026-07-20 through 2026-08-20",
+        "spatial_support": "lineage containing the OSW-D1 anchor under four- and eight-neighbor connectivity",
+        "baseline": "NOAA CRW CoralTemp 1985\u20132012 climatology; five overlap-acceptance policies per connectivity"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ046",
+          "preferred_name": "marine heatwave",
+          "required_identity_test": "anomaly_threshold",
+          "result": "policy_dependent",
+          "finding": "The lineage lifetime is evaluated under ten declared connectivity-by-overlap policies; agreement identifies robust days and divergence identifies convention-sensitive edges."
+        }
+      ],
+      "supports": [
+        "identical lifetimes and exact gap footprints under four- and eight-neighbor connectivity for this case",
+        "one extra corner-connected cell on three of 21 eight-neighbor daily components",
+        "a 21-day lifetime at any exact overlap or IoU at least 0.10",
+        "an 18-day plateau at IoU at least 0.20 or 0.25",
+        "a shape-change edge from August 7 to 8 with 216 exact shared cells but IoU 0.198"
+      ],
+      "does_not_support": [
+        "universal equivalence of four- and eight-neighbor connectivity",
+        "a uniquely correct overlap threshold",
+        "material parcel continuity",
+        "subsurface continuity",
+        "physical mechanism",
+        "causal attribution",
+        "ecological impact"
+      ],
+      "next_evidence": "Test alternative branch-selection and split/merge policies, then compare atmospheric forcing and ocean advection around the sensitive August 7\u201312 interval.",
+      "boundary": "This sensitivity concerns the identity of connected threshold-state footprints, not material water parcels. Eight-neighbor adjacency can join corner-touching cells, and stricter overlap can truncate a lineage even when some exact cells persist. The experiment holds greatest-intersection branch selection fixed and does not test forcing, advection, subsurface continuity, impacts, or a uniquely correct tracking policy."
+    },
+    {
+      "receipt_id": "OER010",
+      "title": "North Atlantic heatwave split/merge branch-policy bakeoff",
+      "primary_claim": "marine-heatwave lineage sensitivity to the score used to select one overlapping branch",
+      "evidence_origin": "derived_observation_product",
+      "claim_stage": "identity_sensitivity",
+      "evidence_status": "supported_with_boundary",
+      "representation": "branch_selection_policy_bakeoff",
+      "registry_matches": [
+        "OBJ046"
+      ],
+      "source_artifact": {
+        "path": "research/osw-d6-noaa-crw-mhw-branch-sensitivity-2026.json",
+        "artifact_sha256": "bc93b3c7ef67b011db541730308a3e2e56dff1b33126b268f7058948ba985894",
+        "embedded_schema": "osw.ocean-object-branch-sensitivity.v1"
+      },
+      "measurement": {
+        "variable": "NOAA CRW daily marine heatwave components linked by four alternative overlap scores",
+        "units": "days, pixels, and overlap fractions",
+        "vertical_support": "sea surface",
+        "time_support": "2026-07-20 through 2026-08-20",
+        "spatial_support": "four-neighbor lineage containing the OSW-D1 anchor",
+        "baseline": "NOAA CRW CoralTemp 1985\u20132012 climatology; at least one exact shared native-grid cell"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ046",
+          "preferred_name": "marine heatwave",
+          "required_identity_test": "anomaly_threshold",
+          "result": "policy_dependent",
+          "finding": "Four declared split/merge branch-selection policies are compared cell for cell; matching lifetimes can coexist with different selected daily components."
+        }
+      ],
+      "supports": [
+        "cell-for-cell agreement among largest-intersection, greatest-IoU, and largest-overlapping-component policies for 21 days",
+        "a 14-day fraction-only lineage that selects a 12-cell splinter on July 30 and a one-cell splinter on August 3",
+        "a demonstrated denominator hazard when candidate-inherited fraction is used without a scale constraint"
+      ],
+      "does_not_support": [
+        "a uniquely correct branch-selection policy",
+        "universal failure of inherited-fraction scores",
+        "material parcel continuity",
+        "physical mechanism",
+        "causal attribution",
+        "ecological impact"
+      ],
+      "next_evidence": "Add an explicit minimum-size or two-sided-overlap contract, test split/merge graph representations that preserve multiple branches, then compare atmospheric forcing and ocean advection.",
+      "boundary": "This bakeoff follows exact-overlap threshold-state components, not water parcels. The four scores are an illustrative diagnostic set, not uniquely correct tracking laws. A policy is applied in extension direction from the anchor, which is not equivalent to reconstructing a causal history backward in time. Connectivity, gap, minimum-overlap, forcing, advection, subsurface continuity, attribution, and impacts remain separate tests."
+    },
+    {
+      "receipt_id": "OER011",
+      "title": "North Atlantic heatwave multi-branch lineage family",
+      "primary_claim": "complete exact-overlap family of daily marine-heatwave components reachable from the anchor",
+      "evidence_origin": "derived_observation_product",
+      "claim_stage": "tracked_object",
+      "evidence_status": "supported_with_boundary",
+      "representation": "directed_acyclic_component_lineage_graph",
+      "registry_matches": [
+        "OBJ046"
+      ],
+      "source_artifact": {
+        "path": "research/osw-d7-noaa-crw-mhw-lineage-family-2026.json",
+        "artifact_sha256": "9673e19b24f06fdcfbd36e604478c4728e95fa808acc8c1e3a4059b023bbdd1a",
+        "embedded_schema": "osw.ocean-object-lineage-family.v1"
+      },
+      "measurement": {
+        "variable": "NOAA CRW daily marine heatwave components and adjacent-day exact overlap",
+        "units": "nodes, directed edges, pixels, square kilometres, and overlap fractions",
+        "vertical_support": "sea surface",
+        "time_support": "2026-07-21 through 2026-08-10",
+        "spatial_support": "all four-neighbor components reachable from the OSW-D1 anchor without size pruning",
+        "baseline": "NOAA CRW CoralTemp 1985\u20132012 climatology; exact native-grid overlap"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ046",
+          "preferred_name": "marine heatwave",
+          "required_identity_test": "anomaly_threshold",
+          "result": "pass",
+          "finding": "Every adjacent-day branch reachable from the anchor under the declared exact-overlap rule is retained as a lineage family; D3 remains one explicit primary path through it."
+        }
+      ],
+      "supports": [
+        "a 28-node, 29-edge exact-overlap lineage family containing the 21-node D3 primary trunk",
+        "five split nodes and one merge node",
+        "seven off-primary components: five terminate and two merge back",
+        "a largest off-primary component of 54 pixels"
+      ],
+      "does_not_support": [
+        "one uniquely privileged heir at every split",
+        "continuity across the August 11 threshold gap",
+        "material parcel genealogy",
+        "subsurface continuity",
+        "physical mechanism",
+        "causal attribution",
+        "ecological impact"
+      ],
+      "next_evidence": "Test graph pruning and temporal-gap edges explicitly, then compare atmospheric forcing and ocean advection without treating graph topology as mechanism.",
+      "boundary": "This graph is a genealogy of connected threshold-state footprints, not a materially conserved body of water. Graph membership depends on four-neighbor connectivity, daily cadence, exact-overlap reachability, source window, and no size pruning. Tiny branches remain visible by design. The graph does not bridge the August 11 threshold gap or establish forcing, advection, subsurface extent, impacts, or a unique event ontology."
+    },
+    {
+      "receipt_id": "OER012",
+      "title": "North Atlantic heatwave lineage-family area-pruning ladder",
+      "primary_claim": "lineage-family topology sensitivity to minimum daily component area",
+      "evidence_origin": "derived_observation_product",
+      "claim_stage": "identity_sensitivity",
+      "evidence_status": "supported_with_boundary",
+      "representation": "anchor_connected_graph_pruning_ladder",
+      "registry_matches": [
+        "OBJ046"
+      ],
+      "source_artifact": {
+        "path": "research/osw-d8-noaa-crw-mhw-family-pruning-2026.json",
+        "artifact_sha256": "820c967e6625dd601a16f068dc3e2d5de686943e5b1cebe28864014a6e2e5805",
+        "embedded_schema": "osw.ocean-object-lineage-pruning-sensitivity.v1"
+      },
+      "measurement": {
+        "variable": "OSW-D7 daily component area and exact-overlap graph topology",
+        "units": "square kilometres, nodes, edges, splits, and merges",
+        "vertical_support": "sea surface",
+        "time_support": "2026-07-21 through 2026-08-10",
+        "spatial_support": "anchor-connected induced graph under six minimum-area thresholds",
+        "baseline": "NOAA CRW CoralTemp 1985\u20132012 climatology; OSW-D7 four-neighbor exact-overlap family"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ046",
+          "preferred_name": "marine heatwave",
+          "required_identity_test": "anomaly_threshold",
+          "result": "policy_dependent",
+          "finding": "The 21-node primary trunk survives every tested area threshold, while side-branch and split/merge topology changes with the declared minimum component scale."
+        }
+      ],
+      "supports": [
+        "the same 21-node primary trunk at every tested threshold from zero through 1,500 km2",
+        "side-component counts of seven, four, four, two, one, and zero across the pruning ladder",
+        "loss of merge topology at 500 km2",
+        "a trunk-only graph at 1,500 km2"
+      ],
+      "does_not_support": [
+        "a uniquely correct minimum component area",
+        "that removed components are erroneous or physically unimportant",
+        "resolution-independent thresholds",
+        "temporal-gap continuity",
+        "material parcel continuity",
+        "physical mechanism",
+        "ecological impact"
+      ],
+      "next_evidence": "Add an explicitly typed temporal-gap edge to the family graph, then test whether physical-driver fields explain the sensitive intervals.",
+      "boundary": "Area pruning tests representation stability, not whether small components are physically unreal, erroneous, or unimportant. Thresholds are illustrative and specific to this product, grid, latitude, cadence, and event. The analysis preserves the anchor-connected induced graph and does not test temporal gaps, material parcels, forcing, advection, subsurface extent, impacts, or a uniquely correct minimum size."
+    },
+    {
+      "receipt_id": "OER013",
+      "title": "North Atlantic heatwave explicitly typed temporal-gap graph",
+      "primary_claim": "policy-conditioned graph extension across one threshold-inactive day",
+      "evidence_origin": "derived_observation_product",
+      "claim_stage": "identity_sensitivity",
+      "evidence_status": "supported_with_boundary",
+      "representation": "multi_edge_type_temporal_component_graph",
+      "registry_matches": [
+        "OBJ046"
+      ],
+      "source_artifact": {
+        "path": "research/osw-d9-noaa-crw-mhw-typed-gap-graph-2026.json",
+        "artifact_sha256": "89b36dd886b45f4ea292c8b206da3f034b43b3ba3723c46a496b4c25d6c3045d",
+        "embedded_schema": "osw.ocean-object-typed-gap-graph.v1"
+      },
+      "measurement": {
+        "variable": "OSW-D7 exact-daily family plus OSW-D4 post-gap primary lineage and endpoint overlap",
+        "units": "nodes, edges, days, pixels, and overlap fractions",
+        "vertical_support": "sea surface",
+        "time_support": "2026-07-21 through 2026-08-18 with 2026-08-11 explicitly threshold-inactive",
+        "spatial_support": "pre-gap complete family and post-gap governed primary lineage",
+        "baseline": "NOAA CRW CoralTemp 1985\u20132012 climatology; adjacent exact-overlap and typed one-day-gap edge policies"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ046",
+          "preferred_name": "marine heatwave",
+          "required_identity_test": "anomaly_threshold",
+          "result": "policy_dependent",
+          "finding": "The exact daily family ends August 10; one explicitly typed gap edge conditionally connects its primary trunk to a seven-day post-gap primary lineage through August 18."
+        }
+      ],
+      "supports": [
+        "a strict 28-node, 29-edge graph ending August 10",
+        "a conditional 35-node, 36-edge graph reaching August 18",
+        "one typed bridge with 122 exact shared endpoint cells, IoU 0.2542, one inactive day, and zero spatial dilation",
+        "zero August 10 footprint cells threshold-active on the intervening August 11 field"
+      ],
+      "does_not_support": [
+        "threshold continuity on August 11",
+        "interpolated August 11 footprint",
+        "a complete post-gap branch family",
+        "material parcel continuity",
+        "physical mechanism",
+        "causal attribution",
+        "ecological impact"
+      ],
+      "next_evidence": "Build the complete post-gap branch family if needed, then compare atmospheric forcing and ocean advection around August 7\u201312.",
+      "boundary": "The bridge records a declared event-identity policy, not threshold evidence on August 11, interpolation, or material continuity. Its endpoints share exact grid locations, but the intervening day has zero inherited active pixels. The pre-gap side branches are complete under D7's rule; the post-gap addition is only D4's primary lineage, not a complete branch-family expansion. Forcing, advection, subsurface extent, attribution, and impacts remain untested."
+    },
+    {
+      "receipt_id": "OER014",
+      "title": "Separate-product OISST cross-check of the North Atlantic threshold bridge",
+      "primary_claim": "threshold-category return without a collocated separate-product local SST rebound",
+      "evidence_origin": "observational_analysis",
+      "claim_stage": "identity_sensitivity",
+      "evidence_status": "supported_with_boundary",
+      "representation": "paired_product_fixed_box_surface_temperature_crosscheck",
+      "registry_matches": [
+        "OBJ046"
+      ],
+      "source_artifact": {
+        "path": "research/osw-d10-oisst-mhw-bridge-crosscheck-2026.json",
+        "artifact_sha256": "a6a0c75079bbcd137ff699a87e40ffd341fcb1426d6dee0353183c3f90588b3c",
+        "embedded_schema": "osw.ocean-object-oisst-bridge-crosscheck.v1"
+      },
+      "measurement": {
+        "variable": "daily OISST at the nearest anchor cell and area-weighted over a fixed North Atlantic box, paired with the CRW anchor category",
+        "units": "degrees C and category",
+        "vertical_support": "sea surface",
+        "time_support": "2026-08-07 through 2026-08-12",
+        "spatial_support": "nearest 0.25-degree OISST cell and fixed 12-by-17-cell box around the 0.05-degree CRW anchor",
+        "baseline": "absolute OISST temperature; paired CRW category retains the CoralTemp 1985\u20132012 climatology"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ046",
+          "preferred_name": "marine heatwave",
+          "required_identity_test": "anomaly_threshold",
+          "result": "policy_dependent",
+          "finding": "CRW category returns from 0 to 1 on August 12, while the nearest OISST cell cools 0.13 C. The fixed OISST neighborhood mean warms 0.160 C and its maximum warms 0.18 C, consistent with spatial rearrangement or product/threshold differences rather than a demonstrated local reheating cause."
+        }
+      ],
+      "supports": [
+        "CRW anchor category 0 to 1 from August 11 to 12",
+        "0.13 C cooling at the nearest separate-product OISST cell over the same transition",
+        "0.160 C warming of the fixed-box mean and 0.18 C warming of its maximum"
+      ],
+      "does_not_support": [
+        "interchangeability of OISST and CoralTemp",
+        "a local reheating explanation for category return",
+        "moving-object heat content",
+        "surface-flux attribution",
+        "horizontal or vertical advection",
+        "causation"
+      ],
+      "next_evidence": "Acquire collocated hourly ERA5 surface-flux terms and daily Copernicus currents, temperature gradients, and mixed-layer depth for August 7-12; evaluate a tendency decomposition without treating the residual as proof of any one mechanism.",
+      "boundary": "OISST and CoralTemp are separate gridded surface analyses with different native grids, source processing, and thermal definitions; they may share observing inputs and are not statistically independent. A category is a threshold state, not temperature itself. The fixed-box mean is not the moving object's heat content, and its day-to-day change mixes local evolution and spatial structure. This cross-check does not identify atmospheric forcing, horizontal advection, vertical mixing, entrainment, or causation."
+    },
+    {
+      "receipt_id": "OER015",
+      "title": "RTOFS surface horizontal-advection screen across the North Atlantic bridge",
+      "primary_claim": "horizontal advection is not the dominant RTOFS box-mean warming term from August 11 to 12",
+      "evidence_origin": "operational_assimilative_model",
+      "claim_stage": "mechanism_hypothesis",
+      "evidence_status": "supported_with_boundary",
+      "representation": "partial_surface_temperature_tendency_decomposition",
+      "registry_matches": [
+        "OBJ046"
+      ],
+      "source_artifact": {
+        "path": "research/osw-d11-rtofs-mhw-horizontal-advection-2026.json",
+        "artifact_sha256": "9da71c6bb00a8d9a641163fcb2a0f9bd7a42d4ea63cbb16a5247535cd6b7bd8f",
+        "embedded_schema": "osw.ocean-object-rtofs-horizontal-advection-screen.v1"
+      },
+      "measurement": {
+        "variable": "daily surface-temperature tendency, endpoint-mean horizontal-advection tendency, unresolved remainder, and diagnostic mixed-layer thickness",
+        "units": "degrees C per day and metres",
+        "vertical_support": "RTOFS surface standard level; mixed-layer thickness supplied as context",
+        "time_support": "five daily intervals from 2026-08-07 through 2026-08-12 at 00 UTC",
+        "spatial_support": "4,221 RTOFS curvilinear-grid centers in a fixed 39.5-43.5 N, 52-47 W box",
+        "baseline": "RTOFS HYCOM 93.1 n024 nowcast snapshots; eight-neighbor tangent-plane temperature gradients with four-neighbor sensitivity"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ046",
+          "preferred_name": "marine heatwave",
+          "required_identity_test": "anomaly_threshold",
+          "result": "not_tested",
+          "finding": "The partial RTOFS tendency screen tests a possible physical contribution, not the CoralTemp threshold object's identity rule."
+        }
+      ],
+      "supports": [
+        "0.5396 C/day RTOFS box-mean warming from August 11 to 12",
+        "0.0708 C/day endpoint-mean horizontal-advection contribution, or 13.1% of the same-sign box tendency",
+        "0.4688 C/day unresolved remainder",
+        "anchor horizontal advection of -0.109 C/day opposing 0.601 C/day modeled warming",
+        "diagnostic box-mean mixed-layer shoaling from 19.497 to 7.801 m"
+      ],
+      "does_not_support": [
+        "model-native tracer-budget closure",
+        "surface-flux attribution",
+        "vertical-advection or entrainment attribution",
+        "assimilation-increment attribution",
+        "validation against separate SST analyses",
+        "material parcel tracking",
+        "causation"
+      ],
+      "next_evidence": "Add collocated surface radiative and turbulent fluxes; then test mixed-layer-depth scaling while retaining vertical mixing, entrainment, diffusion, assimilation increments, and numerical tendency in the remainder.",
+      "boundary": "This is an offline Eulerian screen of one operational assimilative model, not its native tracer budget. Differencing surface snapshots and multiplying surface velocity by an estimated surface-temperature gradient does not close mixed-layer heat storage. The remainder combines surface forcing, vertical advection and mixing, entrainment, diffusion, assimilation increments, numerical/time-sampling error, and gradient error. Agreement or disagreement with separate SST analyses is not model validation or causal attribution."
+    },
+    {
+      "receipt_id": "OER016",
+      "title": "GFS surface-energy screen across the North Atlantic bridge",
+      "primary_claim": "positive forecast-derived surface heat gain is contemporaneous and material but does not close the modeled August 11 to 12 warming scale",
+      "evidence_origin": "operational_forecast_model",
+      "claim_stage": "mechanism_hypothesis",
+      "evidence_status": "supported_with_boundary",
+      "representation": "cross_system_mixed_layer_energy_scale_screen",
+      "registry_matches": [
+        "OBJ046"
+      ],
+      "source_artifact": {
+        "path": "research/osw-d12-gfs-surface-flux-screen-2026.json",
+        "artifact_sha256": "d3d9627319179eb1d6cd5a2d3bbee1da03fe431a04c96c31a71740c027df7666",
+        "embedded_schema": "osw.ocean-object-gfs-surface-flux-screen.v1"
+      },
+      "measurement": {
+        "variable": "daily GFS net downward surface heat flux and mixed-layer-equivalent temperature tendency using RTOFS diagnostic layer thickness",
+        "units": "W m-2 and degrees C per day",
+        "vertical_support": "air-ocean surface flux scaled by start and endpoint-mean RTOFS diagnostic mixed-layer thickness",
+        "time_support": "five 00-to-00 UTC daily intervals from 2026-08-07 through 2026-08-12",
+        "spatial_support": "34-by-42 GFS Gaussian-grid subset bilinearly sampled at 4,221 RTOFS grid centers in the fixed North Atlantic box",
+        "baseline": "four non-overlapping six-hour averages from each 00 UTC GFS cycle; representative seawater density and heat capacity; native, floored, and box-mean depth variants"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ046",
+          "preferred_name": "marine heatwave",
+          "required_identity_test": "anomaly_threshold",
+          "result": "not_tested",
+          "finding": "The cross-system forcing screen tests a possible energy contribution, not the CoralTemp threshold object's identity rule."
+        }
+      ],
+      "supports": [
+        "+112.61 W/m2 GFS box-mean net downward surface heat flux from August 11 to 12",
+        "+0.1219 to +0.3381 C/day mixed-layer warming scale across declared box-slab and native-depth variants",
+        "+0.1800 C/day using a 5 m minimum start-depth sensitivity",
+        "surface-flux sign reversal from loss on August 7-9 to gain on August 10-11"
+      ],
+      "does_not_support": [
+        "native GFS or RTOFS heat-budget closure",
+        "an atmospheric reanalysis result",
+        "uniform deposition of shortwave energy within the mixed layer",
+        "vertical-advection, entrainment, mixing, or assimilation attribution",
+        "independent validation",
+        "causation"
+      ],
+      "next_evidence": "Use a single-system native mixed-layer heat budget or a collocated atmospheric reanalysis plus observed mixed-layer depth, including penetrating shortwave, entrainment, vertical mixing, vertical advection, and analysis increments.",
+      "boundary": "This combines an operational GFS forecast with an operational assimilative RTOFS ocean state. Their grids, physics, initialization, and analysis cycles differ. Subtracting the GFS-derived temperature scale from the RTOFS remainder is diagnostic bookkeeping only, not model closure, independent validation, or causal attribution. Bulk surface flux is not automatically deposited uniformly within a diagnostic mixed layer; shortwave penetration, changing layer depth, vertical exchange, and assimilation remain unresolved."
+    },
+    {
+      "receipt_id": "OER017",
+      "title": "RTOFS fixed-depth upper-ocean storage screen across the North Atlantic bridge",
+      "primary_claim": "surface intensification accompanies genuine modeled 0-50 m fixed-column heat gain from August 11 to 12",
+      "evidence_origin": "operational_assimilative_model",
+      "claim_stage": "mechanism_hypothesis",
+      "evidence_status": "supported_with_boundary",
+      "representation": "fixed_depth_standard_level_heat_storage_proxy",
+      "registry_matches": [
+        "OBJ046",
+        "OBJ109"
+      ],
+      "source_artifact": {
+        "path": "research/osw-d13-rtofs-mhw-upper-ocean-storage-2026.json",
+        "artifact_sha256": "e418b2b5bcccbb5afd8cc4cce29ef504652dbe38cb04c85b0805d0dbf9afbc27",
+        "embedded_schema": "osw.ocean-object-rtofs-upper-ocean-storage-screen.v1"
+      },
+      "measurement": {
+        "variable": "daily RTOFS potential-temperature change and constant-rho-Cp fixed-column storage tendency",
+        "units": "degrees C and W m-2",
+        "vertical_support": "15 standard-depth samples from 0 through 50 m; trapezoidal fixed-column integrations to 10, 20, 30, and 50 m",
+        "time_support": "five 00-to-00 UTC daily intervals from 2026-08-07 through 2026-08-12",
+        "spatial_support": "4,221 RTOFS curvilinear-grid centers in the fixed 39.5-43.5 N, 52-47 W box",
+        "baseline": "day-to-day potential-temperature difference; constant temperature reference cancels under declared representative density and heat capacity"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ046",
+          "preferred_name": "marine heatwave",
+          "required_identity_test": "anomaly_threshold",
+          "result": "not_tested",
+          "finding": "The fixed-depth storage screen tests event anatomy, not the CoralTemp threshold object's identity rule."
+        },
+        {
+          "object_id": "OBJ109",
+          "preferred_name": "ocean heat content",
+          "required_identity_test": "inventory_integral",
+          "result": "policy_dependent",
+          "finding": "The calculation earns a fixed-depth storage proxy but not native-layer ocean heat content because it uses standard-depth interpolation and constant representative rho and cp."
+        }
+      ],
+      "supports": [
+        "+0.5396 C surface warming and +0.0997 C fixed 0-50 m column-mean warming from August 11 to 12",
+        "+236.03 W/m2 RTOFS fixed-column storage tendency",
+        "surface warming 5.412 times the fixed-column mean change",
+        "+112.61 W/m2 GFS surface gain equal to 47.7% of the cross-system box storage scale",
+        "+1739.02 W/m2 anchor storage tendency too large for the +87.08 W/m2 local GFS surface gain alone"
+      ],
+      "does_not_support": [
+        "native-layer ocean heat content",
+        "native RTOFS tracer-budget closure",
+        "observed upper-ocean storage",
+        "vertical-process attribution",
+        "assimilation-increment attribution",
+        "causation"
+      ],
+      "next_evidence": "Add 0-50 m RTOFS horizontal-advection convergence and sensitivity to deeper fixed columns, then separate vertical boundary exchange, mixing, shortwave penetration, and assimilation increments where native diagnostics permit.",
+      "boundary": "This is fixed-depth storage from standard-depth-interpolated potential temperature with constant representative rho and cp, not native-layer ocean heat content. The GFS comparison crosses operational systems and cannot be subtracted as a native closure. Spatial extremes may reflect fronts, advection, interpolation, analysis increments, or other model processes. Surface intensification does not by itself diagnose mixed-layer shoaling, vertical mixing, entrainment, or causation."
+    },
+    {
+      "receipt_id": "OER018",
+      "title": "RTOFS depth-integrated horizontal-advection screen across the North Atlantic bridge",
+      "primary_claim": "horizontal advection is a major modeled 0-50 m box-scale term despite its small surface-only contribution",
+      "evidence_origin": "operational_assimilative_model",
+      "claim_stage": "mechanism_hypothesis",
+      "evidence_status": "supported_with_boundary",
+      "representation": "cross_system_partial_fixed_column_budget_screen",
+      "registry_matches": [
+        "OBJ046"
+      ],
+      "source_artifact": {
+        "path": "research/osw-d14-rtofs-mhw-upper-ocean-advection-2026.json",
+        "artifact_sha256": "9de6e342cea1630767e04b1620debe643b64e9e3c9f8a1fc70582caa30290672",
+        "embedded_schema": "osw.ocean-object-rtofs-upper-ocean-advection-screen.v1"
+      },
+      "measurement": {
+        "variable": "endpoint-mean offline horizontal potential-temperature advection integrated through fixed standard-depth columns",
+        "units": "W m-2 equivalent column tendency",
+        "vertical_support": "15 standard-depth temperature and horizontal-velocity samples from 0 through 50 m; integrations to 10, 20, 30, and 50 m",
+        "time_support": "five 00-to-00 UTC daily intervals from 2026-08-07 through 2026-08-12",
+        "spatial_support": "4,217 gradient-valid RTOFS grid centers within the fixed 4,221-cell North Atlantic box",
+        "baseline": "local tangent-plane eight-neighbor temperature gradients with four-neighbor sensitivity and constant representative density and heat capacity"
+      },
+      "identity_evaluations": [
+        {
+          "object_id": "OBJ046",
+          "preferred_name": "marine heatwave",
+          "required_identity_test": "anomaly_threshold",
+          "result": "not_tested",
+          "finding": "The depth-integrated motion screen tests event anatomy, not the CoralTemp threshold object's identity rule."
+        }
+      ],
+      "supports": [
+        "+171.21 W/m2 offline RTOFS 0-50 m horizontal-advection scale from August 11 to 12",
+        "horizontal advection equal to 72.5% of the +236.03 W/m2 fixed-column storage scale",
+        "horizontal advection increasing from +21.01 W/m2 in 0-10 m to +171.21 W/m2 in 0-50 m",
+        "surface plus horizontal scales totaling 120.2% of storage with a -47.79 W/m2 cross-system partial residual",
+        "+715.66 W/m2 anchor horizontal advection with +936.28 W/m2 still unresolved"
+      ],
+      "does_not_support": [
+        "native RTOFS tracer flux",
+        "conservative horizontal heat convergence",
+        "native GFS/RTOFS budget closure",
+        "vertical-process attribution",
+        "assimilation-increment attribution",
+        "causation"
+      ],
+      "next_evidence": "Use native model heat-budget diagnostics or quantify vertical boundary advection, mixing, and assimilation increments; test deeper fixed columns and subdaily covariance.",
+      "boundary": "This is an offline standard-depth Eulerian horizontal-advection screen, not RTOFS native tracer flux or conservative heat convergence. The partial residual crosses RTOFS with GFS and cannot close either model. It combines vertical advection, mixing, entrainment, diffusion, shortwave penetration, assimilation increments, standard-depth interpolation, time sampling, gradient error, and cross-system mismatch. It is not causal attribution."
+    }
+  ]
+}

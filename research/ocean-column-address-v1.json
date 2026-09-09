@@ -1,0 +1,46 @@
+{
+  "schema": "osw-ocean-column-address-v1",
+  "edition": "OSW pelagic-depth edition 1",
+  "status": "reference_geography",
+  "horizontal_reference": {
+    "required": true,
+    "default_directory": "longhurst-province-reference.csv",
+    "operation": "label extrusion for indexing only",
+    "does_not_assert": "surface ecological validity at depth"
+  },
+  "vertical_reference": {
+    "axis": "depth",
+    "positive": "down",
+    "units": "m",
+    "datum_requirement": "declare the dataset vertical reference",
+    "interval_rule": "lower inclusive, upper exclusive; final band ends at local seafloor"
+  },
+  "bands": [
+    {"object_id": "OBJ112", "name": "epipelagic", "lower_m": 0, "upper_m": 200},
+    {"object_id": "OBJ113", "name": "mesopelagic", "lower_m": 200, "upper_m": 1000},
+    {"object_id": "OBJ114", "name": "bathypelagic", "lower_m": 1000, "upper_m": 4000},
+    {"object_id": "OBJ115", "name": "abyssopelagic", "lower_m": 4000, "upper_m": 6000},
+    {"object_id": "OBJ116", "name": "hadalpelagic", "lower_m": 6000, "upper_m": null}
+  ],
+  "domain": {
+    "coverage": "every valid wet volume cell receives exactly one address",
+    "bathymetry": "truncate each local column at the solid seabed",
+    "mask": "land, solid seabed, missing, and invalid cells receive no inferred address",
+    "boundaries": "sea surface and seafloor are not water-volume bands"
+  },
+  "physical_overlays_are_nonexclusive": [
+    "mixed layer",
+    "thermocline",
+    "halocline",
+    "pycnocline",
+    "isopycnal layer",
+    "water mass",
+    "bottom boundary layer"
+  ],
+  "sources": [
+    "https://oceanexplorer.noaa.gov/static/news/exploration-extras/24-national-ocean-month/welcome.html",
+    "https://oceanservice.noaa.gov/facts/light_travel.html",
+    "https://www.nature.com/articles/s41467-024-47975-1",
+    "https://cfconventions.org/Data/cf-conventions/cf-conventions-1.2/build/ch04s03.html"
+  ]
+}

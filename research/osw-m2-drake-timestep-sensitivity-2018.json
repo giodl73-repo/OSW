@@ -1,0 +1,98 @@
+{
+  "schema": "oceanlines.osw.m2-timestep-sensitivity.v1",
+  "status": "numerical sensitivity diagnostic for historical surface-pathway method pilot",
+  "reference_timestep_hours": 3,
+  "tested_timestep_hours": [
+    3,
+    6,
+    12
+  ],
+  "common_completed_tracks": 35,
+  "cases": [
+    {
+      "timestep_hours": 3,
+      "released": 40,
+      "completed": 35,
+      "terminated": 5,
+      "completion_fraction": 0.875,
+      "common_completed_endpoint_separation_from_reference_km": {
+        "median": 0.0,
+        "p95_nearest_rank": 0.0,
+        "maximum": 0.0
+      }
+    },
+    {
+      "timestep_hours": 6,
+      "released": 40,
+      "completed": 35,
+      "terminated": 5,
+      "completion_fraction": 0.875,
+      "common_completed_endpoint_separation_from_reference_km": {
+        "median": 0.03024876570583756,
+        "p95_nearest_rank": 0.40722167555914146,
+        "maximum": 0.7738430301671756
+      }
+    },
+    {
+      "timestep_hours": 12,
+      "released": 40,
+      "completed": 35,
+      "terminated": 5,
+      "completion_fraction": 0.875,
+      "common_completed_endpoint_separation_from_reference_km": {
+        "median": 0.16854683905719708,
+        "p95_nearest_rank": 1.0905739076654573,
+        "maximum": 1.400469611724151
+      }
+    }
+  ],
+  "loss_timing": [
+    {
+      "id": "2017-12-16-01",
+      "integrated_hours_by_timestep": {
+        "3": 159,
+        "6": 156,
+        "12": 156
+      },
+      "range_hours": 3
+    },
+    {
+      "id": "2018-03-18-01",
+      "integrated_hours_by_timestep": {
+        "3": 150,
+        "6": 150,
+        "12": 144
+      },
+      "range_hours": 6
+    },
+    {
+      "id": "2018-06-17-01",
+      "integrated_hours_by_timestep": {
+        "3": 171,
+        "6": 168,
+        "12": 168
+      },
+      "range_hours": 3
+    },
+    {
+      "id": "2018-06-17-10",
+      "integrated_hours_by_timestep": {
+        "3": 546,
+        "6": 546,
+        "12": 540
+      },
+      "range_hours": 6
+    },
+    {
+      "id": "2018-09-16-01",
+      "integrated_hours_by_timestep": {
+        "3": 174,
+        "6": 174,
+        "12": 168
+      },
+      "range_hours": 6
+    }
+  ],
+  "maximum_loss_timing_range_hours": 6,
+  "interpretation": "Completion classification and completed endpoints are stable across the tested steps; termination timing near invalid wet stencils is not uniformly stable and must not be interpreted as coastal residence or precise beaching time."
+}

@@ -201,7 +201,7 @@ Stop or rewrite the comparison when:
 > temperature, composition, velocity, and time are disentangled. The visible
 > stripe is the beginning of the measurement—not the result.
 
-The next scientific step is the [OCEANLINES prediction
+The next scientific step is the [OSW prediction
 set](PREDICTIONS.md),
 which turns the jovicline and cross-jet leakage ideas into tests that can return
 support, a regional result, non-transfer, or observationally unresolved.

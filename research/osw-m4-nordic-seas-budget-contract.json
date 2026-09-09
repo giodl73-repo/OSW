@@ -1,0 +1,258 @@
+{
+  "schema": "osw.oras5.nordic-seas-budget-contract.v1",
+  "status": "offline_partial_budget_ready_public_native_terms_unavailable",
+  "question": "How much Atlantic heat enters the Nordic Seas, how much crosses Fram and Barents into the Arctic, and what is transformed, stored, or omitted between those gates?",
+  "control_volume": {
+    "name": "Nordic Seas heat room",
+    "inside": "ocean T cells north of the Greenland–Scotland Ridge, south of Fram Strait, and west of the Norway–Svalbard model closure, connected through represented wet cells",
+    "boundaries": {
+      "south": [
+        {
+          "id": "denmark_strait",
+          "name": "Denmark Strait",
+          "source": "research/osw-m4-oras5-nordic-control-volume.json"
+        },
+        {
+          "id": "iceland_scotland_ridge",
+          "name": "Iceland–Scotland Ridge continuous model closure",
+          "source": "research/osw-m4-oras5-nordic-control-volume.json"
+        },
+        {
+          "id": "northern_north_sea",
+          "name": "Northern North Sea model closure",
+          "source": "research/osw-m4-oras5-nordic-control-volume.json"
+        }
+      ],
+      "north": {
+        "id": "fram_strait",
+        "name": "Fram Strait",
+        "source": "research/osw-m3-oras5-arctic-gate-readiness.json",
+        "positive_normal": "outward from Nordic Seas, northward into Arctic Ocean"
+      },
+      "east": {
+        "id": "norway_svalbard",
+        "name": "Norway–Svalbard model closure",
+        "source": "research/osw-m3-oras5-barents-section-bakeoff.json",
+        "positive_normal": "outward from Nordic Seas, eastward into the Barents domain"
+      },
+      "land": "represented Greenland, Iceland, Faroe, Scotland/Norway, and Svalbard coast cells"
+    },
+    "gateway_intents": [
+      {
+        "id": "denmark_strait",
+        "name": "Denmark Strait",
+        "from": {
+          "land": "Greenland",
+          "longitude_deg": -34.5,
+          "latitude_deg": 66.3
+        },
+        "to": {
+          "land": "Iceland",
+          "longitude_deg": -24.0,
+          "latitude_deg": 66.5
+        }
+      },
+      {
+        "id": "iceland_faroe",
+        "name": "Iceland–Faroe",
+        "from": {
+          "land": "Iceland",
+          "longitude_deg": -13.5,
+          "latitude_deg": 64.3
+        },
+        "to": {
+          "land": "Faroe",
+          "longitude_deg": -6.8,
+          "latitude_deg": 62.1
+        }
+      },
+      {
+        "id": "faroe_scotland",
+        "name": "Faroe–Scotland",
+        "from": {
+          "land": "Faroe",
+          "longitude_deg": -6.8,
+          "latitude_deg": 61.8
+        },
+        "to": {
+          "land": "Scotland",
+          "longitude_deg": -4.5,
+          "latitude_deg": 58.8
+        }
+      }
+    ],
+    "warning": "The Fugløya–Bear observational proxy is excluded because its wet virtual endpoints permit bypass flow. The original Iceland–Faroe plus Faroe–Scotland split also fails surface closure at ORCA025; one continuous Iceland–Scotland cut is used instead. Britain requires an explicit northern North Sea closure."
+  },
+  "frozen_accounting": {
+    "positive_flux": "outward from the Nordic Seas control volume",
+    "volume_closure": "sum of signed native-face volume flux across all five ocean sections",
+    "advective_heat": "rho0 * cp0 * sum((potential_temperature - reference_temperature) * signed_volume_flux)",
+    "partial_budget_equation": "storage_tendency + outward_advective_heat - downward_surface_heat = unresolved_remainder",
+    "reference_temperature_cases_degC": [
+      -1.9,
+      0.0,
+      2.0,
+      5.0
+    ],
+    "reference_invariance_gate": "heat-divergence differences between reference temperatures must equal -rho0*cp0*delta_reference*volume_imbalance",
+    "required_reporting": [
+      "each named section before their sum",
+      "positive and negative volume branches",
+      "all reference-temperature cases",
+      "monthly storage and surface terms",
+      "unresolved remainder without causal relabeling"
+    ]
+  },
+  "promotion_gates": [
+    "all five section paths use unique native wet faces and terminate on represented land",
+    "section union plus land encloses exactly one intended connected wet T-cell component",
+    "boundary has zero duplicate faces, zero gaps, and consistent outward signs",
+    "full-depth masks, partial steps, widths, and areas pass the existing reconstruction audit",
+    "all 12 monthly T/S/U/V states and T-cell storage metrics are checksum pinned",
+    "monthly volume imbalance is reported before any reference-relative heat convergence",
+    "surface heat flux is integrated over the identical T-cell mask",
+    "ice, mixing, diffusion, and assimilation remain explicit missing terms unless retrieved"
+  ],
+  "readiness": [
+    {
+      "id": "native_mesh",
+      "label": "Combined native T/U/V mesh",
+      "status": "pass",
+      "reason": "expanded mesh spans every accepted ridge, Fram, Barents, and North Sea boundary"
+    },
+    {
+      "id": "northern_and_eastern_sections",
+      "label": "Fram + Norway–Svalbard closure",
+      "status": "pass",
+      "reason": "accepted land-bounded native-face paths and full-depth internal geometry audit already exist"
+    },
+    {
+      "id": "southern_sections",
+      "label": "Southern ridge + North Sea sections",
+      "status": "pass",
+      "reason": "native land-bounded Denmark, continuous Iceland–Scotland, and northern North Sea paths are derived; the two-part Faroe split failed closure"
+    },
+    {
+      "id": "closed_t_cell_mask",
+      "label": "Unique enclosed Nordic Seas T-cell mask",
+      "status": "pass",
+      "reason": "12,550 wet surface T cells are enclosed by 284 unique faces without reaching a mesh edge"
+    },
+    {
+      "id": "full_depth_geometry",
+      "label": "Five-section full-depth geometry",
+      "status": "pass",
+      "reason": "all 284 faces pass mask, width, partial-step, positive-area, and depth-bin closure checks"
+    },
+    {
+      "id": "monthly_state",
+      "label": "T/S/U/V for all 12 months",
+      "status": "pass",
+      "reason": "12/12 compact native monthly states are present; all storage cells and five boundary sections are covered"
+    },
+    {
+      "id": "cell_metrics_and_surface_flux",
+      "label": "Native T-cell area + downward surface heat flux",
+      "status": "pass",
+      "reason": "e1t/e2t and all twelve monthly sohefldo fields are aligned to the exact 12,550-cell mask"
+    },
+    {
+      "id": "native_budget_terms",
+      "label": "Ice, mixing, diffusion, and assimilation terms",
+      "status": "open",
+      "reason": "the live public ORCA025 catalog has been audited and exposes none of the required native tendency families; the offline budget must retain an unresolved remainder"
+    }
+  ],
+  "readiness_summary": {
+    "pass": 7,
+    "open": 1,
+    "blocked": 0
+  },
+  "available_state_months": [
+    "201801",
+    "201802",
+    "201803",
+    "201804",
+    "201805",
+    "201806",
+    "201807",
+    "201808",
+    "201809",
+    "201810",
+    "201811",
+    "201812"
+  ],
+  "sources": {
+    "mesh": {
+      "path": "atlas/data/oras5-nordic-seas-mesh.nc",
+      "present": true,
+      "sha256": "059b31cc41502d633c259a3e7f7e45c240f1f940b6c35a3400d1c6d756d2ea1e"
+    },
+    "barents_paths": {
+      "path": "research/osw-m3-oras5-barents-section-bakeoff.json",
+      "present": true,
+      "sha256": "0e08f947b35cb9e202409e83816a2f6dcf0302e8123e7a69e4489fc3764063d9"
+    },
+    "arctic_geometry": {
+      "path": "research/osw-m3-oras5-arctic-section-geometry-audit.json",
+      "present": true,
+      "sha256": "b214e8626d2bd2c80c6635308255e412ad7a5c7bcffdd8ffae7ce18ddbc10728"
+    },
+    "four_snapshot_synthesis": {
+      "path": "research/osw-m3-oras5-arctic-seasons-2018.json",
+      "present": true,
+      "sha256": "0ed4ca05900214ff09c51c5da12fe781f4b96241af5bc766a0886761fcaf40ee"
+    },
+    "southern_sections": {
+      "path": "research/osw-m4-oras5-nordic-southern-sections.json",
+      "present": true,
+      "sha256": "401529278619a771e83a95feef416bbad211502d94051fe8dd3d559ca1951145"
+    },
+    "closed_control_volume": {
+      "path": "research/osw-m4-oras5-nordic-control-volume.json",
+      "present": true,
+      "sha256": "c7438e5e3abb591e2b681d00026886e398a55426388cb53485455d811274ab4d"
+    },
+    "full_depth_geometry": {
+      "path": "research/osw-m4-oras5-nordic-section-geometry-audit.json",
+      "present": true,
+      "sha256": "e1b90795cf762650c64e81fe82e203e2d06df576d2a303e147529d155be3cad7"
+    },
+    "t_cell_metrics": {
+      "path": "atlas/data/oras5-nordic-t-metrics.nc",
+      "present": true,
+      "sha256": "64c7b8cd817655158f835dc104aea7e253950b3b6fb81ed2e949a2dbb1156242"
+    },
+    "surface_heat": {
+      "path": "atlas/data/oras5-nordic-surface-heat-2018.nc",
+      "present": true,
+      "sha256": "6e8415a43fdddc2008fbd64b65978b5ef563ea9a4fd7533a8ad7338286881632"
+    },
+    "surface_heat_analysis": {
+      "path": "research/osw-m4-oras5-nordic-surface-heat-2018.json",
+      "present": true,
+      "sha256": "78af9585b0fe1d07eed7f7958326f915f2e06d6a0359e511bf73f4ed148af20c"
+    },
+    "partial_budget": {
+      "path": "research/osw-m4-oras5-nordic-partial-budget-2018.json",
+      "present": true,
+      "sha256": "7b13c436d341f08952aa411be117a21680e23e311b2f32e71fad0c407b0414ff"
+    },
+    "column_heat": {
+      "path": "atlas/data/oras5-nordic-column-heat-2018.nc",
+      "present": true,
+      "sha256": "d8fb4eeecef853c7dca57add8419850d4f5e9cdbc70d51ba68c6fbc987cd8897"
+    },
+    "storage_crosscheck": {
+      "path": "research/osw-m4-oras5-nordic-storage-crosscheck-2018.json",
+      "present": true,
+      "sha256": "681b987384ccb39510f82d2c762508d3d962d1d40be3ff617143b2b6f9e53c14"
+    },
+    "native_budget_availability": {
+      "path": "research/osw-m4-oras5-native-budget-availability.json",
+      "present": true,
+      "sha256": "3473a47ca2b9692b2bad30fd73f4bf04453bd1078991c6618baca4255b5a843a"
+    }
+  },
+  "interpretation_boundary": "The offline partial budget now includes transport, storage, surface exchange, and an independent storage cross-check. It is not model-native closure, attribution of the unresolved remainder, a climatology, or an Arctic-delivery result."
+}
