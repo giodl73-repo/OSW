@@ -1057,3 +1057,12 @@ the global pattern; a three-number passport gives the selected state's exact
 rank and share. This separates a state's geometric capacity from its dynamical
 importance and makes differences such as “large,” “voluminous,” and “deep”
 visible rather than interchangeable.
+
+The vertical-shape pass then gives every sourced state a literal hypsometric
+fingerprint. Dominant seafloor area divides the 54 into 11 shelf-led, 19
+deep-floor-led, and 24 abyssal-floor-led states. A separate ≥5% breadth count,
+hadal-presence flag, and area-to-volume rank shift preserve the character that
+one dominant label would otherwise erase. KURO is the sole current state with
+at least 5% of sampled seafloor area in all five bands; 29 states contain at
+least one sampled hadal center. The fingerprint completes a bathymetric
+covering while explicitly declining to call it geomorphology or dynamics.

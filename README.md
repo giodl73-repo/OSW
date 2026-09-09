@@ -165,7 +165,10 @@ through those bands. The global integration is approximately 1.338 billion
 km³; the map keeps this reference volume distinct from ecological occupancy,
 water-mass identity, heat content, and transport. Four map fields now compare
 ecological family, wet area, water volume, and mean depth; a selected-state
-passport reports its rank and global share.
+passport reports its rank and global share. A fifth floor-character map and
+expanded passport distinguish shelf-led, deep-floor-led, and abyssal-floor-led
+states, substantial vertical breadth, sampled hadal reach, and the rank effect
+of depth.
 
 The currently published site still serves
 [Atlas 07](https://giodl73-repo.github.io/OSW/atlas/). Atlas 08 remains

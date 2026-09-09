@@ -1316,3 +1316,15 @@ area-weighted mean depth, and a five-band volume ledger. Its
 estimate, a scale check that did not calibrate the calculation. These outputs
 are not exact polygon/native-grid volumes, ecological occupancy at depth,
 dynamic provinces, current boundaries, heat, or transport.
+
+`derive_province_hypsometric_fingerprints.py` is the offline next stage. It
+binds to the depth payload by SHA-256 and derives one complete, mutually
+exclusive floor character from the dominant seafloor-area band, plus
+independent substantial-band breadth (≥5%), hadal presence, and area-to-volume
+rank shift. It writes both the research JSON and browser payload without any
+network access:
+
+```powershell
+python derive_province_hypsometric_fingerprints.py
+python -m pytest test_province_hypsometric_fingerprints.py -q
+```

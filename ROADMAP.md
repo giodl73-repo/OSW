@@ -87,6 +87,10 @@ budgets remain distinct object types with distinct identity tests.
   The workbench now compares the 54 states by ecological family, wet area,
   water volume, or mean depth and gives the selected state an exact rank/share
   passport without equating geometric capacity with dynamical importance.
+  A source-bound hypsometric fingerprint now adds dominant floor character,
+  substantial-band breadth, sampled hadal presence, and area-to-volume rank
+  shift. This completes a first transparent vertical-shape vocabulary without
+  claiming bathymetry alone identifies geomorphic or dynamic ocean objects.
 - 36 shaped ocean features span waters, flows, edges, floor, life, and events.
 - Six conceptual lenses and multiple observed fields share an ocean-first map.
 - The 11 realms and 22 contiguous regions are OSW organizational constructs,

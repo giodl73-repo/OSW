@@ -180,6 +180,14 @@ reports its exact rank and global share. These are geometric capacity measures:
 a large or deep state is not necessarily more important, warmer, more dynamic,
 or more influential in ocean heat transport.
 
+One further fingerprint describes the vertical shape without asserting a
+mechanism. The depth band containing the largest share of sampled seafloor area
+sets a mutually exclusive floor character; bands with at least 5% area measure
+substantial breadth; sampled hadal presence and area-to-volume rank shift stay
+separate. In the present 54-state edition this yields 11 shelf-led, 19
+deep-floor-led, and 24 abyssal-floor-led states. These are declared
+hypsometric descriptors, not geomorphic slope types or ecological habitats.
+
 ## Planetary boundary
 
 Edition 1 is Earth ocean geography. Its sunlight labels, metre cutoffs, solid

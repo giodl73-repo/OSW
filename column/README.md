@@ -73,6 +73,15 @@ cannot support. A selected-province passport supplies its exact rank among the
 54, global area and volume shares, and mean depth. Rank is capacity or geometry,
 not ecological importance, heat content, transport, or influence.
 
+An offline deterministic derivative turns those same depth fractions into a
+hypsometric fingerprint. “Floor character” is simply the seafloor band with
+the largest sampled wet-area share: 11 states are shelf-led, 19 deep-floor-led,
+and 24 abyssal-floor-led. “Vertical breadth” counts bands holding at least 5%
+of sampled seafloor area; 29 states contain at least one sampled hadal center.
+The area-to-volume rank shift shows whether depth moves a state upward or
+downward relative to its surface size. These literal diagnostics do not claim
+geomorphic slope type, ecological habitat, or dynamic mechanism.
+
 This is a sampled volume approximation, not voxelized native-resolution
 ocean volume. It omits partial coastal cells, uses center membership and
 prismatic cell geometry, and inherits GEBCO and Version 4 seams. Its total is
@@ -98,8 +107,9 @@ cells silently reassigned to make the map close.
 ```powershell
 python analysis/build_ocean_column_viewer.py
 python analysis/build_gebco_province_seed_neighborhoods.py
+python analysis/derive_province_hypsometric_fingerprints.py
 node --check column/app.js
-python -m pytest analysis/test_ocean_column_viewer.py analysis/test_longhurst_2007_gebco_depths.py -q
+python -m pytest analysis/test_ocean_column_viewer.py analysis/test_longhurst_2007_gebco_depths.py analysis/test_province_hypsometric_fingerprints.py -q
 ```
 
 Refresh the source only as an explicit network operation:
