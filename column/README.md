@@ -57,6 +57,20 @@ province intersections, no overlaps, and 54 province-wide depth/source
 summaries. The map uses Oceanic Mollweide so the geographic view is equal-area;
 the quantitative summaries retain independent spherical weights.
 
+The same cells now support a first three-dimensional reference ledger. For
+each wet center, OSW multiplies spherical cell area by the thickness of each
+pelagic band present above the local GEBCO seabed. Summing those prisms yields
+approximately 1.338 billion km³ across the source-aligned footprint: 5.14%
+epipelagic, 19.50% mesopelagic, 62.84% bathypelagic, 12.41% abyssopelagic, and
+0.11% hadalpelagic. The browser can switch the depth bar between water-volume
+share and the earlier seafloor-reaching area share.
+
+This is a sampled volume approximation, not voxelized native-resolution
+ocean volume. It omits partial coastal cells, uses center membership and
+prismatic cell geometry, and inherits GEBCO and Version 4 seams. Its total is
+0.0258% below the independent USGS context estimate of 1.338 billion km³; that
+agreement is a scale check, not calibration or validation of province values.
+
 This resolves geometry for the source's 54-province edition, not retroactively
 for every name in OSW's older 56-identity directory. Five codes crosswalk by
 alias (`CHIL/HUMB`, `INDE/IND E`, `INDW/IND W`, `NASE/NAST E`, and
@@ -99,8 +113,9 @@ declared source-payload posture.
 
 ## Next evidence gate
 
-The geometry/bathymetry gate is now implemented for the source-aligned 54. The
-next gate is an edition decision: preserve an explicit 56/54 selector, migrate
+The geometry, bathymetry, and sampled depth-band volume gates are now
+implemented for the source-aligned 54. The next horizontal gate is an edition
+decision: preserve an explicit 56/54 selector, migrate
 the quantitative address to Version 4, or locate an independently reproducible
 and redistributable older geometry. No approach may silently project the two
 unmatched identities onto Version 4.

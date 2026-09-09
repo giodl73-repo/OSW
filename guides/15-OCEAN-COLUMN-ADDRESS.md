@@ -164,6 +164,15 @@ false completion: OSW's older directory has 56 identities, and `NPSE` plus
 `OCAL` have no separate Version 4 polygons. An address must therefore name not
 only “Longhurst,” but the 1995-style 56-name or revised 2007 54-polygon edition.
 
+The same intersection now estimates how much water occupies each vertical
+address band. For every wet sampled center, OSW multiplies spherical cell area
+by only the band thickness present above the local seafloor. This is the first
+province-wide three-dimensional address ledger: exhaustive under the declared
+sampled mask, but not an exact native-resolution volume or a claim that the
+surface ecology occupies the full extruded column. Its 1.338-billion-km³ global
+scale agrees closely with an independent USGS ocean-volume estimate; this is a
+context check, not calibration or proof of provincial accuracy.
+
 ## Planetary boundary
 
 Edition 1 is Earth ocean geography. Its sunlight labels, metre cutoffs, solid

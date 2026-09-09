@@ -80,6 +80,10 @@ budgets remain distinct object types with distinct identity tests.
   `NPSE` and `OCAL` have no separate Version 4 footprint. The next horizontal
   decision is whether OSW keeps a dual 56/54 edition selector or migrates its
   quantitative address system to the fully sourced 54-province edition.
+  Bathymetry-truncated prismatic integration now adds the first three-dimensional
+  ledger for those 54 footprints: approximately 1.338 billion km³ divided
+  across the five declared depth bands and each province. Its global total is
+  a strong scale check; individual volumes remain 0.25° sampled estimates.
 - 36 shaped ocean features span waters, flows, edges, floor, life, and events.
 - Six conceptual lenses and multiple observed fields share an ocean-first map.
 - The 11 realms and 22 contiguous regions are OSW organizational constructs,

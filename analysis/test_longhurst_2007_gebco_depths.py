@@ -1,6 +1,10 @@
 import json
 from pathlib import Path
 
+import numpy as np
+
+from acquire_longhurst_2007_gebco_depths import water_volume_by_depth_band
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "research" / "longhurst-2007-gebco-2026-depths.json"
@@ -10,6 +14,20 @@ BROWSER = ROOT / "column" / "province-footprints.js"
 
 def load():
     return json.loads(DATA.read_text(encoding="utf-8"))
+
+
+def test_water_volume_integrator_truncates_each_reference_band():
+    volumes = water_volume_by_depth_band(
+        np.array([90, 500, 7_000]),
+        np.array([1.0, 2.0, 3.0]),
+    )
+    assert volumes == {
+        "epipelagic": 1_090.0,
+        "mesopelagic": 3_000.0,
+        "bathypelagic": 9_000.0,
+        "abyssopelagic": 6_000.0,
+        "hadalpelagic": 3_000.0,
+    }
 
 
 def test_source_receipt_identifies_exact_queries_without_vendoring_payloads():
@@ -62,6 +80,24 @@ def test_global_mask_and_area_weighted_summaries_close():
         assert province["sampled_wet_area_km2"] > 0
         assert abs(sum(province["wet_area_fraction_by_seafloor_band"].values()) - 1) < 5e-6
         assert abs(sum(province["wet_area_fraction_by_tid_class"].values()) - 1) < 5e-6
+        assert province["sampled_water_volume_km3"] > 0
+        assert province["area_weighted_mean_water_depth_m"] > 0
+        assert abs(sum(province["water_volume_fraction_by_depth_band"].values()) - 1) < 5e-6
+        assert abs(sum(province["water_volume_km3_by_depth_band"].values()) - province["sampled_water_volume_km3"]) < 0.1
+    volume = payload["volume_summary"]
+    assert volume["sampled_source_aligned_water_volume_km3"] == 1_337_654_389.66
+    assert volume["water_volume_fraction_by_depth_band"] == {
+        "epipelagic": 0.051439,
+        "mesopelagic": 0.194953,
+        "bathypelagic": 0.628426,
+        "abyssopelagic": 0.124062,
+        "hadalpelagic": 0.001121,
+    }
+    assert abs(sum(volume["water_volume_fraction_by_depth_band"].values()) - 1) < 5e-6
+    assert abs(sum(volume["water_volume_km3_by_depth_band"].values()) - volume["sampled_source_aligned_water_volume_km3"]) < 0.1
+    assert volume["independent_context"]["published_ocean_volume_km3"] == 1_338_000_000
+    assert abs(volume["independent_context"]["difference_from_published_percent"]) < 0.1
+    assert "did not calibrate" in volume["independent_context"]["interpretation"]
 
 
 def test_browser_payload_is_exactly_the_research_payload():

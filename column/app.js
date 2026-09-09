@@ -10,6 +10,7 @@ let selectedProvince = "NADR";
 let selectedBand = "OBJ113";
 let scaleMode = "readable";
 let neighborhoodMode = "depth";
+let footprintProfileMode = "volume";
 const depthMapColors = {land:"#dad6c8",epipelagic:"#3b91a2",mesopelagic:"#2c7087",bathypelagic:"#1e506d",abyssopelagic:"#163a59",hadalpelagic:"#0a203b"};
 const sourceMapColors = {land:"#dad6c8",direct_measurement:"#5bd8ce",indirect_or_interpolated:"#e8b960",mixed_or_unknown:"#b49ae8"};
 const biomeMapColors = {Polar:"#638aa0",Westerlies:"#426d82",Trades:"#295668",Coastal:"#6d7a72"};
@@ -134,6 +135,10 @@ function hexRgb(value) {
   return [parseInt(value.slice(1,3),16),parseInt(value.slice(3,5),16),parseInt(value.slice(5,7),16)];
 }
 
+function approximateVolume(value) {
+  return `${(Math.round(value / 1000) * 1000).toLocaleString()} km³`;
+}
+
 function buildMollweideAssignments(rows, columns) {
   const projected = new Int16Array(rows * columns).fill(-2);
   const rootTwo = Math.SQRT2;
@@ -192,12 +197,16 @@ function renderFootprint() {
   profile.replaceChildren();
   legend.replaceChildren();
   if (!summary) {
+    document.querySelector("#footprint-profile-label").textContent = "DEPTH PROFILE UNAVAILABLE IN VERSION 4";
     document.querySelector("#footprint-status").textContent = "OLDER 1995 IDENTITY · NO SEPARATE V4 FOOTPRINT";
     document.querySelector("#footprint-summary").textContent = `${selectedProvince}: ${crosswalk.note} The map retains all 54 Version 4 territories but highlights none; OSW will not invent a boundary for this older identity.`;
     profile.setAttribute("aria-label", `${selectedProvince} has no separate Longhurst Version 4 footprint or depth distribution.`);
   } else {
+    const fractions = footprintProfileMode === "volume" ? summary.water_volume_fraction_by_depth_band : summary.wet_area_fraction_by_seafloor_band;
+    const profileNoun = footprintProfileMode === "volume" ? "water volume" : "seafloor-reaching area";
+    document.querySelector("#footprint-profile-label").textContent = `${profileNoun.toUpperCase()} BY DEPTH BAND`;
     bands.forEach(([key, label]) => {
-      const fraction = summary.wet_area_fraction_by_seafloor_band[key] ?? 0;
+      const fraction = fractions[key] ?? 0;
       const segment = document.createElement("span"); segment.style.width = `${fraction * 100}%`; segment.style.background = depthMapColors[key]; segment.title = `${label}: ${(fraction * 100).toFixed(1)}%`;
       profile.append(segment);
       const item = document.createElement("span"), swatch = document.createElement("i"); swatch.style.background = depthMapColors[key]; item.append(swatch, document.createTextNode(`${label} · ${(fraction * 100).toFixed(1)}%`)); legend.append(item);
@@ -206,8 +215,8 @@ function renderFootprint() {
     const indirect = (summary.wet_area_fraction_by_tid_class.indirect_or_interpolated ?? 0) * 100;
     const alias = crosswalk.source_code === selectedProvince ? "direct code match" : `${crosswalk.source_code} source-code alias`;
     document.querySelector("#footprint-status").textContent = `54-PROVINCE VERSION 4 · ${alias.toUpperCase()}`;
-    document.querySelector("#footprint-summary").textContent = `${selectedProvince} / ${crosswalk.source_code}: ${summary.wet_sample_count.toLocaleString()} wet 0.25° samples representing approximately ${summary.sampled_wet_area_km2.toLocaleString()} km² after spherical cell weighting. Wet seabed depths span ${summary.minimum_wet_depth_m.toLocaleString()}–${summary.maximum_wet_depth_m.toLocaleString()} m. Source-type area is ${direct.toFixed(1)}% direct measurement and ${indirect.toFixed(1)}% indirect/interpolated; remaining area is mixed/unknown. The source polygon also contains ${summary.non_wet_geometry_sample_count.toLocaleString()} GEBCO non-wet centers from coastline/grid disagreement.`;
-    profile.setAttribute("aria-label", `${selectedProvince} area-weighted seafloor distribution: ${bands.map(([key,label]) => `${label} ${(summary.wet_area_fraction_by_seafloor_band[key] ?? 0) * 100}%`).join(", ")}.`);
+    document.querySelector("#footprint-summary").textContent = `${selectedProvince} / ${crosswalk.source_code}: the bar shows ${profileNoun} by depth band. ${summary.wet_sample_count.toLocaleString()} wet 0.25° samples represent approximately ${summary.sampled_wet_area_km2.toLocaleString()} km² and ${approximateVolume(summary.sampled_water_volume_km3)} of water under sampled prismatic integration. Area-weighted mean water depth is ${summary.area_weighted_mean_water_depth_m.toLocaleString()} m; wet seabed depths span ${summary.minimum_wet_depth_m.toLocaleString()}–${summary.maximum_wet_depth_m.toLocaleString()} m. Source-type area is ${direct.toFixed(1)}% direct measurement and ${indirect.toFixed(1)}% indirect/interpolated; remaining area is mixed/unknown. The source polygon also contains ${summary.non_wet_geometry_sample_count.toLocaleString()} GEBCO non-wet centers from coastline/grid disagreement.`;
+    profile.setAttribute("aria-label", `${selectedProvince} ${profileNoun} distribution: ${bands.map(([key,label]) => `${label} ${((fractions[key] ?? 0) * 100).toFixed(1)}%`).join(", ")}.`);
   }
   canvas.setAttribute("aria-label", `Oceanic Mollweide world map of the 54 source-aligned Longhurst Version 4 province footprints. ${document.querySelector("#footprint-summary").textContent}`);
 }
@@ -307,6 +316,7 @@ function init() {
   if (data.provinces.some(item => item.code === params.get("province"))) selectedProvince = params.get("province");
   if (data.column_address.bands.some(item => item.object_id === params.get("band"))) selectedBand = params.get("band");
   if (["depth", "source"].includes(params.get("neighborhood"))) neighborhoodMode = params.get("neighborhood");
+  if (["volume", "seafloor"].includes(params.get("profile"))) footprintProfileMode = params.get("profile");
 
   const provinceSelect = document.querySelector("#province-select");
   data.provinces.forEach(province => {
@@ -349,6 +359,15 @@ function init() {
       document.querySelectorAll("[data-neighborhood-mode]").forEach(item => item.setAttribute("aria-pressed", String(item === button)));
       const url = new URL(window.location.href); url.searchParams.set("neighborhood", neighborhoodMode); history.replaceState(null, "", url);
       renderNeighborhood();
+    });
+  });
+  document.querySelectorAll("[data-footprint-profile]").forEach(button => {
+    button.setAttribute("aria-pressed", String(button.dataset.footprintProfile === footprintProfileMode));
+    button.addEventListener("click", () => {
+      footprintProfileMode = button.dataset.footprintProfile;
+      document.querySelectorAll("[data-footprint-profile]").forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+      const url = new URL(window.location.href); url.searchParams.set("profile", footprintProfileMode); history.replaceState(null, "", url);
+      renderFootprint();
     });
   });
   render();

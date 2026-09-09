@@ -158,6 +158,13 @@ the continents visual control.
 | Follow the Antarctic and Arctic mechanisms | [OCEANREALMS](OCEANREALMS.md) |
 | Inspect evidence, limitations, and provenance | [Atlas method](atlas/README.md) and [source register](SOURCE-REGISTER.md) |
 
+The Ocean Column workbench now turns the source-aligned 54-province map into a
+sampled three-dimensional ledger: choose a province, then compare which depth
+band its seabed reaches with how its estimated water volume is distributed
+through those bands. The global integration is approximately 1.338 billion
+km³; the map keeps this reference volume distinct from ecological occupancy,
+water-mass identity, heat content, and transport.
+
 The currently published site still serves
 [Atlas 07](https://giodl73-repo.github.io/OSW/atlas/). Atlas 08 remains
 the approved review preview, Atlas 09 is the approved first depth

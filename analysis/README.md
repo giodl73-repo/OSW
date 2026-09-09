@@ -1309,5 +1309,10 @@ python -m pytest test_longhurst_2007_gebco_depths.py test_ocean_column_viewer.py
 The source responses are not vendored. Their exact URLs, byte counts, response
 metadata, and SHA-256 hashes are committed in the source receipt. The resulting
 681,631 wet intersections estimate province seafloor-depth distributions at
-the declared sampling; they are not exact polygon integrals, ecological
-occupancy at depth, dynamic provinces, current boundaries, heat, or transport.
+the declared sampling. The same build integrates spherical cell area ×
+bathymetry-truncated band thickness, yielding per-province water volume,
+area-weighted mean depth, and a five-band volume ledger. Its
+1.338-billion-km³ total is 0.0258% below an independent USGS global context
+estimate, a scale check that did not calibrate the calculation. These outputs
+are not exact polygon/native-grid volumes, ecological occupancy at depth,
+dynamic provinces, current boundaries, heat, or transport.

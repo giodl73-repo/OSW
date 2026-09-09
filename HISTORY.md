@@ -1031,3 +1031,21 @@ The durable interaction principle is:
 
 This is still a reference cartogram—not validated Longhurst boundary geometry
 and not a mechanism, budget, or material wall.
+
+## 2026-09-08 — The ocean states gain volume
+
+The source-aligned 54-province footprint became a three-dimensional address
+ledger. Each wet 0.25° GEBCO center now contributes spherical area multiplied
+by the thickness of every OSW depth band present above its seabed. The result
+estimates approximately 1.338 billion km³ of water: 5.14% epipelagic, 19.50%
+mesopelagic, 62.84% bathypelagic, 12.41% abyssopelagic, and 0.11%
+hadalpelagic. That total lies 0.0258% below the independent USGS
+1.338-billion-km³ context estimate—an unusually clean scale check, not a
+calibration or validation of individual province borders.
+
+The workbench now lets a visitor flip one province profile between the share
+of seafloor reaching each band and the share of actual sampled water volume in
+each band. This is the fourth seminal step: the “states” are no longer only
+surface pieces or bottom-depth summaries; they now have a declared, auditable
+vertical extent without being misrepresented as water masses or ecological
+columns.

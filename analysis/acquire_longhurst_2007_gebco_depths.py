@@ -53,6 +53,15 @@ TID_URL = f"{TID_BASE}.ascii?tid{GRID_CONSTRAINT}"
 GEBCO_DOI = "10.5285/4f68d5c7-45eb-f999-e063-7086abc036fa"
 ROWS, COLUMNS = 720, 1440
 EARTH_RADIUS_M = 6_371_008.8
+USGS_OCEAN_VOLUME_KM3 = 1_338_000_000
+USGS_OCEAN_VOLUME_URL = "https://www.usgs.gov/faqs/how-much-natural-water-there"
+DEPTH_BANDS = (
+    ("epipelagic", 0, 200),
+    ("mesopelagic", 200, 1_000),
+    ("bathypelagic", 1_000, 4_000),
+    ("abyssopelagic", 4_000, 6_000),
+    ("hadalpelagic", 6_000, None),
+)
 
 # The OSW directory preserves the older 1995 vocabulary. Version 4 is the
 # revised 2007 54-province product. These are identity aliases, not geometry
@@ -138,6 +147,17 @@ def encode_runs(assignments: np.ndarray, codes: list[str]) -> list[list[int | st
     return runs
 
 
+def water_volume_by_depth_band(depths: np.ndarray, cell_areas_m2: np.ndarray) -> dict[str, float]:
+    """Integrate bathymetry-truncated reference-band thickness over sampled cells."""
+    result = {}
+    depths_float = depths.astype(np.float64)
+    for name, lower_m, upper_m in DEPTH_BANDS:
+        ceiling = depths_float if upper_m is None else np.minimum(depths_float, upper_m)
+        thickness_m = np.maximum(0, ceiling - lower_m)
+        result[name] = float(np.sum(thickness_m * cell_areas_m2))
+    return result
+
+
 def build_crosswalk(source_codes: set[str]) -> list[dict]:
     import csv
 
@@ -213,6 +233,7 @@ def acquire(receipt_path: Path = RECEIPT, output_path: Path = OUTPUT, browser_pa
     wet = elevations < 0
     assigned = assignments >= 0
     province_summaries = {}
+    global_volume_m3 = Counter()
     for feature_index, feature in enumerate(features):
         member = assignments == feature_index
         member_wet = member & wet
@@ -232,6 +253,9 @@ def acquire(receipt_path: Path = RECEIPT, output_path: Path = OUTPUT, browser_pa
             band_areas[band] += float(area)
             tid_areas[source_class] += float(area)
         wet_area = float(weights.sum())
+        volume_m3 = water_volume_by_depth_band(depths, weights)
+        total_volume_m3 = sum(volume_m3.values())
+        global_volume_m3.update(volume_m3)
         properties = feature["properties"]
         source_code = source_codes[feature_index]
         osw_code = osw_codes[feature_index]
@@ -250,11 +274,16 @@ def acquire(receipt_path: Path = RECEIPT, output_path: Path = OUTPUT, browser_pa
             "counts_by_seafloor_band": dict(sorted(band_counts.items())),
             "wet_area_km2_by_seafloor_band": {key: round(value / 1_000_000, 2) for key, value in sorted(band_areas.items())},
             "wet_area_fraction_by_seafloor_band": {key: round(value / wet_area, 6) for key, value in sorted(band_areas.items())} if wet_area else {},
+            "sampled_water_volume_km3": round(total_volume_m3 / 1_000_000_000, 2),
+            "water_volume_km3_by_depth_band": {key: round(volume_m3[key] / 1_000_000_000, 2) for key, _, _ in DEPTH_BANDS},
+            "water_volume_fraction_by_depth_band": {key: round(volume_m3[key] / total_volume_m3, 6) for key, _, _ in DEPTH_BANDS} if total_volume_m3 else {},
+            "area_weighted_mean_water_depth_m": round(total_volume_m3 / wet_area, 2) if wet_area else None,
             "counts_by_tid_class": dict(sorted(tid_counts.items())),
             "wet_area_fraction_by_tid_class": {key: round(value / wet_area, 6) for key, value in sorted(tid_areas.items())} if wet_area else {},
         }
 
     crosswalk = build_crosswalk(set(source_codes))
+    sampled_global_volume_km3 = sum(global_volume_m3.values()) / 1_000_000_000
     payload = {
         "schema": "osw-longhurst-2007-gebco-2026-depths-v1",
         "geometry_edition": "Marine Regions Longhurst Provinces Version 4, March 2010; revised Longhurst 2007 54-province scheme",
@@ -270,6 +299,22 @@ def acquire(receipt_path: Path = RECEIPT, output_path: Path = OUTPUT, browser_pa
         },
         "crosswalk": crosswalk,
         "provinces": province_summaries,
+        "volume_summary": {
+            "sampled_source_aligned_water_volume_km3": round(sampled_global_volume_km3, 2),
+            "water_volume_km3_by_depth_band": {key: round(global_volume_m3[key] / 1_000_000_000, 2) for key, _, _ in DEPTH_BANDS},
+            "water_volume_fraction_by_depth_band": {
+                key: round(global_volume_m3[key] / sum(global_volume_m3.values()), 6) for key, _, _ in DEPTH_BANDS
+            },
+            "method": "For every wet 0.25-degree cell center inside Version 4 geometry, multiply spherical cell area by the bathymetry-truncated thickness of each OSW depth band; sum by province and band.",
+            "precision_boundary": "Sampled prismatic integration, not an exact coastline, partial-cell, geodesic-polygon, or native-resolution ocean-volume estimate.",
+            "independent_context": {
+                "provider": "U.S. Geological Survey",
+                "url": USGS_OCEAN_VOLUME_URL,
+                "published_ocean_volume_km3": USGS_OCEAN_VOLUME_KM3,
+                "difference_from_published_percent": round((sampled_global_volume_km3 / USGS_OCEAN_VOLUME_KM3 - 1) * 100, 4),
+                "interpretation": "Scale check only; the published estimate did not calibrate the OSW calculation and does not validate province boundaries or individual province volumes.",
+            },
+        },
         "footprint_runs": encode_runs(assignments, osw_codes),
         "coverage": {
             "source_feature_count": len(features),
@@ -285,7 +330,7 @@ def acquire(receipt_path: Path = RECEIPT, output_path: Path = OUTPUT, browser_pa
             "source_geometry_repair_count": len(geometry_repairs),
         },
         "source_geometry_repairs": geometry_repairs,
-        "boundary": "Source-aligned static mean surface ecology, not a current, water mass, material wall, dynamic province diagnosis, heat field, transport, or full-depth occupancy. Bathymetry statistics are 0.25-degree cell-center estimates with spherical area weighting, not exact polygon integrals or navigational products.",
+        "boundary": "Source-aligned static mean surface ecology, not a current, water mass, material wall, dynamic province diagnosis, heat field, transport, or full-depth ecological occupancy. Bathymetry and water-volume statistics are 0.25-degree cell-center estimates with spherical area weighting and prismatic band integration, not exact polygon integrals, native-resolution volumes, or navigational products.",
     }
     output_path.write_text(json.dumps(payload, separators=(",", ":")) + "\n", encoding="utf-8", newline="\n")
     browser_path.write_text("window.OSW_PROVINCE_FOOTPRINTS = " + json.dumps(payload, separators=(",", ":")) + ";\n", encoding="utf-8", newline="\n")

@@ -49,9 +49,9 @@ def test_column_viewer_accessible_interaction_contract():
     html = (ROOT / "column" / "index.html").read_text(encoding="utf-8")
     app = (ROOT / "column" / "app.js").read_text(encoding="utf-8")
     css = (ROOT / "column" / "styles.css").read_text(encoding="utf-8")
-    for token in ('id="province-select"', 'id="band-controls"', 'id="overlay-controls"', 'id="seed-status"', 'id="neighborhood-canvas"', 'id="footprint-canvas"', 'id="footprint-depth-profile"', 'data-neighborhood-mode="depth"', 'data-neighborhood-mode="source"', 'aria-live="polite"', 'role="img"', "Evidence boundary", "not a province mean", 'src="neighborhoods.js"', 'src="province-footprints.js"'):
+    for token in ('id="province-select"', 'id="band-controls"', 'id="overlay-controls"', 'id="seed-status"', 'id="neighborhood-canvas"', 'id="footprint-canvas"', 'id="footprint-depth-profile"', 'id="footprint-profile-label"', 'data-neighborhood-mode="depth"', 'data-neighborhood-mode="source"', 'data-footprint-profile="volume"', 'data-footprint-profile="seafloor"', 'aria-live="polite"', 'role="img"', "Evidence boundary", "not a province mean", 'src="neighborhoods.js"', 'src="province-footprints.js"'):
         assert token in html
-    for token in ("history.replaceState", 'event.key === "Enter"', "aria-pressed", "updateReadout", "renderNeighborhood", "renderFootprint", "wet_area_fraction_by_seafloor_band", "not a detected physical regime", "does not reach this band", "bathymetry-truncated part", "not province-wide", "not the province", "overlaySentence"):
+    for token in ("history.replaceState", 'event.key === "Enter"', "aria-pressed", "updateReadout", "renderNeighborhood", "renderFootprint", "wet_area_fraction_by_seafloor_band", "water_volume_fraction_by_depth_band", "sampled_water_volume_km3", "not a detected physical regime", "does not reach this band", "bathymetry-truncated part", "not province-wide", "not the province", "overlaySentence"):
         assert token in app
     assert '.focus()' not in app
     assert "overflow-x:hidden" in html
