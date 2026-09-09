@@ -2,6 +2,7 @@
 
 const data = window.OSW_COLUMN_DATA;
 const bathy = window.OSW_BATHY_NEIGHBORHOODS;
+const footprints = window.OSW_PROVINCE_FOOTPRINTS;
 const svg = document.querySelector("#column-svg");
 const NS = "http://www.w3.org/2000/svg";
 const bandColors = ["#256f82", "#24576d", "#173f58", "#102f47", "#0a2338"];
@@ -11,6 +12,12 @@ let scaleMode = "readable";
 let neighborhoodMode = "depth";
 const depthMapColors = {land:"#dad6c8",epipelagic:"#3b91a2",mesopelagic:"#2c7087",bathypelagic:"#1e506d",abyssopelagic:"#163a59",hadalpelagic:"#0a203b"};
 const sourceMapColors = {land:"#dad6c8",direct_measurement:"#5bd8ce",indirect_or_interpolated:"#e8b960",mixed_or_unknown:"#b49ae8"};
+const biomeMapColors = {Polar:"#638aa0",Westerlies:"#426d82",Trades:"#295668",Coastal:"#6d7a72"};
+const footprintCodes = [...new Set(footprints.footprint_runs.map(run => run[3]))];
+const footprintCodeIndex = new Map(footprintCodes.map((code, index) => [code, index]));
+const footprintAssignments = new Int16Array(footprints.grid.shape[0] * footprints.grid.shape[1]).fill(-1);
+footprints.footprint_runs.forEach(([row, start, end, code]) => footprintAssignments.fill(footprintCodeIndex.get(code), row * footprints.grid.shape[1] + start, row * footprints.grid.shape[1] + end + 1));
+let footprintMollweideAssignments;
 
 function el(name, attrs = {}, text = "") {
   const node = document.createElementNS(NS, name);
@@ -119,7 +126,90 @@ function render() {
     svg.append(el("path", {d:`M${x-8} ${floorY}H${x+widths+8}V640H${x-8}Z`,class:"seabed"}));
   });
   renderNeighborhood();
+  renderFootprint();
   updateReadout();
+}
+
+function hexRgb(value) {
+  return [parseInt(value.slice(1,3),16),parseInt(value.slice(3,5),16),parseInt(value.slice(5,7),16)];
+}
+
+function buildMollweideAssignments(rows, columns) {
+  const projected = new Int16Array(rows * columns).fill(-2);
+  const rootTwo = Math.SQRT2;
+  for (let displayRow = 0; displayRow < rows; displayRow += 1) {
+    const y = (1 - (displayRow + 0.5) / rows * 2) * rootTwo;
+    const theta = Math.asin(Math.max(-1, Math.min(1, y / rootTwo)));
+    const cosine = Math.cos(theta);
+    for (let column = 0; column < columns; column += 1) {
+      const x = ((column + 0.5) / columns * 2 - 1) * 2 * rootTwo;
+      const longitudeRadians = cosine < 1e-10 ? 0 : Math.PI * x / (2 * rootTwo * cosine);
+      if (Math.abs(longitudeRadians) > Math.PI) continue;
+      const latitudeRadians = Math.asin(Math.max(-1, Math.min(1, (2 * theta + Math.sin(2 * theta)) / Math.PI)));
+      const longitude = longitudeRadians * 180 / Math.PI;
+      const latitude = latitudeRadians * 180 / Math.PI;
+      const sourceColumn = Math.round((longitude - footprints.grid.longitude_start) / footprints.grid.spacing_degrees);
+      const sourceRow = Math.round((latitude - footprints.grid.latitude_start) / footprints.grid.spacing_degrees);
+      if (sourceRow >= 0 && sourceRow < rows && sourceColumn >= 0 && sourceColumn < columns) projected[displayRow * columns + column] = footprintAssignments[sourceRow * columns + sourceColumn];
+    }
+  }
+  return projected;
+}
+
+function renderFootprint() {
+  const canvas = document.querySelector("#footprint-canvas");
+  const context = canvas.getContext("2d");
+  const [rows, columns] = footprints.grid.shape;
+  if (!footprintMollweideAssignments) footprintMollweideAssignments = buildMollweideAssignments(rows, columns);
+  const image = context.createImageData(columns, rows);
+  const selectedIndex = footprintCodeIndex.get(selectedProvince);
+  const provinceByCode = new Map(data.provinces.map(province => [province.code, province]));
+  const background = hexRgb("#06181e"), boundary = hexRgb("#8aa3a5"), selected = hexRgb("#63e2d8"), selectedEdge = hexRgb("#ffe078");
+  const biomeRgb = new Map(footprintCodes.map(code => [code, hexRgb(biomeMapColors[provinceByCode.get(code)?.biome] ?? "#38545b")]));
+  for (let displayRow = 0; displayRow < rows; displayRow += 1) {
+    for (let column = 0; column < columns; column += 1) {
+      const sourceOffset = displayRow * columns + column;
+      const displayOffset = sourceOffset * 4;
+      const codeIndex = footprintMollweideAssignments[sourceOffset];
+      let rgb = background;
+      if (codeIndex >= 0) {
+        const code = footprintCodes[codeIndex];
+        rgb = codeIndex === selectedIndex ? selected : biomeRgb.get(code);
+        const east = column + 1 < columns ? footprintMollweideAssignments[sourceOffset + 1] : -2;
+        const north = displayRow + 1 < rows ? footprintMollweideAssignments[sourceOffset + columns] : -2;
+        if (east !== codeIndex || north !== codeIndex) rgb = codeIndex === selectedIndex || east === selectedIndex || north === selectedIndex ? selectedEdge : boundary;
+      }
+      image.data[displayOffset] = rgb[0]; image.data[displayOffset + 1] = rgb[1]; image.data[displayOffset + 2] = rgb[2]; image.data[displayOffset + 3] = 255;
+    }
+  }
+  context.putImageData(image, 0, 0);
+
+  const crosswalk = footprints.crosswalk.find(item => item.osw_code === selectedProvince);
+  const summary = footprints.provinces[selectedProvince];
+  const profile = document.querySelector("#footprint-depth-profile");
+  const legend = document.querySelector("#footprint-legend");
+  const bands = [["epipelagic","<200 m"],["mesopelagic","200–<1,000 m"],["bathypelagic","1,000–<4,000 m"],["abyssopelagic","4,000–<6,000 m"],["hadalpelagic","≥6,000 m"]];
+  profile.replaceChildren();
+  legend.replaceChildren();
+  if (!summary) {
+    document.querySelector("#footprint-status").textContent = "OLDER 1995 IDENTITY · NO SEPARATE V4 FOOTPRINT";
+    document.querySelector("#footprint-summary").textContent = `${selectedProvince}: ${crosswalk.note} The map retains all 54 Version 4 territories but highlights none; OSW will not invent a boundary for this older identity.`;
+    profile.setAttribute("aria-label", `${selectedProvince} has no separate Longhurst Version 4 footprint or depth distribution.`);
+  } else {
+    bands.forEach(([key, label]) => {
+      const fraction = summary.wet_area_fraction_by_seafloor_band[key] ?? 0;
+      const segment = document.createElement("span"); segment.style.width = `${fraction * 100}%`; segment.style.background = depthMapColors[key]; segment.title = `${label}: ${(fraction * 100).toFixed(1)}%`;
+      profile.append(segment);
+      const item = document.createElement("span"), swatch = document.createElement("i"); swatch.style.background = depthMapColors[key]; item.append(swatch, document.createTextNode(`${label} · ${(fraction * 100).toFixed(1)}%`)); legend.append(item);
+    });
+    const direct = (summary.wet_area_fraction_by_tid_class.direct_measurement ?? 0) * 100;
+    const indirect = (summary.wet_area_fraction_by_tid_class.indirect_or_interpolated ?? 0) * 100;
+    const alias = crosswalk.source_code === selectedProvince ? "direct code match" : `${crosswalk.source_code} source-code alias`;
+    document.querySelector("#footprint-status").textContent = `54-PROVINCE VERSION 4 · ${alias.toUpperCase()}`;
+    document.querySelector("#footprint-summary").textContent = `${selectedProvince} / ${crosswalk.source_code}: ${summary.wet_sample_count.toLocaleString()} wet 0.25° samples representing approximately ${summary.sampled_wet_area_km2.toLocaleString()} km² after spherical cell weighting. Wet seabed depths span ${summary.minimum_wet_depth_m.toLocaleString()}–${summary.maximum_wet_depth_m.toLocaleString()} m. Source-type area is ${direct.toFixed(1)}% direct measurement and ${indirect.toFixed(1)}% indirect/interpolated; remaining area is mixed/unknown. The source polygon also contains ${summary.non_wet_geometry_sample_count.toLocaleString()} GEBCO non-wet centers from coastline/grid disagreement.`;
+    profile.setAttribute("aria-label", `${selectedProvince} area-weighted seafloor distribution: ${bands.map(([key,label]) => `${label} ${(summary.wet_area_fraction_by_seafloor_band[key] ?? 0) * 100}%`).join(", ")}.`);
+  }
+  canvas.setAttribute("aria-label", `Oceanic Mollweide world map of the 54 source-aligned Longhurst Version 4 province footprints. ${document.querySelector("#footprint-summary").textContent}`);
 }
 
 function renderNeighborhood() {

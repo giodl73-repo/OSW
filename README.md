@@ -863,4 +863,6 @@ fixture job on the approved Atlas 03 history.
 
 ## License
 
-MIT License. Copyright (c) Gio Della-Libera.
+MIT License. Copyright (c) Gio Della-Libera. Third-party scientific data and
+derived data layers retain their own terms; see
+[third-party data notices](THIRD-PARTY-NOTICES.md).

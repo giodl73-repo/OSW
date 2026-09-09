@@ -1,0 +1,65 @@
+{
+  "schema": "osw-longhurst-2007-gebco-2026-source-receipt-v1",
+  "acquired_utc": "2026-09-09T00:22:55.168384+00:00",
+  "source_payload_posture": "provider bytes omitted; exact URLs, response metadata, byte counts, and SHA-256 retained; transformed crosswalk, raster mask, and summaries committed",
+  "sources": {
+    "geometry": {
+      "provider": "Flanders Marine Institute (VLIZ), Marine Regions",
+      "product": "Longhurst Provinces Version 4, March 2010",
+      "url": "https://geo.vliz.be/geoserver/MarineRegions/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=MarineRegions:longhurst&outputFormat=application/json",
+      "feature_count": 54,
+      "crs": "EPSG:4326",
+      "license": "CC BY 4.0 under the current Marine Regions license statement; attribution required",
+      "citation": "Flanders Marine Institute (2009). Longhurst Provinces. Available online at https://www.marineregions.org/. Consulted on 2026-09-09.",
+      "response_bytes": 4970812,
+      "response_sha256": "53972f9ddde5b8a6fa19b804c18d3699b037ca03743f552a97d21cd55ff140a1",
+      "headers": {
+        "content_type": "application/json;charset=UTF-8",
+        "etag": null,
+        "last_modified": null
+      }
+    },
+    "elevation": {
+      "provider": "GEBCO via CEDA OPeNDAP",
+      "product": "GEBCO_2026 Grid, ice-surface-elevation version",
+      "doi": "10.5285/4f68d5c7-45eb-f999-e063-7086abc036fa",
+      "url": "https://dap.ceda.ac.uk/thredds/dodsC/bodc/gebco/global/gebco_2026/ice_surface_elevation/netcdf/GEBCO_2026.nc.ascii?elevation[30:60:43170][30:60:86370]",
+      "response_bytes": 6527462,
+      "response_sha256": "335cd8ef2535566858e6e9ccfdcadce575ee031cc9cb433db425154e76ac02c7",
+      "headers": {
+        "content_type": "text/plain",
+        "etag": null,
+        "last_modified": null
+      },
+      "license": "public domain with requested attribution and disclaimer"
+    },
+    "tid": {
+      "provider": "GEBCO via CEDA OPeNDAP",
+      "product": "GEBCO_2026 Type Identifier Grid",
+      "doi": "10.5285/4f68d5c7-45eb-f999-e063-7086abc036fa",
+      "url": "https://dap.ceda.ac.uk/thredds/dodsC/bodc/gebco/global/gebco_2026/type_identifier_grid/netcdf/gebco_2026_tid.nc.ascii?tid[30:60:43170][30:60:86370]",
+      "response_bytes": 3948603,
+      "response_sha256": "1ee9e4a915e441cfaffcfe0a33a451e8be97a61f8ec16de2593c810575c4806f",
+      "headers": {
+        "content_type": "text/plain",
+        "etag": null,
+        "last_modified": null
+      },
+      "license": "public domain with requested attribution and disclaimer"
+    }
+  },
+  "result": {
+    "source_feature_count": 54,
+    "osw_directory_count": 56,
+    "source_aligned_osw_count": 54,
+    "older_only_osw_count": 2,
+    "geometry_grid_cell_count": 687150,
+    "wet_geometry_grid_cell_count": 681631,
+    "non_wet_geometry_grid_cell_count": 5519,
+    "global_wet_grid_cell_count": 684403,
+    "wet_cells_outside_geometry_count": 2772,
+    "overlapping_geometry_grid_cell_count": 0,
+    "source_geometry_repair_count": 3
+  },
+  "boundary": "Source-aligned static mean surface ecology, not a current, water mass, material wall, dynamic province diagnosis, heat field, transport, or full-depth occupancy. Bathymetry statistics are 0.25-degree cell-center estimates with spherical area weighting, not exact polygon integrals or navigational products."
+}

@@ -156,6 +156,14 @@ An accompanying 8° × 8° seed-neighborhood view reveals local bathymetric shap
 and GEBCO source type at 0.25° spacing without treating its grid-cell counts as
 province area or occupancy.
 
+The workbench now also supplies a source-aligned geographic footprint for the
+revised Longhurst 2007 Version 4 edition. Its Oceanic Mollweide map and
+area-weighted GEBCO intersection turn local depth hints into 54 province-wide
+seafloor distributions. This creates an explicit edition fork rather than a
+false completion: OSW's older directory has 56 identities, and `NPSE` plus
+`OCAL` have no separate Version 4 polygons. An address must therefore name not
+only “Longhurst,” but the 1995-style 56-name or revised 2007 54-polygon edition.
+
 ## Planetary boundary
 
 Edition 1 is Earth ocean geography. Its sunlight labels, metre cutoffs, solid

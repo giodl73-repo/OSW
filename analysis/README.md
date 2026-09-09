@@ -1290,3 +1290,24 @@ durable lesson is vertical: a surface diagnostic equal to 13.1% of surface
 warming coexists with a distinct 0–50 m diagnostic equal to 72.5% of fixed-column
 storage. These are different supports and denominators, not one fraction traced
 downward.
+
+## Source-aligned province-wide bathymetry
+
+`acquire_longhurst_2007_gebco_depths.py` performs one explicit network stage
+across the Marine Regions Longhurst Version 4 WFS and global 0.25° GEBCO_2026
+elevation/TID grids. It applies point-in-polygon membership at GEBCO centers,
+records three source-ring validity repairs, weights wet cells by spherical
+area, and emits the 56↔54 edition crosswalk, 54 province summaries, and a
+run-length footprint mask used by the Ocean Column workbench.
+
+```powershell
+python -m pip install -r ../requirements-geography.txt
+python acquire_longhurst_2007_gebco_depths.py
+python -m pytest test_longhurst_2007_gebco_depths.py test_ocean_column_viewer.py -q
+```
+
+The source responses are not vendored. Their exact URLs, byte counts, response
+metadata, and SHA-256 hashes are committed in the source receipt. The resulting
+681,631 wet intersections estimate province seafloor-depth distributions at
+the declared sampling; they are not exact polygon integrals, ecological
+occupancy at depth, dynamic provinces, current boundaries, heat, or transport.

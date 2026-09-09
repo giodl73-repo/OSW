@@ -47,39 +47,63 @@ the GEBCO source class. It is a regular longitude/latitude display, not an
 equal-area map: pixel counts and proportions are sample counts, never area
 fractions. The window does not follow or estimate province boundaries.
 
+## Source-aligned province footprints
+
+The next panel replaces the seed window with the revised Longhurst 2007
+geometry distributed by Marine Regions as Version 4. A global GEBCO_2026
+elevation/TID screen assigns 0.25° pixel centers to those polygons and weights
+every wet center by its spherical cell area. The result contains 681,631 wet
+province intersections, no overlaps, and 54 province-wide depth/source
+summaries. The map uses Oceanic Mollweide so the geographic view is equal-area;
+the quantitative summaries retain independent spherical weights.
+
+This resolves geometry for the source's 54-province edition, not retroactively
+for every name in OSW's older 56-identity directory. Five codes crosswalk by
+alias (`CHIL/HUMB`, `INDE/IND E`, `INDW/IND W`, `NASE/NAST E`, and
+`NASW/NAST W`). `NPSE` and `OCAL` have no separate Version 4 footprint because
+the later edition merged or reorganized the relevant North Pacific geography.
+The viewer leaves those two selections unhighlighted rather than inventing a
+border.
+
+The provider geometry contains three invalid rings (`ALSK`, `NECS`, `SUND`);
+the acquisition records the GEOS validity repair. It also preserves 5,519
+polygon centers that GEBCO classifies as non-wet and 2,772 globally wet GEBCO
+centers outside the polygon cover. Those are source/grid seam diagnostics, not
+cells silently reassigned to make the map close.
+
 ## Rebuild and verify
 
 ```powershell
 python analysis/build_ocean_column_viewer.py
 python analysis/build_gebco_province_seed_neighborhoods.py
 node --check column/app.js
-python -m pytest analysis/test_ocean_column_viewer.py -q
+python -m pytest analysis/test_ocean_column_viewer.py analysis/test_longhurst_2007_gebco_depths.py -q
 ```
 
 Refresh the source only as an explicit network operation:
 
 ```powershell
+python -m pip install -r requirements-geography.txt
 python analysis/acquire_gebco_province_seed_depths.py
 python analysis/acquire_gebco_province_seed_neighborhoods.py
+python analysis/acquire_longhurst_2007_gebco_depths.py
 python analysis/build_gebco_province_seed_depths.py
 python analysis/build_gebco_province_seed_neighborhoods.py
 python analysis/build_ocean_column_viewer.py
 ```
 
-The default test suite remains offline. `data.js` is committed so the page does
-not need a provider or build step at runtime.
+The default test suite remains offline. Generated browser payloads are committed
+so the page does not need a provider or build step at runtime. The full provider
+geometry and GEBCO responses are checksum-receipted but omitted under the
+declared source-payload posture.
 
 ## Next evidence gate
 
-Province-wide occupancy needs all of the following before it can replace the
-single-cell screen and teaching columns:
-
-1. exact, licensed horizontal province geometry rather than OSW's approximate
-   nearest-seed display geometry;
-2. a controlled GEBCO_2026 spatial subset covering that exact geometry;
-3. coordinate bounds, vertical datum, wet mask, and partial-cell policy;
-4. a deterministic intersection with source checksums and uncertainty notes;
-5. `.roles` review of the resulting cartography and data claim.
+The geometry/bathymetry gate is now implemented for the source-aligned 54. The
+next gate is an edition decision: preserve an explicit 56/54 selector, migrate
+the quantitative address to Version 4, or locate an independently reproducible
+and redistributable older geometry. No approach may silently project the two
+unmatched identities onto Version 4.
 
 GEBCO is implemented source D5 in the [source register](../SOURCE-REGISTER.md).
 The grid is public domain with requested attribution. GEBCO states that its

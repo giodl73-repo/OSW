@@ -49,6 +49,23 @@ mix land and water. Their 60,984 grid points are longitude/latitude samples—no
 equal-area fractions or province statistics—and the workbench says so beside
 both the depth-class and source-type views.
 
+The square-window limitation then yields to the first source-aligned true
+footprint. Marine Regions Version 4 polygons are intersected against a global
+0.25° GEBCO elevation/TID substrate: 681,631 wet centers across 54 territories,
+weighted by spherical cell area and rendered on Oceanic Mollweide. The result
+does more than make a prettier map. It reveals that OSW had been holding two
+Longhurst editions in one mental picture. The older directory has 56 identities;
+the downloadable revised 2007 geometry has 54, with five code aliases and no
+separate `NPSE` or `OCAL` polygon. OSW keeps both names visible and fabricates
+neither missing border.
+
+Three source rings require recorded validity repair, while 5,519 polygon centers
+disagree with GEBCO's wet mask and 2,772 wet GEBCO centers fall outside the
+source cover. These mismatches are retained as evidence. “True footprint” now
+means source-aligned static ecological geometry at a declared raster sampling;
+it still does not mean a moving habitat, current, water mass, heat field, or
+transport boundary.
+
 ## 2026-09-05 — Ocean objects become a field guide
 
 The maps produced a larger question: are OSW's jets, bands, water masses, and
