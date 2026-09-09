@@ -115,7 +115,7 @@ thickness, collocation, missing-value, control, and closure-scope checks. Net
 volume reverses direction among the sampled months, while the displaced control
 shows the same broad sign pattern. That weakens any claim that this short
 sample has discovered a uniquely organizing barrier. [Open the Exchange
-view](../exchange/?stage=exchange) or [download its receipt](../research/ocean-state-boundary-exchange-pilot-2018.json).
+view](../exchange/index.html?stage=exchange) or [download its receipt](../research/ocean-state-boundary-exchange-pilot-2018.json).
 
 An independent frozen temperature-gradient test adds a stronger negative
 result. Across four depths and four months, the strongest nearby gradient never
@@ -124,7 +124,7 @@ or four faces away and most deeper gradients are too weak to pass the fixed
 floor. This supports `not_supported_as_persistent_temperature_front` for the
 tested segment—not deletion of the reference border and not a conclusion about
 salinity, density, ecology, observations, or other years. [Compare the
-stability matrix](../exchange/?stage=stability).
+stability matrix](../exchange/index.html?stage=stability).
 
 The event route shows why stable addresses remain useful even when their edges
 are permeable. A 21-day North Atlantic surface heatwave lineage moves roughly
@@ -133,14 +133,14 @@ overlaps reach `NWCS` and `NAST W`; one small side branch changes centroid
 address to adjacent `NWCS`. Exact lineage overlap plus a graph edge earns a
 geometric transition only. With no matched velocity, volume, temperature
 inventory, or thermal-flux product at the event time, transported heat remains
-unknown. [Follow the accessible sequence](../exchange/?stage=events).
+unknown. [Follow the accessible sequence](../exchange/index.html?stage=events).
 
 The complete synthesis refuses a forced answer. All 128 source edges have an
 evidence row, but 127 physical interpretations remain `unknown`. Only the 16
 tested native faces of `SANT--SSTC` earn a `demote` annotation for persistent
 physical-boundary candidacy. The full source edge remains reference geography;
 no border is merged, split, moved, deleted, or automatically retained as a
-physical object. [Inspect every decision and its upgrade criterion](../exchange/?stage=decisions).
+physical object. [Inspect every decision and its upgrade criterion](../exchange/index.html?stage=decisions).
 
 ## Common mistakes
 

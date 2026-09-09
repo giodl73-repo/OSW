@@ -8,6 +8,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "analysis" / "build_ocean_object_evidence_receipts.py"
 RECEIPTS = ROOT / "research" / "ocean-object-evidence-receipts.json"
+
+
+def canonical_text_sha256(path):
+    return hashlib.sha256(path.read_text(encoding="utf-8").encode("utf-8")).hexdigest()
+
+
 REGISTRY = ROOT / "research" / "ocean-object-classification.csv"
 
 
@@ -39,7 +45,7 @@ def test_evidence_receipt_contract():
         assert receipt["next_evidence"] and receipt["boundary"]
         source = ROOT / receipt["source_artifact"]["path"]
         assert source.is_file()
-        assert hashlib.sha256(source.read_bytes()).hexdigest() == receipt["source_artifact"]["artifact_sha256"]
+        assert canonical_text_sha256(source) == receipt["source_artifact"]["artifact_sha256"]
         for object_id in receipt["registry_matches"]:
             assert object_id in objects
         for check in receipt["identity_evaluations"]:
