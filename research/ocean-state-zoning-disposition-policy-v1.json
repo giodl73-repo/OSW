@@ -1,0 +1,19 @@
+{
+  "schema": "osw-ocean-state-zoning-disposition-policy-v1",
+  "status": "frozen_before_matrix_generation",
+  "frozen_at": "2026-09-08T23:50:00-07:00",
+  "scope": "physical interpretation of source borders; source reference adjacency is preserved",
+  "allowed_dispositions": ["retain", "merge", "split", "move", "demote", "unknown"],
+  "rules": {
+    "retain": "requires repeatable boundary stability in at least two independent physical fields plus exchange or retention behavior distinguishable from matched controls and adequate seasonal/interannual support",
+    "merge": "requires weak cross-border contrast in at least two independent observed properties plus exchange consistent with an interior control and no persistent boundary across seasons and years",
+    "split": "requires at least one reproducible internal boundary supported by two independent fields, controls, and multiseason or multiyear persistence",
+    "move": "requires a displaced boundary with repeatable location/envelope in at least two independent fields and more than one year, plus improvement over the source edge under frozen controls",
+    "demote": "requires a tested physical-boundary candidate to fail at least two independent declared tests, including a matched-control or stability test; demotion affects the physical overlay only",
+    "unknown": "required whenever no other disposition meets its full rule"
+  },
+  "conflict_policy": "Do not collapse conflicting evidence into one scalar score. Preserve every evidence family and choose unknown when a rule is incomplete.",
+  "reference_policy": "No automated disposition deletes, merges, splits, or moves the Longhurst Version 4 source geometry. Candidate physical overlays are shown beside the source edition.",
+  "approval_policy": "Repository role approval validates implementation and claim discipline only. Owner approval and external scientific review are separate prerequisites for any adopted zoning revision.",
+  "boundary": "This policy can disposition only evidence admitted in the current bounded program. Unknown is an intended result, and a segment-level demotion cannot be generalized to an untested global edge."
+}

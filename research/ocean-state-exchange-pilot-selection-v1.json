@@ -1,42 +1,4260 @@
 {
   "schema": "osw-ocean-state-exchange-pilot-selection-v1",
-  "status": "frozen_rule_no_pilot_selected",
-  "candidate_source": "research/longhurst-2007-province-adjacency.json",
-  "eligible_contact_class": "shared_source_edge",
-  "excluded_contact_classes": [
-    "point_only_contact",
-    "tolerance_only_near_miss",
-    "sampled_grid_only_neighbor",
-    "physical_gateway_not_coincident_with_source_edge",
-    "older_identity_without_separate_version_4_footprint"
+  "status": "pilot_selected_before_transport_outcomes",
+  "selected_at": "2026-09-08T22:30:00-07:00",
+  "candidate_source": {
+    "path": "research/longhurst-2007-province-adjacency.json",
+    "sha256": "f835b46d5ba7b4385b033f41cab7aaf459e856bf4a4bde803a558c1b97625f3f",
+    "candidate_count": 128
+  },
+  "geometry_source": {
+    "url": "https://geo.vliz.be/geoserver/MarineRegions/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=MarineRegions:longhurst&outputFormat=application/json&bbox=-83.25,-71.1,-39.5,-46.5,EPSG:4326",
+    "content_location": null,
+    "response_sha256": "5b95bc91e83f80b186dce29a524e451b37abefc6a0761d6b01241caae17ddeab",
+    "regional_normalized_repaired_geometry_sha256": "0027c47f4f1116d1c8d3261c33858bc4de036e0d7a462302dd8ebfa0560c4a05",
+    "identity_match_to_frozen_graph": true
+  },
+  "native_grid": {
+    "path": "atlas/data/oras5-drake-mesh.nc",
+    "sha256": "a575659f2249a60ce01ecfc71fc489d17f8476d1a41dfb116b25c349ddcb0824",
+    "assignment_audit": {
+      "assigned_horizontal_cells": 32333,
+      "unassigned_horizontal_cells": 2867,
+      "overlap_cell_count": 0
+    },
+    "face_thickness_audit": {
+      "path": "research/osw-m3-oras5-face-thickness-audit.json",
+      "sha256": "f395604157221478660969955c721ab058161381937db8e4b513f9ae7f70215b",
+      "status": "candidate_passes_native_geometry_consistency"
+    }
+  },
+  "state_sources": [
+    {
+      "month": "201802",
+      "path": "atlas/data/oras5-drake-state-201802.nc",
+      "sha256": "caeb09b62d6c2508c5ae0331e7b81786893b7a533e185754a1cb3837dbe6802a"
+    },
+    {
+      "month": "201805",
+      "path": "atlas/data/oras5-drake-state-201805.nc",
+      "sha256": "7451a7028a604278e68bbbb0a4a4271c0396bcc0a8239e503ec77a6a07d84ce0"
+    },
+    {
+      "month": "201808",
+      "path": "atlas/data/oras5-drake-state-201808.nc",
+      "sha256": "92a39a07152f7bb03479bad0b8e10910eb5302e5999c8ed300b25f7e61ead756"
+    },
+    {
+      "month": "201811",
+      "path": "atlas/data/oras5-drake-state-201811.nc",
+      "sha256": "e37425194a8f311d699be8d94c9dd17c9ada8cc39fa84239f40466c7b94e05de"
+    }
   ],
-  "eligibility_gates": [
-    "identity",
-    "native_grid_geometry",
-    "compatible_fields",
-    "source_and_license_custody",
-    "matched_control",
-    "testable_numerics",
-    "bounded_resource_scope"
-  ],
+  "frozen_thresholds": {
+    "minimum_exact_wet_mask_matched_control_faces": 8,
+    "maximum_paired_faces_for_repository_scope": 2000,
+    "field_support": "all wet velocity and both adjacent T-cell temperature values finite in all four months",
+    "control_support": "one-cell displacement into first province with identical vertical wet mask"
+  },
   "ordering": [
     "source_payload_already_under_valid_osw_custody",
     "native_grid_face_geometry_already_audited",
     "complete_vertical_and_seasonal_support",
-    "matched_control_strength",
+    "matched_control_fraction_descending",
+    "matched_control_face_count_descending",
     "committed_0_25_degree_edge_support",
-    "new_method_archetype_coverage",
     "stable_edge_id"
   ],
   "prohibited_selection_inputs": [
-    "apparent_exchange_strength",
-    "preferred_direction",
-    "familiar_current_name",
-    "visual_beauty",
-    "agreement_with_desired_zoning",
-    "media_interest",
-    "preliminary_result_surprise"
+    "velocity_magnitude",
+    "transport_sign",
+    "transport_magnitude",
+    "temperature_contrast",
+    "heat_transport",
+    "desired_zoning_result"
   ],
-  "selected_edge": null,
-  "boundary": "This rule selects a method pilot without using transport outcomes. Passing selection does not validate a border, establish exchange, authorize global processing, or equate a physical gateway with a province edge."
+  "candidates": [
+    {
+      "edge_id": "ALSK--BERS",
+      "provinces": [
+        "ALSK",
+        "BERS"
+      ],
+      "shared_boundary_length_km": 588.796,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ALSK--CCAL",
+      "provinces": [
+        "ALSK",
+        "CCAL"
+      ],
+      "shared_boundary_length_km": 578.764,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ALSK--PSAE",
+      "provinces": [
+        "ALSK",
+        "PSAE"
+      ],
+      "shared_boundary_length_km": 3726.676,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ANTA--APLR",
+      "provinces": [
+        "ANTA",
+        "APLR"
+      ],
+      "shared_boundary_length_km": 21867.335,
+      "native_boundary_face_count": 333,
+      "complete_field_face_count": 333,
+      "exact_wet_mask_matched_control_face_count": 232,
+      "matched_control_fraction": 0.696697,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": true,
+        "compatible_fields": true,
+        "source_and_license_custody": true,
+        "matched_control": true,
+        "testable_numerics": true,
+        "bounded_resource_scope": true
+      },
+      "disposition": "eligible",
+      "failure_reasons": []
+    },
+    {
+      "edge_id": "ANTA--SANT",
+      "provinces": [
+        "ANTA",
+        "SANT"
+      ],
+      "shared_boundary_length_km": 23640.356,
+      "native_boundary_face_count": 204,
+      "complete_field_face_count": 204,
+      "exact_wet_mask_matched_control_face_count": 124,
+      "matched_control_fraction": 0.607843,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": true,
+        "compatible_fields": true,
+        "source_and_license_custody": true,
+        "matched_control": true,
+        "testable_numerics": true,
+        "bounded_resource_scope": true
+      },
+      "disposition": "eligible",
+      "failure_reasons": []
+    },
+    {
+      "edge_id": "ARAB--EAFR",
+      "provinces": [
+        "ARAB",
+        "EAFR"
+      ],
+      "shared_boundary_length_km": 377.854,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARAB--IND W",
+      "provinces": [
+        "ARAB",
+        "IND W"
+      ],
+      "shared_boundary_length_km": 2040.243,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARAB--MONS",
+      "provinces": [
+        "ARAB",
+        "MONS"
+      ],
+      "shared_boundary_length_km": 5402.456,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARAB--REDS",
+      "provinces": [
+        "ARAB",
+        "REDS"
+      ],
+      "shared_boundary_length_km": 316.643,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARCH--AUSE",
+      "provinces": [
+        "ARCH",
+        "AUSE"
+      ],
+      "shared_boundary_length_km": 3684.303,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARCH--AUSW",
+      "provinces": [
+        "ARCH",
+        "AUSW"
+      ],
+      "shared_boundary_length_km": 475.113,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARCH--CHIN",
+      "provinces": [
+        "ARCH",
+        "CHIN"
+      ],
+      "shared_boundary_length_km": 1470.606,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARCH--IND E",
+      "provinces": [
+        "ARCH",
+        "IND E"
+      ],
+      "shared_boundary_length_km": 915.446,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARCH--KURO",
+      "provinces": [
+        "ARCH",
+        "KURO"
+      ],
+      "shared_boundary_length_km": 477.333,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARCH--MONS",
+      "provinces": [
+        "ARCH",
+        "MONS"
+      ],
+      "shared_boundary_length_km": 622.425,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARCH--SPSG",
+      "provinces": [
+        "ARCH",
+        "SPSG"
+      ],
+      "shared_boundary_length_km": 2583.612,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARCH--SUND",
+      "provinces": [
+        "ARCH",
+        "SUND"
+      ],
+      "shared_boundary_length_km": 13022.175,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARCH--TASM",
+      "provinces": [
+        "ARCH",
+        "TASM"
+      ],
+      "shared_boundary_length_km": 1854.473,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARCH--WARM",
+      "provinces": [
+        "ARCH",
+        "WARM"
+      ],
+      "shared_boundary_length_km": 3816.23,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARCT--BPLR",
+      "provinces": [
+        "ARCT",
+        "BPLR"
+      ],
+      "shared_boundary_length_km": 7779.924,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARCT--NADR",
+      "provinces": [
+        "ARCT",
+        "NADR"
+      ],
+      "shared_boundary_length_km": 2149.182,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARCT--NWCS",
+      "provinces": [
+        "ARCT",
+        "NWCS"
+      ],
+      "shared_boundary_length_km": 794.12,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ARCT--SARC",
+      "provinces": [
+        "ARCT",
+        "SARC"
+      ],
+      "shared_boundary_length_km": 3356.806,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "AUSE--AUSW",
+      "provinces": [
+        "AUSE",
+        "AUSW"
+      ],
+      "shared_boundary_length_km": 88.851,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "AUSE--SUND",
+      "provinces": [
+        "AUSE",
+        "SUND"
+      ],
+      "shared_boundary_length_km": 74.302,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "AUSE--TASM",
+      "provinces": [
+        "AUSE",
+        "TASM"
+      ],
+      "shared_boundary_length_km": 1363.023,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "AUSW--ISSG",
+      "provinces": [
+        "AUSW",
+        "ISSG"
+      ],
+      "shared_boundary_length_km": 3161.631,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "AUSW--MONS",
+      "provinces": [
+        "AUSW",
+        "MONS"
+      ],
+      "shared_boundary_length_km": 6460.298,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "AUSW--SSTC",
+      "provinces": [
+        "AUSW",
+        "SSTC"
+      ],
+      "shared_boundary_length_km": 4402.147,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "AUSW--SUND",
+      "provinces": [
+        "AUSW",
+        "SUND"
+      ],
+      "shared_boundary_length_km": 1390.271,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "BENG--EAFR",
+      "provinces": [
+        "BENG",
+        "EAFR"
+      ],
+      "shared_boundary_length_km": 483.675,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "BENG--GUIN",
+      "provinces": [
+        "BENG",
+        "GUIN"
+      ],
+      "shared_boundary_length_km": 347.437,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "BENG--SATL",
+      "provinces": [
+        "BENG",
+        "SATL"
+      ],
+      "shared_boundary_length_km": 3088.591,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "BERS--BPLR",
+      "provinces": [
+        "BERS",
+        "BPLR"
+      ],
+      "shared_boundary_length_km": 222.476,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "BERS--CHIN",
+      "provinces": [
+        "BERS",
+        "CHIN"
+      ],
+      "shared_boundary_length_km": 49.933,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "BERS--KURO",
+      "provinces": [
+        "BERS",
+        "KURO"
+      ],
+      "shared_boundary_length_km": 2214.445,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "BERS--PSAE",
+      "provinces": [
+        "BERS",
+        "PSAE"
+      ],
+      "shared_boundary_length_km": 406.144,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "BERS--PSAW",
+      "provinces": [
+        "BERS",
+        "PSAW"
+      ],
+      "shared_boundary_length_km": 3293.876,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "BPLR--NWCS",
+      "provinces": [
+        "BPLR",
+        "NWCS"
+      ],
+      "shared_boundary_length_km": 315.695,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "BPLR--SARC",
+      "provinces": [
+        "BPLR",
+        "SARC"
+      ],
+      "shared_boundary_length_km": 2018.097,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "BRAZ--FKLD",
+      "provinces": [
+        "BRAZ",
+        "FKLD"
+      ],
+      "shared_boundary_length_km": 408.481,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "BRAZ--GUIA",
+      "provinces": [
+        "BRAZ",
+        "GUIA"
+      ],
+      "shared_boundary_length_km": 317.977,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "BRAZ--SATL",
+      "provinces": [
+        "BRAZ",
+        "SATL"
+      ],
+      "shared_boundary_length_km": 5609.772,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "BRAZ--SSTC",
+      "provinces": [
+        "BRAZ",
+        "SSTC"
+      ],
+      "shared_boundary_length_km": 499.678,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CAMR--CCAL",
+      "provinces": [
+        "CAMR",
+        "CCAL"
+      ],
+      "shared_boundary_length_km": 129.161,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CAMR--HUMB",
+      "provinces": [
+        "CAMR",
+        "HUMB"
+      ],
+      "shared_boundary_length_km": 319.248,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CAMR--PNEC",
+      "provinces": [
+        "CAMR",
+        "PNEC"
+      ],
+      "shared_boundary_length_km": 5901.295,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CARB--GUIA",
+      "provinces": [
+        "CARB",
+        "GUIA"
+      ],
+      "shared_boundary_length_km": 2277.639,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CARB--NATR",
+      "provinces": [
+        "CARB",
+        "NATR"
+      ],
+      "shared_boundary_length_km": 2895.509,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CARB--NWCS",
+      "provinces": [
+        "CARB",
+        "NWCS"
+      ],
+      "shared_boundary_length_km": 285.024,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CCAL--NPPF",
+      "provinces": [
+        "CCAL",
+        "NPPF"
+      ],
+      "shared_boundary_length_km": 1825.778,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CCAL--NPTG",
+      "provinces": [
+        "CCAL",
+        "NPTG"
+      ],
+      "shared_boundary_length_km": 3397.999,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CCAL--PNEC",
+      "provinces": [
+        "CCAL",
+        "PNEC"
+      ],
+      "shared_boundary_length_km": 1086.374,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CCAL--PSAE",
+      "provinces": [
+        "CCAL",
+        "PSAE"
+      ],
+      "shared_boundary_length_km": 444.78,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CHIN--KURO",
+      "provinces": [
+        "CHIN",
+        "KURO"
+      ],
+      "shared_boundary_length_km": 2072.662,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CHIN--SUND",
+      "provinces": [
+        "CHIN",
+        "SUND"
+      ],
+      "shared_boundary_length_km": 152.013,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CNRY--GUIN",
+      "provinces": [
+        "CNRY",
+        "GUIN"
+      ],
+      "shared_boundary_length_km": 200.553,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CNRY--MEDI",
+      "provinces": [
+        "CNRY",
+        "MEDI"
+      ],
+      "shared_boundary_length_km": 17.254,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": false,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CNRY--NADR",
+      "provinces": [
+        "CNRY",
+        "NADR"
+      ],
+      "shared_boundary_length_km": 666.361,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CNRY--NAST E",
+      "provinces": [
+        "CNRY",
+        "NAST E"
+      ],
+      "shared_boundary_length_km": 3351.577,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CNRY--NATR",
+      "provinces": [
+        "CNRY",
+        "NATR"
+      ],
+      "shared_boundary_length_km": 1772.976,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "CNRY--NECS",
+      "provinces": [
+        "CNRY",
+        "NECS"
+      ],
+      "shared_boundary_length_km": 99.036,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "EAFR--ISSG",
+      "provinces": [
+        "EAFR",
+        "ISSG"
+      ],
+      "shared_boundary_length_km": 5353.706,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "EAFR--MONS",
+      "provinces": [
+        "EAFR",
+        "MONS"
+      ],
+      "shared_boundary_length_km": 1745.544,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "EAFR--SATL",
+      "provinces": [
+        "EAFR",
+        "SATL"
+      ],
+      "shared_boundary_length_km": 444.78,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "EAFR--SSTC",
+      "provinces": [
+        "EAFR",
+        "SSTC"
+      ],
+      "shared_boundary_length_km": 1514.229,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ETRA--GUIN",
+      "provinces": [
+        "ETRA",
+        "GUIN"
+      ],
+      "shared_boundary_length_km": 5660.346,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ETRA--NATR",
+      "provinces": [
+        "ETRA",
+        "NATR"
+      ],
+      "shared_boundary_length_km": 217.926,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ETRA--SATL",
+      "provinces": [
+        "ETRA",
+        "SATL"
+      ],
+      "shared_boundary_length_km": 3834.68,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ETRA--WTRA",
+      "provinces": [
+        "ETRA",
+        "WTRA"
+      ],
+      "shared_boundary_length_km": 2001.511,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "FKLD--HUMB",
+      "provinces": [
+        "FKLD",
+        "HUMB"
+      ],
+      "shared_boundary_length_km": 173.026,
+      "native_boundary_face_count": 6,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": true,
+        "compatible_fields": false,
+        "source_and_license_custody": true,
+        "matched_control": false,
+        "testable_numerics": true,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "compatible_fields",
+        "matched_control",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "FKLD--SANT",
+      "provinces": [
+        "FKLD",
+        "SANT"
+      ],
+      "shared_boundary_length_km": 1715.557,
+      "native_boundary_face_count": 106,
+      "complete_field_face_count": 106,
+      "exact_wet_mask_matched_control_face_count": 57,
+      "matched_control_fraction": 0.537736,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": true,
+        "compatible_fields": true,
+        "source_and_license_custody": true,
+        "matched_control": true,
+        "testable_numerics": true,
+        "bounded_resource_scope": true
+      },
+      "disposition": "eligible",
+      "failure_reasons": []
+    },
+    {
+      "edge_id": "FKLD--SSTC",
+      "provinces": [
+        "FKLD",
+        "SSTC"
+      ],
+      "shared_boundary_length_km": 1322.85,
+      "native_boundary_face_count": 42,
+      "complete_field_face_count": 42,
+      "exact_wet_mask_matched_control_face_count": 22,
+      "matched_control_fraction": 0.52381,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": true,
+        "compatible_fields": true,
+        "source_and_license_custody": true,
+        "matched_control": true,
+        "testable_numerics": true,
+        "bounded_resource_scope": true
+      },
+      "disposition": "eligible",
+      "failure_reasons": []
+    },
+    {
+      "edge_id": "GFST--NAST E",
+      "provinces": [
+        "GFST",
+        "NAST E"
+      ],
+      "shared_boundary_length_km": 444.78,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "GFST--NAST W",
+      "provinces": [
+        "GFST",
+        "NAST W"
+      ],
+      "shared_boundary_length_km": 3293.473,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "GFST--NWCS",
+      "provinces": [
+        "GFST",
+        "NWCS"
+      ],
+      "shared_boundary_length_km": 3593.386,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "GUIA--NATR",
+      "provinces": [
+        "GUIA",
+        "NATR"
+      ],
+      "shared_boundary_length_km": 440.316,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "GUIA--SATL",
+      "provinces": [
+        "GUIA",
+        "SATL"
+      ],
+      "shared_boundary_length_km": 1111.265,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "GUIA--WTRA",
+      "provinces": [
+        "GUIA",
+        "WTRA"
+      ],
+      "shared_boundary_length_km": 3667.065,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "GUIN--SATL",
+      "provinces": [
+        "GUIN",
+        "SATL"
+      ],
+      "shared_boundary_length_km": 444.78,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "HUMB--PEQD",
+      "provinces": [
+        "HUMB",
+        "PEQD"
+      ],
+      "shared_boundary_length_km": 2655.682,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "HUMB--PNEC",
+      "provinces": [
+        "HUMB",
+        "PNEC"
+      ],
+      "shared_boundary_length_km": 444.763,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "HUMB--SANT",
+      "provinces": [
+        "HUMB",
+        "SANT"
+      ],
+      "shared_boundary_length_km": 1864.075,
+      "native_boundary_face_count": 103,
+      "complete_field_face_count": 102,
+      "exact_wet_mask_matched_control_face_count": 50,
+      "matched_control_fraction": 0.490196,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": true,
+        "compatible_fields": true,
+        "source_and_license_custody": true,
+        "matched_control": true,
+        "testable_numerics": true,
+        "bounded_resource_scope": true
+      },
+      "disposition": "eligible",
+      "failure_reasons": []
+    },
+    {
+      "edge_id": "HUMB--SPSG",
+      "provinces": [
+        "HUMB",
+        "SPSG"
+      ],
+      "shared_boundary_length_km": 3847.627,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "HUMB--SSTC",
+      "provinces": [
+        "HUMB",
+        "SSTC"
+      ],
+      "shared_boundary_length_km": 889.561,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "IND E--IND W",
+      "provinces": [
+        "IND E",
+        "IND W"
+      ],
+      "shared_boundary_length_km": 165.267,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "IND E--MONS",
+      "provinces": [
+        "IND E",
+        "MONS"
+      ],
+      "shared_boundary_length_km": 2835.826,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "IND W--MONS",
+      "provinces": [
+        "IND W",
+        "MONS"
+      ],
+      "shared_boundary_length_km": 1928.447,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ISSG--MONS",
+      "provinces": [
+        "ISSG",
+        "MONS"
+      ],
+      "shared_boundary_length_km": 7926.356,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "ISSG--SSTC",
+      "provinces": [
+        "ISSG",
+        "SSTC"
+      ],
+      "shared_boundary_length_km": 7999.382,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "KURO--NPPF",
+      "provinces": [
+        "KURO",
+        "NPPF"
+      ],
+      "shared_boundary_length_km": 889.561,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "KURO--NPSW",
+      "provinces": [
+        "KURO",
+        "NPSW"
+      ],
+      "shared_boundary_length_km": 6630.937,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "KURO--PSAW",
+      "provinces": [
+        "KURO",
+        "PSAW"
+      ],
+      "shared_boundary_length_km": 985.954,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "KURO--SUND",
+      "provinces": [
+        "KURO",
+        "SUND"
+      ],
+      "shared_boundary_length_km": 876.158,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "KURO--WARM",
+      "provinces": [
+        "KURO",
+        "WARM"
+      ],
+      "shared_boundary_length_km": 437.332,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NADR--NAST E",
+      "provinces": [
+        "NADR",
+        "NAST E"
+      ],
+      "shared_boundary_length_km": 2742.358,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NADR--NECS",
+      "provinces": [
+        "NADR",
+        "NECS"
+      ],
+      "shared_boundary_length_km": 2118.451,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NADR--NWCS",
+      "provinces": [
+        "NADR",
+        "NWCS"
+      ],
+      "shared_boundary_length_km": 667.17,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NADR--SARC",
+      "provinces": [
+        "NADR",
+        "SARC"
+      ],
+      "shared_boundary_length_km": 716.934,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NAST E--NAST W",
+      "provinces": [
+        "NAST E",
+        "NAST W"
+      ],
+      "shared_boundary_length_km": 4101.434,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NAST E--NATR",
+      "provinces": [
+        "NAST E",
+        "NATR"
+      ],
+      "shared_boundary_length_km": 2007.256,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NAST W--NATR",
+      "provinces": [
+        "NAST W",
+        "NATR"
+      ],
+      "shared_boundary_length_km": 3809.212,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NAST W--NWCS",
+      "provinces": [
+        "NAST W",
+        "NWCS"
+      ],
+      "shared_boundary_length_km": 1260.798,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NATR--WTRA",
+      "provinces": [
+        "NATR",
+        "WTRA"
+      ],
+      "shared_boundary_length_km": 4374.292,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NECS--SARC",
+      "provinces": [
+        "NECS",
+        "SARC"
+      ],
+      "shared_boundary_length_km": 2444.446,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NEWZ--SANT",
+      "provinces": [
+        "NEWZ",
+        "SANT"
+      ],
+      "shared_boundary_length_km": 2624.434,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NEWZ--SPSG",
+      "provinces": [
+        "NEWZ",
+        "SPSG"
+      ],
+      "shared_boundary_length_km": 692.14,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NEWZ--SSTC",
+      "provinces": [
+        "NEWZ",
+        "SSTC"
+      ],
+      "shared_boundary_length_km": 1133.575,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NPPF--NPSW",
+      "provinces": [
+        "NPPF",
+        "NPSW"
+      ],
+      "shared_boundary_length_km": 2519.12,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NPPF--NPTG",
+      "provinces": [
+        "NPPF",
+        "NPTG"
+      ],
+      "shared_boundary_length_km": 4307.005,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NPPF--PSAE",
+      "provinces": [
+        "NPPF",
+        "PSAE"
+      ],
+      "shared_boundary_length_km": 3427.016,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NPPF--PSAW",
+      "provinces": [
+        "NPPF",
+        "PSAW"
+      ],
+      "shared_boundary_length_km": 2437.534,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NPSW--NPTG",
+      "provinces": [
+        "NPSW",
+        "NPTG"
+      ],
+      "shared_boundary_length_km": 2668.682,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NPSW--WARM",
+      "provinces": [
+        "NPSW",
+        "WARM"
+      ],
+      "shared_boundary_length_km": 6154.457,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "NPTG--PNEC",
+      "provinces": [
+        "NPTG",
+        "PNEC"
+      ],
+      "shared_boundary_length_km": 7327.202,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "PEQD--PNEC",
+      "provinces": [
+        "PEQD",
+        "PNEC"
+      ],
+      "shared_boundary_length_km": 10312.937,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "PEQD--SPSG",
+      "provinces": [
+        "PEQD",
+        "SPSG"
+      ],
+      "shared_boundary_length_km": 11528.157,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "PEQD--WARM",
+      "provinces": [
+        "PEQD",
+        "WARM"
+      ],
+      "shared_boundary_length_km": 1334.341,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "PNEC--WARM",
+      "provinces": [
+        "PNEC",
+        "WARM"
+      ],
+      "shared_boundary_length_km": 667.17,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "PSAE--PSAW",
+      "provinces": [
+        "PSAE",
+        "PSAW"
+      ],
+      "shared_boundary_length_km": 889.561,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "SANT--SSTC",
+      "provinces": [
+        "SANT",
+        "SSTC"
+      ],
+      "shared_boundary_length_km": 29689.828,
+      "native_boundary_face_count": 18,
+      "complete_field_face_count": 18,
+      "exact_wet_mask_matched_control_face_count": 16,
+      "matched_control_fraction": 0.888889,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": true,
+        "compatible_fields": true,
+        "source_and_license_custody": true,
+        "matched_control": true,
+        "testable_numerics": true,
+        "bounded_resource_scope": true
+      },
+      "disposition": "eligible",
+      "failure_reasons": []
+    },
+    {
+      "edge_id": "SATL--SSTC",
+      "provinces": [
+        "SATL",
+        "SSTC"
+      ],
+      "shared_boundary_length_km": 6424.0,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "SATL--WTRA",
+      "provinces": [
+        "SATL",
+        "WTRA"
+      ],
+      "shared_boundary_length_km": 2216.119,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "SPSG--SSTC",
+      "provinces": [
+        "SPSG",
+        "SSTC"
+      ],
+      "shared_boundary_length_km": 10555.469,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "SPSG--TASM",
+      "provinces": [
+        "SPSG",
+        "TASM"
+      ],
+      "shared_boundary_length_km": 244.697,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "SPSG--WARM",
+      "provinces": [
+        "SPSG",
+        "WARM"
+      ],
+      "shared_boundary_length_km": 2442.498,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "SSTC--TASM",
+      "provinces": [
+        "SSTC",
+        "TASM"
+      ],
+      "shared_boundary_length_km": 2907.715,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    },
+    {
+      "edge_id": "SUND--WARM",
+      "provinces": [
+        "SUND",
+        "WARM"
+      ],
+      "shared_boundary_length_km": 3638.528,
+      "native_boundary_face_count": 0,
+      "complete_field_face_count": 0,
+      "exact_wet_mask_matched_control_face_count": 0,
+      "matched_control_fraction": 0.0,
+      "committed_0_25_degree_edge_support": true,
+      "eligibility": {
+        "identity": true,
+        "native_grid_geometry": false,
+        "compatible_fields": false,
+        "source_and_license_custody": false,
+        "matched_control": false,
+        "testable_numerics": false,
+        "bounded_resource_scope": false
+      },
+      "disposition": "ineligible",
+      "failure_reasons": [
+        "native_grid_geometry",
+        "compatible_fields",
+        "source_and_license_custody",
+        "matched_control",
+        "testable_numerics",
+        "bounded_resource_scope"
+      ]
+    }
+  ],
+  "eligible_edge_count": 6,
+  "selected_edge": {
+    "edge_id": "SANT--SSTC",
+    "provinces": [
+      "SANT",
+      "SSTC"
+    ],
+    "shared_boundary_length_km": 29689.828,
+    "native_boundary_face_count": 18,
+    "complete_field_face_count": 18,
+    "exact_wet_mask_matched_control_face_count": 16,
+    "matched_control_fraction": 0.888889,
+    "committed_0_25_degree_edge_support": true,
+    "eligibility": {
+      "identity": true,
+      "native_grid_geometry": true,
+      "compatible_fields": true,
+      "source_and_license_custody": true,
+      "matched_control": true,
+      "testable_numerics": true,
+      "bounded_resource_scope": true
+    },
+    "disposition": "eligible",
+    "failure_reasons": []
+  },
+  "selected_face_pairs": [
+    {
+      "boundary": {
+        "face": "U",
+        "y": 184,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 184,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    },
+    {
+      "boundary": {
+        "face": "U",
+        "y": 185,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 185,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    },
+    {
+      "boundary": {
+        "face": "U",
+        "y": 186,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 186,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    },
+    {
+      "boundary": {
+        "face": "U",
+        "y": 187,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 187,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    },
+    {
+      "boundary": {
+        "face": "U",
+        "y": 188,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 188,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    },
+    {
+      "boundary": {
+        "face": "U",
+        "y": 189,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 189,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    },
+    {
+      "boundary": {
+        "face": "U",
+        "y": 190,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 190,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    },
+    {
+      "boundary": {
+        "face": "U",
+        "y": 191,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 191,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    },
+    {
+      "boundary": {
+        "face": "U",
+        "y": 192,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 192,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    },
+    {
+      "boundary": {
+        "face": "U",
+        "y": 193,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 193,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    },
+    {
+      "boundary": {
+        "face": "U",
+        "y": 194,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 194,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    },
+    {
+      "boundary": {
+        "face": "U",
+        "y": 195,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 195,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    },
+    {
+      "boundary": {
+        "face": "U",
+        "y": 196,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 196,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    },
+    {
+      "boundary": {
+        "face": "U",
+        "y": 197,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 197,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    },
+    {
+      "boundary": {
+        "face": "U",
+        "y": 198,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 198,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    },
+    {
+      "boundary": {
+        "face": "U",
+        "y": 199,
+        "x": 127,
+        "sign_first_to_second": -1
+      },
+      "control": {
+        "face": "U",
+        "y": 199,
+        "x": 128,
+        "sign_parallel_to_first_to_second": -1
+      }
+    }
+  ],
+  "control_geometry": "Each retained boundary face is paired one-for-one with the same U/V orientation displaced one native T cell into the lexicographic first province; paired faces have identical vertical wet masks and complete four-month fields.",
+  "attractive_rejected_or_lower_ranked_candidate": {
+    "edge_id": "ANTA--SANT",
+    "disposition": "eligible",
+    "failure_reasons": [],
+    "reason": "Not selected under the frozen lexicographic control-strength ordering; no transport outcome was inspected."
+  },
+  "boundary": "Selection tests one regional method. It does not validate this source edge as a front or barrier, equate it with Drake Passage, establish exchange, authorize global processing, or support a zoning revision."
 }

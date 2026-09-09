@@ -1112,3 +1112,101 @@ The first transport pilot remains unselected. Its frozen rule chooses among
 source edges by custody, native-grid geometry, compatible fields, controls,
 testable numerics, and bounded scope—not by the most dramatic preliminary
 result.
+
+## 2026-09-08 — The states gain contents
+
+The Ocean-State Exchange Observatory opens with a deliberately narrow first
+inventory: potential-temperature distributions for six source-backed
+Drake-sector provinces, four depth supports, and four monthly means in 2018.
+Its 96 property passports preserve address, time, evidence class, source and
+method lineage, distribution shape, support, and an explicit absence of an
+uncertainty estimate. Another 128 records compare neighboring distributions
+without promoting a descriptive contrast into a front or barrier.
+
+The cartographic correction matters as much as the data. Only native cells in
+the downloaded model window receive temperature or support color; the rest of
+each global province stays quiet and out of domain. The map therefore shows
+where the result exists rather than allowing a small regional sample to paint
+an entire ocean state. Salinity, density, oxygen, and heat content remain
+visibly unsupported. This is the first time OSW can ask what a state contains
+while keeping stock, uncertainty, boundary identity, and flow rigorously
+separate.
+
+## 2026-09-08 — One border becomes a measured question
+
+The frozen pilot rule considered every one of the 128 exact source edges and
+selected `SANT--SSTC` without reading transport outcomes. Six candidate edges
+had complete support in the regional ORAS5 substrate; `SANT--SSTC` won because
+16 of its 18 native faces admitted exact one-cell displaced controls with the
+same wet vertical masks, the strongest control fraction in the eligible set.
+The famous Drake gateway did not replace a province edge, and the much larger
+`ANTA--SANT` candidate did not win by visual or narrative importance.
+
+The result demonstrates why the distinction matters. Gross opposing exchange
+is far larger than the net in every sampled month. Net volume points from
+`SSTC` to `SANT` in February, May, and August, then reverses in November;
+different depth bands simultaneously run in opposing directions. The displaced
+control has the same broad sign pattern. OSW has therefore earned a bounded
+native-face transport method, not proof that the static source edge is a wall
+or uniquely controls the flow. That honest negative evidence is exactly what
+the exchange program was built to preserve.
+
+## 2026-09-08 — The line fails its first persistence test
+
+Stage 5 froze its temperature-front detector before looking for a favorable
+alignment. The detector searched four native faces to either side of the
+`SANT--SSTC` segment, required both absolute gradient strength and local
+prominence, and allowed only a one-face match. It repeated the test at four
+depths in four months and required seasonal, vertical, and control advantage
+rather than accepting one striking surface panel.
+
+None of the 16 cases matches the static line. The surface field does contain
+detectable nearby gradients, but their peaks sit three or four faces away; most
+deeper peaks miss the absolute floor. Surface-to-depth contrast direction
+agreement reaches only 66.7%, below the frozen 75% requirement, and the static
+line gains no advantage over its displaced control. The first physical
+disposition is therefore deliberately narrow: this segment is not supported as
+a persistent temperature front in the sampled 2018 model screen. The reference
+edge remains useful, and interannual and other-property identities remain
+unknown.
+
+## 2026-09-08 — An event enters the state ledger
+
+The existing 2026 North Atlantic marine-heatwave lineage now has explicit
+province × surface addresses. Its primary exact-overlap footprint moves about
+450 km across 21 days while remaining dominantly inside `GFST`. The daily
+ledger preserves two tiny cross-state overlaps rather than rounding them away:
+0.79% of the July 28 footprint falls in `NWCS`, and 0.05% of the August 3
+footprint falls in `NAST W`.
+
+The complete lineage family adds one graph transition. A July 29 side branch
+moves from a `GFST` centroid into adjacent `NWCS`, but inherits only 13 pixels,
+or 0.62% of its source component. That is enough for a geometric lineage and
+state-address transition, not for a claim that water volume or heat crossed the
+border. The primary trunk survives every tested area-pruning threshold; a
+seven-day continuation remains in `GFST` through August 18 only under the
+declared one-day-gap policy. For the first time, OSW can show motion, splitting,
+and identity sensitivity through a state graph while leaving every unavailable
+inventory and transport cell visibly empty.
+
+## 2026-09-08 — The matrix chooses restraint
+
+The full exchange program ends with 128 border records rather than a new
+number of regions. Each row keeps geometry, depth character, hydrographic
+content, exchange, stability, controls, event evidence, gate dependence,
+uncertainty, decision rule, and falsification or upgrade criteria separate. No
+weighted score can hide the missing columns.
+
+The result is 127 `unknown` physical interpretations and one bounded `demote`.
+That demotion applies only to the 16 tested native faces of `SANT--SSTC` as a
+persistent physical-boundary candidate: its exchange resembles a displaced
+control and its tested temperature gradients never stay on the source line.
+The complete Longhurst edge remains in the reference map. No source geometry
+is merged, split, moved, deleted, or silently replaced.
+
+This is the program's deeper success. OSW now has an auditable grammar for
+asking what a state contains, what crosses a border, whether a boundary
+persists, and how an event moves through the graph. The grammar can absorb new
+years, properties, products, observations, and revisions without pretending
+that today's missing evidence is a discovery. Adoption, external scientific
+review, and publication remain separate decisions.

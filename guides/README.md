@@ -53,6 +53,7 @@ objects carry, bound, transform, steer, overlap, and measure one another.
 | What evidence lets me name any mapped patch? | [How to name an ocean patch](13-HOW-TO-NAME-AN-OCEAN-PATCH.md) |
 | What did this particular dataset actually earn? | [Evidence receipts](14-EVIDENCE-RECEIPTS.md) |
 | Where is this wet volume horizontally and vertically? | [Ocean column address](15-OCEAN-COLUMN-ADDRESS.md) |
+| What does a state contain at one depth and time? | [What an ocean state contains](17-WHAT-AN-OCEAN-STATE-CONTAINS.md) |
 
 ## Start with the object families
 
@@ -85,6 +86,7 @@ objects carry, bound, transform, steer, overlap, and measure one another.
 14. [Evidence Receipts](14-EVIDENCE-RECEIPTS.md) — origin × claim stage × identity-test results for real OSW layers.
 15. [Ocean Column Address](15-OCEAN-COLUMN-ADDRESS.md) — a complete horizontal × vertical reference without turning depth bands into physical walls.
 16. [Ocean-State Neighbors and Accounts](16-OCEAN-STATE-NEIGHBORS-AND-ACCOUNTS.md) — permeable reference states, exact adjacency, depth silhouettes, longitudinal accounts, and the evidence needed to measure exchange.
+17. [What an Ocean State Contains](17-WHAT-AN-OCEAN-STATE-CONTAINS.md) — model-screened property passports, distributions, support, uncertainty boundaries, and adjacent-state contrasts.
 
 ## One parcel, several objects
 

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="OSW Ocean-State Exchange Observatory: tested inventories, borders, event routes, and evidence-bounded dispositions.">
+  <title>Ocean-State Exchange Observatory — OSW</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="wordmark" href="../README.md">OSW</a>
+    <p>Ocean States of the World</p>
+    <nav aria-label="Project guide">
+      <a href="../atlas/">Atlas</a>
+      <a href="../column/">Column</a>
+      <a href="../guides/17-WHAT-AN-OCEAN-STATE-CONTAINS.md">Guide</a>
+      <a href="../research/ocean-state-hydrography-pilot-2018.json">Data</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">OCEAN-STATE EXCHANGE OBSERVATORY</p>
+        <h1 id="page-title">A border becomes a question.</h1>
+        <p class="dek">Compare what the model contains on either side, then ask what crosses, persists, or fails. Static province lines remain reference geography—not walls.</p>
+      </div>
+      <div class="evidence-key" aria-label="Evidence boundary">
+        <strong>Current evidence</strong>
+        <span>ORAS5 model screen · four 2018 monthly means</span>
+        <span>Temperature only · uncertainty not estimated</span>
+      </div>
+    </section>
+
+    <nav class="stage-nav" aria-label="Research stage">
+      <button type="button" data-stage="inventory" aria-pressed="true">1 · Contents</button>
+      <button type="button" data-stage="exchange" aria-pressed="false">2 · Exchange</button>
+      <button type="button" data-stage="stability" aria-pressed="false">3 · Stability</button>
+      <button type="button" data-stage="events" aria-pressed="false">4 · Events</button>
+      <button type="button" data-stage="decisions" aria-pressed="false">5 · Decisions</button>
+    </nav>
+
+    <section class="controls inventory-panel" aria-labelledby="controls-title">
+      <div><p class="eyebrow">MODEL-SCREEN ADDRESS</p><h2 id="controls-title">Choose one province × depth × month</h2></div>
+      <label>Province<select id="province-select"></select></label>
+      <label>Depth support<select id="depth-select"></select></label>
+      <label>Monthly mean<select id="month-select"></select></label>
+      <button id="reset" type="button">Reset</button>
+    </section>
+
+    <section class="maps inventory-panel" aria-labelledby="inventory-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">STAGE 3 · HYDROGRAPHIC CONTENT</p><h2 id="inventory-title">Temperature distributions, not heat inventories</h2></div>
+        <a href="../research/ocean-state-hydrography-pilot-2018.json">Download the complete receipt</a>
+      </div>
+      <div class="map-grid">
+        <figure>
+          <figcaption><strong>Median potential temperature</strong><span id="property-caption"></span></figcaption>
+          <canvas id="property-map" width="720" height="360" role="img"></canvas>
+          <div id="temperature-legend" class="legend" aria-label="Temperature legend"></div>
+        </figure>
+        <figure>
+          <figcaption><strong>Coverage and uncertainty status</strong><span>Teal = complete native samples; hatch = uncertainty not estimated</span></figcaption>
+          <canvas id="support-map" width="720" height="360" role="img"></canvas>
+          <div class="legend"><span><i class="support"></i>supported model cells</span><span><i class="hatched"></i>uncertainty not estimated</span></div>
+        </figure>
+      </div>
+      <p class="map-note">Oceanic Mollweide display. Grey states are outside this bounded Drake subset. The maps do not extend surface ecological identity through depth.</p>
+      <div class="table-wrap"><table>
+        <caption>Complete textual equivalent for the selected depth and month</caption>
+        <thead><tr><th>State</th><th>Median</th><th>Middle 50%</th><th>Native samples</th><th>Coverage</th><th>Uncertainty</th></tr></thead>
+        <tbody id="state-body"></tbody>
+      </table></div>
+    </section>
+
+    <section class="passport inventory-panel" aria-labelledby="passport-title">
+      <div><p class="eyebrow">PROPERTY PASSPORT</p><h2 id="passport-title">Selected distribution</h2></div>
+      <dl id="passport-grid"></dl>
+      <div class="range" aria-label="Temperature distribution">
+        <div id="range-track"><span id="range-iqr"></span><b id="range-median"></b></div>
+        <p id="range-label"></p>
+      </div>
+      <p id="live-summary" class="live-summary" aria-live="polite"></p>
+    </section>
+
+    <section class="table-section inventory-panel" aria-labelledby="contrast-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">ADJACENT-STATE CONTRASTS</p><h2 id="contrast-title">What differs across the selected state’s borders?</h2></div>
+        <span>No significance test · spatial autocorrelation unresolved</span>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Border</th><th>Neighbor</th><th>Median difference</th><th>Standardized difference</th><th>IQR overlap</th><th>Interpretation</th></tr></thead>
+        <tbody id="contrast-body"></tbody>
+      </table></div>
+    </section>
+
+    <aside class="boundary inventory-panel" aria-labelledby="boundary-title">
+      <h2 id="boundary-title">What is still missing?</h2>
+      <ul id="unsupported-list"></ul>
+      <p>These are unweighted native T-cell-level distributions from one assimilative reanalysis member. They are not observations, volume-weighted inventories, water masses, heat content, measured exchange, or uncertainty estimates.</p>
+    </aside>
+
+    <div id="exchange-panel" hidden>
+      <section class="controls" aria-labelledby="exchange-controls-title">
+        <div><p class="eyebrow">FROZEN PILOT ADDRESS</p><h2 id="exchange-controls-title">SANT ↔ SSTC · full depth · one monthly mean</h2></div>
+        <label>Monthly mean<select id="exchange-month-select"></select></label>
+        <a class="receipt-button" href="../research/ocean-state-boundary-exchange-pilot-2018.json">Complete receipt</a>
+      </section>
+
+      <section class="maps" aria-labelledby="exchange-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">STAGE 4 · NATIVE-FACE EXCHANGE</p><h2 id="exchange-title">One border, paired with its displaced control</h2></div>
+          <span>Positive SANT → SSTC · negative SSTC → SANT</span>
+        </div>
+        <div class="map-grid">
+          <figure>
+            <figcaption><strong>The measured border segment</strong><span>Regional native-coordinate detail · 16 preselected faces</span></figcaption>
+            <canvas id="exchange-map" width="720" height="360" role="img"></canvas>
+            <div class="legend"><span><i class="edge-line"></i>measured source-edge faces</span><span><i class="control-line"></i>one-cell displaced controls</span></div>
+          </figure>
+          <div class="exchange-score" aria-live="polite">
+            <p class="eyebrow">MONTHLY SCORECARD</p>
+            <dl id="exchange-score-grid"></dl>
+            <p id="exchange-finding" class="live-summary"></p>
+          </div>
+        </div>
+        <p class="map-note">Regional native-coordinate detail (54–48°W, 50.25–45.5°S), not an equal-area overview. Line width identifies measured native faces, not the physical width of a front or current. The control is a numerical comparison inside SANT, not another border.</p>
+      </section>
+
+      <section class="table-section" aria-labelledby="depth-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">VERTICAL ANATOMY</p><h2 id="depth-title">What crosses at each depth?</h2></div>
+          <span>Adjacent-cell mean temperature · 0 °C reference</span>
+        </div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Depth</th><th>Wet face-levels</th><th>SANT → SSTC</th><th>SSTC → SANT</th><th>Gross exchange</th><th>Net volume</th><th>Net thermal transport</th></tr></thead>
+          <tbody id="depth-body"></tbody>
+        </table></div>
+      </section>
+
+      <section class="table-section" aria-labelledby="season-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">SEASONAL AND CONTROL TEST</p><h2 id="season-title">Does the sign persist—and is the edge special?</h2></div>
+          <span>Four monthly means · not a climatology</span>
+        </div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Month</th><th>Border net volume</th><th>Displaced control</th><th>Border net thermal transport</th><th>Direction</th></tr></thead>
+          <tbody id="season-body"></tbody>
+        </table></div>
+      </section>
+
+      <aside class="boundary" aria-labelledby="exchange-boundary-title">
+        <h2 id="exchange-boundary-title">What this exchange earns—and what it does not</h2>
+        <p>All native-grid, sign, units, partial-cell thickness, tracer-collocation, missing-value, matched-control, and closure-scope checks pass for this bounded pilot. Volume reverses sign across the four sampled months; reference-relative thermal transport at 0 °C does not. The displaced control has the same broad seasonal sign pattern, so the result does not establish a uniquely organizing material boundary.</p>
+        <p>Only 16 of 18 native source-edge faces are measured. This is one ORAS5 member, one year, and one product; second-product sensitivity, observations, submonthly covariance, full-edge transport, convergence, climatology, and zoning remain unsupported.</p>
+      </aside>
+    </div>
+
+    <div id="stability-panel" hidden>
+      <section class="controls" aria-labelledby="stability-controls-title">
+        <div><p class="eyebrow">FROZEN FRONT TEST</p><h2 id="stability-controls-title">Where is the strongest nearby temperature gradient?</h2></div>
+        <label>Monthly mean<select id="stability-month-select"></select></label>
+        <label>Depth support<select id="stability-depth-select"></select></label>
+        <a class="receipt-button" href="../research/ocean-state-boundary-stability-pilot-2018.json">Complete receipt</a>
+      </section>
+
+      <section class="maps" aria-labelledby="stability-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">STAGE 5 · DYNAMIC BOUNDARY STABILITY</p><h2 id="stability-title">The diagnosed front does not stay on the line</h2></div>
+          <span>Thresholds frozen before outcomes</span>
+        </div>
+        <div class="map-grid">
+          <figure>
+            <figcaption><strong>Static edge, control, and diagnosed peak</strong><span id="stability-caption"></span></figcaption>
+            <canvas id="stability-map" width="720" height="360" role="img"></canvas>
+            <div class="legend"><span><i class="edge-line"></i>static source edge</span><span><i class="control-line"></i>displaced control</span><span><i class="front-line"></i>diagnosed gradient peak</span></div>
+          </figure>
+          <div class="exchange-score">
+            <p class="eyebrow">FRONT PASSPORT</p>
+            <dl id="stability-score-grid"></dl>
+            <p id="stability-finding" class="live-summary" aria-live="polite"></p>
+          </div>
+        </div>
+        <p class="map-note">Regional native-coordinate diagnostic. The translucent band is the frozen ≥80%-of-peak gradient envelope, not an uncertainty interval or material front width.</p>
+      </section>
+
+      <section class="table-section" aria-labelledby="matrix-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">DEPTH × SEASON CONSISTENCY</p><h2 id="matrix-title">Sixteen chances to match the static edge</h2></div>
+          <span>Offset in native faces · bold zero/±1 would pass</span>
+        </div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Depth</th><th>2018-02</th><th>2018-05</th><th>2018-08</th><th>2018-11</th></tr></thead>
+          <tbody id="stability-matrix-body"></tbody>
+        </table></div>
+      </section>
+
+      <aside class="boundary" aria-labelledby="stability-boundary-title">
+        <h2 id="stability-boundary-title">Disposition: not supported as a persistent temperature front</h2>
+        <p>No depth-month case passes the frozen static-edge match. Detected surface peaks sit three or four native faces away; most deeper gradients fail the absolute-gradient floor. The static edge gains no advantage over its displaced control, and surface-to-depth temperature-contrast direction agreement is 66.7%, below the frozen 75% requirement.</p>
+        <p>This does not erase the source reference edge. It leaves interannual stability unknown and does not test salinity, density, observations, another product, ecological organization, or a material barrier.</p>
+      </aside>
+    </div>
+
+    <div id="events-panel" hidden>
+      <section class="maps" aria-labelledby="events-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">STAGE 6 · EVENT ROUTES</p><h2 id="events-title">A heatwave can move while its dominant address stays put</h2></div>
+          <a href="../research/ocean-event-state-route-2026.json">Download the complete lineage record</a>
+        </div>
+        <div class="map-grid">
+          <figure>
+            <figcaption><strong>Primary surface-footprint route</strong><span>21 exact-overlap days · July 21–August 10, 2026</span></figcaption>
+            <canvas id="events-map" width="720" height="360" role="img"></canvas>
+            <div class="legend"><span><i class="route-line"></i>primary centroid route</span><span><i class="branch-line"></i>small off-primary branch</span></div>
+          </figure>
+          <div class="exchange-score">
+            <p class="eyebrow">ROUTE PASSPORT</p>
+            <dl id="events-score-grid"></dl>
+            <p id="events-finding" class="live-summary" aria-live="polite"></p>
+          </div>
+        </div>
+        <p class="map-note">Regional native-coordinate address view. The primary footprint remains dominantly in GFST. A line between component centroids is not a parcel trajectory, streamline, or heat-flux arrow.</p>
+      </section>
+
+      <section class="table-section" aria-labelledby="event-sequence-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">ACCESSIBLE SEQUENCE</p><h2 id="event-sequence-title">Daily state-account timeline</h2></div>
+          <span>Surface threshold area · inventories and exchange unavailable at this time</span>
+        </div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Date</th><th>Dominant state</th><th>Footprint area</th><th>Other overlap</th><th>Inventory</th><th>Exchange</th></tr></thead>
+          <tbody id="events-sequence-body"></tbody>
+        </table></div>
+      </section>
+
+      <section class="table-section" aria-labelledby="evidence-ladder-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">EVIDENCE LADDER</p><h2 id="evidence-ladder-title">Where the route claim must stop</h2></div>
+          <span>Each rung is independently admitted</span>
+        </div>
+        <div id="events-evidence-grid" class="evidence-grid"></div>
+      </section>
+
+      <aside class="boundary" aria-labelledby="events-boundary-title">
+        <h2 id="events-boundary-title">One geometric branch is not delivered heat</h2>
+        <p>The primary lineage stays in GFST for all 21 days. One small July 29 side branch moves from a GFST centroid to adjacent NWCS after inheriting only 13 pixels—0.62% of its source component. That earns a geometric adjacency transition, not volume exchange or heat transport.</p>
+        <p>The primary trunk survives every tested component-area threshold. A seven-day continuation through August 18 also remains in GFST, but only under the declared one-day-gap policy. Independent OISST behavior does not establish local reheating. Origin, depth penetration, velocity pathway, transported heat, and termination mechanism remain unresolved.</p>
+      </aside>
+    </div>
+
+    <div id="decisions-panel" hidden>
+      <section class="controls" aria-labelledby="decisions-controls-title">
+        <div><p class="eyebrow">COMPLETE EVIDENCE MATRIX</p><h2 id="decisions-controls-title">Inspect one of 128 source borders</h2></div>
+        <label>Border<select id="decision-edge-select"></select></label>
+        <label>Disposition<select id="decision-filter-select"><option value="all">All 128</option><option value="unknown">Unknown</option><option value="demote">Demote</option></select></label>
+        <a class="receipt-button" href="../research/ocean-state-zoning-evidence-matrix.json">Complete matrix</a>
+      </section>
+
+      <section class="maps" aria-labelledby="decisions-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">STAGE 7 · ZONING SYNTHESIS</p><h2 id="decisions-title">The method advances; the map does not redraw itself</h2></div>
+          <span>127 unknown · 1 bounded demotion · 0 source-edge changes</span>
+        </div>
+        <div class="map-grid">
+          <figure>
+            <figcaption><strong>Source geography with tested-segment annotation</strong><span>Oceanic Mollweide · source edition unchanged</span></figcaption>
+            <canvas id="decisions-map" width="720" height="360" role="img"></canvas>
+            <div class="legend"><span><i class="unknown-line"></i>unknown physical interpretation</span><span><i class="demote-line"></i>demoted tested segment</span></div>
+          </figure>
+          <div class="exchange-score">
+            <p class="eyebrow">BORDER EVIDENCE PASSPORT</p>
+            <dl id="decision-score-grid"></dl>
+            <p id="decision-finding" class="live-summary" aria-live="polite"></p>
+          </div>
+        </div>
+        <p class="map-note">The magenta mark applies only to 16 tested native faces of `SANT--SSTC`; it does not delete or recolor the complete source edge. Every untested border remains unknown, not retained or rejected.</p>
+      </section>
+
+      <section class="table-section" aria-labelledby="decision-matrix-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">AUDITABLE DISPOSITIONS</p><h2 id="decision-matrix-title">No scalar score hides the gaps</h2></div>
+          <span id="decision-table-count"></span>
+        </div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Border</th><th>Disposition</th><th>Contents</th><th>Exchange</th><th>Stability</th><th>Event route</th><th>Key missing evidence</th></tr></thead>
+          <tbody id="decision-matrix-body"></tbody>
+        </table></div>
+      </section>
+
+      <section class="table-section" aria-labelledby="revision-title">
+        <div class="section-heading"><div><p class="eyebrow">SIDE-BY-SIDE, NEVER SUBSTITUTED</p><h2 id="revision-title">Source edition and candidate physical overlay</h2></div></div>
+        <div class="revision-grid">
+          <article><h3>Longhurst Version 4 source</h3><canvas id="source-revision-map" width="520" height="260" role="img"></canvas><strong>128 reference edges retained</strong><p>A stable ecological indexing geography. No automated geometry edits.</p></article>
+          <article><h3>Candidate physical overlay</h3><canvas id="candidate-revision-map" width="520" height="260" role="img"></canvas><strong>One tested segment demoted</strong><p>No persistent temperature-front match and no control advantage. The remaining 127 borders stay unknown.</p></article>
+        </div>
+      </section>
+
+      <aside class="boundary" aria-labelledby="decisions-boundary-title">
+        <h2 id="decisions-boundary-title">Public finding</h2>
+        <p>The program establishes a reproducible way to test ocean-state borders, not a new global zoning. One bounded `SANT--SSTC` segment loses support as a persistent physical-boundary candidate; the source reference edge remains. No merge, split, move, or retain recommendation meets the frozen policy.</p>
+        <p>Repository `.roles` approval reviews implementation and claim discipline. Owner approval, external scientific review, and publication remain separate and have not occurred.</p>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../column/province-footprints.js"></script>
+  <script src="hydrography.js"></script>
+  <script src="exchange.js"></script>
+  <script src="stability.js"></script>
+  <script src="events.js"></script>
+  <script src="decisions.js"></script>
+  <script src="app.js"></script>
+  <script src="stability-stage.js"></script>
+  <script src="events-stage.js"></script>
+  <script src="decisions-stage.js"></script>
+  <script src="exchange-stage.js"></script>
+</body>
+</html>

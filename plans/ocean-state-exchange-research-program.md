@@ -1,7 +1,7 @@
 # Ocean-State Exchange Research Program
 
-Status: first bounded slice implemented and under final native role review;
-Stages 3-7 remain proposed
+Status: Stages 0-6 complete; Stage 7 implemented and at its native role gate;
+final repository audit pending
 
 Date: 2026-09-08
 
@@ -15,10 +15,11 @@ province-adjacency graph, continuous depth fingerprints, hydrographic
 inventories, and velocity-weighted boundary diagnostics, while treating
 merge, split, move, demote, and retain as equally valid outcomes.
 
-The owner activated only the first bounded slice on 2026-09-08. This document
-does not authorize Stages 3-7, new hydrographic or velocity acquisition,
-transport interpretation, zoning changes, publication, or a change to the
-current VTRACE work-package sequence. Those decisions remain separate gates.
+The owner first activated the bounded slice, then explicitly set completion of
+this full plan as the active goal on 2026-09-08. Stages 3-7 may therefore
+advance only in order through their declared evidence and native-role gates.
+This does not authorize publication, promotion, an unreviewed zoning change,
+or claims wider than the admitted sources.
 
 ## Why this is the next question
 
