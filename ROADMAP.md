@@ -130,7 +130,7 @@ the corresponding final source-register entries are D38-D51.
 
 ### Delivery and governance
 
-- The offline pytest suite contains 568 tests and 60 subtests at the
+- The offline pytest suite passes 565 tests and 60 subtests at the
   current baseline.
 - Eighteen worked evidence receipts connect object claims to reproducible
   support and limitations.

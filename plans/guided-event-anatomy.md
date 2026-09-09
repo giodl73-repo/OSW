@@ -1,6 +1,6 @@
 # Guided Event Anatomy
 
-Status: implemented; final validation and native-role closeout in progress
+Status: implemented, validated, and native-role approved; owner review remains
 
 Date: 2026-09-09
 
