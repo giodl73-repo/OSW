@@ -1,6 +1,6 @@
 # OSW Roadmap
 
-Status: active planning baseline, 2026-09-06
+Status: active planning baseline, 2026-09-08
 
 Applies to: the `atlas-08-private-preview` branch and the next public-site cycle
 
@@ -49,6 +49,7 @@ budgets remain distinct object types with distinct identity tests.
 | Site delivery | Research-rich but link-heavy | Build the guided event-anatomy slice |
 | Heat mechanism | Surface, storage, and horizontal-motion screens assembled | Test depth/time sensitivity and inventory missing terms |
 | Ocean zoning | 11 realms / 22 regions frozen and provisional | Resume only after transport-based boundary scorecards |
+| Ocean relationships | First bounded exchange-foundation goal implemented; final review pending | Review the 54-node neighbor atlas and six-state continuous-hypsometry prototype |
 | Governance | Native `.roles`; VTRACE Mission through Trace fixed points; initial pitfalls register | Open final Review next; verification targets and validation execution evidence remain pending |
 
 ### Public site
@@ -129,7 +130,7 @@ the corresponding final source-register entries are D38-D51.
 
 ### Delivery and governance
 
-- The offline suite passes 458 Python tests and 10 JavaScript subtests at the
+- The offline pytest suite passes 530 tests and 60 subtests at the
   current baseline.
 - Eighteen worked evidence receipts connect object claims to reproducible
   support and limitations.
@@ -254,6 +255,33 @@ against:
 The result may merge, split, move, or demote current regions. A visually tidy
 partition is not by itself evidence of a fluid boundary.
 
+## Proposed next research program: ocean-state exchange
+
+The next research program turns every ocean-state border into a testable
+hypothesis. It begins with source-edition control, a global province-adjacency
+graph, and continuous depth fingerprints; then adds hydrographic contents,
+normal and along-edge motion, three-dimensional volume and reference-relative
+heat transport, seasonal boundary stability, and event routes. Its endpoint is
+not a predetermined number of regions. Each tested border may be retained,
+merged, split, moved, demoted to a display reference, or left unknown.
+
+Permeability does not make the reference geography useless. Versioned
+province × depth accounts can track inventories, cross-border flows, changes,
+balances, relationships, event shocks, and revisions through time. This
+economic-accounting analogy organizes stock and flow questions; it does not
+turn provinces into sovereign, homogeneous, or physically sealed containers.
+
+The first bounded slice stops after a validated 54-province neighbor atlas and
+a representative continuous-hypsometry prototype. It creates the geometry and
+control foundation for later exchange work without claiming that adjacency is
+a barrier, that surface velocity is transport, or that the 54/56 edition
+mismatch has disappeared. New hydrographic and velocity acquisition, public
+promotion, and zoning changes remain separate decisions.
+
+The complete hypothesis, falsification conditions, stage dependencies,
+deliverables, controls, visual grammar, and goal-sized first slice are defined
+in [Ocean-State Exchange Research Program](plans/ocean-state-exchange-research-program.md).
+
 ## Site-quality and release track
 
 - Replace the README's long undifferentiated link corridor with the guided
@@ -365,6 +393,9 @@ contracts remain in:
   geometry progression.
 - [Relational Atlas implementation](plans/relational-atlas-implementation.md) —
   map interaction, evidence, and admission contracts.
+- [Ocean-State Exchange Research Program](plans/ocean-state-exchange-research-program.md)
+  — staged adjacency, depth, contents, exchange, stability, event-route, and
+  zoning tests.
 - [Publication checklist](PUBLICATION-CHECKLIST.md) — release controls.
 - [Source register](SOURCE-REGISTER.md) — source custody, support, and limits.
 

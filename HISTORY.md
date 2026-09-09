@@ -1083,3 +1083,32 @@ top-five share rises gradually from 36.02% epipelagic through 40.33% abyssal,
 then jumps to 68.09% hadal. The plate makes a new relationship visible—the
 deepest volume is far more geographically concentrated under this partition—
 without relabeling volume concentration as heat, habitat, or circulation.
+
+## 2026-09-08 — The ocean states become neighbors
+
+This is the next seminal step: the source-backed provinces now form an
+auditable relationship graph instead of merely tessellating a map. Exact
+shared Version 4 polygon edges produce 54 nodes and 128 borders; ten point-only
+contacts remain visible in a rejected log. The graph is deliberately not built
+from neighboring colored pixels. A fresh provider acquisition reproduces every
+one of the 1,036,800 committed 0.25° assignments, while the short `CNRY--MEDI`
+edge proves why source topology and raster support must remain distinct.
+
+The conceptual advance is larger than adjacency. A permeable province can be
+a stable accounting unit without being a sealed physical container. Future
+state accounts can distinguish inventory, cross-border flow, change, balance,
+relationship, event shock, and revision—much as economic geography follows
+regions through time—while preserving the different physical meanings and
+their uncertainty.
+
+The first six continuous depth silhouettes make the states more individual.
+`NECS` is overwhelmingly shelf-like at this sampling, with a 66 m median
+seabed, while even the shallowest tenth of `NPPF` lies below 4,261 m. A paired
+0.5° center screen exposes where that character is stable and where coastal
+sampling matters. These are bathymetric fingerprints, not water masses or
+deep ecological borders.
+
+The first transport pilot remains unselected. Its frozen rule chooses among
+source edges by custody, native-grid geometry, compatible fields, controls,
+testable numerics, and bounded scope—not by the most dramatic preliminary
+result.

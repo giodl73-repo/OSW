@@ -4,6 +4,8 @@ const data = window.OSW_COLUMN_DATA;
 const bathy = window.OSW_BATHY_NEIGHBORHOODS;
 const footprints = window.OSW_PROVINCE_FOOTPRINTS;
 const fingerprints = window.OSW_PROVINCE_FINGERPRINTS;
+const adjacency = window.OSW_PROVINCE_ADJACENCY;
+const hypsometry = window.OSW_PROVINCE_HYPSOMETRY;
 const svg = document.querySelector("#column-svg");
 const NS = "http://www.w3.org/2000/svg";
 const bandColors = ["#256f82", "#24576d", "#173f58", "#102f47", "#0a2338"];
@@ -19,6 +21,7 @@ const biomeMapColors = {Polar:"#638aa0",Westerlies:"#426d82",Trades:"#295668",Co
 const quantityMapColors = ["#8de4d7", "#55b6b9", "#367c90", "#28566f", "#1a354c"];
 const floorMapColors = {"shelf-led":"#86d7d1","upper-depth-floor-led":"#58a7b5","deep-floor-led":"#397a96","abyssal-floor-led":"#223f73","hadal-floor-led":"#121f48"};
 const bandShareColors = ["#17364c", "#245a70", "#368497", "#59b7b5", "#91dfd2"];
+const neighborMapColors = {selected:"#ffe078",neighbor:"#63e2d8",other:"#1b343c"};
 const footprintCodes = [...new Set(footprints.footprint_runs.map(run => run[3]))];
 const footprintCodeIndex = new Map(footprintCodes.map((code, index) => [code, index]));
 const footprintAssignments = new Int16Array(footprints.grid.shape[0] * footprints.grid.shape[1]).fill(-1);
@@ -88,7 +91,11 @@ function defs() {
 }
 
 function render() {
-  svg.replaceChildren(defs());
+  svg.replaceChildren(
+    defs(),
+    el("title", {id:"svg-title"}, "Ocean column address teaching section"),
+    el("desc", {id:"svg-desc"}, "Five depth bands shown in shelf, basin, and trench example columns."),
+  );
   const bands = data.column_address.bands;
   const province = data.provinces.find(item => item.code === selectedProvince);
   const measurement = province.seed_measurement;
@@ -268,10 +275,70 @@ function renderPassport(summary, fingerprint, bandInfo) {
     ["Share of this state", `${(summary.water_volume_fraction_by_depth_band[bandName] * 100).toFixed(2)}% of sampled water`],
     ["Share of global band", `${(bandVolume / globalBandVolume * 100).toFixed(2)}% of sampled band`],
   ];
+  const graphNode = adjacency.nodes.find(item => item.osw_code === summary.osw_code);
+  entries.push(["Source-edge neighbors", `${graphNode.degree} · ${graphNode.shared_boundary_length_km.toLocaleString()} km shared total`]);
   entries.forEach(([label, text]) => {
     const wrapper = document.createElement("div"), term = document.createElement("dt"), value = document.createElement("dd");
     term.textContent = label; value.textContent = text; wrapper.append(term, value); passport.append(wrapper);
   });
+}
+
+function selectProvince(code) {
+  selectedProvince = code;
+  document.querySelector("#province-select").value = code;
+  updateUrl(); render();
+}
+
+function renderNeighborTable() {
+  const body = document.querySelector("#neighbor-table-body");
+  const summary = document.querySelector("#neighbor-summary");
+  body.replaceChildren();
+  const node = adjacency.nodes.find(item => item.osw_code === selectedProvince);
+  if (!node) {
+    summary.textContent = `${selectedProvince} is an older directory identity without a separate Version 4 footprint, so no source-edge neighbors are assigned.`;
+    const row = document.createElement("tr"), cell = document.createElement("td"); cell.colSpan = 4; cell.textContent = "No Version 4 border passports available."; row.append(cell); body.append(row);
+    return;
+  }
+  const edges = adjacency.edges.filter(item => item.provinces.includes(selectedProvince)).sort((left, right) => right.shared_boundary_length_km - left.shared_boundary_length_km);
+  edges.forEach(edge => {
+    const neighbor = edge.provinces.find(code => code !== selectedProvince);
+    const row = document.createElement("tr"), name = document.createElement("td"), button = document.createElement("button");
+    button.type = "button"; button.textContent = neighbor; button.setAttribute("aria-label", `Select neighboring province ${neighbor}`); button.addEventListener("click", () => selectProvince(neighbor)); name.append(button);
+    const length = document.createElement("td"); length.textContent = `${edge.shared_boundary_length_km.toLocaleString()} km`;
+    const grid = document.createElement("td"); grid.textContent = edge.sampled_grid_support ? `${edge.sampled_grid_cross_edge_pair_count.toLocaleString()} neighboring cell pairs` : "not visible at 0.25°";
+    const evidence = document.createElement("td"); evidence.textContent = "static shared source edge";
+    row.append(name, length, grid, evidence); body.append(row);
+  });
+  const withoutGrid = edges.filter(edge => !edge.sampled_grid_support).length;
+  summary.textContent = `${selectedProvince} has ${node.degree} shared-edge neighbors across ${node.shared_boundary_length_km.toLocaleString()} km of encoded Version 4 boundary. ${withoutGrid ? `${withoutGrid} source edge is too small to appear as neighboring cells at the 0.25° display resolution.` : "Every source edge has neighboring-cell support at the 0.25° display resolution."} These are geometric relationships, not measured exchanges.`;
+}
+
+function renderHypsometry() {
+  const canvas = document.querySelector("#hypsometry-canvas"), context = canvas.getContext("2d");
+  const buttons = document.querySelector("#hypsometry-buttons"), body = document.querySelector("#hypsometry-table-body"), summary = document.querySelector("#hypsometry-summary");
+  buttons.replaceChildren(); body.replaceChildren();
+  hypsometry.archetype_selection.codes.forEach(code => {
+    const button = document.createElement("button"); button.type = "button"; button.textContent = code; button.setAttribute("aria-pressed", String(code === selectedProvince)); button.setAttribute("aria-label", `Show ${code} continuous depth prototype`); button.addEventListener("click", () => selectProvince(code)); buttons.append(button);
+  });
+  context.fillStyle = "#06181e"; context.fillRect(0, 0, canvas.width, canvas.height);
+  const province = hypsometry.provinces[selectedProvince];
+  if (!province) {
+    context.fillStyle = "#8fb4b6"; context.font = "700 18px ui-monospace, monospace"; context.fillText("SELECT ONE OF THE SIX FROZEN PROTOTYPE STATES", 120, 175);
+    summary.textContent = `${selectedProvince} is not in the six-state continuous-hypsometry prototype. Select a listed archetype; this absence is not estimated or filled.`;
+    const row = document.createElement("tr"), cell = document.createElement("td"); cell.colSpan = 6; cell.textContent = "No prototype curve for this state."; row.append(cell); body.append(row);
+    canvas.setAttribute("aria-label", summary.textContent); return;
+  }
+  const left = 70, right = 25, top = 25, bottom = 45, plotWidth = canvas.width - left - right, plotHeight = canvas.height - top - bottom;
+  context.strokeStyle = "#29464d"; context.fillStyle = "#8fb4b6"; context.font = "700 12px ui-monospace, monospace"; context.lineWidth = 1;
+  [0,2000,4000,6000,8000].forEach(depth => { const y = top + depth / 8000 * plotHeight; context.beginPath(); context.moveTo(left,y); context.lineTo(canvas.width-right,y); context.stroke(); context.fillText(`${depth.toLocaleString()} m`, 8, y+4); });
+  [0,25,50,75,100].forEach(percent => { const x = left + percent / 100 * plotWidth; context.fillText(`${percent}%`, x-10, canvas.height-15); });
+  const draw = (record, color, dashed) => { context.beginPath(); context.setLineDash(dashed ? [9,6] : []); record.depth_quantile_m.forEach((depth,index) => { const x=left+index/100*plotWidth, y=top+Math.min(depth,8000)/8000*plotHeight; if(index===0) context.moveTo(x,y); else context.lineTo(x,y); }); context.strokeStyle=color; context.lineWidth=4; context.stroke(); context.setLineDash([]); };
+  draw(province.fine_0_25_degree,"#63e2d8",false); draw(province.coarse_0_5_degree_center_screen,"#ffe078",true);
+  const rows = [["0.25°",province.fine_0_25_degree],["0.5°",province.coarse_0_5_degree_center_screen]];
+  rows.forEach(([label,record]) => { const row=document.createElement("tr"); const values=[label,`${record.selected_depth_quantiles_m.p10.toLocaleString()} m`,`${record.selected_depth_quantiles_m.p50.toLocaleString()} m`,`${record.selected_depth_quantiles_m.p90.toLocaleString()} m`,`${record.area_weighted_mean_depth_m.toLocaleString()} m`,`${(record.shelf_area_fraction_lt_200m*100).toFixed(1)}%`]; values.forEach(value=>{const cell=document.createElement("td");cell.textContent=value;row.append(cell);}); body.append(row); });
+  const fine=province.fine_0_25_degree, delta=province.sensitivity.coarse_minus_fine_mean_depth_m;
+  summary.textContent = `${selectedProvince}, ${province.archetype_rationale}: the 0.25° area-weighted seafloor distribution runs from ${fine.minimum_depth_m.toLocaleString()} to ${fine.maximum_depth_m.toLocaleString()} m; its median is ${fine.selected_depth_quantiles_m.p50.toLocaleString()} m and ${(fine.shelf_area_fraction_lt_200m*100).toFixed(1)}% lies shallower than 200 m. The 0.5° mean-depth screen changes the mean by ${delta>=0?"+":""}${delta.toLocaleString()} m.`;
+  canvas.setAttribute("aria-label", `${summary.textContent} Solid teal is the 0.25 degree curve; dashed gold is the 0.5 degree sensitivity curve.`);
 }
 
 function buildMollweideAssignments(rows, columns) {
@@ -313,6 +380,8 @@ function renderFootprint() {
     const rank = bandInfo.ranks.get(code);
     return [code, hexRgb(rank ? rankColor(rank, bandInfo.count) : "#313a3d")];
   }));
+  const graphNode = adjacency.nodes.find(item => item.osw_code === selectedProvince);
+  const selectedNeighbors = new Set(graphNode?.neighbors ?? []);
   for (let displayRow = 0; displayRow < rows; displayRow += 1) {
     for (let column = 0; column < columns; column += 1) {
       const sourceOffset = displayRow * columns + column;
@@ -321,7 +390,9 @@ function renderFootprint() {
       let rgb = background;
       if (codeIndex >= 0) {
         const code = footprintCodes[codeIndex];
-        rgb = footprintMapMode === "family" && codeIndex === selectedIndex ? selected : (footprintMapMode === "family" ? biomeRgb.get(code) : (footprintMapMode === "floor" ? floorRgb.get(code) : (footprintMapMode === "band" ? bandRgb.get(code) : quantityRgb.get(code))));
+        rgb = footprintMapMode === "neighbors"
+          ? hexRgb(code === selectedProvince ? neighborMapColors.selected : (selectedNeighbors.has(code) ? neighborMapColors.neighbor : neighborMapColors.other))
+          : (footprintMapMode === "family" && codeIndex === selectedIndex ? selected : (footprintMapMode === "family" ? biomeRgb.get(code) : (footprintMapMode === "floor" ? floorRgb.get(code) : (footprintMapMode === "band" ? bandRgb.get(code) : quantityRgb.get(code)))));
         const east = column + 1 < columns ? footprintMollweideAssignments[sourceOffset + 1] : -2;
         const north = displayRow + 1 < rows ? footprintMollweideAssignments[sourceOffset + columns] : -2;
         if (east !== codeIndex || north !== codeIndex) rgb = codeIndex === selectedIndex || east === selectedIndex || north === selectedIndex ? selectedEdge : boundary;
@@ -339,9 +410,11 @@ function renderFootprint() {
   const bands = [["epipelagic","<200 m"],["mesopelagic","200–<1,000 m"],["bathypelagic","1,000–<4,000 m"],["abyssopelagic","4,000–<6,000 m"],["hadalpelagic","≥6,000 m"]];
   profile.replaceChildren();
   legend.replaceChildren();
-  const mapLabels = {family:"ecological families",area:"sampled wet-area rank · largest first",volume:"sampled water-volume rank · largest first",depth:"area-weighted mean-depth rank · deepest first",floor:"dominant seafloor-depth character",band:`${bandInfo.band.name} water-volume rank · largest first`};
+  const mapLabels = {family:"ecological families",area:"sampled wet-area rank · largest first",volume:"sampled water-volume rank · largest first",depth:"area-weighted mean-depth rank · deepest first",floor:"dominant seafloor-depth character",band:`${bandInfo.band.name} water-volume rank · largest first`,neighbors:"source-edge neighbors · geometry only"};
   document.querySelector("#footprint-map-label").textContent = `MAP FIELD · ${mapLabels[footprintMapMode].toUpperCase()}`;
-  if (footprintMapMode === "family") {
+  if (footprintMapMode === "neighbors") {
+    appendLegend(mapLegend, [[neighborMapColors.selected,"selected state"],[neighborMapColors.neighbor,"shared-edge neighbor"],[neighborMapColors.other,"not an immediate neighbor"],["#8aa3a5","hairline = rasterized province edge"]]);
+  } else if (footprintMapMode === "family") {
     appendLegend(mapLegend, [...Object.entries(biomeMapColors).map(([label, color]) => [color, label]), ["#63e2d8", "selected province"]]);
   } else if (footprintMapMode === "floor") {
     appendLegend(mapLegend, [[floorMapColors["shelf-led"],"shelf-led · bottom <200 m dominant"],[floorMapColors["deep-floor-led"],"deep-floor-led · bottom 1,000–<4,000 m dominant"],[floorMapColors["abyssal-floor-led"],"abyssal-floor-led · bottom 4,000–<6,000 m dominant"],["#ffe078","gold edge = selected province"]]);
@@ -374,6 +447,8 @@ function renderFootprint() {
     profile.setAttribute("aria-label", `${selectedProvince} ${profileNoun} distribution: ${bands.map(([key,label]) => `${label} ${((fractions[key] ?? 0) * 100).toFixed(1)}%`).join(", ")}.`);
   }
   canvas.setAttribute("aria-label", `Oceanic Mollweide world map of the 54 source-aligned Longhurst Version 4 province footprints, filled by ${mapLabels[footprintMapMode]}. ${document.querySelector("#footprint-summary").textContent}`);
+  renderNeighborTable();
+  renderHypsometry();
   renderDepthLadder();
 }
 
@@ -473,7 +548,7 @@ function init() {
   if (data.column_address.bands.some(item => item.object_id === params.get("band"))) selectedBand = params.get("band");
   if (["depth", "source"].includes(params.get("neighborhood"))) neighborhoodMode = params.get("neighborhood");
   if (["volume", "seafloor"].includes(params.get("profile"))) footprintProfileMode = params.get("profile");
-  if (["family", "area", "volume", "depth", "floor", "band"].includes(params.get("map"))) footprintMapMode = params.get("map");
+  if (["family", "area", "volume", "depth", "floor", "band", "neighbors"].includes(params.get("map"))) footprintMapMode = params.get("map");
 
   const provinceSelect = document.querySelector("#province-select");
   data.provinces.forEach(province => {

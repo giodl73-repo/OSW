@@ -22,6 +22,7 @@ PAGES = tuple(GUIDES / f"{number:02d}-{slug}.md" for number, slug in (
     (13, "HOW-TO-NAME-AN-OCEAN-PATCH"),
     (14, "EVIDENCE-RECEIPTS"),
     (15, "OCEAN-COLUMN-ADDRESS"),
+    (16, "OCEAN-STATE-NEIGHBORS-AND-ACCOUNTS"),
 ))
 REGISTRY = ROOT / "research" / "ocean-object-classification.csv"
 RELATIONS = ROOT / "research" / "ocean-object-relations.csv"
@@ -215,3 +216,15 @@ def test_source_register_ids_are_unique() -> None:
     source_ids = re.findall(r"^\| ([A-Z]+\d+) \|", source_register, flags=re.MULTILINE)
     duplicates = sorted({source_id for source_id in source_ids if source_ids.count(source_id) > 1})
     assert not duplicates, f"duplicate source-register IDs: {duplicates}"
+
+
+def test_exchange_pilot_rule_is_frozen_without_a_selected_result() -> None:
+    path = ROOT / "research" / "ocean-state-exchange-pilot-selection-v1.json"
+    rule = json.loads(path.read_text(encoding="utf-8"))
+    assert rule["schema"] == "osw-ocean-state-exchange-pilot-selection-v1"
+    assert rule["status"] == "frozen_rule_no_pilot_selected"
+    assert rule["selected_edge"] is None
+    assert len(rule["eligibility_gates"]) == 7
+    assert rule["ordering"][-1] == "stable_edge_id"
+    assert "apparent_exchange_strength" in rule["prohibited_selection_inputs"]
+    assert "does not validate a border" in rule["boundary"]

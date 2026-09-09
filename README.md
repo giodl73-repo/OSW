@@ -148,6 +148,7 @@ the continents visual control.
 | Learn water masses, fronts, jets, eddies, gates, transformation, provinces, and planetary analogues | [Field Guide to Ocean Objects](guides/) |
 | Classify an ocean object by type and identity test | [Ocean-object classification](CLASSIFICATION.md) and [116-term registry](research/ocean-object-classification.csv) |
 | Give every valid wet volume a horizontal and vertical reference address | [Ocean Column workbench](column/) and [definition](guides/15-OCEAN-COLUMN-ADDRESS.md) |
+| See which source-backed ocean states share edges and how their depth silhouettes differ | [Neighbor atlas](column/?map=neighbors) and [neighbors/accounts guide](guides/16-OCEAN-STATE-NEIGHBORS-AND-ACCOUNTS.md) |
 | Decide what evidence a mapped patch has earned | [Ocean-object visual matrix](figures/osw-ocean-object-matrix.svg) and [decision guide](guides/13-HOW-TO-NAME-AN-OCEAN-PATCH.md) |
 | Audit what a particular dataset actually supports | [Evidence-receipt guide](guides/14-EVIDENCE-RECEIPTS.md) and [eighteen worked receipts](research/ocean-object-evidence-receipts.json), including OSW's first duration-qualified event, footprint, primary lineage, identity bakeoffs, typed temporal bridge, separate-product SST cross-check, surface-energy, fixed-column storage, and depth-integrated motion screens |
 | Explore waters, flows, edges, seafloor, life, events, and observational layers | [Interactive Atlas](atlas/) |
@@ -172,7 +173,13 @@ of depth. Selecting a vertical band can now recolor the world by water volume
 inside that band, with no-reach states kept separate and the selected state's
 local/global band shares reported explicitly. A five-map ladder shows all
 depths at once on one global-band-share scale, revealing the substantially
-more concentrated sampled geography of hadal volume.
+more concentrated sampled geography of hadal volume. A source-edge mode now
+turns the same 54 footprints into an auditable neighbor graph: 128 shared
+linear edges, ten rejected point-only contacts, and selected-state border
+passports. Six frozen archetypes add continuous 0.25° depth-quantile
+silhouettes beside a 0.5° sensitivity screen. These establish comparison
+geography and bathymetric character, not barriers, measured exchange, or
+full-depth ecological identity.
 
 The currently published site still serves
 [Atlas 07](https://giodl73-repo.github.io/OSW/atlas/). Atlas 08 remains

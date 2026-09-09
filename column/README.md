@@ -121,6 +121,35 @@ polygon centers that GEBCO classifies as non-wet and 2,772 globally wet GEBCO
 centers outside the polygon cover. Those are source/grid seam diagnostics, not
 cells silently reassigned to make the map close.
 
+## Source-edge neighbor atlas
+
+The first state-interaction foundation derives topology from exact shared
+Version 4 polygon boundaries after the same recorded validity repair. It finds
+54 nodes and 128 shared linear edges. Ten point-only contacts remain in a
+rejected-candidate log rather than being promoted to borders. State degree runs
+from one to 11 neighbors, with a mean of 4.74.
+
+The browser's **Neighbors** mode highlights the selected state and every state
+sharing a source edge. Its table is the border-passport view: neighbor, encoded
+spherical shared length, 0.25° grid support, and evidence class. The graph is
+not derived from raster appearance. All 1,036,800 fresh geometry assignments
+match the committed footprint grid, yet the roughly 17 km `CNRY--MEDI` source
+edge has no neighboring cell pair at that resolution. Adjacency is geometry,
+not a barrier, interaction, gateway, or exchange measurement.
+
+## Continuous hypsometry prototype
+
+Six archetypes were frozen before their continuous curves were inspected:
+`SUND`, `NADR`, `SPSG`, `ANTA`, `NPPF`, and `NECS`. The solid curve reports
+area-weighted seafloor-depth quantiles at every integer percentile using the
+0.25° screen. A dashed independent 0.5° center screen exposes first-order grid
+sensitivity. The table supplies p10, median, p90, mean depth, and shelf fraction
+without requiring the graphic.
+
+This is a six-state method prototype, not a completed 54-state atlas or a full
+uncertainty model. A Longhurst surface footprint extruded for comparison does
+not acquire deep ecological or dynamical identity.
+
 ## Rebuild and verify
 
 ```powershell
@@ -128,7 +157,7 @@ python analysis/build_ocean_column_viewer.py
 python analysis/build_gebco_province_seed_neighborhoods.py
 python analysis/derive_province_hypsometric_fingerprints.py
 node --check column/app.js
-python -m pytest analysis/test_ocean_column_viewer.py analysis/test_longhurst_2007_gebco_depths.py analysis/test_province_hypsometric_fingerprints.py -q
+python -m pytest analysis/test_ocean_column_viewer.py analysis/test_longhurst_2007_gebco_depths.py analysis/test_province_hypsometric_fingerprints.py analysis/test_longhurst_2007_adjacency.py analysis/test_province_hypsometry_prototype.py -q
 ```
 
 Refresh the source only as an explicit network operation:
@@ -138,6 +167,8 @@ python -m pip install -r requirements-geography.txt
 python analysis/acquire_gebco_province_seed_depths.py
 python analysis/acquire_gebco_province_seed_neighborhoods.py
 python analysis/acquire_longhurst_2007_gebco_depths.py
+python analysis/acquire_longhurst_2007_adjacency.py
+python analysis/acquire_province_hypsometry_prototype.py
 python analysis/build_gebco_province_seed_depths.py
 python analysis/build_gebco_province_seed_neighborhoods.py
 python analysis/build_ocean_column_viewer.py
@@ -151,8 +182,9 @@ declared source-payload posture.
 ## Next evidence gate
 
 The geometry, bathymetry, and sampled depth-band volume gates are now
-implemented for the source-aligned 54. The next horizontal gate is an edition
-decision: preserve an explicit 56/54 selector, migrate
+implemented for the source-aligned 54. Exact adjacency and the six-state
+continuous-hypsometry method prototype are also implemented. The next
+horizontal gate remains an edition decision: preserve an explicit 56/54 selector, migrate
 the quantitative address to Version 4, or locate an independently reproducible
 and redistributable older geometry. No approach may silently project the two
 unmatched identities onto Version 4.
@@ -161,3 +193,8 @@ GEBCO is implemented source D5 in the [source register](../SOURCE-REGISTER.md).
 The grid is public domain with requested attribution. GEBCO states that its
 terrain is assembled from heterogeneous sources, assumes mean sea level while
 noting possible shallow-water datum exceptions, and is not for navigation.
+
+The first exchange pilot must follow the frozen
+[selection rule](../plans/ocean-state-exchange-pilot-selection.md). No pilot has
+yet been selected, and neither adjacency nor a crossing surface arrow is a
+transport result.

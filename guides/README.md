@@ -67,7 +67,7 @@ objects carry, bound, transform, steer, overlap, and measure one another.
 | Geography | How can the ocean be exhaustively indexed? | basins, Longhurst provinces, dynamic seascapes |
 | Event | What unusual condition is happening now? | marine heatwaves, cold spells, blooms |
 
-## The fifteen guides
+## The sixteen guides
 
 1. [Water Masses and Layers](01-WATER-MASSES-AND-LAYERS.md) — property-defined bodies in three dimensions.
 2. [Fronts, Jets, and Bands](02-FRONTS-JETS-AND-BANDS.md) — boundaries and the fast flows that often follow them.
@@ -84,6 +84,7 @@ objects carry, bound, transform, steer, overlap, and measure one another.
 13. [How to Name an Ocean Patch](13-HOW-TO-NAME-AN-OCEAN-PATCH.md) — the decision ladder and visual matrix across all 116 objects.
 14. [Evidence Receipts](14-EVIDENCE-RECEIPTS.md) — origin × claim stage × identity-test results for real OSW layers.
 15. [Ocean Column Address](15-OCEAN-COLUMN-ADDRESS.md) — a complete horizontal × vertical reference without turning depth bands into physical walls.
+16. [Ocean-State Neighbors and Accounts](16-OCEAN-STATE-NEIGHBORS-AND-ACCOUNTS.md) — permeable reference states, exact adjacency, depth silhouettes, longitudinal accounts, and the evidence needed to measure exchange.
 
 ## One parcel, several objects
 
