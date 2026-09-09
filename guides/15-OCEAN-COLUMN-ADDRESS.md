@@ -196,6 +196,14 @@ state is in this band, and how the state ranks among those that reach it. In
 the first source-aligned screen all 54 states reach through 4,000 m, 50 reach
 4,000–6,000 m, and 29 reach 6,000 m or deeper.
 
+A five-map ladder holds projection and color thresholds fixed while depth
+changes. Each fill is the state's percentage of the global sampled volume in
+that particular band; panel titles separately report absolute band volume and
+positive-state count. This reveals increasing concentration without asking a
+reader to remember successive toggles: the leading five states hold 36.02% of
+epipelagic volume but 68.09% of hadal volume. The comparison is volume
+geography only, not concentration of heat, life, or motion.
+
 ## Planetary boundary
 
 Edition 1 is Earth ocean geography. Its sunlight labels, metre cutoffs, solid

@@ -92,6 +92,15 @@ leads the abyssal and hadal bands. The passport reports the selected state's
 band rank, band volume, share of its own water, and share of the global sampled
 band. This is an address-volume view, not occupancy by ecology or water mass.
 
+The five-band water atlas removes the memory burden of toggling. Five small
+Oceanic Mollweide maps share one concentration scale: each state's percentage
+of the global sampled volume in that band. The top five states hold 36.02% of
+epipelagic volume, 37.80% mesopelagic, 39.66% bathypelagic, 40.33% abyssal,
+and 68.09% hadal. The last jump is a real result of this sampled geometry,
+while still not a heat, transport, habitat, or causal concentration. Absolute
+band totals are printed separately because equal color means equal percentage
+of a band, not equal cubic kilometres between bands.
+
 This is a sampled volume approximation, not voxelized native-resolution
 ocean volume. It omits partial coastal cells, uses center membership and
 prismatic cell geometry, and inherits GEBCO and Version 4 seams. Its total is

@@ -18,6 +18,7 @@ const sourceMapColors = {land:"#dad6c8",direct_measurement:"#5bd8ce",indirect_or
 const biomeMapColors = {Polar:"#638aa0",Westerlies:"#426d82",Trades:"#295668",Coastal:"#6d7a72"};
 const quantityMapColors = ["#8de4d7", "#55b6b9", "#367c90", "#28566f", "#1a354c"];
 const floorMapColors = {"shelf-led":"#86d7d1","upper-depth-floor-led":"#58a7b5","deep-floor-led":"#397a96","abyssal-floor-led":"#223f73","hadal-floor-led":"#121f48"};
+const bandShareColors = ["#17364c", "#245a70", "#368497", "#59b7b5", "#91dfd2"];
 const footprintCodes = [...new Set(footprints.footprint_runs.map(run => run[3]))];
 const footprintCodeIndex = new Map(footprintCodes.map((code, index) => [code, index]));
 const footprintAssignments = new Int16Array(footprints.grid.shape[0] * footprints.grid.shape[1]).fill(-1);
@@ -187,6 +188,62 @@ function appendLegend(container, entries) {
   }));
 }
 
+function bandShareColor(share) {
+  if (share <= 0) return "#313a3d";
+  if (share < .01) return bandShareColors[0];
+  if (share < .02) return bandShareColors[1];
+  if (share < .05) return bandShareColors[2];
+  if (share < .10) return bandShareColors[3];
+  return bandShareColors[4];
+}
+
+function renderDepthLadder() {
+  const canvas = document.querySelector("#depth-ladder-canvas"), context = canvas.getContext("2d");
+  const [rows, columns] = footprints.grid.shape;
+  if (!footprintMollweideAssignments) footprintMollweideAssignments = buildMollweideAssignments(rows, columns);
+  const narrow = window.matchMedia("(max-width: 700px)").matches;
+  canvas.width = narrow ? 600 : 1440; canvas.height = narrow ? 1600 : 900;
+  context.fillStyle = "#06181e"; context.fillRect(0, 0, canvas.width, canvas.height);
+  const panels = narrow ? [[20,55],[20,365],[20,675],[20,985],[20,1295]] : [[20,70],[500,70],[980,70],[260,500],[740,500]];
+  const panelWidth = narrow ? 560 : 440, panelHeight = narrow ? 280 : 220;
+  const selectedIndex = footprintCodeIndex.get(selectedProvince), boundary = hexRgb("#71898d"), selectedEdge = hexRgb("#ffe078"), outside = hexRgb("#06181e");
+  const summaryList = document.querySelector("#depth-ladder-summary"); summaryList.replaceChildren();
+  const accessible = [];
+  data.column_address.bands.forEach((band, bandIndex) => {
+    const total = footprints.volume_summary.water_volume_km3_by_depth_band[band.name];
+    const shares = new Map(footprintCodes.map(code => [code, (footprints.provinces[code]?.water_volume_km3_by_depth_band[band.name] ?? 0) / total]));
+    const image = context.createImageData(panelWidth, panelHeight);
+    for (let y = 0; y < panelHeight; y += 1) {
+      const sourceRow = Math.min(rows - 1, Math.floor(y / panelHeight * rows));
+      for (let x = 0; x < panelWidth; x += 1) {
+        const sourceColumn = Math.min(columns - 1, Math.floor(x / panelWidth * columns));
+        const codeIndex = footprintMollweideAssignments[sourceRow * columns + sourceColumn];
+        const offset = (y * panelWidth + x) * 4;
+        let rgb = outside;
+        if (codeIndex >= 0) {
+          const code = footprintCodes[codeIndex]; rgb = hexRgb(bandShareColor(shares.get(code)));
+          const eastColumn = Math.min(columns - 1, Math.floor((x + 1) / panelWidth * columns));
+          const southRow = Math.min(rows - 1, Math.floor((y + 1) / panelHeight * rows));
+          const east = footprintMollweideAssignments[sourceRow * columns + eastColumn];
+          const south = footprintMollweideAssignments[southRow * columns + sourceColumn];
+          if (east !== codeIndex || south !== codeIndex) rgb = codeIndex === selectedIndex || east === selectedIndex || south === selectedIndex ? selectedEdge : boundary;
+        }
+        image.data[offset] = rgb[0]; image.data[offset + 1] = rgb[1]; image.data[offset + 2] = rgb[2]; image.data[offset + 3] = 255;
+      }
+    }
+    const [panelX, panelY] = panels[bandIndex]; context.putImageData(image, panelX, panelY);
+    context.strokeStyle = "#496b70"; context.lineWidth = 2; context.strokeRect(panelX, panelY, panelWidth, panelHeight);
+    const positive = [...shares].filter(([, share]) => share > 0).sort((left, right) => right[1] - left[1]);
+    const leader = positive[0], topFive = positive.slice(0, 5).reduce((sum, item) => sum + item[1], 0);
+    context.fillStyle = "#eef9f7"; context.font = "900 22px ui-monospace, monospace"; context.fillText(band.name.toUpperCase(), panelX, panelY - 25);
+    context.fillStyle = "#8fb4b6"; context.font = "700 16px ui-monospace, monospace"; context.fillText(`${(total / 1_000_000).toFixed(1)}M km³ · ${positive.length} states · ${leader[0]} leads`, panelX, panelY + panelHeight + 22);
+    const sentence = `${band.name}: ${(total / 1_000_000).toFixed(1)} million km³ across ${positive.length} states; ${leader[0]} holds ${(leader[1] * 100).toFixed(2)}%, and the top five hold ${(topFive * 100).toFixed(2)}%.`;
+    accessible.push(sentence); const item = document.createElement("li"); item.textContent = sentence; summaryList.append(item);
+  });
+  appendLegend(document.querySelector("#depth-ladder-legend"), [[bandShareColors[0],"<1% of global band"],[bandShareColors[1],"1–<2%"],[bandShareColors[2],"2–<5%"],[bandShareColors[3],"5–<10%"],[bandShareColors[4],"≥10%"],["#313a3d","no sampled band volume"],["#ffe078","gold edge = selected province"]]);
+  canvas.setAttribute("aria-label", `Five Oceanic Mollweide maps using one global-band-share scale. ${accessible.join(" ")}`);
+}
+
 function renderPassport(summary, fingerprint, bandInfo) {
   const passport = document.querySelector("#footprint-passport");
   passport.replaceChildren();
@@ -317,6 +374,7 @@ function renderFootprint() {
     profile.setAttribute("aria-label", `${selectedProvince} ${profileNoun} distribution: ${bands.map(([key,label]) => `${label} ${((fractions[key] ?? 0) * 100).toFixed(1)}%`).join(", ")}.`);
   }
   canvas.setAttribute("aria-label", `Oceanic Mollweide world map of the 54 source-aligned Longhurst Version 4 province footprints, filled by ${mapLabels[footprintMapMode]}. ${document.querySelector("#footprint-summary").textContent}`);
+  renderDepthLadder();
 }
 
 function renderNeighborhood() {
@@ -478,6 +536,7 @@ function init() {
       renderFootprint();
     });
   });
+  window.matchMedia("(max-width: 700px)").addEventListener("change", renderDepthLadder);
   render();
 }
 

@@ -1075,3 +1075,11 @@ upper three by volume while NPSW leads the lower two. The passport distinguishes
 the state's share of the global band from the band's share of the state. This
 is the first visible realization of the full horizontal × vertical address,
 rather than a vertical diagram sitting beside an unrelated world map.
+
+The five-band water atlas then removes the need to remember those toggles.
+Five Mollweide small multiples use one fixed scale for each state's share of
+global sampled band volume, with absolute totals kept in panel subtitles. The
+top-five share rises gradually from 36.02% epipelagic through 40.33% abyssal,
+then jumps to 68.09% hadal. The plate makes a new relationship visible—the
+deepest volume is far more geographically concentrated under this partition—
+without relabeling volume concentration as heat, habitat, or circulation.

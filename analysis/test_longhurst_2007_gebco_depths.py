@@ -139,3 +139,23 @@ def test_depth_band_volumes_close_and_have_expected_coverage_and_leaders():
         assert len(positive) == positive_count
         assert max(positive, key=lambda item: item[1])[0] == leader
         assert abs(sum(volume for _, volume in rows) - payload["volume_summary"]["water_volume_km3_by_depth_band"][band]) < 0.1
+
+
+def test_depth_ladder_concentration_has_fixed_leader_and_top_five_shares():
+    payload = load()
+    expected = {
+        "epipelagic": ("SPSG", 10.38, 36.02),
+        "mesopelagic": ("SPSG", 10.92, 37.80),
+        "bathypelagic": ("SPSG", 11.32, 39.66),
+        "abyssopelagic": ("NPSW", 10.07, 40.33),
+        "hadalpelagic": ("NPSW", 21.62, 68.09),
+    }
+    for band, (leader, leader_percent, top_five_percent) in expected.items():
+        total = payload["volume_summary"]["water_volume_km3_by_depth_band"][band]
+        shares = sorted(
+            ((code, province["water_volume_km3_by_depth_band"][band] / total) for code, province in payload["provinces"].items()),
+            key=lambda item: item[1], reverse=True,
+        )
+        assert shares[0][0] == leader
+        assert round(shares[0][1] * 100, 2) == leader_percent
+        assert round(sum(share for _, share in shares[:5]) * 100, 2) == top_five_percent
