@@ -65,6 +65,14 @@ epipelagic, 19.50% mesopelagic, 62.84% bathypelagic, 12.41% abyssopelagic, and
 0.11% hadalpelagic. The browser can switch the depth bar between water-volume
 share and the earlier seafloor-reaching area share.
 
+The map itself can now switch among ecological families and three comparative
+fields: sampled wet area, sampled water volume, and area-weighted mean water
+depth. Quantitative maps use five explicit rank classes—largest or deepest
+first—rather than a continuous color ramp whose precision the 0.25° screen
+cannot support. A selected-province passport supplies its exact rank among the
+54, global area and volume shares, and mean depth. Rank is capacity or geometry,
+not ecological importance, heat content, transport, or influence.
+
 This is a sampled volume approximation, not voxelized native-resolution
 ocean volume. It omits partial coastal cells, uses center membership and
 prismatic cell geometry, and inherits GEBCO and Version 4 seams. Its total is

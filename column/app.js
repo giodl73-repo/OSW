@@ -11,9 +11,11 @@ let selectedBand = "OBJ113";
 let scaleMode = "readable";
 let neighborhoodMode = "depth";
 let footprintProfileMode = "volume";
+let footprintMapMode = "family";
 const depthMapColors = {land:"#dad6c8",epipelagic:"#3b91a2",mesopelagic:"#2c7087",bathypelagic:"#1e506d",abyssopelagic:"#163a59",hadalpelagic:"#0a203b"};
 const sourceMapColors = {land:"#dad6c8",direct_measurement:"#5bd8ce",indirect_or_interpolated:"#e8b960",mixed_or_unknown:"#b49ae8"};
 const biomeMapColors = {Polar:"#638aa0",Westerlies:"#426d82",Trades:"#295668",Coastal:"#6d7a72"};
+const quantityMapColors = ["#8de4d7", "#55b6b9", "#367c90", "#28566f", "#1a354c"];
 const footprintCodes = [...new Set(footprints.footprint_runs.map(run => run[3]))];
 const footprintCodeIndex = new Map(footprintCodes.map((code, index) => [code, index]));
 const footprintAssignments = new Int16Array(footprints.grid.shape[0] * footprints.grid.shape[1]).fill(-1);
@@ -139,6 +141,49 @@ function approximateVolume(value) {
   return `${(Math.round(value / 1000) * 1000).toLocaleString()} km³`;
 }
 
+function ranksFor(field) {
+  return new Map(Object.values(footprints.provinces)
+    .sort((left, right) => right[field] - left[field])
+    .map((province, index) => [province.osw_code, index + 1]));
+}
+
+const provinceRanks = {
+  area: ranksFor("sampled_wet_area_km2"),
+  volume: ranksFor("sampled_water_volume_km3"),
+  depth: ranksFor("area_weighted_mean_water_depth_m"),
+};
+
+function rankColor(rank) {
+  return quantityMapColors[Math.min(4, Math.floor((rank - 1) / 11))];
+}
+
+function appendLegend(container, entries) {
+  container.replaceChildren(...entries.map(([color, label]) => {
+    const item = document.createElement("span"), swatch = document.createElement("i");
+    swatch.style.background = color; item.append(swatch, document.createTextNode(label)); return item;
+  }));
+}
+
+function renderPassport(summary) {
+  const passport = document.querySelector("#footprint-passport");
+  passport.replaceChildren();
+  if (!summary) {
+    const wrapper = document.createElement("div"), term = document.createElement("dt"), value = document.createElement("dd");
+    term.textContent = "Version 4 passport"; value.textContent = "Unavailable for this older identity";
+    wrapper.append(term, value); passport.append(wrapper); return;
+  }
+  const totalArea = Object.values(footprints.provinces).reduce((total, province) => total + province.sampled_wet_area_km2, 0);
+  const entries = [
+    ["Sampled wet area", `#${provinceRanks.area.get(summary.osw_code)} of 54 · ${(summary.sampled_wet_area_km2 / totalArea * 100).toFixed(2)}%`],
+    ["Sampled water volume", `#${provinceRanks.volume.get(summary.osw_code)} of 54 · ${(summary.sampled_water_volume_km3 / footprints.volume_summary.sampled_source_aligned_water_volume_km3 * 100).toFixed(2)}%`],
+    ["Mean water depth", `#${provinceRanks.depth.get(summary.osw_code)} deepest · ${summary.area_weighted_mean_water_depth_m.toLocaleString()} m`],
+  ];
+  entries.forEach(([label, text]) => {
+    const wrapper = document.createElement("div"), term = document.createElement("dt"), value = document.createElement("dd");
+    term.textContent = label; value.textContent = text; wrapper.append(term, value); passport.append(wrapper);
+  });
+}
+
 function buildMollweideAssignments(rows, columns) {
   const projected = new Int16Array(rows * columns).fill(-2);
   const rootTwo = Math.SQRT2;
@@ -171,6 +216,7 @@ function renderFootprint() {
   const provinceByCode = new Map(data.provinces.map(province => [province.code, province]));
   const background = hexRgb("#06181e"), boundary = hexRgb("#8aa3a5"), selected = hexRgb("#63e2d8"), selectedEdge = hexRgb("#ffe078");
   const biomeRgb = new Map(footprintCodes.map(code => [code, hexRgb(biomeMapColors[provinceByCode.get(code)?.biome] ?? "#38545b")]));
+  const quantityRgb = new Map(footprintCodes.map(code => [code, hexRgb(rankColor(provinceRanks[footprintMapMode]?.get(code) ?? 54))]));
   for (let displayRow = 0; displayRow < rows; displayRow += 1) {
     for (let column = 0; column < columns; column += 1) {
       const sourceOffset = displayRow * columns + column;
@@ -179,7 +225,7 @@ function renderFootprint() {
       let rgb = background;
       if (codeIndex >= 0) {
         const code = footprintCodes[codeIndex];
-        rgb = codeIndex === selectedIndex ? selected : biomeRgb.get(code);
+        rgb = footprintMapMode === "family" && codeIndex === selectedIndex ? selected : (footprintMapMode === "family" ? biomeRgb.get(code) : quantityRgb.get(code));
         const east = column + 1 < columns ? footprintMollweideAssignments[sourceOffset + 1] : -2;
         const north = displayRow + 1 < rows ? footprintMollweideAssignments[sourceOffset + columns] : -2;
         if (east !== codeIndex || north !== codeIndex) rgb = codeIndex === selectedIndex || east === selectedIndex || north === selectedIndex ? selectedEdge : boundary;
@@ -193,9 +239,18 @@ function renderFootprint() {
   const summary = footprints.provinces[selectedProvince];
   const profile = document.querySelector("#footprint-depth-profile");
   const legend = document.querySelector("#footprint-legend");
+  const mapLegend = document.querySelector("#footprint-map-legend");
   const bands = [["epipelagic","<200 m"],["mesopelagic","200–<1,000 m"],["bathypelagic","1,000–<4,000 m"],["abyssopelagic","4,000–<6,000 m"],["hadalpelagic","≥6,000 m"]];
   profile.replaceChildren();
   legend.replaceChildren();
+  const mapLabels = {family:"ecological families",area:"sampled wet-area rank · largest first",volume:"sampled water-volume rank · largest first",depth:"area-weighted mean-depth rank · deepest first"};
+  document.querySelector("#footprint-map-label").textContent = `MAP FIELD · ${mapLabels[footprintMapMode].toUpperCase()}`;
+  if (footprintMapMode === "family") {
+    appendLegend(mapLegend, [...Object.entries(biomeMapColors).map(([label, color]) => [color, label]), ["#63e2d8", "selected province"]]);
+  } else {
+    appendLegend(mapLegend, [...quantityMapColors.map((color, index) => [color, index === 4 ? "ranks 45–54" : `ranks ${index * 11 + 1}–${index * 11 + 11}`]), ["#ffe078", "gold edge = selected province"]]);
+  }
+  renderPassport(summary);
   if (!summary) {
     document.querySelector("#footprint-profile-label").textContent = "DEPTH PROFILE UNAVAILABLE IN VERSION 4";
     document.querySelector("#footprint-status").textContent = "OLDER 1995 IDENTITY · NO SEPARATE V4 FOOTPRINT";
@@ -218,7 +273,7 @@ function renderFootprint() {
     document.querySelector("#footprint-summary").textContent = `${selectedProvince} / ${crosswalk.source_code}: the bar shows ${profileNoun} by depth band. ${summary.wet_sample_count.toLocaleString()} wet 0.25° samples represent approximately ${summary.sampled_wet_area_km2.toLocaleString()} km² and ${approximateVolume(summary.sampled_water_volume_km3)} of water under sampled prismatic integration. Area-weighted mean water depth is ${summary.area_weighted_mean_water_depth_m.toLocaleString()} m; wet seabed depths span ${summary.minimum_wet_depth_m.toLocaleString()}–${summary.maximum_wet_depth_m.toLocaleString()} m. Source-type area is ${direct.toFixed(1)}% direct measurement and ${indirect.toFixed(1)}% indirect/interpolated; remaining area is mixed/unknown. The source polygon also contains ${summary.non_wet_geometry_sample_count.toLocaleString()} GEBCO non-wet centers from coastline/grid disagreement.`;
     profile.setAttribute("aria-label", `${selectedProvince} ${profileNoun} distribution: ${bands.map(([key,label]) => `${label} ${((fractions[key] ?? 0) * 100).toFixed(1)}%`).join(", ")}.`);
   }
-  canvas.setAttribute("aria-label", `Oceanic Mollweide world map of the 54 source-aligned Longhurst Version 4 province footprints. ${document.querySelector("#footprint-summary").textContent}`);
+  canvas.setAttribute("aria-label", `Oceanic Mollweide world map of the 54 source-aligned Longhurst Version 4 province footprints, filled by ${mapLabels[footprintMapMode]}. ${document.querySelector("#footprint-summary").textContent}`);
 }
 
 function renderNeighborhood() {
@@ -317,6 +372,7 @@ function init() {
   if (data.column_address.bands.some(item => item.object_id === params.get("band"))) selectedBand = params.get("band");
   if (["depth", "source"].includes(params.get("neighborhood"))) neighborhoodMode = params.get("neighborhood");
   if (["volume", "seafloor"].includes(params.get("profile"))) footprintProfileMode = params.get("profile");
+  if (["family", "area", "volume", "depth"].includes(params.get("map"))) footprintMapMode = params.get("map");
 
   const provinceSelect = document.querySelector("#province-select");
   data.provinces.forEach(province => {
@@ -367,6 +423,15 @@ function init() {
       footprintProfileMode = button.dataset.footprintProfile;
       document.querySelectorAll("[data-footprint-profile]").forEach(item => item.setAttribute("aria-pressed", String(item === button)));
       const url = new URL(window.location.href); url.searchParams.set("profile", footprintProfileMode); history.replaceState(null, "", url);
+      renderFootprint();
+    });
+  });
+  document.querySelectorAll("[data-footprint-map]").forEach(button => {
+    button.setAttribute("aria-pressed", String(button.dataset.footprintMap === footprintMapMode));
+    button.addEventListener("click", () => {
+      footprintMapMode = button.dataset.footprintMap;
+      document.querySelectorAll("[data-footprint-map]").forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+      const url = new URL(window.location.href); url.searchParams.set("map", footprintMapMode); history.replaceState(null, "", url);
       renderFootprint();
     });
   });

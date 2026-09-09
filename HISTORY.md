@@ -1049,3 +1049,11 @@ each band. This is the fourth seminal step: the “states” are no longer only
 surface pieces or bottom-depth summaries; they now have a declared, auditable
 vertical extent without being misrepresented as water masses or ecological
 columns.
+
+The next cartographic pass makes that ledger comparative. The same Mollweide
+frame can show ecological families, sampled wet-area rank, sampled water-volume
+rank, or area-weighted mean-depth rank. Five deliberately coarse classes carry
+the global pattern; a three-number passport gives the selected state's exact
+rank and share. This separates a state's geometric capacity from its dynamical
+importance and makes differences such as “large,” “voluminous,” and “deep”
+visible rather than interchangeable.

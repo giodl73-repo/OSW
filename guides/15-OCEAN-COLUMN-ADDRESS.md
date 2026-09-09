@@ -173,6 +173,13 @@ surface ecology occupies the full extruded column. Its 1.338-billion-km³ global
 scale agrees closely with an independent USGS ocean-volume estimate; this is a
 context check, not calibration or proof of provincial accuracy.
 
+The geographic view can compare the 54 source-aligned states by sampled wet
+area, sampled water volume, or area-weighted mean depth. Five rank classes keep
+the comparison honest at this resolution, while the selected-state passport
+reports its exact rank and global share. These are geometric capacity measures:
+a large or deep state is not necessarily more important, warmer, more dynamic,
+or more influential in ocean heat transport.
+
 ## Planetary boundary
 
 Edition 1 is Earth ocean geography. Its sunlight labels, metre cutoffs, solid

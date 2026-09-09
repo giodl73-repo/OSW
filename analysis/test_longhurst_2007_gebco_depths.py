@@ -105,3 +105,19 @@ def test_browser_payload_is_exactly_the_research_payload():
     text = BROWSER.read_text(encoding="utf-8")
     assert text.startswith(prefix) and text.endswith(";\n")
     assert json.loads(text[len(prefix):-2]) == load()
+
+
+def test_comparative_fields_have_complete_values_and_expected_leaders():
+    provinces = load()["provinces"]
+    assert len(provinces) == 54
+    metrics = {
+        "sampled_wet_area_km2": "SPSG",
+        "sampled_water_volume_km3": "SPSG",
+        "area_weighted_mean_water_depth_m": "NPPF",
+    }
+    for field, expected_leader in metrics.items():
+        assert all(province[field] > 0 for province in provinces.values())
+        assert len({province[field] for province in provinces.values()}) == 54
+        ordered = sorted(provinces.values(), key=lambda province: province[field], reverse=True)
+        assert ordered[0]["osw_code"] == expected_leader
+        assert len({province["osw_code"] for province in ordered}) == 54

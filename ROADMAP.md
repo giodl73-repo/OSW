@@ -84,6 +84,9 @@ budgets remain distinct object types with distinct identity tests.
   ledger for those 54 footprints: approximately 1.338 billion km³ divided
   across the five declared depth bands and each province. Its global total is
   a strong scale check; individual volumes remain 0.25° sampled estimates.
+  The workbench now compares the 54 states by ecological family, wet area,
+  water volume, or mean depth and gives the selected state an exact rank/share
+  passport without equating geometric capacity with dynamical importance.
 - 36 shaped ocean features span waters, flows, edges, floor, life, and events.
 - Six conceptual lenses and multiple observed fields share an ocean-first map.
 - The 11 realms and 22 contiguous regions are OSW organizational constructs,
