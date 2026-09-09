@@ -4,6 +4,17 @@ This record preserves changes in the project's way of seeing the ocean, not
 only software releases. Atlas version status remains in `README.md` and
 `PREVIEW-STATUS.md`.
 
+## 2026-09-09 — The evidence became a journey
+
+OSW's D1–D14 marine-heatwave chain stopped being a repository reading exercise
+and became a five-question visitor route: Event, Surface, Sky–ocean boundary,
+Column, and Motion. Each scene reads committed evidence rather than copying
+headline numbers, carries its evidence class and limitation, and preserves the
+partial residual as unresolved. The route is the first direct realization of
+the atlas north star: place → ocean object → motion → heat budget → evidence
+receipt. It adds navigation and explanation, not a new scientific result,
+causal attribution, release promotion, or budget closure.
+
 ## 2026-09-08 — The ocean gains a vertical address
 
 The 56-province reference answered “where on the ocean surface?” but left the

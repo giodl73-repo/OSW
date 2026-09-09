@@ -15,14 +15,11 @@ backward compatibility.
 
 **[See what OSW is building next ->](ROADMAP.md)**
 
-**[Open the Ocean-State Exchange Observatory →](exchange/)** — move from
-state contents to measured exchange, boundary stability, event routes, and the
-complete 128-border evidence matrix without confusing reference geography with
-physical walls.
-
 ## Enter the Ocean States
 
-**[Explore 56 ocean states, 36 shaped features, and the Atlas 10 depth ladder →](atlas/)**
+| Explore the ocean | Follow heat | Inspect evidence |
+|---|---|---|
+| **[Open the interactive atlas →](atlas/)**<br>Explore 56 ocean states, 36 shaped features, and the Atlas 10 depth ladder. | **[Follow one warm event →](event/)**<br>Move through five evidence screens without mistaking them for causation or budget closure. | **[Open the Exchange Observatory →](exchange/)**<br>Inspect state contents, exchange, stability, event routes, and the complete 128-border evidence matrix. |
 
 [Open the full annotated map](figures/osw-fluid-geography.svg) ·
 [Compare ocean-first projections](projections/) ·

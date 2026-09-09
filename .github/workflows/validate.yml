@@ -26,7 +26,7 @@ jobs:
       - name: Compile Python sources
         run: python -m compileall -q analysis
       - name: Check browser JavaScript syntax
-        run: node --check atlas/app.js && node --check column/app.js && node --check exchange/app.js && node --check exchange/exchange-stage.js && node --check exchange/stability-stage.js && node --check exchange/events-stage.js && node --check exchange/decisions-stage.js
+        run: node --check atlas/app.js && node --check column/app.js && node --check exchange/app.js && node --check exchange/exchange-stage.js && node --check exchange/stability-stage.js && node --check exchange/events-stage.js && node --check exchange/decisions-stage.js && node --check event/scenes.js && node --check event/app.js
 
   netcdf-fixture:
     runs-on: ubuntu-latest

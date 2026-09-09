@@ -1,8 +1,8 @@
 # OSW Roadmap
 
-Status: active planning baseline, 2026-09-08
+Status: active planning baseline, 2026-09-09
 
-Applies to: the `atlas-08-private-preview` branch and the next public-site cycle
+Applies to: `main` and the next public-site cycle
 
 ## North star
 
@@ -46,10 +46,10 @@ budgets remain distinct object types with distinct identity tests.
 |---|---|---|
 | Public atlas | Atlas 07 released | Decide whether the integrated successor is ready to replace it |
 | Review atlas | Atlas 10 working baseline | Complete owner visual and interaction review |
-| Site delivery | Research-rich but link-heavy | Build the guided event-anatomy slice |
+| Site delivery | Three primary entrances plus a five-scene guided event-anatomy route | Complete native-role closeout and owner review before any public promotion |
 | Heat mechanism | Surface, storage, and horizontal-motion screens assembled | Test depth/time sensitivity and inventory missing terms |
 | Ocean zoning | 11 realms / 22 regions frozen and provisional | Resume only after transport-based boundary scorecards |
-| Ocean relationships | First bounded exchange-foundation goal implemented; final review pending | Review the 54-node neighbor atlas and six-state continuous-hypsometry prototype |
+| Ocean relationships | Seven-stage exchange program complete; 127 edges unknown, one bounded segment demoted, zero source changes | Add multiyear, multi-property, and second-product evidence before reconsidering zoning |
 | Governance | Native `.roles`; VTRACE Mission through Trace fixed points; initial pitfalls register | Open final Review next; verification targets and validation execution evidence remain pending |
 
 ### Public site
@@ -130,7 +130,7 @@ the corresponding final source-register entries are D38-D51.
 
 ### Delivery and governance
 
-- The offline pytest suite passes 530 tests and 60 subtests at the
+- The offline pytest suite contains 568 tests and 60 subtests at the
   current baseline.
 - Eighteen worked evidence receipts connect object claims to reproducible
   support and limitations.
@@ -164,10 +164,11 @@ the corresponding final source-register entries are D38-D51.
 | 8 | Zoning return | Do candidate ocean-state borders organize real exchange? | Boundary scorecards for persistence, cross-boundary exchange, retention, convergence, vertical agreement, and gate dependence | Candidate merge/split/retain decisions trace to diagnostics |
 | 9 | Public release | Is the integrated atlas ready to replace Atlas 07? | Approved, accessible, responsive, source-audited release with deliberate projection and version choices | Full validation, owner visual approval, role review, clean publication checklist |
 
-## Recommended next slice: guided event anatomy
+## Completed site slice: guided event anatomy
 
-**Consequential question:** How did heat accumulate and move inside one tracked
-North Atlantic marine heatwave?
+**Consequential question:** What do five increasingly physical screens reveal
+about one tracked North Atlantic marine heatwave, and where does each screen
+stop?
 
 **Visible result:** add a first-class route from the atlas landing page through
 five connected scenes:
@@ -178,6 +179,10 @@ five connected scenes:
 4. **Column** — fixed-depth storage from 0 to 50 m.
 5. **Motion** — depth-integrated horizontal advection and the unresolved
    partial residual.
+
+Implementation is complete on `site/guided-event-anatomy`. The route reads its
+headline values and boundaries from committed D-series JSON, retains a complete
+no-script five-question path, and does not change Atlas 07 release status.
 
 Each scene should keep the map in a stable frame, explain one question in plain
 language, expose the relevant depth/time/support, and link directly to its JSON
