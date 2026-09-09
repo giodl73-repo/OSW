@@ -188,6 +188,14 @@ separate. In the present 54-state edition this yields 11 shelf-led, 19
 deep-floor-led, and 24 abyssal-floor-led states. These are declared
 hypsometric descriptors, not geomorphic slope types or ecological habitats.
 
+The selected depth address can also become the map field. Each province is
+ranked by sampled water volume inside the active band; states that do not reach
+that band remain a separate no-volume class. The passport then answers three
+different questions: how much of the band is in this state, how much of the
+state is in this band, and how the state ranks among those that reach it. In
+the first source-aligned screen all 54 states reach through 4,000 m, 50 reach
+4,000–6,000 m, and 29 reach 6,000 m or deeper.
+
 ## Planetary boundary
 
 Edition 1 is Earth ocean geography. Its sunlight labels, metre cutoffs, solid

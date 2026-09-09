@@ -143,6 +143,11 @@ function approximateVolume(value) {
   return `${(Math.round(value / 1000) * 1000).toLocaleString()} km³`;
 }
 
+function approximateBandVolume(value) {
+  const rounded = value >= 1000 ? Math.round(value / 10) * 10 : (value >= 10 ? Math.round(value * 10) / 10 : Math.round(value * 100) / 100);
+  return `${rounded.toLocaleString()} km³`;
+}
+
 function ranksFor(field) {
   return new Map(Object.values(footprints.provinces)
     .sort((left, right) => right[field] - left[field])
@@ -155,8 +160,24 @@ const provinceRanks = {
   depth: ranksFor("area_weighted_mean_water_depth_m"),
 };
 
-function rankColor(rank) {
-  return quantityMapColors[Math.min(4, Math.floor((rank - 1) / 11))];
+function rankColor(rank, count = 54) {
+  return quantityMapColors[Math.min(4, Math.floor((rank - 1) * 5 / count))];
+}
+
+function selectedBandInfo() {
+  const band = data.column_address.bands.find(item => item.object_id === selectedBand);
+  const ordered = Object.values(footprints.provinces)
+    .filter(province => province.water_volume_km3_by_depth_band[band.name] > 0)
+    .sort((left, right) => right.water_volume_km3_by_depth_band[band.name] - left.water_volume_km3_by_depth_band[band.name]);
+  return {band, count:ordered.length, ranks:new Map(ordered.map((province, index) => [province.osw_code, index + 1]))};
+}
+
+function rankLegendEntries(count) {
+  return quantityMapColors.map((color, index) => {
+    const start = Math.ceil(index * count / 5) + 1;
+    const end = Math.ceil((index + 1) * count / 5);
+    return [color, start === end ? `rank ${start}` : `ranks ${start}–${end}`];
+  });
 }
 
 function appendLegend(container, entries) {
@@ -166,7 +187,7 @@ function appendLegend(container, entries) {
   }));
 }
 
-function renderPassport(summary, fingerprint) {
+function renderPassport(summary, fingerprint, bandInfo) {
   const passport = document.querySelector("#footprint-passport");
   passport.replaceChildren();
   if (!summary) {
@@ -175,6 +196,10 @@ function renderPassport(summary, fingerprint) {
     wrapper.append(term, value); passport.append(wrapper); return;
   }
   const totalArea = Object.values(footprints.provinces).reduce((total, province) => total + province.sampled_wet_area_km2, 0);
+  const bandName = bandInfo.band.name;
+  const bandVolume = summary.water_volume_km3_by_depth_band[bandName];
+  const bandRank = bandInfo.ranks.get(summary.osw_code);
+  const globalBandVolume = footprints.volume_summary.water_volume_km3_by_depth_band[bandName];
   const entries = [
     ["Sampled wet area", `#${provinceRanks.area.get(summary.osw_code)} of 54 · ${(summary.sampled_wet_area_km2 / totalArea * 100).toFixed(2)}%`],
     ["Sampled water volume", `#${provinceRanks.volume.get(summary.osw_code)} of 54 · ${(summary.sampled_water_volume_km3 / footprints.volume_summary.sampled_source_aligned_water_volume_km3 * 100).toFixed(2)}%`],
@@ -182,6 +207,9 @@ function renderPassport(summary, fingerprint) {
     ["Floor character", `${fingerprint.floor_character.replaceAll("-", " ")} · ${(fingerprint.dominant_seafloor_area_fraction * 100).toFixed(1)}%`],
     ["Vertical breadth", `${fingerprint.substantial_seafloor_band_count} of 5 bands ≥5% · hadal ${fingerprint.hadal_bearing ? "yes" : "no"}`],
     ["Area → volume rank", fingerprint.volume_rank_advantage_over_area === 0 ? "no rank change" : `${fingerprint.volume_rank_advantage_over_area > 0 ? "+" : ""}${fingerprint.volume_rank_advantage_over_area} places by volume`],
+    [`${bandName} volume`, bandRank ? `#${bandRank} of ${bandInfo.count} · ${approximateBandVolume(bandVolume)}` : "no sampled volume"],
+    ["Share of this state", `${(summary.water_volume_fraction_by_depth_band[bandName] * 100).toFixed(2)}% of sampled water`],
+    ["Share of global band", `${(bandVolume / globalBandVolume * 100).toFixed(2)}% of sampled band`],
   ];
   entries.forEach(([label, text]) => {
     const wrapper = document.createElement("div"), term = document.createElement("dt"), value = document.createElement("dd");
@@ -223,6 +251,11 @@ function renderFootprint() {
   const biomeRgb = new Map(footprintCodes.map(code => [code, hexRgb(biomeMapColors[provinceByCode.get(code)?.biome] ?? "#38545b")]));
   const quantityRgb = new Map(footprintCodes.map(code => [code, hexRgb(rankColor(provinceRanks[footprintMapMode]?.get(code) ?? 54))]));
   const floorRgb = new Map(footprintCodes.map(code => [code, hexRgb(floorMapColors[fingerprints.provinces[code]?.floor_character] ?? "#38545b")]));
+  const bandInfo = selectedBandInfo();
+  const bandRgb = new Map(footprintCodes.map(code => {
+    const rank = bandInfo.ranks.get(code);
+    return [code, hexRgb(rank ? rankColor(rank, bandInfo.count) : "#313a3d")];
+  }));
   for (let displayRow = 0; displayRow < rows; displayRow += 1) {
     for (let column = 0; column < columns; column += 1) {
       const sourceOffset = displayRow * columns + column;
@@ -231,7 +264,7 @@ function renderFootprint() {
       let rgb = background;
       if (codeIndex >= 0) {
         const code = footprintCodes[codeIndex];
-        rgb = footprintMapMode === "family" && codeIndex === selectedIndex ? selected : (footprintMapMode === "family" ? biomeRgb.get(code) : (footprintMapMode === "floor" ? floorRgb.get(code) : quantityRgb.get(code)));
+        rgb = footprintMapMode === "family" && codeIndex === selectedIndex ? selected : (footprintMapMode === "family" ? biomeRgb.get(code) : (footprintMapMode === "floor" ? floorRgb.get(code) : (footprintMapMode === "band" ? bandRgb.get(code) : quantityRgb.get(code))));
         const east = column + 1 < columns ? footprintMollweideAssignments[sourceOffset + 1] : -2;
         const north = displayRow + 1 < rows ? footprintMollweideAssignments[sourceOffset + columns] : -2;
         if (east !== codeIndex || north !== codeIndex) rgb = codeIndex === selectedIndex || east === selectedIndex || north === selectedIndex ? selectedEdge : boundary;
@@ -249,16 +282,18 @@ function renderFootprint() {
   const bands = [["epipelagic","<200 m"],["mesopelagic","200–<1,000 m"],["bathypelagic","1,000–<4,000 m"],["abyssopelagic","4,000–<6,000 m"],["hadalpelagic","≥6,000 m"]];
   profile.replaceChildren();
   legend.replaceChildren();
-  const mapLabels = {family:"ecological families",area:"sampled wet-area rank · largest first",volume:"sampled water-volume rank · largest first",depth:"area-weighted mean-depth rank · deepest first",floor:"dominant seafloor-depth character"};
+  const mapLabels = {family:"ecological families",area:"sampled wet-area rank · largest first",volume:"sampled water-volume rank · largest first",depth:"area-weighted mean-depth rank · deepest first",floor:"dominant seafloor-depth character",band:`${bandInfo.band.name} water-volume rank · largest first`};
   document.querySelector("#footprint-map-label").textContent = `MAP FIELD · ${mapLabels[footprintMapMode].toUpperCase()}`;
   if (footprintMapMode === "family") {
     appendLegend(mapLegend, [...Object.entries(biomeMapColors).map(([label, color]) => [color, label]), ["#63e2d8", "selected province"]]);
   } else if (footprintMapMode === "floor") {
     appendLegend(mapLegend, [[floorMapColors["shelf-led"],"shelf-led · bottom <200 m dominant"],[floorMapColors["deep-floor-led"],"deep-floor-led · bottom 1,000–<4,000 m dominant"],[floorMapColors["abyssal-floor-led"],"abyssal-floor-led · bottom 4,000–<6,000 m dominant"],["#ffe078","gold edge = selected province"]]);
+  } else if (footprintMapMode === "band") {
+    appendLegend(mapLegend, [...rankLegendEntries(bandInfo.count), ["#313a3d",`no sampled ${bandInfo.band.name} volume`], ["#ffe078","gold edge = selected province"]]);
   } else {
     appendLegend(mapLegend, [...quantityMapColors.map((color, index) => [color, index === 4 ? "ranks 45–54" : `ranks ${index * 11 + 1}–${index * 11 + 11}`]), ["#ffe078", "gold edge = selected province"]]);
   }
-  renderPassport(summary, fingerprints.provinces[selectedProvince]);
+  renderPassport(summary, fingerprints.provinces[selectedProvince], bandInfo);
   if (!summary) {
     document.querySelector("#footprint-profile-label").textContent = "DEPTH PROFILE UNAVAILABLE IN VERSION 4";
     document.querySelector("#footprint-status").textContent = "OLDER 1995 IDENTITY · NO SEPARATE V4 FOOTPRINT";
@@ -380,7 +415,7 @@ function init() {
   if (data.column_address.bands.some(item => item.object_id === params.get("band"))) selectedBand = params.get("band");
   if (["depth", "source"].includes(params.get("neighborhood"))) neighborhoodMode = params.get("neighborhood");
   if (["volume", "seafloor"].includes(params.get("profile"))) footprintProfileMode = params.get("profile");
-  if (["family", "area", "volume", "depth", "floor"].includes(params.get("map"))) footprintMapMode = params.get("map");
+  if (["family", "area", "volume", "depth", "floor", "band"].includes(params.get("map"))) footprintMapMode = params.get("map");
 
   const provinceSelect = document.querySelector("#province-select");
   data.provinces.forEach(province => {

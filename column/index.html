@@ -89,6 +89,7 @@
                 <button type="button" data-footprint-map="volume" aria-pressed="false">Water volume</button>
                 <button type="button" data-footprint-map="depth" aria-pressed="false">Mean depth</button>
                 <button type="button" data-footprint-map="floor" aria-pressed="false">Floor character</button>
+                <button type="button" data-footprint-map="band" aria-pressed="false">Selected band</button>
               </div>
               <div class="neighborhood-modes" role="group" aria-label="Province depth profile quantity">
                 <button type="button" data-footprint-profile="volume" aria-pressed="true">Water volume</button>
@@ -112,7 +113,7 @@
         <details class="data-notes">
           <summary>Data identity and next evidence step</summary>
           <p>The 56 names come from OSW's classic province reference directory. Exact interval semantics come from the edition-1 JSON contract. The selected seed cell comes from the public-domain GEBCO_2026 Grid through CEDA OPeNDAP. Source paths, release, acquisition time, DOI, and checksums are embedded in the generated browser bundle.</p>
-          <p>The source-aligned footprint screen advances to Version 4 geometry and 681,631 wet GEBCO samples with spherical area weighting. Bathymetry-truncated band thickness adds a sampled water-volume ledger of approximately 1.338 billion km³. A derived hypsometric fingerprint identifies each state's dominant seafloor band, substantial vertical breadth, hadal reach, and area-to-volume rank shift. It also exposes an edition mismatch: Version 4 has 54 provinces, while OSW preserves the older 56-name directory. <code>NPSE</code> and <code>OCAL</code> therefore remain without fabricated Version 4 footprints.</p>
+          <p>The source-aligned footprint screen advances to Version 4 geometry and 681,631 wet GEBCO samples with spherical area weighting. Bathymetry-truncated band thickness adds a sampled water-volume ledger of approximately 1.338 billion km³. “Selected band” projects the active vertical address onto the world map: all 54 states contain sampled water through 4,000 m, 50 reach the abyssal band, and 29 reach the hadal band. A derived hypsometric fingerprint identifies each state's dominant seafloor band, substantial vertical breadth, hadal reach, and area-to-volume rank shift. It also exposes an edition mismatch: Version 4 has 54 provinces, while OSW preserves the older 56-name directory. <code>NPSE</code> and <code>OCAL</code> therefore remain without fabricated Version 4 footprints.</p>
           <p><a href="../research/longhurst-2007-gebco-2026-depths.json">province-wide depth summaries</a> · <a href="../research/longhurst-2007-province-hypsometric-fingerprints.json">hypsometric fingerprints</a> · <a href="../research/longhurst-2007-gebco-2026-source-receipt.json">source receipt</a> · <a href="../research/gebco-2026-province-seed-depths.csv">56-cell depth table</a> · <a href="../research/ocean-column-address-v1.json">address contract</a> · <a href="../SOURCE-REGISTER.md">source register</a></p>
         </details>
       </div>

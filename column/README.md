@@ -82,6 +82,16 @@ The area-to-volume rank shift shows whether depth moves a state upward or
 downward relative to its surface size. These literal diagnostics do not claim
 geomorphic slope type, ecological habitat, or dynamic mechanism.
 
+“Selected band” finally joins the vertical address to the horizontal map. The
+active depth-band button colors provinces by their sampled water volume in that
+band and ranks only states with positive sampled volume; a separate gray class
+means no sampled reach. All 54 states contain epipelagic, mesopelagic, and
+bathypelagic volume under this integration, 50 contain abyssopelagic volume,
+and 29 contain hadalpelagic volume. SPSG leads the upper three bands; NPSW
+leads the abyssal and hadal bands. The passport reports the selected state's
+band rank, band volume, share of its own water, and share of the global sampled
+band. This is an address-volume view, not occupancy by ecology or water mass.
+
 This is a sampled volume approximation, not voxelized native-resolution
 ocean volume. It omits partial coastal cells, uses center membership and
 prismatic cell geometry, and inherits GEBCO and Version 4 seams. Its total is

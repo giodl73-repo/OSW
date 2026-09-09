@@ -1066,3 +1066,12 @@ one dominant label would otherwise erase. KURO is the sole current state with
 at least 5% of sampled seafloor area in all five bands; 29 states contain at
 least one sampled hadal center. The fingerprint completes a bathymetric
 covering while explicitly declining to call it geomorphology or dynamics.
+
+The depth selector then reaches the map. “Selected band” ranks state water
+volume inside the active vertical address and leaves states with no sampled
+reach in a separate gray class. The upper three bands span all 54 sourced
+states, the abyssal band spans 50, and the hadal band spans 29; SPSG leads the
+upper three by volume while NPSW leads the lower two. The passport distinguishes
+the state's share of the global band from the band's share of the state. This
+is the first visible realization of the full horizontal × vertical address,
+rather than a vertical diagram sitting beside an unrelated world map.

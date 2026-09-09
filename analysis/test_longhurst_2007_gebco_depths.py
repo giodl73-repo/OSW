@@ -121,3 +121,21 @@ def test_comparative_fields_have_complete_values_and_expected_leaders():
         ordered = sorted(provinces.values(), key=lambda province: province[field], reverse=True)
         assert ordered[0]["osw_code"] == expected_leader
         assert len({province["osw_code"] for province in ordered}) == 54
+
+
+def test_depth_band_volumes_close_and_have_expected_coverage_and_leaders():
+    payload = load()
+    provinces = payload["provinces"]
+    expected = {
+        "epipelagic": (54, "SPSG"),
+        "mesopelagic": (54, "SPSG"),
+        "bathypelagic": (54, "SPSG"),
+        "abyssopelagic": (50, "NPSW"),
+        "hadalpelagic": (29, "NPSW"),
+    }
+    for band, (positive_count, leader) in expected.items():
+        rows = [(code, province["water_volume_km3_by_depth_band"][band]) for code, province in provinces.items()]
+        positive = [(code, volume) for code, volume in rows if volume > 0]
+        assert len(positive) == positive_count
+        assert max(positive, key=lambda item: item[1])[0] == leader
+        assert abs(sum(volume for _, volume in rows) - payload["volume_summary"]["water_volume_km3_by_depth_band"][band]) < 0.1

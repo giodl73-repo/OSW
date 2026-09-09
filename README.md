@@ -168,7 +168,9 @@ ecological family, wet area, water volume, and mean depth; a selected-state
 passport reports its rank and global share. A fifth floor-character map and
 expanded passport distinguish shelf-led, deep-floor-led, and abyssal-floor-led
 states, substantial vertical breadth, sampled hadal reach, and the rank effect
-of depth.
+of depth. Selecting a vertical band can now recolor the world by water volume
+inside that band, with no-reach states kept separate and the selected state's
+local/global band shares reported explicitly.
 
 The currently published site still serves
 [Atlas 07](https://giodl73-repo.github.io/OSW/atlas/). Atlas 08 remains

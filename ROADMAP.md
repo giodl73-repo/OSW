@@ -91,6 +91,10 @@ budgets remain distinct object types with distinct identity tests.
   substantial-band breadth, sampled hadal presence, and area-to-volume rank
   shift. This completes a first transparent vertical-shape vocabulary without
   claiming bathymetry alone identifies geomorphic or dynamic ocean objects.
+  The active vertical band can now drive the world map itself, completing the
+  first visible horizontal × vertical address view. It ranks positive-volume
+  states within the chosen band and preserves a distinct no-sampled-volume
+  class for the four abyssal and 25 hadal exclusions.
 - 36 shaped ocean features span waters, flows, edges, floor, life, and events.
 - Six conceptual lenses and multiple observed fields share an ocean-first map.
 - The 11 realms and 22 contiguous regions are OSW organizational constructs,
