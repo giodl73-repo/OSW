@@ -4,7 +4,7 @@ topic: ocean-state-exchange-program-closeout
 date: 2026-09-08
 roles_used: [current, sounder, chart, beacon, harbor, keel, logbook]
 p1_count: 0
-verdict: APPROVED
+verdict: APPROVED-WITH-CONDITIONS
 ---
 
 # Roles check — Ocean-state exchange program closeout
@@ -12,7 +12,7 @@ verdict: APPROVED
 **Artifact type:** seven-stage research program, evidence synthesis, public
 workbench, documentation, and repository validation contract
 
-**Reviewed commit:** `b71c2cc4c108aa4303f76803861a0d11977f3a0e`
+**Reviewed implementation commit:** `b71c2cc4c108aa4303f76803861a0d11977f3a0e`
 
 **Key reviewed artifact SHA-256 values**
 
@@ -40,7 +40,7 @@ ORBIT is not selected because this closeout makes no gas-giant transfer claim.
 | # | Finding | Severity | Recommendation |
 |---|---|---|---|
 | 1 | All 128 evidence rows trace to frozen policy and source artifacts. | P3 | Preserve hashes and deterministic builders. **Accepted.** |
-| 2 | The clean-checkout suite passes 557 tests and 60 subtests. | P3 | Keep pytest as the complete CI gate. **Accepted.** |
+| 2 | Exact nested float equality exposed a Linux/Windows numerical representation difference in one legacy native-section receipt. | P2 | Keep topology and face identity exact, quantize Dijkstra costs, and compare derived floats at tight tolerance. **Resolved.** |
 | 3 | Text receipt hashing is now invariant to checkout line endings. | P3 | Retain canonical UTF-8 text identity for these receipts. **Accepted.** |
 
 ### CHART
@@ -87,9 +87,9 @@ ORBIT is not selected because this closeout makes no gas-giant transfer claim.
 
 ```text
 Roles reviewed: 7
-P1 blockers: 0  |  P2 issues: 0  |  P3 notes: 21
+P1 blockers: 0  |  P2 issues: 1  |  P3 notes: 20
 
-Verdict: APPROVED
+Verdict: APPROVED-WITH-CONDITIONS
 ```
 
 The complete research program meets its declared repository gate. Its evidence
@@ -97,3 +97,6 @@ supports the method, a bounded pilot demotion, and a reusable accounting frame;
 it does not support redrawing the global source geography. Remote CI must still
 pass on the proposed merge, and owner/external/publication decisions remain
 outside this repository approval.
+
+The P2 numerical-portability finding was repaired during the remote merge gate;
+both Linux workflow instances must pass before merge.
