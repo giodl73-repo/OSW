@@ -12,7 +12,9 @@ OUTPUT = ROOT / "research" / "ocean-object-evidence-receipts.json"
 
 
 def sha256(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    """Hash textual evidence canonically so checkout line endings do not alter identity."""
+    text = path.read_text(encoding="utf-8")
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
 def load_js(path):

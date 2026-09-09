@@ -1,7 +1,6 @@
 # Ocean-State Exchange Research Program
 
-Status: first bounded slice implemented and under final native role review;
-Stages 3-7 remain proposed
+Status: Complete; Stages 0-7 and the final repository audit passed
 
 Date: 2026-09-08
 
@@ -15,10 +14,11 @@ province-adjacency graph, continuous depth fingerprints, hydrographic
 inventories, and velocity-weighted boundary diagnostics, while treating
 merge, split, move, demote, and retain as equally valid outcomes.
 
-The owner activated only the first bounded slice on 2026-09-08. This document
-does not authorize Stages 3-7, new hydrographic or velocity acquisition,
-transport interpretation, zoning changes, publication, or a change to the
-current VTRACE work-package sequence. Those decisions remain separate gates.
+The owner first activated the bounded slice, then explicitly set completion of
+this full plan as the active goal on 2026-09-08. Stages 3-7 may therefore
+advance only in order through their declared evidence and native-role gates.
+This does not authorize publication, promotion, an unreviewed zoning change,
+or claims wider than the admitted sources.
 
 ## Why this is the next question
 
@@ -447,3 +447,19 @@ grid compatibility, and control feasibility. The decision record must explain
 why the chosen edge can test the method and name at least one attractive edge
 that was rejected. Then admit hydrographic and velocity sources through their
 own evidence and licensing gates before beginning Stages 3 or 4.
+
+## Program closeout
+
+The bounded program completed on 2026-09-08. Its final synthesis covers all
+128 source-geometry edges: 127 physical interpretations remain `unknown`, one
+16-face segment of `SANT--SSTC` is demoted as a persistent-temperature-front
+candidate, and zero source edges are changed. This is a successful negative
+and uncertainty-preserving result, not a revised global zoning system.
+
+The exact committed content passed a clean LF-checkout audit with 557 pytest
+tests plus 60 subtests, 362 standard-library unittest tests, Python bytecode
+compilation, JavaScript syntax checks for all seven browser entry and stage
+files, and `git diff --check`. Stage-specific and final `.roles` reviews found
+no P1 blockers. Repository completion does not imply owner approval, external
+scientific review, publication authorization, or adoption of the candidate
+overlay.

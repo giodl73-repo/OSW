@@ -15,6 +15,11 @@ backward compatibility.
 
 **[See what OSW is building next ->](ROADMAP.md)**
 
+**[Open the Ocean-State Exchange Observatory →](exchange/)** — move from
+state contents to measured exchange, boundary stability, event routes, and the
+complete 128-border evidence matrix without confusing reference geography with
+physical walls.
+
 ## Enter the Ocean States
 
 **[Explore 56 ocean states, 36 shaped features, and the Atlas 10 depth ladder →](atlas/)**
@@ -149,6 +154,7 @@ the continents visual control.
 | Classify an ocean object by type and identity test | [Ocean-object classification](CLASSIFICATION.md) and [116-term registry](research/ocean-object-classification.csv) |
 | Give every valid wet volume a horizontal and vertical reference address | [Ocean Column workbench](column/) and [definition](guides/15-OCEAN-COLUMN-ADDRESS.md) |
 | See which source-backed ocean states share edges and how their depth silhouettes differ | [Neighbor atlas](column/?map=neighbors) and [neighbors/accounts guide](guides/16-OCEAN-STATE-NEIGHBORS-AND-ACCOUNTS.md) |
+| Ask what a state contains at one depth and month | [Exchange Observatory](exchange/) and [contents guide](guides/17-WHAT-AN-OCEAN-STATE-CONTAINS.md) |
 | Decide what evidence a mapped patch has earned | [Ocean-object visual matrix](figures/osw-ocean-object-matrix.svg) and [decision guide](guides/13-HOW-TO-NAME-AN-OCEAN-PATCH.md) |
 | Audit what a particular dataset actually supports | [Evidence-receipt guide](guides/14-EVIDENCE-RECEIPTS.md) and [eighteen worked receipts](research/ocean-object-evidence-receipts.json), including OSW's first duration-qualified event, footprint, primary lineage, identity bakeoffs, typed temporal bridge, separate-product SST cross-check, surface-energy, fixed-column storage, and depth-integrated motion screens |
 | Explore waters, flows, edges, seafloor, life, events, and observational layers | [Interactive Atlas](atlas/) |

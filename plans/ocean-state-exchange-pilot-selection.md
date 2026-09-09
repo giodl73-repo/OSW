@@ -1,6 +1,6 @@
 # Ocean-State Exchange Pilot Selection Rule
 
-Status: frozen rule; no pilot selected
+Status: frozen rule executed; `SANT--SSTC` selected before transport outcomes
 
 Date: 2026-09-08
 
@@ -82,3 +82,21 @@ The Southern Ocean/Drake sector has existing OSW native-section work and is a
 strong method-validation context. Drake Passage is a physical gateway, however,
 and must not be substituted for a Version 4 province edge. It enters the
 candidate comparison only if a source edge independently passes every gate.
+
+## Recorded decision
+
+The rule found six eligible source edges in the custodied ORAS5 Drake subset.
+`SANT--SSTC` ranked first because 16 of 18 supported native boundary faces
+(88.89%) could be paired one-for-one with a same-orientation face displaced one
+T cell into `SANT`, while preserving the exact vertical wet mask and complete
+four-month fields. This was the strongest matched-control fraction; no velocity,
+temperature contrast, transport sign, transport magnitude, or desired zoning
+result entered the ordering.
+
+`ANTA--SANT` was an attractive eligible alternative with more faces, but its
+matched-control fraction was lower (124 of 204, or 60.78%). The selected
+segment is a bounded method sample near the northern edge of the regional
+subset. It is not Drake Passage, not the whole global `SANT--SSTC` source edge,
+and not evidence that the border is a material barrier.
+
+[Inspect the complete 128-candidate decision record](../research/ocean-state-exchange-pilot-selection-v1.json).

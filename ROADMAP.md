@@ -271,12 +271,33 @@ balances, relationships, event shocks, and revisions through time. This
 economic-accounting analogy organizes stock and flow questions; it does not
 turn provinces into sovereign, homogeneous, or physically sealed containers.
 
-The first bounded slice stops after a validated 54-province neighbor atlas and
-a representative continuous-hypsometry prototype. It creates the geometry and
-control foundation for later exchange work without claiming that adjacency is
-a barrier, that surface velocity is transport, or that the 54/56 edition
-mismatch has disappeared. New hydrographic and velocity acquisition, public
-promotion, and zoning changes remain separate decisions.
+The first bounded slice is complete: a validated 54-province neighbor atlas
+and representative continuous-hypsometry prototype now provide the geometry
+and control foundation. Stage 3 adds a temperature-only ORAS5 model screen for
+six Drake-sector provinces, with 96 depth-and-month property passports,
+coverage and uncertainty kept separate, and descriptive adjacent-state
+contrasts. It does not claim that adjacency is a barrier, temperature is heat
+content, or a contrast is exchange. The frozen first boundary-exchange pilot
+then selected `SANT--SSTC` from all 128 source edges before transport outcomes
+were read. Sixteen native faces and one-for-one displaced controls now expose
+inward, outward, gross, and net volume plus reference-relative thermal
+transport by depth and month. The seasonal volume sign reverses and the
+control behaves similarly, so the result is a method pass and warning against
+wall-like borders—not a zoning endorsement. The independently frozen Stage 5
+temperature-gradient test then found no static-edge match in any of 16
+depth-month cases; detected surface peaks sit three or four native faces away,
+and most deeper gradients fall below the declared floor. This demotes the
+segment as a persistent temperature-front candidate while leaving its reference
+identity and every untested field/year unknown. Stage 6 then projects the
+existing North Atlantic surface heatwave lineage onto the state graph. Its
+21-day dominant route remains in `GFST`; one small off-primary branch reaches
+adjacent `NWCS`, but retains only 0.62% of its source pixels. The route therefore
+adds state-address history without inventing transported heat. The active
+program then completes its per-border evidence matrix without forcing a score:
+127 borders remain physically `unknown`; one bounded `SANT--SSTC` segment is
+demoted only as a persistent physical-boundary candidate; zero source edges are
+changed. The bounded program is complete. The next scientific expansion is
+multiyear, multi-property, and second-product evidence—not a prettier redraw.
 
 The complete hypothesis, falsification conditions, stage dependencies,
 deliverables, controls, visual grammar, and goal-sized first slice are defined

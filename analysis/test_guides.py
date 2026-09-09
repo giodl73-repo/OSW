@@ -145,7 +145,7 @@ def test_ocean_object_guide_links_resolve() -> None:
         for target in re.findall(r"\[[^]]+\]\(([^)]+)\)", page.read_text(encoding="utf-8")):
             if target.startswith(("http://", "https://", "#")):
                 continue
-            path = (page.parent / target.split("#", 1)[0]).resolve()
+            path = (page.parent / target.split("#", 1)[0].split("?", 1)[0]).resolve()
             assert path.exists(), f"broken link in {page.name}: {target}"
 
 
@@ -218,13 +218,14 @@ def test_source_register_ids_are_unique() -> None:
     assert not duplicates, f"duplicate source-register IDs: {duplicates}"
 
 
-def test_exchange_pilot_rule_is_frozen_without_a_selected_result() -> None:
+def test_exchange_pilot_was_selected_without_transport_outcomes() -> None:
     path = ROOT / "research" / "ocean-state-exchange-pilot-selection-v1.json"
     rule = json.loads(path.read_text(encoding="utf-8"))
     assert rule["schema"] == "osw-ocean-state-exchange-pilot-selection-v1"
-    assert rule["status"] == "frozen_rule_no_pilot_selected"
-    assert rule["selected_edge"] is None
-    assert len(rule["eligibility_gates"]) == 7
+    assert rule["status"] == "pilot_selected_before_transport_outcomes"
+    assert rule["selected_edge"]["edge_id"] == "SANT--SSTC"
+    assert rule["eligible_edge_count"] >= 1
+    assert len(rule["selected_face_pairs"]) >= rule["frozen_thresholds"]["minimum_exact_wet_mask_matched_control_faces"]
     assert rule["ordering"][-1] == "stable_edge_id"
-    assert "apparent_exchange_strength" in rule["prohibited_selection_inputs"]
-    assert "does not validate a border" in rule["boundary"]
+    assert {"transport_sign", "transport_magnitude", "heat_transport", "desired_zoning_result"} <= set(rule["prohibited_selection_inputs"])
+    assert "does not validate this source edge as a front or barrier" in rule["boundary"]

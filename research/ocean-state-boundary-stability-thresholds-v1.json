@@ -1,0 +1,41 @@
+{
+  "schema": "osw-ocean-state-boundary-stability-thresholds-v1",
+  "status": "frozen_before_stability_outcomes",
+  "frozen_at": "2026-09-08T23:15:00-07:00",
+  "selected_edge": "SANT--SSTC",
+  "selection_path": "research/ocean-state-exchange-pilot-selection-v1.json",
+  "selection_canonical_lf_sha256": "d788eda4c9e9f70acdcfdf144809c1bc4484e4fd678476d7b7832dda6791cdaf",
+  "diagnostic": {
+    "field": "sea_water_potential_temperature",
+    "evidence_class": "assimilative_reanalysis_model_screen",
+    "operator": "median absolute adjacent-T-cell temperature gradient per great-circle center distance, searched normal to the source edge",
+    "normal_search_offsets_native_faces": [-4, -3, -2, -1, 0, 1, 2, 3, 4],
+    "static_edge_offset": 0,
+    "matched_control_offset": 1,
+    "seasonal_samples": ["201802", "201805", "201808", "201811"],
+    "depth_support": ["0-200m", "200-1000m", "1000-4000m", "4000-6000m"]
+  },
+  "detection_thresholds": {
+    "minimum_gradient_degC_per_km": 0.005,
+    "minimum_peak_to_local_median_ratio": 1.25,
+    "front_envelope_fraction_of_peak": 0.8,
+    "static_match_maximum_absolute_offset_faces": 1
+  },
+  "disposition_thresholds": {
+    "minimum_matched_season_fraction": 0.75,
+    "minimum_matched_depth_fraction_per_passing_season": 0.75,
+    "minimum_static_advantage_over_control_fraction": 0.25,
+    "minimum_surface_to_depth_direction_agreement": 0.75,
+    "retain_candidate_requires_all_thresholds": true,
+    "failure_disposition": "not_supported_as_persistent_temperature_front",
+    "insufficient_support_disposition": "unknown"
+  },
+  "prohibited_adjustments": [
+    "changing thresholds after viewing outcomes",
+    "selecting only the strongest month or depth",
+    "treating gradient magnitude as transport",
+    "using the static edge itself to define the diagnosed maximum",
+    "substituting a climatological front name for this detector"
+  ],
+  "boundary": "A temperature-gradient detector tests one field, product, year, and regional segment. Passing cannot establish a material wall; failure cannot erase the source reference edge or rule out salinity, density, velocity, ecological, or multiyear organization."
+}

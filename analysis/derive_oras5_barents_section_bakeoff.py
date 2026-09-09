@@ -108,7 +108,11 @@ def shortest_face_path(start_node, stop_node, umask, vmask, node_lon, node_lat, 
                 continue
             offset = segment_distance_km(lon, lat, reference_start, reference_stop)
             step_cost = 1.0 + (offset / corridor_scale_km) ** 2
-            candidate = cost + step_cost
+            # Quantize accumulated costs before comparing them. Equivalent
+            # grid routes can otherwise diverge across BLAS/libm platforms at
+            # machine precision, changing the pinned face path on Linux versus
+            # Windows without a meaningful cost difference.
+            candidate = round(cost + step_cost, 10)
             if candidate < distance.get(neighbor, np.inf):
                 distance[neighbor] = candidate
                 previous[neighbor] = (node, edge)
