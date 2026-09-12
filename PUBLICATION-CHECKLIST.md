@@ -53,5 +53,22 @@
 - [ ] Obtain owner visual approval of the review preview
 - [ ] Decide whether to promote the preview to the released atlas
 
+## Integrated successor release gate
+
+- [ ] Reconcile `README.md`, `PREVIEW-STATUS.md`, `MOTION.md`,
+  `SOURCE-REGISTER.md`, `CITATION.cff`, and the hosted-site claim against the
+  proposed branch and target.
+- [ ] Verify the guided Atlas, Event, and Exchange routes in Edge, Chrome,
+  Firefox, and a narrow mobile viewport, including keyboard, focus, URL, and
+  reduced-motion behavior.
+- [ ] Record the page and asset baseline, then approve any public-site budget
+  and external cache strategy for heavyweight reproducible inputs.
+- [ ] Resolve or explicitly withhold the RTOFS 100 m/200 m candidates; do not
+  present them as extensions of frozen D13/D14 until their source provenance
+  reproduces the 0–50 m baseline.
+- [ ] Obtain explicit owner approval for the release content, default
+  projection, version, and public target before changing Pages, citation
+  metadata, or release records.
+
 The MIT license covers the repository, including its code, prose, and original
 figures.
