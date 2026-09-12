@@ -77,3 +77,15 @@ def test_decisions_stage_exposes_complete_matrix_and_approval_boundary():
         assert token in html
     for token in ('setAttribute("aria-label"', "decisionsData.matrix.filter", "falsification_or_upgrade", "URLSearchParams"):
         assert token in script
+
+
+def test_interior_stage_keeps_contents_context_and_unknowns_separate():
+    html = (ROOT / "exchange/index.html").read_text(encoding="utf-8")
+    stage = (ROOT / "exchange/interior-stage.js").read_text(encoding="utf-8")
+    router = (ROOT / "exchange/exchange-stage.js").read_text(encoding="utf-8")
+    for token in ('data-stage="interior"', 'id="interior-address-grid"', 'id="interior-contents-body"', 'id="interior-overlays"', 'id="interior-links"', 'id="interior-unknowns"', 'id="interior-boundary-context"'):
+        assert token in html
+    for token in ("not a dynamic-state diagnosis or a budget", "not evidence that the state has no features", "join_status"):
+        assert token in stage
+    assert "not_joined_to_interior_account" in (ROOT / "exchange/interior-ledger.js").read_text(encoding="utf-8")
+    assert "showInterior" in router and '"interior"' in router

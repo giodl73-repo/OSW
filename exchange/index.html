@@ -40,6 +40,7 @@
       <button type="button" data-stage="stability" aria-pressed="false">3 · Stability</button>
       <button type="button" data-stage="events" aria-pressed="false">4 · Events</button>
       <button type="button" data-stage="decisions" aria-pressed="false">5 · Decisions</button>
+      <button type="button" data-stage="interior" aria-pressed="false">6 · State interior</button>
     </nav>
 
     <section class="controls inventory-panel" aria-labelledby="controls-title">
@@ -304,6 +305,31 @@
         <p>Repository `.roles` approval reviews implementation and claim discipline. Owner approval, external scientific review, and publication remain separate and have not occurred.</p>
       </aside>
     </div>
+
+    <div id="interior-panel" hidden>
+      <section class="passport" aria-labelledby="interior-title">
+        <div><p class="eyebrow">FIRST SPARSE STATE-INTERIOR LEDGER</p><h2 id="interior-title">Contents are present. Interactions remain named unknowns.</h2></div>
+        <dl id="interior-address-grid"></dl>
+        <p id="interior-summary" class="live-summary" aria-live="polite"></p>
+      </section>
+
+      <section class="table-section" aria-labelledby="interior-contents-title">
+        <div class="section-heading"><div><p class="eyebrow">ADMITTED CONTENTS</p><h2 id="interior-contents-title">One compatible temperature account</h2></div><a href="../research/ocean-state-interior-ledger-sant-201808.json">Download the ledger</a></div>
+        <div class="table-wrap"><table><thead><tr><th>Property</th><th>Units</th><th>Median</th><th>Middle 50%</th><th>Native samples</th><th>Evidence / uncertainty</th></tr></thead><tbody id="interior-contents-body"></tbody></table></div>
+      </section>
+
+      <section class="interior-grid" aria-label="State-interior relationship account">
+        <article><p class="eyebrow">OVERLAYS</p><h2>What intersects this address?</h2><ul id="interior-overlays"></ul></article>
+        <article><p class="eyebrow">INTERNAL LINKS</p><h2>What transfers or connects inside it?</h2><ul id="interior-links"></ul></article>
+        <article><p class="eyebrow">BOUNDARY CONTEXT</p><h2>What belongs outside this account?</h2><p id="interior-boundary-context"></p></article>
+      </section>
+
+      <aside class="boundary" aria-labelledby="interior-boundary-title">
+        <h2 id="interior-boundary-title">Named unknowns are the result, not a blank</h2>
+        <ul id="interior-unknowns"></ul>
+        <p>A province is reference geography and a depth band is an address. Neither makes its water dynamically uniform, turns an open edge into convergence, or turns a residual into mixing.</p>
+      </aside>
+    </div>
   </main>
 
   <script src="../column/province-footprints.js"></script>
@@ -312,10 +338,12 @@
   <script src="stability.js"></script>
   <script src="events.js"></script>
   <script src="decisions.js"></script>
+  <script src="interior-ledger.js"></script>
   <script src="app.js"></script>
   <script src="stability-stage.js"></script>
   <script src="events-stage.js"></script>
   <script src="decisions-stage.js"></script>
+  <script src="interior-stage.js"></script>
   <script src="exchange-stage.js"></script>
 </body>
 </html>

@@ -13,6 +13,7 @@ HYDROGRAPHY = ROOT / "research" / "ocean-state-hydrography-pilot-2018.json"
 EXCHANGE = ROOT / "research" / "ocean-state-boundary-exchange-pilot-2018.json"
 SCHEMA = ROOT / "research" / "ocean-state-interior-ledger-schema-v1.json"
 OUTPUT = ROOT / "research" / "ocean-state-interior-ledger-sant-201808.json"
+BROWSER = ROOT / "exchange" / "interior-ledger.js"
 ADDRESS = {"geometry_edition": "longhurst-v4-54", "province": "SANT", "depth_support": "0-200m"}
 VALID_TIME = "2018-08-01/P1M"
 
@@ -116,9 +117,11 @@ def main() -> None:
     parser.add_argument("--exchange", type=Path, default=EXCHANGE)
     parser.add_argument("--schema", type=Path, default=SCHEMA)
     parser.add_argument("--output", type=Path, default=OUTPUT)
+    parser.add_argument("--browser", type=Path, default=BROWSER)
     args = parser.parse_args()
     payload = build(args.hydrography, args.exchange, args.schema)
     args.output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8", newline="\n")
+    args.browser.write_text("window.OSW_STATE_INTERIOR_LEDGER = " + json.dumps(payload, separators=(",", ":")) + ";\n", encoding="utf-8", newline="\n")
     print(f"wrote {args.output}")
 
 

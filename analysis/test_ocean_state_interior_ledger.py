@@ -34,6 +34,13 @@ def test_content_checksum_and_boundary_context_cannot_be_silently_joined():
     assert "open 16-face" in payload["boundary_context"]["reason"]
 
 
+def test_browser_derivative_matches_committed_ledger():
+    source = (ROOT / "exchange/interior-ledger.js").read_text(encoding="utf-8")
+    prefix = "window.OSW_STATE_INTERIOR_LEDGER = "
+    assert source.startswith(prefix) and source.endswith(";\n")
+    assert json.loads(source[len(prefix):-2]) == MODULE.build()
+
+
 def test_validator_rejects_incompatible_internal_join_and_missing_unknown_reason():
     payload = MODULE.build()
     incompatible = copy.deepcopy(payload)

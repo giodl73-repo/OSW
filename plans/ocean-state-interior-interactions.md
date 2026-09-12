@@ -116,8 +116,9 @@ interior transport total without closed geometry and compatible native fields.
 - [x] a machine-readable [state-interior ledger schema](../research/ocean-state-interior-ledger-schema-v1.json)
   and local fixture;
 - [x] one pre-registered [SANT × 0–200 m × August 2018 pilot receipt](../research/ocean-state-interior-ledger-sant-201808.json);
-- a textual state page that distinguishes contents, overlays, internal links,
-  boundary links, and unknowns without color-only meaning;
+- [x] a textual [State Interior stage](../exchange/?stage=interior) that
+  distinguishes contents, overlays, internal links, boundary links, and
+  unknowns without color-only meaning;
 - [x] tests that reject incompatible geometry, depth, time, source, or evidence
   class joins; and
 - an explicit no-closure/no-causation boundary next to every transfer-like

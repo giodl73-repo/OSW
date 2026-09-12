@@ -53,7 +53,27 @@
 #stability-panel[hidden] { display: none; }
 #events-panel[hidden] { display: none; }
 #decisions-panel[hidden] { display: none; }
+#interior-panel[hidden] { display: none; }
 [hidden] { display: none !important; }
+
+.stage-nav { grid-template-columns: repeat(6, 1fr); }
+
+.interior-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.interior-grid article {
+  padding: 20px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--teal);
+}
+
+.interior-grid h2 { font-size: 21px; }
+.interior-grid p, .interior-grid li { color: var(--muted); line-height: 1.5; }
 
 .evidence-grid {
   display: grid;
@@ -133,6 +153,10 @@ caption {
   }
 
   .revision-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .interior-grid {
     grid-template-columns: 1fr;
   }
 }
