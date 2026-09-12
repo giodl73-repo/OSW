@@ -67,11 +67,11 @@ def collocated_velocity(u: np.ndarray, v: np.ndarray, y: int, x: int) -> tuple[f
     return float((samples[0] + samples[1]) / 2), float((samples[2] + samples[3]) / 2)
 
 
-def integrate(start: dict, u: np.ndarray, v: np.ndarray, core: np.ndarray, longitude: np.ndarray, latitude: np.ndarray) -> dict:
+def integrate(start: dict, u: np.ndarray, v: np.ndarray, temperature: np.ndarray, core: np.ndarray, longitude: np.ndarray, latitude: np.ndarray) -> dict:
     lat_axis, lon_axis = latitude[:, 0], longitude[0, :]
     y, x = start["y"], start["x"]
     position_lat, position_lon = float(latitude[y, x]), float(longitude[y, x])
-    points = [{"step": 0, "y": y, "x": x, "latitude_deg": round(position_lat, 6), "longitude_deg": round(position_lon, 6)}]
+    points = [{"step": 0, "y": y, "x": x, "latitude_deg": round(position_lat, 6), "longitude_deg": round(position_lon, 6), "monthly_surface_temperature_c": round(float(temperature[y, x]), 6)}]
     status = "completed_interior_screen"
     for step in range(1, STEPS + 1):
         velocity = collocated_velocity(u, v, y, x)
@@ -82,7 +82,7 @@ def integrate(start: dict, u: np.ndarray, v: np.ndarray, core: np.ndarray, longi
         position_lat += np.degrees(meridional * STEP_SECONDS / EARTH_RADIUS_M)
         position_lon += np.degrees(zonal * STEP_SECONDS / (EARTH_RADIUS_M * np.cos(np.radians(position_lat))))
         y, x = nearest(lat_axis, position_lat), nearest(lon_axis, position_lon)
-        points.append({"step": step, "y": y, "x": x, "latitude_deg": round(position_lat, 6), "longitude_deg": round(position_lon, 6)})
+        points.append({"step": step, "y": y, "x": x, "latitude_deg": round(position_lat, 6), "longitude_deg": round(position_lon, 6), "monthly_surface_temperature_c": round(float(temperature[y, x]), 6)})
         if not core[y, x]:
             status = "left_declared_interior_core"
             break
@@ -105,8 +105,8 @@ def build(assignment_path: Path = ASSIGNMENT, mesh_path: Path = MESH) -> dict:
     for month in MONTHS:
         state_path = ROOT / "atlas" / "data" / f"oras5-drake-state-{month}.nc"
         with netCDF4.Dataset(state_path) as state:
-            u, v = np.asarray(state["vozocrtx"][0]), np.asarray(state["vomecrty"][0])
-        tracks = [integrate(start, u, v, core, longitude, latitude) for start in all_starts]
+            u, v, temperature = np.asarray(state["vozocrtx"][0]), np.asarray(state["vomecrty"][0]), np.asarray(state["votemper"][0])
+        tracks = [integrate(start, u, v, temperature, core, longitude, latitude) for start in all_starts]
         monthly.append({"valid_time": f"2018-{month[-2:]}-01/P1M", "state_path": state_path.relative_to(ROOT).as_posix(), "state_sha256": sha256(state_path), "tracks": tracks, "completed_track_count": sum(track["status"] == "completed_interior_screen" for track in tracks)})
     return {
         "schema": "osw-ocean-state-interior-pathway-screen-v1",
@@ -114,10 +114,10 @@ def build(assignment_path: Path = ASSIGNMENT, mesh_path: Path = MESH) -> dict:
         "source_family": assignment["source_family"],
         "join_status": "not_joined_to_archived_2018_contents_or_boundary_accounts",
         "address": {"geometry_edition": "longhurst-v4-54", "province": "SANT", "depth_support": "surface_model_layer"},
-        "selection": {"frozen_before_velocity_inspection": True, "seeds": seeds, "controls": "each available cardinal one-cell core neighbor", "time_samples": list(MONTHS), "integration": {"velocity_support": "ORAS5 z=0 monthly mean", "t_cell_proxy": "mean of two indexed U samples and two indexed V samples", "step_hours": 6, "step_count": STEPS, "nominal_duration_days": 5}},
+        "selection": {"frozen_before_velocity_inspection": True, "seeds": seeds, "controls": "each available cardinal one-cell core neighbor", "time_samples": list(MONTHS), "integration": {"velocity_support": "ORAS5 z=0 monthly mean", "t_cell_proxy": "mean of two indexed U samples and two indexed V samples", "temperature_support": "ORAS5 z=0 monthly temperature sampled at the nearest T cell after each kinematic step", "step_hours": 6, "step_count": STEPS, "nominal_duration_days": 5}},
         "membership_source": {"path": assignment_path.relative_to(ROOT).as_posix(), "sha256": sha256(assignment_path), "core_cell_count": assignment["interior_core"]["cell_count"]},
         "months": monthly,
-        "boundary": "A screen of gridded, monthly-mean surface kinematics. It is not an observed Lagrangian trajectory, a material pathway, a transport estimate, a vertical transfer, a water-mass diagnosis, convergence, transformation, a closed budget, or a result compatible for numerical joining with the archived 2018 state-contents account.",
+        "boundary": "A screen of gridded, monthly-mean surface kinematics with co-located Eulerian temperature samples. It is not an observed Lagrangian trajectory, parcel thermodynamics, a material pathway, a transport estimate, a vertical transfer, a water-mass diagnosis, convergence, transformation, a closed budget, or a result compatible for numerical joining with the archived 2018 state-contents account.",
     }
 
 
@@ -134,6 +134,8 @@ def validate(payload: dict) -> None:
                 raise ValueError("unknown track status")
             if track["points"][0]["step"] != 0:
                 raise ValueError("track must retain its declared starting point")
+            if not all(np.isfinite(point["monthly_surface_temperature_c"]) for point in track["points"]):
+                raise ValueError("track must retain finite co-located temperature samples")
 
 
 def main() -> None:

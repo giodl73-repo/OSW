@@ -136,10 +136,11 @@ T-cell velocity proxy.
 
 All 14 starts remained within the guarded discrete SANT support for each of
 the four monthly screens; the three primary trajectories have nonzero
-continuous five-day displacements. This establishes only that these declared
-monthly-mean kinematic screen paths can be evaluated in the new source family.
-It does not establish material retention, transport, a persistent pathway,
-vertical exchange, or a bridge to the archived contents account. The precise
+continuous five-day displacements and retain co-located Eulerian surface
+temperature samples. This establishes only that these declared monthly-mean
+kinematic and temperature-co-occurrence supports can be evaluated in the new
+source family. It does not establish parcel thermodynamics, material retention,
+transport, a persistent pathway, vertical exchange, or a bridge to the archived contents account. The precise
 [native assignment](../research/ocean-state-interior-sant-current-geometry-assignment-2026-09-12.json)
 and [pathway screen](../research/ocean-state-interior-sant-pathways-current-geometry-2018.json)
 are the evidence records.
