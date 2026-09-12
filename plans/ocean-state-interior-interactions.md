@@ -157,6 +157,14 @@ contrasts and horizontal-velocity differences per metre; e.g., the central
 seed's February 0--100 m contrast is 3.351 °C. This completes the supported
 `overlies`/vertical-structure relation, not `transfers_between_layers`.
 
+The [dynamics synthesis](../research/ocean-state-intra-state-dynamics-synthesis-sant-2018.json)
+is the completion record for this research slice. It covers occupancy,
+co-occurrence, vertical structure, lateral paths, and local relative motion as
+bounded supported relations; it records vertical transfer, interior
+convergence, transformation, and event perturbation as unsupported with their
+specific acquisition gates. It validates the two source families without
+numerically joining them.
+
 ## Exit evidence for the first slice
 
 - [x] a machine-readable [state-interior ledger schema](../research/ocean-state-interior-ledger-schema-v1.json)
@@ -171,5 +179,7 @@ seed's February 0--100 m contrast is 3.351 °C. This completes the supported
   velocity-independent seed/control pathway screen; and
 - [x] a separately versioned local vertical temperature-structure and
   horizontal-velocity-shear screen, explicitly excluding vertical transfer; and
-- an explicit no-closure/no-causation boundary next to every transfer-like
+- [x] a checksum-validated relation-by-relation dynamics synthesis that retains
+  all unsupported mechanisms and their evidence gates; and
+- [x] an explicit no-closure/no-causation boundary next to every transfer-like
   result.

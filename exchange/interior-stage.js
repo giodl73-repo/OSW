@@ -1,6 +1,7 @@
 "use strict";
 
 const interiorLedger = window.OSW_STATE_INTERIOR_LEDGER;
+const interiorDynamics = window.OSW_INTRA_STATE_DYNAMICS;
 
 function interiorDefinition(grid, term, value) {
   const wrapper = document.createElement("div"), dt = document.createElement("dt"), dd = document.createElement("dd");
@@ -21,8 +22,10 @@ function renderInterior() {
   const values = [content.property, content.units, `${content.distribution.median_degC.toFixed(2)} °C`, `${content.distribution.p25_degC.toFixed(2)}–${content.distribution.p75_degC.toFixed(2)} °C`, content.support.valid_native_t_cells.toLocaleString(), "model screen · uncertainty not estimated"];
   const row = document.createElement("tr"); values.forEach(value => { const cell = document.createElement("td"); cell.textContent = value; row.append(cell); }); body.append(row);
   interiorList("#interior-overlays", interiorLedger.overlays.map(item => `${item.relation.replaceAll("_", " ")}: ${item.finding} ${item.boundary}`), "No overlay is admitted for this pilot. This is unknown, not evidence that the state has no features.");
-  interiorList("#interior-links", interiorLedger.internal_links.map(item => item.relation), "No internal pathway, transfer, convergence, or transformation is admitted for this pilot.");
+  interiorList("#interior-links", interiorLedger.internal_links.map(item => item.relation), "No internal pathway, transfer, convergence, or transformation is admitted to this archived contents ledger. Separate current-geometry screens are listed below and are not numerically joined here.");
   interiorList("#interior-unknowns", interiorLedger.unknowns.map(item => `${item.relation.replaceAll("_", " ")}: ${item.reason}`), "No named unknowns.");
   document.querySelector("#interior-boundary-context").textContent = `SANT ↔ ${interiorLedger.boundary_context.counterpart_state}: ${interiorLedger.boundary_context.reason} It remains ${interiorLedger.boundary_context.join_status.replaceAll("_", " ")}.`;
-  document.querySelector("#interior-summary").textContent = "This first ledger has one contents record and five named unknown relationship classes. It is a state address account, not a dynamic-state diagnosis or a budget.";
+  const covered = interiorDynamics.relation_coverage;
+  interiorList("#interior-dynamics-coverage", covered.map(item => `${item.relation.replaceAll("_", " ")}: ${item.status.replaceAll("_", " ")}. ${item.evidence || item.reason} ${item.non_claim || item.required_evidence || ""}`), "No separate dynamics synthesis is available.");
+  document.querySelector("#interior-summary").textContent = "The archived ledger has one contents record and five named unknown relationship classes. Separate current-geometry screens add bounded lateral, relative-motion, temperature co-occurrence, and vertical-structure evidence; their values are not joined to this ledger. This is not a dynamic-state diagnosis or a budget.";
 }
