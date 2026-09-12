@@ -130,7 +130,7 @@ the corresponding final source-register entries are D38-D51.
 
 ### Delivery and governance
 
-- The offline pytest suite passes 565 tests and 60 subtests at the
+- The offline pytest suite passes 568 tests and 60 subtests at the
   current baseline.
 - Eighteen worked evidence receipts connect object claims to reproducible
   support and limitations.
@@ -146,9 +146,9 @@ the corresponding final source-register entries are D38-D51.
   and mitigated statuses; nothing is yet labeled solved.
 - OSW is not currently present in TRACKER's canonical portfolio registry or
   submodule map; any portfolio registration is a separate TRACKER decision.
-- `PREVIEW-STATUS.md` still describes the earlier Atlas 08-10 evidence boundary
-  and must be reconciled with the later motion and D-series work before public
-  promotion.
+- `PREVIEW-STATUS.md` records both the earlier Atlas 08–10 evidence boundary
+  and the later guided Event, Exchange, handoff, evidence-control, and
+  depth-candidate status. It is a release gate, not a promotion decision.
 
 ## Delivery map
 
