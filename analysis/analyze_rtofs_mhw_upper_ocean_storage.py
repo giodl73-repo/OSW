@@ -18,7 +18,7 @@ OUTPUT = ROOT / "research" / "osw-d13-rtofs-mhw-upper-ocean-storage-2026.json"
 RHO_KG_M3 = 1025.0
 CP_J_KG_K = 3990.0
 SECONDS_PER_DAY = 86_400.0
-COLUMN_LIMITS_M = (10, 20, 30, 50)
+COLUMN_LIMIT_CANDIDATES_M = (10, 20, 30, 50, 100, 200)
 
 
 def sha256_file(path: Path) -> str:
@@ -48,9 +48,13 @@ def encode_map(values: np.ndarray, valid: np.ndarray, scale: int) -> list:
 
 
 def run(source_path: Path = SOURCE, d12_path: Path = D12) -> dict:
+    source_path, d12_path = source_path.resolve(), d12_path.resolve()
     source = json.loads(source_path.read_text(encoding="utf-8"))
     d12 = json.loads(d12_path.read_text(encoding="utf-8"))
     depth = np.asarray(source["vertical_support"]["standard_depths_m"], dtype=float)
+    column_limits = tuple(limit for limit in COLUMN_LIMIT_CANDIDATES_M if limit in depth)
+    if not column_limits or column_limits[-1] != depth[-1] and depth[-1] in COLUMN_LIMIT_CANDIDATES_M:
+        raise ValueError("declared source depths do not support a fixed-column contract")
     latitude = np.asarray(source["grid"]["latitude_degrees_north_e6"], dtype=float) / 1_000_000
     longitude = np.asarray(source["grid"]["longitude_degrees_east_e6"], dtype=float) / 1_000_000
     mask = np.asarray(source["grid"]["inside_declared_box"], dtype=bool)
@@ -69,7 +73,7 @@ def run(source_path: Path = SOURCE, d12_path: Path = D12) -> dict:
         depth_profile = [round(float(np.average(change[level][valid], weights=np.cos(np.deg2rad(latitude[valid])))), 4) for level in range(len(depth))]
         columns = {}
         maps = {}
-        for limit in COLUMN_LIMITS_M:
+        for limit in column_limits:
             levels = depth <= limit
             integrated_change = np.trapezoid(change[levels], depth[levels], axis=0)
             mean_change = integrated_change / limit
@@ -125,8 +129,8 @@ def run(source_path: Path = SOURCE, d12_path: Path = D12) -> dict:
         "method": {
             "storage_equation": "fixed-column storage tendency = rho * cp * trapezoidal integral from 0 to H of [temperature(next day) - temperature(current day)] dz / 86400",
             "constants": {"representative_seawater_density_kg_m3": RHO_KG_M3, "representative_seawater_heat_capacity_j_kg_k": CP_J_KG_K},
-            "fixed_column_limits_m": list(COLUMN_LIMITS_M),
-            "vertical_sampling": "15 RTOFS standard-depth potential-temperature samples from 0 through 50 m; exact samples exist at every reported column limit",
+            "fixed_column_limits_m": list(column_limits),
+            "vertical_sampling": f"{len(depth)} RTOFS standard-depth potential-temperature samples from 0 through {depth[-1]:g} m; exact samples exist at every reported column limit",
             "spatial_summary": "cos(latitude)-weighted grid-center means over 4,221 fixed-box cells; not exact native cell-area integration",
             "reference_note": "a constant temperature reference cancels in fixed-depth day-to-day storage differences under constant rho and cp",
         },

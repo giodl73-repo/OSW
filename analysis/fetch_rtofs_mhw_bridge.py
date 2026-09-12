@@ -74,8 +74,11 @@ def _window(dataset, expected_shape: tuple[int, int]):
 
 def _encode(values, scale: int, mask: np.ndarray) -> list:
     values = np.ma.asarray(values)
-    invalid = np.ma.getmaskarray(values) | ~np.isfinite(np.asarray(values.filled(np.nan), dtype=float)) | ~mask
-    encoded = np.rint(np.asarray(values.filled(np.nan), dtype=float) * scale)
+    numeric = np.asarray(values.filled(np.nan), dtype=float)
+    # RTOFS occasionally exposes its finite NetCDF fill sentinel without a
+    # masked-array flag at deeper standard levels. It is not an ocean value.
+    invalid = np.ma.getmaskarray(values) | ~np.isfinite(numeric) | (np.abs(numeric) > 1e20) | ~mask
+    encoded = np.rint(numeric * scale)
     return [[None if invalid[y, x] else int(encoded[y, x]) for x in range(encoded.shape[1])] for y in range(encoded.shape[0])]
 
 

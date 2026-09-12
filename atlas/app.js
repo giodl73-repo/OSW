@@ -609,7 +609,7 @@ function updateAtlasUrl(historyMode = "replace") {
     if (currentConceptualView === "reference") url.searchParams.delete("view");
     else url.searchParams.set("view", currentConceptualView);
     if (currentLens !== "waters") url.searchParams.set("lens", currentLens); else url.searchParams.delete("lens");
-    for (const [parameter, selector] of [["depth", "#filter-depth"], ["property", "#filter-property"], ["clock", "#filter-clock"]]) {
+    for (const [parameter, selector] of [["depth", "#filter-depth"], ["property", "#filter-property"], ["clock", "#filter-clock"], ["evidence", "#filter-evidence"]]) {
       const value = document.querySelector(selector).value;
       if (value === "all") url.searchParams.delete(parameter); else url.searchParams.set(parameter, value);
     }
@@ -1278,7 +1278,18 @@ function zoneMatches(zone, filters) {
   return (filters.lens === "all" || zone.lens === filters.lens)
     && (filters.depth === "all" || zone.depthClass === filters.depth)
     && (filters.property === "all" || zone.properties.includes(filters.property))
-    && (filters.clock === "all" || zone.clockClass === filters.clock);
+    && (filters.clock === "all" || zone.clockClass === filters.clock)
+    && (filters.evidence === "all" || evidenceToken(zone) === filters.evidence);
+}
+
+function evidenceToken(zone) {
+  const evidence = zone.evidence.toLowerCase();
+  if (evidence.includes("sensitivity")) return "sensitivity";
+  if (evidence.includes("unresolved")) return "unresolved";
+  if (evidence.includes("model")) return "model-screen";
+  if (evidence.includes("conceptual")) return "conceptual";
+  if (evidence.includes("synthesis")) return "derived";
+  return "observed";
 }
 
 function activeGeographyFilters() {
@@ -1286,7 +1297,8 @@ function activeGeographyFilters() {
     lens: currentLens,
     depth: document.querySelector("#filter-depth").value,
     property: document.querySelector("#filter-property").value,
-    clock: document.querySelector("#filter-clock").value
+    clock: document.querySelector("#filter-clock").value,
+    evidence: document.querySelector("#filter-evidence").value
   };
 }
 
@@ -1319,7 +1331,8 @@ function applyGeographyFilters(updateUrl = true) {
   });
   count.textContent = matching.length;
   const lensName = currentLens === "all" ? "curated" : currentLens;
-  const message = `${matching.length} matching ${lensName} feature${matching.length === 1 ? "" : "s"}. Shapes are schematic geographic indexes, not observed boundaries.`;
+  const evidenceLabel = filters.evidence === "all" ? "" : ` · ${filters.evidence.replace("-", " ")} claims`;
+  const message = `${matching.length} matching ${lensName} feature${matching.length === 1 ? "" : "s"}${evidenceLabel}. Shapes are schematic geographic indexes, not observed boundaries.`;
   document.querySelector("#filter-status").textContent = message;
   document.querySelector("#directory-summary").textContent = `Browse ${matching.length} matching features as text`;
   rebuildDirectory(matching);
@@ -1402,7 +1415,7 @@ document.querySelector("#sst-canvas").addEventListener("click", event => {
 const requestedParameters = new URLSearchParams(window.location.search);
 const requestedMode = requestedParameters.get("mode");
 if (["all", "waters", "flows", "edges", "floor", "life", "events"].includes(requestedParameters.get("lens"))) currentLens = requestedParameters.get("lens");
-for (const [parameter, selector] of [["depth", "#filter-depth"], ["property", "#filter-property"], ["clock", "#filter-clock"]]) {
+for (const [parameter, selector] of [["depth", "#filter-depth"], ["property", "#filter-property"], ["clock", "#filter-clock"], ["evidence", "#filter-evidence"]]) {
   const value = requestedParameters.get(parameter);
   if (value && [...document.querySelector(selector).options].some(option => option.value === value)) document.querySelector(selector).value = value;
 }
