@@ -39,8 +39,12 @@
         "path": "research/ocean-state-sant-current-geometry-partial-perimeter-2018.json",
         "sha256": "71dd19028b516983c0e5af3a041ad6122ff51e04416b7b01b3219ca3808d901a"
       },
+      "closed_box_horizontal_account": {
+        "path": "research/ocean-state-sant-closed-box-horizontal-account-2018.json",
+        "sha256": "ec266c8b071f0608a66585152a6ec92c8fea9622f1a5861b35be0719c9edfcc2"
+      },
       "status": "separate_unjoined_source_family",
-      "permitted_use": "bounded local kinematics, T/S density structure, partial perimeter flux, and open surface/storage evidence only"
+      "permitted_use": "bounded local kinematics, T/S density structure, partial perimeter flux, open surface/storage evidence, and closed-horizontal-box terms only"
     },
     "custody_audit": {
       "path": "research/ocean-state-interior-source-custody-audit-2026-09-12.json",
@@ -98,9 +102,10 @@
     },
     {
       "relation": "interior_convergence",
-      "status": "partial_open_account_not_supported_for_convergence",
-      "required_evidence": "A closed control-volume geometry with the missing lateral sides plus matched native vertical, surface, storage, and residual terms.",
-      "reason": "The source family has partial perimeter and open surface/storage support, but 176 perimeter sides and all vertical terms are absent."
+      "status": "horizontal_advective_term_supported_total_convergence_not_supported",
+      "evidence": "A 16\u00d716 geometry-selected box and three one-cell controls have complete 64-face horizontal perimeters, with horizontal advective terms in four months.",
+      "required_evidence": "Matched native vertical, mixing/diffusion, tendency/assimilation terms and compatible time support for total convergence or budget closure.",
+      "reason": "The closed box measures one horizontal advective term only; the state-wide perimeter remains incomplete and vertical/other terms are absent."
     },
     {
       "relation": "transformation",
@@ -424,8 +429,246 @@
       "partial_cell_fallback_count": 0,
       "outward_sign": "positive velocity is oriented out of the SANT membership; negative is inward"
     },
-    "surface_storage_month_count": 12
+    "surface_storage_month_count": 12,
+    "closed_box_horizontal_advective_terms": [
+      {
+        "valid_time": "2018-02-01/P1M",
+        "primary": {
+          "boundary_face_count": 64,
+          "all_depths": {
+            "wet_face_level_count": 3862,
+            "outward_volume_Sv": 87.921359623,
+            "inward_volume_Sv": -87.919149951,
+            "net_outward_volume_Sv": 0.002209672,
+            "gross_volume_exchange_Sv": 175.840509575,
+            "net_outward_reference_relative_thermal_PW_at_0C": 0.0024268,
+            "net_outward_practical_salinity_flux_PSU_m3_s": 257324.467
+          },
+          "horizontal_advective_volume_convergence_Sv": -0.002209672,
+          "horizontal_advective_reference_relative_thermal_convergence_PW_at_0C": -0.0024268,
+          "by_depth": [
+            {
+              "depth_support": "0-200m",
+              "wet_face_level_count": 1984,
+              "outward_volume_Sv": 7.969191505,
+              "inward_volume_Sv": -7.935958103,
+              "net_outward_volume_Sv": 0.033233402,
+              "gross_volume_exchange_Sv": 15.905149608,
+              "net_outward_reference_relative_thermal_PW_at_0C": 0.004564479,
+              "net_outward_practical_salinity_flux_PSU_m3_s": 1352251.224
+            },
+            {
+              "depth_support": "200-1000m",
+              "wet_face_level_count": 960,
+              "outward_volume_Sv": 26.552432176,
+              "inward_volume_Sv": -26.257934045,
+              "net_outward_volume_Sv": 0.294498131,
+              "gross_volume_exchange_Sv": 52.810366221,
+              "net_outward_reference_relative_thermal_PW_at_0C": 0.002077929,
+              "net_outward_practical_salinity_flux_PSU_m3_s": 10183827.377
+            },
+            {
+              "depth_support": "1000-4000m",
+              "wet_face_level_count": 905,
+              "outward_volume_Sv": 52.797566606,
+              "inward_volume_Sv": -52.555946597,
+              "net_outward_volume_Sv": 0.241620009,
+              "gross_volume_exchange_Sv": 105.353513203,
+              "net_outward_reference_relative_thermal_PW_at_0C": -0.00330886,
+              "net_outward_practical_salinity_flux_PSU_m3_s": 8395578.426
+            },
+            {
+              "depth_support": "4000m+",
+              "wet_face_level_count": 13,
+              "outward_volume_Sv": 0.602169336,
+              "inward_volume_Sv": -1.169311206,
+              "net_outward_volume_Sv": -0.56714187,
+              "gross_volume_exchange_Sv": 1.771480543,
+              "net_outward_reference_relative_thermal_PW_at_0C": -0.000906748,
+              "net_outward_practical_salinity_flux_PSU_m3_s": -19674332.56
+            }
+          ]
+        }
+      },
+      {
+        "valid_time": "2018-05-01/P1M",
+        "primary": {
+          "boundary_face_count": 64,
+          "all_depths": {
+            "wet_face_level_count": 3862,
+            "outward_volume_Sv": 108.114373792,
+            "inward_volume_Sv": -108.113736783,
+            "net_outward_volume_Sv": 0.000637009,
+            "gross_volume_exchange_Sv": 216.228110576,
+            "net_outward_reference_relative_thermal_PW_at_0C": 0.014503354,
+            "net_outward_practical_salinity_flux_PSU_m3_s": 50635.062
+          },
+          "horizontal_advective_volume_convergence_Sv": -0.000637009,
+          "horizontal_advective_reference_relative_thermal_convergence_PW_at_0C": -0.014503354,
+          "by_depth": [
+            {
+              "depth_support": "0-200m",
+              "wet_face_level_count": 1984,
+              "outward_volume_Sv": 9.487927012,
+              "inward_volume_Sv": -9.512816138,
+              "net_outward_volume_Sv": -0.024889126,
+              "gross_volume_exchange_Sv": 19.000743149,
+              "net_outward_reference_relative_thermal_PW_at_0C": 0.002870254,
+              "net_outward_practical_salinity_flux_PSU_m3_s": -570351.696
+            },
+            {
+              "depth_support": "200-1000m",
+              "wet_face_level_count": 960,
+              "outward_volume_Sv": 31.374226168,
+              "inward_volume_Sv": -31.160537325,
+              "net_outward_volume_Sv": 0.213688843,
+              "gross_volume_exchange_Sv": 62.534763493,
+              "net_outward_reference_relative_thermal_PW_at_0C": 0.006583931,
+              "net_outward_practical_salinity_flux_PSU_m3_s": 7212013.21
+            },
+            {
+              "depth_support": "1000-4000m",
+              "wet_face_level_count": 905,
+              "outward_volume_Sv": 65.940376647,
+              "inward_volume_Sv": -65.388523432,
+              "net_outward_volume_Sv": 0.551853215,
+              "gross_volume_exchange_Sv": 131.32890008,
+              "net_outward_reference_relative_thermal_PW_at_0C": 0.006190824,
+              "net_outward_practical_salinity_flux_PSU_m3_s": 19079983.838
+            },
+            {
+              "depth_support": "4000m+",
+              "wet_face_level_count": 13,
+              "outward_volume_Sv": 1.311843965,
+              "inward_volume_Sv": -2.051859889,
+              "net_outward_volume_Sv": -0.740015924,
+              "gross_volume_exchange_Sv": 3.363703854,
+              "net_outward_reference_relative_thermal_PW_at_0C": -0.001141654,
+              "net_outward_practical_salinity_flux_PSU_m3_s": -25671010.29
+            }
+          ]
+        }
+      },
+      {
+        "valid_time": "2018-08-01/P1M",
+        "primary": {
+          "boundary_face_count": 64,
+          "all_depths": {
+            "wet_face_level_count": 3862,
+            "outward_volume_Sv": 102.324322727,
+            "inward_volume_Sv": -102.325176633,
+            "net_outward_volume_Sv": -0.000853906,
+            "gross_volume_exchange_Sv": 204.64949936,
+            "net_outward_reference_relative_thermal_PW_at_0C": -0.006647441,
+            "net_outward_practical_salinity_flux_PSU_m3_s": 141863.718
+          },
+          "horizontal_advective_volume_convergence_Sv": 0.000853906,
+          "horizontal_advective_reference_relative_thermal_convergence_PW_at_0C": 0.006647441,
+          "by_depth": [
+            {
+              "depth_support": "0-200m",
+              "wet_face_level_count": 1984,
+              "outward_volume_Sv": 9.11877265,
+              "inward_volume_Sv": -9.182921957,
+              "net_outward_volume_Sv": -0.064149307,
+              "gross_volume_exchange_Sv": 18.301694607,
+              "net_outward_reference_relative_thermal_PW_at_0C": -0.000352884,
+              "net_outward_practical_salinity_flux_PSU_m3_s": -2091247.112
+            },
+            {
+              "depth_support": "200-1000m",
+              "wet_face_level_count": 960,
+              "outward_volume_Sv": 29.252651629,
+              "inward_volume_Sv": -29.044539078,
+              "net_outward_volume_Sv": 0.20811255,
+              "gross_volume_exchange_Sv": 58.297190707,
+              "net_outward_reference_relative_thermal_PW_at_0C": -0.001125093,
+              "net_outward_practical_salinity_flux_PSU_m3_s": 7295376.435
+            },
+            {
+              "depth_support": "1000-4000m",
+              "wet_face_level_count": 905,
+              "outward_volume_Sv": 62.885947515,
+              "inward_volume_Sv": -62.417114394,
+              "net_outward_volume_Sv": 0.468833121,
+              "gross_volume_exchange_Sv": 125.30306191,
+              "net_outward_reference_relative_thermal_PW_at_0C": -0.004211162,
+              "net_outward_practical_salinity_flux_PSU_m3_s": 16225268.638
+            },
+            {
+              "depth_support": "4000m+",
+              "wet_face_level_count": 13,
+              "outward_volume_Sv": 1.066950933,
+              "inward_volume_Sv": -1.680601203,
+              "net_outward_volume_Sv": -0.61365027,
+              "gross_volume_exchange_Sv": 2.747552136,
+              "net_outward_reference_relative_thermal_PW_at_0C": -0.000958302,
+              "net_outward_practical_salinity_flux_PSU_m3_s": -21287534.243
+            }
+          ]
+        }
+      },
+      {
+        "valid_time": "2018-11-01/P1M",
+        "primary": {
+          "boundary_face_count": 64,
+          "all_depths": {
+            "wet_face_level_count": 3862,
+            "outward_volume_Sv": 107.088073452,
+            "inward_volume_Sv": -107.08706424,
+            "net_outward_volume_Sv": 0.001009212,
+            "gross_volume_exchange_Sv": 214.175137692,
+            "net_outward_reference_relative_thermal_PW_at_0C": 0.006633803,
+            "net_outward_practical_salinity_flux_PSU_m3_s": -220882.578
+          },
+          "horizontal_advective_volume_convergence_Sv": -0.001009212,
+          "horizontal_advective_reference_relative_thermal_convergence_PW_at_0C": -0.006633803,
+          "by_depth": [
+            {
+              "depth_support": "0-200m",
+              "wet_face_level_count": 1984,
+              "outward_volume_Sv": 9.235979878,
+              "inward_volume_Sv": -9.305273233,
+              "net_outward_volume_Sv": -0.069293355,
+              "gross_volume_exchange_Sv": 18.54125311,
+              "net_outward_reference_relative_thermal_PW_at_0C": -4.1212e-05,
+              "net_outward_practical_salinity_flux_PSU_m3_s": -2293028.829
+            },
+            {
+              "depth_support": "200-1000m",
+              "wet_face_level_count": 960,
+              "outward_volume_Sv": 29.432242668,
+              "inward_volume_Sv": -29.324652054,
+              "net_outward_volume_Sv": 0.107590614,
+              "gross_volume_exchange_Sv": 58.756894722,
+              "net_outward_reference_relative_thermal_PW_at_0C": 0.002710903,
+              "net_outward_practical_salinity_flux_PSU_m3_s": 3442071.395
+            },
+            {
+              "depth_support": "1000-4000m",
+              "wet_face_level_count": 905,
+              "outward_volume_Sv": 67.148112888,
+              "inward_volume_Sv": -66.330406514,
+              "net_outward_volume_Sv": 0.817706374,
+              "gross_volume_exchange_Sv": 133.478519402,
+              "net_outward_reference_relative_thermal_PW_at_0C": 0.005300886,
+              "net_outward_practical_salinity_flux_PSU_m3_s": 28290143.688
+            },
+            {
+              "depth_support": "4000m+",
+              "wet_face_level_count": 13,
+              "outward_volume_Sv": 1.271738018,
+              "inward_volume_Sv": -2.12673244,
+              "net_outward_volume_Sv": -0.854994422,
+              "gross_volume_exchange_Sv": 3.398470458,
+              "net_outward_reference_relative_thermal_PW_at_0C": -0.001336775,
+              "net_outward_practical_salinity_flux_PSU_m3_s": -29660068.832
+            }
+          ]
+        }
+      }
+    ]
   },
-  "research_conclusion": "The intra-state dynamics research slice is complete as an evidence-bounded map: occupancy, local kinematics, relative motion, T/S density structure, a partial perimeter, and an open surface/storage account are separately receipted. Vertical transfer, closed convergence, transformation flux, and event perturbation remain explicit unsupported mechanisms with named acquisition gates. No numerical value is joined across the archived and current-geometry source families.",
+  "research_conclusion": "The intra-state dynamics research slice is complete as an evidence-bounded map: occupancy, local kinematics, relative motion, T/S density structure, a partial perimeter, an open surface/storage account, and a closed-horizontal-box advective term are separately receipted. Vertical transfer, total convergence, transformation flux, and event perturbation remain explicit unsupported mechanisms with named acquisition gates. No numerical value is joined across the archived and current-geometry source families.",
   "boundary": "This synthesis is a relation-by-relation evidence map, not a state-wide dynamical model, water-mass classification, transport account, closure calculation, causal graph, or geometry bridge."
 }

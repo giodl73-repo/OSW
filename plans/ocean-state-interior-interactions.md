@@ -199,6 +199,16 @@ Those missing sides rule out a closed lateral account, so the recorded gross
 exchange and signed partial fluxes must not be called convergence or a state
 budget.
 
+For a horizontal term that really is bounded, a geometry-only
+[16×16 closed interior box](../research/ocean-state-sant-closed-box-selection-current-geometry-v1.json)
+and three one-cell controls were selected before any fields were inspected.
+Its [horizontal account](../research/ocean-state-sant-closed-box-horizontal-account-2018.json)
+uses all 64 native U/V faces, plus co-located T/S and the local surface/storage
+context. This admits horizontal advective convergence as *one term* (the
+negative of net outward horizontal flux), not total convergence: vertical
+velocity, mixing/diffusion, model tendencies, assimilation/restoring, and
+compatible storage intervals remain absent.
+
 ## Exit evidence for the first slice
 
 - [x] a machine-readable [state-interior ledger schema](../research/ocean-state-interior-ledger-schema-v1.json)
