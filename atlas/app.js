@@ -598,7 +598,7 @@ function activeObservedField() {
   return [window.OCEANLINES_OISST, temperatureColor];
 }
 
-function updateAtlasUrl() {
+function updateAtlasUrl(historyMode = "replace") {
   const url = new URL(window.location.href);
   if (currentMode === "conceptual") {
     url.searchParams.delete("mode");
@@ -629,7 +629,19 @@ function updateAtlasUrl() {
   else url.searchParams.delete("province");
   if (featureView) url.searchParams.set("feature", selectedZone.id);
   else url.searchParams.delete("feature");
-  window.history.replaceState({}, "", url);
+  window.history[historyMode === "push" ? "pushState" : "replaceState"]({}, "", url);
+}
+
+function renderStateHandoff(group) {
+  const panel = document.querySelector("#state-handoff");
+  if (!group) { panel.hidden = true; return; }
+  const code = group.dataset.code;
+  const v4Status = ["NPSE", "OCAL"].includes(code) ? "This classic-56 identity has no separate Longhurst 2007 Version 4 footprint; OSW does not invent one." : "Its source-aligned footprint evidence remains a declared Version 4 reference, not a physical container.";
+  document.querySelector("#state-handoff-summary").textContent = `${code} · ${group.dataset.name}. ${v4Status}`;
+  const cards = window.OSWStateHandoffs.cards(code);
+  const host = document.querySelector("#state-handoff-cards"); host.replaceChildren();
+  cards.forEach(card => { const article=document.createElement("article"), title=document.createElement("h4"), copy=document.createElement("p"), link=document.createElement("a"); article.dataset.available=String(card.available); title.textContent=card.title; copy.textContent=card.text; link.href=card.href; link.textContent=card.available ? "Open state context →" : "Open general route →"; article.append(title, copy, link); host.append(article); });
+  panel.hidden = false;
 }
 
 function relationKey(provinceCode, featureId) {
@@ -1004,6 +1016,7 @@ function selectProvince(group, updateUrl = true) {
   document.querySelector("#province-select").value = selectedProvinceCode;
   document.querySelector("#province-reset").disabled = false;
   document.querySelector("#province-status").textContent = `${selectedProvinceCode} · ${group.dataset.name} · click another state or change any view.`;
+  renderStateHandoff(group);
   if (currentMode === "conceptual") {
     const related = provinceFeatureMatches(group);
     const near = provinceFeatureMatches(group, "near-contact");
@@ -1024,7 +1037,7 @@ function selectProvince(group, updateUrl = true) {
   }
   renderProvinceRelations(group);
   applyMapZoom();
-  if (updateUrl) updateAtlasUrl();
+  if (updateUrl) updateAtlasUrl("push");
 }
 
 function resetProvince(updateUrl = true) {
@@ -1037,6 +1050,7 @@ function resetProvince(updateUrl = true) {
   document.querySelector("#province-reset").disabled = true;
   document.querySelector("#province-reset").textContent = "Return to all 56";
   document.querySelector("#province-status").textContent = "Select a province to inspect and zoom.";
+  renderStateHandoff(null);
   applyMapZoom();
   if (currentMode === "conceptual") {
     relationSubject = "feature";
@@ -1365,6 +1379,12 @@ document.addEventListener("keydown", event => {
   if (event.key === "Escape" && (provinceView || featureView)) resetProvince();
 });
 window.addEventListener("resize", applyMapZoom);
+window.addEventListener("popstate", () => {
+  const code = new URLSearchParams(window.location.search).get("province");
+  const group = [...document.querySelectorAll("#province-map-host .province")].find(item => item.dataset.code === code);
+  if (group) selectProvince(group, false);
+  else resetProvince(false);
+});
 document.querySelector("#coordinate-probe").addEventListener("submit", event => {
   event.preventDefault();
   inspectCoordinates(Number(document.querySelector("#probe-lat").value), Number(document.querySelector("#probe-lon").value));
