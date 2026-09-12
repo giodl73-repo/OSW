@@ -1,6 +1,6 @@
 # Ocean-state interiors and interactions
 
-Status: first sparse ledger pilot implemented; no interior process is yet admitted
+Status: sparse contents ledger plus a separately versioned bounded kinematic pathway screen
 
 Date: 2026-09-12
 
@@ -112,7 +112,7 @@ interior transport total without closed geometry and compatible native fields.
 5. Declare controls for any internal pathway or convergence claim: displaced
    seeds/regions, time alternatives, and where possible a second product.
 
-## Current source-custody gate
+## Current source-custody gate and separate pathway result
 
 The archived Drake ORAS5 state files contain native `u` and `v`, but the
 native-grid province assignment used for the contents pilot was not retained.
@@ -124,6 +124,26 @@ generated from the live geometry and presented as compatible with the 2018
 contents account. The exact [source-custody audit](../research/ocean-state-interior-source-custody-audit-2026-09-12.json)
 sets the two admissible recovery paths.
 
+One of those paths is now implemented as a **separate, unjoined source
+family**: a pinned current-geometry native SANT assignment and a bounded
+surface, monthly-mean ORAS5 kinematic screen. The assignment retains a
+run-length native-cell membership derivative, source and mesh checksums, and a
+one-cell cardinal interior guard. It selects three longitudinal seeds at the
+median guarded latitude *before velocity inspection*, together with every
+available one-cell cardinal control. It advances those fourteen starts for
+five days in February, May, August, and November 2018 using a declared
+T-cell velocity proxy.
+
+All 14 starts remained within the guarded discrete SANT support for each of
+the four monthly screens; the three primary trajectories have nonzero
+continuous five-day displacements. This establishes only that these declared
+monthly-mean kinematic screen paths can be evaluated in the new source family.
+It does not establish material retention, transport, a persistent pathway,
+vertical exchange, or a bridge to the archived contents account. The precise
+[native assignment](../research/ocean-state-interior-sant-current-geometry-assignment-2026-09-12.json)
+and [pathway screen](../research/ocean-state-interior-sant-pathways-current-geometry-2018.json)
+are the evidence records.
+
 ## Exit evidence for the first slice
 
 - [x] a machine-readable [state-interior ledger schema](../research/ocean-state-interior-ledger-schema-v1.json)
@@ -134,5 +154,7 @@ sets the two admissible recovery paths.
   unknowns without color-only meaning;
 - [x] tests that reject incompatible geometry, depth, time, source, or evidence
   class joins; and
+- [x] a separately versioned, checksum-bound native membership assignment and
+  velocity-independent seed/control pathway screen; and
 - an explicit no-closure/no-causation boundary next to every transfer-like
   result.
