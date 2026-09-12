@@ -165,6 +165,23 @@ convergence, transformation, and event perturbation as unsupported with their
 specific acquisition gates. It validates the two source families without
 numerically joining them.
 
+## Physical-source-family expansion
+
+The current-geometry SANT family now has matching four-season ORAS5 native
+T/S/U/V support: the existing custodied temperature and horizontal velocities
+are checksum-bound to the new assignment, and newly receipted practical
+salinity is added on the same T cells. Its
+[source-family manifest](../research/ocean-state-sant-current-geometry-physical-source-family-2018.json)
+records finite salinity support and the negative vertical-velocity probe.
+
+The resulting [TEOS-10 density-structure screen](../research/ocean-state-interior-sant-density-structure-current-geometry-2018.json)
+uses local latitude/longitude, midpoint-depth pressure, absolute salinity,
+conservative temperature, and sigma-zero. It supports numeric density-stratum
+occupancy and vertical density structure only. Its fixed bins are not named
+water masses, and without class-volume fluxes it does not establish
+transformation. The ICDC source has no probed native `vovecrtz` file, so it
+still cannot support vertical transfer.
+
 ## Exit evidence for the first slice
 
 - [x] a machine-readable [state-interior ledger schema](../research/ocean-state-interior-ledger-schema-v1.json)
