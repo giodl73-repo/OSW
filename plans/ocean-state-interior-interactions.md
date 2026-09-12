@@ -190,6 +190,15 @@ storage products but no vertical-velocity product, and the candidate
 separately sourced and compatibly custodial product, rather than another
 reinterpretation of the existing fields.
 
+The follow-on [vertical-process source audit](../research/ocean-state-sant-vertical-process-source-audit-2026-09-12.json)
+finds no directly joinable 2018 native-`w` source. Copernicus’ current global
+analysis/forecast product documents `wo`, but it is a distinct grid and
+configuration; the 2018 multiyear alternative documents a reconstructed, not
+distributed native, vertical velocity. Both are bridge or sensitivity
+candidates only, never additive ORAS5 budget terms. The next actual vertical
+experiment therefore needs a user-custodied source receipt and an explicit
+geometry/time/variable/assimilation bridge review.
+
 The same manifest now includes twelve monthly native fields for net downward
 surface heat flux, net upward freshwater mass flux, and column heat content.
 The [open surface/storage account](../research/ocean-state-sant-current-geometry-surface-storage-2018.json)
