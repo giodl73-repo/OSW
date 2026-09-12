@@ -100,6 +100,12 @@ budgets remain distinct object types with distinct identity tests.
   across depth. It exposes a sharp concentration change: the leading five
   states hold 36.02% of sampled epipelagic volume and 68.09% of sampled hadal
   volume, while absolute band totals remain separately labeled.
+- The first sparse interior ledger now fixes one `SANT × 0–200 m × August
+  2018` account. It carries its admitted temperature distribution and a
+  separately receipted boundary-pilot context while retaining vertical transfer,
+  interior pathway, convergence, transformation, and event interaction as
+  named unknowns. It establishes a safe state-interior record shape, not a
+  dynamic-state diagnosis.
 - 36 shaped ocean features span waters, flows, edges, floor, life, and events.
 - Six conceptual lenses and multiple observed fields share an ocean-first map.
 - The 11 realms and 22 contiguous regions are OSW organizational constructs,

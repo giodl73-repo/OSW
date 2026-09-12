@@ -1,0 +1,92 @@
+{
+  "schema": "osw-ocean-state-interior-ledger-v1",
+  "status": "first_sparse_contents_and_unknowns_pilot",
+  "selection": {
+    "frozen_before_result_inspection": true,
+    "address": {
+      "geometry_edition": "longhurst-v4-54",
+      "province": "SANT",
+      "depth_support": "0-200m"
+    },
+    "valid_time": "2018-08-01/P1M",
+    "rule": "First existing state that participates in the separately selected SANT--SSTC exchange pilot, at the shallowest complete hydrography support and its August 2018 monthly sample."
+  },
+  "address": {
+    "geometry_edition": "longhurst-v4-54",
+    "province": "SANT",
+    "depth_support": "0-200m"
+  },
+  "valid_time": "2018-08-01/P1M",
+  "contents": [
+    {
+      "address": {
+        "geometry_edition": "longhurst-v4-54",
+        "province": "SANT",
+        "depth_support": "0-200m"
+      },
+      "valid_time": "2018-08-01/P1M",
+      "property": "sea_water_potential_temperature",
+      "units": "degC",
+      "evidence_class": "assimilative_reanalysis_model_screen",
+      "method_version": "osw-hydrography-pilot-v1",
+      "support": {
+        "expected_native_t_cells": 188678,
+        "valid_native_t_cells": 188678,
+        "fraction": 1.0,
+        "weighting": "unweighted_native_T_cell_level_samples"
+      },
+      "distribution": {
+        "sample_count": 188678,
+        "mean_degC": 4.253912,
+        "standard_deviation_degC": 2.543405,
+        "minimum_degC": -0.85237,
+        "p10_degC": 1.070666,
+        "p25_degC": 2.217691,
+        "median_degC": 4.260699,
+        "p75_degC": 5.773051,
+        "p90_degC": 7.657112,
+        "maximum_degC": 11.174632
+      },
+      "uncertainty": {
+        "status": "not_estimated",
+        "reason": "one ORAS5 ensemble member and four monthly snapshots; distribution spread is not measurement or model uncertainty"
+      },
+      "source_artifact": "research/ocean-state-hydrography-pilot-2018.json",
+      "source_artifact_sha256": "952b5a91d305b53781028d407a4198f5a96be0c422dd701c13576dcaaa8c8149"
+    }
+  ],
+  "overlays": [],
+  "internal_links": [],
+  "boundary_context": {
+    "relation": "has_separately_receipted_boundary_pilot",
+    "counterpart_state": "SSTC",
+    "source_artifact": "research/ocean-state-boundary-exchange-pilot-2018.json",
+    "source_artifact_sha256": "cb565e602926293b058b95f5e88dea0c5afeefab2dd11884dd8be029bdc4c3e6",
+    "evidence_class": "assimilative_reanalysis_model_screen",
+    "join_status": "not_joined_to_interior_account",
+    "reason": "The exchange pilot uses an open 16-face boundary segment and all-depth transport anatomy. It is not a closed SANT volume, a 0-200 m interior measurement, or a compatible state-budget term."
+  },
+  "unknowns": [
+    {
+      "relation": "vertical_transfer",
+      "reason": "No admitted vertical velocity, diapycnal flux, mixing, entrainment, or closed compatible budget."
+    },
+    {
+      "relation": "lateral_interior_pathway",
+      "reason": "No pre-registered interior seeds, destinations, trajectory control, or tracer pathway is admitted."
+    },
+    {
+      "relation": "interior_convergence",
+      "reason": "No closed control-volume geometry and matched boundary/surface/storage terms are admitted."
+    },
+    {
+      "relation": "transformation",
+      "reason": "Temperature alone cannot define a water-mass class change; salinity, density, and class-volume flux are unavailable."
+    },
+    {
+      "relation": "event_perturbation",
+      "reason": "The admitted 2026 surface heatwave route is spatially and temporally incompatible with this 2018 Drake account."
+    }
+  ],
+  "boundary": "This ledger indexes one declared reference state, depth support, and month. It reports one temperature distribution and named absences; it does not infer a uniform state interior, a water mass, a pathway, mixing, convergence, heat content, transport, causal mechanism, or budget closure."
+}

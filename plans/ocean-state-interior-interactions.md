@@ -1,6 +1,6 @@
 # Ocean-state interiors and interactions
 
-Status: definition and first-pilot contract; no interior process is yet admitted
+Status: first sparse ledger pilot implemented; no interior process is yet admitted
 
 Date: 2026-09-12
 
@@ -113,11 +113,12 @@ interior transport total without closed geometry and compatible native fields.
 
 ## Exit evidence for the first slice
 
-- a machine-readable state-interior ledger schema and local fixture;
-- one pre-registered pilot state/month/support with a receipt;
+- [x] a machine-readable [state-interior ledger schema](../research/ocean-state-interior-ledger-schema-v1.json)
+  and local fixture;
+- [x] one pre-registered [SANT × 0–200 m × August 2018 pilot receipt](../research/ocean-state-interior-ledger-sant-201808.json);
 - a textual state page that distinguishes contents, overlays, internal links,
   boundary links, and unknowns without color-only meaning;
-- tests that reject incompatible geometry, depth, time, source, or evidence
+- [x] tests that reject incompatible geometry, depth, time, source, or evidence
   class joins; and
 - an explicit no-closure/no-causation boundary next to every transfer-like
   result.

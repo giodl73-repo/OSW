@@ -152,6 +152,7 @@ the continents visual control.
 | Give every valid wet volume a horizontal and vertical reference address | [Ocean Column workbench](column/) and [definition](guides/15-OCEAN-COLUMN-ADDRESS.md) |
 | See which source-backed ocean states share edges and how their depth silhouettes differ | [Neighbor atlas](column/?map=neighbors) and [neighbors/accounts guide](guides/16-OCEAN-STATE-NEIGHBORS-AND-ACCOUNTS.md) |
 | Ask what a state contains at one depth and month | [Exchange Observatory](exchange/) and [contents guide](guides/17-WHAT-AN-OCEAN-STATE-CONTAINS.md) |
+| Inspect one state’s contents separately from its unknown internal interactions | [First SANT interior ledger](research/ocean-state-interior-ledger-sant-201808.json) and [interaction contract](plans/ocean-state-interior-interactions.md) |
 | Decide what evidence a mapped patch has earned | [Ocean-object visual matrix](figures/osw-ocean-object-matrix.svg) and [decision guide](guides/13-HOW-TO-NAME-AN-OCEAN-PATCH.md) |
 | Audit what a particular dataset actually supports | [Evidence-receipt guide](guides/14-EVIDENCE-RECEIPTS.md) and [eighteen worked receipts](research/ocean-object-evidence-receipts.json), including OSW's first duration-qualified event, footprint, primary lineage, identity bakeoffs, typed temporal bridge, separate-product SST cross-check, surface-energy, fixed-column storage, and depth-integrated motion screens |
 | Explore waters, flows, edges, seafloor, life, events, and observational layers | [Interactive Atlas](atlas/) |
