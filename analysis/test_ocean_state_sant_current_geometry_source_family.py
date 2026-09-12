@@ -17,5 +17,6 @@ def test_committed_source_family_regenerates_with_all_t_s_u_v_months():
     assert len(committed["months"]) == 4
     assert all(record["salinity"]["finite_core_fraction"] > 0.8 for record in committed["months"])
     assert committed["surface_storage_terms"]["month_count"] == 12
+    assert (ROOT / committed["capability_audit"]["path"]).exists()
     assert "practical_salinity_on_T_cells" in committed["field_capabilities"]["available"]
     assert "native_vertical_velocity" in str(committed["field_capabilities"]["not_available_from_probed_ICDC_ORAS5_contract"])

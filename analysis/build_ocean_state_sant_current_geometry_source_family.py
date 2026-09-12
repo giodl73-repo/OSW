@@ -19,6 +19,7 @@ MESH = ROOT / "atlas" / "data" / "oras5-drake-mesh.nc"
 MONTHS = ("201802", "201805", "201808", "201811")
 OUTPUT = ROOT / "research" / "ocean-state-sant-current-geometry-physical-source-family-2018.json"
 SURFACE_RECEIPT = ROOT / "research" / "ocean-state-sant-current-geometry-surface-terms-2018.json"
+CAPABILITY_AUDIT = ROOT / "research" / "ocean-state-sant-current-geometry-oras5-capability-audit-2026-09-12.json"
 
 
 def sha256(path: Path) -> str:
@@ -33,9 +34,9 @@ def receipt(path: Path) -> dict:
     return {"path": path.relative_to(ROOT).as_posix(), "sha256": sha256(path)}
 
 
-def build(assignment_path: Path = ASSIGNMENT, mesh_path: Path = MESH, surface_receipt_path: Path = SURFACE_RECEIPT) -> dict:
-    assignment_path, mesh_path, surface_receipt_path = map(Path, (assignment_path, mesh_path, surface_receipt_path))
-    assignment, surface_receipt = load(assignment_path), load(surface_receipt_path)
+def build(assignment_path: Path = ASSIGNMENT, mesh_path: Path = MESH, surface_receipt_path: Path = SURFACE_RECEIPT, capability_audit_path: Path = CAPABILITY_AUDIT) -> dict:
+    assignment_path, mesh_path, surface_receipt_path, capability_audit_path = map(Path, (assignment_path, mesh_path, surface_receipt_path, capability_audit_path))
+    assignment, surface_receipt, capability_audit = load(assignment_path), load(surface_receipt_path), load(capability_audit_path)
     if assignment["status"] != "separate_unjoined_source_family" or sha256(mesh_path) != assignment["mesh"]["sha256"]:
         raise ValueError("pinned geometry assignment and mesh are required")
     core = rle_decode(assignment["interior_core"]["rle_row_major"], tuple(assignment["mesh"]["shape_yx"]))
@@ -68,9 +69,10 @@ def build(assignment_path: Path = ASSIGNMENT, mesh_path: Path = MESH, surface_re
         "join_status": "not_joined_to_archived_2018_contents_or_boundary_accounts",
         "state": assignment["state"], "assignment": receipt(assignment_path), "mesh": receipt(mesh_path), "months": records,
         "surface_storage_terms": {"receipt": receipt(surface_receipt_path), "output": receipt(surface_path), "fields": ["sohefldo", "sowaflup", "sohtcbtm"], "month_count": len(surface_receipt["months"])},
+        "capability_audit": receipt(capability_audit_path),
         "field_capabilities": {
             "available": ["potential_temperature_on_T_cells", "practical_salinity_on_T_cells", "zonal_velocity_on_U_faces", "meridional_velocity_on_V_faces"],
-            "not_available_from_probed_ICDC_ORAS5_contract": [{"field": "vovecrtz", "role": "native_vertical_velocity", "attempted_urls": [".../vovecrtz/opa0/vovecrtz_ORAS5_1m_201808_grid_W_02.nc", ".../vovecrtz/opa0/vovecrtz_ORAS5_1m_201808_grid_T_02.nc"], "result": "file_not_found_on_2026-09-12"}],
+            "not_available_from_probed_ICDC_ORAS5_contract": [{"field": "vovecrtz", "role": "native_vertical_velocity", "audit_decision": capability_audit["decision"], "catalog_sha256": capability_audit["source"]["catalog_sha256"]}],
         },
         "admitted_next_analysis": "A declared T/S density or property-class structure screen at native cells/levels. It must retain practical-salinity provenance, a named equation of state, pressure/depth convention, class thresholds, and no transformation claim without class-volume fluxes.",
         "boundary": "This manifest creates a new, fully receipted geometry-and-T/S/U/V source family for bounded structure diagnostics. It lacks native vertical velocity, model tracer-tendency terms, a complete set of closed-volume faces/surface/storage terms, and independent product support; it cannot establish vertical transfer, transformation flux, convergence, or budget closure.",

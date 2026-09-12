@@ -182,6 +182,14 @@ water masses, and without class-volume fluxes it does not establish
 transformation. The ICDC source has no probed native `vovecrtz` file, so it
 still cannot support vertical transfer.
 
+That absence is now backed by a provider-catalogue
+[capability audit](../research/ocean-state-sant-current-geometry-oras5-capability-audit-2026-09-12.json):
+the public ICDC ORCA025 listing has T/S, horizontal-current, surface, and
+storage products but no vertical-velocity product, and the candidate
+`vovecrtz` files/subcatalog return not found. A vertical term now requires a
+separately sourced and compatibly custodial product, rather than another
+reinterpretation of the existing fields.
+
 The same manifest now includes twelve monthly native fields for net downward
 surface heat flux, net upward freshwater mass flux, and column heat content.
 The [open surface/storage account](../research/ocean-state-sant-current-geometry-surface-storage-2018.json)
