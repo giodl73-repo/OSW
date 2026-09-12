@@ -226,6 +226,14 @@ negative of net outward horizontal flux), not total convergence: vertical
 velocity, mixing/diffusion, model tendencies, assimilation/restoring, and
 compatible storage intervals remain absent.
 
+The same fixed geometry now has a distinct [inventory-endpoint screen](../research/ocean-state-sant-closed-box-inventory-change-screen-2018.json): four
+column-heat-content snapshots and three endpoint differences for the primary
+box and each one-cell control. This makes the observed stock changes explicit,
+but does not convert them to tendencies or compare them to fluxes: the
+monthly-field timestamp and averaging convention have not been shown to define
+a matched tendency interval. It is therefore an inventory record, not a
+residual or closure calculation.
+
 ## Exit evidence for the first slice
 
 - [x] a machine-readable [state-interior ledger schema](../research/ocean-state-interior-ledger-schema-v1.json)

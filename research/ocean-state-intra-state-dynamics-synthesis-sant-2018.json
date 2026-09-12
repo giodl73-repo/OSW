@@ -43,6 +43,10 @@
         "path": "research/ocean-state-sant-closed-box-horizontal-account-2018.json",
         "sha256": "ec266c8b071f0608a66585152a6ec92c8fea9622f1a5861b35be0719c9edfcc2"
       },
+      "closed_box_inventory_screen": {
+        "path": "research/ocean-state-sant-closed-box-inventory-change-screen-2018.json",
+        "sha256": "7e7c0004b048ffbdd580e32acc5f127acd0a6ec569efa863ef62029d1d9e6bd6"
+      },
       "status": "separate_unjoined_source_family",
       "permitted_use": "bounded local kinematics, T/S density structure, partial perimeter flux, open surface/storage evidence, and closed-horizontal-box terms only"
     },
@@ -106,10 +110,10 @@
     },
     {
       "relation": "interior_convergence",
-      "status": "horizontal_advective_term_supported_total_convergence_not_supported",
-      "evidence": "A 16\u00d716 geometry-selected box and three one-cell controls have complete 64-face horizontal perimeters, with horizontal advective terms in four months.",
+      "status": "horizontal_advective_term_and_inventory_endpoints_supported_total_convergence_not_supported",
+      "evidence": "A 16\u00d716 geometry-selected box and three one-cell controls have complete 64-face horizontal perimeters, horizontal advective terms, and fixed column-heat-content endpoints in four months.",
       "required_evidence": "Matched native vertical, mixing/diffusion, tendency/assimilation terms and compatible time support for total convergence or budget closure.",
-      "reason": "The closed box measures one horizontal advective term only; the state-wide perimeter remains incomplete and vertical/other terms are absent."
+      "reason": "The endpoint differences are not native tendencies or residuals, and the closed box measures one horizontal advective term only; vertical and other terms remain absent."
     },
     {
       "relation": "transformation",
@@ -671,8 +675,57 @@
           ]
         }
       }
-    ]
+    ],
+    "closed_box_primary_inventory_endpoints": {
+      "box": "primary",
+      "endpoints": [
+        {
+          "valid_time": "2018-02-01/P1M",
+          "valid_cells": 256,
+          "area_km2": 70400.227304,
+          "column_heat_content_J": 1.547890170833081e+21
+        },
+        {
+          "valid_time": "2018-05-01/P1M",
+          "valid_cells": 256,
+          "area_km2": 70400.227304,
+          "column_heat_content_J": 1.5163978011696253e+21
+        },
+        {
+          "valid_time": "2018-08-01/P1M",
+          "valid_cells": 256,
+          "area_km2": 70400.227304,
+          "column_heat_content_J": 1.4282923846115475e+21
+        },
+        {
+          "valid_time": "2018-11-01/P1M",
+          "valid_cells": 256,
+          "area_km2": 70400.227304,
+          "column_heat_content_J": 1.442956367576768e+21
+        }
+      ],
+      "successive_endpoint_differences": [
+        {
+          "from_valid_time": "2018-02-01/P1M",
+          "to_valid_time": "2018-05-01/P1M",
+          "column_heat_content_change_J": -3.149236966345566e+19,
+          "boundary": "An endpoint difference between monthly column-heat-content fields, not a native tendency or a budget residual."
+        },
+        {
+          "from_valid_time": "2018-05-01/P1M",
+          "to_valid_time": "2018-08-01/P1M",
+          "column_heat_content_change_J": -8.81054165580778e+19,
+          "boundary": "An endpoint difference between monthly column-heat-content fields, not a native tendency or a budget residual."
+        },
+        {
+          "from_valid_time": "2018-08-01/P1M",
+          "to_valid_time": "2018-11-01/P1M",
+          "column_heat_content_change_J": 1.4663982965220442e+19,
+          "boundary": "An endpoint difference between monthly column-heat-content fields, not a native tendency or a budget residual."
+        }
+      ]
+    }
   },
-  "research_conclusion": "The intra-state dynamics research slice is complete as an evidence-bounded map: occupancy, local kinematics, relative motion, T/S density structure, a partial perimeter, an open surface/storage account, and a closed-horizontal-box advective term are separately receipted. Vertical transfer, total convergence, transformation flux, and event perturbation remain explicit unsupported mechanisms with named acquisition gates. No numerical value is joined across the archived and current-geometry source families.",
+  "research_conclusion": "The intra-state dynamics research slice is complete as an evidence-bounded map: occupancy, local kinematics, relative motion, T/S density structure, a partial perimeter, an open surface/storage account, and closed-horizontal-box advective and inventory-endpoint terms are separately receipted. Vertical transfer, total convergence, transformation flux, and event perturbation remain explicit unsupported mechanisms with named acquisition gates. No numerical value is joined across the archived and current-geometry source families.",
   "boundary": "This synthesis is a relation-by-relation evidence map, not a state-wide dynamical model, water-mass classification, transport account, closure calculation, causal graph, or geometry bridge."
 }
