@@ -191,6 +191,14 @@ forcing and storage evidence, not a closed control volume: matched lateral and
 vertical fluxes, mixing/diffusion, and compatible temporal conventions remain
 required before any convergence or closure statement.
 
+A [partial native perimeter screen](../research/ocean-state-sant-current-geometry-partial-perimeter-2018.json)
+now measures every available in-domain SANT membership face (474 faces; 26,587
+wet face-levels in each sampled month) with adjacent T/S collocation. It also
+reports the 176 SANT sides cut by the north, west, and east Drake-subset edges.
+Those missing sides rule out a closed lateral account, so the recorded gross
+exchange and signed partial fluxes must not be called convergence or a state
+budget.
+
 ## Exit evidence for the first slice
 
 - [x] a machine-readable [state-interior ledger schema](../research/ocean-state-interior-ledger-schema-v1.json)
