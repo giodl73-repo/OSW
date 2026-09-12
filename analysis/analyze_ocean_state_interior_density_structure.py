@@ -56,7 +56,7 @@ def profile(seed: dict, temperature: np.ndarray, salinity: np.ndarray, levels: l
 def build(assignment_path: Path = ASSIGNMENT, family_path: Path = FAMILY, mesh_path: Path = MESH) -> dict:
     assignment_path, family_path, mesh_path = map(Path, (assignment_path, family_path, mesh_path))
     assignment, family = load(assignment_path), load(family_path)
-    if family["assignment"]["sha256"] != sha256(assignment_path) or family["status"] != "ready_for_density_and_class_structure_screen_not_vertical_transfer_or_budget":
+    if family["assignment"]["sha256"] != sha256(assignment_path) or family["status"] != "ready_for_density_class_and_open_surface_storage_screens_not_vertical_transfer_or_budget":
         raise ValueError("density screen requires the complete current-geometry source family")
     with netCDF4.Dataset(mesh_path) as mesh:
         longitude, latitude = np.asarray(mesh["glamt"][:]), np.asarray(mesh["gphit"][:])

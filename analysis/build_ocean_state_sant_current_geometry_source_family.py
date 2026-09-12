@@ -18,6 +18,7 @@ ASSIGNMENT = ROOT / "research" / "ocean-state-interior-sant-current-geometry-ass
 MESH = ROOT / "atlas" / "data" / "oras5-drake-mesh.nc"
 MONTHS = ("201802", "201805", "201808", "201811")
 OUTPUT = ROOT / "research" / "ocean-state-sant-current-geometry-physical-source-family-2018.json"
+SURFACE_RECEIPT = ROOT / "research" / "ocean-state-sant-current-geometry-surface-terms-2018.json"
 
 
 def sha256(path: Path) -> str:
@@ -32,12 +33,15 @@ def receipt(path: Path) -> dict:
     return {"path": path.relative_to(ROOT).as_posix(), "sha256": sha256(path)}
 
 
-def build(assignment_path: Path = ASSIGNMENT, mesh_path: Path = MESH) -> dict:
-    assignment_path, mesh_path = Path(assignment_path), Path(mesh_path)
-    assignment = load(assignment_path)
+def build(assignment_path: Path = ASSIGNMENT, mesh_path: Path = MESH, surface_receipt_path: Path = SURFACE_RECEIPT) -> dict:
+    assignment_path, mesh_path, surface_receipt_path = map(Path, (assignment_path, mesh_path, surface_receipt_path))
+    assignment, surface_receipt = load(assignment_path), load(surface_receipt_path)
     if assignment["status"] != "separate_unjoined_source_family" or sha256(mesh_path) != assignment["mesh"]["sha256"]:
         raise ValueError("pinned geometry assignment and mesh are required")
     core = rle_decode(assignment["interior_core"]["rle_row_major"], tuple(assignment["mesh"]["shape_yx"]))
+    surface_path = ROOT / surface_receipt["output"]["path"]
+    if surface_receipt["assignment"]["sha256"] != sha256(assignment_path) or sha256(surface_path) != surface_receipt["output"]["sha256"]:
+        raise ValueError("surface/storage receipt does not bind to the source family")
     records = []
     for month in MONTHS:
         state_path = ROOT / "atlas" / "data" / f"oras5-drake-state-{month}.nc"
@@ -59,10 +63,11 @@ def build(assignment_path: Path = ASSIGNMENT, mesh_path: Path = MESH) -> dict:
         })
     return {
         "schema": "osw-ocean-state-current-geometry-physical-source-family-v1",
-        "status": "ready_for_density_and_class_structure_screen_not_vertical_transfer_or_budget",
+        "status": "ready_for_density_class_and_open_surface_storage_screens_not_vertical_transfer_or_budget",
         "source_family": assignment["source_family"],
         "join_status": "not_joined_to_archived_2018_contents_or_boundary_accounts",
         "state": assignment["state"], "assignment": receipt(assignment_path), "mesh": receipt(mesh_path), "months": records,
+        "surface_storage_terms": {"receipt": receipt(surface_receipt_path), "output": receipt(surface_path), "fields": ["sohefldo", "sowaflup", "sohtcbtm"], "month_count": len(surface_receipt["months"])},
         "field_capabilities": {
             "available": ["potential_temperature_on_T_cells", "practical_salinity_on_T_cells", "zonal_velocity_on_U_faces", "meridional_velocity_on_V_faces"],
             "not_available_from_probed_ICDC_ORAS5_contract": [{"field": "vovecrtz", "role": "native_vertical_velocity", "attempted_urls": [".../vovecrtz/opa0/vovecrtz_ORAS5_1m_201808_grid_W_02.nc", ".../vovecrtz/opa0/vovecrtz_ORAS5_1m_201808_grid_T_02.nc"], "result": "file_not_found_on_2026-09-12"}],
@@ -73,9 +78,9 @@ def build(assignment_path: Path = ASSIGNMENT, mesh_path: Path = MESH) -> dict:
 
 
 def validate(payload: dict) -> None:
-    if payload["status"] != "ready_for_density_and_class_structure_screen_not_vertical_transfer_or_budget" or not payload["join_status"].startswith("not_joined"):
+    if payload["status"] != "ready_for_density_class_and_open_surface_storage_screens_not_vertical_transfer_or_budget" or not payload["join_status"].startswith("not_joined"):
         raise ValueError("manifest must preserve its scope and source separation")
-    if len(payload["months"]) != 4 or any(record["salinity"]["finite_core_fraction"] <= 0 for record in payload["months"]):
+    if len(payload["months"]) != 4 or payload["surface_storage_terms"]["month_count"] != 12 or any(record["salinity"]["finite_core_fraction"] <= 0 for record in payload["months"]):
         raise ValueError("all four months require nonempty salinity support")
     if "native_vertical_velocity" not in str(payload["field_capabilities"]["not_available_from_probed_ICDC_ORAS5_contract"]):
         raise ValueError("vertical-velocity limitation must remain visible")

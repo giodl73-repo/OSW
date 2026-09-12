@@ -182,6 +182,15 @@ water masses, and without class-volume fluxes it does not establish
 transformation. The ICDC source has no probed native `vovecrtz` file, so it
 still cannot support vertical transfer.
 
+The same manifest now includes twelve monthly native fields for net downward
+surface heat flux, net upward freshwater mass flux, and column heat content.
+The [open surface/storage account](../research/ocean-state-sant-current-geometry-surface-storage-2018.json)
+area-integrates them over current SANT membership and retains every successive
+column-heat-content difference without forming a residual. It is useful
+forcing and storage evidence, not a closed control volume: matched lateral and
+vertical fluxes, mixing/diffusion, and compatible temporal conventions remain
+required before any convergence or closure statement.
+
 ## Exit evidence for the first slice
 
 - [x] a machine-readable [state-interior ledger schema](../research/ocean-state-interior-ledger-schema-v1.json)
