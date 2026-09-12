@@ -112,6 +112,18 @@ interior transport total without closed geometry and compatible native fields.
 5. Declare controls for any internal pathway or convergence claim: displaced
    seeds/regions, time alternatives, and where possible a second product.
 
+## Current source-custody gate
+
+The archived Drake ORAS5 state files contain native `u` and `v`, but the
+native-grid province assignment used for the contents pilot was not retained.
+On 2026-09-12 the live Marine Regions WFS response hashed to
+`a67485038ad698b304ed60d721cf8e5295f9fff01762e8591db6b04dae73198e`, not the
+`0b8439605ff29d07f8c11f98e32c4f9ff5f0dc11df03b6c400f298c5c1544b77` response
+recorded by that pilot. Therefore no SANT internal-pathway calculation may be
+generated from the live geometry and presented as compatible with the 2018
+contents account. The exact [source-custody audit](../research/ocean-state-interior-source-custody-audit-2026-09-12.json)
+sets the two admissible recovery paths.
+
 ## Exit evidence for the first slice
 
 - [x] a machine-readable [state-interior ledger schema](../research/ocean-state-interior-ledger-schema-v1.json)

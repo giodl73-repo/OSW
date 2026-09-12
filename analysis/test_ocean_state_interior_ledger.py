@@ -62,3 +62,12 @@ def test_validator_rejects_static_overlay_from_another_state():
     incompatible["overlays"][0]["address"] = {**payload["address"], "province": "SSTC"}
     with pytest.raises(ValueError, match="static overlay address"):
         MODULE.validate(incompatible)
+
+
+def test_pathway_source_custody_audit_preserves_the_geometry_mismatch():
+    audit = json.loads((ROOT / "research/ocean-state-interior-source-custody-audit-2026-09-12.json").read_text(encoding="utf-8"))
+    hydrography = json.loads((ROOT / "research/ocean-state-hydrography-pilot-2018.json").read_text(encoding="utf-8"))
+    assert audit["result"] == "source_response_changed"
+    assert audit["admission_decision"].startswith("do_not_build")
+    assert audit["existing_contents_receipt"]["geometry_response_sha256"] == hydrography["geometry"]["response_sha256"]
+    assert audit["live_probe"]["response_sha256"] != hydrography["geometry"]["response_sha256"]
