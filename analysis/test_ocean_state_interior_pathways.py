@@ -26,9 +26,13 @@ def test_screen_retains_predeclared_controls_and_nonzero_continuous_motion():
     for month in payload["months"]:
         assert len(month["tracks"]) == 14
         assert month["completed_track_count"] == 14
+        assert len(month["relative_motion"]) == 3
         assert all(track["status"] == "completed_interior_screen" for track in month["tracks"])
     eastern_may = next(track for track in payload["months"][1]["tracks"] if track["id"] == "eastern")
     assert eastern_may["points"][0]["longitude_deg"] != eastern_may["points"][-1]["longitude_deg"]
+    western_may = next(item for item in payload["months"][1]["relative_motion"] if item["seed"] == "western")
+    assert western_may["mean_control_separation_change_km"] < 0
+    assert "not horizontal convergence" in western_may["boundary"]
 
 
 def test_assignment_and_velocity_receipts_are_checksum_bound():

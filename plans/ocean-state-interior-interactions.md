@@ -137,13 +137,25 @@ T-cell velocity proxy.
 All 14 starts remained within the guarded discrete SANT support for each of
 the four monthly screens; the three primary trajectories have nonzero
 continuous five-day displacements and retain co-located Eulerian surface
-temperature samples. This establishes only that these declared monthly-mean
-kinematic and temperature-co-occurrence supports can be evaluated in the new
-source family. It does not establish parcel thermodynamics, material retention,
-transport, a persistent pathway, vertical exchange, or a bridge to the archived contents account. The precise
+temperature samples. The same predeclared cardinal controls supply local
+relative-separation and temperature-contrast records: for example, the western
+May screen contracts by 0.375 km on average while the central controls separate
+by 10.728 km. These are local kinematic screen outcomes, not horizontal flux
+divergence or convergence. This establishes only that these declared
+monthly-mean kinematic and temperature-co-occurrence supports can be evaluated
+in the new source family. It does not establish parcel thermodynamics, material
+retention, transport, a persistent pathway, vertical exchange, or a bridge to
+the archived contents account. The precise
 [native assignment](../research/ocean-state-interior-sant-current-geometry-assignment-2026-09-12.json)
 and [pathway screen](../research/ocean-state-interior-sant-pathways-current-geometry-2018.json)
 are the evidence records.
+
+The same assignment now supports a local [vertical-structure screen](../research/ocean-state-interior-sant-vertical-structure-current-geometry-2018.json): the
+three fixed seeds are sampled at the nearest native 0, 100, 200, and 1,000 m
+T-level midpoints in each month. The screen records vertical temperature
+contrasts and horizontal-velocity differences per metre; e.g., the central
+seed's February 0--100 m contrast is 3.351 °C. This completes the supported
+`overlies`/vertical-structure relation, not `transfers_between_layers`.
 
 ## Exit evidence for the first slice
 
@@ -157,5 +169,7 @@ are the evidence records.
   class joins; and
 - [x] a separately versioned, checksum-bound native membership assignment and
   velocity-independent seed/control pathway screen; and
+- [x] a separately versioned local vertical temperature-structure and
+  horizontal-velocity-shear screen, explicitly excluding vertical transfer; and
 - an explicit no-closure/no-causation boundary next to every transfer-like
   result.

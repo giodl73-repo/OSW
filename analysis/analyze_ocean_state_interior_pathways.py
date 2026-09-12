@@ -89,6 +89,36 @@ def integrate(start: dict, u: np.ndarray, v: np.ndarray, temperature: np.ndarray
     return {"id": start["id"], "parent_seed": start.get("parent_seed", start["id"]), "status": status, "steps_completed": len(points) - 1, "points": points}
 
 
+def distance_km(first: dict, second: dict) -> float:
+    lat1, lon1, lat2, lon2 = map(np.radians, (first["latitude_deg"], first["longitude_deg"], second["latitude_deg"], second["longitude_deg"]))
+    a = np.sin((lat2 - lat1) / 2) ** 2 + np.cos(lat1) * np.cos(lat2) * np.sin((lon2 - lon1) / 2) ** 2
+    return float(EARTH_RADIUS_M * 2 * np.arcsin(np.sqrt(a)) / 1000)
+
+
+def summarize_relative_motion(seeds: list[dict], tracks: list[dict]) -> list[dict]:
+    """Compare each seed with its predeclared cardinal controls, not a volume divergence."""
+    by_id = {track["id"]: track for track in tracks}
+    summary = []
+    for seed in seeds:
+        focal = by_id[seed["id"]]
+        controls_for_seed = [track for track in tracks if track.get("parent_seed") == seed["id"] and track["id"] != seed["id"]]
+        initial_distances = [distance_km(focal["points"][0], control["points"][0]) for control in controls_for_seed]
+        final_distances = [distance_km(focal["points"][-1], control["points"][-1]) for control in controls_for_seed]
+        initial_temperature_contrasts = [abs(focal["points"][0]["monthly_surface_temperature_c"] - control["points"][0]["monthly_surface_temperature_c"]) for control in controls_for_seed]
+        final_temperature_contrasts = [abs(focal["points"][-1]["monthly_surface_temperature_c"] - control["points"][-1]["monthly_surface_temperature_c"]) for control in controls_for_seed]
+        summary.append({
+            "seed": seed["id"],
+            "control_count": len(controls_for_seed),
+            "mean_initial_control_separation_km": round(float(np.mean(initial_distances)), 6),
+            "mean_final_control_separation_km": round(float(np.mean(final_distances)), 6),
+            "mean_control_separation_change_km": round(float(np.mean(final_distances) - np.mean(initial_distances)), 6),
+            "mean_initial_temperature_contrast_c": round(float(np.mean(initial_temperature_contrasts)), 6),
+            "mean_final_temperature_contrast_c": round(float(np.mean(final_temperature_contrasts)), 6),
+            "boundary": "A relative-motion and co-located-temperature contrast among a seed and one-cell displaced controls. Negative separation change is local kinematic contraction in this screen, not horizontal convergence, accumulation, mixing, or a flux divergence diagnosis.",
+        })
+    return summary
+
+
 def build(assignment_path: Path = ASSIGNMENT, mesh_path: Path = MESH) -> dict:
     assignment_path, mesh_path = Path(assignment_path), Path(mesh_path)
     assignment = load(assignment_path)
@@ -107,7 +137,7 @@ def build(assignment_path: Path = ASSIGNMENT, mesh_path: Path = MESH) -> dict:
         with netCDF4.Dataset(state_path) as state:
             u, v, temperature = np.asarray(state["vozocrtx"][0]), np.asarray(state["vomecrty"][0]), np.asarray(state["votemper"][0])
         tracks = [integrate(start, u, v, temperature, core, longitude, latitude) for start in all_starts]
-        monthly.append({"valid_time": f"2018-{month[-2:]}-01/P1M", "state_path": state_path.relative_to(ROOT).as_posix(), "state_sha256": sha256(state_path), "tracks": tracks, "completed_track_count": sum(track["status"] == "completed_interior_screen" for track in tracks)})
+        monthly.append({"valid_time": f"2018-{month[-2:]}-01/P1M", "state_path": state_path.relative_to(ROOT).as_posix(), "state_sha256": sha256(state_path), "tracks": tracks, "relative_motion": summarize_relative_motion(seeds, tracks), "completed_track_count": sum(track["status"] == "completed_interior_screen" for track in tracks)})
     return {
         "schema": "osw-ocean-state-interior-pathway-screen-v1",
         "status": "bounded_kinematic_screen_not_transport_or_budget",
@@ -129,6 +159,8 @@ def validate(payload: dict) -> None:
     for month in payload["months"]:
         if not month["tracks"]:
             raise ValueError("each month requires tracks")
+        if len(month["relative_motion"]) != 3:
+            raise ValueError("each month requires one relative-motion result per primary seed")
         for track in month["tracks"]:
             if track["status"] not in {"completed_interior_screen", "left_declared_interior_core", "invalid_velocity_proxy"}:
                 raise ValueError("unknown track status")

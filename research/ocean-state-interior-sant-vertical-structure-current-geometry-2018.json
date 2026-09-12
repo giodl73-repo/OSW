@@ -1,0 +1,863 @@
+{
+  "schema": "osw-ocean-state-interior-vertical-structure-screen-v1",
+  "status": "bounded_vertical_structure_and_shear_screen_not_vertical_transfer",
+  "source_family": "current_longhurst_geometry_2026-09-12_with_archived_oras5_2018_velocity",
+  "join_status": "not_joined_to_archived_2018_contents_or_boundary_accounts",
+  "address": {
+    "geometry_edition": "longhurst-v4-54",
+    "province": "SANT",
+    "depth_support": "four_nearest_native_T_level_midpoints"
+  },
+  "selection": {
+    "frozen_before_field_inspection": true,
+    "seeds": [
+      {
+        "id": "western",
+        "quantile": 0.25,
+        "y": 156,
+        "x": 23,
+        "latitude_deg": -53.461308,
+        "longitude_deg": -77.5
+      },
+      {
+        "id": "central",
+        "quantile": 0.5,
+        "y": 156,
+        "x": 129,
+        "latitude_deg": -53.461308,
+        "longitude_deg": -51.0
+      },
+      {
+        "id": "eastern",
+        "quantile": 0.75,
+        "y": 156,
+        "x": 148,
+        "latitude_deg": -53.461308,
+        "longitude_deg": -46.25
+      }
+    ],
+    "target_depths_m": [
+      0.0,
+      100.0,
+      200.0,
+      1000.0
+    ],
+    "native_level_rule": "nearest ORAS5 T-level midpoint calculated from e3t_0",
+    "velocity_rule": "T-cell proxy from two indexed U and two indexed V samples"
+  },
+  "membership_source": {
+    "path": "research/ocean-state-interior-sant-current-geometry-assignment-2026-09-12.json",
+    "sha256": "d7c001fe338980fafc95c6029ddccf6b514febe8c55d593656e5e55435ad07b7"
+  },
+  "months": [
+    {
+      "valid_time": "2018-02-01/P1M",
+      "state_path": "atlas/data/oras5-drake-state-201802.nc",
+      "state_sha256": "caeb09b62d6c2508c5ae0331e7b81786893b7a533e185754a1cb3837dbe6802a",
+      "profiles": [
+        {
+          "seed": "western",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -77.5,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "temperature_c": 8.384325,
+              "u_proxy_m_s": 0.0703002,
+              "v_proxy_m_s": 0.03292589
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "temperature_c": 6.652735,
+              "u_proxy_m_s": 0.0129169,
+              "v_proxy_m_s": 0.00449095
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "temperature_c": 5.972219,
+              "u_proxy_m_s": 0.01552705,
+              "v_proxy_m_s": -0.00469765
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "temperature_c": 3.1473,
+              "u_proxy_m_s": 0.00903488,
+              "v_proxy_m_s": 0.00575494
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "midpoint_separation_m": 96.604352,
+              "upper_minus_lower_temperature_c": 1.73159,
+              "horizontal_velocity_difference_m_s": 0.06404209,
+              "horizontal_velocity_difference_per_m_s_m": 0.000662931699
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "midpoint_separation_m": 102.851404,
+              "upper_minus_lower_temperature_c": 0.680516,
+              "horizontal_velocity_difference_m_s": 0.00955213,
+              "horizontal_velocity_difference_per_m_s_m": 9.2873146e-05
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "midpoint_separation_m": 846.533634,
+              "upper_minus_lower_temperature_c": 2.824919,
+              "horizontal_velocity_difference_m_s": 0.01230467,
+              "horizontal_velocity_difference_per_m_s_m": 1.4535359e-05
+            }
+          ]
+        },
+        {
+          "seed": "central",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -51.0,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "temperature_c": 7.038439,
+              "u_proxy_m_s": 0.04263364,
+              "v_proxy_m_s": 0.0393398
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "temperature_c": 3.686967,
+              "u_proxy_m_s": 0.01056162,
+              "v_proxy_m_s": 0.00988548
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "temperature_c": 2.939678,
+              "u_proxy_m_s": 0.0176369,
+              "v_proxy_m_s": 0.00863719
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "temperature_c": 2.153083,
+              "u_proxy_m_s": 0.00296646,
+              "v_proxy_m_s": 0.00412878
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "midpoint_separation_m": 96.604352,
+              "upper_minus_lower_temperature_c": 3.351472,
+              "horizontal_velocity_difference_m_s": 0.04354505,
+              "horizontal_velocity_difference_per_m_s_m": 0.000450756614
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "midpoint_separation_m": 102.851404,
+              "upper_minus_lower_temperature_c": 0.747289,
+              "horizontal_velocity_difference_m_s": 0.00718455,
+              "horizontal_velocity_difference_per_m_s_m": 6.9853727e-05
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "midpoint_separation_m": 846.533634,
+              "upper_minus_lower_temperature_c": 0.786595,
+              "horizontal_velocity_difference_m_s": 0.01534756,
+              "horizontal_velocity_difference_per_m_s_m": 1.8129887e-05
+            }
+          ]
+        },
+        {
+          "seed": "eastern",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -46.25,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "temperature_c": 5.617421,
+              "u_proxy_m_s": -0.03768554,
+              "v_proxy_m_s": 0.10296303
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "temperature_c": 2.617013,
+              "u_proxy_m_s": -0.06848095,
+              "v_proxy_m_s": 0.06374431
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "temperature_c": 2.165754,
+              "u_proxy_m_s": -0.06245688,
+              "v_proxy_m_s": 0.05760301
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "temperature_c": 1.831905,
+              "u_proxy_m_s": -0.03015008,
+              "v_proxy_m_s": 0.02007996
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "midpoint_separation_m": 96.604352,
+              "upper_minus_lower_temperature_c": 3.000408,
+              "horizontal_velocity_difference_m_s": 0.04986447,
+              "horizontal_velocity_difference_per_m_s_m": 0.000516172078
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "midpoint_separation_m": 102.851404,
+              "upper_minus_lower_temperature_c": 0.451259,
+              "horizontal_velocity_difference_m_s": 0.00860262,
+              "horizontal_velocity_difference_per_m_s_m": 8.3641202e-05
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "midpoint_separation_m": 846.533634,
+              "upper_minus_lower_temperature_c": 0.333849,
+              "horizontal_velocity_difference_m_s": 0.04951473,
+              "horizontal_velocity_difference_per_m_s_m": 5.8491156e-05
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-05-01/P1M",
+      "state_path": "atlas/data/oras5-drake-state-201805.nc",
+      "state_sha256": "7451a7028a604278e68bbbb0a4a4271c0396bcc0a8239e503ec77a6a07d84ce0",
+      "profiles": [
+        {
+          "seed": "western",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -77.5,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "temperature_c": 6.964551,
+              "u_proxy_m_s": 0.04507388,
+              "v_proxy_m_s": -0.02819734
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "temperature_c": 6.905152,
+              "u_proxy_m_s": 0.03322728,
+              "v_proxy_m_s": -0.01982766
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "temperature_c": 5.853231,
+              "u_proxy_m_s": 0.0193656,
+              "v_proxy_m_s": -0.00988736
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "temperature_c": 3.09904,
+              "u_proxy_m_s": 0.00772734,
+              "v_proxy_m_s": -0.00324076
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "midpoint_separation_m": 96.604352,
+              "upper_minus_lower_temperature_c": 0.059399,
+              "horizontal_velocity_difference_m_s": 0.01450495,
+              "horizontal_velocity_difference_per_m_s_m": 0.000150147962
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "midpoint_separation_m": 102.851404,
+              "upper_minus_lower_temperature_c": 1.051921,
+              "horizontal_velocity_difference_m_s": 0.01705742,
+              "horizontal_velocity_difference_per_m_s_m": 0.000165845326
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "midpoint_separation_m": 846.533634,
+              "upper_minus_lower_temperature_c": 2.754191,
+              "horizontal_velocity_difference_m_s": 0.01340248,
+              "horizontal_velocity_difference_per_m_s_m": 1.5832185e-05
+            }
+          ]
+        },
+        {
+          "seed": "central",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -51.0,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "temperature_c": 4.853499,
+              "u_proxy_m_s": 0.00281388,
+              "v_proxy_m_s": 0.01045642
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "temperature_c": 4.047636,
+              "u_proxy_m_s": 0.00369577,
+              "v_proxy_m_s": -0.00783608
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "temperature_c": 3.184843,
+              "u_proxy_m_s": 0.00558164,
+              "v_proxy_m_s": -0.00716913
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "temperature_c": 2.130596,
+              "u_proxy_m_s": 0.01162142,
+              "v_proxy_m_s": 0.00221094
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "midpoint_separation_m": 96.604352,
+              "upper_minus_lower_temperature_c": 0.805863,
+              "horizontal_velocity_difference_m_s": 0.01831375,
+              "horizontal_velocity_difference_per_m_s_m": 0.000189574749
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "midpoint_separation_m": 102.851404,
+              "upper_minus_lower_temperature_c": 0.862793,
+              "horizontal_velocity_difference_m_s": 0.00200033,
+              "horizontal_velocity_difference_per_m_s_m": 1.9448757e-05
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "midpoint_separation_m": 846.533634,
+              "upper_minus_lower_temperature_c": 1.054247,
+              "horizontal_velocity_difference_m_s": 0.01115637,
+              "horizontal_velocity_difference_per_m_s_m": 1.3178889e-05
+            }
+          ]
+        },
+        {
+          "seed": "eastern",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -46.25,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "temperature_c": 3.737627,
+              "u_proxy_m_s": -0.16398409,
+              "v_proxy_m_s": 0.02857903
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "temperature_c": 2.649148,
+              "u_proxy_m_s": -0.16839191,
+              "v_proxy_m_s": 0.01464754
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "temperature_c": 2.192933,
+              "u_proxy_m_s": -0.16472906,
+              "v_proxy_m_s": 0.01503305
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "temperature_c": 1.827145,
+              "u_proxy_m_s": -0.08301678,
+              "v_proxy_m_s": 0.00712079
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "midpoint_separation_m": 96.604352,
+              "upper_minus_lower_temperature_c": 1.088479,
+              "horizontal_velocity_difference_m_s": 0.01461216,
+              "horizontal_velocity_difference_per_m_s_m": 0.000151257807
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "midpoint_separation_m": 102.851404,
+              "upper_minus_lower_temperature_c": 0.456215,
+              "horizontal_velocity_difference_m_s": 0.00368308,
+              "horizontal_velocity_difference_per_m_s_m": 3.5809733e-05
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "midpoint_separation_m": 846.533634,
+              "upper_minus_lower_temperature_c": 0.365788,
+              "horizontal_velocity_difference_m_s": 0.08209446,
+              "horizontal_velocity_difference_per_m_s_m": 9.69772e-05
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-08-01/P1M",
+      "state_path": "atlas/data/oras5-drake-state-201808.nc",
+      "state_sha256": "92a39a07152f7bb03479bad0b8e10910eb5302e5999c8ed300b25f7e61ead756",
+      "profiles": [
+        {
+          "seed": "western",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -77.5,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "temperature_c": 5.647145,
+              "u_proxy_m_s": 0.03620318,
+              "v_proxy_m_s": -0.01217743
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "temperature_c": 5.644473,
+              "u_proxy_m_s": 0.02201531,
+              "v_proxy_m_s": 0.00420743
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "temperature_c": 5.815569,
+              "u_proxy_m_s": -0.00283026,
+              "v_proxy_m_s": -0.0020104
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "temperature_c": 3.137436,
+              "u_proxy_m_s": 3.057e-05,
+              "v_proxy_m_s": -0.00015639
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "midpoint_separation_m": 96.604352,
+              "upper_minus_lower_temperature_c": 0.002672,
+              "horizontal_velocity_difference_m_s": 0.02167393,
+              "horizontal_velocity_difference_per_m_s_m": 0.00022435771
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "midpoint_separation_m": 102.851404,
+              "upper_minus_lower_temperature_c": -0.171096,
+              "horizontal_velocity_difference_m_s": 0.02561179,
+              "horizontal_velocity_difference_per_m_s_m": 0.000249017402
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "midpoint_separation_m": 846.533634,
+              "upper_minus_lower_temperature_c": 2.678133,
+              "horizontal_velocity_difference_m_s": 0.00340906,
+              "horizontal_velocity_difference_per_m_s_m": 4.027084e-06
+            }
+          ]
+        },
+        {
+          "seed": "central",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -51.0,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "temperature_c": 3.892512,
+              "u_proxy_m_s": 0.04142452,
+              "v_proxy_m_s": 0.03522654
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "temperature_c": 3.498949,
+              "u_proxy_m_s": 0.00158397,
+              "v_proxy_m_s": 0.02140253
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "temperature_c": 2.969371,
+              "u_proxy_m_s": 0.00578912,
+              "v_proxy_m_s": 0.0193027
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "temperature_c": 2.101058,
+              "u_proxy_m_s": 0.00250476,
+              "v_proxy_m_s": 0.00755649
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "midpoint_separation_m": 96.604352,
+              "upper_minus_lower_temperature_c": 0.393563,
+              "horizontal_velocity_difference_m_s": 0.04217076,
+              "horizontal_velocity_difference_per_m_s_m": 0.000436530605
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "midpoint_separation_m": 102.851404,
+              "upper_minus_lower_temperature_c": 0.529578,
+              "horizontal_velocity_difference_m_s": 0.00470027,
+              "horizontal_velocity_difference_per_m_s_m": 4.5699655e-05
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "midpoint_separation_m": 846.533634,
+              "upper_minus_lower_temperature_c": 0.868313,
+              "horizontal_velocity_difference_m_s": 0.01219674,
+              "horizontal_velocity_difference_per_m_s_m": 1.4407862e-05
+            }
+          ]
+        },
+        {
+          "seed": "eastern",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -46.25,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "temperature_c": 1.399708,
+              "u_proxy_m_s": -0.09224114,
+              "v_proxy_m_s": 0.03247144
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "temperature_c": 1.388282,
+              "u_proxy_m_s": -0.12924194,
+              "v_proxy_m_s": 0.03343852
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "temperature_c": 2.303469,
+              "u_proxy_m_s": -0.12532997,
+              "v_proxy_m_s": 0.02785105
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "temperature_c": 1.830458,
+              "u_proxy_m_s": -0.07292698,
+              "v_proxy_m_s": 0.01294499
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "midpoint_separation_m": 96.604352,
+              "upper_minus_lower_temperature_c": 0.011426,
+              "horizontal_velocity_difference_m_s": 0.03701344,
+              "horizontal_velocity_difference_per_m_s_m": 0.000383144602
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "midpoint_separation_m": 102.851404,
+              "upper_minus_lower_temperature_c": -0.915187,
+              "horizontal_velocity_difference_m_s": 0.0068208,
+              "horizontal_velocity_difference_per_m_s_m": 6.6317046e-05
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "midpoint_separation_m": 846.533634,
+              "upper_minus_lower_temperature_c": 0.473011,
+              "horizontal_velocity_difference_m_s": 0.05448178,
+              "horizontal_velocity_difference_per_m_s_m": 6.4358667e-05
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-11-01/P1M",
+      "state_path": "atlas/data/oras5-drake-state-201811.nc",
+      "state_sha256": "e37425194a8f311d699be8d94c9dd17c9ada8cc39fa84239f40466c7b94e05de",
+      "profiles": [
+        {
+          "seed": "western",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -77.5,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "temperature_c": 6.544143,
+              "u_proxy_m_s": 0.03022149,
+              "v_proxy_m_s": 0.00330457
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "temperature_c": 6.529155,
+              "u_proxy_m_s": -0.02930414,
+              "v_proxy_m_s": -0.00293501
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "temperature_c": 6.498391,
+              "u_proxy_m_s": -0.04838786,
+              "v_proxy_m_s": -0.01243996
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "temperature_c": 3.112635,
+              "u_proxy_m_s": -0.01469022,
+              "v_proxy_m_s": -0.01325165
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "midpoint_separation_m": 96.604352,
+              "upper_minus_lower_temperature_c": 0.014988,
+              "horizontal_velocity_difference_m_s": 0.05985176,
+              "horizontal_velocity_difference_per_m_s_m": 0.000619555508
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "midpoint_separation_m": 102.851404,
+              "upper_minus_lower_temperature_c": 0.030764,
+              "horizontal_velocity_difference_m_s": 0.02131977,
+              "horizontal_velocity_difference_per_m_s_m": 0.000207287073
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "midpoint_separation_m": 846.533634,
+              "upper_minus_lower_temperature_c": 3.385756,
+              "horizontal_velocity_difference_m_s": 0.03370741,
+              "horizontal_velocity_difference_per_m_s_m": 3.9818163e-05
+            }
+          ]
+        },
+        {
+          "seed": "central",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -51.0,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "temperature_c": 4.689487,
+              "u_proxy_m_s": 0.0294733,
+              "v_proxy_m_s": 0.04971224
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "temperature_c": 3.407835,
+              "u_proxy_m_s": -0.01113132,
+              "v_proxy_m_s": 0.01332141
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "temperature_c": 2.736778,
+              "u_proxy_m_s": -0.00638294,
+              "v_proxy_m_s": 0.01203975
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "temperature_c": 2.149679,
+              "u_proxy_m_s": 0.01054407,
+              "v_proxy_m_s": 0.00246073
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "midpoint_separation_m": 96.604352,
+              "upper_minus_lower_temperature_c": 1.281652,
+              "horizontal_velocity_difference_m_s": 0.05452548,
+              "horizontal_velocity_difference_per_m_s_m": 0.000564420507
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "midpoint_separation_m": 102.851404,
+              "upper_minus_lower_temperature_c": 0.671057,
+              "horizontal_velocity_difference_m_s": 0.00491831,
+              "horizontal_velocity_difference_per_m_s_m": 4.7819563e-05
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "midpoint_separation_m": 846.533634,
+              "upper_minus_lower_temperature_c": 0.587099,
+              "horizontal_velocity_difference_m_s": 0.01944945,
+              "horizontal_velocity_difference_per_m_s_m": 2.2975407e-05
+            }
+          ]
+        },
+        {
+          "seed": "eastern",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -46.25,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "temperature_c": 1.91911,
+              "u_proxy_m_s": -0.0887542,
+              "v_proxy_m_s": 0.06597003
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "temperature_c": 0.957819,
+              "u_proxy_m_s": -0.12376308,
+              "v_proxy_m_s": 0.03302474
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "temperature_c": 1.809385,
+              "u_proxy_m_s": -0.12206826,
+              "v_proxy_m_s": 0.03245734
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "temperature_c": 1.670661,
+              "u_proxy_m_s": -0.05979291,
+              "v_proxy_m_s": 0.01405486
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "midpoint_separation_m": 96.604352,
+              "upper_minus_lower_temperature_c": 0.961291,
+              "horizontal_velocity_difference_m_s": 0.04807301,
+              "horizontal_velocity_difference_per_m_s_m": 0.000497627737
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "midpoint_separation_m": 102.851404,
+              "upper_minus_lower_temperature_c": -0.851566,
+              "horizontal_velocity_difference_m_s": 0.00178728,
+              "horizontal_velocity_difference_per_m_s_m": 1.737727e-05
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "midpoint_separation_m": 846.533634,
+              "upper_minus_lower_temperature_c": 0.138724,
+              "horizontal_velocity_difference_m_s": 0.06493744,
+              "horizontal_velocity_difference_per_m_s_m": 7.6709811e-05
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "boundary": "A local vertical co-occurrence, temperature-gradient, and horizontal-velocity-difference screen. It has no vertical velocity, diapycnal flux, density/salinity class, mixed-layer diagnosis, entrainment term, or closed budget. It therefore does not diagnose vertical transfer, mixing, transformation, vertical heat flux, or causation."
+}
