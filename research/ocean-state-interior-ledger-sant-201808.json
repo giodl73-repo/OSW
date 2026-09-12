@@ -55,7 +55,33 @@
       "source_artifact_sha256": "952b5a91d305b53781028d407a4198f5a96be0c422dd701c13576dcaaa8c8149"
     }
   ],
-  "overlays": [],
+  "overlays": [
+    {
+      "relation": "static_structure",
+      "address": {
+        "geometry_edition": "longhurst-v4-54",
+        "province": "SANT",
+        "depth_support": "0-200m"
+      },
+      "temporal_support": "static_reference",
+      "evidence_class": "derived_geometry_screen",
+      "source_artifact": "research/longhurst-2007-gebco-2026-depths.json",
+      "source_artifact_sha256": "54d8aa0e09fed51709d298474c97089c1e0123d43306e32e15febe7d15fac798",
+      "finding": "SANT's sampled bathymetric column is 5.0% epipelagic, 19.8% mesopelagic, 65.8% bathypelagic, 9.3% abyssopelagic, and <0.1% hadal by estimated water volume.",
+      "summary": {
+        "sampled_water_volume_km3": 120232838.59,
+        "area_weighted_mean_water_depth_m": 3976.12,
+        "water_volume_fraction_by_depth_band": {
+          "epipelagic": 0.050204,
+          "mesopelagic": 0.198304,
+          "bathypelagic": 0.658225,
+          "abyssopelagic": 0.09319,
+          "hadalpelagic": 7.8e-05
+        }
+      },
+      "boundary": "A 0.25-degree sampled bathymetric/prismatic-volume profile. It describes reference-volume geometry, not a contemporaneous hydrographic layer, water-mass identity, pathway, mixing rate, or transport."
+    }
+  ],
   "internal_links": [],
   "boundary_context": {
     "relation": "has_separately_receipted_boundary_pilot",

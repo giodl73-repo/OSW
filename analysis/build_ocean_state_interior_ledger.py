@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 HYDROGRAPHY = ROOT / "research" / "ocean-state-hydrography-pilot-2018.json"
 EXCHANGE = ROOT / "research" / "ocean-state-boundary-exchange-pilot-2018.json"
+DEPTHS = ROOT / "research" / "longhurst-2007-gebco-2026-depths.json"
 SCHEMA = ROOT / "research" / "ocean-state-interior-ledger-schema-v1.json"
 OUTPUT = ROOT / "research" / "ocean-state-interior-ledger-sant-201808.json"
 BROWSER = ROOT / "exchange" / "interior-ledger.js"
@@ -49,23 +50,31 @@ def validate(payload: dict) -> None:
     for item in payload["internal_links"]:
         compatible(item, payload["address"], payload["valid_time"], "internal link")
     for item in payload["overlays"]:
-        compatible(item, payload["address"], payload["valid_time"], "overlay")
+        if item.get("temporal_support") == "static_reference":
+            if item.get("address") != payload["address"]:
+                raise ValueError("static overlay address is incompatible with ledger address")
+        else:
+            compatible(item, payload["address"], payload["valid_time"], "overlay")
     if payload["boundary_context"]["join_status"] != "not_joined_to_interior_account":
         raise ValueError("boundary context must not be silently joined to the interior account")
     if not payload["unknowns"] or not all(item.get("reason") for item in payload["unknowns"]):
         raise ValueError("ledger must retain named unknowns with reasons")
 
 
-def build(hydrography_path: Path = HYDROGRAPHY, exchange_path: Path = EXCHANGE, schema_path: Path = SCHEMA) -> dict:
-    hydrography_path, exchange_path, schema_path = map(Path, (hydrography_path, exchange_path, schema_path))
+def build(hydrography_path: Path = HYDROGRAPHY, exchange_path: Path = EXCHANGE, depths_path: Path = DEPTHS, schema_path: Path = SCHEMA) -> dict:
+    hydrography_path, exchange_path, depths_path, schema_path = map(Path, (hydrography_path, exchange_path, depths_path, schema_path))
     hydrography = load(hydrography_path)
     exchange = load(exchange_path)
+    depths = load(depths_path)
     schema = load(schema_path)
     if schema["schema"] != "osw-ocean-state-interior-ledger-schema-v1":
         raise ValueError("unexpected ledger schema contract")
     passport = next((item for item in hydrography["property_passports"] if item["address"] == ADDRESS and item["valid_time"] == VALID_TIME), None)
     if passport is None:
         raise ValueError("pre-registered SANT August 2018 0-200 m passport is unavailable")
+    depth_profile = depths["provinces"].get(ADDRESS["province"])
+    if depth_profile is None:
+        raise ValueError("pre-registered SANT bathymetric profile is unavailable")
     content = {
         "address": passport["address"], "valid_time": passport["valid_time"],
         "property": passport["property"], "units": passport["units"],
@@ -87,7 +96,15 @@ def build(hydrography_path: Path = HYDROGRAPHY, exchange_path: Path = EXCHANGE, 
         "address": ADDRESS,
         "valid_time": VALID_TIME,
         "contents": [content],
-        "overlays": [],
+        "overlays": [{
+            "relation": "static_structure", "address": ADDRESS,
+            "temporal_support": "static_reference", "evidence_class": "derived_geometry_screen",
+            "source_artifact": depths_path.relative_to(ROOT).as_posix(),
+            "source_artifact_sha256": sha256(depths_path),
+            "finding": "SANT's sampled bathymetric column is 5.0% epipelagic, 19.8% mesopelagic, 65.8% bathypelagic, 9.3% abyssopelagic, and <0.1% hadal by estimated water volume.",
+            "summary": {"sampled_water_volume_km3": depth_profile["sampled_water_volume_km3"], "area_weighted_mean_water_depth_m": depth_profile["area_weighted_mean_water_depth_m"], "water_volume_fraction_by_depth_band": depth_profile["water_volume_fraction_by_depth_band"]},
+            "boundary": "A 0.25-degree sampled bathymetric/prismatic-volume profile. It describes reference-volume geometry, not a contemporaneous hydrographic layer, water-mass identity, pathway, mixing rate, or transport.",
+        }],
         "internal_links": [],
         "boundary_context": {
             "relation": "has_separately_receipted_boundary_pilot",
@@ -115,11 +132,12 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--hydrography", type=Path, default=HYDROGRAPHY)
     parser.add_argument("--exchange", type=Path, default=EXCHANGE)
+    parser.add_argument("--depths", type=Path, default=DEPTHS)
     parser.add_argument("--schema", type=Path, default=SCHEMA)
     parser.add_argument("--output", type=Path, default=OUTPUT)
     parser.add_argument("--browser", type=Path, default=BROWSER)
     args = parser.parse_args()
-    payload = build(args.hydrography, args.exchange, args.schema)
+    payload = build(args.hydrography, args.exchange, args.depths, args.schema)
     args.output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8", newline="\n")
     args.browser.write_text("window.OSW_STATE_INTERIOR_LEDGER = " + json.dumps(payload, separators=(",", ":")) + ";\n", encoding="utf-8", newline="\n")
     print(f"wrote {args.output}")

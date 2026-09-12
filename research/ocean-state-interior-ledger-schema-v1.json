@@ -4,7 +4,7 @@
   "status": "first_pilot_contract",
   "address_contract": ["geometry_edition", "province", "depth_support"],
   "required_record_fields": ["schema", "status", "selection", "address", "valid_time", "contents", "overlays", "internal_links", "boundary_context", "unknowns", "boundary"],
-  "compatibility_rule": "A contents, overlay, or internal-link record may join the ledger only when its geometry edition, province, depth support, and valid time exactly equal the ledger address and valid time. A boundary context remains separate unless an explicit compatible bridge is declared.",
+  "compatibility_rule": "A contents or internal-link record may join the ledger only when its geometry edition, province, depth support, and valid time exactly equal the ledger address and valid time. A static-structure overlay may use temporal_support=static_reference but must exactly match the ledger address. A boundary context remains separate unless an explicit compatible bridge is declared.",
   "allowed_relation_classes": ["occupancy", "co_occurrence", "vertical_structure", "vertical_transfer", "lateral_interior_pathway", "interior_convergence", "transformation", "event_perturbation"],
   "prohibitions": ["No scalar state-health or interaction score.", "No residual is relabeled as mixing, entrainment, or vertical transfer.", "No open-edge transport is relabeled as interior convergence.", "No temperature distribution is relabeled as heat content or water-mass transformation."],
   "unknown_policy": "Unknown relations are retained with a reason; an empty relation list is not evidence of absence."

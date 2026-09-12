@@ -21,7 +21,10 @@ def test_committed_ledger_regenerates_and_keeps_unknowns():
     assert rebuilt == committed
     assert committed["address"] == {"geometry_edition": "longhurst-v4-54", "province": "SANT", "depth_support": "0-200m"}
     assert committed["valid_time"] == "2018-08-01/P1M"
-    assert committed["internal_links"] == [] and committed["overlays"] == []
+    assert committed["internal_links"] == []
+    overlay = committed["overlays"][0]
+    assert overlay["relation"] == "static_structure" and overlay["temporal_support"] == "static_reference"
+    assert overlay["summary"]["water_volume_fraction_by_depth_band"]["bathypelagic"] == 0.658225
     assert {item["relation"] for item in committed["unknowns"]} == {"vertical_transfer", "lateral_interior_pathway", "interior_convergence", "transformation", "event_perturbation"}
 
 
@@ -51,3 +54,11 @@ def test_validator_rejects_incompatible_internal_join_and_missing_unknown_reason
     missing_reason["unknowns"][0].pop("reason")
     with pytest.raises(ValueError, match="unknowns"):
         MODULE.validate(missing_reason)
+
+
+def test_validator_rejects_static_overlay_from_another_state():
+    payload = MODULE.build()
+    incompatible = copy.deepcopy(payload)
+    incompatible["overlays"][0]["address"] = {**payload["address"], "province": "SSTC"}
+    with pytest.raises(ValueError, match="static overlay address"):
+        MODULE.validate(incompatible)

@@ -85,7 +85,8 @@ def test_interior_stage_keeps_contents_context_and_unknowns_separate():
     router = (ROOT / "exchange/exchange-stage.js").read_text(encoding="utf-8")
     for token in ('data-stage="interior"', 'id="interior-address-grid"', 'id="interior-contents-body"', 'id="interior-overlays"', 'id="interior-links"', 'id="interior-unknowns"', 'id="interior-boundary-context"'):
         assert token in html
-    for token in ("not a dynamic-state diagnosis or a budget", "not evidence that the state has no features", "join_status"):
+    for token in ("not a dynamic-state diagnosis or a budget", "item.finding", "join_status"):
         assert token in stage
-    assert "not_joined_to_interior_account" in (ROOT / "exchange/interior-ledger.js").read_text(encoding="utf-8")
+    ledger = (ROOT / "exchange/interior-ledger.js").read_text(encoding="utf-8")
+    assert "not_joined_to_interior_account" in ledger and "static_structure" in ledger
     assert "showInterior" in router and '"interior"' in router

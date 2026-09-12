@@ -20,7 +20,7 @@ function renderInterior() {
   const body = document.querySelector("#interior-contents-body"); body.replaceChildren();
   const values = [content.property, content.units, `${content.distribution.median_degC.toFixed(2)} °C`, `${content.distribution.p25_degC.toFixed(2)}–${content.distribution.p75_degC.toFixed(2)} °C`, content.support.valid_native_t_cells.toLocaleString(), "model screen · uncertainty not estimated"];
   const row = document.createElement("tr"); values.forEach(value => { const cell = document.createElement("td"); cell.textContent = value; row.append(cell); }); body.append(row);
-  interiorList("#interior-overlays", interiorLedger.overlays.map(item => item.relation), "No dynamic overlay is admitted for this pilot. This is unknown, not evidence that the state has no features.");
+  interiorList("#interior-overlays", interiorLedger.overlays.map(item => `${item.relation.replaceAll("_", " ")}: ${item.finding} ${item.boundary}`), "No overlay is admitted for this pilot. This is unknown, not evidence that the state has no features.");
   interiorList("#interior-links", interiorLedger.internal_links.map(item => item.relation), "No internal pathway, transfer, convergence, or transformation is admitted for this pilot.");
   interiorList("#interior-unknowns", interiorLedger.unknowns.map(item => `${item.relation.replaceAll("_", " ")}: ${item.reason}`), "No named unknowns.");
   document.querySelector("#interior-boundary-context").textContent = `SANT ↔ ${interiorLedger.boundary_context.counterpart_state}: ${interiorLedger.boundary_context.reason} It remains ${interiorLedger.boundary_context.join_status.replaceAll("_", " ")}.`;

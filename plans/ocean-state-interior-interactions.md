@@ -84,7 +84,8 @@ geometry editions cannot be joined without an explicit bridge.
 
 Use the already custodied Drake ORAS5 subset before acquiring another global
 product. Pre-register one of the six supported states and one month before
-inspection. The pilot may add only:
+inspection. The pilot now adds the SANT static bathymetric-column profile as a
+separately timed reference overlay; it may otherwise add only:
 
 - temperature contents by the existing four depth supports;
 - static bathymetry/column overlays;
