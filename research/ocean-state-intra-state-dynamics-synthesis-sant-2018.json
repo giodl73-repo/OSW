@@ -47,6 +47,10 @@
         "path": "research/ocean-state-sant-closed-box-inventory-change-screen-2018.json",
         "sha256": "7e7c0004b048ffbdd580e32acc5f127acd0a6ec569efa863ef62029d1d9e6bd6"
       },
+      "closed_box_density_inventory": {
+        "path": "research/ocean-state-sant-closed-box-density-inventory-2018.json",
+        "sha256": "bba3e37d61132309dfec04af88c2d7216e6272562d387901ba22f3c5be118968"
+      },
       "status": "separate_unjoined_source_family",
       "permitted_use": "bounded local kinematics, T/S density structure, partial perimeter flux, open surface/storage evidence, and closed-horizontal-box terms only"
     },
@@ -117,9 +121,10 @@
     },
     {
       "relation": "transformation",
-      "status": "density_strata_supported_transformation_not_supported",
-      "required_evidence": "Compatible class-volume fluxes through a closed control volume, with a declared density-class convention.",
-      "reason": "TEOS-10 density strata now exist, but no class-volume flux or vertical transfer term is available."
+      "status": "density_strata_inventory_supported_transformation_not_supported",
+      "evidence": "Fixed numerical density-stratum volume occupancy is measured in four months for the geometry-selected box and controls.",
+      "required_evidence": "Compatible density-class boundary fluxes through a closed control volume, with vertical/mixing terms and a declared density-class convention.",
+      "reason": "Endpoint stratum-volume differences are not class-volume fluxes; no vertical transfer term is available."
     },
     {
       "relation": "event_perturbation",
@@ -724,8 +729,240 @@
           "boundary": "An endpoint difference between monthly column-heat-content fields, not a native tendency or a budget residual."
         }
       ]
+    },
+    "closed_box_primary_density_inventory": {
+      "box": "primary",
+      "months": [
+        {
+          "valid_time": "2018-02-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201802.nc",
+            "sha256": "caeb09b62d6c2508c5ae0331e7b81786893b7a533e185754a1cb3837dbe6802a"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201802.nc",
+            "sha256": "27c1a7f24ee9c6f5d6f6f4c6ce42f1950ea697cc7692ae7ebb902e120018de53"
+          },
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5025379445762.677,
+              "volume_fraction": 0.021833952,
+              "wet_cell_count": 5315
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36056936859034.91,
+              "volume_fraction": 0.156657904,
+              "wet_cell_count": 5106
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 189081217600117.7,
+              "volume_fraction": 0.821508144,
+              "wet_cell_count": 5317
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-05-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201805.nc",
+            "sha256": "7451a7028a604278e68bbbb0a4a4271c0396bcc0a8239e503ec77a6a07d84ce0"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201805.nc",
+            "sha256": "6b9db31a3403a2a448b1d90ad92f7d8ac621337160dff7483fd9f4623271d5ac"
+          },
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5565592203078.56,
+              "volume_fraction": 0.024181034,
+              "wet_cell_count": 5542
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 33638330752301.875,
+              "volume_fraction": 0.146149697,
+              "wet_cell_count": 4770
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 190959610949534.8,
+              "volume_fraction": 0.829669269,
+              "wet_cell_count": 5426
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-08-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201808.nc",
+            "sha256": "92a39a07152f7bb03479bad0b8e10910eb5302e5999c8ed300b25f7e61ead756"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201808.nc",
+            "sha256": "01362cc53d125e0230dbb2f134cd02e59f948f9e7eb77203be21f711a1c84a30"
+          },
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36308992545080.734,
+              "volume_fraction": 0.15775302,
+              "wet_cell_count": 10120
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 193854541359834.5,
+              "volume_fraction": 0.84224698,
+              "wet_cell_count": 5618
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-11-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201811.nc",
+            "sha256": "e37425194a8f311d699be8d94c9dd17c9ada8cc39fa84239f40466c7b94e05de"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201811.nc",
+            "sha256": "e7aed5f42295b0ce79ce8d6b5b0065f9dce5f08edbbc32afad03b46bdbfa3560"
+          },
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 672465085752.693,
+              "volume_fraction": 0.002921684,
+              "wet_cell_count": 1121
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36764419012066.14,
+              "volume_fraction": 0.159731728,
+              "wet_cell_count": 9054
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 192726649807096.44,
+              "volume_fraction": 0.837346588,
+              "wet_cell_count": 5563
+            }
+          ]
+        }
+      ],
+      "successive_endpoint_stratum_volume_differences": [
+        {
+          "from_valid_time": "2018-02-01/P1M",
+          "to_valid_time": "2018-05-01/P1M",
+          "stratum_volume_changes_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 540212757315.883
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -2418606106733.031
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 1878393349417.125
+            }
+          ],
+          "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
+        },
+        {
+          "from_valid_time": "2018-05-01/P1M",
+          "to_valid_time": "2018-08-01/P1M",
+          "stratum_volume_changes_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": -5565592203078.56
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 2670661792778.859
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 2894930410299.688
+            }
+          ],
+          "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
+        },
+        {
+          "from_valid_time": "2018-08-01/P1M",
+          "to_valid_time": "2018-11-01/P1M",
+          "stratum_volume_changes_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 672465085752.693
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 455426466985.406
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": -1127891552738.062
+            }
+          ],
+          "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
+        }
+      ]
     }
   },
-  "research_conclusion": "The intra-state dynamics research slice is complete as an evidence-bounded map: occupancy, local kinematics, relative motion, T/S density structure, a partial perimeter, an open surface/storage account, and closed-horizontal-box advective and inventory-endpoint terms are separately receipted. Vertical transfer, total convergence, transformation flux, and event perturbation remain explicit unsupported mechanisms with named acquisition gates. No numerical value is joined across the archived and current-geometry source families.",
+  "research_conclusion": "The intra-state dynamics research slice is complete as an evidence-bounded map: occupancy, local kinematics, relative motion, T/S density structure, a partial perimeter, an open surface/storage account, and closed-horizontal-box advective, heat-inventory-endpoint, and density-stratum-inventory terms are separately receipted. Vertical transfer, total convergence, transformation flux, and event perturbation remain explicit unsupported mechanisms with named acquisition gates. No numerical value is joined across the archived and current-geometry source families.",
   "boundary": "This synthesis is a relation-by-relation evidence map, not a state-wide dynamical model, water-mass classification, transport account, closure calculation, causal graph, or geometry bridge."
 }

@@ -234,6 +234,12 @@ monthly-field timestamp and averaging convention have not been shown to define
 a matched tendency interval. It is therefore an inventory record, not a
 residual or closure calculation.
 
+A matching [density-stratum inventory](../research/ocean-state-sant-closed-box-density-inventory-2018.json) now computes TEOS-10 sigma-zero on every valid native
+T-cell volume in those boxes, then records the occupancy of four predeclared
+numeric density bins and their endpoint differences. These are property-space
+inventory observations, not water-mass labels or transformation rates: no
+density-class boundary flux, vertical transfer, or mixing term is available.
+
 ## Exit evidence for the first slice
 
 - [x] a machine-readable [state-interior ledger schema](../research/ocean-state-interior-ledger-schema-v1.json)
