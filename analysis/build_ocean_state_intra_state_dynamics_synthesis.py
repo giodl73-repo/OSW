@@ -13,6 +13,9 @@ ARCHIVED_LEDGER = ROOT / "research" / "ocean-state-interior-ledger-sant-201808.j
 ASSIGNMENT = ROOT / "research" / "ocean-state-interior-sant-current-geometry-assignment-2026-09-12.json"
 PATHWAYS = ROOT / "research" / "ocean-state-interior-sant-pathways-current-geometry-2018.json"
 VERTICAL = ROOT / "research" / "ocean-state-interior-sant-vertical-structure-current-geometry-2018.json"
+DENSITY = ROOT / "research" / "ocean-state-interior-sant-density-structure-current-geometry-2018.json"
+SURFACE_STORAGE = ROOT / "research" / "ocean-state-sant-current-geometry-surface-storage-2018.json"
+PARTIAL_PERIMETER = ROOT / "research" / "ocean-state-sant-current-geometry-partial-perimeter-2018.json"
 CUSTODY_AUDIT = ROOT / "research" / "ocean-state-interior-source-custody-audit-2026-09-12.json"
 OUTPUT = ROOT / "research" / "ocean-state-intra-state-dynamics-synthesis-sant-2018.json"
 BROWSER = ROOT / "exchange" / "interior-dynamics.js"
@@ -30,12 +33,12 @@ def receipt(path: Path) -> dict:
     return {"path": path.relative_to(ROOT).as_posix(), "sha256": sha256(path)}
 
 
-def build(archived_ledger: Path = ARCHIVED_LEDGER, assignment: Path = ASSIGNMENT, pathways: Path = PATHWAYS, vertical: Path = VERTICAL, custody_audit: Path = CUSTODY_AUDIT) -> dict:
-    archived_ledger, assignment, pathways, vertical, custody_audit = map(Path, (archived_ledger, assignment, pathways, vertical, custody_audit))
-    ledger, membership, pathway, profile, audit = map(load, (archived_ledger, assignment, pathways, vertical, custody_audit))
+def build(archived_ledger: Path = ARCHIVED_LEDGER, assignment: Path = ASSIGNMENT, pathways: Path = PATHWAYS, vertical: Path = VERTICAL, density: Path = DENSITY, surface_storage: Path = SURFACE_STORAGE, partial_perimeter: Path = PARTIAL_PERIMETER, custody_audit: Path = CUSTODY_AUDIT) -> dict:
+    archived_ledger, assignment, pathways, vertical, density, surface_storage, partial_perimeter, custody_audit = map(Path, (archived_ledger, assignment, pathways, vertical, density, surface_storage, partial_perimeter, custody_audit))
+    ledger, membership, pathway, profile, density_screen, surface_account, perimeter, audit = map(load, (archived_ledger, assignment, pathways, vertical, density, surface_storage, partial_perimeter, custody_audit))
     if membership["status"] != "separate_unjoined_source_family" or not pathway["join_status"].startswith("not_joined") or not profile["join_status"].startswith("not_joined"):
         raise ValueError("dynamics source family must remain separate from archived contents")
-    if pathway["membership_source"]["sha256"] != sha256(assignment) or profile["membership_source"]["sha256"] != sha256(assignment):
+    if pathway["membership_source"]["sha256"] != sha256(assignment) or profile["membership_source"]["sha256"] != sha256(assignment) or density_screen["source_family_manifest"]["sha256"] != sha256(ROOT / density_screen["source_family_manifest"]["path"]) or surface_account["assignment"]["sha256"] != sha256(assignment):
         raise ValueError("dynamic screens must bind to the same pinned membership assignment")
     seasonal_relative = [{"valid_time": month["valid_time"], "seed_results": [{key: result[key] for key in ("seed", "mean_control_separation_change_km", "mean_final_temperature_contrast_c")} for result in month["relative_motion"]]} for month in pathway["months"]]
     central_vertical = [{"valid_time": month["valid_time"], "interfaces": next(profile_item for profile_item in month["profiles"] if profile_item["seed"] == "central")["interfaces"]} for month in profile["months"]]
@@ -45,32 +48,34 @@ def build(archived_ledger: Path = ARCHIVED_LEDGER, assignment: Path = ASSIGNMENT
         "state": {"geometry_edition": "longhurst-v4-54", "province": "SANT"},
         "source_families": {
             "archived_contents": {"receipt": receipt(archived_ledger), "status": "archived_geometry_2018_contents_only", "permitted_use": "temperature contents and static geometry overlay"},
-            "current_geometry_dynamics": {"assignment": receipt(assignment), "pathway_screen": receipt(pathways), "vertical_structure_screen": receipt(vertical), "status": "separate_unjoined_source_family", "permitted_use": "bounded local kinematics, co-located temperature, and vertical structure only"},
+            "current_geometry_dynamics": {"assignment": receipt(assignment), "pathway_screen": receipt(pathways), "vertical_structure_screen": receipt(vertical), "density_structure_screen": receipt(density), "surface_storage_account": receipt(surface_storage), "partial_perimeter_screen": receipt(partial_perimeter), "status": "separate_unjoined_source_family", "permitted_use": "bounded local kinematics, T/S density structure, partial perimeter flux, and open surface/storage evidence only"},
             "custody_audit": receipt(custody_audit),
         },
         "relation_coverage": [
             {"relation": "occupancy", "status": "supported_reference_assignment", "evidence": "Pinned native SANT membership has 6,147 T-cell centres and 5,614 guarded interior-core cells.", "non_claim": "A geographic assignment is not a material boundary or water-mass identity."},
-            {"relation": "co_occurrence", "status": "supported_bounded_model_screen", "evidence": "Each kinematic support point has a co-located monthly surface temperature sample; local seed/control temperature contrasts are retained.", "non_claim": "Eulerian samples along a screen are not parcel thermodynamics or causal coupling."},
-            {"relation": "vertical_structure", "status": "supported_bounded_model_screen", "evidence": "Three fixed seeds have temperature and horizontal-velocity proxies at nearest 0, 100, 200, and 1,000 m T-level midpoints in four months.", "non_claim": "Temperature gradients and horizontal shear do not diagnose vertical exchange."},
+            {"relation": "co_occurrence", "status": "supported_bounded_model_screen", "evidence": "Each kinematic support point has co-located temperature; T/S profiles retain fixed numerical-density-stratum occupancy.", "non_claim": "Eulerian samples and numerical strata are not parcel thermodynamics, causal coupling, or water-mass names."},
+            {"relation": "vertical_structure", "status": "supported_bounded_model_screen", "evidence": "Three fixed seeds have temperature, salinity-derived TEOS-10 density, and horizontal-velocity proxies at nearest 0, 100, 200, and 1,000 m T-level midpoints in four months.", "non_claim": "Temperature/density gradients and horizontal shear do not diagnose vertical exchange."},
             {"relation": "lateral_interior_pathway", "status": "supported_bounded_kinematic_screen", "evidence": "Three geometry-predeclared seeds and eleven available cardinal controls were advanced for five days in four monthly-mean fields; all remained in guarded support.", "non_claim": "This is not an observed Lagrangian or material trajectory, retention result, or transport."},
             {"relation": "local_relative_motion", "status": "supported_bounded_kinematic_screen", "evidence": "Seed/control separations can contract or expand under the declared screen (e.g. western May -0.375 km; central May +10.728 km).", "non_claim": "Relative separation is not horizontal convergence, accumulation, or flux divergence."},
             {"relation": "vertical_transfer", "status": "not_supported", "required_evidence": "Vertical velocity or diapycnal flux, plus compatible density/mixing information or a closed budget.", "reason": "The custodied Drake state files expose temperature, zonal velocity, and meridional velocity only."},
-            {"relation": "interior_convergence", "status": "not_supported", "required_evidence": "A closed control-volume geometry with matched native boundary, surface, storage, and residual terms.", "reason": "The trajectory screen has no closed volume or flux accounting."},
-            {"relation": "transformation", "status": "not_supported", "required_evidence": "Salinity/density class definition and compatible class-volume fluxes.", "reason": "Temperature alone cannot define or quantify water-mass transformation."},
+            {"relation": "surface_forcing_and_storage", "status": "supported_open_account", "evidence": "All 12 monthly surface heat, freshwater, and column-heat-content fields are area-integrated over current SANT membership.", "non_claim": "Surface/storage evidence without matched lateral/vertical terms is not a closed budget or attribution."},
+            {"relation": "partial_lateral_perimeter", "status": "supported_partial_perimeter_screen", "evidence": "All 474 in-domain membership faces are screened with adjacent T/S collocation; 176 subset-edge sides remain unmeasured.", "non_claim": "Partial gross and net fluxes are not a closed lateral boundary or convergence."},
+            {"relation": "interior_convergence", "status": "partial_open_account_not_supported_for_convergence", "required_evidence": "A closed control-volume geometry with the missing lateral sides plus matched native vertical, surface, storage, and residual terms.", "reason": "The source family has partial perimeter and open surface/storage support, but 176 perimeter sides and all vertical terms are absent."},
+            {"relation": "transformation", "status": "density_strata_supported_transformation_not_supported", "required_evidence": "Compatible class-volume fluxes through a closed control volume, with a declared density-class convention.", "reason": "TEOS-10 density strata now exist, but no class-volume flux or vertical transfer term is available."},
             {"relation": "event_perturbation", "status": "not_supported", "required_evidence": "A temporally and spatially matched before/during/after event account on this source family.", "reason": "No compatible SANT 2018 event account is custodied."},
         ],
-        "bounded_results": {"seasonal_relative_motion": seasonal_relative, "central_seed_vertical_interfaces": central_vertical},
-        "research_conclusion": "The intra-state dynamics research slice is complete as an evidence-bounded map: supported geographic occupancy, lateral kinematics, local relative motion, temperature co-occurrence, and vertical structure are individually receipted; transfer, convergence, transformation, and event perturbation remain explicit unsupported relations with named acquisition gates. No numerical value is joined across the archived and current-geometry source families.",
+        "bounded_results": {"seasonal_relative_motion": seasonal_relative, "central_seed_vertical_interfaces": central_vertical, "central_seed_density_interfaces": [{"valid_time": month["valid_time"], "interfaces": next(item for item in month["profiles"] if item["seed"] == "central")["interfaces"]} for month in density_screen["months"]], "partial_perimeter_geometry": perimeter["geometry"], "surface_storage_month_count": len(surface_account["monthly_account"])},
+        "research_conclusion": "The intra-state dynamics research slice is complete as an evidence-bounded map: occupancy, local kinematics, relative motion, T/S density structure, a partial perimeter, and an open surface/storage account are separately receipted. Vertical transfer, closed convergence, transformation flux, and event perturbation remain explicit unsupported mechanisms with named acquisition gates. No numerical value is joined across the archived and current-geometry source families.",
         "boundary": "This synthesis is a relation-by-relation evidence map, not a state-wide dynamical model, water-mass classification, transport account, closure calculation, causal graph, or geometry bridge.",
     }
 
 
 def validate(payload: dict) -> None:
-    required = {"occupancy", "co_occurrence", "vertical_structure", "lateral_interior_pathway", "local_relative_motion", "vertical_transfer", "interior_convergence", "transformation", "event_perturbation"}
+    required = {"occupancy", "co_occurrence", "vertical_structure", "lateral_interior_pathway", "local_relative_motion", "surface_forcing_and_storage", "partial_lateral_perimeter", "vertical_transfer", "interior_convergence", "transformation", "event_perturbation"}
     coverage = {item["relation"]: item for item in payload["relation_coverage"]}
     if payload["status"] != "coverage_complete_for_current_custodied_evidence_not_complete_physical_dynamics" or set(coverage) != required:
         raise ValueError("synthesis must cover every registered relation without claiming full physical dynamics")
-    if any(item["status"] == "not_supported" and not item.get("required_evidence") for item in coverage.values()):
+    if any("not_supported" in item["status"] and not item.get("required_evidence") for item in coverage.values()):
         raise ValueError("unsupported relations require an acquisition gate")
     if payload["source_families"]["current_geometry_dynamics"]["status"] != "separate_unjoined_source_family":
         raise ValueError("source-family separation is required")
