@@ -240,6 +240,12 @@ numeric density bins and their endpoint differences. These are property-space
 inventory observations, not water-mass labels or transformation rates: no
 density-class boundary flux, vertical transfer, or mixing term is available.
 
+The paired [density-boundary screen](../research/ocean-state-sant-closed-box-density-boundary-screen-2018.json) partitions all 64 native horizontal faces by
+those same bins using adjacent-cell T/S face means. It supplies the horizontal
+density-bin boundary terms needed for a future class budget, but is not itself
+a class-conversion result: vertical and mixing density-class terms, matched
+temporal support, and assimilation/restoring treatment remain missing.
+
 ## Exit evidence for the first slice
 
 - [x] a machine-readable [state-interior ledger schema](../research/ocean-state-interior-ledger-schema-v1.json)

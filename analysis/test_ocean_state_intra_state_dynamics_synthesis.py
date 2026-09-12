@@ -19,7 +19,7 @@ def test_committed_synthesis_regenerates_and_covers_all_relations():
     assert coverage["lateral_interior_pathway"]["status"] == "supported_bounded_kinematic_screen"
     assert coverage["partial_lateral_perimeter"]["status"] == "supported_partial_perimeter_screen"
     assert coverage["interior_convergence"]["status"] == "horizontal_advective_term_and_inventory_endpoints_supported_total_convergence_not_supported"
-    assert coverage["transformation"]["status"] == "density_strata_inventory_supported_transformation_not_supported"
+    assert coverage["transformation"]["status"] == "density_strata_inventory_and_horizontal_boundary_terms_supported_transformation_not_supported"
     assert coverage["vertical_transfer"]["status"] == "not_supported"
     assert "Vertical velocity" in coverage["vertical_transfer"]["required_evidence"]
 
@@ -34,6 +34,7 @@ def test_synthesis_keeps_source_families_separate_and_has_seasonal_results():
     assert len(payload["bounded_results"]["closed_box_horizontal_advective_terms"]) == 4
     assert len(payload["bounded_results"]["closed_box_primary_inventory_endpoints"]["successive_endpoint_differences"]) == 3
     assert len(payload["bounded_results"]["closed_box_primary_density_inventory"]["successive_endpoint_stratum_volume_differences"]) == 3
+    assert len(payload["bounded_results"]["closed_box_primary_density_boundary_terms"]) == 4
 
 
 def test_browser_derivative_matches_synthesis():

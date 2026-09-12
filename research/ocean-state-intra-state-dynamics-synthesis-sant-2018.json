@@ -51,6 +51,10 @@
         "path": "research/ocean-state-sant-closed-box-density-inventory-2018.json",
         "sha256": "bba3e37d61132309dfec04af88c2d7216e6272562d387901ba22f3c5be118968"
       },
+      "closed_box_density_boundary_screen": {
+        "path": "research/ocean-state-sant-closed-box-density-boundary-screen-2018.json",
+        "sha256": "6998984d072e9168e749ae907990725785c11ee978535d2ef802efa00f5ab730"
+      },
       "status": "separate_unjoined_source_family",
       "permitted_use": "bounded local kinematics, T/S density structure, partial perimeter flux, open surface/storage evidence, and closed-horizontal-box terms only"
     },
@@ -121,10 +125,10 @@
     },
     {
       "relation": "transformation",
-      "status": "density_strata_inventory_supported_transformation_not_supported",
-      "evidence": "Fixed numerical density-stratum volume occupancy is measured in four months for the geometry-selected box and controls.",
-      "required_evidence": "Compatible density-class boundary fluxes through a closed control volume, with vertical/mixing terms and a declared density-class convention.",
-      "reason": "Endpoint stratum-volume differences are not class-volume fluxes; no vertical transfer term is available."
+      "status": "density_strata_inventory_and_horizontal_boundary_terms_supported_transformation_not_supported",
+      "evidence": "Fixed numerical density-stratum volume occupancy and closed-horizontal-boundary volume terms are measured in four months for the geometry-selected box and controls.",
+      "required_evidence": "Compatible vertical and mixing density-class terms, assimilation/restoring treatment, and matched temporal support for a density-class budget.",
+      "reason": "Endpoint differences and horizontal density-bin boundary terms do not diagnose class conversion; no vertical transfer or mixing term is available."
     },
     {
       "relation": "event_perturbation",
@@ -961,7 +965,173 @@
           "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
         }
       ]
-    }
+    },
+    "closed_box_primary_density_boundary_terms": [
+      {
+        "valid_time": "2018-02-01/P1M",
+        "primary": {
+          "boundary_face_count": 64,
+          "all_valid_wet_face_level_count": 3862,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "wet_face_level_count": 0,
+              "outward_volume_Sv": 0.0,
+              "inward_volume_Sv": 0.0,
+              "net_outward_volume_Sv": 0.0,
+              "gross_volume_exchange_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "wet_face_level_count": 1335,
+              "outward_volume_Sv": 2.713579496,
+              "inward_volume_Sv": -2.595665769,
+              "net_outward_volume_Sv": 0.117913727,
+              "gross_volume_exchange_Sv": 5.309245265
+            },
+            {
+              "id": "27_0_to_27_5",
+              "wet_face_level_count": 1264,
+              "outward_volume_Sv": 18.871848779,
+              "inward_volume_Sv": -18.959868032,
+              "net_outward_volume_Sv": -0.088019253,
+              "gross_volume_exchange_Sv": 37.83171681
+            },
+            {
+              "id": "at_or_above_27_5",
+              "wet_face_level_count": 1263,
+              "outward_volume_Sv": 66.335931349,
+              "inward_volume_Sv": -66.363616151,
+              "net_outward_volume_Sv": -0.027684802,
+              "gross_volume_exchange_Sv": 132.699547499
+            }
+          ]
+        }
+      },
+      {
+        "valid_time": "2018-05-01/P1M",
+        "primary": {
+          "boundary_face_count": 64,
+          "all_valid_wet_face_level_count": 3862,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "wet_face_level_count": 0,
+              "outward_volume_Sv": 0.0,
+              "inward_volume_Sv": 0.0,
+              "net_outward_volume_Sv": 0.0,
+              "gross_volume_exchange_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "wet_face_level_count": 1388,
+              "outward_volume_Sv": 3.616246154,
+              "inward_volume_Sv": -3.574386824,
+              "net_outward_volume_Sv": 0.04185933,
+              "gross_volume_exchange_Sv": 7.190632977
+            },
+            {
+              "id": "27_0_to_27_5",
+              "wet_face_level_count": 1188,
+              "outward_volume_Sv": 21.069337804,
+              "inward_volume_Sv": -20.755887667,
+              "net_outward_volume_Sv": 0.313450137,
+              "gross_volume_exchange_Sv": 41.825225471
+            },
+            {
+              "id": "at_or_above_27_5",
+              "wet_face_level_count": 1286,
+              "outward_volume_Sv": 83.428789835,
+              "inward_volume_Sv": -83.783462293,
+              "net_outward_volume_Sv": -0.354672458,
+              "gross_volume_exchange_Sv": 167.212252128
+            }
+          ]
+        }
+      },
+      {
+        "valid_time": "2018-08-01/P1M",
+        "primary": {
+          "boundary_face_count": 64,
+          "all_valid_wet_face_level_count": 3862,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "wet_face_level_count": 0,
+              "outward_volume_Sv": 0.0,
+              "inward_volume_Sv": 0.0,
+              "net_outward_volume_Sv": 0.0,
+              "gross_volume_exchange_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "wet_face_level_count": 0,
+              "outward_volume_Sv": 0.0,
+              "inward_volume_Sv": 0.0,
+              "net_outward_volume_Sv": 0.0,
+              "gross_volume_exchange_Sv": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "wet_face_level_count": 2548,
+              "outward_volume_Sv": 21.921485057,
+              "inward_volume_Sv": -21.873493133,
+              "net_outward_volume_Sv": 0.047991923,
+              "gross_volume_exchange_Sv": 43.79497819
+            },
+            {
+              "id": "at_or_above_27_5",
+              "wet_face_level_count": 1314,
+              "outward_volume_Sv": 80.40283767,
+              "inward_volume_Sv": -80.4516835,
+              "net_outward_volume_Sv": -0.04884583,
+              "gross_volume_exchange_Sv": 160.85452117
+            }
+          ]
+        }
+      },
+      {
+        "valid_time": "2018-11-01/P1M",
+        "primary": {
+          "boundary_face_count": 64,
+          "all_valid_wet_face_level_count": 3862,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "wet_face_level_count": 0,
+              "outward_volume_Sv": 0.0,
+              "inward_volume_Sv": 0.0,
+              "net_outward_volume_Sv": 0.0,
+              "gross_volume_exchange_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "wet_face_level_count": 369,
+              "outward_volume_Sv": 0.424428139,
+              "inward_volume_Sv": -0.711740045,
+              "net_outward_volume_Sv": -0.287311905,
+              "gross_volume_exchange_Sv": 1.136168184
+            },
+            {
+              "id": "27_0_to_27_5",
+              "wet_face_level_count": 2170,
+              "outward_volume_Sv": 21.550637102,
+              "inward_volume_Sv": -20.649317,
+              "net_outward_volume_Sv": 0.901320103,
+              "gross_volume_exchange_Sv": 42.199954102
+            },
+            {
+              "id": "at_or_above_27_5",
+              "wet_face_level_count": 1323,
+              "outward_volume_Sv": 85.11300821,
+              "inward_volume_Sv": -85.726007196,
+              "net_outward_volume_Sv": -0.612998986,
+              "gross_volume_exchange_Sv": 170.839015406
+            }
+          ]
+        }
+      }
+    ]
   },
   "research_conclusion": "The intra-state dynamics research slice is complete as an evidence-bounded map: occupancy, local kinematics, relative motion, T/S density structure, a partial perimeter, an open surface/storage account, and closed-horizontal-box advective, heat-inventory-endpoint, and density-stratum-inventory terms are separately receipted. Vertical transfer, total convergence, transformation flux, and event perturbation remain explicit unsupported mechanisms with named acquisition gates. No numerical value is joined across the archived and current-geometry source families.",
   "boundary": "This synthesis is a relation-by-relation evidence map, not a state-wide dynamical model, water-mass classification, transport account, closure calculation, causal graph, or geometry bridge."

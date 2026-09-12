@@ -1,0 +1,757 @@
+{
+  "schema": "osw-ocean-state-closed-box-density-boundary-screen-v1",
+  "status": "closed_horizontal_density_stratum_boundary_terms_not_transformation_or_budget",
+  "source_family": "current_longhurst_geometry_2026-09-12_with_archived_oras5_2018_velocity",
+  "join_status": "not_joined_to_archived_2018_contents_or_boundary_accounts",
+  "selection": {
+    "path": "research/ocean-state-sant-closed-box-selection-current-geometry-v1.json",
+    "sha256": "f65e3adb8b99f47cfd30ee549838fdd653dc1e3500b465dfe1a3c5bd75da39a6",
+    "frozen_before_density_boundary_outcomes": true
+  },
+  "method": {
+    "equation_of_state": "TEOS-10 GSW 3.6.23",
+    "tracer_collocation": "adjacent T-cell mean at each native U/V face",
+    "conversion": "SA_from_SP using face-mean longitude/latitude and face depth; CT_from_pt; sigma0",
+    "numeric_strata_sigma0_kg_m3": [
+      {
+        "id": "below_26_5",
+        "lower_inclusive": null,
+        "upper_exclusive": 26.5
+      },
+      {
+        "id": "26_5_to_27_0",
+        "lower_inclusive": 26.5,
+        "upper_exclusive": 27.0
+      },
+      {
+        "id": "27_0_to_27_5",
+        "lower_inclusive": 27.0,
+        "upper_exclusive": 27.5
+      },
+      {
+        "id": "at_or_above_27_5",
+        "lower_inclusive": 27.5,
+        "upper_exclusive": null
+      }
+    ],
+    "outward_sign": "positive is oriented out of the selected box"
+  },
+  "sources": {
+    "mesh": {
+      "path": "atlas/data/oras5-drake-mesh.nc",
+      "sha256": "a575659f2249a60ce01ecfc71fc489d17f8476d1a41dfb116b25c349ddcb0824"
+    }
+  },
+  "partial_cell_fallback_count": 0,
+  "months": [
+    {
+      "valid_time": "2018-02-01/P1M",
+      "temperature_state": {
+        "path": "atlas/data/oras5-drake-state-201802.nc",
+        "sha256": "caeb09b62d6c2508c5ae0331e7b81786893b7a533e185754a1cb3837dbe6802a"
+      },
+      "salinity_state": {
+        "path": "atlas/data/oras5-drake-salinity-current-geometry-201802.nc",
+        "sha256": "27c1a7f24ee9c6f5d6f6f4c6ce42f1950ea697cc7692ae7ebb902e120018de53"
+      },
+      "outcomes": [
+        {
+          "box": "primary",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3862,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 1335,
+                "outward_volume_Sv": 2.713579496,
+                "inward_volume_Sv": -2.595665769,
+                "net_outward_volume_Sv": 0.117913727,
+                "gross_volume_exchange_Sv": 5.309245265
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 1264,
+                "outward_volume_Sv": 18.871848779,
+                "inward_volume_Sv": -18.959868032,
+                "net_outward_volume_Sv": -0.088019253,
+                "gross_volume_exchange_Sv": 37.83171681
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1263,
+                "outward_volume_Sv": 66.335931349,
+                "inward_volume_Sv": -66.363616151,
+                "net_outward_volume_Sv": -0.027684802,
+                "gross_volume_exchange_Sv": 132.699547499
+              }
+            ]
+          }
+        },
+        {
+          "box": "north_control",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3824,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 1335,
+                "outward_volume_Sv": 2.786835537,
+                "inward_volume_Sv": -2.702448015,
+                "net_outward_volume_Sv": 0.084387521,
+                "gross_volume_exchange_Sv": 5.489283552
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 1274,
+                "outward_volume_Sv": 19.409982854,
+                "inward_volume_Sv": -19.293157878,
+                "net_outward_volume_Sv": 0.116824976,
+                "gross_volume_exchange_Sv": 38.703140732
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1215,
+                "outward_volume_Sv": 64.895692924,
+                "inward_volume_Sv": -65.094657582,
+                "net_outward_volume_Sv": -0.198964658,
+                "gross_volume_exchange_Sv": 129.990350506
+              }
+            ]
+          }
+        },
+        {
+          "box": "south_control",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3916,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 1339,
+                "outward_volume_Sv": 2.625958429,
+                "inward_volume_Sv": -2.484160938,
+                "net_outward_volume_Sv": 0.141797491,
+                "gross_volume_exchange_Sv": 5.110119366
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 1250,
+                "outward_volume_Sv": 18.208631881,
+                "inward_volume_Sv": -18.363911424,
+                "net_outward_volume_Sv": -0.155279542,
+                "gross_volume_exchange_Sv": 36.572543305
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1327,
+                "outward_volume_Sv": 63.712316945,
+                "inward_volume_Sv": -63.69666771,
+                "net_outward_volume_Sv": 0.015649235,
+                "gross_volume_exchange_Sv": 127.408984655
+              }
+            ]
+          }
+        },
+        {
+          "box": "east_control",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3865,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 1340,
+                "outward_volume_Sv": 2.652115051,
+                "inward_volume_Sv": -2.540002016,
+                "net_outward_volume_Sv": 0.112113036,
+                "gross_volume_exchange_Sv": 5.192117067
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 1247,
+                "outward_volume_Sv": 17.917413494,
+                "inward_volume_Sv": -18.077157128,
+                "net_outward_volume_Sv": -0.159743634,
+                "gross_volume_exchange_Sv": 35.994570622
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1278,
+                "outward_volume_Sv": 63.577408081,
+                "inward_volume_Sv": -63.527553271,
+                "net_outward_volume_Sv": 0.049854809,
+                "gross_volume_exchange_Sv": 127.104961352
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-05-01/P1M",
+      "temperature_state": {
+        "path": "atlas/data/oras5-drake-state-201805.nc",
+        "sha256": "7451a7028a604278e68bbbb0a4a4271c0396bcc0a8239e503ec77a6a07d84ce0"
+      },
+      "salinity_state": {
+        "path": "atlas/data/oras5-drake-salinity-current-geometry-201805.nc",
+        "sha256": "6b9db31a3403a2a448b1d90ad92f7d8ac621337160dff7483fd9f4623271d5ac"
+      },
+      "outcomes": [
+        {
+          "box": "primary",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3862,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 1388,
+                "outward_volume_Sv": 3.616246154,
+                "inward_volume_Sv": -3.574386824,
+                "net_outward_volume_Sv": 0.04185933,
+                "gross_volume_exchange_Sv": 7.190632977
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 1188,
+                "outward_volume_Sv": 21.069337804,
+                "inward_volume_Sv": -20.755887667,
+                "net_outward_volume_Sv": 0.313450137,
+                "gross_volume_exchange_Sv": 41.825225471
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1286,
+                "outward_volume_Sv": 83.428789835,
+                "inward_volume_Sv": -83.783462293,
+                "net_outward_volume_Sv": -0.354672458,
+                "gross_volume_exchange_Sv": 167.212252128
+              }
+            ]
+          }
+        },
+        {
+          "box": "north_control",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3824,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 1388,
+                "outward_volume_Sv": 3.738908522,
+                "inward_volume_Sv": -3.65936591,
+                "net_outward_volume_Sv": 0.079542613,
+                "gross_volume_exchange_Sv": 7.398274432
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 1200,
+                "outward_volume_Sv": 21.27562597,
+                "inward_volume_Sv": -21.228897595,
+                "net_outward_volume_Sv": 0.046728374,
+                "gross_volume_exchange_Sv": 42.504523565
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1236,
+                "outward_volume_Sv": 76.589753471,
+                "inward_volume_Sv": -76.715353682,
+                "net_outward_volume_Sv": -0.125600211,
+                "gross_volume_exchange_Sv": 153.305107153
+              }
+            ]
+          }
+        },
+        {
+          "box": "south_control",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3916,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 1398,
+                "outward_volume_Sv": 3.613137471,
+                "inward_volume_Sv": -3.561682855,
+                "net_outward_volume_Sv": 0.051454616,
+                "gross_volume_exchange_Sv": 7.174820326
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 1168,
+                "outward_volume_Sv": 20.965745974,
+                "inward_volume_Sv": -20.68092686,
+                "net_outward_volume_Sv": 0.284819114,
+                "gross_volume_exchange_Sv": 41.646672834
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1350,
+                "outward_volume_Sv": 84.059341543,
+                "inward_volume_Sv": -84.395020024,
+                "net_outward_volume_Sv": -0.33567848,
+                "gross_volume_exchange_Sv": 168.454361567
+              }
+            ]
+          }
+        },
+        {
+          "box": "east_control",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3865,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 1386,
+                "outward_volume_Sv": 3.584946759,
+                "inward_volume_Sv": -3.471260748,
+                "net_outward_volume_Sv": 0.113686012,
+                "gross_volume_exchange_Sv": 7.056207507
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 1185,
+                "outward_volume_Sv": 20.711776245,
+                "inward_volume_Sv": -20.135735807,
+                "net_outward_volume_Sv": 0.576040438,
+                "gross_volume_exchange_Sv": 40.847512051
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1294,
+                "outward_volume_Sv": 77.174722185,
+                "inward_volume_Sv": -77.863757684,
+                "net_outward_volume_Sv": -0.6890355,
+                "gross_volume_exchange_Sv": 155.038479869
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-08-01/P1M",
+      "temperature_state": {
+        "path": "atlas/data/oras5-drake-state-201808.nc",
+        "sha256": "92a39a07152f7bb03479bad0b8e10910eb5302e5999c8ed300b25f7e61ead756"
+      },
+      "salinity_state": {
+        "path": "atlas/data/oras5-drake-salinity-current-geometry-201808.nc",
+        "sha256": "01362cc53d125e0230dbb2f134cd02e59f948f9e7eb77203be21f711a1c84a30"
+      },
+      "outcomes": [
+        {
+          "box": "primary",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3862,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 2548,
+                "outward_volume_Sv": 21.921485057,
+                "inward_volume_Sv": -21.873493133,
+                "net_outward_volume_Sv": 0.047991923,
+                "gross_volume_exchange_Sv": 43.79497819
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1314,
+                "outward_volume_Sv": 80.40283767,
+                "inward_volume_Sv": -80.4516835,
+                "net_outward_volume_Sv": -0.04884583,
+                "gross_volume_exchange_Sv": 160.85452117
+              }
+            ]
+          }
+        },
+        {
+          "box": "north_control",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3824,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 2559,
+                "outward_volume_Sv": 22.647129929,
+                "inward_volume_Sv": -22.633247767,
+                "net_outward_volume_Sv": 0.013882162,
+                "gross_volume_exchange_Sv": 45.280377696
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1265,
+                "outward_volume_Sv": 77.532616014,
+                "inward_volume_Sv": -77.547289521,
+                "net_outward_volume_Sv": -0.014673507,
+                "gross_volume_exchange_Sv": 155.079905535
+              }
+            ]
+          }
+        },
+        {
+          "box": "south_control",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3916,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 2538,
+                "outward_volume_Sv": 21.260228726,
+                "inward_volume_Sv": -21.29430937,
+                "net_outward_volume_Sv": -0.034080644,
+                "gross_volume_exchange_Sv": 42.554538095
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1378,
+                "outward_volume_Sv": 79.709293864,
+                "inward_volume_Sv": -79.676098617,
+                "net_outward_volume_Sv": 0.033195247,
+                "gross_volume_exchange_Sv": 159.385392481
+              }
+            ]
+          }
+        },
+        {
+          "box": "east_control",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3865,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 2545,
+                "outward_volume_Sv": 22.402402601,
+                "inward_volume_Sv": -22.790729738,
+                "net_outward_volume_Sv": -0.388327137,
+                "gross_volume_exchange_Sv": 45.193132338
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1320,
+                "outward_volume_Sv": 77.420453159,
+                "inward_volume_Sv": -77.032918121,
+                "net_outward_volume_Sv": 0.387535038,
+                "gross_volume_exchange_Sv": 154.453371281
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-11-01/P1M",
+      "temperature_state": {
+        "path": "atlas/data/oras5-drake-state-201811.nc",
+        "sha256": "e37425194a8f311d699be8d94c9dd17c9ada8cc39fa84239f40466c7b94e05de"
+      },
+      "salinity_state": {
+        "path": "atlas/data/oras5-drake-salinity-current-geometry-201811.nc",
+        "sha256": "e7aed5f42295b0ce79ce8d6b5b0065f9dce5f08edbbc32afad03b46bdbfa3560"
+      },
+      "outcomes": [
+        {
+          "box": "primary",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3862,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 369,
+                "outward_volume_Sv": 0.424428139,
+                "inward_volume_Sv": -0.711740045,
+                "net_outward_volume_Sv": -0.287311905,
+                "gross_volume_exchange_Sv": 1.136168184
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 2170,
+                "outward_volume_Sv": 21.550637102,
+                "inward_volume_Sv": -20.649317,
+                "net_outward_volume_Sv": 0.901320103,
+                "gross_volume_exchange_Sv": 42.199954102
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1323,
+                "outward_volume_Sv": 85.11300821,
+                "inward_volume_Sv": -85.726007196,
+                "net_outward_volume_Sv": -0.612998986,
+                "gross_volume_exchange_Sv": 170.839015406
+              }
+            ]
+          }
+        },
+        {
+          "box": "north_control",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3824,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 377,
+                "outward_volume_Sv": 0.453050397,
+                "inward_volume_Sv": -0.730971123,
+                "net_outward_volume_Sv": -0.277920725,
+                "gross_volume_exchange_Sv": 1.18402152
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 2173,
+                "outward_volume_Sv": 22.304914401,
+                "inward_volume_Sv": -21.611240095,
+                "net_outward_volume_Sv": 0.693674306,
+                "gross_volume_exchange_Sv": 43.916154496
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1274,
+                "outward_volume_Sv": 79.770740725,
+                "inward_volume_Sv": -80.185542031,
+                "net_outward_volume_Sv": -0.414801306,
+                "gross_volume_exchange_Sv": 159.956282755
+              }
+            ]
+          }
+        },
+        {
+          "box": "south_control",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3916,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 353,
+                "outward_volume_Sv": 0.413043702,
+                "inward_volume_Sv": -0.728834913,
+                "net_outward_volume_Sv": -0.315791211,
+                "gross_volume_exchange_Sv": 1.141878615
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 2175,
+                "outward_volume_Sv": 21.249135388,
+                "inward_volume_Sv": -20.157991082,
+                "net_outward_volume_Sv": 1.091144306,
+                "gross_volume_exchange_Sv": 41.407126469
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1388,
+                "outward_volume_Sv": 83.308181518,
+                "inward_volume_Sv": -84.082467818,
+                "net_outward_volume_Sv": -0.7742863,
+                "gross_volume_exchange_Sv": 167.390649337
+              }
+            ]
+          }
+        },
+        {
+          "box": "east_control",
+          "horizontal_density_boundary": {
+            "boundary_face_count": 64,
+            "all_valid_wet_face_level_count": 3865,
+            "strata": [
+              {
+                "id": "below_26_5",
+                "wet_face_level_count": 0,
+                "outward_volume_Sv": 0.0,
+                "inward_volume_Sv": 0.0,
+                "net_outward_volume_Sv": 0.0,
+                "gross_volume_exchange_Sv": 0.0
+              },
+              {
+                "id": "26_5_to_27_0",
+                "wet_face_level_count": 323,
+                "outward_volume_Sv": 0.351178484,
+                "inward_volume_Sv": -0.643122069,
+                "net_outward_volume_Sv": -0.291943586,
+                "gross_volume_exchange_Sv": 0.994300553
+              },
+              {
+                "id": "27_0_to_27_5",
+                "wet_face_level_count": 2212,
+                "outward_volume_Sv": 22.171167559,
+                "inward_volume_Sv": -21.485486587,
+                "net_outward_volume_Sv": 0.685680971,
+                "gross_volume_exchange_Sv": 43.656654146
+              },
+              {
+                "id": "at_or_above_27_5",
+                "wet_face_level_count": 1330,
+                "outward_volume_Sv": 80.122599499,
+                "inward_volume_Sv": -80.515401746,
+                "net_outward_volume_Sv": -0.392802247,
+                "gross_volume_exchange_Sv": 160.638001245
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "boundary": "This partitions the complete native horizontal box perimeter's volume-flux screen by fixed numerical density bins. Face-averaged density-bin fluxes are not density-class transformation rates, because vertical flux, mixing/diffusion, assimilation/restoring, and a matched temporal class-volume account remain absent. It is not a water-mass classification, total convergence, or closed budget."
+}
