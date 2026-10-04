@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Query the ocean atlas — OSW</title>
-  <link rel="stylesheet" href="query.css?v=9"><script src="query-workspace.js?v=1" defer></script><script src="query-charts.js?v=2" defer></script><script src="query.js?v=10" defer></script>
+  <link rel="stylesheet" href="query.css?v=10"><script src="query-workspace.js?v=1" defer></script><script src="query-charts.js?v=2" defer></script><script src="query.js?v=13" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to query</a>
@@ -75,11 +75,14 @@
     <label>Step through recorded geometry days<select id="query-map-day"><option value="">Choose a recorded day</option></select></label>
     <button type="button" id="query-map-play" aria-pressed="false">Play recorded days</button>
     <button type="button" id="query-map-play-months" aria-pressed="false">Play source months</button>
-    <p class="note">Recorded-day playback advances by observation; source-month playback advances by month. One step per second, with no interpolation. Unequal date gaps are not elapsed-time animation. Empty month scenes mean coverage is unavailable.</p>
+    <button type="button" id="query-map-play-samples" aria-pressed="false" hidden>Play recorded section days</button>
+    <p id="query-map-sample-playback-note" class="note" hidden>Section playback follows the recorded dates in the current query, retaining year, month, method and source filters. It replaces only the day shown in the sample-day control. One observation per second, with no interpolation; gaps are not elapsed-time animation. Source processing versions can change. Map window and chart axes stay fixed during playback.</p>
+    <p id="query-map-playback-note" class="note">Recorded-day playback advances by observation; source-month playback advances by month. One step per second, with no interpolation. Unequal date gaps are not elapsed-time animation. Empty month scenes mean coverage is unavailable.</p>
     <p id="query-map-time" class="note">Dates select recorded observations; gaps are not interpolated.</p>
+    <p id="query-map-position" class="note">Global view · equirectangular display; geographic coordinates remain in source records.</p>
     <svg id="query-map" viewBox="0 0 360 180" role="group" aria-label="Query results on the OSW map"><image id="query-map-ground" href="../figures/ocean-motion-dashboard-ground.svg" x="0" y="0" width="360" height="180" opacity=".6"/><g id="query-map-state"></g><g id="query-map-features"></g></svg>
     <p id="query-map-hover" aria-live="polite">Hover or focus a mark for its name; select it to inspect its record.</p>
-    <p class="note">Solid teal lines: editorial reference routes. Dashed orange lines and purple polygons: dated evidence. Hollow circles: locators. Dashed amber circles: shared gateways. Names appear on hover or focus. Overlapping marks may represent several records; all remain in the results table. Coarse OSW coastline, display only.</p>
+    <p id="query-map-legend" class="note">Solid teal lines: editorial reference routes. Dashed orange lines and purple polygons: dated evidence. Hollow circles: locators. Dashed amber circles: shared gateways. Names appear on hover or focus. Overlapping marks may represent several records; all remain in the results table. Coarse OSW coastline, display only.</p>
   </section>
   <section aria-labelledby="result-title"><div class="result-head"><h2 id="result-title">Results</h2><div><a id="query-share" hidden>Link to this query</a> <button id="query-export" type="button" disabled>Download this result page</button></div></div>
     <div class="table-wrap"><table><caption id="query-caption">Matching records</caption><thead><tr><th scope="col">Record</th><th scope="col">Value / type</th><th scope="col">Scope / evidence</th></tr></thead><tbody id="query-rows"></tbody></table></div>

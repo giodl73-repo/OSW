@@ -491,6 +491,8 @@ impl Store {
                 query.geometry_time.as_ref(),
                 query.seasonal.as_ref(),
             )
+        } else if query.collection == "width_samples" {
+            map::sample_scene(&matches)
         } else {
             Value::Null
         };

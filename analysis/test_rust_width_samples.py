@@ -24,7 +24,7 @@ def main():
         {'collection':'objects','evidence':'width_samples'},
         {'collection':'objects','filters':[{'field':'id','op':'eq','value':'current:leeuwin'}]}]
     results=[native(q) for q in queries];assert all(r['ok'] for r in results)
-    assert results[0]['total']==105 and results[0]['map_scene'] is None
+    assert results[0]['total']==105 and results[0]['map_scene']['mapped_objects']==17 and results[0]['map_scene']['unmapped_objects']==88
     assert results[1]['total']==12 and [r['month'] for r in results[1]['rows']]==list(range(1,13))
     assert results[2]['total']==16 and results[3]['total']==5 and results[4]['total']==12
     assert results[5]['rows'][0]['value_km'] is None and results[6]['total']==4

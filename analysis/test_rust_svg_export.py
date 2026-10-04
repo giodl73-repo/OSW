@@ -31,7 +31,8 @@ def main():
     exe=str(ROOT/'rust/osw-query/target/debug/osw-query-cli.exe')
     queries=[{'collection':'objects','record_type':'named_current','limit':1,'offset':10},
              {'collection':'objects','limit':1},
-             {'collection':'objects','spatial':{'state_code':'NADR','predicate':'intersects'},'limit':1}]
+             {'collection':'objects','spatial':{'state_code':'NADR','predicate':'intersects'},'limit':1},
+             {'collection':'width_samples','filters':[{'field':'sample_family','op':'eq','value':'gulf_stream_dated_half_peak_section'}],'limit':1}]
     with tempfile.TemporaryDirectory(dir=ROOT/'tmp') as temp, sync_playwright() as p:
         folder=Path(temp);browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'])
         page=browser.new_page(viewport={'width':1440,'height':1000})
@@ -47,6 +48,11 @@ def main():
             if index==2:
                 assert receipt['selected_state_code']=='NADR'
                 assert ET.fromstring(svg).find("s:path[@class='state']",NS) is not None
+            if index==3:
+                assert receipt['inspection_collection']=='width_samples' and receipt['mapped_objects']==17
+                assert receipt['recorded_days']==scene['recorded_days'] and len(receipt['recorded_days'])==17
+                assert receipt['display_bounds']==scene['display_bounds']
+                assert 'not current routes' in svg and 'nominal local section spans' in svg
             before=output.read_bytes();failure=subprocess.run(command,capture_output=True)
             assert failure.returncode==2 and output.read_bytes()==before
             browser_query(page,query)

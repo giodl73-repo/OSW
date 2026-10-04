@@ -433,3 +433,15 @@ Do not interpolate missing months or animate them as a complete annual cycle.
 Use `stream_mean_threshold_summary` for source-reported temporal and along-stream summaries of cross-stream spans diagnosed at repeated time steps. Retain velocity component, cutoff, section orientation, original product and interpolation grid, diagnosis-before-averaging order, regional domain and study years. Keep unresolved averaging weights and season-to-month membership explicit. A study year range is not exact occupied section dates; a bathymetric isobath is not a fixed measurement layer.
 
 Distinguish seasonal means from study-period means using `temporal_statistic` and `season`. Neither is width of the mean velocity field. Local seasonal tendencies can oppose the regional mean. Do not combine values into a physical annual range or assign confidence intervals from core-position standard deviations, alternate-product means, interpolation grid, or intrusion reach. Source graph geometry requires its own extraction; scalar means never create map edges or route buffers. Pin PDF and scope audit; retain false whole-current, ranking, annual extrema, full-width and playback admission flags.
+
+## Total-flow boundary and anomaly separation
+
+Paired boundaries must belong to the declared total-flow metric and reference
+state. Zero crossings of a velocity anomaly do not define total-current width.
+Model/averaging-window limits likewise do not constitute observed edges.
+Relative-geostrophic fields retain their reference pressure, separately from the
+current layer and axis depth. Combining a mean and anomaly requires reviewed
+compatibility of layer, reference state, averaging, grid and method. Keep local
+section diagnostics, velocity-anomaly spans and whole-current width claims
+distinct. This clarifies the existing source, boundary and comparability gates;
+it does not change any existing admitted value or range calculation.

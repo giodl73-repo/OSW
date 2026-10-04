@@ -45,6 +45,78 @@ fn path(value: &Value, closed: bool) -> Option<String> {
 pub fn scene(records: &[&Value]) -> Value {
     scene_selected(records, None, None)
 }
+/// Derive only the local nominal section from source-bound sample coordinates.
+/// No route, width buffer, polygon or state containment is inferred.
+pub fn sample_scene(records: &[&Value]) -> Value {
+    if !records
+        .iter()
+        .any(|r| r["sample_family"] == "gulf_stream_dated_half_peak_section")
+    {
+        return Value::Null;
+    }
+    let projected: Vec<Value> = records.iter().map(|row| {
+        let mut record = json!({"id":row["id"],"label":row["label"],"type":"local_section_sample","map_features":[]});
+        if row["sample_family"] != "gulf_stream_dated_half_peak_section" || row["status"] != "paired_boundaries" || row["value_km"].is_null() {
+            return record;
+        }
+        let nominal = &row["source_sample"]["nominal"];
+        let coordinates = json!([[row["longitude_degrees_east"],nominal["south_boundary"]["latitude"]],[row["longitude_degrees_east"],nominal["north_boundary"]["latitude"]]]);
+        let valid = coordinates.as_array().is_some_and(|c| c.iter().all(|p| point(p).is_some()))
+            && nominal["south_boundary"]["latitude"].as_f64().zip(nominal["north_boundary"]["latitude"].as_f64()).is_some_and(|(s,n)| s < n);
+        if valid {
+            record["map_features"] = json!([{"geometry":{"type":"LineString","coordinates":coordinates},
+                "role":"local_diagnostic_section_span","note":"Nominal half-peak eastward-component section at 70 W. Surface diagnostic; not a flow-normal width, current route or occupied footprint. Paired interpolated boundaries and resolution remain under review.",
+                "observation_date":row["observation_date"],"source_url":row["source_url"],"source_algorithm":row["source_algorithm"],
+                "source_subset_sha256":row["source_sample"]["source_subset_sha256"],"layer":row["source_context"]["layer"]}]);
+        }
+        record
+    }).collect();
+    let refs: Vec<&Value> = projected.iter().collect();
+    let mut scene = scene(&refs);
+    scene["inspection_collection"] = json!("width_samples");
+    scene["recorded_days"] = json!(
+        records
+            .iter()
+            .filter(|r| r["sample_family"] == "gulf_stream_dated_half_peak_section")
+            .filter_map(|r| r["observation_date"].as_str())
+            .collect::<BTreeSet<_>>()
+    );
+    let mut bounds: Option<[f64; 4]> = None;
+    for record in &projected {
+        for coordinate in record["map_features"][0]["geometry"]["coordinates"]
+            .as_array()
+            .into_iter()
+            .flatten()
+        {
+            if let Some((x, y)) = point(coordinate) {
+                bounds = Some(match bounds {
+                    None => [x, y, x, y],
+                    Some(b) => [b[0].min(x), b[1].min(y), b[2].max(x), b[3].max(y)],
+                });
+            }
+        }
+    }
+    scene["display_bounds"] = json!(bounds);
+    scene["scope"] = json!(
+        "All matching sample records across every results page. Only supported nominal paired section boundaries are mapped. Other samples retain their records without invented geography. These local surface spans are not current axes, flow-normal widths, occupied footprints or state containment. Overlapping dates remain separate marks; no time interpolation."
+    );
+    for feature in scene["features"].as_array_mut().unwrap() {
+        let row = records
+            .iter()
+            .find(|r| r["id"] == feature["entity_id"])
+            .unwrap();
+        feature["inspection_collection"] = json!("width_samples");
+        feature["owner_entity_id"] = row["entity_id"].clone();
+        feature["metric"] = row["metric"].clone();
+        feature["value_km"] = row["value_km"].clone();
+        feature["diagnostic_sensitivity_interval_km"] =
+            row["diagnostic_sensitivity_interval_km"].clone();
+        feature["sampling_bracket_interval_km"] = row["sampling_bracket_interval_km"].clone();
+        feature["resolution_review_required"] = row["resolution_review_required"].clone();
+        feature["source_sample"] = json!({"diagnostic_id":row["diagnostic_id"],"sample_path":row["sample_path"],"coordinates":projected.iter().find(|r| r["id"] == row["id"]).unwrap()["map_features"][0]["geometry"]["coordinates"]});
+    }
+    scene
+}
 pub fn scene_selected(
     records: &[&Value],
     time: Option<&crate::temporal::GeometryTime>,
@@ -142,6 +214,30 @@ pub fn scene_selected(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn section_samples_require_resolved_ordered_source_boundaries() {
+        let original = json!({"id":"width-sample:one","entity_id":"current:gulf-stream-system","label":"Section","sample_family":"gulf_stream_dated_half_peak_section","status":"paired_boundaries","value_km":90,"longitude_degrees_east":-70,"source_sample":{"nominal":{"south_boundary":{"latitude":37},"north_boundary":{"latitude":38}}}});
+        let valid = sample_scene(&[&original]);
+        assert_eq!(
+            valid["features"][0]["primitive"]["d"],
+            "M 110.00000 53.00000 L 110.00000 52.00000 "
+        );
+        assert_eq!(
+            valid["features"][0]["inspection_collection"],
+            "width_samples"
+        );
+        for bad in [json!(null), json!(36), json!(91)] {
+            let mut row = original.clone();
+            row["source_sample"]["nominal"]["north_boundary"]["latitude"] = bad;
+            assert_eq!(sample_scene(&[&row])["unmapped_objects"], 1);
+        }
+        let mut missing = original.clone();
+        missing["value_km"] = Value::Null;
+        assert_eq!(sample_scene(&[&missing])["mapped_objects"], 0);
+        let mut other = original.clone();
+        other["sample_family"] = json!("leeuwin_monthly_fitted_plot");
+        assert!(sample_scene(&[&other]).is_null());
+    }
     #[test]
     fn geography_seams_and_invalid_coordinates() {
         assert_eq!(point(&json!([0, 0])), Some((180.0, 90.0)));
