@@ -14,6 +14,7 @@ def node(source: str) -> str:
 def test_state_handoff_contract_and_local_routes() -> None:
     result = node("global.window=global;require('./atlas/state-handoffs.js');process.stdout.write(JSON.stringify({gf:OSWStateHandoffs.cards('GFST'),sant:OSWStateHandoffs.cards('SANT'),na:OSWStateHandoffs.cards('NADR')}));")
     assert 'exchange/?province=SANT&depth=0-200m&month=201802' in result
+    assert 'almanac/?state=GFST#state-title' in result
     assert 'event/?scene=event' in result
     assert 'No bounded Drake native-grid temperature passport' in result
 

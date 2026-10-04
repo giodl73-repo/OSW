@@ -1,0 +1,139 @@
+{
+  "schema": "osw.current-naming-scope-audit.v1",
+  "date": "2026-10-03",
+  "status": "editorial_scope_audit_not_scientific_approval",
+  "current_id": "antilles",
+  "name": "Antilles Current",
+  "sources": [
+    {
+      "url": "https://repository.library.noaa.gov/view/noaa/20909/noaa_20909_DS1.pdf",
+      "citation": "Meinen et al. (2019), Structure and Variability of the Antilles Current at 26.5 N, doi:10.1029/2018JC014836",
+      "access": "full_repository_pdf_read",
+      "locator": "Introduction pp. 1-2; Table 1 p. 3; section 3.1; Table 3 p. 15; seasonal discussion and Fig. 11 pp. 17-18; Conclusions. PDF page numbers.",
+      "supports": "Regional mean northward flow at 26.5 N with subsurface peak and intermittent reversal; nominal instrument locations and a declared transport integration domain. Weak transport seasonality does not define route or width extrema.",
+      "observed_period": {
+        "start": "2005-05-08",
+        "end": "2015-11-23"
+      }
+    },
+    {
+      "url": "https://spo.nmfs.noaa.gov/sites/default/files/pdf-content/1975/733/ingham.pdf",
+      "citation": "Ingham (1975), Velocity and transport of the Antilles Current northeast of the Bahama Islands",
+      "access": "previously_read_in_released_source_review",
+      "locator": "Six sections near 28 degrees 35 minutes N",
+      "supports": "Older geographically distinct surface-flow assessment; cannot establish absence at every depth, place or time."
+    },
+    {
+      "url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
+      "citation": "NOAA Tides and Currents Glossary, Antilles Current entry",
+      "access": "full_page_read",
+      "locator": "Antilles Current entry",
+      "supports": "General northwestward named flow along the northeastern Bahamas; no numerical endpoints."
+    }
+  ],
+  "identity_decision": "retain_named_current_with_separate_historical_surface_and_modern_regional_mean_support",
+  "scope_summary": "Modern observations support mean northward flow at 26.5 N, distinct from the older northern surface-flow assessment. Neither study defines whole-current endpoint coordinates.",
+  "length_decision": "whole_current_route_unknown_no_source_defined_endpoints",
+  "whole_current_length_km": null,
+  "whole_current_width_km": null,
+  "annual_length_range_km": null,
+  "annual_width_range_km": null,
+  "seasonal_route_playback_supported": false,
+  "rejected_width_inference": {
+    "reported_span_km": 49.4,
+    "source_locator": "Table 3, coastline to site B transport-integration domain",
+    "measurement_role": "transport_integration_span_not_diagnosed_current_width",
+    "admitted_as_width": false
+  },
+  "source_access_note": "Publisher full page returned 403; NOAA repository PDF read. No source curve digitized. Final AB0505 LADCP ASCII profiles and provider assessment were acquired separately in October 2026 and pinned with per-file checksums; this does not supply a longitudinal axis.",
+  "remaining_gates": [
+    "Diagnose named-flow endpoints and representative velocity axis with declared layer and dates.",
+    "Specify a physical width boundary before deriving section widths; integration spans are a separate quantity.",
+    "Reconcile method-dependent velocity estimates before seasonal geometry and annual extrema.",
+    "Review updated scientific scope and rights before modifying the frozen release."
+  ],
+  "source_locator_correction": {
+    "rechecked_date": "2026-10-03",
+    "previous_locator": "Table 5",
+    "correct_locator": "Table 3, PDF page 15 / journal page 3714",
+    "source_url": "https://repository.library.noaa.gov/view/noaa/20909/noaa_20909_DS1.pdf",
+    "verification": "Table heading and coastline-to-site-B row checked in NOAA repository and AOML copies; no Table 5 present in either text."
+  },
+  "local_section_support": {
+    "section_latitude_degrees_north": 26.5,
+    "coordinate_role": "nominal_instrument_locations_not_current_edges_or_along_stream_endpoints",
+    "crs": "OGC:CRS84",
+    "source_locator": "Table 1, PDF page 3 / journal page 3702",
+    "sites": [
+      {
+        "id": "A",
+        "coordinates_lon_lat": [
+          -76.83,
+          26.52
+        ]
+      },
+      {
+        "id": "A2",
+        "coordinates_lon_lat": [
+          -76.75,
+          26.5
+        ]
+      },
+      {
+        "id": "B",
+        "coordinates_lon_lat": [
+          -76.47,
+          26.49
+        ]
+      },
+      {
+        "id": "C",
+        "coordinates_lon_lat": [
+          -76.09,
+          26.5
+        ]
+      }
+    ],
+    "mean_structure_context": {
+      "peak_pressure_dbar_approximate": 400,
+      "near_zero_pressure_dbar_approximate": 900,
+      "source_locator": "Section 3.1 and Figure 2 caption; mean of 16 LADCP sections",
+      "whole_current_layer_bounds_inferred": false
+    },
+    "transport_integration_domain": {
+      "reported_span_km": 49.4,
+      "horizontal_convention": "coastline to site B",
+      "vertical_convention": "surface to 1000 dbar or bottom where shallower",
+      "source_locator": "Table 3, PDF page 15 / journal page 3714",
+      "is_current_width": false,
+      "is_along_current_length": false,
+      "site_B_is_instantaneous_current_edge": false
+    },
+    "seasonal_context": {
+      "maximum_northward_transport_months": [
+        8,
+        9
+      ],
+      "measurement": "regional transport climatology, not geometry",
+      "source_locator": "Seasonal discussion and Fig. 11, PDF pages 17-18",
+      "qualifier": "Weak seasonal component; large error bars; previous shorter-record cycle differs. No annual dimension extrema or dated axes inferred.",
+      "eligible_for_geometry_animation": false
+    }
+  },
+  "data_acquisition_review_date": "2026-10-04",
+  "acquired_profile_context": {
+    "inventory_file": "research/antilles-ab0505-ladcp-profile-inventory.json",
+    "inventory_sha256": "491fbe8feb7393600888455c26390d67fe0a734ab2e248d9a0474161a0437227",
+    "diagnostic_file": "research/antilles-ab0505-400m-section-diagnostic.json",
+    "provider": "NOAA/AOML/PhOD WBTS",
+    "profile_count": 57,
+    "depth_samples": 22619,
+    "provider_usable_count": 40,
+    "provider_caution_count": 17,
+    "abaco_first_casts": 23,
+    "abaco_repeat_casts": 27,
+    "other_section_casts_excluded": 7,
+    "status": "acquired_profiles_and_derived_one_sided_diagnostic_not_full_width_admission",
+    "summary": "At fixed 400 m instrument depth, first May 2005 section is blocked by caution casts. Repeat has about 37 km sampled-peak-to-offshore-half-peak span, not full width. Source quality comments, unremoved tides, error velocities, missing-depth samples and cast times are retained. Whole-current and annual dimensions remain unresolved."
+  }
+}

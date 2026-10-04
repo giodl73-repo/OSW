@@ -1,0 +1,587 @@
+{
+  "schema": "osw-ocean-state-density-boundary-collocation-sensitivity-v1",
+  "status": "method_sensitivity_only_not_transformation_or_budget",
+  "source_family": "current_longhurst_geometry_2026-09-12_with_archived_oras5_2018_velocity",
+  "selection": {
+    "path": "research/ocean-state-sant-closed-box-selection-current-geometry-v1.json",
+    "sha256": "f65e3adb8b99f47cfd30ee549838fdd653dc1e3500b465dfe1a3c5bd75da39a6"
+  },
+  "centered_baseline": {
+    "path": "research/ocean-state-sant-closed-box-density-boundary-screen-2018.json",
+    "sha256": "6998984d072e9168e749ae907990725785c11ee978535d2ef802efa00f5ab730"
+  },
+  "partial_cell_fallback_count": 0,
+  "method": {
+    "centered": "mean of adjacent T-cell potential temperature and practical salinity before TEOS-10 conversion",
+    "upstream": "native positive U/V velocity selects first T cell; negative velocity selects second T cell before TEOS-10 conversion",
+    "same_support": "same native faces, wet levels, velocity, geometry, bins, and monthly fields as centered baseline",
+    "outward_sign": "positive is out of the box"
+  },
+  "months": [
+    {
+      "valid_time": "2018-02-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_wet_face_level_count": 3862,
+          "changed_bin_face_level_count": 12,
+          "changed_bin_fraction": 0.003107198,
+          "changed_bin_abs_volume_flux_Sv": 0.79551952,
+          "changed_bin_abs_flux_fraction": 0.004524097,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": 0.117913727,
+              "upstream_net_outward_Sv": 0.099953389,
+              "upstream_minus_centered_Sv": -0.017960338
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": -0.088019253,
+              "upstream_net_outward_Sv": -0.279550829,
+              "upstream_minus_centered_Sv": -0.191531576
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.027684802,
+              "upstream_net_outward_Sv": 0.181807112,
+              "upstream_minus_centered_Sv": 0.209491914
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_wet_face_level_count": 3824,
+          "changed_bin_face_level_count": 12,
+          "changed_bin_fraction": 0.003138075,
+          "changed_bin_abs_volume_flux_Sv": 0.92100836,
+          "changed_bin_abs_flux_fraction": 0.005287597,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": 0.084387521,
+              "upstream_net_outward_Sv": 0.067237839,
+              "upstream_minus_centered_Sv": -0.017149682
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": 0.116824976,
+              "upstream_net_outward_Sv": -0.007181553,
+              "upstream_minus_centered_Sv": -0.124006529
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.198964658,
+              "upstream_net_outward_Sv": -0.057808447,
+              "upstream_minus_centered_Sv": 0.141156211
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_wet_face_level_count": 3916,
+          "changed_bin_face_level_count": 17,
+          "changed_bin_fraction": 0.004341164,
+          "changed_bin_abs_volume_flux_Sv": 0.656438812,
+          "changed_bin_abs_flux_fraction": 0.003882148,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": 0.141797491,
+              "upstream_net_outward_Sv": 0.164998584,
+              "upstream_minus_centered_Sv": 0.023201093
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": -0.155279542,
+              "upstream_net_outward_Sv": -0.617109924,
+              "upstream_minus_centered_Sv": -0.461830381
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": 0.015649235,
+              "upstream_net_outward_Sv": 0.454278523,
+              "upstream_minus_centered_Sv": 0.438629288
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_wet_face_level_count": 3865,
+          "changed_bin_face_level_count": 15,
+          "changed_bin_fraction": 0.003880983,
+          "changed_bin_abs_volume_flux_Sv": 0.474848878,
+          "changed_bin_abs_flux_fraction": 0.002821583,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": 0.112113036,
+              "upstream_net_outward_Sv": 0.105283857,
+              "upstream_minus_centered_Sv": -0.006829179
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": -0.159743634,
+              "upstream_net_outward_Sv": -0.202271702,
+              "upstream_minus_centered_Sv": -0.042528068
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": 0.049854809,
+              "upstream_net_outward_Sv": 0.099212056,
+              "upstream_minus_centered_Sv": 0.049357247
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-05-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_wet_face_level_count": 3862,
+          "changed_bin_face_level_count": 9,
+          "changed_bin_fraction": 0.002330399,
+          "changed_bin_abs_volume_flux_Sv": 0.416269198,
+          "changed_bin_abs_flux_fraction": 0.001925139,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": 0.04185933,
+              "upstream_net_outward_Sv": -0.038087723,
+              "upstream_minus_centered_Sv": -0.079947053
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": 0.313450137,
+              "upstream_net_outward_Sv": 0.251956877,
+              "upstream_minus_centered_Sv": -0.06149326
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.354672458,
+              "upstream_net_outward_Sv": -0.213232145,
+              "upstream_minus_centered_Sv": 0.141440313
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_wet_face_level_count": 3824,
+          "changed_bin_face_level_count": 12,
+          "changed_bin_fraction": 0.003138075,
+          "changed_bin_abs_volume_flux_Sv": 0.547353592,
+          "changed_bin_abs_flux_fraction": 0.002693564,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": 0.079542613,
+              "upstream_net_outward_Sv": 0.008866285,
+              "upstream_minus_centered_Sv": -0.070676328
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": 0.046728374,
+              "upstream_net_outward_Sv": 0.164784873,
+              "upstream_minus_centered_Sv": 0.118056499
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.125600211,
+              "upstream_net_outward_Sv": -0.172980382,
+              "upstream_minus_centered_Sv": -0.047380171
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_wet_face_level_count": 3916,
+          "changed_bin_face_level_count": 5,
+          "changed_bin_fraction": 0.001276813,
+          "changed_bin_abs_volume_flux_Sv": 0.343157645,
+          "changed_bin_abs_flux_fraction": 0.001579364,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": 0.051454616,
+              "upstream_net_outward_Sv": -0.022798644,
+              "upstream_minus_centered_Sv": -0.07425326
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": 0.284819114,
+              "upstream_net_outward_Sv": 0.279766132,
+              "upstream_minus_centered_Sv": -0.005052982
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.33567848,
+              "upstream_net_outward_Sv": -0.256372238,
+              "upstream_minus_centered_Sv": 0.079306243
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_wet_face_level_count": 3865,
+          "changed_bin_face_level_count": 11,
+          "changed_bin_fraction": 0.002846054,
+          "changed_bin_abs_volume_flux_Sv": 0.38348781,
+          "changed_bin_abs_flux_fraction": 0.001889641,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": 0.113686012,
+              "upstream_net_outward_Sv": 0.046649082,
+              "upstream_minus_centered_Sv": -0.06703693
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": 0.576040438,
+              "upstream_net_outward_Sv": 0.332304635,
+              "upstream_minus_centered_Sv": -0.243735803
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.6890355,
+              "upstream_net_outward_Sv": -0.378262767,
+              "upstream_minus_centered_Sv": 0.310772733
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-08-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_wet_face_level_count": 3862,
+          "changed_bin_face_level_count": 8,
+          "changed_bin_fraction": 0.002071466,
+          "changed_bin_abs_volume_flux_Sv": 0.897265501,
+          "changed_bin_abs_flux_fraction": 0.004384401,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": 0.047991923,
+              "upstream_net_outward_Sv": -0.799819729,
+              "upstream_minus_centered_Sv": -0.847811653
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.04884583,
+              "upstream_net_outward_Sv": 0.798965823,
+              "upstream_minus_centered_Sv": 0.847811653
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_wet_face_level_count": 3824,
+          "changed_bin_face_level_count": 8,
+          "changed_bin_fraction": 0.00209205,
+          "changed_bin_abs_volume_flux_Sv": 0.734660905,
+          "changed_bin_abs_flux_fraction": 0.003666699,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": 0.013882162,
+              "upstream_net_outward_Sv": -0.438877328,
+              "upstream_minus_centered_Sv": -0.45275949
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.014673507,
+              "upstream_net_outward_Sv": 0.438085983,
+              "upstream_minus_centered_Sv": 0.45275949
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_wet_face_level_count": 3916,
+          "changed_bin_face_level_count": 5,
+          "changed_bin_fraction": 0.001276813,
+          "changed_bin_abs_volume_flux_Sv": 0.90985502,
+          "changed_bin_abs_flux_fraction": 0.004505573,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": -0.034080644,
+              "upstream_net_outward_Sv": -0.943935664,
+              "upstream_minus_centered_Sv": -0.90985502
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": 0.033195247,
+              "upstream_net_outward_Sv": 0.943050267,
+              "upstream_minus_centered_Sv": 0.90985502
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_wet_face_level_count": 3865,
+          "changed_bin_face_level_count": 5,
+          "changed_bin_fraction": 0.001293661,
+          "changed_bin_abs_volume_flux_Sv": 0.238140072,
+          "changed_bin_abs_flux_fraction": 0.001192809,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": -0.388327137,
+              "upstream_net_outward_Sv": -0.472053342,
+              "upstream_minus_centered_Sv": -0.083726204
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": 0.387535038,
+              "upstream_net_outward_Sv": 0.471261242,
+              "upstream_minus_centered_Sv": 0.083726204
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-11-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_wet_face_level_count": 3862,
+          "changed_bin_face_level_count": 25,
+          "changed_bin_fraction": 0.00647333,
+          "changed_bin_abs_volume_flux_Sv": 0.806019138,
+          "changed_bin_abs_flux_fraction": 0.003763365,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": -0.287311905,
+              "upstream_net_outward_Sv": -0.343091976,
+              "upstream_minus_centered_Sv": -0.05578007
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": 0.901320103,
+              "upstream_net_outward_Sv": 0.301766017,
+              "upstream_minus_centered_Sv": -0.599554085
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.612998986,
+              "upstream_net_outward_Sv": 0.04233517,
+              "upstream_minus_centered_Sv": 0.655334156
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_wet_face_level_count": 3824,
+          "changed_bin_face_level_count": 25,
+          "changed_bin_fraction": 0.006537657,
+          "changed_bin_abs_volume_flux_Sv": 0.859441176,
+          "changed_bin_abs_flux_fraction": 0.004191242,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": -0.277920725,
+              "upstream_net_outward_Sv": -0.351245211,
+              "upstream_minus_centered_Sv": -0.073324486
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": 0.693674306,
+              "upstream_net_outward_Sv": 0.421581172,
+              "upstream_minus_centered_Sv": -0.272093133
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.414801306,
+              "upstream_net_outward_Sv": -0.069383687,
+              "upstream_minus_centered_Sv": 0.345417619
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_wet_face_level_count": 3916,
+          "changed_bin_face_level_count": 24,
+          "changed_bin_fraction": 0.006128703,
+          "changed_bin_abs_volume_flux_Sv": 0.539189638,
+          "changed_bin_abs_flux_fraction": 0.002568308,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": -0.315791211,
+              "upstream_net_outward_Sv": -0.365522263,
+              "upstream_minus_centered_Sv": -0.049731052
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": 1.091144306,
+              "upstream_net_outward_Sv": 0.712183673,
+              "upstream_minus_centered_Sv": -0.378960633
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.7742863,
+              "upstream_net_outward_Sv": -0.345594615,
+              "upstream_minus_centered_Sv": 0.428691685
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_wet_face_level_count": 3865,
+          "changed_bin_face_level_count": 24,
+          "changed_bin_fraction": 0.006209573,
+          "changed_bin_abs_volume_flux_Sv": 0.385582203,
+          "changed_bin_abs_flux_fraction": 0.001878241,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": -0.291943586,
+              "upstream_net_outward_Sv": -0.382323934,
+              "upstream_minus_centered_Sv": -0.090380348
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": 0.685680971,
+              "upstream_net_outward_Sv": 0.544988434,
+              "upstream_minus_centered_Sv": -0.140692537
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.392802247,
+              "upstream_net_outward_Sv": -0.161729362,
+              "upstream_minus_centered_Sv": 0.231072885
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "boundary": "Changed bin assignments and bin-wise net fluxes measure tracer-collocation sensitivity. Neither version supplies vertical or mixing fluxes, native class tendencies, or assimilation terms. No density-class transformation, closure, or water-mass identity follows."
+}

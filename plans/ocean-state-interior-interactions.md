@@ -234,6 +234,16 @@ monthly-field timestamp and averaging convention have not been shown to define
 a matched tendency interval. It is therefore an inventory record, not a
 residual or closure calculation.
 
+A [provider time-metadata audit](../research/ocean-state-sant-temporal-support-audit-2018.json)
+now checks seven source fields for all four sampled months against their
+custodied URLs. They share midmonth time coordinates and `ave(x)` metadata, in
+line with the [ICDC ORAS5 monthly-field inventory](https://icdc.cen.uni-hamburg.de/thredds/fileServer/ftpthredds/EASYInit/oras5/DOCS/ORAS5_ICDC_variable_list_1x1.pdf).
+The local derivatives dropped those time coordinates. The probed source
+metadata have no explicit time-bounds field, and `interval_write` reports 31
+days even in February 2018. Thus the inventory's so-called endpoints are
+monthly-mean samples, not instantaneous endpoint states. Their differences
+remain descriptive changes between monthly means, not matched tendencies.
+
 A matching [density-stratum inventory](../research/ocean-state-sant-closed-box-density-inventory-2018.json) now computes TEOS-10 sigma-zero on every valid native
 T-cell volume in those boxes, then records the occupancy of four predeclared
 numeric density bins and their endpoint differences. These are property-space
@@ -245,6 +255,85 @@ those same bins using adjacent-cell T/S face means. It supplies the horizontal
 density-bin boundary terms needed for a future class budget, but is not itself
 a class-conversion result: vertical and mixing density-class terms, matched
 temporal support, and assimilation/restoring treatment remain missing.
+
+The [density-boundary collocation challenge](../research/ocean-state-sant-density-boundary-collocation-sensitivity-2018.json)
+repeats that screen on the identical native faces, wet levels, velocities, and
+fixed bins, assigning face density from the upstream T cell instead of the
+adjacent-cell mean. Across the primary box's four sampled months, 0.21–0.65% of
+valid face levels change bin. The largest primary bin-wise net-flux change is
+0.848 Sv (August 2018), even though the total flux is unchanged by bin
+reassignment. The three displaced controls are included in the receipt. Thus
+the centered class flux is a method-dependent screen, especially when a small
+net bin flux is compared with much larger opposing gross flows. Neither
+collocation yields a transformation rate or resolves the missing vertical,
+mixing, assimilation, and matched-time terms.
+
+A compact [twelve-month native field archive](../research/ocean-state-sant-closed-box-monthly-fields-2018.json)
+now extends the fixed box and all three controls through every month of 2018.
+It stores only the 20×19-cell neighborhood needed for their faces and
+reproduces the four earlier custodied months exactly. The resulting
+[monthly density-boundary series](../research/ocean-state-sant-density-boundary-monthly-series-2018.json)
+shows why the four-month pilot was insufficient for a seasonal claim. In July,
+the primary 27.0–27.5 sigma-zero bin has +1.539 Sv net outward under centered
+collocation and +1.168 Sv under upstream collocation; all three displaced
+controls retain outward centered signs. In August, that bin's small centered
++0.048 Sv becomes about −0.800 Sv upstream. These are monthly-mean products of
+velocity and tracer fields on a fixed horizontal perimeter. The result is a
+descriptive method-sensitive flux series, not a native mean advective flux,
+density-class conversion, matched inventory tendency, or total budget. July's
+control agreement also means it is a neighborhood-scale screen, not evidence
+that the primary box marks a uniquely defined physical boundary.
+
+The same compact source now drives a [twelve-month density inventory](../research/ocean-state-sant-density-inventory-monthly-series-2018.json)
+for the fixed box and controls, with exact reproduction of the four earlier
+inventory samples. The primary 26.5–27.0 sigma-zero bin is empty from July
+through October; the 27.0–27.5 bin occupies 13.60–16.40% of valid box volume
+across the year. The Observatory places these stock shares beside the separate
+horizontal boundary screen. Differences between monthly means and products
+of monthly-mean velocity and tracer fields still cannot be combined as a
+class-volume budget or attributed to a density transformation.
+
+A post hoc [density-cutoff challenge](../research/ocean-state-sant-density-cutoff-sensitivity-2018.json)
+shifts all three numerical σ₀ cutoffs together by −0.1 and +0.1 kg/m³ while
+keeping the boxes, native fields, faces, and collocation choices fixed. The
+zero-shift run reproduces the annual inventory and boundary receipts. July's
+middle-high bin stays net outward in every shifted scheme, under both
+collocation choices, for the primary box and all three controls. In the
+primary box its centered July flux ranges from +1.066 to +2.075 Sv across the
+cutoffs. August remains sign-sensitive. The baseline 26.5–27.0 bin's July–
+October absence is cutoff-dependent: raising the cutoffs gives that shifted
+bin positive occupancy in each of those months. This challenge strengthens
+the bounded July horizontal-screen result but does not identify a water mass,
+transformation mechanism, or closed budget.
+
+The next fixed [July repeat-year selection](../research/ocean-state-sant-july-repeat-selection-v1.json)
+chose the two nearest earlier Julys in the same ICDC ORAS5 monthly archive,
+2016 and 2017, before reading their T/S/U/V values. A compact
+[source receipt](../research/ocean-state-sant-july-repeat-fields-2016-2017.json)
+keeps the same native box neighborhood, and the
+[three-July sign screen](../research/ocean-state-sant-july-repeat-sign-screen-2016-2018.json)
+applies every existing cutoff shift and collocation method to the primary box
+and three controls. The strict predeclared rule **fails**: July 2016 and 2018
+pass, while the 2017 east control has −0.021 Sv under upstream collocation at
+the baseline cutoffs. The primary box itself remains outward in all three
+Julys under the tested choices. This one near-zero control failure prevents a
+claim that the sign uniformly repeats across the neighborhood. Three Julys
+from one assimilative product also cannot validate a persistent physical
+boundary or explain a density transformation.
+
+The [preselected July 2017 ensemble challenge](../research/ocean-state-sant-2017-july-ensemble-selection-v1.json)
+then fixed all four remaining ORAS5 members before reading their native
+T/S/U/V values. The [compact member source](../research/ocean-state-sant-2017-july-ensemble-fields.json)
+and [five-member sign screen](../research/ocean-state-sant-2017-july-ensemble-sign-screen.json)
+apply the same four boxes, three cutoff schemes, and two collocation choices.
+**Zero of five members pass** the strict rule. Opa0 and opa3 have outward
+primary baseline fluxes but each fails one east-control case; opa1, opa2, and
+opa4 have inward primary baseline fluxes. The east-control baseline upstream
+flux ranges from −0.892 to +1.343 Sv and changes sign across members. This
+exposes substantial within-product sensitivity, including the primary-box
+baseline sign, so the July 2017 outward result cannot be treated as an
+ensemble-stable feature. Members of one assimilative reanalysis are not
+independent-product replication or a formal uncertainty interval.
 
 ## Exit evidence for the first slice
 

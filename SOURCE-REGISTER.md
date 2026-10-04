@@ -158,3 +158,189 @@ records. Schematic shapes are not observed boundaries or diagnosed contours.
 | OG22 | Eastern Tropical South Pacific OMZ | [NOAA repository record](https://repository.library.noaa.gov/view/noaa/26936) | Regional circulation/oxygen context | No threshold contour |
 | OG23 | Arabian Sea OMZ | [NOAA OMZ explanation](https://oceanexplorer.noaa.gov/ocean-fact/omz/) | One of the major persistent OMZ settings | No threshold contour |
 | OG24 | Sargasso Sea | [NOAA Sargasso Sea page](https://prod-01-alb-www-noaa.woc.noaa.gov/gc-international-section/marine-protected-areas-mpas-sargasso-sea) | Current-bounded open-ocean ecosystem | “Oligotrophic” requires a declared field for mapping |
+
+## Ocean motion atlas release candidate
+
+The generated `almanac/release/v0.1.0/` package freezes its seven named input
+ledgers with SHA-256 receipts in `manifest.json`. Its `sources.json` records
+the individual URLs used by the current names, ranked measurements, eddy names,
+and NASA descriptions. It is a candidate OSW crosswalk, not a published dataset.
+
+| Source family | Admitted use | Limit |
+|---|---|---|
+| [NASA Perpetual Ocean releases](https://svs.gsfc.nasa.gov/5505) | Explicitly described motion forms and links to regional movie crops | Movie geography alone does not identify a current or individual eddy. NASA does not endorse OSW joins. |
+| [NOAA ocean current resources](https://oceanservice.noaa.gov/facts/current.html) and cited papers in the current ledger | Named-current identity and source-scoped length estimates | Six estimates qualify for the current published-length ranking; bounds and map-arrow spans use separate measures. |
+| [Horizon Marine Loop Current register](https://www.horizonmarine.com/loop-current-eddies) and papers in the eddy inventory | Source-specific named eddy labels and dated events | A shared Gulf gateway does not establish an individual footprint or NASA identity match. |
+| [OSW state geometry](figures/osw-province-atlas-interactive.svg) and credited map-arrow layer | Atlas navigation and labelled cartographic relations | The 5,432 current/state decisions do not establish measured physical passage. |
+
+Before external deposition, complete the source-by-source licensing and citation
+audit and the `plans/release-reconciliation.md` publication gate.
+
+
+### North Cape Northern-branch fitted profile
+
+Morozov, Pavlov, Pavlova and Fedorov (2017), *Polar Frontal Zone of the Barents
+Sea Western Trough Based on the Direct Measurements in 2007*, Physical
+Oceanography 2, 36–50, doi:10.22449/1573-160X-2017-2-36-50.
+[Primary PDF](https://physical-oceanography.ru/repository/issues/2017/02/05/20170205.pdf),
+full text read 2026-10-03. Abstract and Fig. 10/Currents p. 47 support the 8 km
+fit scale and 15-crossing count; Fig. 9 p. 46 defines LS05 averaging separately.
+Only attributed numerical facts, formula metadata and paraphrased source scope
+enter the working inventory. Whole-system length/width and annual range stay
+unknown; metric interpretation is explicitly OSW algebraic inference.
+
+
+### Atlantic Equatorial Undercurrent reach
+
+[Napolitano et al. (2022), primary institutional PDF](https://horizon.documentation.ird.fr/exl-doc/pleins_textes/2022-11/010086132.pdf),
+doi:10.1029/2021JC017999, introduction and observation/model sections: subsurface
+jet and island interaction geography. [Hormann and Brandt (2007), primary
+publisher page](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2006JC003931),
+section 2.3.1.1: observed 35 W section and core context. Both full sources read
+2026-10-03. OSW joins them with explicitly editorial equatorial vertices and a
+pre-island 5 E truncation; no source trajectory or whole-current endpoint claim.
+
+
+## NOAA WBTS AB0505 final LADCP profiles — 2026-10-04
+
+Provider: NOAA/OAR/AOML/PhOD and UM/RSMAS/MPO, WBTS/MOCHA/RAPID;
+R/V Knorr, May 2005. Access: https://www.aoml.noaa.gov/phod/wbts/data.php
+and its `GC_2005_05/FINAL_ADCP_PRODUCTS/ladcp_velfiles/` directory.
+Provider assessment: R. Smith, 15 January 2014, `AB0505_ADCP_evaluation.readme`.
+Local manifest: `research/source-data/noaa-wbts-ab0505/acquisition.json`;
+per-file URL, UTC acquisition time, original byte count and SHA256 retained.
+Raw profile headers retained, including instrument/process metadata and tides
+not removed. The assessment names IMF-GEOMAR v10.8 while headers name LDEO
+v10.8; original labels preserved. CP1252 source text decoded without editing
+pinned bytes. Five parser/diagnostic tests and offline regeneration verified.
+
+Scientific context: Meinen et al. (2019), Structure and Variability of the
+Antilles Current at 26.5 N, doi:10.1029/2018JC014836; NOAA repository PDF
+https://repository.library.noaa.gov/view/noaa/20909/noaa_20909_DS1.pdf.
+Relevant instrument, LADCP, section-date, mean-structure and data-access text
+inspected. Acquired data are local transverse profiles, not current axis geometry.
+Derived 400 m one-sided span requires independent scientific review; no
+published full width or along-current length admitted.
+
+## 2026-10-04: Persian Gulf outflow source dimensions
+
+Pous, Carton and Lazure (2004), GOGP99 part 2, DOI 10.1029/2003JC002146.
+Access: https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2003JC002146
+Full-text sections 2 and 3.1-3.3, Tables 1-3 inspected. Source audit:
+research/persian-gulf-gogp99-core-scope-audit.json. Numeric facts and OSW scope
+notes only; no source figures or raw arrays copied. Measurement admission
+remains pending. Author section distances and hydrographic widths are kept
+separate from geodesic axes and current-wide dimensions.
+
+## 2026-10-04: Red Sea REDSOX plume and channel scope
+
+Peters et al. (2005), Mixing and Entrainment in the Red Sea Outflow Plume,
+Part I: Plume Structure, DOI 10.1175/JPO2679.1. Author PDF:
+https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2018/03/Peters_2005_MixingEntrainment.pdf
+Sections 2, 3a, 5a and Figure 4 caption inspected. Bower et al. (2005),
+Equilibration and Circulation of Red Sea Outflow Water in Western Gulf of Aden,
+DOI 10.1175/JPO2787.1. Author PDF:
+https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2018/03/Bower_etal_2005_EquilibrationCirculation.pdf
+Sections 2, 3a-b, Table 1 and abstract inspected. Access date: 2026-10-04.
+
+Numeric facts and source locators retained in
+research/red-sea-redsox-branch-reach-scope-audit.json; no source figure geometry
+or raw arrays acquired. Winter reach, plume thickness, channel geography and
+post-descent water-mass products have separate roles. Differing channel lengths
+and cruise-start conventions remain explicit. Exact occupation dates, current
+axes, full-current dimensions and annual variation remain unresolved.
+
+## 2026-10-04: Tsuchiya general meridional width
+
+Rowe, Firing and Johnson (2000), Pacific Equatorial Subsurface Countercurrent
+Velocity, Transport, and Potential Vorticity, JPO 30, 1172–1187.
+Publisher full text:
+https://journals.ametsoc.org/view/journals/phoc/30/6/1520-0485_2000_030_1172_pescvt_2.0.co_2.xml
+NOAA author PDF: https://floats.pmel.noaa.gov/sites/default/files/atoms/files/gcj_1y.pdf
+Sections 2 and 3b inspected for stream-coordinate sampling, boundary methods
+and the 2-degree general width statement (printed 1179 / PDF index 7).
+Publisher text confirms the angular unit. No figures, raw profiles or paired
+edges acquired. General width, core-position excursions and PV-front scale
+remain distinct. The equatorial kilometre conversion is OSW unit normalization,
+not source geography or an annual range. Two current records share one source
+claim; northern/main southern applicability does not include secondary SSCC
+or the western Pacific NEUC.
+
+## 2026-10-04: Pacific NECC archived OSCAR section
+
+Public NOAA PIFSC ESR OSCAR third-degree mirror, dataset
+`yearly_336c_0b32_9cd3`, version 2017.0, variable `u` in m/s:
+https://oceanwatch.pifsc.noaa.gov/erddap/info/yearly_336c_0b32_9cd3/index.html
+Acquired 2013 five-day section samples at 220 E / 140 W, 0–12 N and nominal
+15 m. Source query, bytes and metadata checksums saved under
+`research/source-data/oscar-necc-2013-140w/`. Use the archive metadata license;
+raw source files are separate from OSW-derived monthly profiles and boundaries.
+
+Context: Hsin and Qiu (2012), DOI 10.1029/2011JC007794,
+https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2011JC007794
+Sections 2.1–2.4 and 4.1–4.2.1 inspected. Their 1-degree 1992–2010 analysis is
+not reproduced by this third-degree 2013 section. Their chosen integration band
+is not substituted for paired current edges. Seasonal product-method differences
+remain a validation gate. No paper figure digitized or repackaged.
+
+
+## Labrador Current regional width description — 2026-10-04
+
+Thompson, Huang, Veronneau, Wright and Lu (2009), *Mean surface topography of
+the northwest Atlantic: Comparison of estimates based on satellite, terrestrial
+gravity, and oceanographic observations*, JGR 114, C07015,
+https://doi.org/10.1029/2008JC004859. Publisher section 4.2 paragraphs 29–33
+inspected via indexed full-text search; direct URL returned 403, repository PDF
+not acquired. Paragraph 29 gives an approximate 50 km main slope-current scale.
+No paired edges, occupation date or fixed averaging layer transferred.
+Narrow factual extraction and paraphrase with citation; no source figure or
+article copy redistributed. Audit: `research/labrador-thompson-2009-regional-width-scope-audit.json`.
+Independent scientific source/measurement admission remains pending.
+
+## North Brazil–Guyana mean oblique widths — 2026-10-04
+
+Dimoune, Birol, Hernandez, Leger and Araujo (2023), Revisiting the tropical
+Atlantic western boundary circulation from a 25-year time series of satellite
+altimetry data, Ocean Science 19, 251–268, doi:10.5194/os-19-251-2023.
+https://os.copernicus.org/articles/19/251/2023/os-19-251-2023.html
+Relevant publisher HTML sections and indexed PDF table inspected; no raw fields
+or figure digitization. Narrow numerical extraction with attribution of
+NBC1/HS1 520 km, NBC2/HS2 220 km and NBC3/HS3 440 km mean zero-contour widths.
+Oblique geometry, source naming and table/prose conflict preserved in
+`research/north-brazil-guiana-oblique-mean-width-scope-audit.json`.
+No new along-current extent or physical OSW relation admitted.
+
+## EAC institutional regional width — 2026-10-04
+
+NSW-IMOS Node Science and Implementation Plan 2015-25, edited Robin Robertson,
+dated 25 September 2014; section 3.3.1, printed page 23.
+https://imos.org.au/wp-content/uploads/2024/07/NSW-IMOS_Node_Plan_2015-25_Final.pdf
+Text-only inspection supports a 30 km typical current scalar, not fixed-depth
+or dated paired width. No raw data or PDF pixel extraction. Underlying cited
+studies remain unverified for this metric. Separate context:
+https://csiropedia.csiro.au/east-australian-current-on-science-watch/
+(CSIRO Media, 18 April 2012; updated 28 June 2023): 100 km influence scale,
+240 km array span and 200 km eddy diameter are not merged with current width.
+Audit: research/east-australian-imos-regional-width-scope-audit.json.
+Editorial only; no source asset redistribution or canonical measurement admission.
+
+## Leeuwin Deng 2008 monthly fitted widths — 2026-10-04
+
+Deng, Hwang, Coleman and Featherstone (2008), TAO 19, 135-149;
+doi:10.3319/TAO.2008.19.1-2.135(SA). Publisher metadata:
+https://tao.tcgu.org.tw/index.php/articles/archive/oceanic-science/item/750-20081912135sa
+Published-layout PDF acquired from mirror:
+https://pdfs.semanticscholar.org/21be/8b2802335b0f945b23cde6ece4d5e3647f09.pdf
+Custody receipt: research/source-data/leeuwin-deng-2008/acquisition.json.
+Scope audit: research/leeuwin-deng-2008-monthly-fitted-width-scope-audit.json.
+Source pages 138, 143 and 144 inspected visually. No public PDF redistribution
+or underlying altimetry reprocessing claimed. Only April/September a101 widths
+extracted; period-label and fitted boundary assumptions remain review gates.
+
+## Liu and Gan (2012): Kuroshio East China Sea width diagnostics
+
+DOI: https://doi.org/10.1016/j.dsr.2011.10.008 . Published layout, 12 pages, acquired from Xiamen University-hosted PDF on 2026-10-04; custody in `research/source-data/kuroshio-liu-gan-2012/acquisition.json`. Method section 2.2 (page 26), regional means sections 3.1/3.2 (pages 27/29), summary page 34. AVISO 1993-2008 weekly surface geostrophic product; along-stream cutoff 0.1 m/s. Three scalar prose means extracted, no boundary geometry digitized, no uncertainty/ranking/canonical admission inferred. Scope audit: `research/kuroshio-liu-gan-2012-stream-mean-width-scope-audit.json`. Local acquisition does not establish public redistribution permission.
+
+### Liu and Gan (2012) Figure 6a extraction
+
+Same pinned 12-page PDF as the preceding Kuroshio source receipt. Figure 6a, printed page 30, sampled with explicit color-pixel calibration in `research/source-data/kuroshio-liu-gan-2012/figure6a-extraction.json`. Four historical regional profiles; 59 readable values, five unresolved samples; no spring/autumn regional scalar means or geographic coordinates inferred. Decoded RGB hash and runtime stored in `research/kuroshio-ecs-seasonal-width-profile-extraction.json`; local rules in `plans/kuroshio-seasonal-width-profile-extraction-protocol-v1.md`.

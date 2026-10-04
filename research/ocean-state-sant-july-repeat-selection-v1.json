@@ -1,0 +1,17 @@
+{
+  "schema": "osw-ocean-state-sant-july-repeat-selection-v1",
+  "status": "selected_before_2016_2017_field_inspection",
+  "selected_on": "2026-09-18",
+  "question": "Does the July 2018 middle-high numeric density-bin outward horizontal screen recur in the two nearest earlier Julys?",
+  "selection_rule": "Use July 2017 and July 2016, the two nearest earlier Julys in the same ICDC ORAS5 ORCA025 opa0 monthly archive, alongside the already archived July 2018 box crop.",
+  "fixed_support": {
+    "geometry": "research/ocean-state-sant-closed-box-selection-current-geometry-v1.json",
+    "crop": "research/ocean-state-sant-closed-box-monthly-fields-2018.json",
+    "primary_and_controls": ["primary", "north_control", "south_control", "east_control"],
+    "density_cutoffs_sigma0_kg_m3": [26.5, 27.0, 27.5],
+    "cutoff_challenges_sigma0_kg_m3": [-0.1, 0.0, 0.1],
+    "collocation_methods": ["adjacent_T_cell_mean", "upstream_T_cell"]
+  },
+  "falsification": "The July 2018 sign is not a repeat-year pattern if either selected earlier July has a non-positive middle-high-bin net outward term under any fixed box, collocation method, or cutoff challenge. A sign pass remains a bounded method-and-year screen, not a persistent physical state boundary.",
+  "boundary": "This selection fixes years and methods before the 2016 and 2017 values are read. It does not select independent reanalysis products or supply vertical, mixing, native monthly mean advective flux, or matched inventory-tendency evidence."
+}

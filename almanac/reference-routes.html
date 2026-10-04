@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Current atlas and reference routes — OSW</title>
+  <link rel="stylesheet" href="screened-atlas/styles.css">
+  <script src="current-section-locator.js?v=reported-month-2" defer></script>
+  <script src="atlas-timeline.js?v=dated-state-links-2" defer></script>
+  <script src="atlas-observed-sections.js?v=2" defer></script>
+  <script src="atlas-monthly-section.js?v=3" defer></script>
+  <script src="atlas-monthly-width.js?v=1" defer></script>
+  <script src="atlas-seasonal-width-profile.js?v=2" defer></script>
+  <script src="atlas-state-navigation.js?v=review-2" defer></script>
+  <script src="atlas-directory.js?v=state-map-3" defer></script>
+  <script src="atlas-width-evidence.js?v=1" defer></script>
+  <script src="reference-route-atlas.js?v=seasonal-profile-39" defer></script>
+  <script src="reference-routes.js?v=initial-focus-24" defer></script>
+  <script src="atlas-presentation.js?v=1" defer></script>
+  <style>
+    .route-map { display:block;width:100%;max-width:800px;height:auto; }
+    .route-card, .inventory-addition-card { overflow-wrap:anywhere;scroll-margin-top:1rem; }
+    .inventory-addition-card:focus { outline:3px solid #087e9a;outline-offset:3px; }
+    .atlas-state-region { cursor:pointer; }
+    .atlas-state-region path {fill:#fff;fill-opacity:.001;stroke:transparent;stroke-width:2;}
+    .atlas-state-region:hover path,.atlas-state-region:focus path {fill-opacity:.12;stroke:#82d6ff;}
+    .atlas-state-region[aria-pressed=true] path {fill:#ffc663;fill-opacity:.12;stroke:#ffc663;}
+    .atlas-state-region:focus {outline:none;}
+    .atlas-width-evidence {margin:.8rem 0;padding:.6rem;border:1px solid #a7c5cf;border-radius:.3rem;}
+    .atlas-width-evidence h4 {margin:.2rem 0;}
+    .atlas-width-record {margin:.4rem 0;padding:.3rem 0;border-top:1px solid #a7c5cf;}
+    .atlas-width-record summary {font-size:.82rem;overflow-wrap:anywhere;cursor:pointer;}
+    #route-atlas-preview .atlas-width-record p {font-size:.8rem;}
+    .atlas-directory { margin:1rem 0; }
+    .atlas-directory-list { display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:.3rem;max-height:260px;overflow:auto; }
+    .atlas-directory-item { text-align:left;padding:.35rem .5rem;font-size:.82rem;background:#eef6f5;color:#133c49;border:1px solid #a7c5cf;min-width:0;overflow-wrap:anywhere; }
+    .atlas-directory-item[hidden] { display:none; }
+    .atlas-directory-item span,.atlas-directory-item small { display:block; }
+    .atlas-directory-item small {font-size:.7rem;color:#45646e;}
+    .atlas-directory-item.updated { border-left:4px solid #b97913; }
+    .atlas-directory-item[aria-pressed=true] { outline:2px solid #056078;outline-offset:-2px;background:#d4eceb; }
+    .atlas-directory-item:focus-visible { outline:3px solid #056078; }
+    .atlas-directory input {max-width:100%;box-sizing:border-box;}
+    .route-atlas-controls { display:flex;flex-wrap:wrap;align-items:center;gap:.7rem; }
+    .route-atlas-controls label { display:flex;flex-wrap:wrap;align-items:center;gap:.5rem; }
+    .route-atlas-controls select { max-width:min(320px,80vw); }
+    #route-atlas-map { display:block;width:100%;aspect-ratio:2;touch-action:none;background:#102f3b;border:1px solid #45646e;cursor:grab; }
+    #route-atlas-map:active { cursor:grabbing; }
+    .section-locator-map {display:block;width:100%;aspect-ratio:2;background:#102f3b;border:1px solid #45646e;}
+    .route-atlas-section-locator {fill:none;stroke:#82d6ff;stroke-width:3;stroke-dasharray:2 3;cursor:pointer;}
+    .route-atlas-section-locator.updated {stroke:#ffc663;stroke-width:4;}
+    .route-atlas-section-locator.selected,.route-atlas-section-locator:focus {stroke:#ffc663;stroke-width:5;}
+    .route-atlas-section-locator:focus {outline:none;filter:drop-shadow(0 0 2px white);}
+    #route-atlas-map.has-observed-samples .route-atlas-line,#route-atlas-map.has-observed-samples .route-atlas-dated-line {opacity:.25;}
+    #route-atlas-map.has-observed-samples .route-atlas-station {opacity:.4;}
+    .atlas-observed-section-map {display:block;width:100%;aspect-ratio:2;background:#102f3b;}
+    .atlas-monthly-chart {display:block;width:100%;background:white;border:1px solid #a7c5cf;}
+    .atlas-observed-station {cursor:pointer;}
+    .atlas-observed-station circle {stroke:#133c49;stroke-width:1;}
+    .atlas-observed-station text {opacity:0;fill:white;stroke:#102f3b;stroke-width:1;paint-order:stroke;pointer-events:none;}
+    .atlas-observed-station:hover text,.atlas-observed-station:focus text {opacity:1;}
+    .atlas-observed-station:focus {outline:none;}
+    .atlas-observed-station:focus circle,.atlas-observed-station.selected-cast circle {stroke:white;stroke-width:3;}
+    .atlas-observed-station.updated circle {stroke:#ffc663;stroke-width:3;}
+    .route-atlas-line { fill:none;stroke:#64dfce;stroke-width:3;cursor:pointer; }
+    .route-atlas-dated-line { fill:none;stroke:#81ceff;stroke-width:3;cursor:pointer; }
+    .route-atlas-dated-line.dated_analyzed_surface_front { stroke:#e7a7ff;stroke-dasharray:7 4; }
+    .route-atlas-dated-line.selected,.route-atlas-dated-line:focus { stroke:#ffc663;stroke-width:5; }
+    .route-atlas-dated-line:focus { outline:none;filter:drop-shadow(0 0 2px white); }
+    .route-atlas-dated-line.updated { stroke:#ffc663;stroke-width:4; }
+    .route-atlas-dated-map { display:block;width:100%;aspect-ratio:2;background:#102f3b;border:1px solid #45646e; }
+    .route-atlas-eddy-map {display:block;width:100%;aspect-ratio:2;background:#102f3b;border:1px solid #45646e;}
+    .route-atlas-eddy-map.updated {border:3px solid #b97913;box-sizing:border-box;}
+    .route-atlas-eddy-map .route-atlas-eddy text {stroke-width:1;}
+    .route-atlas-dated-preview { margin:0;padding:0;border:0;background:none; }
+    .route-atlas-dated-preview h4 { margin:.6rem 0; }
+    .route-atlas-dated-preview .route-atlas-controls { display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:.3rem; }
+    .route-atlas-dated-preview button { font-size:.8rem;padding:.4rem; }
+    .route-atlas-station { cursor:pointer; }
+    .route-atlas-station circle { fill:#133c49;stroke:#e0f6f3;stroke-width:2; }
+    .route-atlas-station text { opacity:0;fill:white;stroke:#102f3b;stroke-width:3;paint-order:stroke;pointer-events:none; }
+    .route-atlas-station:hover text,.route-atlas-station:focus text { opacity:1; }
+    .route-atlas-station.selected circle,.route-atlas-station:focus circle { fill:#ffc663;stroke:white; }
+    .route-atlas-eddy { cursor:pointer; }
+    .route-atlas-eddy circle { fill:#654273;stroke:#f1c3ff;stroke-width:2; }
+    .route-atlas-eddy text { opacity:0;fill:white;stroke:#102f3b;stroke-width:3;paint-order:stroke;pointer-events:none; }
+    .route-atlas-eddy:hover text,.route-atlas-eddy:focus text { opacity:1; }
+    .route-atlas-eddy-footprint { fill:#dc9aff33;stroke:#e5b4ff;stroke-width:2;cursor:pointer; }
+    .route-atlas-eddy.selected circle,.route-atlas-eddy:focus circle { fill:#ffc663;stroke:white; }
+    .route-atlas-eddy-footprint.selected,.route-atlas-eddy-footprint:focus { stroke:#ffc663;stroke-width:4; }
+    .route-atlas-station.updated circle,.route-atlas-eddy.updated circle { stroke:#ffc663;stroke-width:4; }
+    .route-atlas-line.updated,.route-atlas-eddy-footprint.updated { stroke:#ffc663;stroke-width:4; }
+    .route-atlas-update-note { border-left:4px solid #b97913;padding-left:.7rem; }
+    .route-atlas-line.selected,.route-atlas-line:focus { stroke:#ffc663;stroke-width:5; }
+    .route-atlas-line.route-atlas-related { stroke:#bce9ff;stroke-width:4;stroke-dasharray:6 3; }
+    .route-atlas-station.route-atlas-related circle { fill:#347e99;stroke:#bce9ff;stroke-width:3; }
+    .route-atlas-workspace { display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;align-items:start; }
+    .route-atlas-workspace.has-card { grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); }
+    #route-atlas-preview { min-width:0;max-height:70vh;overflow:auto;padding:1rem;background:#eef6f5;border:1px solid #a7c5cf;border-radius:.4rem; }
+    #route-atlas-preview h3 { margin-top:0; }
+    #route-atlas-preview p { font-size:.92rem; }
+    .route-atlas-identity-facets { display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:.3rem .7rem;font-size:.85rem; }
+    .route-atlas-identity-facets dt { font-weight:600; }
+    .route-atlas-identity-facets dd { margin:0;overflow-wrap:anywhere; }
+    .route-atlas-local-dimensions {max-width:100%;overflow-x:auto;}
+    .route-atlas-local-dimensions table {font-size:.8rem;min-width:340px;}
+    .route-atlas-local-dimensions caption {text-align:left;}
+    #route-atlas-preview .route-map { background:white;max-height:320px;object-fit:contain; }
+    #route-atlas-preview [aria-pressed=true] { background:#a76509; }
+    @media(max-width:55rem) { .route-atlas-workspace.has-card { grid-template-columns:minmax(0,1fr); } #route-atlas-preview { max-height:none; } }
+    .atlas-timeline {margin:.75rem 0;}
+    .atlas-timeline-controls {display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;margin:.5rem 0;}
+    .atlas-timeline-controls label {display:flex;flex-direction:column;max-width:100%;}
+    .atlas-timeline-controls select {max-width:100%;font-size:.85rem;}
+    .atlas-timeline-map {display:block;width:100%;aspect-ratio:2;background:#102f3b;border:1px solid #45646e;}
+    .atlas-timeline-line {fill:none;stroke:#ffe090;stroke-width:4;pointer-events:none;}
+    body.atlas-presentation main {max-width:1800px;padding:1rem;}
+    body.atlas-presentation main > :not(#route-atlas) {display:none;}
+    body.atlas-presentation #route-atlas {display:flex;flex-direction:column;gap:.4rem;}
+    body.atlas-presentation #route-atlas > h2 {margin:.3rem 0;}
+    body.atlas-presentation #route-atlas > p {margin:.2rem 0;font-size:.85rem;}
+    body.atlas-presentation #route-atlas-workspace {order:1;}
+    body.atlas-presentation #atlas-directory {order:2;}
+    body.atlas-presentation #route-atlas-map {height:auto;aspect-ratio:2;}
+    body.atlas-presentation #route-atlas-preview {max-height:65vh;}
+    body.atlas-presentation .atlas-map-explanation {display:none;}
+    body.atlas-presentation #route-atlas > [hidden] {display:none;}
+    @media(max-width:55rem) {
+      body.atlas-presentation #route-atlas-map {height:auto;}
+      body.atlas-presentation #route-atlas-preview {max-height:none;}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to current atlas</a>
+  <header class="site-head"><strong>OSW</strong><nav aria-label="Ocean motion"><a href="query.html">Query atlas</a><a href="index.html">Almanac</a><a href="object.html">Object records</a><a href="movies.html">NASA crops</a></nav></header>
+  <main id="main" tabindex="-1">
+    <p class="eyebrow">OSW · currents and eddies</p>
+    <h1>Current atlas</h1>
+    <nav aria-label="Within route review"><a href="#route-atlas">Current atlas</a> · <a href="#comparison-title">Length order</a> · <a href="#routes-title">Route maps</a> · <a href="#queue-title">Planning queue and taxonomy</a> · <a href="#inventory-additions-title">Proposed additions</a> · <a href="#width-title">Widths and seasonal ranges</a></nav>
+    <p class="lead">Explore the world map, select a current or eddy, and zoom into its visual card. Current route cards show the path behind each approximate length, its scope, and the evidence used to draw it.</p>
+    <section id="route-atlas" aria-labelledby="route-atlas-title">
+      <h2 id="route-atlas-title">Current atlas · start with the world</h2>
+      <p>Select a current to zoom to its reference route and see its map card beside the atlas. Return to Global view to explore another current. Pan by dragging; zoom with the buttons, mouse wheel or two-finger pinch. With the map focused, use arrow keys to pan, + or − to zoom, and Home for Global view.</p>
+      <div class="route-atlas-controls"><button id="route-atlas-out" type="button" aria-label="Zoom out">−</button><button id="route-atlas-in" type="button" aria-label="Zoom in">+</button><button id="route-atlas-world" type="button">Global view</button><label>Current <select id="route-atlas-select"><option value="">Choose a current</option></select></label><label>Eddy <select id="route-atlas-eddy-select"><option value="">Choose an eddy</option></select></label><label><input id="route-atlas-eddy-toggle" type="checkbox" checked> Show eddies</label><a id="route-atlas-card-link" hidden>Open current map card ↓</a></div>
+      <div class="route-atlas-controls"><button id="atlas-presentation-toggle" type="button" aria-pressed="false">Map-first view</button><button id="atlas-index-toggle" type="button" aria-controls="atlas-directory" aria-expanded="false" hidden>Browse all 240 entries</button><button id="route-atlas-refresh" type="button">Refresh atlas</button><button id="route-atlas-seen" type="button">Mark updates seen</button><a href="dashboard.html">Evidence dashboard</a></div><p id="route-atlas-update-summary" role="status" aria-live="polite">Checking inventory updates…</p>
+      <p id="route-atlas-status" role="status" aria-live="polite">Loading current atlas…</p>
+      <p class="footnote">Equirectangular longitude/latitude map with approximate OSW state shapes and a coarse coastline. Zoom enlarges this display geometry; it does not add coastal detail or measurement precision.</p>
+      <section id="atlas-directory" class="atlas-directory" aria-labelledby="atlas-directory-title">
+        <h3 id="atlas-directory-title">Find any current or eddy</h3>
+        <div class="route-atlas-controls"><label>Search <input type="search" placeholder="Name or map evidence" aria-controls="atlas-directory-list"></label><label>Show <select aria-controls="atlas-directory-list"><option value="all">All entries</option><option value="currents">Currents</option><option value="eddies">Eddies and detections</option><option value="updated">Updated since saved baseline</option></select></label><label>OSW state <select id="atlas-directory-state" aria-controls="atlas-directory-list"><option value="">All states</option></select></label></div>
+        <p class="atlas-directory-state-note"></p>
+        <p role="status" aria-live="polite">Loading inventory index…</p>
+        <div id="atlas-directory-list" class="atlas-directory-list" aria-label="Ocean feature index"></div>
+        <p class="footnote">Select an entry to open its map card. Locator points and shared gateways do not establish a route or footprint. Amber edges indicate saved inventory updates.</p>
+      </section>
+      <p id="atlas-state-map-note" class="footnote" role="status" aria-live="polite">Loading clickable OSW state shapes…</p>
+      <div id="route-atlas-workspace" class="route-atlas-workspace"><svg id="route-atlas-map" viewBox="60 90 1480 740" role="group" aria-label="Interactive global current and eddy atlas"><image href="../figures/ocean-motion-dashboard-ground.svg" x="60" y="90" width="1480" height="740" opacity=".45"/><g id="route-atlas-features"></g></svg><aside id="route-atlas-preview" aria-label="Selected ocean feature" aria-live="polite" hidden></aside></div>
+      <p class="atlas-map-explanation">Dashed blue section locators show reported latitude spans from local samples; each card states day or month precision. They are not current axes or footprints. Teal lines are editorial reference routes; outlined circles are name locators. When an observed-section card is selected, small filled points locate its instruments; its card states quality and sampling dates. Blue lines are saved geostrophic diagnostics and dashed purple lines are analyzed surface fronts, with their dates available on hover or keyboard focus. These differ in method and date and do not establish a whole-current axis, width or annual extent. Purple markers show eddy name locations; shared regional gateways collect names whose individual locations are unresolved. Purple outlines are dated polygons or contour proxies, not simultaneous live eddies. All 100 currents and 136 named eddies are selectable, plus four dated operational detections.</p>
+    </section>
+    <div class="status"><strong>Internal review candidates</strong><p>These OSW sketches have not received independent scientific route review or entered the canonical length measurements. Their scenario ranges describe selected assumptions, not statistical confidence intervals. The eleven source-reported estimates remain separate.</p><p id="route-status" role="status" aria-live="polite">Loading route inventory…</p></div>
+    <section aria-labelledby="measurement-rules-title">
+      <h2 id="measurement-rules-title">Measurement rules · v1.2</h2>
+      <p>Define the branch, layer, season and start/end gates first. Measure the declared path with WGS84 geodesics. Separate source geography from OSW-selected vertices. Round regional estimates to 100 km; the envelope comes from specified alternatives, not a confidence interval. Shared calculation rules do not make different scopes identical.</p>
+      <p><a href="../plans/ocean-current-measurement-protocol-v1.md">Read all measurement rules and review requirements</a> · <a href="../research/ocean-current-measurement-protocol-audit.json">Download the latest conformance audit</a></p>
+    </section>
+    <section aria-labelledby="comparison-title">
+      <h2 id="comparison-title">Reference routes in length order</h2>
+      <p>Coherent jets, specified branches and source-defined regional extents have different scopes. This is provisional reference-route ordering, not a uniform ranking of whole currents. Studied reaches appear separately below. Where rounded scenario envelopes overlap, order can change. Position bounds treat those envelopes independently; they are conservative sensitivity bounds, not probabilities or statistical rank intervals.</p>
+      <div class="table-wrap"><table><caption>OSW approximate reference routes</caption><thead><tr><th scope="col">Current</th><th scope="col">Approximate route length</th><th scope="col">Scenario range</th><th scope="col">Ordering sensitivity</th><th scope="col">Scope</th></tr></thead><tbody id="reference-route-rows"></tbody></table></div>
+    </section>
+    <section aria-labelledby="routes-title"><h2 id="routes-title">Inspect routes, assumptions and atlas links</h2><p>Dashed paths are editorial reference routes. Pale alternatives show finite scenarios. State links and NASA crop links are display-geography joins; they do not establish physical passage or NASA identification of the current.</p><div id="route-cards"></div></section>
+    <section aria-labelledby="queue-title">
+      <h2 id="queue-title">All remaining current decisions</h2>
+      <p>This inventory covers the 89 currents without a published ranked estimate. An unbuilt route remains unknown. Existing lower bounds, reaches and section measurements keep their original meanings.</p>
+      <details><summary>OSW route planning taxonomy</summary><p>These categories assign a primary next step, not an official physical classification or scientific approval. A record may have several constraints; the existing ledger kind and source scope remain visible. Family members, seasonal regimes, study reaches and proposed connections need distinct length rules.</p><div class="table-wrap"><table><caption>Construction strategies across all 89 records</caption><thead><tr><th scope="col">Strategy</th><th scope="col">Coverage</th><th scope="col">Reason</th></tr></thead><tbody id="strategy-rows"></tbody></table></div></details>
+      <label>Find a current <input id="route-query" type="search"></label>
+      <label>Route coverage <select id="route-coverage"><option value="all">All remaining currents</option><option value="candidate">Has a route candidate</option><option value="unbuilt">Route not constructed</option></select></label>
+      <label>Construction strategy <select id="route-strategy"><option value="all">All strategies</option></select></label>
+      <p id="queue-count" role="status" aria-live="polite"></p>
+      <div class="table-wrap"><table><caption>Remaining current reference-path decisions</caption><thead><tr><th scope="col">Current</th><th scope="col">Existing length evidence</th><th scope="col">Planning strategy and next step</th><th scope="col">Route decision</th><th scope="col">Scope and source</th></tr></thead><tbody id="route-queue-rows"></tbody></table></div>
+      <p><a href="../research/ocean-current-reference-path-candidates.json">Download the candidate catalog and all 89 decisions (JSON)</a> · <a href="../research/ocean-current-route-strategy-input.json">Planning taxonomy and assignments (JSON)</a> · <a href="../plans/ocean-current-reference-path-lengths.md">Estimation method and next steps</a></p>
+    </section>
+    <section aria-labelledby="width-title">
+      <h2 id="width-title">Widths and seasonal ranges</h2><p><a href="seasons.html">Open animated seasonal explorer</a></p>
+      <p>Widths belong to a region, layer and time period. Seasonal variation, observed sample ranges and measurement uncertainty are different quantities. Route scenario ranges above test selected assumptions; they are not measured annual length ranges. Matching branch, gates and layer are required before comparing seasonal lengths.</p>
+      <p id="width-status" role="status" aria-live="polite">Loading width evidence…</p>
+      <div id="width-seasonal-summaries"></div>
+      <div class="table-wrap"><table><caption>Scoped published width evidence · editorial extraction</caption><thead><tr><th scope="col">Current</th><th scope="col">Approximate width</th><th scope="col">Season / period</th><th scope="col">Scope and definition</th><th scope="col">Source</th></tr></thead><tbody id="width-rows"></tbody></table></div>
+      <details><summary>Width coverage for all 100 names</summary><p>Not assessed means the width source search is incomplete. Pending source review means an existing mention has been identified. Sources reviewed without a comparable numeric current width means inspected evidence has not supplied a compatible number; it does not establish physical absence.</p><div class="table-wrap"><table><caption>Width evidence decisions</caption><thead><tr><th scope="col">Current</th><th scope="col">Status</th><th scope="col">Next action</th></tr></thead><tbody id="width-decision-rows"></tbody></table></div></details>
+      <p><a href="../research/ocean-current-width-inventory.json">Download width evidence and all coverage decisions (JSON)</a> · <a href="../plans/ocean-current-width-measurement-protocol-v1.md">Width measurement rules</a></p>
+    </section>
+    <section aria-labelledby="inventory-additions-title">
+      <h2 id="inventory-additions-title">Proposed inventory additions</h2>
+      <p>The 100-name ledger is a working inventory. Newly identified names require identity and scope review, including whether the flow is intermittent, seasonal, a branch or an eddy family.</p>
+      <p id="inventory-addition-status" role="status" aria-live="polite">Loading proposed additions…</p>
+      <div id="inventory-addition-cards"></div>
+      <p><a href="../research/ocean-current-inventory-expansion-candidates.json">Download proposed additions and evidence (JSON)</a></p>
+    </section>
+  </main>
+</body>
+</html>

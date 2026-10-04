@@ -1,0 +1,1498 @@
+{
+  "schema": "osw.almanac.named-currents.v1",
+  "as_of": "2026-10-02",
+  "scope": "First source-backed set of named currents and current systems, anchored to NOAA's currents glossary and map and extended with regional primary sources; not an exhaustive world register.",
+  "ranking_rule": "Only published approximate along-current or system-length estimates admitted as established flows are ordered. Proposed continuity hypotheses, sampled reaches, derived or published lower bounds, and unknown lengths are unranked. Estimates with different system boundaries are not precise head-to-head measurements.",
+  "sources": {
+    "noaa_map": "https://www.vos.noaa.gov/docs/marine_info_guide.pdf",
+    "noaa_glossary": "https://www.tidesandcurrents.noaa.gov/glossary.html",
+    "regional_oceanography_atlantic": "https://incois.gov.in/Tutor/regoc/pdffiles/colour/single/14P-Atlantic.pdf",
+    "noaa_loop": "https://oceanservice.noaa.gov/facts/loopcurrent.html",
+    "noaa_aoml": "https://www.aoml.noaa.gov/phod/altimetry/cvar/index.php",
+    "acc_length": "https://doi.org/10.1029/2021JC017899",
+    "nasa_acc_length": "https://www.nasa.gov/centers-and-facilities/jpl/seal-takes-ocean-heat-transport-data-to-new-depths/",
+    "california_length": "https://meetings.pices.int/publications/special-publications/NPESR/2004/File_10_pp_177_192.pdf",
+    "kuroshio_length": "https://tos.org/oceanography/assets/docs/28-4_yj-yang.pdf",
+    "humboldt_system_extent": "https://repositorio.imarpe.gob.pe/bitstream/20.500.12958/2108/1/Purca%20Cuicapusa%2C%20Sara.pdf",
+    "kuroshio_extension_kess": "https://www.whoi.edu/science/PO/POOL/projects.html",
+    "leeuwin_extent": "https://api.research-repository.uwa.edu.au/ws/portalfiles/portal/12257343/THESIS_DOCTOR_OF_PHILOSOPHY_ONG_Jia_Lin_Joyce_2017.pdf",
+    "cartographic_map": "https://services3.arcgis.com/o98K21Ga5N91Ugjw/ArcGIS/rest/services/Hurricane%20TracksAA/FeatureServer/11",
+    "caribbean_fisheries_oceanography": "https://repository.library.noaa.gov/view/noaa/4711/noaa_4711_DS1.pdf",
+    "south_atlantic_float_study": "https://www.aoml.noaa.gov/phod/docs/boebel_et_al1999a.pdf",
+    "south_indian_geotraces_study": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2014gb004898",
+    "noaa_equatorial": "https://tidesandcurrents.noaa.gov/glossary.html",
+    "south_pacific_paper": "https://journals.ametsoc.org/view/journals/phoc/25/1/1520-0485_1995_025_0077_tspc_2_0_co_2.xml",
+    "australian_boundary_length": "https://doi.org/10.1029/2003JC001921",
+    "marine_regions": "https://www.marineregions.org/gazetteer.php?p=webservices",
+    "antarctic_coastal_paper": "https://doi.org/10.1016/j.dsr.2009.06.005",
+    "azores_section": "https://doi.org/10.1029/2011JC007129",
+    "portugal_section": "https://doi.org/10.1002/jgrc.20227",
+    "norwegian_coastal_stations": "https://academic.oup.com/icesjms/article/69/5/758/646533",
+    "torungen_place": "https://stadnamn.kartverket.no/fakta/789560",
+    "algerian_current_study": "https://os.copernicus.org/articles/15/1111/2019/",
+    "balearic_current_study": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2021JC017589",
+    "western_adriatic_drifters": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2005JC003177",
+    "baffin_bay_survey": "https://www.sciencedirect.com/science/article/pii/S0079661124001289",
+    "mauritania_seasonal": "https://journals.ametsoc.org/view/journals/phoc/52/1/JPO-D-21-0092.1.xml",
+    "gaspe_coastal_jet": "https://journals.ametsoc.org/view/journals/phoc/31/11/1520-0485_2001_031_3146_doabdc_2.0.co_2.xml",
+    "northern_mediterranean": "https://os.copernicus.org/articles/14/689/2018/",
+    "pacific_euc_mooring": "https://doi.org/10.1029/93JC03506",
+    "pacific_euc_pathway": "https://doi.org/10.1029/2011JC007477",
+    "pacific_euc_alternate_extent": "https://doi.org/10.1080/03091929.2015.1066785",
+    "atlantic_euc_mooring": "https://doi.org/10.1029/2004GL022206",
+    "indian_euc_survey": "https://repository.library.noaa.gov/view/noaa/64055",
+    "indian_euc_review": "https://repository.library.noaa.gov/view/noaa/44660/noaa_44660_DS1.pdf",
+    "lomonosov_alias": "https://www.fao.org/4/t0081e/T0081E03.htm",
+    "atlantic_neuc_mooring": "https://doi.org/10.1029/2020GL088350",
+    "pacific_neuc_array": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.979442/full",
+    "atlantic_seuc_section": "https://doi.org/10.1029/2002GL016849",
+    "indian_seuc_mooring": "https://doi.org/10.1029/2022GL098163",
+    "greenland_coastal_hypothesis": "https://doi.org/10.1175/1520-0485(1989)019%3C0384:OTOOSW%3E2.0.CO;2",
+    "gulf_stream_sampled_reach": "https://doi.org/10.1029/2024GL111000",
+    "noaa_gulf_stream_coast_pilot": "https://nauticalcharts.noaa.gov/publications/coast-pilot/files/cp4/CPB4_WEB.pdf",
+    "east_australian_latitude_span": "https://gmd.copernicus.org/articles/19/3853/2026/",
+    "tasman_front_observations": "https://doi.org/10.1002/2017JC013097",
+    "atlantic_necc_observations": "https://doi.org/10.1029/2007JC004215",
+    "pacific_necc_sections": "https://www.pmel.noaa.gov/pubs/outstand/john2337/zonal_velocity.shtml",
+    "atlantic_secc_survey": "https://doi.org/10.1175/1520-0485(1998)028%3C1904:TAPOTU%3E2.0.CO;2",
+    "pacific_secc_argo": "https://doi.org/10.1029/2025JC023053",
+    "indian_secc_xbt": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/pleins_textes_6/b_fdi_45-46/010007560.pdf",
+    "aleutian_current_glossary": "https://glossary.ametsoc.org/wiki/aleutian-current/",
+    "mediterranean_undercurrent_floats": "https://doi.org/10.1029/2001JC001007",
+    "atlantic_dwbc_section": "https://doi.org/10.1029/2006GL026965",
+    "atlantic_decadal_circulation_sections": "https://os.copernicus.org/articles/19/1009/2023/",
+    "east_adriatic_measurements": "https://doi.org/10.1029/2005JC003271",
+    "black_sea_rim_indicator": "https://data.marine.copernicus.eu/product/OMI_CIRCULATION_BOUNDARY_BLKSEA_rim_current_index/description",
+    "nasa_po2_western_boundary": "https://svs.gsfc.nasa.gov/5425",
+    "nasa_indonesian_passages": "https://svs.gsfc.nasa.gov/5141",
+    "antilles_section": "https://spo.nmfs.noaa.gov/sites/default/files/pdf-content/1975/733/ingham.pdf",
+    "arabian_marginal_outflows": "https://doi.org/10.1029/1999JC900297",
+    "east_greenland_coastal_survey": "https://www.whoi.edu/cms/files/Sutherland_EGCC_revised_withfigs_33743.pdf",
+    "east_greenland_extent": "https://doi.org/10.1029/2023JC019890",
+    "agulhas_return_hydrography": "https://www.cfoo.co.za/seaatlas/papers/agulhas_return_current.pdf",
+    "agulhas_current_extent_reanalysis": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.837906/full",
+    "agulhas_coastal_length_review": "https://bg.copernicus.org/articles/18/5967/2021/",
+    "east_australian_system_review": "https://www.unsw.edu.au/content/dam/pdfs/science/bees/research-reports/2024-05-oceanography/Oke_etal.pdf",
+    "western_pacific_euc_pathways": "https://doi.org/10.1029/2011JC007477",
+    "new_guinea_coastal_moorings": "https://doi.org/10.1029/2020JC016242",
+    "pacific_subsurface_countercurrent_sections": "https://www.pmel.noaa.gov/pubs/outstand/john2337/zonal_velocity.shtml",
+    "hiri_current_scope": "https://doi.org/10.1002/2013JC009591",
+    "alaska_coastal_gulf_extent": "https://doi.org/10.1016/j.dsr2.2015.12.016",
+    "antarctic_slope_review": "https://doi.org/10.1029/2018RG000624",
+    "malvinas_egu_2009_length": "https://meetingorganizer.copernicus.org/EGU2009/EGU2009-12242.pdf"
+  },
+  "entries": [
+    {
+      "id": "acc",
+      "name": "Antarctic Circumpolar Current",
+      "basin": "Southern Ocean",
+      "kind": "circumpolar current system",
+      "length_km": 25000,
+      "length_scope": "Approximate circumpolar path; source calls it the longest wind-driven current.",
+      "length_source": "acc_length",
+      "name_source": "noaa_map",
+      "source_reported_length_variants": [
+        {
+          "length_km_approx": 21000,
+          "scope": "NASA/JPL's 2019 overview says the Antarctic Circumpolar Current spans about 13,000 miles (21,000 km). It does not specify a reference streamline or contour, so this alternate whole-current approximation is retained separately from the ranked 25,000 km research estimate.",
+          "source": "nasa_acc_length",
+          "rank_eligible": false,
+          "source_locator": "NASA/JPL article, paragraph beginning The Antarctic Circumpolar Current flows in a loop (13,000 miles / 21,000 km)"
+        }
+      ],
+      "length_source_locator": "Section 1 Introduction, opening sentence (approximately 25,000 km)"
+    },
+    {
+      "id": "antarctic-coastal",
+      "name": "Antarctic Coastal Current (East Wind Drift)",
+      "basin": "Southern Ocean",
+      "kind": "westward polar coastal current",
+      "length_km": null,
+      "length_scope": "The East Wind Drift is westward near the Antarctic coast. Its continuity and start/end limits vary by sector; the four published map arrows do not supply a measured centerline or comparable whole-current length.",
+      "length_source": null,
+      "name_source": "antarctic_coastal_paper"
+    },
+    {
+      "id": "california",
+      "name": "California Current",
+      "basin": "North Pacific",
+      "kind": "eastern boundary current system",
+      "length_km": 3000,
+      "length_scope": "Approximate California Current System extent from Baja California Sur to northern Vancouver Island; not a measured California Current core axis.",
+      "length_source": "california_length",
+      "name_source": "noaa_map",
+      "length_source_locator": "PDF page 3, background box under California Current (California Current System extends 3,000 km)"
+    },
+    {
+      "id": "gulf-stream-system",
+      "name": "Gulf Stream System",
+      "basin": "North Atlantic",
+      "kind": "multi-segment current system",
+      "length_km": null,
+      "length_scope": "NOAA's glossary defines a continuous system comprising the Florida Current, Gulf Stream, and North Atlantic Current. The whole system extends beyond the Grand Banks toward the British Isles, so no 3,000 km Florida-to-Grand-Banks span is treated as its complete length.",
+      "length_source": null,
+      "name_source": "noaa_glossary",
+      "component_current_ids": [
+        "florida",
+        "gulf-stream",
+        "north-atlantic"
+      ]
+    },
+    {
+      "id": "gulf-stream",
+      "name": "Gulf Stream",
+      "basin": "North Atlantic",
+      "kind": "western boundary current",
+      "length_km": 2500,
+      "length_scope": "Tomczak and Godfrey report approximately 2,500 km for the Gulf Stream proper as an open-ocean free jet downstream of Cape Hatteras toward the Newfoundland Rise/Grand Banks near 50°W. This excludes the Florida Current and North Atlantic Current; it is a textbook path-scale description, not a measured reference streamline. NOAA's glossary uses the same strict segment definition, while NASA and NOAA Coast Pilot sometimes use Gulf Stream more broadly.",
+      "length_source": "regional_oceanography_atlantic",
+      "name_source": "noaa_map",
+      "part_of_system": "gulf-stream-system",
+      "source_extent_variants": [
+        {
+          "source": "noaa_glossary",
+          "definition": "strict Gulf Stream segment",
+          "upstream": "region off Cape Hatteras",
+          "downstream": "southeast of Grand Banks near 40°N, 50°W"
+        },
+        {
+          "source": "noaa_gulf_stream_coast_pilot",
+          "definition": "broader Gulf Stream usage including Florida Straits",
+          "upstream": "Straits of Florida",
+          "downstream": "Grand Banks region"
+        },
+        {
+          "source": "nasa_po2_western_boundary",
+          "definition": "NASA visualization usage beginning at Florida Straits",
+          "upstream": "Florida Straits",
+          "downstream": "not defined on the cited page"
+        }
+      ],
+      "sampled_reach": {
+        "alongflow_km_approx": 2000,
+        "region": "offshore U.S. East Coast",
+        "source": "gulf_stream_sampled_reach",
+        "scope": "Fifty-two glider missions sampled along a roughly 2,000 km long portion during 2015–2023.",
+        "source_locator": "PDF page 3, Section 2.1 Underwater Glider Data and Methods, paragraph on 52 missions sampling a roughly 2,000 km Gulf Stream reach"
+      },
+      "length_source_locator": "Chapter 14, The Atlantic Ocean, PDF page 11 (printed page 239), paragraph beginning Recirculation of Gulf Stream water (next 2,500 km Gulf Stream proper)"
+    },
+    {
+      "id": "kuroshio",
+      "name": "Kuroshio Current",
+      "basin": "North Pacific",
+      "kind": "western boundary current",
+      "length_km": 3000,
+      "length_scope": "Approximate Kuroshio journey from about 12°N to 35°N in the western North Pacific; not a measured whole-current axis, and the Kuroshio Extension is separate.",
+      "length_source": "kuroshio_length",
+      "name_source": "noaa_map",
+      "length_source_locator": "PDF page 3, Introduction opening paragraph (3,000 km journey from about 12°N to 35°N)"
+    },
+    {
+      "id": "agulhas",
+      "name": "Agulhas Current",
+      "basin": "Indian Ocean",
+      "kind": "western boundary current",
+      "length_km": null,
+      "length_lower_bound_km": 1400,
+      "length_bound_basis": "OSW conservative meridional floor from the research paper's 27°S–40°S Agulhas Current span: about 1,442 km on WGS84, rounded down to 1,400 km. This is not a measured along-current centerline or an estimate for the Agulhas Return Current.",
+      "length_scope": "The research description spans roughly 27°S–40°S; the coastal path is longer than its north–south separation. Retroflection, leakage, and the eastward Agulhas Return Current are distinct from this boundary-current core. The derived floor is unranked. A 2021 review also describes a roughly 1,000 km coastal segment. That narrower usage conflicts with the broader 27°S–40°S derived floor, so the two numbers are displayed as source-specific scopes and neither is ranked as a common whole-current length.",
+      "length_source": "agulhas_current_extent_reanalysis",
+      "name_source": "noaa_map",
+      "related_current_ids": [
+        "agulhas-return"
+      ],
+      "source_reported_length_variants": [
+        {
+          "length_km_approx": 1000,
+          "scope": "Coastal western boundary current along southeastern Africa; narrower than the 27°S–40°S span used for the existing broad lower bound. End gates and centerline are not specified.",
+          "source": "agulhas_coastal_length_review",
+          "rank_eligible": false,
+          "source_locator": "Section 2.1.1 Background, opening paragraph (1,000 km western boundary current)"
+        }
+      ],
+      "length_source_locator": "Section The Agulhas Current, opening paragraph (27–40°S); 1,400 km floor is OSW meridional gate geometry"
+    },
+    {
+      "id": "agulhas-return",
+      "name": "Agulhas Return Current",
+      "aliases": [
+        "ARC"
+      ],
+      "basin": "South Indian Ocean",
+      "kind": "eastward frontal return current",
+      "length_km": null,
+      "length_lower_bound_km": 3000,
+      "length_bound_basis": "OSW conservative WGS84 geodesic floor between published Agulhas Return Current sections near 21°E, 40.5°S and 60°E, 44.5°S: about 3,206 km, rounded down to 3,000 km. An along-flow path with meanders is longer; the source does not report one comparable whole-current length.",
+      "length_scope": "The hydrographic survey distinguishes the Agulhas Return Current from the Agulhas Current and traces its weakening eastward flow toward the Crozet Basin. This derived distance floor is not a measured streamline, whole-current length, or the length of the westward Agulhas Current.",
+      "length_source": "agulhas_return_hydrography",
+      "name_source": "agulhas_return_hydrography",
+      "nasa_description_source": "nasa_po2_western_boundary",
+      "related_current_ids": [
+        "agulhas",
+        "south-indian"
+      ],
+      "related_nasa_object_ids": [
+        "agulhas-retroflection"
+      ],
+      "length_source_locator": "PDF pages 20–22, Figure 14 and Section 6 Conclusions, Agulhas Return Current surveyed eastward from 18°E to 76°E; 3,000 km floor is OSW gate geometry"
+    },
+    {
+      "id": "east-australian",
+      "name": "East Australian Current",
+      "basin": "South Pacific",
+      "kind": "western boundary current",
+      "length_km": null,
+      "length_lower_bound_km": 1800,
+      "length_bound_basis": "OSW conservative meridional floor from source-described coherent jet near 15°S to shelf separation near 32°S: about 1,883 km on WGS84, rounded down to 1,800 km. Actual path may be longer and extensions have different boundaries.",
+      "length_scope": "A derived minimum north–south span for the coherent shelf-break jet only; not a measured streamline or a published whole-current length. Separation and extension shift over time.",
+      "length_source": "east_australian_latitude_span",
+      "name_source": "noaa_map",
+      "related_current_ids": [
+        "tasman-front"
+      ],
+      "length_source_locator": "Section 1 Introduction, opening EAC paragraph (15–32°S); 1,800 km floor is OSW meridional gate geometry"
+    },
+    {
+      "id": "tasman-front",
+      "name": "Tasman Front",
+      "basin": "Tasman Sea / South Pacific",
+      "kind": "eastward frontal current downstream of the East Australian Current",
+      "length_km": null,
+      "length_scope": "The East Australian Current separates eastward as the Tasman Front at a variable latitude, reported between 28°S and 37°S. The cited study does not give stable whole-front endpoints or an along-flow length; do not add this branch to the East Australian Current's coastal floor. A 2019 review found the front rarely distinct in instantaneous fields; a single stable path length would overstate that evidence.",
+      "length_source": null,
+      "name_source": "tasman_front_observations",
+      "related_current_ids": [
+        "east-australian"
+      ],
+      "identity_scope_note": "A 2019 observational review found the Tasman Front and East Australian Current Extension rarely appear as distinct instantaneous flows; they are clearer in time-mean circulation. Other studies retain the Tasman Front name for the eastward flow. This name is an atlas index, not proof of a continuously identifiable jet.",
+      "identity_scope_source": "east_australian_system_review"
+    },
+    {
+      "id": "peru-humboldt",
+      "name": "Peru (Humboldt) Current",
+      "basin": "South Pacific",
+      "kind": "eastern boundary current system",
+      "length_km": 6000,
+      "length_scope": "Approximate 6,000 km Humboldt Current belt from southern Chile toward northern Peru and the Galápagos, reported in an embedded Purca et al. manuscript in Purca Cuicapusa's 2005 thesis. This is a broad eastern South Pacific current-system extent, not a measured core streamline or the Peru Coastal Current alone; the manuscript separately describes its 1,000 km Peru study area.",
+      "length_source": "humboldt_system_extent",
+      "name_source": "noaa_map",
+      "length_source_locator": "PDF page 65, embedded Purca et al. manuscript, Introduction opening paragraph (ca. 6,000 km belt); PDF page 66 distinguishes its 1,000 km Peru study area"
+    },
+    {
+      "id": "benguela",
+      "name": "Benguela Current",
+      "basin": "South Atlantic",
+      "kind": "eastern boundary current system",
+      "length_km": null,
+      "length_lower_bound_km": 1200,
+      "length_bound_basis": "OSW conservative meridional floor between the paper's Benguela Current system sections at 30°S and 19°S: approximately 1,218 km on WGS84, rounded down to 1,200 km. This is a source-gated geographic separation, not a traced flow path.",
+      "length_scope": "The study identifies the Benguela Current system at 30°, 24°, and 19°S across decadal inverse solutions, with no continuity north of 19°S. The current and Benguela ecosystem have different extents. Section observations are from different cruises and do not establish a simultaneous centerline; the derived floor is unranked.",
+      "length_source": "atlantic_decadal_circulation_sections",
+      "name_source": "noaa_map",
+      "length_source_locator": "Section 3.1.3 and Figure 5, Benguela Current system at 30°S, 24°S, and 19°S; OSW WGS84 meridional gate calculation"
+    },
+    {
+      "id": "canary",
+      "name": "Canary Current",
+      "basin": "North Atlantic",
+      "kind": "eastern boundary current",
+      "length_km": null,
+      "length_scope": "A fall 2009 section at 29°N locates a westward extent across the section and separates transport by depth layer. It does not measure the current's along-flow length.",
+      "length_source": null,
+      "name_source": "noaa_map",
+      "section_observation": {
+        "latitude": 29,
+        "longitude_range": [
+          -22.25,
+          -18.5
+        ],
+        "observed_period": "October–November 2009",
+        "transport_layers_sv": [
+          {
+            "layer": "thermocline",
+            "value": 6.2,
+            "uncertainty": 0.6
+          },
+          {
+            "layer": "intermediate",
+            "value": 2.0,
+            "uncertainty": 0.8
+          }
+        ],
+        "direction": "southward",
+        "source": "portugal_section",
+        "method_note": "Cruise section positions; depth-layer transports estimated with the study's inverse box model."
+      }
+    },
+    {
+      "id": "labrador",
+      "name": "Labrador Current",
+      "basin": "North Atlantic",
+      "kind": "subpolar boundary current",
+      "length_km": null,
+      "length_scope": "No comparable path-length estimate admitted yet.",
+      "length_source": null,
+      "name_source": "noaa_map"
+    },
+    {
+      "id": "greenland-middle-atlantic-shelf-hypothesis",
+      "name": "Greenland–Middle Atlantic shelf-current hypothesis",
+      "basin": "Northwest Atlantic shelves",
+      "kind": "proposed buoyancy-driven coastal current system",
+      "length_km": null,
+      "hypothesized_length_km": 5000,
+      "length_scope": "A 1989 paper hypothesizes a 5,000 km buoyancy-driven coastal connection from southern Greenland to the Middle Atlantic Bight based on limited oxygen-isotope evidence. This proposed system length is unranked and is not the length of the Labrador Current alone.",
+      "length_source": null,
+      "hypothesis_source": "greenland_coastal_hypothesis",
+      "name_source": "greenland_coastal_hypothesis",
+      "related_current_ids": [
+        "labrador"
+      ],
+      "length_source_locator": "Abstract, proposed 5,000 km buoyancy-driven coastal current from southern Greenland to the Middle Atlantic Bight"
+    },
+    {
+      "id": "brazil",
+      "name": "Brazil Current",
+      "basin": "South Atlantic",
+      "kind": "western boundary current",
+      "length_km": null,
+      "length_lower_bound_km": 1200,
+      "length_bound_basis": "OSW conservative meridional floor between the paper's Brazil Current sections at 19°S and 30°S: approximately 1,218 km on WGS84, rounded down to 1,200 km. This is a source-gated geographic separation, not a traced flow path.",
+      "length_scope": "The study identifies southward Brazil Current transport at 19°, 24°, and 30°S. Confluence location and downstream identity vary. Section observations are from different cruises and do not establish a simultaneous centerline; the derived floor is unranked.",
+      "length_source": "atlantic_decadal_circulation_sections",
+      "name_source": "noaa_map",
+      "length_source_locator": "Section 3.1.2 and Figure 5, Brazil Current at 19°S, 24°S, and 30°S; OSW WGS84 meridional gate calculation"
+    },
+    {
+      "id": "north-atlantic",
+      "name": "North Atlantic Current",
+      "basin": "North Atlantic",
+      "kind": "northeastward current system segment",
+      "length_km": null,
+      "length_scope": "NOAA's glossary defines this as a named Gulf Stream System segment from southeast of the Grand Banks near 40°N, 50°W toward the British Isles. Its downstream branches and whole-current path length are unresolved here.",
+      "length_source": null,
+      "name_source": "noaa_glossary",
+      "part_of_system": "gulf-stream-system"
+    },
+    {
+      "id": "deep-western-boundary",
+      "name": "Deep Western Boundary Current",
+      "basin": "North Atlantic segment",
+      "kind": "deep western boundary current",
+      "length_km": null,
+      "length_lower_bound_km": 2400,
+      "length_bound_basis": "OSW conservative meridional floor between the paper's deep western boundary current sections at 47°N and 24.5°N: approximately 2,497 km on WGS84, rounded down to 2,400 km. This is a source-gated geographic separation, not a traced deep-current path.",
+      "length_scope": "The study identifies southward deep western boundary flow at 47°, 36°, and 24.5°N in decadal inverse solutions. This is a North Atlantic segment only; sections from different cruises do not establish one simultaneous continuous path or a whole-Atlantic current length. The derived floor is unranked.",
+      "length_source": "atlantic_decadal_circulation_sections",
+      "name_source": "atlantic_dwbc_section",
+      "length_source_locator": "Section 3.2.3 and Figure 8, DWBC at 47°N, 36°N, and 24.5°N; OSW WGS84 meridional gate calculation"
+    },
+    {
+      "id": "azores",
+      "name": "Azores Current",
+      "basin": "North Atlantic",
+      "kind": "eastward subtropical jet",
+      "length_km": null,
+      "length_scope": "The 110 km figure below is width across one 2009 meridional section at 24.5°W, not along-current length or a whole-current extent.",
+      "length_source": null,
+      "name_source": "azores_section",
+      "section_observation": {
+        "longitude": -24.5,
+        "latitude_range": [
+          33.5,
+          34.5
+        ],
+        "observed_period": "October–November 2009",
+        "meridional_width_km": 110,
+        "transport_sv": 13.9,
+        "direction": "eastward",
+        "source": "azores_section",
+        "source_locator": "Abstract [1] and Section 4 Discussion and Conclusions [15], October 2009 section at 24.5°W; each current has 110 km meridional width"
+      }
+    },
+    {
+      "id": "azores-countercurrent",
+      "name": "Azores Countercurrent",
+      "basin": "North Atlantic",
+      "kind": "subsurface westward countercurrent",
+      "length_km": null,
+      "length_scope": "The 110 km figure below is width across one 2009 meridional section at 24.5°W, not along-current length or a whole-current extent.",
+      "length_source": null,
+      "name_source": "azores_section",
+      "section_observation": {
+        "longitude": -24.5,
+        "latitude_range": [
+          35.25,
+          36.25
+        ],
+        "observed_period": "October–November 2009",
+        "meridional_width_km": 110,
+        "transport_sv": 5.5,
+        "direction": "westward",
+        "source": "azores_section",
+        "source_locator": "Abstract [1] and Section 4 Discussion and Conclusions [15], October 2009 section at 24.5°W; each current has 110 km meridional width"
+      }
+    },
+    {
+      "id": "portugal",
+      "name": "Portugal Current",
+      "basin": "Northeast Atlantic",
+      "kind": "southward offshore current",
+      "length_km": null,
+      "length_scope": "The 2009 study identifies one zonal crossing at 37°N; its 13.5–14.8°W longitude band and transport do not establish a whole-current length. Keep the offshore Portugal Current distinct from coastal counterflows.",
+      "length_source": null,
+      "name_source": "portugal_section",
+      "section_observation": {
+        "latitude": 37,
+        "longitude_range": [
+          -14.8,
+          -13.5
+        ],
+        "observed_period": "October–November 2009",
+        "transport_sv": 1.8,
+        "transport_uncertainty_sv": 0.4,
+        "direction": "southward",
+        "source": "portugal_section",
+        "method_note": "Cruise section positions; transport estimated with the study's inverse box model."
+      }
+    },
+    {
+      "id": "mediterranean-undercurrent",
+      "name": "Mediterranean Undercurrent",
+      "basin": "Gulf of Cádiz / southwest Iberian Atlantic margin",
+      "kind": "intermediate-depth boundary undercurrent",
+      "length_km": null,
+      "length_scope": "RAFOS floats and hydrography track the undercurrent from the Gulf of Cádiz around southwestern Portugal, where a roughly 30 km wide jet weakens and broadens northward. That width is cross-stream, not its length; branching and loss from the slope prevent a single measured endpoint here.",
+      "length_source": null,
+      "name_source": "mediterranean_undercurrent_floats"
+    },
+    {
+      "id": "east-adriatic",
+      "name": "East Adriatic Current",
+      "basin": "Eastern Adriatic Sea",
+      "kind": "northwestward coastal boundary current",
+      "length_km": null,
+      "length_scope": "2002–2003 measurements off the eastern Adriatic coast establish a variable current that strengthened in January–February and again in May. Its Dalmatian coastal reach may overlap the older Dalmatian Current name, but that synonymy is not yet established; no full path length is admitted.",
+      "length_source": null,
+      "name_source": "east_adriatic_measurements",
+      "possible_name_overlap_mrgid": 3356
+    },
+    {
+      "id": "black-sea-rim",
+      "name": "Black Sea Rim Current",
+      "basin": "Black Sea",
+      "kind": "cyclonic basin-margin current system",
+      "length_km": null,
+      "length_scope": "Copernicus Marine defines this basin-scale cyclonic flow and measures intensity in northern and southern slope sectors. Those sectors are monitoring windows, not a full current centerline or length. Older Caucasus and Southern Current names may describe sectors, but equivalence is unresolved.",
+      "length_source": null,
+      "name_source": "black_sea_rim_indicator",
+      "possible_name_overlap_mrgids": [
+        3734,
+        3736
+      ]
+    },
+    {
+      "id": "loop",
+      "name": "Loop Current",
+      "basin": "Gulf of Mexico",
+      "kind": "western boundary current segment",
+      "length_km": null,
+      "length_scope": "The loop expands and retracts; its path length changes.",
+      "length_source": null,
+      "name_source": "noaa_loop"
+    },
+    {
+      "id": "florida",
+      "name": "Florida Current",
+      "basin": "North Atlantic",
+      "kind": "western boundary current segment",
+      "length_km": 1200,
+      "length_scope": "Tomczak and Godfrey report approximately 1,200 km from the Florida Straits along the coast to separation near Cape Hatteras. This is the Florida Current segment of the Gulf Stream System, not a whole-system length or a measured reference streamline. NOAA's glossary independently names the same segment; NASA and NOAA Coast Pilot sometimes use Gulf Stream more broadly for the Florida Straits flow.",
+      "length_source": "regional_oceanography_atlantic",
+      "name_source": "noaa_glossary",
+      "part_of_system": "gulf-stream-system",
+      "length_source_locator": "Chapter 14, The Atlantic Ocean, PDF page 11 (printed page 239), paragraph beginning Recirculation of Gulf Stream water (1,200 km downstream to Cape Hatteras)"
+    },
+    {
+      "id": "north-brazil",
+      "name": "North Brazil Current",
+      "basin": "Tropical Atlantic",
+      "kind": "western boundary current",
+      "length_km": null,
+      "length_scope": "Retroflection and rings need separate treatment.",
+      "length_source": null,
+      "name_source": "noaa_aoml"
+    },
+    {
+      "id": "alaska",
+      "name": "Alaska Current",
+      "basin": "North Pacific",
+      "kind": "subpolar boundary current",
+      "length_km": null,
+      "length_scope": "No comparable path-length estimate admitted yet.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "aleutian",
+      "name": "Aleutian Current",
+      "aliases": [
+        "Pacific Subarctic Current"
+      ],
+      "basin": "Subpolar North Pacific",
+      "kind": "eastward subpolar-gyre current",
+      "length_km": null,
+      "length_scope": "The meteorological glossary identifies this as the southern eastward limb of the North Pacific subpolar gyre, also called the Subarctic Current. Its mixing with the North Pacific Current and variable frontal boundary leave no source-defined whole-current length for this ledger.",
+      "length_source": null,
+      "name_source": "aleutian_current_glossary"
+    },
+    {
+      "id": "antilles",
+      "name": "Antilles Current",
+      "basin": "North Atlantic",
+      "kind": "regional current with disputed northern surface expression",
+      "length_km": null,
+      "length_scope": "NOAA's six sections near 28°35′N found variable northward and southward bands rather than the broad, persistent northward surface current shown on older charts. This section cannot establish a whole-current path or length and does not resolve flow farther south.",
+      "length_source": null,
+      "name_source": "noaa_glossary",
+      "section_review_source": "antilles_section"
+    },
+    {
+      "id": "davidson",
+      "name": "Davidson Current",
+      "basin": "North Pacific",
+      "kind": "seasonal coastal current",
+      "length_km": null,
+      "length_scope": "A seasonal countercurrent, not a permanent jet.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "east-greenland",
+      "name": "East Greenland Current",
+      "basin": "Arctic / North Atlantic",
+      "kind": "polar boundary current",
+      "length_km": null,
+      "length_lower_bound_km": 2100,
+      "length_bound_basis": "OSW conservative meridional floor between the study's Fram Strait section at 78.5°N and Cape Farewell at 59°N: about 2,175 km on WGS84, rounded down to 2,100 km. This is geographic separation across a study region, not a measured along-current centerline or the separate East Greenland Coastal Current length. The older 81°N endpoint was the northern edge of Fram Strait, not the source's current section.",
+      "length_scope": "The study distinguishes the outer East Greenland Current from the coastal branch and assesses the system between the 78.5°N Fram Strait section and Cape Farewell. The coast-following route may be longer than the north–south separation; no comparable whole-current centerline length is admitted, so this regional floor is unranked.",
+      "length_source": "east_greenland_extent",
+      "name_source": "noaa_glossary",
+      "length_source_locator": "Section 2, paragraph defining East Greenland shelf from Fram Strait 78.5°N to Cape Farewell 59°N; 2,100 km floor is OSW meridional gate geometry"
+    },
+    {
+      "id": "east-greenland-coastal",
+      "name": "East Greenland Coastal Current",
+      "aliases": [
+        "EGCC"
+      ],
+      "basin": "Southeast Greenland shelf",
+      "kind": "low-salinity inner-shelf coastal jet",
+      "length_km": null,
+      "length_scope": "A summer 2004 hydrographic and velocity survey identified this inner-shelf branch along the approximately 1,000 km southeast Greenland shelf south of Denmark Strait. That is a documented regional reach, not a measured whole-current path or a year-round length; the offshore East Greenland Current is distinct.",
+      "length_source": null,
+      "name_source": "east_greenland_coastal_survey",
+      "sampled_reach": {
+        "alongflow_km_approx": 1000,
+        "region": "southeast Greenland shelf south of Denmark Strait",
+        "source": "east_greenland_coastal_survey",
+        "scope": "Published 2004 survey found the current along the entire approximately 1,000 km shelf, with uncertain origin north of Denmark Strait.",
+        "source_locator": "PDF page 36, Conclusions opening paragraph (current along entire 1,000 km southeast Greenland shelf)"
+      },
+      "related_current_ids": [
+        "east-greenland"
+      ]
+    },
+    {
+      "id": "falkland",
+      "name": "Falkland (Malvinas) Current",
+      "basin": "South Atlantic",
+      "kind": "subpolar boundary current",
+      "length_km": 2000,
+      "length_scope": "Source-reported approximate 2,000 km northward loop of the northern Antarctic Circumpolar Current branch in the Argentine Basin, from a 2009 EGU conference abstract. No reference centerline, endpoint coordinates, depth-defined length or uncertainty is supplied. Do not interpret this as a measured dated path, a shelf-break front length, or an independently specified Malvinas Return Current extent.",
+      "length_source": "malvinas_egu_2009_length",
+      "name_source": "noaa_glossary",
+      "length_source_locator": "Page 1, opening sentence of EGU2009-12242 abstract (2000 km northward loop)"
+    },
+    {
+      "id": "guiana",
+      "name": "Guiana Current",
+      "basin": "Tropical Atlantic",
+      "kind": "regional current",
+      "length_km": null,
+      "length_scope": "No comparable path-length estimate admitted yet.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "guinea",
+      "name": "Guinea Current",
+      "basin": "Tropical Atlantic",
+      "kind": "regional current",
+      "length_km": null,
+      "length_scope": "No comparable path-length estimate admitted yet.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "irminger",
+      "name": "Irminger Current",
+      "basin": "North Atlantic",
+      "kind": "subpolar current",
+      "length_km": null,
+      "length_scope": "No comparable path-length estimate admitted yet.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "kuroshio-extension",
+      "name": "Kuroshio Extension",
+      "basin": "North Pacific",
+      "kind": "current extension",
+      "length_km": null,
+      "length_scope": "A named continuation of the Kuroshio; keep separate from its core length.",
+      "length_source": null,
+      "name_source": "kuroshio_extension_kess",
+      "related_current_ids": [
+        "kuroshio"
+      ],
+      "related_nasa_object_ids": [
+        "kuroshio-eastward-turn"
+      ]
+    },
+    {
+      "id": "monsoon",
+      "name": "Monsoon Current",
+      "basin": "Indian Ocean",
+      "kind": "seasonal current",
+      "length_km": null,
+      "length_scope": "Seasonal reversal changes the path and direction.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "indonesian-throughflow",
+      "name": "Indonesian Throughflow",
+      "aliases": [
+        "ITF"
+      ],
+      "basin": "Maritime Continent / Pacific–Indian Ocean passage",
+      "kind": "interbasin passage system",
+      "length_km": null,
+      "length_scope": "NASA names the Pacific-to-Indian freshwater passage through narrow gaps of the Maritime Continent but gives no single current centerline or whole-system length. This is a multi-channel flow, so no length enters the ranking.",
+      "length_source": null,
+      "name_source": "nasa_po2_western_boundary",
+      "classification_source": "nasa_indonesian_passages"
+    },
+    {
+      "id": "red-sea-saline-overflow",
+      "name": "Red Sea saline overflow",
+      "basin": "Red Sea / Gulf of Aden",
+      "kind": "dense saline strait overflow",
+      "length_km": null,
+      "length_scope": "NASA identifies a saline overflow contribution from the Red Sea to the western Indian Ocean. The gateway at Bab el Mandeb is not a measured plume endpoint or a whole-flow centerline; the downstream pathway and seasonal strength require separate observations.",
+      "length_source": null,
+      "name_source": "arabian_marginal_outflows",
+      "nasa_description_source": "nasa_po2_western_boundary"
+    },
+    {
+      "id": "persian-gulf-saline-overflow",
+      "name": "Persian Gulf saline overflow",
+      "basin": "Persian Gulf / Gulf of Oman",
+      "kind": "dense saline strait overflow",
+      "length_km": null,
+      "length_scope": "NASA identifies a saline overflow contribution from the Persian Gulf to the western Indian Ocean. The Strait of Hormuz gateway is not a measured plume endpoint or a whole-flow centerline; dilution and circulation beyond the strait require separate observations.",
+      "length_source": null,
+      "name_source": "arabian_marginal_outflows",
+      "nasa_description_source": "nasa_po2_western_boundary"
+    },
+    {
+      "id": "north-cape",
+      "name": "North Cape Current",
+      "basin": "Arctic / North Atlantic",
+      "kind": "regional current",
+      "length_km": null,
+      "length_scope": "No comparable path-length estimate admitted yet.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "north-equatorial",
+      "name": "North Equatorial Current",
+      "basin": "Atlantic / Pacific / Indian",
+      "kind": "equatorial current family",
+      "length_km": null,
+      "length_scope": "The same name is used in multiple basins; split into basin-specific records before measuring.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "north-pacific",
+      "name": "North Pacific Current",
+      "basin": "North Pacific",
+      "kind": "basin-spanning current",
+      "length_km": null,
+      "length_scope": "Branches and continuation limits require a declared rule.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "norwegian",
+      "name": "Norwegian Current",
+      "basin": "North Atlantic",
+      "kind": "regional current",
+      "length_km": null,
+      "length_scope": "No comparable path-length estimate admitted yet. Published usage of this name overlaps with, or distinguishes it from, the Norwegian Coastal Current; identity remains unresolved here.",
+      "length_source": null,
+      "name_source": "noaa_glossary",
+      "identity_review": {
+        "status": "ambiguous_with_norwegian_coastal",
+        "related_current_id": "norwegian-coastal",
+        "note": "Marine Regions records the names separately, but naming conventions conflict; do not sum these as distinct flows without a source-specific definition."
+      }
+    },
+    {
+      "id": "norwegian-coastal",
+      "name": "Norwegian Coastal Current",
+      "basin": "North Sea / Norwegian Sea",
+      "kind": "low-salinity coastal current",
+      "length_km": null,
+      "length_scope": "A source identifies the current along the Norwegian coast and represents it with stations 1 and 5 nautical miles off Torungen; this is a section location, not a whole-current length. Its relation to the name Norwegian Current is convention-dependent.",
+      "length_source": null,
+      "name_source": "norwegian_coastal_stations",
+      "name_source_url": "https://www.marineregions.org/gazetteer.php?p=details&id=2364",
+      "identity_review": {
+        "status": "ambiguous_with_norwegian",
+        "related_current_id": "norwegian",
+        "note": "The Norwegian Coastal Current is distinct from the Norwegian Atlantic Current in the station study; the broader Norwegian Current label is used inconsistently across sources."
+      },
+      "section_observation": {
+        "reference_place": "Store Torungen",
+        "reference_point": [
+          8.79025,
+          58.39885
+        ],
+        "distance_from_coast_nautical_miles": [
+          1,
+          5
+        ],
+        "source": "norwegian_coastal_stations",
+        "reference_point_source": "torungen_place",
+        "method_note": "Hydrographic coastal stations used to characterize the Norwegian Coastal Current; approximate atlas point is inferred from the Torungen reference, not a published station coordinate."
+      }
+    },
+    {
+      "id": "algerian",
+      "name": "Algerian Current",
+      "basin": "Western Mediterranean",
+      "kind": "eastward coastal current",
+      "length_km": null,
+      "length_scope": "The source describes a coastal current along Algeria that sheds mesoscale eddies; the atlas point is regional and does not define a start, end, or measured centerline.",
+      "length_source": null,
+      "name_source": "algerian_current_study",
+      "name_source_url": "https://www.marineregions.org/gazetteer.php?p=details&id=3834"
+    },
+    {
+      "id": "balearic",
+      "name": "Balearic Current",
+      "basin": "Western Mediterranean",
+      "kind": "island-margin current",
+      "length_km": null,
+      "length_scope": "The source describes a branch of the Northern Current turning near 40.6°N and contributing to flow in front of Mallorca; no comparable whole-current length is given.",
+      "length_source": null,
+      "name_source": "balearic_current_study",
+      "name_source_url": "https://www.marineregions.org/gazetteer.php?p=details&id=30231"
+    },
+    {
+      "id": "western-adriatic",
+      "name": "Western Adriatic Current",
+      "basin": "Adriatic Sea",
+      "kind": "southeastward coastal current",
+      "length_km": null,
+      "length_scope": "Drifter evidence identifies a fast, coastally confined southeastward flow along the Italian Adriatic coast; the regional atlas point is not a measured centerline or length endpoint.",
+      "length_source": null,
+      "name_source": "western_adriatic_drifters",
+      "name_source_url": "https://www.marineregions.org/gazetteer.php?p=details&id=56789"
+    },
+    {
+      "id": "baffin",
+      "name": "Baffin Current",
+      "aliases": [
+        "Baffin Island Current"
+      ],
+      "basin": "Baffin Bay",
+      "kind": "southward polar boundary current",
+      "length_km": null,
+      "length_scope": "The source identifies Baffin Island Current flow along western Baffin Bay; the atlas point is regional, with no source-defined whole-current centerline or length.",
+      "length_source": null,
+      "name_source": "baffin_bay_survey",
+      "name_source_url": "https://www.marineregions.org/gazetteer.php?p=details&id=5307"
+    },
+    {
+      "id": "mauritanian",
+      "name": "Mauritanian Current",
+      "aliases": [
+        "Mauritania Current"
+      ],
+      "basin": "Northeast tropical Atlantic",
+      "kind": "seasonal poleward eastern-boundary current",
+      "length_km": null,
+      "length_scope": "The source reports poleward surface flow during the May–July relaxation season in the Mauritanian upwelling region; winter upwelling-season coastal flow is equatorward. A single year-round direction or whole-current length would misrepresent this seasonal regime.",
+      "length_source": null,
+      "name_source": "mauritania_seasonal",
+      "name_source_url": "https://www.marineregions.org/gazetteer.php?p=details&id=30081"
+    },
+    {
+      "id": "gaspe",
+      "name": "Gaspé Current",
+      "aliases": [
+        "Gaspe Current"
+      ],
+      "basin": "Gulf of St. Lawrence",
+      "kind": "buoyancy-driven coastal jet",
+      "length_km": null,
+      "length_scope": "The source places the jet along the Gaspé Peninsula and reports a typical width of about 10–20 km near its strongest reach; width is not along-current length, and no comparable whole-current estimate is admitted.",
+      "length_source": null,
+      "name_source": "gaspe_coastal_jet",
+      "name_source_url": "https://www.marineregions.org/gazetteer.php?p=details&id=30052"
+    },
+    {
+      "id": "northern-mediterranean",
+      "name": "Northern Current",
+      "aliases": [
+        "Liguro-Provençal-Catalan Current"
+      ],
+      "alias_source": "northern_mediterranean",
+      "basin": "Northwestern Mediterranean",
+      "kind": "coastal boundary current",
+      "length_km": null,
+      "length_scope": "The named flow is described from the Ligurian Sea along the Provençal and Catalan coasts. The cited paper reports widths and local sections, not a comparable whole-current alongstream length.",
+      "length_source": null,
+      "name_source": "northern_mediterranean"
+    },
+    {
+      "id": "ligurian",
+      "name": "Ligurian Current",
+      "basin": "Northwestern Mediterranean",
+      "kind": "Northern Current segment",
+      "part_of_current_id": "northern-mediterranean",
+      "part_of_current_source_locator": "Section 1 Introduction, paragraph beginning 'The Liguro–Provençal–Catalan Current': Northern Current forms in the Ligurian Sea and continues along the Provençal and Balearic slopes; segment classification is OSW editorial",
+      "length_km": null,
+      "length_scope": "The source describes a Northern Current formed in the Ligurian Sea that flows onward along the Provençal and Balearic slopes; the Ligurian name is treated here as its source-region segment, without assigning the whole system's extent to this record.",
+      "length_source": null,
+      "name_source": "northern_mediterranean",
+      "name_source_url": "https://www.marineregions.org/gazetteer.php?p=details&id=3357"
+    },
+    {
+      "id": "oyashio",
+      "name": "Oyashio",
+      "basin": "North Pacific",
+      "kind": "subpolar boundary current",
+      "length_km": null,
+      "length_scope": "No comparable path-length estimate admitted yet.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "somali",
+      "name": "Somali Current",
+      "basin": "Indian Ocean",
+      "kind": "monsoon-reversing current",
+      "length_km": null,
+      "length_scope": "Seasonal reversal makes a single static length misleading.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "south-equatorial",
+      "name": "South Equatorial Current",
+      "basin": "Atlantic / Pacific / Indian",
+      "kind": "equatorial current family",
+      "length_km": null,
+      "length_scope": "The same name is used in multiple basins; split into basin-specific records before measuring.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "spitsbergen-atlantic",
+      "name": "Spitsbergen Atlantic Current",
+      "basin": "Arctic / North Atlantic",
+      "kind": "regional current",
+      "length_km": null,
+      "length_scope": "No comparable path-length estimate admitted yet.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "tsushima",
+      "name": "Tsushima Current",
+      "basin": "Sea of Japan",
+      "kind": "regional current",
+      "length_km": null,
+      "length_scope": "A segment of the Kuroshio system in NOAA's glossary.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "west-australian",
+      "name": "West Australian Current",
+      "basin": "Indian Ocean",
+      "kind": "eastern boundary current",
+      "length_km": null,
+      "length_scope": "No comparable path-length estimate admitted yet.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "leeuwin",
+      "name": "Leeuwin Current",
+      "basin": "Indian Ocean",
+      "kind": "poleward eastern boundary current",
+      "length_km": null,
+      "length_lower_bound_km": 2000,
+      "length_scope": "Published lower bound for southward flow along Western Australia's continental shelf, from tropical to cool-temperate coasts; distinct from the northward West Australian Current offshore. A lower bound is not a ranked whole-current estimate.",
+      "length_source": "leeuwin_extent",
+      "length_source_locator": "PDF page 108 (viewer page including cover); source states more than 2,000 km",
+      "name_source": "leeuwin_extent",
+      "part_of_system": "australian-west-south-boundary-flow"
+    },
+    {
+      "id": "australian-west-south-boundary-flow",
+      "name": "Western and southern Australian boundary flow",
+      "basin": "Indian / Southern Ocean margin",
+      "kind": "seasonal coastal current system",
+      "length_km": 5500,
+      "length_scope": "Continuous austral-winter shelf-edge flow from North West Cape to southern Tasmania, comprising the Leeuwin, South Australian, and Zeehan currents; not the length of Leeuwin alone.",
+      "length_source": "australian_boundary_length",
+      "name_source": "australian_boundary_length",
+      "component_current_ids": [
+        "leeuwin",
+        "south-australian",
+        "zeehan"
+      ],
+      "length_source_locator": "Abstract [1] and Section 9 Discussion and Conclusion [53] (5,500 km winter boundary-flow system)"
+    },
+    {
+      "id": "south-australian",
+      "name": "South Australian Current",
+      "basin": "South Australian shelf",
+      "kind": "shelf-edge current segment",
+      "length_km": null,
+      "length_scope": "Named section from eastern Great Australian Bight to western Bass Strait in the source's winter boundary-flow convention.",
+      "length_source": null,
+      "name_source": "australian_boundary_length",
+      "part_of_system": "australian-west-south-boundary-flow"
+    },
+    {
+      "id": "zeehan",
+      "name": "Zeehan Current",
+      "basin": "Tasmanian west coast",
+      "kind": "shelf-edge current segment",
+      "length_km": null,
+      "length_scope": "Named section off western Tasmania in the source's winter boundary-flow convention.",
+      "length_source": null,
+      "name_source": "australian_boundary_length",
+      "part_of_system": "australian-west-south-boundary-flow"
+    },
+    {
+      "id": "caribbean",
+      "name": "Caribbean Current",
+      "basin": "Caribbean Sea",
+      "kind": "regional current",
+      "length_km": null,
+      "length_scope": "No source-defined whole-current path length admitted yet.",
+      "length_source": null,
+      "name_source": "caribbean_fisheries_oceanography",
+      "name_source_locator": "Chapter 3, section 3.1.2, PDF page 26; names the Caribbean Current south of the U.S. Caribbean islands."
+    },
+    {
+      "id": "equatorial-countercurrent",
+      "name": "Equatorial Countercurrent",
+      "basin": "Atlantic / Pacific / Indian",
+      "kind": "equatorial current family",
+      "length_km": null,
+      "length_scope": "Umbrella label for multiple eastward tropical countercurrents. North and South named families and basin-specific flows require separate boundaries and length estimates.",
+      "length_source": null,
+      "name_source": "noaa_equatorial",
+      "component_current_ids": [
+        "north-equatorial-countercurrent",
+        "south-equatorial-countercurrent"
+      ]
+    },
+    {
+      "id": "north-equatorial-countercurrent",
+      "name": "North Equatorial Countercurrent",
+      "basin": "Atlantic / Pacific",
+      "kind": "eastward tropical countercurrent family",
+      "length_km": null,
+      "length_scope": "Atlantic and Pacific upper-ocean currents share a name but have distinct paths and seasonality. The family has no single measured length; this is distinct from the deeper North Equatorial Undercurrent.",
+      "length_source": null,
+      "name_source": "marine_regions",
+      "name_source_url": "https://www.marineregions.org/gazetteer.php?p=details&id=5387",
+      "part_of_system": "equatorial-countercurrent",
+      "component_current_ids": [
+        "atlantic-north-equatorial-countercurrent",
+        "pacific-north-equatorial-countercurrent"
+      ]
+    },
+    {
+      "id": "atlantic-north-equatorial-countercurrent",
+      "name": "Atlantic North Equatorial Countercurrent",
+      "basin": "Tropical Atlantic",
+      "kind": "eastward upper-ocean countercurrent",
+      "length_km": null,
+      "length_scope": "Observed cores near 6.5°N and 8°N at 38°W in the 1998–2006 survey record, with marked seasonal variability. These cross-sections do not determine an along-current length.",
+      "length_source": null,
+      "name_source": "atlantic_necc_observations",
+      "part_of_system": "north-equatorial-countercurrent"
+    },
+    {
+      "id": "pacific-north-equatorial-countercurrent",
+      "name": "Pacific North Equatorial Countercurrent",
+      "basin": "Tropical Pacific",
+      "kind": "eastward upper-ocean countercurrent",
+      "length_km": null,
+      "length_scope": "Repeated Pacific velocity sections identify a near-surface eastward core around 7°N at 140°W. The section locates the current but gives no comparable along-current length.",
+      "length_source": null,
+      "name_source": "pacific_necc_sections",
+      "part_of_system": "north-equatorial-countercurrent"
+    },
+    {
+      "id": "south-equatorial-countercurrent",
+      "name": "South Equatorial Countercurrent",
+      "basin": "Atlantic / Pacific / Indian",
+      "kind": "eastward tropical countercurrent family",
+      "length_km": null,
+      "length_scope": "Separate Atlantic, Pacific, and Indian eastward tropical flows share this name. Their seasonal expression and geographic limits differ; no cross-basin family length can be ranked.",
+      "length_source": null,
+      "name_source": "marine_regions",
+      "name_source_url": "https://www.marineregions.org/gazetteer.php?p=details&id=5389",
+      "part_of_system": "equatorial-countercurrent",
+      "component_current_ids": [
+        "atlantic-south-equatorial-countercurrent",
+        "pacific-south-equatorial-countercurrent",
+        "indian-south-equatorial-countercurrent"
+      ]
+    },
+    {
+      "id": "atlantic-south-equatorial-countercurrent",
+      "name": "Atlantic South Equatorial Countercurrent",
+      "basin": "Tropical South Atlantic",
+      "kind": "eastward upper-ocean countercurrent",
+      "length_km": null,
+      "length_scope": "Ship observations place a weak eastward flow in the 7–9°S belt near 30°W in some seasons, with westward flow in spring 1994. The western survey limit and intermittency prevent a defensible whole-current length.",
+      "length_source": null,
+      "name_source": "atlantic_secc_survey",
+      "part_of_system": "south-equatorial-countercurrent"
+    },
+    {
+      "id": "pacific-south-equatorial-countercurrent",
+      "name": "Pacific South Equatorial Countercurrent",
+      "basin": "Tropical South Pacific",
+      "kind": "seasonally varying eastward countercurrent",
+      "length_km": null,
+      "length_scope": "Argo-based analysis reports a boreal-spring band near 5–13°S from 150°E to 170°W, with seasonal changes in zonal reach and depth. That observed seasonal envelope is not a traced alongstream length and is unranked.",
+      "length_source": null,
+      "name_source": "pacific_secc_argo",
+      "part_of_system": "south-equatorial-countercurrent"
+    },
+    {
+      "id": "indian-south-equatorial-countercurrent",
+      "name": "Indian Ocean South Equatorial Countercurrent",
+      "basin": "Tropical South Indian Ocean",
+      "kind": "eastward tropical countercurrent",
+      "length_km": null,
+      "length_scope": "Repeated XBT shipping-line sections identify this flow, including a western line near 55°E with a variable trough around 5–10°S. Section transports and latitude bands are not an along-current length.",
+      "length_source": null,
+      "name_source": "indian_secc_xbt",
+      "part_of_system": "south-equatorial-countercurrent"
+    },
+    {
+      "id": "equatorial-undercurrent",
+      "name": "Equatorial Undercurrent",
+      "basin": "Atlantic / Pacific / Indian",
+      "kind": "subsurface equatorial current family",
+      "length_km": null,
+      "length_scope": "A shared subsurface name across three basins. The Indian Ocean expression is weaker and seasonal; component currents require separate boundaries and length estimates.",
+      "length_source": null,
+      "name_source": "noaa_equatorial",
+      "component_current_ids": [
+        "pacific-equatorial-undercurrent",
+        "atlantic-equatorial-undercurrent",
+        "indian-equatorial-undercurrent"
+      ]
+    },
+    {
+      "id": "pacific-equatorial-undercurrent",
+      "name": "Pacific Equatorial Undercurrent",
+      "aliases": [
+        "Cromwell Current"
+      ],
+      "basin": "Equatorial Pacific",
+      "kind": "eastward subsurface jet",
+      "length_km": 14000,
+      "length_scope": "Approximate basin-wide eastward pathway from north of Papua New Guinea to the South American coast described in Grenier et al. (2011). The source's 14,000 km is a broad path estimate, not a traced instantaneous core or the length of the Atlantic or Indian Equatorial Undercurrent. A 0°N, 140°W mooring locates the current independently.",
+      "length_source": "pacific_euc_pathway",
+      "name_source": "pacific_euc_mooring",
+      "source_reported_length_variants": [
+        {
+          "length_km_approx": 13000,
+          "scope": "A later wave–current dynamics paper describes the Pacific EUC as traversing the equatorial Pacific over about 13,000 km. It does not define the same exact core or gates as Grenier et al.; retained as a source-specific whole-basin approximation rather than an independent rank.",
+          "source": "pacific_euc_alternate_extent",
+          "rank_eligible": false,
+          "source_locator": "Introduction, opening Equatorial Undercurrent description, entire Pacific equatorial length about 13,000 km"
+        }
+      ],
+      "part_of_system": "equatorial-undercurrent",
+      "length_source_locator": "Section 1 Introduction, paragraph [2] (14,000 km pathway)"
+    },
+    {
+      "id": "atlantic-equatorial-undercurrent",
+      "name": "Atlantic Equatorial Undercurrent",
+      "aliases": [
+        "Lomonosov Current",
+        "Lomonoscov Current"
+      ],
+      "basin": "Equatorial Atlantic",
+      "kind": "eastward subsurface jet",
+      "length_km": null,
+      "length_scope": "A PIRATA ADCP observed the current at 0°N, 23°W in 2002; the station is not a whole-current length. Lomonosov is an established alternate name; Marine Regions spells it Lomonoscov.",
+      "length_source": null,
+      "name_source": "atlantic_euc_mooring",
+      "alias_source": "lomonosov_alias",
+      "name_source_url": "https://www.marineregions.org/gazetteer.php?p=details&id=30077",
+      "part_of_system": "equatorial-undercurrent"
+    },
+    {
+      "id": "indian-equatorial-undercurrent",
+      "name": "Indian Ocean Equatorial Undercurrent",
+      "basin": "Equatorial Indian Ocean",
+      "kind": "seasonal eastward subsurface jet",
+      "length_km": null,
+      "length_scope": "Observed across a 2°S–2°N section at 90°E on 1–3 March 2017; the reported ~13.5 Sv is section transport, not path length. A later review describes the Indian expression as weaker and seasonally varying; one campaign does not establish a permanent path.",
+      "length_source": null,
+      "name_source": "indian_euc_survey",
+      "seasonality_source": "indian_euc_review",
+      "part_of_system": "equatorial-undercurrent",
+      "survey_section": {
+        "longitude": 90,
+        "latitude_range": [
+          -2,
+          2
+        ],
+        "period": "2017-03-01/2017-03-03",
+        "transport_sv_approx": 13.5,
+        "direction": "eastward",
+        "source": "indian_euc_survey"
+      }
+    },
+    {
+      "id": "north-equatorial-undercurrent",
+      "name": "North Equatorial Undercurrent",
+      "basin": "Atlantic / Pacific",
+      "kind": "off-equatorial subsurface current family",
+      "length_km": null,
+      "length_scope": "The same name is used for separately observed Atlantic and Pacific subsurface flows with different latitude and depth settings. Do not rank a cross-basin family length.",
+      "length_source": null,
+      "name_source": "marine_regions",
+      "name_source_url": "https://www.marineregions.org/gazetteer.php?p=details&id=5388",
+      "component_current_ids": [
+        "atlantic-north-equatorial-undercurrent",
+        "pacific-north-equatorial-undercurrent"
+      ]
+    },
+    {
+      "id": "atlantic-north-equatorial-undercurrent",
+      "name": "Atlantic North Equatorial Undercurrent",
+      "basin": "Tropical Atlantic",
+      "kind": "eastward subsurface jet",
+      "length_km": null,
+      "length_scope": "Direct observations near 5°N, 23°W cover a 65–270 m subsurface layer; variability is dominated by intraseasonal events, and the mooring does not determine basin-wide length.",
+      "length_source": null,
+      "name_source": "atlantic_neuc_mooring",
+      "part_of_system": "north-equatorial-undercurrent"
+    },
+    {
+      "id": "pacific-north-equatorial-undercurrent",
+      "name": "Pacific North Equatorial Undercurrent",
+      "basin": "Western tropical Pacific",
+      "kind": "intermittent subsurface jets",
+      "length_km": null,
+      "length_scope": "The 130°E mooring array measures eastward subsurface jets between 8.5°N and 17.5°N, with 5.1 Sv mean positive transport to 900 m under the study definition. This cross-section is not a path length.",
+      "length_source": null,
+      "name_source": "pacific_neuc_array",
+      "part_of_system": "north-equatorial-undercurrent",
+      "survey_section": {
+        "longitude": 130,
+        "latitude_range": [
+          8.5,
+          17.5
+        ],
+        "period": "2014–2021 mooring mean",
+        "transport_sv_approx": 5.1,
+        "direction": "eastward",
+        "source": "pacific_neuc_array"
+      }
+    },
+    {
+      "id": "south-equatorial-undercurrent",
+      "name": "South Equatorial Undercurrent",
+      "basin": "Atlantic / Indian",
+      "kind": "off-equatorial subsurface current family",
+      "length_km": null,
+      "length_scope": "The same name appears in separate Atlantic and Indian observations, with different vertical reach and seasonality; a family has no single measured length.",
+      "length_source": null,
+      "name_source": "marine_regions",
+      "name_source_url": "https://www.marineregions.org/gazetteer.php?p=details&id=5391",
+      "component_current_ids": [
+        "atlantic-south-equatorial-undercurrent",
+        "indian-south-equatorial-undercurrent"
+      ]
+    },
+    {
+      "id": "atlantic-south-equatorial-undercurrent",
+      "name": "Atlantic South Equatorial Undercurrent",
+      "basin": "Tropical Atlantic",
+      "kind": "eastward subsurface jet",
+      "length_km": null,
+      "length_scope": "The 35°W section identifies eastward flow between 2.5°S and 4°S at 200–500 m, with 2.8 Sv mean transport under the study definition. Section transport is not whole-current length.",
+      "length_source": null,
+      "name_source": "atlantic_seuc_section",
+      "part_of_system": "south-equatorial-undercurrent",
+      "survey_section": {
+        "longitude": -35,
+        "latitude_range": [
+          -4,
+          -2.5
+        ],
+        "period": "multi-cruise mean reported 2003",
+        "transport_sv_approx": 2.8,
+        "direction": "eastward",
+        "source": "atlantic_seuc_section"
+      }
+    },
+    {
+      "id": "indian-south-equatorial-undercurrent",
+      "name": "Indian Ocean South Equatorial Undercurrent",
+      "basin": "South Indian Ocean",
+      "kind": "seasonal deep-penetrating eastward jet",
+      "length_km": null,
+      "length_scope": "A 10°S, 87°E mooring and reanalysis identify a subsurface eastward jet beneath the westward South Equatorial Current; its deep reach and seasonality differ from the Atlantic flow. No comparable whole-current length is admitted.",
+      "length_source": null,
+      "name_source": "indian_seuc_mooring",
+      "part_of_system": "south-equatorial-undercurrent"
+    },
+    {
+      "id": "south-atlantic",
+      "name": "South Atlantic Current",
+      "basin": "South Atlantic",
+      "kind": "basin-spanning current",
+      "length_km": null,
+      "length_scope": "Named basin-spanning flow in the cited study; no source-defined whole-current path length admitted yet. Cartographic crossings remain separately pending review.",
+      "length_source": null,
+      "name_source": "south_atlantic_float_study",
+      "name_source_locator": "Section 3.5, journal page 380 (PDF page 27); describes the South Atlantic Current as the subtropical gyre's southern limb."
+    },
+    {
+      "id": "south-indian",
+      "name": "South Indian Current",
+      "basin": "South Indian Ocean",
+      "kind": "basin-spanning current",
+      "length_km": null,
+      "length_scope": "Eastward subtropical-gyre flow near 40 degrees S in the cited study; no source-defined whole-current path length admitted. Do not conflate with the Agulhas Return Current or offshore West Australian Current. Cartographic crossings remain separately pending review.",
+      "length_source": null,
+      "name_source": "south_indian_geotraces_study",
+      "name_source_locator": "Section 3.2, paragraph beginning 'The subtropical gyre of the South Indian Ocean'; identifies the eastward South Indian Current near 40 degrees S."
+    },
+    {
+      "id": "south-pacific",
+      "name": "South Pacific Current",
+      "basin": "South Pacific",
+      "kind": "basin-spanning current",
+      "length_km": null,
+      "length_scope": "Named eastward current associated with the South Pacific subtropical front; map arrows do not measure its full length.",
+      "length_source": null,
+      "name_source": "south_pacific_paper"
+    },
+    {
+      "id": "west-greenland",
+      "name": "West Greenland Current",
+      "basin": "North Atlantic",
+      "kind": "regional current",
+      "length_km": null,
+      "length_scope": "No comparable path-length estimate admitted yet.",
+      "length_source": null,
+      "name_source": "noaa_glossary"
+    },
+    {
+      "id": "west-spitsbergen",
+      "name": "West Spitsbergen Current",
+      "basin": "Arctic / Norwegian Sea",
+      "kind": "polar margin current",
+      "length_km": null,
+      "length_scope": "Marine Regions supplies one geographic point, not a centerline or endpoints; no comparable path-length estimate admitted yet.",
+      "length_source": null,
+      "name_source": "marine_regions",
+      "name_source_url": "https://www.marineregions.org/gazetteer.php?p=details&id=33646",
+      "source_mrgid": 33646
+    },
+    {
+      "id": "jutland",
+      "name": "Jutland Current",
+      "basin": "North Sea / Skagerrak",
+      "kind": "coastal current",
+      "length_km": null,
+      "length_scope": "Marine Regions supplies one geographic point, not a current boundary or endpoints; no comparable path-length estimate admitted yet.",
+      "length_source": null,
+      "name_source": "marine_regions",
+      "name_source_url": "https://www.marineregions.org/gazetteer.php?p=details&id=33647",
+      "source_mrgid": 33647
+    },
+    {
+      "id": "mindanao-current",
+      "name": "Mindanao Current",
+      "basin": "Western tropical North Pacific",
+      "kind": "southward low-latitude western boundary current",
+      "length_km": null,
+      "length_scope": "The source describes flow southward along the Philippine Islands and supply to the Indonesian Throughflow, North Equatorial Countercurrent, and Pacific Equatorial Undercurrent. It gives no whole-current alongflow length or fixed endpoint gates.",
+      "length_source": null,
+      "name_source": "western_pacific_euc_pathways",
+      "related_nasa_object_ids": [
+        "indonesian-throughflow"
+      ],
+      "related_current_ids": [
+        "indonesian-throughflow",
+        "pacific-north-equatorial-countercurrent",
+        "pacific-equatorial-undercurrent"
+      ]
+    },
+    {
+      "id": "new-guinea-coastal-undercurrent",
+      "name": "New Guinea Coastal Undercurrent",
+      "basin": "Southwestern tropical Pacific / Solomon Sea",
+      "kind": "northwestward subsurface western boundary current",
+      "length_km": null,
+      "length_scope": "The source describes northwestward flow along Papua New Guinea and through Vitiaz Strait into the Pacific Equatorial Undercurrent source region. It gives no comparable whole-current centerline length.",
+      "length_source": null,
+      "name_source": "western_pacific_euc_pathways",
+      "related_current_ids": [
+        "pacific-equatorial-undercurrent"
+      ]
+    },
+    {
+      "id": "new-ireland-coastal-undercurrent",
+      "name": "New Ireland Coastal Undercurrent",
+      "basin": "Southwestern tropical Pacific / Solomon Sea",
+      "kind": "subsurface island boundary current",
+      "length_km": null,
+      "length_scope": "The source describes flow along New Ireland's eastern coast, with branches joining the New Guinea Coastal Undercurrent or retroflecting toward the Pacific Equatorial Undercurrent. It gives no whole-current length.",
+      "length_source": null,
+      "name_source": "western_pacific_euc_pathways",
+      "related_current_ids": [
+        "new-guinea-coastal-undercurrent",
+        "pacific-equatorial-undercurrent"
+      ]
+    },
+    {
+      "id": "solomon-island-coastal-undercurrent",
+      "name": "Solomon Island Coastal Undercurrent",
+      "basin": "Southwestern tropical Pacific / Solomon Islands",
+      "kind": "proposed subsurface island boundary current",
+      "length_km": null,
+      "length_scope": "The source schematically names this equatorward flow along the Solomon Islands and says it may feed the New Ireland Coastal Undercurrent. Its continuity and whole-current length are unresolved.",
+      "length_source": null,
+      "name_source": "western_pacific_euc_pathways",
+      "related_current_ids": [
+        "new-ireland-coastal-undercurrent"
+      ]
+    },
+    {
+      "id": "new-guinea-coastal-current",
+      "name": "New Guinea Coastal Current",
+      "basin": "Southwestern tropical Pacific / north New Guinea coast",
+      "kind": "seasonally reversing surface western boundary current",
+      "length_km": null,
+      "length_scope": "Three years of moorings distinguish this upper-100 m current from the deeper New Guinea Coastal Undercurrent: it flows southeastward in boreal winter and northwestward in boreal summer. The observations do not define a whole-current alongflow length.",
+      "length_source": null,
+      "name_source": "new_guinea_coastal_moorings",
+      "related_current_ids": [
+        "new-guinea-coastal-undercurrent"
+      ]
+    },
+    {
+      "id": "pacific-north-subsurface-countercurrent",
+      "name": "Pacific North Subsurface Countercurrent",
+      "basin": "Equatorial North Pacific",
+      "kind": "eastward subsurface jet north of the Equatorial Undercurrent",
+      "length_km": null,
+      "length_scope": "A Pacific section at 140°W locates this eastward jet near 4°N and 200 m; the section does not determine its complete alongflow route or length.",
+      "length_source": null,
+      "name_source": "pacific_subsurface_countercurrent_sections",
+      "related_current_ids": [
+        "pacific-equatorial-undercurrent"
+      ]
+    },
+    {
+      "id": "pacific-south-subsurface-countercurrent",
+      "name": "Pacific South Subsurface Countercurrent",
+      "basin": "Equatorial South Pacific",
+      "kind": "eastward subsurface jets south of the Equatorial Undercurrent",
+      "length_km": null,
+      "length_scope": "The Pacific 140°W section resolves two south-side branches near 4.5°S at 200 m and 7°S at 250 m. These section positions do not supply a whole-current path length or a single branch-averaged centerline.",
+      "length_source": null,
+      "name_source": "pacific_subsurface_countercurrent_sections",
+      "related_current_ids": [
+        "pacific-equatorial-undercurrent"
+      ]
+    },
+    {
+      "id": "hiri-current",
+      "name": "Hiri Current",
+      "basin": "Coral Sea / Gulf of Papua",
+      "kind": "northward western boundary branch and Gulf of Papua circulation",
+      "length_km": null,
+      "length_scope": "The literature uses Hiri Current for the northward branch after South Equatorial Current bifurcation off northeast Australia, with variable continuation around the Gulf of Papua. No one fixed path or endpoint pair is admitted for a whole-current length.",
+      "length_source": null,
+      "name_source": "hiri_current_scope",
+      "related_current_ids": [
+        "east-australian",
+        "south-equatorial"
+      ],
+      "identity_scope_note": "Some sources distinguish a northward North Queensland Current and an eastward Hiri Current, while others use Hiri Current or Hiri Gyre for the wider Gulf of Papua circulation. This ledger keeps the name with unresolved precise boundaries.",
+      "identity_scope_source": "hiri_current_scope"
+    },
+    {
+      "id": "alaska-coastal-gulf",
+      "name": "Alaska Coastal Current (Gulf of Alaska)",
+      "basin": "North Pacific / Gulf of Alaska and eastern Aleutians",
+      "kind": "source-defined coastal current system",
+      "length_km": 1700,
+      "length_scope": "Stabeno et al. (2016) report an approximate 1,700 km coastal system between Seward and Samalga Pass. This is the northern Gulf of Alaska/eastern Aleutian scope, separate from the offshore Alaska Current and Alaskan Stream. It does not cover every coastal flow sharing the Alaska Coastal Current name, including Arctic usage. The paper integrates intermittent observations from 1984-2014; this extent is not a measured simultaneous reference streamline or dated footprint.",
+      "length_source": "alaska_coastal_gulf_extent",
+      "name_source": "alaska_coastal_gulf_extent",
+      "name_source_locator": "Accepted manuscript, PDF page 2, Abstract, lines 25-28; PDF page 3, Introduction, lines 42-59 distinguishes coastal flow from the offshore Alaska Gyre currents and broader coastal usage.",
+      "length_source_locator": "Accepted manuscript, PDF page 2, Abstract, lines 25-28 (~1700 km, Seward to Samalga Pass); PDF page 3, Introduction, lines 51-59 defines the regional continuity scope.",
+      "aliases": [
+        "Alaska Coastal Current"
+      ],
+      "alias_source": "alaska_coastal_gulf_extent",
+      "identity_scope_note": "Preferred OSW label adds Gulf of Alaska to the paper name. This source-defined system is distinct from Alaska Current, Alaskan Stream, and Arctic coastal naming conventions; the ACC abbreviation is not an alias because it also names Antarctic Circumpolar Current.",
+      "identity_scope_source": "alaska_coastal_gulf_extent"
+    },
+    {
+      "id": "antarctic-slope",
+      "name": "Antarctic Slope Current",
+      "basin": "Antarctic continental margin",
+      "kind": "source-defined slope current system",
+      "length_km": 21000,
+      "length_scope": "Review-reported upper-continental-slope system span; not a measured reference streamline or dated footprint. The Antarctic Peninsula interrupts circumpolar continuity.",
+      "length_source": "antarctic_slope_review",
+      "name_source": "antarctic_slope_review",
+      "name_source_locator": "Title; section 1.1 ASC Characteristics",
+      "length_source_locator": "Section 1.1 ASC Characteristics, first sentence; Figure 2 caption and following paragraph qualify continuity",
+      "identity_scope_note": "Distinct from Antarctic Coastal Current and Antarctic Circumpolar Current; near-circumpolar system interrupted by Antarctic Peninsula. ASC is a source abbreviation, not a global alias.",
+      "identity_scope_source": "antarctic_slope_review"
+    }
+  ]
+}

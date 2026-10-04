@@ -1,0 +1,512 @@
+{
+  "schema": "osw.almanac.nasa-perpetual-ocean-objects.v1",
+  "as_of": "2026-09-28",
+  "scope": "Motion objects explicitly named or described in NASA SVS Perpetual Ocean and Perpetual Ocean 2 explanatory pages and the 2025 narrated transcript. This is an inventory of NASA's identified objects, not an assertion that every modelled eddy has a name.",
+  "releases": [
+    {
+      "id": "po-2011-viz",
+      "title": "Perpetual Ocean",
+      "url": "https://svs.gsfc.nasa.gov/3827",
+      "model": "ECCO2",
+      "period_as_described": "June 2005–December 2007",
+      "vertical_scope": "surface only",
+      "role": "original visualization"
+    },
+    {
+      "id": "po-2011-story",
+      "title": "Perpetual Ocean",
+      "url": "https://svs.gsfc.nasa.gov/10841",
+      "model": "ECCO2",
+      "period_as_described": "July 2005–December 2007",
+      "vertical_scope": "surface only",
+      "role": "named-current stills and explanatory page"
+    },
+    {
+      "id": "po2-western-boundary",
+      "title": "Perpetual Ocean 2: Western Boundary Currents",
+      "url": "https://svs.gsfc.nasa.gov/5425",
+      "model": "ECCO2",
+      "period_as_described": "2021–2023",
+      "vertical_scope": "3D velocity field; particles seeded above and below 600 m",
+      "role": "named current tour and structure descriptions"
+    },
+    {
+      "id": "po2-narrated",
+      "title": "An Ocean in Motion",
+      "url": "https://svs.gsfc.nasa.gov/14745",
+      "transcript": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+      "timed_movie": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/Perp_Oceans_Final_2.webm",
+      "model": "ECCO2",
+      "period_as_described": "2021–2023, inherited from source visualization",
+      "vertical_scope": "surface and subsurface",
+      "role": "time-coded narration"
+    },
+    {
+      "id": "po2-crops",
+      "title": "Perpetual Ocean 2: Equirectangular",
+      "url": "https://svs.gsfc.nasa.gov/5505",
+      "picker": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/PCT_flow_map_ALL_noLabels_beauty.html",
+      "model": "ECCO2",
+      "period_as_described": "2021–2023 in page prose; narrower metadata dates also appear",
+      "vertical_scope": "all displayed depths",
+      "role": "70 regional movie crops"
+    },
+    {
+      "id": "po2-sphere",
+      "title": "Ocean Currents in equirectangular projection",
+      "url": "https://svs.gsfc.nasa.gov/5479",
+      "model": "ECCO2",
+      "period_as_described": "2021–2023",
+      "vertical_scope": "all displayed depths",
+      "role": "global beauty, temperature, and salinity versions"
+    },
+    {
+      "id": "po2-polar",
+      "title": "Perpetual Ocean 2: Polar Views",
+      "url": "https://svs.gsfc.nasa.gov/5529",
+      "model": "ECCO2",
+      "period_as_described": "2021–2023, linked to Perpetual Ocean 2",
+      "vertical_scope": "all displayed depths",
+      "role": "north and south polar views"
+    }
+  ],
+  "period_note": "NASA's 2011 visualization page says June 2005 while its explanatory page says July 2005; the 2025 crop page prose says 2021–2023 while its dataset metadata lists a narrower range. Preserve each source's wording rather than silently resolving those differences.",
+  "narrated_interval_rule": "Start and end seconds are OSW editorial clip bounds around the relevant NASA transcript passage, rounded to whole seconds; they are navigation aids, not NASA chapter markers or object life spans.",
+  "support_levels": {
+    "explicit_name": "NASA uses this established proper name in page text, caption, or transcript.",
+    "described_structure": "NASA describes the structure but gives no individual proper name or track ID.",
+    "generic_process": "NASA discusses a process or class, not a geographically delimited named individual."
+  },
+  "objects": [
+    {
+      "id": "gulf-stream",
+      "name": "Gulf Stream",
+      "support": "explicit_name",
+      "osw_object_id": "OBJ019",
+      "almanac_current_id": "gulf-stream",
+      "related_current_system_id": "gulf-stream-system",
+      "name_scope_note": "NASA's 2025 page says the Gulf Stream forms in the Florida Straits. NOAA's glossary instead names that upstream segment the Florida Current, reserving Gulf Stream for Cape Hatteras to southeast of the Grand Banks. NASA's broad wording is retained as its own source usage; the almanac length floor follows NOAA's narrower segment definition.",
+      "locator": [
+        -69,
+        38
+      ],
+      "nasa_sources": [
+        "po-2011-viz",
+        "po-2011-story",
+        "po2-western-boundary",
+        "po2-narrated",
+        "po2-sphere"
+      ],
+      "narrated_start_s": 208,
+      "narrated_end_s": 235,
+      "system_context": [
+        {
+          "system_id": "global-overturning",
+          "relation": "narrated_part_of",
+          "cue_numbers": [
+            49,
+            50
+          ],
+          "note": "NASA calls the Gulf Stream another part of the ocean conveyor belt; this is a system relation, not a streamline boundary."
+        }
+      ],
+      "nasa_still": "https://svs.gsfc.nasa.gov/vis/a010000/a010800/a010841/still_15402_gulfstream_flow_1024x576.jpg",
+      "description": "Named western boundary current in both generations; the 2011 page supplies a named still and the 2025 narration follows its North Atlantic reach. NASA's Florida Straits starting point uses a broader name scope than NOAA's strict segmented glossary."
+    },
+    {
+      "id": "kuroshio",
+      "name": "Kuroshio Current",
+      "support": "explicit_name",
+      "osw_object_id": "OBJ019",
+      "almanac_current_id": "kuroshio",
+      "locator": [
+        136,
+        32
+      ],
+      "nasa_sources": [
+        "po-2011-viz",
+        "po-2011-story",
+        "po2-western-boundary",
+        "po2-narrated"
+      ],
+      "narrated_start_s": 86,
+      "narrated_end_s": 115,
+      "nasa_still": "https://svs.gsfc.nasa.gov/vis/a010000/a010800/a010841/still_24460_kuroshio_flow_1024x576.jpg",
+      "description": "Named western boundary current east of Taiwan and Japan; the 2025 tour discusses its persistent meanders separately."
+    },
+    {
+      "id": "agulhas",
+      "name": "Agulhas Current",
+      "support": "explicit_name",
+      "osw_object_id": "OBJ019",
+      "almanac_current_id": "agulhas",
+      "locator": [
+        33,
+        -33
+      ],
+      "nasa_sources": [
+        "po-2011-story",
+        "po2-western-boundary",
+        "po2-narrated",
+        "po2-crops"
+      ],
+      "narrated_start_s": 147,
+      "narrated_end_s": 174,
+      "nasa_still": "https://svs.gsfc.nasa.gov/vis/a010000/a010800/a010841/still_18878_southafrica_flow_1024x576.jpg",
+      "description": "Named western boundary current along southeast Africa; NASA also publishes an Agulhas-specific hyperwall movie."
+    },
+    {
+      "id": "east-australian",
+      "name": "East Australian Current",
+      "support": "explicit_name",
+      "osw_object_id": "OBJ019",
+      "almanac_current_id": "east-australian",
+      "locator": [
+        154,
+        -30
+      ],
+      "nasa_sources": [
+        "po2-narrated"
+      ],
+      "narrated_start_s": 46,
+      "narrated_end_s": 55,
+      "description": "Named as a western boundary current in the narrated film."
+    },
+    {
+      "id": "indonesian-throughflow",
+      "name": "Indonesian Throughflow",
+      "support": "explicit_name",
+      "osw_object_id": "OBJ017",
+      "almanac_current_id": "indonesian-throughflow",
+      "atlas_feature_id": "indonesian-throughflow",
+      "locator": [
+        119,
+        -4
+      ],
+      "nasa_sources": [
+        "po2-western-boundary"
+      ],
+      "external_current_context": [
+        {
+          "current_id": "mindanao-current",
+          "relation": "independently_named_upstream_feeder",
+          "source_url": "https://doi.org/10.1029/2011JC007477",
+          "note": "Grenier et al. identify the Mindanao Current as one feeder of the Indonesian Throughflow. NASA names the throughflow but does not identify the Mindanao Current in this release.",
+          "source_locator": "Section 1 Introduction [4] and Figure 1 pathway description: Mindanao Current feeds the Indonesian Throughflow"
+        }
+      ],
+      "description": "Named interbasin flow discussed as freshwater transport from the Pacific toward the Indian Ocean."
+    },
+    {
+      "id": "red-sea-saline-overflow",
+      "name": "Red Sea saline overflow",
+      "support": "described_structure",
+      "osw_object_id": "OBJ017",
+      "almanac_current_id": "red-sea-saline-overflow",
+      "locator": [
+        43.3,
+        12.6
+      ],
+      "nasa_sources": [
+        "po2-western-boundary"
+      ],
+      "description": "NASA identifies overflow input from the Red Sea as a contributor to salty western Indian Ocean water. The name and Bab el Mandeb gateway are OSW's source-backed index to that description; NASA supplies no plume boundary or path."
+    },
+    {
+      "id": "persian-gulf-saline-overflow",
+      "name": "Persian Gulf saline overflow",
+      "support": "described_structure",
+      "osw_object_id": "OBJ017",
+      "almanac_current_id": "persian-gulf-saline-overflow",
+      "locator": [
+        56.25,
+        26.6
+      ],
+      "nasa_sources": [
+        "po2-western-boundary"
+      ],
+      "description": "NASA identifies overflow input from the Persian Gulf as a contributor to salty western Indian Ocean water. The name and Strait of Hormuz gateway are OSW's source-backed index to that description; NASA supplies no plume boundary or path."
+    },
+    {
+      "id": "western-boundary-currents",
+      "name": "Western boundary currents",
+      "support": "generic_process",
+      "osw_object_id": "OBJ019",
+      "locator": null,
+      "nasa_sources": [
+        "po2-western-boundary",
+        "po2-narrated"
+      ],
+      "narrated_start_s": 55,
+      "narrated_end_s": 65,
+      "example_object_ids": [
+        "gulf-stream",
+        "kuroshio",
+        "agulhas",
+        "east-australian"
+      ],
+      "example_relation": "Named examples across NASA's western-boundary page and narrated film; not a complete global class inventory.",
+      "description": "Dynamical class organizing the Kuroshio, Agulhas, Gulf Stream, and East Australian examples; not one feature to place at a single point."
+    },
+    {
+      "id": "kuroshio-meanders",
+      "name": "Kuroshio meanders",
+      "support": "described_structure",
+      "osw_object_id": "OBJ017",
+      "parent_id": "kuroshio",
+      "locator": [
+        137,
+        33
+      ],
+      "nasa_sources": [
+        "po2-western-boundary"
+      ],
+      "description": "Large, sometimes persistent path meanders near Japan; no individual meander is named."
+    },
+    {
+      "id": "kuroshio-eastward-turn",
+      "name": "Kuroshio eastward turn",
+      "support": "described_structure",
+      "osw_object_id": "OBJ017",
+      "parent_id": "kuroshio",
+      "locator": [
+        146,
+        36
+      ],
+      "nasa_sources": [
+        "po2-narrated"
+      ],
+      "narrated_start_s": 95,
+      "narrated_end_s": 103,
+      "external_current_context": [
+        {
+          "current_id": "kuroshio-extension",
+          "relation": "independently_named_downstream_flow",
+          "source_url": "https://www.whoi.edu/science/PO/POOL/projects.html",
+          "note": "The KESS observational program names the eastward free jet after the Kuroshio leaves Japan; NASA narrates the turn without using that proper name.",
+          "source_locator": "Kuroshio Extension System Study homepage, opening description of the Kuroshio leaving Japan as an eastward free jet"
+        }
+      ],
+      "description": "The narrated film follows the current east from Japan across the Pacific. NASA does not call this segment the Kuroshio Extension in the narration."
+    },
+    {
+      "id": "kuroshio-eddies",
+      "name": "Kuroshio eddies",
+      "support": "described_structure",
+      "osw_object_id": "OBJ021",
+      "parent_id": "kuroshio",
+      "locator": [
+        146,
+        35
+      ],
+      "nasa_sources": [
+        "po2-narrated"
+      ],
+      "narrated_start_s": 100,
+      "narrated_end_s": 105,
+      "description": "Large eddies described near the current's eastward turn; NASA supplies no individual names or track IDs."
+    },
+    {
+      "id": "agulhas-retroflection",
+      "name": "Agulhas retroflection",
+      "support": "described_structure",
+      "osw_object_id": "OBJ023",
+      "parent_id": "agulhas",
+      "locator": [
+        18,
+        -39
+      ],
+      "nasa_sources": [
+        "po-2011-story",
+        "po2-western-boundary",
+        "po2-narrated"
+      ],
+      "narrated_start_s": 155,
+      "narrated_end_s": 163,
+      "external_current_context": [
+        {
+          "current_id": "agulhas-return",
+          "relation": "independently_named_downstream_flow",
+          "source_url": "https://www.cfoo.co.za/seaatlas/papers/agulhas_return_current.pdf",
+          "note": "The hydrographic survey identifies the eastward Agulhas Return Current beyond the retroflection; NASA describes the turn but does not use that proper name.",
+          "source_locator": "PDF page 2, Section 1 Introduction, paragraph explaining the Agulhas Current retroflects and remaining waters flow east as the Agulhas Return Current"
+        }
+      ],
+      "description": "Eastward turn south of Africa described in NASA's 2011 still caption and 2025 account; rings detach there. The name here is OSW's standard geographic label for NASA's described turn."
+    },
+    {
+      "id": "agulhas-rings",
+      "name": "Agulhas Rings",
+      "support": "explicit_name",
+      "osw_object_id": "OBJ022",
+      "parent_id": "agulhas",
+      "locator": [
+        11,
+        -37
+      ],
+      "nasa_sources": [
+        "po2-western-boundary",
+        "po2-narrated",
+        "po2-crops"
+      ],
+      "narrated_start_s": 160,
+      "narrated_end_s": 178,
+      "system_context": [
+        {
+          "system_id": "global-overturning",
+          "relation": "narrated_part_of",
+          "cue_numbers": [
+            40,
+            41
+          ],
+          "note": "NASA says the rings carry salt and heat into the Atlantic and form an important part of overturning circulation; it does not identify individual ring paths."
+        }
+      ],
+      "description": "Named class of detached warm, salty rings moving into the South Atlantic; NASA identifies no individual rings by proper name."
+    },
+    {
+      "id": "western-boundary-rings",
+      "name": "Western boundary current rings",
+      "support": "generic_process",
+      "osw_object_id": "OBJ022",
+      "parent_id": "western-boundary-currents",
+      "locator": null,
+      "nasa_sources": [
+        "po2-western-boundary"
+      ],
+      "description": "NASA describes turbulent rings that can separate from looping meanders of western boundary currents as a class; it does not identify a Gulf Stream ring here."
+    },
+    {
+      "id": "gulf-stream-cold-cores",
+      "name": "Gulf Stream cold cores",
+      "support": "described_structure",
+      "osw_object_id": "OBJ021",
+      "parent_id": "gulf-stream",
+      "locator": [
+        -68,
+        38
+      ],
+      "nasa_sources": [
+        "po2-western-boundary"
+      ],
+      "source_claim": "NASA's page calls the cold cores mostly anticyclonic; this is retained as a source-specific statement, not generalized to all Gulf Stream cold-core eddies.",
+      "description": "Cold cores said to form when the Gulf Stream meanders eastward off Cape Hatteras; NASA gives no individual names or dated footprints."
+    },
+    {
+      "id": "gulf-stream-deep-return",
+      "name": "Deep southward flow beneath the Gulf Stream",
+      "support": "described_structure",
+      "osw_object_id": "OBJ017",
+      "parent_id": "gulf-stream",
+      "locator": [
+        -67,
+        39
+      ],
+      "nasa_sources": [
+        "po2-western-boundary",
+        "po2-narrated"
+      ],
+      "narrated_start_s": 279,
+      "narrated_end_s": 307,
+      "system_context": [
+        {
+          "system_id": "global-overturning",
+          "relation": "narrated_part_of",
+          "cue_numbers": [
+            66,
+            67
+          ],
+          "note": "NASA describes the deep southward flow below the Gulf Stream as part of the same ocean conveyor belt; no distinct current name or observed boundary is supplied."
+        }
+      ],
+      "description": "Oppositely directed deep flow described below the northward surface flow; NASA does not assign it a distinct proper current name."
+    },
+    {
+      "id": "gulf-of-mexico-loop-eddies",
+      "name": "Gulf of Mexico loop eddies",
+      "support": "described_structure",
+      "osw_object_id": "OBJ021",
+      "locator": [
+        -91,
+        25
+      ],
+      "nasa_sources": [
+        "po2-western-boundary"
+      ],
+      "description": "NASA describes large Gulf of Mexico loop eddies; the page does not identify the 81 individually named Horizon Marine rings."
+    },
+    {
+      "id": "global-overturning",
+      "name": "Global ocean overturning circulation",
+      "support": "generic_process",
+      "osw_object_id": "OBJ017",
+      "locator": null,
+      "nasa_sources": [
+        "po2-narrated"
+      ],
+      "narrated_start_s": 173,
+      "narrated_end_s": 193,
+      "description": "Narration calls the connected global circulation a conveyor belt. This is a system concept, not a single current or a mapped streamline."
+    },
+    {
+      "id": "north-atlantic-sinking",
+      "name": "North Atlantic sinking water",
+      "support": "described_structure",
+      "osw_object_id": "OBJ026",
+      "parent_id": "global-overturning",
+      "locator": [
+        -35,
+        60
+      ],
+      "nasa_sources": [
+        "po2-narrated"
+      ],
+      "narrated_start_s": 235,
+      "narrated_end_s": 244,
+      "description": "Narration describes cooled water sinking after circulating around Europe, Iceland, and Greenland. The locator is regional context, not a measured downwelling footprint."
+    },
+    {
+      "id": "upwelling",
+      "name": "Upwelling",
+      "support": "generic_process",
+      "osw_object_id": "OBJ025",
+      "locator": null,
+      "nasa_sources": [
+        "po2-narrated"
+      ],
+      "narrated_start_s": 121,
+      "narrated_end_s": 136,
+      "description": "Vertical rise discussed as a process; no named upwelling region is individually identified in the narration."
+    },
+    {
+      "id": "downwelling",
+      "name": "Downwelling",
+      "support": "generic_process",
+      "osw_object_id": "OBJ026",
+      "locator": null,
+      "nasa_sources": [
+        "po2-narrated"
+      ],
+      "narrated_start_s": 121,
+      "narrated_end_s": 126,
+      "description": "Vertical sinking discussed as a process; no named downwelling region is individually identified in the narration."
+    },
+    {
+      "id": "ocean-eddies",
+      "name": "Ocean eddies",
+      "support": "generic_process",
+      "osw_object_id": "OBJ021",
+      "locator": null,
+      "nasa_sources": [
+        "po-2011-viz",
+        "po-2011-story"
+      ],
+      "description": "The original visualization page identifies ocean eddies as a general model-resolved structure, and its companion story describes slow-moving circular pools without naming individual eddies. This class does not identify a particular vortex, location, or dated track."
+    }
+  ],
+  "exclusions": [
+    "Place names such as Cape Hatteras, Florida Straits, and Philippine Sea are contextual geography, not additional motion objects in this ledger.",
+    "No individual eddy visible in the model is assigned a personal name from NASA footage alone.",
+    "The 70 crop movies are spatial views of a global model field, not 70 named ocean objects."
+  ]
+}

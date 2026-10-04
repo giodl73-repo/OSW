@@ -35,6 +35,31 @@ def test_synthesis_keeps_source_families_separate_and_has_seasonal_results():
     assert len(payload["bounded_results"]["closed_box_primary_inventory_endpoints"]["successive_endpoint_differences"]) == 3
     assert len(payload["bounded_results"]["closed_box_primary_density_inventory"]["successive_endpoint_stratum_volume_differences"]) == 3
     assert len(payload["bounded_results"]["closed_box_primary_density_boundary_terms"]) == 4
+    assert len(payload["bounded_results"]["closed_box_primary_density_collocation_sensitivity"]) == 4
+    assert payload["source_families"]["current_geometry_dynamics"]["density_boundary_collocation_sensitivity"]["sha256"]
+    assert payload["source_families"]["temporal_support_audit"]["sha256"]
+    assert payload["source_families"]["current_geometry_dynamics"]["annual_density_boundary_series"]["sha256"]
+    assert payload["source_families"]["current_geometry_dynamics"]["annual_density_inventory_series"]["sha256"]
+    assert payload["source_families"]["current_geometry_dynamics"]["density_cutoff_sensitivity"]["sha256"]
+    assert payload["source_families"]["current_geometry_dynamics"]["july_repeat_sign_screen"]["sha256"]
+    assert payload["source_families"]["current_geometry_dynamics"]["july_ensemble_sign_screen"]["sha256"]
+    annual = payload["bounded_results"]["annual_density_boundary_comparison"]
+    assert len(annual) == 12
+    assert all(len(month["strata"]) == 4 and all(len(item["control_centered_net_outward_Sv"]) == 3 for item in month["strata"]) for month in annual)
+    july = annual[6]["strata"][2]
+    assert july["primary_centered_net_outward_Sv"] > 1.5 and july["primary_upstream_net_outward_Sv"] > 1.0
+    assert 0.15 < july["primary_inventory_volume_fraction"] < 0.17
+    cutoff = payload["bounded_results"]["density_cutoff_sensitivity_summary"]
+    assert cutoff["posthoc_challenge"] is True
+    assert cutoff["july_middle_high_all_boxes_methods_shifts_outward"] is True
+    assert cutoff["raised_cutoff_lighter_bin_present_july_october"] is True
+    repeat = payload["bounded_results"]["july_repeat_sign_summary"]
+    assert repeat["decision"] == "repeat_year_sign_screen_fails"
+    assert [year["predeclared_sign_pass"] for year in repeat["years"]] == [True, False, True]
+    assert repeat["years"][1]["minimum_tested_case"]["box"] == "east_control"
+    ensemble = payload["bounded_results"]["july_ensemble_sign_summary"]
+    assert ensemble["decision"] == {"pass_count": 0, "member_count": 5, "east_control_baseline_upstream_sign_varies": True}
+    assert [member["predeclared_sign_pass"] for member in ensemble["members"]] == [False] * 5
 
 
 def test_browser_derivative_matches_synthesis():

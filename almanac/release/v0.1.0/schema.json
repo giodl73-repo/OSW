@@ -1,0 +1,1693 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "definitions": {
+    "claims": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "method": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "method_source_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "method_status": {
+          "enum": [
+            "described",
+            "method_reference_only",
+            "method_not_recorded"
+          ]
+        },
+        "object_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "observation_time": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "properties": {
+                "end": {
+                  "type": "string"
+                },
+                "start": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "start",
+                "end"
+              ],
+              "type": "object"
+            }
+          ]
+        },
+        "predicate": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "review_date": {
+          "format": "date",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "review_fingerprint": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "review_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "review_status": {
+          "enum": [
+            "not_individually_reviewed",
+            "verified",
+            "needs_revision",
+            "rejected"
+          ]
+        },
+        "reviewer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_date": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_locator": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_locator_status": {
+          "enum": [
+            "specific",
+            "internal_ledger_row",
+            "internal_ledger_record",
+            "source_only_no_precise_locator"
+          ]
+        },
+        "source_snapshot_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "support_claim_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target_collection": {
+          "enum": [
+            "relations",
+            "measurements",
+            "tile_state_relations",
+            "named_eddy_state_assessments",
+            "named_eddy_source_observations",
+            "named_current_source_observations",
+            "operational_eddy_state_observations",
+            "diagnosed_current_path_observations",
+            "classification_vocabularies",
+            "named_eddy_footprint_candidates",
+            "footprint_movie_context"
+          ]
+        },
+        "target_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "target_collection",
+        "target_id",
+        "subject_id",
+        "predicate",
+        "object_id",
+        "value",
+        "unit",
+        "scope",
+        "evidence_class",
+        "assertion_status",
+        "source_id",
+        "source_snapshot_id",
+        "source_locator",
+        "source_locator_status",
+        "method",
+        "method_source_id",
+        "method_status",
+        "observation_time",
+        "source_date",
+        "reviewer",
+        "review_date",
+        "review_status",
+        "review_note",
+        "review_fingerprint",
+        "support_claim_id"
+      ],
+      "type": "object"
+    },
+    "classification_vocabularies": {
+      "properties": {
+        "assignment_status": {
+          "const": "vocabulary_only_no_osw_state_assignments"
+        },
+        "assignments": {
+          "maxItems": 0,
+          "type": "array"
+        },
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "terms": {
+          "items": {
+            "properties": {
+              "criterion_summary": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "source_label": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "source_label",
+              "criterion_summary"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "entity_id",
+        "label",
+        "source_id",
+        "source_locator",
+        "scope",
+        "terms",
+        "method",
+        "assignment_status",
+        "assignments",
+        "claim_id"
+      ],
+      "type": "object"
+    },
+    "diagnosed_current_path_observations": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "entity_id",
+        "observation_date",
+        "source_field",
+        "source_product_status",
+        "seed_gate",
+        "downstream_gate_longitude",
+        "stop_reason",
+        "reach_length_km",
+        "rank_eligible",
+        "adjacent_seed_sensitivity",
+        "step_size_sensitivity",
+        "physical_limit",
+        "geometry_id",
+        "source_id",
+        "source_snapshot_id",
+        "field_subset_id",
+        "claim_id"
+      ],
+      "type": "object"
+    },
+    "entities": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^(current|eddy|nasa|state|navo-freddies):",
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "named_current",
+            "named_eddy",
+            "nasa_described_motion",
+            "osw_state",
+            "operational_eddy_detection"
+          ]
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "label",
+        "source_id",
+        "source_record_id"
+      ],
+      "type": "object"
+    },
+    "footprint_movie_context": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "event_identity_status": {
+          "const": "not_established"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "nominal_angular_overlap_fraction": {
+          "exclusiveMinimum": 0,
+          "maximum": 1,
+          "type": "number"
+        },
+        "nominal_complete_view": {
+          "type": "boolean"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "recommended": {
+          "type": "boolean"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "temporal_alignment_status": {
+          "enum": [
+            "outside_declared_model_years",
+            "year_in_range_event_alignment_unresolved"
+          ]
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "entity_id",
+        "footprint_candidate_id",
+        "geometry_id",
+        "geometry_sha256",
+        "tile_id",
+        "zoom",
+        "url",
+        "nominal_angular_overlap_fraction",
+        "nominal_complete_view",
+        "recommended",
+        "observation_date",
+        "movie_model_period",
+        "temporal_alignment_status",
+        "event_identity_status",
+        "source_id",
+        "source_snapshot_id",
+        "figure_source_id",
+        "support_claim_id",
+        "source_locator",
+        "method",
+        "physical_limit",
+        "claim_id"
+      ],
+      "type": "object"
+    },
+    "geometries": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "coordinate_reference_system": {
+          "enum": [
+            "OGC:CRS84",
+            "unspecified_datum_lon_lat_degrees",
+            "figure_axis_lon_lat_degrees_unspecified_datum"
+          ]
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "geometry": {
+          "oneOf": [
+            {
+              "properties": {
+                "coordinates": {
+                  "maxItems": 2,
+                  "minItems": 2,
+                  "prefixItems": [
+                    {
+                      "maximum": 180,
+                      "minimum": -180,
+                      "type": "number"
+                    },
+                    {
+                      "maximum": 90,
+                      "minimum": -90,
+                      "type": "number"
+                    }
+                  ],
+                  "type": "array"
+                },
+                "type": {
+                  "const": "Point"
+                }
+              },
+              "required": [
+                "type",
+                "coordinates"
+              ],
+              "type": "object"
+            },
+            {
+              "properties": {
+                "coordinates": {
+                  "items": {
+                    "maxItems": 2,
+                    "minItems": 2,
+                    "prefixItems": [
+                      {
+                        "maximum": 180,
+                        "minimum": -180,
+                        "type": "number"
+                      },
+                      {
+                        "maximum": 90,
+                        "minimum": -90,
+                        "type": "number"
+                      }
+                    ],
+                    "type": "array"
+                  },
+                  "minItems": 2,
+                  "type": "array"
+                },
+                "type": {
+                  "const": "LineString"
+                }
+              },
+              "required": [
+                "type",
+                "coordinates"
+              ],
+              "type": "object"
+            },
+            {
+              "properties": {
+                "coordinates": {
+                  "items": {
+                    "items": {
+                      "maxItems": 2,
+                      "minItems": 2,
+                      "prefixItems": [
+                        {
+                          "maximum": 180,
+                          "minimum": -180,
+                          "type": "number"
+                        },
+                        {
+                          "maximum": 90,
+                          "minimum": -90,
+                          "type": "number"
+                        }
+                      ],
+                      "type": "array"
+                    },
+                    "minItems": 4,
+                    "type": "array"
+                  },
+                  "maxItems": 1,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "type": {
+                  "const": "Polygon"
+                }
+              },
+              "required": [
+                "type",
+                "coordinates"
+              ],
+              "type": "object"
+            }
+          ]
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "editorial_locator",
+            "dated_analyzed_surface_front",
+            "dated_partial_geostrophic_streamline",
+            "dated_operational_eddy_polygon",
+            "dated_figure_ssh_contour_proxy"
+          ]
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "entity_id",
+        "role",
+        "coordinate_reference_system",
+        "method",
+        "positional_uncertainty",
+        "geometry",
+        "source_id"
+      ],
+      "type": "object"
+    },
+    "length_assessments": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "evidence_status": {
+          "enum": [
+            "published_estimate",
+            "derived_lower_bound",
+            "published_lower_bound",
+            "proposed_system_length",
+            "sampled_reach_only",
+            "section_only",
+            "no_numeric_length"
+          ]
+        },
+        "gate_distance_sensitivity": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "properties": {
+                "geographic_span_rank_best": {
+                  "maximum": 7,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "geographic_span_rank_count": {
+                  "const": 7
+                },
+                "geographic_span_rank_worst": {
+                  "maximum": 7,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "perturbation_degrees": {
+                  "const": 0.5
+                },
+                "scenario_count": {
+                  "enum": [
+                    9,
+                    81
+                  ]
+                },
+                "scenario_max_km": {
+                  "exclusiveMinimum": 0,
+                  "type": "number"
+                },
+                "scenario_min_km": {
+                  "exclusiveMinimum": 0,
+                  "type": "number"
+                }
+              },
+              "required": [
+                "interpretation",
+                "perturbation_basis",
+                "perturbation_degrees",
+                "scenario_count",
+                "scenario_min_km",
+                "scenario_max_km",
+                "geographic_span_rank_best",
+                "geographic_span_rank_worst",
+                "geographic_span_rank_count",
+                "rank_interpretation"
+              ],
+              "type": "object"
+            }
+          ]
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "illustrated_span_km": {
+          "exclusiveMinimum": 0,
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "illustrated_span_rank": {
+          "minimum": 1,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "lower_bound_km": {
+          "exclusiveMinimum": 0,
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "proposed_system_length_km": {
+          "exclusiveMinimum": 0,
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "published_length_km": {
+          "exclusiveMinimum": 0,
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "published_rank": {
+          "minimum": 1,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "rank_eligible": {
+          "type": "boolean"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "entity_id",
+        "evidence_status",
+        "rank_eligible",
+        "published_rank",
+        "published_length_km",
+        "lower_bound_km",
+        "proposed_system_length_km",
+        "illustrated_span_km",
+        "illustrated_span_rank",
+        "source_id",
+        "illustration_ledger_source_id"
+      ],
+      "type": "object"
+    },
+    "measurements": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "rank_eligible": {
+          "type": "boolean"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "unit": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "entity_id",
+        "quantity",
+        "value",
+        "unit",
+        "rank_eligible",
+        "source_id",
+        "claim_id"
+      ],
+      "type": "object"
+    },
+    "media": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "entity_id",
+        "url",
+        "relation",
+        "source_id"
+      ],
+      "type": "object"
+    },
+    "named_current_source_observations": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "entity_id",
+        "state_id",
+        "observation_event_id",
+        "reported_locality",
+        "observation_start",
+        "observation_end",
+        "observation_type",
+        "source_locator",
+        "source_url",
+        "state_assignment_method",
+        "state_boundary_limit",
+        "geometry_status",
+        "physical_relation",
+        "source_id",
+        "source_snapshot_id",
+        "claim_id"
+      ],
+      "type": "object"
+    },
+    "named_eddy_footprint_candidates": {
+      "properties": {
+        "boundary_type": {
+          "const": "figure_digitized_instantaneous_ssh_contour_proxy"
+        },
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "geometry_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "state_assessments": {
+          "items": {
+            "properties": {
+              "containment_assessment": {
+                "const": "unresolved"
+              },
+              "display_area_fraction_range": {
+                "items": {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                "maxItems": 2,
+                "minItems": 2,
+                "type": "array"
+              },
+              "intersection_assessment": {
+                "enum": [
+                  "robust_across_tested_calibrations",
+                  "calibration_sensitive_candidate"
+                ]
+              },
+              "nominal_display_area_fraction": {
+                "maximum": 1,
+                "minimum": 0,
+                "type": "number"
+              },
+              "state_id": {
+                "pattern": "^state:",
+                "type": "string"
+              }
+            },
+            "required": [
+              "state_id",
+              "intersection_assessment",
+              "containment_assessment",
+              "nominal_display_area_fraction",
+              "display_area_fraction_range"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "entity_id",
+        "geometry_id",
+        "geometry_sha256",
+        "observation_date",
+        "boundary_type",
+        "source_id",
+        "source_snapshot_id",
+        "source_locator",
+        "method",
+        "physical_limit",
+        "state_assessments",
+        "claim_id"
+      ],
+      "type": "object"
+    },
+    "named_eddy_source_observations": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "entity_id",
+        "observation_start",
+        "observation_end",
+        "evidence_type",
+        "source_locator",
+        "geometry_status",
+        "physical_state_relation",
+        "source_id",
+        "source_snapshot_id",
+        "claim_id"
+      ],
+      "type": "object"
+    },
+    "named_eddy_state_assessments": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "evidence_status": {
+          "enum": [
+            "shared_source_region_gateway",
+            "point_or_region_locator",
+            "published_observed_center_point_candidate",
+            "additional_observed_point",
+            "figure_derived_red_curve_candidate",
+            "figure_derived_dated_ssh_contour_candidate",
+            "unresolved"
+          ]
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "eddy_id",
+        "state_id",
+        "evidence_status",
+        "point_evidence_types",
+        "physical_relation",
+        "source_id",
+        "claim_id",
+        "source_record_id"
+      ],
+      "type": "object"
+    },
+    "names": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "preferred": {
+          "type": "boolean"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "entity_id",
+        "label",
+        "preferred",
+        "source_id"
+      ],
+      "type": "object"
+    },
+    "observation_sets": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "contained_relation_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "detection_count": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "intersected_relation_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weekly_track_join": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "date",
+        "product",
+        "detection_count",
+        "state_counts",
+        "source_id",
+        "source_snapshot_id",
+        "source_response_sha256",
+        "observation_file",
+        "identity_limit",
+        "coverage_limit"
+      ],
+      "type": "object"
+    },
+    "operational_eddy_state_observations": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "operational_eddy_id",
+        "provider_code",
+        "provider_type",
+        "provider_rotation",
+        "observation_date",
+        "state_id",
+        "relation",
+        "display_projection_polygon_area_fraction",
+        "provider_center_lon_lat",
+        "source_zip_sha256",
+        "identity_limit",
+        "relation_limit",
+        "source_id",
+        "source_snapshot_id",
+        "state_join_id",
+        "geometry_id",
+        "claim_id"
+      ],
+      "type": "object"
+    },
+    "relations": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "evidence_class": {
+          "enum": [
+            "source_identified",
+            "source_associated",
+            "observed_geometry",
+            "derived_field",
+            "figure_digitized",
+            "source_reported_point_projected_to_atlas",
+            "atlas_geometry",
+            "unresolved"
+          ]
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "subject_id",
+        "predicate",
+        "object_id",
+        "evidence_class",
+        "source_id",
+        "claim_id"
+      ],
+      "type": "object"
+    },
+    "sources": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "derived_detection_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "external",
+            "OSW source ledger"
+          ]
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "material_use_class": {
+          "enum": [
+            "compiled_name_and_date_records",
+            "derived_dated_observations",
+            "derived_cartographic_measurements",
+            "gazetteer_name_crosswalk",
+            "media_navigation_and_source_description",
+            "source_scoped_factual_claim",
+            "figure_derived_measurement_and_factual_claim"
+          ]
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "provider_asset_redistributed": {
+          "type": "boolean"
+        },
+        "record_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "rights_status": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "total_packaged_row_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "label",
+        "rights_status",
+        "record_count"
+      ],
+      "type": "object"
+    },
+    "tile_state_relations": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "display_coverage_fraction": {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "evidence_class": {
+          "const": "atlas_geometry"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "physical_relation": {
+          "const": "unresolved"
+        },
+        "predicate": {
+          "const": "display_overlap"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "tile_id",
+        "state_id",
+        "predicate",
+        "display_coverage_fraction",
+        "evidence_class",
+        "claim_id",
+        "physical_relation",
+        "source_id"
+      ],
+      "type": "object"
+    },
+    "tiles": {
+      "properties": {
+        "claim_id": {
+          "pattern": "^claim:",
+          "type": "string"
+        },
+        "entity_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "latitude_range": {
+          "items": {
+            "maximum": 90,
+            "minimum": -90,
+            "type": "number"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        },
+        "longitude_range_unwrapped": {
+          "items": {
+            "maximum": 540,
+            "minimum": -540,
+            "type": "number"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        },
+        "object_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "tile_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "zoom": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "tile_id",
+        "zoom",
+        "url",
+        "picker_box_px",
+        "latitude_range",
+        "longitude_range_unwrapped",
+        "spatial_role",
+        "source_id"
+      ],
+      "type": "object"
+    }
+  },
+  "title": "OSW ocean motion release collection row contracts"
+}

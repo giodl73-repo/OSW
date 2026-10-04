@@ -1,0 +1,327 @@
+{
+  "schema": "osw.almanac.navo-gulf-stream-front-state-snapshot.v1",
+  "date": "2026-09-28",
+  "source_receipt": "research/gulf-stream-navo-front-20260928.json",
+  "source_url": "https://ocean.weather.gov/gulf_stream_text.php",
+  "source_response_sha256": "e709db9a59253541b23ba66ab6098783961219727867a7f711b0871495a6ce1d",
+  "state_geometry": "figures/osw-province-atlas-interactive.svg",
+  "current_identity": "gulf-stream-system",
+  "observation_role": "dated_surface_front_intersection",
+  "method": "Project the NAVO north and south wall coordinate lines to OSW's equirectangular SVG frame and intersect each with coast-masked approximate state polygons. A positive-length overlap is a line-segment intersection; a point contact is a boundary touch. Convert clipped line vertices back to longitude and latitude, sum WGS84 geodesic segment lengths, and round to 0.1 km.",
+  "length_limit": "Lengths measure the drawn analyzed fronts and approximate front segments inside OSW atlas polygons on this date. They are not along-current centerline lengths or whole-current estimates. Coordinate rounding, front age, and approximate state boundaries are not represented by the decimal precision.",
+  "front_lengths_km": {
+    "north_wall": 5087.6,
+    "south_wall": 3443.9
+  },
+  "claim_limit": "These are analyzed surface-temperature fronts for one date, not an observed current axis, a complete Gulf Stream System footprint, or a perennial current/state passage claim. State boundaries are OSW approximate regions. Absence of a front intersection on this date is not absence of the current.",
+  "state_count": 56,
+  "states_with_front": 5,
+  "states": {
+    "ALSK": {
+      "name": "Alaska coastal downwelling",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "ANTA": {
+      "name": "Antarctic",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "APLR": {
+      "name": "Austral polar",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "ARAB": {
+      "name": "Northwest Arabian Sea upwelling",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "ARCH": {
+      "name": "Archipelagic deep basins",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "ARCT": {
+      "name": "Atlantic Arctic",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "AUSE": {
+      "name": "East Australian coast",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "AUSW": {
+      "name": "Western Australian and Indonesian coast",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "BENG": {
+      "name": "Benguela Current coast",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "BERS": {
+      "name": "North Pacific epicontinental sea",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "BPLR": {
+      "name": "Boreal polar",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "BRAZ": {
+      "name": "Brazil Current coast",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "CAMR": {
+      "name": "Central American coast",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "CARB": {
+      "name": "Caribbean",
+      "front_observations": {
+        "north_wall": "line_segment_intersection",
+        "south_wall": "line_segment_intersection"
+      },
+      "front_intersection_lengths_km": {
+        "north_wall": 374.2,
+        "south_wall": 183.3
+      }
+    },
+    "CCAL": {
+      "name": "Coastal California Current",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "CHIN": {
+      "name": "China Sea",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "CNRY": {
+      "name": "Canary Current coast",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "EAFR": {
+      "name": "East African coast",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "ETRA": {
+      "name": "Eastern tropical Atlantic",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "FKLD": {
+      "name": "Southwest Atlantic shelves",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "GFST": {
+      "name": "Gulf Stream",
+      "front_observations": {
+        "north_wall": "line_segment_intersection",
+        "south_wall": "line_segment_intersection"
+      },
+      "front_intersection_lengths_km": {
+        "north_wall": 2689.5,
+        "south_wall": 2624.2
+      }
+    },
+    "GUIA": {
+      "name": "Guianas coast",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "GUIN": {
+      "name": "Guinea Current coast",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "HUMB": {
+      "name": "Humboldt Current coast",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "IND E": {
+      "name": "Eastern India coast",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "IND W": {
+      "name": "Western India coast",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "ISSG": {
+      "name": "Indian South subtropical gyre",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "KURO": {
+      "name": "Kuroshio Current",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "MEDI": {
+      "name": "Mediterranean Sea",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "MONS": {
+      "name": "Indian monsoon gyre",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "NADR": {
+      "name": "North Atlantic Drift",
+      "front_observations": {
+        "north_wall": "line_segment_intersection"
+      },
+      "front_intersection_lengths_km": {
+        "north_wall": 168.0
+      }
+    },
+    "NAST E": {
+      "name": "Northeast Atlantic subtropical gyre",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "NAST W": {
+      "name": "Northwest Atlantic subtropical gyre",
+      "front_observations": {
+        "north_wall": "line_segment_intersection"
+      },
+      "front_intersection_lengths_km": {
+        "north_wall": 519.1
+      }
+    },
+    "NATR": {
+      "name": "North Atlantic tropical gyre",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "NECS": {
+      "name": "Northeast Atlantic shelves",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "NEWZ": {
+      "name": "New Zealand coast",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "NPPF": {
+      "name": "North Pacific polar front",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "NPSE": {
+      "name": "Northeast Pacific subtropical",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "NPSW": {
+      "name": "Northwest Pacific subtropical",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "NPTG": {
+      "name": "North Pacific tropical gyre",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "NWCS": {
+      "name": "Northwest Atlantic shelves",
+      "front_observations": {
+        "north_wall": "line_segment_intersection",
+        "south_wall": "line_segment_intersection"
+      },
+      "front_intersection_lengths_km": {
+        "north_wall": 1336.7,
+        "south_wall": 636.4
+      }
+    },
+    "OCAL": {
+      "name": "Oceanic California Current",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "PEQD": {
+      "name": "Pacific equatorial divergence",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "PNEC": {
+      "name": "North Pacific equatorial countercurrent",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "PSAE": {
+      "name": "Eastern Pacific subarctic gyres",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "PSAW": {
+      "name": "Western Pacific subarctic gyres",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "REDS": {
+      "name": "Red Sea and Persian Gulf",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "SANT": {
+      "name": "Subantarctic water ring",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "SARC": {
+      "name": "Atlantic sub-Arctic",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "SATL": {
+      "name": "South Atlantic gyre",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "SPSG": {
+      "name": "South Pacific gyre",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "SSTC": {
+      "name": "South subtropical convergence",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "SUND": {
+      "name": "Sunda–Arafura shelves",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "TASM": {
+      "name": "Tasman Sea",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "WARM": {
+      "name": "Western Pacific warm pool",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    },
+    "WTRA": {
+      "name": "Western tropical Atlantic",
+      "front_observations": {},
+      "front_intersection_lengths_km": {}
+    }
+  }
+}

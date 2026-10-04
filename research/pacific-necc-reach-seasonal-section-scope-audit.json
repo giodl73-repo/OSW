@@ -1,0 +1,49 @@
+{
+  "schema": "osw.current-source-scope-audit.v1",
+  "current_id": "pacific-north-equatorial-countercurrent",
+  "as_of": "2026-10-04",
+  "status": "editorial_source_scope_audit_not_canonical",
+  "source_url": "https://www.pmel.noaa.gov/pubs/outstand/john2337/zonal_velocity.shtml",
+  "source_citation": "Johnson, Sloyan, Kessler and McTaggart (2002), Direct measurements of upper ocean currents and water properties across the tropical Pacific during the 1990s, Progress in Oceanography 52, 31-61, doi:10.1016/S0079-6611(02)00021-6.",
+  "source_access": "NOAA-hosted introduction, section 2 and section 3 text read; figures and CTD/ADCP fields not digitized or repackaged. Bibliographic page range 31-61 checked against PMEL publication record; HTML header 31-36 is not adopted.",
+  "source_locator": "Section 3.1: 140 W near-surface core around 7 N, 125 W around 8 N, southward shift at 110 W and northward rebuilding at 95 W; section 3.2.3 separates seasonal surface expression near 110 W.",
+  "source_ensemble_period_months": {
+    "start": "1985-06",
+    "end": "2000-12"
+  },
+  "source_ensemble_period_is_route_date": false,
+  "observed_period": null,
+  "section_longitudes_degrees_east": [
+    -140,
+    -125,
+    -110,
+    -95
+  ],
+  "editorial_latitude_choices": {
+    "110W": 6,
+    "95W": 7
+  },
+  "scope": "Declared east-central Pacific study reach from 140 W to 95 W. Gates truncate a larger current; western Pacific inflow and coastal redistribution east of 95 W are excluded. Intermediate bends are editorial connections among section descriptions, not a reconstructed continuous axis or parcel trajectory.",
+  "layer": "Near-surface and upper-ocean eastward countercurrent; maxima can be slightly subsurface. Separate from equatorial EUC and deeper NSCC/Tsuchiya Jet; no uniform depth imposed.",
+  "surface_expression_caution": "Near 110 W the fitted source surface expression is absent in December-February and peaks in August; slightly subsurface maxima and NSCC are distinct. No general absence of all eastward upper-ocean flow is claimed.",
+  "section_mapping_caution": "ADCP generally begins about 20 m; mapped shear is extrapolated to surface. The source uses annual harmonics/SOI with uneven sampling, not monthly routes extracted here.",
+  "source_declared_correlation_scales_are_width": false,
+  "whole_current_length_km": null,
+  "whole_current_width_km": null,
+  "annual_length_range_km": null,
+  "annual_width_range_km": null,
+  "route_construction_status": "editorial_studied_reach_constructed",
+  "candidate_file": "research/pacific-necc-reach-reference-path-candidate.json",
+  "remaining_gates": [
+    "Review editor-selected 110 W/95 W latitudes and interpolating continuity against compatible velocity fields.",
+    "Extract depth and month-specific axes before length or width seasonal ranges.",
+    "Keep weak or absent surface flow near 110 W separate from subsurface eastward flow; no annual continuous path inferred.",
+    "Resolve western inflow and coastal redistribution separately from this truncated studied reach."
+  ],
+  "local_section_diagnostic": {
+    "file": "research/pacific-necc-oscar-2013-section-diagnostic.json",
+    "visual_url": "almanac/necc-section.html",
+    "status": "derived_width_candidate_requires_scientific_review",
+    "scope": "140 W archived OSCAR monthly means in 2013; not a whole-current width or reproduction of the source climatology."
+  }
+}

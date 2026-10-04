@@ -15,6 +15,12 @@ Every contribution should preserve these boundaries:
 
 Run the complete local checks before proposing a change:
 
+Two graph-extraction checks require checksum-pinned journal originals. They are
+excluded from Git and acquired separately with
+`python analysis/acquire_local_paper_fixtures.py`. CI performs this acquisition
+before running the offline checks. A changed or unavailable source fails visibly;
+the source-validation assertions are not skipped.
+
 ```powershell
 cd analysis
 python -m unittest discover -p "test_*.py"

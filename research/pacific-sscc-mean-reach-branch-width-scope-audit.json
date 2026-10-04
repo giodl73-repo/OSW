@@ -1,0 +1,102 @@
+{
+  "schema": "osw.current-source-scope-audit.v1",
+  "current_id": "pacific-south-subsurface-countercurrent",
+  "as_of": "2026-10-04",
+  "status": "editorial_source_scope_audit_not_canonical",
+  "source_url": "https://www.pmel.noaa.gov/pubs/outstand/john1806/john1806.shtml",
+  "source_citation": "Johnson and Moore (1997), The Pacific Subsurface Countercurrents and an Inertial Model, Journal of Physical Oceanography 27, 2448-2459.",
+  "source_access": "Johnson and Moore sections 2-3/text Table 1 read; Rowe et al. introduction, data-method passages and section 3e/Fig. 10 caption read from primary NOAA-hosted PDF. Figures not digitized; no full-paper read or field extraction claimed. Added inspection of Rowe et al. section 2 sampling/boundary methods and section 3b general width statement in NOAA PDF, confirmed in publisher full text; no figures or paired edges digitized.",
+  "source_locator": "Sections 2-3 and Table 1: south SSCC peaks at 155 W 3.5 S/250 m and 110 W 5.5 S/160 m. Latitude integration bands are not widths. Rowe et al. (2000), introduction and section 3e/Fig. 10 caption, distinguish primary and secondary southern jets.",
+  "source_ensemble_years": [
+    1967,
+    1996
+  ],
+  "source_ensemble_period_is_route_date": false,
+  "observed_period": null,
+  "source_core_support": [
+    {
+      "longitude": -155,
+      "latitude": -3.5,
+      "local_peak_depth_m": 250
+    },
+    {
+      "longitude": -110,
+      "latitude": -5.5,
+      "local_peak_depth_m": 160
+    }
+  ],
+  "source_core_depths_are_uniform_route_layer": false,
+  "source_transport_integration_bounds": [
+    {
+      "longitude": -155,
+      "latitude_range": [
+        -8,
+        -3
+      ]
+    },
+    {
+      "longitude": -110,
+      "latitude_range": [
+        -6,
+        -3
+      ]
+    }
+  ],
+  "transport_integration_bounds_are_current_width": false,
+  "source_named_branches": [
+    {
+      "source_label": "primary SSCC / main SSCC",
+      "source": "Rowe et al. (2000)",
+      "support": "Fig. 10 caption describes a primary core around 4 S at 155 W; not assigned automatically to historical mean-core axis."
+    },
+    {
+      "source_label": "secondary SSCC",
+      "source": "Rowe et al. (2000)",
+      "support": "Fig. 10 caption describes a secondary core around 6.5 S at 155 W; section 3e retains uncertainty about independent origin versus splitting."
+    }
+  ],
+  "source_branch_topology_status": "independent_origin_versus_split_unresolved",
+  "historical_mean_core_to_named_branch_assignment": "not_established",
+  "source_front_scale": {
+    "variable": "potential_vorticity_front",
+    "approximate_span_km": 40,
+    "bound_kind": "likely_upper_bound_due_to_density_resolution",
+    "is_whole_current_width": false,
+    "is_annual_width_range": false,
+    "source_locator": "Rowe et al. (2000) pp. 1174-1175, methods: stream-coordinate averaging, density resolution and front-scale limitation."
+  },
+  "scope": "Declared historical southern mean-core studied reach from 155 W 3.5 S to 110 W 5.5 S. These gates truncate the larger southern subsurface flow. Western formation, secondary-jet geometry and eastern continuation are excluded. This is one study-defined connection, not an aggregate centerline or sum of primary and secondary branches.",
+  "layer": "Southern subsurface/Tsuchiya flow. Johnson and Moore (1997) Table 1 gives local mean peak depths 250 m at 155 W and 160 m at 110 W; no uniform depth or full vertical bounds imposed. Later observations resolve primary and deeper secondary jets; their correspondence to this historical mean-core route remains a review gate.",
+  "coordinate_selection": "OSW uses rounded Table 1 mean-core neighborhoods at 155 W 3.5 S and 110 W 5.5 S as truncation gates. Intermediate 140 W 4.2 S and 125 W 4.8 S are editor-selected. No source figure, current axis or dated particle path digitized. Correspondence with later primary/secondary branch labels is not assumed.",
+  "whole_current_length_km": null,
+  "whole_current_width_km": null,
+  "annual_length_range_km": null,
+  "annual_width_range_km": null,
+  "route_construction_status": "editorial_historical_mean_core_studied_reach_constructed",
+  "candidate_file": "research/pacific-sscc-mean-reach-reference-path-candidate.json",
+  "remaining_gates": [
+    "Review correspondence of historical mean-core sections to later primary/secondary labels; no branch aggregation inferred.",
+    "Review interpolation with compatible southern-jet velocity fields and independently resolve secondary-jet geometry.",
+    "Obtain month/depth axes before seasonal dimensions; source compilation years are not route observation dates.",
+    "Resolve western formation and eastern continuation; transport bands and PV-front spans must remain separate from current width."
+  ],
+  "reported_ensemble_angular_width": {
+    "source_claim_id": "rowe-2000-scc-general-two-degree-width",
+    "source_url": "https://journals.ametsoc.org/view/journals/phoc/30/6/1520-0485_2000_030_1172_pescvt_2.0.co_2.xml",
+    "source_pdf_url": "https://floats.pmel.noaa.gov/sites/default/files/atoms/files/gcj_1y.pdf",
+    "source_locator": "Section 3b, printed 1179 / PDF index 7; boundary methodology section 2, printed 1175.",
+    "latitude_span_degrees": 2,
+    "scope": "General meridional SCC width in discussion of stream-coordinate averages; not a separate regional value for each jet.",
+    "branch_assignment": "main SSCC; secondary branch width unextracted",
+    "exact_section_geometry": null,
+    "fixed_depth_bounds_m": null,
+    "observed_period": null,
+    "shared_source_claim": true,
+    "independent_jet_measurements": false,
+    "core_position_variation_is_width_range": false,
+    "pv_front_width_is_current_width": false,
+    "annual_range_supported": false,
+    "boundary_method": "Neutral-layer zonal-velocity sign transition where available; subjective local minimum when adjacent eastward currents merge. Paired edges underlying the general 2-degree statement are not extracted.",
+    "sampling_note": "Stream-coordinate averaging; spatial bins have uneven time coverage and depth-dependent sampling."
+  }
+}

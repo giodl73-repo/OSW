@@ -1,0 +1,2547 @@
+{
+  "schema": "osw-ocean-state-sant-density-inventory-monthly-series-v1",
+  "status": "twelve_month_density_bin_occupancy_not_tendency_or_transformation",
+  "source": {
+    "path": "research/ocean-state-sant-closed-box-monthly-fields-2018.json",
+    "sha256": "12126a8128c00605f9278e9f13fcdda59134f63742564b2c9095b92792bf3b73"
+  },
+  "baseline": {
+    "path": "research/ocean-state-sant-closed-box-density-inventory-2018.json",
+    "sha256": "bba3e37d61132309dfec04af88c2d7216e6272562d387901ba22f3c5be118968",
+    "reproduced_months": [
+      "201802",
+      "201805",
+      "201808",
+      "201811"
+    ]
+  },
+  "selection": {
+    "path": "research/ocean-state-sant-closed-box-selection-current-geometry-v1.json",
+    "sha256": "f65e3adb8b99f47cfd30ee549838fdd653dc1e3500b465dfe1a3c5bd75da39a6"
+  },
+  "sources": {
+    "mesh": {
+      "path": "atlas/data/oras5-drake-mesh.nc",
+      "sha256": "a575659f2249a60ce01ecfc71fc489d17f8476d1a41dfb116b25c349ddcb0824"
+    },
+    "t_metrics": {
+      "path": "atlas/data/oras5-drake-t-metrics.nc",
+      "sha256": "ea9f29023b7f507778e6b0b8dfd5fb564313d3cd9c68f32c55e0f0f8da11dfc5"
+    }
+  },
+  "method": {
+    "equation_of_state": "TEOS-10 GSW 3.6.23",
+    "conversion": "SA_from_SP using local longitude, latitude, and pressure from reconstructed native T-cell midpoint depth; CT_from_pt; sigma0",
+    "numeric_strata_sigma0_kg_m3": [
+      {
+        "id": "below_26_5",
+        "lower_inclusive": null,
+        "upper_exclusive": 26.5
+      },
+      {
+        "id": "26_5_to_27_0",
+        "lower_inclusive": 26.5,
+        "upper_exclusive": 27.0
+      },
+      {
+        "id": "27_0_to_27_5",
+        "lower_inclusive": 27.0,
+        "upper_exclusive": 27.5
+      },
+      {
+        "id": "at_or_above_27_5",
+        "lower_inclusive": 27.5,
+        "upper_exclusive": null
+      }
+    ],
+    "temporal_support": "monthly mean T/S samples, not instantaneous endpoint states"
+  },
+  "partial_cell_fallback_count": 0,
+  "boxes": [
+    {
+      "box": "primary",
+      "months": [
+        {
+          "valid_time": "2018-01-01/P1M",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 4360978360076.746,
+              "volume_fraction": 0.018947304,
+              "wet_cell_count": 5014
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 35789559510984.305,
+              "volume_fraction": 0.15549622,
+              "wet_cell_count": 5347
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 190012996033854.2,
+              "volume_fraction": 0.825556476,
+              "wet_cell_count": 5377
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-02-01/P1M",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5025379445762.677,
+              "volume_fraction": 0.021833952,
+              "wet_cell_count": 5315
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36056936859034.91,
+              "volume_fraction": 0.156657904,
+              "wet_cell_count": 5106
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 189081217600117.7,
+              "volume_fraction": 0.821508144,
+              "wet_cell_count": 5317
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-03-01/P1M",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5102856613171.469,
+              "volume_fraction": 0.022170569,
+              "wet_cell_count": 5348
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 35529883807173.85,
+              "volume_fraction": 0.154367997,
+              "wet_cell_count": 5046
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 189530793484569.94,
+              "volume_fraction": 0.823461433,
+              "wet_cell_count": 5344
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-04-01/P1M",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5390406705945.028,
+              "volume_fraction": 0.023419899,
+              "wet_cell_count": 5471
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 34284831491952.566,
+              "volume_fraction": 0.148958573,
+              "wet_cell_count": 4874
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 190488295707017.66,
+              "volume_fraction": 0.827621528,
+              "wet_cell_count": 5393
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-05-01/P1M",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5565592203078.56,
+              "volume_fraction": 0.024181034,
+              "wet_cell_count": 5542
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 33638330752301.875,
+              "volume_fraction": 0.146149697,
+              "wet_cell_count": 4770
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 190959610949534.8,
+              "volume_fraction": 0.829669269,
+              "wet_cell_count": 5426
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-06-01/P1M",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 3548393905982.05,
+              "volume_fraction": 0.015416838,
+              "wet_cell_count": 3615
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 35089133508858.484,
+              "volume_fraction": 0.152453053,
+              "wet_cell_count": 6657
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 191526006490074.72,
+              "volume_fraction": 0.832130109,
+              "wet_cell_count": 5466
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-07-01/P1M",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 37026456176860.51,
+              "volume_fraction": 0.160870211,
+              "wet_cell_count": 10155
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 193137077728054.75,
+              "volume_fraction": 0.839129789,
+              "wet_cell_count": 5583
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-08-01/P1M",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36308992545080.734,
+              "volume_fraction": 0.15775302,
+              "wet_cell_count": 10120
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 193854541359834.5,
+              "volume_fraction": 0.84224698,
+              "wet_cell_count": 5618
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-09-01/P1M",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 37750265034339.44,
+              "volume_fraction": 0.16401497,
+              "wet_cell_count": 10215
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 192413268870575.8,
+              "volume_fraction": 0.83598503,
+              "wet_cell_count": 5523
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-10-01/P1M",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 37698600904892.766,
+              "volume_fraction": 0.163790503,
+              "wet_cell_count": 10197
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 192464933000022.47,
+              "volume_fraction": 0.836209497,
+              "wet_cell_count": 5541
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-11-01/P1M",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 672465085752.693,
+              "volume_fraction": 0.002921684,
+              "wet_cell_count": 1121
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36764419012066.14,
+              "volume_fraction": 0.159731728,
+              "wet_cell_count": 9054
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 192726649807096.44,
+              "volume_fraction": 0.837346588,
+              "wet_cell_count": 5563
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-12-01/P1M",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 4222314936995.414,
+              "volume_fraction": 0.018344848,
+              "wet_cell_count": 4941
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 31309263928591.74,
+              "volume_fraction": 0.136030514,
+              "wet_cell_count": 5094
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 194631955039328.12,
+              "volume_fraction": 0.845624638,
+              "wet_cell_count": 5703
+            }
+          ]
+        }
+      ],
+      "successive_monthly_mean_differences": [
+        {
+          "from_valid_time": "2018-01-01/P1M",
+          "to_valid_time": "2018-02-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 664401085685.931
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 267377348050.602
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": -931778433736.5
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-02-01/P1M",
+          "to_valid_time": "2018-03-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 77477167408.792
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -527053051861.055
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 449575884452.25
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-03-01/P1M",
+          "to_valid_time": "2018-04-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 287550092773.56
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -1245052315221.285
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 957502222447.719
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-04-01/P1M",
+          "to_valid_time": "2018-05-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 175185497133.531
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -646500739650.691
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 471315242517.156
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-05-01/P1M",
+          "to_valid_time": "2018-06-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": -2017198297096.51
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 1450802756556.609
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 566395540539.906
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-06-01/P1M",
+          "to_valid_time": "2018-07-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": -3548393905982.05
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 1937322668002.023
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 1611071237980.031
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-07-01/P1M",
+          "to_valid_time": "2018-08-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -717463631779.773
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 717463631779.75
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-08-01/P1M",
+          "to_valid_time": "2018-09-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 1441272489258.703
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": -1441272489258.688
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-09-01/P1M",
+          "to_valid_time": "2018-10-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -51664129446.672
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 51664129446.656
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-10-01/P1M",
+          "to_valid_time": "2018-11-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 672465085752.693
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -934181892826.625
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 261716807073.969
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-11-01/P1M",
+          "to_valid_time": "2018-12-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 3549849851242.721
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -5455155083474.402
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 1905305232231.688
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "box": "north_control",
+      "months": [
+        {
+          "valid_time": "2018-01-01/P1M",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 4365638922837.623,
+              "volume_fraction": 0.019315004,
+              "wet_cell_count": 5002
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36682627628740.49,
+              "volume_fraction": 0.162295856,
+              "wet_cell_count": 5399
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 184974927196981.44,
+              "volume_fraction": 0.81838914,
+              "wet_cell_count": 5227
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-02-01/P1M",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5050951900563.795,
+              "volume_fraction": 0.022347051,
+              "wet_cell_count": 5311
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36950175952066.47,
+              "volume_fraction": 0.163479576,
+              "wet_cell_count": 5150
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 184022065895929.28,
+              "volume_fraction": 0.814173372,
+              "wet_cell_count": 5167
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-03-01/P1M",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5144605242917.275,
+              "volume_fraction": 0.022761404,
+              "wet_cell_count": 5350
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36469146947522.21,
+              "volume_fraction": 0.161351348,
+              "wet_cell_count": 5086
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 184409441558120.06,
+              "volume_fraction": 0.815887248,
+              "wet_cell_count": 5192
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-04-01/P1M",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5423271572973.572,
+              "volume_fraction": 0.023994314,
+              "wet_cell_count": 5469
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 35178799341888.805,
+              "volume_fraction": 0.155642431,
+              "wet_cell_count": 4916
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 185421122833697.2,
+              "volume_fraction": 0.820363255,
+              "wet_cell_count": 5243
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-05-01/P1M",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5602243247267.927,
+              "volume_fraction": 0.024786143,
+              "wet_cell_count": 5541
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 34422605743275.77,
+              "volume_fraction": 0.152296785,
+              "wet_cell_count": 4806
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 185998344758015.84,
+              "volume_fraction": 0.822917072,
+              "wet_cell_count": 5281
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-06-01/P1M",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 3801050284455.295,
+              "volume_fraction": 0.016817081,
+              "wet_cell_count": 3835
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 35659035868118.63,
+              "volume_fraction": 0.157767153,
+              "wet_cell_count": 6473
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 186563107595985.62,
+              "volume_fraction": 0.825415766,
+              "wet_cell_count": 5320
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-07-01/P1M",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 38015203013345.2,
+              "volume_fraction": 0.168191602,
+              "wet_cell_count": 10204
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 188007990735214.34,
+              "volume_fraction": 0.831808398,
+              "wet_cell_count": 5424
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-08-01/P1M",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 37077926077282.016,
+              "volume_fraction": 0.164044784,
+              "wet_cell_count": 10154
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 188945267671277.53,
+              "volume_fraction": 0.835955216,
+              "wet_cell_count": 5474
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-09-01/P1M",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 38599291749011.43,
+              "volume_fraction": 0.1707758,
+              "wet_cell_count": 10254
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 187423901999548.12,
+              "volume_fraction": 0.8292242,
+              "wet_cell_count": 5374
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-10-01/P1M",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 38762595154256.23,
+              "volume_fraction": 0.171498307,
+              "wet_cell_count": 10252
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 187260598594303.3,
+              "volume_fraction": 0.828501693,
+              "wet_cell_count": 5376
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-11-01/P1M",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 740448845635.075,
+              "volume_fraction": 0.003275986,
+              "wet_cell_count": 1167
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 37819665957111.66,
+              "volume_fraction": 0.167326482,
+              "wet_cell_count": 9067
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 187463078945812.8,
+              "volume_fraction": 0.829397531,
+              "wet_cell_count": 5394
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-12-01/P1M",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 4271274755133.963,
+              "volume_fraction": 0.018897506,
+              "wet_cell_count": 4949
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 32531053501513.668,
+              "volume_fraction": 0.143927944,
+              "wet_cell_count": 5157
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 189220865491911.9,
+              "volume_fraction": 0.83717455,
+              "wet_cell_count": 5522
+            }
+          ]
+        }
+      ],
+      "successive_monthly_mean_differences": [
+        {
+          "from_valid_time": "2018-01-01/P1M",
+          "to_valid_time": "2018-02-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 685312977726.172
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 267548323325.977
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": -952861301052.156
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-02-01/P1M",
+          "to_valid_time": "2018-03-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 93653342353.48
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -481029004544.258
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 387375662190.781
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-03-01/P1M",
+          "to_valid_time": "2018-04-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 278666330056.297
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -1290347605633.406
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 1011681275577.125
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-04-01/P1M",
+          "to_valid_time": "2018-05-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 178971674294.354
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -756193598613.035
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 577221924318.656
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-05-01/P1M",
+          "to_valid_time": "2018-06-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": -1801192962812.632
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 1236430124842.863
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 564762837969.781
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-06-01/P1M",
+          "to_valid_time": "2018-07-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": -3801050284455.295
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 2356167145226.57
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 1444883139228.719
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-07-01/P1M",
+          "to_valid_time": "2018-08-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -937276936063.188
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 937276936063.188
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-08-01/P1M",
+          "to_valid_time": "2018-09-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 1521365671729.414
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": -1521365671729.406
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-09-01/P1M",
+          "to_valid_time": "2018-10-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 163303405244.797
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": -163303405244.812
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-10-01/P1M",
+          "to_valid_time": "2018-11-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 740448845635.075
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -942929197144.57
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 202480351509.5
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-11-01/P1M",
+          "to_valid_time": "2018-12-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 3530825909498.888
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -5288612455597.988
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 1757786546099.094
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "box": "south_control",
+      "months": [
+        {
+          "valid_time": "2018-01-01/P1M",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 4353670253943.565,
+              "volume_fraction": 0.018659233,
+              "wet_cell_count": 5025
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 34909109189408.96,
+              "volume_fraction": 0.149615653,
+              "wet_cell_count": 5295
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 194062468073492.88,
+              "volume_fraction": 0.831725114,
+              "wet_cell_count": 5511
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-02-01/P1M",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5002304325013.976,
+              "volume_fraction": 0.02143919,
+              "wet_cell_count": 5320
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 35100294730580.55,
+              "volume_fraction": 0.150435048,
+              "wet_cell_count": 5056
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 193222648461250.88,
+              "volume_fraction": 0.828125762,
+              "wet_cell_count": 5455
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-03-01/P1M",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5067806890146.376,
+              "volume_fraction": 0.021719925,
+              "wet_cell_count": 5349
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 34603905107949.344,
+              "volume_fraction": 0.14830759,
+              "wet_cell_count": 5003
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 193653535518749.72,
+              "volume_fraction": 0.829972485,
+              "wet_cell_count": 5479
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-04-01/P1M",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5354910464750.25,
+              "volume_fraction": 0.022950412,
+              "wet_cell_count": 5472
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 33474082346072.9,
+              "volume_fraction": 0.143465324,
+              "wet_cell_count": 4837
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 194496254706022.25,
+              "volume_fraction": 0.833584264,
+              "wet_cell_count": 5522
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-05-01/P1M",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5536978697358.184,
+              "volume_fraction": 0.023730731,
+              "wet_cell_count": 5546
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 32842273274282.93,
+              "volume_fraction": 0.140757477,
+              "wet_cell_count": 4729
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 194945995545204.3,
+              "volume_fraction": 0.835511791,
+              "wet_cell_count": 5556
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-06-01/P1M",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 3302629866276.349,
+              "volume_fraction": 0.014154619,
+              "wet_cell_count": 3397
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 34499825542635.914,
+              "volume_fraction": 0.147861519,
+              "wet_cell_count": 6836
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 195522792107933.2,
+              "volume_fraction": 0.837983862,
+              "wet_cell_count": 5598
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-07-01/P1M",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36067413914147.76,
+              "volume_fraction": 0.154579988,
+              "wet_cell_count": 10107
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 197257833602697.66,
+              "volume_fraction": 0.845420012,
+              "wet_cell_count": 5724
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-08-01/P1M",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 35576582637206.87,
+              "volume_fraction": 0.152476352,
+              "wet_cell_count": 10087
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 197748664879638.56,
+              "volume_fraction": 0.847523648,
+              "wet_cell_count": 5744
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-09-01/P1M",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36933561344675.04,
+              "volume_fraction": 0.158292177,
+              "wet_cell_count": 10177
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 196391686172170.38,
+              "volume_fraction": 0.841707823,
+              "wet_cell_count": 5654
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-10-01/P1M",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36670276648394.77,
+              "volume_fraction": 0.157163775,
+              "wet_cell_count": 10143
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 196654970868450.62,
+              "volume_fraction": 0.842836225,
+              "wet_cell_count": 5688
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-11-01/P1M",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 625029694043.579,
+              "volume_fraction": 0.002678792,
+              "wet_cell_count": 1090
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 35742694953170.766,
+              "volume_fraction": 0.153188287,
+              "wet_cell_count": 9028
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 196957522869631.1,
+              "volume_fraction": 0.844132922,
+              "wet_cell_count": 5713
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-12-01/P1M",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 4180496185835.889,
+              "volume_fraction": 0.017917033,
+              "wet_cell_count": 4936
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 30150703837170.39,
+              "volume_fraction": 0.12922178,
+              "wet_cell_count": 5031
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 198994047493839.12,
+              "volume_fraction": 0.852861187,
+              "wet_cell_count": 5864
+            }
+          ]
+        }
+      ],
+      "successive_monthly_mean_differences": [
+        {
+          "from_valid_time": "2018-01-01/P1M",
+          "to_valid_time": "2018-02-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 648634071070.411
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 191185541171.59
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": -839819612242.0
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-02-01/P1M",
+          "to_valid_time": "2018-03-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 65502565132.4
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -496389622631.207
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 430887057498.844
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-03-01/P1M",
+          "to_valid_time": "2018-04-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 287103574603.874
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -1129822761876.445
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 842719187272.531
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-04-01/P1M",
+          "to_valid_time": "2018-05-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 182068232607.934
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -631809071789.969
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 449740839182.062
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-05-01/P1M",
+          "to_valid_time": "2018-06-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": -2234348831081.834
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 1657552268352.984
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 576796562728.875
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-06-01/P1M",
+          "to_valid_time": "2018-07-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": -3302629866276.349
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 1567588371511.844
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 1735041494764.469
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-07-01/P1M",
+          "to_valid_time": "2018-08-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -490831276940.891
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 490831276940.906
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-08-01/P1M",
+          "to_valid_time": "2018-09-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 1356978707468.172
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": -1356978707468.188
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-09-01/P1M",
+          "to_valid_time": "2018-10-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -263284696280.266
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 263284696280.25
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-10-01/P1M",
+          "to_valid_time": "2018-11-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 625029694043.579
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -927581695224.008
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 302552001180.469
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-11-01/P1M",
+          "to_valid_time": "2018-12-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 3555466491792.31
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -5591991116000.375
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 2036524624208.031
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "box": "east_control",
+      "months": [
+        {
+          "valid_time": "2018-01-01/P1M",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 4404925349805.306,
+              "volume_fraction": 0.018965513,
+              "wet_cell_count": 5033
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 34929468439568.785,
+              "volume_fraction": 0.150389674,
+              "wet_cell_count": 5280
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 192925358024986.2,
+              "volume_fraction": 0.830644813,
+              "wet_cell_count": 5470
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-02-01/P1M",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5031038154717.645,
+              "volume_fraction": 0.021661257,
+              "wet_cell_count": 5317
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 35301789937542.375,
+              "volume_fraction": 0.151992714,
+              "wet_cell_count": 5061
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 191926923722100.3,
+              "volume_fraction": 0.826346029,
+              "wet_cell_count": 5405
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-03-01/P1M",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5105441160893.414,
+              "volume_fraction": 0.021981601,
+              "wet_cell_count": 5349
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 34850256372730.35,
+              "volume_fraction": 0.150048625,
+              "wet_cell_count": 5006
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 192304054280736.53,
+              "volume_fraction": 0.827969774,
+              "wet_cell_count": 5428
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-04-01/P1M",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5388237838259.15,
+              "volume_fraction": 0.023199189,
+              "wet_cell_count": 5470
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 33676082339886.25,
+              "volume_fraction": 0.14499319,
+              "wet_cell_count": 4839
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 193195431636214.9,
+              "volume_fraction": 0.831807621,
+              "wet_cell_count": 5474
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-05-01/P1M",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5564058506930.335,
+              "volume_fraction": 0.023956189,
+              "wet_cell_count": 5541
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 33129277642797.402,
+              "volume_fraction": 0.142638909,
+              "wet_cell_count": 4741
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 193566415664632.56,
+              "volume_fraction": 0.833404902,
+              "wet_cell_count": 5501
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-06-01/P1M",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 3290502401345.521,
+              "volume_fraction": 0.014167338,
+              "wet_cell_count": 3356
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 34794521742190.805,
+              "volume_fraction": 0.149808658,
+              "wet_cell_count": 6884
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 194174727670824.0,
+              "volume_fraction": 0.836024004,
+              "wet_cell_count": 5543
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-07-01/P1M",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36480304733767.16,
+              "volume_fraction": 0.157066838,
+              "wet_cell_count": 10124
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 195779447080593.12,
+              "volume_fraction": 0.842933162,
+              "wet_cell_count": 5659
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-08-01/P1M",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 35739938288363.3,
+              "volume_fraction": 0.153879172,
+              "wet_cell_count": 10086
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 196519813525997.03,
+              "volume_fraction": 0.846120828,
+              "wet_cell_count": 5697
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-09-01/P1M",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 37147148503395.93,
+              "volume_fraction": 0.15993795,
+              "wet_cell_count": 10179
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 195112603310964.38,
+              "volume_fraction": 0.84006205,
+              "wet_cell_count": 5604
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-10-01/P1M",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 37115598435762.56,
+              "volume_fraction": 0.15980211,
+              "wet_cell_count": 10162
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 195144153378597.75,
+              "volume_fraction": 0.84019789,
+              "wet_cell_count": 5621
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-11-01/P1M",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 502016396412.99,
+              "volume_fraction": 0.002161444,
+              "wet_cell_count": 881
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36240528069576.516,
+              "volume_fraction": 0.156034473,
+              "wet_cell_count": 9251
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 195517207348370.8,
+              "volume_fraction": 0.841804083,
+              "wet_cell_count": 5651
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-12-01/P1M",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 4110416758833.165,
+              "volume_fraction": 0.017697499,
+              "wet_cell_count": 4871
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 30689592633714.777,
+              "volume_fraction": 0.132134786,
+              "wet_cell_count": 5118
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 197459742421812.38,
+              "volume_fraction": 0.850167715,
+              "wet_cell_count": 5794
+            }
+          ]
+        }
+      ],
+      "successive_monthly_mean_differences": [
+        {
+          "from_valid_time": "2018-01-01/P1M",
+          "to_valid_time": "2018-02-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 626112804912.339
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 372321497973.59
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": -998434302885.875
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-02-01/P1M",
+          "to_valid_time": "2018-03-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 74403006175.77
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -451533564812.023
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 377130558636.219
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-03-01/P1M",
+          "to_valid_time": "2018-04-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 282796677365.736
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -1174174032844.102
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 891377355478.375
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-04-01/P1M",
+          "to_valid_time": "2018-05-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 175820668671.185
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -546804697088.848
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 370984028417.656
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-05-01/P1M",
+          "to_valid_time": "2018-06-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": -2273556105584.814
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 1665244099393.402
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 608312006191.438
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-06-01/P1M",
+          "to_valid_time": "2018-07-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": -3290502401345.521
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 1685782991576.352
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 1604719409769.125
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-07-01/P1M",
+          "to_valid_time": "2018-08-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -740366445403.859
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 740366445403.906
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-08-01/P1M",
+          "to_valid_time": "2018-09-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 1407210215032.633
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": -1407210215032.656
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-09-01/P1M",
+          "to_valid_time": "2018-10-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -31550067633.367
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 31550067633.375
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-10-01/P1M",
+          "to_valid_time": "2018-11-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 502016396412.99
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -875070366186.047
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 373053969773.062
+            }
+          ]
+        },
+        {
+          "from_valid_time": "2018-11-01/P1M",
+          "to_valid_time": "2018-12-01/P1M",
+          "stratum_volume_change_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 3608400362420.175
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -5550935435861.738
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 1942535073441.562
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "boundary": "These are fixed-box density-bin occupancies and differences between monthly means. They are not matched class-volume tendencies, density-class conversion rates, water-mass identities, or a budget. The separately receipted horizontal bin fluxes cannot be subtracted from these differences without compatible time bounds, native mean fluxes, vertical/mixing terms, and assimilation/restoring treatment."
+}

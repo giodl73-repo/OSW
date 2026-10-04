@@ -1,0 +1,2502 @@
+{
+  "schema": "osw.almanac.nasa-object-state-crosswalk.v1",
+  "object_ledger": "research/nasa-perpetual-ocean-objects.json",
+  "state_ledger": "research/ocean-motion-state-join.json",
+  "cartographic_ledger": "research/cartographic-ocean-current-state-join.json",
+  "tile_ledger": "research/nasa-perpetual-ocean-tile-join.json",
+  "media_ledger": "research/nasa-perpetual-ocean-object-media.json",
+  "source_evidence_ledger": "research/nasa-perpetual-ocean-object-evidence.json",
+  "property_ledger": "research/nasa-perpetual-ocean-object-properties.json",
+  "motion_form_ledger": "research/nasa-perpetual-ocean-motion-forms.json",
+  "evidence_limit": "NASA identifies the objects in linked releases. Current crossings come from independent cartographic arrows or OSW schematic/editorial lines. The Indonesian Throughflow gate is an OSW conceptual feature line. Object locators are approximate points and regional movies are geographic context. None proves a NASA-segmented footprint, an observed current core, or an individual eddy track.",
+  "objects": {
+    "gulf-stream": {
+      "nasa_support": "explicit_name",
+      "release_ids": [
+        "po-2011-viz",
+        "po-2011-story",
+        "po2-western-boundary",
+        "po2-narrated",
+        "po2-sphere"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/3827",
+        "https://svs.gsfc.nasa.gov/10841",
+        "https://svs.gsfc.nasa.gov/5425",
+        "https://svs.gsfc.nasa.gov/14745",
+        "https://svs.gsfc.nasa.gov/5479"
+      ],
+      "release_evidence": {
+        "po-2011-viz": {
+          "source_url": "https://svs.gsfc.nasa.gov/3827#media_group_351521",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            351521
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/3827#media_group_351521"
+          ],
+          "support_pattern": "Gulf Stream"
+        },
+        "po-2011-story": {
+          "source_url": "https://svs.gsfc.nasa.gov/10841#media_group_350680",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            350680,
+            350677
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/10841#media_group_350680",
+            "https://svs.gsfc.nasa.gov/10841#media_group_350677"
+          ],
+          "support_pattern": "Gulf Stream"
+        },
+        "po2-western-boundary": {
+          "source_url": "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            376523,
+            376521,
+            376522
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+            "https://svs.gsfc.nasa.gov/5425#media_group_376521",
+            "https://svs.gsfc.nasa.gov/5425#media_group_376522"
+          ],
+          "support_pattern": "Gulf Stream"
+        },
+        "po2-narrated": {
+          "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+          "evidence_kind": "narration_cues",
+          "cue_numbers": [
+            49,
+            50,
+            51,
+            52,
+            53,
+            54
+          ],
+          "cue_times": [
+            {
+              "number": 49,
+              "start_seconds": 208.196,
+              "end_seconds": 212.754
+            },
+            {
+              "number": 50,
+              "start_seconds": 212.827,
+              "end_seconds": 217.313
+            },
+            {
+              "number": 51,
+              "start_seconds": 217.385,
+              "end_seconds": 222.016
+            },
+            {
+              "number": 52,
+              "start_seconds": 222.089,
+              "end_seconds": 226.503
+            },
+            {
+              "number": 53,
+              "start_seconds": 226.575,
+              "end_seconds": 231.061
+            },
+            {
+              "number": 54,
+              "start_seconds": 231.134,
+              "end_seconds": 235.331
+            }
+          ],
+          "support_pattern": "Gulf Stream"
+        },
+        "po2-sphere": {
+          "source_url": "https://svs.gsfc.nasa.gov/5479#media_group_378115",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            378115
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5479#media_group_378115"
+          ],
+          "support_pattern": "Gulf Stream"
+        }
+      },
+      "reported_properties": [
+        {
+          "object_id": "gulf-stream",
+          "quantity": "surface_speed",
+          "relation": "greater_than",
+          "value": 4,
+          "unit": "mph",
+          "display": ">4 mph surface speed (2011 story)",
+          "scope_note": "NASA's 2011 introductory story describes the Gulf Stream and Kuroshio as examples of currents carrying warm water at speeds greater than 4 mph; no averaging interval, location, or method is supplied. This is a source-era description, not a series-wide minimum.",
+          "source_release_id": "po-2011-story",
+          "source_url": "https://svs.gsfc.nasa.gov/10841",
+          "source_location": "page_introduction"
+        },
+        {
+          "object_id": "gulf-stream",
+          "quantity": "surface_speed",
+          "relation": "up_to",
+          "value": 2.5,
+          "unit": "m/s",
+          "display": "up to 2.5 m/s surface speed",
+          "scope_note": "NASA's descriptive upper value; not a time-mean transport estimate.",
+          "source_release_id": "po2-western-boundary",
+          "source_url": "https://svs.gsfc.nasa.gov/5425/#media_group_376523"
+        },
+        {
+          "object_id": "gulf-stream",
+          "quantity": "surface_temperature",
+          "relation": "greater_than",
+          "value": 25,
+          "unit": "°C",
+          "display": ">25 °C warm surface water",
+          "scope_note": "NASA's Gulf Stream tour description; not a uniform temperature along the full current.",
+          "source_release_id": "po2-western-boundary",
+          "source_url": "https://svs.gsfc.nasa.gov/5425/#media_group_376523"
+        }
+      ],
+      "almanac_current_id": "gulf-stream",
+      "osw_object_id": "OBJ019",
+      "parent_id": null,
+      "parent_current_id": null,
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [
+        {
+          "system_id": "global-overturning",
+          "relation": "narrated_part_of",
+          "cue_numbers": [
+            49,
+            50
+          ],
+          "note": "NASA calls the Gulf Stream another part of the ocean conveyor belt; this is a system relation, not a streamline boundary."
+        }
+      ],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": 208,
+      "narrated_end_s": 235,
+      "regional_movie": {
+        "locator": [
+          -69,
+          38
+        ],
+        "tile_id": "level2_B_2",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_B_2.mp4"
+      },
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [
+          "CAMR",
+          "CARB",
+          "GFST",
+          "NWCS"
+        ],
+        "width_sensitive_cartographic_contacts": [
+          "NAST W"
+        ],
+        "schematic_current_crossings": [
+          "CARB",
+          "GFST",
+          "NADR",
+          "NWCS"
+        ],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": [
+          "GFST"
+        ]
+      }
+    },
+    "kuroshio": {
+      "nasa_support": "explicit_name",
+      "release_ids": [
+        "po-2011-viz",
+        "po-2011-story",
+        "po2-western-boundary",
+        "po2-narrated"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/3827",
+        "https://svs.gsfc.nasa.gov/10841",
+        "https://svs.gsfc.nasa.gov/5425",
+        "https://svs.gsfc.nasa.gov/14745"
+      ],
+      "release_evidence": {
+        "po-2011-viz": {
+          "source_url": "https://svs.gsfc.nasa.gov/3827#media_group_351523",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            351523
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/3827#media_group_351523"
+          ],
+          "support_pattern": "Kuroshio"
+        },
+        "po-2011-story": {
+          "source_url": "https://svs.gsfc.nasa.gov/10841#media_group_350682",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            350682,
+            350677
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/10841#media_group_350682",
+            "https://svs.gsfc.nasa.gov/10841#media_group_350677"
+          ],
+          "support_pattern": "Kuroshio"
+        },
+        "po2-western-boundary": {
+          "source_url": "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            376523,
+            376521,
+            376522
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+            "https://svs.gsfc.nasa.gov/5425#media_group_376521",
+            "https://svs.gsfc.nasa.gov/5425#media_group_376522"
+          ],
+          "support_pattern": "Kuroshio"
+        },
+        "po2-narrated": {
+          "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+          "evidence_kind": "narration_cues",
+          "cue_numbers": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ],
+          "cue_times": [
+            {
+              "number": 21,
+              "start_seconds": 86.195,
+              "end_seconds": 90.826
+            },
+            {
+              "number": 22,
+              "start_seconds": 90.899,
+              "end_seconds": 95.096
+            },
+            {
+              "number": 23,
+              "start_seconds": 95.168,
+              "end_seconds": 99.799
+            },
+            {
+              "number": 24,
+              "start_seconds": 99.872,
+              "end_seconds": 104.141
+            },
+            {
+              "number": 25,
+              "start_seconds": 104.213,
+              "end_seconds": 108.41
+            },
+            {
+              "number": 26,
+              "start_seconds": 108.482,
+              "end_seconds": 112.39
+            }
+          ],
+          "support_pattern": "Kuroshio"
+        }
+      },
+      "reported_properties": [
+        {
+          "object_id": "kuroshio",
+          "quantity": "surface_speed",
+          "relation": "greater_than",
+          "value": 4,
+          "unit": "mph",
+          "display": ">4 mph surface speed (2011 story)",
+          "scope_note": "NASA's 2011 introductory story describes the Gulf Stream and Kuroshio as examples of currents carrying warm water at speeds greater than 4 mph; no averaging interval, location, or method is supplied. This is a source-era description, not a series-wide minimum.",
+          "source_release_id": "po-2011-story",
+          "source_url": "https://svs.gsfc.nasa.gov/10841",
+          "source_location": "page_introduction"
+        },
+        {
+          "object_id": "kuroshio",
+          "quantity": "temperature",
+          "relation": "range",
+          "lower": 20,
+          "upper": 25,
+          "unit": "°C",
+          "display": "20–25 °C temperature",
+          "scope_note": "NASA's Kuroshio description; no spatial or time averaging method is specified.",
+          "source_release_id": "po2-western-boundary",
+          "source_url": "https://svs.gsfc.nasa.gov/5425/#media_group_376523"
+        },
+        {
+          "object_id": "kuroshio",
+          "quantity": "salinity",
+          "relation": "approximate_average",
+          "value": 34.5,
+          "unit": "source salinity scale unspecified",
+          "display": "about 34.5 average salinity",
+          "scope_note": "NASA notes seasonal variation; source gives no averaging interval or salinity unit.",
+          "source_release_id": "po2-western-boundary",
+          "source_url": "https://svs.gsfc.nasa.gov/5425/#media_group_376523"
+        },
+        {
+          "object_id": "kuroshio",
+          "quantity": "transport_relative_to_amazon",
+          "relation": "greater_than",
+          "value": 200,
+          "unit": "ratio to Amazon River water flow",
+          "display": ">200× Amazon River water flow",
+          "scope_note": "Narration cues 25–26 compare Kuroshio water flow with the Amazon River; no reference river discharge, absolute transport, averaging interval, or measurement method is supplied. This ratio is not a current length.",
+          "source_release_id": "po2-narrated",
+          "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+          "cue_numbers": [
+            25,
+            26
+          ]
+        }
+      ],
+      "almanac_current_id": "kuroshio",
+      "osw_object_id": "OBJ019",
+      "parent_id": null,
+      "parent_current_id": null,
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": 86,
+      "narrated_end_s": 115,
+      "regional_movie": {
+        "locator": [
+          136,
+          32
+        ],
+        "tile_id": "level2_G_3",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_G_3.mp4"
+      },
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [
+          "CHIN",
+          "KURO",
+          "NPPF",
+          "PSAW"
+        ],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": [
+          "KURO"
+        ]
+      }
+    },
+    "agulhas": {
+      "nasa_support": "explicit_name",
+      "release_ids": [
+        "po-2011-story",
+        "po2-western-boundary",
+        "po2-narrated",
+        "po2-crops"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/10841",
+        "https://svs.gsfc.nasa.gov/5425",
+        "https://svs.gsfc.nasa.gov/14745",
+        "https://svs.gsfc.nasa.gov/5505"
+      ],
+      "release_evidence": {
+        "po-2011-story": {
+          "source_url": "https://svs.gsfc.nasa.gov/10841#media_group_350681",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            350681
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/10841#media_group_350681"
+          ],
+          "support_pattern": "Agulhas Current"
+        },
+        "po2-western-boundary": {
+          "source_url": "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            376523,
+            376521,
+            376522
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+            "https://svs.gsfc.nasa.gov/5425#media_group_376521",
+            "https://svs.gsfc.nasa.gov/5425#media_group_376522"
+          ],
+          "support_pattern": "Agulhas Current"
+        },
+        "po2-narrated": {
+          "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+          "evidence_kind": "narration_cues",
+          "cue_numbers": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "cue_times": [
+            {
+              "number": 35,
+              "start_seconds": 147.051,
+              "end_seconds": 151.175
+            },
+            {
+              "number": 36,
+              "start_seconds": 151.248,
+              "end_seconds": 155.879
+            },
+            {
+              "number": 37,
+              "start_seconds": 155.951,
+              "end_seconds": 160.293
+            },
+            {
+              "number": 38,
+              "start_seconds": 160.365,
+              "end_seconds": 164.851
+            },
+            {
+              "number": 39,
+              "start_seconds": 164.924,
+              "end_seconds": 169.41
+            },
+            {
+              "number": 40,
+              "start_seconds": 169.483,
+              "end_seconds": 173.535
+            }
+          ],
+          "support_pattern": "Agulhas Current"
+        },
+        "po2-crops": {
+          "source_url": "https://svs.gsfc.nasa.gov/5505#media_group_379442",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            379442
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5505#media_group_379442"
+          ],
+          "support_pattern": "Agulhas Current"
+        }
+      },
+      "reported_properties": [],
+      "almanac_current_id": "agulhas",
+      "osw_object_id": "OBJ019",
+      "parent_id": null,
+      "parent_current_id": null,
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": 147,
+      "narrated_end_s": 174,
+      "regional_movie": {
+        "locator": [
+          33,
+          -33
+        ],
+        "tile_id": "level2_D_5",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_D_5.mp4"
+      },
+      "feature_media_ids": [
+        "agulhas-hyperwall"
+      ],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [
+          "EAFR"
+        ],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [
+          "EAFR",
+          "SSTC"
+        ],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": [
+          "SSTC"
+        ]
+      }
+    },
+    "east-australian": {
+      "nasa_support": "explicit_name",
+      "release_ids": [
+        "po2-narrated"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/14745"
+      ],
+      "release_evidence": {
+        "po2-narrated": {
+          "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+          "evidence_kind": "narration_cues",
+          "cue_numbers": [
+            12
+          ],
+          "cue_times": [
+            {
+              "number": 12,
+              "start_seconds": 46.614,
+              "end_seconds": 51.028
+            }
+          ],
+          "support_pattern": "East Australian Current"
+        }
+      },
+      "reported_properties": [],
+      "almanac_current_id": "east-australian",
+      "osw_object_id": "OBJ019",
+      "parent_id": null,
+      "parent_current_id": null,
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": 46,
+      "narrated_end_s": 55,
+      "regional_movie": {
+        "locator": [
+          154,
+          -30
+        ],
+        "tile_id": "level2_G_5",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_G_5.mp4"
+      },
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [
+          "AUSE",
+          "NEWZ",
+          "TASM"
+        ],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [
+          "AUSE",
+          "TASM"
+        ],
+        "object_locator_candidates": [
+          "AUSE"
+        ]
+      }
+    },
+    "indonesian-throughflow": {
+      "nasa_support": "explicit_name",
+      "release_ids": [
+        "po2-western-boundary"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/5425"
+      ],
+      "release_evidence": {
+        "po2-western-boundary": {
+          "source_url": "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            376523
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5425#media_group_376523"
+          ],
+          "support_pattern": "Indonesian Throughflow"
+        }
+      },
+      "reported_properties": [
+        {
+          "object_id": "indonesian-throughflow",
+          "quantity": "salinity",
+          "relation": "range",
+          "lower": 33,
+          "upper": 34,
+          "unit": "source salinity scale unspecified",
+          "display": "33–34 salinity",
+          "scope_note": "NASA describes this as relatively fresh; no averaging interval or salinity unit is given.",
+          "source_release_id": "po2-western-boundary",
+          "source_url": "https://svs.gsfc.nasa.gov/5425/#media_group_376523"
+        }
+      ],
+      "almanac_current_id": "indonesian-throughflow",
+      "osw_object_id": "OBJ017",
+      "parent_id": null,
+      "parent_current_id": null,
+      "external_current_context": [
+        {
+          "current_id": "mindanao-current",
+          "relation": "independently_named_upstream_feeder",
+          "source_url": "https://doi.org/10.1029/2011JC007477",
+          "note": "Grenier et al. identify the Mindanao Current as one feeder of the Indonesian Throughflow. NASA names the throughflow but does not identify the Mindanao Current in this release.",
+          "source_locator": "Section 1 Introduction [4] and Figure 1 pathway description: Mindanao Current feeds the Indonesian Throughflow"
+        }
+      ],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": null,
+      "narrated_end_s": null,
+      "regional_movie": {
+        "locator": [
+          119,
+          -4
+        ],
+        "tile_id": "level2_F_4",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_F_4.mp4"
+      },
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [
+          "SUND"
+        ],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": [
+          "SUND"
+        ]
+      }
+    },
+    "red-sea-saline-overflow": {
+      "nasa_support": "described_structure",
+      "release_ids": [
+        "po2-western-boundary"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/5425"
+      ],
+      "release_evidence": {
+        "po2-western-boundary": {
+          "source_url": "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            376523
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5425#media_group_376523"
+          ],
+          "support_pattern": "Red Sea"
+        }
+      },
+      "reported_properties": [],
+      "almanac_current_id": "red-sea-saline-overflow",
+      "osw_object_id": "OBJ017",
+      "parent_id": null,
+      "parent_current_id": null,
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": null,
+      "narrated_end_s": null,
+      "regional_movie": {
+        "locator": [
+          43.3,
+          12.6
+        ],
+        "tile_id": "level2_E_3",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_E_3.mp4"
+      },
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": [
+          "REDS"
+        ]
+      }
+    },
+    "persian-gulf-saline-overflow": {
+      "nasa_support": "described_structure",
+      "release_ids": [
+        "po2-western-boundary"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/5425"
+      ],
+      "release_evidence": {
+        "po2-western-boundary": {
+          "source_url": "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            376523
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5425#media_group_376523"
+          ],
+          "support_pattern": "Persian Gulf"
+        }
+      },
+      "reported_properties": [],
+      "almanac_current_id": "persian-gulf-saline-overflow",
+      "osw_object_id": "OBJ017",
+      "parent_id": null,
+      "parent_current_id": null,
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": null,
+      "narrated_end_s": null,
+      "regional_movie": {
+        "locator": [
+          56.25,
+          26.6
+        ],
+        "tile_id": "level2_E_3",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_E_3.mp4"
+      },
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": [
+          "ARAB"
+        ]
+      }
+    },
+    "western-boundary-currents": {
+      "nasa_support": "generic_process",
+      "release_ids": [
+        "po2-western-boundary",
+        "po2-narrated"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/5425",
+        "https://svs.gsfc.nasa.gov/14745"
+      ],
+      "release_evidence": {
+        "po2-western-boundary": {
+          "source_url": "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            376523
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5425#media_group_376523"
+          ],
+          "support_pattern": "western boundary currents"
+        },
+        "po2-narrated": {
+          "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+          "evidence_kind": "narration_cues",
+          "cue_numbers": [
+            14,
+            15
+          ],
+          "cue_times": [
+            {
+              "number": 14,
+              "start_seconds": 55.731,
+              "end_seconds": 60.073
+            },
+            {
+              "number": 15,
+              "start_seconds": 60.145,
+              "end_seconds": 64.415
+            }
+          ],
+          "support_pattern": "western boundary currents"
+        }
+      },
+      "reported_properties": [],
+      "almanac_current_id": null,
+      "osw_object_id": "OBJ019",
+      "parent_id": null,
+      "parent_current_id": null,
+      "external_current_context": [],
+      "example_object_ids": [
+        "gulf-stream",
+        "kuroshio",
+        "agulhas",
+        "east-australian"
+      ],
+      "example_relation": "Named examples across NASA's western-boundary page and narrated film; not a complete global class inventory.",
+      "system_context": [],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": 55,
+      "narrated_end_s": 65,
+      "regional_movie": null,
+      "feature_media_ids": [
+        "trapped-warm-water-example"
+      ],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": []
+      }
+    },
+    "kuroshio-meanders": {
+      "nasa_support": "described_structure",
+      "release_ids": [
+        "po2-western-boundary"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/5425"
+      ],
+      "release_evidence": {
+        "po2-western-boundary": {
+          "source_url": "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            376523
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5425#media_group_376523"
+          ],
+          "support_pattern": "meanders"
+        }
+      },
+      "reported_properties": [
+        {
+          "object_id": "kuroshio-meanders",
+          "quantity": "meander_persistence",
+          "relation": "qualitative_many_months",
+          "value": "many months",
+          "unit": "source qualitative",
+          "display": "large meanders can persist many months",
+          "scope_note": "NASA describes large path meanders along Japan that can remain near the same location for many months. This does not identify one permanent meander, an eddy, or an individual trajectory.",
+          "source_release_id": "po2-western-boundary",
+          "source_url": "https://svs.gsfc.nasa.gov/5425/#media_group_376523"
+        }
+      ],
+      "almanac_current_id": null,
+      "osw_object_id": "OBJ017",
+      "parent_id": "kuroshio",
+      "parent_current_id": "kuroshio",
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": null,
+      "narrated_end_s": null,
+      "regional_movie": {
+        "locator": [
+          137,
+          33
+        ],
+        "tile_id": "level2_G_3",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_G_3.mp4"
+      },
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": [
+          "KURO"
+        ]
+      }
+    },
+    "kuroshio-eastward-turn": {
+      "nasa_support": "described_structure",
+      "release_ids": [
+        "po2-narrated"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/14745"
+      ],
+      "release_evidence": {
+        "po2-narrated": {
+          "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+          "evidence_kind": "narration_cues",
+          "cue_numbers": [
+            23
+          ],
+          "cue_times": [
+            {
+              "number": 23,
+              "start_seconds": 95.168,
+              "end_seconds": 99.799
+            }
+          ],
+          "support_pattern": "turns east"
+        }
+      },
+      "reported_properties": [],
+      "almanac_current_id": null,
+      "osw_object_id": "OBJ017",
+      "parent_id": "kuroshio",
+      "parent_current_id": "kuroshio",
+      "external_current_context": [
+        {
+          "current_id": "kuroshio-extension",
+          "relation": "independently_named_downstream_flow",
+          "source_url": "https://www.whoi.edu/science/PO/POOL/projects.html",
+          "note": "The KESS observational program names the eastward free jet after the Kuroshio leaves Japan; NASA narrates the turn without using that proper name.",
+          "source_locator": "Kuroshio Extension System Study homepage, opening description of the Kuroshio leaving Japan as an eastward free jet"
+        }
+      ],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": 95,
+      "narrated_end_s": 103,
+      "regional_movie": {
+        "locator": [
+          146,
+          36
+        ],
+        "tile_id": "level2_G_2",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_G_2.mp4"
+      },
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": [
+          "KURO"
+        ]
+      }
+    },
+    "kuroshio-eddies": {
+      "nasa_support": "described_structure",
+      "release_ids": [
+        "po2-narrated"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/14745"
+      ],
+      "release_evidence": {
+        "po2-narrated": {
+          "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+          "evidence_kind": "narration_cues",
+          "cue_numbers": [
+            24
+          ],
+          "cue_times": [
+            {
+              "number": 24,
+              "start_seconds": 99.872,
+              "end_seconds": 104.141
+            }
+          ],
+          "support_pattern": "huge eddies"
+        }
+      },
+      "reported_properties": [],
+      "almanac_current_id": null,
+      "osw_object_id": "OBJ021",
+      "parent_id": "kuroshio",
+      "parent_current_id": "kuroshio",
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": {
+        "child_id": "kuroshio-eddies",
+        "parent_id": "ocean-eddies",
+        "relation": "regional_eddy_class"
+      },
+      "class_children": [],
+      "narrated_start_s": 100,
+      "narrated_end_s": 105,
+      "regional_movie": {
+        "locator": [
+          146,
+          35
+        ],
+        "tile_id": "level2_G_2",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_G_2.mp4"
+      },
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": [
+          "KURO"
+        ]
+      }
+    },
+    "agulhas-retroflection": {
+      "nasa_support": "described_structure",
+      "release_ids": [
+        "po-2011-story",
+        "po2-western-boundary",
+        "po2-narrated"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/10841",
+        "https://svs.gsfc.nasa.gov/5425",
+        "https://svs.gsfc.nasa.gov/14745"
+      ],
+      "release_evidence": {
+        "po-2011-story": {
+          "source_url": "https://svs.gsfc.nasa.gov/10841#media_group_350681",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            350681
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/10841#media_group_350681"
+          ],
+          "support_pattern": "loops eastward"
+        },
+        "po2-western-boundary": {
+          "source_url": "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            376523
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5425#media_group_376523"
+          ],
+          "support_pattern": "retroflects"
+        },
+        "po2-narrated": {
+          "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+          "evidence_kind": "narration_cues",
+          "cue_numbers": [
+            37
+          ],
+          "cue_times": [
+            {
+              "number": 37,
+              "start_seconds": 155.951,
+              "end_seconds": 160.293
+            }
+          ],
+          "support_pattern": "sharp turn"
+        }
+      },
+      "reported_properties": [],
+      "almanac_current_id": null,
+      "osw_object_id": "OBJ023",
+      "parent_id": "agulhas",
+      "parent_current_id": "agulhas",
+      "external_current_context": [
+        {
+          "current_id": "agulhas-return",
+          "relation": "independently_named_downstream_flow",
+          "source_url": "https://www.cfoo.co.za/seaatlas/papers/agulhas_return_current.pdf",
+          "note": "The hydrographic survey identifies the eastward Agulhas Return Current beyond the retroflection; NASA describes the turn but does not use that proper name.",
+          "source_locator": "PDF page 2, Section 1 Introduction, paragraph explaining the Agulhas Current retroflects and remaining waters flow east as the Agulhas Return Current"
+        }
+      ],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": 155,
+      "narrated_end_s": 163,
+      "regional_movie": {
+        "locator": [
+          18,
+          -39
+        ],
+        "tile_id": "level2_D_6",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_D_6.mp4"
+      },
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": [
+          "SSTC"
+        ]
+      }
+    },
+    "agulhas-rings": {
+      "nasa_support": "explicit_name",
+      "release_ids": [
+        "po2-western-boundary",
+        "po2-narrated",
+        "po2-crops"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/5425",
+        "https://svs.gsfc.nasa.gov/14745",
+        "https://svs.gsfc.nasa.gov/5505"
+      ],
+      "release_evidence": {
+        "po2-western-boundary": {
+          "source_url": "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            376523
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5425#media_group_376523"
+          ],
+          "support_pattern": "Agulhas Rings"
+        },
+        "po2-narrated": {
+          "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+          "evidence_kind": "narration_cues",
+          "cue_numbers": [
+            38,
+            39,
+            40,
+            41
+          ],
+          "cue_times": [
+            {
+              "number": 38,
+              "start_seconds": 160.365,
+              "end_seconds": 164.851
+            },
+            {
+              "number": 39,
+              "start_seconds": 164.924,
+              "end_seconds": 169.41
+            },
+            {
+              "number": 40,
+              "start_seconds": 169.483,
+              "end_seconds": 173.535
+            },
+            {
+              "number": 41,
+              "start_seconds": 173.607,
+              "end_seconds": 178.093
+            }
+          ],
+          "support_pattern": "Agulhas rings"
+        },
+        "po2-crops": {
+          "source_url": "https://svs.gsfc.nasa.gov/5505#media_group_379442",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            379442
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5505#media_group_379442"
+          ],
+          "support_pattern": "Agulhas Rings"
+        }
+      },
+      "reported_properties": [
+        {
+          "object_id": "agulhas-rings",
+          "quantity": "temperature",
+          "relation": "range",
+          "lower": 20,
+          "upper": 25,
+          "unit": "°C",
+          "display": "20–25 °C ring water",
+          "scope_note": "NASA's description of warm rings shed at the Agulhas retroflection; not a value for each individual ring.",
+          "source_release_id": "po2-western-boundary",
+          "source_url": "https://svs.gsfc.nasa.gov/5425/#media_group_376523"
+        },
+        {
+          "object_id": "agulhas-rings",
+          "quantity": "salinity",
+          "relation": "approximate",
+          "value": 35.5,
+          "unit": "source salinity scale unspecified",
+          "display": "about 35.5 salinity",
+          "scope_note": "NASA's ring description; salinity unit and averaging method are not stated.",
+          "source_release_id": "po2-western-boundary",
+          "source_url": "https://svs.gsfc.nasa.gov/5425/#media_group_376523"
+        },
+        {
+          "object_id": "agulhas-rings",
+          "quantity": "lifetime",
+          "relation": "greater_than",
+          "value": 2,
+          "unit": "years",
+          "display": ">2 years reported lifetime",
+          "scope_note": "NASA says detached eddies can travel across the South Atlantic for more than two years; not a measured lifetime for every ring.",
+          "source_release_id": "po2-western-boundary",
+          "source_url": "https://svs.gsfc.nasa.gov/5425/#media_group_376523"
+        }
+      ],
+      "almanac_current_id": null,
+      "osw_object_id": "OBJ022",
+      "parent_id": "agulhas",
+      "parent_current_id": "agulhas",
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [
+        {
+          "system_id": "global-overturning",
+          "relation": "narrated_part_of",
+          "cue_numbers": [
+            40,
+            41
+          ],
+          "note": "NASA says the rings carry salt and heat into the Atlantic and form an important part of overturning circulation; it does not identify individual ring paths."
+        }
+      ],
+      "class_parent": {
+        "child_id": "agulhas-rings",
+        "parent_id": "ocean-eddies",
+        "relation": "ring_class"
+      },
+      "class_children": [],
+      "narrated_start_s": 160,
+      "narrated_end_s": 178,
+      "regional_movie": {
+        "locator": [
+          11,
+          -37
+        ],
+        "tile_id": "level2_D_6",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_D_6.mp4"
+      },
+      "feature_media_ids": [
+        "agulhas-hyperwall"
+      ],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": [
+          "SSTC"
+        ]
+      }
+    },
+    "western-boundary-rings": {
+      "nasa_support": "generic_process",
+      "release_ids": [
+        "po2-western-boundary"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/5425"
+      ],
+      "release_evidence": {
+        "po2-western-boundary": {
+          "source_url": "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            376523
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5425#media_group_376523"
+          ],
+          "support_pattern": "turbulent rings"
+        }
+      },
+      "reported_properties": [],
+      "almanac_current_id": null,
+      "osw_object_id": "OBJ022",
+      "parent_id": "western-boundary-currents",
+      "parent_current_id": null,
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": {
+        "child_id": "western-boundary-rings",
+        "parent_id": "ocean-eddies",
+        "relation": "ring_class"
+      },
+      "class_children": [],
+      "narrated_start_s": null,
+      "narrated_end_s": null,
+      "regional_movie": null,
+      "feature_media_ids": [],
+      "source_overview_movie": {
+        "release_id": "po2-western-boundary",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005400/a005425/perpetual_ocean2_CLOSE_093_clean_noDate_1080p30.mp4",
+        "media_id": 1139058,
+        "relation": "release_overview_only"
+      },
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": []
+      }
+    },
+    "gulf-stream-cold-cores": {
+      "nasa_support": "described_structure",
+      "release_ids": [
+        "po2-western-boundary"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/5425"
+      ],
+      "release_evidence": {
+        "po2-western-boundary": {
+          "source_url": "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            376523
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5425#media_group_376523"
+          ],
+          "support_pattern": "cold cores"
+        }
+      },
+      "reported_properties": [
+        {
+          "object_id": "gulf-stream-cold-cores",
+          "quantity": "eddy_diameter",
+          "relation": "up_to",
+          "value": 1000,
+          "unit": "km",
+          "display": "eddy diameter up to 1,000 km",
+          "scope_note": "NASA's stated possible eddy diameter near the eastward-meandering Gulf Stream; this is not current length or a diameter for every cold core.",
+          "source_release_id": "po2-western-boundary",
+          "source_url": "https://svs.gsfc.nasa.gov/5425/#media_group_376523"
+        },
+        {
+          "object_id": "gulf-stream-cold-cores",
+          "quantity": "polarity_description",
+          "relation": "source_specific_majority_claim",
+          "value": "anticyclonic",
+          "unit": "categorical",
+          "display": "NASA wording: mostly anticyclonic (scope disputed)",
+          "scope_note": "NASA's 2025 page describes unnamed Gulf Stream cold cores this way. Published studies describe detached Gulf Stream cold-core rings as cyclonic. NASA may mean a differently scoped feature; no individual eddy is classified here and OSW does not adopt the NASA wording as a general polarity rule.",
+          "source_release_id": "po2-western-boundary",
+          "source_url": "https://svs.gsfc.nasa.gov/5425/#media_group_376523",
+          "review_status": "scope_discrepancy_requires_object_definition",
+          "review_source_url": "https://doi.org/10.1126/science.212.4499.1091",
+          "review_note": "The cited Gulf Stream cold-core ring study describes detached cold-core rings as cyclonic. Its ring class may not be identical to the unnamed cold cores in NASA's tour."
+        }
+      ],
+      "almanac_current_id": null,
+      "osw_object_id": "OBJ021",
+      "parent_id": "gulf-stream",
+      "parent_current_id": "gulf-stream",
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": {
+        "child_id": "gulf-stream-cold-cores",
+        "parent_id": "ocean-eddies",
+        "relation": "regional_eddy_class"
+      },
+      "class_children": [],
+      "narrated_start_s": null,
+      "narrated_end_s": null,
+      "regional_movie": {
+        "locator": [
+          -68,
+          38
+        ],
+        "tile_id": "level2_B_2",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_B_2.mp4"
+      },
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": [
+          "GFST"
+        ]
+      }
+    },
+    "gulf-stream-deep-return": {
+      "nasa_support": "described_structure",
+      "release_ids": [
+        "po2-western-boundary",
+        "po2-narrated"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/5425",
+        "https://svs.gsfc.nasa.gov/14745"
+      ],
+      "release_evidence": {
+        "po2-western-boundary": {
+          "source_url": "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            376523,
+            376527
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+            "https://svs.gsfc.nasa.gov/5425#media_group_376527"
+          ],
+          "support_pattern": "return current underneath|counter.?current"
+        },
+        "po2-narrated": {
+          "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+          "evidence_kind": "narration_cues",
+          "cue_numbers": [
+            65,
+            66,
+            67,
+            68,
+            69,
+            70
+          ],
+          "cue_times": [
+            {
+              "number": 65,
+              "start_seconds": 279.76,
+              "end_seconds": 284.102
+            },
+            {
+              "number": 66,
+              "start_seconds": 284.174,
+              "end_seconds": 288.516
+            },
+            {
+              "number": 67,
+              "start_seconds": 288.588,
+              "end_seconds": 293.002
+            },
+            {
+              "number": 68,
+              "start_seconds": 293.075,
+              "end_seconds": 296.982
+            },
+            {
+              "number": 69,
+              "start_seconds": 297.054,
+              "end_seconds": 301.251
+            },
+            {
+              "number": 70,
+              "start_seconds": 301.324,
+              "end_seconds": 305.955
+            }
+          ],
+          "support_pattern": "cold, deep water headed south beneath"
+        }
+      },
+      "reported_properties": [
+        {
+          "object_id": "gulf-stream-deep-return",
+          "quantity": "depth",
+          "relation": "deeper_than",
+          "value": 500,
+          "unit": "m",
+          "display": "southward return below 500 m",
+          "scope_note": "NASA describes the return flow underneath the Gulf Stream below this depth; the separate deep-only movie masks shallower than 600 m, which is a visualization setting.",
+          "source_release_id": "po2-western-boundary",
+          "source_url": "https://svs.gsfc.nasa.gov/5425/#media_group_376523"
+        }
+      ],
+      "almanac_current_id": null,
+      "osw_object_id": "OBJ017",
+      "parent_id": "gulf-stream",
+      "parent_current_id": "gulf-stream",
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [
+        {
+          "system_id": "global-overturning",
+          "relation": "narrated_part_of",
+          "cue_numbers": [
+            66,
+            67
+          ],
+          "note": "NASA describes the deep southward flow below the Gulf Stream as part of the same ocean conveyor belt; no distinct current name or observed boundary is supplied."
+        }
+      ],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": 279,
+      "narrated_end_s": 307,
+      "regional_movie": {
+        "locator": [
+          -67,
+          39
+        ],
+        "tile_id": "level2_B_2",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_B_2.mp4"
+      },
+      "feature_media_ids": [
+        "gulf-stream-deep-return-film"
+      ],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": [
+          "GFST"
+        ]
+      }
+    },
+    "gulf-of-mexico-loop-eddies": {
+      "nasa_support": "described_structure",
+      "release_ids": [
+        "po2-western-boundary"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/5425"
+      ],
+      "release_evidence": {
+        "po2-western-boundary": {
+          "source_url": "https://svs.gsfc.nasa.gov/5425#media_group_376523",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            376523
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/5425#media_group_376523"
+          ],
+          "support_pattern": "loop currents in the Gulf of Mexico"
+        }
+      },
+      "reported_properties": [],
+      "almanac_current_id": null,
+      "osw_object_id": "OBJ021",
+      "parent_id": null,
+      "parent_current_id": null,
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": {
+        "child_id": "gulf-of-mexico-loop-eddies",
+        "parent_id": "ocean-eddies",
+        "relation": "regional_eddy_class"
+      },
+      "class_children": [],
+      "narrated_start_s": null,
+      "narrated_end_s": null,
+      "regional_movie": {
+        "locator": [
+          -91,
+          25
+        ],
+        "tile_id": "level2_B_3",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_B_3.mp4"
+      },
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": [
+          "CAMR"
+        ]
+      }
+    },
+    "global-overturning": {
+      "nasa_support": "generic_process",
+      "release_ids": [
+        "po2-narrated"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/14745"
+      ],
+      "release_evidence": {
+        "po2-narrated": {
+          "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+          "evidence_kind": "narration_cues",
+          "cue_numbers": [
+            41,
+            42,
+            43,
+            44
+          ],
+          "cue_times": [
+            {
+              "number": 41,
+              "start_seconds": 173.607,
+              "end_seconds": 178.093
+            },
+            {
+              "number": 42,
+              "start_seconds": 178.166,
+              "end_seconds": 182.363
+            },
+            {
+              "number": 43,
+              "start_seconds": 182.435,
+              "end_seconds": 186.777
+            },
+            {
+              "number": 44,
+              "start_seconds": 186.849,
+              "end_seconds": 191.191
+            }
+          ],
+          "support_pattern": "overturning circulation"
+        }
+      },
+      "reported_properties": [],
+      "almanac_current_id": null,
+      "osw_object_id": "OBJ017",
+      "parent_id": null,
+      "parent_current_id": null,
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": 173,
+      "narrated_end_s": 193,
+      "regional_movie": null,
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": []
+      }
+    },
+    "north-atlantic-sinking": {
+      "nasa_support": "described_structure",
+      "release_ids": [
+        "po2-narrated"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/14745"
+      ],
+      "release_evidence": {
+        "po2-narrated": {
+          "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+          "evidence_kind": "narration_cues",
+          "cue_numbers": [
+            55,
+            56
+          ],
+          "cue_times": [
+            {
+              "number": 55,
+              "start_seconds": 235.403,
+              "end_seconds": 239.6
+            },
+            {
+              "number": 56,
+              "start_seconds": 239.672,
+              "end_seconds": 243.869
+            }
+          ],
+          "support_pattern": "sinks deep"
+        }
+      },
+      "reported_properties": [],
+      "almanac_current_id": null,
+      "osw_object_id": "OBJ026",
+      "parent_id": "global-overturning",
+      "parent_current_id": null,
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": 235,
+      "narrated_end_s": 244,
+      "regional_movie": {
+        "locator": [
+          -35,
+          60
+        ],
+        "tile_id": "level2_C_1",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_C_1.mp4"
+      },
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": [
+          "SARC"
+        ]
+      }
+    },
+    "upwelling": {
+      "nasa_support": "generic_process",
+      "release_ids": [
+        "po2-narrated"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/14745"
+      ],
+      "release_evidence": {
+        "po2-narrated": {
+          "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+          "evidence_kind": "narration_cues",
+          "cue_numbers": [
+            29,
+            30,
+            31
+          ],
+          "cue_times": [
+            {
+              "number": 29,
+              "start_seconds": 121.58,
+              "end_seconds": 125.27
+            },
+            {
+              "number": 30,
+              "start_seconds": 125.342,
+              "end_seconds": 129.901
+            },
+            {
+              "number": 31,
+              "start_seconds": 129.974,
+              "end_seconds": 134.026
+            }
+          ],
+          "support_pattern": "upwelling"
+        }
+      },
+      "reported_properties": [],
+      "almanac_current_id": null,
+      "osw_object_id": "OBJ025",
+      "parent_id": null,
+      "parent_current_id": null,
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": 121,
+      "narrated_end_s": 136,
+      "regional_movie": null,
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": []
+      }
+    },
+    "downwelling": {
+      "nasa_support": "generic_process",
+      "release_ids": [
+        "po2-narrated"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/14745"
+      ],
+      "release_evidence": {
+        "po2-narrated": {
+          "source_url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+          "evidence_kind": "narration_cues",
+          "cue_numbers": [
+            29
+          ],
+          "cue_times": [
+            {
+              "number": 29,
+              "start_seconds": 121.58,
+              "end_seconds": 125.27
+            }
+          ],
+          "support_pattern": "downwelling"
+        }
+      },
+      "reported_properties": [],
+      "almanac_current_id": null,
+      "osw_object_id": "OBJ026",
+      "parent_id": null,
+      "parent_current_id": null,
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": null,
+      "class_children": [],
+      "narrated_start_s": 121,
+      "narrated_end_s": 126,
+      "regional_movie": null,
+      "feature_media_ids": [],
+      "source_overview_movie": null,
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": []
+      }
+    },
+    "ocean-eddies": {
+      "nasa_support": "generic_process",
+      "release_ids": [
+        "po-2011-viz",
+        "po-2011-story"
+      ],
+      "release_urls": [
+        "https://svs.gsfc.nasa.gov/3827",
+        "https://svs.gsfc.nasa.gov/10841"
+      ],
+      "release_evidence": {
+        "po-2011-viz": {
+          "source_url": "https://svs.gsfc.nasa.gov/3827#media_group_351519",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            351519
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/3827#media_group_351519"
+          ],
+          "support_pattern": "ocean eddies"
+        },
+        "po-2011-story": {
+          "source_url": "https://svs.gsfc.nasa.gov/10841#media_group_350677",
+          "evidence_kind": "nasa_media_group",
+          "media_group_ids": [
+            350677
+          ],
+          "media_group_urls": [
+            "https://svs.gsfc.nasa.gov/10841#media_group_350677"
+          ],
+          "support_pattern": "circular pools"
+        }
+      },
+      "reported_properties": [],
+      "almanac_current_id": null,
+      "osw_object_id": "OBJ021",
+      "parent_id": null,
+      "parent_current_id": null,
+      "external_current_context": [],
+      "example_object_ids": [],
+      "example_relation": null,
+      "system_context": [],
+      "class_parent": null,
+      "class_children": [
+        {
+          "child_id": "agulhas-rings",
+          "parent_id": "ocean-eddies",
+          "relation": "ring_class"
+        },
+        {
+          "child_id": "gulf-of-mexico-loop-eddies",
+          "parent_id": "ocean-eddies",
+          "relation": "regional_eddy_class"
+        },
+        {
+          "child_id": "gulf-stream-cold-cores",
+          "parent_id": "ocean-eddies",
+          "relation": "regional_eddy_class"
+        },
+        {
+          "child_id": "kuroshio-eddies",
+          "parent_id": "ocean-eddies",
+          "relation": "regional_eddy_class"
+        },
+        {
+          "child_id": "western-boundary-rings",
+          "parent_id": "ocean-eddies",
+          "relation": "ring_class"
+        }
+      ],
+      "narrated_start_s": null,
+      "narrated_end_s": null,
+      "regional_movie": null,
+      "feature_media_ids": [],
+      "source_overview_movie": {
+        "release_id": "po-2011-viz",
+        "url": "https://svs.gsfc.nasa.gov/vis/a000000/a003800/a003827/perpetual_ocean_1080p30.mp4",
+        "media_id": 486751,
+        "relation": "release_overview_only"
+      },
+      "state_evidence": {
+        "cartographic_current_crossings": [],
+        "width_sensitive_cartographic_contacts": [],
+        "schematic_current_crossings": [],
+        "schematic_object_crossings": [],
+        "editorial_current_line_crossings": [],
+        "object_locator_candidates": []
+      }
+    }
+  },
+  "states": {
+    "BERS": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "PSAW": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [
+        "kuroshio"
+      ],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "NPPF": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [
+        "kuroshio"
+      ],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "PSAE": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "ALSK": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "KURO": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [
+        "kuroshio"
+      ],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": [
+        "kuroshio",
+        "kuroshio-eastward-turn",
+        "kuroshio-eddies",
+        "kuroshio-meanders"
+      ]
+    },
+    "NPSW": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "NPSE": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "CCAL": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "CHIN": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [
+        "kuroshio"
+      ],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "NPTG": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "PNEC": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "CAMR": {
+      "cartographic_current_crossings": [
+        "gulf-stream"
+      ],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": [
+        "gulf-of-mexico-loop-eddies"
+      ]
+    },
+    "SUND": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [
+        "indonesian-throughflow"
+      ],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": [
+        "indonesian-throughflow"
+      ]
+    },
+    "WARM": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "PEQD": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "HUMB": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "AUSE": {
+      "cartographic_current_crossings": [
+        "east-australian"
+      ],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [
+        "east-australian"
+      ],
+      "object_locator_candidates": [
+        "east-australian"
+      ]
+    },
+    "ARCH": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "SPSG": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "NEWZ": {
+      "cartographic_current_crossings": [
+        "east-australian"
+      ],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "TASM": {
+      "cartographic_current_crossings": [
+        "east-australian"
+      ],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [
+        "east-australian"
+      ],
+      "object_locator_candidates": []
+    },
+    "OCAL": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "REDS": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": [
+        "red-sea-saline-overflow"
+      ]
+    },
+    "IND W": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "ARAB": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": [
+        "persian-gulf-saline-overflow"
+      ]
+    },
+    "MONS": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "IND E": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "ISSG": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "EAFR": {
+      "cartographic_current_crossings": [
+        "agulhas"
+      ],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [
+        "agulhas"
+      ],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "AUSW": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "ARCT": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "SARC": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": [
+        "north-atlantic-sinking"
+      ]
+    },
+    "NECS": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "NWCS": {
+      "cartographic_current_crossings": [
+        "gulf-stream"
+      ],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [
+        "gulf-stream"
+      ],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "NADR": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [
+        "gulf-stream"
+      ],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "GFST": {
+      "cartographic_current_crossings": [
+        "gulf-stream"
+      ],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [
+        "gulf-stream"
+      ],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": [
+        "gulf-stream",
+        "gulf-stream-cold-cores",
+        "gulf-stream-deep-return"
+      ]
+    },
+    "NAST E": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "NAST W": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [
+        "gulf-stream"
+      ],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "MEDI": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "CNRY": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "NATR": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "CARB": {
+      "cartographic_current_crossings": [
+        "gulf-stream"
+      ],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [
+        "gulf-stream"
+      ],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "GUIA": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "WTRA": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "ETRA": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "GUIN": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "SATL": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "BRAZ": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "BENG": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "FKLD": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "SSTC": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [
+        "agulhas"
+      ],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": [
+        "agulhas",
+        "agulhas-retroflection",
+        "agulhas-rings"
+      ]
+    },
+    "SANT": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "ANTA": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "APLR": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    },
+    "BPLR": {
+      "cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": [],
+      "schematic_current_crossings": [],
+      "schematic_object_crossings": [],
+      "editorial_current_line_crossings": [],
+      "object_locator_candidates": []
+    }
+  }
+}

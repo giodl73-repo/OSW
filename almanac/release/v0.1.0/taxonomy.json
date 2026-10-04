@@ -1,0 +1,131 @@
+{
+  "admission_rules": [
+    "Keep official source terms and OSW editorial labels distinguishable.",
+    "Every individual eddy needs a naming source; a track ID needs its own product and identifier.",
+    "Do not infer eddy polarity, core temperature, footprint, or live status from a name.",
+    "Do not use a locator point to calculate a current length or claim an eddy position.",
+    "A video showing particles is not a feature boundary or a global name register."
+  ],
+  "axes": {
+    "core_thermal_sign": {
+      "cold": "Colder core relative to nearby water, in a specified observation product.",
+      "unresolved": "Polarity and temperature are independent claims.",
+      "warm": "Warmer core relative to nearby water, in a specified observation product."
+    },
+    "identity_level": {
+      "current": "One named current with a source-dependent upstream and downstream extent.",
+      "dated_detection": "A feature designated by one provider in one dated receipt; no historical-name equivalence, formation time, lifetime, or continuity across dates is established.",
+      "eddy_family": "A named class of related eddies, such as Agulhas Rings; individual members need separate dated identities.",
+      "family": "Shared name used for related flows in more than one basin; split before measuring.",
+      "individual_eddy": "A particular named eddy, separate from its type, region, and trajectory ID.",
+      "recurrent_eddy_region": "A geographic name reused for eddies forming or persisting in a region; not one dated individual or trajectory.",
+      "segment": "Named part or continuation of a larger current system.",
+      "system": "A named circulation system that can contain branches or segments."
+    },
+    "location_evidence": {
+      "editorial_locator": "Approximate place to find the named flow on an atlas; no boundary or centroid claim.",
+      "observed_track": "Dated positions from a named observation or tracking product.",
+      "source_region_only": "Source supports the region, not a position for the individual eddy."
+    },
+    "motion_form": {
+      "applies_to": "All records in research/nasa-perpetual-ocean-objects.json",
+      "definition": "Primary physical form of an identified NASA record, separate from NASA naming support and from the identity level of any individual feature.",
+      "vocabulary": "research/nasa-perpetual-ocean-motion-forms.json"
+    },
+    "object_type": {
+      "boundary_current": "Current following an ocean basin margin; crosswalk OBJ019.",
+      "current": "Organized advective flow; crosswalk OBJ017.",
+      "eddy": "Rotating, finite-lived flow structure; crosswalk OBJ021.",
+      "ring": "Eddy detached from a parent current; crosswalk OBJ022."
+    },
+    "polarity": {
+      "anticyclonic": "Rotation in the local anticyclonic sense; requires detection or source evidence.",
+      "cyclonic": "Rotation in the local cyclonic sense; requires detection or source evidence.",
+      "unresolved": "Not inferred from a name, map symbol, or core temperature."
+    },
+    "setting": {
+      "basin_interior_or_extension": "Open-ocean pathway or named downstream continuation.",
+      "circumpolar": "Circulation that passes around Antarctica.",
+      "coastal_or_shelf": "Coastal or shelf-following flow without a claimed basin-boundary class.",
+      "eastern_boundary": "Along the eastern edge of an ocean basin.",
+      "equatorial": "Equatorial or tropical zonal flow; basin-specific records may be needed.",
+      "gulf_of_mexico": "Regional locator for named Loop Current rings; not an eddy centroid.",
+      "polar_or_subpolar_margin": "High-latitude margin; boundary side needs case-specific evidence.",
+      "regional": "Named regional flow whose finer setting has not been established here.",
+      "western_boundary": "Along the western edge of an ocean basin."
+    },
+    "time_behavior": {
+      "persistent_variable": "Recognizable over years, with a shifting path and strength.",
+      "recurrent": "A named regional eddy form appears repeatedly or quasi-persistently; individual generations need dated IDs.",
+      "seasonal": "Strongly seasonal expression.",
+      "seasonally_reversing": "Direction changes with the seasonal circulation.",
+      "transient": "A finite-lived individual event.",
+      "unresolved": "The naming source does not establish a temporal class."
+    },
+    "vertical_setting": {
+      "deep_flow": "A named flow primarily at deep or bottom depths; surface views are not evidence for its position.",
+      "subsurface_core": "A named flow whose defining core is below the surface; a geographic movie tile alone does not verify it visually.",
+      "surface_expression": "A named flow with a documented surface expression; its core may extend below the surface.",
+      "unresolved": "The source does not establish a depth setting."
+    }
+  },
+  "nasa_class_relations": [
+    {
+      "child_id": "kuroshio-eddies",
+      "parent_id": "ocean-eddies",
+      "relation": "regional_eddy_class"
+    },
+    {
+      "child_id": "agulhas-rings",
+      "parent_id": "ocean-eddies",
+      "relation": "ring_class"
+    },
+    {
+      "child_id": "western-boundary-rings",
+      "parent_id": "ocean-eddies",
+      "relation": "ring_class"
+    },
+    {
+      "child_id": "gulf-stream-cold-cores",
+      "parent_id": "ocean-eddies",
+      "relation": "regional_eddy_class"
+    },
+    {
+      "child_id": "gulf-of-mexico-loop-eddies",
+      "parent_id": "ocean-eddies",
+      "relation": "regional_eddy_class"
+    }
+  ],
+  "nasa_motion_forms": {
+    "boundary_current": "A named current along the western margin of an ocean basin in NASA's tour.",
+    "circulation_system": "A connected large-scale circulation concept, not one mapped streamline.",
+    "current_class": "A dynamical group of currents, rather than one bounded current.",
+    "current_turn": "A described change in the direction of a current, without an independently named flow in NASA's wording.",
+    "deep_counterflow": "A described flow below and opposite the surface current, without a distinct proper name from NASA.",
+    "eddy_class": "An identified group or region of eddies without individual NASA names or tracks.",
+    "meander": "A bend or looping change in a current path; NASA does not identify an individual meander here.",
+    "overflow": "Saline water flowing from a marginal sea into an adjacent basin, as NASA describes it.",
+    "retroflection": "A current turn back toward its source basin, described as a ring-shedding region.",
+    "ring_class": "A group of detached rings; no individual ring identity is implied.",
+    "sinking_region": "A described regional descent of water with no NASA-delineated footprint.",
+    "throughflow": "A named interbasin flow through a strait or island passage.",
+    "vertical_process": "A general vertical movement process, not one geographic individual."
+  },
+  "schema": "osw.ocean-motion-release-taxonomy.v1",
+  "scope": "Facets for named motion records. Object type, identity level, geographic setting, time behavior, and evidence are separate axes; a name alone does not establish a measured boundary or live track.",
+  "source_ids": [
+    "source:c51d7d4ead011df0",
+    "source:7cc7fca328068423",
+    "source:4dc5fc618c26565f"
+  ],
+  "source_scoped_regime_vocabulary_ids": [
+    "classification_vocabulary:thompson-2018-antarctic-shelf-regimes"
+  ],
+  "source_urls": {
+    "cmecs": "https://iocm.noaa.gov/cmecs/documents/CMECS-Classifiers-20140619.pdf",
+    "meta4": "https://essd.copernicus.org/articles/18/7043/2026/",
+    "nasa": "https://svs.gsfc.nasa.gov/5425",
+    "noaa_currents": "https://oceanservice.noaa.gov/education/tutorial_currents/"
+  },
+  "status": "OSW editorial crosswalk; not an official oceanographic standard"
+}

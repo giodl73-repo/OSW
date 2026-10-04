@@ -1,0 +1,53 @@
+{
+  "schema": "osw.almanac-browser-verification.v1",
+  "as_of": "2026-10-03",
+  "status": "local_browser_verification_not_scientific_approval",
+  "audited_inputs": {
+    "research/ocean-current-almanac.json": "6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e",
+    "research/ocean-current-reference-path-candidates.json": "d1a7488870f01df3d7a7338f7946f0095a2420823c194c300b488243c5a356f2",
+    "research/ocean-current-reference-route-state-join.json": "b1cce06d1eeb9aeade60a7bc4c38fc963de9c6d099fdce86397127627c9c4210",
+    "research/ocean-current-width-inventory.json": "ed7f1a29f94dfcee1e64edc30be2ebe9ec89509b6e63e5b842be55c62cf95675",
+    "research/ocean-motion-dashboard.json": "a636e978971f787b0f201a5cdec90a9f16ee67aa38d7c981ad59a6350508a777",
+    "figures/ocean-motion-dashboard-ground.svg": "2164743ffb9c7e4748adabb9aeef554400ed0bdc2c504d64cc83481603726e79",
+    "analysis/test_motion_almanac_browser.py": "61f2b4ae49e26e33b166216883edc8245963eeb4828c03901f8bf4ee7f748fa3",
+    "analysis/test_motion_dashboard_browser.py": "050919eaa3fa3869d71b1eb6265b14ee24176953f9d0819f79ed4dd6be67a549",
+    "analysis/test_reference_route_states_browser.py": "27b811189b5d5283f84c4dcdcd6b4fcdadcb4c7a962441928c8d3bc2230fca5a"
+  },
+  "checks": [
+    {
+      "script": "analysis/test_motion_almanac_browser.py",
+      "result": "pass",
+      "scope": "Existing comprehensive current/eddy/NASA/state/route/width/seasonal/dated browser integration assertions."
+    },
+    {
+      "script": "analysis/test_motion_dashboard_browser.py",
+      "result": "pass",
+      "scope": "240 records, 100 distinct current stations, geographic/schematic/card views, evidence lights, content changes, outage retention and mobile layout."
+    },
+    {
+      "script": "analysis/test_reference_route_states_browser.py",
+      "result": "pass",
+      "scope": "Every 56 state rows and every 94 candidate/state pairs; scope/layer/time, correct route URLs, direct North Cape visual card, optional join 503 fallback and 320px reflow."
+    }
+  ],
+  "counts": {
+    "canonical_currents": 100,
+    "named_eddies": 136,
+    "dated_operational_detections": 4,
+    "states": 56,
+    "route_candidates": 43,
+    "currents_with_route_candidates_among_remaining_89": 41,
+    "currents_without_route_candidates": 48,
+    "candidate_state_pairs": 94,
+    "scoped_width_records": 9,
+    "currents_with_scoped_width_records": 7
+  },
+  "repairs": [
+    "Existing evidence disclosure count assertions exclude the added reference-route disclosures, with separate route inventory checks.",
+    "Filtered queue/status/comparison tests read generated catalog counts rather than superseded historical totals."
+  ],
+  "limits": [
+    "Passing browser checks do not establish physical flow passage, eddy containment, representative length/width or seasonal extrema.",
+    "No full repository default-suite claim; source claim reviews and scientific completeness remain separate gates."
+  ]
+}

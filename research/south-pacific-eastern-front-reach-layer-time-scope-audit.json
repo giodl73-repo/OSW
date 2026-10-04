@@ -1,0 +1,85 @@
+{
+  "schema": "osw.current-source-scope-audit.v1",
+  "current_id": "south-pacific",
+  "as_of": "2026-10-03",
+  "status": "editorial_source_scope_audit_not_canonical",
+  "source_url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/2024-12/010047303.pdf",
+  "source_citation": "Chaigneau and Pizarro (2005), Surface circulation and fronts of the South Pacific Ocean, east of 120 W, Geophysical Research Letters 32, L08605, doi:10.1029/2004GL022070.",
+  "source_locator": "Chaigneau and Pizarro (2005), Data [4]–[5], surface circulation [7], STF [14]–[17] and Table 1: P18 at 103 W 33.8 S and P19 at 88 W 34.5 S. Source front/velocity distinction retained; fields and curves not digitized.",
+  "source_access": "Chaigneau and Pizarro (2005) repository PDF Data, sections 3.1–3.3, Table 1 text and summary read. Stramma et al. (1995) publisher-indexed abstract read; direct article/PDF access unsuccessful. Ridgway and Dunn (2007) publisher section 3.4 [15] read. No figure/velocity curve digitized.",
+  "scope": "Declared 103 W to 88 W eastern regional studied reach between two reported Subtropical Front crossings associated with the SPC in the source regional surface circulation. Front locations are proxies, not diagnosed velocity-core endpoints, and were observed in different years. OSW connecting vertices and alternatives are editorial. Branch correspondence is unresolved. Excludes Chatham Rise/western basin, ACC export branch, Peru-Chile coastal flow, northward recirculation and independent split bands. Not a whole-current or simultaneous observed axis.",
+  "layer": "Surface drifter circulation context combined with separate hydrographic STF crossing locations. The 14 C at 150 m frontal criterion does not define a 150 m current axis; drifter velocities include ageostrophic flow. No fixed-depth velocity centerline reconstructed.",
+  "time_convention": "1979–2004 regional drifter mean is context; P18 frontal crossing was sampled February–April 1994 and P19 February–April 1993. This editorial connection does not combine them into one dated trajectory or infer seasonal geometry.",
+  "observed_period": null,
+  "source_anchor_observations": [
+    {
+      "id": "p18-1994-stf-crossing",
+      "longitude_latitude": [
+        -103,
+        -33.8
+      ],
+      "observed_period": {
+        "start": "1994-02",
+        "end": "1994-04"
+      },
+      "time_precision": "month",
+      "geometry_role": "observed_front_crossing_not_current_axis",
+      "source_locator": "Chaigneau and Pizarro (2005), Table 1 / Data [5]: P18 103 W 33.8 S."
+    },
+    {
+      "id": "p19-1993-stf-crossing",
+      "longitude_latitude": [
+        -88,
+        -34.5
+      ],
+      "observed_period": {
+        "start": "1993-02",
+        "end": "1993-04"
+      },
+      "time_precision": "month",
+      "geometry_role": "observed_front_crossing_not_current_axis",
+      "source_locator": "Chaigneau and Pizarro (2005), Table 1 / Data [5]: P19 88 W 34.5 S."
+    }
+  ],
+  "frontal_crossings_are_velocity_core_locations": false,
+  "source_150m_temperature_criterion_is_axis_layer": false,
+  "crossings_form_simultaneous_geometry": false,
+  "branch_correspondence": "unresolved in the source 115–85 W splitting region",
+  "whole_current_length_km": null,
+  "whole_current_width_km": null,
+  "annual_length_range_km": null,
+  "annual_width_range_km": null,
+  "route_construction_status": "editorial_candidate_constructed_not_canonical",
+  "input_file": "research/south-pacific-eastern-front-reach-reference-path-input.json",
+  "candidate_file": "research/south-pacific-eastern-front-reach-reference-path-candidate.json",
+  "route_approximation": {
+    "reported_approximate_reference_path_km": 1400,
+    "reported_scenario_range_km": [
+      1300,
+      1500
+    ],
+    "scenario_count": 27,
+    "physical_axis_diagnosed": false
+  },
+  "supporting_sources": [
+    {
+      "url": "https://journals.ametsoc.org/view/journals/phoc/25/1/1520-0485_1995_025_0077_tspc_2_0_co_2.xml",
+      "citation": "Stramma, Peterson and Tomczak (1995), The South Pacific Current, JPO 25, 77–91.",
+      "locator": "Publisher-indexed abstract; direct article/PDF access unsuccessful.",
+      "supports": "SPC distinction from ACC, broad Chatham Rise context and possible splitting at 115–85 W. Does not assign a branch to this connection."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007GL030392",
+      "citation": "Ridgway and Dunn (2007), Observational evidence for a Southern Hemisphere oceanic supergyre, GRL 34, L13612.",
+      "locator": "Section 3.4 [15]: gyre return flow and STF relation.",
+      "supports": "Layered gyre return flow is not universally identified by the STF; no whole-current or intermediate-layer axis copied from surface/frontal proxies."
+    }
+  ],
+  "remaining_gates": [
+    "Diagnose a same-layer velocity axis; frontal proxy locations are not current-core locations.",
+    "Recover compatible simultaneous observations before a dated route or seasonal extrema.",
+    "Resolve two-band correspondence within the 115–85 W split region described by Stramma et al. (1995).",
+    "Test front-to-flow correspondence against the layered supergyre distinction in Ridgway and Dunn (2007).",
+    "Resolve western and eastern continuation independently before a whole-current length or annual width."
+  ]
+}

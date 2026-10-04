@@ -1,0 +1,20 @@
+{
+  "schema": "osw-ocean-state-sant-2017-july-ensemble-selection-v1",
+  "status": "selected_before_perturbed_member_field_inspection",
+  "selected_on": "2026-09-18",
+  "question": "Does the near-zero July 2017 east-control sign failure depend on ORAS5 ensemble member?",
+  "selected_members": ["opa1", "opa2", "opa3", "opa4"],
+  "reference_member": "opa0",
+  "month": "201707",
+  "fixed_support": {
+    "geometry": "research/ocean-state-sant-closed-box-selection-current-geometry-v1.json",
+    "crop": "research/ocean-state-sant-july-repeat-fields-2016-2017.json",
+    "baseline_screen": "research/ocean-state-sant-july-repeat-sign-screen-2016-2018.json",
+    "primary_and_controls": ["primary", "north_control", "south_control", "east_control"],
+    "density_cutoffs_sigma0_kg_m3": [26.5, 27.0, 27.5],
+    "cutoff_challenges_sigma0_kg_m3": [-0.1, 0.0, 0.1],
+    "collocation_methods": ["adjacent_T_cell_mean", "upstream_T_cell"]
+  },
+  "test": "For each member, the middle-high-bin net outward horizontal term must exceed zero in every fixed box, cutoff scheme, and collocation method. Report the five-member pass count and the east-control baseline upstream sign and value. Preserve each member and every failed case; do not select a favorable member.",
+  "interpretation": "Sign variation across members indicates sensitivity within one assimilative ORAS5 product. Agreement does not establish independent-product replication, a formal uncertainty interval, a persistent physical boundary, or a closed density budget."
+}

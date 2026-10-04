@@ -1,0 +1,136 @@
+{
+  "schema": "osw.almanac.named-loop-eddy-published-observations.v1",
+  "as_of": "2026-09-30",
+  "scope": "Published observations of five named Loop Current rings, maintained as paper-sourced records separate from the Horizon event register. Cameron and Darwin have independent measurement evidence, but their names are expressly attributed to Horizon Marine in the observing paper.",
+  "event_stage_taxonomy": {
+    "separation_confirmed_by_date": "The cited source reports the ring was detached by this date; no claim that separation persisted or was final.",
+    "deformed_and_nearly_split": "The ring changed shape and approached a split; no new independently identified ring is inferred.",
+    "temporary_detachment": "A first detachment is reported and later reattachment is also reported.",
+    "final_detachment_reported": "The cited source identifies this as final separation in its analyzed sequence; not a whole-lifetime track."
+  },
+  "figure_suitability_audit": {
+    "source_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.1049645/full",
+    "source_locator": "Section 3; Figures 2 and 3 with captions",
+    "figure_2_image_url": "https://www.frontiersin.org/files/Articles/1049645/xml-images/fmars-09-1049645-g002.webp",
+    "figure_2_image_sha256": "ab125ebdf2f642f3a21dd59516c90775f3a87d2ea3ba4a55a964591d1cf30fa8",
+    "figure_3_image_url": "https://www.frontiersin.org/files/Articles/1049645/xml-images/fmars-09-1049645-g003.webp",
+    "figure_3_image_sha256": "c4f4c650ef6c675feeac53298b3969a3af7852bf8fcef4e87d37e7e2fd44a4d1",
+    "image_pixel_dimensions": [2008, 1651],
+    "plotted_window_approx_lon_lat": [-89, 25, -85, 28],
+    "contour_semantics": "The bold SSH contour represents Loop Current position, not a source-published full Thor or Ursa polygon.",
+    "decision": "no_named_eddy_footprint_extractable_from_these_cropped_figures",
+    "reason": "The figure window is limited to the eastern Gulf instrument array; the Loop Current contour often exits the panels, and detached ring boundaries outside the window are not shown. Neither caption identifies a complete closed named-eddy outline.",
+    "next_source": "Obtain the paper's underlying dated mapped altimetry field or an independently published named-ring boundary and review its source terms before building a state intersection."
+  },
+  "claim_limit": "The possible Horizon crosswalk is a name-and-era candidate, not a verified event-identity join. The cited papers show dated maps or analyzed boundaries. OSW georeferences red pixels in Kraken Figure 2 and traces its closed 29 May instantaneous SSH contour as a dated 2-D footprint proxy. Axis calibration leaves the CARB intersection uncertain; this is not a whole-ring lifetime footprint or a whole-eddy containment claim. Cameron's reported center is only a dated point candidate. Darwin's mooring proximity is not an exact center. Neither observation gives an initial separation date, whole-ring footprint, NASA movie identity, or NOAA MUNSTER track match.",
+  "entries": [
+    {
+      "eddy_id": "published:kraken-2013",
+      "possible_same_ring_as_horizon_id": "horizon:loop-60-primary",
+      "name": "Kraken",
+      "source_url": "https://www.nature.com/articles/s41598-018-29582-5",
+      "source_locator": "Results; Figures 2–4",
+      "observation_start": "2013-05-29",
+      "observation_end": "2013-12-15",
+      "evidence_type": "named_altimetry_boundary_with_independent_ocean_color_and_drifter_support",
+      "reported_measure": "Approximately 100 km mean radius of the coherent core, a definition distinct from the outer instantaneous SSH footprint.",
+      "interpretation": "The authors identify the Loop Current ring as Kraken and analyze a resilient material core during this interval. OSW georeferences selected red Figure 2 curve pixels as a state-location candidate; the authors' closed boundary coordinates are not reconstructed."
+    },
+    {
+      "eddy_id": "published:thor-2020",
+      "possible_same_ring_as_horizon_id": "horizon:loop-69-primary",
+      "name": "Thor",
+      "source_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.1049645/full",
+      "source_locator": "Section 3.1; Figure 2",
+      "observation_start": "2020-01-01",
+      "observation_end": "2020-06-30",
+      "evidence_type": "named_loop_current_eddy_event_with_dated_maps",
+      "reported_measure": null,
+      "interpretation": "The authors map the Thor shedding event in January–June 2020 and describe detachment, reattachment, final separation, and westward propagation. The date bounds describe the paper's figure window, not a measured lifetime.",
+      "independent_event_observations": [
+        {
+          "observation_date": "2020-01-27",
+          "event_stage": "separation_confirmed_by_date",
+          "source_url": "https://repository.library.noaa.gov/view/noaa/71031",
+          "source_locator": "Section 3.2; Figure 2; NOAA-hosted PDF page 4",
+          "interpretation": "Satellite SST and concurrent drifter velocities support Thor being separated by this date; this does not establish that every later detachment was final."
+        },
+        {
+          "observation_date": "2020-03-23",
+          "event_stage": "deformed_and_nearly_split",
+          "source_url": "https://repository.library.noaa.gov/view/noaa/71031",
+          "source_locator": "Abstract; Sections 3.2 and 3.5; Figure 2",
+          "interpretation": "Thor had deformed and nearly split into two eddies by this date; near-splitting is not a verified division into two independently named rings."
+        }
+      ]
+    },
+    {
+      "eddy_id": "published:ursa-2021",
+      "possible_same_ring_as_horizon_id": "horizon:loop-70-primary",
+      "name": "Ursa",
+      "source_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.1049645/full",
+      "source_locator": "Section 3.2; Figure 3",
+      "observation_start": "2021-01-01",
+      "observation_end": "2021-05-31",
+      "evidence_type": "named_loop_current_eddy_event_with_dated_maps",
+      "reported_measure": null,
+      "interpretation": "The authors map the Ursa shedding event in January–May 2021, including temporary detachment and reattachment. The date bounds describe the paper's figure window, not a measured lifetime or independent final separation date.",
+      "independent_event_observations": [
+        {
+          "observation_date": "2021-03-08",
+          "event_stage": "temporary_detachment",
+          "source_url": "https://repository.library.noaa.gov/view/noaa/71031",
+          "source_locator": "Section 3.6; Figure 19; NOAA-hosted PDF page 18",
+          "interpretation": "The later paper identifies a brief first separation followed by reattachment."
+        },
+        {
+          "observation_date": "2021-04-26",
+          "event_stage": "final_detachment_reported",
+          "source_url": "https://repository.library.noaa.gov/view/noaa/71031",
+          "source_locator": "Section 3.6; Figure 20; NOAA-hosted PDF pages 18–19",
+          "interpretation": "The later paper reports final Ursa separation on this date; the date is source-reported, not a geometric reconstruction by OSW."
+        }
+      ]
+    },
+    {
+      "eddy_id": "published:cameron-2009-observed",
+      "possible_same_ring_as_horizon_id": "horizon:loop-52-primary",
+      "name": "Cameron",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2012JC007890",
+      "source_locator": "Section 4.1.1, paragraphs 32–35; Figure 6; Table 2 footnote for name origin",
+      "observation_start": "2009-01-20",
+      "observation_end": "2009-03-01",
+      "evidence_type": "moored_currents_and_altimetry_dated_named_eddy_observation",
+      "name_origin": "Horizon Marine attribution stated in observing paper; measurements and dated interpretation originate with the paper",
+      "reported_measure": "About 300 km diameter on 2009-01-20, as assessed by the authors from the altimetric eddy field.",
+      "observed_center": {
+        "date": "2009-01-20",
+        "coordinate_lon_lat": [-95.0, 22.5],
+        "coordinate_precision": "approximately at mooring A; source rounds coordinates to 0.1 degree latitude and whole-degree longitude",
+        "source_locator": "Section 4.1.1, paragraph 32; Figure 6a"
+      },
+      "interpretation": "The authors locate Cameron's center approximately at mooring A on January 20 and describe its later west-southwest translation and deformation through March 1. These are western Gulf observations, not initial separation or whole-lifetime dates."
+    },
+    {
+      "eddy_id": "published:darwin-2009-observed",
+      "possible_same_ring_as_horizon_id": "horizon:loop-53-primary",
+      "name": "Darwin",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2012JC007890",
+      "source_locator": "Section 4.1.2, paragraphs 36–40; Figure 7; Table 2 footnote for name origin",
+      "observation_start": "2009-07-25",
+      "observation_end": "2009-09-05",
+      "evidence_type": "moored_currents_and_altimetry_dated_named_eddy_observation",
+      "name_origin": "Horizon Marine attribution stated in observing paper; measurements and dated interpretation originate with the paper",
+      "reported_measure": "About 200 km diameter on 2009-07-25, as assessed by the authors from the altimetric eddy field.",
+      "observed_center": null,
+      "near_center_mooring": {
+        "date": "2009-08-05",
+        "mooring_id": "A",
+        "mooring_coordinate_from_table_1": "22°30.33′N, 95°01.29′W (July 2009–July 2010 deployment)",
+        "relation": "mooring_near_eddy_center_not_exact_center",
+        "source_locator": "Section 4.1.2, paragraph 37; Figure 7b; Table 1 for mooring coordinates"
+      },
+      "interpretation": "The authors locate Darwin northeast of moorings L, A and K on July 25, with its southwestern edge across the array; mooring A is near its center on August 5. These western Gulf observations do not establish its initial separation date or a full footprint."
+    }
+  ]
+}

@@ -327,6 +327,40 @@
       <section class="table-section" aria-labelledby="interior-dynamics-title">
         <div class="section-heading"><div><p class="eyebrow">SEPARATE CURRENT-GEOMETRY FAMILY</p><h2 id="interior-dynamics-title">What the bounded dynamics screens support</h2></div><a href="../research/ocean-state-intra-state-dynamics-synthesis-sant-2018.json">Download the synthesis</a></div>
         <ul id="interior-dynamics-coverage"></ul>
+        <p>Density-bin boundary terms have a <a href="../research/ocean-state-sant-density-boundary-collocation-sensitivity-2018.json">tracer-collocation sensitivity receipt</a>. It compares adjacent-cell mean and upstream-cell density on the same native faces; neither is a transformation rate.</p>
+        <p>The <a href="../research/ocean-state-sant-temporal-support-audit-2018.json">provider time-metadata audit</a> identifies these as monthly means. Differences between the sampled monthly means are not matched tendencies.</p>
+        <p>The <a href="../research/ocean-state-sant-density-boundary-monthly-series-2018.json">twelve-month SANT box series</a> covers the same fixed horizontal perimeter and three displaced controls. Its bin-wise transport remains sensitive to tracer collocation and is not a density-class transformation rate.</p>
+        <p>The paired <a href="../research/ocean-state-sant-density-inventory-monthly-series-2018.json">twelve-month density inventory</a> supplies each bin's share of the primary box's valid volume. The shares and boundary fluxes sit side by side for inspection; they do not form a matched class budget.</p>
+        <p><a href="../research/ocean-state-sant-density-cutoff-sensitivity-2018.json">Cutoff sensitivity receipt</a>: <span id="interior-cutoff-result"></span> The ±0.1 kg/m³ shifts were tested after the baseline series was inspected.</p>
+        <div class="table-wrap">
+          <label for="interior-density-bin">Compare a numerical density bin</label>
+          <select id="interior-density-bin">
+            <option value="below_26_5">σ₀ below 26.5 kg/m³</option>
+            <option value="26_5_to_27_0">σ₀ 26.5–27.0 kg/m³</option>
+            <option value="27_0_to_27_5" selected>σ₀ 27.0–27.5 kg/m³</option>
+            <option value="at_or_above_27_5">σ₀ at least 27.5 kg/m³</option>
+          </select>
+          <table>
+            <caption>2018 monthly density-bin occupancy and horizontal net volume flux. Occupancy is a stock share; fluxes are Sv, positive out of each fixed box. Controls use centered collocation.</caption>
+            <thead><tr><th scope="col">Month</th><th scope="col">Primary volume share</th><th scope="col">Primary flux: centered</th><th scope="col">Primary flux: upstream</th><th scope="col">Control flux range: centered</th><th scope="col">Method sign</th></tr></thead>
+            <tbody id="interior-density-monthly-body"></tbody>
+          </table>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption>Preselected July repeat-year sign test, same fixed box and ORAS5 provider/member. <a href="../research/ocean-state-sant-july-repeat-sign-screen-2016-2018.json">Download the full receipt</a>. The strict rule requires every box, cutoff, and collocation method to be outward.</caption>
+            <thead><tr><th scope="col">July</th><th scope="col">Primary centered, Sv</th><th scope="col">Primary upstream, Sv</th><th scope="col">Lowest tested case, Sv</th><th scope="col">Strict rule</th></tr></thead>
+            <tbody id="interior-july-repeat-body"></tbody>
+          </table>
+        </div>
+        <p id="interior-july-ensemble-result"></p>
+        <div class="table-wrap">
+          <table>
+            <caption>Preselected July 2017 ORAS5 member challenge, one product and one monthly mean. <a href="../research/ocean-state-sant-2017-july-ensemble-sign-screen.json">Download the full receipt</a>. Positive flux is outward in the 27.0–27.5 σ₀ bin.</caption>
+            <thead><tr><th scope="col">Member</th><th scope="col">Primary centered, Sv</th><th scope="col">Primary upstream, Sv</th><th scope="col">East control upstream, Sv</th><th scope="col">Strict rule</th></tr></thead>
+            <tbody id="interior-july-ensemble-body"></tbody>
+          </table>
+        </div>
       </section>
 
       <aside class="boundary" aria-labelledby="interior-boundary-title">

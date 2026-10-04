@@ -31,14 +31,6 @@
         "path": "research/ocean-state-interior-sant-density-structure-current-geometry-2018.json",
         "sha256": "e161beb35445e8b2c9af575d0fcd760bde43ec9271dfb29b675a26aeaaa2ed8c"
       },
-      "surface_storage_account": {
-        "path": "research/ocean-state-sant-current-geometry-surface-storage-2018.json",
-        "sha256": "7a3f609de29a7a7d9288899f074f730a06395c8f5133c67bb05ee8797605e5d8"
-      },
-      "partial_perimeter_screen": {
-        "path": "research/ocean-state-sant-current-geometry-partial-perimeter-2018.json",
-        "sha256": "71dd19028b516983c0e5af3a041ad6122ff51e04416b7b01b3219ca3808d901a"
-      },
       "closed_box_horizontal_account": {
         "path": "research/ocean-state-sant-closed-box-horizontal-account-2018.json",
         "sha256": "ec266c8b071f0608a66585152a6ec92c8fea9622f1a5861b35be0719c9edfcc2"
@@ -55,6 +47,58 @@
         "path": "research/ocean-state-sant-closed-box-density-boundary-screen-2018.json",
         "sha256": "6998984d072e9168e749ae907990725785c11ee978535d2ef802efa00f5ab730"
       },
+      "density_boundary_collocation_sensitivity": {
+        "path": "research/ocean-state-sant-density-boundary-collocation-sensitivity-2018.json",
+        "sha256": "fbe1effa059495aa5a78e3fa281ea189fdacac73c1309908cca66c6c837ebfb2"
+      },
+      "surface_storage_account": {
+        "path": "research/ocean-state-sant-current-geometry-surface-storage-2018.json",
+        "sha256": "7a3f609de29a7a7d9288899f074f730a06395c8f5133c67bb05ee8797605e5d8"
+      },
+      "partial_perimeter_screen": {
+        "path": "research/ocean-state-sant-current-geometry-partial-perimeter-2018.json",
+        "sha256": "71dd19028b516983c0e5af3a041ad6122ff51e04416b7b01b3219ca3808d901a"
+      },
+      "annual_compact_fields": {
+        "path": "research/ocean-state-sant-closed-box-monthly-fields-2018.json",
+        "sha256": "12126a8128c00605f9278e9f13fcdda59134f63742564b2c9095b92792bf3b73"
+      },
+      "annual_density_boundary_series": {
+        "path": "research/ocean-state-sant-density-boundary-monthly-series-2018.json",
+        "sha256": "49a7c06f7da49e8a560659f6d11f6d9907a2bac04ddd6c4d44ae4024b2654c9b"
+      },
+      "annual_density_inventory_series": {
+        "path": "research/ocean-state-sant-density-inventory-monthly-series-2018.json",
+        "sha256": "45da47f7d4951a469750949ab980da90b3f4e4c8a478f96edd59cca1c2ce7486"
+      },
+      "density_cutoff_sensitivity": {
+        "path": "research/ocean-state-sant-density-cutoff-sensitivity-2018.json",
+        "sha256": "dadf81364bf1566763b4fe62bea074bf7e13925ac0dbb6e33e4b831d10b681bd"
+      },
+      "july_repeat_selection": {
+        "path": "research/ocean-state-sant-july-repeat-selection-v1.json",
+        "sha256": "31bdc9d40247e7b49de1df1fde54e16518bf90cc55b28167aa898c4b935a9976"
+      },
+      "july_repeat_fields": {
+        "path": "research/ocean-state-sant-july-repeat-fields-2016-2017.json",
+        "sha256": "05ed9570b8173e2b32f70eb164c76c471a1136387caae3c5bd479b5d25622d0d"
+      },
+      "july_repeat_sign_screen": {
+        "path": "research/ocean-state-sant-july-repeat-sign-screen-2016-2018.json",
+        "sha256": "401ebb18071ea5f4473f5a94fd7ec163b8a9663766dc49eddcfb54a4eb103f49"
+      },
+      "july_ensemble_selection": {
+        "path": "research/ocean-state-sant-2017-july-ensemble-selection-v1.json",
+        "sha256": "6a487ae611779af95bf3f559b2056d78363b431cdb92e3fdc232c4677e07a305"
+      },
+      "july_ensemble_fields": {
+        "path": "research/ocean-state-sant-2017-july-ensemble-fields.json",
+        "sha256": "cd0a1d398bfb5417bf647978b93bdf2a953c19f0e6b64f07258004623e4845fb"
+      },
+      "july_ensemble_sign_screen": {
+        "path": "research/ocean-state-sant-2017-july-ensemble-sign-screen.json",
+        "sha256": "dc548f2794668439d522ab4f56024051e0c2a6d42517591ae6f222c0cfb9e6e3"
+      },
       "status": "separate_unjoined_source_family",
       "permitted_use": "bounded local kinematics, T/S density structure, partial perimeter flux, open surface/storage evidence, and closed-horizontal-box terms only"
     },
@@ -65,6 +109,10 @@
     "vertical_process_source_audit": {
       "path": "research/ocean-state-sant-vertical-process-source-audit-2026-09-12.json",
       "sha256": "b33bfcaeeee0eb070b29d0f2032c47f90e7eb63dc317bd65493b4e2bfc3279ac"
+    },
+    "temporal_support_audit": {
+      "path": "research/ocean-state-sant-temporal-support-audit-2018.json",
+      "sha256": "c3e26f6688d7569830ca7c38a037ebea415f6457099d815b33d138187dea2b62"
     }
   },
   "relation_coverage": [
@@ -119,16 +167,16 @@
     {
       "relation": "interior_convergence",
       "status": "horizontal_advective_term_and_inventory_endpoints_supported_total_convergence_not_supported",
-      "evidence": "A 16\u00d716 geometry-selected box and three one-cell controls have complete 64-face horizontal perimeters, horizontal advective terms, and fixed column-heat-content endpoints in four months.",
+      "evidence": "A 16\u00d716 geometry-selected box and three one-cell controls have complete 64-face horizontal perimeters, horizontal advective terms, and four monthly-mean column-heat-content samples.",
       "required_evidence": "Matched native vertical, mixing/diffusion, tendency/assimilation terms and compatible time support for total convergence or budget closure.",
-      "reason": "The endpoint differences are not native tendencies or residuals, and the closed box measures one horizontal advective term only; vertical and other terms remain absent."
+      "reason": "The provider time audit confirms coindexed monthly means but no exact averaging bounds; differences between those means are not native tendencies or residuals. The closed box measures one horizontal advective term only; vertical and other terms remain absent."
     },
     {
       "relation": "transformation",
       "status": "density_strata_inventory_and_horizontal_boundary_terms_supported_transformation_not_supported",
-      "evidence": "Fixed numerical density-stratum volume occupancy and closed-horizontal-boundary volume terms are measured in four months for the geometry-selected box and controls.",
+      "evidence": "Fixed numerical density-stratum occupancy and closed horizontal bin-boundary screens cover twelve 2018 monthly means for the box and three controls; collocation and post hoc cutoff challenges bound method sensitivity.",
       "required_evidence": "Compatible vertical and mixing density-class terms, assimilation/restoring treatment, and matched temporal support for a density-class budget.",
-      "reason": "Endpoint differences and horizontal density-bin boundary terms do not diagnose class conversion; no vertical transfer or mixing term is available."
+      "reason": "Differences between monthly-mean occupancies and method-sensitive horizontal bin fluxes do not diagnose class conversion; no vertical transfer, mixing term, or matched inventory tendency is available."
     },
     {
       "relation": "event_perturbation",
@@ -1131,8 +1179,879 @@
           ]
         }
       }
-    ]
+    ],
+    "closed_box_primary_density_collocation_sensitivity": [
+      {
+        "valid_time": "2018-02-01/P1M",
+        "primary": {
+          "box": "primary",
+          "valid_wet_face_level_count": 3862,
+          "changed_bin_face_level_count": 12,
+          "changed_bin_fraction": 0.003107198,
+          "changed_bin_abs_volume_flux_Sv": 0.79551952,
+          "changed_bin_abs_flux_fraction": 0.004524097,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": 0.117913727,
+              "upstream_net_outward_Sv": 0.099953389,
+              "upstream_minus_centered_Sv": -0.017960338
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": -0.088019253,
+              "upstream_net_outward_Sv": -0.279550829,
+              "upstream_minus_centered_Sv": -0.191531576
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.027684802,
+              "upstream_net_outward_Sv": 0.181807112,
+              "upstream_minus_centered_Sv": 0.209491914
+            }
+          ]
+        }
+      },
+      {
+        "valid_time": "2018-05-01/P1M",
+        "primary": {
+          "box": "primary",
+          "valid_wet_face_level_count": 3862,
+          "changed_bin_face_level_count": 9,
+          "changed_bin_fraction": 0.002330399,
+          "changed_bin_abs_volume_flux_Sv": 0.416269198,
+          "changed_bin_abs_flux_fraction": 0.001925139,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": 0.04185933,
+              "upstream_net_outward_Sv": -0.038087723,
+              "upstream_minus_centered_Sv": -0.079947053
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": 0.313450137,
+              "upstream_net_outward_Sv": 0.251956877,
+              "upstream_minus_centered_Sv": -0.06149326
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.354672458,
+              "upstream_net_outward_Sv": -0.213232145,
+              "upstream_minus_centered_Sv": 0.141440313
+            }
+          ]
+        }
+      },
+      {
+        "valid_time": "2018-08-01/P1M",
+        "primary": {
+          "box": "primary",
+          "valid_wet_face_level_count": 3862,
+          "changed_bin_face_level_count": 8,
+          "changed_bin_fraction": 0.002071466,
+          "changed_bin_abs_volume_flux_Sv": 0.897265501,
+          "changed_bin_abs_flux_fraction": 0.004384401,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": 0.047991923,
+              "upstream_net_outward_Sv": -0.799819729,
+              "upstream_minus_centered_Sv": -0.847811653
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.04884583,
+              "upstream_net_outward_Sv": 0.798965823,
+              "upstream_minus_centered_Sv": 0.847811653
+            }
+          ]
+        }
+      },
+      {
+        "valid_time": "2018-11-01/P1M",
+        "primary": {
+          "box": "primary",
+          "valid_wet_face_level_count": 3862,
+          "changed_bin_face_level_count": 25,
+          "changed_bin_fraction": 0.00647333,
+          "changed_bin_abs_volume_flux_Sv": 0.806019138,
+          "changed_bin_abs_flux_fraction": 0.003763365,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "centered_net_outward_Sv": 0.0,
+              "upstream_net_outward_Sv": 0.0,
+              "upstream_minus_centered_Sv": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "centered_net_outward_Sv": -0.287311905,
+              "upstream_net_outward_Sv": -0.343091976,
+              "upstream_minus_centered_Sv": -0.05578007
+            },
+            {
+              "id": "27_0_to_27_5",
+              "centered_net_outward_Sv": 0.901320103,
+              "upstream_net_outward_Sv": 0.301766017,
+              "upstream_minus_centered_Sv": -0.599554085
+            },
+            {
+              "id": "at_or_above_27_5",
+              "centered_net_outward_Sv": -0.612998986,
+              "upstream_net_outward_Sv": 0.04233517,
+              "upstream_minus_centered_Sv": 0.655334156
+            }
+          ]
+        }
+      }
+    ],
+    "annual_density_boundary_comparison": [
+      {
+        "valid_time": "2018-01-01/P1M",
+        "strata": [
+          {
+            "id": "below_26_5",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "26_5_to_27_0",
+            "primary_inventory_volume_fraction": 0.018947304,
+            "primary_centered_net_outward_Sv": 0.086804672,
+            "primary_upstream_net_outward_Sv": 0.09152092,
+            "control_centered_net_outward_Sv": [
+              0.117458611,
+              0.036112175,
+              0.105543545
+            ]
+          },
+          {
+            "id": "27_0_to_27_5",
+            "primary_inventory_volume_fraction": 0.15549622,
+            "primary_centered_net_outward_Sv": -0.40324402,
+            "primary_upstream_net_outward_Sv": -0.403554212,
+            "control_centered_net_outward_Sv": [
+              -0.389313321,
+              -0.143239034,
+              -0.062720911
+            ]
+          },
+          {
+            "id": "at_or_above_27_5",
+            "primary_inventory_volume_fraction": 0.825556476,
+            "primary_centered_net_outward_Sv": 0.316520877,
+            "primary_upstream_net_outward_Sv": 0.31211482,
+            "control_centered_net_outward_Sv": [
+              0.271909032,
+              0.107230902,
+              -0.042754219
+            ]
+          }
+        ]
+      },
+      {
+        "valid_time": "2018-02-01/P1M",
+        "strata": [
+          {
+            "id": "below_26_5",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "26_5_to_27_0",
+            "primary_inventory_volume_fraction": 0.021833952,
+            "primary_centered_net_outward_Sv": 0.117913727,
+            "primary_upstream_net_outward_Sv": 0.099953389,
+            "control_centered_net_outward_Sv": [
+              0.084387521,
+              0.141797491,
+              0.112113036
+            ]
+          },
+          {
+            "id": "27_0_to_27_5",
+            "primary_inventory_volume_fraction": 0.156657904,
+            "primary_centered_net_outward_Sv": -0.088019253,
+            "primary_upstream_net_outward_Sv": -0.279550829,
+            "control_centered_net_outward_Sv": [
+              0.116824976,
+              -0.155279542,
+              -0.159743634
+            ]
+          },
+          {
+            "id": "at_or_above_27_5",
+            "primary_inventory_volume_fraction": 0.821508144,
+            "primary_centered_net_outward_Sv": -0.027684802,
+            "primary_upstream_net_outward_Sv": 0.181807112,
+            "control_centered_net_outward_Sv": [
+              -0.198964658,
+              0.015649235,
+              0.049854809
+            ]
+          }
+        ]
+      },
+      {
+        "valid_time": "2018-03-01/P1M",
+        "strata": [
+          {
+            "id": "below_26_5",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "26_5_to_27_0",
+            "primary_inventory_volume_fraction": 0.022170569,
+            "primary_centered_net_outward_Sv": 0.120894372,
+            "primary_upstream_net_outward_Sv": 0.084496282,
+            "control_centered_net_outward_Sv": [
+              0.170036272,
+              0.08659993,
+              0.13911552
+            ]
+          },
+          {
+            "id": "27_0_to_27_5",
+            "primary_inventory_volume_fraction": 0.154367997,
+            "primary_centered_net_outward_Sv": 0.530806689,
+            "primary_upstream_net_outward_Sv": 0.622221435,
+            "control_centered_net_outward_Sv": [
+              0.585719322,
+              0.49485208,
+              0.443864043
+            ]
+          },
+          {
+            "id": "at_or_above_27_5",
+            "primary_inventory_volume_fraction": 0.823461433,
+            "primary_centered_net_outward_Sv": -0.650261271,
+            "primary_upstream_net_outward_Sv": -0.705277928,
+            "control_centered_net_outward_Sv": [
+              -0.754346877,
+              -0.579983802,
+              -0.581540184
+            ]
+          }
+        ]
+      },
+      {
+        "valid_time": "2018-04-01/P1M",
+        "strata": [
+          {
+            "id": "below_26_5",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "26_5_to_27_0",
+            "primary_inventory_volume_fraction": 0.023419899,
+            "primary_centered_net_outward_Sv": 0.190570625,
+            "primary_upstream_net_outward_Sv": 0.194228118,
+            "control_centered_net_outward_Sv": [
+              0.191764782,
+              0.205820381,
+              0.159960537
+            ]
+          },
+          {
+            "id": "27_0_to_27_5",
+            "primary_inventory_volume_fraction": 0.148958573,
+            "primary_centered_net_outward_Sv": 0.185362993,
+            "primary_upstream_net_outward_Sv": 0.143894305,
+            "control_centered_net_outward_Sv": [
+              0.084786193,
+              0.330994194,
+              0.578610038
+            ]
+          },
+          {
+            "id": "at_or_above_27_5",
+            "primary_inventory_volume_fraction": 0.827621528,
+            "primary_centered_net_outward_Sv": -0.373990346,
+            "primary_upstream_net_outward_Sv": -0.33617915,
+            "control_centered_net_outward_Sv": [
+              -0.27461143,
+              -0.53486779,
+              -0.736619673
+            ]
+          }
+        ]
+      },
+      {
+        "valid_time": "2018-05-01/P1M",
+        "strata": [
+          {
+            "id": "below_26_5",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "26_5_to_27_0",
+            "primary_inventory_volume_fraction": 0.024181034,
+            "primary_centered_net_outward_Sv": 0.04185933,
+            "primary_upstream_net_outward_Sv": -0.038087723,
+            "control_centered_net_outward_Sv": [
+              0.079542613,
+              0.051454616,
+              0.113686012
+            ]
+          },
+          {
+            "id": "27_0_to_27_5",
+            "primary_inventory_volume_fraction": 0.146149697,
+            "primary_centered_net_outward_Sv": 0.313450137,
+            "primary_upstream_net_outward_Sv": 0.251956877,
+            "control_centered_net_outward_Sv": [
+              0.046728374,
+              0.284819114,
+              0.576040438
+            ]
+          },
+          {
+            "id": "at_or_above_27_5",
+            "primary_inventory_volume_fraction": 0.829669269,
+            "primary_centered_net_outward_Sv": -0.354672458,
+            "primary_upstream_net_outward_Sv": -0.213232145,
+            "control_centered_net_outward_Sv": [
+              -0.125600211,
+              -0.33567848,
+              -0.6890355
+            ]
+          }
+        ]
+      },
+      {
+        "valid_time": "2018-06-01/P1M",
+        "strata": [
+          {
+            "id": "below_26_5",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "26_5_to_27_0",
+            "primary_inventory_volume_fraction": 0.015416838,
+            "primary_centered_net_outward_Sv": -0.185384935,
+            "primary_upstream_net_outward_Sv": -0.207718225,
+            "control_centered_net_outward_Sv": [
+              -0.15980679,
+              -0.191147953,
+              -0.321061066
+            ]
+          },
+          {
+            "id": "27_0_to_27_5",
+            "primary_inventory_volume_fraction": 0.152453053,
+            "primary_centered_net_outward_Sv": 0.758569661,
+            "primary_upstream_net_outward_Sv": 0.386717166,
+            "control_centered_net_outward_Sv": [
+              0.70746139,
+              0.521384151,
+              0.524391254
+            ]
+          },
+          {
+            "id": "at_or_above_27_5",
+            "primary_inventory_volume_fraction": 0.832130109,
+            "primary_centered_net_outward_Sv": -0.572804245,
+            "primary_upstream_net_outward_Sv": -0.17861846,
+            "control_centered_net_outward_Sv": [
+              -0.547222768,
+              -0.329904211,
+              -0.202989756
+            ]
+          }
+        ]
+      },
+      {
+        "valid_time": "2018-07-01/P1M",
+        "strata": [
+          {
+            "id": "below_26_5",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "26_5_to_27_0",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "27_0_to_27_5",
+            "primary_inventory_volume_fraction": 0.160870211,
+            "primary_centered_net_outward_Sv": 1.539002079,
+            "primary_upstream_net_outward_Sv": 1.167726231,
+            "control_centered_net_outward_Sv": [
+              1.489253142,
+              1.524378531,
+              1.388706384
+            ]
+          },
+          {
+            "id": "at_or_above_27_5",
+            "primary_inventory_volume_fraction": 0.839129789,
+            "primary_centered_net_outward_Sv": -1.536887277,
+            "primary_upstream_net_outward_Sv": -1.165611429,
+            "control_centered_net_outward_Sv": [
+              -1.487191783,
+              -1.52224417,
+              -1.386587241
+            ]
+          }
+        ]
+      },
+      {
+        "valid_time": "2018-08-01/P1M",
+        "strata": [
+          {
+            "id": "below_26_5",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "26_5_to_27_0",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "27_0_to_27_5",
+            "primary_inventory_volume_fraction": 0.15775302,
+            "primary_centered_net_outward_Sv": 0.047991923,
+            "primary_upstream_net_outward_Sv": -0.799819729,
+            "control_centered_net_outward_Sv": [
+              0.013882162,
+              -0.034080644,
+              -0.388327137
+            ]
+          },
+          {
+            "id": "at_or_above_27_5",
+            "primary_inventory_volume_fraction": 0.84224698,
+            "primary_centered_net_outward_Sv": -0.04884583,
+            "primary_upstream_net_outward_Sv": 0.798965823,
+            "control_centered_net_outward_Sv": [
+              -0.014673507,
+              0.033195247,
+              0.387535038
+            ]
+          }
+        ]
+      },
+      {
+        "valid_time": "2018-09-01/P1M",
+        "strata": [
+          {
+            "id": "below_26_5",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "26_5_to_27_0",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "27_0_to_27_5",
+            "primary_inventory_volume_fraction": 0.16401497,
+            "primary_centered_net_outward_Sv": -0.06324307,
+            "primary_upstream_net_outward_Sv": -0.173164089,
+            "control_centered_net_outward_Sv": [
+              -0.11245096,
+              0.050793214,
+              0.145257814
+            ]
+          },
+          {
+            "id": "at_or_above_27_5",
+            "primary_inventory_volume_fraction": 0.83598503,
+            "primary_centered_net_outward_Sv": 0.066297375,
+            "primary_upstream_net_outward_Sv": 0.176218394,
+            "control_centered_net_outward_Sv": [
+              0.115415776,
+              -0.047642595,
+              -0.142151017
+            ]
+          }
+        ]
+      },
+      {
+        "valid_time": "2018-10-01/P1M",
+        "strata": [
+          {
+            "id": "below_26_5",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "26_5_to_27_0",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "27_0_to_27_5",
+            "primary_inventory_volume_fraction": 0.163790503,
+            "primary_centered_net_outward_Sv": 0.427769907,
+            "primary_upstream_net_outward_Sv": 0.380222616,
+            "control_centered_net_outward_Sv": [
+              0.247730846,
+              0.554152158,
+              0.539343565
+            ]
+          },
+          {
+            "id": "at_or_above_27_5",
+            "primary_inventory_volume_fraction": 0.836209497,
+            "primary_centered_net_outward_Sv": -0.427127372,
+            "primary_upstream_net_outward_Sv": -0.379580081,
+            "control_centered_net_outward_Sv": [
+              -0.24709683,
+              -0.553515147,
+              -0.538664329
+            ]
+          }
+        ]
+      },
+      {
+        "valid_time": "2018-11-01/P1M",
+        "strata": [
+          {
+            "id": "below_26_5",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "26_5_to_27_0",
+            "primary_inventory_volume_fraction": 0.002921684,
+            "primary_centered_net_outward_Sv": -0.287311905,
+            "primary_upstream_net_outward_Sv": -0.343091976,
+            "control_centered_net_outward_Sv": [
+              -0.277920725,
+              -0.315791211,
+              -0.291943586
+            ]
+          },
+          {
+            "id": "27_0_to_27_5",
+            "primary_inventory_volume_fraction": 0.159731728,
+            "primary_centered_net_outward_Sv": 0.901320103,
+            "primary_upstream_net_outward_Sv": 0.301766017,
+            "control_centered_net_outward_Sv": [
+              0.693674306,
+              1.091144306,
+              0.685680971
+            ]
+          },
+          {
+            "id": "at_or_above_27_5",
+            "primary_inventory_volume_fraction": 0.837346588,
+            "primary_centered_net_outward_Sv": -0.612998986,
+            "primary_upstream_net_outward_Sv": 0.04233517,
+            "control_centered_net_outward_Sv": [
+              -0.414801306,
+              -0.7742863,
+              -0.392802247
+            ]
+          }
+        ]
+      },
+      {
+        "valid_time": "2018-12-01/P1M",
+        "strata": [
+          {
+            "id": "below_26_5",
+            "primary_inventory_volume_fraction": 0.0,
+            "primary_centered_net_outward_Sv": 0.0,
+            "primary_upstream_net_outward_Sv": 0.0,
+            "control_centered_net_outward_Sv": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "id": "26_5_to_27_0",
+            "primary_inventory_volume_fraction": 0.018344848,
+            "primary_centered_net_outward_Sv": 0.196859478,
+            "primary_upstream_net_outward_Sv": 0.1960856,
+            "control_centered_net_outward_Sv": [
+              0.19905292,
+              0.185066109,
+              0.40150578
+            ]
+          },
+          {
+            "id": "27_0_to_27_5",
+            "primary_inventory_volume_fraction": 0.136030514,
+            "primary_centered_net_outward_Sv": 0.464010448,
+            "primary_upstream_net_outward_Sv": -0.042649953,
+            "control_centered_net_outward_Sv": [
+              0.494048336,
+              0.447372843,
+              0.810304144
+            ]
+          },
+          {
+            "id": "at_or_above_27_5",
+            "primary_inventory_volume_fraction": 0.845624638,
+            "primary_centered_net_outward_Sv": -0.659497429,
+            "primary_upstream_net_outward_Sv": -0.152063151,
+            "control_centered_net_outward_Sv": [
+              -0.691705395,
+              -0.631118756,
+              -1.210367197
+            ]
+          }
+        ]
+      }
+    ],
+    "density_cutoff_sensitivity_summary": {
+      "posthoc_challenge": true,
+      "cutoff_shifts_sigma0_kg_m3": [
+        -0.1,
+        0.0,
+        0.1
+      ],
+      "july_middle_high_all_boxes_methods_shifts_outward": true,
+      "july_primary_centered_range_Sv": [
+        1.065773776,
+        2.075094843
+      ],
+      "august_primary_baseline_centered_Sv": 0.047991923,
+      "august_primary_baseline_upstream_Sv": -0.799819729,
+      "raised_cutoff_lighter_bin_present_july_october": true
+    },
+    "july_repeat_sign_summary": {
+      "decision": "repeat_year_sign_screen_fails",
+      "years": [
+        {
+          "month": "201607",
+          "primary_baseline_centered_Sv": 3.319932602,
+          "primary_baseline_upstream_Sv": 3.313721997,
+          "minimum_tested_case": {
+            "box": "east_control",
+            "scheme": "lower_0_1",
+            "method": "upstream_net_outward_Sv",
+            "net_outward_Sv": 0.645266599
+          },
+          "predeclared_sign_pass": true
+        },
+        {
+          "month": "201707",
+          "primary_baseline_centered_Sv": 0.398475212,
+          "primary_baseline_upstream_Sv": 0.217271667,
+          "minimum_tested_case": {
+            "box": "east_control",
+            "scheme": "baseline",
+            "method": "upstream_net_outward_Sv",
+            "net_outward_Sv": -0.021189639
+          },
+          "predeclared_sign_pass": false
+        },
+        {
+          "month": "201807",
+          "primary_baseline_centered_Sv": 1.539002079,
+          "primary_baseline_upstream_Sv": 1.167726231,
+          "minimum_tested_case": {
+            "box": "south_control",
+            "scheme": "lower_0_1",
+            "method": "upstream_net_outward_Sv",
+            "net_outward_Sv": 0.772311264
+          },
+          "predeclared_sign_pass": true
+        }
+      ]
+    },
+    "july_ensemble_sign_summary": {
+      "decision": {
+        "pass_count": 0,
+        "member_count": 5,
+        "east_control_baseline_upstream_sign_varies": true
+      },
+      "members": [
+        {
+          "member": "opa0",
+          "primary_baseline_centered_Sv": 0.398475212,
+          "primary_baseline_upstream_Sv": 0.217271667,
+          "east_control_baseline_upstream_Sv": -0.021189639,
+          "minimum_tested_case": {
+            "box": "east_control",
+            "scheme": "baseline",
+            "method": "upstream_net_outward_Sv",
+            "net_outward_Sv": -0.021189639
+          },
+          "predeclared_sign_pass": false
+        },
+        {
+          "member": "opa1",
+          "primary_baseline_centered_Sv": -1.1232566,
+          "primary_baseline_upstream_Sv": -1.232186345,
+          "east_control_baseline_upstream_Sv": -0.672324309,
+          "minimum_tested_case": {
+            "box": "north_control",
+            "scheme": "baseline",
+            "method": "upstream_net_outward_Sv",
+            "net_outward_Sv": -1.359742691
+          },
+          "predeclared_sign_pass": false
+        },
+        {
+          "member": "opa2",
+          "primary_baseline_centered_Sv": -0.342467309,
+          "primary_baseline_upstream_Sv": -0.807717077,
+          "east_control_baseline_upstream_Sv": -0.726085041,
+          "minimum_tested_case": {
+            "box": "primary",
+            "scheme": "baseline",
+            "method": "upstream_net_outward_Sv",
+            "net_outward_Sv": -0.807717077
+          },
+          "predeclared_sign_pass": false
+        },
+        {
+          "member": "opa3",
+          "primary_baseline_centered_Sv": 1.520857842,
+          "primary_baseline_upstream_Sv": 1.26171618,
+          "east_control_baseline_upstream_Sv": 1.34300427,
+          "minimum_tested_case": {
+            "box": "east_control",
+            "scheme": "lower_0_1",
+            "method": "upstream_net_outward_Sv",
+            "net_outward_Sv": -0.026845997
+          },
+          "predeclared_sign_pass": false
+        },
+        {
+          "member": "opa4",
+          "primary_baseline_centered_Sv": -0.214728279,
+          "primary_baseline_upstream_Sv": -0.972854551,
+          "east_control_baseline_upstream_Sv": -0.892337388,
+          "minimum_tested_case": {
+            "box": "primary",
+            "scheme": "baseline",
+            "method": "upstream_net_outward_Sv",
+            "net_outward_Sv": -0.972854551
+          },
+          "predeclared_sign_pass": false
+        }
+      ]
+    }
   },
-  "research_conclusion": "The intra-state dynamics research slice is complete as an evidence-bounded map: occupancy, local kinematics, relative motion, T/S density structure, a partial perimeter, an open surface/storage account, and closed-horizontal-box advective, heat-inventory-endpoint, and density-stratum-inventory terms are separately receipted. Vertical transfer, total convergence, transformation flux, and event perturbation remain explicit unsupported mechanisms with named acquisition gates. No numerical value is joined across the archived and current-geometry source families.",
+  "research_conclusion": "The intra-state dynamics research slice is complete as an evidence-bounded map: occupancy, local kinematics, relative motion, T/S density structure, a partial perimeter, an open surface/storage account, and closed-horizontal-box advective, heat-inventory-endpoint, and density-stratum-inventory terms are separately receipted. A fixed three-July horizontal sign challenge fails its strict repeat-year control rule in 2017. The preselected five-member ORAS5 July 2017 challenge also fails in every member; its primary-box baseline sign varies across members. Vertical transfer, total convergence, transformation flux, and event perturbation remain explicit unsupported mechanisms with named acquisition gates. No numerical value is joined across the archived and current-geometry source families.",
   "boundary": "This synthesis is a relation-by-relation evidence map, not a state-wide dynamical model, water-mass classification, transport account, closure calculation, causal graph, or geometry bridge."
 }

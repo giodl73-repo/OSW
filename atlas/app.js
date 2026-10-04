@@ -1321,6 +1321,7 @@ function rebuildDirectory(matching) {
 }
 
 function applyGeographyFilters(updateUrl = true) {
+  document.querySelector("#flow-reference").hidden = currentLens !== "flows";
   const filters = activeGeographyFilters();
   const matching = zones.filter(zone => zoneMatches(zone, filters));
   const matchingIds = new Set(matching.map(zone => zone.id));

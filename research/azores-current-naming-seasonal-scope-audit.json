@@ -1,0 +1,72 @@
+{
+  "schema": "osw.current-naming-scope-audit.v1",
+  "status": "editorial_scope_and_seasonal_evidence_review_not_canonical",
+  "as_of": "2026-10-03",
+  "current_id": "azores",
+  "route_candidate_file": "research/azores-reference-path-candidate.json",
+  "sources": [
+    {
+      "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.842251/full",
+      "locator": "Introduction, paragraphs beginning The Azores Current originates and East of the Mid-Atlantic Ridge: Grand Banks origin, MAR crossing, eastward jet and distinct recirculation/branches.",
+      "supports": "Approximate Grand Banks branch origin, MAR crossing and eastward continuation; recirculation and countercurrents distinct."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2000JC000345",
+      "citation": "Martins et al. (2002), Surface circulation in the eastern North Atlantic, from drifters and altimetry, doi:10.1029/2000JC000345.",
+      "locator": "Section 3.3.2 and Figure 3: 34-36 N eastward flow toward Gulf of Cadiz; seasonal position/width inference inconclusive.",
+      "role": "Eastern regional continuation; no drifter axis digitized."
+    },
+    {
+      "url": "https://accedacris.ulpgc.es/bitstream/10553/52759/1/azores_current_system_from.pdf",
+      "citation": "Comas-Rodriguez et al. (2011), The Azores Current System from a meridional section at 24.5 W, JGR Oceans 116, C09021, doi:10.1029/2011JC007129.",
+      "locator": "Abstract and section 2: 2009 meridional survey; 110 km widths and separate eastward/westward currents.",
+      "role": "Section context only; width is not along-current length and is not applied along the route."
+    }
+  ],
+  "source_access_note": "Frazao 2022 and Martins 2002 full text retrieved. Comas-Rodriguez 2011 exact section context is already retained in the audited width inventory and indexed primary-source text; direct full-page/PDF fetch failed this turn, so no new curve or field extraction is claimed.",
+  "naming_gates": {
+    "western_nominal_lon_lat": [
+      -45,
+      40
+    ],
+    "ridge_nominal_lon_lat": [
+      -37,
+      34
+    ],
+    "eastern_nominal_lon_lat": [
+      -9.2,
+      35.5
+    ],
+    "gate_role": "All selected regional approach conventions; not whole-system or diagnosed exact endpoints.",
+    "branch_exclusions": "Gulf Stream/North Atlantic upstream branches, north/south counterflows, southward recirculation and Canary/Gibraltar downstream routes."
+  },
+  "measurement_guards": [
+    "110 km is a 2009 meridional section width for each opposing current, not either current length.",
+    "Do not apply section width uniformly along the reference corridor.",
+    "1871-2010 model core analysis and study-domain bounds do not define a contemporary full-current route.",
+    "Transport and front migration do not provide length/width confidence or annual extrema."
+  ],
+  "seasonal_evidence": {
+    "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2000JC000345",
+    "locator": "Section 3.3.2, paragraph 26",
+    "support": "1993-1994 drifter seasonal position/width analysis inconclusive due to irregular and insufficient sampling.",
+    "route_geometry_extracted": false,
+    "annual_length_range_km": null,
+    "annual_width_range_km": null,
+    "playback_eligible": false
+  },
+  "countercurrent_guard": {
+    "current_id": "azores-countercurrent",
+    "route_copied": false,
+    "whole_length_km": null,
+    "reason": "Westward subsurface counterflow requires its own endpoint/layer/time conventions; no mirrored parent route."
+  },
+  "data_access_leads": [
+    {
+      "source_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.842251/full",
+      "product": "SODA-POP v2.2.4 monthly fields 1871-2010, 0.5 degree output",
+      "status": "Paper description only; data not acquired or validated for monthly geometry here."
+    }
+  ],
+  "canonical_numeric_admission": false
+}

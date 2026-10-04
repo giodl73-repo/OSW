@@ -1,0 +1,452 @@
+{
+  "schema": "osw.current-route-strategy-input.v1",
+  "author": "OSW",
+  "status": "editorial_planning_crosswalk_not_scientific_classification_approval",
+  "scope": "Primary construction strategy for each of the 89 inventory names without a published ranked length. Categories are work priorities, can have overlapping physical constraints, and do not establish current boundaries or comparable lengths.",
+  "basis_file": "research/ocean-current-length-evidence.json",
+  "basis_sha256": "c9860385231435451fdd1c989342dc73fd45ce4ac774be1a10c14576b4dfc3fc",
+  "parent_taxonomy": "research/ocean-motion-taxonomy.json",
+  "strategies": [
+    {
+      "id": "split_basin_family",
+      "label": "Split basin families",
+      "description": "Shared labels need basin-specific child objects before any route length. Existing children are navigation links, not a complete family census.",
+      "next_action": "Measure sourced basin members separately; create any missing child identities before route construction."
+    },
+    {
+      "id": "system_route_graph",
+      "label": "Define system and branch graph",
+      "description": "A main route, component reaches and alternate branches need separate length semantics.",
+      "next_action": "Specify the source-defined system, branch connectivity, depth and non-overlapping component gates; retain study reaches separately."
+    },
+    {
+      "id": "continuity_hypothesis",
+      "label": "Keep continuity hypothesis separate",
+      "description": "A proposed connection cannot be ranked as an established current merely because a path can be drawn.",
+      "next_action": "Audit continuity evidence and alternatives; retain hypothetical status and any proposed distance separately."
+    },
+    {
+      "id": "seasonal_routes",
+      "label": "Construct seasonal routes",
+      "description": "A specified seasonal regime is needed; reversal or seasonal extensions cannot become a permanent route.",
+      "next_action": "Choose sourced season, direction and layer; construct each supported seasonal path separately and preserve missing seasons."
+    },
+    {
+      "id": "dated_geometry",
+      "label": "Construct dated or regime-specific geometry",
+      "description": "Variable loops, circuits and frontal paths need a specified date or regime and continuity test.",
+      "next_action": "Use dated or explicitly averaged geometry, distinguish an open loop from a closed circuit, and compare repeated regimes before summarizing."
+    },
+    {
+      "id": "resolve_naming_scope",
+      "label": "Resolve naming or extent convention",
+      "description": "Aliases, source-dependent limits or proposed continuity need an explicit identity/extent decision. A regional candidate may use a declared convention meanwhile.",
+      "next_action": "Read competing definitions, resolve aliases versus distinct flows, and retain source-convention routes without merging their extents."
+    },
+    {
+      "id": "layer_specific_route",
+      "label": "Construct layer-specific paths",
+      "description": "Subsurface jets, undercurrents and overflows require depth, density or tracer support along the route.",
+      "next_action": "Specify source layer and time support, obtain intermediate pathway geometry, and separate branches or dilution thresholds before measuring."
+    },
+    {
+      "id": "expand_section_evidence",
+      "label": "Extend evidence beyond sections",
+      "description": "Cross-stream sections locate a current locally but do not define an along-stream route.",
+      "next_action": "Find sourced upstream/downstream gates and continuity between sections; preserve widths and section transports as different measurements."
+    },
+    {
+      "id": "preserve_survey_reach",
+      "label": "Preserve surveyed-reach scope",
+      "description": "A documented regional survey reach remains a reach until whole-flow gates are supported.",
+      "next_action": "Reconstruct only the source survey reach first; obtain independent start/end evidence before proposing a broader current route."
+    },
+    {
+      "id": "source_gated_regional_route",
+      "label": "Establish a sourced regional route",
+      "description": "Regional named flow or branch eligible for a declared reference convention once gates and route geography are supported. This does not assert that the flow is unbranched or steady.",
+      "next_action": "Read primary geographic definitions, choose explicit endpoint/branch/layer/time conventions, and measure a reviewed route with alternatives; naming points alone are insufficient."
+    }
+  ],
+  "assignments": [
+    {
+      "current_id": "agulhas",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "agulhas-return",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "alaska",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "aleutian",
+      "strategy_id": "resolve_naming_scope",
+      "next_action": "AMS naming review distinguishes eastward Aleutian/Subarctic Current from the proposed westward Alaskan Stream. Resolve Oyashio-interface and eastern bifurcation gates using suitable velocity/front evidence; no whole-current endpoints or route length admitted. Scope audit: research/aleutian-alaskan-stream-naming-scope-audit.json"
+    },
+    {
+      "current_id": "algerian",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "antarctic-coastal",
+      "strategy_id": "resolve_naming_scope"
+    },
+    {
+      "current_id": "antilles",
+      "strategy_id": "resolve_naming_scope",
+      "next_action": "Modern 2005â€“2015 observations support regional mean flow at 26.5 N, separate from the old 28 degrees 35 minutes N surface assessment. Resolve named-flow endpoints before a whole-current route. Table 3 integration span is not current width. Scope audit: research/antilles-current-naming-seasonal-scope-audit.json Acquired AB0505 profiles now support local diagnostic review via research/antilles-ab0505-400m-section-diagnostic.json; recover along-current velocity axes separately rather than use the transverse sampling line as a route."
+    },
+    {
+      "current_id": "atlantic-equatorial-undercurrent",
+      "strategy_id": "layer_specific_route"
+    },
+    {
+      "current_id": "atlantic-north-equatorial-countercurrent",
+      "strategy_id": "expand_section_evidence"
+    },
+    {
+      "current_id": "atlantic-north-equatorial-undercurrent",
+      "strategy_id": "layer_specific_route"
+    },
+    {
+      "current_id": "atlantic-south-equatorial-countercurrent",
+      "strategy_id": "seasonal_routes",
+      "next_action": "Follow research/atlantic-secc-march-1994-section-scope-audit.json: recover time- and layer-compatible longitudinal axes and paired velocity boundaries. Preserve local March 1994 depth-dependent flow and nearby non-detection; do not connect historical sections into a continuous axis or infer annual reversal."
+    },
+    {
+      "current_id": "atlantic-south-equatorial-undercurrent",
+      "strategy_id": "layer_specific_route"
+    },
+    {
+      "current_id": "azores",
+      "strategy_id": "expand_section_evidence"
+    },
+    {
+      "current_id": "azores-countercurrent",
+      "strategy_id": "layer_specific_route"
+    },
+    {
+      "current_id": "baffin",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "balearic",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "benguela",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "black-sea-rim",
+      "strategy_id": "dated_geometry"
+    },
+    {
+      "current_id": "brazil",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "canary",
+      "strategy_id": "expand_section_evidence"
+    },
+    {
+      "current_id": "caribbean",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "davidson",
+      "strategy_id": "seasonal_routes"
+    },
+    {
+      "current_id": "deep-western-boundary",
+      "strategy_id": "system_route_graph"
+    },
+    {
+      "current_id": "east-adriatic",
+      "strategy_id": "resolve_naming_scope"
+    },
+    {
+      "current_id": "east-australian",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "east-greenland",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "east-greenland-coastal",
+      "strategy_id": "preserve_survey_reach"
+    },
+    {
+      "current_id": "equatorial-countercurrent",
+      "strategy_id": "split_basin_family"
+    },
+    {
+      "current_id": "equatorial-undercurrent",
+      "strategy_id": "split_basin_family"
+    },
+    {
+      "current_id": "gaspe",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "greenland-middle-atlantic-shelf-hypothesis",
+      "strategy_id": "continuity_hypothesis"
+    },
+    {
+      "current_id": "guiana",
+      "strategy_id": "resolve_naming_scope",
+      "next_action": "Select source-specific Guiana/Guyana extent and depth; separate shelf flow from ring passage. Local non-detection is not global absence. Resolve entry/Caribbean gates before an axis. Scope audit: research/guiana-north-brazil-naming-scope-audit.json"
+    },
+    {
+      "current_id": "guinea",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "gulf-stream-system",
+      "strategy_id": "system_route_graph"
+    },
+    {
+      "current_id": "hiri-current",
+      "strategy_id": "resolve_naming_scope"
+    },
+    {
+      "current_id": "indian-equatorial-undercurrent",
+      "strategy_id": "seasonal_routes",
+      "next_action": "Follow research/indian-euc-dated-band-layer-season-scope-audit.json: recover compatible longitudinal subsurface and overlying profiles before connecting historical observations. The 90 E 2017 band is transverse local support, not path length or a recurring seasonal route."
+    },
+    {
+      "current_id": "indian-south-equatorial-countercurrent",
+      "strategy_id": "seasonal_routes",
+      "next_action": "Review December-March surface studied reach under research/indian-secc-winter-surface-frequency-scope-audit.json; recover fitted seasonal velocity axes, gates and paired transverse boundaries. Frequency/phase domains at 80.5 E are not current-width edges; deeper SEUC remains separate."
+    },
+    {
+      "current_id": "indian-south-equatorial-undercurrent",
+      "strategy_id": "seasonal_routes",
+      "next_action": "Review the March-May subsurface studied reach and separate 3D threshold-core spatial width under research/indian-seuc-mam-layer-core-scope-audit.json. Retrieve BRAN density-layer/core geometry for bathymetric continuity and endpoints before whole-current or annual dimensions."
+    },
+    {
+      "current_id": "indonesian-throughflow",
+      "strategy_id": "system_route_graph"
+    },
+    {
+      "current_id": "irminger",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "jutland",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "kuroshio-extension",
+      "strategy_id": "resolve_naming_scope"
+    },
+    {
+      "current_id": "labrador",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "leeuwin",
+      "strategy_id": "seasonal_routes"
+    },
+    {
+      "current_id": "ligurian",
+      "strategy_id": "resolve_naming_scope"
+    },
+    {
+      "current_id": "loop",
+      "strategy_id": "dated_geometry"
+    },
+    {
+      "current_id": "mauritanian",
+      "strategy_id": "seasonal_routes",
+      "next_action": "Seasonal mean undercurrent width at 18 N is separate evidence. Recover compatible along-coast axes and endpoint gates; neither 17–19 N sample pooling, 200 km surface corridor nor 60 km transport window defines route extent. See research/mauritanian-seasonal-mean-scope-audit.json."
+    },
+    {
+      "current_id": "mediterranean-undercurrent",
+      "strategy_id": "layer_specific_route"
+    },
+    {
+      "current_id": "mindanao-current",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "monsoon",
+      "strategy_id": "seasonal_routes"
+    },
+    {
+      "current_id": "new-guinea-coastal-current",
+      "strategy_id": "seasonal_routes"
+    },
+    {
+      "current_id": "new-guinea-coastal-undercurrent",
+      "strategy_id": "layer_specific_route"
+    },
+    {
+      "current_id": "new-ireland-coastal-undercurrent",
+      "strategy_id": "layer_specific_route"
+    },
+    {
+      "current_id": "north-atlantic",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "north-brazil",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "north-cape",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "north-equatorial",
+      "strategy_id": "split_basin_family"
+    },
+    {
+      "current_id": "north-equatorial-countercurrent",
+      "strategy_id": "split_basin_family"
+    },
+    {
+      "current_id": "north-equatorial-undercurrent",
+      "strategy_id": "split_basin_family"
+    },
+    {
+      "current_id": "north-pacific",
+      "strategy_id": "resolve_naming_scope"
+    },
+    {
+      "current_id": "northern-mediterranean",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "norwegian",
+      "strategy_id": "resolve_naming_scope",
+      "next_action": "Resolve source naming and branch extent before route construction; no transfer of neighboring current dimensions. See research/norwegian-naming-branch-scope-audit.json."
+    },
+    {
+      "current_id": "norwegian-coastal",
+      "strategy_id": "resolve_naming_scope"
+    },
+    {
+      "current_id": "oyashio",
+      "strategy_id": "seasonal_routes"
+    },
+    {
+      "current_id": "pacific-north-equatorial-countercurrent",
+      "strategy_id": "expand_section_evidence",
+      "next_action": "Review editorial 140 W to 95 W studied reach and intermediate latitude choices; extract compatible month/depth axes before whole-current or annual dimensions. See research/pacific-necc-reach-seasonal-section-scope-audit.json."
+    },
+    {
+      "current_id": "pacific-north-equatorial-undercurrent",
+      "strategy_id": "layer_specific_route",
+      "next_action": "Resolve branch-specific geometry at and beyond 130 E; do not transfer northern Tsuchiya route length, depth or integration-band width. See research/pacific-neuc-nscc-distinction-scope-audit.json."
+    },
+    {
+      "current_id": "pacific-north-subsurface-countercurrent",
+      "strategy_id": "layer_specific_route",
+      "next_action": "Review northern Tsuchiya 155 W to 110 W studied reach and interpolation, local peak depths and integration limits; see research/pacific-nscc-reach-layer-section-scope-audit.json."
+    },
+    {
+      "current_id": "pacific-south-equatorial-countercurrent",
+      "strategy_id": "seasonal_routes"
+    },
+    {
+      "current_id": "pacific-south-subsurface-countercurrent",
+      "strategy_id": "layer_specific_route",
+      "next_action": "Review historical southern mean-core 155 W to 110 W reach against primary/secondary branch support; resolve separate branch geometry and topology before aggregation. See research/pacific-sscc-mean-reach-branch-width-scope-audit.json."
+    },
+    {
+      "current_id": "persian-gulf-saline-overflow",
+      "strategy_id": "layer_specific_route",
+      "next_action": "Recover GOGP99 section/core geometry and occupation-specific boundaries; resolve source date/distance discrepancies and dilution/branch endpoints. Source distances and half-salinity core widths are scoped support, not whole-current or annual measurements. See research/persian-gulf-gogp99-core-scope-audit.json."
+    },
+    {
+      "current_id": "portugal",
+      "strategy_id": "expand_section_evidence"
+    },
+    {
+      "current_id": "red-sea-saline-overflow",
+      "strategy_id": "layer_specific_route",
+      "next_action": "Recover Northern/Southern Channel plume axes and source velocity support; preserve gully product branch and downstream equilibrated-water distinction. Resolve 115/120/130 km channel conventions without treating them as uncertainty. Winter 130 km velocity-supported reach is not a whole-flow axis. See research/red-sea-redsox-branch-reach-scope-audit.json."
+    },
+    {
+      "current_id": "solomon-island-coastal-undercurrent",
+      "strategy_id": "layer_specific_route",
+      "next_action": "Retrieve full source and define model-proposal extent/layer before route construction; see research/solomon-island-coastal-undercurrent-proposal-scope-audit.json."
+    },
+    {
+      "current_id": "somali",
+      "strategy_id": "seasonal_routes"
+    },
+    {
+      "current_id": "south-atlantic",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "south-australian",
+      "strategy_id": "seasonal_routes"
+    },
+    {
+      "current_id": "south-equatorial",
+      "strategy_id": "split_basin_family"
+    },
+    {
+      "current_id": "south-equatorial-countercurrent",
+      "strategy_id": "split_basin_family"
+    },
+    {
+      "current_id": "south-equatorial-undercurrent",
+      "strategy_id": "split_basin_family"
+    },
+    {
+      "current_id": "south-indian",
+      "strategy_id": "resolve_naming_scope",
+      "next_action": "Review eastern-name-convention 70–90 E studied reach and source layer support; use research/south-indian-eastern-reach-naming-layer-scope-audit.json. Resolve full endpoints, mean-flow axis and recirculation without transferring western Agulhas Return length."
+    },
+    {
+      "current_id": "south-pacific",
+      "strategy_id": "resolve_naming_scope",
+      "next_action": "Review 103–88 W eastern frontal-proxy studied reach and distinct 1994/1993 observations; use research/south-pacific-eastern-front-reach-layer-time-scope-audit.json. Diagnose compatible velocity axes, resolve split bands and extend western/eastern scope separately."
+    },
+    {
+      "current_id": "spitsbergen-atlantic",
+      "strategy_id": "resolve_naming_scope",
+      "next_action": "Resolve source naming and branch extent before route construction; no transfer of neighboring current dimensions. See research/spitsbergen-atlantic-naming-branch-scope-audit.json."
+    },
+    {
+      "current_id": "tasman-front",
+      "strategy_id": "dated_geometry",
+      "next_action": "Follow research/tasman-front-composite-continuity-scope-audit.json: choose historical composite, dated jet, mean-flow connection or transport corridor explicitly; recover compatible velocity geometry without assuming a persistent central front. Keep unsynchronized source sets and the printed duration discrepancy unresolved until original sources are checked."
+    },
+    {
+      "current_id": "tsushima",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "west-australian",
+      "strategy_id": "resolve_naming_scope",
+      "next_action": "Resolve the 1977 cyclonic-stream naming versus modern offshore northward flow using research/west-australian-current-naming-seasonal-scope-audit.json; its 800 km trough and 100-200 km width are unadmitted source context. Select layer/time-supported offshore velocity geometry and justify interface gates; coastal currents, particle release boundaries and inherited seasonal atlas patterns do not supply an axis."
+    },
+    {
+      "current_id": "west-greenland",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "west-spitsbergen",
+      "strategy_id": "resolve_naming_scope"
+    },
+    {
+      "current_id": "western-adriatic",
+      "strategy_id": "source_gated_regional_route"
+    },
+    {
+      "current_id": "zeehan",
+      "strategy_id": "seasonal_routes"
+    }
+  ],
+  "current_ledger_file": "research/ocean-current-almanac.json",
+  "current_ledger_sha256": "6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e"
+}

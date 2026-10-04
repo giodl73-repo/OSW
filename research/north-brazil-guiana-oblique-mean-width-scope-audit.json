@@ -1,0 +1,75 @@
+{
+  "schema": "osw.current-oblique-mean-section-scope-audit.v1",
+  "as_of": "2026-10-04",
+  "status": "editorial_source_extraction_scientific_review_pending",
+  "source_url": "https://os.copernicus.org/articles/19/251/2023/os-19-251-2023.html",
+  "source_pdf_url": "https://os.copernicus.org/articles/19/251/2023/os-19-251-2023.pdf",
+  "source_access": "Publisher HTML introduction, sections 2.1, 3, 4.1 and summary inspected; publisher-indexed PDF table text corroborates three widths. No raw velocity fields or figure digitization acquired.",
+  "source_locator": "Section 3 mean-width/zero-contour paragraphs and published width table (HTML caption Table 1, prose Table 2); section 2.1 rotation; section 4.1 NBC3 width.",
+  "averaging_period_months": {
+    "start": "1993-01",
+    "end": "2017-12"
+  },
+  "rotation_angle_degrees": 45,
+  "velocity_boundary_m_s": 0,
+  "averaging_before_boundary_detection": true,
+  "is_mean_of_instantaneous_widths": false,
+  "section_longitude_degrees_east": null,
+  "section_endpoints_lon_lat": null,
+  "section_geometry": null,
+  "fixed_layer_bounds_m": null,
+  "observation_period_for_individual_section": null,
+  "widths": [
+    {
+      "section_id": "HS1",
+      "source_flow_label": "NBC1",
+      "current_id": "north-brazil",
+      "approximate_width_km": 520,
+      "source_latitude_limits_degrees_north": [
+        -4.6,
+        -1.3
+      ],
+      "identity_mapping": "source_NBC_component"
+    },
+    {
+      "section_id": "HS2",
+      "source_flow_label": "NBC2",
+      "current_id": "north-brazil",
+      "approximate_width_km": 220,
+      "source_latitude_limits_degrees_north": [
+        3.6,
+        5.0
+      ],
+      "identity_mapping": "source_NBC_component"
+    },
+    {
+      "section_id": "HS3",
+      "source_flow_label": "NBC3",
+      "current_id": "guiana",
+      "approximate_width_km": 440,
+      "source_latitude_limits_degrees_north": [
+        9.1,
+        11.9
+      ],
+      "identity_mapping": "source_Guyana_continuation_convention_not_alias_merge"
+    }
+  ],
+  "naming_scope": "Source introduction names the non-retroflected NBC continuation north of 10 N Guyana Current; sections label it NBC3 and describe flow along Guyana coast. HS3 band straddles 10 N: retain source-specific continuation convention, not a hard physical boundary or universal Guiana/NBC synonym.",
+  "source_conflicts": [
+    {
+      "section_id": "HS2",
+      "table_width_km_approx": 220,
+      "prose_width_km": 20,
+      "locator": "Section 4.1 rNBC2 comparison says 350 km against 20 km, whereas mean table NBC2 is approximately 220 km.",
+      "resolution": "Retain table mean-section value and unresolved prose discrepancy; no correction or 20-220 km uncertainty/seasonal interval inferred."
+    }
+  ],
+  "whole_current_length_km": null,
+  "whole_current_width_km": null,
+  "annual_width_range_km": null,
+  "remaining_gates": [
+    "Recover source section endpoints and paired mean velocity edges.",
+    "Resolve table/prose numerical discrepancy with original authors or compatible data.",
+    "Review source-specific Guiana/NBC continuity and independent scientific admission."
+  ]
+}

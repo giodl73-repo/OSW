@@ -1,0 +1,887 @@
+{
+  "schema": "osw.almanac.motion-state-join.v1",
+  "state_count": 56,
+  "state_geometry": "figures/osw-province-atlas-interactive.svg",
+  "schematic_flow_geometry": "figures/osw-atlas-feature-shapes.svg",
+  "current_index": "research/ocean-current-atlas-index.json",
+  "nasa_objects": "research/nasa-perpetual-ocean-objects.json",
+  "editorial_paths": "research/nasa-motion-editorial-paths.json",
+  "named_editorial_paths": "research/ocean-current-editorial-paths.json",
+  "rules": {
+    "schematic_current_centerline_crossings": "OSW drawn line intersects the coast-masked approximate state polygon. This is an atlas shape relation, not a measured current core or observed passage.",
+    "editorial_nasa_current_line_crossings": "A coarse OSW editorial path for a NASA-named current intersects the approximate state. The path is a visual index, not a digitized NASA model streamline.",
+    "editorial_named_current_line_crossings": "A coarse OSW editorial route for an independently named downstream current intersects the approximate state. The line is neither an observed core nor a NASA-identified path, and cannot establish a physical crossing or length.",
+    "current_locator_candidates": "An editorial point for a named current falls in the approximate state and has no explicit semantic state exclusion. A point alone does not establish that the current passes through the state.",
+    "schematic_nasa_object_crossings": "OSW's Indonesian Throughflow gate line intersects the approximate state polygon.",
+    "nasa_object_locator_candidates": "A regional point for an NASA-identified motion object falls in the state; no footprint or containment claim.",
+    "individual_named_eddy_containment": "Requires dated closed footprint entirely within a state polygon; unavailable for the named Loop Current register.",
+    "individual_named_eddy_intersection": "Requires dated track or footprint intersecting a state polygon; unavailable for the named Loop Current register."
+  },
+  "states": {
+    "BERS": {
+      "name": "North Pacific epicontinental sea",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "alaska-coastal-gulf"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "PSAW": {
+      "name": "Western Pacific subarctic gyres",
+      "schematic_current_centerline_crossings": [
+        "kuroshio"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "NPPF": {
+      "name": "North Pacific polar front",
+      "schematic_current_centerline_crossings": [
+        "kuroshio"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "north-pacific"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "PSAE": {
+      "name": "Eastern Pacific subarctic gyres",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "aleutian"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "ALSK": {
+      "name": "Alaska coastal downwelling",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "alaska",
+        "alaska-coastal-gulf"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "KURO": {
+      "name": "Kuroshio Current",
+      "schematic_current_centerline_crossings": [
+        "kuroshio"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [
+        "kuroshio-extension"
+      ],
+      "current_locator_candidates": [
+        "kuroshio",
+        "kuroshio-extension",
+        "oyashio"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [
+        "kuroshio",
+        "kuroshio-eastward-turn",
+        "kuroshio-eddies",
+        "kuroshio-meanders"
+      ],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "NPSW": {
+      "name": "Northwest Pacific subtropical",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "NPSE": {
+      "name": "Northeast Pacific subtropical",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "CCAL": {
+      "name": "Coastal California Current",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "california",
+        "davidson"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "CHIN": {
+      "name": "China Sea",
+      "schematic_current_centerline_crossings": [
+        "kuroshio"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "north-equatorial-undercurrent",
+        "pacific-north-equatorial-undercurrent",
+        "tsushima"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "NPTG": {
+      "name": "North Pacific tropical gyre",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "PNEC": {
+      "name": "North Pacific equatorial countercurrent",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "equatorial-countercurrent",
+        "equatorial-undercurrent",
+        "north-equatorial",
+        "north-equatorial-countercurrent",
+        "pacific-equatorial-undercurrent",
+        "pacific-north-equatorial-countercurrent",
+        "pacific-north-subsurface-countercurrent",
+        "pacific-south-subsurface-countercurrent",
+        "south-equatorial"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "CAMR": {
+      "name": "Central American coast",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "loop"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [
+        "gulf-of-mexico-loop-eddies"
+      ],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "SUND": {
+      "name": "Sunda–Arafura shelves",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "indonesian-throughflow",
+        "mindanao-current"
+      ],
+      "schematic_nasa_object_crossings": [
+        "indonesian-throughflow"
+      ],
+      "nasa_object_locator_candidates": [
+        "indonesian-throughflow"
+      ],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "WARM": {
+      "name": "Western Pacific warm pool",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "new-ireland-coastal-undercurrent"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "PEQD": {
+      "name": "Pacific equatorial divergence",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "HUMB": {
+      "name": "Humboldt Current coast",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "peru-humboldt"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "AUSE": {
+      "name": "East Australian coast",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [
+        "east-australian"
+      ],
+      "editorial_named_current_line_crossings": [
+        "tasman-front"
+      ],
+      "current_locator_candidates": [
+        "east-australian",
+        "pacific-south-equatorial-countercurrent",
+        "solomon-island-coastal-undercurrent",
+        "south-equatorial-countercurrent"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [
+        "east-australian"
+      ],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "ARCH": {
+      "name": "Archipelagic deep basins",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "australian-west-south-boundary-flow",
+        "hiri-current",
+        "new-guinea-coastal-current",
+        "new-guinea-coastal-undercurrent",
+        "south-australian"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "SPSG": {
+      "name": "South Pacific gyre",
+      "schematic_current_centerline_crossings": [
+        "acc"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "south-pacific"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "NEWZ": {
+      "name": "New Zealand coast",
+      "schematic_current_centerline_crossings": [
+        "acc"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "antarctic-coastal"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "TASM": {
+      "name": "Tasman Sea",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [
+        "east-australian"
+      ],
+      "editorial_named_current_line_crossings": [
+        "tasman-front"
+      ],
+      "current_locator_candidates": [
+        "australian-west-south-boundary-flow",
+        "tasman-front",
+        "zeehan"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "OCAL": {
+      "name": "Oceanic California Current",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "REDS": {
+      "name": "Red Sea and Persian Gulf",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "red-sea-saline-overflow"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [
+        "red-sea-saline-overflow"
+      ],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "IND W": {
+      "name": "Western India coast",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "north-equatorial"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "ARAB": {
+      "name": "Northwest Arabian Sea upwelling",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "persian-gulf-saline-overflow",
+        "somali"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [
+        "persian-gulf-saline-overflow"
+      ],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "MONS": {
+      "name": "Indian monsoon gyre",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "equatorial-countercurrent",
+        "equatorial-undercurrent",
+        "indian-equatorial-undercurrent",
+        "indian-south-equatorial-undercurrent",
+        "monsoon",
+        "south-equatorial",
+        "south-equatorial-undercurrent"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "IND E": {
+      "name": "Eastern India coast",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "ISSG": {
+      "name": "Indian South subtropical gyre",
+      "schematic_current_centerline_crossings": [
+        "acc"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [
+        "agulhas-return"
+      ],
+      "current_locator_candidates": [
+        "agulhas-return",
+        "south-indian"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "EAFR": {
+      "name": "East African coast",
+      "schematic_current_centerline_crossings": [
+        "agulhas"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [
+        "agulhas-return"
+      ],
+      "current_locator_candidates": [
+        "indian-south-equatorial-countercurrent",
+        "south-equatorial-countercurrent"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "AUSW": {
+      "name": "Western Australian and Indonesian coast",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "australian-west-south-boundary-flow",
+        "leeuwin",
+        "west-australian"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "ARCT": {
+      "name": "Atlantic Arctic",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "SARC": {
+      "name": "Atlantic sub-Arctic",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "east-greenland-coastal",
+        "irminger"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [
+        "north-atlantic-sinking"
+      ],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "NECS": {
+      "name": "Northeast Atlantic shelves",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "jutland",
+        "norwegian",
+        "norwegian-coastal"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "NWCS": {
+      "name": "Northwest Atlantic shelves",
+      "schematic_current_centerline_crossings": [
+        "gulf-stream"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "baffin",
+        "gaspe",
+        "greenland-middle-atlantic-shelf-hypothesis",
+        "labrador"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "NADR": {
+      "name": "North Atlantic Drift",
+      "schematic_current_centerline_crossings": [
+        "gulf-stream"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "gulf-stream-system",
+        "north-atlantic"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "GFST": {
+      "name": "Gulf Stream",
+      "schematic_current_centerline_crossings": [
+        "gulf-stream"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "greenland-middle-atlantic-shelf-hypothesis",
+        "gulf-stream",
+        "gulf-stream-system"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [
+        "gulf-stream",
+        "gulf-stream-cold-cores",
+        "gulf-stream-deep-return"
+      ],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "NAST E": {
+      "name": "Northeast Atlantic subtropical gyre",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "azores",
+        "azores-countercurrent",
+        "canary",
+        "portugal"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "NAST W": {
+      "name": "Northwest Atlantic subtropical gyre",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "MEDI": {
+      "name": "Mediterranean Sea",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "algerian",
+        "balearic",
+        "east-adriatic",
+        "ligurian",
+        "northern-mediterranean",
+        "western-adriatic"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "CNRY": {
+      "name": "Canary Current coast",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "mauritanian",
+        "mediterranean-undercurrent"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "NATR": {
+      "name": "North Atlantic tropical gyre",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "north-equatorial"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "CARB": {
+      "name": "Caribbean",
+      "schematic_current_centerline_crossings": [
+        "gulf-stream"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "antilles",
+        "caribbean",
+        "deep-western-boundary",
+        "florida",
+        "gulf-stream-system"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "GUIA": {
+      "name": "Guianas coast",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "guiana",
+        "north-brazil"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "WTRA": {
+      "name": "Western tropical Atlantic",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "atlantic-equatorial-undercurrent",
+        "atlantic-north-equatorial-countercurrent",
+        "atlantic-north-equatorial-undercurrent",
+        "atlantic-south-equatorial-countercurrent",
+        "atlantic-south-equatorial-undercurrent",
+        "equatorial-countercurrent",
+        "equatorial-undercurrent",
+        "north-equatorial-countercurrent",
+        "north-equatorial-undercurrent",
+        "south-equatorial-countercurrent",
+        "south-equatorial-undercurrent"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "ETRA": {
+      "name": "Eastern tropical Atlantic",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "GUIN": {
+      "name": "Guinea Current coast",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "guinea"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "SATL": {
+      "name": "South Atlantic gyre",
+      "schematic_current_centerline_crossings": [
+        "acc"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "south-atlantic",
+        "south-equatorial"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "BRAZ": {
+      "name": "Brazil Current coast",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "brazil"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "BENG": {
+      "name": "Benguela Current coast",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "benguela"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "FKLD": {
+      "name": "Southwest Atlantic shelves",
+      "schematic_current_centerline_crossings": [
+        "acc"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "antarctic-coastal",
+        "falkland"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "SSTC": {
+      "name": "South subtropical convergence",
+      "schematic_current_centerline_crossings": [
+        "acc",
+        "agulhas"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [
+        "agulhas-return"
+      ],
+      "current_locator_candidates": [
+        "acc",
+        "agulhas",
+        "agulhas-return",
+        "antarctic-coastal",
+        "antarctic-slope"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [
+        "agulhas",
+        "agulhas-retroflection",
+        "agulhas-rings"
+      ],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "SANT": {
+      "name": "Subantarctic water ring",
+      "schematic_current_centerline_crossings": [
+        "acc"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "acc",
+        "antarctic-slope"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "ANTA": {
+      "name": "Antarctic",
+      "schematic_current_centerline_crossings": [
+        "acc"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "acc"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "APLR": {
+      "name": "Austral polar",
+      "schematic_current_centerline_crossings": [
+        "acc"
+      ],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "antarctic-coastal"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    },
+    "BPLR": {
+      "name": "Boreal polar",
+      "schematic_current_centerline_crossings": [],
+      "editorial_nasa_current_line_crossings": [],
+      "editorial_named_current_line_crossings": [],
+      "current_locator_candidates": [
+        "north-cape",
+        "spitsbergen-atlantic",
+        "west-spitsbergen"
+      ],
+      "schematic_nasa_object_crossings": [],
+      "nasa_object_locator_candidates": [],
+      "individual_named_eddy_containment": "unknown_no_dated_footprints",
+      "individual_named_eddy_intersection": "unknown_no_dated_tracks_or_footprints"
+    }
+  }
+}

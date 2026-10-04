@@ -22,6 +22,10 @@ backward compatibility.
 | **[Open the interactive atlas →](atlas/)**<br>Explore 56 ocean states, 36 shaped features, and the Atlas 10 depth ladder. | **[Follow one warm event →](event/)**<br>Move through five evidence screens without mistaking them for causation or budget closure. | **[Open the Exchange Observatory →](exchange/)**<br>Inspect state contents, exchange, stability, event routes, and the complete 128-border evidence matrix. |
 
 [Open the full annotated map](figures/osw-fluid-geography.svg) ·
+[Browse the ocean motion almanac](almanac/) ·
+[Open the global current and eddy atlas](almanac/reference-routes.html#route-atlas) ·
+[Explore current seasons](almanac/seasons.html) ·
+[Play dated Gulf Stream maps](almanac/dated-current.html) ·
 [Compare ocean-first projections](projections/) ·
 [Run seven observational fields through Oceanic Mollweide](projections/#state-data-title) ·
 [See the coast-owned 56-province state map](figures/osw-province-atlas-coastal-states.svg) ·
@@ -893,3 +897,1480 @@ fixture job on the approved Atlas 03 history.
 MIT License. Copyright (c) Gio Della-Libera. Third-party scientific data and
 derived data layers retain their own terms; see
 [third-party data notices](THIRD-PARTY-NOTICES.md).
+
+
+The global explorer at `/almanac/reference-routes.html#route-atlas` also includes
+all 136 named eddies and four dated operational detections from the local
+dashboard snapshot. Purple name locators remain separate from five stored
+polygons (four operational snapshots and one figure-derived SSH contour proxy).
+The 100 eddy names with a shared regional gateway are drawn as one selectable
+gateway, with each individual record available through the Eddy selector.
+These markers do not establish simultaneous centers or live footprints. The
+Show eddies control supports inspecting the current routes alone. The browser
+check selects every eddy ID and verifies dates, scope labels, record links,
+gateway grouping, layer visibility, current navigation and mobile reflow.
+
+
+North Cape Northern-branch width evidence now retains an approximately 8 km
+Gaussian profile scale from Morozov et al. (2017). The source calls it effective
+width; protocol v1.3 distinguishes it from paired-edge full width. Exact
+composite depth and sampling dates remain unresolved. Nine scoped width records
+now cover seven current names; 90 names remain unassessed. The seasonal inspector
+labels this fitted scale, omits a full-width bar and disables annual playback.
+Verify with `python analysis/check_current_width_inventory.py` and
+`python analysis/test_north_cape_profile_browser.py` (local server on port 8788).
+
+
+The North Cape Northern branch now has a Western Hopen study-area route card:
+approximately 200 km with a 200–300 km envelope across 81 editorial cases.
+The global atlas opens this card from North Cape selection. It is a partial
+reach excluded from length ordering; the full current system remains unresolved.
+Route coverage is 42 candidates across 40 of the remaining 89 names, with 49
+awaiting routes. Diagram-state inventory includes this reach in BPLR, alongside
+NASA crop links that provide geographic context only.
+
+
+Atlantic Equatorial Undercurrent now has a 35 W–5 E subsurface reach card,
+approximately 4,500 km with a 4,300–4,600 km editorial envelope. Its upstream
+source paths and eastern island branches remain outside this reach. It is
+excluded from whole-current length comparison. Coverage now includes 43 route
+candidates for 41 of the remaining 89 names, with 48 awaiting routes. The state
+inventory has 94 candidate/state pairs. Inspect the new card from the global
+atlas or `/almanac/reference-routes.html#atlantic-euc-reach-reference-path-candidate`.
+
+
+The custom global atlas now shares the dashboard's local seen-baseline. Amber
+outlines indicate changed inventory records, and updated current cards list the
+changed evidence groups. Shared eddy gateways indicate how many underlying names
+changed. Refresh atlas reloads route cards and snapshot together; Mark updates
+seen acknowledges the current snapshot across dashboard/atlas tabs. A first visit
+establishes a baseline, and rebuild timestamps alone do not trigger highlights.
+These lights represent inventory edits, not live currents or eddies. Browser
+verification: `python analysis/test_reference_route_updates_browser.py`.
+Global return links now explicitly scroll and focus the atlas rather than relying
+on native fragment navigation after asynchronous card rendering.
+
+
+Current browser integration checks pass after the route/state and measurement
+updates: `test_motion_almanac_browser.py`, `test_motion_dashboard_browser.py`,
+and `test_reference_route_states_browser.py` under `analysis/`. The state check
+covers all 56 states and 94 candidate/state pairs, direct current map-card links,
+optional-data failure retention and mobile layout. The combined verification
+receipt pins input hashes in `research/ocean-motion-browser-verification-2026-10-03.json`.
+Queue tests now derive expected candidate/unbuilt counts from the catalog;
+original state disclosures and added route disclosures are validated separately.
+This is browser integration verification, not scientific claim approval or a
+full repository default-suite result.
+
+
+Mediterranean Undercurrent now has a lower-core SW Iberian study-reach card:
+approximately 300 km, with a 200–300 km editorial envelope. It runs from AMUSE
+launch context around Cape St. Vincent to a western-slope study gate, excluding
+Gibraltar descent, meddy loops and uncertain farther-north continuity. Existing
+30 km and 10 km scoped widths remain incompatible for seasonal playback.
+Route coverage is now 44 candidates across 42 of the remaining 89 names, with
+47 awaiting routes. The all-state browser test validates 95 candidate/state pairs.
+Earlier verification receipts retain their pinned historical input versions.
+
+
+### Atlantic South Equatorial Undercurrent reach — 2026-10-03
+
+The custom atlas now opens visual current cards beside the map, with selectors
+for separate components and links to full route evidence. The Atlantic South
+Equatorial Undercurrent has a 35 W–10 W editorial studied reach, approximately
+2,800 km (2,700–2,900 km scenario envelope), informed by Fischer et al. (2008).
+The 200 m float context, western meander smoothing and unresolved eastern fate
+are explicit. Its 3–6 S sampling band is not a current width.
+
+Current route coverage: 45 candidates for 43 of the remaining 89 names, 46
+awaiting routes; 37 provisional comparison rows and eight separate studied
+reaches. All 56 states and 97 candidate/state pairs pass navigation/scope checks.
+Width coverage remains nine numeric scoped records across seven names, with
+three reviewed nonnumeric decisions, one derived candidate and 89 unassessed.
+The canonical ledger is unchanged. The focused 28 unit checks and new SEUC
+browser check pass; historical verification receipts retain their pinned scope.
+
+Reproduce the focused checks with:
+
+```powershell
+python -m unittest discover -s analysis -p "test_current_width_inventory.py"
+python -m unittest discover -s analysis -p "test_current_reference_path_catalog.py"
+python -m unittest discover -s analysis -p "test_current_measurement_protocol.py"
+python -m unittest discover -s analysis -p "test_reference_route_state_join.py"
+python -m unittest discover -s analysis -p "test_motion_dashboard.py"
+```
+
+Then run `python analysis/test_atlantic_seuc_reach_browser.py` and
+`python analysis/test_reference_route_states_browser.py` against the local
+preview. Browser checks require the existing Playwright/Chrome setup.
+
+
+### Atlantic North Equatorial Undercurrent reach — 2026-10-03
+
+The atlas now includes an editorial 35 W–23 W section-context reach for the
+Atlantic North Equatorial Undercurrent: approximately 1,300 km with a
+1,200–1,400 km scenario envelope. Separate historical western sections and
+central mooring/ship observations support the neighborhoods, not an observed
+continuous axis. Density-core and 65–270 m definitions remain separate.
+Historical two-degree latitude width at 35 W in February 1993 and April 1996
+is retained for boundary and month-precision extraction review; it is not yet
+a numeric km width record or a seasonal range.
+
+Current coverage: 46 route candidates / 44 of 89 names / 45 awaiting routes;
+37 provisional comparison rows plus nine studied reaches; 56 states and 98
+candidate/state pairs. Width coverage: nine numeric scoped records / seven
+names, one derived candidate, three nonnumeric reviews, one historical mention
+pending definition review and 88 unassessed. The 28 focused unit checks,
+`python analysis/test_atlantic_neuc_reach_browser.py`, and all-state browser
+checks pass. No canonical measurement or seasonal geometry admission.
+
+
+### 2026-10-03: Month-dated historical angular section widths
+
+Width protocol v1.4 adds source-reported angular section spans with month
+precision. Bourles et al. (1999), section 4.8, reports two-degree latitude width
+at 35 W centered at 5 N in February 1993 and April 1996. Both convert to about
+221.1656 km using WGS84, rounded to approximately 220 km. Computational
+normalization around the center does not establish observed edge coordinates.
+Exact days, lateral threshold and uniform depth bounds remain unknown.
+
+Two separate historical records replace the pending width mention. They are
+not seasonal states, annual extrema or whole-current widths. The explorer
+labels them Historical section observation, retains their months, disables
+seasonal playback and displays static route context. General protocol hashes
+and the Gulf Stream derived-series metadata are refreshed; its 17 numeric
+frames are unchanged by this metadata update.
+
+Current width coverage: 11 scoped numeric records / eight current names,
+one derived series candidate, three reviewed nonnumeric decisions, zero
+pending historical mentions and 88 unassessed. Route coverage remains
+46 candidates / 44 of 89 names / 45 pending routes. Canonical ledger unchanged.
+Focused verification: 29 unit checks; historical width/route browser check;
+17-frame section-width provenance checker. Browser integration results and
+role review are recorded in the corresponding verification notes.
+
+
+### 2026-10-03: Ligurian coastal studied segment and parent navigation
+
+Poulain et al. (2012), doi:10.4430/bgta0052, supports surface-flow context from
+Genoa through Imperia to Menton–Nice. The Ligurian name remains the ledger's
+editorial Northern Current segment convention; Marine Regions MRGID 3357 is a
+Proposed standard naming entry and does not define endpoints. Declared offshore
+Genoa–Menton/Nice truncations yield approximately 100 km with 100–200 km
+scenario envelope across 81 cases. This is a studied segment, not complete
+named-current length, a drifter track or shelf-break axis. Source data combine
+first-metre CODE and wind-sensitive first-10–20-cm ARGOSPHERE sampling with
+intermittent summer/fall observations. No continuous annual coverage inferred.
+
+Both the inline atlas preview and full visual card link to the broader Northern
+Current card. Parent metadata is checked against the unchanged canonical ledger;
+overlapping parent/segment lengths must not be summed. Whole-parent seasonal
+widths are not copied. Imperia 20–30 km coast-distance limits and Menton–Nice
+15–35 km profile-band distances remain pending boundary-definition review.
+
+Coverage: 47 route candidates / 45 of 89 names / 44 awaiting routes /
+3,294 scenarios; 37 comparison rows plus ten studied reaches. All 56 states and
+99 route-state pairs validated, including optional-data 503 fallback and mobile
+navigation. Width inventory: 11 scoped numeric records / eight names, one derived
+candidate, three nonnumeric reviews, one profile mention pending review and
+87 unassessed. Thirty focused unit checks and Ligurian browser checks pass.
+The generated figure was inspected and label size adjusted for readability.
+
+
+### 2026-10-03: Custom global atlas navigation and state evidence
+
+The global OSW current atlas supports zoom/pan, an inline visual route card,
+shareable current and route-component selection, and direct dashboard/record
+links. Coastal route fitting now reaches a local view; projection and coarse
+coastline fidelity are stated beside the map. All 100 current identities are
+selectable; 47 candidates cover 45 of the remaining 89 names.
+
+Current cards expose all 99 editorial route/state pairs, with nominal crossings
+and declared scenario counts. Eddy cards expose 131 typed state-evidence links
+across 136 named eddies and four dated detections: gateways, geography locators,
+reported/observed points, dated SSH proxies and provider polygons remain distinct.
+Unknown named-eddy footprint assessments do not become intersection claims.
+These additions support navigation; they do not admit whole-current lengths,
+annual extrema or new physical containment claims.
+
+Focused validation scripts: `analysis/test_reference_route_atlas_browser.py`,
+`analysis/test_atlas_record_links_browser.py`,
+`analysis/test_atlas_route_state_links_browser.py`, and
+`analysis/test_atlas_eddy_state_links_browser.py`, using the local 8788 preview
+and installed Playwright/Chrome. Seven dashboard unit checks also pass.
+Internal review: `signals/roles/check/custom-current-atlas-roles-check-2026-10-03.md`;
+three P2 findings resolved, local review approved with conditions. Full release
+validation, scientific review and publication remain open.
+
+
+### 2026-10-03: East Adriatic reference corridor
+
+Added an attributed Otranto-to-Istria eastern-coast surface-circulation
+convention route: approximately 800 km, 700–800 km across 81 editorial
+scenarios. The WGS84 vertex sum is 755.894 km; the coincident rounded result
+is not copied from the published basin dimension. Dalmatian-name overlap,
+fine island/channel placement and physical axis remain unresolved. No new
+canonical length, width or seasonal geometry is admitted.
+
+Coverage: 48 route candidates / 46 of 89 names / 43 awaiting routes /
+3375 scenarios; 100 route/state pairs. The new visual card and local atlas
+view link to MEDI and retain scope, source and uncertainty.
+Focused verification: 31 unit checks plus East Adriatic visual navigation
+and all route/state link browser checks.
+
+
+### 2026-10-03: Closed current-circuit measurement rule
+
+Reference measurement protocol v1.1 adds explicit closed-circuit topology,
+direction, simple-ring validation and an arbitrary repeated anchor. Every
+alternative and scenario must preserve closure and orientation; independent
+endpoint offsets cannot open a declared circuit. A closed editorial line
+does not establish year-round continuous flow or parcel travel time.
+
+The Black Sea Rim source audit separates surface geostrophic circuit context
+from interior gyres, coastal eddies and intensity-monitoring windows.
+Seasonal weakening/fragmentation and historical naming overlaps remain explicit.
+No circuit length or seasonal footprint has yet been admitted. Six protocol
+unit checks pass, including open/reversed/self-crossing path rejection; the
+existing 48-route catalog rebuild passes under the new protocol.
+
+
+### 2026-10-03: Black Sea Rim closed reference circuit
+
+Added a 2100 km editorial counterclockwise circuit, with 1900–2200 km across
+nine alternatives that preserve closure. Surface geostrophic study context
+is 1999–2009; no observed axis, parcel period or annual continuous footprint
+is claimed. Interior and coastal eddy loops remain excluded.
+
+Two raw display contacts (MEDI/REDS) are preserved with geographic reasons
+in the state join's excluded-contact audit and omitted from navigation.
+They do not classify the Black Sea as Mediterranean or Red Sea.
+Coverage: 49 candidates / 47 of 89 names / 42 awaiting routes / 3384 cases;
+100 route/state navigation pairs. Focused checks: 33 units, closed-circuit
+visual navigation/mobile test and all route/state-link browser checks.
+
+
+## 2026-10-03 · East Greenland coastal studied reach
+
+Added an editorial 66 N–Cape Farewell route: approximately 800 km,
+800–900 km over 81 declared scenarios (raw nominal 838.753 km). This reach
+is separate from the source approximately 1000 km shelf survey description
+and is excluded from the main reference-route comparison ranking. The weak
+68 N identification, 63 N merger, offshore diversions and West Greenland
+continuation remain explicit scope limits. Canonical ledger unchanged.
+
+The local Cape Farewell 30 km width at 15% maximum inner-jet velocity remains
+a single campaign section, without route buffering, annual extrema, exact
+section dates or fixed depth bounds. Atlas selection opens its route image;
+the seasonal explorer shows static route context and disables playback.
+
+Coverage: 50 candidates / 48 of 89 names / 41 pending / 3465 scenarios;
+39 comparison routes and 11 studied reaches. State join: 101 candidate-state
+pairs across 40 states. Width inventory: 13 scoped numeric records / 10 names.
+
+Verification: protocol conformance, 34 focused unit tests, EGCC desktop/mobile
+width and route browser checks; visual crop inspected. Seven-role review has
+21 findings, 0 P1, 3 addressed P2 and 18 P3; independent scientific admission,
+finer bathymetry and continuity review remain pending. See
+`signals/roles/check/egcc-reach-width-roles-check-2026-10-03.md`.
+
+
+## 2026-10-03 · Atlas family and system navigation
+
+The custom atlas now exposes seven catalog family/system records with 17
+immediate component links, including nested equatorial families and the Gulf
+Stream System. Selection fits and highlights component routes or name
+locators, with no connecting line, aggregate length or family footprint.
+Each component returns to its family/system record through explicit links.
+Incomplete coverage and nonadditive scopes are stated in the preview.
+
+Source-reported lengths remain available even when an editorial route card
+is pending; these cases are no longer labelled unknown length. Route coverage
+remains 50 candidates for 48 of 89 names, 41 pending. Browser verification
+covers all seven records and 17 links, keyboard descent, return, 320 px
+reflow and existing 100-current/140-eddy atlas behavior. Roles review:
+`signals/roles/check/atlas-component-navigation-roles-check-2026-10-03.md`.
+
+
+## 2026-10-03 · Norwegian naming and branch inventory
+
+Reviewed NOAA Norwegian Current / Spitsbergen Atlantic Current definitions
+against Baumann et al. (2026), Ocean Science 22, 17–29, introduction and methods.
+The ambiguous Norwegian name is not automatically Norwegian Coastal Current
+or Norwegian Atlantic Current. Spitsbergen Atlantic Current is not declared
+an alias of West Spitsbergen Current. Two source-scope audits retain these
+uncertainties and no neighboring length, width or route is transferred.
+
+Proposed Norwegian Atlantic Current and its Slope and Front branches as three
+separate identities beyond the canonical 100 names. Proposal inventory now
+contains 21 additions. The source's heat-budget box and static mean core are
+not annual or whole-current dimensions for the unresolved Norwegian name.
+No new canonical measurement or current identity admitted.
+
+All 14 current source-scope summaries now appear in the selected atlas preview,
+with audit receipts, source links and related-record links where declared.
+Related IDs are validated against released identities. Verification: 20 focused
+unit checks, all 14 scope previews at 320 px, both Norwegian/Spitsbergen
+navigation cases, three proposed cards, and family navigation regression.
+Route coverage remains 50 candidates / 48 of 89 names / 41 pending.
+Role receipt: signals/roles/check/norwegian-naming-scope-roles-check-2026-10-03.md.
+
+
+## 2026-10-03 · New Ireland subsurface regional reach
+
+Added New Ireland Coastal Undercurrent east-coast editorial reach:
+approximately 400 km, 300–500 km across 81 scenarios, raw nominal 401.074 km.
+The route excludes Solomon Strait inflow across the basin, New Britain/St
+Georges branches, Bismarck continuation, retroflection and downstream EUC
+length. It is a studied reach, excluded from the main comparison ordering.
+
+Grenier et al. (2011), doi:10.1029/2011JC007477, relevant introduction,
+ORCA025-G70 description/validation and pathway text read. The source model
+closes St Georges Channel at its resolution; this is not a physical channel
+absence. Model fields and trajectories not digitized. NASA links provide
+geographic surface context, not undercurrent identification. An initial
+closer-island scenario contacted coarse land; central vertices were moved
+0.2 degree east, then all declared cases regenerated and checked.
+
+Coverage: 51 candidates / 49 of 89 names / 40 pending / 3546 scenarios;
+39 comparison routes, 12 studied reaches, 102 candidate-state pairs across
+41 states. Source scope notes now cover 15 names. Canonical ledger unchanged;
+width and annual margins remain unknown for this NICU reach.
+
+Verification: 15 focused unit checks, protocol audit, NICU visual/card/mobile
+and static-season check, all 102 route/state navigation pairs. Regional image
+inspected. Seven-role review: 21 findings, 0 P1, 2 addressed P2, 19 P3;
+independent scientific admission remains open. Receipt:
+`signals/roles/check/new-ireland-undercurrent-reach-roles-check-2026-10-03.md`.
+
+
+## 2026-10-03 · New Guinea undercurrent reach and source seasons
+
+Added a northern PNG subsurface regional reach from an offshore
+Vitiaz-downstream approach to the 142 E, 2.5 S mooring neighborhood:
+approximately 600 km, 500–700 km over 81 scenarios (raw nominal 600.298 km).
+Vitiaz passage itself, upstream Solomon Sea branches, New Britain/St Georges
+branches and downstream cross-equatorial EUC connection are excluded. This
+studied reach is not a whole-current length and remains outside the main
+comparison ordering. Local 150–250 m core support is not a fixed-depth axis
+along the entire route; surface monsoon reversal belongs to another current.
+
+Ueki et al. (2003), doi:10.1029/2002JC001611, relevant introduction, Data,
+Table 1 and Results inspected. Source seasons are explicitly boreal:
+winter January–March, summer July–September, fall October–December. Protocol
+v1.2 preserves these source month windows independently of latitude and rejects
+invalid month receipts or promotion to annual geometry. Static source seasons
+and local velocity changes cannot supply seasonal length/width maps.
+
+Impact: geodesic algorithm, rounding and comparison groups unchanged; all 52
+candidates re-audited. Existing numeric candidate files and seasonal frames
+not revised. Canonical ledger SHA unchanged. Coverage: 52 candidates / 50 of
+89 names / 39 pending / 3627 scenarios, with 39 comparison routes and 13 studied
+reaches. State join: 103 candidate-state pairs across 41 states; 16 scoped
+current source reviews. Width coverage and proposal counts unchanged.
+
+Verification: 36 focused tests; NGCU direct visual-card/season-label/mobile
+browser checks; all 103 route/state navigation pairs. Regional crop inspected.
+Seven-role review: 21 findings, 0 P1, 2 addressed P2, 19 P3, independent science
+gates open. Receipt: signals/roles/check/new-guinea-undercurrent-seasons-roles-check-2026-10-03.md.
+
+
+## 2026-10-03 · Atlas classifications and proposal scope
+
+The global current atlas opens a selected route beside its visual map card.
+All 100 current names and 140 eddy records remain selectable. Classification
+is a compact keyboard-accessible disclosure using exact released inventory
+level, description, setting and time behavior, including unresolved values.
+These are editorial classifications, not scientific admission or evidence of
+whole-current continuity.
+
+The Solomon Island Coastal Undercurrent card now links a source-scope receipt:
+the author-hosted abstract proposes Solomon Islands Coastal Undercurrent from
+a 1/12-degree model; publisher full text was blocked. No axis, width, annual
+range or observed continuity is inferred. Route coverage remains 52 candidates
+for 50 of the remaining 89 names, with 39 pending; scope reviews now cover 17
+currents. Canonical ledger and released facets are unchanged.
+
+Verification: eight dashboard unit tests; global atlas navigation and all 140
+eddy selections; all 17 source-scope previews; all 100 current classification
+disclosures at 320 px and all 240 records against the released facets. System
+Chrome automation stalled and was stopped; successful browser checks used the
+already installed Chromium headless shell 1223. The focused test accepts an
+absolute browser executable via OSW_TEST_BROWSER:
+`python analysis/test_atlas_classification_browser.py` (local preview on 8788).
+Screenshot inspected: figures/custom-current-atlas-navigation-review.png.
+Review: signals/roles/check/atlas-classification-proposal-scope-roles-check-2026-10-03.md,
+21 findings, 0 P1, 2 addressed P2, 19 P3 conditions. Full scientific source and
+extent review, missing routes and annual geometry remain open.
+
+
+## 2026-10-03 · Pacific NECC east-central studied reach
+
+Added a 140 W to 95 W editorial studied reach: approximately 5000 km with a
+4900-5100 km scenario envelope (raw nominal 4994.045 km; 81 declared cases).
+Johnson et al. (2002) section descriptions inform 140 W/125 W core locations;
+110 W 6 N and 95 W 7 N are explicit editorial choices. The route excludes
+western inflow and coastal redistribution, is not a whole-current length,
+and stays outside comparable route and published-length rankings.
+
+The source fitted surface expression near 110 W is absent in December-February
+and peaks in August. This does not establish all-depth absence or a continuous
+year-round path. Source ensemble June 1985-December 2000 is context, not a route
+date. Source figures and CTD/ADCP arrays are not packaged; width and annual
+ranges remain unresolved. Scope receipt:
+research/pacific-necc-reach-seasonal-section-scope-audit.json.
+
+Current coverage: 53 candidates / 51 of the remaining 89 names / 38 pending /
+3708 scenarios, with 39 comparison routes and 14 studied reaches. State join:
+106 candidate-state pairs across 43 states; 18 current source-scope reviews.
+Canonical ledger, width records and 21 proposals unchanged.
+
+Verification: 21 focused unit tests, candidate protocol audit, direct visual
+card and three state links, 320 px reflow, no borrowed observation date/width
+or comparable rank, and all 106 route/state navigation pairs. Installed
+Chromium headless shell 1223 used. Screenshot inspected:
+figures/pacific-necc-reach-reference-path-review.png. Seven-role receipt:
+signals/roles/check/pacific-necc-studied-reach-roles-check-2026-10-03.md,
+21 findings, 0 P1, 2 addressed P2, 19 P3 conditions. Independent science and
+monthly/depth axis review remain open.
+
+
+## 2026-10-03 · Northern Tsuchiya reach and NEUC distinction
+
+Added a Pacific North Subsurface Countercurrent studied reach from 155 W to
+110 W: approximately 5000 km, scenario envelope 4900-5100 km, raw nominal
+4998.364 km, 81 declared cases. Johnson and Moore (1997) Table 1 supplies the
+mean core neighborhoods (3.5 N/220 m and 4.5 N/130 m); intermediate bends are
+editorial. Source compilation years 1967-1996 do not date the route. Formation
+and eastern continuation are excluded; estimate remains outside comparable
+route ordering and published-length rankings.
+
+The 130 E North Equatorial Undercurrent mooring identity remains separate and
+route-pending. No northern Tsuchiya length or local depth is transferred. Its
+transport integration band, and the Tsuchiya Table 1 integration bands, are
+not admitted as widths. No annual ranges or monthly axes are inferred.
+Receipts: research/pacific-nscc-reach-layer-section-scope-audit.json and
+research/pacific-neuc-nscc-distinction-scope-audit.json.
+
+Coverage now: 54 candidates / 52 of the remaining 89 names / 37 pending /
+3789 scenarios, 39 comparison routes and 15 studied reaches. State join:
+108 candidate-state pairs in 43 states. There are 20 current source-scope
+reviews. Canonical ledger, widths and 21 proposed identities are unchanged.
+
+Verification: 21 focused unit tests, v1.2 candidate audit, new northern
+Tsuchiya/NEUC browser check, mobile reflow, no borrowed length/width/date/rank,
+and all 108 route/state links. Screenshot inspected:
+figures/pacific-nscc-reach-reference-path-review.png. Seven-role review:
+signals/roles/check/pacific-nscc-neuc-scope-roles-check-2026-10-03.md,
+21 findings, 0 P1, 2 addressed P2, 19 P3 conditions. Axis, extent and independent
+science review remain open. The browser test accepts OSW_TEST_BROWSER pointing
+to an installed executable; successful checks used Chromium headless shell
+1223 against the local 8788 preview.
+
+
+## 2026-10-03 · Southern historical mean-core reach and branch scope
+
+Added a Pacific South Subsurface Countercurrent historical mean-core studied
+reach from 155 W 3.5 S to 110 W 5.5 S: approximately 5000 km, 4900-5100 km
+scenario envelope, raw nominal 4998.626 km, 81 cases. Johnson and Moore (1997)
+Table 1 supplies local 250 m/160 m peak depths. Intermediate bends are editorial;
+western formation, secondary-jet geometry and eastern continuation excluded.
+This is not a branch-averaged axis, combined length or whole-current estimate.
+
+Rowe et al. (2000) primary/main and secondary SSCC terminology is retained in
+a source receipt; correspondence to this historical route and independent
+origin versus splitting remain unresolved. Its roughly 40 km PV-front span,
+likely an upper bound affected by density resolution, is not current width.
+Integration latitude bands also remain separate. No monthly geometry, route
+date or annual dimension range is inferred. Receipt:
+research/pacific-sscc-mean-reach-branch-width-scope-audit.json.
+
+Coverage: 55 candidates / 53 of the remaining 89 names / 36 pending / 3870
+scenarios, 39 comparison routes and 16 studied reaches. State join: 110 pairs
+in 43 states. Current scope reviews: 21. Canonical ledger, widths and 21
+proposed identities unchanged. This route stays outside comparable route
+ordering and published-length ranking.
+
+Verification: 21 focused unit tests, v1.2 complete candidate audit, direct
+southern mean-core card/mobile/data checks, all 110 route/state links and all
+21 source-scope previews. Screenshot inspected:
+figures/pacific-sscc-mean-reach-reference-path-review.png. Seven-role review:
+signals/roles/check/pacific-sscc-mean-branch-scope-roles-check-2026-10-03.md,
+21 findings, 0 P1, 2 addressed P2, 19 P3 conditions. Branch/axis science review
+remains open. Browser checks used installed Chromium headless shell 1223;
+analysis/test_pacific_sscc_mean_reach_browser.py accepts OSW_TEST_BROWSER.
+
+
+## 2026-10-03 · Dated Gulf Stream System views in the custom atlas
+
+The global current atlas now draws three already released Gulf Stream System
+lines: September 25, 2026 partial geostrophic diagnostic and September 28,
+2026 analyzed north- and south-wall fronts. Hover/focus exposes names and
+dates; selecting a line opens its inline OSW map card and fits the view.
+Compact dated controls switch the saved geometry; share URLs preserve the
+exact geometry selection. Source links, snapshot receipts, method and scope
+notes remain visible. The Gulf Stream segment receives no system geometry.
+
+These saved lines are not a simultaneous width, whole-current centerline or
+annual evolution. Coverage remains 55 reference candidates / 53 of the
+remaining 89 names / 36 pending, with 100 current and 140 eddy records
+selectable. Frozen release and canonical scientific admission unchanged.
+
+Verification: nine dashboard unit tests; dated-view browser checks with
+fresh shared-view restoration and 320 px layout; family component navigation
+and global atlas regressions. Installed Chromium headless shell 1223 used.
+Screenshot inspected: figures/atlas-dated-surface-card-review.png. Review:
+signals/roles/check/atlas-dated-surface-navigation-roles-check-2026-10-03.md,
+21 findings, 0 P1, 2 addressed P2, 19 P3 conditions. No complete-suite claim.
+
+
+## 2026-10-03 - Saved sample playback inside the current atlas
+
+Gulf Stream System now has inline date controls and sample playback on the
+custom global atlas: twelve daily snapshots across 2025 or five selected
+September 2026 days. Exact pinned diagnostic coordinates are shown, with a
+fixed sample-set scale, source algorithm, date, stop reason and source links.
+Older analyzed fronts are hidden while diagnostics play. Share URLs preserve
+sample set/date; diagnostic detail links open the same date. Playback stops
+on card changes, reset, disclosure close or hidden document.
+
+Playback advances by sample, not elapsed time. Calendar gaps and processing
+changes are explicit. No interpolation, seasonal climatology, physical current
+endpoint or annual length/width extrema is inferred. These are existing
+samples, not new acquisitions; coverage and canonical release unchanged.
+
+Verification: all 17 exact geometries and sample metadata, shared-date
+restoration, playback lifecycle, stable scale, 320 px layout and identity
+boundary in analysis/test_atlas_timeline_browser.py; saved surface selection
+and global atlas regressions pass. Mobile screenshot inspected:
+figures/atlas-timeline-review.png. Seven-role review:
+signals/roles/check/atlas-saved-sample-playback-roles-check-2026-10-03.md,
+21 findings, 0 P1, 2 addressed P2, 19 P3 conditions. No full-suite claim.
+
+
+## 2026-10-03 - Dated diagnostic state-to-atlas navigation
+
+Each saved Gulf Stream System diagnostic card now lists its dated OSW
+line intersections, with approximate clipped segment lengths and exact
+predicate. State links preserve the selected sample date and series. State
+inventories offer reverse atlas links for all 36 pinned dated intersections
+across the 17 samples; the incoming date is visibly marked. All 56 states
+are covered by the reverse view, including explicit unresolved absence for
+states with no recorded diagnostic line intersection.
+
+Relations remain partial diagnostic lines clipped by approximate state
+shapes, not physical current passage, footprints, containment or annual
+extrema. Processing labels remain date-specific. Optional sample-set failures
+leave other state inventories available. Canonical science and route coverage
+unchanged; no new provider acquisition.
+
+Verification: analysis/test_atlas_sample_states_browser.py checks all 56
+states / 36 relations, NAST W state-atlas-state round trip, requested date,
+320 px layout and HTTP 503 fallback. Extended timeline browser check passes
+all 17 per-frame state lists and prior geometry/playback checks. Screenshot
+inspected: figures/atlas-sample-state-links-review.png. Seven-role review:
+signals/roles/check/atlas-dated-state-round-trip-roles-check-2026-10-03.md,
+21 findings, 0 P1, 2 addressed P2, 19 P3 conditions. No full-suite claim.
+
+
+## 2026-10-03 - Antilles local-section provenance recheck
+
+Rechecked Meinen et al. (2019) NOAA repository and AOML copies. The 49.4 km
+coastline-to-site-B transport integration span is Table 3, not Table 5.
+Corrected active source locators in the scope audit, public note, route
+planning and width inventory; retained correction history. Table 1 nominal
+A/A2/B/C instrument coordinates and the local mean peak around 400 dbar are
+now structured in the receipt. Surface-to-1000-dbar/bottom integration bounds
+are explicit. None is an along-stream endpoint or diagnosed current width.
+Weak August-September transport seasonality does not supply animated axes.
+
+Antilles whole length, width, annual ranges and route remain unresolved.
+Coverage unchanged: 55 candidates / 53 of 89 / 36 pending / 3870 scenarios;
+13 scoped width records, 21 current scope notes. No new scientific admission.
+Verification: 27 focused dashboard/width/catalog unit tests, complete protocol
+and width audits, all 21 source-scope browser cards including mobile. Review:
+signals/roles/check/antilles-section-locator-correction-roles-check-2026-10-03.md,
+21 findings, 0 P1, 1 addressed P2, 20 P3 conditions. No full-suite claim.
+
+
+## 2026-10-03 - Guiana naming and continuity in the atlas
+
+Guiana/Guyana source conventions now appear in a public source-scope card,
+with related North Brazil navigation. The audit separates local shelf evidence,
+offshore ring motion and a source-specific continuation label. Baklouti et al.
+(2007) relevant sections were read; the evidence does not establish a universal
+axis. Local non-detection is not global absence. No annual playback inferred.
+
+Current source-scope reviews: 22. Length, width and route coverage unchanged:
+55 candidates / 53 of 89 / 36 pending / 3870 scenarios. Guiana receives no
+North Brazil dimensions or route; canonical ledger hash unchanged.
+Verification: 16 focused dashboard/catalog unit tests, full protocol audit,
+all 22 source-review cards with mobile and related navigation. Review:
+signals/roles/check/guiana-source-convention-continuity-roles-check-2026-10-03.md,
+21 findings, 0 P1, 2 addressed P2, 19 P3 conditions. No full-suite claim.
+
+
+## 2026-10-03 - Atlantic NECC western summer reach and mean section widths
+
+Added declared 42 W-32 W western summer study reach: approximately 1100 km,
+1100-1200 km scenario envelope; raw nominal 1108.057 km, 81 cases. Longitude
+gates follow study sections; latitude gates and bends are editorial. Branch
+correspondence unresolved; source fall merging is not transferred to summer.
+Source summer label remains JAS. This reach is outside comparable route
+ordering and published-length ranking.
+
+Added two scoped mean-field zero-contour section widths, about 860 and 920 km
+at 42 W and 32 W. Width protocol v1.7 distinguishes boundaries found after
+velocity averaging from the average of instantaneous widths; section values
+are not a seasonal interval or width of the selected route. Playback disabled.
+Canonical whole widths and annual length/width ranges remain unknown.
+
+Coverage: 56 candidates / 54 of 89 / 35 pending / 3951 scenarios; 39 comparison
+routes and 17 studied reaches. State join 112 pairs in 43 states. Widths:
+15 scoped records / 11 names, 85 unassessed. Current source reviews: 23.
+Canonical ledger unchanged. Verification: 36 focused unit tests, complete
+route and width audits, direct card/mean-section/mobile browser checks, all
+112 route/state links and 23 scope previews. Screenshot inspected:
+figures/atlantic-necc-western-summer-review.png. Review:
+signals/roles/check/atlantic-necc-western-summer-mean-width-roles-check-2026-10-03.md,
+21 findings, 0 P1, 2 addressed P2, 19 P3 conditions. No full-suite claim.
+
+## 2026-10-03 - New Guinea local seasonal direction
+
+Added NGCC local direction view at 141.4 E, 1.7 S using Zhang et al. (2020).
+November–April southeastward and May–October northwestward come from the
+three-cycle monthly composite. El Niño exception is separately selectable
+and excluded from seasonal playback. Map arrow is an illustrative local
+symbol; no route, seasonal length/width or annual extrema inferred. Upper
+30 m removal, instrument outage, limited record and coarse coastline noted.
+
+Added New Guinea Coastal Intermediate Current as the 22nd proposed name,
+with source and unresolved layer/extent gates. NGCC, NGCUC and intermediate
+flow remain distinct; canonical 100 names and length ranking unchanged.
+24 current source-scope reviews now appear on the atlas. Route coverage
+remains 56 candidates / 54 of 89 / 35 pending; widths remain 15 records for
+11 names. Refreshed seasonal-route width dependency SHA.
+
+Verification: 13 focused dashboard/seasonal-frame unit tests; seasonal route
+validator; NGCC month/exception/cleanup/proposal/mobile browser checks and
+all 24 atlas source-review previews. Screenshot inspected:
+figures/ngcc-seasonal-direction-review.png. Internal roles receipt:
+signals/roles/check/ngcc-seasonal-direction-roles-check-2026-10-03.md,
+21 findings, 0 P1, 2 addressed P2, 19 P3 conditions. No full-suite claim.
+
+## 2026-10-03 - South Indian eastern-convention regional reach
+
+Added declared 70–90 E studied reach: approximately 1700 km, 1600–1800 km
+editorial sensitivity envelope; raw nominal 1707.653 km from WGS84 legs.
+Three shapes and independent endpoint-latitude offsets give 27 cases with
+longitude gates held fixed. Every latitude and connecting bend is editorial.
+Older broad SIOC naming and later east-of-70-E convention remain visible.
+Upper-1000 m historical transport is not a uniform-depth axis; source access
+receipt separates inspected text/captions from indexed abstract and blocked
+publisher retrieval. No source schematic or field digitized.
+
+Excluded from comparable reference order and canonical ranked measurements.
+Western ARC, recirculation and northeastern continuation lengths are not added.
+ISSG and SANT 27/27 are coarse display crossings, not observed passage.
+Annual length/width and whole-current dimensions remain unknown; static route
+context in seasons does not enable playback.
+
+Coverage: 57 candidates / 55 of 89 / 34 pending / 3978 scenarios; 39 comparison
+routes, 18 studied reaches; 114 candidate/state pairs in 44 states, 25 source
+reviews, 22 proposed additions. Width evidence unchanged: 15 records / 11 names.
+Canonical current ledger unchanged. Verification: 23 focused unit tests,
+complete route protocol audit, focused current browser/mobile checks, all
+114 atlas route/state links and 25 scope previews. Screenshot inspected:
+figures/south-indian-eastern-reach-review.png. Internal review:
+signals/roles/check/south-indian-eastern-reach-roles-check-2026-10-03.md,
+21 findings, 0 P1, 2 addressed P2, 19 P3 conditions. No full-suite claim.
+
+## 2026-10-03 - South Pacific eastern frontal-proxy reach
+
+Added declared 103–88 W studied reach between two reported STF crossings:
+approximately 1400 km, 1300–1500 km editorial scenario envelope; nominal
+1384.703 km, 27 cases. P18 crossing at 103 W 33.8 S was sampled February–April
+1994; P19 at 88 W 34.5 S in February–April 1993. Source frontal locations are
+not velocity-core endpoints or one dated axis. Intermediate vertices and
+scenario offsets are editorial. Branch correspondence remains unresolved.
+
+Protocol v1.2 M02/M03 clarification now records structured frontal anchors,
+month-precision sampling windows and explicit proxy roles. Validator rejects
+role relabeling, unsupported nominal vertices, duplicate anchors and invalid
+or reversed dates. Full route card lists both sampling windows. Temperature
+criterion at 150 m does not set axis depth; frontal band does not set width.
+Ridgway/Dunn 2007 layered-flow limitation is included. No source field or
+curve digitized; 1995 full-paper access limitation retained.
+
+Coverage: 58 candidates / 56 of 89 / 33 pending / 4005 scenarios; 39 comparison
+routes, 19 studied reaches; 115 route/state pairs in 45 states, 26 current
+source reviews and 22 proposed additions. HUMB contact is display geometry
+only. Widths remain 15 scoped records / 11 names; canonical current ledger
+and published ranking unchanged. Annual length/width ranges remain unknown.
+
+Verification: 24 focused protocol/catalog/dashboard unit tests, final protocol
+mutation checks, complete route audit, focused atlas/card/source chronology/
+mobile checks, all 115 route/state links and 26 source previews. Screenshot
+inspected: figures/south-pacific-front-reach-review.png. Internal review:
+signals/roles/check/south-pacific-front-reach-roles-check-2026-10-03.md,
+21 findings, 0 P1, 2 addressed P2, 19 P3 conditions. No full-suite claim.
+
+
+### Tasman Front composite and continuity scope — 2026-10-03
+
+Added research/tasman-front-composite-continuity-scope-audit.json and visible
+atlas evidence summary. Historical satellite/cruise source sets, unsynchronized
+years, 164–166 E coverage gap and printed duration/date discrepancy are retained.
+Oke et al. (2019) indexed abstract/Introduction question a persistent narrow
+central front; direct full-paper access failed. Tilburg et al. (2001) original
+PDF Introduction/figure caption read; no curve or field digitized. Alternative
+EAC naming is a source proposal, not an admitted alias.
+
+Protocol v1.2 now clarifies historical composites and contested continuity:
+choose a historical composite, dated jet, mean connection or transport corridor
+before measuring; meander bands are not widths and reference depth is not axis
+layer. No route forced, no annual geometry enabled. Source reviews increase to
+27; coverage remains 58 candidates / 56 of 89 / 33 pending / 4005 scenarios.
+Canonical ledger, width inventory and published ranks unchanged.
+
+Verified ten dashboard unit tests, direct Tasman deep link and separate EAC
+navigation, all 27 source previews/mobile reflow, complete regenerated protocol
+audit and inspected figures/tasman-front-scope-review.png. Internal .roles
+review: signals/roles/check/tasman-front-continuity-roles-check-2026-10-03.md,
+21 findings, 0 P1, 2 addressed P2, 19 P3 conditions. Full repository suite and
+independent scientific admission remain unclaimed.
+
+
+### Monsoon Current Sri Lanka seasonal reaches — 2026-10-03
+
+Added separate eastward June–September and westward November–February editorial
+77–83 E regional routes. Summer drawing: about 800 [700,900] km; winter: about
+700 [600,900] km; 27 scenarios each. Longitude gates and bends are editorial;
+local historical sections do not establish regional dated axes. Both routes
+are studied reaches outside published ranking. Five seasonal route frames now
+cover three currents; Monsoon playback switches phases without interpolation.
+Transition geometry, widths and annual dimensions remain unknown.
+
+Schott/McCreary (2001) original PDF section 5.1.5 and Figure 48 caption read;
+Schott et al. (1994) indexed abstract only, full-paper access limitation stated.
+Summer near-coastal westward flow, subsurface counterflows, equatorial jets and
+upstream/downstream branches excluded. Southwest/Northeast Monsoon Current
+names are phases of the existing record; no canonical identities added.
+
+Seasonal validator now supports east/west with endpoint orientation checks and
+source-label/calendar agreement. Mutation tests reject reversed direction and
+unsupported months. Phase labels and playback explanation updated. Source audit:
+research/monsoon-sri-lanka-seasonal-layer-scope-audit.json.
+
+Coverage: 60 candidates / 57 of 89 / 32 pending / 4059 scenarios; 39 comparison
+routes, 21 studied reaches; 117 route/state pairs in 46 states; 28 current scope
+reviews, 22 proposed additions. Width inventory and published lengths unchanged.
+Canonical current ledger SHA checked unchanged.
+
+Verified 28 focused protocol/catalog/dashboard/seasonal-frame unit tests,
+complete route audit, five-frame validation, focused atlas/card/playback/mobile
+check, all 28 source reviews and 117 route/state links. Screenshot inspected:
+figures/monsoon-seasonal-reach-review.png. Internal .roles receipt:
+signals/roles/check/monsoon-sri-lanka-seasonal-roles-check-2026-10-03.md,
+21 findings, 0 P1, 2 addressed P2, 19 P3 conditions. No full-suite or independent
+scientific-admission claim.
+
+
+### Indian EUC dated subsurface band — 2026-10-03
+
+Added a local descriptive current/salinity-band span at 90 E for 1–3 March
+2017: source latitude limits 1.2 S–1.5 N in the 80–150 m depth range, WGS84
+298.5511199778176 km, reported approximately 300 km. This differs from the
+2 S–2 N survey support, salinity transport domains and velocity-defined full
+width. No uniform-depth width, mapped footprint, annual range or route admitted.
+Siswanto/Kusmanto/McPhaden (2019) original PDF text Methods/Results/Conclusions
+read; no figure digitized. Historical review stresses transient definitions and
+warns against inferring connected extent from local observations.
+
+Width protocol v1.8 adds dated_band_section with explicit latitude/depth/date
+support, reproducible conversion and inference guards. Existing metrics and
+values unchanged. Width table/seasonal view label the band metric and omit its
+full-width bar; playback disabled. Source audit and atlas scope note added;
+route planning now requires compatible longitudinal and overlying profiles.
+
+Coverage: 16 scoped width records / 12 names, 84 names unassessed; one derived
+series and three nonnumeric reviews retained. 29 current source-scope cards;
+60 route candidates / 57 of 89 / 32 pending / 4059 scenarios unchanged. Canonical
+ledger SHA verified unchanged; published ranking and release unchanged.
+
+Verified 28 focused width/dashboard/seasonal-frame tests, complete width and
+route audits, five-frame validation, focused dated-band/source/mobile browser
+checks and all 29 source cards. Screenshot inspected:
+figures/indian-euc-dated-band-review.png. Internal .roles review:
+signals/roles/check/indian-euc-dated-band-roles-check-2026-10-03.md,
+21 findings, 0 P1, 2 addressed P2, 19 P3 conditions. Full-suite and independent
+scientific-admission claims remain open.
+
+
+### Dated section locator on the custom atlas — 2026-10-03
+
+Indian EUC selection now fits the 90 E dated latitude span and opens its
+section-map card. A keyboard/clickable dashed blue locator and labeled card
+bracket show geographic support, not current axis, velocity edges or footprint.
+Dates/depth/definition remain beside the map. The same component appears in the
+seasonal explorer; unrelated phases clear it. Existing atlas-feature deep links
+restore this card, and Global view restores the world map.
+
+Added deterministic coastline-only closeup background using the same OSW
+projection/land geometry. Section closeups omit oversized province labels and
+graticules; other atlas views retain their existing ground. SVG focus outline
+was also oversized at this zoom; explicit contrasting stroke/shadow now retains
+keyboard focus without obscuring the locator. Source role/date labels remain
+in accessible names after dashboard update rendering. Width-load failure remains
+optional to atlas navigation; invalid section roles suppress the locator.
+
+Verified focused section/deep-link/keyboard/reset/stale-selection/mobile and
+invalid-role checks, 100-current/140-eddy atlas regression, 29 source previews
+and ten dashboard tests. Final screenshot inspected:
+figures/indian-euc-atlas-section-review.png. No new scientific dimensions,
+canonical data, ranks or release changes. Internal .roles review recorded in
+signals/roles/check/dated-section-atlas-roles-check-2026-10-03.md.
+
+## West Australian historical dimensions and source access — 2026-10-03
+
+The West Australian atlas card now distinguishes the modern broad northward
+offshore definition from Andrews (1977)'s cyclonic stream turning poleward.
+The indexed abstract's 800 km trough extent, 100–200 km stream width and
+370 m scale depth remain unadmitted historical source context. The full 1977
+paper was unavailable; identity equivalence and its measurement methodology
+remain unreviewed. None of these values enters current length ordering, width
+measurements or annual ranges. The 2016 Leeuwin pathway paper's Introduction
+and methods sections were inspected; modeled release/sector boundaries and
+transport validation do not supply a West Australian axis or width.
+
+Source-scope cards support additional citation links with passage locators and
+explicit access limits. Dashboard generation rejects missing access/locator
+metadata and non-HTTPS supporting URLs. West Australian links to the separate
+Leeuwin record; related navigation does not copy its route or dimensions.
+The shared measurement protocol clarifies historical name conflicts and why
+transport agreement alone cannot validate width. This clarifies M01/M03/M09
+under v1.2; no calculation, rounding or comparison rule changed.
+
+Verification: 11 dashboard unit tests including malformed citation metadata;
+all 29 source-scope previews at 320 px; direct West Australian source-link,
+keyboard Leeuwin navigation and no-borrowed-route checks; full protocol audit
+60 candidates / 4059 scenarios. Screenshot inspected:
+`figures/west-australian-historical-dimensions-review.png`.
+Counts remain 60 routes for 57 of 89 remaining-length names, 16 scoped width
+records for 12 names, and 240 dashboard records. Canonical ledger SHA remains
+6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e.
+Internal role review is editorial; independent scientific admission remains open.
+
+## Indian SEUC March–May reach and spatial core widths — 2026-10-03
+
+Added a 60–105 E March–May subsurface studied reach for the Indian Ocean
+South Equatorial Undercurrent. Source approximate longitude/latitude context
+supports editorial connecting vertices, not an extracted velocity axis.
+BRAN2020 density-layer context and 2001–2018 climatology remain explicit.
+WGS84 nominal length is 4951.567 km, reported as approximately 5000 km;
+27 editorial cases span 4946.549–4959.936 km, outward-rounded to 4900–5000 km.
+The reach stays outside reference-route ordering and published length ranks.
+Its four coarse map contacts (AUSW, EAFR, IND W, MONS) are display-region joins,
+not physical current containment. Coarse land clearance does not verify
+ridge-scale bathymetry or current continuity.
+
+Added a separate width metric: maximum meridional extent of the 3D eastward
+u>0.1 m/s climatological core at each longitude. Published median 169 km and
+spatial range 26–294 km are retained. These are longitude variation, not annual
+extrema, fixed-depth full width, flow-normal width or confidence intervals.
+Protocol v1.9 adds this class and validates its threshold, temporal averaging,
+spatial aggregation, median/range and exclusion flags. Existing 16 records
+retain their values/types. Seasonal association width hashes refreshed.
+The explorer hides the full-width bar and disables seasonal playback; no
+monthly geometry, source contours or model arrays were acquired/digitized.
+
+Primary corrected publisher HTML was inspected in sections 2–4, captions and
+erratum. Conflicting 10 N/10 S and May/June mooring-end wording are recorded;
+no exact observation day is manufactured. Supporting Information remains
+uninspected. The representative isopycnal route and 3D core extent are separate
+methods; the local 300–420 m density-layer conversion is not applied uniformly.
+
+Verification: 15 width unit tests and full 17-record width validation; 11
+dashboard tests; focused Indian SEUC browser checks and restored Indian EUC
+section checks; all 30 scope cards; all 121 route-state links; full protocol
+audit 61 candidates / 4086 scenarios; five seasonal-frame validation.
+Standalone SVG capture timed out; a normal image document rendered the same
+figure successfully. One Indian EUC screenshot capture failed transiently;
+the unchanged check passed on rerun. Route/width/atlas screenshots inspected.
+No full repository suite or independent scientific admission claimed.
+
+Coverage: 61 candidates for 58 of the 89 remaining-length names; 31 await
+routes. 39 comparison routes / 22 studied reaches. 47 states have candidate
+contacts, 121 pairs across 56 states. Widths: 17 records / 13 names; 83
+unassessed. Dashboard: 240 records / 22 proposed additions; 30 source reviews.
+Canonical ledger SHA remains
+6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e.
+
+
+### Indian SECC winter surface reach — 2026-10-03
+
+Added an editorial 50–90 E December–March surface studied reach, approximately
+4,400 km with a 4,400–4,500 km drawing-sensitivity envelope (27 scenarios).
+Wu et al. (2020) seasonal drifter context includes wind-slip-corrected undrogued
+observations; the route is not a traced fixed-depth axis or whole-current length.
+The 1993–2018 selection versus 1995–2018 figure-caption discrepancy is retained.
+Huang et al. (2023) frequency/phase latitude classification at 80.5 E does not
+supply paired current-width edges. Width and annual extrema stay unknown;
+ORAS5 upper-30 m versus caption 0–40 m wording is retained in the audit.
+One seasonal frame is inspectable; playback is disabled. Related SEUC navigation
+opens its distinct subsurface card. No source arrays or contours were acquired.
+
+Verification: 15 width, four seasonal-frame and 11 dashboard unit tests; full
+17-record width/six-frame validators; 62-candidate/4,113-scenario protocol audit;
+31 scope previews and all 124 route-state links; focused winter browser checks
+and inspected atlas/season screenshots at desktop and 320 px mobile reflow.
+The first focused assertion expected the seasonal comparison text, but the
+width comparability note correctly takes precedence; the assertion now verifies
+the displayed annual restriction and separate route sensitivity text.
+Coverage: 59 of 89 remaining-length names have drawings, 30 await routes;
+39 comparison routes / 23 studied reaches. Widths remain 17 records / 13 names,
+82 unassessed and four reviewed without comparable numeric widths. Dashboard
+240 records / 22 proposals / 31 source reviews. Canonical ledger SHA unchanged:
+6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e.
+Internal review is not scientific admission; no publication or remote action.
+
+
+### Aleutian-region identity separation — 2026-10-03
+
+Added proposed Aleutian North Slope Current as the 23rd source-backed inventory
+addition. The Bering-side identity, Aleutian/Subarctic Current and Alaskan Stream
+remain separate. Its author-described regional width is retained as source
+context outside the canonical width inventory; no new route, ranking, observed
+date or annual range. The Aleutian scope audit now records Western Subarctic
+SST-front search bounds and warm Isoguchi-jet distinction, plus the source's
+167 N versus nearby 167 W wording. Search bounds/gradient fronts are not velocity
+axes, current endpoints or paired edges.
+
+Proposal cards now display recorded source-access limits. NOAA relevant HTML
+subsections/captions and the Mitsudera et al. (2018) repository PDF introduction,
+first Results subsection, Figure 1 caption and Methods Data were read. Reed and
+Stabeno (1997) repository abstract only; no full-article claim. PMEL Stream PDF
+returned 502 and the 2025 AMS frontal-index page returned 403; neither promoted.
+No source field, underlying survey or figure digitization acquired.
+
+Verification: full 62-route / 4,113-scenario conformance audit (23 identities),
+11 dashboard tests, all 31 scope previews, and focused Aleutian browser check:
+proposal source limits, 100-name selector, unknown route/width/date, 240 dashboard
+records, and 320 px reflow. Proposal screenshot inspected. Canonical SHA unchanged.
+Coverage remains 59 of 89 with drawings, 30 awaiting routes; widths 17 records /
+13 names. Seven-role internal review recorded separately; scientific admission,
+field-derived geometry and full repository release gates remain open.
+
+
+### Proposed-current navigation — 2026-10-03
+
+All 23 proposal cards now support direct fragment arrival, keyboard focus,
+shareable card links, same-link reselection and return to the global current
+atlas. The Aleutian scope preview links separately to pending Alaskan Stream
+and North Slope proposals. These links are validated against pending identities,
+resolved to their own labels, and do not increase canonical atlas counts or
+borrow geometries/widths. Only notes with pending relations receive the new
+resolved metadata; unchanged notes keep their prior fingerprints.
+
+Verification: 12 dashboard unit tests including malformed, missing, canonical
+and duplicate proposal-ID rejection; all 31 scope previews; navigation browser
+check of all 23 cold proposal links, Back/focus, two mapped route links, keyboard
+scope relation, same-link reselection and 320 px reflow. Forced delayed loads
+exercise either proposal/catalog completion order. Focus screenshot inspected.
+An initial assertion wrongly required the final card to align at 16 px despite
+maximum page scroll; the check now also accepts a visible heading at page end.
+No runtime failure or additional padding was required. Canonical SHA unchanged;
+100 selectable currents / 240 dashboard records / 23 pending additions remain.
+
+
+### Mauritanian seasonal mean width — 2026-10-03
+
+Added the author-reported 30–40 km upwelling-season mean undercurrent width at
+reference 18 N from Klenz, Dengler and Brandt (2018). This is a local seasonal
+mean width span, with no manufactured midpoint, confidence interval, annual
+extrema, route buffer or fixed-depth edge geometry. Source convention is
+December–April; five upwelling cruises sampled January–April during 2005–2011.
+The whole study spans 2005–2016, and August 2016 is excluded from either seasonal
+mean. Measurements pooled over 17–19 N are remapped by bathymetry to reference
+18 N. Those pooling bounds are not an along-current route.
+
+The audit distinguishes poleward surface/subsurface manifestations named MC by
+the authors from the equatorward surface shelf jet and deeper return. The 60 km
+transport integration window and 200 km surface-flow corridor are not widths.
+Relevant primary publisher Introduction, section 2.1/Table 2, section 3.1 and
+Figures 4–5 captions, Discussion and Conclusion read; source fields, figures,
+paired edges and cruise reports were not acquired/digitized.
+
+Width protocol v1.10 adds seasonal_mean_width_range, with explicit sampling and
+mean-section semantics; previous 17 records retain values/types. Initial full
+validation rejected the new calendar class until the common calendar gate was
+extended to this documented type. Sixteen width tests now include midpoint,
+annual relabel, playback, edges, sampling, years and section-support mutations.
+Full 18-record width and six-frame validators pass; association hash refreshed.
+Twelve dashboard tests, four seasonal-frame tests, all 32 scope previews, focused
+Mauritanian browser check and inspected seasonal screenshot pass. Desktop and
+320 px checks preserve unknown route/date, hidden bar and disabled playback.
+Full route audit remains 62 candidates / 4,113 scenarios; 59 of 89 have drawings,
+30 pending. Width coverage: 18 records / 14 names, 81 unassessed, four reviewed
+without comparable numeric widths. Dashboard 240 / 23 proposals / 32 reviews.
+Canonical SHA unchanged; internal review is not independent scientific admission.
+
+
+### Atlas and seasonal evidence round trips — 2026-10-04
+
+All 100 current atlas previews and all 62 route cards now link to widths and
+seasonal evidence. A card with an associated seasonal route links to that exact
+frame; seasonal explorer share URLs retain stable width/frame/direction record
+IDs, and the return link selects the same current and seasonal route in the
+atlas. Switching current clears an incompatible phase; phase selection and
+playback replace the share URL without adding history entries. Unsupported
+phase IDs normalize to the selected current's available state or disappear when
+no state exists. Empty evidence remains unknown; links do not imply animation
+availability, a full annual cycle or new measurements.
+
+Verification: browser checks of all 100 atlas links, 62 route-card links, all
+26 selectable recorded evidence IDs and six seasonal atlas round trips;
+Monsoon winter-to-summer URL changes, current switch/reset, unknown-current
+phase rejection and 320 px reflow. Mobile screenshot inspected. Existing two
+mapped route and all 23 proposal deep-link/history checks pass, including delayed
+loads; all 124 route/state links and optional-data fallback pass. No scientific
+data values/types, canonical counts, rank or ledger SHA changed. This is local
+navigation work, not scientific admission or a published release.
+
+
+### Atlantic SECC reported March band — 2026-10-04
+
+Added the Bourles et al. (1999) March 1994 section at 30 W, 6-8 S:
+about 220 km WGS84 meridional band span (221.1817565 km before 10 km
+rounding). This is an author-described band, not fixed-depth full width.
+Two eastward cores near 40 and 240 m are separated by westward flow near
+110 m. Exact local days, longitudinal continuity and annual ranges remain
+unresolved. The nearby western non-detection does not establish basin-wide
+reversal. The separately named Atlantic SEUC retains its own identity.
+
+Protocol v1.11 records reported limits and distinguishes the computed midpoint
+from an observed center. Atlas and seasonal explorer show scope/source links;
+this view has no full-width bar, route or seasonal playback. Width coverage is
+19 scoped records for 15 names; 80 unassessed and four reviewed without a
+numeric metric, plus one derived series awaiting admission. Route coverage
+remains 62 candidates for 59 of 89 pending-length names, with 30 pending routes.
+
+Checks: width validator, 17 width/12 dashboard/four seasonal-frame unit tests,
+focused Atlantic SECC browser, 33 scope reviews and navigation across 27 phases
+pass. Internal seven-role review records 21 findings, three addressed P2 and
+remaining source/admission conditions. No full-suite or independent scientific
+approval claimed. Canonical almanac SHA256 remains
+`6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e`.
+
+Artifacts: `research/atlantic-secc-march-1994-section-scope-audit.json`,
+`analysis/test_atlantic_secc_band_browser.py`, and
+`signals/roles/check/atlantic-secc-march-band-roles-check-2026-10-04.md`.
+
+
+### Reported month-section geography — 2026-10-04
+
+The Atlantic SECC March 1994 band now has a map locator at 30 W, 8-6 S
+in the global atlas and seasonal evidence card. Selecting its dashed locator
+zooms to the reported section and opens its mapped card. Month precision and
+unresolved exact days are explicit; this adds no current axis, footprint,
+full-width claim or annual series. Center/span-only conversion records do not
+supply map boundaries. The existing day-dated Indian EUC locator is preserved.
+
+Atlantic and Indian focused browser checks cover keyboard activation, global
+return, deep-link restore, view fitting, stale-section clearing and 320 px
+reflow. Invalid-input checks reject forged date, center and edge roles. Both
+Atlantic screenshots were visually inspected. Coverage stays at 19 scoped
+width records for 15 names and 62 route candidates for 59 names. Internal
+seven-role review: `signals/roles/check/reported-month-section-locator-roles-check-2026-10-04.md`.
+
+
+### Antilles observed-section acquisition — 2026-10-04
+
+Acquired and pinned NOAA/AOML final AB0505 LADCP text profiles: 57 casts,
+22,619 depth samples, 40 provider-usable and 17 caution profiles. Source
+assessment identifies casts 24-36 with no LADCP data. Dates/positions assign
+23 casts to the first Abaco occupation (May 4-8, 2005), 27 to the repeat
+(May 18-23), and seven to other sections excluded from this diagnostic.
+
+The 400 m instrument-depth diagnostic leaves the first offshore boundary
+unresolved under quality gates. The repeat produces 37.352311 km before
+rounding: a sampled-peak-to-offshore-half-peak span, not full width. Its station
+bracket distances are 34.55-50.27 km, describing sampling support rather than
+confidence or annual variation. Tide removal is no, and error velocities and
+quality comments are retained. Whole-current and annual dimensions remain null.
+
+`almanac/antilles-sections.html` compares the two occupations and maps cast
+positions, with hover/focus names, UTC timestamps and quality/velocity table.
+The Antilles atlas card now contains a mapped observation card and a two-survey
+selector. Its 23/27 instrument positions appear in both the atlas and card;
+background reference routes fade while observations are selected. Saved links
+and the detailed page's return link preserve the selected occupation. Global
+view and selection changes remove the observation overlay, including delayed loads.
+The dashboard fingerprints this two-occupation series. No canonical width or
+route admitted: coverage remains 19 scoped width records for 15 names, 62 route
+candidates for 59 of 89 names and 30 pending routes.
+
+Regenerate offline with `python analysis/build_antilles_ladcp_section_diagnostic.py`.
+The initial acquisition command is explicit and refuses to overwrite pinned
+manifest data. Five data tests, 14 dashboard tests and the focused browser
+check pass. Inventory/calculation/SVG regenerate byte-identically; page screenshot
+inspected and canonical almanac unchanged. Internal seven-role review records
+21 findings with three addressed P2 and scientific admission conditions.
+Protocol: `plans/antilles-ladcp-section-diagnostic-protocol-v1.md`.
+Review: `signals/roles/check/antilles-observed-section-acquisition-roles-check-2026-10-04.md`.
+
+### Mapped eddy cards — 2026-10-04
+
+The custom global atlas now includes map previews for all 136 named eddies and
+four dated operational detections. Stored points retain their name-locator,
+approximate-center or shared-gateway meaning; five stored outlines retain their
+historical polygon or figure-derived contour-proxy meaning. Selecting a name
+does not create an individual center for a shared gateway.
+
+Each card preserves its selected extent during main-map zoom, supports saved
+atlas links, hides point names until hover/focus, and retains its scoped state
+evidence links. Small outline views use the same coarse coastline with state
+shading omitted. Amber card borders and text indicate browser-local inventory
+changes. No geometry or measurements were added to the canonical inventory.
+
+Verification: `analysis/test_atlas_eddy_state_links_browser.py` checks all 140
+maps and 131 state-evidence links, geometry distinction and bounds, restoration,
+zoom/reset, changed-record isolation, keyboard labels and 320 px reflow.
+Review: `signals/roles/check/mapped-eddy-cards-roles-check-2026-10-04.md`.
+
+### Persian Gulf outflow dimension scope — 2026-10-04
+
+Added a source audit and six-row local core-measurement table to the atlas card.
+The extraction preserves the author-defined hydrographic boundary and section
+distance coordinate. Source conflicts remain explicit; no geodesic path,
+velocity width, whole-current length or annual range is admitted. The canonical
+inventory and existing width/route counts remain unchanged. Scope reviews now
+cover 34 current identities. Width protocol v1.12 records the boundary rule.
+
+Checks: three scope-validation tests, dashboard evidence tests and the atlas
+scope-review browser. Review receipt:
+`signals/roles/check/persian-gulf-core-dimensions-roles-check-2026-10-04.md`.
+
+### Shared hydrographic-core width records — 2026-10-04
+
+The Persian Gulf source extraction now contributes six scoped editorial width
+records to the common inventory: 25 records for 16 current identities, with 79
+names unassessed, four reviewed without comparable numeric width and one derived
+series pending scientific admission. The records are local salinity-core spans;
+their upstream range is not an invented midpoint, uncertainty interval or annual
+variation. Source-audit checksums and section IDs preserve the extraction basis.
+
+The dashboard counts this scoped evidence. The seasonal explorer exposes six
+saved record views, disables seasonal playback and omits the width bar and route
+when those interpretations are unsupported. Width protocol v1.13 defines the
+metric, provenance and temporal guards; the inventory protocol checksum is current.
+Canonical whole-current measurements and the frozen release remain unchanged.
+
+Verification: width checker, 18 width-inventory tests, 15 dashboard tests and
+`analysis/test_persian_gulf_width_browser.py` pass. Screenshot inspected.
+Review: `signals/roles/check/hydrographic-core-width-integration-roles-check-2026-10-04.md`.
+
+### Red Sea outflow reach and branch scope — 2026-10-04
+
+The atlas card preserves Peters et al. (2005)'s approximately 130 km winter
+descending-plume reach with plume speed above 0.2 m/s. Its 100–250 m value is
+layer thickness, not a fixed depth interval. Campaign context is retained;
+exact occupation dates and a reconstructed map axis remain unresolved.
+
+Three local source components distinguish the Northern Channel plume, Southern
+Channel main plume and Southern Channel gully product. Their identities await
+canonical admission. Channel descriptions of 115, 120 and 130 km and about
+5 km width remain geographic context; they do not form a current length range
+or velocity width. Whole-current dimensions and seasonal playback remain pending.
+
+Scope reviews now cover 35 current identities. Width coverage remains 25 records
+for 16 identities; 78 names are unassessed, five reviewed without comparable
+numeric width and one derived series awaits admission. Reference routes remain
+62 candidates for 59 of the 89 names, with 30 pending. Canonical data and the
+frozen release are unchanged. Source audit:
+`research/red-sea-redsox-branch-reach-scope-audit.json`.
+
+Verification: three Red Sea scope tests, 18 width tests, 16 dashboard tests,
+and the 35-card source-scope browser check. Card screenshot inspected. Review:
+`signals/roles/check/red-sea-redsox-branch-reach-roles-check-2026-10-04.md`.
+
+### Tsuchiya general angular width summaries — 2026-10-04
+
+Rowe, Firing and Johnson (2000), section 3b, reports a general 2-degree
+meridional SCC width. Two linked editorial records preserve this shared claim
+for northern and main southern Tsuchiya currents, normalized to approximately
+220 km with WGS84 at the equator. This computational latitude is not an observed
+current center; no boundary coordinates or fixed-depth width inferred.
+
+The summary differs from core displacement, the PV-front scale and regional
+narrowing. It supplies neither independent measurements for the two jets nor
+annual extrema, a secondary SSCC width or a width for the separate western
+Pacific NEUC. Protocol v1.14 and validators preserve those distinctions.
+The explorer retains static route context, omits width bars and section-edge
+locators, and disables seasonal playback for these records.
+
+Coverage: 27 scoped width records / 18 current identities / 76 unassessed /
+five reviewed nonnumeric / one derived series pending admission. Route and
+canonical whole-current measurements are unchanged. Checks: width provenance
+validator, 19 width tests, 17 dashboard tests and both-current browser round
+trips with mobile reflow. Screenshot inspected. Internal review:
+`signals/roles/check/tsuchiya-angular-width-roles-check-2026-10-04.md`.
+
+### Pacific NECC monthly section diagnostic — 2026-10-04
+
+Acquired the public NOAA PIFSC mirror of ESR OSCAR third-degree version 2017.0:
+72 archived 2013 timestamps at 140 W, 37 latitudes from 0–12 N, 2,664 zonal
+velocity values and no missing values in this subset. The nominal 15 m surface
+product is not a direct instrument slice. Metadata, exact query and source bytes
+are pinned in `research/source-data/oscar-necc-2013-140w/acquisition.json`.
+The parser rejected a nearest-date response including January 2014 before the
+corrected request was saved. Offline builds verify the saved acquisition.
+
+Twelve equal-sample monthly means now have connected-positive-flow widths under
+a declared rule: eligible peak in 2–10 N, first zero crossing on each flank,
+no bridging of westward gaps or missing data, WGS84 span. All twelve close within
+the section. Rounded local spans vary from about 210–640 km; alternative 0.05
+and 0.1 m/s thresholds are separate sensitivity calculations, not uncertainty.
+This is width of monthly mean flow, not mean instantaneous width, a climatology
+or annual whole-current extrema. Independent branch/product review is pending.
+
+View `almanac/necc-section.html` from the current atlas card or width-decision
+inventory. The page shows twelve profiles and a numerical table with source,
+method and calculation links. Dashboard fingerprints include the diagnostic
+contents; counts include one pending scoped series and twelve monthly samples.
+No canonical measurement or current route added. Width inventory remains 27
+source records / 18 identities; 75 names unassessed, five reviewed nonnumeric
+and two derived series pending admission.
+
+Commands: `python analysis/acquire_pacific_necc_oscar_section.py` (offline),
+`python analysis/build_pacific_necc_oscar_section_diagnostic.py`, and
+`python -m unittest discover -s analysis -p test_pacific_necc_oscar_diagnostic.py`.
+Acquisition requires explicit `--acquire` and refuses to overwrite source bytes.
+Five diagnostic tests, 19 width tests, 18 dashboard tests and desktop/mobile
+browser navigation pass. JSON and SVG regeneration is byte-identical; figure
+inspected and footer/axis collision corrected. Internal review:
+`signals/roles/check/pacific-necc-monthly-section-roles-check-2026-10-04.md`.
+
+### Pacific NECC inline monthly atlas profiles — 2026-10-04
+
+The current card now embeds a twelve-month selector, signed zonal-velocity
+profile, 37 grid-sample positions and calculated boundary marks at 140 W.
+The main atlas fits the saved section; the card map keeps a fixed extent while
+the main map zooms. Source-product samples are explicitly distinct from
+instrument casts, current axes and whole-current footprints.
+
+Explicit playback steps through saved monthly means without interpolation
+between months, pauses when hidden and stops at December. The share URL uses
+`atlas-section` to retain the month. Standalone review links and their return
+links retain that identity. Global reset or current switch disposes timers and
+sample overlays; delayed fetches cannot recreate a dismissed card. Missing or
+invalid evidence retains the review link and hides the empty chart/map.
+
+Verification: `analysis/test_atlas_monthly_section_browser.py` covers all twelve
+months, 37 positions, two boundary marks, playback/pause/end stop, restored
+URLs, detailed-page return, fixed card extent, keyboard values, narrow reflow,
+switch/reset cleanup and delayed/invalid data. Existing observed-section and
+standalone NECC browser tests also pass. Screenshot inspected. Data, dimensions,
+coverage counts and canonical ledger unchanged. Review:
+`signals/roles/check/necc-inline-monthly-atlas-roles-check-2026-10-04.md`.
+
+
+#### Search every atlas identity
+
+`almanac/reference-routes.html#atlas-directory` exposes all 100 currents,
+136 named eddies and four dated detections in a compact searchable index.
+Select an entry to open its map card. Evidence labels distinguish routes,
+locators, reported centers and shared gateways. The Updated filter uses the
+same saved inventory baseline as the dashboard; it does not indicate live
+water motion. Verification: `analysis/test_atlas_directory_browser.py`.
+
+The atlas index also has an OSW state selector covering all 56 states.
+`atlas-state=PSAW` (for example) is retained in shared current/eddy links.
+Current links distinguish nominal and alternative reference-route scenario
+crossings; eddy links retain saved scope and dates. The filter describes recorded
+evidence, not whole-current passage or whole-eddy containment. Verification:
+`analysis/test_atlas_directory_states_browser.py`.
+
+OSW regions are also clickable on the global atlas. Select a region, or focus it
+and press Enter/Space, to open its recorded current/eddy inventory. Its highlight
+synchronizes with the state selector. Saved coast clipping keeps inland points
+out of state hit areas. Verification: `analysis/test_atlas_state_navigation_browser.py`.
+
+#### Labrador regional width summary — 2026-10-04
+
+Thompson et al. (2009), section 4.2 paragraph 29, supplies an approximately
+50 km main upper-slope Labrador Current width. Protocol v1.15 records regional
+scalar prose summaries without inferred paired edges, depth layers, dates or
+annual ranges. The explorer omits a full-width bar and playback. Coverage:
+28 scoped records across 19 names, 74 unassessed, five reviewed nonnumeric and
+two derived candidates pending review. Published length ranking unchanged.
+Audit: `research/labrador-thompson-2009-regional-width-scope-audit.json`.
+Checks: 20 width and 18 dashboard tests, both width provenance validators and
+Labrador/Tsuchiya browser navigation. Scientific admission remains pending.
+
+### North Brazil–Guyana oblique mean section widths — 2026-10-04
+
+Dimoune et al. (2023) supplies three source mean-width values: NBC1/HS1 about
+520 km, NBC2/HS2 about 220 km and NBC3/HS3 about 440 km. They are cross-section
+zero-contour spans of the January 1993–December 2017 mean rotated surface
+geostrophic component, not instantaneous widths, seasonal extrema or current
+lengths. HS1–HS3 use a 45-degree rotation. Source kilometre values are retained;
+oblique latitude coverage is not converted as a meridional section.
+
+NBC1/2 attach to North Brazil; NBC3 attaches to Guiana under the source's Guyana
+continuation naming convention. The HS3 band straddles 10 N; no hard physical
+boundary or canonical alias merge is admitted. Exact section longitude/endpoints
+and boundary geometry remain unextracted. The mean-width table lists NBC2 about
+220 km, while section 4.1 says 20 km in a different comparison. This unresolved
+prose/table discrepancy is shown; it is not a 20–220 km uncertainty interval.
+
+Protocol v1.16 and pinned audit:
+`research/north-brazil-guiana-oblique-mean-width-scope-audit.json`.
+The seasonal explorer displays mean oblique sections with no edge locator,
+full-width bar or playback. Existing contextual routes retain their own scope;
+Guiana still has no route estimate. Width coverage is 31 records / 21 names /
+72 unassessed / five reviewed nonnumeric / two derived series pending review.
+Canonical ledger, 11 published length ranks and 62 route candidates unchanged.
+The Gulf Stream series receives only a new general protocol hash; its numerical
+frames remain unchanged. Source review covers publisher HTML relevant sections
+and indexed publisher PDF table text; no raw data or source figure digitization.
+
+Verification: 21 width tests, 18 dashboard tests, both width provenance validators,
+three-record browser checks (saved view, identity/scope/conflict, atlas/table
+navigation and 320 px reflow). No complete release-gate claim; scientific
+measurement/identity admission remains pending. Visual receipt:
+`figures/guiana-oblique-mean-width-review.png`.
+
+### Published widths inside current atlas cards — 2026-10-04
+
+All 100 current cards now include a published-width evidence section. The 31
+editorial source records across 21 names appear as compact expandable entries,
+with source value/units, metric and phase visible in the summary. Expanded entries
+retain geographic scope, layer, boundary rule, time convention, range meaning,
+quality notes, full citation and paragraph locator. Each links to its exact
+record in the seasonal inspector and its published source. General angular
+summaries retain original degrees with a labelled kilometre conversion.
+
+No new measurements, ranges, geometry or canonical admission added. Unknown
+cards distinguish unresolved published widths, derived candidates and reviewed
+nonnumeric source decisions; missing evidence is not zero width. A missing width
+inventory retains the current map card and a detailed-page fallback. All 100
+cards and every unique source-record link/definition were checked; keyboard
+expansion, source discrepancy visibility, inspector return, world reset and
+320 px reflow pass. Screenshot: `figures/atlas-inline-width-review.png`.
+
+## East Australian typical width summary — 2026-10-04
+
+Added a 30 km institutional typical-current-width scalar from NSW-IMOS Node
+Science and Implementation Plan 2015-25, dated 25 September 2014, section 3.3.1
+(printed page 23). Source: https://imos.org.au/wp-content/uploads/2024/07/NSW-IMOS_Node_Plan_2015-25_Final.pdf .
+CSIRO's separate 100 km strong-influence scale is retained in the scope audit,
+not merged into a seasonal width range. Typical 200 m depth extent is contextual;
+fixed layer, occupied dates and edges remain null. No full width bar, annual
+playback or width ranking is inferred. Underlying Mata/Ridgway-Dunn support
+remains pending review. PDF text was inspected; screenshot fetch failed.
+
+Width coverage is now 32 records across 22 names; 71 unassessed, five reviewed
+without compatible numeric width and two derived candidates. Protocol v1.17
+adds institutional scalar rules and refreshed existing derived provenance without
+changing numerical frames. Width validator, 22 width unit tests, 18 dashboard
+unit tests, 17-frame series validator, EAC browser and all-current inline-width
+browser checks pass. Internal roles receipt has three addressed P2 findings;
+independent science, human accessibility and full release gates remain pending.
+
+## Leeuwin monthly climatological fitted widths — 2026-10-04
+
+Added a101 April ~132 km and September ~89 km from Deng et al. (2008),
+TAO 19, 135-149, doi:10.3319/TAO.2008.19.1-2.135(SA). The published-layout PDF
+was acquired, hashed and locally inspected at pages 138, 143 and 144. These are
+monthly means of per-cycle fitted surface geostrophic widths at one crossing
+near 26 S; the 1.89*L*cos(theta) convention and 43.45-degree angle are retained.
+The coefficient is described as approximately half maximum, not exact FWHM.
+July/August period-label discrepancies remain explicit. The transport layer,
+filter window and RMS variability are separate from width depth, width and
+confidence intervals. Other ten months remain unextracted; no annual playback,
+full-current width, paired edge geometry or ranking is admitted.
+
+Coverage: 34 width records across 23 currents; 70 unassessed, five reviewed
+without compatible numeric width, two derived candidates. Protocol v1.18;
+canonical data unchanged. Width validator, 23 width unit tests, 19 dashboard
+unit tests, 17-frame validator, Leeuwin browser and all-current inline-width
+checks pass. Internal roles review is conditional; independent scientific
+admission, human accessibility and complete publication gates remain pending.
+Next source step: calibrate and extract the other ten monthly graph values
+with extraction margins and a recorded method, without interpolating them.
+
+### Leeuwin historical monthly chart (2026-10-04)
+
+The map-first atlas card now steps through twelve graph readings from Deng et al. (2008), Figure 7d, crossing a101. This is a historical calendar-month composite; ±3 km bars are editorial graph-reading allowances, not measurement confidence or whole-current seasonal bounds. April and September prose measurements remain separate from graph readings. The original two-record scope audit is an immutable extraction receipt; the new complete-curve artifact is `research/leeuwin-a101-monthly-plot-extraction.json`.
+
+Regenerate locally with `python analysis/build_leeuwin_monthly_plot.py`, then `python analysis/build_motion_dashboard.py`. Check with `python analysis/test_leeuwin_monthly_plot.py`, `python analysis/test_motion_dashboard.py` and, with `OSW_TEST_BROWSER` set, `python analysis/test_atlas_monthly_width_browser.py`. Rules: `plans/leeuwin-monthly-plot-extraction-protocol-v1.md`; internal review: `signals/roles/check/leeuwin-monthly-plot-roles-check-2026-10-04.md`. Scientific admission and full publication gates remain open.
+
+### Kuroshio regional seasonal widths (2026-10-04)
+
+Liu and Gan (2012) supplies East China Sea winter ~218 km and summer ~207 km means, plus a ~210 km study-period mean, from 1993-2008 weekly surface geostrophic diagnostics. They use sections normal to the diagnosed jet axis with a 0.1 m/s along-stream cutoff. The scalar means remain separate from geographic seasonal boundaries and physical annual ranges; exact weighting and seasonal month conventions remain unresolved. Width inventory now holds 37 records across 24 currents.
+
+Audit: `research/kuroshio-liu-gan-2012-stream-mean-width-scope-audit.json`; rules: width protocol v1.19. Local checks: `python analysis/check_current_width_inventory.py`, `python analysis/test_current_width_inventory.py`, `python analysis/test_motion_dashboard.py`, and with `OSW_TEST_BROWSER` set, `python analysis/test_kuroshio_stream_mean_browser.py`. Role receipt: `signals/roles/check/kuroshio-stream-mean-width-roles-check-2026-10-04.md`. Canonical ledger unchanged.
+
+### Kuroshio four-season width profiles (2026-10-04)
+
+The Kuroshio atlas card now plays four historical East China Sea seasonal width profiles from Liu and Gan (2012), Figure 6a. Of 64 declared samples, 59 are readable and five remain missing. Values are rounded to 5 km with +/-10 km editorial graph-reading allowances; these are not uncertainty or annual physical bounds. Regional scalar source records remain separate. Figure 5's raster axes overlap, so no geographic seasonal routes or map edges were extracted.
+
+Artifact: `research/kuroshio-ecs-seasonal-width-profile-extraction.json`; protocol: `plans/kuroshio-seasonal-width-profile-extraction-protocol-v1.md`. Regenerate with `python analysis/build_kuroshio_seasonal_width_profiles.py` then `python analysis/build_motion_dashboard.py`. Check with `python analysis/test_kuroshio_seasonal_width_profiles.py`, `python analysis/test_motion_dashboard.py` and (with `OSW_TEST_BROWSER`) `python analysis/test_atlas_seasonal_width_profile_browser.py`. Recorded decoding runtime: PyMuPDF 1.28.2, NumPy 2.4.1. Role receipt: `signals/roles/check/kuroshio-seasonal-width-profiles-roles-check-2026-10-04.md`. Source scientific admission remains pending.
+
+
+### Rust query workspace (local first implementation)
+
+Open `almanac/query.html` through the local preview to query the current/eddy
+inventory, state links, scoped widths, published lengths, source claims and other
+ledger collections. One Rust engine runs as a native CLI and browser WebAssembly
+worker. Its query map renders all matching motion objects independently of table
+pagination, using the existing OSW coastline and preserving locator/gateway/route
+and dated evidence classes. Names appear on hover or keyboard focus; selection
+opens linked records and sources with an atlas-card link.
+
+Build and test commands and remaining storage/map work are documented in
+[the Rust query contract](plans/rust-query-store-v1.md). Imported snapshots have
+pinned inputs and explicit load errors. Proposed authoring and computed spatial
+queries are implemented below; canonical admission remains a separate workflow.
+
+
+The Rust workspace also supports computed state geometry queries: line/polygon
+intersection, whole stored polygon covered by state, locator and shared-gateway
+membership. These use the same coarse land-masked OSW display-state shapes as the
+existing Python joins. Recorded evidence links remain a separate query mode. Try
+**Geometry meets NADR**; matching geometry and the selected state are highlighted.
+See the contract for seam handling, source exclusions and topology scope.
+
+
+Local authoring now supports **proposed working copies** in the query inspector.
+Rust validates transactions and replays an append-only revision journal; IndexedDB
+persists it on the device. The native CLI can read, extend and save new journal
+files in the same format. Working proposals are queryable separately, retain source
+identity, and remain pending review. Cross-tab conflict checks, explicit export/
+import and archive history are implemented. Source admission and
+shared hosting remain future work; see the contract for commands and limits.
+
+Saved proposals can now move between source snapshots through a **three-way rebase**.
+The Rust engine compares the retained old source, proposed copy and new source;
+nonconflicting changes merge, while conflicting fields require explicit choices.
+Arrays remain whole values. Removed targets can be omitted while their proposals
+remain recoverable in the old journal. Browser and native CLI share v2 journals
+with parent hashes and decisions. The browser saves the baseline and journal in
+one storage transaction; rebasing preserves imported records and pending status.
+
+**Download map SVG** exports a portable global map directly from Rust/WASM. Native
+`--svg QUERY.json --output NEW-MAP.svg` produces the same bytes. Both include all
+matching map marks across table pages, the OSW coastline, state highlights and
+embedded query/source-hash metadata. See the contract for scope and commands.
+
+The query map also supports inclusive **geometry observation windows** and an
+exact recorded-day selector. Undated context is optional and dimmed. Combined
+time/state queries require the same feature to satisfy both; source records remain
+complete in the inspector. Dates persist in shared queries and SVG receipts.
+The imported map evidence now spans 19 recorded days, including 17 checked Gulf
+Stream frozen-field diagnostic frames. The **Gulf Stream recorded diagnostics**
+preset zooms into the selected frame; **Play recorded days** advances through
+observations with pause controls. Complete frame receipts and stopped traces are
+queryable under **Dated diagnostic geometry frames**. These daily samples are not
+seasonal climatology, whole-current axes or current widths.

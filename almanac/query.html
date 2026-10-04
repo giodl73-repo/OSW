@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Query the ocean atlas — OSW</title>
+  <link rel="stylesheet" href="query.css?v=5"><script src="query-workspace.js?v=1" defer></script><script src="query.js?v=5" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to query</a>
+<header><a href="index.html" class="brand">OSW</a><nav aria-label="Ocean atlas"><a href="reference-routes.html?atlas-layout=map#route-atlas">Map</a><a href="dashboard.html">Updates</a><a href="seasons.html">Seasons</a></nav></header>
+<main id="main">
+  <p class="eyebrow">Ocean atlas · record workspace</p><h1>Ask the atlas</h1>
+  <p class="lead">Find currents and eddies by state, measurements and available evidence. Inspect the records, then open their maps.</p>
+  <p id="query-inventory" class="inventory">Loading the record store…</p>
+  <details id="workspace-controls"><summary>Local working records</summary><p>Save full proposed copies with revision history. Working records are pending changes to the imported snapshot. Browser storage stays on this device; export a journal to back it up or use it with the native Rust tool.</p><p id="workspace-status" role="status">Loading workspace…</p><button id="workspace-query" type="button" disabled>Query working records</button> <button id="workspace-refresh" type="button" disabled>Reload working records</button> <button id="workspace-export" type="button" disabled>Export revision journal</button><label>Import revision journal<input id="workspace-import" type="file" accept="application/json,.json" disabled></label><details id="workspace-archive-controls"><summary>Journals for previous snapshots</summary><p>Source updates create a new workspace. Preview a three-way rebase to carry proposed changes into the current snapshot. The original journal stays available.</p><button id="workspace-list" type="button" disabled>List saved snapshot journals</button><label>Saved snapshot<select id="workspace-snapshots"></select></label><button id="workspace-export-snapshot" type="button" disabled>Export selected snapshot journal</button> <button id="workspace-export-source" type="button" disabled>Export matching source snapshot</button><label>Attach old source snapshot if unavailable locally<input id="workspace-rebase-source" type="file" accept="application/json,.json"></label><button id="workspace-rebase-preview" type="button" disabled>Preview rebase into current snapshot</button><section id="workspace-rebase-plan" hidden aria-label="Rebase preview and conflict decisions"></section></details></details>
+  <section aria-labelledby="query-title">
+    <h2 id="query-title">Build a query</h2>
+    <div class="presets" aria-label="Example queries">
+      <button type="button" data-preset="width" disabled>Currents with widths</button>
+      <button type="button" data-preset="lengths" disabled>Published lengths</button>
+      <button type="button" data-preset="missing-routes" disabled>Routes still missing</button>
+      <button type="button" data-preset="eddy-geometry" disabled>Eddies with geometry</button>
+      <button type="button" data-preset="kuro" disabled>Currents linked to KURO</button>
+      <button type="button" data-preset="spatial-nadr" disabled>Geometry meets NADR</button>
+      <button type="button" data-preset="gulf-dated" disabled>Gulf Stream recorded diagnostics</button>
+    </div>
+    <form id="query-form">
+      <fieldset id="query-controls" disabled><legend class="sr">Query controls</legend>
+        <label>Records<select id="query-collection"></select></label>
+        <label>Text<input id="query-text" type="search" placeholder="Name, scope, source or ID" maxlength="1000"></label>
+        <label>Type<select id="query-type"><option value="">All types</option><option value="named_current">Currents</option><option value="named_eddy">Named eddies</option><option value="operational_eddy_detection">Dated detections</option></select></label>
+        <label>OSW state<select id="query-state"><option value="">All states</option></select></label>
+        <label>State relation<select id="query-state-mode"><option value="recorded">Recorded evidence links</option><option value="intersects">Line / polygon intersects</option><option value="within">Polygon covered by state</option><option value="locator">Locator in state</option><option value="gateway">Shared gateway in state</option></select></label>
+        <label>Has evidence<select id="query-evidence"><option value="">Any / unresolved</option><option value="scoped_width">Scoped width</option><option value="reference_route">Reference route</option><option value="reported_length">Published ranked length</option><option value="geometry">Geometry beyond locator</option><option value="time_samples">Time samples / phases</option><option value="source_connectivity">Source-described links</option></select></label>
+        <label>Order by<select id="query-sort"></select></label>
+        <label>Geometry observed from<input id="query-time-from" type="date"></label>
+        <label>Through<input id="query-time-to" type="date"></label>
+        <label class="time-context"><input id="query-time-context" type="checkbox">Include undated map context</label>
+        <label>Direction<select id="query-direction"><option value="asc">Ascending</option><option value="desc">Descending</option></select></label>
+        <button id="query-run" type="submit">Run query</button>
+      </fieldset>
+    </form>
+    <p class="note">Recorded links and computed geometry are separate queries. Spatial predicates use approximate, land-masked OSW display polygons; intersection includes boundary contact. Locators and gateways require their own modes. These are not physical current passage or full-current containment. Width records retain their region, layer and boundary definition; ordering them does not make a uniform width ranking.</p>
+    <details id="query-advanced"><summary>Structured query</summary><p>Edit fields, filters, sort and pagination directly. This query runs in the same engine as the controls.</p><label class="sr" for="query-json">JSON query</label><textarea id="query-json" rows="9" spellcheck="false"></textarea><button id="query-run-json" type="button" disabled>Run structured query</button><a href="../plans/rust-query-store-v1.md">Query and storage contract</a></details>
+  </section>
+  <p id="query-status" role="status" aria-live="polite">Loading Rust WebAssembly engine…</p>
+  <section id="query-map-section" aria-labelledby="map-title" hidden>
+    <div class="result-head"><h2 id="map-title">Map the matches</h2><div><button type="button" id="query-map-in" aria-label="Zoom map in">+</button> <button type="button" id="query-map-out" aria-label="Zoom map out">−</button> <button type="button" id="query-map-world">World</button></div></div>
+    <p id="query-map-count" role="status"></p>
+    <button type="button" id="query-map-export">Download map SVG</button>
+    <button type="button" id="query-map-fit">Fit matches</button>
+    <label>Step through recorded geometry days<select id="query-map-day"><option value="">Choose a recorded day</option></select></label>
+    <button type="button" id="query-map-play" aria-pressed="false">Play recorded days</button>
+    <p class="note">Playback advances by observation, one frame per second. Unequal date gaps are not elapsed-time animation.</p>
+    <p id="query-map-time" class="note">Dates select recorded observations; gaps are not interpolated.</p>
+    <svg id="query-map" viewBox="0 0 360 180" role="group" aria-label="Query results on the OSW map"><image id="query-map-ground" href="../figures/ocean-motion-dashboard-ground.svg" x="0" y="0" width="360" height="180" opacity=".6"/><g id="query-map-state"></g><g id="query-map-features"></g></svg>
+    <p id="query-map-hover" aria-live="polite">Hover or focus a mark for its name; select it to inspect its record.</p>
+    <p class="note">Solid teal lines: editorial reference routes. Dashed orange lines and purple polygons: dated evidence. Hollow circles: locators. Dashed amber circles: shared gateways. Names appear on hover or focus. Overlapping marks may represent several records; all remain in the results table. Coarse OSW coastline, display only.</p>
+  </section>
+  <section aria-labelledby="result-title"><div class="result-head"><h2 id="result-title">Results</h2><div><a id="query-share" hidden>Link to this query</a> <button id="query-export" type="button" disabled>Download this result page</button></div></div>
+    <div class="table-wrap"><table><caption id="query-caption">Matching records</caption><thead><tr><th scope="col">Record</th><th scope="col">Value / type</th><th scope="col">Scope / evidence</th></tr></thead><tbody id="query-rows"></tbody></table></div>
+    <div class="pagination"><button id="query-previous" type="button" disabled>Previous</button><span id="query-page"></span><button id="query-next" type="button" disabled>Next</button></div>
+  </section>
+  <section id="query-detail" aria-label="Selected record and linked evidence" hidden tabindex="-1"></section>
+  <details class="engine-details"><summary>Snapshot and engine</summary><p id="query-engine-info"></p><p>Rust owns the imported store, query indexes and revisioned proposed working records. Source admission and snapshot rebasing remain separate review workflows.</p><pre id="query-manifest"></pre></details>
+</main></body></html>

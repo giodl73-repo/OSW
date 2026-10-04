@@ -1,0 +1,81 @@
+{
+  "schema": "osw.current-naming-scope-audit.v1",
+  "date": "2026-10-03",
+  "status": "editorial_scope_audit_not_scientific_approval",
+  "current_id": "aleutian",
+  "name": "Aleutian Current",
+  "alias": "Subarctic Current",
+  "primary_definition": {
+    "url": "https://glossary.ametsoc.org/wiki/aleutian-current/",
+    "access": "full_page_read",
+    "locator": "Definition paragraphs",
+    "interpretation": "Eastward southern limb of the subpolar gyre; Oyashio outflow feeds it and eastern flow divides toward Alaska and California. No source-defined endpoint coordinates."
+  },
+  "distinct_proposed_current": "alaskan-stream",
+  "proposal_source": "research/ocean-current-inventory-expansion-candidates.json",
+  "length_decision": "unknown_whole_current_endpoints_not_justified",
+  "whole_current_length_km": null,
+  "whole_current_width_km": null,
+  "annual_length_range_km": null,
+  "annual_width_range_km": null,
+  "seasonal_route_playback_supported": false,
+  "stream_study_context": {
+    "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2016JC012302",
+    "citation": "Logan and Johnson (2017), doi:10.1002/2016JC012302",
+    "access": "full_page_read",
+    "locator": "Introduction; sections 2 and 3; figure 1 caption",
+    "limits": "Study coverage and offshore section windows do not define named-flow endpoints or full widths. Pressure-reference velocity estimates remain separate from measured full-depth velocity."
+  },
+  "remaining_gates": [
+    "Diagnose Aleutian source-interface and eastern split with defensible time/layer support.",
+    "Preserve North Pacific Current exchange and frontage without treating mixing as a unique centerline.",
+    "Review Alaskan Stream identity separately; do not reuse any Aleutian geometry or length.",
+    "Separate cold Subarctic flow from warm Isoguchi jets; SST search bounds are not current gates or width edges."
+  ],
+  "distinct_proposed_currents": [
+    "alaskan-stream",
+    "aleutian-north-slope"
+  ],
+  "north_slope_review": {
+    "url": "https://www.pmel.noaa.gov/pubs/outstand/stab1878/stab1878.shtml",
+    "access": "Relevant HTML circulation subsections and captions read; no figure digitization or underlying field acquisition.",
+    "locator": "Mean Upper Ocean Circulation, Alaskan Stream / Aleutian North Slope Current / Bering Slope Current.",
+    "proposed_identity": "aleutian-north-slope",
+    "scope": "Bering-side pass-fed regional flow; not an alias of Aleutian/Subarctic Current.",
+    "regional_width_context_km": 20,
+    "numeric_context_role": "author_described_ANSC_regional_width_not_Aleutian_width",
+    "whole_current_dimension_eligible": false,
+    "source_conflict": "Bering Slope Current paragraph prints 167 N; nearby ANSC context uses 167 W. Retained as source wording, not an endpoint coordinate."
+  },
+  "western_front_review": {
+    "url": "https://eprints.lib.hokudai.ac.jp/repo/huscap/all/70589/naturecommunications9_1190.pdf",
+    "citation": "Mitsudera et al. (2018), doi:10.1038/s41467-018-03526-z.",
+    "access": "Repository PDF introduction, first Results subsection, Figure 1 caption and Methods Data subsection read; source fields and figures not digitized.",
+    "locator": "Printed pp. 2–3 and 9 (PDF indices 2–3 and 9).",
+    "interpretation": "Warm northeastward Isoguchi J1/J2 meet cold Subarctic flow. Maximum SST-gradient front is not a unique velocity axis or paired current-width boundary.",
+    "front_search_domain_lon_lat": [
+      145,
+      170,
+      35,
+      47
+    ],
+    "domain_role": "SST_front_search_window_not_current_extent",
+    "jcope2_years": [
+      1993,
+      2013
+    ],
+    "jcope2_grid_degrees": 0.08333333333333333,
+    "observed_route_coordinates": null,
+    "paired_width_edges": null
+  },
+  "access_failures": [
+    {
+      "url": "https://floats.pmel.noaa.gov/sites/default/files/atoms/files/Alaskan_Stream_v2.pdf",
+      "result": "HTTP 502 this review; no new full-PDF read claimed."
+    },
+    {
+      "url": "https://journals.ametsoc.org/view/journals/clim/38/1/JCLI-D-23-0642.1.xml",
+      "result": "HTTP 403; indexed snippet not promoted to full-text evidence."
+    }
+  ]
+}
