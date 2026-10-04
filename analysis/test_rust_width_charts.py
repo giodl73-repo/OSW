@@ -10,9 +10,9 @@ ROOT=Path(__file__).resolve().parents[1]
 def main():
     corpus=json.loads((ROOT/'almanac/query-data.json').read_bytes())['collections']['width_samples'];index={r['id']:r for r in corpus}
     query={'collection':'width_samples','limit':1,'offset':20};full=native(query)
-    assert len(full['rows'])==1 and full['chart_scene']['matching_samples']==88
-    assert len(full['chart_scene']['panels'])==6
-    points=[p for panel in full['chart_scene']['panels'] for p in panel['points']];assert len(points)==88
+    assert len(full['rows'])==1 and full['chart_scene']['matching_samples']==105
+    assert len(full['chart_scene']['panels'])==7
+    points=[p for panel in full['chart_scene']['panels'] for p in panel['points']];assert len(points)==105
     assert sum(p['primitive']['kind']=='missing' for p in points)==5
     for p in points:
         r=index[p['sample_id']];assert p['value_km']==r['value_km'] and p['plot_reading_interval_km']==r['plot_reading_interval_km']
@@ -47,6 +47,6 @@ def main():
         browser_query(page,{'collection':'objects','limit':1});assert page.locator('#query-chart-section').is_hidden()
         browser_query(page,{'collection':'width_samples','filters':[{'field':'not_a_field','op':'eq','value':1}]});assert page.locator('#query-chart-section').is_hidden()
         assert not errors;browser.close()
-    print('PASS: 88 complete chart marks across six source panels; stable filtered axes; five separate missing marks; allowance/source fidelity; native/WASM and keyboard/mobile/error behavior')
+    print('PASS: 105 complete chart marks across seven source panels; stable filtered axes; five separate missing marks; allowance/source fidelity; native/WASM and keyboard/mobile/error behavior')
 
 if __name__=='__main__':main()

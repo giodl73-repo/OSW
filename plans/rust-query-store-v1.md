@@ -498,6 +498,74 @@ table provides the original values and text alternative. Narrow screens scroll
 the chart within its frame while the surrounding page reflows.
 
 Verification: `python analysis/test_rust_width_charts.py` with `OSW_TEST_BROWSER`
-set to Chrome. Checks cover all 88 marks, six panels, five missing readings,
+set to Chrome. Checks cover all 105 marks, seven panels, five missing readings,
 stable filtered axes, source-value fidelity, native/WASM equality, keyboard
 selection, mobile scrolling, empty results and stale-chart clearing on errors.
+
+### Remaining current-length decisions
+
+The `route_decisions` collection imports all 89 remaining-current decisions
+from the audited route catalog. Thirty have no candidate route; 59 have at
+least one, accounting for 62 candidates. Eight unresolved basin-family names
+remain families. Each record keeps its original decision, source-catalog hash,
+construction strategy, candidate IDs, next action and source scope audits.
+Object cards join their own decision; published ranked lengths stay separate.
+
+Rust validates projection fields, owner joins, complete remaining-current
+coverage, candidate counts and IDs, catalog receipts and audit ownership.
+Planning records cannot declare ranking eligibility. Existing routes retain
+their original admission gates. These are research priorities rather than
+approved physical classifications or dimensions.
+
+**Remaining length decisions** queries the full worklist. **Unbuilt remaining
+routes** selects the 30 zero-candidate decisions. Strategy filters distinguish
+seasonal routes, naming/extent conflicts, subsurface paths, families and systems.
+Visible current, strategy and construction-status controls preserve selections
+when sorting or resubmitting. Additional and duplicate structured constraints
+remain active and are disclosed beside the form.
+Selection opens the next evidence needed and inspected-access notes; candidate
+links and atlas cards retain direct navigation.
+
+Verification: `python analysis/test_rust_route_decisions.py` with
+`OSW_TEST_BROWSER` set to Chrome. Checks cover complete source membership,
+89/30/8 query counts, 62 route references, original audit payloads, seven invalid
+bundle cases, native/WASM equality and keyboard/current-card/mobile navigation.
+
+### Recorded-day width samples and sensitivity
+
+The sample import now includes 17 existing Gulf Stream **system** section-span
+diagnostics, bringing the collection to 105 samples across four method families.
+The system identity is retained; these values are not inherited by the separate
+Gulf Stream Current or by its mapped diagnostic streamline. The imported
+diagnostic is reconstructed against every pinned NOAA subset, source-processing
+version, velocity sampler and section-width protocol before projection.
+
+The metric remains a fixed-70-W meridional half-peak eastward-component span.
+Each record retains its exact observation day, date-derived year/month, source
+algorithm, full profile, nominal boundary brackets and all 40/50/60% scenarios.
+Rounded section-span values supply `value_km`. A separate
+`diagnostic_sensitivity_interval_km` retains finite threshold-choice sensitivity;
+`sampling_bracket_interval_km` retains geometric grid-bracket spans. Neither is
+measurement uncertainty, a confidence interval, a flow-normal width or an annual
+range. Resolution flags remain visible. The inspector rounds grid brackets
+outward to 10 km for display while preserving original values in the JSON record.
+
+The dated chart uses elapsed Gregorian days, including gaps between December
+2025 and September 2026. Axis ticks describe calendar coordinates, not additional
+observations. Closely dated points may overlap; each retains its own keyboard
+target and table row. No connection or interpolation is drawn. Original source
+axes remain fixed under filters. Dashed whiskers show threshold sensitivity;
+solid whiskers on other methods continue to show plot-reading allowances.
+Source processing changes remain explicit and are not attributed solely to
+physical changes. Source year/day controls retain selections when sorting.
+
+Verification: `python analysis/test_rust_dated_width_samples.py`, projection
+tests, width-chart and width-query browser regressions. Tests cover all 17
+original samples, Gregorian elapsed spacing and tick conversion, stable filtered
+axes, three processing versions, eight source mutation rejections, year/day form
+retention, keyboard selection and 320 px reflow. Bundle projection payloads match
+the originals exactly. Native JSON readback allows only last-bit f64 differences
+in derived velocities (absolute 1e-15 m/s) and boundary latitudes (1e-14 degree);
+dates, rounded widths, thresholds, brackets and flags remain exact. Original
+diagnostic files and source hashes are retained. Canonical release files and
+scientific admission remain unchanged.
