@@ -1,10 +1,22 @@
 import copy
 import unittest
 from acquire_pacific_necc_oscar_section import CACHE,build as inventory,parse
-from build_pacific_necc_oscar_section_diagnostic import build,measure,monthly_profiles
+from build_pacific_necc_oscar_section_diagnostic import build,measure,monthly_profiles,diagnostic_matches
 
 
 class NeccSectionTests(unittest.TestCase):
+    def test_roundoff_tolerance_does_not_allow_source_or_scope_changes(self):
+        original=build();changed=copy.deepcopy(original)
+        changed['months'][0]['zero_crossing']['span_km']+=1e-11
+        self.assertTrue(diagnostic_matches(original,changed))
+        changed['months'][0]['zero_crossing']['span_km']+=1e-6
+        self.assertFalse(diagnostic_matches(original,changed))
+        for key,value in [('protocol_sha256','changed'),('whole_current_representative',True),('peak_eligibility_m_s',.10000000001)]:
+            changed=copy.deepcopy(original);changed[key]=value
+            self.assertFalse(diagnostic_matches(original,changed))
+        changed=copy.deepcopy(original);changed['months'][0]['profile'][0]['latitude']+=1e-11
+        self.assertFalse(diagnostic_matches(original,changed))
+
     def test_pinned_archive_and_monthly_support(self):
         source=inventory();self.assertEqual(source['counts'],{'times':72,'latitudes_per_time':37,'values':2664,'missing_values':0})
         result=build();self.assertEqual(len(result['months']),12)

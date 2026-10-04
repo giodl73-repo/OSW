@@ -9,7 +9,7 @@ from pathlib import Path
 from urllib.parse import quote
 from check_persian_gulf_scope import validate as validate_persian_gulf_scope
 from check_red_sea_scope import validate as validate_red_sea_scope
-from build_pacific_necc_oscar_section_diagnostic import build as build_necc_diagnostic
+from build_pacific_necc_oscar_section_diagnostic import build as build_necc_diagnostic, diagnostic_matches
 from build_leeuwin_monthly_plot import build as build_leeuwin_plot
 from check_current_width_inventory import validate as validate_width_inventory
 from build_kuroshio_seasonal_width_profiles import build as build_kuroshio_profiles
@@ -99,7 +99,7 @@ def build():
     derived_width = read('research/gulf-stream-section-width-series.json')
     necc_path='research/pacific-necc-oscar-2013-section-diagnostic.json'
     necc=read(necc_path)
-    if necc!=build_necc_diagnostic():raise ValueError('NECC monthly diagnostic differs from pinned source calculation')
+    if not diagnostic_matches(necc,build_necc_diagnostic()):raise ValueError('NECC monthly diagnostic differs from pinned source calculation')
     read(necc['source_inventory_file'])
     kuroshio_profile_path='research/kuroshio-ecs-seasonal-width-profile-extraction.json'
     kuroshio_profiles=read(kuroshio_profile_path)

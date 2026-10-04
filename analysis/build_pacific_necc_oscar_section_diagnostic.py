@@ -17,6 +17,28 @@ GEOD=Geod(ellps='WGS84')
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def diagnostic_matches(saved, calculated, path=()):
+    """Allow only arithmetic roundoff in derived values (absolute 1e-10).
+
+    Distance tolerance is in km (< one micrometre); velocity tolerance is
+    in m/s. Source hashes, grid coordinates, thresholds and scope stay exact.
+    """
+    if type(saved) is not type(calculated):return False
+    if isinstance(saved, dict):
+        return saved.keys()==calculated.keys() and all(
+            diagnostic_matches(saved[key],calculated[key],path+(key,)) for key in saved)
+    if isinstance(saved, list):
+        return len(saved)==len(calculated) and all(
+            diagnostic_matches(a,b,path+(index,)) for index,(a,b) in enumerate(zip(saved,calculated)))
+    derived=(path and path[-1] in ('span_km','peak_eastward_m_s','eastward_m_s')) or (
+        len(path)>=3 and path[-3]=='boundaries' and path[-1]=='latitude') or (
+        len(path)==3 and path[:2]==('summary','local_monthly_mean_span_km'))
+    if isinstance(saved,float) and derived:
+        return math.isfinite(saved) and math.isfinite(calculated) and math.isclose(
+            saved,calculated,rel_tol=0,abs_tol=1e-10)
+    return saved==calculated
+
+
 def measure(profile,threshold=0):
     if type(threshold) not in (int,float) or not math.isfinite(threshold) or threshold<0:
         raise ValueError('Invalid eastward threshold')
