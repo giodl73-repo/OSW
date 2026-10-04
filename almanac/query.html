@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Query the ocean atlas — OSW</title>
-  <link rel="stylesheet" href="query.css?v=8"><script src="query-workspace.js?v=1" defer></script><script src="query-charts.js?v=1" defer></script><script src="query.js?v=8" defer></script>
+  <link rel="stylesheet" href="query.css?v=9"><script src="query-workspace.js?v=1" defer></script><script src="query-charts.js?v=2" defer></script><script src="query.js?v=10" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to query</a>
@@ -18,6 +18,8 @@
     <div class="presets" aria-label="Example queries">
       <button type="button" data-preset="width" disabled>Currents with widths</button>
       <button type="button" data-preset="lengths" disabled>Published lengths</button>
+      <button type="button" data-preset="length-decisions" disabled>Remaining length decisions</button>
+      <button type="button" data-preset="unbuilt-decisions" disabled>Unbuilt remaining routes</button>
       <button type="button" data-preset="missing-routes" disabled>Routes still missing</button>
       <button type="button" data-preset="eddy-geometry" disabled>Eddies with geometry</button>
       <button type="button" data-preset="kuro" disabled>Currents linked to KURO</button>
@@ -27,6 +29,7 @@
       <button type="button" data-preset="leeuwin-samples" disabled>Leeuwin monthly widths</button>
       <button type="button" data-preset="kuroshio-samples" disabled>Kuroshio width profiles</button>
       <button type="button" data-preset="necc-samples" disabled>NECC monthly diagnostics</button>
+      <button type="button" data-preset="gulf-width-samples" disabled>Gulf Stream dated section spans</button>
     </div>
     <form id="query-form">
       <fieldset id="query-controls" disabled><legend class="sr">Query controls</legend>
@@ -43,21 +46,27 @@
         <label>Seasonal month<select id="query-season-month"><option value="">All / no month selection</option></select></label>
         <label>Source route phase<select id="query-season-phase"><option value="">All / no phase selection</option></select></label>
         <label>Sample current<select id="query-sample-current"><option value="">All covered currents</option></select></label>
+        <label>Remaining current<select id="query-decision-current"><option value="">All remaining currents</option></select></label>
+        <label>Route strategy<select id="query-decision-strategy"><option value="">All strategies</option></select></label>
+        <label>Construction status<select id="query-decision-status"><option value="">All statuses</option><option value="reference_path_not_constructed">No route candidate</option><option value="editorial_candidate_present_scientific_review_pending">Candidate present; review pending</option></select></label>
         <label>Sample method<select id="query-sample-family"><option value="">All methods</option></select></label>
         <label>Sample source month<select id="query-sample-month"><option value="">All / unresolved months</option></select></label>
+        <label>Sample source year<select id="query-sample-year"><option value="">All / unresolved years</option></select></label>
+        <label>Sample observation day<select id="query-sample-day"><option value="">All / undated samples</option></select></label>
         <label>Sample value<select id="query-sample-availability"><option value="">Any / unresolved</option><option value="true">Available</option><option value="false">Unresolved</option></select></label>
         <label>Direction<select id="query-direction"><option value="asc">Ascending</option><option value="desc">Descending</option></select></label>
         <button id="query-run" type="submit">Run query</button>
       </fieldset>
     </form>
     <p id="query-sample-extra" class="note" hidden>Additional sample constraints remain active in the structured query.</p>
+    <p id="query-decision-extra" class="note" hidden>Additional route decision constraints remain active in the structured query.</p>
     <p class="note">Seasonal selections use source-defined regional route phases. Month coverage is incomplete; unresolved month ranges appear only when selected by phase name. These drawings do not provide observed monthly fields, annual extrema or uniform current widths. Exact observation dates use a separate selection.</p>
     <p class="note">Width samples retain different source metrics. Ordering their values does not establish a global width ranking. Plot-reading intervals are extraction allowances, not measurement confidence intervals.</p>
     <p class="note">Recorded links and computed geometry are separate queries. Spatial predicates use approximate, land-masked OSW display polygons; intersection includes boundary contact. Locators and gateways require their own modes. These are not physical current passage or full-current containment. Width records retain their region, layer and boundary definition; ordering them does not make a uniform width ranking.</p>
     <details id="query-advanced"><summary>Structured query</summary><p>Edit fields, filters, sort and pagination directly. This query runs in the same engine as the controls.</p><label class="sr" for="query-json">JSON query</label><textarea id="query-json" rows="9" spellcheck="false"></textarea><button id="query-run-json" type="button" disabled>Run structured query</button><a href="../plans/rust-query-store-v1.md">Query and storage contract</a></details>
   </section>
   <p id="query-status" role="status" aria-live="polite">Loading Rust WebAssembly engine…</p>
-  <section id="query-chart-section" aria-labelledby="chart-title" hidden><h2 id="chart-title">Width profiles</h2><p id="query-chart-scope" class="note"></p><p class="note">Circles: scoped numeric samples. Whiskers: plot-reading allowances. Crosses in the separate Missing strip: unresolved readings. Points are not connected or interpolated. The table and sample cards provide the original values and sources.</p><div id="query-chart-panels"></div></section>
+  <section id="query-chart-section" aria-labelledby="chart-title" hidden><h2 id="chart-title">Width profiles</h2><p id="query-chart-scope" class="note"></p><p class="note">Circles: scoped numeric samples. Solid whiskers: plot-reading allowances. Dashed whiskers: finite threshold-choice sensitivity. Neither is a confidence interval. Crosses in the separate Missing strip: unresolved readings. Points are not connected or interpolated. The table and sample cards provide the original values and sources.</p><div id="query-chart-panels"></div></section>
   <section id="query-map-section" aria-labelledby="map-title" hidden>
     <div class="result-head"><h2 id="map-title">Map the matches</h2><div><button type="button" id="query-map-in" aria-label="Zoom map in">+</button> <button type="button" id="query-map-out" aria-label="Zoom map out">−</button> <button type="button" id="query-map-world">World</button></div></div>
     <p id="query-map-count" role="status"></p>

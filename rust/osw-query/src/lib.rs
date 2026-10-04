@@ -3,6 +3,7 @@ use serde_json::{Value, json};
 use std::collections::{BTreeMap, BTreeSet};
 mod charts;
 mod map;
+mod planning;
 mod rebase;
 mod samples;
 mod seasonal;
@@ -157,6 +158,7 @@ impl Store {
                 ("frame_ids", "geometry_frames"),
                 ("seasonal_route_ids", "seasonal_routes"),
                 ("width_sample_ids", "width_samples"),
+                ("route_decision_ids", "route_decisions"),
             ] {
                 if let Some(list) = object.get(key) {
                     let list = list.as_array().ok_or_else(|| format!("Invalid {key}"))?;
@@ -172,7 +174,8 @@ impl Store {
                         }
                         if (collection == "geometry_frames"
                             || collection == "seasonal_routes"
-                            || collection == "width_samples")
+                            || collection == "width_samples"
+                            || collection == "route_decisions")
                             && bundle.collections[collection][ids[collection][id]]["entity_id"]
                                 != object["id"]
                         {
@@ -207,6 +210,7 @@ impl Store {
         }
         seasonal::validate_features(&bundle.collections)?;
         samples::validate(&bundle.collections)?;
+        planning::validate(&bundle.collections, &bundle.manifest)?;
         let spatial = spatial::Index::build(&bundle.collections)?;
         fields.insert(
             "working_records".into(),
@@ -249,6 +253,10 @@ impl Store {
             "object_type_counts":object_type_counts,
             "geometry_observation_dates":geometry_dates,
             "width_sample_currents":self.bundle.collections["objects"].iter().filter(|r|r["width_sample_ids"].as_array().is_some_and(|ids|!ids.is_empty())).map(|r|json!({"current_id":r["id"].as_str().unwrap().trim_start_matches("current:"),"label":r["label"]})).collect::<Vec<_>>(),
+            "width_sample_years":self.bundle.collections.get("width_samples").map(|rs|rs.iter().filter_map(|r|r["year"].as_u64()).collect::<BTreeSet<_>>()).unwrap_or_default(),
+            "width_sample_days":self.bundle.collections.get("width_samples").map(|rs|rs.iter().filter_map(|r|r["observation_date"].as_str().map(str::to_owned)).collect::<BTreeSet<_>>()).unwrap_or_default(),
+            "route_decision_currents":self.bundle.collections.get("route_decisions").map(|rs|rs.iter().map(|r|json!({"entity_id":r["entity_id"],"label":r["label"]})).collect::<Vec<_>>()).unwrap_or_default(),
+            "route_decision_strategies":self.bundle.collections.get("route_decisions").map(|rs|rs.iter().map(|r|(r["strategy_id"].as_str().unwrap_or("").to_owned(),r["strategy_label"].clone())).collect::<BTreeMap<_,_>>()).unwrap_or_default(),
             "seasonal_phases":self.bundle.collections.get("seasonal_routes").map(|rs| rs.iter().map(|r| json!({"id":r["id"],"label":r["label"],"calendar_months":r["calendar_months"]})).collect::<Vec<_>>()).unwrap_or_default(),
             "collections":self.bundle.collections.iter().map(|(name,records)| json!({"name":name,"count":records.len(),"fields":self.fields[name]})).collect::<Vec<_>>()})
     }

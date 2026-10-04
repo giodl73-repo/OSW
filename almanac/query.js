@@ -24,7 +24,9 @@
   names.geometry_frames='Dated diagnostic geometry frames';
   names.seasonal_routes='Source-defined seasonal routes';
   names.width_samples='Scoped width samples';
+  names.route_decisions='Remaining current-length decisions';
   const widthFamilies={leeuwin_monthly_fitted_plot:'Monthly fitted-width plot readings at Leeuwin track a101',kuroshio_seasonal_profile_plot:'Seasonal axis-normal threshold-profile plot readings',necc_monthly_connected_component:'Monthly-mean positive-zonal connected-component diagnostics'};
+  widthFamilies.gulf_stream_dated_half_peak_section='Recorded-day half-peak eastward-component section spans at 70 W';
   const order=Object.keys(names);
   const ns='http://www.w3.org/2000/svg';let mapView=[0,0,360,180],mapDrag=null,mapMoved=false;
   function mapSet(view){const w=Math.min(360,Math.max(4,view[2]));mapView=[Math.max(0,Math.min(360-w,view[0])),Math.max(0,Math.min(180-w/2,view[1])),w,w/2];$('query-map').setAttribute('viewBox',mapView.join(' '));$('query-map-ground').setAttribute('href',w<100?'../figures/ocean-motion-closeup-ground.svg':'../figures/ocean-motion-dashboard-ground.svg');}
@@ -74,7 +76,9 @@
   const fieldNames={label:'Name',name:'Name',published_length_km:'Published ranked length (km)',approximate_width_km:'Scoped width value (km)',approximate_reference_path_km:'Reference route estimate (km)','capabilities.scoped_width':'Width record count','capabilities.reference_route':'Route record count','capabilities.time_samples':'Time record count'};
   sortFields.geometry_frames=['date','label','source_algorithm'];
   sortFields.seasonal_routes=['label','phase_label','flow_direction'];
-  sortFields.width_samples=['label','current_id','sample_family','month','year','longitude_degrees_east','value_km'];
+  sortFields.width_samples=['label','current_id','sample_family','month','year','observation_date','source_algorithm','longitude_degrees_east','value_km'];
+  sortFields.route_decisions=['label','strategy_label','construction_status','candidate_count'];
+  Object.assign(fieldNames,{strategy_label:'Construction strategy',construction_status:'Route construction status',candidate_count:'Editorial route count'});
   Object.assign(fieldNames,{value_km:'Scoped sample value (km)',month:'Source month',year:'Source year',sample_family:'Sample family',longitude_degrees_east:'Section longitude'});
   function rpc(action,value){const id=++sequence;return new Promise((resolve,reject)=>{pending.set(id,{resolve,reject});worker.postMessage({id,action,value});});}
   worker.onmessage=event=>{const item=pending.get(event.data.id);if(item){pending.delete(event.data.id);item.resolve(event.data.result);}};
@@ -86,8 +90,9 @@
   function rejectResult(message){failure(message);renderMap(null);window.oswCharts.render(null,inspect);$('query-detail').hidden=true;detailSequence++;$('query-share').hidden=true;$('query-export').disabled=true;$('query-previous').disabled=true;$('query-next').disabled=true;lastQuery=null;lastResult=null;window.oswLastQueryResult=null;$('query-rows').replaceChildren();$('query-page').textContent='';}
   function label(row){return row.label||row.name||row.title||row.entity_label||row.id;}
   function value(row){
+    if(row.source_decision)return row.candidate_count+' editorial route'+(row.candidate_count===1?'':'s')+' · '+row.strategy_label;
     if(row.status==='proposed'&&row.proposed_data)return 'proposed working record';
-    if(row.sample_family)return (row.value_km===null?'Unresolved':`≈ ${row.value_km.toLocaleString('en',{maximumFractionDigits:1})} km`)+(row.plot_reading_interval_km?` · plot reading ${row.plot_reading_interval_km.join('–')} km`:' · measurement uncertainty unresolved');
+    if(row.sample_family)return (row.value_km===null?'Unresolved':`≈ ${row.value_km.toLocaleString('en',{maximumFractionDigits:1})} km`)+(row.plot_reading_interval_km?` · plot reading ${row.plot_reading_interval_km.join('–')} km`:row.diagnostic_sensitivity_interval_km?` · threshold sensitivity ${row.diagnostic_sensitivity_interval_km.join('–')} km`:' · measurement uncertainty unresolved');
     if(row.approximate_width_km!==undefined)return `${row.approximate_width_km===null?(row.width_range_km?.join('–')||'unknown'):'≈ '+row.approximate_width_km} km · ${row.phase_label||row.phase_kind}`;
     if(row.approximate_reference_path_km!==undefined)return `≈ ${row.approximate_reference_path_km} km · reference route`;
     if(row.value!==undefined)return `${row.value===null?'unknown':typeof row.value==='object'?JSON.stringify(row.value):row.value} ${row.unit||''}`;
@@ -96,11 +101,19 @@
   }
   function scope(row){return row.summary||row.scope||row.geographic_scope||row.note||row.limitations||(row.state_code?`${row.state_code} · ${row.state_name} · ${row.label}`:row.basin)||row.source_locator||row.source_citation||'';}
   function sampleFilters(filters){
-    const represented={},extra=[],controls={current_id:'query-sample-current',sample_family:'query-sample-family',month:'query-sample-month',value_km:'query-sample-availability'};
+    const represented={},extra=[],controls={current_id:'query-sample-current',sample_family:'query-sample-family',month:'query-sample-month',year:'query-sample-year',observation_date:'query-sample-day',value_km:'query-sample-availability'};
     for(const filter of filters||[]){
       const id=controls[filter.field],expected=filter.field==='value_km'?'exists':'eq';
-      const typeOk=filter.field==='value_km'?typeof filter.value==='boolean':filter.field==='month'?typeof filter.value==='number'&&Number.isInteger(filter.value):typeof filter.value==='string';
+      const typeOk=filter.field==='value_km'?typeof filter.value==='boolean':['month','year'].includes(filter.field)?typeof filter.value==='number'&&Number.isInteger(filter.value):typeof filter.value==='string';
       const value=String(filter.value),canShow=id&&typeOk&&value!==''&&filter.op===expected&&[...$(id).options].some(o=>o.value===value);
+      if(canShow&&!represented[id])represented[id]=filter;else extra.push(filter);
+    }
+    return {represented,extra};
+  }
+  function decisionFilters(filters){
+    const represented={},extra=[],controls={entity_id:'query-decision-current',strategy_id:'query-decision-strategy',construction_status:'query-decision-status'};
+    for(const filter of filters||[]){
+      const id=controls[filter.field],canShow=id&&filter.op==='eq'&&typeof filter.value==='string'&&filter.value!==''&&[...$(id).options].some(o=>o.value===filter.value);
       if(canShow&&!represented[id])represented[id]=filter;else extra.push(filter);
     }
     return {represented,extra};
@@ -109,7 +122,8 @@
     const collection=$('query-collection').value,objects=collection==='objects';
     $('query-type').disabled=!objects;$('query-state').disabled=!objects;$('query-state-mode').disabled=!objects;$('query-evidence').disabled=!objects;
     for(const id of ['query-time-from','query-time-to','query-time-context','query-season-month','query-season-phase'])$(id).disabled=!objects;
-    for(const id of ['query-sample-current','query-sample-family','query-sample-month','query-sample-availability']){$(id).disabled=collection!=='width_samples';$(id).closest('label').hidden=collection!=='width_samples';}
+    for(const id of ['query-sample-current','query-sample-family','query-sample-month','query-sample-year','query-sample-day','query-sample-availability']){$(id).disabled=collection!=='width_samples';$(id).closest('label').hidden=collection!=='width_samples';}
+    for(const id of ['query-decision-current','query-decision-strategy','query-decision-status']){$(id).disabled=collection!=='route_decisions';$(id).closest('label').hidden=collection!=='route_decisions';}
     $('query-sort').replaceChildren();option($('query-sort'),'Stable record ID','');
     for(const field of sortFields[collection]||[])option($('query-sort'),fieldNames[field]||field.replaceAll('_',' '),field);
     if(sortFields[collection]?.includes('label'))$('query-sort').value='label';
@@ -124,8 +138,12 @@
     else if(collection==='objects'&&$('query-season-month').value)query.seasonal={month:Number($('query-season-month').value)};
     if(collection==='width_samples'){
       query.filters=lastQuery?.collection==='width_samples'?sampleFilters(lastQuery.filters).extra:[];
-      for(const [id,field] of [['query-sample-current','current_id'],['query-sample-family','sample_family'],['query-sample-month','month']])if($(id).value)query.filters.push({field,op:'eq',value:field==='month'?Number($(id).value):$(id).value});
+      for(const [id,field] of [['query-sample-current','current_id'],['query-sample-family','sample_family'],['query-sample-month','month'],['query-sample-year','year'],['query-sample-day','observation_date']])if($(id).value)query.filters.push({field,op:'eq',value:['month','year'].includes(field)?Number($(id).value):$(id).value});
       if($('query-sample-availability').value)query.filters.push({field:'value_km',op:'exists',value:$('query-sample-availability').value==='true'});
+    }
+    if(collection==='route_decisions'){
+      query.filters=lastQuery?.collection==='route_decisions'?decisionFilters(lastQuery.filters).extra:[];
+      for(const [id,field] of [['query-decision-current','entity_id'],['query-decision-strategy','strategy_id'],['query-decision-status','construction_status']])if($(id).value)query.filters.push({field,op:'eq',value:$(id).value});
     }
     return query;
   }
@@ -136,8 +154,11 @@
     $('query-time-from').value=query.geometry_time?.from||'';$('query-time-to').value=query.geometry_time?.to||'';$('query-time-context').checked=query.geometry_time?.include_undated||false;
     $('query-season-month').value=query.seasonal?.month||'';$('query-season-phase').value=query.seasonal?.phase_id||'';
     const sample=sampleFilters(query.filters);
-    for(const id of ['query-sample-current','query-sample-family','query-sample-month','query-sample-availability'])$(id).value=sample.represented[id]?String(sample.represented[id].value):'';
+    for(const id of ['query-sample-current','query-sample-family','query-sample-month','query-sample-year','query-sample-day','query-sample-availability'])$(id).value=sample.represented[id]?String(sample.represented[id].value):'';
     $('query-sample-extra').hidden=query.collection!=='width_samples'||!sample.extra.length;
+    const decisions=decisionFilters(query.filters);
+    for(const id of ['query-decision-current','query-decision-strategy','query-decision-status'])$(id).value=decisions.represented[id]?decisions.represented[id].value:'';
+    $('query-decision-extra').hidden=query.collection!=='route_decisions'||!decisions.extra.length;
   }
   function setBusy(value){busy=value;$('query-run').disabled=value;$('query-run-json').disabled=value;for(const b of document.querySelectorAll('[data-preset]'))b.disabled=value;}
   async function run(query,fromPlayback=false){
@@ -171,6 +192,18 @@
   }
   function describe(parent,row){
     element('h3',label(row),parent);element('p',value(row),parent);
+    if(row.source_decision){
+      element('p','Editorial worklist for names without a published ranked length. Existing candidates remain pending scientific review; no new length is assigned by this decision.',parent);
+      element('h4','Next evidence needed',parent);element('p',row.next_action,parent);
+      element('p','Construction status: '+row.construction_status.replaceAll('_',' ')+'.',parent);
+      element('p','Strategy: '+row.strategy_label+'. '+row.source_decision.strategy_next_action,parent);
+      for(const review of row.scope_reviews){
+        const details=element('details',undefined,parent);element('summary',review.note.label,details);
+        element('p',review.note.summary,details);element('p',review.document.source_access||'See the audit for inspected access and source support.',details);
+        link('Evidence source',review.note.source_url,details);link('Source scope audit','../'+review.note.audit_file,details);
+        const raw=element('details',undefined,details);element('summary','Complete scope audit',raw);element('pre',JSON.stringify(review.document,null,2),raw);
+      }
+    }
     const dl=element('dl',undefined,parent);
     if(row.sample_family){
       element('p','Scoped source sample. Plot-reading intervals are extraction allowances, not confidence intervals or measurement uncertainty. These samples are not whole-current widths or annual extrema.',parent);
@@ -180,6 +213,12 @@
       if(row.source_context.velocity_threshold_m_s!==undefined)element('p','Velocity threshold: '+row.source_context.velocity_threshold_m_s+' m/s.',parent);
       if(row.source_context.source_period_labels)element('p','Historical period labels differ in the source: '+Object.values(row.source_context.source_period_labels).join('; ')+'. Combined averaging period unresolved.',parent);
       if(row.source_context.study_period_years)element('p','Study-period years: '+row.source_context.study_period_years.join('–')+'.',parent);
+      if(row.observation_date){
+        element('p','Observation day: '+row.observation_date+' · Source processing: '+row.source_algorithm+'. Individual-day section diagnostic; not a monthly mean or the width of a mapped streamline.',parent);
+        const brackets=row.sampling_bracket_interval_km?[Math.floor(row.sampling_bracket_interval_km[0]/10)*10,Math.ceil(row.sampling_bracket_interval_km[1]/10)*10].join('–'):'unresolved';
+        element('p','Finite 40–60% boundary-threshold sensitivity: '+(row.diagnostic_sensitivity_interval_km?.join('–')||'unresolved')+' km. Grid-bracket separation (display rounded outward to 10 km): '+brackets+' km. Original brackets remain in the source record. These ranges are neither confidence intervals nor measurement uncertainty.',parent);
+        element('p','Resolution review flag: '+(row.resolution_review_required===null?'unresolved':row.resolution_review_required?'yes':'no')+'. Scientific boundary validation remains pending.',parent);
+      }
       if(row.source_phase?.calendar_months===null)element('p','Calendar months for this source season are unresolved.',parent);
     }
     if(row.timeline_file){element('p',row.sampling_note,parent);for(const [key,title] of [['date','Observation day'],['method','Diagnostic method'],['stop_reason','Stop reason'],['reaches_downstream_gate','Reaches downstream gate'],['diagnostic_length_km','Diagnostic trace distance (km; not current length)'],['width_km','Current width (km)'],['positional_uncertainty_km','Positional uncertainty (km)'],['source_algorithm','Source processing algorithm'],['source_product_status','Source product status']]){if(row[key]!==undefined){element('dt',title,dl);element('dd',row[key]===null?'unresolved':String(row[key]),dl);}}element('p',row.attribution,parent);}
@@ -188,8 +227,11 @@
     }
     const links=element('div',undefined,parent);links.className='record-links';
     if(row.width_sample_ids?.length)link('Query scoped width samples','query.html?q='+encodeURIComponent(JSON.stringify({collection:'width_samples',filters:[{field:'current_id',op:'eq',value:row.id.replace(/^current:/,'')}],sort:{field:'label'},limit:100})),links);
+    if(row.route_decision_ids?.length)link('Query remaining length decision','query.html?q='+encodeURIComponent(JSON.stringify({collection:'route_decisions',filters:[{field:'entity_id',op:'eq',value:row.id}],limit:50})),links);
     if(row.diagnostic_id){const source=element('button','Inspect parent diagnostic',links);source.type='button';source.addEventListener('click',()=>inspect('diagnostics',row.diagnostic_id));}
     if(row.source_context?.source_inventory_file)link('Source inventory and receipts','../'+row.source_context.source_inventory_file,links);
+    if(row.source_context?.protocol_file)link('Sample measurement protocol','../'+row.source_context.protocol_file,links);
+    if(row.source_catalog_file)link('Audited route catalog and receipt','../'+row.source_catalog_file,links);
     if(row.target){const source=element('button','Inspect source reference',links);source.type='button';source.addEventListener('click',()=>inspect(row.target.collection,row.target.id));}
     if(row.timeline_file&&row.entity_id&&row.date)link('Map this observation day','query.html?q='+encodeURIComponent(JSON.stringify({collection:'objects',filters:[{field:'id',op:'eq',value:row.entity_id}],geometry_time:{from:row.date,to:row.date},limit:50})),links);
     if(row.seasonal_inventory_file)link('Map this source phase','query.html?q='+encodeURIComponent(JSON.stringify({collection:'objects',seasonal:{phase_id:row.id},limit:50})),links);
@@ -211,10 +253,11 @@
       if(spatial?.length){const details=element('details',undefined,panel);details.open=true;element('summary','Computed state relations ('+spatial.length+')',details);element('p',lastResult.spatial_scope,details);element('pre',JSON.stringify(spatial,null,2),details);}
       const groups=[['width_ids','widths','Scoped width records'],['measurement_ids','measurements','Published measurements'],['route_ids','reference_routes','Editorial routes'],['source_ids','sources','Linked sources'],['frame_ids','geometry_frames','Dated diagnostic frames']];
       groups.push(['seasonal_route_ids','seasonal_routes','Source-defined seasonal routes']);
+      groups.push(['route_decision_ids','route_decisions','Length construction decision']);
       if(record.source_id)groups.push(['single_source','sources','Source']);
       for(const [key,target,title] of groups){
         const ids=key==='single_source'?[record.source_id]:record[key];if(!ids?.length)continue;
-        const details=element('details',undefined,panel);element('summary',`${title} (${ids.length})`,details);if(key==='width_ids'||key==='measurement_ids'||(key==='seasonal_route_ids'&&lastQuery?.seasonal))details.open=true;
+        const details=element('details',undefined,panel);element('summary',`${title} (${ids.length})`,details);if(key==='width_ids'||key==='measurement_ids'||key==='route_decision_ids'||(key==='seasonal_route_ids'&&lastQuery?.seasonal))details.open=true;
         for(const id of ids){const item=await rpc('record',{collection:target,id});if(generation!==detailSequence)return;if(!item.ok)throw Error(item.error);const article=element('article',undefined,details);describe(article,item.record);}
       }
       const raw=element('details',undefined,panel);element('summary','Complete record JSON',raw);element('pre',JSON.stringify(record,null,2),raw);
@@ -223,6 +266,8 @@
     }catch(error){if(generation===detailSequence){panel.replaceChildren();element('p',error.message,panel);}}
   }
   const presets={width:{collection:'objects',record_type:'named_current',evidence:'scoped_width',sort:{field:'label',direction:'asc'},limit:50},
+    'length-decisions':{collection:'route_decisions',sort:{field:'strategy_label'},limit:100},
+    'unbuilt-decisions':{collection:'route_decisions',filters:[{field:'construction_status',op:'eq',value:'reference_path_not_constructed'}],sort:{field:'strategy_label'},limit:100},
     lengths:{collection:'objects',record_type:'named_current',evidence:'reported_length',sort:{field:'published_length_km',direction:'desc'},limit:50},
     'missing-routes':{collection:'objects',record_type:'named_current',filters:[{field:'capabilities.reference_route',op:'eq',value:0}],sort:{field:'label',direction:'asc'},limit:50},
     'eddy-geometry':{collection:'objects',record_type:'named_eddy',evidence:'geometry',sort:{field:'label',direction:'asc'},limit:50},
@@ -232,7 +277,8 @@
     'seasonal-january':{collection:'objects',seasonal:{month:1},limit:50},
     'leeuwin-samples':{collection:'width_samples',filters:[{field:'current_id',op:'eq',value:'leeuwin'}],sort:{field:'month'},limit:50},
     'kuroshio-samples':{collection:'width_samples',filters:[{field:'current_id',op:'eq',value:'kuroshio'}],sort:{field:'label'},limit:100},
-    'necc-samples':{collection:'width_samples',filters:[{field:'current_id',op:'eq',value:'pacific-north-equatorial-countercurrent'}],sort:{field:'month'},limit:50}};
+    'necc-samples':{collection:'width_samples',filters:[{field:'current_id',op:'eq',value:'pacific-north-equatorial-countercurrent'}],sort:{field:'month'},limit:50},
+    'gulf-width-samples':{collection:'width_samples',filters:[{field:'sample_family',op:'eq',value:'gulf_stream_dated_half_peak_section'}],sort:{field:'observation_date'},limit:50}};
   $('query-form').addEventListener('submit',event=>{event.preventDefault();run(builder());});$('query-collection').addEventListener('change',updateFields);
   for(const [chosen,other] of [['query-season-month','query-season-phase'],['query-season-phase','query-season-month']])$(chosen).addEventListener('change',()=>{if(!$(chosen).value)return;$(other).value='';$('query-time-from').value='';$('query-time-to').value='';$('query-time-context').checked=false;});
   for(const id of ['query-time-from','query-time-to'])$(id).addEventListener('change',()=>{if($(id).value){$('query-season-month').value='';$('query-season-phase').value='';}});
@@ -248,6 +294,10 @@
       for(let month=1;month<=12;month++)option($('query-season-month'),new Intl.DateTimeFormat('en',{month:'long',timeZone:'UTC'}).format(new Date(Date.UTC(2000,month-1,1))),String(month));
       for(const phase of metadata.seasonal_phases||[])option($('query-season-phase'),phase.label+(phase.calendar_months?'':' (months unresolved)'),phase.id);
       for(const current of metadata.width_sample_currents||[])option($('query-sample-current'),current.label,current.current_id);
+      for(const year of metadata.width_sample_years||[])option($('query-sample-year'),String(year),String(year));
+      for(const day of metadata.width_sample_days||[])option($('query-sample-day'),day,day);
+      for(const current of metadata.route_decision_currents||[])option($('query-decision-current'),current.label,current.entity_id);
+      for(const [id,label] of Object.entries(metadata.route_decision_strategies||{}))option($('query-decision-strategy'),label,id);
       for(const [value,label] of Object.entries(widthFamilies))option($('query-sample-family'),label,value);
       for(let month=1;month<=12;month++)option($('query-sample-month'),new Intl.DateTimeFormat('en',{month:'long',timeZone:'UTC'}).format(new Date(Date.UTC(2000,month-1,1))),String(month));
       const counts=Object.fromEntries(metadata.collections.map(c=>[c.name,c.count]));

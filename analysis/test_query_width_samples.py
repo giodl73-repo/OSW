@@ -14,6 +14,25 @@ def documents():
         ('diagnostic:necc-monthly-section','research/pacific-necc-oscar-2013-section-diagnostic.json')]]
 
 class QueryWidthSamplesTests(unittest.TestCase):
+    def test_dated_section_samples_retain_day_sensitivity_and_resolution(self):
+        document=json.loads((ROOT/'research/gulf-stream-section-width-series.json').read_bytes())
+        rows=build([{'id':'diagnostic:gulf-stream-widths','document':document}])
+        self.assertEqual(len(rows),17)
+        for row,frame in zip(rows,document['frames']):
+            self.assertEqual(row['observation_date'],frame['date'])
+            self.assertEqual(row['month'],int(frame['date'][5:7]));self.assertEqual(row['year'],int(frame['date'][:4]))
+            self.assertEqual(row['value_km'],frame['approximate_section_span_km'])
+            self.assertEqual(row['source_sample'],frame)
+            self.assertEqual(row['diagnostic_sensitivity_interval_km'],frame['threshold_sensitivity_span_km'])
+            self.assertEqual(row['sampling_bracket_interval_km'],frame['nominal']['grid_bracket_span_km'])
+            self.assertIsNone(row['plot_reading_interval_km']);self.assertIsNone(row['measurement_uncertainty_interval_km'])
+            self.assertEqual(row['source_algorithm'],frame['source_algorithm'])
+            self.assertEqual(row['current_id'],'gulf-stream-system')
+            self.assertEqual(row['source_context'],{k:v for k,v in document.items() if k!='frames'})
+        missing=copy.deepcopy(document);missing['frames'][0]['approximate_section_span_km']=None
+        self.assertIsNone(build([{'id':'diagnostic:gulf-stream-widths','document':missing}])[0]['value_km'])
+        invalid=copy.deepcopy(document);invalid['frames'][0]['date']='2025-02-29'
+        with self.assertRaises(ValueError):build([{'id':'diagnostic:gulf-stream-widths','document':invalid}])
     def test_complete_source_samples_and_context(self):
         docs=documents();rows=build(docs);self.assertEqual(len(rows),88)
         self.assertEqual(len({r['id'] for r in rows}),88)

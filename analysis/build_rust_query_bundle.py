@@ -151,6 +151,14 @@ def build():
         ('diagnostic:necc-monthly-section','research/pacific-necc-oscar-2013-section-diagnostic.json'),
         ('diagnostic:antilles-observed-sections','research/antilles-ab0505-400m-section-diagnostic.json'),
         ('diagnostic:gulf-stream-widths','research/gulf-stream-section-width-series.json')]]
+    from check_current_section_width_series import validate as validate_dated_widths
+    dated_widths=next(d['document'] for d in collections['diagnostics'] if d['id']=='diagnostic:gulf-stream-widths')
+    validate_dated_widths(dated_widths)
+    for path in ['analysis/build_current_section_width_series.py','analysis/check_current_section_width_series.py','plans/gulf-stream-section-width-protocol-v1.md','plans/ocean-current-width-measurement-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for frame in dated_widths['frames']:
+        path=frame['source_subset'];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=frame['source_subset_sha256']:raise ValueError('Changed dated width source')
     from build_query_width_samples import build as build_width_samples
     from build_leeuwin_monthly_plot import build as rebuild_leeuwin
     from build_kuroshio_seasonal_width_profiles import build as rebuild_kuroshio
@@ -173,11 +181,37 @@ def build():
     for row in objects:
         row['width_sample_ids']=[sample['id'] for sample in collections['width_samples'] if sample['entity_id']==row['id']]
         row['capabilities']['width_samples']=len(row['width_sample_ids'])
+    # Keep the complete remaining-length worklist queryable without assigning
+    # dimensions to unresolved names, families or continuity hypotheses.
+    collections['route_decisions']=[]
+    for original in routes['remaining_current_decisions']:
+        entity_id='current:'+original['current_id']
+        owner=next(row for row in objects if row['id']==entity_id)
+        if sorted(original['candidate_ids'])!=sorted(owner['route_ids']):
+            raise ValueError('Planning candidate IDs disagree with imported routes')
+        reviews=[]
+        for note in owner['scope_notes']:
+            document=read(note['audit_file'])
+            if document['current_id']!=original['current_id']:raise ValueError('Scope review owner mismatch')
+            reviews.append({'note':copy.deepcopy(note),'document':document,'source_sha256':inputs[note['audit_file']]})
+        record={'id':'route-decision:'+original['current_id'],'entity_id':entity_id,
+                'label':original['name'],'current_id':original['current_id'],
+                'strategy_id':original['route_strategy_id'],'strategy_label':original['route_strategy_label'],
+                'construction_status':original['reference_path_decision'],
+                'candidate_count':len(original['candidate_ids']),'route_ids':copy.deepcopy(original['candidate_ids']),
+                'next_action':original['next_action'],'scope':original['existing_scope'],
+                'status':original['planning_status'],'rank_eligible':False,
+                'source_url':original['name_source_url'],'source_decision':copy.deepcopy(original),
+                'source_catalog_file':'research/ocean-current-reference-path-candidates.json',
+                'source_catalog_sha256':inputs['research/ocean-current-reference-path-candidates.json'],
+                'scope_reviews':reviews}
+        collections['route_decisions'].append(record)
+        owner['route_decision_ids']=[record['id']]
     for name,rows in collections.items():
         if len({r['id'] for r in rows})!=len(rows):raise ValueError('Duplicate ID in '+name)
     return {'schema':'osw.query-bundle.v1','manifest':{'status':'local_editorial_and_canonical_snapshot_not_new_scientific_admission',
             'canonical_release':'v0.1.0','canonical_collections':['entities','sources','claims','relations','measurements','geometries'],
-            'editorial_collections':['objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples'],
+            'editorial_collections':['objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions'],
             'input_sha256':inputs,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},
             'scope':'State joins retain relation kinds; gateways are not containment. Widths retain scope. Published lengths and editorial route lengths are separate collections.'},
             'collections':collections}
