@@ -3,7 +3,35 @@
   const $=id=>document.getElementById(id),worker=new Worker('query-worker.js?v=3');
   const pending=new Map();let sequence=0,metadata,lastQuery=null,lastResult=null,busy=false,detailSequence=0;
   let playbackTimer=null,playing=false,playbackGeneration=0;
-  function stopPlayback(){playing=false;playbackGeneration++;clearTimeout(playbackTimer);$('query-map-play').textContent='Play recorded days';$('query-map-play').setAttribute('aria-pressed','false');$('query-map-play-months').textContent='Play source months';$('query-map-play-months').setAttribute('aria-pressed','false');}
+  function stopPlayback(){playing=false;playbackGeneration++;clearTimeout(playbackTimer);$('query-map-play').textContent='Play recorded days';$('query-map-play').setAttribute('aria-pressed','false');$('query-map-play-months').textContent='Play source months';$('query-map-play-months').setAttribute('aria-pressed','false');$('query-map-play-samples').textContent='Play recorded section days';$('query-map-play-samples').setAttribute('aria-pressed','false');}
+  async function playSectionDay(base,days,index,generation){
+    if(!playing||generation!==playbackGeneration||index>=days.length){if(generation===playbackGeneration)stopPlayback();return;}
+    if(busy){playbackTimer=setTimeout(()=>playSectionDay(base,days,index,generation),100);return;}
+    const query=JSON.parse(JSON.stringify(base));query.offset=0;
+    query.filters.push({field:'observation_date',op:'eq',value:days[index]});
+    await run(query,true);if(!lastResult){stopPlayback();return;}
+    if(playing&&generation===playbackGeneration)playbackTimer=setTimeout(()=>playSectionDay(base,days,index+1,generation),1000);
+  }
+  async function startSectionPlayback(){
+    if(playing){stopPlayback();return;}
+    if(!lastQuery||busy||lastQuery.collection!=='width_samples')return;
+    playing=true;const generation=++playbackGeneration;
+    $('query-map-play-samples').textContent='Pause recorded section days';$('query-map-play-samples').setAttribute('aria-pressed','true');
+    const base=JSON.parse(JSON.stringify(lastQuery)),selected=sampleFilters(base.filters).represented['query-sample-day'];
+    // Replace only the day represented by the visible control. Retain every
+    // duplicate, unsupported predicate, year, month, method and source filter.
+    base.filters=(base.filters||[]).filter(f=>f!==selected);base.offset=0;
+    try{
+      const inventory=await rpc('query',{...base,limit:1});
+      if(!playing||generation!==playbackGeneration)return;
+      if(!inventory.ok)throw Error(inventory.error);
+      const scene=inventory.map_scene,days=scene?.recorded_days||[],bounds=scene?.display_bounds;
+      if(!days.length){stopPlayback();return;}
+      if(bounds){const width=Math.max(4,(bounds[2]-bounds[0])*1.5,(bounds[3]-bounds[1])*3);mapSet([(bounds[0]+bounds[2]-width)/2,(bounds[1]+bounds[3])/2-width/4,width,width/2]);}
+      const index=selected?days.indexOf(selected.value):0;
+      await playSectionDay(base,days,index>=0?index:0,generation);
+    }catch(error){if(generation===playbackGeneration){stopPlayback();failure('Section playback failed: '+error.message);}}
+  }
   async function playMonth(month,generation){
     if(!playing||generation!==playbackGeneration||month>12){if(generation===playbackGeneration)stopPlayback();return;}
     if(busy){playbackTimer=setTimeout(()=>playMonth(month,generation),100);return;}
@@ -29,15 +57,24 @@
   widthFamilies.gulf_stream_dated_half_peak_section='Recorded-day half-peak eastward-component section spans at 70 W';
   const order=Object.keys(names);
   const ns='http://www.w3.org/2000/svg';let mapView=[0,0,360,180],mapDrag=null,mapMoved=false;
-  function mapSet(view){const w=Math.min(360,Math.max(4,view[2]));mapView=[Math.max(0,Math.min(360-w,view[0])),Math.max(0,Math.min(180-w/2,view[1])),w,w/2];$('query-map').setAttribute('viewBox',mapView.join(' '));$('query-map-ground').setAttribute('href',w<100?'../figures/ocean-motion-closeup-ground.svg':'../figures/ocean-motion-dashboard-ground.svg');}
+  function mapSet(view){const w=Math.min(360,Math.max(4,view[2]));mapView=[Math.max(0,Math.min(360-w,view[0])),Math.max(0,Math.min(180-w/2,view[1])),w,w/2];$('query-map').setAttribute('viewBox',mapView.join(' '));$('query-map-ground').setAttribute('href',w<100?'../figures/ocean-motion-closeup-ground.svg':'../figures/ocean-motion-dashboard-ground.svg');const longitude=x=>Math.abs(x-180).toFixed(1)+'° '+(x<180?'W':'E'),latitude=y=>Math.abs(90-y).toFixed(1)+'° '+(y<=90?'N':'S');$('query-map-position').textContent='Display window: '+longitude(mapView[0])+' to '+longitude(mapView[0]+w)+' · '+latitude(mapView[1]+w/2)+' to '+latitude(mapView[1])+' · equirectangular, display only.';}
   function mapZoom(factor,x=mapView[0]+mapView[2]/2,y=mapView[1]+mapView[3]/2){const w=Math.min(360,Math.max(4,mapView[2]*factor));mapSet([x-(x-mapView[0])*w/mapView[2],y-(y-mapView[1])*w/mapView[2],w,w/2]);}
-  function fitMatches(){if(!$('query-map-features').childElementCount)return;const box=$('query-map-features').getBBox(),width=Math.max(20,box.width*1.5,box.height*3);mapSet([box.x+box.width/2-width/2,box.y+box.height/2-width/4,width,width/2]);}
+  function fitMatches(){if(!$('query-map-features').childElementCount)return;const box=$('query-map-features').getBBox(),width=Math.max(lastQuery?.collection==='width_samples'?4:20,box.width*1.5,box.height*3);mapSet([box.x+box.width/2-width/2,box.y+box.height/2-width/4,width,width/2]);}
   $('query-map-fit').addEventListener('click',fitMatches);
   function renderMap(scene){
     $('query-map-section').hidden=!scene;$('query-map-features').replaceChildren();$('query-map-state').replaceChildren();if(!scene)return;
+    const samples=scene.inspection_collection==='width_samples';
+    $('query-map-play-samples').hidden=!samples;
+    $('query-map-play-samples').disabled=!samples;
+    $('query-map-sample-playback-note').hidden=!samples;
+    $('query-map-playback-note').hidden=samples;
+    $('query-map-day').closest('label').hidden=samples;
+    for(const id of ['query-map-day','query-map-play','query-map-play-months']){$(id).disabled=samples;if(id!=='query-map-day')$(id).hidden=samples;}
+    $('query-map-legend').textContent=samples?'Orange dashed: nominal local section spans. Individual recorded days may overlap. Use the sample day/year controls and table to inspect each record.':'Teal: editorial routes · orange dashed: dated diagnostic lines · purple: polygons · hollow: locators · amber dashed: shared gateways. Names appear on hover or focus.';
     $('query-map-hover').textContent='Hover or focus a mark for its name; select it to inspect its record.';
     $('query-map-time').textContent=scene.geometry_time?`Observation window ${scene.geometry_time.from} through ${scene.geometry_time.to}. ${scene.features.filter(f=>f.undated_context).length} undated marks shown as context. Exact recorded days; gaps are not interpolated.`:'All recorded dates shown together. Undated routes and locators do not describe a particular day.';
     if(scene.seasonal)$('query-map-time').textContent=(scene.seasonal.month?`Source phases covering month ${scene.seasonal.month}. `:`Selected source phase: ${metadata.seasonal_phases.find(p=>p.id===scene.seasonal.phase_id)?.label||scene.seasonal.phase_id}. `)+scene.seasonal.scope;
+    if(samples)$('query-map-time').textContent=(scene.recorded_days?.length===1?'Recorded section day: '+scene.recorded_days[0]+' · '+[...new Set(scene.features.map(f=>f.source_algorithm).filter(Boolean))].join(', ')+'. ':'')+scene.scope;
     $('query-map-day').value=scene.geometry_time?.from===scene.geometry_time?.to?scene.geometry_time?.from||'':'';
     for(const feature of scene.state_features||[]){const node=document.createElementNS(ns,'path');node.setAttribute('d',feature.primitive.d);node.setAttribute('fill-rule','evenodd');$('query-map-state').append(node);}
     $('query-map-count').textContent=`${scene.mapped_objects} of ${scene.matching_objects} matching records have map marks · ${scene.features.length} marks · all matches, across every result page.`;
@@ -52,14 +89,16 @@
       if(feature.phase_id)node.setAttribute('aria-label',name+' · '+feature.phase_label+' · '+feature.flow_direction);
       const title=document.createElementNS(ns,'title');title.textContent=node.getAttribute('aria-label');node.append(title);
       const announce=()=>{$('query-map-hover').textContent=node.getAttribute('aria-label')+(feature.note?' — '+feature.note:'');};node.addEventListener('pointerenter',announce);node.addEventListener('focus',announce);
-      const select=()=>{for(const other of $('query-map-features').children)other.classList.toggle('selected',other.dataset.entity===feature.entity_id);const box=node.getBBox();const width=Math.max(20,box.width*1.5,box.height*3);mapSet([box.x+box.width/2-width/2,box.y+box.height/2-width/4,width,width/2]);inspect('objects',feature.entity_id);};
+      const select=()=>{for(const other of $('query-map-features').children)other.classList.toggle('selected',other.dataset.entity===feature.entity_id);const box=node.getBBox();const width=Math.max(samples?4:20,box.width*1.5,box.height*3);mapSet([box.x+box.width/2-width/2,box.y+box.height/2-width/4,width,width/2]);inspect(feature.inspection_collection||'objects',feature.entity_id);};
       node.addEventListener('click',()=>{if(!mapMoved)select();});node.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select();}});$('query-map-features').append(node);
     }
+    if(samples&&!playing)fitMatches();
   }
   $('query-map-in').addEventListener('click',()=>mapZoom(.7));$('query-map-out').addEventListener('click',()=>mapZoom(1/.7));$('query-map-world').addEventListener('click',()=>mapSet([0,0,360,180]));
   $('query-map-day').addEventListener('change',()=>{if(!lastQuery||busy||!$('query-map-day').value)return;const query=JSON.parse(JSON.stringify(lastQuery));delete query.seasonal;query.offset=0;query.geometry_time={from:$('query-map-day').value,to:$('query-map-day').value,include_undated:$('query-time-context').checked};showBuilder(query);run(query);});
   $('query-map-play').addEventListener('click',()=>{if(playing){stopPlayback();return;}if(!lastQuery||busy)return;playing=true;const generation=++playbackGeneration;$('query-map-play').textContent='Pause recorded days';$('query-map-play').setAttribute('aria-pressed','true');const days=metadata.geometry_observation_dates||[],selected=days.indexOf($('query-map-day').value);playDay(selected>=0?selected:0,generation);});
   $('query-map-play-months').addEventListener('click',()=>{if(playing){stopPlayback();return;}if(!lastQuery||busy)return;playing=true;const generation=++playbackGeneration;$('query-map-play-months').textContent='Pause source months';$('query-map-play-months').setAttribute('aria-pressed','true');playMonth(lastQuery.seasonal?.month||1,generation);});
+  $('query-map-play-samples').addEventListener('click',startSectionPlayback);
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stopPlayback();});
   $('query-map-export').addEventListener('click',async()=>{
     if(!lastQuery||!lastResult?.map_scene)return;
@@ -200,7 +239,8 @@
       for(const review of row.scope_reviews){
         const details=element('details',undefined,parent);element('summary',review.note.label,details);
         element('p',review.note.summary,details);element('p',review.document.source_access||'See the audit for inspected access and source support.',details);
-        link('Evidence source',review.note.source_url,details);link('Source scope audit','../'+review.note.audit_file,details);
+        const reviewLinks=element('div',undefined,details);reviewLinks.className='record-links';
+        link('Evidence source',review.note.source_url,reviewLinks);link('Source scope audit','../'+review.note.audit_file,reviewLinks);
         const raw=element('details',undefined,details);element('summary','Complete scope audit',raw);element('pre',JSON.stringify(review.document,null,2),raw);
       }
     }
@@ -226,6 +266,7 @@
       if(row[key]!==undefined){element('dt',title,dl);element('dd',row[key]===null?'unresolved':key==='status'?String(row[key]).replaceAll('_',' '):String(row[key]),dl);}
     }
     const links=element('div',undefined,parent);links.className='record-links';
+    if(row.sample_family==='gulf_stream_dated_half_peak_section'&&row.status==='paired_boundaries'&&row.value_km!==null)link('Map this local section span','query.html?q='+encodeURIComponent(JSON.stringify({collection:'width_samples',filters:[{field:'id',op:'eq',value:row.id}],limit:50}))+'#query-map-section',links);
     if(row.width_sample_ids?.length)link('Query scoped width samples','query.html?q='+encodeURIComponent(JSON.stringify({collection:'width_samples',filters:[{field:'current_id',op:'eq',value:row.id.replace(/^current:/,'')}],sort:{field:'label'},limit:100})),links);
     if(row.route_decision_ids?.length)link('Query remaining length decision','query.html?q='+encodeURIComponent(JSON.stringify({collection:'route_decisions',filters:[{field:'entity_id',op:'eq',value:row.id}],limit:50})),links);
     if(row.diagnostic_id){const source=element('button','Inspect parent diagnostic',links);source.type='button';source.addEventListener('click',()=>inspect('diagnostics',row.diagnostic_id));}

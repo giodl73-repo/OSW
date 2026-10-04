@@ -569,3 +569,60 @@ in derived velocities (absolute 1e-15 m/s) and boundary latitudes (1e-14 degree)
 dates, rounded widths, thresholds, brackets and flags remain exact. Original
 diagnostic files and source hashes are retained. Canonical release files and
 scientific admission remain unchanged.
+# Local recorded-day section maps
+
+The `width_samples` query can supply a map scene when its matches include the
+Gulf Stream system dated half-peak section family. Rust derives each nominal
+LineString from the source-bound longitude and paired interpolated south/north
+boundary latitudes. It does not add geometry to the canonical inventory or to
+the object's occupied footprint. Invalid, reversed, unresolved or unsupported
+sample coordinates remain unmapped; their records remain queryable.
+
+The map includes every matching sample before table pagination. Its inspection
+target is `width_samples`, with a separate owner entity ID, source day, processing
+version, subset checksum, metric, rounded value, sensitivity and bracket ranges.
+The meridional surface diagnostic is not a flow-normal width, current axis,
+streamline buffer or state-containment assertion. No geographic positions are
+invented for the other sample methods. Coincident dates retain separate keyboard
+targets and table records without artificial spatial offsets.
+
+Day/year sample filters control these maps. Object geometry-day/month playback
+controls are hidden and disabled here. The UI fits local spans with a minimum
+4-degree display window, shows geographic display bounds, and links sample cards
+directly to their section queries. Portable SVG exports retain the global OSW
+display, all source receipts and explicit local-section labels; they do not
+calculate scientific dimensions from display coordinates.
+
+Verification: `analysis/test_rust_dated_width_samples.py` checks all 17 exact
+source endpoints, source receipts, pre-pagination coverage, native/WASM identity,
+local fit, card links, filter retention, keyboard selection and 320 px reflow.
+`analysis/test_rust_svg_export.py` checks native/WASM export byte identity and all
+17 marks with a one-row page. Rust tests cover missing/reversed/out-of-range
+endpoints and unsupported sample methods. Existing object map and width query
+checks remain required regressions. These maps are an editorial diagnostic
+presentation; scientific boundary/resolution admission remains open.
+
+## Recorded section playback
+
+Section maps now offer explicit play/pause through their recorded days. Rust
+returns sorted `recorded_days` and `display_bounds` from all matching records,
+before pagination. The browser requests this inventory with only the day
+predicate represented by the visible day control removed. Every duplicate,
+unsupported, year, month, method, metric and source constraint remains in the
+query. Playback appends an exact observation-day predicate for each source day,
+retaining sort and page size and resetting the page offset.
+
+Playback starts at the selected source day, or the first eligible day, and stops
+at the final eligible observation. One observation per second is ordinal playback,
+not elapsed-time animation; no missing months or unrecorded days are synthesized.
+The map fits the eligible source bounds once, then keeps its viewport through the
+frames. Chart source axes remain fixed. Date and processing version are visible
+beside each frame. A new query, pause or hidden page cancels subsequent frames;
+an already running query may finish. Object geometry-day/month controls remain
+separate. SVG receipts retain the exact frame query, source days and display bounds.
+
+`analysis/test_rust_section_playback.py` verifies a filtered five-day inventory,
+the four eligible frames beginning September 24, exact native source results,
+fixed map viewport, duplicate year/day and metric predicate retention, keyboard
+play/pause, query cancellation and 320 px reflow. No annual seasonal cycle is
+inferred from the sparse 17-day source series.

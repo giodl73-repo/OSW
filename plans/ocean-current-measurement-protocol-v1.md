@@ -153,3 +153,16 @@ durations and calendar spans as unresolved source statements until the
 original evidence resolves them. Historical composites cannot enable annual
 geometry playback. These are source-scope clarifications under v1.2; the
 geodesic algorithm, rounding and comparison rules are unchanged.
+
+## Mean flow, anomalies and diagnostic domains (M02/M03 clarification)
+
+Every proposed axis must identify whether its supporting velocity is total,
+relative geostrophic, an anomaly, a layer average or a model diagnostic. Reference
+pressure is not current-axis depth. A zero anomaly contour marks where departure
+from a reference state changes sign; it does not identify where the current stops.
+An averaging box, wind-forcing domain or model boundary cannot supply named-flow
+endpoints. Do not combine a mean and an anomaly unless layer, reference state,
+time averaging, grid and method are compatible and the combination is reviewed.
+Do not connect separated positive-flow components without source-supported
+continuity. These clarify existing source/identity gates under v1.2; algorithms,
+rounding and ranking eligibility are unchanged.

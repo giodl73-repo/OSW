@@ -32,6 +32,17 @@ def main():
     assert len(rows)==17 and all(r['current_id']=='gulf-stream-system' for r in rows)
     query={'collection':'width_samples','filters':[{'field':'sample_family','op':'eq','value':'gulf_stream_dated_half_peak_section'}],'sort':{'field':'observation_date'},'limit':100}
     result=native(query);panel=result['chart_scene']['panels'][0];points=panel['points']
+    scene=result['map_scene'];assert scene['mapped_objects']==17 and scene['inspection_collection']=='width_samples'
+    assert len(native({**query,'limit':1})['map_scene']['features'])==17
+    for row,feature in zip(result['rows'],scene['features']):
+        nominal=row['source_sample']['nominal'];south=nominal['south_boundary']['latitude'];north=nominal['north_boundary']['latitude']
+        assert feature['primitive']['d']==f'M 110.00000 {90-south:.5f} L 110.00000 {90-north:.5f} '
+        assert feature['source_sample']['coordinates']==[[-70,south],[-70,north]]
+        assert feature['owner_entity_id']=='current:gulf-stream-system' and feature['entity_id']==row['id']
+        assert feature['source_subset_sha256']==row['source_sample']['source_subset_sha256']
+        assert feature['source_algorithm']==row['source_algorithm'] and feature['observation_date']==row['observation_date']
+    assert native({'collection':'width_samples','limit':1})['map_scene']['unmapped_objects']==88
+    assert native({'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':'leeuwin'}]})['map_scene'] is None
     assert result['total']==17 and panel['x_field']=='observation_date' and len(points)==17
     assert len({r['source_algorithm'] for r in rows})==3
     for row,frame,point in zip(result['rows'],original['frames'],points):
@@ -61,6 +72,16 @@ def main():
         for q in [query,day]:assert browser_query(page,q)==native(q)
         page.locator('[data-preset="gulf-width-samples"]').click()
         expect(page.locator('#query-page')).to_contain_text('17 of 17')
+        assert page.locator('#query-map-features path').count()==17
+        assert 4<=float(page.locator('#query-map').get_attribute('viewBox').split()[2])<10
+        expect(page.locator('#query-map-play')).to_be_hidden()
+        expect(page.locator('#query-map-play-months')).to_be_hidden()
+        expect(page.locator('#query-map-day')).to_be_hidden()
+        expect(page.locator('#query-map-time')).to_contain_text('not current axes')
+        mark=page.locator('#query-map-features path').last;mark.focus();mark.press('Enter')
+        expect(page.locator('#query-detail')).to_contain_text('Observation day: 2026-09-27')
+        expect(page.locator('#query-detail a',has_text='Map this local section span')).to_be_visible()
+        page.locator('#query-map-section').screenshot(path=str(ROOT/'figures/rust-query-dated-section-map-review.png'))
         assert page.locator('.chart-sensitivity').count()==17 and page.locator('.chart-allowance').count()==0
         expect(page.locator('#query-chart-section')).to_contain_text('RADS 4.7.0, RADS 4.7.1, RADS 4.8.1')
         page.locator('#query-chart-section').screenshot(path=str(ROOT/'figures/rust-query-dated-width-chart-review.png'))
@@ -76,8 +97,17 @@ def main():
         page.locator('#query-sort').select_option('value_km');page.evaluate('window.oswLastQueryResult=null');page.locator('#query-run').click()
         page.wait_for_function('window.oswLastQueryResult?.total===1')
         q=json.loads(page.locator('#query-json').input_value());assert {'field':'year','op':'eq','value':2026} in q['filters'] and {'field':'observation_date','op':'eq','value':'2026-09-27'} in q['filters']
+        assert page.locator('#query-map-features path').count()==1
+        page.locator('#query-map-features path').focus();page.locator('#query-map-features path').press('Enter')
+        href=page.locator('#query-detail a',has_text='Map this local section span').get_attribute('href')
+        page.goto(href)
+        page.wait_for_function('window.oswLastQueryResult?.total===1')
+        assert page.locator('#query-map-features path').count()==1
+        assert float(page.locator('#query-map').get_attribute('viewBox').split()[2])==4
         page.set_viewport_size({'width':320,'height':900});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        browser_query(page,{'collection':'objects','filters':[{'field':'id','op':'eq','value':'current:gulf-stream-system'}]})
+        expect(page.locator('#query-map-play')).to_be_visible()
         assert not errors;browser.close()
-    print('PASS: 17 source-bound dated section samples; elapsed-day gaps; stable axes; separate threshold sensitivity and grid brackets; eight source mutation rejections; native/WASM and year/day controls; keyboard/mobile')
+    print('PASS: 17 source-bound dated section samples/maps; complete pre-pagination geometry; exact endpoints and source receipts; elapsed-day charts; eight source mutation rejections; native/WASM; local fit/card navigation and year/day controls; keyboard/mobile')
 
 if __name__=='__main__':main()

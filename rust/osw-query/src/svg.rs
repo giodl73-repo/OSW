@@ -21,20 +21,24 @@ fn xml(value: &str) -> String {
 
 pub fn render(scene: &Value, query: &Value, bundle_hash: &Value) -> Result<String, String> {
     if !scene.is_object() {
-        return Err("SVG maps require an objects query".into());
+        return Err("SVG maps require supported query geography".into());
     }
     let mut out = String::from(
         r##"<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="824" viewBox="0 0 360 206" role="img" aria-labelledby="export-title export-desc"><title id="export-title">OSW query map</title><desc id="export-desc">All matching stored geometry across every results page. Names appear on hover. Display coordinates are not scientific measurements.</desc><style>.mark{stroke:#68e3d1;stroke-width:.5;fill:none}.point{fill:#123d4a;stroke:#d3eeed}.gateway{stroke:#f4c45e;stroke-dasharray:.5 .5}.polygon{stroke:#dba2fc;fill:#ae7bd7;fill-opacity:.25}.dated{stroke:#ffbb71;stroke-dasharray:1.25 .75}.context{opacity:.22}.mark:hover,.mark:focus{stroke:white;stroke-width:1;outline:none}.state{fill:#ffd96b;fill-opacity:.12;stroke:#ffe29c;stroke-width:.5;stroke-dasharray:1.5 .75}.caption{fill:#d3eeed;font-family:system-ui,sans-serif;font-size:3px}</style><rect width="360" height="206" fill="#123d4a"/>"##,
     );
     let mut receipt = json!({"schema":"osw.query-svg.v1", "bundle_sha256":bundle_hash,"query":query,
         "projection":scene["projection"],"matching_objects":scene["matching_objects"],"mapped_objects":scene["mapped_objects"],
-        "unmapped_objects":scene["unmapped_objects"],"omitted_features":scene["omitted_features"],"scope":scene["scope"],
+        "unmapped_objects":scene["unmapped_objects"],"omitted_features":scene["omitted_features"],"scope":scene["scope"],"inspection_collection":scene["inspection_collection"],
         "selected_state_code":scene["selected_state_code"],"features":scene["features"],"spatial_relations":scene["spatial_relations"]});
     if !scene["geometry_time"].is_null() {
         receipt["geometry_time"] = scene["geometry_time"].clone();
     }
     if !scene["seasonal"].is_null() {
         receipt["seasonal"] = scene["seasonal"].clone();
+    }
+    if scene["inspection_collection"] == "width_samples" {
+        receipt["recorded_days"] = scene["recorded_days"].clone();
+        receipt["display_bounds"] = scene["display_bounds"].clone();
     }
     write!(out, "<metadata>{}</metadata>", xml(&receipt.to_string())).unwrap();
     // Repository-controlled coastline, with its original coordinate system retained.
@@ -157,6 +161,28 @@ pub fn render(scene: &Value, query: &Value, bundle_hash: &Value) -> Result<Strin
             out,
             "<text class=\"caption\" x=\"3\" y=\"210\">{}</text>",
             xml(&label)
+        )
+        .unwrap();
+        out = out
+            .replacen(
+                "height=\"824\" viewBox=\"0 0 360 206\"",
+                "height=\"848\" viewBox=\"0 0 360 212\"",
+                1,
+            )
+            .replacen(
+                "<rect width=\"360\" height=\"206\"",
+                "<rect width=\"360\" height=\"212\"",
+                1,
+            );
+    }
+    if scene["inspection_collection"] == "width_samples" {
+        let scope = "Local nominal surface section spans at 70 W; not current routes, flow-normal widths or occupied footprints. Separate recorded days may overlap.";
+        out = out.replace("Teal: editorial routes · Orange: dated lines · Purple: polygons · Hollow: locators · Amber dashed: shared gateways", "Orange dashed: nominal local section spans · Hover or focus for date and source scope");
+        write!(out, "<desc>{}</desc>", xml(scope)).unwrap();
+        write!(
+            out,
+            "<text class=\"caption\" x=\"3\" y=\"210\">{}</text>",
+            xml(scope)
         )
         .unwrap();
         out = out
