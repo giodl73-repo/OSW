@@ -33,6 +33,9 @@ pub fn render(scene: &Value, query: &Value, bundle_hash: &Value) -> Result<Strin
     if !scene["geometry_time"].is_null() {
         receipt["geometry_time"] = scene["geometry_time"].clone();
     }
+    if !scene["seasonal"].is_null() {
+        receipt["seasonal"] = scene["seasonal"].clone();
+    }
     write!(out, "<metadata>{}</metadata>", xml(&receipt.to_string())).unwrap();
     // Repository-controlled coastline, with its original coordinate system retained.
     let ground = include_str!("../../../figures/ocean-motion-dashboard-ground.svg").replacen(
@@ -57,7 +60,9 @@ pub fn render(scene: &Value, query: &Value, bundle_hash: &Value) -> Result<Strin
         if role == "shared_regional_gateway" {
             class.push_str(" gateway");
         }
-        if kind == "line" && role != "editorial_reference_route" {
+        if kind == "line"
+            && !["editorial_reference_route", "osw_editorial_reference_route"].contains(&role)
+        {
             class.push_str(" dated");
         }
         if feature["matches_selected_state"] == false {
@@ -81,6 +86,12 @@ pub fn render(scene: &Value, query: &Value, bundle_hash: &Value) -> Result<Strin
         );
         if feature["undated_context"] == true {
             name.push_str(" · undated context");
+        }
+        if let Some(phase) = feature["phase_label"].as_str() {
+            name.push_str(&format!(
+                " · {phase} · {}",
+                feature["flow_direction"].as_str().unwrap_or("")
+            ));
         }
         let tag = if kind == "point" { "circle" } else { "path" };
         write!(out, "<{tag} class=\"{}\" data-entity=\"{}\" data-role=\"{}\" tabindex=\"0\" aria-label=\"{}\" fill-rule=\"evenodd\" ", xml(&class), xml(feature["entity_id"].as_str().unwrap_or("")), xml(role), xml(&name)).unwrap();
@@ -123,6 +134,14 @@ pub fn render(scene: &Value, query: &Value, bundle_hash: &Value) -> Result<Strin
             out,
             "<text class=\"caption\" x=\"3\" y=\"{y}\">{}</text>",
             xml(text)
+        )
+        .unwrap();
+    }
+    if let Some(seasonal) = scene.get("seasonal") {
+        write!(
+            out,
+            "<desc>{}</desc>",
+            xml(seasonal["scope"].as_str().unwrap_or(""))
         )
         .unwrap();
     }

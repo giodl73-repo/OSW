@@ -202,6 +202,7 @@ impl Index {
                 if accepts {
                     matches.push(json!({"feature_index":i,"state_code":query.state_code,"predicate":query.predicate,
                         "frame_id":feature.metadata["frame_id"],"series_id":feature.metadata["series_id"],"source_url":feature.metadata["source_url"],"source_subset_sha256":feature.metadata["source_subset_sha256"],"timeline_sha256":feature.metadata["timeline_sha256"],
+                        "phase_id":feature.metadata["phase_id"],"phase_label":feature.metadata["phase_label"],"calendar_months":feature.metadata["calendar_months"],"flow_direction":feature.metadata["flow_direction"],"route_candidate_sha256":feature.metadata["route_candidate_sha256"],"seasonal_inventory_sha256":feature.metadata["seasonal_inventory_sha256"],
                         "role":feature.metadata["role"],"note":feature.metadata["note"],"candidate_id":feature.metadata["candidate_id"],
                         "observation_date":feature.metadata["observation_date"],"boundary_touch_only":relation.is_touches(),
                         "geometry_id":feature.metadata["geometry_id"],"coordinate_reference_system":feature.metadata["coordinate_reference_system"],

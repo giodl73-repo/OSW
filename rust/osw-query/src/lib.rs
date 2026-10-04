@@ -1,8 +1,11 @@
 use serde::Deserialize;
 use serde_json::{Value, json};
 use std::collections::{BTreeMap, BTreeSet};
+mod charts;
 mod map;
 mod rebase;
+mod samples;
+mod seasonal;
 mod spatial;
 mod svg;
 mod temporal;
@@ -50,6 +53,7 @@ pub struct Query {
     pub evidence: Option<String>,
     pub spatial: Option<spatial::SpatialQuery>,
     pub geometry_time: Option<temporal::GeometryTime>,
+    pub seasonal: Option<seasonal::SeasonalSelection>,
     #[serde(default)]
     pub filters: Vec<Filter>,
     pub sort: Option<Sort>,
@@ -151,6 +155,8 @@ impl Store {
                 ("route_ids", "reference_routes"),
                 ("source_ids", "sources"),
                 ("frame_ids", "geometry_frames"),
+                ("seasonal_route_ids", "seasonal_routes"),
+                ("width_sample_ids", "width_samples"),
             ] {
                 if let Some(list) = object.get(key) {
                     let list = list.as_array().ok_or_else(|| format!("Invalid {key}"))?;
@@ -164,11 +170,13 @@ impl Store {
                         {
                             return Err(format!("Unresolved {collection} ID {id}"));
                         }
-                        if collection == "geometry_frames"
+                        if (collection == "geometry_frames"
+                            || collection == "seasonal_routes"
+                            || collection == "width_samples")
                             && bundle.collections[collection][ids[collection][id]]["entity_id"]
                                 != object["id"]
                         {
-                            return Err(format!("Geometry frame {id} belongs to another object"));
+                            return Err(format!("Joined record {id} belongs to another object"));
                         }
                     }
                 }
@@ -197,6 +205,8 @@ impl Store {
                 }
             }
         }
+        seasonal::validate_features(&bundle.collections)?;
+        samples::validate(&bundle.collections)?;
         let spatial = spatial::Index::build(&bundle.collections)?;
         fields.insert(
             "working_records".into(),
@@ -238,6 +248,8 @@ impl Store {
             "workspace_revision":self.workspace.events.len(),"bundle_sha256":self.workspace.bundle_sha256,
             "object_type_counts":object_type_counts,
             "geometry_observation_dates":geometry_dates,
+            "width_sample_currents":self.bundle.collections["objects"].iter().filter(|r|r["width_sample_ids"].as_array().is_some_and(|ids|!ids.is_empty())).map(|r|json!({"current_id":r["id"].as_str().unwrap().trim_start_matches("current:"),"label":r["label"]})).collect::<Vec<_>>(),
+            "seasonal_phases":self.bundle.collections.get("seasonal_routes").map(|rs| rs.iter().map(|r| json!({"id":r["id"],"label":r["label"],"calendar_months":r["calendar_months"]})).collect::<Vec<_>>()).unwrap_or_default(),
             "collections":self.bundle.collections.iter().map(|(name,records)| json!({"name":name,"count":records.len(),"fields":self.fields[name]})).collect::<Vec<_>>()})
     }
     fn known_field(&self, collection: &str, name: &str) -> Result<(), String> {
@@ -253,6 +265,12 @@ impl Store {
             .get(&query.collection)
             .ok_or_else(|| format!("Unknown collection {}", query.collection))?;
         let limit = query.limit.unwrap_or(100);
+        if let Some(seasonal) = &query.seasonal {
+            if query.collection != "objects" || query.geometry_time.is_some() {
+                return Err("Seasonal selection applies to objects and cannot be combined with exact observation dates".into());
+            }
+            seasonal.validate(&self.bundle.collections)?;
+        }
         if let Some(time) = &query.geometry_time {
             if query.collection != "objects" {
                 return Err("Geometry time applies to objects".into());
@@ -339,6 +357,14 @@ impl Store {
                                 .is_some_and(|feature| time.includes(feature))
                         });
                     }
+                    if let Some(seasonal) = &query.seasonal {
+                        matches.retain(|relation| {
+                            relation["feature_index"]
+                                .as_u64()
+                                .and_then(|i| row["map_features"].get(i as usize))
+                                .is_some_and(|feature| seasonal.includes(feature))
+                        });
+                    }
                     if matches.is_empty() {
                         None
                     } else {
@@ -352,6 +378,13 @@ impl Store {
         let mut matches: Vec<&Value> = records
             .iter()
             .filter(|r| {
+                if query.seasonal.as_ref().is_some_and(|s| {
+                    !r["map_features"]
+                        .as_array()
+                        .is_some_and(|fs| fs.iter().any(|f| s.includes(f)))
+                }) {
+                    return false;
+                }
                 if query.geometry_time.as_ref().is_some_and(|t| {
                     !r["map_features"]
                         .as_array()
@@ -445,13 +478,20 @@ impl Store {
         }
         let total = matches.len();
         let mut map_scene = if query.collection == "objects" {
-            map::scene_selected(&matches, query.geometry_time.as_ref())
+            map::scene_selected(
+                &matches,
+                query.geometry_time.as_ref(),
+                query.seasonal.as_ref(),
+            )
         } else {
             Value::Null
         };
         if let Some(time) = &query.geometry_time {
             map_scene["geometry_time"] = json!({"from":time.from,"to":time.to,"include_undated":time.include_undated,
                 "scope":"Exact recorded observation days, inclusive. Undated marks are context only. No interpolation, persistence or seasonal inference."});
+        }
+        if let Some(seasonal) = &query.seasonal {
+            map_scene["seasonal"] = json!({"month":seasonal.month,"phase_id":seasonal.phase_id,"scope":"Source-defined regional editorial phases. Months are source conventions, not observed monthly fields. Unknown month ranges excluded from month selection. No interpolation, annual extrema or uniform width footprint."});
         }
         if let Some(spatial) = &query.spatial {
             for feature in map_scene["features"].as_array_mut().unwrap() {
@@ -478,6 +518,11 @@ impl Store {
             map_scene["state_features"] = map::scene(&[&display])["features"].clone();
             map_scene["selected_state_code"] = json!(spatial.state_code);
         }
+        let chart_scene = if query.collection == "width_samples" {
+            charts::scene(&matches, records)
+        } else {
+            Value::Null
+        };
         let rows: Vec<_> = matches
             .into_iter()
             .skip(query.offset)
@@ -491,7 +536,7 @@ impl Store {
             })
             .collect();
         Ok(
-            json!({"ok":true,"engine":"rust-osw-query-v1","collection":query.collection,"total":total,"offset":query.offset,"limit":limit,"rows":rows,"map_scene":map_scene,
+            json!({"ok":true,"engine":"rust-osw-query-v1","collection":query.collection,"total":total,"offset":query.offset,"limit":limit,"rows":rows,"map_scene":map_scene,"chart_scene":chart_scene,
                 "spatial_scope":if query.spatial.is_some(){json!("Computed display geometry, separate from recorded state links. Point locators and shared gateways require their own predicates; neither is current or eddy containment.")}else{Value::Null}}),
         )
     }

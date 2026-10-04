@@ -83,6 +83,34 @@ def build():
                 feature['spatial_geometry']={'type':'LineString','coordinates':[[((x-60)*360/1480)%360-180,90-(y-90)*180/740] for x,y in points]}
                 feature['spatial_geometry_method']='WGS84 geodesic legs densified at <=10 km as in the existing reference-route state join; planar relation to coarse masked OSW display polygons.'
     collections['series']=[{'id':f"query-series:{row['id']}:{i}",'entity_id':row['id'],**series} for row in objects for i,series in enumerate(row['series'])]
+    # Seasonal source conventions are distinct from exact observation dates.
+    seasonal_path='research/ocean-current-seasonal-route-frames.json'
+    seasonal=read(seasonal_path)
+    if inputs[seasonal['width_inventory_file']]!=seasonal['width_inventory_sha256']:raise ValueError('Stale seasonal width inventory')
+    reports={}
+    for phase in seasonal['frames']:
+        reports[phase['route_candidate_file']]=read(phase['route_candidate_file'])
+        if inputs[phase['route_candidate_file']]!=phase['route_candidate_sha256']:raise ValueError('Stale seasonal route')
+    from check_current_seasonal_route_frames import validate as validate_seasonal
+    validate_seasonal(seasonal,reports,widths)
+    inputs['analysis/check_current_seasonal_route_frames.py']=hashlib.sha256((ROOT/'analysis/check_current_seasonal_route_frames.py').read_bytes()).hexdigest()
+    collections['seasonal_routes']=[]
+    for phase in seasonal['frames']:
+        candidate=reports[phase['route_candidate_file']]
+        entity_id='current:'+phase['current_id'];row=next(r for r in objects if r['id']==entity_id)
+        comparison=next(c for c in seasonal['comparability'] if c['current_id']==phase['current_id'])
+        record={**copy.deepcopy(phase),'entity_id':entity_id,'label':row['label']+' — '+phase['phase_label'],
+                'status':seasonal['status'],'seasonal_inventory_file':seasonal_path,'seasonal_inventory_sha256':inputs[seasonal_path],
+                'coordinates_lon_lat':copy.deepcopy(candidate['coordinates_lon_lat']),'comparability':copy.deepcopy(comparison)}
+        collections['seasonal_routes'].append(record);row.setdefault('seasonal_route_ids',[]).append(record['id'])
+        points=display_coordinates(candidate['coordinates_lon_lat'],allow_seam=candidate.get('longitude_seam_policy')=='shortest_geodesic_periodic_display')
+        row['map_features'].append({'geometry':{'type':'LineString','coordinates':copy.deepcopy(candidate['coordinates_lon_lat'])},
+            'role':phase['geometry_role'],'phase_id':phase['id'],
+            **{key:copy.deepcopy(record[key]) for key in ['phase_label','calendar_months','flow_direction','source_url','source_locator','time_convention','layer','route_candidate_sha256','seasonal_inventory_sha256','comparability']},
+            'spatial_geometry':{'type':'LineString','coordinates':[[((x-60)*360/1480)%360-180,90-(y-90)*180/740] for x,y in points]},
+            'state_semantic_exclusions':candidate.get('state_semantic_exclusions',[]),
+            'spatial_geometry_method':'WGS84 geodesic legs densified at <=10 km; planar relation to coarse land-masked OSW display polygons. Source-defined seasonal regional editorial route, not an occupied footprint.',
+            'note':phase['time_convention']+' '+comparison['reason']})
     # Import existing checked diagnostic frames without admitting them as current axes.
     from check_current_dated_timeline import validate as validate_timeline
     collections['geometry_frames']=[]
@@ -123,11 +151,33 @@ def build():
         ('diagnostic:necc-monthly-section','research/pacific-necc-oscar-2013-section-diagnostic.json'),
         ('diagnostic:antilles-observed-sections','research/antilles-ab0505-400m-section-diagnostic.json'),
         ('diagnostic:gulf-stream-widths','research/gulf-stream-section-width-series.json')]]
+    from build_query_width_samples import build as build_width_samples
+    from build_leeuwin_monthly_plot import build as rebuild_leeuwin
+    from build_kuroshio_seasonal_width_profiles import build as rebuild_kuroshio
+    from build_pacific_necc_oscar_section_diagnostic import build as rebuild_necc, diagnostic_matches
+    rebuilds={'diagnostic:leeuwin-monthly-width':rebuild_leeuwin,'diagnostic:kuroshio-seasonal-width':rebuild_kuroshio,'diagnostic:necc-monthly-section':rebuild_necc}
+    for diagnostic in collections['diagnostics']:
+        if diagnostic['id'] not in rebuilds:continue
+        original=diagnostic['document'];calculated=rebuilds[diagnostic['id']]()
+        matches=diagnostic_matches(original,calculated) if diagnostic['id']=='diagnostic:necc-monthly-section' else original==calculated
+        if not matches:raise ValueError('Width diagnostic differs from pinned source reconstruction: '+diagnostic['id'])
+        for key,path in original.items():
+            if key.endswith('_file') and key.removesuffix('_file')+'_sha256' in original:
+                actual=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+                if actual!=original[key.removesuffix('_file')+'_sha256']:raise ValueError('Stale width diagnostic dependency: '+path)
+                inputs[path]=actual
+    for path in ['analysis/build_leeuwin_monthly_plot.py','analysis/build_kuroshio_seasonal_width_profiles.py','analysis/build_pacific_necc_oscar_section_diagnostic.py','analysis/acquire_pacific_necc_oscar_section.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    inputs['analysis/build_query_width_samples.py']=hashlib.sha256((ROOT/'analysis/build_query_width_samples.py').read_bytes()).hexdigest()
+    collections['width_samples']=build_width_samples(collections['diagnostics'])
+    for row in objects:
+        row['width_sample_ids']=[sample['id'] for sample in collections['width_samples'] if sample['entity_id']==row['id']]
+        row['capabilities']['width_samples']=len(row['width_sample_ids'])
     for name,rows in collections.items():
         if len({r['id'] for r in rows})!=len(rows):raise ValueError('Duplicate ID in '+name)
     return {'schema':'osw.query-bundle.v1','manifest':{'status':'local_editorial_and_canonical_snapshot_not_new_scientific_admission',
             'canonical_release':'v0.1.0','canonical_collections':['entities','sources','claims','relations','measurements','geometries'],
-            'editorial_collections':['objects','widths','reference_routes','state_links','states','series','geometry_frames','diagnostics'],
+            'editorial_collections':['objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples'],
             'input_sha256':inputs,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},
             'scope':'State joins retain relation kinds; gateways are not containment. Widths retain scope. Published lengths and editorial route lengths are separate collections.'},
             'collections':collections}

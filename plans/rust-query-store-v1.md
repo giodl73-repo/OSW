@@ -338,3 +338,166 @@ Verification compares all 17 frame payloads/coordinates to original timeline fil
 confirms all stops and null dimensions remain, checks native/WASM queries, mapped
 frame IDs, inspector links, playback/pause, regional fit and narrow layout. Original
 SVG/Shapely state oracle queries also pass with the imported geometries.
+
+## Source-defined seasonal routes — 2026-10-04
+
+The Rust bundle imports six checked editorial phases in `seasonal_routes`:
+Somali winter and June–July southern limb; historical Davidson October–March;
+Sri Lanka Monsoon Current June–September and November–February; and an Indian
+SECC December–March studied reach. These belong to four existing current objects.
+Their vertices, source URLs/locators, layers, time conventions, candidate hashes,
+width context and phase-comparability decisions remain attached to the records.
+The seasonal inventory's stale width receipt was refreshed after validating the
+same Davidson association against the current 37-record width inventory.
+
+Objects carry `seasonal_route_ids`. Seasonal map features carry a `phase_id` and
+the original source geometry role. Rust rejects mismatched ownership, coordinates,
+role, calendar, source metadata, or a phase feature carrying an observation date.
+No canonical record or published length is admitted by this import.
+
+Object queries accept exactly one selector:
+
+```json
+{"collection":"objects","seasonal":{"month":1},"limit":50}
+```
+
+```json
+{"collection":"objects","seasonal":{"phase_id":"somali-winter"}}
+```
+
+Months must be integers 1–12. A month selects only seasonal features whose source
+calendar explicitly contains that month; null calendars are excluded. The Somali
+winter phase is selectable by name, with its month range still unresolved.
+April and May currently produce empty month scenes. This means no supported phase
+in this imported inventory, not absence of ocean flow or zero current dimensions.
+Exact-day `geometry_time` and `seasonal` are separate, incompatible selectors.
+
+Spatial and seasonal conditions must match the same stored feature. Unselected
+routes and locators cannot supply the state intersection of a selected phase.
+Map scenes use every matching object before table pagination, retain phase receipts
+and computed relations, and export the same metadata through native/WASM SVG.
+Source rows continue to retain their full geometry lists.
+
+The query UI provides named months, source phases, a January preset and direct
+phase-map links inside current cards. **Play source months** steps the selected
+query through month numbers at one-second intervals, preserves filters/zoom, and
+shows empty months explicitly. This is discrete source-convention playback, not
+interpolation, a current-year animation, observed monthly velocity fields, annual
+extrema or a width footprint. Playback is opt-in, pauses on user request, and stops
+on other queries, failure, a hidden page or December. Recorded-day playback
+switches back to exact observation dates.
+
+```powershell
+python analysis/check_current_seasonal_route_frames.py
+python analysis/build_rust_query_bundle.py
+python analysis/build_rust_query_engine.py
+$env:OSW_TEST_BROWSER='C:/Program Files/Google/Chrome/Application/chrome.exe'
+python analysis/test_rust_seasonal_routes.py
+```
+
+The browser test compares all 12 months and six phases between native Rust and
+WASM, checks three OSW states with same-feature selection, invalid/combined
+selectors, source record fidelity, null dimensions, month gaps, keyboard/card
+navigation, monthly playback/pause, mobile reflow and byte-identical SVG export.
+Changing this bundle hash requires the existing explicit journal rebase workflow.
+
+## Scoped width samples — 2026-10-04
+
+`width_samples` projects 88 original samples from three existing diagnostic
+documents: 12 Leeuwin a101 monthly fitted-width plot readings; 64 Kuroshio East
+China Sea seasonal profile plot readings at 16 longitudes in four seasons; and
+12 Pacific NECC 140 W monthly-mean connected-component diagnostics for 2013.
+All five unresolved Kuroshio readings remain null and queryable. This imports
+additional query granularity, not new canonical measurements or admitted ranks.
+
+Every sample retains its full original `source_sample`, source metadata in
+`source_context`, optional seasonal `source_phase`, parent `diagnostic_id` and
+exact JSON pointer `sample_path`. Projection code is pinned in the bundle input
+receipts. Bundle generation reconstructs all three diagnostics from their pinned
+source archives/PDF extraction configurations before projecting them. It checks
+and records original source, protocol, configuration and audit hashes. Original
+journal PDFs stay local and excluded from Git; use the existing checksum-pinned
+fixture acquisition command when regenerating from a fresh checkout. NECC's
+existing narrowly bounded arithmetic-roundoff comparison remains in effect.
+Rust resolves each pointer and binds the original payload, phase path,
+current owner, metric, value, plot-reading interval, month/year, longitude, phase
+label and status to its parent diagnostic. Cross-object references, changed
+values/support, invented uncertainty and whole-current/ranking promotion fail
+store loading. Parent diagnostics remain inspectable in the query UI.
+
+`value_km` is a scoped plot reading or a locally derived diagnostic, depending on
+`sample_family`. It is not a common global width metric. Sorting values does not
+establish a ranking of named currents. `plot_reading_interval_km` retains the
+source extraction allowance; `measurement_uncertainty_interval_km` remains null
+and `is_confidence_interval` false. NECC threshold-sensitivity results remain in
+the original sample and are not collapsed into an uncertainty interval. Original
+profile pixels, brackets, sample times and stop/missing statuses are preserved.
+
+Leeuwin records preserve conflicting historical period labels rather than
+inventing a combined averaging window or dated year. Kuroshio retains its
+1993–2008 study-period years, with unresolved month membership for named seasons;
+no month numbers are supplied for its 64 readings. NECC retains source year 2013
+and explicit source month/sample times. No width sample creates a geographic
+route, occupied footprint, annual range or confidence interval.
+
+Objects gain `width_sample_ids` and `capabilities.width_samples`. **Has evidence:
+Scoped width samples** finds the three covered objects. Their cards link directly
+to filtered sample queries. **Leeuwin monthly widths** and **Kuroshio width
+profiles** provide example queries, with full context and parent diagnostics in
+the inspector. Generic field filters can select a family, month, source year,
+longitude, named phase or unresolved `value_km` independently of source-map phases.
+Visible sample controls select current, method family, source month and numeric
+value availability. Sorting preserves these selections. Extra structured filters,
+including duplicate/unsupported control values, remain active and are disclosed
+instead of being silently discarded by form use. Current-card links initialize
+the visible current selector. **NECC monthly diagnostics** selects its 12 months.
+These sample records have no `map_scene`; source geometry cannot be inferred from
+scalar widths. Source-month map playback continues to use `seasonal_routes`.
+
+```json
+{"collection":"width_samples","filters":[{"field":"current_id","op":"eq","value":"leeuwin"}],"sort":{"field":"month"}}
+```
+
+```json
+{"collection":"width_samples","filters":[{"field":"value_km","op":"exists","value":false}]}
+```
+
+Verification:
+
+```powershell
+python -m pytest analysis/test_query_width_samples.py -q
+python analysis/build_rust_query_bundle.py
+python analysis/build_rust_query_engine.py
+$env:OSW_TEST_BROWSER='C:/Program Files/Google/Chrome/Application/chrome.exe'
+python analysis/test_rust_width_samples.py
+```
+
+Checks cover all source rows, five missing readings, separate uncertainty roles,
+three current joins, native/WASM parity, null-last numeric order, malformed source
+bindings, direct card navigation, parent diagnostic access and 320 px reflow.
+Canonical release files and published length ranks remain unchanged. This source
+snapshot update uses the same explicit proposal-journal rebase contract.
+
+### Source width charts
+
+Width sample queries return a Rust-generated `chart_scene` alongside the table.
+Six panels separate the three source diagnostics and four Kuroshio seasons.
+Charts include all matching samples before table pagination. Axes use the full
+original diagnostic domain, so filtering does not change the scale. The four
+Kuroshio panels share their diagnostic's width scale.
+
+Points remain disconnected. Whiskers show plot-reading allowances, not confidence
+intervals or measurement uncertainty. Five unresolved samples appear as crosses
+in a separate missing strip, never as zero-width values. Source period and method
+notes remain visible. These scalar charts introduce no geographic footprints,
+annual extrema, interpolation or cross-method width ranking.
+
+Each point or missing mark opens its original sample card by click, Enter or
+Space. Charts are labelled SVG groups with individually labelled buttons; the
+table provides the original values and text alternative. Narrow screens scroll
+the chart within its frame while the surrounding page reflows.
+
+Verification: `python analysis/test_rust_width_charts.py` with `OSW_TEST_BROWSER`
+set to Chrome. Checks cover all 88 marks, six panels, five missing readings,
+stable filtered axes, source-value fidelity, native/WASM equality, keyboard
+selection, mobile scrolling, empty results and stale-chart clearing on errors.

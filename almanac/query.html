@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Query the ocean atlas — OSW</title>
-  <link rel="stylesheet" href="query.css?v=5"><script src="query-workspace.js?v=1" defer></script><script src="query.js?v=5" defer></script>
+  <link rel="stylesheet" href="query.css?v=8"><script src="query-workspace.js?v=1" defer></script><script src="query-charts.js?v=1" defer></script><script src="query.js?v=8" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to query</a>
@@ -23,6 +23,10 @@
       <button type="button" data-preset="kuro" disabled>Currents linked to KURO</button>
       <button type="button" data-preset="spatial-nadr" disabled>Geometry meets NADR</button>
       <button type="button" data-preset="gulf-dated" disabled>Gulf Stream recorded diagnostics</button>
+      <button type="button" data-preset="seasonal-january" disabled>January source phases</button>
+      <button type="button" data-preset="leeuwin-samples" disabled>Leeuwin monthly widths</button>
+      <button type="button" data-preset="kuroshio-samples" disabled>Kuroshio width profiles</button>
+      <button type="button" data-preset="necc-samples" disabled>NECC monthly diagnostics</button>
     </div>
     <form id="query-form">
       <fieldset id="query-controls" disabled><legend class="sr">Query controls</legend>
@@ -31,19 +35,29 @@
         <label>Type<select id="query-type"><option value="">All types</option><option value="named_current">Currents</option><option value="named_eddy">Named eddies</option><option value="operational_eddy_detection">Dated detections</option></select></label>
         <label>OSW state<select id="query-state"><option value="">All states</option></select></label>
         <label>State relation<select id="query-state-mode"><option value="recorded">Recorded evidence links</option><option value="intersects">Line / polygon intersects</option><option value="within">Polygon covered by state</option><option value="locator">Locator in state</option><option value="gateway">Shared gateway in state</option></select></label>
-        <label>Has evidence<select id="query-evidence"><option value="">Any / unresolved</option><option value="scoped_width">Scoped width</option><option value="reference_route">Reference route</option><option value="reported_length">Published ranked length</option><option value="geometry">Geometry beyond locator</option><option value="time_samples">Time samples / phases</option><option value="source_connectivity">Source-described links</option></select></label>
+        <label>Has evidence<select id="query-evidence"><option value="">Any / unresolved</option><option value="scoped_width">Scoped width</option><option value="reference_route">Reference route</option><option value="reported_length">Published ranked length</option><option value="geometry">Geometry beyond locator</option><option value="time_samples">Time samples / phases</option><option value="width_samples">Scoped width samples</option><option value="source_connectivity">Source-described links</option></select></label>
         <label>Order by<select id="query-sort"></select></label>
         <label>Geometry observed from<input id="query-time-from" type="date"></label>
         <label>Through<input id="query-time-to" type="date"></label>
         <label class="time-context"><input id="query-time-context" type="checkbox">Include undated map context</label>
+        <label>Seasonal month<select id="query-season-month"><option value="">All / no month selection</option></select></label>
+        <label>Source route phase<select id="query-season-phase"><option value="">All / no phase selection</option></select></label>
+        <label>Sample current<select id="query-sample-current"><option value="">All covered currents</option></select></label>
+        <label>Sample method<select id="query-sample-family"><option value="">All methods</option></select></label>
+        <label>Sample source month<select id="query-sample-month"><option value="">All / unresolved months</option></select></label>
+        <label>Sample value<select id="query-sample-availability"><option value="">Any / unresolved</option><option value="true">Available</option><option value="false">Unresolved</option></select></label>
         <label>Direction<select id="query-direction"><option value="asc">Ascending</option><option value="desc">Descending</option></select></label>
         <button id="query-run" type="submit">Run query</button>
       </fieldset>
     </form>
+    <p id="query-sample-extra" class="note" hidden>Additional sample constraints remain active in the structured query.</p>
+    <p class="note">Seasonal selections use source-defined regional route phases. Month coverage is incomplete; unresolved month ranges appear only when selected by phase name. These drawings do not provide observed monthly fields, annual extrema or uniform current widths. Exact observation dates use a separate selection.</p>
+    <p class="note">Width samples retain different source metrics. Ordering their values does not establish a global width ranking. Plot-reading intervals are extraction allowances, not measurement confidence intervals.</p>
     <p class="note">Recorded links and computed geometry are separate queries. Spatial predicates use approximate, land-masked OSW display polygons; intersection includes boundary contact. Locators and gateways require their own modes. These are not physical current passage or full-current containment. Width records retain their region, layer and boundary definition; ordering them does not make a uniform width ranking.</p>
     <details id="query-advanced"><summary>Structured query</summary><p>Edit fields, filters, sort and pagination directly. This query runs in the same engine as the controls.</p><label class="sr" for="query-json">JSON query</label><textarea id="query-json" rows="9" spellcheck="false"></textarea><button id="query-run-json" type="button" disabled>Run structured query</button><a href="../plans/rust-query-store-v1.md">Query and storage contract</a></details>
   </section>
   <p id="query-status" role="status" aria-live="polite">Loading Rust WebAssembly engine…</p>
+  <section id="query-chart-section" aria-labelledby="chart-title" hidden><h2 id="chart-title">Width profiles</h2><p id="query-chart-scope" class="note"></p><p class="note">Circles: scoped numeric samples. Whiskers: plot-reading allowances. Crosses in the separate Missing strip: unresolved readings. Points are not connected or interpolated. The table and sample cards provide the original values and sources.</p><div id="query-chart-panels"></div></section>
   <section id="query-map-section" aria-labelledby="map-title" hidden>
     <div class="result-head"><h2 id="map-title">Map the matches</h2><div><button type="button" id="query-map-in" aria-label="Zoom map in">+</button> <button type="button" id="query-map-out" aria-label="Zoom map out">−</button> <button type="button" id="query-map-world">World</button></div></div>
     <p id="query-map-count" role="status"></p>
@@ -51,7 +65,8 @@
     <button type="button" id="query-map-fit">Fit matches</button>
     <label>Step through recorded geometry days<select id="query-map-day"><option value="">Choose a recorded day</option></select></label>
     <button type="button" id="query-map-play" aria-pressed="false">Play recorded days</button>
-    <p class="note">Playback advances by observation, one frame per second. Unequal date gaps are not elapsed-time animation.</p>
+    <button type="button" id="query-map-play-months" aria-pressed="false">Play source months</button>
+    <p class="note">Recorded-day playback advances by observation; source-month playback advances by month. One step per second, with no interpolation. Unequal date gaps are not elapsed-time animation. Empty month scenes mean coverage is unavailable.</p>
     <p id="query-map-time" class="note">Dates select recorded observations; gaps are not interpolated.</p>
     <svg id="query-map" viewBox="0 0 360 180" role="group" aria-label="Query results on the OSW map"><image id="query-map-ground" href="../figures/ocean-motion-dashboard-ground.svg" x="0" y="0" width="360" height="180" opacity=".6"/><g id="query-map-state"></g><g id="query-map-features"></g></svg>
     <p id="query-map-hover" aria-live="polite">Hover or focus a mark for its name; select it to inspect its record.</p>
