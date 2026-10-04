@@ -1,0 +1,166 @@
+{
+  "schema": "osw.current-seasonal-route-frames.v1",
+  "as_of": "2026-10-03",
+  "status": "editorial_seasonal_route_associations_not_canonical",
+  "coverage": "Somali seasonal components, historical Davidson winter reach, Sri Lanka Monsoon Current summer/winter regional drawings, and one Indian SECC winter surface reach. Incomplete annual coverage; not observed monthly fields or occupied footprints.",
+  "counts": {
+    "currents": 4,
+    "frames": 6
+  },
+  "frames": [
+    {
+      "id": "somali-winter",
+      "current_id": "somali",
+      "phase_label": "Northeast winter monsoon",
+      "flow_direction": "southward",
+      "calendar_months": null,
+      "time_convention": "Northeast winter monsoon convention; not a simultaneous dated observation or an annual-average route.",
+      "layer": "Surface/upper-layer seasonal coastal reference geography; the source describes a shallow winter equatorial current, but no fixed-depth velocity axis is reconstructed.",
+      "route_candidate_file": "research/somali-winter-reference-path-candidate.json",
+      "route_candidate_sha256": "37cf752d61cfcfff451e3066e842e00f524b78400573b28ff731cf3ff12f4cda",
+      "geometry_role": "osw_editorial_reference_route",
+      "width_measurement_ids": [],
+      "source_url": "https://www.whoi.edu/cms/files/schott_mccreary_41948.pdf",
+      "source_locator": "Section 4.2.1, printed pages 48-49 (PDF indices 47-48): southward surface flow reaches EACC confluence at 2-4 S; winter coastal divergence near 6-8 N. Section 4.2.2 distinguishes modeled coastal continuation and northern countercurrent."
+    },
+    {
+      "id": "somali-summer-southern",
+      "current_id": "somali",
+      "phase_label": "June-July southern limb",
+      "flow_direction": "northward",
+      "calendar_months": [
+        6,
+        7
+      ],
+      "time_convention": "June-July monsoon-onset two-gyre convention. Does not assume rare late-summer gyre coalescence or persistent whole-coast continuity.",
+      "layer": "Upper-layer southern seasonal coastal geography; no fixed-depth or velocity-derived axis.",
+      "route_candidate_file": "research/somali-summer-southern-reference-path-candidate.json",
+      "route_candidate_sha256": "73efa37ee93f5a6985c891bb524fc2ec0d443d17807de420fc7a03a44ab5b295",
+      "geometry_role": "osw_editorial_reference_route",
+      "width_measurement_ids": [],
+      "source_url": "https://www.whoi.edu/cms/files/schott_mccreary_41948.pdf",
+      "source_locator": "Section 4.1.1, printed page 38 (PDF index 37): June-July cross-equatorial limb departs the coast south of 4 N, partitions into offshore outflow/recirculation and has little exchange with Great Whirl. Printed pages 41-43 discuss non-universal gyre coalescence."
+    },
+    {
+      "id": "davidson-historical-winter",
+      "current_id": "davidson",
+      "phase_label": "October-March (1978 regional summary)",
+      "flow_direction": "northward",
+      "calendar_months": [
+        10,
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "route_candidate_file": "research/davidson-winter-reference-path-candidate.json",
+      "route_candidate_sha256": "ac2db281859e27e8903fb224f3fdde35b36f010ab111240e2a2c78e3c5a26609",
+      "geometry_role": "osw_editorial_reference_route",
+      "width_measurement_ids": [
+        "davidson-historical-winter-width"
+      ],
+      "width_support_role": "regional_source_context_not_uniform_route_width",
+      "width_scope_note": "Approximate 64 km is historical California-Oregon regional context; it is not applied uniformly to the editorial route or used as an occupied footprint.",
+      "time_convention": "October-March California-Oregon regional seasonal description in the February 1978 report; strongest flow described in January. Historical summary, not a dated trajectory, current-year observation or modern monthly climatology.",
+      "layer": "Seasonal northward surface-current regional context; not the separately described California Undercurrent below 200 m or a reconstructed velocity axis.",
+      "source_url": "https://waves-vagues.dfo-mpo.gc.ca/library-bibliotheque/40591190_v2.pdf",
+      "source_locator": "Appendix II section II.1, printed II-1 to II-2 / PDF pages 12-13: northward seasonal surface strip along California and Oregon from October to March; Vancouver Island penetration is conditional."
+    },
+    {
+      "id": "monsoon-summer-sri-lanka",
+      "current_id": "monsoon",
+      "phase_label": "Southwest Monsoon Current · June–September eastward regional reach",
+      "flow_direction": "eastward",
+      "calendar_months": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "source_season_label": "summer",
+      "route_candidate_file": "research/monsoon-summer-sri-lanka-reference-path-candidate.json",
+      "route_candidate_sha256": "1074de5de5d68f6ca753a8eafdb2fea5eaecd20204f008c6df156e3c21940f92",
+      "geometry_role": "osw_editorial_reference_route",
+      "width_measurement_ids": [],
+      "time_convention": "Boreal summer source convention, June–September. Historical review and section context, not a simultaneous dated trajectory or current-year climatology.",
+      "layer": "Seasonal near-surface regional geography. Historical section evidence is shallow and depth dependent; no fixed-depth velocity axis reconstructed and undercurrents excluded.",
+      "source_url": "https://www.whoi.edu/cms/files/schott_mccreary_41948.pdf",
+      "source_locator": "Schott and McCreary (2001), section 5.1.5, printed pp. 63–65 / PDF indices 62–64: seasonal directions/months, Sri Lanka bottleneck and separate upper-layer/undercurrent flows. August 1993 and January 1991 sections provide local latitude context, not regional axis vertices."
+    },
+    {
+      "id": "monsoon-winter-sri-lanka",
+      "current_id": "monsoon",
+      "phase_label": "Northeast Monsoon Current · November–February westward regional reach",
+      "flow_direction": "westward",
+      "calendar_months": [
+        11,
+        12,
+        1,
+        2
+      ],
+      "source_season_label": "winter",
+      "route_candidate_file": "research/monsoon-winter-sri-lanka-reference-path-candidate.json",
+      "route_candidate_sha256": "050f03273c082601dd425ad8221c6f038bcc152c4f2978e58dde9af6e60f4334",
+      "geometry_role": "osw_editorial_reference_route",
+      "width_measurement_ids": [],
+      "time_convention": "Boreal winter source convention, November–February. Historical review and section context, not a simultaneous dated trajectory or current-year climatology.",
+      "layer": "Seasonal near-surface regional geography. Historical section evidence is shallow and depth dependent; no fixed-depth velocity axis reconstructed and undercurrents excluded.",
+      "source_url": "https://www.whoi.edu/cms/files/schott_mccreary_41948.pdf",
+      "source_locator": "Schott and McCreary (2001), section 5.1.5, printed pp. 63–65 / PDF indices 62–64: seasonal directions/months, Sri Lanka bottleneck and separate upper-layer/undercurrent flows. August 1993 and January 1991 sections provide local latitude context, not regional axis vertices."
+    },
+    {
+      "id": "indian-secc-winter-reach",
+      "current_id": "indian-south-equatorial-countercurrent",
+      "phase_label": "December-March eastward surface reach",
+      "flow_direction": "eastward",
+      "calendar_months": [
+        12,
+        1,
+        2,
+        3
+      ],
+      "source_season_label": "winter",
+      "route_candidate_file": "research/indian-secc-winter-reach-reference-path-candidate.json",
+      "route_candidate_sha256": "f4012b04e98fbddadd0d2af6636d18d04b5f89f84bbdd07cd069abdec6875ab7",
+      "geometry_role": "osw_editorial_reference_route",
+      "width_measurement_ids": [],
+      "time_convention": "Source boreal winter December-March convention; Gauss-Markov seasonal climatology using 1993-2018 drifter context. Not a dated trajectory or complete annual route series.",
+      "layer": "Surface drifter climatology with GDP drogue support near 15 m and wind-slip-corrected undrogued observations; not a uniform fixed-depth current axis or full vertical extent. OSCAR upper-layer and deeper current diagnostics remain separate.",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019JC015483",
+      "source_locator": "Sections 2.1-2.2: drifter support, 1993-2018 selection, fitted seasonal fields and December-March winter. Section 3 seasonal discussion after Figures 5-6: eastward SECC reaches about 90 E before recirculating into SEC; Figure 13 caption."
+    }
+  ],
+  "comparability": [
+    {
+      "current_id": "somali",
+      "annual_length_range_km": null,
+      "annual_width_range_km": null,
+      "annual_extrema_eligible": false,
+      "reason": "Winter coastal branch and June-July southern limb have different source-defined spatial scopes; their nominal lengths or scenario bounds do not define annual whole-current extrema."
+    },
+    {
+      "current_id": "davidson",
+      "annual_length_range_km": null,
+      "annual_width_range_km": null,
+      "annual_extrema_eligible": false,
+      "reason": "Only historical October-March California-Oregon reference geography and width context are available. April-September width and seasonal route geometry remain unknown; no modern annual cycle, seasonal extrema or uniform width footprint established."
+    },
+    {
+      "current_id": "monsoon",
+      "annual_length_range_km": null,
+      "annual_width_range_km": null,
+      "annual_extrema_eligible": false,
+      "reason": "Two source-defined seasonal phases with editorial 77–83 E regional drawings. Their different latitude choices and scenario envelopes are not observed annual length minima/maxima. March–May and October geometry and all seasonal widths remain unresolved; month labels do not provide monthly velocity fields."
+    },
+    {
+      "current_id": "indian-south-equatorial-countercurrent",
+      "annual_length_range_km": null,
+      "annual_width_range_km": null,
+      "annual_extrema_eligible": false,
+      "reason": "One December-March surface studied reach with editorial gates and vertices. Other seasonal axes and paired-edge widths are unavailable. Its 4400-4500 km drawing envelope is not annual length variation."
+    }
+  ],
+  "width_inventory_file": "research/ocean-current-width-inventory.json",
+  "width_inventory_sha256": "19ddc7b34371a82532ef17ae9e62a310968de1c4598a9292d07c4c755a63b0b3"
+}

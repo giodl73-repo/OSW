@@ -1,0 +1,80 @@
+{
+  "schema": "osw.almanac.nasa-source-audit.v1",
+  "reviewed_on": "2026-09-28",
+  "object_ledger": "research/nasa-perpetual-ocean-objects.json",
+  "series_discovery": {
+    "api_url": "https://svs.gsfc.nasa.gov/api/search/?series=Perpetual+Ocean+2&limit=none",
+    "tagged_release_ids": [5505, 5425, 5529, 14745],
+    "tagged_count": 4,
+    "additional_related_release_ids": [5479, 3827, 10841],
+    "reviewed_related_exclusions": [
+      {"page_id":11015,"url":"https://svs.gsfc.nasa.gov/11015/","title":"Data Gazing","reason":"The 2011 story lists this as related. It is a 2012 NASA Visualization Explorer montage with no additional named ocean current or identified eddy in its page text; it is not another Perpetual Ocean source release."}
+    ],
+    "note": "NASA's series API returned four tagged Perpetual Ocean 2 releases on the review date. The alternate equirectangular version and two original 2011 pages were also audited, because they are linked from those releases and contain identifying text or still captions. The live coverage check now inspects each audited release's direct related, source, alternate-version, and version-history links; the 2012 Data Gazing page is the sole reviewed exclusion in that graph."
+  },
+  "user_shared_post_provenance": {
+    "post_url": "https://x.com/latestincosmos/status/2104524519209935159",
+    "post_date": "2026-09-28",
+    "post_claim": "NASA has released one of the most detailed visualizations ever created of Earth's ocean currents.",
+    "embedded_clip_duration_seconds": 36.333,
+    "embedded_clip_format": "portrait crop of a third-party repost",
+    "source_relation": "likely_cropped_excerpt_of_po2_western_boundary_beauty_tour",
+    "canonical_nasa_release_id": "po2-western-boundary",
+    "canonical_nasa_url": "https://svs.gsfc.nasa.gov/5425",
+    "canonical_nasa_release_date": "2025-02-27",
+    "comparison_basis": "Visual inspection of the shared clip at about 0, 5, 18, and 31 seconds found the same blue and white depth-colored particle style, land texture, and Pacific-to-southern-Africa-to-Gulf-Stream tour sequence described and pictured in NASA's 5425 beauty release. This is a source-identification inference, not a frame-for-frame authentication of the repost or a new 2026 NASA release.",
+    "attribution_rule": "Use NASA's release, media groups, and transcript for scientific claims; the social post is a pointer to the animation only."
+  },
+  "rule": "Record motion objects explicitly named or specifically described by each NASA SVS page or narrated transcript. Geographic place names, visual particles, unnamed individual eddies visible in footage, and movie crop rectangles are not separate identified ocean objects.",
+  "releases": [
+    {
+      "id": "po-2011-viz",
+      "url": "https://svs.gsfc.nasa.gov/3827",
+      "reviewed_parts": ["page description", "named still captions", "movie descriptions"],
+      "object_ids": ["gulf-stream", "kuroshio", "ocean-eddies"],
+      "boundary_note": "The southern Africa still is geographically captioned but does not name the Agulhas Current here; that name is supported by the companion 2011 story. The page mentions ocean eddies as a model-resolved class; the unannotated movie does not identify individual eddies."
+    },
+    {
+      "id": "po-2011-story",
+      "url": "https://svs.gsfc.nasa.gov/10841",
+      "reviewed_parts": ["story", "three named still captions"],
+      "object_ids": ["gulf-stream", "kuroshio", "agulhas", "agulhas-retroflection", "ocean-eddies"],
+      "boundary_note": "The Agulhas still caption describes an eastward loop, supporting the described retroflection without using that proper name. The story's slow circular pools support an ocean-eddy class, without identifying one named pool or a bounded footprint."
+    },
+    {
+      "id": "po2-western-boundary",
+      "url": "https://svs.gsfc.nasa.gov/5425",
+      "reviewed_parts": ["beauty, temperature, salinity, and deep-flow descriptions", "named current tour"],
+      "object_ids": ["gulf-stream", "kuroshio", "agulhas", "indonesian-throughflow", "red-sea-saline-overflow", "persian-gulf-saline-overflow", "western-boundary-currents", "kuroshio-meanders", "agulhas-retroflection", "agulhas-rings", "western-boundary-rings", "gulf-stream-cold-cores", "gulf-stream-deep-return", "gulf-of-mexico-loop-eddies"],
+      "boundary_note": "Cape Hatteras and Florida Straits are geographic context. The Red Sea and Persian Gulf overflow contributions are separately described flows, but NASA does not name or map their plumes. The general meander-born ring discussion is not a Gulf Stream ring identification; Gulf Stream cold cores are described separately. NASA supplies no per-ring names or dated eddy tracks on this page."
+    },
+    {
+      "id": "po2-narrated",
+      "url": "https://svs.gsfc.nasa.gov/vis/a010000/a014700/a014745/script_37940_00.html",
+      "reviewed_parts": ["complete time-coded transcript"],
+      "object_ids": ["gulf-stream", "kuroshio", "agulhas", "east-australian", "western-boundary-currents", "kuroshio-eastward-turn", "kuroshio-eddies", "agulhas-retroflection", "agulhas-rings", "gulf-stream-deep-return", "global-overturning", "north-atlantic-sinking", "upwelling", "downwelling"],
+      "boundary_note": "The Kuroshio Extension proper name is not used. Sinking north of the Atlantic is a described region without a NASA boundary; heat uptake and release are processes outside this motion-object ledger."
+    },
+    {
+      "id": "po2-crops",
+      "url": "https://svs.gsfc.nasa.gov/5505",
+      "reviewed_parts": ["equirectangular page", "Agulhas hyperwall description", "70-region picker"],
+      "object_ids": ["agulhas", "agulhas-rings"],
+      "boundary_note": "The 70 published rectangles are video crops of the ECCO field, not 70 individually identified currents or eddies."
+    },
+    {
+      "id": "po2-sphere",
+      "url": "https://svs.gsfc.nasa.gov/5479",
+      "reviewed_parts": ["beauty, temperature, and salinity descriptions"],
+      "object_ids": ["gulf-stream"],
+      "boundary_note": "The Gulf Stream is the sole proper current name in the descriptive text; color variants do not establish separate objects."
+    },
+    {
+      "id": "po2-polar",
+      "url": "https://svs.gsfc.nasa.gov/5529",
+      "reviewed_parts": ["north and south polar view descriptions"],
+      "object_ids": [],
+      "boundary_note": "The page names viewpoints but does not identify a named current or individual eddy."
+    }
+  ]
+}

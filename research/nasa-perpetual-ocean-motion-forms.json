@@ -1,0 +1,53 @@
+{
+  "schema": "osw.almanac.nasa-motion-forms.v1",
+  "source_ledger": "research/nasa-perpetual-ocean-objects.json",
+  "status": "OSW editorial classification of NASA-identified records; NASA support level and motion form are independent facets",
+  "rule": "Assign one primary form to every identified NASA record. A class or process remains a class or process even when a video shows many individual examples. These labels do not establish a dated footprint or eddy identity.",
+  "class_relation_rule": "The subtype links below are OSW editorial taxonomic relationships among NASA-described classes across releases. They are not NASA assertions that one named individual was seen in two movies, and they do not transfer a parent's geography to a subtype.",
+  "forms": {
+    "boundary_current": "A named current along the western margin of an ocean basin in NASA's tour.",
+    "throughflow": "A named interbasin flow through a strait or island passage.",
+    "overflow": "Saline water flowing from a marginal sea into an adjacent basin, as NASA describes it.",
+    "current_class": "A dynamical group of currents, rather than one bounded current.",
+    "meander": "A bend or looping change in a current path; NASA does not identify an individual meander here.",
+    "current_turn": "A described change in the direction of a current, without an independently named flow in NASA's wording.",
+    "eddy_class": "An identified group or region of eddies without individual NASA names or tracks.",
+    "retroflection": "A current turn back toward its source basin, described as a ring-shedding region.",
+    "ring_class": "A group of detached rings; no individual ring identity is implied.",
+    "deep_counterflow": "A described flow below and opposite the surface current, without a distinct proper name from NASA.",
+    "circulation_system": "A connected large-scale circulation concept, not one mapped streamline.",
+    "sinking_region": "A described regional descent of water with no NASA-delineated footprint.",
+    "vertical_process": "A general vertical movement process, not one geographic individual."
+  },
+  "class_relations": [
+    {"child_id":"kuroshio-eddies","parent_id":"ocean-eddies","relation":"regional_eddy_class"},
+    {"child_id":"agulhas-rings","parent_id":"ocean-eddies","relation":"ring_class"},
+    {"child_id":"western-boundary-rings","parent_id":"ocean-eddies","relation":"ring_class"},
+    {"child_id":"gulf-stream-cold-cores","parent_id":"ocean-eddies","relation":"regional_eddy_class"},
+    {"child_id":"gulf-of-mexico-loop-eddies","parent_id":"ocean-eddies","relation":"regional_eddy_class"}
+  ],
+  "objects": {
+    "gulf-stream": "boundary_current",
+    "kuroshio": "boundary_current",
+    "agulhas": "boundary_current",
+    "east-australian": "boundary_current",
+    "indonesian-throughflow": "throughflow",
+    "red-sea-saline-overflow": "overflow",
+    "persian-gulf-saline-overflow": "overflow",
+    "western-boundary-currents": "current_class",
+    "kuroshio-meanders": "meander",
+    "kuroshio-eastward-turn": "current_turn",
+    "kuroshio-eddies": "eddy_class",
+    "agulhas-retroflection": "retroflection",
+    "agulhas-rings": "ring_class",
+    "western-boundary-rings": "ring_class",
+    "gulf-stream-cold-cores": "eddy_class",
+    "gulf-stream-deep-return": "deep_counterflow",
+    "gulf-of-mexico-loop-eddies": "eddy_class",
+    "global-overturning": "circulation_system",
+    "north-atlantic-sinking": "sinking_region",
+    "upwelling": "vertical_process",
+    "downwelling": "vertical_process",
+    "ocean-eddies": "eddy_class"
+  }
+}

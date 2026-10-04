@@ -1,0 +1,1023 @@
+{
+  "schema": "osw-ocean-state-interior-density-structure-screen-v1",
+  "status": "bounded_TEOS10_density_and_numeric_class_structure_not_transformation",
+  "source_family": "current_longhurst_geometry_2026-09-12_with_archived_oras5_2018_velocity",
+  "join_status": "not_joined_to_archived_2018_contents_or_boundary_accounts",
+  "address": {
+    "geometry_edition": "longhurst-v4-54",
+    "province": "SANT",
+    "depth_support": "four_nearest_native_T_level_midpoints"
+  },
+  "method": {
+    "equation_of_state": "TEOS-10 GSW 3.6.23",
+    "conversion": "SA_from_SP using local longitude, latitude, and pressure from midpoint depth; CT_from_pt; sigma0",
+    "numeric_strata_sigma0_kg_m3": [
+      {
+        "id": "below_26_5",
+        "lower_inclusive": null,
+        "upper_exclusive": 26.5
+      },
+      {
+        "id": "26_5_to_27_0",
+        "lower_inclusive": 26.5,
+        "upper_exclusive": 27.0
+      },
+      {
+        "id": "27_0_to_27_5",
+        "lower_inclusive": 27.0,
+        "upper_exclusive": 27.5
+      },
+      {
+        "id": "at_or_above_27_5",
+        "lower_inclusive": 27.5,
+        "upper_exclusive": null
+      }
+    ],
+    "selection_frozen_before_field_inspection": true,
+    "seeds": [
+      {
+        "id": "western",
+        "quantile": 0.25,
+        "y": 156,
+        "x": 23,
+        "latitude_deg": -53.461308,
+        "longitude_deg": -77.5
+      },
+      {
+        "id": "central",
+        "quantile": 0.5,
+        "y": 156,
+        "x": 129,
+        "latitude_deg": -53.461308,
+        "longitude_deg": -51.0
+      },
+      {
+        "id": "eastern",
+        "quantile": 0.75,
+        "y": 156,
+        "x": 148,
+        "latitude_deg": -53.461308,
+        "longitude_deg": -46.25
+      }
+    ]
+  },
+  "source_family_manifest": {
+    "path": "research/ocean-state-sant-current-geometry-physical-source-family-2018.json",
+    "sha256": "f28deb1714651d45902c39064dbe56ef8a4682472769dfa33c6f2852f8bf9ab3"
+  },
+  "months": [
+    {
+      "valid_time": "2018-02-01/P1M",
+      "temperature_state": {
+        "path": "atlas/data/oras5-drake-state-201802.nc",
+        "sha256": "caeb09b62d6c2508c5ae0331e7b81786893b7a533e185754a1cb3837dbe6802a"
+      },
+      "salinity_state": {
+        "path": "atlas/data/oras5-drake-salinity-current-geometry-201802.nc",
+        "sha256": "27c1a7f24ee9c6f5d6f6f4c6ce42f1950ea697cc7692ae7ebb902e120018de53"
+      },
+      "profiles": [
+        {
+          "seed": "western",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -77.5,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "practical_salinity_PSU": 33.98769,
+              "absolute_salinity_g_kg": 34.148126,
+              "potential_temperature_c": 8.384325,
+              "conservative_temperature_c": 8.39152,
+              "pressure_dbar": 0.516316,
+              "sigma0_kg_m3": 26.422998,
+              "numeric_density_stratum": "below_26_5"
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "practical_salinity_PSU": 33.99575,
+              "absolute_salinity_g_kg": 34.15648,
+              "potential_temperature_c": 6.652735,
+              "conservative_temperature_c": 6.658765,
+              "pressure_dbar": 98.009425,
+              "sigma0_kg_m3": 26.676045,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "practical_salinity_PSU": 34.079769,
+              "absolute_salinity_g_kg": 34.24111,
+              "potential_temperature_c": 5.972219,
+              "conservative_temperature_c": 5.976851,
+              "pressure_dbar": 201.857687,
+              "sigma0_kg_m3": 26.830384,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "practical_salinity_PSU": 34.364048,
+              "absolute_salinity_g_kg": 34.529865,
+              "potential_temperature_c": 3.1473,
+              "conservative_temperature_c": 3.148833,
+              "pressure_dbar": 1058.568112,
+              "sigma0_kg_m3": 27.367312,
+              "numeric_density_stratum": "27_0_to_27_5"
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.253047,
+              "crosses_numeric_density_stratum": true
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.154339,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.536928,
+              "crosses_numeric_density_stratum": true
+            }
+          ]
+        },
+        {
+          "seed": "central",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -51.0,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "practical_salinity_PSU": 33.983871,
+              "absolute_salinity_g_kg": 34.144792,
+              "potential_temperature_c": 7.038439,
+              "conservative_temperature_c": 7.044837,
+              "pressure_dbar": 0.516316,
+              "sigma0_kg_m3": 26.614822,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "practical_salinity_PSU": 34.079453,
+              "absolute_salinity_g_kg": 34.241281,
+              "potential_temperature_c": 3.686967,
+              "conservative_temperature_c": 3.691106,
+              "pressure_dbar": 98.009425,
+              "sigma0_kg_m3": 27.086787,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "practical_salinity_PSU": 34.105255,
+              "absolute_salinity_g_kg": 34.267879,
+              "potential_temperature_c": 2.939678,
+              "conservative_temperature_c": 2.943513,
+              "pressure_dbar": 201.857687,
+              "sigma0_kg_m3": 27.17822,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "practical_salinity_PSU": 34.597973,
+              "absolute_salinity_g_kg": 34.766642,
+              "potential_temperature_c": 2.153083,
+              "conservative_temperature_c": 2.153201,
+              "pressure_dbar": 1058.568112,
+              "sigma0_kg_m3": 27.642134,
+              "numeric_density_stratum": "at_or_above_27_5"
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.471965,
+              "crosses_numeric_density_stratum": true
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.091433,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.463914,
+              "crosses_numeric_density_stratum": true
+            }
+          ]
+        },
+        {
+          "seed": "eastern",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -46.25,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "practical_salinity_PSU": 33.853733,
+              "absolute_salinity_g_kg": 34.014143,
+              "potential_temperature_c": 5.617421,
+              "conservative_temperature_c": 5.624735,
+              "pressure_dbar": 0.516316,
+              "sigma0_kg_m3": 26.695486,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "practical_salinity_PSU": 33.905781,
+              "absolute_salinity_g_kg": 34.067102,
+              "potential_temperature_c": 2.617013,
+              "conservative_temperature_c": 2.622445,
+              "pressure_dbar": 98.009425,
+              "sigma0_kg_m3": 27.046824,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "practical_salinity_PSU": 34.029507,
+              "absolute_salinity_g_kg": 34.192598,
+              "potential_temperature_c": 2.165754,
+              "conservative_temperature_c": 2.170123,
+              "pressure_dbar": 201.857687,
+              "sigma0_kg_m3": 27.183869,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "practical_salinity_PSU": 34.648758,
+              "absolute_salinity_g_kg": 34.818292,
+              "potential_temperature_c": 1.831905,
+              "conservative_temperature_c": 1.831893,
+              "pressure_dbar": 1058.568112,
+              "sigma0_kg_m3": 27.708748,
+              "numeric_density_stratum": "at_or_above_27_5"
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.351338,
+              "crosses_numeric_density_stratum": true
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.137045,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.524879,
+              "crosses_numeric_density_stratum": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-05-01/P1M",
+      "temperature_state": {
+        "path": "atlas/data/oras5-drake-state-201805.nc",
+        "sha256": "7451a7028a604278e68bbbb0a4a4271c0396bcc0a8239e503ec77a6a07d84ce0"
+      },
+      "salinity_state": {
+        "path": "atlas/data/oras5-drake-salinity-current-geometry-201805.nc",
+        "sha256": "6b9db31a3403a2a448b1d90ad92f7d8ac621337160dff7483fd9f4623271d5ac"
+      },
+      "profiles": [
+        {
+          "seed": "western",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -77.5,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "practical_salinity_PSU": 33.997135,
+              "absolute_salinity_g_kg": 34.157616,
+              "potential_temperature_c": 6.964551,
+              "conservative_temperature_c": 6.970726,
+              "pressure_dbar": 0.516316,
+              "sigma0_kg_m3": 26.634973,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "practical_salinity_PSU": 34.007256,
+              "absolute_salinity_g_kg": 34.16804,
+              "potential_temperature_c": 6.905152,
+              "conservative_temperature_c": 6.911149,
+              "pressure_dbar": 98.009425,
+              "sigma0_kg_m3": 26.651222,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "practical_salinity_PSU": 34.120548,
+              "absolute_salinity_g_kg": 34.282082,
+              "potential_temperature_c": 5.853231,
+              "conservative_temperature_c": 5.857308,
+              "pressure_dbar": 201.857687,
+              "sigma0_kg_m3": 26.877452,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "practical_salinity_PSU": 34.376175,
+              "absolute_salinity_g_kg": 34.542051,
+              "potential_temperature_c": 3.09904,
+              "conservative_temperature_c": 3.100482,
+              "pressure_dbar": 1058.568112,
+              "sigma0_kg_m3": 27.381453,
+              "numeric_density_stratum": "27_0_to_27_5"
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.016249,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.22623,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.504001,
+              "crosses_numeric_density_stratum": true
+            }
+          ]
+        },
+        {
+          "seed": "central",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -51.0,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "practical_salinity_PSU": 33.982864,
+              "absolute_salinity_g_kg": 34.14378,
+              "potential_temperature_c": 4.853499,
+              "conservative_temperature_c": 4.858929,
+              "pressure_dbar": 0.516316,
+              "sigma0_kg_m3": 26.886664,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "practical_salinity_PSU": 34.077614,
+              "absolute_salinity_g_kg": 34.239434,
+              "potential_temperature_c": 4.047636,
+              "conservative_temperature_c": 4.051844,
+              "pressure_dbar": 98.009425,
+              "sigma0_kg_m3": 27.048971,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "practical_salinity_PSU": 34.137142,
+              "absolute_salinity_g_kg": 34.299918,
+              "potential_temperature_c": 3.184843,
+              "conservative_temperature_c": 3.188407,
+              "pressure_dbar": 201.857687,
+              "sigma0_kg_m3": 27.181316,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "practical_salinity_PSU": 34.602283,
+              "absolute_salinity_g_kg": 34.770974,
+              "potential_temperature_c": 2.130596,
+              "conservative_temperature_c": 2.130698,
+              "pressure_dbar": 1058.568112,
+              "sigma0_kg_m3": 27.647407,
+              "numeric_density_stratum": "at_or_above_27_5"
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.162307,
+              "crosses_numeric_density_stratum": true
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.132345,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.466091,
+              "crosses_numeric_density_stratum": true
+            }
+          ]
+        },
+        {
+          "seed": "eastern",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -46.25,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "practical_salinity_PSU": 33.807148,
+              "absolute_salinity_g_kg": 33.967337,
+              "potential_temperature_c": 3.737627,
+              "conservative_temperature_c": 3.744407,
+              "pressure_dbar": 0.516316,
+              "sigma0_kg_m3": 26.864781,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "practical_salinity_PSU": 33.98101,
+              "absolute_salinity_g_kg": 34.14269,
+              "potential_temperature_c": 2.649148,
+              "conservative_temperature_c": 2.653982,
+              "pressure_dbar": 98.009425,
+              "sigma0_kg_m3": 27.104185,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "practical_salinity_PSU": 34.075642,
+              "absolute_salinity_g_kg": 34.238954,
+              "potential_temperature_c": 2.192933,
+              "conservative_temperature_c": 2.196962,
+              "pressure_dbar": 201.857687,
+              "sigma0_kg_m3": 27.218616,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "practical_salinity_PSU": 34.640732,
+              "absolute_salinity_g_kg": 34.810226,
+              "potential_temperature_c": 1.827145,
+              "conservative_temperature_c": 1.827194,
+              "pressure_dbar": 1058.568112,
+              "sigma0_kg_m3": 27.702683,
+              "numeric_density_stratum": "at_or_above_27_5"
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.239404,
+              "crosses_numeric_density_stratum": true
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.114431,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.484067,
+              "crosses_numeric_density_stratum": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-08-01/P1M",
+      "temperature_state": {
+        "path": "atlas/data/oras5-drake-state-201808.nc",
+        "sha256": "92a39a07152f7bb03479bad0b8e10910eb5302e5999c8ed300b25f7e61ead756"
+      },
+      "salinity_state": {
+        "path": "atlas/data/oras5-drake-salinity-current-geometry-201808.nc",
+        "sha256": "01362cc53d125e0230dbb2f134cd02e59f948f9e7eb77203be21f711a1c84a30"
+      },
+      "profiles": [
+        {
+          "seed": "western",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -77.5,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "practical_salinity_PSU": 34.050587,
+              "absolute_salinity_g_kg": 34.211319,
+              "potential_temperature_c": 5.647145,
+              "conservative_temperature_c": 5.652047,
+              "pressure_dbar": 0.516316,
+              "sigma0_kg_m3": 26.847091,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "practical_salinity_PSU": 34.051758,
+              "absolute_salinity_g_kg": 34.212752,
+              "potential_temperature_c": 5.644473,
+              "conservative_temperature_c": 5.649356,
+              "pressure_dbar": 98.009425,
+              "sigma0_kg_m3": 26.848544,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "practical_salinity_PSU": 34.157246,
+              "absolute_salinity_g_kg": 34.318953,
+              "potential_temperature_c": 5.815569,
+              "conservative_temperature_c": 5.819173,
+              "pressure_dbar": 201.857687,
+              "sigma0_kg_m3": 26.911126,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "practical_salinity_PSU": 34.37011,
+              "absolute_salinity_g_kg": 34.535956,
+              "potential_temperature_c": 3.137436,
+              "conservative_temperature_c": 3.138919,
+              "pressure_dbar": 1058.568112,
+              "sigma0_kg_m3": 27.373062,
+              "numeric_density_stratum": "27_0_to_27_5"
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.001453,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.062582,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.461936,
+              "crosses_numeric_density_stratum": true
+            }
+          ]
+        },
+        {
+          "seed": "central",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -51.0,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "practical_salinity_PSU": 34.034885,
+              "absolute_salinity_g_kg": 34.196048,
+              "potential_temperature_c": 3.892512,
+              "conservative_temperature_c": 3.897124,
+              "pressure_dbar": 0.516316,
+              "sigma0_kg_m3": 27.030448,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "practical_salinity_PSU": 34.044373,
+              "absolute_salinity_g_kg": 34.206035,
+              "potential_temperature_c": 3.498949,
+              "conservative_temperature_c": 3.503393,
+              "pressure_dbar": 98.009425,
+              "sigma0_kg_m3": 27.077174,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "practical_salinity_PSU": 34.128273,
+              "absolute_salinity_g_kg": 34.291007,
+              "potential_temperature_c": 2.969371,
+              "conservative_temperature_c": 2.97301,
+              "pressure_dbar": 201.857687,
+              "sigma0_kg_m3": 27.193924,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "practical_salinity_PSU": 34.612717,
+              "absolute_salinity_g_kg": 34.781458,
+              "potential_temperature_c": 2.101058,
+              "conservative_temperature_c": 2.101103,
+              "pressure_dbar": 1058.568112,
+              "sigma0_kg_m3": 27.658144,
+              "numeric_density_stratum": "at_or_above_27_5"
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.046726,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.11675,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.46422,
+              "crosses_numeric_density_stratum": true
+            }
+          ]
+        },
+        {
+          "seed": "eastern",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -46.25,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "practical_salinity_PSU": 33.934361,
+              "absolute_salinity_g_kg": 34.095152,
+              "potential_temperature_c": 1.399708,
+              "conservative_temperature_c": 1.4046,
+              "pressure_dbar": 0.516316,
+              "sigma0_kg_m3": 27.16338,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "practical_salinity_PSU": 33.936977,
+              "absolute_salinity_g_kg": 34.098447,
+              "potential_temperature_c": 1.388282,
+              "conservative_temperature_c": 1.393151,
+              "pressure_dbar": 98.009425,
+              "sigma0_kg_m3": 27.166807,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "practical_salinity_PSU": 34.116772,
+              "absolute_salinity_g_kg": 34.280282,
+              "potential_temperature_c": 2.303469,
+              "conservative_temperature_c": 2.307191,
+              "pressure_dbar": 201.857687,
+              "sigma0_kg_m3": 27.242575,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "practical_salinity_PSU": 34.646378,
+              "absolute_salinity_g_kg": 34.8159,
+              "potential_temperature_c": 1.830458,
+              "conservative_temperature_c": 1.830464,
+              "pressure_dbar": 1058.568112,
+              "sigma0_kg_m3": 27.706952,
+              "numeric_density_stratum": "at_or_above_27_5"
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.003427,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.075768,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.464377,
+              "crosses_numeric_density_stratum": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-11-01/P1M",
+      "temperature_state": {
+        "path": "atlas/data/oras5-drake-state-201811.nc",
+        "sha256": "e37425194a8f311d699be8d94c9dd17c9ada8cc39fa84239f40466c7b94e05de"
+      },
+      "salinity_state": {
+        "path": "atlas/data/oras5-drake-salinity-current-geometry-201811.nc",
+        "sha256": "e7aed5f42295b0ce79ce8d6b5b0065f9dce5f08edbbc32afad03b46bdbfa3560"
+      },
+      "profiles": [
+        {
+          "seed": "western",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -77.5,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "practical_salinity_PSU": 33.921394,
+              "absolute_salinity_g_kg": 34.081517,
+              "potential_temperature_c": 6.544143,
+              "conservative_temperature_c": 6.551137,
+              "pressure_dbar": 0.516316,
+              "sigma0_kg_m3": 26.631568,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "practical_salinity_PSU": 33.924213,
+              "absolute_salinity_g_kg": 34.084605,
+              "potential_temperature_c": 6.529155,
+              "conservative_temperature_c": 6.536099,
+              "pressure_dbar": 98.009425,
+              "sigma0_kg_m3": 26.63596,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "practical_salinity_PSU": 34.106812,
+              "absolute_salinity_g_kg": 34.26828,
+              "potential_temperature_c": 6.498391,
+              "conservative_temperature_c": 6.502833,
+              "pressure_dbar": 201.857687,
+              "sigma0_kg_m3": 26.784177,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "practical_salinity_PSU": 34.383644,
+              "absolute_salinity_g_kg": 34.549556,
+              "potential_temperature_c": 3.112635,
+              "conservative_temperature_c": 3.114007,
+              "pressure_dbar": 1058.568112,
+              "sigma0_kg_m3": 27.386155,
+              "numeric_density_stratum": "27_0_to_27_5"
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.004392,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.148217,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.601978,
+              "crosses_numeric_density_stratum": true
+            }
+          ]
+        },
+        {
+          "seed": "central",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -51.0,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "practical_salinity_PSU": 34.074276,
+              "absolute_salinity_g_kg": 34.235625,
+              "potential_temperature_c": 4.689487,
+              "conservative_temperature_c": 4.693852,
+              "pressure_dbar": 0.516316,
+              "sigma0_kg_m3": 26.977434,
+              "numeric_density_stratum": "26_5_to_27_0"
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "practical_salinity_PSU": 34.078175,
+              "absolute_salinity_g_kg": 34.239997,
+              "potential_temperature_c": 3.407835,
+              "conservative_temperature_c": 3.411953,
+              "pressure_dbar": 98.009425,
+              "sigma0_kg_m3": 27.112826,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "practical_salinity_PSU": 34.109207,
+              "absolute_salinity_g_kg": 34.27185,
+              "potential_temperature_c": 2.736778,
+              "conservative_temperature_c": 2.740572,
+              "pressure_dbar": 201.857687,
+              "sigma0_kg_m3": 27.199299,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "practical_salinity_PSU": 34.603245,
+              "absolute_salinity_g_kg": 34.77194,
+              "potential_temperature_c": 2.149679,
+              "conservative_temperature_c": 2.14976,
+              "pressure_dbar": 1058.568112,
+              "sigma0_kg_m3": 27.64663,
+              "numeric_density_stratum": "at_or_above_27_5"
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.135392,
+              "crosses_numeric_density_stratum": true
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.086473,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.447331,
+              "crosses_numeric_density_stratum": true
+            }
+          ]
+        },
+        {
+          "seed": "eastern",
+          "latitude_deg": -53.461308,
+          "longitude_deg": -46.25,
+          "levels": [
+            {
+              "target_depth_m": 0.0,
+              "z": 0,
+              "midpoint_depth_m": 0.511731,
+              "practical_salinity_PSU": 33.901558,
+              "absolute_salinity_g_kg": 34.062194,
+              "potential_temperature_c": 1.91911,
+              "conservative_temperature_c": 1.924361,
+              "pressure_dbar": 0.516316,
+              "sigma0_kg_m3": 27.099193,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 100.0,
+              "z": 23,
+              "midpoint_depth_m": 97.116083,
+              "practical_salinity_PSU": 33.935242,
+              "absolute_salinity_g_kg": 34.096703,
+              "potential_temperature_c": 0.957819,
+              "conservative_temperature_c": 0.962595,
+              "pressure_dbar": 98.009425,
+              "sigma0_kg_m3": 27.194136,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 200.0,
+              "z": 30,
+              "midpoint_depth_m": 199.967487,
+              "practical_salinity_PSU": 34.112041,
+              "absolute_salinity_g_kg": 34.275529,
+              "potential_temperature_c": 1.809385,
+              "conservative_temperature_c": 1.813144,
+              "pressure_dbar": 201.857687,
+              "sigma0_kg_m3": 27.277611,
+              "numeric_density_stratum": "27_0_to_27_5"
+            },
+            {
+              "target_depth_m": 1000.0,
+              "z": 46,
+              "midpoint_depth_m": 1046.501121,
+              "practical_salinity_PSU": 34.657928,
+              "absolute_salinity_g_kg": 34.827507,
+              "potential_temperature_c": 1.670661,
+              "conservative_temperature_c": 1.670717,
+              "pressure_dbar": 1058.568112,
+              "sigma0_kg_m3": 27.728396,
+              "numeric_density_stratum": "at_or_above_27_5"
+            }
+          ],
+          "interfaces": [
+            {
+              "upper_target_depth_m": 0.0,
+              "lower_target_depth_m": 100.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.094943,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 100.0,
+              "lower_target_depth_m": 200.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.083475,
+              "crosses_numeric_density_stratum": false
+            },
+            {
+              "upper_target_depth_m": 200.0,
+              "lower_target_depth_m": 1000.0,
+              "lower_minus_upper_sigma0_kg_m3": 0.450785,
+              "crosses_numeric_density_stratum": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "boundary": "A local TEOS-10 density and numerical-stratum structure screen from one ORAS5 member. The numerical strata are analysis bins, not named water masses. Density structure and strata do not establish class-volume flux, water-mass transformation, vertical transfer, mixing, transport, convergence, a closed budget, or a numerical bridge to archived contents."
+}

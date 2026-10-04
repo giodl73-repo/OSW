@@ -21,7 +21,7 @@ OUTPUT = ROOT / "research" / "osw-d14-rtofs-mhw-upper-ocean-advection-2026.json"
 RHO_KG_M3 = 1025.0
 CP_J_KG_K = 3990.0
 SECONDS_PER_DAY = 86_400.0
-COLUMN_LIMITS_M = (10, 20, 30, 50)
+COLUMN_LIMIT_CANDIDATES_M = (10, 20, 30, 50, 100, 200)
 
 
 def sha256_file(path: Path) -> str:
@@ -62,10 +62,12 @@ def encode_map(values: np.ndarray, valid: np.ndarray, scale: int) -> list:
 
 
 def run(source_path: Path = SOURCE, d12_path: Path = D12, d13_path: Path = D13) -> dict:
+    source_path, d12_path, d13_path = source_path.resolve(), d12_path.resolve(), d13_path.resolve()
     source = json.loads(source_path.read_text(encoding="utf-8"))
     d12 = json.loads(d12_path.read_text(encoding="utf-8"))
     d13 = json.loads(d13_path.read_text(encoding="utf-8"))
     depth = np.asarray(source["vertical_support"]["standard_depths_m"], dtype=float)
+    column_limits = tuple(limit for limit in COLUMN_LIMIT_CANDIDATES_M if limit in depth)
     latitude = np.asarray(source["grid"]["latitude_degrees_north_e6"], dtype=float) / 1_000_000
     longitude = np.asarray(source["grid"]["longitude_degrees_east_e6"], dtype=float) / 1_000_000
     mask = np.asarray(source["grid"]["inside_declared_box"], dtype=bool)
@@ -84,7 +86,7 @@ def run(source_path: Path = SOURCE, d12_path: Path = D12, d13_path: Path = D13) 
         endpoint_advection = (advection_8[index] + advection_8[index + 1]) / 2
         endpoint_advection_4 = (advection_4[index] + advection_4[index + 1]) / 2
         columns = {}
-        for limit in COLUMN_LIMITS_M:
+        for limit in column_limits:
             levels = depth <= limit
             integrated = np.trapezoid(endpoint_advection[levels], depth[levels], axis=0) * RHO_KG_M3 * CP_J_KG_K / SECONDS_PER_DAY
             integrated_4 = np.trapezoid(endpoint_advection_4[levels], depth[levels], axis=0) * RHO_KG_M3 * CP_J_KG_K / SECONDS_PER_DAY

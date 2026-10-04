@@ -1,0 +1,61 @@
+{
+  "schema": "osw-ocean-state-vertical-process-source-audit-v1",
+  "date": "2026-09-12",
+  "question": "Is there a custodial native vertical-process source that can be joined directly to the 2018 current-geometry SANT ORAS5 physical family?",
+  "join_contract": {
+    "required": [
+      "2018 temporal coverage at the declared monthly samples or an explicitly new time family",
+      "native vertical velocity or native tracer-tendency/vertical-flux terms, not a velocity-divergence reconstruction",
+      "co-provided temperature, salinity, horizontal velocity, vertical geometry, wet mask, and face/cell metrics",
+      "a pinned state-membership assignment and raw/source receipts",
+      "demonstrated horizontal, vertical, temporal, units, sign, and assimilation/forcing compatibility before numerical joining"
+    ],
+    "prohibited_shortcuts": [
+      "treating a derived w as a native vertical-flux observation",
+      "adding a different reanalysis w to ORAS5 budget terms",
+      "calling a horizontal-divergence reconstruction a validation of ORAS5 vertical transfer",
+      "using an analysis/forecast product at a different time as 2018 evidence"
+    ]
+  },
+  "candidates": [
+    {
+      "id": "icdc_oras5_orca025",
+      "type": "current SANT family source",
+      "official_evidence": "https://icdc.cen.uni-hamburg.de/thredds/fileServer/ftpthredds/EASYInit/oras5/DOCS/ORAS5_ICDC_variable_list_1x1.pdf",
+      "2018_coverage": "yes",
+      "native_w": "no listed product",
+      "decision": "rejected_for_vertical_transfer_only; retained as the T/S/U/V and surface/storage source family",
+      "reason": "The official 3-D inventory lists temperature, salinity, and horizontal velocities but not vertical velocity; the separately receipted ICDC catalogue probe also found no vovecrtz catalogue."
+    },
+    {
+      "id": "cmems_global_analysisforecast_phy_001_024",
+      "type": "distinct global analysis/forecast model",
+      "official_evidence": "https://documentation.marine.copernicus.eu/PUM/CMEMS-GLO-PUM-001-024.pdf",
+      "2018_coverage": "not established by this source audit",
+      "native_w": "yes: wo/upward_sea_water_velocity is documented with co-provided T/S/u/v",
+      "decision": "bridge_candidate_only_not_joinable",
+      "reason": "It has a different product identity, regular 1/12-degree output grid, 50 levels, and its own analysis/forecast configuration. It cannot be added to ORAS5 horizontal, surface, or storage terms without a separate bridge experiment."
+    },
+    {
+      "id": "cmems_global_multiyear_phy_001_030_glorys12",
+      "type": "distinct multiyear global reanalysis",
+      "official_evidence": "https://help.marine.copernicus.eu/en/articles/5588616-where-do-we-find-and-how-do-we-derive-the-vertical-velocity",
+      "2018_coverage": "yes for its horizontal-current product, subject to access receipt",
+      "native_w": "not distributed; Copernicus documents a divergence-based derivation",
+      "decision": "not admissible_as_native_w; possible separately versioned sensitivity experiment only",
+      "reason": "A derived w depends on interpolation, thickness reconstruction, boundary conditions, and another model/grid. It is not a native ORAS5 vertical process term."
+    },
+    {
+      "id": "soda_3_7_2",
+      "type": "distinct MOM5 reanalysis",
+      "official_evidence": "https://essd.copernicus.org/articles/16/1029/2024/",
+      "2018_coverage": "no; cited coverage ends in 2016",
+      "native_w": "estimated vertical velocity at five-day resolution",
+      "decision": "rejected",
+      "reason": "It misses the 2018 target and uses a different model, grid, and assimilation system."
+    }
+  ],
+  "result": "no_directly_joinable_2018_native_vertical_process_source_identified",
+  "next_admissible_action": "Obtain a 2018 receipt from a provider that exposes native w and its compatible model geometry/T/S/u/v/terms, or run a separately versioned bridge/sensitivity account whose outputs remain non-joinable to ORAS5 until a review accepts every compatibility dimension.",
+  "boundary": "This source audit is not a vertical-flux calculation, a claim that no vertical data exist anywhere, or permission to use a different reanalysis as an ORAS5 term."
+}

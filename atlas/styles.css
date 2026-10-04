@@ -29,6 +29,15 @@ h1 { max-width: 980px; margin: 0; font-size: clamp(3rem, 6.5vw, 7.5rem); line-he
 .lens:hover, .lens:focus-visible { background: #11313a; color: var(--ink); }
 .lens.active { color: var(--deep); background: var(--cyan); } .lens.active span { color: #1e6765; }
 .lens:disabled { cursor: not-allowed; opacity: .38; }
+.flow-reference { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 1rem 1.2rem; border: 1px solid var(--line); border-bottom: 0; background: #12313a; }
+.flow-reference[hidden] { display: none; }
+.flow-reference strong { color: var(--cyan); font: 800 .64rem/1.2 ui-monospace, monospace; letter-spacing: .1em; }
+.flow-reference p { max-width: 68rem; margin: .45rem 0 0; color: var(--ink); font-size: .78rem; line-height: 1.5; }
+.flow-reference .flow-names { color: var(--muted); }
+.flow-reference .flow-names a { padding: 0; border: 0; color: var(--cyan); font: inherit; text-decoration: underline; text-transform: none; }
+.flow-reference-actions { display: grid; gap: .5rem; flex: none; }
+.flow-reference a { flex: none; padding: .8rem 1rem; border: 1px solid var(--cyan); color: var(--cyan); font: 800 .64rem/1.2 ui-monospace, monospace; text-decoration: none; text-transform: uppercase; }
+.flow-reference a:hover, .flow-reference a:focus-visible { color: var(--deep); background: var(--cyan); }
 .geography-filters { display: grid; grid-template-columns: minmax(15rem, 1.5fr) repeat(3, minmax(9rem, .7fr)) auto; gap: 1px; margin: 0; border: 1px solid var(--line); background: var(--line); }
 .geography-filters > * { min-height: 58px; margin: 0; padding: .65rem .85rem; border: 0; color: var(--muted); background: #0a2027; }
 .geography-filters p { display: flex; flex-direction: column; justify-content: center; }
@@ -137,6 +146,9 @@ h1 { max-width: 980px; margin: 0; font-size: clamp(3rem, 6.5vw, 7.5rem); line-he
 .how-explore strong { display:block; margin-bottom:.25rem; color:var(--ink); font:900 .61rem/1 ui-monospace,monospace; text-transform:uppercase; }
 .map-note span { display: inline-block; width: 7px; height: 7px; margin-right: 8px; border-radius: 50%; background: var(--warm); }
 .relation-panel { margin:0 18px 18px; padding:14px; border:1px solid var(--line); background:#081c22; }
+.state-handoff { margin:0 18px 18px; padding:14px; border:1px solid var(--line); background:#0b252c; }
+.state-handoff h3 { margin:.2rem 0; font-size:1.25rem; }.state-handoff>p:not(.eyebrow) { color:var(--muted); font-size:.82rem; }
+.state-handoff-cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem; }.state-handoff-cards article { min-width:0; padding:.85rem; border:1px solid var(--line); background:#06171c; }.state-handoff-cards h4 { margin:0 0 .4rem; font-size:.82rem; }.state-handoff-cards p { margin:0 0 .7rem; color:var(--muted); font-size:.72rem; }.state-handoff-cards a { font-size:.73rem; font-weight:800; }.state-handoff-cards [data-available=false] { border-style:dashed; }.state-handoff-cards [data-available=false] a { color:var(--muted); }
 .relation-heading { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
 .relation-heading .eyebrow { margin:0 0 .35rem; }
 .relation-heading h3 { margin:0; color:var(--ink); font-size:1rem; }
@@ -284,6 +296,8 @@ footer strong { color: var(--cyan); letter-spacing: .15em; } footer a { margin-l
 @media (max-width: 650px) {
   .masthead { gap: 14px; } .masthead p, .edition { display: none; } .project-nav { gap: .7rem; } .project-nav .method-link, .project-nav a:nth-child(2) { display: none; } .project-nav a { font-size: .56rem; } .hero { padding-top: 4rem; } h1 { font-size: 3.3rem; }
   .lenses { grid-template-columns: 1fr 1fr; }
+  .flow-reference { align-items: flex-start; flex-direction: column; gap: 1rem; }
+  .flow-reference-actions { width: 100%; }
   .geography-filters { grid-template-columns: 1fr; } .geography-filters p, .geography-filters output { grid-column: auto; }
   .readout { min-width: 0; grid-template-columns: 1fr 1fr; } .readout span:last-child { grid-column: 1 / -1; }
   .legacy-studies, .feature-legend { flex-wrap: wrap; }
@@ -295,6 +309,7 @@ footer strong { color: var(--cyan); letter-spacing: .15em; } footer a { margin-l
   .how-explore > div { grid-template-columns:1fr; }
   .feature-label-layer { display:none; }
   .province-controls { align-items:stretch; flex-direction:column; } .province-controls label { margin-left:0; } .province-controls select { flex:1; max-width:none; }
+  .state-handoff-cards { grid-template-columns:1fr; }
   .probe-controls { grid-template-columns: 1fr 1fr; } .probe-controls button { grid-column: 1 / -1; }
   .ring-heading { grid-template-columns: 1fr; } .ring-form { align-items: end; }
   .ring-strips figure { grid-template-columns: 1fr; gap: .3rem; }

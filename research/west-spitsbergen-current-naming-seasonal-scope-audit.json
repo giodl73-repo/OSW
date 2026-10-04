@@ -1,0 +1,83 @@
+{
+  "schema": "osw.current-naming-scope-audit.v1",
+  "status": "editorial_scope_and_seasonal_evidence_review_not_canonical",
+  "as_of": "2026-10-03",
+  "current_id": "west-spitsbergen",
+  "route_candidate_file": "research/west-spitsbergen-reference-path-candidate.json",
+  "sources": [
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2017JC013553",
+      "locator": "Introduction and Figure 1: Atlantic flow splits between Scandinavia and Svalbard into Barents inflow via Bear Island Trough and northward WSC continuation; shelf/slope components differ.",
+      "supports": "Regional northward continuation after Barents inflow split; selected departure coordinates are not source endpoints."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018JC014299",
+      "citation": "Menze et al. (2019), Atlantic Water Pathways Along the North-Western Svalbard Shelf Mapped Using Vessel-Mounted Current Profilers, JGR Oceans, doi:10.1029/2018JC014299.",
+      "locator": "Abstract; sections 4.3 and 6: northward boundary flow at 79-80 N / 5-10 E, splitting into Svalbard, Yermak and Yermak Pass branches.",
+      "role": "Northern branch-region context; summer composite does not establish all branches at every time."
+    },
+    {
+      "url": "https://os.copernicus.org/articles/22/1003/2026/",
+      "citation": "Dundas and Fer (2026), Atlantic Water flow through Fram Strait to the Arctic Ocean measured by repeated glider transects, Ocean Science 22, 1003-1021.",
+      "locator": "Introduction; sections 2.1-2.2 and code/data availability: separate slope/front branches, 77.25 N target section and limited season coverage.",
+      "role": "Source-specific naming and section/season caveats; transect distances are not current length or width."
+    }
+  ],
+  "route_convention": {
+    "southern_approach_latitudes": [
+      72.5,
+      73,
+      73.5
+    ],
+    "northern_prebranch_gate_latitudes": [
+      79.5,
+      79.6,
+      79.8
+    ],
+    "vertices": "All OSW selected; no axis or isobath digitized.",
+    "excluded_paths": "Offshore front feeder, Barents inflow, recirculation, shelf/fjord intrusions, downstream named branches."
+  },
+  "related_ledger_name": {
+    "current_id": "spitsbergen-atlantic",
+    "name": "Spitsbergen Atlantic Current",
+    "source_url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
+    "locator": "Spitsbergen Atlantic Current entry",
+    "scope": "NOAA describes a northwestward flow off southwest Spitsbergen; alias or component relationship to WSC not established.",
+    "merged": false,
+    "shared_length_admitted": false
+  },
+  "branch_proposal_ids": [
+    "svalbard-branch",
+    "yermak-branch",
+    "yermak-pass-branch"
+  ],
+  "seasonal_evidence": {
+    "summer_source_url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018JC014299",
+    "time_support": "Summer surveys 2014-2017; depth-average maps 20-500 m.",
+    "composite_guard": "Not all branches present at every sampled time.",
+    "glider_source_url": "https://os.copernicus.org/articles/22/1003/2026/",
+    "glider_time_support": "Missions spanning October 2020-February 2023, predominantly autumn/winter.",
+    "season_definition": "Source uses 15 November to distinguish autumn/winter sections; not universal calendar seasons.",
+    "annual_length_range_km": null,
+    "annual_width_range_km": null,
+    "playback_eligible": false
+  },
+  "section_guards": [
+    "Glider target at 77.25 N is a transect, not an along-current path.",
+    "342 km full transect and 200/300 km region divisions are analysis support, not WSC width.",
+    "Absolute geostrophic reconstruction uses altimetry as reference after erroneous depth-average-current estimates; uncorrected DAC must not be reused.",
+    "Transport and transport uncertainty cannot supply length/width ranges."
+  ],
+  "data_access_leads": [
+    {
+      "url": "https://doi.org/10.21335/NMDC-1323631641",
+      "role": "Summer ADCP data cited by Menze; records, reuse and geographic coverage not acquired/validated."
+    },
+    {
+      "url": "https://doi.org/10.21335/NMDC-1222822416",
+      "role": "Glider archive cited by Dundas/Fer; records, reuse and seasonal coverage not acquired/validated."
+    }
+  ],
+  "current_width_km": null,
+  "canonical_alias_or_identity_admission": false
+}

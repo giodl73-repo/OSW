@@ -1,0 +1,55 @@
+{
+  "schema": "osw.current-source-scope-audit.v1",
+  "current_id": "red-sea-saline-overflow",
+  "status": "editorial_source_scope_not_scientific_approval",
+  "source_url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2018/03/Peters_2005_MixingEntrainment.pdf",
+  "source_retrieved_date": "2026-10-04",
+  "source_access": "Peters et al. sections 2, 3a, 5a and Figure 4 caption; Bower et al. sections 2, 3a-b and Table 1 inspected. No raw arrays or figure geometry acquired.",
+  "source_locator": "Peters et al. printed 570-574, PDF indices 1-6, especially section 5a at 574.",
+  "scope": "REDSOX northern descending plume reach; channel branches precede equilibrated-water spreading.",
+  "reported_reach": {
+    "approximate_length_km": 130,
+    "length_metric": "author_reported_winter_velocity_supported_descending_plume_reach",
+    "branch_id": "redsox-northern-channel-plume",
+    "origin_label": "Bab el Mandeb",
+    "source_velocity_quantity": "plume_speed_magnitude",
+    "velocity_threshold_m_s": 0.2,
+    "threshold_operator": ">",
+    "layer_thickness_range_m": [100, 250],
+    "fixed_depth_bounds_m": null,
+    "campaign_context": {"source": "Peters et al. Table 1", "start": "2001-02-11", "end": "2001-03-15", "is_exact_reach_sampling_period": false},
+    "observed_period": null,
+    "is_synoptic_snapshot": false,
+    "geometry": null,
+    "length_range_km": null,
+    "rank_eligible": false,
+    "whole_current_representative": false
+  },
+  "branches": [
+    {"id": "redsox-northern-channel-plume", "label": "Northern Channel plume", "parent_component": "red-sea-saline-overflow", "component_role": "descending_plume_branch", "canonical_identity": false, "geometry": null, "whole_branch_length_km": null, "width_km": null},
+    {"id": "redsox-southern-channel-main-plume", "label": "Southern Channel main plume", "parent_component": "red-sea-saline-overflow", "component_role": "descending_plume_branch", "canonical_identity": false, "geometry": null, "whole_branch_length_km": null, "width_km": null},
+    {"id": "redsox-southern-channel-gully-plume", "label": "Southern Channel gully product", "parent_component": "redsox-southern-channel-main-plume", "component_role": "winter_product_water_branch", "canonical_identity": false, "geometry": null, "whole_branch_length_km": null, "width_km": null}
+  ],
+  "channel_dimension_context": [
+    {"source": "Peters et al. abstract", "approximate_length_km": 130, "approximate_width_km": 5, "metric": "bathymetric_northern_channel_description"},
+    {"source": "Peters et al. section 3a", "approximate_length_km": 120, "approximate_width_km": 5, "metric": "confined_northern_channel_path_description"},
+    {"source": "Bower et al. section 3a", "approximate_length_km": 115, "approximate_width_km": 5, "metric": "bathymetric_northern_channel_description"}
+  ],
+  "channel_values_are_current_dimensions": false,
+  "channel_value_spread_is_uncertainty_interval": false,
+  "source_consistency_note": "Channel length conventions remain unresolved; no range formed from differing descriptions. Bower cruise context starts February 5; Peters Table 1 starts February 11.",
+  "downstream_continuity_note": "Bower et al. found no continuous boundary undercurrent in these observations; equilibrated water and descending branches remain distinct.",
+  "supporting_sources": [
+    {"url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2018/03/Bower_etal_2005_EquilibrationCirculation.pdf", "locator": "Sections 2, 3a-b; Table 1; abstract", "citation": "Bower et al. (2005), doi:10.1175/JPO2787.1"}
+  ],
+  "whole_current_length_km": null,
+  "whole_current_width_km": null,
+  "annual_length_range_km": null,
+  "annual_width_range_km": null,
+  "seasonal_route_playback_supported": false,
+  "remaining_gates": [
+    "Recover compatible current axes and paired velocity boundaries.",
+    "Resolve channel conventions and exact occupation support.",
+    "Independent branch identity and measurement admission."
+  ]
+}

@@ -15,6 +15,7 @@
     <nav class="project-nav" aria-label="Project guide">
       <a href="../figures/osw-fluid-geography.svg" target="_blank" rel="noopener">Map</a>
       <a href="../column/">Column</a>
+      <a href="../event/">Follow heat</a>
       <a href="../HEATMASS.md">Field guide</a>
       <a class="research-link" href="../research/">Research note</a>
       <a class="method-link" href="README.md">Method</a>
@@ -45,11 +46,21 @@
       <button class="lens" data-lens="life" aria-pressed="false"><span>05</span> LIFE <small>oxygen + productivity</small></button>
       <button class="lens" data-lens="events" aria-pressed="false"><span>06</span> EVENTS <small>temporary anomalies</small></button>
     </nav>
+    <aside class="flow-reference" id="flow-reference" aria-label="Ocean motion visualization" hidden>
+      <div>
+        <strong>SEE THE OCEAN MOVE</strong>
+        <p>NASA's <em>Perpetual Ocean 2</em> follows virtual particles through an ECCO model of 2021–2023 currents, from the Kuroshio to the Agulhas and Gulf Stream. It is a model visualization, not a measurement of OSW boundaries or heat transport.</p>
+        <p class="flow-names">Major currents have established names. Individual eddies can be described by type and location, tracked by ID, or occasionally named—<a href="https://oceanservice.noaa.gov/facts/eddy.html" target="_blank" rel="noopener noreferrer">Eddy Franklin</a> is one example.</p>
+      </div>
+      <div class="flow-reference-actions"><a href="https://svs.gsfc.nasa.gov/5425" target="_blank" rel="noopener noreferrer">Watch at NASA SVS →</a><a href="https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/PCT_flow_map_ALL_noLabels_beauty.html" target="_blank" rel="noopener noreferrer">NASA regional movie picker →</a><a href="../almanac/#motion-map-section">Open motion atlas →</a></div>
+    </aside>
     <form class="geography-filters" id="geography-filters">
       <p><strong>CURATED OCEAN GEOGRAPHY</strong><span>Overlapping lenses—not exclusive countries.</span></p>
       <label>Depth<select id="filter-depth"><option value="all">All depths</option><option value="surface">Surface</option><option value="upper">Upper ocean</option><option value="intermediate">Intermediate</option><option value="deep">Deep</option><option value="bottom">Bottom</option><option value="full-column">Full column</option><option value="seabed">Seabed</option></select></label>
       <label>Property<select id="filter-property"><option value="all">All properties</option><option value="warm">Warm</option><option value="cold">Cold</option><option value="fresh">Fresh</option><option value="salty">Salty</option><option value="dynamic">Dynamic</option><option value="low-oxygen">Low oxygen</option><option value="nutrient-rich">Nutrient rich</option><option value="nutrient-poor">Nutrient poor</option><option value="relief">Seafloor relief</option></select></label>
       <label>Clock<select id="filter-clock"><option value="all">All clocks</option><option value="persistent">Persistent</option><option value="seasonal">Seasonal</option><option value="interannual">Interannual</option><option value="episodic">Episodic</option><option value="geologic">Geologic</option></select></label>
+      <label>Evidence<select id="filter-evidence"><option value="all">All claim types</option><option value="conceptual">Conceptual</option><option value="observed">Observed</option><option value="derived">Derived</option><option value="model-screen">Model screen</option><option value="sensitivity">Sensitivity</option><option value="unresolved">Unresolved</option></select></label>
+      <a class="evidence-receipt-link" href="../research/ocean-object-evidence-receipts.json">Download evidence receipts</a>
       <button type="reset">Reset to waters</button>
       <output id="filter-status" aria-live="polite">12 matching water features.</output>
     </form>
@@ -129,6 +140,12 @@
             <section aria-labelledby="near-title"><h4 id="near-title">Near-contacts</h4><div id="relation-near" class="relation-buttons"></div></section>
           </div>
           <p class="relation-method">This is a sampled relationship between two schematic display layers—not observed membership, transport, or a physical boundary.</p>
+        </section>
+        <section class="state-handoff" id="state-handoff" hidden aria-labelledby="state-handoff-title">
+          <p class="eyebrow">Selected ocean state</p>
+          <h3 id="state-handoff-title">Continue with this state</h3>
+          <p id="state-handoff-summary"></p>
+          <div id="state-handoff-cards" class="state-handoff-cards"></div>
         </section>
         <div class="conceptual-actions" id="conceptual-actions">
           <a id="full-size-conceptual-map" href="../figures/osw-province-atlas-coastal-states.svg" target="_blank" rel="noopener">Open the full-size province map ↗</a>
@@ -291,6 +308,7 @@
   <script src="data/argo-temperature-anomaly-700dbar-2026-07.js" defer></script>
   <script src="data/argo-temperature-anomaly-1000dbar-2026-07.js" defer></script>
   <script src="data/relation-smoke-fixture.js" defer></script>
+  <script src="state-handoffs.js" defer></script>
   <script src="app.js" defer></script>
 </body>
 </html>

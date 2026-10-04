@@ -1,0 +1,5426 @@
+{
+  "schema": "osw-ocean-state-sant-density-cutoff-sensitivity-v1",
+  "status": "posthoc_numeric_cutoff_sensitivity_not_water_mass_or_transformation",
+  "source": {
+    "path": "research/ocean-state-sant-closed-box-monthly-fields-2018.json",
+    "sha256": "12126a8128c00605f9278e9f13fcdda59134f63742564b2c9095b92792bf3b73"
+  },
+  "selection": {
+    "path": "research/ocean-state-sant-closed-box-selection-current-geometry-v1.json",
+    "sha256": "f65e3adb8b99f47cfd30ee549838fdd653dc1e3500b465dfe1a3c5bd75da39a6"
+  },
+  "annual_boundary": {
+    "path": "research/ocean-state-sant-density-boundary-monthly-series-2018.json",
+    "sha256": "49a7c06f7da49e8a560659f6d11f6d9907a2bac04ddd6c4d44ae4024b2654c9b"
+  },
+  "annual_inventory": {
+    "path": "research/ocean-state-sant-density-inventory-monthly-series-2018.json",
+    "sha256": "45da47f7d4951a469750949ab980da90b3f4e4c8a478f96edd59cca1c2ce7486"
+  },
+  "method": {
+    "cutoff_shifts_sigma0_kg_m3": [
+      -0.1,
+      0.0,
+      0.1
+    ],
+    "baseline_cutoffs_sigma0_kg_m3": [
+      26.5,
+      27.0,
+      27.5
+    ],
+    "scope": "All three numeric cutoffs shift together by -0.1, 0, or +0.1 kg/m3; bin index 2 is the middle-high numeric bin in each scheme.",
+    "selection_timing": "This sensitivity was designed after inspection of the baseline annual series, so it is a challenge, not preregistered confirmation.",
+    "collocation": "centered adjacent-cell mean and upstream T-cell density with the same native velocity and wet-face support"
+  },
+  "months": [
+    {
+      "valid_time": "2018-01-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "valid_wet_face_level_count": 3862,
+          "net_outward_all_density_Sv": 8.1529e-05,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.014635317,
+                  "centered_net_outward_Sv": 0.103797338,
+                  "upstream_net_outward_Sv": 0.093973289
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.120673115,
+                  "centered_net_outward_Sv": 0.08837954,
+                  "upstream_net_outward_Sv": 0.03600469
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.864691568,
+                  "centered_net_outward_Sv": -0.19209535,
+                  "upstream_net_outward_Sv": -0.12989645
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.018947304,
+                  "centered_net_outward_Sv": 0.086804672,
+                  "upstream_net_outward_Sv": 0.09152092
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.15549622,
+                  "centered_net_outward_Sv": -0.40324402,
+                  "upstream_net_outward_Sv": -0.403554212
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.825556476,
+                  "centered_net_outward_Sv": 0.316520877,
+                  "upstream_net_outward_Sv": 0.31211482
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.00042029,
+                  "centered_net_outward_Sv": 0.274585493,
+                  "upstream_net_outward_Sv": 0.203821921
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.026112356,
+                  "centered_net_outward_Sv": -0.226769248,
+                  "upstream_net_outward_Sv": -0.249021657
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.205382002,
+                  "centered_net_outward_Sv": 0.04119027,
+                  "upstream_net_outward_Sv": -0.423543708
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.768085352,
+                  "centered_net_outward_Sv": -0.088924986,
+                  "upstream_net_outward_Sv": 0.468824974
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "valid_wet_face_level_count": 3824,
+          "net_outward_all_density_Sv": 5.4322e-05,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.014985625,
+                  "centered_net_outward_Sv": 0.156300731,
+                  "upstream_net_outward_Sv": 0.11688818
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.125961287,
+                  "centered_net_outward_Sv": -0.041587316,
+                  "upstream_net_outward_Sv": 0.047926224
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.859053088,
+                  "centered_net_outward_Sv": -0.114659093,
+                  "upstream_net_outward_Sv": -0.164760081
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.019315004,
+                  "centered_net_outward_Sv": 0.117458611,
+                  "upstream_net_outward_Sv": 0.075401301
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.162295856,
+                  "centered_net_outward_Sv": -0.389313321,
+                  "upstream_net_outward_Sv": -0.23136868
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.81838914,
+                  "centered_net_outward_Sv": 0.271909032,
+                  "upstream_net_outward_Sv": 0.156021701
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.000701301,
+                  "centered_net_outward_Sv": 0.327279503,
+                  "upstream_net_outward_Sv": 0.25276224
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.026391296,
+                  "centered_net_outward_Sv": -0.26635235,
+                  "upstream_net_outward_Sv": -0.29506056
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.214174506,
+                  "centered_net_outward_Sv": 0.162937169,
+                  "upstream_net_outward_Sv": -0.427198899
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.758732896,
+                  "centered_net_outward_Sv": -0.223810001,
+                  "upstream_net_outward_Sv": 0.469551541
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "valid_wet_face_level_count": 3916,
+          "net_outward_all_density_Sv": 0.000104043,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.014386427,
+                  "centered_net_outward_Sv": 0.084808883,
+                  "upstream_net_outward_Sv": 0.081637215
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.116098281,
+                  "centered_net_outward_Sv": 0.162257211,
+                  "upstream_net_outward_Sv": 0.16542888
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.869515292,
+                  "centered_net_outward_Sv": -0.246962052,
+                  "upstream_net_outward_Sv": -0.246962052
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.018659233,
+                  "centered_net_outward_Sv": 0.036112175,
+                  "upstream_net_outward_Sv": 0.042748258
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.149615653,
+                  "centered_net_outward_Sv": -0.143239034,
+                  "upstream_net_outward_Sv": -0.247432834
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.831725114,
+                  "centered_net_outward_Sv": 0.107230902,
+                  "upstream_net_outward_Sv": 0.204788619
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.000241674,
+                  "centered_net_outward_Sv": 0.2239489,
+                  "upstream_net_outward_Sv": 0.155294454
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.025881748,
+                  "centered_net_outward_Sv": -0.221556792,
+                  "upstream_net_outward_Sv": -0.201026484
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.197586433,
+                  "centered_net_outward_Sv": 0.182403491,
+                  "upstream_net_outward_Sv": -0.407503107
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.776290145,
+                  "centered_net_outward_Sv": -0.184691556,
+                  "upstream_net_outward_Sv": 0.45333918
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "valid_wet_face_level_count": 3865,
+          "net_outward_all_density_Sv": 6.8415e-05,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.014542994,
+                  "centered_net_outward_Sv": 0.101612946,
+                  "upstream_net_outward_Sv": 0.080495292
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.116665748,
+                  "centered_net_outward_Sv": -0.331885532,
+                  "upstream_net_outward_Sv": -0.316946892
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.868791257,
+                  "centered_net_outward_Sv": 0.230341001,
+                  "upstream_net_outward_Sv": 0.236520015
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.018965513,
+                  "centered_net_outward_Sv": 0.105543545,
+                  "upstream_net_outward_Sv": 0.130538122
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.150389674,
+                  "centered_net_outward_Sv": -0.062720911,
+                  "upstream_net_outward_Sv": -0.467122543
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.830644813,
+                  "centered_net_outward_Sv": -0.042754219,
+                  "upstream_net_outward_Sv": 0.336652836
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.000214225,
+                  "centered_net_outward_Sv": 0.160761404,
+                  "upstream_net_outward_Sv": 0.097866117
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.026318949,
+                  "centered_net_outward_Sv": -0.151213524,
+                  "upstream_net_outward_Sv": -0.096893809
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.199329777,
+                  "centered_net_outward_Sv": -0.114924177,
+                  "upstream_net_outward_Sv": -0.34093763
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.774137049,
+                  "centered_net_outward_Sv": 0.105444711,
+                  "upstream_net_outward_Sv": 0.340033737
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-02-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "valid_wet_face_level_count": 3862,
+          "net_outward_all_density_Sv": 0.002209672,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.018910019,
+                  "centered_net_outward_Sv": 0.078936071,
+                  "upstream_net_outward_Sv": 0.063873012
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.11862853,
+                  "centered_net_outward_Sv": -0.22656418,
+                  "upstream_net_outward_Sv": -0.222793783
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.86246145,
+                  "centered_net_outward_Sv": 0.149837781,
+                  "upstream_net_outward_Sv": 0.161130443
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.021833952,
+                  "centered_net_outward_Sv": 0.117913727,
+                  "upstream_net_outward_Sv": 0.099953389
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.156657904,
+                  "centered_net_outward_Sv": -0.088019253,
+                  "upstream_net_outward_Sv": -0.279550829
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.821508144,
+                  "centered_net_outward_Sv": -0.027684802,
+                  "upstream_net_outward_Sv": 0.181807112
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.000133595,
+                  "centered_net_outward_Sv": -0.007983491,
+                  "upstream_net_outward_Sv": -0.043934311
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.028169287,
+                  "centered_net_outward_Sv": -0.097282112,
+                  "upstream_net_outward_Sv": -0.077089745
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.209298894,
+                  "centered_net_outward_Sv": 0.154909709,
+                  "upstream_net_outward_Sv": 0.057376693
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.762398223,
+                  "centered_net_outward_Sv": -0.047434434,
+                  "upstream_net_outward_Sv": 0.065857035
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "valid_wet_face_level_count": 3824,
+          "net_outward_all_density_Sv": 0.002247839,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.019335667,
+                  "centered_net_outward_Sv": 0.05720086,
+                  "upstream_net_outward_Sv": 0.051286067
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.123936096,
+                  "centered_net_outward_Sv": -0.182367292,
+                  "upstream_net_outward_Sv": -0.158765107
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.856728237,
+                  "centered_net_outward_Sv": 0.12741427,
+                  "upstream_net_outward_Sv": 0.109726879
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.022347051,
+                  "centered_net_outward_Sv": 0.084387521,
+                  "upstream_net_outward_Sv": 0.067237839
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.163479576,
+                  "centered_net_outward_Sv": 0.116824976,
+                  "upstream_net_outward_Sv": -0.007181553
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.814173372,
+                  "centered_net_outward_Sv": -0.198964658,
+                  "upstream_net_outward_Sv": -0.057808447
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.000163164,
+                  "centered_net_outward_Sv": -0.015138497,
+                  "upstream_net_outward_Sv": -0.046499855
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.028761852,
+                  "centered_net_outward_Sv": -0.144235673,
+                  "upstream_net_outward_Sv": -0.14221724
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.218076823,
+                  "centered_net_outward_Sv": 0.155136722,
+                  "upstream_net_outward_Sv": 0.129613409
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.752998161,
+                  "centered_net_outward_Sv": 0.006485287,
+                  "upstream_net_outward_Sv": 0.061351525
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "valid_wet_face_level_count": 3916,
+          "net_outward_all_density_Sv": 0.002167184,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.018595106,
+                  "centered_net_outward_Sv": 0.077232323,
+                  "upstream_net_outward_Sv": 0.076978681
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.113797188,
+                  "centered_net_outward_Sv": -0.232191185,
+                  "upstream_net_outward_Sv": -0.280249839
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.867607706,
+                  "centered_net_outward_Sv": 0.157126046,
+                  "upstream_net_outward_Sv": 0.205438342
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.02143919,
+                  "centered_net_outward_Sv": 0.141797491,
+                  "upstream_net_outward_Sv": 0.164998584
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.150435048,
+                  "centered_net_outward_Sv": -0.155279542,
+                  "upstream_net_outward_Sv": -0.617109924
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.828125762,
+                  "centered_net_outward_Sv": 0.015649235,
+                  "upstream_net_outward_Sv": 0.454278523
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.000122733,
+                  "centered_net_outward_Sv": -0.008084309,
+                  "upstream_net_outward_Sv": 0.008257107
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.027621726,
+                  "centered_net_outward_Sv": -0.043022022,
+                  "upstream_net_outward_Sv": -0.119409833
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.201563128,
+                  "centered_net_outward_Sv": 0.221788054,
+                  "upstream_net_outward_Sv": -0.231744831
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.770692412,
+                  "centered_net_outward_Sv": -0.168514539,
+                  "upstream_net_outward_Sv": 0.345064741
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "valid_wet_face_level_count": 3865,
+          "net_outward_all_density_Sv": 0.00222421,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.018767027,
+                  "centered_net_outward_Sv": 0.093118585,
+                  "upstream_net_outward_Sv": 0.060980661
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.115179928,
+                  "centered_net_outward_Sv": -0.199877841,
+                  "upstream_net_outward_Sv": -0.35382413
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.866053046,
+                  "centered_net_outward_Sv": 0.108983466,
+                  "upstream_net_outward_Sv": 0.29506768
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.021661257,
+                  "centered_net_outward_Sv": 0.112113036,
+                  "upstream_net_outward_Sv": 0.105283857
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.151992714,
+                  "centered_net_outward_Sv": -0.159743634,
+                  "upstream_net_outward_Sv": -0.202271702
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.826346029,
+                  "centered_net_outward_Sv": 0.049854809,
+                  "upstream_net_outward_Sv": 0.099212056
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.000116788,
+                  "centered_net_outward_Sv": 0.007632511,
+                  "upstream_net_outward_Sv": 0.002125194
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.027962081,
+                  "centered_net_outward_Sv": -0.127767086,
+                  "upstream_net_outward_Sv": -0.104264598
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.20376907,
+                  "centered_net_outward_Sv": -0.098457803,
+                  "upstream_net_outward_Sv": -0.008087949
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.768152061,
+                  "centered_net_outward_Sv": 0.220816588,
+                  "upstream_net_outward_Sv": 0.112451564
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-03-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "valid_wet_face_level_count": 3862,
+          "net_outward_all_density_Sv": 0.00143979,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.019505559,
+                  "centered_net_outward_Sv": 0.140255423,
+                  "upstream_net_outward_Sv": 0.144456261
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.115799392,
+                  "centered_net_outward_Sv": 0.654599248,
+                  "upstream_net_outward_Sv": 0.641751328
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.864695048,
+                  "centered_net_outward_Sv": -0.793414881,
+                  "upstream_net_outward_Sv": -0.784767799
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.022170569,
+                  "centered_net_outward_Sv": 0.120894372,
+                  "upstream_net_outward_Sv": 0.084496282
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.154367997,
+                  "centered_net_outward_Sv": 0.530806689,
+                  "upstream_net_outward_Sv": 0.622221435
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.823461433,
+                  "centered_net_outward_Sv": -0.650261271,
+                  "upstream_net_outward_Sv": -0.705277928
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.000393122,
+                  "centered_net_outward_Sv": 0.050369382,
+                  "upstream_net_outward_Sv": -0.0056085
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.027393573,
+                  "centered_net_outward_Sv": 0.032543169,
+                  "upstream_net_outward_Sv": 0.071983863
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.205675999,
+                  "centered_net_outward_Sv": 0.382874964,
+                  "upstream_net_outward_Sv": 0.203457162
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.766537307,
+                  "centered_net_outward_Sv": -0.464347726,
+                  "upstream_net_outward_Sv": -0.268392734
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "valid_wet_face_level_count": 3824,
+          "net_outward_all_density_Sv": 0.001408717,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.019971488,
+                  "centered_net_outward_Sv": 0.160638802,
+                  "upstream_net_outward_Sv": 0.12165402
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.121711743,
+                  "centered_net_outward_Sv": 0.736812525,
+                  "upstream_net_outward_Sv": 0.876972563
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.858316769,
+                  "centered_net_outward_Sv": -0.896042611,
+                  "upstream_net_outward_Sv": -0.997217866
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.022761404,
+                  "centered_net_outward_Sv": 0.170036272,
+                  "upstream_net_outward_Sv": 0.130957269
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.161351348,
+                  "centered_net_outward_Sv": 0.585719322,
+                  "upstream_net_outward_Sv": 0.73112347
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.815887248,
+                  "centered_net_outward_Sv": -0.754346877,
+                  "upstream_net_outward_Sv": -0.860672022
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.000588917,
+                  "centered_net_outward_Sv": -0.014115997,
+                  "upstream_net_outward_Sv": -0.051130065
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.027929979,
+                  "centered_net_outward_Sv": 0.125009554,
+                  "upstream_net_outward_Sv": 0.131039502
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.214998927,
+                  "centered_net_outward_Sv": 0.563184658,
+                  "upstream_net_outward_Sv": 0.563402194
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.756482177,
+                  "centered_net_outward_Sv": -0.672669498,
+                  "upstream_net_outward_Sv": -0.641902914
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "valid_wet_face_level_count": 3916,
+          "net_outward_all_density_Sv": 0.001468208,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.01911831,
+                  "centered_net_outward_Sv": 0.147151894,
+                  "upstream_net_outward_Sv": 0.137231691
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.11082948,
+                  "centered_net_outward_Sv": 0.649172693,
+                  "upstream_net_outward_Sv": 0.591352453
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.87005221,
+                  "centered_net_outward_Sv": -0.794856379,
+                  "upstream_net_outward_Sv": -0.727115935
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.021719925,
+                  "centered_net_outward_Sv": 0.08659993,
+                  "upstream_net_outward_Sv": 0.075529503
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.14830759,
+                  "centered_net_outward_Sv": 0.49485208,
+                  "upstream_net_outward_Sv": 0.590474433
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.829972485,
+                  "centered_net_outward_Sv": -0.579983802,
+                  "upstream_net_outward_Sv": -0.664535728
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.000239956,
+                  "centered_net_outward_Sv": 0.066310404,
+                  "upstream_net_outward_Sv": 0.030312091
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.026969127,
+                  "centered_net_outward_Sv": -0.009326225,
+                  "upstream_net_outward_Sv": 0.020076091
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.197711416,
+                  "centered_net_outward_Sv": 0.427811925,
+                  "upstream_net_outward_Sv": 0.053239456
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.775079502,
+                  "centered_net_outward_Sv": -0.483327896,
+                  "upstream_net_outward_Sv": -0.10215943
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "valid_wet_face_level_count": 3865,
+          "net_outward_all_density_Sv": 0.001439378,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.019367203,
+                  "centered_net_outward_Sv": 0.129814976,
+                  "upstream_net_outward_Sv": 0.138115498
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.112635081,
+                  "centered_net_outward_Sv": 0.580196501,
+                  "upstream_net_outward_Sv": 0.466478636
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.867997716,
+                  "centered_net_outward_Sv": -0.708572099,
+                  "upstream_net_outward_Sv": -0.603154756
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.021981601,
+                  "centered_net_outward_Sv": 0.13911552,
+                  "upstream_net_outward_Sv": 0.104316474
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.150048625,
+                  "centered_net_outward_Sv": 0.443864043,
+                  "upstream_net_outward_Sv": 0.488505754
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.827969774,
+                  "centered_net_outward_Sv": -0.581540184,
+                  "upstream_net_outward_Sv": -0.591382849
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.000163367,
+                  "centered_net_outward_Sv": -0.014440261,
+                  "upstream_net_outward_Sv": -0.040608578
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.027314649,
+                  "centered_net_outward_Sv": 0.161899619,
+                  "upstream_net_outward_Sv": 0.083869784
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.200479748,
+                  "centered_net_outward_Sv": 0.97579534,
+                  "upstream_net_outward_Sv": 0.505742436
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.772042236,
+                  "centered_net_outward_Sv": -1.121815319,
+                  "upstream_net_outward_Sv": -0.547564265
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-04-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "valid_wet_face_level_count": 3862,
+          "net_outward_all_density_Sv": 0.001943272,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.020678338,
+                  "centered_net_outward_Sv": 0.209525815,
+                  "upstream_net_outward_Sv": 0.189587914
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.110014164,
+                  "centered_net_outward_Sv": 0.45238145,
+                  "upstream_net_outward_Sv": 0.328268524
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.869307498,
+                  "centered_net_outward_Sv": -0.659963992,
+                  "upstream_net_outward_Sv": -0.515913165
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.023419899,
+                  "centered_net_outward_Sv": 0.190570625,
+                  "upstream_net_outward_Sv": 0.194228118
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.148958573,
+                  "centered_net_outward_Sv": 0.185362993,
+                  "upstream_net_outward_Sv": 0.143894305
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.827621528,
+                  "centered_net_outward_Sv": -0.373990346,
+                  "upstream_net_outward_Sv": -0.33617915
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.028490645,
+                  "centered_net_outward_Sv": -0.071097422,
+                  "upstream_net_outward_Sv": -0.085094118
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.2028109,
+                  "centered_net_outward_Sv": 1.037858658,
+                  "upstream_net_outward_Sv": 0.502003382
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.768698456,
+                  "centered_net_outward_Sv": -0.964817965,
+                  "upstream_net_outward_Sv": -0.414965992
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "valid_wet_face_level_count": 3824,
+          "net_outward_all_density_Sv": 0.001939545,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.021157066,
+                  "centered_net_outward_Sv": 0.203082002,
+                  "upstream_net_outward_Sv": 0.187854735
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.115212453,
+                  "centered_net_outward_Sv": 0.335530979,
+                  "upstream_net_outward_Sv": 0.348897918
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.863630481,
+                  "centered_net_outward_Sv": -0.536673436,
+                  "upstream_net_outward_Sv": -0.534813107
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.023994314,
+                  "centered_net_outward_Sv": 0.191764782,
+                  "upstream_net_outward_Sv": 0.175917091
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.155642431,
+                  "centered_net_outward_Sv": 0.084786193,
+                  "upstream_net_outward_Sv": 0.034708662
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.820363255,
+                  "centered_net_outward_Sv": -0.27461143,
+                  "upstream_net_outward_Sv": -0.208686208
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.029236815,
+                  "centered_net_outward_Sv": -0.04736019,
+                  "upstream_net_outward_Sv": -0.072681346
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.211458066,
+                  "centered_net_outward_Sv": 0.9919747,
+                  "upstream_net_outward_Sv": 0.448162153
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.759305119,
+                  "centered_net_outward_Sv": -0.942674965,
+                  "upstream_net_outward_Sv": -0.373541262
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "valid_wet_face_level_count": 3916,
+          "net_outward_all_density_Sv": 0.001946785,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.020311944,
+                  "centered_net_outward_Sv": 0.213625858,
+                  "upstream_net_outward_Sv": 0.212244159
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.105487521,
+                  "centered_net_outward_Sv": 0.432474986,
+                  "upstream_net_outward_Sv": 0.186389895
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.874200535,
+                  "centered_net_outward_Sv": -0.64415406,
+                  "upstream_net_outward_Sv": -0.396687268
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.022950412,
+                  "centered_net_outward_Sv": 0.205820381,
+                  "upstream_net_outward_Sv": 0.212398591
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.143465324,
+                  "centered_net_outward_Sv": 0.330994194,
+                  "upstream_net_outward_Sv": 0.308390257
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.833584264,
+                  "centered_net_outward_Sv": -0.53486779,
+                  "upstream_net_outward_Sv": -0.518842063
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.027877805,
+                  "centered_net_outward_Sv": -0.120694261,
+                  "upstream_net_outward_Sv": -0.136328786
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.195632091,
+                  "centered_net_outward_Sv": 1.291425651,
+                  "upstream_net_outward_Sv": 0.786967981
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.776490104,
+                  "centered_net_outward_Sv": -1.168784605,
+                  "upstream_net_outward_Sv": -0.64869241
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "valid_wet_face_level_count": 3865,
+          "net_outward_all_density_Sv": 0.001950902,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.020540085,
+                  "centered_net_outward_Sv": 0.187683078,
+                  "upstream_net_outward_Sv": 0.170792803
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.10721991,
+                  "centered_net_outward_Sv": 0.304599343,
+                  "upstream_net_outward_Sv": 0.354318934
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.872240005,
+                  "centered_net_outward_Sv": -0.490331518,
+                  "upstream_net_outward_Sv": -0.523160836
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.023199189,
+                  "centered_net_outward_Sv": 0.159960537,
+                  "upstream_net_outward_Sv": 0.158538052
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.14499319,
+                  "centered_net_outward_Sv": 0.578610038,
+                  "upstream_net_outward_Sv": -0.106272601
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.831807621,
+                  "centered_net_outward_Sv": -0.736619673,
+                  "upstream_net_outward_Sv": -0.050314549
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.028065041,
+                  "centered_net_outward_Sv": -0.089789815,
+                  "upstream_net_outward_Sv": -0.126508694
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.197821473,
+                  "centered_net_outward_Sv": 0.751308361,
+                  "upstream_net_outward_Sv": 0.655141637
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.774113486,
+                  "centered_net_outward_Sv": -0.659567644,
+                  "upstream_net_outward_Sv": -0.526682041
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-05-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "valid_wet_face_level_count": 3862,
+          "net_outward_all_density_Sv": 0.000637009,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.012576951,
+                  "centered_net_outward_Sv": -1.192261131,
+                  "upstream_net_outward_Sv": -1.221893593
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.118428557,
+                  "centered_net_outward_Sv": 1.528979724,
+                  "upstream_net_outward_Sv": 1.595468187
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.868994492,
+                  "centered_net_outward_Sv": -0.336081585,
+                  "upstream_net_outward_Sv": -0.372937585
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.024181034,
+                  "centered_net_outward_Sv": 0.04185933,
+                  "upstream_net_outward_Sv": -0.038087723
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.146149697,
+                  "centered_net_outward_Sv": 0.313450137,
+                  "upstream_net_outward_Sv": 0.251956877
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.829669269,
+                  "centered_net_outward_Sv": -0.354672458,
+                  "upstream_net_outward_Sv": -0.213232145
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.031192306,
+                  "centered_net_outward_Sv": -0.09075163,
+                  "upstream_net_outward_Sv": -0.104765926
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.198064311,
+                  "centered_net_outward_Sv": 0.95723583,
+                  "upstream_net_outward_Sv": 0.989049676
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.770743383,
+                  "centered_net_outward_Sv": -0.865847191,
+                  "upstream_net_outward_Sv": -0.883646742
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "valid_wet_face_level_count": 3824,
+          "net_outward_all_density_Sv": 0.000670776,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0131652,
+                  "centered_net_outward_Sv": -1.327034353,
+                  "upstream_net_outward_Sv": -1.376385337
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.123463539,
+                  "centered_net_outward_Sv": 1.886677548,
+                  "upstream_net_outward_Sv": 1.990061798
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.863371261,
+                  "centered_net_outward_Sv": -0.55897242,
+                  "upstream_net_outward_Sv": -0.613005686
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.024786143,
+                  "centered_net_outward_Sv": 0.079542613,
+                  "upstream_net_outward_Sv": 0.008866285
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.152296785,
+                  "centered_net_outward_Sv": 0.046728374,
+                  "upstream_net_outward_Sv": 0.164784873
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.822917072,
+                  "centered_net_outward_Sv": -0.125600211,
+                  "upstream_net_outward_Sv": -0.172980382
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.032084025,
+                  "centered_net_outward_Sv": -0.08671642,
+                  "upstream_net_outward_Sv": -0.104554775
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.206031841,
+                  "centered_net_outward_Sv": 0.681916638,
+                  "upstream_net_outward_Sv": 0.916277262
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.761884134,
+                  "centered_net_outward_Sv": -0.594529442,
+                  "upstream_net_outward_Sv": -0.811051712
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "valid_wet_face_level_count": 3916,
+          "net_outward_all_density_Sv": 0.00059525,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.012071296,
+                  "centered_net_outward_Sv": -1.016496189,
+                  "upstream_net_outward_Sv": -1.058068996
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.114220343,
+                  "centered_net_outward_Sv": 1.2853645,
+                  "upstream_net_outward_Sv": 1.386551904
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.873708361,
+                  "centered_net_outward_Sv": -0.26827306,
+                  "upstream_net_outward_Sv": -0.327887657
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.023730731,
+                  "centered_net_outward_Sv": 0.051454616,
+                  "upstream_net_outward_Sv": -0.022798644
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.140757477,
+                  "centered_net_outward_Sv": 0.284819114,
+                  "upstream_net_outward_Sv": 0.279766132
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.835511791,
+                  "centered_net_outward_Sv": -0.33567848,
+                  "upstream_net_outward_Sv": -0.256372238
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.030436995,
+                  "centered_net_outward_Sv": -0.119082433,
+                  "upstream_net_outward_Sv": -0.100927016
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.191068886,
+                  "centered_net_outward_Sv": 0.775671083,
+                  "upstream_net_outward_Sv": 0.763900396
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.778494119,
+                  "centered_net_outward_Sv": -0.655993399,
+                  "upstream_net_outward_Sv": -0.66237813
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "valid_wet_face_level_count": 3865,
+          "net_outward_all_density_Sv": 0.00069095,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.011678418,
+                  "centered_net_outward_Sv": -1.116754157,
+                  "upstream_net_outward_Sv": -1.327033684
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.116154418,
+                  "centered_net_outward_Sv": 1.754388812,
+                  "upstream_net_outward_Sv": 1.903756845
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.872167164,
+                  "centered_net_outward_Sv": -0.636943706,
+                  "upstream_net_outward_Sv": -0.576032211
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.023956189,
+                  "centered_net_outward_Sv": 0.113686012,
+                  "upstream_net_outward_Sv": 0.046649082
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.142638909,
+                  "centered_net_outward_Sv": 0.576040438,
+                  "upstream_net_outward_Sv": 0.332304635
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.833404902,
+                  "centered_net_outward_Sv": -0.6890355,
+                  "upstream_net_outward_Sv": -0.378262767
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.030678221,
+                  "centered_net_outward_Sv": -0.202148257,
+                  "upstream_net_outward_Sv": -0.175953466
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.193512424,
+                  "centered_net_outward_Sv": 0.704997823,
+                  "upstream_net_outward_Sv": 0.617547704
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.775809355,
+                  "centered_net_outward_Sv": -0.502158615,
+                  "upstream_net_outward_Sv": -0.440903288
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-06-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "valid_wet_face_level_count": 3862,
+          "net_outward_all_density_Sv": 0.000380481,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.128012845,
+                  "centered_net_outward_Sv": 0.686479601,
+                  "upstream_net_outward_Sv": 0.219064486
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.871987155,
+                  "centered_net_outward_Sv": -0.686099119,
+                  "upstream_net_outward_Sv": -0.218684005
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.015416838,
+                  "centered_net_outward_Sv": -0.185384935,
+                  "upstream_net_outward_Sv": -0.207718225
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.152453053,
+                  "centered_net_outward_Sv": 0.758569661,
+                  "upstream_net_outward_Sv": 0.386717166
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.832130109,
+                  "centered_net_outward_Sv": -0.572804245,
+                  "upstream_net_outward_Sv": -0.17861846
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.031398952,
+                  "centered_net_outward_Sv": 0.16249208,
+                  "upstream_net_outward_Sv": 0.217654947
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.19416665,
+                  "centered_net_outward_Sv": 0.353840713,
+                  "upstream_net_outward_Sv": 0.317310658
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.774434398,
+                  "centered_net_outward_Sv": -0.515952312,
+                  "upstream_net_outward_Sv": -0.534585124
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "valid_wet_face_level_count": 3824,
+          "net_outward_all_density_Sv": 0.000431831,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.133330307,
+                  "centered_net_outward_Sv": 0.562862367,
+                  "upstream_net_outward_Sv": 0.242037799
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.866669693,
+                  "centered_net_outward_Sv": -0.562430536,
+                  "upstream_net_outward_Sv": -0.241605968
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.016817081,
+                  "centered_net_outward_Sv": -0.15980679,
+                  "upstream_net_outward_Sv": -0.16497583
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.157767153,
+                  "centered_net_outward_Sv": 0.70746139,
+                  "upstream_net_outward_Sv": 0.461926014
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.825415766,
+                  "centered_net_outward_Sv": -0.547222768,
+                  "upstream_net_outward_Sv": -0.296518353
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.032307345,
+                  "centered_net_outward_Sv": 0.189919478,
+                  "upstream_net_outward_Sv": 0.206778335
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.202167505,
+                  "centered_net_outward_Sv": 0.447826394,
+                  "upstream_net_outward_Sv": 0.296251812
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.76552515,
+                  "centered_net_outward_Sv": -0.637314041,
+                  "upstream_net_outward_Sv": -0.502598316
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "valid_wet_face_level_count": 3916,
+          "net_outward_all_density_Sv": 0.000331988,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.123505116,
+                  "centered_net_outward_Sv": 0.712320273,
+                  "upstream_net_outward_Sv": 0.267961559
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.876494884,
+                  "centered_net_outward_Sv": -0.711988285,
+                  "upstream_net_outward_Sv": -0.267629571
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.014154619,
+                  "centered_net_outward_Sv": -0.191147953,
+                  "upstream_net_outward_Sv": -0.178149194
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.147861519,
+                  "centered_net_outward_Sv": 0.521384151,
+                  "upstream_net_outward_Sv": 0.225131407
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.837983862,
+                  "centered_net_outward_Sv": -0.329904211,
+                  "upstream_net_outward_Sv": -0.046650225
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.03066216,
+                  "centered_net_outward_Sv": 0.191044647,
+                  "upstream_net_outward_Sv": 0.256900168
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.187176283,
+                  "centered_net_outward_Sv": 0.178766745,
+                  "upstream_net_outward_Sv": 0.040334238
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.782161557,
+                  "centered_net_outward_Sv": -0.369479404,
+                  "upstream_net_outward_Sv": -0.296902418
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "valid_wet_face_level_count": 3865,
+          "net_outward_all_density_Sv": 0.000340433,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.124509986,
+                  "centered_net_outward_Sv": 0.460775882,
+                  "upstream_net_outward_Sv": 0.219185069
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.875490014,
+                  "centered_net_outward_Sv": -0.460435449,
+                  "upstream_net_outward_Sv": -0.218844636
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.014167338,
+                  "centered_net_outward_Sv": -0.321061066,
+                  "upstream_net_outward_Sv": -0.188446006
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.149808658,
+                  "centered_net_outward_Sv": 0.524391254,
+                  "upstream_net_outward_Sv": 0.301633676
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.836024004,
+                  "centered_net_outward_Sv": -0.202989756,
+                  "upstream_net_outward_Sv": -0.112847237
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.03079064,
+                  "centered_net_outward_Sv": 0.135167311,
+                  "upstream_net_outward_Sv": 0.157224329
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.189711075,
+                  "centered_net_outward_Sv": 0.642397733,
+                  "upstream_net_outward_Sv": -0.0152404
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.779498285,
+                  "centered_net_outward_Sv": -0.777224612,
+                  "upstream_net_outward_Sv": -0.141643496
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-07-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "valid_wet_face_level_count": 3862,
+          "net_outward_all_density_Sv": 0.002114802,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.122334361,
+                  "centered_net_outward_Sv": 1.065773776,
+                  "upstream_net_outward_Sv": 0.827103488
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.877665639,
+                  "centered_net_outward_Sv": -1.063658974,
+                  "upstream_net_outward_Sv": -0.824988686
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.160870211,
+                  "centered_net_outward_Sv": 1.539002079,
+                  "upstream_net_outward_Sv": 1.167726231
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.839129789,
+                  "centered_net_outward_Sv": -1.536887277,
+                  "upstream_net_outward_Sv": -1.165611429
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.024824231,
+                  "centered_net_outward_Sv": -0.563668522,
+                  "upstream_net_outward_Sv": -0.461233838
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.191720209,
+                  "centered_net_outward_Sv": 2.075094843,
+                  "upstream_net_outward_Sv": 1.85982604
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.78345556,
+                  "centered_net_outward_Sv": -1.509311519,
+                  "upstream_net_outward_Sv": -1.3964774
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "valid_wet_face_level_count": 3824,
+          "net_outward_all_density_Sv": 0.002061359,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.12784054,
+                  "centered_net_outward_Sv": 1.013602445,
+                  "upstream_net_outward_Sv": 0.780899384
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.87215946,
+                  "centered_net_outward_Sv": -1.011541086,
+                  "upstream_net_outward_Sv": -0.778838026
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.168191602,
+                  "centered_net_outward_Sv": 1.489253142,
+                  "upstream_net_outward_Sv": 1.285643578
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.831808398,
+                  "centered_net_outward_Sv": -1.487191783,
+                  "upstream_net_outward_Sv": -1.283582219
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.026800989,
+                  "centered_net_outward_Sv": -0.471755762,
+                  "upstream_net_outward_Sv": 0.018890362
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.199010185,
+                  "centered_net_outward_Sv": 1.886900031,
+                  "upstream_net_outward_Sv": 1.305121197
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.774188826,
+                  "centered_net_outward_Sv": -1.413082911,
+                  "upstream_net_outward_Sv": -1.3219502
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "valid_wet_face_level_count": 3916,
+          "net_outward_all_density_Sv": 0.002134361,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.117673913,
+                  "centered_net_outward_Sv": 0.99810769,
+                  "upstream_net_outward_Sv": 0.772311264
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.882326087,
+                  "centered_net_outward_Sv": -0.99597333,
+                  "upstream_net_outward_Sv": -0.770176903
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.154579988,
+                  "centered_net_outward_Sv": 1.524378531,
+                  "upstream_net_outward_Sv": 1.031238348
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.845420012,
+                  "centered_net_outward_Sv": -1.52224417,
+                  "upstream_net_outward_Sv": -1.029103988
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.023026008,
+                  "centered_net_outward_Sv": -0.547367904,
+                  "upstream_net_outward_Sv": -0.40842539
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.185597044,
+                  "centered_net_outward_Sv": 1.934974561,
+                  "upstream_net_outward_Sv": 1.755723235
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.791376948,
+                  "centered_net_outward_Sv": -1.385472296,
+                  "upstream_net_outward_Sv": -1.345163485
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "valid_wet_face_level_count": 3865,
+          "net_outward_all_density_Sv": 0.002119143,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.119251451,
+                  "centered_net_outward_Sv": 1.194143605,
+                  "upstream_net_outward_Sv": 1.097343529
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.880748549,
+                  "centered_net_outward_Sv": -1.192024463,
+                  "upstream_net_outward_Sv": -1.095224386
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.157066838,
+                  "centered_net_outward_Sv": 1.388706384,
+                  "upstream_net_outward_Sv": 1.310333933
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.842933162,
+                  "centered_net_outward_Sv": -1.386587241,
+                  "upstream_net_outward_Sv": -1.308214791
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.023107487,
+                  "centered_net_outward_Sv": -0.524345166,
+                  "upstream_net_outward_Sv": -0.759313146
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.188641367,
+                  "centered_net_outward_Sv": 2.052615352,
+                  "upstream_net_outward_Sv": 1.839954083
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.788251147,
+                  "centered_net_outward_Sv": -1.526151044,
+                  "upstream_net_outward_Sv": -1.078521794
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-08-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "valid_wet_face_level_count": 3862,
+          "net_outward_all_density_Sv": -0.000853906,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.119360109,
+                  "centered_net_outward_Sv": -0.079938257,
+                  "upstream_net_outward_Sv": -0.779726745
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.880639891,
+                  "centered_net_outward_Sv": 0.07908435,
+                  "upstream_net_outward_Sv": 0.778872839
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.15775302,
+                  "centered_net_outward_Sv": 0.047991923,
+                  "upstream_net_outward_Sv": -0.799819729
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.84224698,
+                  "centered_net_outward_Sv": -0.04884583,
+                  "upstream_net_outward_Sv": 0.798965823
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.017548047,
+                  "centered_net_outward_Sv": -0.094665389,
+                  "upstream_net_outward_Sv": -0.101320466
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.195393343,
+                  "centered_net_outward_Sv": -0.183131103,
+                  "upstream_net_outward_Sv": -0.220424361
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.78705861,
+                  "centered_net_outward_Sv": 0.276942585,
+                  "upstream_net_outward_Sv": 0.320890921
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "valid_wet_face_level_count": 3824,
+          "net_outward_all_density_Sv": -0.000791345,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.124275541,
+                  "centered_net_outward_Sv": 0.001467907,
+                  "upstream_net_outward_Sv": -0.63273364
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.875724459,
+                  "centered_net_outward_Sv": -0.002259252,
+                  "upstream_net_outward_Sv": 0.631942296
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.164044784,
+                  "centered_net_outward_Sv": 0.013882162,
+                  "upstream_net_outward_Sv": -0.438877328
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.835955216,
+                  "centered_net_outward_Sv": -0.014673507,
+                  "upstream_net_outward_Sv": 0.438085983
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.01947998,
+                  "centered_net_outward_Sv": -0.04301252,
+                  "upstream_net_outward_Sv": -0.003430475
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.201750182,
+                  "centered_net_outward_Sv": -0.166207965,
+                  "upstream_net_outward_Sv": -0.186838613
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.778769838,
+                  "centered_net_outward_Sv": 0.20842914,
+                  "upstream_net_outward_Sv": 0.189477743
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "valid_wet_face_level_count": 3916,
+          "net_outward_all_density_Sv": -0.000885397,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.115244764,
+                  "centered_net_outward_Sv": -0.301846805,
+                  "upstream_net_outward_Sv": -0.921375873
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.884755236,
+                  "centered_net_outward_Sv": 0.300961408,
+                  "upstream_net_outward_Sv": 0.920490476
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.152476352,
+                  "centered_net_outward_Sv": -0.034080644,
+                  "upstream_net_outward_Sv": -0.943935664
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.847523648,
+                  "centered_net_outward_Sv": 0.033195247,
+                  "upstream_net_outward_Sv": 0.943050267
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.015631086,
+                  "centered_net_outward_Sv": -0.035208353,
+                  "upstream_net_outward_Sv": -0.025111488
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.190368612,
+                  "centered_net_outward_Sv": -0.268154729,
+                  "upstream_net_outward_Sv": -0.480464081
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.794000301,
+                  "centered_net_outward_Sv": 0.302477684,
+                  "upstream_net_outward_Sv": 0.504690172
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "valid_wet_face_level_count": 3865,
+          "net_outward_all_density_Sv": -0.000792099,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.116283657,
+                  "centered_net_outward_Sv": -0.347959717,
+                  "upstream_net_outward_Sv": -0.781898233
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.883716343,
+                  "centered_net_outward_Sv": 0.347167617,
+                  "upstream_net_outward_Sv": 0.781106134
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.153879172,
+                  "centered_net_outward_Sv": -0.388327137,
+                  "upstream_net_outward_Sv": -0.472053342
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.846120828,
+                  "centered_net_outward_Sv": 0.387535038,
+                  "upstream_net_outward_Sv": 0.471261242
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.015716685,
+                  "centered_net_outward_Sv": -0.142494008,
+                  "upstream_net_outward_Sv": -0.137182658
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.191972773,
+                  "centered_net_outward_Sv": -0.375185549,
+                  "upstream_net_outward_Sv": -0.972876106
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.792310543,
+                  "centered_net_outward_Sv": 0.516887458,
+                  "upstream_net_outward_Sv": 1.109266664
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-09-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "valid_wet_face_level_count": 3862,
+          "net_outward_all_density_Sv": 0.003054305,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.125187851,
+                  "centered_net_outward_Sv": 0.244273285,
+                  "upstream_net_outward_Sv": 0.187378339
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.874812149,
+                  "centered_net_outward_Sv": -0.24121898,
+                  "upstream_net_outward_Sv": -0.184324034
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.16401497,
+                  "centered_net_outward_Sv": -0.06324307,
+                  "upstream_net_outward_Sv": -0.173164089
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.83598503,
+                  "centered_net_outward_Sv": 0.066297375,
+                  "upstream_net_outward_Sv": 0.176218394
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.020683003,
+                  "centered_net_outward_Sv": -1.075114696,
+                  "upstream_net_outward_Sv": -1.011866786
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.199915838,
+                  "centered_net_outward_Sv": 0.874099568,
+                  "upstream_net_outward_Sv": 0.322562458
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.779401159,
+                  "centered_net_outward_Sv": 0.204069433,
+                  "upstream_net_outward_Sv": 0.692358633
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "valid_wet_face_level_count": 3824,
+          "net_outward_all_density_Sv": 0.002964816,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.130413264,
+                  "centered_net_outward_Sv": 0.14738288,
+                  "upstream_net_outward_Sv": 0.22232937
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.869586736,
+                  "centered_net_outward_Sv": -0.144418064,
+                  "upstream_net_outward_Sv": -0.219364554
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.1707758,
+                  "centered_net_outward_Sv": -0.11245096,
+                  "upstream_net_outward_Sv": -0.07819581
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.8292242,
+                  "centered_net_outward_Sv": 0.115415776,
+                  "upstream_net_outward_Sv": 0.081160626
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.021866466,
+                  "centered_net_outward_Sv": -1.222829739,
+                  "upstream_net_outward_Sv": -1.150054711
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.207621289,
+                  "centered_net_outward_Sv": 1.066764254,
+                  "upstream_net_outward_Sv": 0.555491913
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.770512245,
+                  "centered_net_outward_Sv": 0.159030301,
+                  "upstream_net_outward_Sv": 0.597527614
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "valid_wet_face_level_count": 3916,
+          "net_outward_all_density_Sv": 0.00315062,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.120718678,
+                  "centered_net_outward_Sv": 0.33513464,
+                  "upstream_net_outward_Sv": 0.282710906
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.879281322,
+                  "centered_net_outward_Sv": -0.331984021,
+                  "upstream_net_outward_Sv": -0.279560287
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.158292177,
+                  "centered_net_outward_Sv": 0.050793214,
+                  "upstream_net_outward_Sv": 0.026667746
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.841707823,
+                  "centered_net_outward_Sv": -0.047642595,
+                  "upstream_net_outward_Sv": -0.023517127
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.019543889,
+                  "centered_net_outward_Sv": -0.832821212,
+                  "upstream_net_outward_Sv": -0.836325206
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.193623238,
+                  "centered_net_outward_Sv": 1.008924756,
+                  "upstream_net_outward_Sv": 0.45693042
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.786832873,
+                  "centered_net_outward_Sv": -0.172952924,
+                  "upstream_net_outward_Sv": 0.382545405
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "valid_wet_face_level_count": 3865,
+          "net_outward_all_density_Sv": 0.003106797,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.12186997,
+                  "centered_net_outward_Sv": 0.092597292,
+                  "upstream_net_outward_Sv": -0.049798601
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.87813003,
+                  "centered_net_outward_Sv": -0.089490495,
+                  "upstream_net_outward_Sv": 0.052905398
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.15993795,
+                  "centered_net_outward_Sv": 0.145257814,
+                  "upstream_net_outward_Sv": -0.465038373
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.84006205,
+                  "centered_net_outward_Sv": -0.142151017,
+                  "upstream_net_outward_Sv": 0.46814517
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.018502358,
+                  "centered_net_outward_Sv": -1.110872418,
+                  "upstream_net_outward_Sv": -1.110081027
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.197172719,
+                  "centered_net_outward_Sv": 0.632054246,
+                  "upstream_net_outward_Sv": 0.659967646
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.784324923,
+                  "centered_net_outward_Sv": 0.481924969,
+                  "upstream_net_outward_Sv": 0.453220178
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-10-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "valid_wet_face_level_count": 3862,
+          "net_outward_all_density_Sv": 0.000642535,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.123983512,
+                  "centered_net_outward_Sv": 0.163233911,
+                  "upstream_net_outward_Sv": 0.046707633
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.876016488,
+                  "centered_net_outward_Sv": -0.162591375,
+                  "upstream_net_outward_Sv": -0.046065098
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.163790503,
+                  "centered_net_outward_Sv": 0.427769907,
+                  "upstream_net_outward_Sv": 0.380222616
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.836209497,
+                  "centered_net_outward_Sv": -0.427127372,
+                  "upstream_net_outward_Sv": -0.379580081
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.013869443,
+                  "centered_net_outward_Sv": 0.930323034,
+                  "upstream_net_outward_Sv": 0.740595011
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.207503797,
+                  "centered_net_outward_Sv": 0.102065289,
+                  "upstream_net_outward_Sv": -0.091458789
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.77862676,
+                  "centered_net_outward_Sv": -1.031745788,
+                  "upstream_net_outward_Sv": -0.648493686
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "valid_wet_face_level_count": 3824,
+          "net_outward_all_density_Sv": 0.000634016,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.129931605,
+                  "centered_net_outward_Sv": 0.315529189,
+                  "upstream_net_outward_Sv": 0.331709681
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.870068395,
+                  "centered_net_outward_Sv": -0.314895172,
+                  "upstream_net_outward_Sv": -0.331075664
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.171498307,
+                  "centered_net_outward_Sv": 0.247730846,
+                  "upstream_net_outward_Sv": 0.428784297
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.828501693,
+                  "centered_net_outward_Sv": -0.24709683,
+                  "upstream_net_outward_Sv": -0.428150281
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.015496895,
+                  "centered_net_outward_Sv": 0.913224676,
+                  "upstream_net_outward_Sv": 0.744074972
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.215666496,
+                  "centered_net_outward_Sv": 0.088065732,
+                  "upstream_net_outward_Sv": -0.263067258
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.768836609,
+                  "centered_net_outward_Sv": -1.000656393,
+                  "upstream_net_outward_Sv": -0.480373698
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "valid_wet_face_level_count": 3916,
+          "net_outward_all_density_Sv": 0.000637011,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.118902205,
+                  "centered_net_outward_Sv": 0.293194705,
+                  "upstream_net_outward_Sv": 0.106501471
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.881097795,
+                  "centered_net_outward_Sv": -0.292557694,
+                  "upstream_net_outward_Sv": -0.105864459
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.157163775,
+                  "centered_net_outward_Sv": 0.554152158,
+                  "upstream_net_outward_Sv": 0.512587656
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.842836225,
+                  "centered_net_outward_Sv": -0.553515147,
+                  "upstream_net_outward_Sv": -0.511950645
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.012617228,
+                  "centered_net_outward_Sv": 0.908930455,
+                  "upstream_net_outward_Sv": 0.764893659
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.200146195,
+                  "centered_net_outward_Sv": 0.26617319,
+                  "upstream_net_outward_Sv": -0.093694542
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.787236577,
+                  "centered_net_outward_Sv": -1.174466635,
+                  "upstream_net_outward_Sv": -0.670562107
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "valid_wet_face_level_count": 3865,
+          "net_outward_all_density_Sv": 0.000679236,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.120664433,
+                  "centered_net_outward_Sv": 0.795023827,
+                  "upstream_net_outward_Sv": 0.005196019
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.879335567,
+                  "centered_net_outward_Sv": -0.794344591,
+                  "upstream_net_outward_Sv": -0.004516782
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.15980211,
+                  "centered_net_outward_Sv": 0.539343565,
+                  "upstream_net_outward_Sv": 0.595758799
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.84019789,
+                  "centered_net_outward_Sv": -0.538664329,
+                  "upstream_net_outward_Sv": -0.595079562
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.012301327,
+                  "centered_net_outward_Sv": 0.791783093,
+                  "upstream_net_outward_Sv": 0.692102419
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.203833022,
+                  "centered_net_outward_Sv": 0.104159505,
+                  "upstream_net_outward_Sv": 0.289338743
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.783865651,
+                  "centered_net_outward_Sv": -0.895263361,
+                  "upstream_net_outward_Sv": -0.980761926
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-11-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "valid_wet_face_level_count": 3862,
+          "net_outward_all_density_Sv": 0.001009212,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.123822895,
+                  "centered_net_outward_Sv": 0.766554265,
+                  "upstream_net_outward_Sv": 0.248255049
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.876177105,
+                  "centered_net_outward_Sv": -0.765545053,
+                  "upstream_net_outward_Sv": -0.247245837
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.002921684,
+                  "centered_net_outward_Sv": -0.287311905,
+                  "upstream_net_outward_Sv": -0.343091976
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.159731728,
+                  "centered_net_outward_Sv": 0.901320103,
+                  "upstream_net_outward_Sv": 0.301766017
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.837346588,
+                  "centered_net_outward_Sv": -0.612998986,
+                  "upstream_net_outward_Sv": 0.04233517
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.021043949,
+                  "centered_net_outward_Sv": -0.053831196,
+                  "upstream_net_outward_Sv": -0.149676816
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.198148376,
+                  "centered_net_outward_Sv": 0.904657524,
+                  "upstream_net_outward_Sv": -0.183342306
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.780807675,
+                  "centered_net_outward_Sv": -0.849817117,
+                  "upstream_net_outward_Sv": 0.334028333
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "valid_wet_face_level_count": 3824,
+          "net_outward_all_density_Sv": 0.000952274,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.130009319,
+                  "centered_net_outward_Sv": 0.426536212,
+                  "upstream_net_outward_Sv": 0.236696284
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.869990681,
+                  "centered_net_outward_Sv": -0.425583938,
+                  "upstream_net_outward_Sv": -0.235744009
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.003275986,
+                  "centered_net_outward_Sv": -0.277920725,
+                  "upstream_net_outward_Sv": -0.351245211
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.167326482,
+                  "centered_net_outward_Sv": 0.693674306,
+                  "upstream_net_outward_Sv": 0.421581172
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.829397531,
+                  "centered_net_outward_Sv": -0.414801306,
+                  "upstream_net_outward_Sv": -0.069383687
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.02198094,
+                  "centered_net_outward_Sv": -0.073997478,
+                  "upstream_net_outward_Sv": -0.152687074
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.207520497,
+                  "centered_net_outward_Sv": 0.559404627,
+                  "upstream_net_outward_Sv": 0.226563124
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.770498563,
+                  "centered_net_outward_Sv": -0.484454874,
+                  "upstream_net_outward_Sv": -0.072923776
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "valid_wet_face_level_count": 3916,
+          "net_outward_all_density_Sv": 0.001066795,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.118575707,
+                  "centered_net_outward_Sv": 0.794893398,
+                  "upstream_net_outward_Sv": 0.470386964
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.881424293,
+                  "centered_net_outward_Sv": -0.793826603,
+                  "upstream_net_outward_Sv": -0.469320169
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.002678792,
+                  "centered_net_outward_Sv": -0.315791211,
+                  "upstream_net_outward_Sv": -0.365522263
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.153188287,
+                  "centered_net_outward_Sv": 1.091144306,
+                  "upstream_net_outward_Sv": 0.712183673
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.844132922,
+                  "centered_net_outward_Sv": -0.7742863,
+                  "upstream_net_outward_Sv": -0.345594615
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.020350925,
+                  "centered_net_outward_Sv": -0.036459359,
+                  "upstream_net_outward_Sv": -0.045171981
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.189912516,
+                  "centered_net_outward_Sv": 1.101840263,
+                  "upstream_net_outward_Sv": 0.026605632
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.78973656,
+                  "centered_net_outward_Sv": -1.06431411,
+                  "upstream_net_outward_Sv": 0.019633143
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "valid_wet_face_level_count": 3865,
+          "net_outward_all_density_Sv": 0.000935138,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.119935978,
+                  "centered_net_outward_Sv": 0.66424378,
+                  "upstream_net_outward_Sv": 0.428175792
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.880064022,
+                  "centered_net_outward_Sv": -0.663308642,
+                  "upstream_net_outward_Sv": -0.427240654
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.002161444,
+                  "centered_net_outward_Sv": -0.291943586,
+                  "upstream_net_outward_Sv": -0.382323934
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.156034473,
+                  "centered_net_outward_Sv": 0.685680971,
+                  "upstream_net_outward_Sv": 0.544988434
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.841804083,
+                  "centered_net_outward_Sv": -0.392802247,
+                  "upstream_net_outward_Sv": -0.161729362
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.01952691,
+                  "centered_net_outward_Sv": -0.065636846,
+                  "upstream_net_outward_Sv": -0.134016758
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.193685906,
+                  "centered_net_outward_Sv": 0.80865773,
+                  "upstream_net_outward_Sv": 0.264823387
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.786787183,
+                  "centered_net_outward_Sv": -0.742085746,
+                  "upstream_net_outward_Sv": -0.12987149
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "valid_time": "2018-12-01/P1M",
+      "outcomes": [
+        {
+          "box": "primary",
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "valid_wet_face_level_count": 3862,
+          "net_outward_all_density_Sv": 0.001372496,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.005726667,
+                  "centered_net_outward_Sv": 0.348648351,
+                  "upstream_net_outward_Sv": 0.327452377
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.112126495,
+                  "centered_net_outward_Sv": 0.527416288,
+                  "upstream_net_outward_Sv": 0.190559508
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.882146838,
+                  "centered_net_outward_Sv": -0.874692143,
+                  "upstream_net_outward_Sv": -0.516639389
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.018344848,
+                  "centered_net_outward_Sv": 0.196859478,
+                  "upstream_net_outward_Sv": 0.1960856
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.136030514,
+                  "centered_net_outward_Sv": 0.464010448,
+                  "upstream_net_outward_Sv": -0.042649953
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.845624638,
+                  "centered_net_outward_Sv": -0.659497429,
+                  "upstream_net_outward_Sv": -0.152063151
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.023596263,
+                  "centered_net_outward_Sv": 0.025301175,
+                  "upstream_net_outward_Sv": -0.036679002
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.185214432,
+                  "centered_net_outward_Sv": 1.228572397,
+                  "upstream_net_outward_Sv": 0.403840298
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.791189305,
+                  "centered_net_outward_Sv": -1.252501076,
+                  "upstream_net_outward_Sv": -0.365788799
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "north_control",
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "valid_wet_face_level_count": 3824,
+          "net_outward_all_density_Sv": 0.001395861,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.006820994,
+                  "centered_net_outward_Sv": 0.395362693,
+                  "upstream_net_outward_Sv": 0.436415841
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.117498747,
+                  "centered_net_outward_Sv": 0.38671755,
+                  "upstream_net_outward_Sv": 0.327681189
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.875680259,
+                  "centered_net_outward_Sv": -0.780684382,
+                  "upstream_net_outward_Sv": -0.76270117
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.018897506,
+                  "centered_net_outward_Sv": 0.19905292,
+                  "upstream_net_outward_Sv": 0.192447183
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.143927944,
+                  "centered_net_outward_Sv": 0.494048336,
+                  "upstream_net_outward_Sv": 0.342958289
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.83717455,
+                  "centered_net_outward_Sv": -0.691705395,
+                  "upstream_net_outward_Sv": -0.534009611
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.024426536,
+                  "centered_net_outward_Sv": 0.062610592,
+                  "upstream_net_outward_Sv": -0.027096117
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.195280611,
+                  "centered_net_outward_Sv": 1.00898862,
+                  "upstream_net_outward_Sv": 0.811829593
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.780292854,
+                  "centered_net_outward_Sv": -1.070203351,
+                  "upstream_net_outward_Sv": -0.783337616
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "south_control",
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "valid_wet_face_level_count": 3916,
+          "net_outward_all_density_Sv": 0.001320196,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.004864565,
+                  "centered_net_outward_Sv": 0.351813059,
+                  "upstream_net_outward_Sv": 0.248376581
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.107686622,
+                  "centered_net_outward_Sv": 0.450845284,
+                  "upstream_net_outward_Sv": 0.410630662
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.887448813,
+                  "centered_net_outward_Sv": -0.801338146,
+                  "upstream_net_outward_Sv": -0.657687047
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.017917033,
+                  "centered_net_outward_Sv": 0.185066109,
+                  "upstream_net_outward_Sv": 0.169702871
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.12922178,
+                  "centered_net_outward_Sv": 0.447372843,
+                  "upstream_net_outward_Sv": -0.136151463
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.852861187,
+                  "centered_net_outward_Sv": -0.631118756,
+                  "upstream_net_outward_Sv": -0.032231212
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.02299552,
+                  "centered_net_outward_Sv": 0.023429585,
+                  "upstream_net_outward_Sv": -0.016161811
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.176325175,
+                  "centered_net_outward_Sv": 1.065042501,
+                  "upstream_net_outward_Sv": 0.161797771
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.800679306,
+                  "centered_net_outward_Sv": -1.08715189,
+                  "upstream_net_outward_Sv": -0.144315764
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "box": "east_control",
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "valid_wet_face_level_count": 3865,
+          "net_outward_all_density_Sv": 0.001442727,
+          "schemes": [
+            {
+              "id": "lower_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.4,
+                26.9,
+                27.4
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.004843617,
+                  "centered_net_outward_Sv": 0.352715823,
+                  "upstream_net_outward_Sv": 0.232284171
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.109082593,
+                  "centered_net_outward_Sv": 0.427122854,
+                  "upstream_net_outward_Sv": -0.116554089
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.88607379,
+                  "centered_net_outward_Sv": -0.778395951,
+                  "upstream_net_outward_Sv": -0.114287355
+                }
+              ]
+            },
+            {
+              "id": "baseline",
+              "cutoffs_sigma0_kg_m3": [
+                26.5,
+                27.0,
+                27.5
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.017697499,
+                  "centered_net_outward_Sv": 0.40150578,
+                  "upstream_net_outward_Sv": 0.298250034
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.132134786,
+                  "centered_net_outward_Sv": 0.810304144,
+                  "upstream_net_outward_Sv": -0.181427331
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.850167715,
+                  "centered_net_outward_Sv": -1.210367197,
+                  "upstream_net_outward_Sv": -0.115379976
+                }
+              ]
+            },
+            {
+              "id": "higher_0_1",
+              "cutoffs_sigma0_kg_m3": [
+                26.6,
+                27.1,
+                27.6
+              ],
+              "bins": [
+                {
+                  "index": 0,
+                  "volume_fraction": 0.0,
+                  "centered_net_outward_Sv": 0.0,
+                  "upstream_net_outward_Sv": 0.0
+                },
+                {
+                  "index": 1,
+                  "volume_fraction": 0.023112736,
+                  "centered_net_outward_Sv": 0.018264779,
+                  "upstream_net_outward_Sv": -0.010798384
+                },
+                {
+                  "index": 2,
+                  "volume_fraction": 0.179785795,
+                  "centered_net_outward_Sv": 1.37865212,
+                  "upstream_net_outward_Sv": 0.527593461
+                },
+                {
+                  "index": 3,
+                  "volume_fraction": 0.797101468,
+                  "centered_net_outward_Sv": -1.395474173,
+                  "upstream_net_outward_Sv": -0.515352351
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "boundary": "Changing arbitrary numeric density cutoffs may change bin occupancy and signed horizontal flux without changing any native volume or velocity. This post hoc sensitivity is not a water-mass classification, transformation rate, matched inventory tendency, or budget; vertical/mixing/assimilation and submonthly covariance remain absent."
+}

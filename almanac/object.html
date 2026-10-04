@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ocean motion object — OSW</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="screened-atlas/footprint-view.js" defer></script>
+  <script src="object.js?v=atlas-links-1" defer></script>
+</head>
+<body>
+  <header><a class="mark" href="../">OSW</a><nav aria-label="Project"><a href="./">Motion almanac</a><a href="movies.html">NASA movie crops</a><a href="../atlas/?lens=flows">Atlas flows</a></nav></header>
+  <main>
+    <p class="eyebrow">OSW Ocean Motion Atlas · candidate data package v0.1.0</p>
+    <h1 id="object-title">Ocean motion object</h1>
+    <p class="lead" id="object-summary" role="status" aria-live="polite">Loading the versioned object record…</p>
+    <p class="footnote"><strong>Research candidate:</strong> these object pages use the full working package. Some provider-derived records have unresolved public reuse terms. The <a href="release/v0.1.0-rights-screened-preview/README.md">rights-screened review export</a> has a smaller, explicitly scoped inventory; neither is a published dataset.</p>
+    <p class="footnote">Object classes and evidence rules follow the <a href="release/v0.1.0/taxonomy.json">OSW motion taxonomy</a> and <a href="release/v0.1.0/METHODS.md">candidate methods</a>. The <a href="release/source-terms-audit.md">source terms audit</a> records publication limits.</p>
+    <form id="object-search-form" class="object-search-form" role="search">
+      <label class="search" for="object-search">Find an object</label>
+      <input id="object-search" type="search" list="object-options" placeholder="Name or stable ID" autocomplete="off" required>
+      <button type="submit">Open object</button>
+    </form>
+    <datalist id="object-options"></datalist>
+    <p id="search-result" aria-live="polite"></p>
+    <section aria-labelledby="identity-title"><h2 id="identity-title">Identity and source</h2><div id="identity"></div></section>
+    <section aria-labelledby="detection-title" id="detection-section" hidden><h2 id="detection-title">Dated detection footprint</h2><div id="detection-detail"></div></section>
+    <section aria-labelledby="classification-title" id="classification-section" hidden><h2 id="classification-title">Published regional classification</h2><div id="classifications"></div></section>
+    <section aria-labelledby="measurement-title"><h2 id="measurement-title">Measurements and length status</h2><p>Published estimates, geographic lower bounds, proposed lengths, and drawn map spans are different quantities. A current without an admitted length stays in the inventory. <a href="release/v0.1.0/METHODS.md">Read the length ranking method</a>.</p><div id="measurements"></div></section>
+    <section aria-labelledby="relation-title"><h2 id="relation-title">Atlas relations</h2><p>Map symbols, locators, and geographic movie crops are navigation evidence. An unresolved physical relation does not mean the object is absent.</p><div id="relations"></div></section>
+    <section aria-labelledby="claim-title"><h2 id="claim-title">Claim provenance</h2><p>Each relation and measurement points to a candidate claim record. Source-level links, missing methods, and individual review status remain visible in the data.</p><div id="claim-audit"></div></section>
+    <section aria-labelledby="published-current-title" id="published-current-section" hidden><h2 id="published-current-title">Published local observations of named currents</h2><div id="published-current-observations"></div></section>
+    <section aria-labelledby="diagnosed-current-title" id="diagnosed-current-section" hidden><h2 id="diagnosed-current-title">Dated diagnostic current path</h2><div id="diagnosed-current-observations"></div></section>
+    <section aria-labelledby="operational-eddy-title" id="operational-eddy-section" hidden><h2 id="operational-eddy-title">Dated NAVO operational eddy polygons</h2><p>Provider codes label one dated release. They do not identify a persistent named eddy or a matching event in NASA's movie.</p><div id="operational-eddy-observations"></div></section>
+    <section id="footprint-section" hidden aria-labelledby="footprint-title"><h2 id="footprint-title">Dated figure-derived footprint candidates</h2><div id="footprints"></div></section>
+    <section aria-labelledby="named-eddy-state-title" id="named-eddy-state-section" hidden><h2 id="named-eddy-state-title">Named eddies and OSW states</h2><div id="named-eddy-state-assessments"></div></section>
+    <section aria-labelledby="published-eddy-title" id="published-eddy-section" hidden><h2 id="published-eddy-title">Published observations of this named eddy</h2><div id="published-eddy-observations"></div></section>
+    <section aria-labelledby="observation-title" id="observation-section" hidden><h2 id="observation-title">Dated NOAA eddy contours</h2><p>Counts show where NOAA's sampled daily eddy contours were contained in or intersected this OSW state. These are dated detections, not named-eddy identities or a continuous census.</p><div class="table-wrap"><table><caption>NOAA daily eddy contour relations for this OSW state</caption><thead><tr><th scope="col">Sample date</th><th scope="col">Contained contours</th><th scope="col">Intersecting contours</th><th scope="col">Records</th></tr></thead><tbody id="observation-rows"></tbody></table></div></section>
+    <section aria-labelledby="media-title"><h2 id="media-title">NASA movie navigation</h2><div id="media"></div></section>
+    <section aria-labelledby="data-title"><h2 id="data-title">Data and citation</h2><p>This is a release candidate for a declared source set. Cite upstream sources for their observations and OSW for its crosswalk after the dataset has a public version and identifier.</p><p><a href="release/v0.1.0/manifest.json">Manifest and checksums</a> · <a href="release/v0.1.0/coverage.json">Coverage report</a> · <a href="release/v0.1.0/entities.json">Object table</a> · <a href="release/v0.1.0/relations.csv">Relations CSV</a> · <a href="release/v0.1.0/claims.csv">Claim records CSV</a> · <a href="release/v0.1.0/named_eddy_state_assessments.csv">Named-eddy/state matrix</a> · <a href="release/v0.1.0/tiles.csv">All 70 NASA movie crops</a> · <a href="release/v0.1.0/source-review-queue.csv">Source review queue</a></p></section>
+  </main>
+  <footer>OSW · Every relation carries an evidence class and source.</footer>
+</body>
+</html>

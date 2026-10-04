@@ -1,0 +1,82 @@
+{
+  "schema": "osw.current-source-scope-audit.v1",
+  "current_id": "pacific-north-subsurface-countercurrent",
+  "as_of": "2026-10-04",
+  "status": "editorial_source_scope_audit_not_canonical",
+  "source_url": "https://www.pmel.noaa.gov/pubs/outstand/john1806/john1806.shtml",
+  "source_citation": "Johnson and Moore (1997), The Pacific Subsurface Countercurrents and an Inertial Model, Journal of Physical Oceanography 27, 2448-2459.",
+  "source_access": "Relevant abstract/introduction, data methods, section 3 and text Table 1 read from NOAA-hosted full HTML. No figure digitization, historical CTD extraction or full annual-field reconstruction. Added inspection of Rowe et al. section 2 sampling/boundary methods and section 3b general width statement in NOAA PDF, confirmed in publisher full text; no figures or paired edges digitized.",
+  "source_locator": "Sections 2-3 and Table 1: north SSCC peaks at 155 W 3.5 N/220 m and 110 W 4.5 N/130 m. Transport integration latitude limits and 700-dbar reference are separately defined; they are not route width or a uniform axis layer.",
+  "source_ensemble_years": [
+    1967,
+    1996
+  ],
+  "source_ensemble_period_is_route_date": false,
+  "observed_period": null,
+  "source_core_support": [
+    {
+      "longitude": -155,
+      "latitude": 3.5,
+      "local_peak_depth_m": 220
+    },
+    {
+      "longitude": -110,
+      "latitude": 4.5,
+      "local_peak_depth_m": 130
+    }
+  ],
+  "source_core_depths_are_uniform_route_layer": false,
+  "source_transport_integration_bounds": [
+    {
+      "longitude": -155,
+      "latitude_range": [
+        2,
+        5
+      ]
+    },
+    {
+      "longitude": -110,
+      "latitude_range": [
+        3,
+        6
+      ]
+    }
+  ],
+  "transport_integration_bounds_are_current_width": false,
+  "source_geostrophic_reference_dbar": 700,
+  "source_reference_is_axis_depth": false,
+  "scope": "Declared northern Tsuchiya Jet studied reach from the 155 W mean-section core to the 110 W mean-section core. Western formation and basin continuation east of 110 W are excluded. The section gates truncate a larger current; interpolating bends are editor-selected, not a measured continuous centerline or particle path.",
+  "layer": "Subsurface northern Tsuchiya Jet, distinct from upper-ocean NECC and equatorial EUC. Source Table 1 gives local mean peak depths of 220 m at 155 W and 130 m at 110 W; these are local supports, not a uniform depth or full vertical boundaries.",
+  "coordinate_selection": "OSW adopts rounded Table 1 core neighborhoods at 155 W 3.5 N and 110 W 4.5 N as truncation gates. Intermediate 140 W 3.8 N and 125 W 4.2 N are editor-selected connections, not digitized axis points. The path neither assigns a whole-current origin/termination nor merges northern/southern jets or NEUC.",
+  "whole_current_length_km": null,
+  "whole_current_width_km": null,
+  "annual_length_range_km": null,
+  "annual_width_range_km": null,
+  "route_construction_status": "editorial_studied_reach_constructed",
+  "candidate_file": "research/pacific-nscc-reach-reference-path-candidate.json",
+  "remaining_gates": [
+    "Review interpolation against compatible northern Tsuchiya Jet velocity fields; selected section gates are not origins or terminations.",
+    "Resolve western formation and eastward turning/merging separately from this studied reach.",
+    "Extract month/depth-resolved axes before annual length or width ranges.",
+    "Keep NEUC at 130 E and the southern Tsuchiya branches as distinct identities; no transported-volume-to-length or integration-band-to-width conversion."
+  ],
+  "reported_ensemble_angular_width": {
+    "source_claim_id": "rowe-2000-scc-general-two-degree-width",
+    "source_url": "https://journals.ametsoc.org/view/journals/phoc/30/6/1520-0485_2000_030_1172_pescvt_2.0.co_2.xml",
+    "source_pdf_url": "https://floats.pmel.noaa.gov/sites/default/files/atoms/files/gcj_1y.pdf",
+    "source_locator": "Section 3b, printed 1179 / PDF index 7; boundary methodology section 2, printed 1175.",
+    "latitude_span_degrees": 2,
+    "scope": "General meridional SCC width in discussion of stream-coordinate averages; not a separate regional value for each jet.",
+    "branch_assignment": "NSCC",
+    "exact_section_geometry": null,
+    "fixed_depth_bounds_m": null,
+    "observed_period": null,
+    "shared_source_claim": true,
+    "independent_jet_measurements": false,
+    "core_position_variation_is_width_range": false,
+    "pv_front_width_is_current_width": false,
+    "annual_range_supported": false,
+    "boundary_method": "Neutral-layer zonal-velocity sign transition where available; subjective local minimum when adjacent eastward currents merge. Paired edges underlying the general 2-degree statement are not extracted.",
+    "sampling_note": "Stream-coordinate averaging; spatial bins have uneven time coverage and depth-dependent sampling."
+  }
+}

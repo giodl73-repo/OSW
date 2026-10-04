@@ -1,4 +1,4 @@
-# Atlas 08–10 review-branch status
+# Atlas 08–10 and later review-work status
 
 Atlas 08–10 are now visible on the pushed `atlas-08-private-preview` review
 branch. They have not replaced the released Atlas 07 on `main` or GitHub Pages
@@ -13,6 +13,14 @@ anomaly. Owner visual approval and any public promotion remain open.
 Atlas 10 is the current native-role-approved working draft. It extends that
 exact monthly source into a four-level 10/300/700/1000 dbar anomaly ladder.
 Owner visual approval and public promotion remain open.
+
+The later guided-event, Exchange Observatory, province-handoff, and
+evidence-control work is being integrated on the `site/guided-event-anatomy`
+working branch. It is review work on top of the Atlas 08–10 history, not a
+native-role-approved Atlas release and not a change to the public Atlas 07
+site. The event's D1–D14 evidence sequence contains bounded derived and
+model-screen results; it does not establish causation, a closed heat budget,
+or a subsurface event diagnosis.
 
 ## Reviewed components
 
@@ -65,6 +73,18 @@ replace external scientific peer review or authorize release promotion.
   boundaries or province-aggregated data.
 - **New research handoff:** bounded claims, exact source-response receipts,
   primary-literature mapping, BibTeX, optional review prompts, and CSV exports.
+- **Later integrated review work:** a five-screen guided Event route; the
+  Exchange Observatory's state contents, exchange, stability, event-route,
+  and 128-border evidence views; URL-addressable province handoffs from Atlas;
+  and an Atlas evidence-class filter with a downloadable receipt ledger. These
+  interfaces expose existing bounded evidence; they do not upgrade its
+  scientific disposition.
+- **Event depth/time status:** D13 and D14 remain the frozen 0–50 m,
+  2026-08-07 through 2026-08-12 RTOFS screen. Retrieval and analysis can now
+  request deeper candidate integrations, but a refreshed mutable source does
+  not reproduce the frozen D13 result. The 100 m and 200 m candidate outputs
+  are therefore withheld from the admitted evidence chain pending source
+  reconciliation and independent review.
 - **Still not present:** depth-integrated heat content, section heat transport,
   bathymetric gate diagnostics, sea-ice coupling, or validated zone boundaries.
 
@@ -81,7 +101,10 @@ node analysis/export_research_tables.js
 
 The current export contract contains twelve ordered zones and four bounded
 claims. Source refreshes remain explicit network operations and are not part of
-the default offline gate.
+the default offline gate. The integrated review branch additionally uses
+`python -m pytest analysis -q` and JavaScript syntax checks for the Atlas,
+Event, and Exchange routes; passing those checks is necessary but does not
+authorize a release.
 
 ## Decisions deliberately still open
 
@@ -102,6 +125,11 @@ the default offline gate.
    HTML directory, and a separately versioned 54-province switch.
 10. Whether the interactive coast-owned province ground should replace the old
     conceptual-map ground in a promoted release after owner interaction review.
+11. Whether the later Event, Exchange, handoff, and evidence-control interfaces
+    are complete enough to join a single owner-reviewed release candidate.
+12. Whether a reproducible RTOFS source can support the proposed 100 m and
+    200 m depth-sensitivity comparison without replacing the frozen D13/D14
+    evidence.
 
 Until those decisions are made, repository links may expose Atlas 10 on this
 review branch while public URLs and citation metadata continue to describe

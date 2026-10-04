@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Rights-screened review atlas of named ocean currents, eddies, OSW states, and NASA Perpetual Ocean movie crops.">
+  <title>Ocean Motion Atlas · screened review</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="footprint-view.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to atlas</a>
+  <header class="site-head"><strong>OSW</strong><nav aria-label="Atlas sections"><a href="#objects">Objects</a><a href="#lengths">Lengths</a><a href="#states">OSW states</a><a href="#movies">NASA movies</a><a href="data/README.md">Data scope</a></nav></header>
+  <main id="main" tabindex="-1">
+    <p class="eyebrow">Ocean States of the World · source-set review</p>
+    <h1>Ocean motion atlas</h1>
+    <p class="lead">Find a named current or eddy, inspect what a source actually supports, and jump to NASA's geographic movie views. The map points are editorial locators, not measured flow paths or eddy footprints.</p>
+    <aside class="status" aria-labelledby="status-title"><h2 id="status-title">Screened review data</h2><p id="coverage">Loading coverage…</p><p>This portable copy excludes source records with unresolved public reuse terms. Missing records mean excluded or unassessed, not observed absence. Scientific claim reviews and dataset publication are still pending. <a href="data/README.md">Read the source-set limits</a> and <a href="data/RANKED-LENGTH-EVIDENCE-AUDIT.md">length audit</a>.</p></aside>
+
+    <section id="objects" aria-labelledby="objects-title"><div class="section-head"><h2 id="objects-title">Find an ocean motion record</h2><span id="object-count" role="status" aria-live="polite">Loading…</span></div>
+      <div class="controls"><label>Search name, basin, or ID <input id="search" type="search" autocomplete="off"></label><label>Kind <select id="kind"><option value="all">All kinds</option><option value="named_current">Named currents</option><option value="named_eddy">Named eddies</option><option value="nasa_described_motion">NASA-described motion</option><option value="osw_state">OSW states</option></select></label></div>
+      <p class="small">Select a map point or table row to inspect the same stable record. The OSW state ground and coastline are geographic context; point links are approximate editorial locators. The matching text directory follows the map.</p>
+      <div class="map-wrap"><svg id="map" viewBox="40 70 1520 800" role="group" aria-label="OSW 56-state equirectangular map with approximate editorial locator links for selected ocean motion records"><image href="osw-province-atlas-interactive.svg" width="1600" height="1050" aria-hidden="true"></image><g id="markers"></g></svg></div>
+      <p class="small">Map ground: OSW's approximate 56-state geometry with Natural Earth 1:110m public-domain land, projected equirectangular. State boundaries are editorial atlas regions, not current or eddy footprints.</p>
+      <div class="table-wrap"><table><caption>Source-set object directory</caption><thead><tr><th scope="col">Object</th><th scope="col">Kind</th><th scope="col">Basin</th><th scope="col">Evidence address</th></tr></thead><tbody id="object-rows"></tbody></table></div>
+    </section>
+
+    <section id="record" aria-labelledby="record-title"><h2 id="record-title" tabindex="-1">Choose a record</h2><p id="selection-status" class="visually-hidden" role="status" aria-live="polite"></p><div id="record-body"><p>Use the search, map, or directory above.</p></div></section>
+
+    <section id="lengths" aria-labelledby="lengths-title"><h2 id="lengths-title">Published length estimates</h2><p>These nine source-reported estimates describe different kinds of currents, segments, or systems. The order is an almanac of quoted approximate numbers, not a common-method measurement of every current. <a href="data/RANKED-LENGTH-EVIDENCE-AUDIT.md">Read the nine-claim audit</a>.</p><div class="table-wrap"><table><caption>Ranked source-reported current lengths</caption><thead><tr><th scope="col">Rank</th><th scope="col">Current or system</th><th scope="col">Approximate length</th><th scope="col">Scope and source</th></tr></thead><tbody id="length-rows"></tbody></table></div><h3>All named-current length records in this screened source set</h3><p>Each current appears once below. Published estimates, geographic distance floors, proposed lengths, sampled reaches, and unknown lengths remain separate evidence classes. Values are ordered only within their own class; an unknown length is not zero.</p><label>Find a current or evidence class <input id="length-search" type="search" autocomplete="off"></label><p id="length-inventory-count" role="status" aria-live="polite">Loading…</p><div class="table-wrap"><table><caption>Named-current length evidence inventory</caption><thead><tr><th scope="col">Current or system</th><th scope="col">Evidence class</th><th scope="col">Length evidence</th><th scope="col">Scope and source</th></tr></thead><tbody id="length-inventory-rows"></tbody></table></div></section>
+
+    <section id="states" aria-labelledby="states-title"><h2 id="states-title">OSW state passport</h2><p>Relations distinguish source-identified objects, editorial locators, and unresolved physical crossings. A named eddy's regional point does not establish that its dated footprint intersected a state. NASA crops overlap map regions; they do not identify an OSW state.</p><label>Choose an OSW state <select id="state-select"><option value="">Select a state</option></select></label><p id="state-status" class="visually-hidden" role="status" aria-live="polite"></p><div id="state-body"><p>Choose a state to see its source-set relations and movie views.</p></div></section>
+
+    <section id="movies" aria-labelledby="movies-title"><h2 id="movies-title">NASA movie crop atlas</h2><p>All 70 source-linked NASA regional crops remain available as geographic navigation. The film is a model visualization, not a measurement of current length or an individual eddy identity.</p><label>Find a crop or linked object <input id="movie-search" type="search" autocomplete="off"></label><p id="movie-count" role="status" aria-live="polite">Loading…</p><div class="table-wrap"><table><caption>NASA regional crop directory</caption><thead><tr><th scope="col">Crop</th><th scope="col">NASA movie</th><th scope="col">Linked atlas records</th></tr></thead><tbody id="movie-rows"></tbody></table></div></section>
+  </main>
+  <footer>OSW · rights-screened review artifact · NASA movies hosted by NASA · <a href="data/manifest.json">Data manifest</a></footer>
+</body>
+</html>

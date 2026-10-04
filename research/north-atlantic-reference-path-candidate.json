@@ -1,0 +1,3649 @@
+{
+  "schema": "osw.current-reference-path-input.v1",
+  "current_id": "north-atlantic",
+  "name": "North Atlantic Current",
+  "status": "editorial_reference_path_candidate_not_scientifically_reviewed",
+  "geometry_role": "osw_editorial_reference_route",
+  "crs": "OGC:CRS84",
+  "scope": "NOAA glossary regional continuation from the vicinity of 40 degrees N, 50 degrees W southeast of Grand Banks toward the western approaches of the British Isles. OSW chooses a nominal terminal gate west of Ireland, with southern/northern approach alternatives. Excludes Gulf Stream upstream, branches toward Iceland, the onward Norwegian/Canary flows and recirculation. A selected approach route is not the length of the entire branching Gulf Stream System.",
+  "layer": "Regional upper-ocean reference geography; no depth-specific velocity axis diagnosed.",
+  "time_convention": "Undated editorial sketch under a glossary naming convention; not a synoptic path, parcel trajectory or climatological current axis.",
+  "source_url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
+  "source_locator": "North Atlantic Current entry: start near 40 degrees N, 50 degrees W, continuation toward British Isles, membership of Gulf Stream System and onward Norwegian/Canary flows.",
+  "source_citation": "NOAA Center for Operational Oceanographic Products and Services, Tides and Currents Glossary, North Atlantic Current entry (accessed 2026-10-02).",
+  "source_license": "Factual regional geography only; no source map, curve, provider geometry or velocity field packaged.",
+  "coordinate_selection": "NOAA supplies a broad start and British Isles destination; OSW selects all intermediate vertices and exact approach gates. Alternatives are regional terminal conventions, not observed northern/southern current branches. No single reconstructed axis or universal termination is implied.",
+  "coordinates_lon_lat": [
+    [
+      -50,
+      40
+    ],
+    [
+      -45,
+      45
+    ],
+    [
+      -35,
+      48
+    ],
+    [
+      -25,
+      50
+    ],
+    [
+      -15,
+      52
+    ],
+    [
+      -12,
+      53
+    ]
+  ],
+  "alternative_routes": [
+    {
+      "id": "southern_british_approach",
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          50
+        ],
+        [
+          -11,
+          50
+        ]
+      ],
+      "interpretation": "OSW southern British Isles approach convention; not a measured branch centerline."
+    },
+    {
+      "id": "northern_british_approach",
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          52
+        ],
+        [
+          -18,
+          55
+        ],
+        [
+          -12,
+          57
+        ]
+      ],
+      "interpretation": "OSW northern British Isles approach convention; not an observed branch or onward Norwegian Current extent."
+    }
+  ],
+  "scenario_rule": "Three regional terminal-route conventions crossed with three longitude offsets (-0.5/0/+0.5 degrees) and independent endpoint latitude offsets (-0.5/0/+0.5 degrees): 81 editorial scenarios. Latitude/longitude offsets do not represent empirical positional uncertainty or include all meanders and branches.",
+  "longitude_offsets_degrees": [
+    -0.5,
+    0,
+    0.5
+  ],
+  "endpoint_latitude_offsets_degrees": [
+    -0.5,
+    0,
+    0.5
+  ],
+  "report_rounding_km": 100,
+  "rank_eligible_published_estimates": false,
+  "candidate_comparison_group": "osw_approximate_reference_routes",
+  "remaining_gates": [
+    "Independent oceanographic review of naming limits, Grand Banks region and British Isles approach-route alternatives.",
+    "Validate intermediate geography against reproducible upper-ocean velocity/front geometry and account for omitted meanders.",
+    "Canonical admission and publication review; preserve distinction from the full Gulf Stream System."
+  ],
+  "map_view_box": [
+    560,
+    170,
+    230,
+    200
+  ],
+  "endpoint_labels": [
+    "40°N, 50°W region",
+    "West of Ireland gate"
+  ],
+  "figure_source_label": "NOAA currents glossary",
+  "route_extent_kind": "NOAA North Atlantic regional route",
+  "whole_system_length": false,
+  "source_retrieved_date": "2026-10-02",
+  "input_sha256": "929b7e8210fca988b7dba486973be7449d86b16767fecd76bbc849c2d612513f",
+  "generator_file": "analysis/build_current_reference_path_candidate.py",
+  "generator_sha256": "1362693ec7075e014d065691923248db455a5c3cd78c9a94880b3b472594d240",
+  "method": "Sum shortest WGS84 geodesic distances between successive OSW editorial vertices; no velocity field or current core is reconstructed.",
+  "nominal_reference_path_km": 3258.645,
+  "reported_approximate_reference_path_km": 3300,
+  "scenario_range_km": [
+    3194.024,
+    3451.599
+  ],
+  "reported_scenario_range_km": [
+    3100,
+    3500
+  ],
+  "scenario_count": 81,
+  "scenarios": [
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          39.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          52
+        ],
+        [
+          -12.5,
+          52.5
+        ]
+      ],
+      "length_km": 3285.065,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          39.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          52
+        ],
+        [
+          -12.5,
+          53
+        ]
+      ],
+      "length_km": 3304.892,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          39.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          52
+        ],
+        [
+          -12.5,
+          53.5
+        ]
+      ],
+      "length_km": 3335.226,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          52
+        ],
+        [
+          -12.5,
+          52.5
+        ]
+      ],
+      "length_km": 3238.819,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          52
+        ],
+        [
+          -12.5,
+          53
+        ]
+      ],
+      "length_km": 3258.645,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          52
+        ],
+        [
+          -12.5,
+          53.5
+        ]
+      ],
+      "length_km": 3288.98,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          52
+        ],
+        [
+          -12.5,
+          52.5
+        ]
+      ],
+      "length_km": 3194.024,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          52
+        ],
+        [
+          -12.5,
+          53
+        ]
+      ],
+      "length_km": 3213.851,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          52
+        ],
+        [
+          -12.5,
+          53.5
+        ]
+      ],
+      "length_km": 3244.185,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          39.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          52
+        ],
+        [
+          -12,
+          52.5
+        ]
+      ],
+      "length_km": 3285.065,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          39.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          52
+        ],
+        [
+          -12,
+          53
+        ]
+      ],
+      "length_km": 3304.892,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          39.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          52
+        ],
+        [
+          -12,
+          53.5
+        ]
+      ],
+      "length_km": 3335.226,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          52
+        ],
+        [
+          -12,
+          52.5
+        ]
+      ],
+      "length_km": 3238.819,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          52
+        ],
+        [
+          -12,
+          53
+        ]
+      ],
+      "length_km": 3258.645,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          52
+        ],
+        [
+          -12,
+          53.5
+        ]
+      ],
+      "length_km": 3288.98,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          52
+        ],
+        [
+          -12,
+          52.5
+        ]
+      ],
+      "length_km": 3194.024,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          52
+        ],
+        [
+          -12,
+          53
+        ]
+      ],
+      "length_km": 3213.851,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          52
+        ],
+        [
+          -12,
+          53.5
+        ]
+      ],
+      "length_km": 3244.185,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          39.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          52
+        ],
+        [
+          -11.5,
+          52.5
+        ]
+      ],
+      "length_km": 3285.065,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          39.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          52
+        ],
+        [
+          -11.5,
+          53
+        ]
+      ],
+      "length_km": 3304.892,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          39.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          52
+        ],
+        [
+          -11.5,
+          53.5
+        ]
+      ],
+      "length_km": 3335.226,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          52
+        ],
+        [
+          -11.5,
+          52.5
+        ]
+      ],
+      "length_km": 3238.819,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          52
+        ],
+        [
+          -11.5,
+          53
+        ]
+      ],
+      "length_km": 3258.645,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          52
+        ],
+        [
+          -11.5,
+          53.5
+        ]
+      ],
+      "length_km": 3288.98,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          52
+        ],
+        [
+          -11.5,
+          52.5
+        ]
+      ],
+      "length_km": 3194.024,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          52
+        ],
+        [
+          -11.5,
+          53
+        ]
+      ],
+      "length_km": 3213.851,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          52
+        ],
+        [
+          -11.5,
+          53.5
+        ]
+      ],
+      "length_km": 3244.185,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          39.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          50
+        ],
+        [
+          -11.5,
+          49.5
+        ]
+      ],
+      "length_km": 3347.056,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          39.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          50
+        ],
+        [
+          -11.5,
+          50
+        ]
+      ],
+      "length_km": 3340.26,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          39.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          50
+        ],
+        [
+          -11.5,
+          50.5
+        ]
+      ],
+      "length_km": 3344.137,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          50
+        ],
+        [
+          -11.5,
+          49.5
+        ]
+      ],
+      "length_km": 3300.809,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          50
+        ],
+        [
+          -11.5,
+          50
+        ]
+      ],
+      "length_km": 3294.014,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          50
+        ],
+        [
+          -11.5,
+          50.5
+        ]
+      ],
+      "length_km": 3297.89,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          50
+        ],
+        [
+          -11.5,
+          49.5
+        ]
+      ],
+      "length_km": 3256.015,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          50
+        ],
+        [
+          -11.5,
+          50
+        ]
+      ],
+      "length_km": 3249.219,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          50
+        ],
+        [
+          -15.5,
+          50
+        ],
+        [
+          -11.5,
+          50.5
+        ]
+      ],
+      "length_km": 3253.096,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          39.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          50
+        ],
+        [
+          -11,
+          49.5
+        ]
+      ],
+      "length_km": 3347.056,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          39.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          50
+        ],
+        [
+          -11,
+          50
+        ]
+      ],
+      "length_km": 3340.26,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          39.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          50
+        ],
+        [
+          -11,
+          50.5
+        ]
+      ],
+      "length_km": 3344.137,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          50
+        ],
+        [
+          -11,
+          49.5
+        ]
+      ],
+      "length_km": 3300.809,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          50
+        ],
+        [
+          -11,
+          50
+        ]
+      ],
+      "length_km": 3294.014,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          50
+        ],
+        [
+          -11,
+          50.5
+        ]
+      ],
+      "length_km": 3297.89,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          50
+        ],
+        [
+          -11,
+          49.5
+        ]
+      ],
+      "length_km": 3256.015,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          50
+        ],
+        [
+          -11,
+          50
+        ]
+      ],
+      "length_km": 3249.219,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          50
+        ],
+        [
+          -15,
+          50
+        ],
+        [
+          -11,
+          50.5
+        ]
+      ],
+      "length_km": 3253.096,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          39.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          50
+        ],
+        [
+          -10.5,
+          49.5
+        ]
+      ],
+      "length_km": 3347.056,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          39.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          50
+        ],
+        [
+          -10.5,
+          50
+        ]
+      ],
+      "length_km": 3340.26,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          39.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          50
+        ],
+        [
+          -10.5,
+          50.5
+        ]
+      ],
+      "length_km": 3344.137,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          50
+        ],
+        [
+          -10.5,
+          49.5
+        ]
+      ],
+      "length_km": 3300.809,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          50
+        ],
+        [
+          -10.5,
+          50
+        ]
+      ],
+      "length_km": 3294.014,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          50
+        ],
+        [
+          -10.5,
+          50.5
+        ]
+      ],
+      "length_km": 3297.89,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          50
+        ],
+        [
+          -10.5,
+          49.5
+        ]
+      ],
+      "length_km": 3256.015,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          50
+        ],
+        [
+          -10.5,
+          50
+        ]
+      ],
+      "length_km": 3249.219,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "southern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          50
+        ],
+        [
+          -14.5,
+          50
+        ],
+        [
+          -10.5,
+          50.5
+        ]
+      ],
+      "length_km": 3253.096,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          39.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          52
+        ],
+        [
+          -18.5,
+          55
+        ],
+        [
+          -12.5,
+          56.5
+        ]
+      ],
+      "length_km": 3399.25,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          39.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          52
+        ],
+        [
+          -18.5,
+          55
+        ],
+        [
+          -12.5,
+          57
+        ]
+      ],
+      "length_km": 3422.663,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          39.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          52
+        ],
+        [
+          -18.5,
+          55
+        ],
+        [
+          -12.5,
+          57.5
+        ]
+      ],
+      "length_km": 3451.599,
+      "atlas_state_crossings": [
+        "ARCT",
+        "NADR",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          52
+        ],
+        [
+          -18.5,
+          55
+        ],
+        [
+          -12.5,
+          56.5
+        ]
+      ],
+      "length_km": 3353.004,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          52
+        ],
+        [
+          -18.5,
+          55
+        ],
+        [
+          -12.5,
+          57
+        ]
+      ],
+      "length_km": 3376.416,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          52
+        ],
+        [
+          -18.5,
+          55
+        ],
+        [
+          -12.5,
+          57.5
+        ]
+      ],
+      "length_km": 3405.353,
+      "atlas_state_crossings": [
+        "ARCT",
+        "NADR",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          52
+        ],
+        [
+          -18.5,
+          55
+        ],
+        [
+          -12.5,
+          56.5
+        ]
+      ],
+      "length_km": 3308.209,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          52
+        ],
+        [
+          -18.5,
+          55
+        ],
+        [
+          -12.5,
+          57
+        ]
+      ],
+      "length_km": 3331.622,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": -0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50.5,
+          40.5
+        ],
+        [
+          -45.5,
+          45
+        ],
+        [
+          -35.5,
+          48
+        ],
+        [
+          -25.5,
+          52
+        ],
+        [
+          -18.5,
+          55
+        ],
+        [
+          -12.5,
+          57.5
+        ]
+      ],
+      "length_km": 3360.558,
+      "atlas_state_crossings": [
+        "ARCT",
+        "NADR",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          39.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          52
+        ],
+        [
+          -18,
+          55
+        ],
+        [
+          -12,
+          56.5
+        ]
+      ],
+      "length_km": 3399.25,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          39.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          52
+        ],
+        [
+          -18,
+          55
+        ],
+        [
+          -12,
+          57
+        ]
+      ],
+      "length_km": 3422.663,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          39.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          52
+        ],
+        [
+          -18,
+          55
+        ],
+        [
+          -12,
+          57.5
+        ]
+      ],
+      "length_km": 3451.599,
+      "atlas_state_crossings": [
+        "ARCT",
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          52
+        ],
+        [
+          -18,
+          55
+        ],
+        [
+          -12,
+          56.5
+        ]
+      ],
+      "length_km": 3353.004,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          52
+        ],
+        [
+          -18,
+          55
+        ],
+        [
+          -12,
+          57
+        ]
+      ],
+      "length_km": 3376.416,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          52
+        ],
+        [
+          -18,
+          55
+        ],
+        [
+          -12,
+          57.5
+        ]
+      ],
+      "length_km": 3405.353,
+      "atlas_state_crossings": [
+        "ARCT",
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          52
+        ],
+        [
+          -18,
+          55
+        ],
+        [
+          -12,
+          56.5
+        ]
+      ],
+      "length_km": 3308.209,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          52
+        ],
+        [
+          -18,
+          55
+        ],
+        [
+          -12,
+          57
+        ]
+      ],
+      "length_km": 3331.622,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -50,
+          40.5
+        ],
+        [
+          -45,
+          45
+        ],
+        [
+          -35,
+          48
+        ],
+        [
+          -25,
+          52
+        ],
+        [
+          -18,
+          55
+        ],
+        [
+          -12,
+          57.5
+        ]
+      ],
+      "length_km": 3360.558,
+      "atlas_state_crossings": [
+        "ARCT",
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          39.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          52
+        ],
+        [
+          -17.5,
+          55
+        ],
+        [
+          -11.5,
+          56.5
+        ]
+      ],
+      "length_km": 3399.25,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          39.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          52
+        ],
+        [
+          -17.5,
+          55
+        ],
+        [
+          -11.5,
+          57
+        ]
+      ],
+      "length_km": 3422.663,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": -0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          39.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          52
+        ],
+        [
+          -17.5,
+          55
+        ],
+        [
+          -11.5,
+          57.5
+        ]
+      ],
+      "length_km": 3451.599,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          52
+        ],
+        [
+          -17.5,
+          55
+        ],
+        [
+          -11.5,
+          56.5
+        ]
+      ],
+      "length_km": 3353.004,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          52
+        ],
+        [
+          -17.5,
+          55
+        ],
+        [
+          -11.5,
+          57
+        ]
+      ],
+      "length_km": 3376.416,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          52
+        ],
+        [
+          -17.5,
+          55
+        ],
+        [
+          -11.5,
+          57.5
+        ]
+      ],
+      "length_km": 3405.353,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": -0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          52
+        ],
+        [
+          -17.5,
+          55
+        ],
+        [
+          -11.5,
+          56.5
+        ]
+      ],
+      "length_km": 3308.209,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          52
+        ],
+        [
+          -17.5,
+          55
+        ],
+        [
+          -11.5,
+          57
+        ]
+      ],
+      "length_km": 3331.622,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    },
+    {
+      "route_variant_id": "northern_british_approach",
+      "longitude_offset_degrees": 0.5,
+      "start_latitude_offset_degrees": 0.5,
+      "end_latitude_offset_degrees": 0.5,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -49.5,
+          40.5
+        ],
+        [
+          -44.5,
+          45
+        ],
+        [
+          -34.5,
+          48
+        ],
+        [
+          -24.5,
+          52
+        ],
+        [
+          -17.5,
+          55
+        ],
+        [
+          -11.5,
+          57.5
+        ]
+      ],
+      "length_km": 3360.558,
+      "atlas_state_crossings": [
+        "NADR",
+        "NECS",
+        "NWCS",
+        "SARC"
+      ]
+    }
+  ],
+  "map_land_check": "All 81 routes, geodesically densified at spacing no greater than 10 km, avoid the coarse OSW atlas land mask in display coordinates. This is not a shelf-break, reef, bathymetric or high-resolution land-clearance verification.",
+  "state_relation_role": "Editorial line/display-region crossing; physical current passage unresolved.",
+  "atlas_map_sha256": "5999bbad0e49209b2609a20a52a3e6310aa749224b574cb2f6cbcac0e68db032",
+  "nominal_atlas_state_crossings": [
+    "NADR",
+    "NECS",
+    "NWCS",
+    "SARC"
+  ],
+  "nasa_movie_context": [
+    {
+      "tile_id": "level2_C_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_C_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_C_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_C_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 0.814859,
+      "scenario_display_route_fraction_range": [
+        0.807171,
+        0.827398
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_B_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_B_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 0.675473,
+      "scenario_display_route_fraction_range": [
+        0.649619,
+        0.692767
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_B_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_B_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 0.490333,
+      "scenario_display_route_fraction_range": [
+        0.466294,
+        0.509611
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_D_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_D_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 0.324527,
+      "scenario_display_route_fraction_range": [
+        0.307233,
+        0.350381
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_D_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_D_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 0.324527,
+      "scenario_display_route_fraction_range": [
+        0.307233,
+        0.350381
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_B_3",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_B_3.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 0.172176,
+      "scenario_display_route_fraction_range": [
+        0.159942,
+        0.17994
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_C_3",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_C_3.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 0.172176,
+      "scenario_display_route_fraction_range": [
+        0.159942,
+        0.17994
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level1_A_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_A_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level1_B_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_B_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level1_A_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_A_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 0.172176,
+      "scenario_display_route_fraction_range": [
+        0.159942,
+        0.17994
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level1_B_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_B_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 0.172176,
+      "scenario_display_route_fraction_range": [
+        0.159942,
+        0.17994
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level0_A_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level0_A_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 0,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level0_B_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level0_B_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 0,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    }
+  ],
+  "nasa_tiles_sha256": "52c6605c32e59f50aa4abde984489c7055c0e3e201e7323e30160a623c9666e0",
+  "recommended_nasa_tile_id": "level2_C_2",
+  "nasa_crop_recommendation_rule": "Highest zoom crop covering the entire display route in every retained scenario, with tile ID as deterministic tie-break. No physical identification asserted.",
+  "input_file": "research/north-atlantic-reference-path-input.json",
+  "figure": "figures/north-atlantic-reference-path-candidate.svg"
+}

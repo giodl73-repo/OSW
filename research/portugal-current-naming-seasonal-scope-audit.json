@@ -1,0 +1,78 @@
+{
+  "schema": "osw.current-naming-scope-audit.v1",
+  "status": "editorial_scope_review_not_canonical",
+  "as_of": "2026-10-03",
+  "current_id": "portugal",
+  "route_candidate_file": "research/portugal-reference-path-candidate.json",
+  "sources": [
+    {
+      "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers12-12/010038152.pdf",
+      "locator": "Chapter 23 section 2.1, printed p. 880 / PDF page 4: offshore southward Portugal Current from 45-50 N and 10-20 W; coastal circulation described separately.",
+      "supports": "Offshore Portugal flow; northern interface latitude region. Coastal flows have separate seasonal descriptions.",
+      "edition_date_guard": "Repository front matter copyright 2004 is not verified publication year."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2000JC000345",
+      "citation": "Martins, Hamann and Fiuza (2002), Surface circulation in the eastern North Atlantic, from drifters and altimetry, JGR Oceans 107(C12), doi:10.1029/2000JC000345.",
+      "locator": "Sections 2.1 and 3.3.1, Table 2: offshore current distinct from coastal flows; 36-44 N / 24-12 W statistical box.",
+      "role": "Identity and sampled-region context; box bounds are not whole-current endpoints or width."
+    },
+    {
+      "url": "https://os.copernicus.org/articles/22/2059/2026/",
+      "citation": "Ibrahim and Sun (2026), A multidecadal sea level rise and its hiatus in the tropical Atlantic margin off northwest Africa, Ocean Science 22, 2059-2081.",
+      "locator": "Section 4: combined Portugal/Portugal Coastal system feeds converge with Azores around 35 N.",
+      "role": "Southern regional convergence context; does not uniquely locate the offshore-current endpoint."
+    }
+  ],
+  "route_convention": {
+    "northern_gates_latitude": [
+      45,
+      47.5,
+      50
+    ],
+    "nominal_northern_latitude": 47.5,
+    "southern_gate_latitude": 35,
+    "southern_gate_guard": "Combined Portugal/Portugal Coastal convergence context; offshore endpoint remains an editorial convention.",
+    "vertices": "All OSW selected; no source axis digitized."
+  },
+  "sampled_region_guard": {
+    "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2000JC000345",
+    "source_period": "1993-01 through 1994-10",
+    "drogue_depth_m": 15,
+    "statistics_box_lon_lat": [
+      -24,
+      36,
+      -12,
+      44
+    ],
+    "meaning": "Statistical selection region, not current width or whole-current endpoints.",
+    "sampled_coastal_drifter_distance_km": 670,
+    "distance_guard": "One coastal-countercurrent drifter November 1993 to 18 January 1994; not offshore Portugal whole length."
+  },
+  "separate_name_review_queue": [
+    {
+      "name": "Portugal Coastal Current",
+      "direction_context": "Southward coastal near-surface flow; season and region require separate scope review."
+    },
+    {
+      "name": "Portugal Coastal Countercurrent",
+      "direction_context": "Poleward coastal flow; coastal drifter evidence does not define offshore path."
+    },
+    {
+      "name": "Portugal Coastal Undercurrent",
+      "direction_context": "Slope flow; alias relationship with Iberian Poleward and Mediterranean undercurrents unresolved."
+    }
+  ],
+  "seasonal_guards": [
+    "Regional coastal seasonal reversal does not imply offshore Portugal reverses.",
+    "Drifter sampling was irregular and biased toward fall/winter near the coast; no monthly geometry inferred.",
+    "Regional source month windows cannot become twelve observed monthly frames.",
+    "Scenario envelope reflects selected endpoints and route choices, not annual extrema or confidence."
+  ],
+  "current_width_km": null,
+  "annual_length_range_km": null,
+  "annual_width_range_km": null,
+  "playback_eligible": false,
+  "canonical_identity_additions": false,
+  "source_figures_or_fields_packaged": false
+}

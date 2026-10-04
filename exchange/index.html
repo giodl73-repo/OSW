@@ -40,6 +40,7 @@
       <button type="button" data-stage="stability" aria-pressed="false">3 · Stability</button>
       <button type="button" data-stage="events" aria-pressed="false">4 · Events</button>
       <button type="button" data-stage="decisions" aria-pressed="false">5 · Decisions</button>
+      <button type="button" data-stage="interior" aria-pressed="false">6 · State interior</button>
     </nav>
 
     <section class="controls inventory-panel" aria-labelledby="controls-title">
@@ -304,6 +305,70 @@
         <p>Repository `.roles` approval reviews implementation and claim discipline. Owner approval, external scientific review, and publication remain separate and have not occurred.</p>
       </aside>
     </div>
+
+    <div id="interior-panel" hidden>
+      <section class="passport" aria-labelledby="interior-title">
+        <div><p class="eyebrow">STATE-INTERIOR EVIDENCE</p><h2 id="interior-title">Archived contents and separate bounded dynamics screens.</h2></div>
+        <dl id="interior-address-grid"></dl>
+        <p id="interior-summary" class="live-summary" aria-live="polite"></p>
+      </section>
+
+      <section class="table-section" aria-labelledby="interior-contents-title">
+        <div class="section-heading"><div><p class="eyebrow">ADMITTED CONTENTS</p><h2 id="interior-contents-title">One compatible temperature account</h2></div><a href="../research/ocean-state-interior-ledger-sant-201808.json">Download the ledger</a></div>
+        <div class="table-wrap"><table><thead><tr><th>Property</th><th>Units</th><th>Median</th><th>Middle 50%</th><th>Native samples</th><th>Evidence / uncertainty</th></tr></thead><tbody id="interior-contents-body"></tbody></table></div>
+      </section>
+
+      <section class="interior-grid" aria-label="State-interior relationship account">
+        <article><p class="eyebrow">OVERLAYS</p><h2>What intersects this address?</h2><ul id="interior-overlays"></ul></article>
+        <article><p class="eyebrow">INTERNAL LINKS</p><h2>What transfers or connects inside it?</h2><ul id="interior-links"></ul></article>
+        <article><p class="eyebrow">BOUNDARY CONTEXT</p><h2>What belongs outside this account?</h2><p id="interior-boundary-context"></p></article>
+      </section>
+
+      <section class="table-section" aria-labelledby="interior-dynamics-title">
+        <div class="section-heading"><div><p class="eyebrow">SEPARATE CURRENT-GEOMETRY FAMILY</p><h2 id="interior-dynamics-title">What the bounded dynamics screens support</h2></div><a href="../research/ocean-state-intra-state-dynamics-synthesis-sant-2018.json">Download the synthesis</a></div>
+        <ul id="interior-dynamics-coverage"></ul>
+        <p>Density-bin boundary terms have a <a href="../research/ocean-state-sant-density-boundary-collocation-sensitivity-2018.json">tracer-collocation sensitivity receipt</a>. It compares adjacent-cell mean and upstream-cell density on the same native faces; neither is a transformation rate.</p>
+        <p>The <a href="../research/ocean-state-sant-temporal-support-audit-2018.json">provider time-metadata audit</a> identifies these as monthly means. Differences between the sampled monthly means are not matched tendencies.</p>
+        <p>The <a href="../research/ocean-state-sant-density-boundary-monthly-series-2018.json">twelve-month SANT box series</a> covers the same fixed horizontal perimeter and three displaced controls. Its bin-wise transport remains sensitive to tracer collocation and is not a density-class transformation rate.</p>
+        <p>The paired <a href="../research/ocean-state-sant-density-inventory-monthly-series-2018.json">twelve-month density inventory</a> supplies each bin's share of the primary box's valid volume. The shares and boundary fluxes sit side by side for inspection; they do not form a matched class budget.</p>
+        <p><a href="../research/ocean-state-sant-density-cutoff-sensitivity-2018.json">Cutoff sensitivity receipt</a>: <span id="interior-cutoff-result"></span> The ±0.1 kg/m³ shifts were tested after the baseline series was inspected.</p>
+        <div class="table-wrap">
+          <label for="interior-density-bin">Compare a numerical density bin</label>
+          <select id="interior-density-bin">
+            <option value="below_26_5">σ₀ below 26.5 kg/m³</option>
+            <option value="26_5_to_27_0">σ₀ 26.5–27.0 kg/m³</option>
+            <option value="27_0_to_27_5" selected>σ₀ 27.0–27.5 kg/m³</option>
+            <option value="at_or_above_27_5">σ₀ at least 27.5 kg/m³</option>
+          </select>
+          <table>
+            <caption>2018 monthly density-bin occupancy and horizontal net volume flux. Occupancy is a stock share; fluxes are Sv, positive out of each fixed box. Controls use centered collocation.</caption>
+            <thead><tr><th scope="col">Month</th><th scope="col">Primary volume share</th><th scope="col">Primary flux: centered</th><th scope="col">Primary flux: upstream</th><th scope="col">Control flux range: centered</th><th scope="col">Method sign</th></tr></thead>
+            <tbody id="interior-density-monthly-body"></tbody>
+          </table>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption>Preselected July repeat-year sign test, same fixed box and ORAS5 provider/member. <a href="../research/ocean-state-sant-july-repeat-sign-screen-2016-2018.json">Download the full receipt</a>. The strict rule requires every box, cutoff, and collocation method to be outward.</caption>
+            <thead><tr><th scope="col">July</th><th scope="col">Primary centered, Sv</th><th scope="col">Primary upstream, Sv</th><th scope="col">Lowest tested case, Sv</th><th scope="col">Strict rule</th></tr></thead>
+            <tbody id="interior-july-repeat-body"></tbody>
+          </table>
+        </div>
+        <p id="interior-july-ensemble-result"></p>
+        <div class="table-wrap">
+          <table>
+            <caption>Preselected July 2017 ORAS5 member challenge, one product and one monthly mean. <a href="../research/ocean-state-sant-2017-july-ensemble-sign-screen.json">Download the full receipt</a>. Positive flux is outward in the 27.0–27.5 σ₀ bin.</caption>
+            <thead><tr><th scope="col">Member</th><th scope="col">Primary centered, Sv</th><th scope="col">Primary upstream, Sv</th><th scope="col">East control upstream, Sv</th><th scope="col">Strict rule</th></tr></thead>
+            <tbody id="interior-july-ensemble-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="boundary" aria-labelledby="interior-boundary-title">
+        <h2 id="interior-boundary-title">Named unknowns are the result, not a blank</h2>
+        <ul id="interior-unknowns"></ul>
+        <p>A province is reference geography and a depth band is an address. Neither makes its water dynamically uniform, turns an open edge into convergence, or turns a residual into mixing.</p>
+      </aside>
+    </div>
   </main>
 
   <script src="../column/province-footprints.js"></script>
@@ -312,10 +377,13 @@
   <script src="stability.js"></script>
   <script src="events.js"></script>
   <script src="decisions.js"></script>
+  <script src="interior-ledger.js"></script>
+  <script src="interior-dynamics.js"></script>
   <script src="app.js"></script>
   <script src="stability-stage.js"></script>
   <script src="events-stage.js"></script>
   <script src="decisions-stage.js"></script>
+  <script src="interior-stage.js"></script>
   <script src="exchange-stage.js"></script>
 </body>
 </html>

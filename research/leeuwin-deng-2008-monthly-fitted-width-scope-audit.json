@@ -1,0 +1,69 @@
+{
+  "schema": "osw.current-monthly-fitted-width-scope-audit.v1",
+  "current_id": "leeuwin",
+  "as_of": "2026-10-04",
+  "status": "editorial_source_extraction_scientific_review_pending",
+  "source_url": "https://pdfs.semanticscholar.org/21be/8b2802335b0f945b23cde6ece4d5e3647f09.pdf",
+  "source_citation": "Deng, Hwang, Coleman and Featherstone (2008), Seasonal and Interannual Variations of the Leeuwin Current off Western Australia from TOPEX/Poseidon Satellite Altimetry, TAO 19, 135-149, doi:10.3319/TAO.2008.19.1-2.135(SA).",
+  "source_locator": "Section 3.3, printed page 143, paragraph discussing current width at a101; Fig. 7d on page 144; section 2.2 equations 1-3 on page 138 and angle convention on page 139.",
+  "source_pdf_file": "research/source-data/leeuwin-deng-2008/journal-article.pdf",
+  "source_pdf_sha256": "7e26241e96d5047542f59ee3038f594625b37f5d5216ebeae77c7da51123ae64",
+  "source_access": "Published-layout PDF acquired and pages 138/143/144 rendered and visually inspected; equation and prose values corroborate repository manuscript text. No graph points digitized or underlying SSH reprocessed.",
+  "track_id": "a101",
+  "approximate_crossing_latitude_degrees_north": -26,
+  "source_mean_axis_lon_lat": [
+    112.3,
+    -26.1
+  ],
+  "mean_axis_is_monthly_edge_geometry": false,
+  "width_equation": "w = 1.89 * L * cos(theta)",
+  "profile_equation": "s(x) = H * tanh((x-x0)/L) + s0",
+  "velocity_profile_shape": "sech_squared",
+  "source_width_coefficient": 1.89,
+  "track_angle_degrees": 43.45,
+  "source_edge_description": "about 50 percent of maximum fitted velocity",
+  "coefficient_is_exact_half_maximum": false,
+  "averaging_order": "fit per altimeter cycle, derive width, then average widths by calendar month across years",
+  "mean_width_is_width_of_mean_profile": false,
+  "source_period_labels": {
+    "section_3_3": "January 1993 to July 2002",
+    "figure_7_caption": "January 1993 to August 2002",
+    "data_cycles": "11 (31 December 1992) to 364 (1 August 2002)"
+  },
+  "exact_combined_averaging_period_resolved": false,
+  "monthly_values": [
+    {
+      "month": 4,
+      "approximate_width_km": 132,
+      "label": "April climatological fitted width"
+    },
+    {
+      "month": 9,
+      "approximate_width_km": 89,
+      "label": "September climatological fitted width"
+    }
+  ],
+  "complete_monthly_curve_extracted": false,
+  "table_mean_width_km": 105,
+  "table_rms_variability_km": 35,
+  "rms_is_confidence_interval": false,
+  "transport_assumed_layer_m": 80,
+  "transport_layer_is_width_measurement_layer": false,
+  "gaussian_filter_window_km": 50,
+  "filter_window_is_current_width": false,
+  "width_range_km": null,
+  "annual_width_range_km": null,
+  "section_geometry": null,
+  "fixed_layer_bounds_m": null,
+  "observed_period": null,
+  "whole_current_representative": false,
+  "width_rank_eligible": false,
+  "annual_extrema_eligible": false,
+  "seasonal_playback_eligible": false,
+  "remaining_gates": [
+    "Extract all 12 months with plot calibration and extraction margins before annual display.",
+    "Reconcile July/August period labels, fitting model and approximate half-maximum convention.",
+    "Review near-coastal gaps, Gaussian filtering and current-angle assumptions.",
+    "Independent scientific claim admission."
+  ]
+}

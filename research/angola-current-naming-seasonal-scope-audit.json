@@ -1,0 +1,68 @@
+{
+  "schema": "osw.current-naming-scope-audit.v1",
+  "date": "2026-10-03",
+  "status": "editorial_scope_audit_not_scientific_approval",
+  "proposed_current_id": "angola",
+  "name": "Angola Current",
+  "inventory_basis_sha256": "6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e",
+  "inventory_decision": "absent_from_100_name_ledger_added_as_18th_proposal",
+  "proposal_file": "research/ocean-current-inventory-expansion-candidates.json",
+  "regional_observed_period": {
+    "start_month": "2013-07",
+    "end_month": "2015-10",
+    "scope": "Mooring array near 11 S; month precision retained, not whole-current coverage"
+  },
+  "source_evidence": [
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2016JC012374",
+      "citation": "Kopte et al. (2017), The Angola Current: Flow and hydrographic characteristics as observed at 11 S, doi:10.1002/2016JC012374.",
+      "locator": "Abstract; sections 2.1, 2.4, 3.1 and 3.2; figures 4 and 5.",
+      "supports": "Regional moored velocities during July 2013–October 2015 support mean southward flow and reversals. The 15–90 km offshore box at 30–200 m is a mean-flow-based transport integration domain, not a seasonal physical width.",
+      "source_access": "full_page_read_2026-10-03"
+    },
+    {
+      "url": "https://os.copernicus.org/articles/19/121/2023/",
+      "citation": "Korner, Brandt and Dengler (2023), Seasonal cycle of sea surface temperature in the tropical Angolan Upwelling System, doi:10.5194/os-19-121-2023.",
+      "locator": "Introduction and figure 1.",
+      "supports": "Names the slope/shelf current and its encounter with Benguela Coastal Current. The 6 S ecosystem boundary and 15–18 S frontal region are contextual geography, not full-current measured endpoints.",
+      "source_access": "full_page_read_2026-10-03"
+    },
+    {
+      "url": "https://doi.pangaea.de/10.1594/PANGAEA.868684",
+      "citation": "Kopte et al. (2017), The Angola Current - flow and hydrographic characteristics as observed at 11 S, PANGAEA dataset publication series.",
+      "locator": "License, coverage and eight child datasets.",
+      "supports": "CC-BY-3.0 data acquisition lead for local velocity and hydrography; aggregate bounds include other cruise coverage and must not define a current footprint. No sample data acquired.",
+      "source_access": "metadata_page_read_2026-10-03"
+    }
+  ],
+  "whole_current_length_km": null,
+  "whole_current_width_km": null,
+  "annual_length_range_km": null,
+  "annual_width_range_km": null,
+  "seasonal_route_playback_supported": false,
+  "rejected_inferences": [
+    {
+      "value_km": 75,
+      "inference": "90 minus 15 km transport-domain span used as physical or seasonal width",
+      "decision": "not_admitted",
+      "reason": "Source selects a fixed domain based on reconstructed mean flow, without dated width-edge diagnostics."
+    },
+    {
+      "inference": "6 S ecosystem boundary to 15–18 S frontal zone as measured whole-current endpoints",
+      "decision": "not_admitted",
+      "reason": "Ecosystem geography and thermal frontal positions do not establish a velocity axis and termination at a declared depth/time."
+    },
+    {
+      "inference": "PANGAEA collection bounding box as current footprint",
+      "decision": "not_admitted",
+      "reason": "Collection includes multiple cruises and observational variables."
+    }
+  ],
+  "remaining_gates": [
+    "Review identity admission and regional aliases against current, undercurrent, gyre and frontal-zone names.",
+    "Choose a stated layer and time support before tracing northern feeding and southern termination; do not use ecosystem bounds as measured endpoints.",
+    "Diagnose cross-stream boundaries from dated velocity data; keep fixed transport integration domains separate from physical width.",
+    "Acquire and pin relevant PANGAEA child data before creating dated sections or seasonal animations.",
+    "Integrate reviewed identity, sources, taxonomy, OSW state joins and NASA navigation in a versioned inventory update."
+  ]
+}

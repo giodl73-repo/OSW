@@ -1,0 +1,27 @@
+{
+  "schema": "osw-ocean-state-interior-source-custody-audit-v1",
+  "date": "2026-09-12",
+  "question": "Can the already-custodied 2018 ORAS5 Drake velocity fields support a reproducible SANT internal-pathway screen?",
+  "required_join": {
+    "state_geometry": "the exact normalized Longhurst V4 geometry used by the existing 2018 state-contents account",
+    "native_velocity": "the already-custodied ORAS5 Drake `vozocrtx` and `vomecrty` fields",
+    "required_output": "a pinned native T/U/V membership assignment before seeds, endpoints, controls, or pathways are selected"
+  },
+  "existing_contents_receipt": {
+    "path": "research/ocean-state-hydrography-pilot-2018.json",
+    "geometry_response_sha256": "0b8439605ff29d07f8c11f98e32c4f9ff5f0dc11df03b6c400f298c5c1544b77",
+    "geometry_edition": "Marine Regions Longhurst Provinces Version 4, March 2010; revised Longhurst 2007 54-province scheme"
+  },
+  "live_probe": {
+    "url": "https://geo.vliz.be/geoserver/MarineRegions/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=MarineRegions:longhurst_v4_2010&outputFormat=application/json",
+    "response_bytes": 4970812,
+    "response_sha256": "a67485038ad698b304ed60d721cf8e5295f9fff01762e8591db6b04dae73198e"
+  },
+  "result": "source_response_changed",
+  "admission_decision": "do_not_build_or_admit_an_internal_pathway_from_the_live_geometry",
+  "next_safe_actions": [
+    "Recover the exact raw geometry response whose SHA-256 is recorded by the hydrography receipt, then generate and checksum a local native-grid membership derivative.",
+    "Or acquire and version a new geometry-and-velocity account as a distinct source family, without joining it to the 2018 contents or boundary-pilot results until an explicit bridge is reviewed."
+  ],
+  "boundary": "The live source can be inspected but is not interchangeable with the geometrically custodial 2018 account. A state-interior pathway needs exact state membership, declared seeds/endpoints, time support, and controls. This audit does not establish a pathway, transport, convergence, or a problem with the archived ORAS5 velocity values."
+}

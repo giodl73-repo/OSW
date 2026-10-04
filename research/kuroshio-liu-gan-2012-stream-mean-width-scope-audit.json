@@ -1,0 +1,78 @@
+{
+  "schema": "osw.current-stream-mean-threshold-width-scope-audit.v1",
+  "current_id": "kuroshio",
+  "as_of": "2026-10-04",
+  "status": "editorial_source_extraction_scientific_review_pending",
+  "source_pdf_file": "research/source-data/kuroshio-liu-gan-2012/journal-article.pdf",
+  "source_pdf_sha256": "a452007ff7f3b0051f811ba8172e9ae7932642ed1916a29c779db6335772203b",
+  "source_url": "https://www.sciencedirect.com/science/article/pii/S0967063711001968",
+  "source_citation": "Liu and Gan (2012), Variability of the Kuroshio in the East China Sea derived from satellite altimetry data, Deep-Sea Research I 59, 25-36, doi:10.1016/j.dsr.2011.10.008.",
+  "method_locator": "Section 2.1-2.2, printed page 26; section 3 opening and Figure 2, page 27.",
+  "values": [
+    {
+      "id": "kuroshio-ecs-winter-stream-mean-width",
+      "phase_label": "winter",
+      "season": "winter",
+      "temporal_statistic": "seasonal_mean_of_weekly_diagnosed_section_widths",
+      "approximate_width_km": 218,
+      "source_locator": "Section 3.2, printed page 29, paragraph beginning Seasonal variations; abstract page 25 and summary page 34."
+    },
+    {
+      "id": "kuroshio-ecs-summer-stream-mean-width",
+      "phase_label": "summer",
+      "season": "summer",
+      "temporal_statistic": "seasonal_mean_of_weekly_diagnosed_section_widths",
+      "approximate_width_km": 207,
+      "source_locator": "Section 3.2, printed page 29, paragraph beginning Seasonal variations; abstract page 25 and summary page 34."
+    },
+    {
+      "id": "kuroshio-ecs-period-stream-mean-width",
+      "phase_label": "1993–2008 mean",
+      "season": null,
+      "temporal_statistic": "study_period_mean_of_weekly_diagnosed_section_widths",
+      "approximate_width_km": 210,
+      "source_locator": "Section 3.1, printed page 27, paragraph beginning The 16-year mean width; section 5, page 34."
+    }
+  ],
+  "product": "AVISO updated merged absolute surface geostrophic velocity; ADT = SLA + MDT",
+  "study_period_years": [
+    1993,
+    2008
+  ],
+  "source_temporal_resolution": "7-day averaged gridded product",
+  "original_grid_degrees": 0.3333333333333333,
+  "analysis_interpolation_grid_degrees": 0.1,
+  "grid_interpolation_is_new_observation_resolution": false,
+  "velocity_component": "along_stream_parallel_to_diagnosed_axis",
+  "velocity_threshold_m_s": 0.1,
+  "section_orientation": "normal_to_diagnosed_jet_axis",
+  "boundary_definition": "P-Q distance normal to the jet axis, bounded by the 0.1 m/s along-stream cut-off; Figure 2.",
+  "averaging_order": "Stream-coordinate diagnostics including section width calculated every 7 days, then temporal and along-stream summaries; not width diagnosed from a seasonal mean velocity field.",
+  "averaging_weight_detail_resolved": false,
+  "spatial_scope": "East China Sea mainstream, East Taiwan Strait toward Tokara Strait; study along-stream analysis between 122 and 130 E. Does not include the entire Luzon-to-Japan Kuroshio or Kuroshio Extension.",
+  "season_month_membership_resolved": false,
+  "source_quality_note": "Weekly averaged and smoothed surface geostrophic product; ageostrophic flow is not included in the width diagnosis. Interpolation to 0.1 degree does not add independent observation resolution. Exact spatial/temporal weighting and season-to-month convention remain unresolved.",
+  "separate_context": {
+    "mean_width_from_alternate_ma_2009_product_km": 200,
+    "alternate_value_is_measurement_error": false,
+    "near_taiwan_seasonal_width_difference_km": 40,
+    "local_seasonal_tendency_reverses_near_kyushu": true,
+    "intrusive_current_longitude_reach_winter_autumn_km": 313,
+    "intrusive_current_longitude_reach_summer_spring_km": 269,
+    "intrusive_reach_is_mainstream_width": false,
+    "isobath_200m_is_fixed_measurement_depth": false,
+    "transport_vertical_assumptions_are_width_layer": false,
+    "core_position_std_is_width_uncertainty": false
+  },
+  "seasonal_map_geometry_extracted": false,
+  "full_four_season_curve_extracted": false,
+  "whole_current_width_km": null,
+  "annual_width_range_km": null,
+  "observed_period": null,
+  "section_geometry": null,
+  "fixed_layer_bounds_m": null,
+  "is_confidence_interval": false,
+  "width_rank_eligible": false,
+  "annual_extrema_eligible": false,
+  "seasonal_playback_eligible": false
+}

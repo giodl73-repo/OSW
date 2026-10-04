@@ -1,0 +1,162 @@
+{
+  "schema": "osw.current-reference-path-input.v1",
+  "current_id": "pacific-north-equatorial-countercurrent",
+  "name": "Pacific North Equatorial Countercurrent",
+  "status": "editorial_reference_path_candidate_not_scientifically_reviewed",
+  "geometry_role": "osw_editorial_reference_route",
+  "crs": "OGC:CRS84",
+  "scope": "Declared east-central Pacific study reach from 140 W to 95 W. Gates truncate a larger current; western Pacific inflow and coastal redistribution east of 95 W are excluded. Intermediate bends are editorial connections among section descriptions, not a reconstructed continuous axis or parcel trajectory.",
+  "layer": "Near-surface and upper-ocean eastward countercurrent; maxima can be slightly subsurface. Separate from equatorial EUC and deeper NSCC/Tsuchiya Jet; no uniform depth imposed.",
+  "time_convention": "Editorial connection of mean section descriptions from Johnson et al. (2002). Source ensemble June 1985 through December 2000; exact regional acquisition dates and a dated route axis are not extracted. Near 110 W the source reports no eastward surface expression in December-February and an August surface maximum; this line does not imply continuous year-round flow.",
+  "source_url": "https://www.pmel.noaa.gov/pubs/outstand/john2337/zonal_velocity.shtml",
+  "source_locator": "Section 3.1: 140 W near-surface core around 7 N, 125 W around 8 N, southward shift at 110 W and northward rebuilding at 95 W; section 3.2.3 separates seasonal surface expression near 110 W.",
+  "source_citation": "Johnson, Sloyan, Kessler and McTaggart (2002), Direct measurements of upper ocean currents and water properties across the tropical Pacific during the 1990s, Progress in Oceanography 52, 31-61, doi:10.1016/S0079-6611(02)00021-6.",
+  "source_license": "NOAA-hosted article states Elsevier copyright and prohibits further electronic distribution. Geographic facts paraphrased; source figures and CTD/ADCP fields not packaged.",
+  "source_retrieved_date": "2026-10-03",
+  "coordinate_selection": "OSW uses the published 140 W and 125 W section core neighborhoods, selects rounded 110 W 6 N and 95 W 7 N points to illustrate the reported southward then northward change, and inserts intermediate vertices. The latter latitudes and interpolating bends are editorial, not numeric positions extracted from the source. No current origin, termination, section width or dated axis asserted.",
+  "coordinates_lon_lat": [
+    [
+      -140,
+      7
+    ],
+    [
+      -132.5,
+      7.5
+    ],
+    [
+      -125,
+      8
+    ],
+    [
+      -117.5,
+      7
+    ],
+    [
+      -110,
+      6
+    ],
+    [
+      -102.5,
+      6.5
+    ],
+    [
+      -95,
+      7
+    ]
+  ],
+  "alternative_routes": [
+    {
+      "id": "northern_editorial_bend",
+      "coordinates_lon_lat": [
+        [
+          -140,
+          7
+        ],
+        [
+          -132.5,
+          8
+        ],
+        [
+          -125,
+          8.5
+        ],
+        [
+          -117.5,
+          7.5
+        ],
+        [
+          -110,
+          6.5
+        ],
+        [
+          -102.5,
+          7
+        ],
+        [
+          -95,
+          7
+        ]
+      ],
+      "interpretation": "OSW northward connection assumption, not a seasonal axis or width edge."
+    },
+    {
+      "id": "southern_editorial_bend",
+      "coordinates_lon_lat": [
+        [
+          -140,
+          7
+        ],
+        [
+          -132.5,
+          7
+        ],
+        [
+          -125,
+          7.5
+        ],
+        [
+          -117.5,
+          6.5
+        ],
+        [
+          -110,
+          5.5
+        ],
+        [
+          -102.5,
+          6
+        ],
+        [
+          -95,
+          7
+        ]
+      ],
+      "interpretation": "OSW southward connection assumption, not a seasonal axis or width edge."
+    }
+  ],
+  "longitude_offsets_degrees": [
+    -0.25,
+    0,
+    0.25
+  ],
+  "endpoint_latitude_offsets_degrees": [
+    -0.25,
+    0,
+    0.25
+  ],
+  "scenario_rule": "Three declared shapes crossed with uniform longitude offsets -0.25/0/+0.25 and independent endpoint-latitude offsets -0.25/0/+0.25 degrees: 81 editorial cases, not width bounds, seasonal extrema or confidence intervals.",
+  "report_rounding_km": 100,
+  "rank_eligible_published_estimates": false,
+  "candidate_comparison_group": "osw_studied_reach_routes",
+  "whole_system_length": false,
+  "remaining_gates": [
+    "Review editor-selected 110 W/95 W latitudes and interpolating continuity against compatible velocity fields.",
+    "Extract depth and month-specific axes before length or width seasonal ranges.",
+    "Keep weak or absent surface flow near 110 W separate from subsurface eastward flow; no annual continuous path inferred.",
+    "Resolve western inflow and coastal redistribution separately from this truncated studied reach."
+  ],
+  "map_view_box": [
+    195,
+    320,
+    245,
+    150
+  ],
+  "map_label_size": 3.3,
+  "legend_line_spacing": 5.8,
+  "map_symbol_scale": 1,
+  "endpoint_labels": [
+    "140 W section neighborhood",
+    "95 W study limit"
+  ],
+  "figure_source_label": "Johnson et al. (2002)",
+  "route_extent_kind": "140 W to 95 W study reach",
+  "supporting_sources": [
+    {
+      "url": "https://www.pmel.noaa.gov/pubs/outstand/john2337/data.shtml",
+      "citation": "Johnson et al. (2002), section 2, Data and fitting.",
+      "locator": "172 sections June 1985-December 2000, ten nominal longitude lines; ADCP mapping and annual-harmonic/SOI fitting.",
+      "role": "Sampling and transformation context; does not date the editorial route."
+    }
+  ],
+  "context_landmarks": []
+}

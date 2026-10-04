@@ -1,0 +1,979 @@
+{
+  "schema": "osw-ocean-state-closed-box-density-inventory-v1",
+  "status": "fixed_box_TEOS10_density_stratum_occupancy_not_transformation",
+  "source_family": "current_longhurst_geometry_2026-09-12_with_archived_oras5_2018_velocity",
+  "join_status": "not_joined_to_archived_2018_contents_or_boundary_accounts",
+  "selection": {
+    "path": "research/ocean-state-sant-closed-box-selection-current-geometry-v1.json",
+    "sha256": "f65e3adb8b99f47cfd30ee549838fdd653dc1e3500b465dfe1a3c5bd75da39a6",
+    "frozen_before_density_outcomes": true
+  },
+  "method": {
+    "equation_of_state": "TEOS-10 GSW 3.6.23",
+    "conversion": "SA_from_SP using local longitude, latitude, and pressure from reconstructed native T-cell midpoint depth; CT_from_pt; sigma0",
+    "numeric_strata_sigma0_kg_m3": [
+      {
+        "id": "below_26_5",
+        "lower_inclusive": null,
+        "upper_exclusive": 26.5
+      },
+      {
+        "id": "26_5_to_27_0",
+        "lower_inclusive": 26.5,
+        "upper_exclusive": 27.0
+      },
+      {
+        "id": "27_0_to_27_5",
+        "lower_inclusive": 27.0,
+        "upper_exclusive": 27.5
+      },
+      {
+        "id": "at_or_above_27_5",
+        "lower_inclusive": 27.5,
+        "upper_exclusive": null
+      }
+    ]
+  },
+  "sources": {
+    "mesh": {
+      "path": "atlas/data/oras5-drake-mesh.nc",
+      "sha256": "a575659f2249a60ce01ecfc71fc489d17f8476d1a41dfb116b25c349ddcb0824"
+    },
+    "t_metrics": {
+      "path": "atlas/data/oras5-drake-t-metrics.nc",
+      "sha256": "ea9f29023b7f507778e6b0b8dfd5fb564313d3cd9c68f32c55e0f0f8da11dfc5"
+    }
+  },
+  "partial_cell_fallback_count": 0,
+  "boxes": [
+    {
+      "box": "primary",
+      "months": [
+        {
+          "valid_time": "2018-02-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201802.nc",
+            "sha256": "caeb09b62d6c2508c5ae0331e7b81786893b7a533e185754a1cb3837dbe6802a"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201802.nc",
+            "sha256": "27c1a7f24ee9c6f5d6f6f4c6ce42f1950ea697cc7692ae7ebb902e120018de53"
+          },
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5025379445762.677,
+              "volume_fraction": 0.021833952,
+              "wet_cell_count": 5315
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36056936859034.91,
+              "volume_fraction": 0.156657904,
+              "wet_cell_count": 5106
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 189081217600117.7,
+              "volume_fraction": 0.821508144,
+              "wet_cell_count": 5317
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-05-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201805.nc",
+            "sha256": "7451a7028a604278e68bbbb0a4a4271c0396bcc0a8239e503ec77a6a07d84ce0"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201805.nc",
+            "sha256": "6b9db31a3403a2a448b1d90ad92f7d8ac621337160dff7483fd9f4623271d5ac"
+          },
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5565592203078.56,
+              "volume_fraction": 0.024181034,
+              "wet_cell_count": 5542
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 33638330752301.875,
+              "volume_fraction": 0.146149697,
+              "wet_cell_count": 4770
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 190959610949534.8,
+              "volume_fraction": 0.829669269,
+              "wet_cell_count": 5426
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-08-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201808.nc",
+            "sha256": "92a39a07152f7bb03479bad0b8e10910eb5302e5999c8ed300b25f7e61ead756"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201808.nc",
+            "sha256": "01362cc53d125e0230dbb2f134cd02e59f948f9e7eb77203be21f711a1c84a30"
+          },
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36308992545080.734,
+              "volume_fraction": 0.15775302,
+              "wet_cell_count": 10120
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 193854541359834.5,
+              "volume_fraction": 0.84224698,
+              "wet_cell_count": 5618
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-11-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201811.nc",
+            "sha256": "e37425194a8f311d699be8d94c9dd17c9ada8cc39fa84239f40466c7b94e05de"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201811.nc",
+            "sha256": "e7aed5f42295b0ce79ce8d6b5b0065f9dce5f08edbbc32afad03b46bdbfa3560"
+          },
+          "valid_volume_m3": 230163533904915.3,
+          "valid_wet_cell_count": 15738,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 672465085752.693,
+              "volume_fraction": 0.002921684,
+              "wet_cell_count": 1121
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36764419012066.14,
+              "volume_fraction": 0.159731728,
+              "wet_cell_count": 9054
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 192726649807096.44,
+              "volume_fraction": 0.837346588,
+              "wet_cell_count": 5563
+            }
+          ]
+        }
+      ],
+      "successive_endpoint_stratum_volume_differences": [
+        {
+          "from_valid_time": "2018-02-01/P1M",
+          "to_valid_time": "2018-05-01/P1M",
+          "stratum_volume_changes_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 540212757315.883
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -2418606106733.031
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 1878393349417.125
+            }
+          ],
+          "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
+        },
+        {
+          "from_valid_time": "2018-05-01/P1M",
+          "to_valid_time": "2018-08-01/P1M",
+          "stratum_volume_changes_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": -5565592203078.56
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 2670661792778.859
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 2894930410299.688
+            }
+          ],
+          "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
+        },
+        {
+          "from_valid_time": "2018-08-01/P1M",
+          "to_valid_time": "2018-11-01/P1M",
+          "stratum_volume_changes_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 672465085752.693
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 455426466985.406
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": -1127891552738.062
+            }
+          ],
+          "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
+        }
+      ]
+    },
+    {
+      "box": "north_control",
+      "months": [
+        {
+          "valid_time": "2018-02-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201802.nc",
+            "sha256": "caeb09b62d6c2508c5ae0331e7b81786893b7a533e185754a1cb3837dbe6802a"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201802.nc",
+            "sha256": "27c1a7f24ee9c6f5d6f6f4c6ce42f1950ea697cc7692ae7ebb902e120018de53"
+          },
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5050951900563.795,
+              "volume_fraction": 0.022347051,
+              "wet_cell_count": 5311
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36950175952066.47,
+              "volume_fraction": 0.163479576,
+              "wet_cell_count": 5150
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 184022065895929.28,
+              "volume_fraction": 0.814173372,
+              "wet_cell_count": 5167
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-05-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201805.nc",
+            "sha256": "7451a7028a604278e68bbbb0a4a4271c0396bcc0a8239e503ec77a6a07d84ce0"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201805.nc",
+            "sha256": "6b9db31a3403a2a448b1d90ad92f7d8ac621337160dff7483fd9f4623271d5ac"
+          },
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5602243247267.927,
+              "volume_fraction": 0.024786143,
+              "wet_cell_count": 5541
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 34422605743275.77,
+              "volume_fraction": 0.152296785,
+              "wet_cell_count": 4806
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 185998344758015.84,
+              "volume_fraction": 0.822917072,
+              "wet_cell_count": 5281
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-08-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201808.nc",
+            "sha256": "92a39a07152f7bb03479bad0b8e10910eb5302e5999c8ed300b25f7e61ead756"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201808.nc",
+            "sha256": "01362cc53d125e0230dbb2f134cd02e59f948f9e7eb77203be21f711a1c84a30"
+          },
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 37077926077282.016,
+              "volume_fraction": 0.164044784,
+              "wet_cell_count": 10154
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 188945267671277.53,
+              "volume_fraction": 0.835955216,
+              "wet_cell_count": 5474
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-11-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201811.nc",
+            "sha256": "e37425194a8f311d699be8d94c9dd17c9ada8cc39fa84239f40466c7b94e05de"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201811.nc",
+            "sha256": "e7aed5f42295b0ce79ce8d6b5b0065f9dce5f08edbbc32afad03b46bdbfa3560"
+          },
+          "valid_volume_m3": 226023193748559.56,
+          "valid_wet_cell_count": 15628,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 740448845635.075,
+              "volume_fraction": 0.003275986,
+              "wet_cell_count": 1167
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 37819665957111.66,
+              "volume_fraction": 0.167326482,
+              "wet_cell_count": 9067
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 187463078945812.8,
+              "volume_fraction": 0.829397531,
+              "wet_cell_count": 5394
+            }
+          ]
+        }
+      ],
+      "successive_endpoint_stratum_volume_differences": [
+        {
+          "from_valid_time": "2018-02-01/P1M",
+          "to_valid_time": "2018-05-01/P1M",
+          "stratum_volume_changes_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 551291346704.132
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -2527570208790.699
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 1976278862086.562
+            }
+          ],
+          "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
+        },
+        {
+          "from_valid_time": "2018-05-01/P1M",
+          "to_valid_time": "2018-08-01/P1M",
+          "stratum_volume_changes_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": -5602243247267.927
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 2655320334006.246
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 2946922913261.688
+            }
+          ],
+          "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
+        },
+        {
+          "from_valid_time": "2018-08-01/P1M",
+          "to_valid_time": "2018-11-01/P1M",
+          "stratum_volume_changes_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 740448845635.075
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 741739879829.641
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": -1482188725464.719
+            }
+          ],
+          "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
+        }
+      ]
+    },
+    {
+      "box": "south_control",
+      "months": [
+        {
+          "valid_time": "2018-02-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201802.nc",
+            "sha256": "caeb09b62d6c2508c5ae0331e7b81786893b7a533e185754a1cb3837dbe6802a"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201802.nc",
+            "sha256": "27c1a7f24ee9c6f5d6f6f4c6ce42f1950ea697cc7692ae7ebb902e120018de53"
+          },
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5002304325013.976,
+              "volume_fraction": 0.02143919,
+              "wet_cell_count": 5320
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 35100294730580.55,
+              "volume_fraction": 0.150435048,
+              "wet_cell_count": 5056
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 193222648461250.88,
+              "volume_fraction": 0.828125762,
+              "wet_cell_count": 5455
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-05-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201805.nc",
+            "sha256": "7451a7028a604278e68bbbb0a4a4271c0396bcc0a8239e503ec77a6a07d84ce0"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201805.nc",
+            "sha256": "6b9db31a3403a2a448b1d90ad92f7d8ac621337160dff7483fd9f4623271d5ac"
+          },
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5536978697358.184,
+              "volume_fraction": 0.023730731,
+              "wet_cell_count": 5546
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 32842273274282.93,
+              "volume_fraction": 0.140757477,
+              "wet_cell_count": 4729
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 194945995545204.3,
+              "volume_fraction": 0.835511791,
+              "wet_cell_count": 5556
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-08-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201808.nc",
+            "sha256": "92a39a07152f7bb03479bad0b8e10910eb5302e5999c8ed300b25f7e61ead756"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201808.nc",
+            "sha256": "01362cc53d125e0230dbb2f134cd02e59f948f9e7eb77203be21f711a1c84a30"
+          },
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 35576582637206.87,
+              "volume_fraction": 0.152476352,
+              "wet_cell_count": 10087
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 197748664879638.56,
+              "volume_fraction": 0.847523648,
+              "wet_cell_count": 5744
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-11-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201811.nc",
+            "sha256": "e37425194a8f311d699be8d94c9dd17c9ada8cc39fa84239f40466c7b94e05de"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201811.nc",
+            "sha256": "e7aed5f42295b0ce79ce8d6b5b0065f9dce5f08edbbc32afad03b46bdbfa3560"
+          },
+          "valid_volume_m3": 233325247516845.4,
+          "valid_wet_cell_count": 15831,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 625029694043.579,
+              "volume_fraction": 0.002678792,
+              "wet_cell_count": 1090
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 35742694953170.766,
+              "volume_fraction": 0.153188287,
+              "wet_cell_count": 9028
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 196957522869631.1,
+              "volume_fraction": 0.844132922,
+              "wet_cell_count": 5713
+            }
+          ]
+        }
+      ],
+      "successive_endpoint_stratum_volume_differences": [
+        {
+          "from_valid_time": "2018-02-01/P1M",
+          "to_valid_time": "2018-05-01/P1M",
+          "stratum_volume_changes_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 534674372344.208
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -2258021456297.621
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 1723347083953.438
+            }
+          ],
+          "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
+        },
+        {
+          "from_valid_time": "2018-05-01/P1M",
+          "to_valid_time": "2018-08-01/P1M",
+          "stratum_volume_changes_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": -5536978697358.184
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 2734309362923.938
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 2802669334434.25
+            }
+          ],
+          "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
+        },
+        {
+          "from_valid_time": "2018-08-01/P1M",
+          "to_valid_time": "2018-11-01/P1M",
+          "stratum_volume_changes_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 625029694043.579
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 166112315963.898
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": -791142010007.469
+            }
+          ],
+          "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
+        }
+      ]
+    },
+    {
+      "box": "east_control",
+      "months": [
+        {
+          "valid_time": "2018-02-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201802.nc",
+            "sha256": "caeb09b62d6c2508c5ae0331e7b81786893b7a533e185754a1cb3837dbe6802a"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201802.nc",
+            "sha256": "27c1a7f24ee9c6f5d6f6f4c6ce42f1950ea697cc7692ae7ebb902e120018de53"
+          },
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5031038154717.645,
+              "volume_fraction": 0.021661257,
+              "wet_cell_count": 5317
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 35301789937542.375,
+              "volume_fraction": 0.151992714,
+              "wet_cell_count": 5061
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 191926923722100.3,
+              "volume_fraction": 0.826346029,
+              "wet_cell_count": 5405
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-05-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201805.nc",
+            "sha256": "7451a7028a604278e68bbbb0a4a4271c0396bcc0a8239e503ec77a6a07d84ce0"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201805.nc",
+            "sha256": "6b9db31a3403a2a448b1d90ad92f7d8ac621337160dff7483fd9f4623271d5ac"
+          },
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 5564058506930.335,
+              "volume_fraction": 0.023956189,
+              "wet_cell_count": 5541
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 33129277642797.402,
+              "volume_fraction": 0.142638909,
+              "wet_cell_count": 4741
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 193566415664632.56,
+              "volume_fraction": 0.833404902,
+              "wet_cell_count": 5501
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-08-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201808.nc",
+            "sha256": "92a39a07152f7bb03479bad0b8e10910eb5302e5999c8ed300b25f7e61ead756"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201808.nc",
+            "sha256": "01362cc53d125e0230dbb2f134cd02e59f948f9e7eb77203be21f711a1c84a30"
+          },
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 35739938288363.3,
+              "volume_fraction": 0.153879172,
+              "wet_cell_count": 10086
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 196519813525997.03,
+              "volume_fraction": 0.846120828,
+              "wet_cell_count": 5697
+            }
+          ]
+        },
+        {
+          "valid_time": "2018-11-01/P1M",
+          "temperature_state": {
+            "path": "atlas/data/oras5-drake-state-201811.nc",
+            "sha256": "e37425194a8f311d699be8d94c9dd17c9ada8cc39fa84239f40466c7b94e05de"
+          },
+          "salinity_state": {
+            "path": "atlas/data/oras5-drake-salinity-current-geometry-201811.nc",
+            "sha256": "e7aed5f42295b0ce79ce8d6b5b0065f9dce5f08edbbc32afad03b46bdbfa3560"
+          },
+          "valid_volume_m3": 232259751814360.3,
+          "valid_wet_cell_count": 15783,
+          "strata": [
+            {
+              "id": "below_26_5",
+              "volume_m3": 0.0,
+              "volume_fraction": 0.0,
+              "wet_cell_count": 0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "volume_m3": 502016396412.99,
+              "volume_fraction": 0.002161444,
+              "wet_cell_count": 881
+            },
+            {
+              "id": "27_0_to_27_5",
+              "volume_m3": 36240528069576.516,
+              "volume_fraction": 0.156034473,
+              "wet_cell_count": 9251
+            },
+            {
+              "id": "at_or_above_27_5",
+              "volume_m3": 195517207348370.8,
+              "volume_fraction": 0.841804083,
+              "wet_cell_count": 5651
+            }
+          ]
+        }
+      ],
+      "successive_endpoint_stratum_volume_differences": [
+        {
+          "from_valid_time": "2018-02-01/P1M",
+          "to_valid_time": "2018-05-01/P1M",
+          "stratum_volume_changes_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 533020352212.69
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": -2172512294744.973
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 1639491942532.25
+            }
+          ],
+          "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
+        },
+        {
+          "from_valid_time": "2018-05-01/P1M",
+          "to_valid_time": "2018-08-01/P1M",
+          "stratum_volume_changes_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": -5564058506930.335
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 2610660645565.895
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": 2953397861364.469
+            }
+          ],
+          "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
+        },
+        {
+          "from_valid_time": "2018-08-01/P1M",
+          "to_valid_time": "2018-11-01/P1M",
+          "stratum_volume_changes_m3": [
+            {
+              "id": "below_26_5",
+              "change_m3": 0.0
+            },
+            {
+              "id": "26_5_to_27_0",
+              "change_m3": 502016396412.99
+            },
+            {
+              "id": "27_0_to_27_5",
+              "change_m3": 500589781213.219
+            },
+            {
+              "id": "at_or_above_27_5",
+              "change_m3": -1002606177626.219
+            }
+          ],
+          "boundary": "Difference in fixed density-bin occupancy between endpoint fields, not a class-volume flux or transformation rate."
+        }
+      ]
+    }
+  ],
+  "boundary": "The numerical strata are fixed analysis bins, not named water masses. Their volumes and endpoint differences do not establish class-volume flux, transformation, vertical transfer, mixing, convergence, or a closed budget. Such claims require matched density-class boundary fluxes, vertical/mixing terms, and compatible temporal support."
+}

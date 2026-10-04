@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Browse all 70 NASA Perpetual Ocean 2 regional movie crops with OSW state and motion object navigation.">
+  <title>NASA movie crop atlas — OSW</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="movies.js" defer></script>
+</head>
+<body>
+  <header><a class="mark" href="../">OSW</a><nav aria-label="Project"><a href="./">Motion almanac</a><a href="object.html">Object pages</a><a href="../atlas/?lens=flows">Atlas flows</a></nav></header>
+  <main>
+    <p class="eyebrow">Ocean motion atlas · NASA geographic navigation</p>
+    <h1>Perpetual Ocean movie crops</h1>
+    <p class="lead">Browse NASA's 70 regional movie views and jump from each view to OSW states and motion records in the same map area.</p>
+    <p class="footnote">This directory reads the <a href="release/v0.1.0-rights-screened-preview/README.md">rights-screened review export</a>. Source-use exclusions reduce linked motion records; all 70 NASA crop addresses remain available. Object links open the fuller research candidate, whose source-use review is still in progress.</p>
+    <p>The state links below measure overlap between NASA crop rectangles and approximate OSW state polygons on a flat display. They do not establish that NASA identified an OSW state, current, eddy, or physical crossing. Object links are geographic movie navigation only.</p>
+    <p class="footnote"><a href="https://svs.gsfc.nasa.gov/5505" target="_blank" rel="noopener noreferrer">NASA source and crop picker</a> · <a href="release/v0.1.0-rights-screened-preview/tiles.csv">70 crop records</a> · <a href="release/v0.1.0-rights-screened-preview/tile_state_relations.csv">State overlap decisions</a> · <a href="release/v0.1.0-rights-screened-preview/manifest.json">Screened preview manifest</a></p>
+    <section aria-labelledby="directory-title">
+      <div class="section-head"><div><p class="eyebrow">Movie directory</p><h2 id="directory-title">Find a crop</h2></div><span id="movie-count" class="count" role="status" aria-live="polite">Loading…</span></div>
+      <div class="current-controls">
+        <label class="search" for="movie-query">Crop ID or object name<input id="movie-query" type="search" autocomplete="off"></label>
+        <label class="search" for="movie-zoom">NASA crop zoom<select id="movie-zoom"><option value="all">All levels</option><option value="0">Level 0</option><option value="1">Level 1</option><option value="2">Level 2</option></select></label>
+        <label class="search" for="movie-state">OSW state<select id="movie-state"><option value="all">All states</option></select></label>
+      </div>
+      <div class="table-wrap"><table><caption>NASA movie crops and OSW geographic navigation links</caption><thead><tr><th scope="col">Crop</th><th scope="col">NASA movie</th><th scope="col">OSW states in crop</th><th scope="col">Motion record navigation</th></tr></thead><tbody id="movie-rows"></tbody></table></div>
+      <p id="movie-error" role="alert" hidden></p>
+    </section>
+  </main>
+  <footer>OSW ocean motion atlas · rights-screened preview of candidate v0.1.0 · NASA media hosted by NASA</footer>
+</body>
+</html>

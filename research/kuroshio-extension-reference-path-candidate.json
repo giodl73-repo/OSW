@@ -1,0 +1,1143 @@
+{
+  "schema": "osw.current-reference-path-input.v1",
+  "current_id": "kuroshio-extension",
+  "name": "Kuroshio Extension",
+  "status": "editorial_reference_path_candidate_not_scientifically_reviewed",
+  "geometry_role": "osw_editorial_reference_route",
+  "crs": "OGC:CRS84",
+  "scope": "NOAA glossary Kuroshio Extension extent from approximately 145 to 160 degrees E, upstream of its separately named North Pacific Current. This naming convention is not a universal termination rule for all Kuroshio Extension literature; excludes the coastal Kuroshio, recirculation gyres and downstream North Pacific extent.",
+  "layer": "Upper-ocean regional flow geography; no diagnosed depth-specific jet axis.",
+  "time_convention": "Undated editorial route under NOAA glossary naming limits; not a synoptic jet or time-averaged observed axis.",
+  "source_url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
+  "source_locator": "Kuroshio Extension entry: eastward continuation between approximate 145 and 160 degrees E. North Pacific Current entry names the next component separately.",
+  "source_citation": "NOAA Center for Operational Oceanographic Products and Services, Tides and Currents Glossary, Kuroshio Extension entry (accessed 2026-10-02).",
+  "source_license": "Factual geography only; no source curves, map imagery or velocity field packaged.",
+  "coordinate_selection": "NOAA supplies approximate longitudes and eastward identity; OSW selects latitudes and intermediate vertices. These routes are broad editorial corridors, not diagnosed meandering axes or source-reported latitude limits.",
+  "coordinates_lon_lat": [
+    [
+      145,
+      35
+    ],
+    [
+      150,
+      35
+    ],
+    [
+      155,
+      36
+    ],
+    [
+      160,
+      37
+    ]
+  ],
+  "alternative_routes": [
+    {
+      "id": "southern_corridor",
+      "coordinates_lon_lat": [
+        [
+          145,
+          33
+        ],
+        [
+          150,
+          34
+        ],
+        [
+          155,
+          34
+        ],
+        [
+          160,
+          35
+        ]
+      ],
+      "interpretation": "OSW southern corridor sensitivity; not a source-published current axis."
+    },
+    {
+      "id": "northern_corridor",
+      "coordinates_lon_lat": [
+        [
+          145,
+          37
+        ],
+        [
+          150,
+          38
+        ],
+        [
+          155,
+          38
+        ],
+        [
+          160,
+          39
+        ]
+      ],
+      "interpretation": "OSW northern corridor sensitivity; not a source-published current axis."
+    }
+  ],
+  "scenario_rule": "Three latitude corridor choices with independent endpoint longitude shifts (-1/0/+1 degrees): nine gate combinations per corridor, 27 editorial scenarios. Longitudes vary around approximate glossary limits; no empirical error distribution implied.",
+  "longitude_offsets_degrees": [
+    0
+  ],
+  "endpoint_latitude_offsets_degrees": [
+    0
+  ],
+  "start_longitude_offsets_degrees": [
+    -1,
+    0,
+    1
+  ],
+  "end_longitude_offsets_degrees": [
+    -1,
+    0,
+    1
+  ],
+  "report_rounding_km": 100,
+  "rank_eligible_published_estimates": false,
+  "candidate_comparison_group": "osw_approximate_reference_routes",
+  "remaining_gates": [
+    "Scientific review of source-specific naming limits and distinct instantaneous jet states.",
+    "Compare corridors against reproducible upper-ocean velocity or front geometry; assess omitted meanders.",
+    "Canonical admission and publication review; do not conflate this extent with the coastal Kuroshio's published length."
+  ],
+  "map_view_box": [
+    1330,
+    245,
+    150,
+    130
+  ],
+  "endpoint_labels": [
+    "145°E glossary gate",
+    "160°E glossary gate"
+  ],
+  "figure_source_label": "NOAA currents glossary",
+  "route_extent_kind": "NOAA Kuroshio Extension extent",
+  "whole_system_length": false,
+  "source_retrieved_date": "2026-10-02",
+  "input_sha256": "3a9f27d23cee4bc1e0677f4301d16c28c856ca0af712deb7a5b6734f79c9c922",
+  "generator_file": "analysis/build_current_reference_path_candidate.py",
+  "generator_sha256": "1362693ec7075e014d065691923248db455a5c3cd78c9a94880b3b472594d240",
+  "method": "Sum shortest WGS84 geodesic distances between successive OSW editorial vertices; no velocity field or current core is reconstructed.",
+  "nominal_reference_path_km": 1384.781,
+  "reported_approximate_reference_path_km": 1400,
+  "scenario_range_km": [
+    1175.903,
+    1592.245
+  ],
+  "reported_scenario_range_km": [
+    1100,
+    1600
+  ],
+  "scenario_count": 27,
+  "scenarios": [
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": -1,
+      "end_longitude_offset_degrees": -1,
+      "coordinates_lon_lat": [
+        [
+          144,
+          35
+        ],
+        [
+          150,
+          35
+        ],
+        [
+          155,
+          36
+        ],
+        [
+          159,
+          37
+        ]
+      ],
+      "length_km": 1389.719,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": -1,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          144,
+          35
+        ],
+        [
+          150,
+          35
+        ],
+        [
+          155,
+          36
+        ],
+        [
+          160,
+          37
+        ]
+      ],
+      "length_km": 1476.035,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": -1,
+      "end_longitude_offset_degrees": 1,
+      "coordinates_lon_lat": [
+        [
+          144,
+          35
+        ],
+        [
+          150,
+          35
+        ],
+        [
+          155,
+          36
+        ],
+        [
+          161,
+          37
+        ]
+      ],
+      "length_km": 1563.381,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": -1,
+      "coordinates_lon_lat": [
+        [
+          145,
+          35
+        ],
+        [
+          150,
+          35
+        ],
+        [
+          155,
+          36
+        ],
+        [
+          159,
+          37
+        ]
+      ],
+      "length_km": 1298.465,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          145,
+          35
+        ],
+        [
+          150,
+          35
+        ],
+        [
+          155,
+          36
+        ],
+        [
+          160,
+          37
+        ]
+      ],
+      "length_km": 1384.781,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 1,
+      "coordinates_lon_lat": [
+        [
+          145,
+          35
+        ],
+        [
+          150,
+          35
+        ],
+        [
+          155,
+          36
+        ],
+        [
+          161,
+          37
+        ]
+      ],
+      "length_km": 1472.128,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 1,
+      "end_longitude_offset_degrees": -1,
+      "coordinates_lon_lat": [
+        [
+          146,
+          35
+        ],
+        [
+          150,
+          35
+        ],
+        [
+          155,
+          36
+        ],
+        [
+          159,
+          37
+        ]
+      ],
+      "length_km": 1207.2,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 1,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          146,
+          35
+        ],
+        [
+          150,
+          35
+        ],
+        [
+          155,
+          36
+        ],
+        [
+          160,
+          37
+        ]
+      ],
+      "length_km": 1293.517,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 1,
+      "end_longitude_offset_degrees": 1,
+      "coordinates_lon_lat": [
+        [
+          146,
+          35
+        ],
+        [
+          150,
+          35
+        ],
+        [
+          155,
+          36
+        ],
+        [
+          161,
+          37
+        ]
+      ],
+      "length_km": 1380.863,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "southern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": -1,
+      "end_longitude_offset_degrees": -1,
+      "coordinates_lon_lat": [
+        [
+          144,
+          33
+        ],
+        [
+          150,
+          34
+        ],
+        [
+          155,
+          34
+        ],
+        [
+          159,
+          35
+        ]
+      ],
+      "length_km": 1413.956,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "southern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": -1,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          144,
+          33
+        ],
+        [
+          150,
+          34
+        ],
+        [
+          155,
+          34
+        ],
+        [
+          160,
+          35
+        ]
+      ],
+      "length_km": 1502.596,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "southern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": -1,
+      "end_longitude_offset_degrees": 1,
+      "coordinates_lon_lat": [
+        [
+          144,
+          33
+        ],
+        [
+          150,
+          34
+        ],
+        [
+          155,
+          34
+        ],
+        [
+          161,
+          35
+        ]
+      ],
+      "length_km": 1592.245,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "southern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": -1,
+      "coordinates_lon_lat": [
+        [
+          145,
+          33
+        ],
+        [
+          150,
+          34
+        ],
+        [
+          155,
+          34
+        ],
+        [
+          159,
+          35
+        ]
+      ],
+      "length_km": 1323.199,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "southern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          145,
+          33
+        ],
+        [
+          150,
+          34
+        ],
+        [
+          155,
+          34
+        ],
+        [
+          160,
+          35
+        ]
+      ],
+      "length_km": 1411.839,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "southern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 1,
+      "coordinates_lon_lat": [
+        [
+          145,
+          33
+        ],
+        [
+          150,
+          34
+        ],
+        [
+          155,
+          34
+        ],
+        [
+          161,
+          35
+        ]
+      ],
+      "length_km": 1501.488,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "southern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 1,
+      "end_longitude_offset_degrees": -1,
+      "coordinates_lon_lat": [
+        [
+          146,
+          33
+        ],
+        [
+          150,
+          34
+        ],
+        [
+          155,
+          34
+        ],
+        [
+          159,
+          35
+        ]
+      ],
+      "length_km": 1233.441,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "southern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 1,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          146,
+          33
+        ],
+        [
+          150,
+          34
+        ],
+        [
+          155,
+          34
+        ],
+        [
+          160,
+          35
+        ]
+      ],
+      "length_km": 1322.081,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "southern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 1,
+      "end_longitude_offset_degrees": 1,
+      "coordinates_lon_lat": [
+        [
+          146,
+          33
+        ],
+        [
+          150,
+          34
+        ],
+        [
+          155,
+          34
+        ],
+        [
+          161,
+          35
+        ]
+      ],
+      "length_km": 1411.73,
+      "atlas_state_crossings": [
+        "KURO",
+        "NPSW"
+      ]
+    },
+    {
+      "route_variant_id": "northern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": -1,
+      "end_longitude_offset_degrees": -1,
+      "coordinates_lon_lat": [
+        [
+          144,
+          37
+        ],
+        [
+          150,
+          38
+        ],
+        [
+          155,
+          38
+        ],
+        [
+          159,
+          39
+        ]
+      ],
+      "length_km": 1347.165,
+      "atlas_state_crossings": [
+        "KURO",
+        "PSAW"
+      ]
+    },
+    {
+      "route_variant_id": "northern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": -1,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          144,
+          37
+        ],
+        [
+          150,
+          38
+        ],
+        [
+          155,
+          38
+        ],
+        [
+          160,
+          39
+        ]
+      ],
+      "length_km": 1431.041,
+      "atlas_state_crossings": [
+        "KURO",
+        "PSAW"
+      ]
+    },
+    {
+      "route_variant_id": "northern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": -1,
+      "end_longitude_offset_degrees": 1,
+      "coordinates_lon_lat": [
+        [
+          144,
+          37
+        ],
+        [
+          150,
+          38
+        ],
+        [
+          155,
+          38
+        ],
+        [
+          161,
+          39
+        ]
+      ],
+      "length_km": 1515.969,
+      "atlas_state_crossings": [
+        "KURO",
+        "PSAW"
+      ]
+    },
+    {
+      "route_variant_id": "northern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": -1,
+      "coordinates_lon_lat": [
+        [
+          145,
+          37
+        ],
+        [
+          150,
+          38
+        ],
+        [
+          155,
+          38
+        ],
+        [
+          159,
+          39
+        ]
+      ],
+      "length_km": 1261.013,
+      "atlas_state_crossings": [
+        "KURO",
+        "PSAW"
+      ]
+    },
+    {
+      "route_variant_id": "northern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          145,
+          37
+        ],
+        [
+          150,
+          38
+        ],
+        [
+          155,
+          38
+        ],
+        [
+          160,
+          39
+        ]
+      ],
+      "length_km": 1344.889,
+      "atlas_state_crossings": [
+        "KURO",
+        "PSAW"
+      ]
+    },
+    {
+      "route_variant_id": "northern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 1,
+      "coordinates_lon_lat": [
+        [
+          145,
+          37
+        ],
+        [
+          150,
+          38
+        ],
+        [
+          155,
+          38
+        ],
+        [
+          161,
+          39
+        ]
+      ],
+      "length_km": 1429.818,
+      "atlas_state_crossings": [
+        "KURO",
+        "PSAW"
+      ]
+    },
+    {
+      "route_variant_id": "northern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 1,
+      "end_longitude_offset_degrees": -1,
+      "coordinates_lon_lat": [
+        [
+          146,
+          37
+        ],
+        [
+          150,
+          38
+        ],
+        [
+          155,
+          38
+        ],
+        [
+          159,
+          39
+        ]
+      ],
+      "length_km": 1175.903,
+      "atlas_state_crossings": [
+        "KURO",
+        "PSAW"
+      ]
+    },
+    {
+      "route_variant_id": "northern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 1,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          146,
+          37
+        ],
+        [
+          150,
+          38
+        ],
+        [
+          155,
+          38
+        ],
+        [
+          160,
+          39
+        ]
+      ],
+      "length_km": 1259.779,
+      "atlas_state_crossings": [
+        "KURO",
+        "PSAW"
+      ]
+    },
+    {
+      "route_variant_id": "northern_corridor",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 1,
+      "end_longitude_offset_degrees": 1,
+      "coordinates_lon_lat": [
+        [
+          146,
+          37
+        ],
+        [
+          150,
+          38
+        ],
+        [
+          155,
+          38
+        ],
+        [
+          161,
+          39
+        ]
+      ],
+      "length_km": 1344.707,
+      "atlas_state_crossings": [
+        "KURO",
+        "PSAW"
+      ]
+    }
+  ],
+  "map_land_check": "All 27 routes, geodesically densified at spacing no greater than 10 km, avoid the coarse OSW atlas land mask in display coordinates. This is not a shelf-break, reef, bathymetric or high-resolution land-clearance verification.",
+  "state_relation_role": "Editorial line/display-region crossing; physical current passage unresolved.",
+  "atlas_map_sha256": "5999bbad0e49209b2609a20a52a3e6310aa749224b574cb2f6cbcac0e68db032",
+  "nominal_atlas_state_crossings": [
+    "KURO",
+    "NPSW"
+  ],
+  "nasa_movie_context": [
+    {
+      "tile_id": "level2_G_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_G_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_G_3",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_G_3.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_F_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_F_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 0.665841,
+      "scenario_display_route_fraction_range": [
+        0.600667,
+        0.730505
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_F_3",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_F_3.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 0.665841,
+      "scenario_display_route_fraction_range": [
+        0.600667,
+        0.730505
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_H_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_H_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 0.334159,
+      "scenario_display_route_fraction_range": [
+        0.269495,
+        0.399333
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_H_3",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_H_3.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 0.334159,
+      "scenario_display_route_fraction_range": [
+        0.269495,
+        0.399333
+      ],
+      "complete_display_route_in_all_scenarios": false,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level1_C_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_C_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level1_C_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_C_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level1_D_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_D_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level1_D_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_D_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level0_A_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level0_A_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 0,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level0_B_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level0_B_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 0,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    }
+  ],
+  "nasa_tiles_sha256": "52c6605c32e59f50aa4abde984489c7055c0e3e201e7323e30160a623c9666e0",
+  "recommended_nasa_tile_id": "level2_G_2",
+  "nasa_crop_recommendation_rule": "Highest zoom crop covering the entire display route in every retained scenario, with tile ID as deterministic tie-break. No physical identification asserted.",
+  "input_file": "research/kuroshio-extension-reference-path-input.json",
+  "figure": "figures/kuroshio-extension-reference-path-candidate.svg"
+}

@@ -1,0 +1,124 @@
+{
+  "schema": "osw.almanac.motion-taxonomy.v1",
+  "status": "OSW editorial crosswalk; not an official oceanographic standard",
+  "parent_registry": "ocean-object-classification.csv",
+  "nasa_motion_forms": "research/nasa-perpetual-ocean-motion-forms.json",
+  "scope": "Facets for named motion records. Object type, identity level, geographic setting, time behavior, and evidence are separate axes; a name alone does not establish a measured boundary or live track.",
+  "sources": {
+    "cmecs": "https://iocm.noaa.gov/cmecs/documents/CMECS-Classifiers-20140619.pdf",
+    "noaa_currents": "https://oceanservice.noaa.gov/education/tutorial_currents/",
+    "meta4": "https://essd.copernicus.org/articles/18/7043/2026/",
+    "nasa": "https://svs.gsfc.nasa.gov/5425"
+  },
+  "axes": {
+    "object_type": {
+      "current": "Organized advective flow; crosswalk OBJ017.",
+      "boundary_current": "Current following an ocean basin margin; crosswalk OBJ019.",
+      "eddy": "Rotating, finite-lived flow structure; crosswalk OBJ021.",
+      "ring": "Eddy detached from a parent current; crosswalk OBJ022."
+    },
+    "motion_form": {
+      "definition": "Primary physical form of an identified NASA record, separate from NASA naming support and from the identity level of any individual feature.",
+      "vocabulary": "research/nasa-perpetual-ocean-motion-forms.json",
+      "applies_to": "All records in research/nasa-perpetual-ocean-objects.json"
+    },
+    "identity_level": {
+      "family": "Shared name used for related flows in more than one basin; split before measuring.",
+      "system": "A named circulation system that can contain branches or segments.",
+      "current": "One named current with a source-dependent upstream and downstream extent.",
+      "segment": "Named part or continuation of a larger current system.",
+      "eddy_family": "A named class of related eddies, such as Agulhas Rings; individual members need separate dated identities.",
+      "recurrent_eddy_region": "A geographic name reused for eddies forming or persisting in a region; not one dated individual or trajectory.",
+      "individual_eddy": "A particular named eddy, separate from its type, region, and trajectory ID.",
+      "dated_detection": "A feature designated by one provider in one dated receipt; no historical-name equivalence, formation time, lifetime, or continuity across dates is established."
+    },
+    "setting": {
+      "western_boundary": "Along the western edge of an ocean basin.",
+      "eastern_boundary": "Along the eastern edge of an ocean basin.",
+      "polar_or_subpolar_margin": "High-latitude margin; boundary side needs case-specific evidence.",
+      "coastal_or_shelf": "Coastal or shelf-following flow without a claimed basin-boundary class.",
+      "equatorial": "Equatorial or tropical zonal flow; basin-specific records may be needed.",
+      "circumpolar": "Circulation that passes around Antarctica.",
+      "basin_interior_or_extension": "Open-ocean pathway or named downstream continuation.",
+      "regional": "Named regional flow whose finer setting has not been established here.",
+      "gulf_of_mexico": "Regional locator for named Loop Current rings; not an eddy centroid."
+    },
+    "time_behavior": {
+      "persistent_variable": "Recognizable over years, with a shifting path and strength.",
+      "seasonal": "Strongly seasonal expression.",
+      "seasonally_reversing": "Direction changes with the seasonal circulation.",
+      "transient": "A finite-lived individual event.",
+      "recurrent": "A named regional eddy form appears repeatedly or quasi-persistently; individual generations need dated IDs.",
+      "unresolved": "The naming source does not establish a temporal class."
+    },
+    "vertical_setting": {
+      "surface_expression": "A named flow with a documented surface expression; its core may extend below the surface.",
+      "subsurface_core": "A named flow whose defining core is below the surface; a geographic movie tile alone does not verify it visually.",
+      "deep_flow": "A named flow primarily at deep or bottom depths; surface views are not evidence for its position.",
+      "unresolved": "The source does not establish a depth setting."
+    },
+    "polarity": {
+      "cyclonic": "Rotation in the local cyclonic sense; requires detection or source evidence.",
+      "anticyclonic": "Rotation in the local anticyclonic sense; requires detection or source evidence.",
+      "unresolved": "Not inferred from a name, map symbol, or core temperature."
+    },
+    "core_thermal_sign": {
+      "warm": "Warmer core relative to nearby water, in a specified observation product.",
+      "cold": "Colder core relative to nearby water, in a specified observation product.",
+      "unresolved": "Polarity and temperature are independent claims."
+    },
+    "location_evidence": {
+      "editorial_locator": "Approximate place to find the named flow on an atlas; no boundary or centroid claim.",
+      "source_region_only": "Source supports the region, not a position for the individual eddy.",
+      "observed_track": "Dated positions from a named observation or tracking product."
+    }
+  },
+  "admission_rules": [
+    "Keep official source terms and OSW editorial labels distinguishable.",
+    "Every individual eddy needs a naming source; a track ID needs its own product and identifier.",
+    "Do not infer eddy polarity, core temperature, footprint, or live status from a name.",
+    "Do not use a locator point to calculate a current length or claim an eddy position.",
+    "A video showing particles is not a feature boundary or a global name register."
+  ],
+  "source_scoped_regime_vocabularies": [
+    {
+      "id": "classification_vocabulary:thompson-2018-antarctic-shelf-regimes",
+      "entity_id": "current:antarctic-slope",
+      "label": "Antarctic shelf/slope hydrographic regimes (Thompson et al., 2018)",
+      "source_url": "https://doi.org/10.1029/2018RG000624",
+      "source_locator": "Section 2 introductory classification paragraphs; sections 2.1-2.3",
+      "scope": "Regional shelf/slope hydrographic regimes in this review, not a whole-current permanent class or global eddy taxonomy",
+      "terms": [
+        {
+          "id": "fresh_shelf",
+          "source_label": "Fresh Shelf",
+          "criterion_summary": "Layers with neutral density gamma_n greater than 28.0 (source-reported kg/m3 scale) do not extend onto the shelf."
+        },
+        {
+          "id": "dense_shelf",
+          "source_label": "Dense Shelf",
+          "criterion_summary": "Water with neutral density gamma_n greater than 28.0 (source-reported kg/m3 scale) occupies the shelf, which stays relatively cold with convection and dense-water formation."
+        },
+        {
+          "id": "warm_shelf",
+          "source_label": "Warm Shelf",
+          "criterion_summary": "Water with neutral density gamma_n greater than 28.0 reaches the shelf without dense-water formation; shelf water exceeds 0.5 degrees Celsius at some shelf depth."
+        }
+      ],
+      "assignment_status": "vocabulary_only_no_osw_state_assignments",
+      "assignments": [],
+      "density_variable_note": "Thresholds refer to the source's neutral-density variable gamma_n in its conventional reported units, not an absolute seawater mass density of 28 kg/m3.",
+      "assignment_requirements": [
+        "Source-supported regional/time/depth support",
+        "Compatible hydrographic fields",
+        "Explicit unknown or mixed regime where support is insufficient"
+      ],
+      "not_equivalent_to": [
+        "eddy_core_thermal_sign",
+        "surface_temperature_only",
+        "permanent_state_property"
+      ],
+      "method": "OSW paraphrase of the cited source classification; criteria describe regional hydrographic support, not observed assignments or automatic surface-image classification"
+    }
+  ]
+}

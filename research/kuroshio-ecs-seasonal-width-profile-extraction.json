@@ -1,0 +1,1282 @@
+{
+  "schema": "osw.current-seasonal-width-profile-plot-extraction.v1",
+  "current_id": "kuroshio",
+  "as_of": "2026-10-04",
+  "status": "editorial_plot_extraction_scientific_review_pending",
+  "source_pdf_file": "research/source-data/kuroshio-liu-gan-2012/journal-article.pdf",
+  "source_pdf_sha256": "a452007ff7f3b0051f811ba8172e9ae7932642ed1916a29c779db6335772203b",
+  "source_image_rgb_sha256": "52bf9bfcea7c4f91e5f651b6849ec0459d0546440321127c9d7a22e8edf8993a",
+  "source_url": "https://www.sciencedirect.com/science/article/pii/S0967063711001968",
+  "source_citation": "Liu and Gan (2012), Variability of the Kuroshio in the East China Sea derived from satellite altimetry data, Deep-Sea Research I 59, 25-36, doi:10.1016/j.dsr.2011.10.008.",
+  "source_locator": "Figure 6a, printed page 30; method section 2.2, page 26; seasonal prose section 3.2, page 29.",
+  "config_file": "research/source-data/kuroshio-liu-gan-2012/figure6a-extraction.json",
+  "config_sha256": "ec9ce9bf6857aa5ec257d9ff202586dee7940c73ced3caff9720d24eaded9f2a",
+  "protocol_file": "plans/kuroshio-seasonal-width-profile-extraction-protocol-v1.md",
+  "protocol_sha256": "269b2397f87a4fe156f36b0618916d4ebb90b21308f9e5caaffae2d4a3c9694e",
+  "extraction_runtime": {
+    "pymupdf": "1.28.2",
+    "numpy": "2.4.1"
+  },
+  "scope_audit_file": "research/kuroshio-liu-gan-2012-stream-mean-width-scope-audit.json",
+  "scope_audit_sha256": "607924d8b2f54393fcb150bd29b6e08f5abc99616e72b9142f879a17ded83fcd",
+  "generator_sha256": "d9ceefe48579008b78b4b2b4f75836072ae82f777fcdcb340d1aa03ec69fa6df",
+  "study_period_years": [
+    1993,
+    2008
+  ],
+  "width_metric": "seasonal_mean_diagnosed_axis_normal_0.1m_s_threshold_span",
+  "velocity_threshold_m_s": 0.1,
+  "averaging_order": "Stream-coordinate diagnostics including section width calculated every 7 days, then temporal and along-stream summaries; not width diagnosed from a seasonal mean velocity field.",
+  "source_quality_note": "Weekly averaged and smoothed surface geostrophic product; ageostrophic flow is not included in the width diagnosis. Interpolation to 0.1 degree does not add independent observation resolution. Exact spatial/temporal weighting and season-to-month convention remain unresolved.",
+  "season_month_membership_resolved": false,
+  "averaging_weight_detail_resolved": false,
+  "seasons": [
+    {
+      "id": "kuroshio-ecs-winter-width-profile",
+      "label": "winter",
+      "samples": [
+        {
+          "longitude_degrees_east": 122.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 195,
+          "raw_plot_width_km": 196.57142857142856,
+          "plot_reading_interval_km": [
+            185,
+            205
+          ],
+          "tick_x_pixel": 92.4375,
+          "sample_x_pixel": 92,
+          "selected_y_median_pixel": 147.5,
+          "selected_y_band_pixels": [
+            147,
+            148
+          ],
+          "selected_dark_or_color_pixel_count": 2,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 123,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 220,
+          "raw_plot_width_km": 219.04761904761904,
+          "plot_reading_interval_km": [
+            210,
+            230
+          ],
+          "tick_x_pixel": 115.875,
+          "sample_x_pixel": 116,
+          "selected_y_median_pixel": 118.0,
+          "selected_y_band_pixels": [
+            115,
+            121
+          ],
+          "selected_dark_or_color_pixel_count": 15,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 123.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 235,
+          "raw_plot_width_km": 233.14285714285714,
+          "plot_reading_interval_km": [
+            225,
+            245
+          ],
+          "tick_x_pixel": 139.3125,
+          "sample_x_pixel": 139,
+          "selected_y_median_pixel": 99.5,
+          "selected_y_band_pixels": [
+            98,
+            101
+          ],
+          "selected_dark_or_color_pixel_count": 12,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 124,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 240,
+          "raw_plot_width_km": 237.71428571428572,
+          "plot_reading_interval_km": [
+            230,
+            250
+          ],
+          "tick_x_pixel": 162.75,
+          "sample_x_pixel": 163,
+          "selected_y_median_pixel": 93.5,
+          "selected_y_band_pixels": [
+            92,
+            95
+          ],
+          "selected_dark_or_color_pixel_count": 10,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 124.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 245,
+          "raw_plot_width_km": 246.47619047619048,
+          "plot_reading_interval_km": [
+            235,
+            255
+          ],
+          "tick_x_pixel": 186.1875,
+          "sample_x_pixel": 186,
+          "selected_y_median_pixel": 82.0,
+          "selected_y_band_pixels": [
+            81,
+            83
+          ],
+          "selected_dark_or_color_pixel_count": 9,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 125,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 255,
+          "raw_plot_width_km": 252.57142857142858,
+          "plot_reading_interval_km": [
+            245,
+            265
+          ],
+          "tick_x_pixel": 209.625,
+          "sample_x_pixel": 210,
+          "selected_y_median_pixel": 74.0,
+          "selected_y_band_pixels": [
+            72,
+            76
+          ],
+          "selected_dark_or_color_pixel_count": 12,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 125.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 255,
+          "raw_plot_width_km": 254.85714285714286,
+          "plot_reading_interval_km": [
+            245,
+            265
+          ],
+          "tick_x_pixel": 233.0625,
+          "sample_x_pixel": 233,
+          "selected_y_median_pixel": 71.0,
+          "selected_y_band_pixels": [
+            69,
+            72
+          ],
+          "selected_dark_or_color_pixel_count": 9,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 126,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 250,
+          "raw_plot_width_km": 248.0,
+          "plot_reading_interval_km": [
+            240,
+            260
+          ],
+          "tick_x_pixel": 256.5,
+          "sample_x_pixel": 256,
+          "selected_y_median_pixel": 80.0,
+          "selected_y_band_pixels": [
+            77,
+            84
+          ],
+          "selected_dark_or_color_pixel_count": 16,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 126.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 225,
+          "raw_plot_width_km": 225.14285714285714,
+          "plot_reading_interval_km": [
+            215,
+            235
+          ],
+          "tick_x_pixel": 279.9375,
+          "sample_x_pixel": 280,
+          "selected_y_median_pixel": 110.0,
+          "selected_y_band_pixels": [
+            108,
+            112
+          ],
+          "selected_dark_or_color_pixel_count": 10,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 127,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 210,
+          "raw_plot_width_km": 211.04761904761904,
+          "plot_reading_interval_km": [
+            200,
+            220
+          ],
+          "tick_x_pixel": 303.375,
+          "sample_x_pixel": 303,
+          "selected_y_median_pixel": 128.5,
+          "selected_y_band_pixels": [
+            127,
+            130
+          ],
+          "selected_dark_or_color_pixel_count": 10,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 127.5,
+          "status": "unresolved_color_occlusion_or_ambiguity",
+          "approximate_width_km": null,
+          "raw_plot_width_km": null,
+          "plot_reading_interval_km": null,
+          "tick_x_pixel": 326.8125,
+          "sample_x_pixel": 327,
+          "selected_y_median_pixel": null,
+          "selected_y_band_pixels": null,
+          "selected_dark_or_color_pixel_count": 0,
+          "candidate_band_count": 0
+        },
+        {
+          "longitude_degrees_east": 128,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 225,
+          "raw_plot_width_km": 226.28571428571428,
+          "plot_reading_interval_km": [
+            215,
+            235
+          ],
+          "tick_x_pixel": 350.25,
+          "sample_x_pixel": 350,
+          "selected_y_median_pixel": 108.5,
+          "selected_y_band_pixels": [
+            106,
+            111
+          ],
+          "selected_dark_or_color_pixel_count": 12,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 128.5,
+          "status": "unresolved_color_occlusion_or_ambiguity",
+          "approximate_width_km": null,
+          "raw_plot_width_km": null,
+          "plot_reading_interval_km": null,
+          "tick_x_pixel": 373.6875,
+          "sample_x_pixel": 374,
+          "selected_y_median_pixel": null,
+          "selected_y_band_pixels": null,
+          "selected_dark_or_color_pixel_count": 0,
+          "candidate_band_count": 0
+        },
+        {
+          "longitude_degrees_east": 129,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 190,
+          "raw_plot_width_km": 192.0,
+          "plot_reading_interval_km": [
+            180,
+            200
+          ],
+          "tick_x_pixel": 397.125,
+          "sample_x_pixel": 397,
+          "selected_y_median_pixel": 153.5,
+          "selected_y_band_pixels": [
+            153,
+            154
+          ],
+          "selected_dark_or_color_pixel_count": 4,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 129.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 180,
+          "raw_plot_width_km": 180.95238095238096,
+          "plot_reading_interval_km": [
+            170,
+            190
+          ],
+          "tick_x_pixel": 420.5625,
+          "sample_x_pixel": 421,
+          "selected_y_median_pixel": 168.0,
+          "selected_y_band_pixels": [
+            167,
+            169
+          ],
+          "selected_dark_or_color_pixel_count": 9,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 129.9,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 185,
+          "raw_plot_width_km": 184.76190476190476,
+          "plot_reading_interval_km": [
+            175,
+            195
+          ],
+          "tick_x_pixel": 439.3125000000003,
+          "sample_x_pixel": 439,
+          "selected_y_median_pixel": 163.0,
+          "selected_y_band_pixels": [
+            162,
+            164
+          ],
+          "selected_dark_or_color_pixel_count": 4,
+          "candidate_band_count": 1
+        }
+      ],
+      "resolved_samples": 14,
+      "regional_mean_width_km": null,
+      "calendar_months": null,
+      "geographic_edge_coordinates": null
+    },
+    {
+      "id": "kuroshio-ecs-spring-width-profile",
+      "label": "spring",
+      "samples": [
+        {
+          "longitude_degrees_east": 122.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 195,
+          "raw_plot_width_km": 194.66666666666669,
+          "plot_reading_interval_km": [
+            185,
+            205
+          ],
+          "tick_x_pixel": 92.4375,
+          "sample_x_pixel": 92,
+          "selected_y_median_pixel": 150.0,
+          "selected_y_band_pixels": [
+            147,
+            153
+          ],
+          "selected_dark_or_color_pixel_count": 14,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 123,
+          "status": "unresolved_color_occlusion_or_ambiguity",
+          "approximate_width_km": null,
+          "raw_plot_width_km": null,
+          "plot_reading_interval_km": null,
+          "tick_x_pixel": 115.875,
+          "sample_x_pixel": 116,
+          "selected_y_median_pixel": null,
+          "selected_y_band_pixels": null,
+          "selected_dark_or_color_pixel_count": 0,
+          "candidate_band_count": 0
+        },
+        {
+          "longitude_degrees_east": 123.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 220,
+          "raw_plot_width_km": 218.28571428571428,
+          "plot_reading_interval_km": [
+            210,
+            230
+          ],
+          "tick_x_pixel": 139.3125,
+          "sample_x_pixel": 139,
+          "selected_y_median_pixel": 119.0,
+          "selected_y_band_pixels": [
+            117,
+            120
+          ],
+          "selected_dark_or_color_pixel_count": 10,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 124,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 220,
+          "raw_plot_width_km": 221.33333333333334,
+          "plot_reading_interval_km": [
+            210,
+            230
+          ],
+          "tick_x_pixel": 162.75,
+          "sample_x_pixel": 163,
+          "selected_y_median_pixel": 115.0,
+          "selected_y_band_pixels": [
+            114,
+            116
+          ],
+          "selected_dark_or_color_pixel_count": 9,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 124.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 230,
+          "raw_plot_width_km": 228.95238095238096,
+          "plot_reading_interval_km": [
+            220,
+            240
+          ],
+          "tick_x_pixel": 186.1875,
+          "sample_x_pixel": 186,
+          "selected_y_median_pixel": 105.0,
+          "selected_y_band_pixels": [
+            103,
+            106
+          ],
+          "selected_dark_or_color_pixel_count": 10,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 125,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 235,
+          "raw_plot_width_km": 235.8095238095238,
+          "plot_reading_interval_km": [
+            225,
+            245
+          ],
+          "tick_x_pixel": 209.625,
+          "sample_x_pixel": 210,
+          "selected_y_median_pixel": 96.0,
+          "selected_y_band_pixels": [
+            94,
+            98
+          ],
+          "selected_dark_or_color_pixel_count": 12,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 125.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 240,
+          "raw_plot_width_km": 241.14285714285714,
+          "plot_reading_interval_km": [
+            230,
+            250
+          ],
+          "tick_x_pixel": 233.0625,
+          "sample_x_pixel": 233,
+          "selected_y_median_pixel": 89.0,
+          "selected_y_band_pixels": [
+            88,
+            90
+          ],
+          "selected_dark_or_color_pixel_count": 9,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 126,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 225,
+          "raw_plot_width_km": 223.61904761904762,
+          "plot_reading_interval_km": [
+            215,
+            235
+          ],
+          "tick_x_pixel": 256.5,
+          "sample_x_pixel": 256,
+          "selected_y_median_pixel": 112.0,
+          "selected_y_band_pixels": [
+            109,
+            115
+          ],
+          "selected_dark_or_color_pixel_count": 16,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 126.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 215,
+          "raw_plot_width_km": 214.47619047619048,
+          "plot_reading_interval_km": [
+            205,
+            225
+          ],
+          "tick_x_pixel": 279.9375,
+          "sample_x_pixel": 280,
+          "selected_y_median_pixel": 124.0,
+          "selected_y_band_pixels": [
+            122,
+            126
+          ],
+          "selected_dark_or_color_pixel_count": 13,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 127,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 220,
+          "raw_plot_width_km": 217.52380952380952,
+          "plot_reading_interval_km": [
+            210,
+            230
+          ],
+          "tick_x_pixel": 303.375,
+          "sample_x_pixel": 303,
+          "selected_y_median_pixel": 120.0,
+          "selected_y_band_pixels": [
+            117,
+            123
+          ],
+          "selected_dark_or_color_pixel_count": 14,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 127.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 240,
+          "raw_plot_width_km": 239.61904761904762,
+          "plot_reading_interval_km": [
+            230,
+            250
+          ],
+          "tick_x_pixel": 326.8125,
+          "sample_x_pixel": 327,
+          "selected_y_median_pixel": 91.0,
+          "selected_y_band_pixels": [
+            88,
+            94
+          ],
+          "selected_dark_or_color_pixel_count": 13,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 128,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 240,
+          "raw_plot_width_km": 238.0952380952381,
+          "plot_reading_interval_km": [
+            230,
+            250
+          ],
+          "tick_x_pixel": 350.25,
+          "sample_x_pixel": 350,
+          "selected_y_median_pixel": 93.0,
+          "selected_y_band_pixels": [
+            90,
+            96
+          ],
+          "selected_dark_or_color_pixel_count": 15,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 128.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 210,
+          "raw_plot_width_km": 210.66666666666669,
+          "plot_reading_interval_km": [
+            200,
+            220
+          ],
+          "tick_x_pixel": 373.6875,
+          "sample_x_pixel": 374,
+          "selected_y_median_pixel": 129.0,
+          "selected_y_band_pixels": [
+            124,
+            133
+          ],
+          "selected_dark_or_color_pixel_count": 20,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 129,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 185,
+          "raw_plot_width_km": 185.52380952380952,
+          "plot_reading_interval_km": [
+            175,
+            195
+          ],
+          "tick_x_pixel": 397.125,
+          "sample_x_pixel": 397,
+          "selected_y_median_pixel": 162.0,
+          "selected_y_band_pixels": [
+            159,
+            165
+          ],
+          "selected_dark_or_color_pixel_count": 15,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 129.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 175,
+          "raw_plot_width_km": 175.61904761904762,
+          "plot_reading_interval_km": [
+            165,
+            185
+          ],
+          "tick_x_pixel": 420.5625,
+          "sample_x_pixel": 421,
+          "selected_y_median_pixel": 175.0,
+          "selected_y_band_pixels": [
+            174,
+            176
+          ],
+          "selected_dark_or_color_pixel_count": 8,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 129.9,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 180,
+          "raw_plot_width_km": 182.47619047619048,
+          "plot_reading_interval_km": [
+            170,
+            190
+          ],
+          "tick_x_pixel": 439.3125000000003,
+          "sample_x_pixel": 439,
+          "selected_y_median_pixel": 166.0,
+          "selected_y_band_pixels": [
+            163,
+            169
+          ],
+          "selected_dark_or_color_pixel_count": 13,
+          "candidate_band_count": 1
+        }
+      ],
+      "resolved_samples": 15,
+      "regional_mean_width_km": null,
+      "calendar_months": null,
+      "geographic_edge_coordinates": null
+    },
+    {
+      "id": "kuroshio-ecs-summer-width-profile",
+      "label": "summer",
+      "samples": [
+        {
+          "longitude_degrees_east": 122.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 190,
+          "raw_plot_width_km": 190.0952380952381,
+          "plot_reading_interval_km": [
+            180,
+            200
+          ],
+          "tick_x_pixel": 92.4375,
+          "sample_x_pixel": 92,
+          "selected_y_median_pixel": 156.0,
+          "selected_y_band_pixels": [
+            152,
+            161
+          ],
+          "selected_dark_or_color_pixel_count": 17,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 123,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 215,
+          "raw_plot_width_km": 215.23809523809524,
+          "plot_reading_interval_km": [
+            205,
+            225
+          ],
+          "tick_x_pixel": 115.875,
+          "sample_x_pixel": 116,
+          "selected_y_median_pixel": 123.0,
+          "selected_y_band_pixels": [
+            120,
+            126
+          ],
+          "selected_dark_or_color_pixel_count": 15,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 123.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 210,
+          "raw_plot_width_km": 211.8095238095238,
+          "plot_reading_interval_km": [
+            200,
+            220
+          ],
+          "tick_x_pixel": 139.3125,
+          "sample_x_pixel": 139,
+          "selected_y_median_pixel": 127.5,
+          "selected_y_band_pixels": [
+            126,
+            129
+          ],
+          "selected_dark_or_color_pixel_count": 10,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 124,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 205,
+          "raw_plot_width_km": 204.57142857142856,
+          "plot_reading_interval_km": [
+            195,
+            215
+          ],
+          "tick_x_pixel": 162.75,
+          "sample_x_pixel": 163,
+          "selected_y_median_pixel": 137.0,
+          "selected_y_band_pixels": [
+            136,
+            138
+          ],
+          "selected_dark_or_color_pixel_count": 9,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 124.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 205,
+          "raw_plot_width_km": 204.57142857142856,
+          "plot_reading_interval_km": [
+            195,
+            215
+          ],
+          "tick_x_pixel": 186.1875,
+          "sample_x_pixel": 186,
+          "selected_y_median_pixel": 137.0,
+          "selected_y_band_pixels": [
+            136,
+            138
+          ],
+          "selected_dark_or_color_pixel_count": 9,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 125,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 215,
+          "raw_plot_width_km": 214.47619047619048,
+          "plot_reading_interval_km": [
+            205,
+            225
+          ],
+          "tick_x_pixel": 209.625,
+          "sample_x_pixel": 210,
+          "selected_y_median_pixel": 124.0,
+          "selected_y_band_pixels": [
+            121,
+            126
+          ],
+          "selected_dark_or_color_pixel_count": 14,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 125.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 225,
+          "raw_plot_width_km": 223.61904761904762,
+          "plot_reading_interval_km": [
+            215,
+            235
+          ],
+          "tick_x_pixel": 233.0625,
+          "sample_x_pixel": 233,
+          "selected_y_median_pixel": 112.0,
+          "selected_y_band_pixels": [
+            111,
+            114
+          ],
+          "selected_dark_or_color_pixel_count": 11,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 126,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 220,
+          "raw_plot_width_km": 218.28571428571428,
+          "plot_reading_interval_km": [
+            210,
+            230
+          ],
+          "tick_x_pixel": 256.5,
+          "sample_x_pixel": 256,
+          "selected_y_median_pixel": 119.0,
+          "selected_y_band_pixels": [
+            117,
+            122
+          ],
+          "selected_dark_or_color_pixel_count": 12,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 126.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 205,
+          "raw_plot_width_km": 205.33333333333331,
+          "plot_reading_interval_km": [
+            195,
+            215
+          ],
+          "tick_x_pixel": 279.9375,
+          "sample_x_pixel": 280,
+          "selected_y_median_pixel": 136.0,
+          "selected_y_band_pixels": [
+            135,
+            137
+          ],
+          "selected_dark_or_color_pixel_count": 9,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 127,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 205,
+          "raw_plot_width_km": 203.04761904761904,
+          "plot_reading_interval_km": [
+            195,
+            215
+          ],
+          "tick_x_pixel": 303.375,
+          "sample_x_pixel": 303,
+          "selected_y_median_pixel": 139.0,
+          "selected_y_band_pixels": [
+            138,
+            140
+          ],
+          "selected_dark_or_color_pixel_count": 9,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 127.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 225,
+          "raw_plot_width_km": 227.04761904761904,
+          "plot_reading_interval_km": [
+            215,
+            235
+          ],
+          "tick_x_pixel": 326.8125,
+          "sample_x_pixel": 327,
+          "selected_y_median_pixel": 107.5,
+          "selected_y_band_pixels": [
+            102,
+            114
+          ],
+          "selected_dark_or_color_pixel_count": 24,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 128,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 245,
+          "raw_plot_width_km": 247.23809523809524,
+          "plot_reading_interval_km": [
+            235,
+            255
+          ],
+          "tick_x_pixel": 350.25,
+          "sample_x_pixel": 350,
+          "selected_y_median_pixel": 81.0,
+          "selected_y_band_pixels": [
+            79,
+            83
+          ],
+          "selected_dark_or_color_pixel_count": 13,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 128.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 225,
+          "raw_plot_width_km": 225.14285714285714,
+          "plot_reading_interval_km": [
+            215,
+            235
+          ],
+          "tick_x_pixel": 373.6875,
+          "sample_x_pixel": 374,
+          "selected_y_median_pixel": 110.0,
+          "selected_y_band_pixels": [
+            107,
+            113
+          ],
+          "selected_dark_or_color_pixel_count": 13,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 129,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 200,
+          "raw_plot_width_km": 200.76190476190476,
+          "plot_reading_interval_km": [
+            190,
+            210
+          ],
+          "tick_x_pixel": 397.125,
+          "sample_x_pixel": 397,
+          "selected_y_median_pixel": 142.0,
+          "selected_y_band_pixels": [
+            139,
+            145
+          ],
+          "selected_dark_or_color_pixel_count": 13,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 129.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 185,
+          "raw_plot_width_km": 184.0,
+          "plot_reading_interval_km": [
+            175,
+            195
+          ],
+          "tick_x_pixel": 420.5625,
+          "sample_x_pixel": 421,
+          "selected_y_median_pixel": 164.0,
+          "selected_y_band_pixels": [
+            162,
+            165
+          ],
+          "selected_dark_or_color_pixel_count": 10,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 129.9,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 185,
+          "raw_plot_width_km": 187.04761904761904,
+          "plot_reading_interval_km": [
+            175,
+            195
+          ],
+          "tick_x_pixel": 439.3125000000003,
+          "sample_x_pixel": 439,
+          "selected_y_median_pixel": 160.0,
+          "selected_y_band_pixels": [
+            158,
+            162
+          ],
+          "selected_dark_or_color_pixel_count": 10,
+          "candidate_band_count": 1
+        }
+      ],
+      "resolved_samples": 16,
+      "regional_mean_width_km": null,
+      "calendar_months": null,
+      "geographic_edge_coordinates": null
+    },
+    {
+      "id": "kuroshio-ecs-autumn-width-profile",
+      "label": "autumn",
+      "samples": [
+        {
+          "longitude_degrees_east": 122.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 180,
+          "raw_plot_width_km": 181.71428571428572,
+          "plot_reading_interval_km": [
+            170,
+            190
+          ],
+          "tick_x_pixel": 92.4375,
+          "sample_x_pixel": 92,
+          "selected_y_median_pixel": 167.0,
+          "selected_y_band_pixels": [
+            164,
+            171
+          ],
+          "selected_dark_or_color_pixel_count": 14,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 123,
+          "status": "unresolved_color_occlusion_or_ambiguity",
+          "approximate_width_km": null,
+          "raw_plot_width_km": null,
+          "plot_reading_interval_km": null,
+          "tick_x_pixel": 115.875,
+          "sample_x_pixel": 116,
+          "selected_y_median_pixel": null,
+          "selected_y_band_pixels": null,
+          "selected_dark_or_color_pixel_count": 0,
+          "candidate_band_count": 2
+        },
+        {
+          "longitude_degrees_east": 123.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 225,
+          "raw_plot_width_km": 224.0,
+          "plot_reading_interval_km": [
+            215,
+            235
+          ],
+          "tick_x_pixel": 139.3125,
+          "sample_x_pixel": 139,
+          "selected_y_median_pixel": 111.5,
+          "selected_y_band_pixels": [
+            110,
+            113
+          ],
+          "selected_dark_or_color_pixel_count": 12,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 124,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 225,
+          "raw_plot_width_km": 224.0,
+          "plot_reading_interval_km": [
+            215,
+            235
+          ],
+          "tick_x_pixel": 162.75,
+          "sample_x_pixel": 163,
+          "selected_y_median_pixel": 111.5,
+          "selected_y_band_pixels": [
+            110,
+            113
+          ],
+          "selected_dark_or_color_pixel_count": 12,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 124.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 220,
+          "raw_plot_width_km": 221.71428571428572,
+          "plot_reading_interval_km": [
+            210,
+            230
+          ],
+          "tick_x_pixel": 186.1875,
+          "sample_x_pixel": 186,
+          "selected_y_median_pixel": 114.5,
+          "selected_y_band_pixels": [
+            113,
+            116
+          ],
+          "selected_dark_or_color_pixel_count": 8,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 125,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 230,
+          "raw_plot_width_km": 231.23809523809524,
+          "plot_reading_interval_km": [
+            220,
+            240
+          ],
+          "tick_x_pixel": 209.625,
+          "sample_x_pixel": 210,
+          "selected_y_median_pixel": 102.0,
+          "selected_y_band_pixels": [
+            100,
+            104
+          ],
+          "selected_dark_or_color_pixel_count": 10,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 125.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 245,
+          "raw_plot_width_km": 246.0952380952381,
+          "plot_reading_interval_km": [
+            235,
+            255
+          ],
+          "tick_x_pixel": 233.0625,
+          "sample_x_pixel": 233,
+          "selected_y_median_pixel": 82.5,
+          "selected_y_band_pixels": [
+            81,
+            84
+          ],
+          "selected_dark_or_color_pixel_count": 10,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 126,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 230,
+          "raw_plot_width_km": 232.0,
+          "plot_reading_interval_km": [
+            220,
+            240
+          ],
+          "tick_x_pixel": 256.5,
+          "sample_x_pixel": 256,
+          "selected_y_median_pixel": 101.0,
+          "selected_y_band_pixels": [
+            99,
+            103
+          ],
+          "selected_dark_or_color_pixel_count": 12,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 126.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 220,
+          "raw_plot_width_km": 219.8095238095238,
+          "plot_reading_interval_km": [
+            210,
+            230
+          ],
+          "tick_x_pixel": 279.9375,
+          "sample_x_pixel": 280,
+          "selected_y_median_pixel": 117.0,
+          "selected_y_band_pixels": [
+            116,
+            119
+          ],
+          "selected_dark_or_color_pixel_count": 11,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 127,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 210,
+          "raw_plot_width_km": 208.38095238095238,
+          "plot_reading_interval_km": [
+            200,
+            220
+          ],
+          "tick_x_pixel": 303.375,
+          "sample_x_pixel": 303,
+          "selected_y_median_pixel": 132.0,
+          "selected_y_band_pixels": [
+            131,
+            133
+          ],
+          "selected_dark_or_color_pixel_count": 7,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 127.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 215,
+          "raw_plot_width_km": 216.0,
+          "plot_reading_interval_km": [
+            205,
+            225
+          ],
+          "tick_x_pixel": 326.8125,
+          "sample_x_pixel": 327,
+          "selected_y_median_pixel": 122.0,
+          "selected_y_band_pixels": [
+            120,
+            124
+          ],
+          "selected_dark_or_color_pixel_count": 9,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 128,
+          "status": "unresolved_color_occlusion_or_ambiguity",
+          "approximate_width_km": null,
+          "raw_plot_width_km": null,
+          "plot_reading_interval_km": null,
+          "tick_x_pixel": 350.25,
+          "sample_x_pixel": 350,
+          "selected_y_median_pixel": null,
+          "selected_y_band_pixels": null,
+          "selected_dark_or_color_pixel_count": 0,
+          "candidate_band_count": 2
+        },
+        {
+          "longitude_degrees_east": 128.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 205,
+          "raw_plot_width_km": 206.0952380952381,
+          "plot_reading_interval_km": [
+            195,
+            215
+          ],
+          "tick_x_pixel": 373.6875,
+          "sample_x_pixel": 374,
+          "selected_y_median_pixel": 135.0,
+          "selected_y_band_pixels": [
+            133,
+            137
+          ],
+          "selected_dark_or_color_pixel_count": 11,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 129,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 190,
+          "raw_plot_width_km": 190.0952380952381,
+          "plot_reading_interval_km": [
+            180,
+            200
+          ],
+          "tick_x_pixel": 397.125,
+          "sample_x_pixel": 397,
+          "selected_y_median_pixel": 156.0,
+          "selected_y_band_pixels": [
+            154,
+            158
+          ],
+          "selected_dark_or_color_pixel_count": 10,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 129.5,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 180,
+          "raw_plot_width_km": 177.9047619047619,
+          "plot_reading_interval_km": [
+            170,
+            190
+          ],
+          "tick_x_pixel": 420.5625,
+          "sample_x_pixel": 421,
+          "selected_y_median_pixel": 172.0,
+          "selected_y_band_pixels": [
+            171,
+            173
+          ],
+          "selected_dark_or_color_pixel_count": 7,
+          "candidate_band_count": 1
+        },
+        {
+          "longitude_degrees_east": 129.9,
+          "status": "resolved_plot_reading",
+          "approximate_width_km": 175,
+          "raw_plot_width_km": 175.61904761904762,
+          "plot_reading_interval_km": [
+            165,
+            185
+          ],
+          "tick_x_pixel": 439.3125000000003,
+          "sample_x_pixel": 439,
+          "selected_y_median_pixel": 175.0,
+          "selected_y_band_pixels": [
+            174,
+            177
+          ],
+          "selected_dark_or_color_pixel_count": 9,
+          "candidate_band_count": 1
+        }
+      ],
+      "resolved_samples": 14,
+      "regional_mean_width_km": null,
+      "calendar_months": null,
+      "geographic_edge_coordinates": null
+    }
+  ],
+  "reading_margin_km": 10,
+  "rounding_km": 5,
+  "reading_interval_kind": "editorial_plot_reading_allowance_not_measurement_uncertainty",
+  "regional_prose_measurement_ids": [
+    "kuroshio-ecs-winter-stream-mean-width",
+    "kuroshio-ecs-summer-stream-mean-width",
+    "kuroshio-ecs-period-stream-mean-width"
+  ],
+  "chart_playback_eligible": true,
+  "geographic_playback_eligible": false,
+  "whole_current_representative": false,
+  "width_rank_eligible": false,
+  "is_confidence_interval": false,
+  "annual_extrema_eligible": false,
+  "seasonal_playback_eligible": false,
+  "whole_current_width_km": null,
+  "annual_width_range_km": null,
+  "section_geometry": null,
+  "fixed_layer_bounds_m": null,
+  "observed_period": null,
+  "scope_note": "Sparse readings along regional seasonal profiles. Missing pixels stay missing; these samples do not supply geographic edges, spring/autumn regional means, full-current dimensions or annual physical extrema."
+}

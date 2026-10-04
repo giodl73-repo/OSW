@@ -1,0 +1,13 @@
+# Kuroshio seasonal width profile extraction v1
+
+Editorial raster readings of Liu and Gan (2012), Figure 6a (printed page 30).
+
+1. Pin published PDF, image object 112 and native 960 by 574 RGB pixels. Figure 6a alone supplies width; the other panels are velocity/transport.
+2. Calibrate x=69..444 to 122..130 degrees east and y=38..248 to 280..120 km. Record source tick calibration and decoded raster checksum. Latitude and geographic edge coordinates are not supplied by this panel.
+3. Sample 16 declared longitudes from 122.5 to 129.9 E. Leave the 122 E endpoint under the legend and 130 E plot border unsampled. Use a three-column strip, y=40..213, outside the legend. Preserve missing samples where a source curve is hidden by other curves.
+4. Source colors identify winter (blue), spring (green), summer (red) and autumn (black). RGB thresholds are pinned in the configuration. Within a strip, use the most populated contiguous y band with at least two matching pixels. More than one such band is unresolved, rather than a median across incompatible curves.
+5. Convert selected-pixel median with the calibrated axes; round display to 5 km. Use a conservative +/-10 km editorial reading allowance covering pixel calibration, compression, line thickness, x-strip selection and rounding. This is not source uncertainty, a confidence interval or physical variability. Missing curves get null width, no zero or interpolation.
+6. Preserve original product, diagnosed-axis-normal 0.1 m/s cutoff, weekly diagnosis before averaging, 1993-2008 study period and unresolved season-month membership/averaging weights. The source profiles are temporal seasonal summaries along the East China Sea stream, not one occupied section or a measured annual full-current field.
+7. Keep source winter 218 km, summer 207 km and study-period 210 km regional prose means separate. Do not average the sparse profile readings to invent spring/autumn regional means, replace prose claims, infer maxima along unsampled portions, or create a seasonal length/width ranking.
+8. The card can explicitly step through four recorded seasonal profile views, stopping in autumn. Show every sample and reading allowance in a table. No calendar interpolation, year wrapping or map-width buffers. No geographic seasonal geometry is extracted.
+9. Figure 5 is raster-only and its four axes overlap at native resolution. Do not treat recovered color pixels as four complete geographic routes. Seasonal map geometry requires a separate source-coordinate extraction and review. Regeneration uses the pinned local source without downloads.

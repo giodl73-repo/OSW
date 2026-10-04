@@ -1,0 +1,65 @@
+{
+  "schema": "osw.current-naming-scope-audit.v1",
+  "status": "editorial_naming_and_seasonal_evidence_review_not_canonical_admission",
+  "source_retrieved_date": "2026-10-03",
+  "current_ids": [
+    "norwegian",
+    "norwegian-coastal"
+  ],
+  "decision": "Keep Norwegian Coastal Current route separate; unresolved broad Norwegian Current name is not merged with the coastal or Atlantic flow.",
+  "evidence": [
+    {
+      "url": "https://tidesandcurrents.noaa.gov/glossary.html",
+      "citation": "NOAA Tides and Currents glossary",
+      "locator": "Norwegian Current entry",
+      "supports": "Broad northeastward flow off Norway; lacks water-mass, branch and endpoint details sufficient for alias resolution."
+    },
+    {
+      "url": "https://gmd.copernicus.org/articles/19/2785/2026/",
+      "citation": "Christensen et al. (2026), Norkyst version 3, doi:10.5194/gmd-19-2785-2026",
+      "locator": "Section 1 Introduction",
+      "supports": "Explicitly distinguishes warm saline Norwegian Atlantic Current and mixed/fresher Norwegian Coastal Current, with coastal flow from Skagerrak into Barents Sea."
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2011JC006996",
+      "citation": "Skagseth, Drinkwater and Terrile (2011), doi:10.1029/2011JC006996",
+      "locator": "Introduction paragraphs 3-7; section 3 paragraph 12/Figures 4-5; section 5 paragraph 24",
+      "supports": "Ingoy convergence and slope/offshore branches; winter coastal water narrower/deeper and summer wider/shallower. Local section and transport-support widths are not uniform route width."
+    }
+  ],
+  "route_candidate_file": "research/norwegian-coastal-reference-path-candidate.json",
+  "source_water_origin_not_route_start": "The 2011 paper uses Baltic entrance to Skagerrak as freshwater origin. OSW route starts on the Norwegian coastal approach and excludes Baltic source-water travel.",
+  "branch_policy": "Slope/offshore components near Ingoy do not establish separate globally inventoried current identities; no new alias or branch entity admitted.",
+  "seasonal_support": {
+    "status": "qualitative_seasonal_structure_present_numeric_comparable_width_pair_unresolved",
+    "winter": "Deeper and more coast-confined coastal waters.",
+    "summer": "Shallower and farther offshore coastal waters.",
+    "source_local_seasons": {
+      "winter": "DJF 2007-2008 in Figure 4",
+      "summer": "JAS 2007 in Figure 5"
+    },
+    "calendar_warning": "ADCP velocity table uses JFM/AMJ/JAS/OND; do not substitute these for hydrographic Figure 4 DJF.",
+    "numeric_widths_not_admitted": [
+      "Less-than-100 km winter coastal-water confinement is an upper bound on water-mass extent, not exact matched velocity width.",
+      "Approximately 100 km by 300 m in discussion paragraph 24 is a cross-section approximation supporting baroclinic transport error analysis, not representative full-route width.",
+      "15 km continental-slope width in paragraph 7 is bathymetric, not measured current width."
+    ],
+    "annual_length_range_km": null,
+    "annual_width_range_km": null,
+    "seasonal_playback_eligible": false
+  },
+  "future_animation_data_path": {
+    "url": "https://gmd.copernicus.org/articles/19/2785/2026/",
+    "locator": "Sections 5 and Code and data availability",
+    "next_action": "Acquire within-month temporal support and treat tides; define water-mass/velocity boundaries before width inference. Expand spatial fields and validate geometry before occupied-current maps.",
+    "admission_status": "Twelve 2024 hourly 10 m hindcast subsets acquired and validated for synchronized regional field-map and section animation; no current boundary, width, length or state footprint admission.",
+    "section_timeline_file": "research/norkyst-ingoy-2024-section-timeline.json",
+    "page": "almanac/norkyst-section.html",
+    "regional_map_frames_file": "research/norkyst-ingoy-2024-map-frames.json"
+  },
+  "remaining_gates": [
+    "Resolve broad Norwegian Current usage from physical/source conventions.",
+    "Verify coastal-water path and coarse shoreline with bathymetry/fine coast.",
+    "Extract compatible repeated transverse sections before numeric season/annual claims."
+  ]
+}

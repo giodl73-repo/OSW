@@ -1,0 +1,141 @@
+{
+  "schema": "osw.current-reference-path-input.v1",
+  "current_id": "south-atlantic",
+  "name": "South Atlantic Current",
+  "status": "editorial_reference_path_candidate_not_scientifically_reviewed",
+  "geometry_role": "osw_editorial_reference_route",
+  "crs": "OGC:CRS84",
+  "scope": "Declared western intermediate-depth SAC reference reach from a 40 W, 39 S current-center context gate to the 16 W, 43 S Mid-Atlantic Ridge float-reach context gate. Excludes upstream Brazil/Falkland confluence paths, unresolved eastern-basin continuation and recirculation. Not a complete current or a digitized float trajectory.",
+  "layer": "Intermediate/Antarctic Intermediate Water context from subsurface floats; no velocity core, exact isopycnal or uniform-depth axis reconstructed. Surface STF geography does not replace this layer scope.",
+  "time_convention": "Study observations span December 1992–October 1996; selected route is an editorial geographic reach, not a time-mean axis, dated trajectory or seasonal curve.",
+  "source_url": "https://www.aoml.noaa.gov/phod/docs/boebel_et_al1999a.pdf",
+  "source_locator": "Section 3.5, journal pp. 381–383 / PDF pp. 27–29: current center near 40 W, 39 S; easternmost RAFOS reach near 43 S, 16 W; large meanders and possible SAC/ACC exchange. Figure 11 is context only, not digitized.",
+  "source_citation": "Boebel, Schmid and Zenk (1999), Kinematic elements of Antarctic Intermediate Water in the western South Atlantic, Deep-Sea Research II 46, 355–392, doi:10.1016/S0967-0645(98)00104-0.",
+  "source_license": "Elsevier article all rights reserved; cited factual anchor locations only. No source figure, curve, velocity field or float data copied.",
+  "source_retrieved_date": "2026-10-03",
+  "coordinate_selection": "Source provides two approximate geographic anchors with different support: current-center description and farthest float reach. OSW connects them with coarse offshore waypoints and declares alternative shapes. These points do not define the whole SAC endpoints, one parcel path, uniform-depth core or measured meander length.",
+  "coordinates_lon_lat": [
+    [
+      -40,
+      -39
+    ],
+    [
+      -35,
+      -40
+    ],
+    [
+      -30,
+      -41
+    ],
+    [
+      -25,
+      -42
+    ],
+    [
+      -20,
+      -42.5
+    ],
+    [
+      -16,
+      -43
+    ]
+  ],
+  "alternative_routes": [
+    {
+      "id": "less_southern_reach",
+      "coordinates_lon_lat": [
+        [
+          -40,
+          -39
+        ],
+        [
+          -35,
+          -39
+        ],
+        [
+          -30,
+          -39.5
+        ],
+        [
+          -25,
+          -40
+        ],
+        [
+          -20,
+          -41
+        ],
+        [
+          -16,
+          -43
+        ]
+      ],
+      "interpretation": "Alternative editorial bend between the same source anchors; not observed seasonal contraction."
+    },
+    {
+      "id": "more_southern_reach",
+      "coordinates_lon_lat": [
+        [
+          -40,
+          -39
+        ],
+        [
+          -35,
+          -42
+        ],
+        [
+          -30,
+          -44
+        ],
+        [
+          -25,
+          -44
+        ],
+        [
+          -20,
+          -43.5
+        ],
+        [
+          -16,
+          -43
+        ]
+      ],
+      "interpretation": "Alternative editorial bend between the same source anchors; not a reconstruction of documented large meanders."
+    }
+  ],
+  "longitude_offsets_degrees": [
+    -0.5,
+    0,
+    0.5
+  ],
+  "endpoint_latitude_offsets_degrees": [
+    -1,
+    0,
+    1
+  ],
+  "scenario_rule": "Three declared reach shapes crossed with uniform longitude shifts -0.5/0/+0.5 degrees and independent endpoint latitude shifts -1/0/+1 degrees: 81 editorial sensitivity scenarios, not statistical uncertainty or seasonal bounds.",
+  "report_rounding_km": 100,
+  "rank_eligible_published_estimates": false,
+  "candidate_comparison_group": "osw_studied_reach_routes",
+  "whole_system_length": false,
+  "remaining_gates": [
+    "Validate source anchor interpretation, depth and regional naming independently; the farthest observed float reach is not a whole-current endpoint.",
+    "Acquire dated float or suitable velocity geometry before measuring physical meander length; do not transfer this reach to the surface current.",
+    "Resolve eastern-basin continuation, SAC/ACC exchange and recirculation before a full-current length.",
+    "Keep all annual dimensions and physical width unresolved; complete canonical measurement and publication review separately."
+  ],
+  "map_view_box": [
+    540,
+    505,
+    390,
+    235
+  ],
+  "map_label_size": 6,
+  "legend_line_spacing": 9,
+  "map_symbol_scale": 1,
+  "endpoint_labels": [
+    "40 W, 39 S context gate",
+    "16 W, 43 S float-reach gate"
+  ],
+  "figure_source_label": "Boebel et al. (1999), sec. 3.5",
+  "route_extent_kind": "western intermediate SAC reach"
+}

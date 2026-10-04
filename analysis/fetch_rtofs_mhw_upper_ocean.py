@@ -1,4 +1,4 @@
-"""Extract 0-50 m RTOFS temperature profiles over the D11 Atlantic box."""
+"""Extract a declared fixed-depth RTOFS profile over the D11 Atlantic box."""
 
 from __future__ import annotations
 
@@ -17,7 +17,9 @@ OUTPUT = ROOT / "atlas" / "data" / "rtofs-mhw-upper-ocean-north-atlantic-2026080
 MAX_DEPTH_M = 50.0
 
 
-def build(output: Path = OUTPUT, retrieved_at: str | None = None) -> dict:
+def build(output: Path = OUTPUT, retrieved_at: str | None = None, max_depth_m: float = MAX_DEPTH_M) -> dict:
+    if max_depth_m <= 0:
+        raise ValueError("maximum depth must be positive")
     dates = [START + dt.timedelta(days=offset) for offset in range((END - START).days + 1)]
     rows, files, grid, depths = [], [], None, None
     for date in dates:
@@ -28,9 +30,9 @@ def build(output: Path = OUTPUT, retrieved_at: str | None = None) -> dict:
         try:
             latitude, longitude, mask, slices = _window(dataset, (67, 63))
             source_depths = np.asarray(dataset["Depth"][:], dtype=float)
-            depth_indices = np.where(source_depths <= MAX_DEPTH_M)[0]
+            depth_indices = np.where(source_depths <= max_depth_m)[0]
             local_depths = source_depths[depth_indices]
-            if local_depths[0] != 0 or local_depths[-1] != MAX_DEPTH_M or len(local_depths) != 15:
+            if len(local_depths) < 2 or local_depths[0] != 0 or local_depths[-1] != max_depth_m:
                 raise ValueError(f"unexpected RTOFS upper-depth support: {local_depths.tolist()}")
             temperature = dataset["temperature"][0, depth_indices, slices[0], slices[1]]
             eastward = dataset["u"][0, depth_indices, slices[0], slices[1]]
@@ -67,7 +69,7 @@ def build(output: Path = OUTPUT, retrieved_at: str | None = None) -> dict:
         "retrieved_at": retrieved_at or dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "window": {"start": START.isoformat(), "end": END.isoformat(), "day_count": len(rows), "valid_time": "00:00 UTC daily", "source_field": "n024 nowcast"},
         "bounds": BOUNDS,
-        "vertical_support": {"standard_depths_m": depths, "maximum_depth_m": MAX_DEPTH_M, "integration_contract": "trapezoidal integration between standard-depth point samples over the fixed 0-50 m column"},
+        "vertical_support": {"standard_depths_m": depths, "maximum_depth_m": max_depth_m, "integration_contract": f"trapezoidal integration between standard-depth point samples over the fixed 0-{max_depth_m:g} m column"},
         "grid": grid,
         "variables": {
             "potential_temperature_c_milli_by_depth": {"source_id": "temperature", "standard_name": "sea_water_potential_temperature", "source_units": "degC", "scale": 1000},
@@ -77,7 +79,7 @@ def build(output: Path = OUTPUT, retrieved_at: str | None = None) -> dict:
         "files": files,
         "rows": rows,
         "extracted_rows_sha256": digest,
-        "boundary": "These are standard-depth interpolated snapshots from one operational assimilative ocean model. A fixed 0-50 m potential-temperature integral avoids diagnostic mixed-layer-depth division but remains a heat-storage proxy under declared constant density and heat capacity. Standard-depth velocity and temperature support an offline horizontal-advection screen, not native tracer flux. The cube is not native-layer heat content, observed storage, a mixed-layer budget, or causal attribution.",
+        "boundary": f"These are standard-depth interpolated snapshots from one operational assimilative ocean model. A fixed 0-{max_depth_m:g} m potential-temperature integral avoids diagnostic mixed-layer-depth division but remains a heat-storage proxy under declared constant density and heat capacity. Standard-depth velocity and temperature support an offline horizontal-advection screen, not native tracer flux. The cube is not native-layer heat content, observed storage, a mixed-layer budget, or causal attribution.",
     }
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(payload, separators=(",", ":")) + "\n", encoding="utf-8", newline="\n")
@@ -88,8 +90,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=OUTPUT)
     parser.add_argument("--retrieved-at")
+    parser.add_argument("--max-depth-m", type=float, default=MAX_DEPTH_M)
     args = parser.parse_args()
-    payload = build(args.output, args.retrieved_at)
+    payload = build(args.output, args.retrieved_at, args.max_depth_m)
     print(f"wrote {args.output} ({len(payload['vertical_support']['standard_depths_m'])} depths x {len(payload['rows'])} days)")
     print(f"extracted sha256 {payload['extracted_rows_sha256']}")
 

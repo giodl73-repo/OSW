@@ -598,7 +598,7 @@ function activeObservedField() {
   return [window.OCEANLINES_OISST, temperatureColor];
 }
 
-function updateAtlasUrl() {
+function updateAtlasUrl(historyMode = "replace") {
   const url = new URL(window.location.href);
   if (currentMode === "conceptual") {
     url.searchParams.delete("mode");
@@ -609,7 +609,7 @@ function updateAtlasUrl() {
     if (currentConceptualView === "reference") url.searchParams.delete("view");
     else url.searchParams.set("view", currentConceptualView);
     if (currentLens !== "waters") url.searchParams.set("lens", currentLens); else url.searchParams.delete("lens");
-    for (const [parameter, selector] of [["depth", "#filter-depth"], ["property", "#filter-property"], ["clock", "#filter-clock"]]) {
+    for (const [parameter, selector] of [["depth", "#filter-depth"], ["property", "#filter-property"], ["clock", "#filter-clock"], ["evidence", "#filter-evidence"]]) {
       const value = document.querySelector(selector).value;
       if (value === "all") url.searchParams.delete(parameter); else url.searchParams.set(parameter, value);
     }
@@ -629,7 +629,19 @@ function updateAtlasUrl() {
   else url.searchParams.delete("province");
   if (featureView) url.searchParams.set("feature", selectedZone.id);
   else url.searchParams.delete("feature");
-  window.history.replaceState({}, "", url);
+  window.history[historyMode === "push" ? "pushState" : "replaceState"]({}, "", url);
+}
+
+function renderStateHandoff(group) {
+  const panel = document.querySelector("#state-handoff");
+  if (!group) { panel.hidden = true; return; }
+  const code = group.dataset.code;
+  const v4Status = ["NPSE", "OCAL"].includes(code) ? "This classic-56 identity has no separate Longhurst 2007 Version 4 footprint; OSW does not invent one." : "Its source-aligned footprint evidence remains a declared Version 4 reference, not a physical container.";
+  document.querySelector("#state-handoff-summary").textContent = `${code} · ${group.dataset.name}. ${v4Status}`;
+  const cards = window.OSWStateHandoffs.cards(code);
+  const host = document.querySelector("#state-handoff-cards"); host.replaceChildren();
+  cards.forEach(card => { const article=document.createElement("article"), title=document.createElement("h4"), copy=document.createElement("p"), link=document.createElement("a"); article.dataset.available=String(card.available); title.textContent=card.title; copy.textContent=card.text; link.href=card.href; link.textContent=card.available ? "Open state context →" : "Open general route →"; article.append(title, copy, link); host.append(article); });
+  panel.hidden = false;
 }
 
 function relationKey(provinceCode, featureId) {
@@ -1004,6 +1016,7 @@ function selectProvince(group, updateUrl = true) {
   document.querySelector("#province-select").value = selectedProvinceCode;
   document.querySelector("#province-reset").disabled = false;
   document.querySelector("#province-status").textContent = `${selectedProvinceCode} · ${group.dataset.name} · click another state or change any view.`;
+  renderStateHandoff(group);
   if (currentMode === "conceptual") {
     const related = provinceFeatureMatches(group);
     const near = provinceFeatureMatches(group, "near-contact");
@@ -1024,7 +1037,7 @@ function selectProvince(group, updateUrl = true) {
   }
   renderProvinceRelations(group);
   applyMapZoom();
-  if (updateUrl) updateAtlasUrl();
+  if (updateUrl) updateAtlasUrl("push");
 }
 
 function resetProvince(updateUrl = true) {
@@ -1037,6 +1050,7 @@ function resetProvince(updateUrl = true) {
   document.querySelector("#province-reset").disabled = true;
   document.querySelector("#province-reset").textContent = "Return to all 56";
   document.querySelector("#province-status").textContent = "Select a province to inspect and zoom.";
+  renderStateHandoff(null);
   applyMapZoom();
   if (currentMode === "conceptual") {
     relationSubject = "feature";
@@ -1264,7 +1278,18 @@ function zoneMatches(zone, filters) {
   return (filters.lens === "all" || zone.lens === filters.lens)
     && (filters.depth === "all" || zone.depthClass === filters.depth)
     && (filters.property === "all" || zone.properties.includes(filters.property))
-    && (filters.clock === "all" || zone.clockClass === filters.clock);
+    && (filters.clock === "all" || zone.clockClass === filters.clock)
+    && (filters.evidence === "all" || evidenceToken(zone) === filters.evidence);
+}
+
+function evidenceToken(zone) {
+  const evidence = zone.evidence.toLowerCase();
+  if (evidence.includes("sensitivity")) return "sensitivity";
+  if (evidence.includes("unresolved")) return "unresolved";
+  if (evidence.includes("model")) return "model-screen";
+  if (evidence.includes("conceptual")) return "conceptual";
+  if (evidence.includes("synthesis")) return "derived";
+  return "observed";
 }
 
 function activeGeographyFilters() {
@@ -1272,7 +1297,8 @@ function activeGeographyFilters() {
     lens: currentLens,
     depth: document.querySelector("#filter-depth").value,
     property: document.querySelector("#filter-property").value,
-    clock: document.querySelector("#filter-clock").value
+    clock: document.querySelector("#filter-clock").value,
+    evidence: document.querySelector("#filter-evidence").value
   };
 }
 
@@ -1295,6 +1321,7 @@ function rebuildDirectory(matching) {
 }
 
 function applyGeographyFilters(updateUrl = true) {
+  document.querySelector("#flow-reference").hidden = currentLens !== "flows";
   const filters = activeGeographyFilters();
   const matching = zones.filter(zone => zoneMatches(zone, filters));
   const matchingIds = new Set(matching.map(zone => zone.id));
@@ -1305,7 +1332,8 @@ function applyGeographyFilters(updateUrl = true) {
   });
   count.textContent = matching.length;
   const lensName = currentLens === "all" ? "curated" : currentLens;
-  const message = `${matching.length} matching ${lensName} feature${matching.length === 1 ? "" : "s"}. Shapes are schematic geographic indexes, not observed boundaries.`;
+  const evidenceLabel = filters.evidence === "all" ? "" : ` · ${filters.evidence.replace("-", " ")} claims`;
+  const message = `${matching.length} matching ${lensName} feature${matching.length === 1 ? "" : "s"}${evidenceLabel}. Shapes are schematic geographic indexes, not observed boundaries.`;
   document.querySelector("#filter-status").textContent = message;
   document.querySelector("#directory-summary").textContent = `Browse ${matching.length} matching features as text`;
   rebuildDirectory(matching);
@@ -1365,6 +1393,12 @@ document.addEventListener("keydown", event => {
   if (event.key === "Escape" && (provinceView || featureView)) resetProvince();
 });
 window.addEventListener("resize", applyMapZoom);
+window.addEventListener("popstate", () => {
+  const code = new URLSearchParams(window.location.search).get("province");
+  const group = [...document.querySelectorAll("#province-map-host .province")].find(item => item.dataset.code === code);
+  if (group) selectProvince(group, false);
+  else resetProvince(false);
+});
 document.querySelector("#coordinate-probe").addEventListener("submit", event => {
   event.preventDefault();
   inspectCoordinates(Number(document.querySelector("#probe-lat").value), Number(document.querySelector("#probe-lon").value));
@@ -1382,7 +1416,7 @@ document.querySelector("#sst-canvas").addEventListener("click", event => {
 const requestedParameters = new URLSearchParams(window.location.search);
 const requestedMode = requestedParameters.get("mode");
 if (["all", "waters", "flows", "edges", "floor", "life", "events"].includes(requestedParameters.get("lens"))) currentLens = requestedParameters.get("lens");
-for (const [parameter, selector] of [["depth", "#filter-depth"], ["property", "#filter-property"], ["clock", "#filter-clock"]]) {
+for (const [parameter, selector] of [["depth", "#filter-depth"], ["property", "#filter-property"], ["clock", "#filter-clock"], ["evidence", "#filter-evidence"]]) {
   const value = requestedParameters.get(parameter);
   if (value && [...document.querySelector(selector).options].some(option => option.value === value)) document.querySelector(selector).value = value;
 }

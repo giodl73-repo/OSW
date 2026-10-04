@@ -1,0 +1,2955 @@
+{
+  "schema": "osw.current-reference-path-input.v1",
+  "current_id": "alaska",
+  "name": "Alaska Current",
+  "status": "editorial_reference_path_candidate_not_scientifically_reviewed",
+  "geometry_role": "osw_editorial_reference_route",
+  "crs": "OGC:CRS84",
+  "scope": "Regional northward Alaska Current branch offshore British Columbia and southeast Alaska, using OSW latitude gates at 48 and 58.5 degrees N. Excludes the northern/northwestern Alaskan Stream, the distinct nearshore Alaska Coastal Current, individual fjords and offshore eddy excursions. Gate alternatives vary the regional reach; not the entire counterclockwise Gulf of Alaska gyre or an observed continuous shelf-edge jet.",
+  "layer": "Regional upper-ocean flow geography; no common fixed depth or measured current core diagnosed.",
+  "time_convention": "Undated regional sketch using the source's naming convention. The 1977 Kodiak observations support a distinction between current names, not this full route or a simultaneous 1977 northern branch path.",
+  "source_url": "https://www.pmel.noaa.gov/pubs/PDF/schu323/schu323.pdf",
+  "source_locator": "Section 1.1, printed page 1 (PDF page index 4): Alaska Current northward off British Columbia/southeast Alaska; Alaskan Stream on northern/northwestern gyre arm. Section 2.1 gives Kodiak observations of the separate stream rather than a whole Alaska Current axis.",
+  "source_citation": "Schumacher, Reed, Grigsby and Dreves (1979), Circulation and hydrography near Kodiak Island, September to November 1977, NOAA Technical Memorandum ERL PMEL-13.",
+  "source_license": "Factual geography and naming only; no source prose, charts, figures, provider geometry or observational arrays packaged.",
+  "coordinate_selection": "OSW selects offshore regional gates and every waypoint. The primary source supports northward branch identity and the stream distinction, not these coordinates, exact latitude limits or a diagnosed bathymetric contour. The route does not trace the distinct nearshore Alaska Coastal Current.",
+  "coordinates_lon_lat": [
+    [
+      -130,
+      48
+    ],
+    [
+      -132,
+      51
+    ],
+    [
+      -135,
+      54
+    ],
+    [
+      -139,
+      57
+    ],
+    [
+      -141,
+      58.5
+    ]
+  ],
+  "alternative_routes": [
+    {
+      "id": "shorter_southeast_branch",
+      "coordinates_lon_lat": [
+        [
+          -132,
+          50
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -138,
+          56.5
+        ]
+      ],
+      "interpretation": "Shorter OSW southeast-Alaska regional gate convention; no source-published exact termination implied."
+    },
+    {
+      "id": "broader_eastern_gulf_branch",
+      "coordinates_lon_lat": [
+        [
+          -128.5,
+          47
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -143,
+          58.5
+        ]
+      ],
+      "interpretation": "Broader offshore British Columbia/eastern Gulf convention; does not continue along northern/northwestern stream arm."
+    }
+  ],
+  "scenario_rule": "Three regional reach/gate conventions crossed with three longitude shifts (-0.25/0/+0.25 degrees) and independent endpoint latitude shifts (-0.25/0/+0.25 degrees): 81 editorial scenarios. These do not represent an empirical axis-position distribution.",
+  "longitude_offsets_degrees": [
+    -0.25,
+    0,
+    0.25
+  ],
+  "endpoint_latitude_offsets_degrees": [
+    -0.25,
+    0,
+    0.25
+  ],
+  "report_rounding_km": 100,
+  "rank_eligible_published_estimates": false,
+  "candidate_comparison_group": "osw_approximate_reference_routes",
+  "remaining_gates": [
+    "Scientific review of regional gates and distinctions among Alaska Current, Alaskan Stream and Alaska Coastal Current.",
+    "Compare offshore sketch against reproducible upper-ocean circulation geometry and deep/shelf distinctions.",
+    "Canonical admission and publication review; no whole-gyre or nearshore current length inferred."
+  ],
+  "map_view_box": [
+    170,
+    170,
+    180,
+    190
+  ],
+  "endpoint_labels": [
+    "48°N offshore BC gate",
+    "58.5°N southeast gate"
+  ],
+  "figure_source_label": "NOAA PMEL-13 (1979)",
+  "route_extent_kind": "northward Alaska regional branch",
+  "whole_system_length": false,
+  "source_retrieved_date": "2026-10-02",
+  "supporting_sources": [
+    {
+      "url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
+      "citation": "NOAA Tides and Currents Glossary, Alaska Current and Alaskan Stream entries.",
+      "locator": "Alaska Current regional Gulf of Alaska description; Alaskan Stream extension along southern Aleutian Islands.",
+      "role": "General identity context; primary-source convention distinguishes the northward branch from the stream."
+    }
+  ],
+  "input_sha256": "f269b2057ab05dff904b93392a5412d29909b970e5acd3806a28a22a08b22ff9",
+  "generator_file": "analysis/build_current_reference_path_candidate.py",
+  "generator_sha256": "1362693ec7075e014d065691923248db455a5c3cd78c9a94880b3b472594d240",
+  "method": "Sum shortest WGS84 geodesic distances between successive OSW editorial vertices; no velocity field or current core is reconstructed.",
+  "nominal_reference_path_km": 1378.587,
+  "reported_approximate_reference_path_km": 1400,
+  "scenario_range_km": [
+    780.167,
+    1654.478
+  ],
+  "reported_scenario_range_km": [
+    700,
+    1700
+  ],
+  "scenario_count": 81,
+  "scenarios": [
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130.25,
+          47.75
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -141.25,
+          58.25
+        ]
+      ],
+      "length_km": 1382.687,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130.25,
+          47.75
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -141.25,
+          58.5
+        ]
+      ],
+      "length_km": 1404.376,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130.25,
+          47.75
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -141.25,
+          58.75
+        ]
+      ],
+      "length_km": 1427.407,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130.25,
+          48
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -141.25,
+          58.25
+        ]
+      ],
+      "length_km": 1356.898,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130.25,
+          48
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -141.25,
+          58.5
+        ]
+      ],
+      "length_km": 1378.587,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130.25,
+          48
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -141.25,
+          58.75
+        ]
+      ],
+      "length_km": 1401.618,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130.25,
+          48.25
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -141.25,
+          58.25
+        ]
+      ],
+      "length_km": 1331.426,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130.25,
+          48.25
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -141.25,
+          58.5
+        ]
+      ],
+      "length_km": 1353.115,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130.25,
+          48.25
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -141.25,
+          58.75
+        ]
+      ],
+      "length_km": 1376.146,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130,
+          47.75
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -141,
+          58.25
+        ]
+      ],
+      "length_km": 1382.687,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130,
+          47.75
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -141,
+          58.5
+        ]
+      ],
+      "length_km": 1404.376,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130,
+          47.75
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -141,
+          58.75
+        ]
+      ],
+      "length_km": 1427.407,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130,
+          48
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -141,
+          58.25
+        ]
+      ],
+      "length_km": 1356.898,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130,
+          48
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -141,
+          58.5
+        ]
+      ],
+      "length_km": 1378.587,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130,
+          48
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -141,
+          58.75
+        ]
+      ],
+      "length_km": 1401.618,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130,
+          48.25
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -141,
+          58.25
+        ]
+      ],
+      "length_km": 1331.426,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130,
+          48.25
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -141,
+          58.5
+        ]
+      ],
+      "length_km": 1353.115,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -130,
+          48.25
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -141,
+          58.75
+        ]
+      ],
+      "length_km": 1376.146,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -129.75,
+          47.75
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -140.75,
+          58.25
+        ]
+      ],
+      "length_km": 1382.687,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -129.75,
+          47.75
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -140.75,
+          58.5
+        ]
+      ],
+      "length_km": 1404.376,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -129.75,
+          47.75
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -140.75,
+          58.75
+        ]
+      ],
+      "length_km": 1427.407,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -129.75,
+          48
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -140.75,
+          58.25
+        ]
+      ],
+      "length_km": 1356.898,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -129.75,
+          48
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -140.75,
+          58.5
+        ]
+      ],
+      "length_km": 1378.587,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -129.75,
+          48
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -140.75,
+          58.75
+        ]
+      ],
+      "length_km": 1401.618,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -129.75,
+          48.25
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -140.75,
+          58.25
+        ]
+      ],
+      "length_km": 1331.426,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -129.75,
+          48.25
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -140.75,
+          58.5
+        ]
+      ],
+      "length_km": 1353.115,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "nominal",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -129.75,
+          48.25
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -140.75,
+          58.75
+        ]
+      ],
+      "length_km": 1376.146,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132.25,
+          49.75
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -138.25,
+          56.25
+        ]
+      ],
+      "length_km": 831.091,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132.25,
+          49.75
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -138.25,
+          56.5
+        ]
+      ],
+      "length_km": 853.287,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132.25,
+          49.75
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -138.25,
+          56.75
+        ]
+      ],
+      "length_km": 876.268,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132.25,
+          50
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -138.25,
+          56.25
+        ]
+      ],
+      "length_km": 805.502,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132.25,
+          50
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -138.25,
+          56.5
+        ]
+      ],
+      "length_km": 827.699,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132.25,
+          50
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -138.25,
+          56.75
+        ]
+      ],
+      "length_km": 850.679,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132.25,
+          50.25
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -138.25,
+          56.25
+        ]
+      ],
+      "length_km": 780.167,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132.25,
+          50.25
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -138.25,
+          56.5
+        ]
+      ],
+      "length_km": 802.363,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132.25,
+          50.25
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -138.25,
+          56.75
+        ]
+      ],
+      "length_km": 825.344,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132,
+          49.75
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -138,
+          56.25
+        ]
+      ],
+      "length_km": 831.091,
+      "atlas_state_crossings": [
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132,
+          49.75
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -138,
+          56.5
+        ]
+      ],
+      "length_km": 853.287,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132,
+          49.75
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -138,
+          56.75
+        ]
+      ],
+      "length_km": 876.268,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132,
+          50
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -138,
+          56.25
+        ]
+      ],
+      "length_km": 805.502,
+      "atlas_state_crossings": [
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132,
+          50
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -138,
+          56.5
+        ]
+      ],
+      "length_km": 827.699,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132,
+          50
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -138,
+          56.75
+        ]
+      ],
+      "length_km": 850.679,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132,
+          50.25
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -138,
+          56.25
+        ]
+      ],
+      "length_km": 780.167,
+      "atlas_state_crossings": [
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132,
+          50.25
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -138,
+          56.5
+        ]
+      ],
+      "length_km": 802.363,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -132,
+          50.25
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -138,
+          56.75
+        ]
+      ],
+      "length_km": 825.344,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -131.75,
+          49.75
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -137.75,
+          56.25
+        ]
+      ],
+      "length_km": 831.091,
+      "atlas_state_crossings": [
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -131.75,
+          49.75
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -137.75,
+          56.5
+        ]
+      ],
+      "length_km": 853.287,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -131.75,
+          49.75
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -137.75,
+          56.75
+        ]
+      ],
+      "length_km": 876.268,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -131.75,
+          50
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -137.75,
+          56.25
+        ]
+      ],
+      "length_km": 805.502,
+      "atlas_state_crossings": [
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -131.75,
+          50
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -137.75,
+          56.5
+        ]
+      ],
+      "length_km": 827.699,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -131.75,
+          50
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -137.75,
+          56.75
+        ]
+      ],
+      "length_km": 850.679,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -131.75,
+          50.25
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -137.75,
+          56.25
+        ]
+      ],
+      "length_km": 780.167,
+      "atlas_state_crossings": [
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -131.75,
+          50.25
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -137.75,
+          56.5
+        ]
+      ],
+      "length_km": 802.363,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "shorter_southeast_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -131.75,
+          50.25
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -137.75,
+          56.75
+        ]
+      ],
+      "length_km": 825.344,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.75,
+          46.75
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -143.25,
+          58.25
+        ]
+      ],
+      "length_km": 1623.964,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.75,
+          46.75
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -143.25,
+          58.5
+        ]
+      ],
+      "length_km": 1638.29,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.75,
+          46.75
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -143.25,
+          58.75
+        ]
+      ],
+      "length_km": 1654.478,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.75,
+          47
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -143.25,
+          58.25
+        ]
+      ],
+      "length_km": 1599.404,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.75,
+          47
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -143.25,
+          58.5
+        ]
+      ],
+      "length_km": 1613.73,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.75,
+          47
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -143.25,
+          58.75
+        ]
+      ],
+      "length_km": 1629.918,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.75,
+          47.25
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -143.25,
+          58.25
+        ]
+      ],
+      "length_km": 1575.187,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.75,
+          47.25
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -143.25,
+          58.5
+        ]
+      ],
+      "length_km": 1589.513,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": -0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.75,
+          47.25
+        ],
+        [
+          -132.25,
+          51
+        ],
+        [
+          -135.25,
+          54
+        ],
+        [
+          -139.25,
+          57
+        ],
+        [
+          -143.25,
+          58.75
+        ]
+      ],
+      "length_km": 1605.701,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.5,
+          46.75
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -143,
+          58.25
+        ]
+      ],
+      "length_km": 1623.964,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.5,
+          46.75
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -143,
+          58.5
+        ]
+      ],
+      "length_km": 1638.29,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.5,
+          46.75
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -143,
+          58.75
+        ]
+      ],
+      "length_km": 1654.478,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.5,
+          47
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -143,
+          58.25
+        ]
+      ],
+      "length_km": 1599.404,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.5,
+          47
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -143,
+          58.5
+        ]
+      ],
+      "length_km": 1613.73,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.5,
+          47
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -143,
+          58.75
+        ]
+      ],
+      "length_km": 1629.918,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.5,
+          47.25
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -143,
+          58.25
+        ]
+      ],
+      "length_km": 1575.187,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.5,
+          47.25
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -143,
+          58.5
+        ]
+      ],
+      "length_km": 1589.513,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.5,
+          47.25
+        ],
+        [
+          -132,
+          51
+        ],
+        [
+          -135,
+          54
+        ],
+        [
+          -139,
+          57
+        ],
+        [
+          -143,
+          58.75
+        ]
+      ],
+      "length_km": 1605.701,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.25,
+          46.75
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -142.75,
+          58.25
+        ]
+      ],
+      "length_km": 1623.964,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.25,
+          46.75
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -142.75,
+          58.5
+        ]
+      ],
+      "length_km": 1638.29,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": -0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.25,
+          46.75
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -142.75,
+          58.75
+        ]
+      ],
+      "length_km": 1654.478,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.25,
+          47
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -142.75,
+          58.25
+        ]
+      ],
+      "length_km": 1599.404,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.25,
+          47
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -142.75,
+          58.5
+        ]
+      ],
+      "length_km": 1613.73,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.25,
+          47
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -142.75,
+          58.75
+        ]
+      ],
+      "length_km": 1629.918,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": -0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.25,
+          47.25
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -142.75,
+          58.25
+        ]
+      ],
+      "length_km": 1575.187,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.25,
+          47.25
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -142.75,
+          58.5
+        ]
+      ],
+      "length_km": 1589.513,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    },
+    {
+      "route_variant_id": "broader_eastern_gulf_branch",
+      "longitude_offset_degrees": 0.25,
+      "start_latitude_offset_degrees": 0.25,
+      "end_latitude_offset_degrees": 0.25,
+      "start_longitude_offset_degrees": 0,
+      "end_longitude_offset_degrees": 0,
+      "coordinates_lon_lat": [
+        [
+          -128.25,
+          47.25
+        ],
+        [
+          -131.75,
+          51
+        ],
+        [
+          -134.75,
+          54
+        ],
+        [
+          -138.75,
+          57
+        ],
+        [
+          -142.75,
+          58.75
+        ]
+      ],
+      "length_km": 1605.701,
+      "atlas_state_crossings": [
+        "ALSK",
+        "OCAL",
+        "PSAE"
+      ]
+    }
+  ],
+  "map_land_check": "All 81 routes, geodesically densified at spacing no greater than 10 km, avoid the coarse OSW atlas land mask in display coordinates. This is not a shelf-break, reef, bathymetric or high-resolution land-clearance verification.",
+  "state_relation_role": "Editorial line/display-region crossing; physical current passage unresolved.",
+  "atlas_map_sha256": "5999bbad0e49209b2609a20a52a3e6310aa749224b574cb2f6cbcac0e68db032",
+  "nominal_atlas_state_crossings": [
+    "ALSK",
+    "OCAL",
+    "PSAE"
+  ],
+  "nasa_movie_context": [
+    {
+      "tile_id": "level2_A_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_A_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_A_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_A_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_H_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_H_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level2_H_2",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level2_H_2.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 2,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level1_A_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_A_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level1_D_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level1_D_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 1,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level0_A_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level0_A_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 0,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    },
+    {
+      "tile_id": "level0_B_1",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005505/perpetual_ocean2_EQUIREC_071_final_beauty_level0_B_1.mp4",
+      "source_id": "source:d4e82da0872ed45c",
+      "zoom": 0,
+      "nominal_display_route_fraction": 1.0,
+      "scenario_display_route_fraction_range": [
+        1.0,
+        1.0
+      ],
+      "complete_display_route_in_all_scenarios": true,
+      "interpretation": "Editorial reference-route/crop display overlap only; not physical current identification or dated event matching. Fraction measures equirectangular display line, not physical kilometres."
+    }
+  ],
+  "nasa_tiles_sha256": "52c6605c32e59f50aa4abde984489c7055c0e3e201e7323e30160a623c9666e0",
+  "recommended_nasa_tile_id": "level2_A_1",
+  "nasa_crop_recommendation_rule": "Highest zoom crop covering the entire display route in every retained scenario, with tile ID as deterministic tie-break. No physical identification asserted.",
+  "input_file": "research/alaska-reference-path-input.json",
+  "figure": "figures/alaska-reference-path-candidate.svg"
+}

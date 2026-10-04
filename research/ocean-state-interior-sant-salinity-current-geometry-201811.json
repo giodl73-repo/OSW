@@ -1,0 +1,43 @@
+{
+  "schema": "osw-ocean-state-current-geometry-salinity-supplement-v1",
+  "status": "native_monthly_salinity_supplement_not_yet_density_or_transformation",
+  "month": "201811",
+  "source_family": "current_longhurst_geometry_2026-09-12_with_archived_oras5_2018_velocity",
+  "assignment": {
+    "path": "research/ocean-state-interior-sant-current-geometry-assignment-2026-09-12.json",
+    "sha256": "d7c001fe338980fafc95c6029ddccf6b514febe8c55d593656e5e55435ad07b7"
+  },
+  "mesh": {
+    "path": "research/osw-m3-oras5-drake-mesh.json",
+    "sha256": "56a7cb9d7fd859a291c60c3b83f2a45a22437c56588aa2f5d9768950cfa5d0fb",
+    "output_sha256": "a575659f2249a60ce01ecfc71fc489d17f8476d1a41dfb116b25c349ddcb0824",
+    "native_index_box": {
+      "y_start": 88,
+      "y_stop_exclusive": 288,
+      "x_start": 816,
+      "x_stop_exclusive": 992
+    },
+    "shape": [
+      75,
+      200,
+      176
+    ]
+  },
+  "field": {
+    "url": "https://icdc.cen.uni-hamburg.de/thredds/dodsC/ftpthredds/EASYInit/oras5/ORCA025/vosaline/opa0/vosaline_ORAS5_1m_201811_grid_T_02.nc",
+    "source_dimensions": [
+      "time_counter",
+      "deptht",
+      "y",
+      "x"
+    ],
+    "units": "PSU",
+    "long_name": "Salinity"
+  },
+  "output": {
+    "path": "atlas/data/oras5-drake-salinity-current-geometry-201811.nc",
+    "bytes": 3547614,
+    "sha256": "e7aed5f42295b0ce79ce8d6b5b0065f9dce5f08edbbc32afad03b46bdbfa3560"
+  },
+  "boundary": "One ORAS5 assimilative-reanalysis member and month. Practical salinity can support a later declared density/class screen, but this receipt is not density, a water-mass classification, a class-volume flux, transformation, transport, or budget."
+}

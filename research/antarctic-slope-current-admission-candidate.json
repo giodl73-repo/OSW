@@ -1,0 +1,118 @@
+{
+  "schema": "osw.ocean-motion.current-admission-candidate.v1",
+  "status": "canonical_name_extent_identity_and_source_regime_vocabulary_admitted_no_regime_assignments",
+  "audit_date": "2026-10-02",
+  "source": {
+    "doi": "10.1029/2018RG000624",
+    "url": "https://doi.org/10.1029/2018RG000624",
+    "full_text_url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2018rg000624",
+    "title": "The Antarctic Slope Current in a Changing Climate",
+    "authors": [
+      "Andrew F. Thompson",
+      "Andrew L. Stewart",
+      "Paul Spence",
+      "Karen J. Heywood"
+    ],
+    "journal": "Reviews of Geophysics",
+    "volume": 56,
+    "pages": "741-770",
+    "first_online_date": "2018-11-30",
+    "issue_date_parts": [
+      2018,
+      12
+    ],
+    "citation_receipt": "research/antarctic-slope-current-candidate-citation.json",
+    "use_scope": "Paraphrased factual name, extent, identity distinctions, and classification criteria with citation; no article, figure, coordinates, tables, or provider fields reproduced.",
+    "use_review_status": "reviewed_narrow_factual_use_in_source_registry"
+  },
+  "proposed_entity": {
+    "id": "current:antarctic-slope",
+    "name": "Antarctic Slope Current",
+    "identity_level": "system",
+    "setting": "polar_or_subpolar_margin",
+    "time_behavior": "persistent_variable",
+    "vertical_setting": "unresolved",
+    "basin": "Antarctic continental margin",
+    "source_name_locator": "Title; section 1.1 ASC Characteristics",
+    "source_abbreviation": "ASC",
+    "global_abbreviation_alias_admitted": false,
+    "identity_distinctions": [
+      {
+        "existing_entity_id": "current:acc",
+        "relation": "distinct_current",
+        "source_locator": "Section 1.1; Figure 2 caption"
+      },
+      {
+        "existing_entity_id": "current:antarctic-coastal",
+        "relation": "distinct_current",
+        "source_locator": "Section 1.1, first paragraph, distinction of poleward shallow coastal current"
+      }
+    ]
+  },
+  "proposed_measurement": {
+    "quantity": "reported_length",
+    "value": 21000,
+    "unit": "km",
+    "evidence_status": "published_estimate",
+    "proposed_rank_eligible": true,
+    "canonical_rank_eligible": true,
+    "source_locator": "Section 1.1 ASC Characteristics, first sentence; Figure 2 caption and following paragraph qualify continuity",
+    "scope": "Review-reported upper-continental-slope system span; not a measured reference streamline or dated footprint. The Antarctic Peninsula interrupts circumpolar continuity.",
+    "time_support": "2018 literature synthesis, not one simultaneous observation",
+    "source_defined_endpoint_coordinates": null,
+    "geometry_id": null,
+    "scientific_review_status": "not_individually_reviewed",
+    "passage_assessment": "number_supported_with_system_scope_and_continuity_limit",
+    "canonical_measurement_id": "measurement:0029"
+  },
+  "source_scoped_taxonomy_proposal": {
+    "vocabulary_id": "thompson-2018-antarctic-shelf-regimes",
+    "source_locator": "Section 2 introductory classification paragraphs; sections 2.1-2.3",
+    "applies_to": "Regional shelf/slope hydrographic regimes in this review, not a whole-current permanent class or global eddy taxonomy",
+    "regimes": [
+      {
+        "id": "fresh_shelf",
+        "source_label": "Fresh Shelf",
+        "criterion_summary": "Layers with neutral density gamma_n greater than 28.0 (source-reported kg/m3 scale) do not extend onto the shelf."
+      },
+      {
+        "id": "dense_shelf",
+        "source_label": "Dense Shelf",
+        "criterion_summary": "Water with neutral density gamma_n greater than 28.0 (source-reported kg/m3 scale) occupies the shelf, which stays relatively cold with convection and dense-water formation."
+      },
+      {
+        "id": "warm_shelf",
+        "source_label": "Warm Shelf",
+        "criterion_summary": "Water with neutral density gamma_n greater than 28.0 reaches the shelf without dense-water formation; shelf water exceeds 0.5 degrees Celsius at some shelf depth."
+      }
+    ],
+    "assignment_status": "vocabulary_only_no_osw_state_assignments",
+    "density_variable_note": "Thresholds refer to the source's neutral-density variable gamma_n in its conventional reported units, not an absolute seawater mass density of 28 kg/m3.",
+    "assignment_requirements": [
+      "Source-supported regional/time/depth support",
+      "Compatible hydrographic fields",
+      "Explicit unknown or mixed regime where support is insufficient"
+    ],
+    "not_equivalent_to": [
+      "eddy_core_thermal_sign",
+      "surface_temperature_only",
+      "permanent_state_property"
+    ]
+  },
+  "spatial_and_media_support": {
+    "observed_route_geometry": null,
+    "editorial_locators": [],
+    "physical_state_associations": [],
+    "nasa_identification": "not_established",
+    "nasa_regional_crop_join": "not_yet_built",
+    "limit": "The published numeric span supplies neither an observed state crossing nor a NASA event match. Future editorial navigation geometry must have its own role."
+  },
+  "canonical_admission_requirements": [
+    "Append current ledger record and source-scoped citation/use review",
+    "Add atlas taxonomy record and clearly editorial regional navigation",
+    "Regenerate length, NASA, crop, motion/state, and all 56 state assessments",
+    "Append canonical measurement and relations without shifting earlier claim identities",
+    "Bind ranked editorial passage assessment to the resulting claim fingerprint",
+    "Rebuild full and screened packages, site, methods, notices, counts and browser checks"
+  ]
+}

@@ -100,15 +100,16 @@ function renderExchangeTables() {
 function renderExchange() { renderExchangeMap(); renderExchangeScore(); renderExchangeTables(); }
 
 function setStage(stage, updateUrl = true) {
-  const showInventory = stage === "inventory", showExchange = stage === "exchange", showStability = stage === "stability", showEvents = stage === "events", showDecisions = stage === "decisions";
+  const showInventory = stage === "inventory", showExchange = stage === "exchange", showStability = stage === "stability", showEvents = stage === "events", showDecisions = stage === "decisions", showInterior = stage === "interior";
   document.querySelectorAll(".inventory-panel").forEach(item => { item.hidden = !showInventory; });
   document.querySelector("#exchange-panel").hidden = !showExchange;
   document.querySelector("#stability-panel").hidden = !showStability;
   document.querySelector("#events-panel").hidden = !showEvents;
   document.querySelector("#decisions-panel").hidden = !showDecisions;
+  document.querySelector("#interior-panel").hidden = !showInterior;
   document.querySelectorAll(".stage-nav button").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.stage === stage)));
   if (updateUrl) { const params = new URLSearchParams(location.search); params.set("stage", stage); history.replaceState(null, "", `?${params}`); }
-  if (showExchange) renderExchange(); else if (showStability) renderStability(); else if (showEvents) renderEvents(); else if (showDecisions) renderDecisions(); else render();
+  if (showExchange) renderExchange(); else if (showStability) renderStability(); else if (showEvents) renderEvents(); else if (showDecisions) renderDecisions(); else if (showInterior) renderInterior(); else render();
 }
 
 const exchangeMonthSelect = document.querySelector("#exchange-month-select");
@@ -116,4 +117,4 @@ exchangeData.months.forEach(item => exchangeMonthSelect.append(option(item.month
 exchangeMonthSelect.addEventListener("change", () => { exchangeMonth = exchangeMonthSelect.value; renderExchange(); });
 document.querySelectorAll(".stage-nav button:not(:disabled)").forEach(button => button.addEventListener("click", () => setStage(button.dataset.stage)));
 const requestedStage = new URLSearchParams(location.search).get("stage");
-setStage(["exchange", "stability", "events", "decisions"].includes(requestedStage) ? requestedStage : "inventory", false);
+setStage(["exchange", "stability", "events", "decisions", "interior"].includes(requestedStage) ? requestedStage : "inventory", false);

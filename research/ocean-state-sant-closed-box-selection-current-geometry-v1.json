@@ -1,0 +1,103 @@
+{
+  "schema": "osw-ocean-state-closed-box-selection-v1",
+  "status": "geometry_selected_before_flux_outcomes",
+  "source_family": "current_longhurst_geometry_2026-09-12_with_archived_oras5_2018_velocity",
+  "assignment": {
+    "path": "research/ocean-state-interior-sant-current-geometry-assignment-2026-09-12.json",
+    "sha256": "d7c001fe338980fafc95c6029ddccf6b514febe8c55d593656e5e55435ad07b7"
+  },
+  "rule": {
+    "size_native_T_cells": 16,
+    "eligibility": "every cell must be in the pinned cardinal interior core",
+    "ordering": "minimum squared distance of box centre to the all-core median latitude/longitude; then row-major order",
+    "prohibited_inputs": [
+      "velocity",
+      "temperature",
+      "salinity",
+      "surface flux",
+      "heat content",
+      "transport",
+      "desired convergence result"
+    ]
+  },
+  "eligible_box_count": 1598,
+  "target_core_median": {
+    "latitude_deg": -53.461308,
+    "longitude_deg": -51.0
+  },
+  "primary": {
+    "id": "primary",
+    "y_start": 149,
+    "y_stop_exclusive": 165,
+    "x_start": 129,
+    "x_stop_exclusive": 145,
+    "cell_count": 256,
+    "center_latitude_deg": -53.461308,
+    "center_longitude_deg": -49.25,
+    "latitude_extent_deg": [
+      -54.490463,
+      -52.253811
+    ],
+    "longitude_extent_deg": [
+      -51.0,
+      -47.25
+    ]
+  },
+  "one_cell_displaced_controls": [
+    {
+      "id": "north_control",
+      "y_start": 150,
+      "y_stop_exclusive": 166,
+      "x_start": 129,
+      "x_stop_exclusive": 145,
+      "cell_count": 256,
+      "center_latitude_deg": -53.312206,
+      "center_longitude_deg": -49.25,
+      "latitude_extent_deg": [
+        -54.344994,
+        -52.100506
+      ],
+      "longitude_extent_deg": [
+        -51.0,
+        -47.25
+      ]
+    },
+    {
+      "id": "south_control",
+      "y_start": 148,
+      "y_stop_exclusive": 164,
+      "x_start": 129,
+      "x_stop_exclusive": 145,
+      "cell_count": 256,
+      "center_latitude_deg": -53.60989,
+      "center_longitude_deg": -49.25,
+      "latitude_extent_deg": [
+        -54.635414,
+        -52.40659
+      ],
+      "longitude_extent_deg": [
+        -51.0,
+        -47.25
+      ]
+    },
+    {
+      "id": "east_control",
+      "y_start": 149,
+      "y_stop_exclusive": 165,
+      "x_start": 130,
+      "x_stop_exclusive": 146,
+      "cell_count": 256,
+      "center_latitude_deg": -53.461308,
+      "center_longitude_deg": -49.0,
+      "latitude_extent_deg": [
+        -54.490463,
+        -52.253811
+      ],
+      "longitude_extent_deg": [
+        -50.75,
+        -47.0
+      ]
+    }
+  ],
+  "boundary": "A fixed native-grid subregion wholly inside SANT's guarded core. It is a horizontal control-box geometry, not a material parcel, water mass, or evidence of closure before its flux terms are evaluated."
+}

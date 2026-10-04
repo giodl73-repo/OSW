@@ -1,0 +1,221 @@
+{
+  "schema": "osw.almanac.current-gate-distances.v1",
+  "as_of": "2026-10-02",
+  "method": "WGS84 shortest geodesic between approximate gates; latitude-only spans use an abstract common meridian. Floors are conservatively rounded down from these gate distances.",
+  "interpretation": "These are geographic separation floors conditional on the stated source gates, not measured along-current paths, whole-current estimates, or guaranteed physical minima when gates are approximate or a flow splits.",
+  "sensitivity_method": "Independently perturb each source latitude gate by -0.5, 0, or +0.5 degrees; point gates also perturb longitude. Recompute WGS84 shortest distances for all 9 or 81 scenarios. Report the finite scenario envelope and possible ordinal positions among the seven geographic spans, reserving all tied positions. This is a declared editorial what-if analysis, not an empirical error model or a guarantee over every point in a continuous coordinate interval.",
+  "count": 7,
+  "entries": [
+    {
+      "current_id": "benguela",
+      "name": "Benguela Current",
+      "gate_type": "source_latitude_span",
+      "start": {
+        "name": "Benguela Current system southern section",
+        "latitude": -30
+      },
+      "end": {
+        "name": "Benguela Current system northern section",
+        "latitude": -19
+      },
+      "direct_gate_distance_km": 1218.4,
+      "admitted_rounded_geographic_floor_km": 1200,
+      "scope": "Decadal inverse-model sections of the Benguela Current system; excludes a claimed measured centerline or a Benguela ecosystem extent.",
+      "source_url": "https://os.copernicus.org/articles/19/1009/2023/",
+      "gate_distance_sensitivity": {
+        "interpretation": "Finite gate-perturbation scenarios; not a statistical confidence interval, measured current path, or whole-current length range.",
+        "perturbation_degrees": 0.5,
+        "perturbation_basis": "OSW editorial sensitivity choice; not source-reported positional uncertainty.",
+        "scenario_count": 9,
+        "scenario_min_km": 1107.7,
+        "scenario_max_km": 1329.2,
+        "geographic_span_rank_best": 6,
+        "geographic_span_rank_worst": 7,
+        "geographic_span_rank_count": 7,
+        "rank_interpretation": "Possible position by geographic gate separation within these seven source-gated spans; excludes along-current length and the published-length ranking. Overlap does not establish equal current length."
+      }
+    },
+    {
+      "current_id": "brazil",
+      "name": "Brazil Current",
+      "gate_type": "source_latitude_span",
+      "start": {
+        "name": "Brazil Current northern section",
+        "latitude": -19
+      },
+      "end": {
+        "name": "Brazil Current southern section",
+        "latitude": -30
+      },
+      "direct_gate_distance_km": 1218.4,
+      "admitted_rounded_geographic_floor_km": 1200,
+      "scope": "Decadal inverse-model sections identifying the Brazil Current; no simultaneous centerline or confluence endpoint is inferred.",
+      "source_url": "https://os.copernicus.org/articles/19/1009/2023/",
+      "gate_distance_sensitivity": {
+        "interpretation": "Finite gate-perturbation scenarios; not a statistical confidence interval, measured current path, or whole-current length range.",
+        "perturbation_degrees": 0.5,
+        "perturbation_basis": "OSW editorial sensitivity choice; not source-reported positional uncertainty.",
+        "scenario_count": 9,
+        "scenario_min_km": 1107.7,
+        "scenario_max_km": 1329.2,
+        "geographic_span_rank_best": 6,
+        "geographic_span_rank_worst": 7,
+        "geographic_span_rank_count": 7,
+        "rank_interpretation": "Possible position by geographic gate separation within these seven source-gated spans; excludes along-current length and the published-length ranking. Overlap does not establish equal current length."
+      }
+    },
+    {
+      "current_id": "deep-western-boundary",
+      "name": "Deep Western Boundary Current",
+      "gate_type": "source_latitude_span",
+      "start": {
+        "name": "North Atlantic DWBC northern section",
+        "latitude": 47
+      },
+      "end": {
+        "name": "North Atlantic DWBC southern section",
+        "latitude": 24.5
+      },
+      "direct_gate_distance_km": 2496.6,
+      "admitted_rounded_geographic_floor_km": 2400,
+      "scope": "North Atlantic segment of the deep western boundary current in decadal inverse-model sections; not a whole-Atlantic path.",
+      "source_url": "https://os.copernicus.org/articles/19/1009/2023/",
+      "gate_distance_sensitivity": {
+        "interpretation": "Finite gate-perturbation scenarios; not a statistical confidence interval, measured current path, or whole-current length range.",
+        "perturbation_degrees": 0.5,
+        "perturbation_basis": "OSW editorial sensitivity choice; not source-reported positional uncertainty.",
+        "scenario_count": 9,
+        "scenario_min_km": 2385.6,
+        "scenario_max_km": 2607.5,
+        "geographic_span_rank_best": 2,
+        "geographic_span_rank_worst": 2,
+        "geographic_span_rank_count": 7,
+        "rank_interpretation": "Possible position by geographic gate separation within these seven source-gated spans; excludes along-current length and the published-length ranking. Overlap does not establish equal current length."
+      }
+    },
+    {
+      "current_id": "agulhas",
+      "name": "Agulhas Current",
+      "gate_type": "source_latitude_span",
+      "start": {
+        "name": "northern Agulhas extent",
+        "latitude": -27
+      },
+      "end": {
+        "name": "southern Agulhas extent",
+        "latitude": -40
+      },
+      "direct_gate_distance_km": 1441.9,
+      "admitted_rounded_geographic_floor_km": 1400,
+      "scope": "Broad 27–40°S research-description span; not the narrower approximately 1,000 km coastal usage.",
+      "source_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.837906/full",
+      "gate_distance_sensitivity": {
+        "interpretation": "Finite gate-perturbation scenarios; not a statistical confidence interval, measured current path, or whole-current length range.",
+        "perturbation_degrees": 0.5,
+        "perturbation_basis": "OSW editorial sensitivity choice; not source-reported positional uncertainty.",
+        "scenario_count": 9,
+        "scenario_min_km": 1331.0,
+        "scenario_max_km": 1552.8,
+        "geographic_span_rank_best": 5,
+        "geographic_span_rank_worst": 5,
+        "geographic_span_rank_count": 7,
+        "rank_interpretation": "Possible position by geographic gate separation within these seven source-gated spans; excludes along-current length and the published-length ranking. Overlap does not establish equal current length."
+      }
+    },
+    {
+      "current_id": "agulhas-return",
+      "name": "Agulhas Return Current",
+      "gate_type": "approximate_source_gate_pair",
+      "start": {
+        "name": "21°E hydrographic section peak",
+        "lon_lat": [
+          21,
+          -40.5
+        ],
+        "coordinate_role": "study section center latitude"
+      },
+      "end": {
+        "name": "60°E downstream mean latitude",
+        "lon_lat": [
+          60,
+          -44.5
+        ],
+        "coordinate_role": "study-described downstream latitude"
+      },
+      "direct_gate_distance_km": 3205.5,
+      "admitted_rounded_geographic_floor_km": 3000,
+      "scope": "Between two study-described sections; not the full return-current path to dissipation.",
+      "source_url": "https://www.cfoo.co.za/seaatlas/papers/agulhas_return_current.pdf",
+      "gate_distance_sensitivity": {
+        "interpretation": "Finite gate-perturbation scenarios; not a statistical confidence interval, measured current path, or whole-current length range.",
+        "perturbation_degrees": 0.5,
+        "perturbation_basis": "OSW editorial sensitivity choice; not source-reported positional uncertainty.",
+        "scenario_count": 81,
+        "scenario_min_km": 3101.3,
+        "scenario_max_km": 3310.8,
+        "geographic_span_rank_best": 1,
+        "geographic_span_rank_worst": 1,
+        "geographic_span_rank_count": 7,
+        "rank_interpretation": "Possible position by geographic gate separation within these seven source-gated spans; excludes along-current length and the published-length ranking. Overlap does not establish equal current length."
+      }
+    },
+    {
+      "current_id": "east-australian",
+      "name": "East Australian Current",
+      "gate_type": "source_latitude_span",
+      "start": {
+        "name": "coherent shelf-break jet north",
+        "latitude": -15
+      },
+      "end": {
+        "name": "usual shelf separation",
+        "latitude": -32
+      },
+      "direct_gate_distance_km": 1882.9,
+      "admitted_rounded_geographic_floor_km": 1800,
+      "scope": "Shelf-break jet before variable separation; excludes Tasman Front and downstream eddies.",
+      "source_url": "https://gmd.copernicus.org/articles/19/3853/2026/",
+      "gate_distance_sensitivity": {
+        "interpretation": "Finite gate-perturbation scenarios; not a statistical confidence interval, measured current path, or whole-current length range.",
+        "perturbation_degrees": 0.5,
+        "perturbation_basis": "OSW editorial sensitivity choice; not source-reported positional uncertainty.",
+        "scenario_count": 9,
+        "scenario_min_km": 1772.1,
+        "scenario_max_km": 1993.6,
+        "geographic_span_rank_best": 4,
+        "geographic_span_rank_worst": 4,
+        "geographic_span_rank_count": 7,
+        "rank_interpretation": "Possible position by geographic gate separation within these seven source-gated spans; excludes along-current length and the published-length ranking. Overlap does not establish equal current length."
+      }
+    },
+    {
+      "current_id": "east-greenland",
+      "name": "East Greenland Current",
+      "gate_type": "source_latitude_span",
+      "start": {
+        "name": "Fram Strait study section",
+        "latitude": 78.5
+      },
+      "end": {
+        "name": "Cape Farewell study boundary",
+        "latitude": 59
+      },
+      "direct_gate_distance_km": 2175.0,
+      "admitted_rounded_geographic_floor_km": 2100,
+      "scope": "Study region covering the outer East Greenland Current and coastal branch; no claim of one measured core between gates. Supersedes an unsupported 81°N gate.",
+      "source_url": "https://doi.org/10.1029/2023JC019890",
+      "gate_distance_sensitivity": {
+        "interpretation": "Finite gate-perturbation scenarios; not a statistical confidence interval, measured current path, or whole-current length range.",
+        "perturbation_degrees": 0.5,
+        "perturbation_basis": "OSW editorial sensitivity choice; not source-reported positional uncertainty.",
+        "scenario_count": 9,
+        "scenario_min_km": 2063.5,
+        "scenario_max_km": 2286.5,
+        "geographic_span_rank_best": 3,
+        "geographic_span_rank_worst": 3,
+        "geographic_span_rank_count": 7,
+        "rank_interpretation": "Possible position by geographic gate separation within these seven source-gated spans; excludes along-current length and the published-length ranking. Overlap does not establish equal current length."
+      }
+    }
+  ]
+}

@@ -1,0 +1,2904 @@
+{
+  "schema": "osw.almanac.cartographic-current-state-join.v1",
+  "source_layer": "https://services3.arcgis.com/o98K21Ga5N91Ugjw/ArcGIS/rest/services/Hurricane%20TracksAA/FeatureServer/11",
+  "source_query": "https://services3.arcgis.com/o98K21Ga5N91Ugjw/ArcGIS/rest/services/Hurricane%20TracksAA/FeatureServer/11/query?where=1%3D1&outFields=OBJECTID%2COBJECTID_1%2CNAME%2CTEMP%2CSCALE&outSR=4326&f=geojson",
+  "source_geojson_sha256": "e5a2aa8ea41b223c8b7f970a68c85b6e4c47dd0559c428488aa23b0b6b0ae5c0",
+  "source_attribution": "NOAA, National Weather Service, US Army, Maps.com",
+  "source_description": "Major wind-driven ocean currents represented by cartographic arrow polygons, compiled from older NOAA National Weather Service and US Army maps. The polygons are optimized for map display and are not observed current footprints or NASA ECCO geometry.",
+  "state_geometry": "figures/osw-province-atlas-interactive.svg",
+  "scales_compared": [
+    1000000,
+    5000000,
+    30000000,
+    100000000
+  ],
+  "method": "Project all four widths of each source arrow to the OSW equirectangular SVG and intersect coast-masked approximate state polygons. A stable crossing intersects at every width; a width-sensitive contact intersects only at some widths. The OSW name crosswalk is editorial and explicit below.",
+  "name_crosswalk": {
+    "West Wind Drift / Antarctic Circumpolar": "acc",
+    "East Wind Drift / Antarctic Subpolar": "antarctic-coastal",
+    "California": "california",
+    "Gulf Stream": "gulf-stream",
+    "Agulhas": "agulhas",
+    "East Australia": "east-australian",
+    "Peru": "peru-humboldt",
+    "Benguela": "benguela",
+    "Canary": "canary",
+    "Labrador": "labrador",
+    "Brazil": "brazil",
+    "North Atlantic": "north-atlantic",
+    "Alaska": "alaska",
+    "East Greenland": "east-greenland",
+    "Falkland": "falkland",
+    "Guinea": "guinea",
+    "North Equatorial": "north-equatorial",
+    "North Pacific": "north-pacific",
+    "Norwegian": "norwegian",
+    "Oyashio": "oyashio",
+    "South Equatorial": "south-equatorial",
+    "Western Australia": "west-australian",
+    "Caribbean": "caribbean",
+    "Eq. Countercurrent": "equatorial-countercurrent",
+    "South Atlantic": "south-atlantic",
+    "South Indian": "south-indian",
+    "South Pacific": "south-pacific"
+  },
+  "name_crosswalk_notes": {
+    "East Wind Drift / Antarctic Subpolar": "Reviewed cartographic label mapped to the Antarctic Coastal Current (East Wind Drift), an established westward polar coastal current. The second phrase in the source label is broad; the four arrows are map symbols, not a complete observed coastal path. Source for the current name: https://doi.org/10.1016/j.dsr.2009.06.005."
+  },
+  "source_arrow_count": 73,
+  "mapped_arrow_count": 61,
+  "mapped_current_count": 27,
+  "ledger_currents_without_source_arrow": [
+    "agulhas-return",
+    "aleutian",
+    "algerian",
+    "antilles",
+    "atlantic-equatorial-undercurrent",
+    "atlantic-north-equatorial-countercurrent",
+    "atlantic-north-equatorial-undercurrent",
+    "atlantic-south-equatorial-countercurrent",
+    "atlantic-south-equatorial-undercurrent",
+    "australian-west-south-boundary-flow",
+    "azores",
+    "azores-countercurrent",
+    "baffin",
+    "balearic",
+    "black-sea-rim",
+    "davidson",
+    "deep-western-boundary",
+    "east-adriatic",
+    "east-greenland-coastal",
+    "equatorial-undercurrent",
+    "florida",
+    "gaspe",
+    "greenland-middle-atlantic-shelf-hypothesis",
+    "guiana",
+    "gulf-stream-system",
+    "hiri-current",
+    "indian-equatorial-undercurrent",
+    "indian-south-equatorial-countercurrent",
+    "indian-south-equatorial-undercurrent",
+    "indonesian-throughflow",
+    "irminger",
+    "jutland",
+    "kuroshio",
+    "kuroshio-extension",
+    "leeuwin",
+    "ligurian",
+    "loop",
+    "mauritanian",
+    "mediterranean-undercurrent",
+    "mindanao-current",
+    "monsoon",
+    "new-guinea-coastal-current",
+    "new-guinea-coastal-undercurrent",
+    "new-ireland-coastal-undercurrent",
+    "north-brazil",
+    "north-cape",
+    "north-equatorial-countercurrent",
+    "north-equatorial-undercurrent",
+    "norwegian-coastal",
+    "pacific-equatorial-undercurrent",
+    "pacific-north-equatorial-countercurrent",
+    "pacific-north-equatorial-undercurrent",
+    "pacific-north-subsurface-countercurrent",
+    "pacific-south-equatorial-countercurrent",
+    "pacific-south-subsurface-countercurrent",
+    "persian-gulf-saline-overflow",
+    "portugal",
+    "red-sea-saline-overflow",
+    "solomon-island-coastal-undercurrent",
+    "somali",
+    "south-australian",
+    "south-equatorial-countercurrent",
+    "south-equatorial-undercurrent",
+    "spitsbergen-atlantic",
+    "tasman-front",
+    "tsushima",
+    "west-greenland",
+    "west-spitsbergen",
+    "western-adriatic",
+    "zeehan"
+  ],
+  "unmapped_source_names": [
+    " ",
+    "North Atlantic/Azores",
+    "South Equatorial/South Pacific Gyre",
+    "South Indian/Western Australia",
+    "Transpolar Drift"
+  ],
+  "arrows": [
+    {
+      "source_arrow_id": 1,
+      "source_name": "Alaska",
+      "osw_current_id": "alaska",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "ALSK",
+        "BERS",
+        "PSAE"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ALSK",
+          "BERS",
+          "PSAE"
+        ],
+        "5000000": [
+          "ALSK",
+          "BERS",
+          "PSAE"
+        ],
+        "30000000": [
+          "ALSK",
+          "BERS",
+          "PSAE"
+        ],
+        "100000000": [
+          "ALSK",
+          "BERS",
+          "PSAE"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 2,
+      "source_name": "California",
+      "osw_current_id": "california",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "CCAL",
+        "NPSE",
+        "OCAL",
+        "PSAE"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "CCAL",
+          "NPSE",
+          "OCAL",
+          "PSAE"
+        ],
+        "5000000": [
+          "CCAL",
+          "NPSE",
+          "OCAL",
+          "PSAE"
+        ],
+        "30000000": [
+          "CCAL",
+          "NPSE",
+          "OCAL",
+          "PSAE"
+        ],
+        "100000000": [
+          "CCAL",
+          "NPSE",
+          "OCAL",
+          "PSAE"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 3,
+      "source_name": "California",
+      "osw_current_id": "california",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "CCAL",
+        "NPSE"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "CCAL",
+          "NPSE"
+        ],
+        "5000000": [
+          "CCAL",
+          "NPSE"
+        ],
+        "30000000": [
+          "CCAL",
+          "NPSE"
+        ],
+        "100000000": [
+          "CCAL",
+          "NPSE"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 4,
+      "source_name": "Labrador",
+      "osw_current_id": "labrador",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "NWCS"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "NWCS"
+        ],
+        "5000000": [
+          "NWCS"
+        ],
+        "30000000": [
+          "NWCS"
+        ],
+        "100000000": [
+          "NWCS"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 5,
+      "source_name": " ",
+      "osw_current_id": null,
+      "unmapped_reason": "Source arrow has no current name.",
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "NWCS",
+        "SARC"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "NWCS",
+          "SARC"
+        ],
+        "5000000": [
+          "NWCS",
+          "SARC"
+        ],
+        "30000000": [
+          "NWCS",
+          "SARC"
+        ],
+        "100000000": [
+          "NWCS",
+          "SARC"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 6,
+      "source_name": "East Greenland",
+      "osw_current_id": "east-greenland",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "ARCT",
+        "SARC"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ARCT",
+          "SARC"
+        ],
+        "5000000": [
+          "ARCT",
+          "SARC"
+        ],
+        "30000000": [
+          "ARCT",
+          "SARC"
+        ],
+        "100000000": [
+          "ARCT",
+          "SARC"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 7,
+      "source_name": "Transpolar Drift",
+      "osw_current_id": null,
+      "unmapped_reason": "Sea-ice drift is outside this ocean-current ledger.",
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "ARCT",
+        "BPLR"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ARCT",
+          "BPLR"
+        ],
+        "5000000": [
+          "ARCT",
+          "BPLR"
+        ],
+        "30000000": [
+          "ARCT",
+          "BPLR"
+        ],
+        "100000000": [
+          "ARCT",
+          "BPLR"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 8,
+      "source_name": "Transpolar Drift",
+      "osw_current_id": null,
+      "unmapped_reason": "Sea-ice drift is outside this ocean-current ledger.",
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "BPLR"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "BPLR"
+        ],
+        "5000000": [
+          "BPLR"
+        ],
+        "30000000": [
+          "BPLR"
+        ],
+        "100000000": [
+          "BPLR"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 9,
+      "source_name": "Canary",
+      "osw_current_id": "canary",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "CNRY",
+        "NAST E"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "CNRY",
+          "NAST E"
+        ],
+        "5000000": [
+          "CNRY",
+          "NAST E"
+        ],
+        "30000000": [
+          "CNRY",
+          "NAST E"
+        ],
+        "100000000": [
+          "CNRY",
+          "NAST E"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 12,
+      "source_name": "Peru",
+      "osw_current_id": "peru-humboldt",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "ANTA",
+        "CAMR",
+        "HUMB"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ANTA",
+          "CAMR",
+          "HUMB"
+        ],
+        "5000000": [
+          "ANTA",
+          "CAMR",
+          "HUMB"
+        ],
+        "30000000": [
+          "ANTA",
+          "CAMR",
+          "HUMB"
+        ],
+        "100000000": [
+          "ANTA",
+          "CAMR",
+          "HUMB"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 13,
+      "source_name": "Falkland",
+      "osw_current_id": "falkland",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "FKLD"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "FKLD"
+        ],
+        "5000000": [
+          "FKLD"
+        ],
+        "30000000": [
+          "FKLD"
+        ],
+        "100000000": [
+          "FKLD"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 14,
+      "source_name": "South Atlantic",
+      "osw_current_id": "south-atlantic",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "FKLD",
+        "SATL",
+        "SSTC"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "FKLD",
+          "SATL",
+          "SSTC"
+        ],
+        "5000000": [
+          "FKLD",
+          "SATL",
+          "SSTC"
+        ],
+        "30000000": [
+          "FKLD",
+          "SATL",
+          "SSTC"
+        ],
+        "100000000": [
+          "FKLD",
+          "SATL",
+          "SSTC"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 15,
+      "source_name": "Benguela",
+      "osw_current_id": "benguela",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "BENG",
+        "ETRA",
+        "SSTC"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "BENG",
+          "ETRA",
+          "SSTC"
+        ],
+        "5000000": [
+          "BENG",
+          "ETRA",
+          "SSTC"
+        ],
+        "30000000": [
+          "BENG",
+          "ETRA",
+          "SSTC"
+        ],
+        "100000000": [
+          "BENG",
+          "ETRA",
+          "SSTC"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 16,
+      "source_name": "West Wind Drift / Antarctic Circumpolar",
+      "osw_current_id": "acc",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "ANTA",
+        "FKLD"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ANTA",
+          "FKLD"
+        ],
+        "5000000": [
+          "ANTA",
+          "FKLD"
+        ],
+        "30000000": [
+          "ANTA",
+          "FKLD"
+        ],
+        "100000000": [
+          "ANTA",
+          "FKLD"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 17,
+      "source_name": "West Wind Drift / Antarctic Circumpolar",
+      "osw_current_id": "acc",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "FKLD",
+        "ISSG",
+        "SANT",
+        "SATL",
+        "SSTC"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "FKLD",
+          "ISSG",
+          "SANT",
+          "SATL",
+          "SSTC"
+        ],
+        "5000000": [
+          "FKLD",
+          "ISSG",
+          "SANT",
+          "SATL",
+          "SSTC"
+        ],
+        "30000000": [
+          "FKLD",
+          "ISSG",
+          "SANT",
+          "SATL",
+          "SSTC"
+        ],
+        "100000000": [
+          "FKLD",
+          "ISSG",
+          "SANT",
+          "SATL",
+          "SSTC"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 18,
+      "source_name": "South Indian/Western Australia",
+      "osw_current_id": null,
+      "unmapped_reason": "Combined source label does not identify one current unambiguously.",
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "APLR",
+        "AUSE",
+        "AUSW",
+        "ISSG",
+        "SANT",
+        "TASM"
+      ],
+      "width_sensitive_state_codes": [
+        "ARCH"
+      ],
+      "state_codes_by_scale": {
+        "1000000": [
+          "APLR",
+          "AUSE",
+          "AUSW",
+          "ISSG",
+          "SANT",
+          "TASM"
+        ],
+        "5000000": [
+          "APLR",
+          "AUSE",
+          "AUSW",
+          "ISSG",
+          "SANT",
+          "TASM"
+        ],
+        "30000000": [
+          "APLR",
+          "AUSE",
+          "AUSW",
+          "ISSG",
+          "SANT",
+          "TASM"
+        ],
+        "100000000": [
+          "APLR",
+          "ARCH",
+          "AUSE",
+          "AUSW",
+          "ISSG",
+          "SANT",
+          "TASM"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 20,
+      "source_name": "Western Australia",
+      "osw_current_id": "west-australian",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "AUSW",
+        "ISSG",
+        "SANT"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "AUSW",
+          "ISSG",
+          "SANT"
+        ],
+        "5000000": [
+          "AUSW",
+          "ISSG",
+          "SANT"
+        ],
+        "30000000": [
+          "AUSW",
+          "ISSG",
+          "SANT"
+        ],
+        "100000000": [
+          "AUSW",
+          "ISSG",
+          "SANT"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 21,
+      "source_name": "South Indian",
+      "osw_current_id": "south-indian",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "EAFR",
+        "ISSG",
+        "SSTC"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "EAFR",
+          "ISSG",
+          "SSTC"
+        ],
+        "5000000": [
+          "EAFR",
+          "ISSG",
+          "SSTC"
+        ],
+        "30000000": [
+          "EAFR",
+          "ISSG",
+          "SSTC"
+        ],
+        "100000000": [
+          "EAFR",
+          "ISSG",
+          "SSTC"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 22,
+      "source_name": "East Wind Drift / Antarctic Subpolar",
+      "osw_current_id": "antarctic-coastal",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "FKLD",
+        "SATL",
+        "SSTC"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "FKLD",
+          "SATL",
+          "SSTC"
+        ],
+        "5000000": [
+          "FKLD",
+          "SATL",
+          "SSTC"
+        ],
+        "30000000": [
+          "FKLD",
+          "SATL",
+          "SSTC"
+        ],
+        "100000000": [
+          "FKLD",
+          "SATL",
+          "SSTC"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 23,
+      "source_name": "East Wind Drift / Antarctic Subpolar",
+      "osw_current_id": "antarctic-coastal",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "APLR",
+        "SANT",
+        "SSTC"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "APLR",
+          "SANT",
+          "SSTC"
+        ],
+        "5000000": [
+          "APLR",
+          "SANT",
+          "SSTC"
+        ],
+        "30000000": [
+          "APLR",
+          "SANT",
+          "SSTC"
+        ],
+        "100000000": [
+          "APLR",
+          "SANT",
+          "SSTC"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 24,
+      "source_name": "West Wind Drift / Antarctic Circumpolar",
+      "osw_current_id": "acc",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "APLR",
+        "NEWZ",
+        "SANT"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "APLR",
+          "NEWZ",
+          "SANT"
+        ],
+        "5000000": [
+          "APLR",
+          "NEWZ",
+          "SANT"
+        ],
+        "30000000": [
+          "APLR",
+          "NEWZ",
+          "SANT"
+        ],
+        "100000000": [
+          "APLR",
+          "NEWZ",
+          "SANT"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 25,
+      "source_name": "South Pacific",
+      "osw_current_id": "south-pacific",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "ANTA",
+        "SPSG"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ANTA",
+          "SPSG"
+        ],
+        "5000000": [
+          "ANTA",
+          "SPSG"
+        ],
+        "30000000": [
+          "ANTA",
+          "SPSG"
+        ],
+        "100000000": [
+          "ANTA",
+          "SPSG"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 28,
+      "source_name": "Oyashio",
+      "osw_current_id": "oyashio",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "KURO",
+        "PSAW"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "KURO",
+          "PSAW"
+        ],
+        "5000000": [
+          "KURO",
+          "PSAW"
+        ],
+        "30000000": [
+          "KURO",
+          "PSAW"
+        ],
+        "100000000": [
+          "KURO",
+          "PSAW"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 29,
+      "source_name": "East Wind Drift / Antarctic Subpolar",
+      "osw_current_id": "antarctic-coastal",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "ANTA",
+        "NEWZ"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ANTA",
+          "NEWZ"
+        ],
+        "5000000": [
+          "ANTA",
+          "NEWZ"
+        ],
+        "30000000": [
+          "ANTA",
+          "NEWZ"
+        ],
+        "100000000": [
+          "ANTA",
+          "NEWZ"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 34,
+      "source_name": "South Pacific",
+      "osw_current_id": "south-pacific",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "NEWZ",
+        "SPSG"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "NEWZ",
+          "SPSG"
+        ],
+        "5000000": [
+          "NEWZ",
+          "SPSG"
+        ],
+        "30000000": [
+          "NEWZ",
+          "SPSG"
+        ],
+        "100000000": [
+          "NEWZ",
+          "SPSG"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 36,
+      "source_name": "North Pacific",
+      "osw_current_id": "north-pacific",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "NPPF",
+        "PSAE"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "NPPF",
+          "PSAE"
+        ],
+        "5000000": [
+          "NPPF",
+          "PSAE"
+        ],
+        "30000000": [
+          "NPPF",
+          "PSAE"
+        ],
+        "100000000": [
+          "NPPF",
+          "PSAE"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 37,
+      "source_name": "Alaska",
+      "osw_current_id": "alaska",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "ALSK",
+        "PSAE"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ALSK",
+          "PSAE"
+        ],
+        "5000000": [
+          "ALSK",
+          "PSAE"
+        ],
+        "30000000": [
+          "ALSK",
+          "PSAE"
+        ],
+        "100000000": [
+          "ALSK",
+          "PSAE"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 38,
+      "source_name": "North Equatorial",
+      "osw_current_id": "north-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "NPSE",
+        "NPTG"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "NPSE",
+          "NPTG"
+        ],
+        "5000000": [
+          "NPSE",
+          "NPTG"
+        ],
+        "30000000": [
+          "NPSE",
+          "NPTG"
+        ],
+        "100000000": [
+          "NPSE",
+          "NPTG"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 39,
+      "source_name": "North Equatorial",
+      "osw_current_id": "north-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "NPTG",
+        "PEQD",
+        "PNEC"
+      ],
+      "width_sensitive_state_codes": [
+        "NPSE"
+      ],
+      "state_codes_by_scale": {
+        "1000000": [
+          "NPTG",
+          "PEQD",
+          "PNEC"
+        ],
+        "5000000": [
+          "NPSE",
+          "NPTG",
+          "PEQD",
+          "PNEC"
+        ],
+        "30000000": [
+          "NPSE",
+          "NPTG",
+          "PEQD",
+          "PNEC"
+        ],
+        "100000000": [
+          "NPSE",
+          "NPTG",
+          "PEQD",
+          "PNEC"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 41,
+      "source_name": "Eq. Countercurrent",
+      "osw_current_id": "equatorial-countercurrent",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "PEQD",
+        "PNEC"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "PEQD",
+          "PNEC"
+        ],
+        "5000000": [
+          "PEQD",
+          "PNEC"
+        ],
+        "30000000": [
+          "PEQD",
+          "PNEC"
+        ],
+        "100000000": [
+          "PEQD",
+          "PNEC"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 42,
+      "source_name": " ",
+      "osw_current_id": null,
+      "unmapped_reason": "Source arrow has no current name.",
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "CAMR",
+        "PEQD"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "CAMR",
+          "PEQD"
+        ],
+        "5000000": [
+          "CAMR",
+          "PEQD"
+        ],
+        "30000000": [
+          "CAMR",
+          "PEQD"
+        ],
+        "100000000": [
+          "CAMR",
+          "PEQD"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 43,
+      "source_name": " ",
+      "osw_current_id": null,
+      "unmapped_reason": "Source arrow has no current name.",
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "CAMR"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "CAMR"
+        ],
+        "5000000": [
+          "CAMR"
+        ],
+        "30000000": [
+          "CAMR"
+        ],
+        "100000000": [
+          "CAMR"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 44,
+      "source_name": " ",
+      "osw_current_id": null,
+      "unmapped_reason": "Source arrow has no current name.",
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "CAMR"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "CAMR"
+        ],
+        "5000000": [
+          "CAMR"
+        ],
+        "30000000": [
+          "CAMR"
+        ],
+        "100000000": [
+          "CAMR"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 45,
+      "source_name": "South Equatorial/South Pacific Gyre",
+      "osw_current_id": null,
+      "unmapped_reason": "Combined source label mixes a current and a gyre.",
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "ANTA",
+        "AUSE",
+        "NEWZ",
+        "NPTG",
+        "PEQD",
+        "PNEC",
+        "SPSG"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ANTA",
+          "AUSE",
+          "NEWZ",
+          "NPTG",
+          "PEQD",
+          "PNEC",
+          "SPSG"
+        ],
+        "5000000": [
+          "ANTA",
+          "AUSE",
+          "NEWZ",
+          "NPTG",
+          "PEQD",
+          "PNEC",
+          "SPSG"
+        ],
+        "30000000": [
+          "ANTA",
+          "AUSE",
+          "NEWZ",
+          "NPTG",
+          "PEQD",
+          "PNEC",
+          "SPSG"
+        ],
+        "100000000": [
+          "ANTA",
+          "AUSE",
+          "NEWZ",
+          "NPTG",
+          "PEQD",
+          "PNEC",
+          "SPSG"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 46,
+      "source_name": "South Equatorial",
+      "osw_current_id": "south-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "CAMR",
+        "PEQD",
+        "PNEC"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "CAMR",
+          "PEQD",
+          "PNEC"
+        ],
+        "5000000": [
+          "CAMR",
+          "PEQD",
+          "PNEC"
+        ],
+        "30000000": [
+          "CAMR",
+          "PEQD",
+          "PNEC"
+        ],
+        "100000000": [
+          "CAMR",
+          "PEQD",
+          "PNEC"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 48,
+      "source_name": "South Pacific",
+      "osw_current_id": "south-pacific",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "ANTA",
+        "SPSG"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ANTA",
+          "SPSG"
+        ],
+        "5000000": [
+          "ANTA",
+          "SPSG"
+        ],
+        "30000000": [
+          "ANTA",
+          "SPSG"
+        ],
+        "100000000": [
+          "ANTA",
+          "SPSG"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 50,
+      "source_name": "Brazil",
+      "osw_current_id": "brazil",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "BRAZ",
+        "SATL",
+        "WTRA"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "BRAZ",
+          "SATL",
+          "WTRA"
+        ],
+        "5000000": [
+          "BRAZ",
+          "SATL",
+          "WTRA"
+        ],
+        "30000000": [
+          "BRAZ",
+          "SATL",
+          "WTRA"
+        ],
+        "100000000": [
+          "BRAZ",
+          "SATL",
+          "WTRA"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 51,
+      "source_name": "Eq. Countercurrent",
+      "osw_current_id": "equatorial-countercurrent",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "CNRY",
+        "ETRA",
+        "NATR",
+        "WTRA"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "CNRY",
+          "ETRA",
+          "NATR",
+          "WTRA"
+        ],
+        "5000000": [
+          "CNRY",
+          "ETRA",
+          "NATR",
+          "WTRA"
+        ],
+        "30000000": [
+          "CNRY",
+          "ETRA",
+          "NATR",
+          "WTRA"
+        ],
+        "100000000": [
+          "CNRY",
+          "ETRA",
+          "NATR",
+          "WTRA"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 52,
+      "source_name": "Guinea",
+      "osw_current_id": "guinea",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "ETRA",
+        "GUIN"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ETRA",
+          "GUIN"
+        ],
+        "5000000": [
+          "ETRA",
+          "GUIN"
+        ],
+        "30000000": [
+          "ETRA",
+          "GUIN"
+        ],
+        "100000000": [
+          "ETRA",
+          "GUIN"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 53,
+      "source_name": "South Equatorial",
+      "osw_current_id": "south-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "ETRA",
+        "WTRA"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ETRA",
+          "WTRA"
+        ],
+        "5000000": [
+          "ETRA",
+          "WTRA"
+        ],
+        "30000000": [
+          "ETRA",
+          "WTRA"
+        ],
+        "100000000": [
+          "ETRA",
+          "WTRA"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 54,
+      "source_name": "South Equatorial",
+      "osw_current_id": "south-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "GUIA"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "GUIA"
+        ],
+        "5000000": [
+          "GUIA"
+        ],
+        "30000000": [
+          "GUIA"
+        ],
+        "100000000": [
+          "GUIA"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 55,
+      "source_name": "North Equatorial",
+      "osw_current_id": "north-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "GUIA",
+        "NATR"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "GUIA",
+          "NATR"
+        ],
+        "5000000": [
+          "GUIA",
+          "NATR"
+        ],
+        "30000000": [
+          "GUIA",
+          "NATR"
+        ],
+        "100000000": [
+          "GUIA",
+          "NATR"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 56,
+      "source_name": "North Equatorial",
+      "osw_current_id": "north-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "CARB",
+        "NAST E",
+        "NAST W",
+        "NATR"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "CARB",
+          "NAST E",
+          "NAST W",
+          "NATR"
+        ],
+        "5000000": [
+          "CARB",
+          "NAST E",
+          "NAST W",
+          "NATR"
+        ],
+        "30000000": [
+          "CARB",
+          "NAST E",
+          "NAST W",
+          "NATR"
+        ],
+        "100000000": [
+          "CARB",
+          "NAST E",
+          "NAST W",
+          "NATR"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 57,
+      "source_name": "Gulf Stream",
+      "osw_current_id": "gulf-stream",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "CAMR",
+        "CARB",
+        "GFST"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "CAMR",
+          "CARB",
+          "GFST"
+        ],
+        "5000000": [
+          "CAMR",
+          "CARB",
+          "GFST"
+        ],
+        "30000000": [
+          "CAMR",
+          "CARB",
+          "GFST"
+        ],
+        "100000000": [
+          "CAMR",
+          "CARB",
+          "GFST"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 58,
+      "source_name": "Gulf Stream",
+      "osw_current_id": "gulf-stream",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "GFST",
+        "NWCS"
+      ],
+      "width_sensitive_state_codes": [
+        "NAST W"
+      ],
+      "state_codes_by_scale": {
+        "1000000": [
+          "GFST",
+          "NWCS"
+        ],
+        "5000000": [
+          "GFST",
+          "NWCS"
+        ],
+        "30000000": [
+          "GFST",
+          "NAST W",
+          "NWCS"
+        ],
+        "100000000": [
+          "GFST",
+          "NAST W",
+          "NWCS"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 59,
+      "source_name": "North Atlantic",
+      "osw_current_id": "north-atlantic",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "ARCT",
+        "NADR",
+        "NWCS",
+        "SARC"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ARCT",
+          "NADR",
+          "NWCS",
+          "SARC"
+        ],
+        "5000000": [
+          "ARCT",
+          "NADR",
+          "NWCS",
+          "SARC"
+        ],
+        "30000000": [
+          "ARCT",
+          "NADR",
+          "NWCS",
+          "SARC"
+        ],
+        "100000000": [
+          "ARCT",
+          "NADR",
+          "NWCS",
+          "SARC"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 60,
+      "source_name": "North Atlantic/Azores",
+      "osw_current_id": null,
+      "unmapped_reason": "Combined source label does not identify one current unambiguously.",
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "NADR"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "NADR"
+        ],
+        "5000000": [
+          "NADR"
+        ],
+        "30000000": [
+          "NADR"
+        ],
+        "100000000": [
+          "NADR"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 61,
+      "source_name": "Caribbean",
+      "osw_current_id": "caribbean",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "CARB"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "CARB"
+        ],
+        "5000000": [
+          "CARB"
+        ],
+        "30000000": [
+          "CARB"
+        ],
+        "100000000": [
+          "CARB"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 64,
+      "source_name": "Norwegian",
+      "osw_current_id": "norwegian",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "BPLR",
+        "NECS"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "BPLR",
+          "NECS"
+        ],
+        "5000000": [
+          "BPLR",
+          "NECS"
+        ],
+        "30000000": [
+          "BPLR",
+          "NECS"
+        ],
+        "100000000": [
+          "BPLR",
+          "NECS"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 65,
+      "source_name": "Norwegian",
+      "osw_current_id": "norwegian",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "BPLR"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "BPLR"
+        ],
+        "5000000": [
+          "BPLR"
+        ],
+        "30000000": [
+          "BPLR"
+        ],
+        "100000000": [
+          "BPLR"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 66,
+      "source_name": "North Equatorial",
+      "osw_current_id": "north-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "CHIN",
+        "NPSW",
+        "NPTG",
+        "WARM"
+      ],
+      "width_sensitive_state_codes": [
+        "KURO"
+      ],
+      "state_codes_by_scale": {
+        "1000000": [
+          "CHIN",
+          "NPSW",
+          "NPTG",
+          "WARM"
+        ],
+        "5000000": [
+          "CHIN",
+          "KURO",
+          "NPSW",
+          "NPTG",
+          "WARM"
+        ],
+        "30000000": [
+          "CHIN",
+          "KURO",
+          "NPSW",
+          "NPTG",
+          "WARM"
+        ],
+        "100000000": [
+          "CHIN",
+          "KURO",
+          "NPSW",
+          "NPTG",
+          "WARM"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 67,
+      "source_name": "South Equatorial",
+      "osw_current_id": "south-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "ARCH",
+        "AUSE",
+        "AUSW",
+        "SUND"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ARCH",
+          "AUSE",
+          "AUSW",
+          "SUND"
+        ],
+        "5000000": [
+          "ARCH",
+          "AUSE",
+          "AUSW",
+          "SUND"
+        ],
+        "30000000": [
+          "ARCH",
+          "AUSE",
+          "AUSW",
+          "SUND"
+        ],
+        "100000000": [
+          "ARCH",
+          "AUSE",
+          "AUSW",
+          "SUND"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 69,
+      "source_name": "North Equatorial",
+      "osw_current_id": "north-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "ARAB",
+        "EAFR",
+        "IND W",
+        "MONS"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ARAB",
+          "EAFR",
+          "IND W",
+          "MONS"
+        ],
+        "5000000": [
+          "ARAB",
+          "EAFR",
+          "IND W",
+          "MONS"
+        ],
+        "30000000": [
+          "ARAB",
+          "EAFR",
+          "IND W",
+          "MONS"
+        ],
+        "100000000": [
+          "ARAB",
+          "EAFR",
+          "IND W",
+          "MONS"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 70,
+      "source_name": " ",
+      "osw_current_id": null,
+      "unmapped_reason": "Source arrow has no current name.",
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "EAFR"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "EAFR"
+        ],
+        "5000000": [
+          "EAFR"
+        ],
+        "30000000": [
+          "EAFR"
+        ],
+        "100000000": [
+          "EAFR"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 71,
+      "source_name": "Agulhas",
+      "osw_current_id": "agulhas",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "EAFR"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "EAFR"
+        ],
+        "5000000": [
+          "EAFR"
+        ],
+        "30000000": [
+          "EAFR"
+        ],
+        "100000000": [
+          "EAFR"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 72,
+      "source_name": "South Equatorial",
+      "osw_current_id": "south-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "AUSW",
+        "EAFR",
+        "ISSG"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "AUSW",
+          "EAFR",
+          "ISSG"
+        ],
+        "5000000": [
+          "AUSW",
+          "EAFR",
+          "ISSG"
+        ],
+        "30000000": [
+          "AUSW",
+          "EAFR",
+          "ISSG"
+        ],
+        "100000000": [
+          "AUSW",
+          "EAFR",
+          "ISSG"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 73,
+      "source_name": "South Equatorial",
+      "osw_current_id": "south-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "AUSW",
+        "EAFR",
+        "ISSG",
+        "SSTC"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "AUSW",
+          "EAFR",
+          "ISSG",
+          "SSTC"
+        ],
+        "5000000": [
+          "AUSW",
+          "EAFR",
+          "ISSG",
+          "SSTC"
+        ],
+        "30000000": [
+          "AUSW",
+          "EAFR",
+          "ISSG",
+          "SSTC"
+        ],
+        "100000000": [
+          "AUSW",
+          "EAFR",
+          "ISSG",
+          "SSTC"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 77,
+      "source_name": " ",
+      "osw_current_id": null,
+      "unmapped_reason": "Source arrow has no current name.",
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "CHIN",
+        "SUND",
+        "WARM"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "CHIN",
+          "SUND",
+          "WARM"
+        ],
+        "5000000": [
+          "CHIN",
+          "SUND",
+          "WARM"
+        ],
+        "30000000": [
+          "CHIN",
+          "SUND",
+          "WARM"
+        ],
+        "100000000": [
+          "CHIN",
+          "SUND",
+          "WARM"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 78,
+      "source_name": " ",
+      "osw_current_id": null,
+      "unmapped_reason": "Source arrow has no current name.",
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "SUND"
+      ],
+      "width_sensitive_state_codes": [
+        "ARCH",
+        "WARM"
+      ],
+      "state_codes_by_scale": {
+        "1000000": [
+          "SUND"
+        ],
+        "5000000": [
+          "SUND",
+          "WARM"
+        ],
+        "30000000": [
+          "ARCH",
+          "SUND",
+          "WARM"
+        ],
+        "100000000": [
+          "SUND",
+          "WARM"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 82,
+      "source_name": "Eq. Countercurrent",
+      "osw_current_id": "equatorial-countercurrent",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "NPSW",
+        "NPTG",
+        "WARM"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "NPSW",
+          "NPTG",
+          "WARM"
+        ],
+        "5000000": [
+          "NPSW",
+          "NPTG",
+          "WARM"
+        ],
+        "30000000": [
+          "NPSW",
+          "NPTG",
+          "WARM"
+        ],
+        "100000000": [
+          "NPSW",
+          "NPTG",
+          "WARM"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 84,
+      "source_name": "South Equatorial",
+      "osw_current_id": "south-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "NPTG",
+        "WARM"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "NPTG",
+          "WARM"
+        ],
+        "5000000": [
+          "NPTG",
+          "WARM"
+        ],
+        "30000000": [
+          "NPTG",
+          "WARM"
+        ],
+        "100000000": [
+          "NPTG",
+          "WARM"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 85,
+      "source_name": "Eq. Countercurrent",
+      "osw_current_id": "equatorial-countercurrent",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "EAFR",
+        "IND W",
+        "MONS"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "EAFR",
+          "IND W",
+          "MONS"
+        ],
+        "5000000": [
+          "EAFR",
+          "IND W",
+          "MONS"
+        ],
+        "30000000": [
+          "EAFR",
+          "IND W",
+          "MONS"
+        ],
+        "100000000": [
+          "EAFR",
+          "IND W",
+          "MONS"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 87,
+      "source_name": "East Australia",
+      "osw_current_id": "east-australian",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "AUSE",
+        "NEWZ",
+        "TASM"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "AUSE",
+          "NEWZ",
+          "TASM"
+        ],
+        "5000000": [
+          "AUSE",
+          "NEWZ",
+          "TASM"
+        ],
+        "30000000": [
+          "AUSE",
+          "NEWZ",
+          "TASM"
+        ],
+        "100000000": [
+          "AUSE",
+          "NEWZ",
+          "TASM"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 89,
+      "source_name": "East Australia",
+      "osw_current_id": "east-australian",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "NEWZ"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "NEWZ"
+        ],
+        "5000000": [
+          "NEWZ"
+        ],
+        "30000000": [
+          "NEWZ"
+        ],
+        "100000000": [
+          "NEWZ"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 90,
+      "source_name": "South Equatorial",
+      "osw_current_id": "south-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "NPTG",
+        "PNEC"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "NPTG",
+          "PNEC"
+        ],
+        "5000000": [
+          "NPTG",
+          "PNEC"
+        ],
+        "30000000": [
+          "NPTG",
+          "PNEC"
+        ],
+        "100000000": [
+          "NPTG",
+          "PNEC"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 92,
+      "source_name": "Eq. Countercurrent",
+      "osw_current_id": "equatorial-countercurrent",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "NPTG"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "NPTG"
+        ],
+        "5000000": [
+          "NPTG"
+        ],
+        "30000000": [
+          "NPTG"
+        ],
+        "100000000": [
+          "NPTG"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 95,
+      "source_name": "North Pacific",
+      "osw_current_id": "north-pacific",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "NPPF"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "NPPF"
+        ],
+        "5000000": [
+          "NPPF"
+        ],
+        "30000000": [
+          "NPPF"
+        ],
+        "100000000": [
+          "NPPF"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 96,
+      "source_name": "West Wind Drift / Antarctic Circumpolar",
+      "osw_current_id": "acc",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "ANTA",
+        "NEWZ",
+        "SPSG"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "ANTA",
+          "NEWZ",
+          "SPSG"
+        ],
+        "5000000": [
+          "ANTA",
+          "NEWZ",
+          "SPSG"
+        ],
+        "30000000": [
+          "ANTA",
+          "NEWZ",
+          "SPSG"
+        ],
+        "100000000": [
+          "ANTA",
+          "NEWZ",
+          "SPSG"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 98,
+      "source_name": "East Wind Drift / Antarctic Subpolar",
+      "osw_current_id": "antarctic-coastal",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "APLR"
+      ],
+      "width_sensitive_state_codes": [
+        "NEWZ"
+      ],
+      "state_codes_by_scale": {
+        "1000000": [
+          "APLR"
+        ],
+        "5000000": [
+          "APLR"
+        ],
+        "30000000": [
+          "APLR",
+          "NEWZ"
+        ],
+        "100000000": [
+          "APLR",
+          "NEWZ"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 99,
+      "source_name": "South Pacific",
+      "osw_current_id": "south-pacific",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "APLR",
+        "NEWZ"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "APLR",
+          "NEWZ"
+        ],
+        "5000000": [
+          "APLR",
+          "NEWZ"
+        ],
+        "30000000": [
+          "APLR",
+          "NEWZ"
+        ],
+        "100000000": [
+          "APLR",
+          "NEWZ"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 103,
+      "source_name": "North Equatorial",
+      "osw_current_id": "north-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "NPSW",
+        "NPTG",
+        "WARM"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "NPSW",
+          "NPTG",
+          "WARM"
+        ],
+        "5000000": [
+          "NPSW",
+          "NPTG",
+          "WARM"
+        ],
+        "30000000": [
+          "NPSW",
+          "NPTG",
+          "WARM"
+        ],
+        "100000000": [
+          "NPSW",
+          "NPTG",
+          "WARM"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 105,
+      "source_name": "Oyashio",
+      "osw_current_id": "oyashio",
+      "unmapped_reason": null,
+      "source_temperature_label": "cold",
+      "stable_state_codes": [
+        "BERS",
+        "PSAW"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "BERS",
+          "PSAW"
+        ],
+        "5000000": [
+          "BERS",
+          "PSAW"
+        ],
+        "30000000": [
+          "BERS",
+          "PSAW"
+        ],
+        "100000000": [
+          "BERS",
+          "PSAW"
+        ]
+      }
+    },
+    {
+      "source_arrow_id": 109,
+      "source_name": "North Equatorial",
+      "osw_current_id": "north-equatorial",
+      "unmapped_reason": null,
+      "source_temperature_label": "warm",
+      "stable_state_codes": [
+        "NPTG"
+      ],
+      "width_sensitive_state_codes": [],
+      "state_codes_by_scale": {
+        "1000000": [
+          "NPTG"
+        ],
+        "5000000": [
+          "NPTG"
+        ],
+        "30000000": [
+          "NPTG"
+        ],
+        "100000000": [
+          "NPTG"
+        ]
+      }
+    }
+  ],
+  "states": {
+    "BERS": {
+      "stable_cartographic_current_crossings": [
+        "alaska",
+        "oyashio"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "PSAW": {
+      "stable_cartographic_current_crossings": [
+        "oyashio"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "NPPF": {
+      "stable_cartographic_current_crossings": [
+        "north-pacific"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "PSAE": {
+      "stable_cartographic_current_crossings": [
+        "alaska",
+        "california",
+        "north-pacific"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "ALSK": {
+      "stable_cartographic_current_crossings": [
+        "alaska"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "KURO": {
+      "stable_cartographic_current_crossings": [
+        "oyashio"
+      ],
+      "width_sensitive_cartographic_contacts": [
+        "north-equatorial"
+      ]
+    },
+    "NPSW": {
+      "stable_cartographic_current_crossings": [
+        "equatorial-countercurrent",
+        "north-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "NPSE": {
+      "stable_cartographic_current_crossings": [
+        "california",
+        "north-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "CCAL": {
+      "stable_cartographic_current_crossings": [
+        "california"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "CHIN": {
+      "stable_cartographic_current_crossings": [
+        "north-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "NPTG": {
+      "stable_cartographic_current_crossings": [
+        "equatorial-countercurrent",
+        "north-equatorial",
+        "south-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "PNEC": {
+      "stable_cartographic_current_crossings": [
+        "equatorial-countercurrent",
+        "north-equatorial",
+        "south-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "CAMR": {
+      "stable_cartographic_current_crossings": [
+        "gulf-stream",
+        "peru-humboldt",
+        "south-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "SUND": {
+      "stable_cartographic_current_crossings": [
+        "south-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "WARM": {
+      "stable_cartographic_current_crossings": [
+        "equatorial-countercurrent",
+        "north-equatorial",
+        "south-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "PEQD": {
+      "stable_cartographic_current_crossings": [
+        "equatorial-countercurrent",
+        "north-equatorial",
+        "south-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "HUMB": {
+      "stable_cartographic_current_crossings": [
+        "peru-humboldt"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "AUSE": {
+      "stable_cartographic_current_crossings": [
+        "east-australian",
+        "south-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "ARCH": {
+      "stable_cartographic_current_crossings": [
+        "south-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "SPSG": {
+      "stable_cartographic_current_crossings": [
+        "acc",
+        "south-pacific"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "NEWZ": {
+      "stable_cartographic_current_crossings": [
+        "acc",
+        "antarctic-coastal",
+        "east-australian",
+        "south-pacific"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "TASM": {
+      "stable_cartographic_current_crossings": [
+        "east-australian"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "OCAL": {
+      "stable_cartographic_current_crossings": [
+        "california"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "REDS": {
+      "stable_cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "IND W": {
+      "stable_cartographic_current_crossings": [
+        "equatorial-countercurrent",
+        "north-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "ARAB": {
+      "stable_cartographic_current_crossings": [
+        "north-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "MONS": {
+      "stable_cartographic_current_crossings": [
+        "equatorial-countercurrent",
+        "north-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "IND E": {
+      "stable_cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "ISSG": {
+      "stable_cartographic_current_crossings": [
+        "acc",
+        "south-equatorial",
+        "south-indian",
+        "west-australian"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "EAFR": {
+      "stable_cartographic_current_crossings": [
+        "agulhas",
+        "equatorial-countercurrent",
+        "north-equatorial",
+        "south-equatorial",
+        "south-indian"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "AUSW": {
+      "stable_cartographic_current_crossings": [
+        "south-equatorial",
+        "west-australian"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "ARCT": {
+      "stable_cartographic_current_crossings": [
+        "east-greenland",
+        "north-atlantic"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "SARC": {
+      "stable_cartographic_current_crossings": [
+        "east-greenland",
+        "north-atlantic"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "NECS": {
+      "stable_cartographic_current_crossings": [
+        "norwegian"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "NWCS": {
+      "stable_cartographic_current_crossings": [
+        "gulf-stream",
+        "labrador",
+        "north-atlantic"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "NADR": {
+      "stable_cartographic_current_crossings": [
+        "north-atlantic"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "GFST": {
+      "stable_cartographic_current_crossings": [
+        "gulf-stream"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "NAST E": {
+      "stable_cartographic_current_crossings": [
+        "canary",
+        "north-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "NAST W": {
+      "stable_cartographic_current_crossings": [
+        "north-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": [
+        "gulf-stream"
+      ]
+    },
+    "MEDI": {
+      "stable_cartographic_current_crossings": [],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "CNRY": {
+      "stable_cartographic_current_crossings": [
+        "canary",
+        "equatorial-countercurrent"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "NATR": {
+      "stable_cartographic_current_crossings": [
+        "equatorial-countercurrent",
+        "north-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "CARB": {
+      "stable_cartographic_current_crossings": [
+        "caribbean",
+        "gulf-stream",
+        "north-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "GUIA": {
+      "stable_cartographic_current_crossings": [
+        "north-equatorial",
+        "south-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "WTRA": {
+      "stable_cartographic_current_crossings": [
+        "brazil",
+        "equatorial-countercurrent",
+        "south-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "ETRA": {
+      "stable_cartographic_current_crossings": [
+        "benguela",
+        "equatorial-countercurrent",
+        "guinea",
+        "south-equatorial"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "GUIN": {
+      "stable_cartographic_current_crossings": [
+        "guinea"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "SATL": {
+      "stable_cartographic_current_crossings": [
+        "acc",
+        "antarctic-coastal",
+        "brazil",
+        "south-atlantic"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "BRAZ": {
+      "stable_cartographic_current_crossings": [
+        "brazil"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "BENG": {
+      "stable_cartographic_current_crossings": [
+        "benguela"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "FKLD": {
+      "stable_cartographic_current_crossings": [
+        "acc",
+        "antarctic-coastal",
+        "falkland",
+        "south-atlantic"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "SSTC": {
+      "stable_cartographic_current_crossings": [
+        "acc",
+        "antarctic-coastal",
+        "benguela",
+        "south-atlantic",
+        "south-equatorial",
+        "south-indian"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "SANT": {
+      "stable_cartographic_current_crossings": [
+        "acc",
+        "antarctic-coastal",
+        "west-australian"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "ANTA": {
+      "stable_cartographic_current_crossings": [
+        "acc",
+        "antarctic-coastal",
+        "peru-humboldt",
+        "south-pacific"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "APLR": {
+      "stable_cartographic_current_crossings": [
+        "acc",
+        "antarctic-coastal",
+        "south-pacific"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    },
+    "BPLR": {
+      "stable_cartographic_current_crossings": [
+        "norwegian"
+      ],
+      "width_sensitive_cartographic_contacts": []
+    }
+  }
+}
