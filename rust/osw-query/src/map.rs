@@ -43,9 +43,13 @@ fn path(value: &Value, closed: bool) -> Option<String> {
 }
 
 pub fn scene(records: &[&Value]) -> Value {
-    scene_selected(records, None)
+    scene_selected(records, None, None)
 }
-pub fn scene_selected(records: &[&Value], time: Option<&crate::temporal::GeometryTime>) -> Value {
+pub fn scene_selected(
+    records: &[&Value],
+    time: Option<&crate::temporal::GeometryTime>,
+    seasonal: Option<&crate::seasonal::SeasonalSelection>,
+) -> Value {
     let mut features = Vec::new();
     let mut mapped = BTreeSet::new();
     let mut omitted = Vec::new();
@@ -57,6 +61,9 @@ pub fn scene_selected(records: &[&Value], time: Option<&crate::temporal::Geometr
             .enumerate()
         {
             if time.is_some_and(|t| !t.includes(feature)) {
+                continue;
+            }
+            if seasonal.is_some_and(|s| !s.includes(feature)) {
                 continue;
             }
             let geometry = &feature["geometry"];
@@ -98,6 +105,16 @@ pub fn scene_selected(records: &[&Value], time: Option<&crate::temporal::Geometr
                 }
                 for key in [
                     "frame_id",
+                    "phase_id",
+                    "phase_label",
+                    "flow_direction",
+                    "calendar_months",
+                    "source_locator",
+                    "time_convention",
+                    "layer",
+                    "route_candidate_sha256",
+                    "seasonal_inventory_sha256",
+                    "comparability",
                     "series_id",
                     "source_url",
                     "source_subset_sha256",
