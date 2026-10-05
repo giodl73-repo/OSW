@@ -69,7 +69,7 @@ def main():
             actual = browser_query(page, query)
             expected = native(query)
             assert actual == expected, (query, actual, expected)
-        assert native(queries[0])['total'] == 26
+        assert native(queries[0])['total'] == 27
         lengths = native(queries[1])
         assert lengths['total'] == 11
         assert lengths['rows'][0]['published_length_km'] == 25000

@@ -1,6 +1,6 @@
 (() => {
   const $ = id => document.getElementById(id);
-  const labels = {reported_length:'Published ranked length',reference_route:'Editorial reference route',scoped_width:'Scoped width evidence',geometry:'Geometry beyond a locator',time_samples:'Time samples / phase records',source_connectivity:'Source-described current links',scope_notes:'Source scope notes'};
+  const labels = {reported_length:'Published ranked length',reference_route:'Editorial reference route',scoped_width:'Scoped width evidence',geometry:'Geometry beyond a locator',time_samples:'Time samples / phase records',source_connectivity:'Source-described current links',scope_notes:'Source scope notes',dated_diagnostics:'Dated method diagnostics',flow_network:'Passage networks',passage_transport:'Observed passage transport'};
   const kinds = {named_current:'Current',named_eddy:'Named eddy',operational_eddy_detection:'Dated detection'};
   const key = 'osw-motion-dashboard-seen-v2';
   const groupLabels = {identity:'Identity',sources:'Sources',claims:'Claims / reviews',measurements:'Measurements',routes_geometry:'Routes / geometry',media:'Media links',time_evidence:'Time evidence'};
@@ -14,7 +14,7 @@
   if (!baseline || typeof baseline !== 'object' || Array.isArray(baseline)) baseline = null;
   const element = (tag,text,parent) => { const el=document.createElement(tag); if(text!=null) el.textContent=text; if(parent) parent.append(el); return el; };
   const link = (label,url,parent) => { const a=element('a',label,parent); a.href=url; };
-  const atlasUrl = row => `reference-routes.html?atlas-feature=${encodeURIComponent(row.id)}#route-atlas`;
+  const atlasUrl = row => ['dated_diagnostics','flow_network','passage_transport'].includes($('dashboard-metric').value)&&row.evidence_links?.length ? row.evidence_links[0].url : `reference-routes.html?atlas-feature=${encodeURIComponent(row.id)}#route-atlas`;
   const changed = row => baseline && baseline[row.id]?.fingerprint !== row.fingerprint;
   function markSeen() {
     baseline = Object.fromEntries(data.entries.map(r => [r.id,{fingerprint:r.fingerprint,sections:r.section_fingerprints}]));
@@ -28,7 +28,7 @@
     element('h3',rows.length===1?rows[0].label:`${rows.length} names at this gateway`,panel);
     element('p',note,panel).className='map-scope';
     const metric=$('dashboard-metric').value;
-    for(const row of rows){const item=element('div',null,panel);item.className='map-selected-record';link(row.label,atlasUrl(row),element('h4',null,item));element('p',`${kinds[row.type]} · ${row.capabilities[metric]?`${row.capabilities[metric]} ${labels[metric].toLowerCase()} records`:'Selected evidence not recorded'}${changed(row)?' · Updated':''}`,item);link('Explore atlas',atlasUrl(row),item);link('Object record',row.object_url,item);if(row.route_url)link('Explore route',row.route_url,item);if(row.season_url)link('Seasons',row.season_url,item);for(const series of row.series)link(series.label,series.url,item);for(const note of row.scope_notes||[]){element('p',note.summary,item);link(note.label,note.source_url,item);}}
+    for(const row of rows){const item=element('div',null,panel);item.className='map-selected-record';link(row.label,atlasUrl(row),element('h4',null,item));element('p',`${kinds[row.type]} · ${row.capabilities[metric]?`${row.capabilities[metric]} ${labels[metric].toLowerCase()} records`:'Selected evidence not recorded'}${changed(row)?' · Updated':''}`,item);link('Explore atlas',atlasUrl(row),item);link('Object record',row.object_url,item);if(row.route_url)link('Explore route',row.route_url,item);if(row.season_url)link('Seasons',row.season_url,item);for(const series of row.series)link(series.label,series.url,item);for(const evidence of row.evidence_links||[])link(evidence.label,evidence.url,item);for(const note of row.scope_notes||[]){element('p',note.summary,item);link(note.label,note.source_url,item);}}
   }
   function renderSchematic(visible,metric) {
     const panels=$('dashboard-schematic-panels');panels.replaceChildren();
@@ -136,6 +136,7 @@
       element('p',`${row.linked_source_count} linked release sources. Candidate sources are available through route and series links.`,metadata);
       for(const [status,count] of Object.entries(row.claim_review_counts))element('p',`${count.toLocaleString()} claims: ${status.replaceAll('_',' ')}`,metadata);
       const links=element('p',null,metadata);links.className='record-links';if(row.route_url)link('Route',row.route_url,links);if(row.season_url)link('Seasons',row.season_url,links);for(const series of row.series)link(series.label,series.url,links);
+      for(const evidence of row.evidence_links||[])link(evidence.label,evidence.url,links);
       for(const connection of row.connections||[])link('Current-link source',connection.source_url,links);
       for(const note of row.scope_notes||[]){element('p',note.summary,metadata);link(note.label,note.source_url,links);}
     }
@@ -150,7 +151,7 @@
     try {
       const response=await fetch('../research/ocean-motion-dashboard.json',{cache:'no-store'});if(!response.ok)throw Error(`HTTP ${response.status}`);
       const next=await response.json();
-      if(next.schema!=='osw.motion-dashboard.v1'||next.fingerprint_version!==2||!Array.isArray(next.entries)||!next.counts||new Set(next.entries.map(r=>r.id)).size!==next.entries.length||next.entries.some(r=>!kinds[r.type]||typeof r.label!=='string'||typeof r.fingerprint!=='string'||!r.section_fingerprints||Object.keys(groupLabels).some(k=>typeof r.section_fingerprints[k]!=='string')||!r.claim_review_counts||!Number.isInteger(r.linked_source_count)||!r.capabilities||Object.keys(labels).some(k=>!Number.isInteger(r.capabilities[k])||r.capabilities[k]<0)||!Array.isArray(r.series)||!Array.isArray(r.scope_notes))||Object.keys(kinds).some(k=>next.counts[k]!==next.entries.filter(r=>r.type===k).length))throw Error('Unsupported or incomplete coverage snapshot');
+      if(next.schema!=='osw.motion-dashboard.v1'||next.fingerprint_version!==2||!Array.isArray(next.entries)||!next.counts||new Set(next.entries.map(r=>r.id)).size!==next.entries.length||next.entries.some(r=>!kinds[r.type]||typeof r.label!=='string'||typeof r.fingerprint!=='string'||!r.section_fingerprints||Object.keys(groupLabels).some(k=>typeof r.section_fingerprints[k]!=='string')||!r.claim_review_counts||!Number.isInteger(r.linked_source_count)||!r.capabilities||Object.keys(labels).some(k=>!Number.isInteger(r.capabilities[k])||r.capabilities[k]<0)||!Array.isArray(r.series)||!Array.isArray(r.scope_notes)||!Array.isArray(r.evidence_links)||r.evidence_links.some(e=>typeof e.label!=='string'||typeof e.url!=='string'))||Object.keys(kinds).some(k=>next.counts[k]!==next.entries.filter(r=>r.type===k).length))throw Error('Unsupported or incomplete coverage snapshot');
       if(next.entries.some(r=>!Array.isArray(r.map_features)))throw Error('Snapshot has no atlas location evidence');
       data=next;
       const first=!baseline;if(first)markSeen();

@@ -211,6 +211,15 @@ def build():
     for frame in dated_widths['frames']:
         path=frame['source_subset'];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
         if inputs[path]!=frame['source_subset_sha256']:raise ValueError('Changed dated width source')
+    from build_loop_current_section_spans import build as rebuild_loop_sections, output as loop_section_output
+    for method in ['noaa','adt']:
+        path=loop_section_output(method).relative_to(ROOT).as_posix();document=read(path)
+        if document!=rebuild_loop_sections(method):raise ValueError('Stale Loop section span diagnostic')
+        collections['diagnostics'].append({'id':f'diagnostic:yucatan-{method}-sections','label':f'Loop inflow — {method.upper()} fixed-section spans',
+            'entity_id':'current:loop','current_id':'loop','status':document['status'],'rank_eligible':False,
+            'source_file':path,'source_file_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8'),'document':document})
+        for dependency in ['analysis/build_loop_current_section_spans.py',document['protocol_file']]:
+            inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
     from build_query_width_samples import build as build_width_samples
     from build_leeuwin_monthly_plot import build as rebuild_leeuwin
     from build_kuroshio_seasonal_width_profiles import build as rebuild_kuroshio

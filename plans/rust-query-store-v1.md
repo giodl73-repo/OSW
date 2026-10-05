@@ -701,3 +701,95 @@ rank eligibility false. Source: Sprintall et al. 2009, Tables 1-2 and Introducti
 Verification: python analysis/test_rust_flow_network.py with OSW_TEST_BROWSER;
 python -m pytest analysis/test_flow_network.py -q. The source scope audit and
 roles review accompany this editorial addition; canonical admission remains open.
+
+## Dashboard evidence and record links
+
+The coverage dashboard counts ten dated Loop method diagnostics, one Indonesian
+Throughflow passage network and three observed passage transport records as
+separate evidence classes. These counts do not supply whole-current length,
+width, annual extrema, geographic footprint or scientific admission. Unresolved
+nominal diagnostics remain counted as records; a record count is not a count of
+successful paths. The five recorded observation dates are retained, while the
+2004-2006 transport means do not acquire an invented exact observation endpoint.
+
+Dashboard content fingerprints include the actual method documents and network
+input. Time evidence, source metadata, network geometry and passage observations
+are assigned to their relevant change groups. Source/diagnostic/protocol receipts
+are checked before generating coverage. Adding these categories changes the
+content fingerprints of the Loop and Throughflow owners only.
+
+Dashboard evidence links constrain the query by record ID and use an optional
+inspect URL parameter to open the matched record card directly. The selection
+must belong to the returned result page. A missing selection leaves the valid
+query results available with an explanatory message. Inspection updates the
+share link and browser URL; submitting a new query clears that selection.
+Direct object inspection fits mapped features before opening the card.
+
+Verification: analysis/test_dashboard_diagnostic_navigation_browser.py,
+analysis/test_motion_dashboard_browser.py and analysis/test_motion_dashboard.py.
+
+## Loop inflow recorded section spans
+
+Two new source-bound diagnostics, diagnostic:yucatan-noaa-sections and
+diagnostic:yucatan-adt-sections, each retain five recorded dates and produce
+five loop_dated_half_peak_section samples. The existing Yucatan gate at
+21.875 N supplies the fixed section. These are zonal half-peak northward-
+component spans, not widths of the traced Loop axis or representative current
+widths. The dedicated section protocol declares thresholds, wet-cell rules,
+native adjacency, brackets, WGS84 distance, rounding and unresolved boundaries.
+
+NOAA rounded samples are 120, 110, 110, 110 and 100 km; DUACS samples are
+90, 80, 80, 80 and 70 km, respectively on January/April/July/October 15 2025
+and September 25 2026. Product-specific sparse sampled spans retain their
+counts and processing versions. No product pooling, annual extrema or confidence
+interval is admitted. The September 2026 NOAA nominal span is under four native
+cell spacings and retains its resolution-review flag. Other spans also require
+scientific boundary/component and identity review.
+
+The query store now has 115 width samples across five current owners and nine
+source panels; the original 105 values, metrics and source records remain
+unchanged. Canonical widths remain 37 source records. Local Loop coverage has
+two additional diagnostic width documents and ten dated section samples.
+Rust validates parent source JSON/SHA, source projections, owner links and
+latitude support. Maps derive only paired west/east endpoints at the declared
+latitude; no route buffer or occupied polygon is generated. Charts separate
+products and preserve elapsed-day gaps. Playback steps recorded dates with no
+interpolation and retains product/year/method filters. Reduced-motion preference
+stops playback and disables animation controls while manual filters remain.
+
+Verification: test_loop_current_section_spans.py, test_rust_loop_section_spans.py,
+test_rust_width_samples.py and test_rust_dated_width_samples.py. Scientific
+admission, source-use review and true annual width evolution remain open.
+
+## Published observation locations and OSW state queries
+
+Spatial queries now accept passage_samples with predicate locator only. The
+existing point topology code indexes each source-bound mooring mark, retains
+source name, URL/hash and published deployment dates, and returns feature-index
+relations separately from recorded state links. Intersects, within and gateway
+predicates are rejected for these records: mooring points cannot establish
+current or passage containment. Recorded state_code joins remain object-only.
+
+Eight first-deployment INSTANT mooring locations map into the approximate SUND
+display polygon. This returns three passage transport records with eight point
+relations, not eight independent transport values. Coordinates and deployment
+periods remain separate from the 2004-2006 exit means. Deployment dates do not
+prove coordinate persistence or exact redeployment locations; no historical
+state boundary, velocity footprint or time-varying mooring track is supplied.
+
+The independent Shapely audit tests every published point against all 56 state
+display polygons, including holes, boundary contact and longitude shifts. Its
+state-geometry SHA is independent of the complete bundle SHA, avoiding circular
+provenance. No-match is not proof that the named current is absent.
+
+Query controls expose Locator in state for passage observations, preserving
+explicit source filters. Map labels use the individual mooring names and open
+their parent transport record. Observation-site maps retain zoom/export and
+source inspection while date/month animation controls are hidden. The Throughflow
+mooring sites in SUND preset and shared query URLs retain that same predicate.
+
+Verification: build_passage_observation_state_audit.py and
+test_rust_passage_state_queries.py: independent 56-state oracle, four malformed
+metadata rejections, eight SUND markers, native/WASM parity, keyboard inspection,
+state selection, share/reload and 320 px layout. Canonical state/current relations
+and measured inventory remain unchanged; these are local computed point joins.

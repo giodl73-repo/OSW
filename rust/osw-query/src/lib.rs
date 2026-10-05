@@ -218,7 +218,7 @@ impl Store {
             }
         }
         seasonal::validate_features(&bundle.collections)?;
-        samples::validate(&bundle.collections)?;
+        samples::validate(&bundle.collections, &bundle.manifest)?;
         planning::validate(&bundle.collections, &bundle.manifest)?;
         loop_diagnostics::validate(&bundle.collections, &bundle.manifest)?;
         network::validate(&bundle.collections, &bundle.manifest)?;
@@ -310,8 +310,11 @@ impl Store {
             return Err("State and evidence joins apply to objects".into());
         }
         if let Some(spatial) = &query.spatial {
-            if query.collection != "objects" {
-                return Err("Spatial queries apply to objects".into());
+            if !["objects", "passage_samples"].contains(&query.collection.as_str()) {
+                return Err("Spatial queries apply to objects and passage observations".into());
+            }
+            if query.collection == "passage_samples" && spatial.predicate != "locator" {
+                return Err("Passage observation queries require locator predicate; point sites do not establish current containment".into());
             }
             self.spatial.validate(spatial)?;
         }

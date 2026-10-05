@@ -48,24 +48,29 @@ pub fn scene(records: &[&Value]) -> Value {
 /// Derive only the local nominal section from source-bound sample coordinates.
 /// No route, width buffer, polygon or state containment is inferred.
 pub fn sample_scene(records: &[&Value]) -> Value {
-    if !records
+    if !records.iter().any(|r| {
+        [
+            "gulf_stream_dated_half_peak_section",
+            "loop_dated_half_peak_section",
+        ]
         .iter()
-        .any(|r| r["sample_family"] == "gulf_stream_dated_half_peak_section")
-    {
+        .any(|f| r["sample_family"] == *f)
+    }) {
         return Value::Null;
     }
     let projected: Vec<Value> = records.iter().map(|row| {
         let mut record = json!({"id":row["id"],"label":row["label"],"type":"local_section_sample","map_features":[]});
-        if row["sample_family"] != "gulf_stream_dated_half_peak_section" || row["status"] != "paired_boundaries" || row["value_km"].is_null() {
+        if !["gulf_stream_dated_half_peak_section","loop_dated_half_peak_section"].iter().any(|f|row["sample_family"]==*f) || row["status"] != "paired_boundaries" || row["value_km"].is_null() {
             return record;
         }
         let nominal = &row["source_sample"]["nominal"];
-        let coordinates = json!([[row["longitude_degrees_east"],nominal["south_boundary"]["latitude"]],[row["longitude_degrees_east"],nominal["north_boundary"]["latitude"]]]);
-        let valid = coordinates.as_array().is_some_and(|c| c.iter().all(|p| point(p).is_some()))
-            && nominal["south_boundary"]["latitude"].as_f64().zip(nominal["north_boundary"]["latitude"].as_f64()).is_some_and(|(s,n)| s < n);
+        let zonal = row["sample_family"]=="loop_dated_half_peak_section";
+        let coordinates = if zonal {json!([[nominal["west_boundary"]["longitude"],row["latitude_degrees_north"]],[nominal["east_boundary"]["longitude"],row["latitude_degrees_north"]]])} else {json!([[row["longitude_degrees_east"],nominal["south_boundary"]["latitude"]],[row["longitude_degrees_east"],nominal["north_boundary"]["latitude"]]])};
+        let ordered = if zonal {nominal["west_boundary"]["longitude"].as_f64().zip(nominal["east_boundary"]["longitude"].as_f64()).is_some_and(|(w,e)|w<e)} else {nominal["south_boundary"]["latitude"].as_f64().zip(nominal["north_boundary"]["latitude"].as_f64()).is_some_and(|(s,n)|s<n)};
+        let valid = coordinates.as_array().is_some_and(|c| c.iter().all(|p| point(p).is_some())) && ordered;
         if valid {
             record["map_features"] = json!([{"geometry":{"type":"LineString","coordinates":coordinates},
-                "role":"local_diagnostic_section_span","note":"Nominal half-peak eastward-component section at 70 W. Surface diagnostic; not a flow-normal width, current route or occupied footprint. Paired interpolated boundaries and resolution remain under review.",
+                "role":"local_diagnostic_section_span","note":if zonal {"Nominal half-peak northward-component zonal section at 21.875 N. Not flow-normal width, current route, passage width or footprint. Boundary/resolution review pending."}else{"Nominal half-peak eastward-component section at 70 W. Surface diagnostic; not a flow-normal width, current route or occupied footprint. Paired interpolated boundaries and resolution remain under review."},
                 "observation_date":row["observation_date"],"source_url":row["source_url"],"source_algorithm":row["source_algorithm"],
                 "source_subset_sha256":row["source_sample"]["source_subset_sha256"],"layer":row["source_context"]["layer"]}]);
         }
@@ -77,7 +82,12 @@ pub fn sample_scene(records: &[&Value]) -> Value {
     scene["recorded_days"] = json!(
         records
             .iter()
-            .filter(|r| r["sample_family"] == "gulf_stream_dated_half_peak_section")
+            .filter(|r| [
+                "gulf_stream_dated_half_peak_section",
+                "loop_dated_half_peak_section"
+            ]
+            .iter()
+            .any(|f| r["sample_family"] == *f))
             .filter_map(|r| r["observation_date"].as_str())
             .collect::<BTreeSet<_>>()
     );
@@ -172,6 +182,9 @@ pub fn scene_selected(
                 mapped.insert(record["id"].as_str().unwrap_or(""));
                 let mut rendered = json!({"entity_id":record["id"],"feature_index":feature_index,"label":record["label"],"type":record["type"],
                     "role":feature["role"],"note":feature["note"],"observation_date":feature["observation_date"],"primitive":primitive});
+                if let Some(label) = feature.get("mooring_label") {
+                    rendered["label"] = label.clone();
+                }
                 if time.is_some() {
                     rendered["undated_context"] = json!(feature["observation_date"].is_null());
                 }
@@ -181,6 +194,11 @@ pub fn scene_selected(
                     "phase_label",
                     "flow_direction",
                     "calendar_months",
+                    "mooring_label",
+                    "deployment_start",
+                    "deployment_end",
+                    "position_time_support",
+                    "source_file_sha256",
                     "source_locator",
                     "time_convention",
                     "layer",

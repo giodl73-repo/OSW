@@ -143,6 +143,15 @@ pub fn validate(
                     let marks = row["map_features"]
                         .as_array()
                         .ok_or("Missing mooring map marks")?;
+                    if sites.iter().zip(marks).any(|(s, m)| {
+                        m["mooring_label"] != s["label"]
+                            || m["deployment_start"] != s["deployment_start"]
+                            || m["deployment_end"] != s["deployment_end"]
+                            || m["source_url"] != doc["source_url"]
+                            || m["source_file_sha256"] != record["source_file_sha256"]
+                    }) {
+                        return Err("Network mooring provenance mismatch".into());
+                    }
                     if sites.len()!=marks.len() || sites.iter().zip(marks).any(|(s,m)|m["geometry"]["type"]!="Point" || m["geometry"]["coordinates"]!=s["coordinates_lon_lat"] || m["role"]!="published_mooring_locator_not_axis_edge_or_whole_current_footprint"){return Err("Network mooring geometry mismatch".into());}
                 }
             }

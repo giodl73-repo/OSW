@@ -1,0 +1,915 @@
+{
+  "schema": "osw.loop-section-spans.v1",
+  "current_id": "loop",
+  "product_key": "noaa",
+  "status": "local_component_section_diagnostic_requires_scientific_review",
+  "metric": "zonal_half_peak_northward_velocity_section_span",
+  "section_latitude": 21.875,
+  "section_longitude": null,
+  "longitude_window": [
+    -86.875,
+    -85.125
+  ],
+  "layer": "altimetry-derived absolute surface geostrophic velocity",
+  "scope_note": "Fixed Yucatan-gate component span. Not flow-normal width, a streamline width, passage width, whole-current envelope or footprint. Products may share observations.",
+  "whole_current_representative": false,
+  "width_rank_eligible": false,
+  "annual_extrema_eligible": false,
+  "whole_current_width_km": null,
+  "annual_width_range_km": null,
+  "is_confidence_interval": false,
+  "protocol_file": "plans/loop-current-section-span-protocol-v1.md",
+  "protocol_sha256": "d88ba8478be6ccb15bd44836437c77d0e291bdabbe49b4e8e971513917340074",
+  "general_protocol_sha256": "bea5a9e964fba4eef291bc61c9da7e2f3fa5ff1cd1f6b6c9a8f183848624bc57",
+  "generator_sha256": "0fd326938b0860ed424d9fc2cb576fd0819071540f3b31e5738b05e896636655",
+  "velocity_sampler_sha256": "abe0b95665a8f7e5fd05cb0920c70df5e8cd4655eaae05a03d7da5f17d239deb",
+  "sample_value_spans": [
+    {
+      "year": 2025,
+      "sample_count": 4,
+      "source_algorithms": [
+        "RADS 4.7.0",
+        "RADS 4.7.1"
+      ],
+      "sampled_value_span_km": [
+        110,
+        120
+      ],
+      "range_kind": "sparse_sampled_nominal_value_span_not_annual_extrema"
+    },
+    {
+      "year": 2026,
+      "sample_count": 1,
+      "source_algorithms": [
+        "RADS 4.8.1"
+      ],
+      "sampled_value_span_km": [
+        100,
+        100
+      ],
+      "range_kind": "sparse_sampled_nominal_value_span_not_annual_extrema"
+    }
+  ],
+  "frames": [
+    {
+      "date": "2025-01-15",
+      "product_key": "noaa",
+      "source_subset": "research/noaa-lsa-geostrophic-loop-20250115.json",
+      "source_subset_sha256": "f6d62e1748c7dc8e74417b7d11dac1c6d9fa50a432f159e0af840e1b9413ffeb",
+      "source_response_sha256": "5e8c62348a67d2fd0dc9787a43e80c83d54adf015664c04b2279f7603cd3c06d",
+      "source_url": "https://coastwatch.noaa.gov/data/pub0015/coastwatch/rads/sla/2025/rads_global_nrt_sla_20250115_20250116_001.nc",
+      "source_algorithm": "RADS 4.7.0",
+      "profile": [
+        {
+          "longitude": -86.875,
+          "northward_m_s": 0.20140000000000002
+        },
+        {
+          "longitude": -86.625,
+          "northward_m_s": 0.30710000000000004
+        },
+        {
+          "longitude": -86.375,
+          "northward_m_s": 0.4217
+        },
+        {
+          "longitude": -86.125,
+          "northward_m_s": 0.5764
+        },
+        {
+          "longitude": -85.875,
+          "northward_m_s": 0.6283000000000001
+        },
+        {
+          "longitude": -85.625,
+          "northward_m_s": 0.42100000000000004
+        },
+        {
+          "longitude": -85.375,
+          "northward_m_s": 0.28300000000000003
+        },
+        {
+          "longitude": -85.125,
+          "northward_m_s": 0.2321
+        }
+      ],
+      "nominal": {
+        "fraction": 0.5,
+        "status": "paired_boundaries",
+        "span_km": 121.76839,
+        "peak_longitude": -85.875,
+        "peak_northward_m_s": 0.6283000000000001,
+        "threshold_m_s": 0.31415000000000004,
+        "west_boundary": {
+          "longitude": -86.60962041884817,
+          "bracket_longitudes": [
+            -86.625,
+            -86.375
+          ]
+        },
+        "west_stop_reason": "threshold_crossing",
+        "east_boundary": {
+          "longitude": -85.43143115942028,
+          "bracket_longitudes": [
+            -85.625,
+            -85.375
+          ]
+        },
+        "east_stop_reason": "threshold_crossing",
+        "grid_bracket_span_km": [
+          77.514223,
+          129.190145
+        ],
+        "native_cell_spacings": 4.713,
+        "resolution_review_required": false
+      },
+      "threshold_scenarios": [
+        {
+          "fraction": 0.4,
+          "status": "paired_boundaries",
+          "span_km": 158.906672,
+          "peak_longitude": -85.875,
+          "peak_northward_m_s": 0.6283000000000001,
+          "threshold_m_s": 0.25132000000000004,
+          "west_boundary": {
+            "longitude": -86.75692999053926,
+            "bracket_longitudes": [
+              -86.875,
+              -86.625
+            ]
+          },
+          "west_stop_reason": "threshold_crossing",
+          "east_boundary": {
+            "longitude": -85.21940078585462,
+            "bracket_longitudes": [
+              -85.375,
+              -85.125
+            ]
+          },
+          "east_stop_reason": "threshold_crossing",
+          "grid_bracket_span_km": [
+            129.190145,
+            180.865724
+          ],
+          "native_cell_spacings": 6.15,
+          "resolution_review_required": false
+        },
+        {
+          "fraction": 0.5,
+          "status": "paired_boundaries",
+          "span_km": 121.76839,
+          "peak_longitude": -85.875,
+          "peak_northward_m_s": 0.6283000000000001,
+          "threshold_m_s": 0.31415000000000004,
+          "west_boundary": {
+            "longitude": -86.60962041884817,
+            "bracket_longitudes": [
+              -86.625,
+              -86.375
+            ]
+          },
+          "west_stop_reason": "threshold_crossing",
+          "east_boundary": {
+            "longitude": -85.43143115942028,
+            "bracket_longitudes": [
+              -85.625,
+              -85.375
+            ]
+          },
+          "east_stop_reason": "threshold_crossing",
+          "grid_bracket_span_km": [
+            77.514223,
+            129.190145
+          ],
+          "native_cell_spacings": 4.713,
+          "resolution_review_required": false
+        },
+        {
+          "fraction": 0.6,
+          "status": "paired_boundaries",
+          "span_km": 95.838856,
+          "peak_longitude": -85.875,
+          "peak_northward_m_s": 0.6283000000000001,
+          "threshold_m_s": 0.37698000000000004,
+          "west_boundary": {
+            "longitude": -86.47255671902269,
+            "bracket_longitudes": [
+              -86.625,
+              -86.375
+            ]
+          },
+          "west_stop_reason": "threshold_crossing",
+          "east_boundary": {
+            "longitude": -85.5452536231884,
+            "bracket_longitudes": [
+              -85.625,
+              -85.375
+            ]
+          },
+          "east_stop_reason": "threshold_crossing",
+          "grid_bracket_span_km": [
+            77.514223,
+            129.190145
+          ],
+          "native_cell_spacings": 3.709,
+          "resolution_review_required": true
+        }
+      ],
+      "approximate_section_span_km": 120,
+      "threshold_sensitivity_span_km": [
+        90,
+        160
+      ],
+      "failed_threshold_count": 0,
+      "native_grid_step_degrees": 0.25
+    },
+    {
+      "date": "2025-04-15",
+      "product_key": "noaa",
+      "source_subset": "research/noaa-lsa-geostrophic-loop-20250415.json",
+      "source_subset_sha256": "707d2eb00000a4ea53afbc6425be6ce1414b99c9c1f0d8aa1f308ca0c34af585",
+      "source_response_sha256": "628484a165ee18871d6cb1650f6447d15aefb15e9b5fd922573bb24cb4ac64c5",
+      "source_url": "https://coastwatch.noaa.gov/data/pub0015/coastwatch/rads/sla/2025/rads_global_nrt_sla_20250415_20250416_001.nc",
+      "source_algorithm": "RADS 4.7.0",
+      "profile": [
+        {
+          "longitude": -86.875,
+          "northward_m_s": -0.0931
+        },
+        {
+          "longitude": -86.625,
+          "northward_m_s": 0.3936
+        },
+        {
+          "longitude": -86.375,
+          "northward_m_s": 0.6317
+        },
+        {
+          "longitude": -86.125,
+          "northward_m_s": 0.7529
+        },
+        {
+          "longitude": -85.875,
+          "northward_m_s": 0.633
+        },
+        {
+          "longitude": -85.625,
+          "northward_m_s": 0.4061
+        },
+        {
+          "longitude": -85.375,
+          "northward_m_s": 0.227
+        },
+        {
+          "longitude": -85.125,
+          "northward_m_s": 0.17900000000000002
+        }
+      ],
+      "nominal": {
+        "fraction": 0.5,
+        "status": "paired_boundaries",
+        "span_km": 108.540151,
+        "peak_longitude": -86.125,
+        "peak_northward_m_s": 0.7529,
+        "threshold_m_s": 0.37645,
+        "west_boundary": {
+          "longitude": -86.63380932812821,
+          "bracket_longitudes": [
+            -86.875,
+            -86.625
+          ]
+        },
+        "west_stop_reason": "threshold_crossing",
+        "east_boundary": {
+          "longitude": -85.58361250697934,
+          "bracket_longitudes": [
+            -85.625,
+            -85.375
+          ]
+        },
+        "east_stop_reason": "threshold_crossing",
+        "grid_bracket_span_km": [
+          103.352218,
+          155.027986
+        ],
+        "native_cell_spacings": 4.201,
+        "resolution_review_required": false
+      },
+      "threshold_scenarios": [
+        {
+          "fraction": 0.4,
+          "status": "paired_boundaries",
+          "span_km": 123.398886,
+          "peak_longitude": -86.125,
+          "peak_northward_m_s": 0.7529,
+          "threshold_m_s": 0.30116000000000004,
+          "west_boundary": {
+            "longitude": -86.67248304910622,
+            "bracket_longitudes": [
+              -86.875,
+              -86.625
+            ]
+          },
+          "west_stop_reason": "threshold_crossing",
+          "east_boundary": {
+            "longitude": -85.47851758793969,
+            "bracket_longitudes": [
+              -85.625,
+              -85.375
+            ]
+          },
+          "east_stop_reason": "threshold_crossing",
+          "grid_bracket_span_km": [
+            103.352218,
+            155.027986
+          ],
+          "native_cell_spacings": 4.776,
+          "resolution_review_required": false
+        },
+        {
+          "fraction": 0.5,
+          "status": "paired_boundaries",
+          "span_km": 108.540151,
+          "peak_longitude": -86.125,
+          "peak_northward_m_s": 0.7529,
+          "threshold_m_s": 0.37645,
+          "west_boundary": {
+            "longitude": -86.63380932812821,
+            "bracket_longitudes": [
+              -86.875,
+              -86.625
+            ]
+          },
+          "west_stop_reason": "threshold_crossing",
+          "east_boundary": {
+            "longitude": -85.58361250697934,
+            "bracket_longitudes": [
+              -85.625,
+              -85.375
+            ]
+          },
+          "east_stop_reason": "threshold_crossing",
+          "grid_bracket_span_km": [
+            103.352218,
+            155.027986
+          ],
+          "native_cell_spacings": 4.201,
+          "resolution_review_required": false
+        },
+        {
+          "fraction": 0.6,
+          "status": "paired_boundaries",
+          "span_km": 91.845817,
+          "peak_longitude": -86.125,
+          "peak_northward_m_s": 0.7529,
+          "threshold_m_s": 0.45174,
+          "west_boundary": {
+            "longitude": -86.56395422091558,
+            "bracket_longitudes": [
+              -86.625,
+              -86.375
+            ]
+          },
+          "west_stop_reason": "threshold_crossing",
+          "east_boundary": {
+            "longitude": -85.67528646981049,
+            "bracket_longitudes": [
+              -85.875,
+              -85.625
+            ]
+          },
+          "east_stop_reason": "threshold_crossing",
+          "grid_bracket_span_km": [
+            51.676177,
+            103.352218
+          ],
+          "native_cell_spacings": 3.555,
+          "resolution_review_required": true
+        }
+      ],
+      "approximate_section_span_km": 110,
+      "threshold_sensitivity_span_km": [
+        90,
+        130
+      ],
+      "failed_threshold_count": 0,
+      "native_grid_step_degrees": 0.25
+    },
+    {
+      "date": "2025-07-15",
+      "product_key": "noaa",
+      "source_subset": "research/noaa-lsa-geostrophic-loop-20250715.json",
+      "source_subset_sha256": "ded7246e715c7756b4861bf4c584ecfd91b47d559c4bb2788614e372f74151f6",
+      "source_response_sha256": "42d7491abf6db1a967e1cef7e2f9531ea74f7cd81497782a042c0b8ad0f73230",
+      "source_url": "https://coastwatch.noaa.gov/data/pub0015/coastwatch/rads/sla/2025/rads_global_nrt_sla_20250715_20250716_001.nc",
+      "source_algorithm": "RADS 4.7.0",
+      "profile": [
+        {
+          "longitude": -86.875,
+          "northward_m_s": 0.3128
+        },
+        {
+          "longitude": -86.625,
+          "northward_m_s": 0.9275
+        },
+        {
+          "longitude": -86.375,
+          "northward_m_s": 0.9729000000000001
+        },
+        {
+          "longitude": -86.125,
+          "northward_m_s": 0.9864
+        },
+        {
+          "longitude": -85.875,
+          "northward_m_s": 0.785
+        },
+        {
+          "longitude": -85.625,
+          "northward_m_s": 0.2844
+        },
+        {
+          "longitude": -85.375,
+          "northward_m_s": -0.0618
+        },
+        {
+          "longitude": -85.125,
+          "northward_m_s": -0.2384
+        }
+      ],
+      "nominal": {
+        "fraction": 0.5,
+        "status": "paired_boundaries",
+        "span_km": 110.830343,
+        "peak_longitude": -86.125,
+        "peak_northward_m_s": 0.9864,
+        "threshold_m_s": 0.4932,
+        "west_boundary": {
+          "longitude": -86.8016308768505,
+          "bracket_longitudes": [
+            -86.875,
+            -86.625
+          ]
+        },
+        "west_stop_reason": "threshold_crossing",
+        "east_boundary": {
+          "longitude": -85.72927487015582,
+          "bracket_longitudes": [
+            -85.875,
+            -85.625
+          ]
+        },
+        "east_stop_reason": "threshold_crossing",
+        "grid_bracket_span_km": [
+          77.514223,
+          129.190145
+        ],
+        "native_cell_spacings": 4.289,
+        "resolution_review_required": false
+      },
+      "threshold_scenarios": [
+        {
+          "fraction": 0.4,
+          "status": "paired_boundaries",
+          "span_km": 120.067714,
+          "peak_longitude": -86.125,
+          "peak_northward_m_s": 0.9864,
+          "threshold_m_s": 0.39456,
+          "west_boundary": {
+            "longitude": -86.84174800715796,
+            "bracket_longitudes": [
+              -86.875,
+              -86.625
+            ]
+          },
+          "west_stop_reason": "threshold_crossing",
+          "east_boundary": {
+            "longitude": -85.68001398322014,
+            "bracket_longitudes": [
+              -85.875,
+              -85.625
+            ]
+          },
+          "east_stop_reason": "threshold_crossing",
+          "grid_bracket_span_km": [
+            77.514223,
+            129.190145
+          ],
+          "native_cell_spacings": 4.647,
+          "resolution_review_required": false
+        },
+        {
+          "fraction": 0.5,
+          "status": "paired_boundaries",
+          "span_km": 110.830343,
+          "peak_longitude": -86.125,
+          "peak_northward_m_s": 0.9864,
+          "threshold_m_s": 0.4932,
+          "west_boundary": {
+            "longitude": -86.8016308768505,
+            "bracket_longitudes": [
+              -86.875,
+              -86.625
+            ]
+          },
+          "west_stop_reason": "threshold_crossing",
+          "east_boundary": {
+            "longitude": -85.72927487015582,
+            "bracket_longitudes": [
+              -85.875,
+              -85.625
+            ]
+          },
+          "east_stop_reason": "threshold_crossing",
+          "grid_bracket_span_km": [
+            77.514223,
+            129.190145
+          ],
+          "native_cell_spacings": 4.289,
+          "resolution_review_required": false
+        },
+        {
+          "fraction": 0.6,
+          "status": "paired_boundaries",
+          "span_km": 101.592962,
+          "peak_longitude": -86.125,
+          "peak_northward_m_s": 0.9864,
+          "threshold_m_s": 0.59184,
+          "west_boundary": {
+            "longitude": -86.76151374654303,
+            "bracket_longitudes": [
+              -86.875,
+              -86.625
+            ]
+          },
+          "west_stop_reason": "threshold_crossing",
+          "east_boundary": {
+            "longitude": -85.77853575709149,
+            "bracket_longitudes": [
+              -85.875,
+              -85.625
+            ]
+          },
+          "east_stop_reason": "threshold_crossing",
+          "grid_bracket_span_km": [
+            77.514223,
+            129.190145
+          ],
+          "native_cell_spacings": 3.932,
+          "resolution_review_required": true
+        }
+      ],
+      "approximate_section_span_km": 110,
+      "threshold_sensitivity_span_km": [
+        100,
+        130
+      ],
+      "failed_threshold_count": 0,
+      "native_grid_step_degrees": 0.25
+    },
+    {
+      "date": "2025-10-15",
+      "product_key": "noaa",
+      "source_subset": "research/noaa-lsa-geostrophic-loop-20251015.json",
+      "source_subset_sha256": "43b491b895c4298baff3d07f70b5ac7d39900c2184506baafd668bc98eca974a",
+      "source_response_sha256": "0afc3f640d3729f79504c40727812380ae33307d01ea9331c07179b25b316d16",
+      "source_url": "https://coastwatch.noaa.gov/data/pub0015/coastwatch/rads/sla/2025/rads_global_nrt_sla_20251015_20251016_001.nc",
+      "source_algorithm": "RADS 4.7.1",
+      "profile": [
+        {
+          "longitude": -86.875,
+          "northward_m_s": 0.21030000000000001
+        },
+        {
+          "longitude": -86.625,
+          "northward_m_s": 0.556
+        },
+        {
+          "longitude": -86.375,
+          "northward_m_s": 0.7481
+        },
+        {
+          "longitude": -86.125,
+          "northward_m_s": 0.8039000000000001
+        },
+        {
+          "longitude": -85.875,
+          "northward_m_s": 0.6566000000000001
+        },
+        {
+          "longitude": -85.625,
+          "northward_m_s": 0.35960000000000003
+        },
+        {
+          "longitude": -85.375,
+          "northward_m_s": 0.0697
+        },
+        {
+          "longitude": -85.125,
+          "northward_m_s": -0.1796
+        }
+      ],
+      "nominal": {
+        "fraction": 0.5,
+        "status": "paired_boundaries",
+        "span_km": 111.181764,
+        "peak_longitude": -86.125,
+        "peak_northward_m_s": 0.8039000000000001,
+        "threshold_m_s": 0.40195000000000003,
+        "west_boundary": {
+          "longitude": -86.7364043968759,
+          "bracket_longitudes": [
+            -86.875,
+            -86.625
+          ]
+        },
+        "west_stop_reason": "threshold_crossing",
+        "east_boundary": {
+          "longitude": -85.66064814814816,
+          "bracket_longitudes": [
+            -85.875,
+            -85.625
+          ]
+        },
+        "east_stop_reason": "threshold_crossing",
+        "grid_bracket_span_km": [
+          77.514223,
+          129.190145
+        ],
+        "native_cell_spacings": 4.303,
+        "resolution_review_required": false
+      },
+      "threshold_scenarios": [
+        {
+          "fraction": 0.4,
+          "status": "paired_boundaries",
+          "span_km": 124.264871,
+          "peak_longitude": -86.125,
+          "peak_northward_m_s": 0.8039000000000001,
+          "threshold_m_s": 0.32156000000000007,
+          "west_boundary": {
+            "longitude": -86.79454006363899,
+            "bracket_longitudes": [
+              -86.875,
+              -86.625
+            ]
+          },
+          "west_stop_reason": "threshold_crossing",
+          "east_boundary": {
+            "longitude": -85.59219558468438,
+            "bracket_longitudes": [
+              -85.625,
+              -85.375
+            ]
+          },
+          "east_stop_reason": "threshold_crossing",
+          "grid_bracket_span_km": [
+            103.352218,
+            155.027986
+          ],
+          "native_cell_spacings": 4.809,
+          "resolution_review_required": false
+        },
+        {
+          "fraction": 0.5,
+          "status": "paired_boundaries",
+          "span_km": 111.181764,
+          "peak_longitude": -86.125,
+          "peak_northward_m_s": 0.8039000000000001,
+          "threshold_m_s": 0.40195000000000003,
+          "west_boundary": {
+            "longitude": -86.7364043968759,
+            "bracket_longitudes": [
+              -86.875,
+              -86.625
+            ]
+          },
+          "west_stop_reason": "threshold_crossing",
+          "east_boundary": {
+            "longitude": -85.66064814814816,
+            "bracket_longitudes": [
+              -85.875,
+              -85.625
+            ]
+          },
+          "east_stop_reason": "threshold_crossing",
+          "grid_bracket_span_km": [
+            77.514223,
+            129.190145
+          ],
+          "native_cell_spacings": 4.303,
+          "resolution_review_required": false
+        },
+        {
+          "fraction": 0.6,
+          "status": "paired_boundaries",
+          "span_km": 98.179687,
+          "peak_longitude": -86.125,
+          "peak_northward_m_s": 0.8039000000000001,
+          "threshold_m_s": 0.48234,
+          "west_boundary": {
+            "longitude": -86.67826873011282,
+            "bracket_longitudes": [
+              -86.875,
+              -86.625
+            ]
+          },
+          "west_stop_reason": "threshold_crossing",
+          "east_boundary": {
+            "longitude": -85.7283164983165,
+            "bracket_longitudes": [
+              -85.875,
+              -85.625
+            ]
+          },
+          "east_stop_reason": "threshold_crossing",
+          "grid_bracket_span_km": [
+            77.514223,
+            129.190145
+          ],
+          "native_cell_spacings": 3.8,
+          "resolution_review_required": true
+        }
+      ],
+      "approximate_section_span_km": 110,
+      "threshold_sensitivity_span_km": [
+        90,
+        130
+      ],
+      "failed_threshold_count": 0,
+      "native_grid_step_degrees": 0.25
+    },
+    {
+      "date": "2026-09-25",
+      "product_key": "noaa",
+      "source_subset": "research/noaa-lsa-geostrophic-loop-20260925.json",
+      "source_subset_sha256": "c2599680d88ff8182eb3ff10e97c16cefed056061f62b78f84b67abb3c5b6af9",
+      "source_response_sha256": "53b1c541d4edf529bba2358f255890e2f0c392ef8e57208d04882c732c99f12f",
+      "source_url": "https://coastwatch.noaa.gov/data/pub0015/coastwatch/rads/sla/2026/rads_global_nrt_sla_20260925_20260926_001.nc",
+      "source_algorithm": "RADS 4.8.1",
+      "profile": [
+        {
+          "longitude": -86.875,
+          "northward_m_s": -0.128
+        },
+        {
+          "longitude": -86.625,
+          "northward_m_s": 0.2228
+        },
+        {
+          "longitude": -86.375,
+          "northward_m_s": 0.6685
+        },
+        {
+          "longitude": -86.125,
+          "northward_m_s": 1.0133
+        },
+        {
+          "longitude": -85.875,
+          "northward_m_s": 0.9997
+        },
+        {
+          "longitude": -85.625,
+          "northward_m_s": 0.8212
+        },
+        {
+          "longitude": -85.375,
+          "northward_m_s": 0.2853
+        },
+        {
+          "longitude": -85.125,
+          "northward_m_s": 0.0579
+        }
+      ],
+      "nominal": {
+        "fraction": 0.5,
+        "status": "paired_boundaries",
+        "span_km": 102.062727,
+        "peak_longitude": -86.125,
+        "peak_northward_m_s": 1.0133,
+        "threshold_m_s": 0.50665,
+        "west_boundary": {
+          "longitude": -86.46578415974871,
+          "bracket_longitudes": [
+            -86.625,
+            -86.375
+          ]
+        },
+        "west_stop_reason": "threshold_crossing",
+        "east_boundary": {
+          "longitude": -85.47826086956522,
+          "bracket_longitudes": [
+            -85.625,
+            -85.375
+          ]
+        },
+        "east_stop_reason": "threshold_crossing",
+        "grid_bracket_span_km": [
+          77.514223,
+          129.190145
+        ],
+        "native_cell_spacings": 3.95,
+        "resolution_review_required": true
+      },
+      "threshold_scenarios": [
+        {
+          "fraction": 0.4,
+          "status": "paired_boundaries",
+          "span_km": 112.822529,
+          "peak_longitude": -86.125,
+          "peak_northward_m_s": 1.0133,
+          "threshold_m_s": 0.40532000000000007,
+          "west_boundary": {
+            "longitude": -86.52262171864483,
+            "bracket_longitudes": [
+              -86.625,
+              -86.375
+            ]
+          },
+          "west_stop_reason": "threshold_crossing",
+          "east_boundary": {
+            "longitude": -85.43098992349319,
+            "bracket_longitudes": [
+              -85.625,
+              -85.375
+            ]
+          },
+          "east_stop_reason": "threshold_crossing",
+          "grid_bracket_span_km": [
+            77.514223,
+            129.190145
+          ],
+          "native_cell_spacings": 4.367,
+          "resolution_review_required": false
+        },
+        {
+          "fraction": 0.5,
+          "status": "paired_boundaries",
+          "span_km": 102.062727,
+          "peak_longitude": -86.125,
+          "peak_northward_m_s": 1.0133,
+          "threshold_m_s": 0.50665,
+          "west_boundary": {
+            "longitude": -86.46578415974871,
+            "bracket_longitudes": [
+              -86.625,
+              -86.375
+            ]
+          },
+          "west_stop_reason": "threshold_crossing",
+          "east_boundary": {
+            "longitude": -85.47826086956522,
+            "bracket_longitudes": [
+              -85.625,
+              -85.375
+            ]
+          },
+          "east_stop_reason": "threshold_crossing",
+          "grid_bracket_span_km": [
+            77.514223,
+            129.190145
+          ],
+          "native_cell_spacings": 3.95,
+          "resolution_review_required": true
+        },
+        {
+          "fraction": 0.6,
+          "status": "paired_boundaries",
+          "span_km": 91.302913,
+          "peak_longitude": -86.125,
+          "peak_northward_m_s": 1.0133,
+          "threshold_m_s": 0.6079800000000001,
+          "west_boundary": {
+            "longitude": -86.40894660085259,
+            "bracket_longitudes": [
+              -86.625,
+              -86.375
+            ]
+          },
+          "west_stop_reason": "threshold_crossing",
+          "east_boundary": {
+            "longitude": -85.52553181563725,
+            "bracket_longitudes": [
+              -85.625,
+              -85.375
+            ]
+          },
+          "east_stop_reason": "threshold_crossing",
+          "grid_bracket_span_km": [
+            77.514223,
+            129.190145
+          ],
+          "native_cell_spacings": 3.534,
+          "resolution_review_required": true
+        }
+      ],
+      "approximate_section_span_km": 100,
+      "threshold_sensitivity_span_km": [
+        90,
+        120
+      ],
+      "failed_threshold_count": 0,
+      "native_grid_step_degrees": 0.25
+    }
+  ]
+}

@@ -9,6 +9,36 @@ from build_motion_dashboard import ROOT, build, build_ground, latest_observation
 
 
 class DashboardEvidenceTests(unittest.TestCase):
+    def test_loop_and_network_coverage_preserve_measurement_scope(self):
+        rows={r['id']:r for r in build()['entries']}
+        loop=rows['current:loop']; network=rows['current:indonesian-throughflow']
+        self.assertEqual(loop['capabilities']['dated_diagnostics'],10)
+        self.assertEqual(loop['latest_observation_date'],'2026-09-25')
+        self.assertEqual(network['capabilities']['flow_network'],1)
+        self.assertEqual(network['capabilities']['passage_transport'],3)
+        self.assertIsNone(network['latest_observation_date'])
+        self.assertEqual(loop['capabilities']['scoped_width'],2)
+        self.assertEqual(network['capabilities']['scoped_width'],0)
+        for row in [loop,network]:
+            self.assertEqual(row['capabilities']['reported_length'],0)
+            self.assertTrue(any('inspect=' in link['url'] for link in row['evidence_links']))
+
+    def test_network_mooring_update_changes_only_its_owner(self):
+        before={r['id']:r for r in build()['entries']}
+        path=ROOT/'research/indonesian-throughflow-network-input.json'
+        original=Path.read_bytes;data=json.loads(original(path))
+        data['passage_samples'][0]['moorings'][0]['water_depth_m']+=1
+        def altered(candidate):return json.dumps(data).encode() if candidate==path else original(candidate)
+        with patch.object(Path,'read_bytes',altered):after={r['id']:r for r in build()['entries']}
+        self.assertEqual([k for k in before if before[k]['fingerprint']!=after[k]['fingerprint']],['current:indonesian-throughflow'])
+        self.assertNotEqual(before['current:indonesian-throughflow']['section_fingerprints']['measurements'],after['current:indonesian-throughflow']['section_fingerprints']['measurements'])
+
+    def test_loop_receipt_or_measurement_promotion_rejected(self):
+        path=ROOT/'research/loop-current-dated-streamline-20250115.json'
+        original=Path.read_bytes;data=json.loads(original(path));data['rank_eligible']=True
+        def altered(candidate):return json.dumps(data).encode() if candidate==path else original(candidate)
+        with patch.object(Path,'read_bytes',altered),self.assertRaises(ValueError):build()
+
     def test_kuroshio_counts_four_profiles_without_double_counting_prose(self):
         row=next(r for r in build()['entries'] if r['id']=='current:kuroshio')
         self.assertEqual(row['capabilities']['scoped_width'],3)
