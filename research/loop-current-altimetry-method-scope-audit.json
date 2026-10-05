@@ -1,0 +1,51 @@
+{
+  "schema": "osw.current-source-scope-audit.v1",
+  "current_id": "loop",
+  "as_of": "2026-10-04",
+  "status": "editorial_source_and_diagnostic_summary_not_canonical",
+  "source_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2023.1156159/full",
+  "source_citation": "Manta et al. (2023), Predicting the Loop Current dynamics combining altimetry and deep flow measurements through the Yucatan Channel, Frontiers in Marine Science 10:1156159, doi:10.3389/fmars.2023.1156159.",
+  "source_access": "Full publisher HTML methods and results read. Figures were not digitized. Supplemental numerical Loop Current paths were not acquired.",
+  "source_locators": ["Sections 2.2, 3.1, 4.1; Figures 1C and 2A captions"],
+  "observed_period": {"start_year": 1993, "end_year": 2021, "exact_endpoint_days": null},
+  "source_product": "Copernicus DUACS DT-2018 daily 0.25-degree absolute dynamic topography and surface geostrophic velocity",
+  "published_metrics": [
+    {
+      "method": "Demeaned 0.17 m sea-level contour connecting Yucatan Channel and Florida Straits",
+      "mean_extension_km": 1449,
+      "standard_deviation_km": 487,
+      "is_confidence_interval": false,
+      "is_length_of_temporal_mean_path": false
+    },
+    {
+      "method": "Maximum-geostrophic-velocity streamline connecting Yucatan Channel and Florida Straits",
+      "mean_extension_km": 1495,
+      "standard_deviation_km": 466,
+      "is_confidence_interval": false,
+      "is_length_of_temporal_mean_path": false
+    }
+  ],
+  "method_comparison": {"correlation": 0.86, "root_mean_square_difference_km": 262},
+  "range_interpretation": "Source describes retracted states below 1000 km and extended phases around 1800–2600 km. These are phase descriptions, not an annual extrema range, confidence interval or width.",
+  "diagnostic_file": "research/loop-current-dated-streamline-20260925.json",
+  "diagnostic_page": "almanac/loop-current-experiment.html",
+  "comparison_diagnostic_file": "research/loop-current-adt-contours-20260925.json",
+  "comparison_source_file": "research/gcoos-duacs-loop-20260925.json",
+  "comparison_result": "Highest length-weighted mean speed among 31 eligible gateway-connected ADT contours occurs at 0.62 m ADT. Selected path rounds to 2200 km and is 55.9 km shorter than the NOAA trace before display rounding. This is product/method disagreement, not independent observation, uncertainty or a physical range.",
+  "diagnostic_observation_date": "2026-09-25",
+  "diagnostic_method": "OSW frozen-time velocity integration with strongest northward native-grid seed at an editorial regional gate; distinct from both source contour algorithms",
+  "diagnostic_source_product": "NOAA LSA RADS 4.8.1 Experimental daily absolute surface geostrophic velocities; lacks absolute dynamic topography",
+  "diagnostic_result": "Nominal gateway-connected path rounds to 2300 km; all four neighboring seed scenarios fail. Integration step changes are small, but no robust range follows from only successful tests.",
+  "whole_current_length_km": null,
+  "whole_current_width_km": null,
+  "annual_length_range_km": null,
+  "annual_width_range_km": null,
+  "rank_eligible": false,
+  "remaining_gates": [
+    "Validate gateway placement and section alternatives using geographic and bathymetric evidence",
+    "Compatible same-date DUACS ADT acquired through GCOOS; recover original supplemental maximum-velocity algorithm and compare its gateway/method choices",
+    "Preserve failed seed outcomes and assess effective resolution and grid masks",
+    "Repeat dated connected-path estimates before describing variability or seasonal ranges",
+    "Complete scientific and regional raw-subset source-use review before admission/publication"
+  ]
+}

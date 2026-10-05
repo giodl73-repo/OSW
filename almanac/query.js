@@ -129,6 +129,7 @@
   function rejectResult(message){failure(message);renderMap(null);window.oswCharts.render(null,inspect);$('query-detail').hidden=true;detailSequence++;$('query-share').hidden=true;$('query-export').disabled=true;$('query-previous').disabled=true;$('query-next').disabled=true;lastQuery=null;lastResult=null;window.oswLastQueryResult=null;$('query-rows').replaceChildren();$('query-page').textContent='';}
   function label(row){return row.label||row.name||row.title||row.entity_label||row.id;}
   function value(row){
+    if(row.document&&row.current_id==='loop')return (row.document.approximate_diagnostic_path_km===null?'Unresolved':`≈ ${row.document.approximate_diagnostic_path_km.toLocaleString()} km`)+' · unranked dated diagnostic';
     if(row.source_decision)return row.candidate_count+' editorial route'+(row.candidate_count===1?'':'s')+' · '+row.strategy_label;
     if(row.status==='proposed'&&row.proposed_data)return 'proposed working record';
     if(row.sample_family)return (row.value_km===null?'Unresolved':`≈ ${row.value_km.toLocaleString('en',{maximumFractionDigits:1})} km`)+(row.plot_reading_interval_km?` · plot reading ${row.plot_reading_interval_km.join('–')} km`:row.diagnostic_sensitivity_interval_km?` · threshold sensitivity ${row.diagnostic_sensitivity_interval_km.join('–')} km`:' · measurement uncertainty unresolved');
@@ -241,10 +242,16 @@
         element('p',review.note.summary,details);element('p',review.document.source_access||'See the audit for inspected access and source support.',details);
         const reviewLinks=element('div',undefined,details);reviewLinks.className='record-links';
         link('Evidence source',review.note.source_url,reviewLinks);link('Source scope audit','../'+review.note.audit_file,reviewLinks);
+        if(/^almanac\/[a-z0-9-]+\.html$/.test(review.document.diagnostic_page||''))link('View mapped experiment','../'+review.document.diagnostic_page,reviewLinks);
         const raw=element('details',undefined,details);element('summary','Complete scope audit',raw);element('pre',JSON.stringify(review.document,null,2),raw);
       }
     }
     const dl=element('dl',undefined,parent);
+    if(row.document&&row.current_id==='loop'){
+      element('p','Dated diagnostic path: approximately '+(row.document.approximate_diagnostic_path_km?.toLocaleString()||'unresolved')+' km. Unranked; no whole-current dimension or annual range admitted.',parent);
+      element('p',row.document.interpretation,parent);
+      if(row.document.comparison)element('p','DUACS contour versus NOAA integration: '+row.document.comparison.signed_difference_duacs_minus_noaa_km+' km before display rounding. '+row.document.comparison.scope,parent);
+    }
     if(row.sample_family){
       element('p','Scoped source sample. Plot-reading intervals are extraction allowances, not confidence intervals or measurement uncertainty. These samples are not whole-current widths or annual extrema.',parent);
       element('p','Parent diagnostic status: '+row.source_context.status.replaceAll('_',' ')+'.',parent);
@@ -266,6 +273,7 @@
       if(row[key]!==undefined){element('dt',title,dl);element('dd',row[key]===null?'unresolved':key==='status'?String(row[key]).replaceAll('_',' '):String(row[key]),dl);}
     }
     const links=element('div',undefined,parent);links.className='record-links';
+    if(/^almanac\/[a-z0-9-]+\.html$/.test(row.diagnostic_page||''))link('View mapped experiment','../'+row.diagnostic_page,links);
     if(row.sample_family==='gulf_stream_dated_half_peak_section'&&row.status==='paired_boundaries'&&row.value_km!==null)link('Map this local section span','query.html?q='+encodeURIComponent(JSON.stringify({collection:'width_samples',filters:[{field:'id',op:'eq',value:row.id}],limit:50}))+'#query-map-section',links);
     if(row.width_sample_ids?.length)link('Query scoped width samples','query.html?q='+encodeURIComponent(JSON.stringify({collection:'width_samples',filters:[{field:'current_id',op:'eq',value:row.id.replace(/^current:/,'')}],sort:{field:'label'},limit:100})),links);
     if(row.route_decision_ids?.length)link('Query remaining length decision','query.html?q='+encodeURIComponent(JSON.stringify({collection:'route_decisions',filters:[{field:'entity_id',op:'eq',value:row.id}],limit:50})),links);
@@ -295,6 +303,7 @@
       const groups=[['width_ids','widths','Scoped width records'],['measurement_ids','measurements','Published measurements'],['route_ids','reference_routes','Editorial routes'],['source_ids','sources','Linked sources'],['frame_ids','geometry_frames','Dated diagnostic frames']];
       groups.push(['seasonal_route_ids','seasonal_routes','Source-defined seasonal routes']);
       groups.push(['route_decision_ids','route_decisions','Length construction decision']);
+      groups.push(['diagnostic_ids','diagnostics','Unranked method diagnostics']);
       if(record.source_id)groups.push(['single_source','sources','Source']);
       for(const [key,target,title] of groups){
         const ids=key==='single_source'?[record.source_id]:record[key];if(!ids?.length)continue;

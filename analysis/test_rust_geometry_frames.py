@@ -9,7 +9,9 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def main():
     bundle=json.loads((ROOT/'almanac/query-data.json').read_text(encoding='utf-8'))
-    frames=bundle['collections']['geometry_frames'];assert len(frames)==17
+    all_frames=bundle['collections']['geometry_frames'];assert len(all_frames)==19
+    frames=[f for f in all_frames if f['entity_id']=='current:gulf-stream-system'];assert len(frames)==17
+    assert sum(f['entity_id']=='current:loop' for f in all_frames)==2
     sources={}
     for path in ['research/ocean-current-dated-timeline-2025.json','research/ocean-current-dated-timeline.json']:
         document=json.loads((ROOT/path).read_text(encoding='utf-8'))
@@ -26,7 +28,7 @@ def main():
         assert feature['geometry']['coordinates']==source['coordinates_lon_lat']
         assert feature['source_subset_sha256']==source['source_subset_sha256']
         assert feature['role']==document['geometry_role']
-    query={'collection':'geometry_frames','sort':{'field':'date'},'limit':50}
+    query={'collection':'geometry_frames','filters':[{'field':'entity_id','op':'eq','value':'current:gulf-stream-system'}],'sort':{'field':'date'},'limit':50}
     result=native(query);assert result['total']==17 and result['map_scene'] is None
     with sync_playwright() as p:
         browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'])
