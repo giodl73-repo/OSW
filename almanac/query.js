@@ -48,7 +48,7 @@
     if(!lastResult){stopPlayback();return;}
     if(playing&&generation===playbackGeneration)playbackTimer=setTimeout(()=>playDay(index+1,generation),1000);
   }
-  const names={objects:'Currents and eddies',widths:'Scoped width records',reference_routes:'Editorial reference routes',measurements:'Published measurement records',states:'OSW states',state_links:'Recorded state links',sources:'Sources',claims:'Claims',relations:'Relations',entities:'All ledger entities',geometries:'Stored geometries',series:'Time-series indexes',diagnostics:'Diagnostic documents',working_records:'Proposed working records'};
+  const names={objects:'Currents and eddies',widths:'Scoped width records',reference_routes:'Editorial reference routes',measurements:'Published measurement records',states:'OSW states',state_links:'Recorded state links',sources:'Sources',claims:'Claims',relations:'Relations',entities:'All ledger entities',geometries:'Stored geometries',series:'Time-series indexes',diagnostics:'Diagnostic documents',working_records:'Proposed working records',flow_networks:'Flow networks',flow_network_nodes:'Network nodes',flow_network_edges:'Network connections',passage_samples:'Passage transport samples'};
   names.geometry_frames='Dated diagnostic geometry frames';
   names.seasonal_routes='Source-defined seasonal routes';
   names.width_samples='Scoped width samples';
@@ -129,6 +129,8 @@
   function rejectResult(message){failure(message);renderMap(null);window.oswCharts.render(null,inspect);$('query-detail').hidden=true;detailSequence++;$('query-share').hidden=true;$('query-export').disabled=true;$('query-previous').disabled=true;$('query-next').disabled=true;lastQuery=null;lastResult=null;window.oswLastQueryResult=null;$('query-rows').replaceChildren();$('query-page').textContent='';}
   function label(row){return row.label||row.name||row.title||row.entity_label||row.id;}
   function value(row){
+    if(row.document?.schema==='osw.flow-network.v1')return `${row.document.nodes.length} nodes · ${row.document.edges.length} connections · length unresolved`;
+    if(row.quantity==='section_volume_transport')return `${row.value} Sv · 2004–2006 exit mean`;
     if(row.document&&row.current_id==='loop')return (row.document.approximate_diagnostic_path_km===null?'Unresolved':`≈ ${row.document.approximate_diagnostic_path_km.toLocaleString()} km`)+' · unranked dated diagnostic';
     if(row.source_decision)return row.candidate_count+' editorial route'+(row.candidate_count===1?'':'s')+' · '+row.strategy_label;
     if(row.status==='proposed'&&row.proposed_data)return 'proposed working record';
@@ -185,6 +187,7 @@
       query.filters=lastQuery?.collection==='route_decisions'?decisionFilters(lastQuery.filters).extra:[];
       for(const [id,field] of [['query-decision-current','entity_id'],['query-decision-strategy','strategy_id'],['query-decision-status','construction_status']])if($(id).value)query.filters.push({field,op:'eq',value:$(id).value});
     }
+    if(collection==='flow_networks'&&lastQuery?.collection==='flow_networks'&&lastQuery.network_path){query.network_path=lastQuery.network_path;query.filters=lastQuery.filters||[];}
     return query;
   }
   function showBuilder(query){
@@ -212,6 +215,7 @@
       const url=new URL(location.href);url.searchParams.set('q',JSON.stringify(query));history.replaceState(null,'',url);
       $('query-share').hidden=false;$('query-share').href=url.href;$('query-export').disabled=false;
       $('query-status').textContent=`${result.total.toLocaleString()} matching ${names[result.collection]?.toLowerCase()||result.collection}. Query executed in Rust / WebAssembly.`;
+      if(result.network_paths){const details=element('details',undefined,$('query-status'));element('summary',`${result.network_paths.paths.length} conceptual connections · no metric length`,details);element('p',result.network_paths.scope,details);const list=element('ol',undefined,details);for(const path of result.network_paths.paths)element('li',path.map(id=>result.network_paths.node_labels[id]||id).join(' → '),list);if(result.network_paths.truncated||result.network_paths.hop_limit_reached)element('p','Search limits were reached; these results may be incomplete.',details);}
       $('query-caption').textContent=names[result.collection]+' · '+result.total.toLocaleString()+' matches';
       renderMap(result.map_scene);
       window.oswCharts.render(result.chart_scene,inspect);
@@ -230,7 +234,26 @@
     }catch(error){rejectResult(error.message);}
     finally{setBusy(false);}
   }
+  function drawFlowNetwork(parent,row){
+    const doc=row.document,section=element('section',undefined,parent);section.className='flow-network';
+    element('h3','Passage connections',section);element('p',doc.scope,section);
+    element('p','Schematic positions and arrow lengths have no geographic scale. Arrows describe selected pathways across different layers; reversals and unrepresented passages remain possible.',section);
+    const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 960 440');svg.setAttribute('role','group');svg.setAttribute('aria-label','Indonesian Throughflow conceptual passage network');svg.style.width='100%';svg.style.maxHeight='500px';section.append(svg);
+    const lookup=new Map(doc.nodes.map(n=>[n.id,n]));const defs=document.createElementNS(ns,'defs'),arrow=document.createElementNS(ns,'marker'),head=document.createElementNS(ns,'path');const arrowId='network-arrow-'+detailSequence;arrow.setAttribute('id',arrowId);arrow.setAttribute('viewBox','0 0 10 10');arrow.setAttribute('refX','9');arrow.setAttribute('refY','5');arrow.setAttribute('markerWidth','5');arrow.setAttribute('markerHeight','5');arrow.setAttribute('orient','auto');head.setAttribute('d','M 0 0 L 10 5 L 0 10 z');head.setAttribute('fill','#c6d5d5');arrow.append(head);defs.append(arrow);svg.append(defs);
+    for(const edge of doc.edges){const a=lookup.get(edge.from_id).schematic_xy,b=lookup.get(edge.to_id).schematic_xy,path=document.createElementNS(ns,'path');path.setAttribute('d',`M ${a[0]} ${a[1]} H ${(a[0]+b[0])/2} V ${b[1]} H ${b[0]}`);path.setAttribute('fill','none');path.setAttribute('stroke',edge.connection_kind.includes('eastern')?'#bda4ef':'#7cceca');path.setAttribute('stroke-width','4');path.setAttribute('marker-end',`url(#${arrowId})`);const title=document.createElementNS(ns,'title');title.textContent=lookup.get(edge.from_id).label+' → '+lookup.get(edge.to_id).label;path.append(title);svg.append(path);}
+    const selected=element('p','Hover or focus a node for its name; select it to inspect the source record.',section);selected.setAttribute('aria-live','polite');
+    for(const node of doc.nodes){const g=document.createElementNS(ns,'g');g.setAttribute('role','button');g.setAttribute('tabindex','0');g.setAttribute('aria-label',node.label+' · '+node.node_kind.replaceAll('_',' ')+' · inspect');g.style.cursor='pointer';const marker=document.createElementNS(ns,node.node_kind.includes('gateway')?'rect':'circle');const [x,y]=node.schematic_xy;if(marker.tagName==='rect'){marker.setAttribute('x',x-12);marker.setAttribute('y',y-12);marker.setAttribute('width','24');marker.setAttribute('height','24');}else{marker.setAttribute('cx',x);marker.setAttribute('cy',y);marker.setAttribute('r','12');}marker.setAttribute('fill','#123f4c');marker.setAttribute('stroke','#f4d88a');marker.setAttribute('stroke-width','3');g.append(marker);const title=document.createElementNS(ns,'title');title.textContent=node.label;g.append(title);g.addEventListener('pointerenter',()=>selected.textContent=node.label+' · '+node.node_kind.replaceAll('_',' '));g.addEventListener('focus',()=>selected.textContent=node.label+' · '+node.node_kind.replaceAll('_',' '));g.addEventListener('click',()=>inspect('flow_network_nodes',node.id));g.addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)){event.preventDefault();inspect('flow_network_nodes',node.id);}});svg.append(g);}
+    element('p','Squares: passage gateways. Circles: basins. Violet: eastern contribution; teal: western/interior/exit connections. Names appear on hover or focus. The node records and source provide equivalent text access.',section);
+    const paths={collection:'flow_networks',filters:[{field:'id',op:'eq',value:row.id}],network_path:{network_id:row.id,from_id:'flow-node:itf:pacific',to_id:'flow-node:itf:indian',max_hops:8}};
+    link('Query Pacific-to-Indian connections','query.html?q='+encodeURIComponent(JSON.stringify(paths)),section);
+    const nodes=element('details',undefined,section);element('summary','All twelve named nodes',nodes);const list=element('ul',undefined,nodes);for(const node of doc.nodes){const item=element('li',undefined,list),button=element('button',node.label,item);button.type='button';button.addEventListener('click',()=>inspect('flow_network_nodes',node.id));}
+    link('Query measured exit passages','query.html?q='+encodeURIComponent(JSON.stringify({collection:'passage_samples',filters:[{field:'network_id',op:'eq',value:row.id}]})),section);
+  }
   function describe(parent,row){
+    if(row.document?.schema==='osw.flow-network.v1')drawFlowNetwork(parent,row);
+    if(row.quantity==='section_volume_transport'){element('p',`${row.value} Sv (negative toward the Indian Ocean), mean for 2004–2006; depth ${row.depth_range_m.join('–')} m.`,parent);element('p',`Calculation-choice interval: ${row.calculation_choice_interval_Sv.join(' to ')} Sv, from gap/extrapolation choices; not seasonal extrema or a confidence interval. Integration width: ${row.transport_integration_width_km} km; this is not a physical current width.`,parent);}
+    if(row.moorings){const details=element('details',undefined,parent);element('summary',`Published mooring sites (${row.moorings.length})`,details);for(const site of row.moorings)element('p',`${site.label}: ${site.coordinates_lon_lat.join(', ')} (lon, lat); ${site.deployment_start} to ${site.deployment_end}; first-deployment location, not a current edge.`,details);}
+    if(row.network_id&&row.document?.schema!=='osw.flow-network.v1')link('Back to passage network','query.html?q='+encodeURIComponent(JSON.stringify({collection:'flow_networks',filters:[{field:'id',op:'eq',value:row.network_id}]})),parent);
     element('h3',label(row),parent);element('p',value(row),parent);
     if(row.source_decision){
       element('p','Editorial worklist for names without a published ranked length. Existing candidates remain pending scientific review; no new length is assigned by this decision.',parent);
@@ -273,7 +296,7 @@
       if(row[key]!==undefined){element('dt',title,dl);element('dd',row[key]===null?'unresolved':key==='status'?String(row[key]).replaceAll('_',' '):String(row[key]),dl);}
     }
     const links=element('div',undefined,parent);links.className='record-links';
-    if(/^almanac\/[a-z0-9-]+\.html$/.test(row.diagnostic_page||''))link('View mapped experiment','../'+row.diagnostic_page,links);
+    if(/^almanac\/[a-z0-9-]+\.html$/.test(row.diagnostic_page||''))link('View mapped experiment','../'+row.diagnostic_page+(row.observation_date?'?date='+encodeURIComponent(row.observation_date):''),links);
     if(row.sample_family==='gulf_stream_dated_half_peak_section'&&row.status==='paired_boundaries'&&row.value_km!==null)link('Map this local section span','query.html?q='+encodeURIComponent(JSON.stringify({collection:'width_samples',filters:[{field:'id',op:'eq',value:row.id}],limit:50}))+'#query-map-section',links);
     if(row.width_sample_ids?.length)link('Query scoped width samples','query.html?q='+encodeURIComponent(JSON.stringify({collection:'width_samples',filters:[{field:'current_id',op:'eq',value:row.id.replace(/^current:/,'')}],sort:{field:'label'},limit:100})),links);
     if(row.route_decision_ids?.length)link('Query remaining length decision','query.html?q='+encodeURIComponent(JSON.stringify({collection:'route_decisions',filters:[{field:'entity_id',op:'eq',value:row.id}],limit:50})),links);
@@ -304,6 +327,8 @@
       groups.push(['seasonal_route_ids','seasonal_routes','Source-defined seasonal routes']);
       groups.push(['route_decision_ids','route_decisions','Length construction decision']);
       groups.push(['diagnostic_ids','diagnostics','Unranked method diagnostics']);
+      groups.push(['flow_network_ids','flow_networks','Source-described flow networks']);
+      groups.push(['passage_sample_ids','passage_samples','Observed passage transport']);
       if(record.source_id)groups.push(['single_source','sources','Source']);
       for(const [key,target,title] of groups){
         const ids=key==='single_source'?[record.source_id]:record[key];if(!ids?.length)continue;

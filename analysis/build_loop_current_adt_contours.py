@@ -87,21 +87,22 @@ def scan(source,fields):
         'gate_rejected_segment_count':gate_rejections,'eligible_count':len(eligible),
         'selected':selected if not edge else None,'search_edge_peak':edge}
 
-def build():
-    if digest(SOURCE)!=SOURCE_SHA256:raise ValueError('Changed ADT snapshot')
-    source=json.loads(SOURCE.read_text(encoding='utf-8'))
-    if source['observation_date']!='2026-09-25':raise ValueError('Unexpected ADT date')
+def build(source_path=SOURCE, source_sha256=SOURCE_SHA256, observation_date="2026-09-25", noaa_path=NOAA_OUTPUT, noaa_rebuild=None):
+    source_path=Path(source_path);noaa_path=Path(noaa_path)
+    if digest(source_path)!=source_sha256:raise ValueError('Changed ADT snapshot')
+    source=json.loads(source_path.read_text(encoding='utf-8'))
+    if source['observation_date']!=observation_date:raise ValueError('Unexpected ADT date')
     if contourpy.__version__!='1.3.3':raise ValueError('Use pinned contourpy 1.3.3 for this contour receipt')
     fields=field_arrays(source);result=scan(source,fields)
-    noaa=json.loads(NOAA_OUTPUT.read_text(encoding='utf-8'))
-    if noaa!=rebuild_noaa():raise ValueError('NOAA diagnostic is stale')
+    noaa=json.loads(noaa_path.read_text(encoding='utf-8'))
+    if noaa!=(noaa_rebuild or rebuild_noaa)():raise ValueError('NOAA diagnostic is stale')
     if noaa['observation_date']!=source['observation_date']:raise ValueError('Comparison dates differ')
     selected=result['selected'];length=selected['admissible_diagnostic_length_km'] if selected else None
     old=noaa['nominal']['open_path_length_km']
     return {'schema':'osw.loop-current-adt-contours.v1','current_id':'loop','observation_date':source['observation_date'],
         'status':'finite_contour_search_diagnostic_requires_review','layer':'absolute surface geostrophic',
         'metric':'highest_length_weighted_mean_speed_eligible_ADT_contour_between_editorial_gates',
-        'source_file':str(SOURCE.relative_to(ROOT)).replace('\\','/'),'source_sha256':digest(SOURCE),
+        'source_file':str(source_path.relative_to(ROOT)).replace('\\','/'),'source_sha256':digest(source_path),
         'source_url':source['source_url'],'dataset_page':source['dataset_page'],
         'source_product_id':source['source_metadata']['subset_productId'],
         'source_dataset_id':source['source_metadata']['subset_datasetId'],
@@ -110,8 +111,8 @@ def build():
         'velocity_sampler_sha256':digest(ROOT/'analysis/build_gulf_stream_geostrophic_path.py'),
         'source_time_scope':source['time_scope'],**result,
         'approximate_diagnostic_path_km':int(math.floor(length/100+.5)*100) if length is not None else None,
-        'comparison':{'noaa_diagnostic_file':str(NOAA_OUTPUT.relative_to(ROOT)).replace('\\','/'),
-            'noaa_diagnostic_sha256':digest(NOAA_OUTPUT),'noaa_open_path_length_km':old,
+        'comparison':{'noaa_diagnostic_file':str(noaa_path.relative_to(ROOT)).replace('\\','/'),
+            'noaa_diagnostic_sha256':digest(noaa_path),'noaa_open_path_length_km':old,
             'duacs_selected_contour_length_km':length,'signed_difference_duacs_minus_noaa_km':round(length-old,1) if length is not None and old is not None else None,
             'scope':'Same labelled date, different products and methods, shared satellite inputs possible; not independent observational validation or an uncertainty interval.'},
         'whole_current_length_km':None,'width_km':None,'annual_length_range_km':None,

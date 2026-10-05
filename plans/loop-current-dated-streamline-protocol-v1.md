@@ -7,7 +7,11 @@ protocol's source, layer, time, gate and sensitivity rules.
 ## Quantity and source
 
 Use the checksum-pinned NOAA LSA RADS daily absolute surface geostrophic
-`ugos` and `vgos` fields for 25 September 2026 UTC (26 September excluded).
+`ugos` and `vgos` fields for each explicitly pinned date, using its source time
+bounds. Baseline: 25 September 2026 UTC (26 September excluded). Repeat selection:
+15 January, April, July and October 2025, declared before tracing. Apply identical
+gates, seed selection, step sizes, thresholds and missing-cell rules on every date;
+retain failures and do not substitute a successful neighboring seed.
 Decode the original packed values, preserve missing cells, and bilinearly sample
 only when all four contributing cells are finite. The 0.25-degree grid is an
 analysis grid, not a claim of independently resolved features at that spacing.
@@ -55,3 +59,10 @@ Before admission: inspect the geographic path and gateway sensitivity, compare
 an independently sourced ADT maximum-velocity contour, repeat dates and retained
 failures, verify effective resolution, and complete scientific and source-use
 review. Keep published study statistics separate from this dated diagnostic.
+
+## Recorded-date extension v1.1
+
+Quarterly-spaced snapshots cover four days, not the year. Report each method
+and failure by its actual date. Do not infer phases, interpolate missing days,
+call their numerical spread an annual range, or pool dates into a ranked length.
+Source product/version changes must be visible alongside recorded dates.

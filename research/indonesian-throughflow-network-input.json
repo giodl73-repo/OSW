@@ -1,0 +1,565 @@
+{
+  "schema": "osw.flow-network.v1",
+  "id": "flow-network:indonesian-throughflow",
+  "entity_id": "current:indonesian-throughflow",
+  "current_id": "indonesian-throughflow",
+  "label": "Indonesian Throughflow passage network",
+  "status": "source_supported_conceptual_network_not_axis_or_canonical_admission",
+  "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008JC005257",
+  "source_citation": "Sprintall et al. (2009), Direct estimates of the Indonesian Throughflow entering the Indian Ocean: 2004–2006, doi:10.1029/2008JC005257.",
+  "source_access": "Introduction paragraphs 3–8, Tables 1 and 2, section 2.2 read from publisher full text. No figure, time series or velocity field digitized.",
+  "source_locator": "Introduction paragraphs 3–4: western/eastern inflow and Banda Sea exit pathways; Tables 1–2: transport support and moorings.",
+  "source_retrieved_date": "2026-10-04",
+  "source_use": "Attributed factual metadata and OSW schematic; no source figure or original velocity arrays packaged.",
+  "scope": "Selected source-described passage connections at differing depths. Not a complete exchange network, permanent one-way flow, particle itinerary or traced current axis.",
+  "layer": "Western upper-thermocline route and eastern deeper-water contribution remain distinct; mixed-layer pathways, not one uniform depth.",
+  "time_scope": "Regional pathway description with 2004–2006 mean exit transport context; arrows do not describe every date or depth.",
+  "length_km": null,
+  "width_km": null,
+  "annual_length_range_km": null,
+  "annual_width_range_km": null,
+  "rank_eligible": false,
+  "nodes": [
+    {
+      "id": "flow-node:itf:pacific",
+      "label": "Pacific Ocean",
+      "node_kind": "source_basin",
+      "schematic_xy": [
+        50,
+        150
+      ],
+      "coordinates_lon_lat": null
+    },
+    {
+      "id": "flow-node:itf:sulawesi",
+      "label": "Sulawesi Sea",
+      "node_kind": "interior_basin",
+      "schematic_xy": [
+        190,
+        70
+      ],
+      "coordinates_lon_lat": null
+    },
+    {
+      "id": "flow-node:itf:makassar",
+      "label": "Makassar Strait",
+      "node_kind": "inflow_gateway",
+      "schematic_xy": [
+        330,
+        70
+      ],
+      "coordinates_lon_lat": null
+    },
+    {
+      "id": "flow-node:itf:flores",
+      "label": "Flores Sea",
+      "node_kind": "interior_basin",
+      "schematic_xy": [
+        470,
+        70
+      ],
+      "coordinates_lon_lat": null
+    },
+    {
+      "id": "flow-node:itf:maluku",
+      "label": "Maluku Sea",
+      "node_kind": "interior_basin",
+      "schematic_xy": [
+        190,
+        230
+      ],
+      "coordinates_lon_lat": null
+    },
+    {
+      "id": "flow-node:itf:lifamatola",
+      "label": "Lifamatola Passage",
+      "node_kind": "deep_inflow_gateway",
+      "schematic_xy": [
+        330,
+        230
+      ],
+      "coordinates_lon_lat": null
+    },
+    {
+      "id": "flow-node:itf:banda",
+      "label": "Banda Sea",
+      "node_kind": "mixing_basin",
+      "schematic_xy": [
+        470,
+        230
+      ],
+      "coordinates_lon_lat": null
+    },
+    {
+      "id": "flow-node:itf:lombok",
+      "label": "Lombok Strait",
+      "node_kind": "exit_gateway",
+      "schematic_xy": [
+        620,
+        70
+      ],
+      "coordinates_lon_lat": null
+    },
+    {
+      "id": "flow-node:itf:ombai",
+      "label": "Ombai Strait",
+      "node_kind": "exit_gateway",
+      "schematic_xy": [
+        620,
+        230
+      ],
+      "coordinates_lon_lat": null
+    },
+    {
+      "id": "flow-node:itf:savu",
+      "label": "Savu Sea",
+      "node_kind": "interior_basin",
+      "schematic_xy": [
+        750,
+        230
+      ],
+      "coordinates_lon_lat": null
+    },
+    {
+      "id": "flow-node:itf:timor",
+      "label": "Timor Passage",
+      "node_kind": "exit_gateway",
+      "schematic_xy": [
+        620,
+        380
+      ],
+      "coordinates_lon_lat": null
+    },
+    {
+      "id": "flow-node:itf:indian",
+      "label": "Indian Ocean",
+      "node_kind": "receiving_basin",
+      "schematic_xy": [
+        900,
+        150
+      ],
+      "coordinates_lon_lat": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "flow-edge:itf:pacific:sulawesi",
+      "from_id": "flow-node:itf:pacific",
+      "to_id": "flow-node:itf:sulawesi",
+      "connection_kind": "western_upper_thermocline",
+      "source_locator": "Introduction paragraphs 3–4",
+      "length_km": null,
+      "width_km": null,
+      "geometry": null,
+      "rank_eligible": false
+    },
+    {
+      "id": "flow-edge:itf:sulawesi:makassar",
+      "from_id": "flow-node:itf:sulawesi",
+      "to_id": "flow-node:itf:makassar",
+      "connection_kind": "western_upper_thermocline",
+      "source_locator": "Introduction paragraphs 3–4",
+      "length_km": null,
+      "width_km": null,
+      "geometry": null,
+      "rank_eligible": false
+    },
+    {
+      "id": "flow-edge:itf:makassar:flores",
+      "from_id": "flow-node:itf:makassar",
+      "to_id": "flow-node:itf:flores",
+      "connection_kind": "western_upper_thermocline",
+      "source_locator": "Introduction paragraphs 3–4",
+      "length_km": null,
+      "width_km": null,
+      "geometry": null,
+      "rank_eligible": false
+    },
+    {
+      "id": "flow-edge:itf:flores:banda",
+      "from_id": "flow-node:itf:flores",
+      "to_id": "flow-node:itf:banda",
+      "connection_kind": "interior_redistribution",
+      "source_locator": "Introduction paragraphs 3–4",
+      "length_km": null,
+      "width_km": null,
+      "geometry": null,
+      "rank_eligible": false
+    },
+    {
+      "id": "flow-edge:itf:flores:lombok",
+      "from_id": "flow-node:itf:flores",
+      "to_id": "flow-node:itf:lombok",
+      "connection_kind": "western_direct_exit",
+      "source_locator": "Introduction paragraphs 3–4",
+      "length_km": null,
+      "width_km": null,
+      "geometry": null,
+      "rank_eligible": false
+    },
+    {
+      "id": "flow-edge:itf:lombok:indian",
+      "from_id": "flow-node:itf:lombok",
+      "to_id": "flow-node:itf:indian",
+      "connection_kind": "exit_pathway",
+      "source_locator": "Introduction paragraphs 3–4",
+      "length_km": null,
+      "width_km": null,
+      "geometry": null,
+      "rank_eligible": false
+    },
+    {
+      "id": "flow-edge:itf:pacific:maluku",
+      "from_id": "flow-node:itf:pacific",
+      "to_id": "flow-node:itf:maluku",
+      "connection_kind": "eastern_contribution",
+      "source_locator": "Introduction paragraphs 3–4",
+      "length_km": null,
+      "width_km": null,
+      "geometry": null,
+      "rank_eligible": false
+    },
+    {
+      "id": "flow-edge:itf:maluku:lifamatola",
+      "from_id": "flow-node:itf:maluku",
+      "to_id": "flow-node:itf:lifamatola",
+      "connection_kind": "eastern_deep_contribution",
+      "source_locator": "Introduction paragraphs 3–4",
+      "length_km": null,
+      "width_km": null,
+      "geometry": null,
+      "rank_eligible": false
+    },
+    {
+      "id": "flow-edge:itf:lifamatola:banda",
+      "from_id": "flow-node:itf:lifamatola",
+      "to_id": "flow-node:itf:banda",
+      "connection_kind": "eastern_deep_contribution",
+      "source_locator": "Introduction paragraphs 3–4",
+      "length_km": null,
+      "width_km": null,
+      "geometry": null,
+      "rank_eligible": false
+    },
+    {
+      "id": "flow-edge:itf:banda:ombai",
+      "from_id": "flow-node:itf:banda",
+      "to_id": "flow-node:itf:ombai",
+      "connection_kind": "exit_pathway",
+      "source_locator": "Introduction paragraphs 3–4",
+      "length_km": null,
+      "width_km": null,
+      "geometry": null,
+      "rank_eligible": false
+    },
+    {
+      "id": "flow-edge:itf:ombai:savu",
+      "from_id": "flow-node:itf:ombai",
+      "to_id": "flow-node:itf:savu",
+      "connection_kind": "exit_pathway",
+      "source_locator": "Introduction paragraphs 3–4",
+      "length_km": null,
+      "width_km": null,
+      "geometry": null,
+      "rank_eligible": false
+    },
+    {
+      "id": "flow-edge:itf:savu:indian",
+      "from_id": "flow-node:itf:savu",
+      "to_id": "flow-node:itf:indian",
+      "connection_kind": "exit_via_Sumba_or_Savu_Dao_not_individual_channel_geometry",
+      "source_locator": "Introduction paragraphs 3–4",
+      "length_km": null,
+      "width_km": null,
+      "geometry": null,
+      "rank_eligible": false
+    },
+    {
+      "id": "flow-edge:itf:banda:timor",
+      "from_id": "flow-node:itf:banda",
+      "to_id": "flow-node:itf:timor",
+      "connection_kind": "exit_pathway",
+      "source_locator": "Introduction paragraphs 3–4",
+      "length_km": null,
+      "width_km": null,
+      "geometry": null,
+      "rank_eligible": false
+    },
+    {
+      "id": "flow-edge:itf:timor:indian",
+      "from_id": "flow-node:itf:timor",
+      "to_id": "flow-node:itf:indian",
+      "connection_kind": "exit_pathway",
+      "source_locator": "Introduction paragraphs 3–4",
+      "length_km": null,
+      "width_km": null,
+      "geometry": null,
+      "rank_eligible": false
+    }
+  ],
+  "passage_samples": [
+    {
+      "id": "passage-sample:itf:lombok-2004-2006",
+      "node_id": "flow-node:itf:lombok",
+      "label": "Lombok · INSTANT 2004–2006 exit mean",
+      "quantity": "section_volume_transport",
+      "unit": "Sv",
+      "value": -2.6,
+      "negative_direction": "toward Indian Ocean",
+      "sampling_period": {
+        "from_year": 2004,
+        "to_year": 2006,
+        "precision": "year"
+      },
+      "calculation_choice_interval_Sv": [
+        -3.2,
+        -1.8
+      ],
+      "interval_kind": "surface_extrapolation_and_across_passage_interpolation_choices_not_temporal_extrema_or_confidence",
+      "depth_range_m": [
+        0,
+        300
+      ],
+      "transport_integration_width_km": 35,
+      "integration_width_is_physical_current_width": false,
+      "whole_current_length_km": null,
+      "whole_current_width_km": null,
+      "annual_length_range_km": null,
+      "annual_width_range_km": null,
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008JC005257",
+      "source_locator": "Tables 1–2; section 2.2 handling gaps",
+      "rank_eligible": false,
+      "moorings": [
+        {
+          "id": "lombok:east",
+          "label": "Lombok east",
+          "source_degrees_minutes": [
+            115,
+            53.88,
+            8,
+            24.14
+          ],
+          "coordinates_lon_lat": [
+            115.898,
+            -8.40233333
+          ],
+          "water_depth_m": 1144,
+          "deployment_start": "2004-01-10",
+          "deployment_end": "2006-12-16",
+          "coordinate_role": "published_first_deployment_mooring_location_not_current_boundary",
+          "redeployment_note": "Source says positions for second deployment were very similar; exact redeployment coordinates not supplied here."
+        },
+        {
+          "id": "lombok:west",
+          "label": "Lombok west",
+          "source_degrees_minutes": [
+            115,
+            45.55,
+            8,
+            26.39
+          ],
+          "coordinates_lon_lat": [
+            115.75916667,
+            -8.43983333
+          ],
+          "water_depth_m": 921,
+          "deployment_start": "2004-01-09",
+          "deployment_end": "2005-06-15",
+          "coordinate_role": "published_first_deployment_mooring_location_not_current_boundary",
+          "redeployment_note": "Source says positions for second deployment were very similar; exact redeployment coordinates not supplied here."
+        }
+      ]
+    },
+    {
+      "id": "passage-sample:itf:ombai-2004-2006",
+      "node_id": "flow-node:itf:ombai",
+      "label": "Ombai · INSTANT 2004–2006 exit mean",
+      "quantity": "section_volume_transport",
+      "unit": "Sv",
+      "value": -4.9,
+      "negative_direction": "toward Indian Ocean",
+      "sampling_period": {
+        "from_year": 2004,
+        "to_year": 2006,
+        "precision": "year"
+      },
+      "calculation_choice_interval_Sv": [
+        -5.0,
+        -2.7
+      ],
+      "interval_kind": "surface_extrapolation_and_across_passage_interpolation_choices_not_temporal_extrema_or_confidence",
+      "depth_range_m": [
+        0,
+        1200
+      ],
+      "transport_integration_width_km": 35,
+      "integration_width_is_physical_current_width": false,
+      "whole_current_length_km": null,
+      "whole_current_width_km": null,
+      "annual_length_range_km": null,
+      "annual_width_range_km": null,
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008JC005257",
+      "source_locator": "Tables 1–2; section 2.2 handling gaps",
+      "rank_eligible": false,
+      "moorings": [
+        {
+          "id": "ombai:north",
+          "label": "Ombai north",
+          "source_degrees_minutes": [
+            125,
+            0.16,
+            8,
+            24.1
+          ],
+          "coordinates_lon_lat": [
+            125.00266667,
+            -8.40166667
+          ],
+          "water_depth_m": 1329,
+          "deployment_start": "2004-01-04",
+          "deployment_end": "2006-12-06",
+          "coordinate_role": "published_first_deployment_mooring_location_not_current_boundary",
+          "redeployment_note": "Source says positions for second deployment were very similar; exact redeployment coordinates not supplied here."
+        },
+        {
+          "id": "ombai:south",
+          "label": "Ombai south",
+          "source_degrees_minutes": [
+            125,
+            3.86,
+            8,
+            32.0
+          ],
+          "coordinates_lon_lat": [
+            125.06433333,
+            -8.53333333
+          ],
+          "water_depth_m": 3224,
+          "deployment_start": "2003-08-08",
+          "deployment_end": "2006-12-07",
+          "coordinate_role": "published_first_deployment_mooring_location_not_current_boundary",
+          "redeployment_note": "Source says positions for second deployment were very similar; exact redeployment coordinates not supplied here."
+        }
+      ]
+    },
+    {
+      "id": "passage-sample:itf:timor-2004-2006",
+      "node_id": "flow-node:itf:timor",
+      "label": "Timor · INSTANT 2004–2006 exit mean",
+      "quantity": "section_volume_transport",
+      "unit": "Sv",
+      "value": -7.5,
+      "negative_direction": "toward Indian Ocean",
+      "sampling_period": {
+        "from_year": 2004,
+        "to_year": 2006,
+        "precision": "year"
+      },
+      "calculation_choice_interval_Sv": [
+        -10.5,
+        -6.2
+      ],
+      "interval_kind": "surface_extrapolation_and_across_passage_interpolation_choices_not_temporal_extrema_or_confidence",
+      "depth_range_m": [
+        0,
+        1890
+      ],
+      "transport_integration_width_km": 160,
+      "integration_width_is_physical_current_width": false,
+      "whole_current_length_km": null,
+      "whole_current_width_km": null,
+      "annual_length_range_km": null,
+      "annual_width_range_km": null,
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008JC005257",
+      "source_locator": "Tables 1–2; section 2.2 handling gaps",
+      "rank_eligible": false,
+      "moorings": [
+        {
+          "id": "timor:roti",
+          "label": "Timor roti",
+          "source_degrees_minutes": [
+            122,
+            46.79,
+            11,
+            9.75
+          ],
+          "coordinates_lon_lat": [
+            122.77983333,
+            -11.1625
+          ],
+          "water_depth_m": 741,
+          "deployment_start": "2004-01-01",
+          "deployment_end": "2006-12-13",
+          "coordinate_role": "published_first_deployment_mooring_location_not_current_boundary",
+          "redeployment_note": "Source says positions for second deployment were very similar; exact redeployment coordinates not supplied here."
+        },
+        {
+          "id": "timor:sill",
+          "label": "Timor sill",
+          "source_degrees_minutes": [
+            122,
+            51.9,
+            11,
+            16.48
+          ],
+          "coordinates_lon_lat": [
+            122.865,
+            -11.27466667
+          ],
+          "water_depth_m": 1890,
+          "deployment_start": "2003-12-31",
+          "deployment_end": "2006-12-12",
+          "coordinate_role": "published_first_deployment_mooring_location_not_current_boundary",
+          "redeployment_note": "Source says positions for second deployment were very similar; exact redeployment coordinates not supplied here."
+        },
+        {
+          "id": "timor:south-slope",
+          "label": "Timor south-slope",
+          "source_degrees_minutes": [
+            122,
+            57.59,
+            11,
+            22.09
+          ],
+          "coordinates_lon_lat": [
+            122.95983333,
+            -11.36816667
+          ],
+          "water_depth_m": 1386,
+          "deployment_start": "2003-12-30",
+          "deployment_end": "2006-12-12",
+          "coordinate_role": "published_first_deployment_mooring_location_not_current_boundary",
+          "redeployment_note": "Source says positions for second deployment were very similar; exact redeployment coordinates not supplied here."
+        },
+        {
+          "id": "timor:ashmore",
+          "label": "Timor ashmore",
+          "source_degrees_minutes": [
+            122,
+            58.44,
+            11,
+            31.7
+          ],
+          "coordinates_lon_lat": [
+            122.974,
+            -11.52833333
+          ],
+          "water_depth_m": 902,
+          "deployment_start": "2003-12-30",
+          "deployment_end": "2006-12-13",
+          "coordinate_role": "published_first_deployment_mooring_location_not_current_boundary",
+          "redeployment_note": "Source says positions for second deployment were very similar; exact redeployment coordinates not supplied here."
+        }
+      ]
+    }
+  ],
+  "reported_exit_total_Sv": -15.0,
+  "aggregation_rule": "Only three matching 2004–2006 exit means are summed. Never add upstream Makassar transport to exit transport or sum network edge lengths.",
+  "layout_role": "OSW schematic node positions, no geographic coordinates or measurable leg distances.",
+  "remaining_gates": [
+    "Review full passage coverage, depth-dependent reversals and source-specific channel topology before scientific taxonomy admission.",
+    "Recover layer-compatible axes and gateway alternatives before branch lengths.",
+    "Do not use mooring separation, integration widths or sill depths as full-current dimensions.",
+    "Review uncertainty processing, missing instruments and exact aggregation time support before further physical measurements."
+  ]
+}

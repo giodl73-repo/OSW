@@ -117,7 +117,7 @@ def build():
     for path in ['research/ocean-current-dated-timeline-2025.json','research/ocean-current-dated-timeline.json']:
         timeline=read(path)
         validate_timeline(timeline)
-        for dependency in [timeline['audit_file'],'analysis/build_current_dated_timeline.py','analysis/check_current_dated_timeline.py','analysis/build_gulf_stream_geostrophic_path.py']:
+        for dependency in [timeline['audit_file'],'analysis/build_current_dated_timeline.py','analysis/check_current_dated_timeline.py','analysis/build_gulf_stream_geostrophic_path.py','analysis/build_loop_current_recorded_dates.py']:
             inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
         entity_id='current:'+timeline['current_id']
         row=next(r for r in objects if r['id']==entity_id)
@@ -156,9 +156,20 @@ def build():
     from build_loop_current_adt_contours import build as rebuild_loop_adt
     loop_owner=next(r for r in objects if r['id']=='current:loop')
     loop_owner['diagnostic_ids']=[]
-    for ident,path,label,rebuild,coordinates_key,source_key in [
+    loop_specs=[
         ('diagnostic:loop-noaa-20260925','research/loop-current-dated-streamline-20260925.json','Loop Current — NOAA velocity integration, 25 September 2026',rebuild_loop_noaa,'nominal','source_subset'),
-        ('diagnostic:loop-adt-20260925','research/loop-current-adt-contours-20260925.json','Loop Current — DUACS ADT contour search, 25 September 2026',rebuild_loop_adt,'selected','source_file')]:
+        ('diagnostic:loop-adt-20260925','research/loop-current-adt-contours-20260925.json','Loop Current — DUACS ADT contour search, 25 September 2026',rebuild_loop_adt,'selected','source_file')]
+    from build_loop_current_recorded_dates import build as rebuild_loop_series, source_rows, rebuild_noaa, rebuild_adt, path_for, OUTPUT as LOOP_SERIES
+    from functools import partial
+    series=read(LOOP_SERIES.relative_to(ROOT).as_posix())
+    if series!=rebuild_loop_series():raise ValueError('Stale Loop repeat series')
+    read(series['source_manifest'])
+    for row in source_rows():
+        for method,fn,key,source_key in [('noaa',rebuild_noaa,'nominal','source_subset'),('adt',rebuild_adt,'selected','source_file')]:
+            stamp=row['date'].replace('-','')
+            loop_specs.append((f'diagnostic:loop-{method}-{stamp}',path_for(method,row['date']).relative_to(ROOT).as_posix(),
+                'Loop Current — '+('NOAA velocity integration' if method=='noaa' else 'DUACS ADT contour search')+', '+row['date'],partial(fn,row),key,source_key))
+    for ident,path,label,rebuild,coordinates_key,source_key in loop_specs:
         document=read(path)
         if document!=rebuild():raise ValueError('Stale Loop diagnostic: '+ident)
         for key in [source_key,'protocol_file']:
@@ -170,7 +181,7 @@ def build():
         record={'id':ident,'label':label,'entity_id':'current:loop','current_id':'loop',
             'observation_date':document['observation_date'],'status':document['status'],
             'rank_eligible':False,'source_file':path,'source_file_sha256':inputs[path],
-            'diagnostic_page':'almanac/loop-current-experiment.html','source_url':document['source_url'],
+            'diagnostic_page':'almanac/loop-current-experiment.html' if document['observation_date']=='2026-09-25' else 'almanac/loop-current-recorded-dates.html','source_url':document['source_url'],
             'scope':'Dated surface diagnostic between editorial gates. No whole-current length, width, annual range or independent observational confirmation.',
             'document':document,'source_json':(ROOT/path).read_bytes().decode('utf-8')}
         collections['diagnostics'].append(record);loop_owner['diagnostic_ids'].append(ident)
@@ -190,7 +201,7 @@ def build():
                 'source_response_sha256':snapshot['source_response_sha256'],
                 'source_algorithm':snapshot.get('source_algorithm',snapshot.get('source_metadata',{}).get('subset_datasetId')),
                 'layer':document['layer'],'note':record['scope']+' '+document['interpretation']})
-    for path in ['analysis/build_loop_current_dated_streamline.py','analysis/build_loop_current_adt_contours.py','analysis/build_gulf_stream_geostrophic_path.py']:
+    for path in ['analysis/build_loop_current_dated_streamline.py','analysis/build_loop_current_adt_contours.py','analysis/build_gulf_stream_geostrophic_path.py','analysis/build_loop_current_recorded_dates.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from check_current_section_width_series import validate as validate_dated_widths
     dated_widths=next(d['document'] for d in collections['diagnostics'] if d['id']=='diagnostic:gulf-stream-widths')
@@ -248,11 +259,18 @@ def build():
                 'scope_reviews':reviews}
         collections['route_decisions'].append(record)
         owner['route_decision_ids']=[record['id']]
+    from build_flow_network import build as build_network, INPUT as NETWORK_INPUT
+    read(NETWORK_INPUT.relative_to(ROOT).as_posix())
+    network_collections=build_network();collections.update(network_collections)
+    inputs['analysis/build_flow_network.py']=hashlib.sha256((ROOT/'analysis/build_flow_network.py').read_bytes()).hexdigest()
+    network_owner=next(row for row in objects if row['id']=='current:indonesian-throughflow')
+    network_owner['flow_network_ids']=[r['id'] for r in collections['flow_networks']]
+    network_owner['passage_sample_ids']=[r['id'] for r in collections['passage_samples']]
     for name,rows in collections.items():
         if len({r['id'] for r in rows})!=len(rows):raise ValueError('Duplicate ID in '+name)
     return {'schema':'osw.query-bundle.v1','manifest':{'status':'local_editorial_and_canonical_snapshot_not_new_scientific_admission',
             'canonical_release':'v0.1.0','canonical_collections':['entities','sources','claims','relations','measurements','geometries'],
-            'editorial_collections':['objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions'],
+            'editorial_collections':['objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples'],
             'input_sha256':inputs,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},
             'scope':'State joins retain relation kinds; gateways are not containment. Widths retain scope. Published lengths and editorial route lengths are separate collections.'},
             'collections':collections}

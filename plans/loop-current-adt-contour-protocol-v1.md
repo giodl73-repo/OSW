@@ -5,7 +5,7 @@ and scientific admission remain open. Extends the dated surface experiment.
 
 ## Compatible quantities
 
-Use the exact 25 September 2026 GCOOS response containing Copernicus/DUACS
+Use each explicitly pinned GCOOS daily response (baseline 25 September 2026) containing Copernicus/DUACS
 absolute dynamic topography (ADT above geoid, m) and surface absolute geostrophic
 ugos/vgos (m/s), NRT 0.125-degree product version P1D_202411. Preserve null masks.
 This is a different product/method check against NOAA RADS, with shared altimetry
@@ -39,6 +39,12 @@ If none are eligible, keep the result unresolved. A best level at either search
 edge signals an incomplete scan and blocks a resolved selected estimate.
 
 ## Comparison and reporting
+
+Repeat selection: 15 January, April, July and October 2025, declared before
+tracing. Apply the identical scan, velocity sampling, masks and gates on each
+date. The same-date NOAA receipt must match the date. Retain unresolved results.
+Four days do not establish annual extrema, season phases or a climatology.
+
 
 This implements a declared finite approximation inspired by the maximum-velocity
 contour method discussed by Laxenaire et al. (2023), sections 2.3.1 and 3.1.1,

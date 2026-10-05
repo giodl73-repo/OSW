@@ -1,7 +1,7 @@
 //! Bind the two local Loop method diagnostics to their owner, receipts and frames.
 use serde_json::{Value, json};
 use sha2::{Digest, Sha256};
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 
 pub fn validate(
     collections: &BTreeMap<String, Vec<Value>>,
@@ -20,24 +20,44 @@ pub fn validate(
     if records.is_empty() {
         return Ok(());
     }
-    if records.len() != 2 {
+    if records.len() % 2 != 0 {
         return Err("Incomplete Loop method comparison".into());
     }
     let owner = collections["objects"]
         .iter()
         .find(|r| r["id"] == "current:loop")
         .ok_or("Missing Loop owner")?;
-    if owner["diagnostic_ids"]
-        != json!([
-            "diagnostic:loop-noaa-20260925",
-            "diagnostic:loop-adt-20260925"
-        ])
-    {
+    let ids: BTreeSet<_> = records.iter().filter_map(|r| r["id"].as_str()).collect();
+    let owner_ids: BTreeSet<_> = owner["diagnostic_ids"]
+        .as_array()
+        .ok_or("Missing Loop owner links")?
+        .iter()
+        .filter_map(Value::as_str)
+        .collect();
+    if ids != owner_ids || owner["diagnostic_ids"].as_array().unwrap().len() != ids.len() {
         return Err("Loop diagnostic owner links mismatch".into());
     }
+    for record in &records {
+        let date = record["observation_date"]
+            .as_str()
+            .ok_or("Missing Loop date")?;
+        if !crate::temporal::valid_day(date) {
+            return Err("Invalid Loop date".into());
+        }
+        let stamp = date.replace('-', "");
+        for method in ["noaa", "adt"] {
+            if !ids.contains(format!("diagnostic:loop-{method}-{stamp}").as_str()) {
+                return Err("Incomplete same-date Loop method pair".into());
+            }
+        }
+    }
     for record in records {
-        let noaa = record["id"] == "diagnostic:loop-noaa-20260925";
-        if !noaa && record["id"] != "diagnostic:loop-adt-20260925" {
+        let date = record["observation_date"]
+            .as_str()
+            .ok_or("Missing Loop date")?;
+        let stamp = date.replace('-', "");
+        let noaa = record["id"] == format!("diagnostic:loop-noaa-{stamp}");
+        if !noaa && record["id"] != format!("diagnostic:loop-adt-{stamp}") {
             return Err("Unknown Loop diagnostic".into());
         }
         let doc = &record["document"];
@@ -63,7 +83,6 @@ pub fn validate(
             || record["current_id"] != "loop"
             || doc["current_id"] != "loop"
             || record["observation_date"] != doc["observation_date"]
-            || record["observation_date"] != "2026-09-25"
             || record["rank_eligible"] != false
             || doc["rank_eligible"] != false
             || ![
@@ -75,7 +94,12 @@ pub fn validate(
             .iter()
             .all(|key| doc.get(key).is_some_and(Value::is_null))
             || record["status"] != doc["status"]
-            || record["diagnostic_page"] != "almanac/loop-current-experiment.html"
+            || record["diagnostic_page"]
+                != if date == "2026-09-25" {
+                    "almanac/loop-current-experiment.html"
+                } else {
+                    "almanac/loop-current-recorded-dates.html"
+                }
         {
             return Err("Loop diagnostic identity or admission mismatch".into());
         }
@@ -122,8 +146,11 @@ pub fn validate(
             return Err("Unresolved Loop diagnostic has invented frame".into());
         }
         if !noaa
-            && doc["comparison"]["noaa_diagnostic_sha256"]
-                != manifest["input_sha256"]["research/loop-current-dated-streamline-20260925.json"]
+            && (doc["comparison"]["noaa_diagnostic_file"]
+                != format!("research/loop-current-dated-streamline-{stamp}.json")
+                || doc["comparison"]["noaa_diagnostic_sha256"]
+                    != manifest["input_sha256"]
+                        [format!("research/loop-current-dated-streamline-{stamp}.json")])
         {
             return Err("Loop comparison source mismatch".into());
         }
