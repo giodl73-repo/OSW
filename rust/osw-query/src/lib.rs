@@ -2,6 +2,7 @@ use serde::Deserialize;
 use serde_json::{Value, json};
 use std::collections::{BTreeMap, BTreeSet};
 mod charts;
+mod loop_diagnostics;
 mod map;
 mod planning;
 mod rebase;
@@ -159,6 +160,7 @@ impl Store {
                 ("seasonal_route_ids", "seasonal_routes"),
                 ("width_sample_ids", "width_samples"),
                 ("route_decision_ids", "route_decisions"),
+                ("diagnostic_ids", "diagnostics"),
             ] {
                 if let Some(list) = object.get(key) {
                     let list = list.as_array().ok_or_else(|| format!("Invalid {key}"))?;
@@ -175,6 +177,7 @@ impl Store {
                         if (collection == "geometry_frames"
                             || collection == "seasonal_routes"
                             || collection == "width_samples"
+                            || collection == "diagnostics"
                             || collection == "route_decisions")
                             && bundle.collections[collection][ids[collection][id]]["entity_id"]
                                 != object["id"]
@@ -211,6 +214,7 @@ impl Store {
         seasonal::validate_features(&bundle.collections)?;
         samples::validate(&bundle.collections)?;
         planning::validate(&bundle.collections, &bundle.manifest)?;
+        loop_diagnostics::validate(&bundle.collections, &bundle.manifest)?;
         let spatial = spatial::Index::build(&bundle.collections)?;
         fields.insert(
             "working_records".into(),

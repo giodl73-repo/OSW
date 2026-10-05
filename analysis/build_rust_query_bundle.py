@@ -151,6 +151,47 @@ def build():
         ('diagnostic:necc-monthly-section','research/pacific-necc-oscar-2013-section-diagnostic.json'),
         ('diagnostic:antilles-observed-sections','research/antilles-ab0505-400m-section-diagnostic.json'),
         ('diagnostic:gulf-stream-widths','research/gulf-stream-section-width-series.json')]]
+    # Two same-day Loop experiments remain separate methods and unranked.
+    from build_loop_current_dated_streamline import build as rebuild_loop_noaa
+    from build_loop_current_adt_contours import build as rebuild_loop_adt
+    loop_owner=next(r for r in objects if r['id']=='current:loop')
+    loop_owner['diagnostic_ids']=[]
+    for ident,path,label,rebuild,coordinates_key,source_key in [
+        ('diagnostic:loop-noaa-20260925','research/loop-current-dated-streamline-20260925.json','Loop Current — NOAA velocity integration, 25 September 2026',rebuild_loop_noaa,'nominal','source_subset'),
+        ('diagnostic:loop-adt-20260925','research/loop-current-adt-contours-20260925.json','Loop Current — DUACS ADT contour search, 25 September 2026',rebuild_loop_adt,'selected','source_file')]:
+        document=read(path)
+        if document!=rebuild():raise ValueError('Stale Loop diagnostic: '+ident)
+        for key in [source_key,'protocol_file']:
+            dependency=document[key];raw_hash=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
+            expected=document['source_subset_sha256' if key=='source_subset' else 'source_sha256' if key=='source_file' else 'protocol_sha256']
+            if raw_hash!=expected:raise ValueError('Stale Loop dependency: '+dependency)
+            inputs[dependency]=raw_hash
+        snapshot=read(document[source_key])
+        record={'id':ident,'label':label,'entity_id':'current:loop','current_id':'loop',
+            'observation_date':document['observation_date'],'status':document['status'],
+            'rank_eligible':False,'source_file':path,'source_file_sha256':inputs[path],
+            'diagnostic_page':'almanac/loop-current-experiment.html','source_url':document['source_url'],
+            'scope':'Dated surface diagnostic between editorial gates. No whole-current length, width, annual range or independent observational confirmation.',
+            'document':document,'source_json':(ROOT/path).read_bytes().decode('utf-8')}
+        collections['diagnostics'].append(record);loop_owner['diagnostic_ids'].append(ident)
+        selected=document[coordinates_key]
+        if selected is not None and (coordinates_key=='selected' or selected['gate_connected']):
+            frame_id='geometry-frame:'+ident.removeprefix('diagnostic:')
+            role='frozen_field_diagnostic_streamline_not_current_axis_or_parcel_track' if coordinates_key=='nominal' else 'finite_ADT_contour_diagnostic_not_admitted_current_axis'
+            frame={'id':frame_id,'entity_id':'current:loop','label':label,'date':document['observation_date'],
+                'observation_date':document['observation_date'],'geometry_role':role,'diagnostic_id':ident,
+                'coordinates_lon_lat':copy.deepcopy(selected['coordinates_lon_lat']),
+                'rank_eligible':False,'source_url':document['source_url'],'status':document['status'],
+                'scope':record['scope'],'diagnostic_page':record['diagnostic_page']}
+            collections['geometry_frames'].append(frame);loop_owner.setdefault('frame_ids',[]).append(frame_id)
+            loop_owner['map_features'].append({'geometry':{'type':'LineString','coordinates':copy.deepcopy(frame['coordinates_lon_lat'])},
+                'role':role,'observation_date':frame['date'],'frame_id':frame_id,'diagnostic_id':ident,
+                'source_url':document['source_url'],'source_subset_sha256':inputs[document[source_key]],
+                'source_response_sha256':snapshot['source_response_sha256'],
+                'source_algorithm':snapshot.get('source_algorithm',snapshot.get('source_metadata',{}).get('subset_datasetId')),
+                'layer':document['layer'],'note':record['scope']+' '+document['interpretation']})
+    for path in ['analysis/build_loop_current_dated_streamline.py','analysis/build_loop_current_adt_contours.py','analysis/build_gulf_stream_geostrophic_path.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from check_current_section_width_series import validate as validate_dated_widths
     dated_widths=next(d['document'] for d in collections['diagnostics'] if d['id']=='diagnostic:gulf-stream-widths')
     validate_dated_widths(dated_widths)

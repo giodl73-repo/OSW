@@ -626,3 +626,27 @@ the four eligible frames beginning September 24, exact native source results,
 fixed map viewport, duplicate year/day and metric predicate retention, keyboard
 play/pause, query cancellation and 320 px reflow. No annual seasonal cycle is
 inferred from the sparse 17-day source series.
+
+## Local Loop Current product and method comparison
+
+Two unranked diagnostics for 25 September 2026 are imported separately: NOAA
+RADS surface velocity integration and a finite Copernicus/DUACS ADT contour
+scan from a public GCOOS response. The Loop owner links both diagnostics and
+their two dated geometry frames. They have no reference-route IDs or published
+measurement admission. The existing 17 Gulf Stream frames remain unchanged.
+
+The builder reconstructs both diagnostics from pinned snapshots before import.
+Original diagnostic JSON bytes are preserved in each record; Rust checks their
+SHA and parsed document equality, source/protocol receipts, owner links,
+classification/date, nonadmission fields, comparison source and exact frame
+geometry. Query map selection opens the owner and method cards; cards and the
+source audit link to the mapped comparison page. Both methods and all retained
+candidate/failed traces remain available as source documents in the store.
+
+Contour levels and sensitivity scenarios are numerical search choices, not
+widths, confidence intervals or annual ranges. Product agreement may reflect
+shared altimetry inputs. Original supplemental algorithm details, gateway and
+effective-resolution review, repeated regimes and source-use review remain
+open. These local additions do not change the canonical release or ranked
+length inventory. Validation: `python analysis/test_rust_loop_diagnostics.py`
+with `OSW_TEST_BROWSER` set, plus the two Loop scientific test modules.
