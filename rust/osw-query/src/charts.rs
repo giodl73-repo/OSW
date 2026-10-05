@@ -16,7 +16,12 @@ pub fn scene(matches: &[&Value], corpus: &[Value]) -> Value {
     for (id, mut rows) in grouped {
         let first = rows[0];
         let longitude = first["sample_family"] == "kuroshio_seasonal_profile_plot";
-        let dated = first["sample_family"] == "gulf_stream_dated_half_peak_section";
+        let dated = [
+            "gulf_stream_dated_half_peak_section",
+            "loop_dated_half_peak_section",
+        ]
+        .iter()
+        .any(|f| first["sample_family"] == *f);
         let xfield = if dated {
             "observation_date"
         } else if longitude {
@@ -88,7 +93,16 @@ pub fn scene(matches: &[&Value], corpus: &[Value]) -> Value {
                 "observation_date":r["observation_date"],"source_algorithm":r["source_algorithm"],"diagnostic_sensitivity_interval_km":r["diagnostic_sensitivity_interval_km"],
                 "primitive":{"kind":if value.is_some(){"reading"}else{"missing"},"x":px(x),"y":value.map(py),"missing_y":255.,"interval_y":interval.map(|(lo,hi)|[py(lo),py(hi)]),"sensitivity_y":sensitivity.map(|(lo,hi)|[py(lo),py(hi)])}})
         }).collect();
-        let title = if dated {
+        let title = if first["sample_family"] == "loop_dated_half_peak_section" {
+            format!(
+                "Loop inflow - {} recorded-day spans at 21.875 N",
+                if first["source_context"]["product_key"] == "noaa" {
+                    "NOAA"
+                } else {
+                    "DUACS"
+                }
+            )
+        } else if dated {
             "Gulf Stream system — recorded-day section diagnostics at 70 W".into()
         } else if longitude {
             format!("Kuroshio — {}", first["phase_label"].as_str().unwrap_or(""))

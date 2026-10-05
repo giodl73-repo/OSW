@@ -1,8 +1,12 @@
 //! Scoped width samples retain their exact parent diagnostic and reading support.
 use serde_json::{Value, json};
+use sha2::{Digest, Sha256};
 use std::collections::BTreeMap;
 
-pub fn validate(collections: &BTreeMap<String, Vec<Value>>) -> Result<(), String> {
+pub fn validate(
+    collections: &BTreeMap<String, Vec<Value>>,
+    manifest: &Value,
+) -> Result<(), String> {
     for row in collections.get("width_samples").into_iter().flatten() {
         let diagnostic = collections
             .get("diagnostics")
@@ -14,6 +18,9 @@ pub fn validate(collections: &BTreeMap<String, Vec<Value>>) -> Result<(), String
             Some("diagnostic:kuroshio-seasonal-width") => "kuroshio_seasonal_profile_plot",
             Some("diagnostic:necc-monthly-section") => "necc_monthly_connected_component",
             Some("diagnostic:gulf-stream-widths") => "gulf_stream_dated_half_peak_section",
+            Some("diagnostic:yucatan-noaa-sections" | "diagnostic:yucatan-adt-sections") => {
+                "loop_dated_half_peak_section"
+            }
             _ => return Err("Unsupported scoped width sample family".into()),
         };
         if row["sample_family"] != family {
@@ -29,7 +36,41 @@ pub fn validate(collections: &BTreeMap<String, Vec<Value>>) -> Result<(), String
             return Err("Width source sample must be an object".into());
         }
         let parts: Vec<_> = path.split('/').collect();
-        let dated = family == "gulf_stream_dated_half_peak_section";
+        let dated = [
+            "gulf_stream_dated_half_peak_section",
+            "loop_dated_half_peak_section",
+        ]
+        .contains(&family);
+        if family == "loop_dated_half_peak_section" {
+            let owner = collections
+                .get("objects")
+                .into_iter()
+                .flatten()
+                .find(|o| o["id"] == row["entity_id"])
+                .ok_or("Missing section sample owner")?;
+            if !owner["width_sample_ids"]
+                .as_array()
+                .is_some_and(|ids| ids.contains(&row["id"]))
+            {
+                return Err("Missing section sample owner join".into());
+            }
+            let raw = diagnostic["source_json"]
+                .as_str()
+                .ok_or("Missing section source JSON")?;
+            let original: Value =
+                serde_json::from_str(raw).map_err(|_| "Invalid section source JSON")?;
+            let file = diagnostic["source_file"]
+                .as_str()
+                .ok_or("Missing section source file")?;
+            if original != *document
+                || json!(format!("{:x}", Sha256::digest(raw.as_bytes())))
+                    != diagnostic["source_file_sha256"]
+                || diagnostic["source_file_sha256"] != manifest["input_sha256"][file]
+                || row["latitude_degrees_north"] != document["section_latitude"]
+            {
+                return Err("Section source/latitude binding mismatch".into());
+            }
+        }
         if family == "kuroshio_seasonal_profile_plot" {
             if parts.len() != 5
                 || parts[1] != "seasons"

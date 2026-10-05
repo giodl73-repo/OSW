@@ -88,7 +88,7 @@ def main():
         coastal.locator('summary').click()
         assert '2024-12-15' in coastal.inner_text()
         assert 'not individually reviewed' in coastal.inner_text()
-        for metric in ['reference_route','reported_length','scoped_width','geometry','time_samples','source_connectivity','scope_notes']:
+        for metric in ['reference_route','reported_length','scoped_width','geometry','time_samples','source_connectivity','scope_notes','dated_diagnostics','flow_network','passage_transport']:
             page.locator('#dashboard-metric').select_option(metric)
             expected=sum(r['capabilities'][metric]>0 for r in data['entries'])
             assert page.locator('.motion-card.lit').count() == expected

@@ -22,7 +22,7 @@ def main():
     result=native(map_query);assert result['total']==1 and len(result['map_scene']['features'])==2
     assert result['rows'][0]['published_length_km'] is None and result['rows'][0]['route_ids']==[]
     assert all(f['observation_date']=='2026-09-25' for f in result['map_scene']['features'])
-    assert native(queries[1])['total']==10 and native(queries[2])['rows'][0]['candidate_count']==0
+    assert native(queries[1])['total']==12 and native(queries[2])['rows'][0]['candidate_count']==0
     # Native loading rejects altered science, source strings, ownership and geometry.
     with tempfile.TemporaryDirectory() as directory:
         path=Path(directory)/'altered.json'

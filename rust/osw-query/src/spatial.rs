@@ -116,7 +116,10 @@ impl Index {
             }
         }
         let mut objects = BTreeMap::new();
-        for object in &collections["objects"] {
+        for object in ["objects", "passage_samples"]
+            .iter()
+            .flat_map(|name| collections.get(*name).into_iter().flatten())
+        {
             let mut features = Vec::new();
             for feature in object["map_features"].as_array().into_iter().flatten() {
                 features.push(Feature {
@@ -129,10 +132,18 @@ impl Index {
                     metadata: feature.clone(),
                 });
             }
-            objects.insert(
-                object["id"].as_str().ok_or("Missing object ID")?.into(),
-                features,
-            );
+            if objects
+                .insert(
+                    object["id"]
+                        .as_str()
+                        .ok_or("Missing spatial record ID")?
+                        .into(),
+                    features,
+                )
+                .is_some()
+            {
+                return Err("Duplicate spatial record ID across collections".into());
+            }
         }
         Ok(Self { states, objects })
     }
@@ -200,7 +211,7 @@ impl Index {
                     relation.is_covers()
                 };
                 if accepts {
-                    matches.push(json!({"feature_index":i,"state_code":query.state_code,"predicate":query.predicate,
+                    matches.push(json!({"feature_index":i,"mooring_label":feature.metadata["mooring_label"],"source_file_sha256":feature.metadata["source_file_sha256"],"deployment_start":feature.metadata["deployment_start"],"deployment_end":feature.metadata["deployment_end"],"position_time_support":feature.metadata["position_time_support"],"state_code":query.state_code,"predicate":query.predicate,
                         "frame_id":feature.metadata["frame_id"],"series_id":feature.metadata["series_id"],"source_url":feature.metadata["source_url"],"source_subset_sha256":feature.metadata["source_subset_sha256"],"timeline_sha256":feature.metadata["timeline_sha256"],
                         "phase_id":feature.metadata["phase_id"],"phase_label":feature.metadata["phase_label"],"calendar_months":feature.metadata["calendar_months"],"flow_direction":feature.metadata["flow_direction"],"route_candidate_sha256":feature.metadata["route_candidate_sha256"],"seasonal_inventory_sha256":feature.metadata["seasonal_inventory_sha256"],
                         "role":feature.metadata["role"],"note":feature.metadata["note"],"candidate_id":feature.metadata["candidate_id"],

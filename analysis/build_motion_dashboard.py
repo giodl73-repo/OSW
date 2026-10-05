@@ -139,7 +139,43 @@ def build():
     for audit in scope_audits.values():
         if audit.get('current_id')=='persian-gulf-saline-overflow':validate_persian_gulf_scope(audit)
         if audit.get('current_id')=='red-sea-saline-overflow':validate_red_sea_scope(audit)
+    from build_flow_network import validate as validate_network
+    network_path = 'research/indonesian-throughflow-network-input.json'
+    network = validate_network(read(network_path))
+    loop_repeat = read('research/loop-current-recorded-date-comparison.json')
+    read(loop_repeat['source_manifest'])
+    if inputs[loop_repeat['source_manifest']] != loop_repeat['source_manifest_sha256']:
+        raise ValueError('Loop source manifest receipt mismatch')
+    if loop_repeat['rank_eligible'] is not False:
+        raise ValueError('Loop diagnostics must remain unranked')
+    loop_files = [(f'research/loop-current-{method}-20260925.json', '2026-09-25', None)
+                  for method in ['dated-streamline', 'adt-contours']]
+    for day in loop_repeat['dates']:
+        for method in ['noaa', 'adt']:
+            loop_files.append((day[method+'_diagnostic_file'], day['date'], day[method+'_diagnostic_sha256']))
+    loop_documents = []
+    for path, date, expected_sha in loop_files:
+        document = read(path)
+        if (document['current_id'] != 'loop' or document['observation_date'] != date
+                or document['rank_eligible'] is not False
+                or any(document[k] is not None for k in ['whole_current_length_km','width_km','annual_length_range_km'])
+                or (expected_sha is not None and inputs[path] != expected_sha)):
+            raise ValueError('Loop dashboard diagnostic identity/date/receipt mismatch')
+        source_key, hash_key = ('source_subset','source_subset_sha256') if 'source_subset' in document else ('source_file','source_sha256')
+        for key, sha_key in [(source_key,hash_key),('protocol_file','protocol_sha256')]:
+            inputs[document[key]]=hashlib.sha256((ROOT/document[key]).read_bytes()).hexdigest()
+            if inputs[document[key]] != document[sha_key]:
+                raise ValueError('Loop dashboard source or protocol receipt mismatch')
+        loop_documents.append((path, document))
+    from build_loop_current_section_spans import build as rebuild_loop_sections, output as loop_section_output
+    loop_sections=[]
+    for method in ['noaa','adt']:
+        path=loop_section_output(method).relative_to(ROOT).as_posix();document=read(path)
+        if document!=rebuild_loop_sections(method):raise ValueError('Stale Loop section span diagnostic')
+        loop_sections.append(document)
     current_ids = {e['id'] for e in entities if e['type'] == 'named_current'}
+    if network['entity_id'] not in current_ids:
+        raise ValueError('Unknown flow network owner')
     if any('current:' + note['current_id'] not in current_ids or scope_audits[note['audit_file']]['current_id'] != note['current_id'] for note in scope_notes):
         raise ValueError('Source scope notes must resolve to their released current identity')
     if any(not isinstance(note.get('related_current_ids',[]),list) or any(not isinstance(ident,str) or 'current:'+ident not in current_ids or ident==note['current_id'] for ident in note.get('related_current_ids',[])) for note in scope_notes):
@@ -285,6 +321,11 @@ def build():
                            'evidence_role':'observed_sections_with_unadmitted_one_sided_span',
                            'diagnostic_url':'../research/antilles-ab0505-400m-section-diagnostic.json',
                            'evidence_sha256':inputs[antilles_section_path],'inventory_sha256':inputs[antilles_sections['inventory_file']]})
+        if current_id == 'loop':
+            for document in loop_sections:
+                series.append({'label':'Yucatan inflow section spans — '+document['product_key'].upper(),
+                    'url':'query.html?q='+quote(json.dumps({'collection':'width_samples','filters':[{'field':'diagnostic_id','op':'eq','value':'diagnostic:yucatan-'+document['product_key']+'-sections'}],'limit':50},separators=(',',':')),safe=''),
+                    'frames':len(document['frames']),'evidence_role':'local_component_section_span_not_whole_current_width'})
         capabilities = {
             'reported_length': sum(m.get('rank_eligible') is True for m in own_measures),
             'reference_route': len(own_routes),
@@ -293,17 +334,40 @@ def build():
             'time_samples': sum(s['frames'] for s in series) + len(own_phases) + len(temporal_widths),
             'source_connectivity': len(own_connections),
             'scope_notes': len(own_notes),
+            'dated_diagnostics': len(loop_documents) if current_id == 'loop' else 0,
+            'flow_network': int(ident == network['entity_id']),
+            'passage_transport': len(network['passage_samples']) if ident == network['entity_id'] else 0,
         }
         payload = {'entity': entity, 'measurements': own_measures, 'routes': own_routes,
                    'widths': own_widths, 'geometry': own_geometry, 'claims': own_claims,
                    'media': own_media, 'phases': own_phases, 'series': series, 'sources': own_sources,
                    'map_features': map_features, 'connections': own_connections}
+        evidence_links = []
+        def query_link(label, collection, record_id=None, filters=None):
+            query = {'collection': collection, 'limit': 50}
+            if record_id: query['filters'] = [{'field':'id','op':'eq','value':record_id}]
+            elif filters: query['filters'] = filters
+            url = 'query.html?q=' + quote(json.dumps(query,separators=(',',':')),safe='')
+            if record_id: url += '&inspect=' + quote(record_id,safe='')
+            evidence_links.append({'label':label,'url':url})
+        if current_id == 'loop':
+            payload['section_spans'] = loop_sections
+            capabilities['scoped_width'] += len(loop_sections)
+            payload['dated_diagnostics'] = loop_documents
+            query_link('Open mapped Loop Current card', 'objects', ident)
+            query_link('Query all ten method diagnostics', 'diagnostics', filters=[{'field':'current_id','op':'eq','value':'loop'},{'field':'observation_date','op':'exists','value':True}])
+            evidence_links.append({'label':'Play the four recorded dates','url':'loop-current-recorded-dates.html'})
+        if ident == network['entity_id']:
+            payload['flow_network'] = network
+            query_link('Open passage network card', 'flow_networks', network['id'])
+            query_link('Map exit transport mooring sites', 'passage_samples', filters=[{'field':'network_id','op':'eq','value':network['id']}])
         if own_notes:
             payload.update({'scope_notes': own_notes, 'scope_audits': own_audits})
         if state_evidence:
             payload['state_evidence'] = state_evidence
         observation_dates = [c.get('observation_time') for c in own_claims] + [g.get('observation_date') for g in own_geometry] + [w.get('observed_period') for w in own_widths]
         observation_dates += [note.get('observed_period') for note in own_notes]
+        if current_id == 'loop': observation_dates += [d['observation_date'] for _, d in loop_documents]
         # Pin the actual time series contents, not just their frame counts.
         if current_id == timeline['current_id']:
             payload['time_series'] = [timeline, annual]
@@ -341,6 +405,16 @@ def build():
             groups['sources']=[groups['sources'],own_width_audits]
             groups['measurements'].append(own_width_audits)
             groups['time_evidence'].append(own_width_audits)
+        if current_id == 'loop':
+            groups['time_evidence'].append(loop_documents)
+            groups['time_evidence'].append(loop_sections)
+            groups['measurements'].append(loop_sections)
+            groups['sources'].append([{k:d[k] for k in ['source_url','protocol_file','protocol_sha256','generator_sha256']}
+                                      for _,d in loop_documents])
+        if ident == network['entity_id']:
+            groups['routes_geometry'].append([network['nodes'],network['edges']])
+            groups['measurements'].append(network['passage_samples'])
+            groups['sources'].append({'source_url':network['source_url'],'source_file_sha256':inputs[network_path]})
         if series:
             groups['time_evidence'].append(series)
         if state_evidence:
@@ -361,6 +435,7 @@ def build():
                      'state_evidence': state_evidence,
                      'connections': own_connections,
                      'scope_notes': own_notes,
+                     'evidence_links': evidence_links,
                      'object_url': 'object.html?id=' + quote(ident, safe=''),
                      'route_url': 'reference-routes.html#' + own_routes[0]['id'] if own_routes else None,
                      'season_url': 'seasons.html?current=' + current_id if current_id else None})

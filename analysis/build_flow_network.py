@@ -36,6 +36,6 @@ def build():
         for source in document[key]:
             record={**base,**source,'source_record':source}
             if collection=='passage_samples':
-                record['map_features']=[{'geometry':{'type':'Point','coordinates':m['coordinates_lon_lat']},'role':'published_mooring_locator_not_axis_edge_or_whole_current_footprint','note':'INSTANT mooring location; first-deployment coordinates, differing deployment periods retained in card. Decimal conversion does not increase source accuracy.'} for m in source['moorings']]
+                record['map_features']=[{'geometry':{'type':'Point','coordinates':m['coordinates_lon_lat']},'role':'published_mooring_locator_not_axis_edge_or_whole_current_footprint','mooring_label':m['label'],'source_url':document['source_url'],'source_locator':'Table 2, first-deployment coordinates','source_file_sha256':base['source_file_sha256'],'deployment_start':m['deployment_start'],'deployment_end':m['deployment_end'],'position_time_support':'First-deployment coordinates only; deployment period does not establish position persistence or exact redeployment coordinates.','note':'INSTANT mooring location; first-deployment coordinates, differing deployment periods retained in card. Decimal conversion does not increase source accuracy.'} for m in source['moorings']]
             records[collection].append(record)
     return records
