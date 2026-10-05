@@ -4,6 +4,7 @@ use std::collections::{BTreeMap, BTreeSet};
 mod charts;
 mod loop_diagnostics;
 mod map;
+mod network;
 mod planning;
 mod rebase;
 mod samples;
@@ -56,6 +57,7 @@ pub struct Query {
     pub spatial: Option<spatial::SpatialQuery>,
     pub geometry_time: Option<temporal::GeometryTime>,
     pub seasonal: Option<seasonal::SeasonalSelection>,
+    pub network_path: Option<network::PathQuery>,
     #[serde(default)]
     pub filters: Vec<Filter>,
     pub sort: Option<Sort>,
@@ -161,6 +163,8 @@ impl Store {
                 ("width_sample_ids", "width_samples"),
                 ("route_decision_ids", "route_decisions"),
                 ("diagnostic_ids", "diagnostics"),
+                ("flow_network_ids", "flow_networks"),
+                ("passage_sample_ids", "passage_samples"),
             ] {
                 if let Some(list) = object.get(key) {
                     let list = list.as_array().ok_or_else(|| format!("Invalid {key}"))?;
@@ -178,7 +182,9 @@ impl Store {
                             || collection == "seasonal_routes"
                             || collection == "width_samples"
                             || collection == "diagnostics"
-                            || collection == "route_decisions")
+                            || collection == "route_decisions"
+                            || collection == "flow_networks"
+                            || collection == "passage_samples")
                             && bundle.collections[collection][ids[collection][id]]["entity_id"]
                                 != object["id"]
                         {
@@ -215,6 +221,7 @@ impl Store {
         samples::validate(&bundle.collections)?;
         planning::validate(&bundle.collections, &bundle.manifest)?;
         loop_diagnostics::validate(&bundle.collections, &bundle.manifest)?;
+        network::validate(&bundle.collections, &bundle.manifest)?;
         let spatial = spatial::Index::build(&bundle.collections)?;
         fields.insert(
             "working_records".into(),
@@ -271,6 +278,9 @@ impl Store {
         Ok(())
     }
     pub fn query(&self, query: Query) -> Result<Value, String> {
+        if query.network_path.is_some() && query.collection != "flow_networks" {
+            return Err("Network path queries require flow_networks collection".into());
+        }
         let records = self
             .bundle
             .collections
@@ -495,6 +505,13 @@ impl Store {
                 query.geometry_time.as_ref(),
                 query.seasonal.as_ref(),
             )
+        } else if query.collection == "passage_samples" {
+            let mut scene = map::scene(&matches);
+            scene["inspection_collection"] = json!("passage_samples");
+            scene["scope"] = json!(
+                "Published first-deployment mooring positions, not current axes, edges, width polygons or whole-system containment."
+            );
+            scene
         } else if query.collection == "width_samples" {
             map::sample_scene(&matches)
         } else {
@@ -549,8 +566,13 @@ impl Store {
                 row
             })
             .collect();
+        let network_paths = if let Some(path) = &query.network_path {
+            network::paths(&self.bundle.collections, path)?
+        } else {
+            Value::Null
+        };
         Ok(
-            json!({"ok":true,"engine":"rust-osw-query-v1","collection":query.collection,"total":total,"offset":query.offset,"limit":limit,"rows":rows,"map_scene":map_scene,"chart_scene":chart_scene,
+            json!({"network_paths":network_paths,"ok":true,"engine":"rust-osw-query-v1","collection":query.collection,"total":total,"offset":query.offset,"limit":limit,"rows":rows,"map_scene":map_scene,"chart_scene":chart_scene,
                 "spatial_scope":if query.spatial.is_some(){json!("Computed display geometry, separate from recorded state links. Point locators and shared gateways require their own predicates; neither is current or eddy containment.")}else{Value::Null}}),
         )
     }

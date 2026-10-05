@@ -650,3 +650,54 @@ effective-resolution review, repeated regimes and source-use review remain
 open. These local additions do not change the canonical release or ranked
 length inventory. Validation: `python analysis/test_rust_loop_diagnostics.py`
 with `OSW_TEST_BROWSER` set, plus the two Loop scientific test modules.
+
+## Loop Current recorded-date extension
+
+Local follow-up to main commit 05fdf5c. Four predeclared 2025 dates (15 January,
+April, July and October) repeat the identical NOAA seed/step/threshold and DUACS
+finite-contour rules. Source manifests retain both response and regional snapshot
+checksums. The comparison file retains all failed nominal and sensitivity outcomes.
+
+The Loop owner now joins ten method diagnostics across five recorded dates and
+seven connected geometry frames. Three new NOAA nominal failures have no connected
+length and no accepted map frame; their stopped traces remain visible on the
+recorded-date experiment page. Existing Gulf Stream frames remain seventeen.
+
+The Rust loader requires paired NOAA/ADT records on every represented date,
+source-bound document equality, exact date/owner joins, geometry equality and the
+same-date NOAA comparison receipt. A failed trace cannot receive a map frame.
+The atlas uses exact recorded dates, without persistence or interpolation.
+The new page steps between four snapshots at equal viewing intervals, preserves
+selected-date links and disables playback for reduced-motion preferences.
+
+Verification: python -m pytest analysis/test_loop_current_recorded_dates.py -q;
+python analysis/test_rust_loop_recorded_dates.py with the configured browser.
+Original-source field/mask readback covered all eight new regional receipts.
+No annual extrema, seasonal phase, width, named-eddy identity or ranked length is
+admitted. Source-use, gateway/effective-resolution and original method review remain
+open; repository publication was authorized on 2026-10-04. Scientific admission
+remains separate from the repository publication checks.
+
+## Source-described flow networks
+
+The Indonesian Throughflow pilot adds flow_networks, flow_network_nodes,
+flow_network_edges and passage_samples. Its twelve nodes and fourteen directed
+connections describe selected source pathways across different layers. Schematic
+positions have no geographic scale. Eight published first-deployment mooring
+positions are geographic point locators, never whole-current footprints.
+
+network_path is available only with collection flow_networks, and specifies
+network_id, from_id, to_id and max_hops (1-16). Rust searches simple paths with
+a 4096-expansion/64-result cap, returning explicit truncation and hop-limit flags.
+The Pacific-to-Indian pilot has five connections at max_hops 8. No metric length
+or travel time is inferred. Ordinary query resubmission preserves path constraints.
+
+Rust binds original source JSON bytes, SHA, document/projection equality, node
+references, owner joins and mooring map coordinates. Three 2004-2006 exit means
+retain Sv units, depths and processing-choice intervals. Integration windows
+35/35/160 km are not current widths; seasonal/annual dimensions remain null and
+rank eligibility false. Source: Sprintall et al. 2009, Tables 1-2 and Introduction.
+
+Verification: python analysis/test_rust_flow_network.py with OSW_TEST_BROWSER;
+python -m pytest analysis/test_flow_network.py -q. The source scope audit and
+roles review accompany this editorial addition; canonical admission remains open.

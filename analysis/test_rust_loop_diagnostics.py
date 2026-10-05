@@ -12,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def main():
     bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
-    diagnostics=[r for r in bundle['collections']['diagnostics'] if r.get('current_id')=='loop']
+    diagnostics=[r for r in bundle['collections']['diagnostics'] if r.get('current_id')=='loop' and r.get('observation_date')=='2026-09-25']
     assert len(diagnostics)==2
     for r in diagnostics:assert json.loads(r['source_json'])==r['document']
     map_query={'collection':'objects','filters':[{'field':'id','op':'eq','value':'current:loop'}],
@@ -22,7 +22,7 @@ def main():
     result=native(map_query);assert result['total']==1 and len(result['map_scene']['features'])==2
     assert result['rows'][0]['published_length_km'] is None and result['rows'][0]['route_ids']==[]
     assert all(f['observation_date']=='2026-09-25' for f in result['map_scene']['features'])
-    assert native(queries[1])['total']==2 and native(queries[2])['rows'][0]['candidate_count']==0
+    assert native(queries[1])['total']==10 and native(queries[2])['rows'][0]['candidate_count']==0
     # Native loading rejects altered science, source strings, ownership and geometry.
     with tempfile.TemporaryDirectory() as directory:
         path=Path(directory)/'altered.json'
@@ -53,14 +53,14 @@ def main():
         for q in queries:assert browser_query(page,q)==native(q)
         browser_query(page,map_query)
         page.locator('#query-map-features .line').first.focus();page.locator('#query-map-features .line').first.press('Enter')
-        expect(page.locator('#query-detail')).to_contain_text('Unranked method diagnostics (2)')
-        page.get_by_text('Unranked method diagnostics (2)',exact=True).click()
+        expect(page.locator('#query-detail')).to_contain_text('Unranked method diagnostics (10)')
+        page.get_by_text('Unranked method diagnostics (10)',exact=True).click()
         expect(page.locator('#query-detail')).to_contain_text('approximately 2,200 km')
         expect(page.locator('#query-detail')).to_contain_text('approximately 2,300 km')
         expect(page.locator('#query-detail')).to_contain_text('shared satellite inputs possible')
         page.locator('#query-detail').screenshot(path=str(ROOT/'figures/rust-query-loop-comparison-review.png'))
-        page.locator('#query-detail a:visible').filter(has_text='View mapped experiment').first.click()
-        expect(page).to_have_url('http://127.0.0.1:8788/almanac/loop-current-experiment.html')
+        page.locator('#query-detail a:visible[href*="loop-current-experiment"]').first.click()
+        expect(page).to_have_url('http://127.0.0.1:8788/almanac/loop-current-experiment.html?date=2026-09-25')
         assert page.locator('path.adt').count()==1 and page.locator('path.failed').count()==4
         expect(page.locator('main')).to_contain_text('55.9 km')
         page.screenshot(path=str(ROOT/'figures/loop-current-dated-streamline-review.png'),full_page=True)

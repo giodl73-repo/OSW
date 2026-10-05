@@ -1,7 +1,7 @@
 """Explicit acquisition of a pinned regional velocity field; never run in builds."""
 import hashlib
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import urllib.request
 import netCDF4
@@ -10,9 +10,10 @@ from fetch_noaa_lsa_geostrophic_snapshot import URL, EXPECTED_SHA256, PRODUCT_PA
 
 OUTPUT = ROOT / 'research/noaa-lsa-geostrophic-loop-20260925.json'
 
-def extract(content):
+def extract(content, *, date="2026-09-25", expected_sha256=EXPECTED_SHA256, source_url=URL):
+    following=(datetime.fromisoformat(date)+timedelta(days=1)).date().isoformat()
     digest = hashlib.sha256(content).hexdigest()
-    if digest != EXPECTED_SHA256:
+    if digest != expected_sha256:
         raise ValueError('Changed pinned NOAA source')
     dataset = netCDF4.Dataset('inmemory', memory=content)
     try:
@@ -26,7 +27,7 @@ def extract(content):
             raise ValueError('Unexpected regional grid')
         time = dataset['time']
         bounds = netCDF4.num2date(dataset['time_bnds'][0], time.units, calendar=time.calendar)
-        if [str(b)[:10] for b in bounds] != ['2026-09-25', '2026-09-26']:
+        if [str(b)[:10] for b in bounds] != [date, following]:
             raise ValueError('Unexpected source date')
         fields = {}
         for name in ['ugos', 'vgos']:
@@ -37,11 +38,11 @@ def extract(content):
             fields[name] = variable[0, iy[0]:iy[-1]+1, ix[0]:ix[-1]+1].tolist()
         return {'schema':'osw.almanac.noaa-lsa-geostrophic-subset.v1',
             'source_provider':'NOAA/NESDIS Laboratory for Satellite Altimetry via NOAA CoastWatch',
-            'source_url':URL, 'product_page':PRODUCT_PAGE, 'source_response_sha256':digest,
+            'source_url':source_url, 'product_page':PRODUCT_PAGE, 'source_response_sha256':digest,
             'retrieved_at_utc':datetime.now(timezone.utc).isoformat(),
             'source_product_status':dataset.getncattr('cw:product_status'),
             'source_algorithm':dataset.getncattr('cw:processing_algorithm'),
-            'source_time_start':'2026-09-25T00:00:00Z', 'source_time_end_exclusive':'2026-09-26T00:00:00Z',
+            'source_time_start':date+'T00:00:00Z', 'source_time_end_exclusive':following+'T00:00:00Z',
             'source_file_role':'Absolute surface geostrophic velocity; SLA is not used as absolute dynamic topography',
             'source_grid_shape':[720,1440], 'subset_bounds':{'south':19,'north':31,'west':-98,'east':-79},
             'subset_shape':[48,76], 'grid_origin_lon_lat':[float(lon[ix[0]]),float(lat[iy[0]])],

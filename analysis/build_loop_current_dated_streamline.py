@@ -52,11 +52,12 @@ def trace(source,fields,seed_lon,step_km=10,min_speed=.1):
         'maximum_latitude':round(max(p[1] for p in coordinates),6),
         'coordinates_lon_lat':coordinates}
 
-def build():
-    if digest(SOURCE)!=SOURCE_SUBSET_SHA256:
+def build(source_path=SOURCE, source_sha256=SOURCE_SUBSET_SHA256, response_sha256=EXPECTED_SHA256, observation_date="2026-09-25"):
+    source_path=Path(source_path)
+    if digest(source_path)!=source_sha256:
         raise ValueError('Changed pinned regional receipt')
-    source=json.loads(SOURCE.read_text(encoding='utf-8'))
-    if source['source_response_sha256']!=EXPECTED_SHA256 or source['source_time_start']!='2026-09-25T00:00:00Z':
+    source=json.loads(source_path.read_text(encoding='utf-8'))
+    if source['source_response_sha256']!=response_sha256 or source['source_time_start']!=observation_date+'T00:00:00Z':
         raise ValueError('Unexpected source identity/date')
     if source['subset_shape']!=[48,76] or source['grid_origin_lon_lat']!=[-97.875,19.125]:
         raise ValueError('Unexpected regional grid')
@@ -75,9 +76,9 @@ def build():
             scenarios.append({'variation':'seed_longitude','offset_degrees':delta,**trace(source,fields,seed+delta)})
     for step in [5,20]:scenarios.append({'variation':'step_size',**trace(source,fields,seed,step)})
     for speed in [.05,.15]:scenarios.append({'variation':'speed_threshold',**trace(source,fields,seed,10,speed)})
-    return {'schema':'osw.loop-current-dated-streamline.v1','current_id':'loop','observation_date':'2026-09-25',
+    return {'schema':'osw.loop-current-dated-streamline.v1','current_id':'loop','observation_date':observation_date,
         'status':'diagnostic_experiment_requires_source_endpoint_and_scientific_review',
-        'source_subset':str(SOURCE.relative_to(ROOT)).replace('\\','/'),'source_subset_sha256':digest(SOURCE),
+        'source_subset':str(source_path.relative_to(ROOT)).replace('\\','/'),'source_subset_sha256':digest(source_path),
         'source_url':source['source_url'],'source_algorithm':source['source_algorithm'],
         'protocol_file':str(PROTOCOL.relative_to(ROOT)).replace('\\','/'),'protocol_sha256':digest(PROTOCOL),
         'generator_sha256':digest(Path(__file__)),'velocity_sampler_sha256':digest(ROOT/'analysis/build_gulf_stream_geostrophic_path.py'),
