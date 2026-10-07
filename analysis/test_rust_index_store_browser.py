@@ -34,7 +34,7 @@ def main():
     assert hashlib.sha256(compressed).hexdigest() == catalog['compressed_sha256']
     assert hashlib.sha256(payload).hexdigest() == catalog['bundle_sha256']
     bundle = json.loads(payload)
-    assert len(bundle['documents']) == catalog['source_count'] == 66
+    assert len(bundle['documents']) == catalog['source_count'] == 67
     for path, digest in catalog['input_sha256'].items():
         assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == digest, path
     for descriptor in catalog['documents']:
@@ -57,6 +57,7 @@ def main():
         {'document':'research/equatorial-basin-family-inventory-audit.json','pointer':'/proposed_members','limit':10},
         {'document':'research/ocean-current-inventory-expansion-candidates.json','pointer':'/entries','filters':[{'field':'record.parent_current_id','op':'eq','value':'south-equatorial'}],'limit':10},
         {'document':'research/equatorial-bifurcation-endpoint-scope-audit.json','pointer':'/entries','limit':10},
+        {'document':'research/indian-sec-monthly-bifurcation-extraction.json','pointer':'/series','limit':10},
     ]
     invalid = [
         {'document':'missing.json'},
@@ -89,6 +90,9 @@ def main():
         assert expected[6]['total'] == 2
         assert expected[6]['rows'][0]['record']['reported_values'][1]['range'] == [11.5,12.5]
         assert all(row['record']['current_width_km'] is None and row['record']['rank_eligible'] is False for row in expected[6]['rows'])
+        assert expected[7]['total'] == 2
+        assert expected[7]['rows'][0]['record']['months'][5]['approximate_latitude_degrees_north'] == -17.6
+        assert expected[7]['rows'][1]['record']['source_period'] is None
         # Independent scientific-source oracle, not a second Rust projection.
         source = json.loads(bundle['documents'][queries[1]['document']])['entries']
         matched = [(i,r) for i,r in enumerate(source) if 'CAMR' in r['contained_states']]
@@ -132,7 +136,7 @@ def main():
                 assert not failed.evaluate("q => rpc('query',q)", queries[0])['ok']
                 failed.close()
             browser.close()
-    print('PASS: 66 exact sources, 12 seasonal snapshots, independent NOAA oracle, native/WASM parity and checked-input failures')
+    print('PASS: 67 exact sources, 12 seasonal snapshots, independent NOAA oracle, native/WASM parity and checked-input failures')
 
 
 if __name__ == '__main__':

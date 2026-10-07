@@ -9,7 +9,7 @@ from pathlib import Path
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPERS = ('kuroshio-liu-gan-2012', 'leeuwin-deng-2008', 'florida-archer-2017')
+PAPERS = ('kuroshio-liu-gan-2012', 'leeuwin-deng-2008', 'florida-archer-2017', 'chen-madagascar-2014')
 
 
 def main():
