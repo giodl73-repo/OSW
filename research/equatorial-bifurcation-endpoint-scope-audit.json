@@ -1,0 +1,199 @@
+{
+  "schema": "osw.equatorial-bifurcation-endpoint-scope-audit.v1",
+  "as_of": "2026-10-07",
+  "status": "source_reported_regional_bifurcation_context_not_current_dimensions",
+  "scope": "Regional branching-point diagnostics for two proposed basin members; no whole-current endpoints, axes or dimensions admitted.",
+  "inputs_sha256": {
+    "research/equatorial-basin-family-inventory-audit.json": "3637d6ebf474bd04b1824104a3c391ad60b8bb228c0a695b0e73e711ca3d2ffe",
+    "research/ocean-current-inventory-expansion-candidates.json": "926c484a272b35a27f38aa992b84ee5abb77da036134b37aa724e4e8dddf9716",
+    "plans/ocean-current-measurement-protocol-v1.md": "83afac80f4b530c598f46d435e21d010927c129543675a1e6de440385c00145f"
+  },
+  "sources": [
+    {
+      "id": "qiu_chen_2010",
+      "doi": "10.1175/2010JPO4462.1",
+      "citation": "Qiu and Chen (2010), Interannual-to-Decadal Variability in the Bifurcation of the North Equatorial Current off the Philippines, Journal of Physical Oceanography 40, 2525–2538.",
+      "url": "https://www.soest.hawaii.edu/oceanography/bo/QC_NEC.pdf",
+      "download_sha256": "b387e0e05e700fe66b3b2e98ebba56bf2d8151c3b703d37a7aecad43b5675987",
+      "access": "Author-hosted PDF retrieved; printed page 2527 rendered and visually inspected; full text available through web tool.",
+      "inspected_on": "2026-10-07",
+      "figure_digitised": false,
+      "local_copy_policy": "Ignored review cache; checksum identifies retrieved bytes, not a shipped data dependency."
+    },
+    {
+      "id": "chen_etal_2014",
+      "doi": "10.1175/JPO-D-13-0147.1",
+      "citation": "Chen, Wu, Qiu, Sun and Jia (2014), Seasonal Variation of the South Equatorial Current Bifurcation off Madagascar, Journal of Physical Oceanography 44, 618–631.",
+      "url": "https://pol.ouc.edu.cn/_upload/article/files/31/0a/5cda4e5748df9ceb4e3abe0dbe52/63b9b48d-05c8-4b8c-9b5d-2bccdffb1542.pdf",
+      "download_sha256": "5bdf6fd04f3e5070a305689d8ab2891f03951d9ac39f9f913e2a252a9a90117d",
+      "access": "University-hosted PDF retrieved; printed pages 620–621 rendered and visually inspected; text initially inspected through web tool.",
+      "inspected_on": "2026-10-07",
+      "figure_digitised": false,
+      "local_copy_policy": "Ignored review cache; checksum identifies retrieved bytes, not a shipped data dependency.",
+      "access_history": [
+        {
+          "url": "https://stsun.github.io/files/Chen_etal_2013.pdf",
+          "result": "Web tool cached full text; direct retrieval returned HTTP 404; university copy used for visual verification."
+        }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "proposed_current_id": "pacific-north-equatorial",
+      "parent_current_id": "north-equatorial",
+      "source_id": "qiu_chen_2010",
+      "region": "Philippine coast near Samar",
+      "metric": "regional_bifurcation_latitude",
+      "units": "degrees_north_signed",
+      "layer": "surface geostrophic diagnosis from absolute SSH",
+      "layer_depth_m": null,
+      "source_product": "CLS merged altimeter SSH anomalies plus MDT_CNES-CLS09",
+      "source_period": {
+        "start": "1992-10",
+        "end": "2009-12",
+        "precision": "month"
+      },
+      "temporal_aggregation": "Weekly SSH averaged to monthly values; low-frequency result separately filtered.",
+      "source_method": "Adjacent one-degree coastal SSH bands; select zero meridional geostrophic velocity connected upstream to westward NEC core.",
+      "reported_values": [
+        {
+          "role": "approximate_mean_bifurcation_latitude",
+          "value": 12,
+          "locator": "Page 2527, section 2, left column."
+        },
+        {
+          "role": "approximate_annual_bifurcation_cycle_latitude_range",
+          "range": [
+            11.5,
+            12.5
+          ],
+          "locator": "Page 2527, section 2, right column; figure 2b referenced in text.",
+          "uncertainty_type": "climatological_cycle_span_not_confidence_interval"
+        },
+        {
+          "role": "low_frequency_bifurcation_latitude_range",
+          "range": [
+            9.5,
+            15
+          ],
+          "locator": "Page 2527, section 2, right column; figure 2a referenced in text.",
+          "uncertainty_type": "filtered_time_variation_not_annual_range",
+          "filter": "Gaussian, temporal sigma 3.5 months; page 2527 footnote."
+        }
+      ],
+      "seasonal_timing": {
+        "northernmost_months": [
+          11,
+          12,
+          1
+        ],
+        "southernmost_months": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "precision": "approximate windows reported in section 2, page 2527",
+        "supports_annual_route_geometry": false
+      },
+      "outflow_source_terms": [
+        "Kuroshio",
+        "Mindanao Current"
+      ],
+      "outflow_locator": "Page 2525, introduction.",
+      "geometry": null,
+      "whole_current_length_km": null,
+      "current_width_km": null,
+      "rank_eligible": false
+    },
+    {
+      "proposed_current_id": "indian-south-equatorial",
+      "parent_current_id": "south-equatorial",
+      "source_id": "chen_etal_2014",
+      "region": "Eastern Madagascar coast",
+      "metric": "regional_bifurcation_latitude",
+      "units": "degrees_north_signed",
+      "source_method": "Coastal meridional geostrophic-velocity zero connected to the westward SEC; distinguish hydrographic layer and SSH diagnosis.",
+      "reported_values": [
+        {
+          "role": "mean_bifurcation_latitude",
+          "value": -17.5,
+          "layer": "surface geostrophic flow from WOD09, reference 1500 dbar",
+          "locator": "Page 620, section 2a, figure 2c discussion."
+        },
+        {
+          "role": "mean_bifurcation_latitude",
+          "value": -19,
+          "layer": "400 m geostrophic flow from WOD09, reference 1500 dbar",
+          "locator": "Page 620, section 2a, figure 2c discussion."
+        },
+        {
+          "role": "mean_bifurcation_latitude",
+          "value": -18.1,
+          "layer": "upper 400 m, WOD09 geostrophic flow, reference 1500 dbar",
+          "locator": "Page 621, section 2c."
+        },
+        {
+          "role": "mean_bifurcation_latitude",
+          "value": -16.9,
+          "layer": "surface SSH-derived geostrophic diagnosis",
+          "source_period": {
+            "start": "1992-10",
+            "end": "2011-12",
+            "precision": "month"
+          },
+          "locator": "Page 621, sections 2b–2c."
+        }
+      ],
+      "seasonal_timing": {
+        "southernmost_months": [
+          6,
+          7
+        ],
+        "northernmost_months": [
+          11,
+          12
+        ],
+        "precision": "windows reported in section 2c, page 621",
+        "supports_annual_route_geometry": false
+      },
+      "source_scope_cautions": [
+        "Figure 3 caption assigns ORA-S4 flow to upper 415 m, while section 2c describes upper-400-m means; no harmonised model-layer record admitted.",
+        "Reported seasonal amplitude is a branching-latitude quantity, not current width or whole-current length."
+      ],
+      "geometry": null,
+      "whole_current_length_km": null,
+      "current_width_km": null,
+      "rank_eligible": false
+    }
+  ],
+  "measurement_rules_to_carry_forward": [
+    {
+      "id": "E01",
+      "rule": "Declare branching-point definition and upstream current-core connectivity; do not choose an arbitrary velocity zero."
+    },
+    {
+      "id": "E02",
+      "rule": "Keep surface and depth-specific or layer-averaged gates distinct, including reference level and source product."
+    },
+    {
+      "id": "E03",
+      "rule": "Keep seasonal-cycle, interannual/filtered variation and estimation uncertainty as separate range types."
+    },
+    {
+      "id": "E04",
+      "rule": "Do not convert branching latitude, coastal sampling-band width or a source seasonal amplitude into a current width or whole-current length."
+    },
+    {
+      "id": "E05",
+      "rule": "A reported latitude and seasonal window do not define a longitude, route axis or monthly geometry; require compatible source fields before atlas measurement."
+    }
+  ],
+  "remaining_gates": [
+    "Review identities and source terminology before canonical admission.",
+    "Acquire versioned fields with resolved layer/time, masks and coverage; reproduce regional gate diagnosis.",
+    "Source upstream gate and full axis separately; compare lengths only within a declared compatible scope.",
+    "Retain missing geometry, width and dimensions until evidence supports each."
+  ]
+}
