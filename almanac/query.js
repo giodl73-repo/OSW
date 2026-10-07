@@ -361,6 +361,7 @@
       const result=await rpc('record',{collection,id});if(!result.ok)throw Error(result.error);if(generation!==detailSequence)return;
       panel.replaceChildren();const close=element('button','Close record',panel);close.type='button';close.addEventListener('click',()=>{panel.hidden=true;detailSequence++;});describe(panel,result.record);
       const record=result.record;
+      if(collection==='width_samples')window.oswCharts.selectSample(id);
       if(result.taxonomy_context){
         const context=result.taxonomy_context,details=element('details',undefined,panel);details.open=true;
         element('summary',`Declared identity memberships (${context.parents.length} parents, ${context.children.length} children)`,details);

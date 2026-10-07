@@ -1,9 +1,14 @@
 "use strict";
 window.oswCharts=(()=>{
   const ns='http://www.w3.org/2000/svg',root=()=>document.getElementById('query-chart-panels');
+  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');let stops=[];
+  function stopAll(){for(const stop of stops)stop();}
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)stopAll();});
+  reducedMotion.addEventListener('change',stopAll);
   function svgNode(tag,attrs,parent,text){const n=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,String(v));if(text!==undefined)n.textContent=text;parent.append(n);return n;}
   function html(tag,text,parent){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;parent.append(n);return n;}
   function render(scene,inspect){
+    stopAll();stops=[];
     document.getElementById('query-chart-section').hidden=!scene;root().replaceChildren();if(!scene)return;
     document.getElementById('query-chart-scope').textContent=scene.scope;
     if(!scene.panels.length)html('p','No source samples match this query. Missing coverage does not mean zero width.',root());
@@ -27,6 +32,23 @@ window.oswCharts=(()=>{
         const select=()=>inspect('width_samples',point.sample_id);mark.addEventListener('click',select);mark.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();select();}});
       }
       const context=panel.source_context;html('p',context.scope_note||(panel.x_field==='observation_date'?'Individual recorded-day fixed-meridian section spans. Rounded values, not monthly means or streamline widths. Dashed whiskers show finite 40–60% threshold sensitivity; grid brackets remain in the source card.':'One-year local monthly-mean diagnostic. Not climatology or a whole-current dimension.'),article);
+      if(context.chart_playback_eligible&&panel.x_field==='month'&&panel.points.length){
+        const controls=html('div',undefined,article);controls.className='record-links chart-playback';
+        const label=html('label','Source month ',controls),select=html('select',undefined,label);
+        for(const point of panel.points){const option=html('option',point.label,select);option.value=point.sample_id;}
+        const previous=html('button','Previous month',controls),next=html('button','Next month',controls),play=html('button','Play monthly readings',controls),open=html('button','Inspect selected month',controls);
+        for(const button of [previous,next,play,open])button.type='button';
+        const reading=html('p',undefined,article);reading.className='chart-selected-reading';reading.setAttribute('aria-live','polite');
+        html('p','Chart playback highlights the matching monthly readings only. One step per second; no interpolation or geographic animation. Manual month controls remain available with reduced motion.',article);
+        let timer=null;
+        const stop=()=>{clearInterval(timer);timer=null;play.textContent='Play monthly readings';play.setAttribute('aria-pressed','false');play.disabled=reducedMotion.matches||panel.points.length<2;};stops.push(stop);
+        const show=()=>{const point=panel.points[select.selectedIndex];for(const mark of svg.querySelectorAll('.chart-sample')){const selected=mark.dataset.sample===point.sample_id;mark.setAttribute('aria-pressed',String(selected));const circle=mark.querySelector('circle');if(circle)circle.setAttribute('r',selected?'8':'4');}reading.textContent=point.label+': '+point.value_km+' km · graph-reading allowance '+point.plot_reading_interval_km.join('–')+' km; within-month variation and measurement uncertainty are separate.';previous.disabled=select.selectedIndex===0;next.disabled=select.selectedIndex===panel.points.length-1;};
+        select.addEventListener('change',()=>{stop();show();});
+        previous.addEventListener('click',()=>{stop();select.selectedIndex--;show();});next.addEventListener('click',()=>{stop();select.selectedIndex++;show();});
+        open.addEventListener('click',()=>{stop();inspect('width_samples',select.value);});
+        play.addEventListener('click',()=>{if(timer!==null){stop();return;}if(reducedMotion.matches)return;if(select.selectedIndex===panel.points.length-1)select.selectedIndex=0;show();play.textContent='Pause monthly readings';play.setAttribute('aria-pressed','true');timer=setInterval(()=>{if(select.selectedIndex===panel.points.length-1){stop();return;}select.selectedIndex++;show();},1000);});
+        stop();show();
+      }
       if(panel.x_field==='observation_date')html('p','Source processing versions: '+[...new Set(context.sample_value_spans.flatMap(s=>s.source_algorithms))].join(', ')+'. Processing changes and physical variation are not isolated by this chart.',article);
       if(panel.x_field==='observation_date')html('p','Closely dated samples can overlap visually. Each original sample remains selectable with Tab or from its table row.',article);
       html('p','Method: '+String(panel.metric).replaceAll('_',' ')+'. Measurement uncertainty remains unresolved.',article);
@@ -34,5 +56,6 @@ window.oswCharts=(()=>{
       if(context.source_period_labels)html('p','Historical period labels differ; the combined averaging window remains unresolved.',article);
     }
   }
-  return {render};
+  function selectSample(id){for(const select of root().querySelectorAll('.chart-playback select')){if([...select.options].some(option=>option.value===id)){select.value=id;select.dispatchEvent(new Event('change'));}}}
+  return {render,selectSample};
 })();

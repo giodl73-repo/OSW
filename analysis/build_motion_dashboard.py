@@ -88,7 +88,7 @@ def build():
     widths = width_inventory['measurements']
     width_audits={}
     for record in widths:
-        audit_file=(record.get('stream_mean_context') or record.get('eulerian_section_context') or {}).get('audit_file')
+        audit_file=(record.get('stream_mean_context') or record.get('eulerian_section_context') or record.get('width_statistics_context') or {}).get('audit_file')
         if audit_file and audit_file not in width_audits:width_audits[audit_file]=read(audit_file)
     phases = read('research/ocean-current-seasonal-route-frames.json')['frames']
     proposals = read('research/ocean-current-inventory-expansion-candidates.json')['entries']
@@ -107,6 +107,12 @@ def build():
     for key in ['source_pdf_file','config_file','protocol_file','scope_audit_file']:
         path=kuroshio_profiles[key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
+    florida_path='research/florida-monthly-width-plot-extraction.json'
+    florida_plot=read(florida_path)
+    from build_florida_monthly_plot import build as rebuild_florida
+    if florida_plot!=rebuild_florida():raise ValueError('Florida monthly graph differs from pinned extraction')
+    for key in ['source_pdf_file','config_file','protocol_file','scope_audit_file']:
+        path=florida_plot[key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     leeuwin_path='research/leeuwin-a101-monthly-plot-extraction.json'
     leeuwin_plot=read(leeuwin_path)
     if leeuwin_plot!=build_leeuwin_plot():raise ValueError('Leeuwin monthly graph differs from pinned extraction')
@@ -299,6 +305,11 @@ def build():
                            'diagnostic_url':'../'+kuroshio_profile_path,'evidence_sha256':inputs[kuroshio_profile_path],
                            'source_pdf_sha256':kuroshio_profiles['source_pdf_sha256'],'protocol_sha256':kuroshio_profiles['protocol_sha256'],
                            'config_sha256':kuroshio_profiles['config_sha256']})
+        if current_id == florida_plot['current_id']:
+            series.append({'label':'2005-2006 monthly surface-jet widths at 25.42 N (graph readings)',
+                           'url':'query.html?q=%7B%22collection%22%3A%22width_samples%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22florida%22%7D%5D%2C%22limit%22%3A100%7D',
+                           'frames':12,'evidence_role':'monthly_half_peak_width_plot_extraction',
+                           'diagnostic_url':'../'+florida_path,'evidence_sha256':inputs[florida_path]})
         if current_id == leeuwin_plot['current_id']:
             # Prose anchors describe two of the twelve months, not extra time samples.
             temporal_widths=[w for w in temporal_widths if w['id'] not in leeuwin_plot['prose_measurement_ids']]
@@ -382,10 +393,11 @@ def build():
             payload['derived_width_series']=necc
             capabilities['scoped_width']+=1
             observation_dates += [time for month in necc['months'] for time in month['sample_times']]
+        if current_id == florida_plot['current_id']:payload['monthly_width_plot']=florida_plot
         if current_id == leeuwin_plot['current_id']:
             payload['monthly_width_plot']=leeuwin_plot
         if current_id == kuroshio_profiles['current_id']:payload['seasonal_width_profiles']=kuroshio_profiles
-        own_width_audits=[width_audits[path] for path in sorted({context['audit_file'] for w in own_widths for context in [w.get('stream_mean_context') or w.get('eulerian_section_context')] if context})]
+        own_width_audits=[width_audits[path] for path in sorted({context['audit_file'] for w in own_widths for context in [w.get('stream_mean_context') or w.get('eulerian_section_context') or w.get('width_statistics_context')] if context})]
         if own_width_audits:payload['width_scope_audits']=own_width_audits
         groups = {
             'identity': entity, 'sources': [own_sources, own_notes, own_audits] if own_notes else own_sources, 'claims': own_claims,
@@ -393,6 +405,9 @@ def build():
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],
         }
+        if current_id == florida_plot['current_id']:
+            groups['measurements'].append(florida_plot);groups['time_evidence'].append(florida_plot)
+            groups['sources']=[groups['sources'],{key:florida_plot[key] for key in ['source_pdf_sha256','source_url','source_locator','config_sha256','protocol_sha256','scope_audit_sha256']}]
         if current_id == leeuwin_plot['current_id']:
             groups['measurements'].append(leeuwin_plot)
             groups['time_evidence'].append(leeuwin_plot)

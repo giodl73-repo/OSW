@@ -20,7 +20,7 @@ def build():
     validate(widths,read('research/ocean-current-almanac.json'))
     routes=read('research/ocean-current-reference-path-candidates.json')
     for record in widths['measurements']:
-        context=record.get('eulerian_section_context')
+        context=record.get('eulerian_section_context') or record.get('width_statistics_context')
         if context:read(context['audit_file'])
     collections['widths']=widths['measurements']
     collections['reference_routes']=routes['candidates']
@@ -152,11 +152,15 @@ def build():
     for series in collections['series']:
         if series.get('frame_ids') and len(series['frame_ids'])!=series['frames']:raise ValueError('Incomplete geometry frame series')
     collections['diagnostics']=[{'id':id,'document':read(path)} for id,path in [
+        ('diagnostic:florida-monthly-width','research/florida-monthly-width-plot-extraction.json'),
         ('diagnostic:leeuwin-monthly-width','research/leeuwin-a101-monthly-plot-extraction.json'),
         ('diagnostic:kuroshio-seasonal-width','research/kuroshio-ecs-seasonal-width-profile-extraction.json'),
         ('diagnostic:necc-monthly-section','research/pacific-necc-oscar-2013-section-diagnostic.json'),
         ('diagnostic:antilles-observed-sections','research/antilles-ab0505-400m-section-diagnostic.json'),
         ('diagnostic:gulf-stream-widths','research/gulf-stream-section-width-series.json')]]
+    florida_diagnostic=next(d for d in collections['diagnostics'] if d['id']=='diagnostic:florida-monthly-width')
+    florida_path='research/florida-monthly-width-plot-extraction.json'
+    florida_diagnostic.update(source_file=florida_path,source_file_sha256=inputs[florida_path],source_json=(ROOT/florida_path).read_bytes().decode('utf-8'))
     # Two same-day Loop experiments remain separate methods and unranked.
     from build_loop_current_dated_streamline import build as rebuild_loop_noaa
     from build_loop_current_adt_contours import build as rebuild_loop_adt
@@ -230,7 +234,8 @@ def build():
     from build_leeuwin_monthly_plot import build as rebuild_leeuwin
     from build_kuroshio_seasonal_width_profiles import build as rebuild_kuroshio
     from build_pacific_necc_oscar_section_diagnostic import build as rebuild_necc, diagnostic_matches
-    rebuilds={'diagnostic:leeuwin-monthly-width':rebuild_leeuwin,'diagnostic:kuroshio-seasonal-width':rebuild_kuroshio,'diagnostic:necc-monthly-section':rebuild_necc}
+    from build_florida_monthly_plot import build as rebuild_florida
+    rebuilds={'diagnostic:florida-monthly-width':rebuild_florida,'diagnostic:leeuwin-monthly-width':rebuild_leeuwin,'diagnostic:kuroshio-seasonal-width':rebuild_kuroshio,'diagnostic:necc-monthly-section':rebuild_necc}
     for diagnostic in collections['diagnostics']:
         if diagnostic['id'] not in rebuilds:continue
         original=diagnostic['document'];calculated=rebuilds[diagnostic['id']]()
@@ -241,7 +246,7 @@ def build():
                 actual=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
                 if actual!=original[key.removesuffix('_file')+'_sha256']:raise ValueError('Stale width diagnostic dependency: '+path)
                 inputs[path]=actual
-    for path in ['analysis/build_leeuwin_monthly_plot.py','analysis/build_kuroshio_seasonal_width_profiles.py','analysis/build_pacific_necc_oscar_section_diagnostic.py','analysis/acquire_pacific_necc_oscar_section.py']:
+    for path in ['analysis/build_florida_monthly_plot.py','analysis/build_leeuwin_monthly_plot.py','analysis/build_kuroshio_seasonal_width_profiles.py','analysis/build_pacific_necc_oscar_section_diagnostic.py','analysis/acquire_pacific_necc_oscar_section.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     inputs['analysis/build_query_width_samples.py']=hashlib.sha256((ROOT/'analysis/build_query_width_samples.py').read_bytes()).hexdigest()
     collections['width_samples']=build_width_samples(collections['diagnostics'])

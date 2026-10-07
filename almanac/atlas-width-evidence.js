@@ -20,6 +20,7 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
     const details=document.createElement('details');details.className='atlas-width-record';details.dataset.measurementId=row.id;section.append(details);
     const angular=row.ensemble_angular_context;
     const value=angular?`${format(angular.source_reported_latitude_span_degrees)}° latitude (~${format(row.approximate_width_km)} km conversion)`
+      :row.phase_kind==='width_time_series_statistics'?`${format(row.approximate_width_km)} km mean (${row.width_range_km.map(format).join('–')} km observed)`
       :row.approximate_width_km===null?`${row.width_range_km.map(format).join('–')} km reported span`:`about ${format(row.approximate_width_km)} km`;
     node('summary',`${value} · ${row.width_metric_label||row.width_metric.replaceAll('_',' ')} · ${row.phase_label}`,details);
     node('p',row.time_convention,details);
@@ -30,6 +31,10 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
     const links=node('p','',details);
     link('Inspect this width record',`seasons.html?current=${encodeURIComponent(id)}&phase=${encodeURIComponent(row.id)}`,links);
     links.append(document.createTextNode(' · '));link('Published source',row.source_url,links);
+    if(row.phase_kind==='width_time_series_statistics'&&id==='florida'){
+      const query={collection:'width_samples',filters:[{field:'current_id',op:'eq',value:'florida'}],sort:{field:'month',direction:'asc'},limit:100};
+      links.append(document.createTextNode(' · '));link('Monthly width chart','query.html?q='+encodeURIComponent(JSON.stringify(query)),links);
+    }
     node('p',`${row.source_citation} ${row.source_locator}`,details);
   }
   node('p','Editorial source extractions; independent scientific admission pending.');

@@ -28,6 +28,9 @@ def validate(document, ledger):
             if row['phase_kind'] == 'climatological_core_distribution':
                 if row.get('range_kind') != 'spatial_range_of_climatological_threshold_core_spans' or type(value) not in (float,int) or not math.isfinite(value) or not span[0] <= value <= span[1]:
                     raise ValueError('Invalid spatial core range or median')
+            elif row['phase_kind']=='width_time_series_statistics':
+                if row.get('range_kind')!='author_reported_minimum_maximum_of_filtered_width_time_series' or type(value) not in (float,int) or not span[0] <= value <= span[1]:
+                    raise ValueError('Invalid time-series width statistics range')
             elif row['phase_kind']=='campaign_hydrographic_core':
                 if value is not None or row.get('range_kind')!='author_reported_regional_core_width_span':
                     raise ValueError('Invented hydrographic core midpoint or temporal range')
@@ -345,6 +348,22 @@ def validate(document, ledger):
             matches=[item for item in audit['monthly_values'] if item['month']==context.get('calendar_month')]
             if len(matches)!=1 or value!=matches[0]['approximate_width_km'] or row['calendar_months']!=[matches[0]['month']] or row['source_url']!=audit['source_url'] or row['source_locator']!=audit['source_locator']:
                 raise ValueError('Monthly fit differs from pinned extraction')
+        elif row['phase_kind'] == 'width_time_series_statistics':
+            if (row['measurement_type'],row['width_metric'],row.get('boundary_sides')) != ('published_filtered_width_time_series_statistics','paired_half_core_speed_jet_coordinate_span','paired_half_core_speed_edges') or span is None:
+                raise ValueError('Conflated filtered time-series width metric')
+            if any(row.get(key) is not None for key in ['observed_period','calendar_months','section_geometry','fixed_layer_bounds_m']) or any(row.get(key) is not False for key in ['full_width_inference_eligible','annual_extrema_eligible','seasonal_playback_eligible','is_confidence_interval']):
+                raise ValueError('Invented width statistics geometry, layer or annual support')
+            context=row.get('width_statistics_context',{})
+            audit_file='research/florida-hf-radar-width-statistics-scope-audit.json'
+            if context.get('audit_file')!=audit_file or row['current_id']!='florida':raise ValueError('Width statistics identity mismatch')
+            path=ROOT/audit_file
+            if context.get('audit_sha256')!=hashlib.sha256(path.read_bytes()).hexdigest():raise ValueError('Stale width statistics audit')
+            audit=json.loads(path.read_bytes())
+            keys=['section_latitude_degrees_north','sample_period_years','nominal_measurement_depth_m','native_grid_spacing_km','native_sampling_interval_minutes','diagnostic_time_filter','velocity_component','velocity_threshold_fraction','reported_statistics','seasonal_context','boundary_coordinates_extracted']
+            if any(context.get(key)!=audit[key] or type(context.get(key))!=type(audit[key]) for key in keys):raise ValueError('Width statistics context differs from source')
+            statistics=context['reported_statistics']
+            if (value,span,row['source_url'],row['source_locator'],row['boundary_rule'],row['range_kind']) != (statistics['mean_km'],[statistics['minimum_km'],statistics['maximum_km']],audit['source_url'],audit['source_locator'],audit['boundary_rule'],audit['range_kind']):
+                raise ValueError('Width statistics differ from pinned extraction')
         elif row['phase_kind'] == 'eulerian_mean_section_span':
             if (row['measurement_type'],row['width_metric'],row.get('boundary_sides')) != ('published_eulerian_mean_section_span','coast_to_author_reported_mean_zero_isotach','coast_to_mean_zero_isotach') or span is not None:
                 raise ValueError('Conflated Eulerian mean section boundary')

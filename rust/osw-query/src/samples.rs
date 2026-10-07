@@ -14,6 +14,7 @@ pub fn validate(
             .ok_or("Unresolved width sample diagnostic")?;
         let document = &diagnostic["document"];
         let family = match diagnostic["id"].as_str() {
+            Some("diagnostic:florida-monthly-width") => "florida_monthly_half_peak_plot",
             Some("diagnostic:leeuwin-monthly-width") => "leeuwin_monthly_fitted_plot",
             Some("diagnostic:kuroshio-seasonal-width") => "kuroshio_seasonal_profile_plot",
             Some("diagnostic:necc-monthly-section") => "necc_monthly_connected_component",
@@ -41,7 +42,7 @@ pub fn validate(
             "loop_dated_half_peak_section",
         ]
         .contains(&family);
-        if family == "loop_dated_half_peak_section" {
+        if family == "loop_dated_half_peak_section" || family == "florida_monthly_half_peak_plot" {
             let owner = collections
                 .get("objects")
                 .into_iter()

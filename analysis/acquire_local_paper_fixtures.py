@@ -9,7 +9,7 @@ from pathlib import Path
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPERS = ('kuroshio-liu-gan-2012', 'leeuwin-deng-2008')
+PAPERS = ('kuroshio-liu-gan-2012', 'leeuwin-deng-2008', 'florida-archer-2017')
 
 
 def main():
@@ -22,9 +22,10 @@ def main():
         else:
             request = urllib.request.Request(manifest['source_url'], headers={'User-Agent': 'OSW-source-validation/1.0'})
             with urllib.request.urlopen(request, timeout=60) as response:
-                data = response.read(20_000_001)
-            if len(data) > 20_000_000 or not data.startswith(b'%PDF-'):
-                raise ValueError(f'{name}: expected a PDF below 20 MB')
+                maximum=50_000_000 if name=='florida-archer-2017' else 20_000_000
+                data = response.read(maximum+1)
+            if len(data) > maximum or not data.startswith(b'%PDF-'):
+                raise ValueError(f'{name}: expected a PDF below {maximum//1_000_000} MB')
         if hashlib.sha256(data).hexdigest() != manifest['sha256']:
             raise ValueError(f'{name}: source checksum differs from the pinned acquisition')
         if not destination.exists():
