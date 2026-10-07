@@ -2376,9 +2376,10 @@ queryable under **Dated diagnostic geometry frames**. These daily samples are no
 seasonal climatology, whole-current axes or current widths.
 
 
-### Current Rust/WASM migration — local candidate (2026-10-07)
+### Rust/WASM mainline coverage (2026-10-07)
 
-The local candidate extends the shared Rust engine across the query workspace,
+PR [#23](https://github.com/giodl73-repo/OSW/pull/23) landed at main commit
+`4bcd621be2ae51598c196660ffcb31062cf1b732`. The shared Rust engine covers the query workspace,
 coverage dashboard, global route atlas and cards, object pages, seasons, movies,
 recorded-date diagnostics and standalone sections. The main query snapshot has
 38 collections. The almanac index uses a separate checked corpus containing all
@@ -2396,12 +2397,16 @@ renderer and frozen dataset; it is not included in the current WASM migration.
 Assignments identify validation paths, not passing results. CI checks for any
 new page without an assignment.
 
-This candidate is not yet published on main. All 47 registered browser checks
-passed locally against the same engine across sequential resumed segments and
-one focused rerun; an uninterrupted full run and remote CI remain unverified.
+All 47 registered browser checks passed in order in one uninterrupted
+[Ubuntu CI run](https://github.com/giodl73-repo/OSW/actions/runs/37633512614),
+along with 767 offline tests, 513 standard-library tests, 36 Rust unit tests,
+the required NetCDF fixtures, syntax checks and page assignments. The merged
+main tree exactly matches the tested candidate `e86649b`.
 The [internal role review](signals/roles/check/wasm-index-mainline-roles-check-2026-10-07.md)
-has one remaining publication condition. Current evidence, the unreproduced
-navigation timeout, native commands and source scopes are recorded in the
+records the closed implementation/publication conditions. The earlier local
+navigation timeout did not recur in that complete CI run; its original cause
+remains unconfirmed. This evidence does not establish scientific measurement
+completeness. Verification history, native commands and source scopes are recorded in the
 [Rust query contract](plans/rust-query-store-v1.md).
 
 The shipped-engine browser gate runs sequentially:

@@ -1289,25 +1289,25 @@ now waits for card restoration after asynchronous loading. Source data and the
 canonical release remain unchanged. Standalone detail-page loaders and other
 presentation helpers still require migration, and publication remains pending.
 
-## Coverage audit: local implementation versus main
+## Coverage audit: published mainline implementation
 
-Audit updated: 2026-10-07. The local branch `codex/wasm-mainline-dashboard`
-starts at main commit `52646dc` (PR #22). The subsequent migrations described
-above remain local and unpublished. Local browser success must not be
-reported as a main-branch CI result.
+Audit updated: 2026-10-07. PR [#23](https://github.com/giodl73-repo/OSW/pull/23)
+landed at main commit `4bcd621be2ae51598c196660ffcb31062cf1b732`. Both required
+candidate CI checks passed; the merged tree exactly equals tested candidate
+`e86649b`. The separate post-merge CI run is not conflated with that evidence.
 
-| Surface | Local Rust/WASM coverage | Remaining work |
+| Surface | Published Rust/WASM coverage | Remaining evidence work |
 | --- | --- | --- |
 | Query UI | All 38 bundled collections, pagination and inspection | Some research documents are not represented by these collections |
-| Dashboard | Checked source receipt, selection, coverage/update lights, geographic and Beck scenes | Publish and run the new browser gate in CI |
-| Global atlas and current/eddy cards | Checked 77-document snapshot, shared projection/path/fit, current and eddy navigation | Publish and verify the combined gate in CI |
+| Dashboard | Checked source receipt, selection, coverage/update lights, geographic and Beck scenes | Scientific measurement coverage remains separate |
+| Global atlas and current/eddy cards | Checked 77-document snapshot, shared projection/path/fit, current and eddy navigation | More source-backed measurements and dated geometry |
 | Object pages | Source-scoped evidence joins and operational/named footprint display scenes | Scientific evidence completeness is a separate task |
 | Seasons | Checked four-source snapshot and scoped phase plans | More source-backed seasonal measurements |
-| Atlas Gulf timeline / Antilles stations | Checked sources and Rust map scenes; standalone pages use shared checked loading | Publish and verify the combined gate in CI |
-| Almanac index | Separate Rust-checked 63-document corpus, typed map scenes, current/eddy/NASA/release joins, all 56 states' membership and context views, NOAA daily/weekly file-scoped queries, source-name reconciliation, illustrated spans and diagnostic samples; actual-page checks cover all 12 NOAA sample dates | Complete the latest-runtime regression gate and publish; frozen historical exports remain separate |
-| Movies | Rust filters and joins the exact rights-screened preview subset | Publish and verify the combined gate in CI |
-| Standalone diagnostic pages | Antilles, NECC, Gulf Stream and NorKyst use the shared checked snapshot; Antilles paints Rust station positions; NorKyst has dedicated frame/sample queries | Publish and verify the combined gate in CI |
-| Loop recorded dates | Rust validates comparison/selection receipts, joins method diagnostics and renders projected scenes; JavaScript manages playback | Publish and verify the combined gate in CI |
+| Atlas Gulf timeline / Antilles stations | Checked sources and Rust map scenes; standalone pages use shared checked loading | More source-backed measurements and dated geometry |
+| Almanac index | Separate Rust-checked 63-document corpus, typed map scenes, current/eddy/NASA/release joins, all 56 states' membership and context views, NOAA daily/weekly file-scoped queries, source-name reconciliation, illustrated spans and diagnostic samples; actual-page checks cover all 12 NOAA sample dates | More source-backed records; frozen historical exports remain separate |
+| Movies | Rust filters and joins the exact rights-screened preview subset | More source-backed measurements and dated geometry |
+| Standalone diagnostic pages | Antilles, NECC, Gulf Stream and NorKyst use the shared checked snapshot; Antilles paints Rust station positions; NorKyst has dedicated frame/sample queries | More source-backed measurements and dated geometry |
+| Loop recorded dates | Rust validates comparison/selection receipts, joins method diagnostics and renders projected scenes; JavaScript manages playback | More source-backed measurements and dated geometry |
 | Loop experiment | Static generated content and figures | Content/provenance checks; static prose does not require WASM |
 | Screened atlas preview | Existing separately pinned dataset and renderer | Preserve frozen release; any replacement needs a separately versioned surface |
 
@@ -1320,20 +1320,20 @@ the NECC helper delegates map projection and fitting to Rust.
 Current local verification: 767 offline tests and 581 subtests, 513
 standard-library tests, both required NetCDF fixtures, 36 Rust unit tests,
 35 almanac JavaScript syntax checks and all 14 page coverage assignments passed.
-All 47 amended-engine browser checks passed across sequential gate segments
-and the focused check-25 rerun. The final continuation exited successfully.
-The segments use the same engine receipt; intervening edits corrected test
-expectations and added timeout diagnostics, without changing product bytes.
-The observed-section return timeout did not reproduce on its focused rerun;
-its cause remains unconfirmed. No uninterrupted full-gate or remote CI result
-is claimed. Scientific evidence completeness remains separate.
+All 47 browser checks subsequently passed in their exact registered order in
+one uninterrupted [Ubuntu PR CI run](https://github.com/giodl73-repo/OSW/actions/runs/37633512614).
+That run also passed 767 offline tests, 513 standard-library tests, 36 Rust unit
+tests, both required NetCDF fixtures, syntax and page assignments. The independent
+push workflow also passed. The earlier local observed-section return timeout
+did not recur in the complete remote run; its original cause remains unconfirmed.
+Scientific evidence completeness remains separate.
 
 CI syntax coverage now also discovers every `almanac/**/*.js` file through
 `analysis/check_almanac_javascript.py`, rather than relying on a manually
 maintained filename list. All 35 current almanac modules passed locally,
 including nested preview code. This verifies syntax only; behavior and source
 integrity still depend on their respective browser and offline checks. The CI
-workflow change remains local and unpublished.
+workflow is published with PR #23.
 
 ### Earlier gate history
 
@@ -2269,3 +2269,18 @@ The test corrections retain source comparisons and rejection assertions.
 The KEEL local-validation condition is addressed with this explicit scope;
 LOGBOOK's mainline publication condition remains open. This does not establish
 scientific measurement completeness or a main-branch result.
+
+## Mainline publication receipt (2026-10-07)
+
+PR #23 merged at `4bcd621be2ae51598c196660ffcb31062cf1b732` after both strict
+required checks passed. Candidate CI run 37633512614 completed all 47 registered
+browser scripts in order without interruption; its final map check and all page
+assignments passed. The local checkout was fast-forwarded to main and verified
+clean, with no tree difference from tested candidate `e86649b`. The 39 committed
+engine-manifest files had already matched their SHA-256 receipts.
+
+The seven-role review's remaining publication condition is closed. The new
+post-merge validation run 37645923900 and Pages deployment run 37645922537 are
+separate, still-running jobs at this receipt's recording time. Their completion
+is not assumed. Neither publication nor UI validation supplies missing current
+lengths, widths, seasons, named-eddy footprints or new source-use approvals.

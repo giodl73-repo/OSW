@@ -5,7 +5,7 @@ date: 2026-10-07
 roles_used: [CURRENT, SOUNDER, CHART, BEACON, HARBOR, KEEL, LOGBOOK]
 p1_count: 0
 p2_count: 3
-p2_remaining: 1
+p2_remaining: 0
 p3_count: 18
 verdict: APPROVED-WITH-CONDITIONS
 ---
@@ -129,3 +129,22 @@ match their SHA-256 receipts; research and frozen release files are unchanged.
 The LOGBOOK publication P2 remains open: these changes are still local, and
 protected-main coverage requires the candidate to land with remote CI passing.
 The verdict remains APPROVED-WITH-CONDITIONS, with one P2 remaining.
+
+## Mainline publication verification
+
+PR #23 merged at `4bcd621be2ae51598c196660ffcb31062cf1b732` after the strict
+required `offline` and `netcdf-fixture` checks passed. The PR CI run
+https://github.com/giodl73-repo/OSW/actions/runs/37633512614 completed all 47
+registered browser checks in their exact order without interruption, plus
+767 offline tests, 513 standard-library tests, 36 Rust unit tests, syntax and
+page-assignment checks. The independent push CI run also passed.
+
+The merged main tree exactly equals tested candidate `e86649b`, verified by
+`git diff --exit-code e86649ba494e6ea93dd3ed056a43eb7f762668f6 4bcd621be2ae51598c196660ffcb31062cf1b732`.
+The earlier observed-section timeout did not recur in the full remote gate;
+its original cause remains unconfirmed. The LOGBOOK publication P2 is closed.
+All three original P2 findings are addressed; the historical review findings
+and verdict above are retained with these amendments. This closes the migration
+review conditions, not the remaining scientific measurement or source-use work.
+The separate post-merge main CI run remains distinct from the completed
+candidate CI evidence.
