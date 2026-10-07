@@ -1,12 +1,12 @@
 """Exercise global atlas zoom, pan, current selection and map-card navigation."""
-import json
+import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 
 def main():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, executable_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+        browser = p.chromium.launch(headless=True, executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page = browser.new_page(viewport={'width':1440, 'height':1000})
         page.emulate_media(reduced_motion='reduce')  # Scroll assertions require settled, immediate navigation.
         errors = []

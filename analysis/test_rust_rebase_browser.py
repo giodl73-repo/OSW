@@ -7,17 +7,33 @@ import tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
 from test_rust_workspace_browser import ready,inspect_source,edit
-from test_rust_query_browser import ROOT,BASE,browser_query
+from test_rust_query_browser import CLI,ROOT,BASE,browser_query
 
 def main():
+    (ROOT/'tmp').mkdir(exist_ok=True)
     original=(ROOT/'almanac/query-data.json').read_bytes();old_hash=hashlib.sha256(original).hexdigest()
     changed=json.loads(original);row=next(r for r in changed['collections']['objects'] if r['id']=='current:kuroshio')
+    # The synthetic new source has no newly reviewed movie export; retain the
+    # old screened export in the old snapshot and make new movie views unavailable.
+    changed['manifest'].pop('movies_receipts',None)
     row['label']='Kuroshio updated source label';row['new_source_field']='Synthetic source-update fixture'
+    # A synthetic source update must keep all checked identity projections aligned.
+    next(r for r in changed['collections']['entities'] if r['id']==row['id'])['label']=row['label']
+    row['dashboard_search']=row['label']+' '+row['basin']
+    for edge in changed['collections']['taxonomy_links']:
+        if edge['child_id']==row['id']:edge['child_label']=row['label']
+        if edge['parent_id']==row['id']:edge['parent_label']=row['label']
+    receipt=changed['manifest']['dashboard_receipt']
+    doc=json.loads(receipt['source_json'])
+    next(r for r in doc['entries'] if r['id']==row['id'])['label']=row['label']
+    receipt['source_json']=json.dumps(doc,ensure_ascii=False)
+    receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest()
+    changed['manifest']['input_sha256'][receipt['source_file']]=receipt['source_sha256']
     updated=json.dumps(changed,ensure_ascii=False,separators=(',',':')).encode('utf-8')
     new_hash=hashlib.sha256(updated).hexdigest()
     manifest=json.loads((ROOT/'almanac/query-engine.manifest.json').read_text(encoding='utf-8'));manifest['sha256']['almanac/query-data.json']=new_hash
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'])
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
         context=browser.new_context(viewport={'width':1200,'height':1000});a=context.new_page();ready(a);inspect_source(a)
         proposed=json.loads(a.locator('.working-json').input_value());proposed['label']='Kuroshio proposed alias'
         a.locator('.working-json').fill(json.dumps(proposed));edit(a,'Kuroshio alias proposal','Synthetic proposal for rebase verification.')
@@ -39,7 +55,7 @@ def main():
         with tempfile.TemporaryDirectory(dir=ROOT/'tmp') as directory:
             folder=Path(directory);new_path=folder/'new.json';new_path.write_bytes(updated)
             request={'journal':old_journal,'base_revision':0,'transaction_id':'native-rebase','created_at':'2026-10-04T12:00:00Z','resolutions':{}}
-            rp=folder/'request.json';rp.write_text(json.dumps(request),encoding='utf-8');exe=str(ROOT/'rust/osw-query/target/debug/osw-query-cli.exe')
+            rp=folder/'request.json';rp.write_text(json.dumps(request),encoding='utf-8');exe=str(CLI)
             plan=json.loads(subprocess.check_output([exe,str(new_path),'--rebase',str(ROOT/'almanac/query-data.json'),str(rp)],text=True,encoding='utf-8'))
             assert plan['unresolved']==1 and not plan['ready']
             conflict=plan['conflicts'][0];assert conflict['path']=='/label'

@@ -7,7 +7,30 @@
   const number = value => Number(value).toLocaleString("en-US");
   const link = (text, href, parent, external = false) => { const el = node("a", text, parent); el.href = href; if (external) { el.target = "_blank"; el.rel = "noopener noreferrer"; } return el; };
   const objectHref = id => `object.html?id=${encodeURIComponent(id)}`;
-  async function load(path) { const response = await fetch(path); if (!response.ok) throw new Error(`Could not load ${path}: HTTP ${response.status}`); return response.json(); }
+  window.oswAtlasSourcesReady = new Promise((resolve,reject)=>{
+    const worker=new Worker('query-worker.js?v=atlas-cartography-9');
+    const timer=setTimeout(()=>finish(Error('Atlas data request timed out')),90000);
+    const finish=(error,result)=>{clearTimeout(timer);worker.terminate();if(error){byId('route-atlas-status').textContent=`Atlas unavailable: ${error.message}`;reject(error);}else resolve(result);};
+    worker.onerror=()=>finish(Error('Rust atlas data worker failed'));
+    worker.onmessage=async event=>{const {id,result}=event.data;
+      if(!result.ok){finish(Error(result.error));return;}
+      if(id===1){worker.postMessage({id:2,action:'atlas'});return;}
+      try {
+        window.oswCartography=await window.createOswCartography(result.engine_binary);
+        delete result.engine_binary;
+        window.oswAtlasSnapshot=result;
+        byId('route-status').dataset.engine=result.engine;
+        const docs=Object.fromEntries(Object.entries(result.sources_json).map(([path,raw])=>[path,JSON.parse(raw)]));
+        finish(null,docs);
+      } catch(error){finish(error);}
+    };
+    worker.postMessage({id:1,action:'load'});
+  });
+  async function load(path) {
+    const docs=await window.oswAtlasSourcesReady,key=path.replace(/^\.\.\//,'');
+    if(!Object.hasOwn(docs,key))throw Error(`Atlas source unavailable: ${key}`);
+    return docs[key];
+  }
   const byId = id => document.getElementById(id);
   function revealLinkedCard() {
     let id;

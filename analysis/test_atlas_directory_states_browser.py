@@ -1,20 +1,20 @@
 """State-filtered atlas identities agree with the saved route and eddy evidence."""
 import json,os
 from pathlib import Path
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright,expect
 ROOT=Path(__file__).resolve().parents[1]
 BASE='http://127.0.0.1:8788/almanac/reference-routes.html'
 def main():
     joins=json.loads((ROOT/'research/ocean-current-reference-route-state-join.json').read_text(encoding='utf-8'))['states']
     rows=json.loads((ROOT/'research/ocean-motion-dashboard.json').read_text(encoding='utf-8'))['entries']
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'],headless=True)
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'),headless=True)
         page=browser.new_page(viewport={'width':1200,'height':950});errors=[]
         page.on('pageerror',lambda error:errors.append(str(error)))
-        page.goto(BASE+'#atlas-directory',wait_until='networkidle');page.wait_for_timeout(150)
+        page.goto(BASE+'#atlas-directory',wait_until='networkidle')
         state=page.locator('#atlas-directory-state');root=page.locator('#atlas-directory')
         visible=root.locator('.atlas-directory-item:not([hidden])');filter=root.locator('select').first
-        assert state.locator('option').count()==len(joins)+1
+        expect(state.locator('option')).to_have_count(len(joins)+1,timeout=90000)
         for code,record in joins.items():
             expected={'current:'+route['current_id'] for route in record['route_candidates']}
             expected.update(row['id'] for row in rows if any(e['state_code']==code for e in row.get('state_evidence',[])))
@@ -32,9 +32,9 @@ def main():
         state.select_option('CAMR')
         assert 'atlas-state=CAMR' in page.locator('#route-atlas-preview [data-atlas-share]').get_attribute('href')
         state.select_option('PSAW')
-        page.reload(wait_until='networkidle');page.wait_for_timeout(150)
-        assert state.input_value()=='PSAW'
-        assert page.locator('#route-atlas-select').input_value()=='current:kuroshio-extension'
+        page.reload(wait_until='networkidle')
+        expect(state).to_have_value('PSAW',timeout=90000)
+        expect(page.locator('#route-atlas-select')).to_have_value('current:kuroshio-extension',timeout=90000)
         page.locator('#route-atlas-world').click();assert state.input_value()=='PSAW'
         state.select_option('CAMR')
         filter.select_option('eddies')
@@ -54,9 +54,12 @@ def main():
         page.set_viewport_size({'width':320,'height':800})
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         page.goto(BASE+'?atlas-state=INVALID#atlas-directory',wait_until='networkidle')
+        expect(state.locator('option')).to_have_count(len(joins)+1,timeout=90000)
         assert state.input_value()=='' and 'atlas-state=' not in page.url
-        page.route('**/ocean-current-reference-route-state-join.json',lambda route:route.fulfill(status=503,body='unavailable'))
+        from test_rust_atlas_snapshot_browser import without_state_join
+        without_state_join(page)
         page.reload(wait_until='networkidle')
+        expect(root.locator('.atlas-directory-state-note')).to_contain_text('Current route-state links are unavailable',timeout=90000)
         assert 'Current route-state links are unavailable' in root.locator('.atlas-directory-state-note').inner_text()
         assert not errors,errors
         browser.close()

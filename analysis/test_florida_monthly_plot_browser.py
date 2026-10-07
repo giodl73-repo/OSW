@@ -3,7 +3,7 @@ import copy,json,os,subprocess,tempfile
 from pathlib import Path
 from urllib.parse import quote
 from playwright.sync_api import sync_playwright,expect
-from test_rust_query_browser import native,browser_query
+from test_rust_query_browser import CLI,native,browser_query
 ROOT=Path(__file__).resolve().parents[1]
 QUERY={'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':'florida'}],'sort':{'field':'month','direction':'asc'},'limit':100}
 def main():
@@ -17,10 +17,10 @@ def main():
         for key,value in [('value_km',99),('latitude_degrees_north',0),('annual_width_range_km',[53,64])]:
             bad=copy.deepcopy(bundle);next(r for r in bad['collections']['width_samples'] if r['current_id']=='florida')[key]=value
             path=Path(directory)/'bad.json';path.write_text(json.dumps(bad),encoding='utf-8')
-            run=subprocess.run([str(ROOT/'rust/osw-query/target/debug/osw-query-cli.exe'),str(path),'-'],input='{}',capture_output=True,text=True)
+            run=subprocess.run([str(CLI),str(path),'-'],input='{}',capture_output=True,text=True)
             assert run.returncode==2 and not run.stdout,(key,run.stderr)
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER']);page=browser.new_page(viewport={'width':1280,'height':1000});errors=[]
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'));page=browser.new_page(viewport={'width':1280,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/query.html');page.wait_for_function('window.oswLastQueryResult',timeout=60000)
         assert browser_query(page,QUERY)==result

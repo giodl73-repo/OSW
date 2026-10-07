@@ -1,4 +1,5 @@
 "use strict";
+window.oswIndexPageReady = false;
 
 function cell(row, value) {
   const td = document.createElement("td");
@@ -19,9 +20,7 @@ function sourceCell(row, label, href) {
 }
 
 async function loadJson(path) {
-  const response = await fetch(path);
-  if (!response.ok) throw new Error(`${path}: HTTP ${response.status}`);
-  return response.json();
+  return window.oswIndexDocument(path);
 }
 
 function facetLabel(value) {
@@ -29,19 +28,16 @@ function facetLabel(value) {
 }
 
 function locatorPosition([longitude, latitude]) {
-  return [60 + (longitude + 180) / 360 * 1480, 90 + (90 - latitude) / 180 * 740];
+  return window.oswIndexCartography({op: "project", coordinates: [longitude, latitude]}).point;
 }
 
-function renderGulfStreamFrontMap(snapshot) {
+function renderGulfStreamFrontMap(view) {
   const layer = document.querySelector("#gulf-stream-fronts");
   const namespace = "http://www.w3.org/2000/svg";
-  for (const [side, record] of Object.entries(snapshot.fronts)) {
+  for (const {side, path: geometry} of view.fronts) {
     const path = document.createElementNS(namespace, "path");
     path.setAttribute("class", side);
-    path.setAttribute("d", record.geometry.coordinates.map((point, index) => {
-      const [x, y] = locatorPosition(point);
-      return `${index ? "L" : "M"}${x.toFixed(2)},${y.toFixed(2)}`;
-    }).join(" "));
+    path.setAttribute("d", geometry);
     layer.append(path);
   }
   const toggle = document.querySelector("#show-gulf-stream-fronts");
@@ -50,37 +46,31 @@ function renderGulfStreamFrontMap(snapshot) {
   update();
 }
 
-function renderGeostrophicPathMap(snapshot) {
+function renderGeostrophicPathMap(view) {
   const layer = document.querySelector("#geostrophic-streamline");
   const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  path.setAttribute("d", snapshot.representative.coordinates_lon_lat.map((point, index) => {
-    const [x, y] = locatorPosition(point);
-    return `${index ? "L" : "M"}${x.toFixed(2)},${y.toFixed(2)}`;
-  }).join(" "));
+  path.setAttribute("d", view.diagnosed_path);
   layer.append(path);
-  document.querySelector("#geostrophic-reach-length").textContent = `≈${Math.round(snapshot.representative.segment_length_km).toLocaleString()} km`;
+  document.querySelector("#geostrophic-reach-length").textContent = `≈${Math.round(view.diagnosed_length_km).toLocaleString()} km`;
   const toggle = document.querySelector("#show-geostrophic-streamline");
   const update = () => { layer.style.display = toggle.checked ? "" : "none"; };
   toggle.addEventListener("change", update);
   update();
 }
 
-function renderOperationalEddyMap(snapshot) {
+function renderOperationalEddyMap(view) {
   const layer = document.querySelector("#operational-eddy-polygons");
   const namespace = "http://www.w3.org/2000/svg";
-  for (const feature of snapshot.features) {
+  for (const {record: feature, path: geometry} of view.operational_polygons) {
     const path = document.createElementNS(namespace, "path");
     path.setAttribute("class", feature.provider_type.toLowerCase());
-    path.setAttribute("d", feature.display_outline_lon_lat.map((point, index) => {
-      const [x, y] = locatorPosition(point);
-      return `${index ? "L" : "M"}${x.toFixed(2)},${y.toFixed(2)}`;
-    }).join(" ") + " Z");
+    path.setAttribute("d", geometry);
     const title = document.createElementNS(namespace, "title");
-    title.textContent = `${feature.provider_code}, ${feature.provider_type.toLowerCase()} operational eddy polygon, ${snapshot.observation_date}`;
+    title.textContent = `${feature.provider_code}, ${feature.provider_type.toLowerCase()} operational eddy polygon, ${view.operational_date}`;
     path.append(title);
     const detectionLink = document.createElementNS(namespace, "a");
     detectionLink.setAttribute("href", "object.html?id=" + encodeURIComponent(feature.id));
-    detectionLink.setAttribute("aria-label", `Open dated NAVO detection ${feature.provider_code}, ${snapshot.observation_date}`);
+    detectionLink.setAttribute("aria-label", `Open dated NAVO detection ${feature.provider_code}, ${view.operational_date}`);
     detectionLink.append(path);
     layer.append(detectionLink);
   }
@@ -126,165 +116,45 @@ function mapLink(row, label, markerId, nasaSceneUrl = null, nasaTileUrl = null, 
   row.append(td);
 }
 
-function renderMap(currents, eddies, index, nasa, eddyGeography, loopContext) {
-  const svg = document.querySelector("#motion-markers");
-  const namespace = "http://www.w3.org/2000/svg";
-  for (const item of currents.entries) {
-    const classification = index.entries[item.id];
-    for (const point of classification.locators) {
-      const [x, y] = locatorPosition(point);
-      const link = document.createElementNS(namespace, "a");
-      link.setAttribute("href", `#current-${item.id}`);
-      link.setAttribute("class", "map-marker");
-      link.setAttribute("data-record", item.id);
-      link.setAttribute("aria-label", `Jump to ${item.name} in the almanac`);
-      link.addEventListener("click", () => {
-        const search = document.querySelector("#current-search");
-        const setting = document.querySelector("#current-setting");
-        if (search.value || setting.value !== "all") {
-          search.value = "";
-          setting.value = "all";
-          search.dispatchEvent(new Event("input"));
-        }
-      });
-      const title = document.createElementNS(namespace, "title");
-      title.textContent = `${item.name} · approximate atlas locator`;
-      const circle = document.createElementNS(namespace, "circle");
-      circle.setAttribute("cx", x);
-      circle.setAttribute("cy", y);
-      circle.setAttribute("r", "8");
-      link.append(title, circle);
-      svg.append(link);
-    }
-  }
-  const [x, y] = locatorPosition(index.named_loop_current_eddies.region_locator);
-  const ring = document.createElementNS(namespace, "a");
-  ring.setAttribute("href", "#eddies-title");
-  ring.setAttribute("class", "map-marker ring-marker");
-  ring.setAttribute("data-record", "loop-rings");
-  ring.setAttribute("aria-label", `Jump to ${eddies.entries.length} Loop Current eddy names in the Gulf of Mexico`);
-  ring.addEventListener("click", () => {
-    const search = document.querySelector("#eddy-search");
-    if (search.value) {
-      search.value = "";
-      search.dispatchEvent(new Event("input"));
-    }
-  });
-  const title = document.createElementNS(namespace, "title");
-  title.textContent = `${eddies.entries.length} Loop Current eddy names · region only, no individual positions`;
-  const circle = document.createElementNS(namespace, "circle");
-  circle.setAttribute("cx", x);
-  circle.setAttribute("cy", y);
-  circle.setAttribute("r", "13");
-  ring.append(title, circle);
-  svg.append(ring);
-  let publishedLoopPositionCount = 0;
-  for (const item of loopContext.entries) {
-    const position = item.published_observed_position;
-    if (!position) continue;
-    const [markerX, markerY] = locatorPosition(position.coordinate);
+function renderMap(view) {
+  const svg = document.querySelector("#motion-markers"), namespace = "http://www.w3.org/2000/svg";
+  for (const marker of view.markers) {
     const link = document.createElementNS(namespace, "a");
-    link.setAttribute("href", `#eddy-${item.id}`);
-    link.setAttribute("class", "map-marker observed-loop-eddy-marker");
-    link.setAttribute("data-record", item.id);
-    link.setAttribute("aria-label", `Jump to the published center point for ${item.name}`);
-    link.addEventListener("click", () => {
-      const search = document.querySelector("#eddy-search");
-      if (search.value) {
-        search.value = "";
-        search.dispatchEvent(new Event("input"));
-      }
-    });
-    const markerTitle = document.createElementNS(namespace, "title");
-    markerTitle.textContent = `${item.name} · ${position.period}; approximate source-reported center, not a footprint or NASA identity`;
-    const markerCircle = document.createElementNS(namespace, "circle");
-    markerCircle.setAttribute("cx", markerX);
-    markerCircle.setAttribute("cy", markerY);
-    markerCircle.setAttribute("r", "6");
-    link.append(markerTitle, markerCircle);
-    svg.append(link);
-    publishedLoopPositionCount += 1;
+    link.setAttribute("href", marker.href); link.setAttribute("class", marker.class);
+    link.setAttribute("data-record", marker.id); link.setAttribute("aria-label", marker.label);
+    link.setAttribute("tabindex", "0");
+    if (marker.kind === "current") link.addEventListener("click", event => window.oswNavigateIndexCurrent(event, marker.id));
+    else if (marker.kind === "loop" || marker.kind === "geography") link.addEventListener("click", event => window.oswNavigateIndexEddy(event, marker.kind, marker.href));
+    const title = document.createElementNS(namespace, "title"); title.textContent = marker.title;
+    const circle = document.createElementNS(namespace, "circle");
+    circle.setAttribute("cx", marker.point[0]); circle.setAttribute("cy", marker.point[1]); circle.setAttribute("r", marker.radius);
+    link.append(title, circle); svg.append(link);
   }
-  let nasaMarkerCount = 0;
-  for (const item of nasa.objects) {
-    if (!item.locator || item.almanac_current_id) continue;
-    const [markerX, markerY] = locatorPosition(item.locator);
-    const link = document.createElementNS(namespace, "a");
-    link.setAttribute("href", `#nasa-${item.id}`);
-    link.setAttribute("class", "map-marker nasa-marker");
-    link.setAttribute("data-record", item.id);
-    link.setAttribute("aria-label", `Jump to NASA-described ${item.name} in the almanac`);
-    link.addEventListener("click", () => {
-      const search = document.querySelector("#nasa-search");
-      if (search.value) {
-        search.value = "";
-        search.dispatchEvent(new Event("input"));
-      }
-    });
-    const markerTitle = document.createElementNS(namespace, "title");
-    markerTitle.textContent = `${item.name} · approximate NASA-object atlas locator; no footprint claim`;
-    const markerCircle = document.createElementNS(namespace, "circle");
-    markerCircle.setAttribute("cx", markerX);
-    markerCircle.setAttribute("cy", markerY);
-    markerCircle.setAttribute("r", "6");
-    link.append(markerTitle, markerCircle);
-    svg.append(link);
-    nasaMarkerCount += 1;
-  }
-  for (const item of eddyGeography.entries) {
-    const [markerX, markerY] = locatorPosition(item.locator);
-    const link = document.createElementNS(namespace, "a");
-    link.setAttribute("href", `#eddy-geography-${item.id}`);
-    link.setAttribute("class", "map-marker geography-eddy-marker");
-    link.setAttribute("data-record", item.id);
-    link.setAttribute("aria-label", `Jump to ${item.name} in named eddy geography`);
-    link.addEventListener("click", () => {
-      const search = document.querySelector("#eddy-geography-search");
-      if (search.value) {
-        search.value = "";
-        search.dispatchEvent(new Event("input"));
-      }
-    });
-    const markerTitle = document.createElementNS(namespace, "title");
-    markerTitle.textContent = item.observed_center
-      ? `${item.name} · ${item.observed_center.period} study-reported center; not a closed footprint or NASA-era position`
-      : `${item.name} · ${item.sample_site ? "published core-water sample site" : "editorial regional locator"}; not an eddy center`;
-    const markerCircle = document.createElementNS(namespace, "circle");
-    markerCircle.setAttribute("cx", markerX);
-    markerCircle.setAttribute("cy", markerY);
-    markerCircle.setAttribute("r", "6");
-    link.append(markerTitle, markerCircle);
-    svg.append(link);
-  }
-  document.querySelector("#map-count").textContent = `${currents.entries.length} currents · ${nasaMarkerCount} NASA structures · ${eddies.entries.length} Loop eddy names (${publishedLoopPositionCount} published center points) · ${eddyGeography.entries.length} other eddy names`;
+  const count = view.counts;
+  document.querySelector("#map-count").textContent = `${count.currents} currents · ${count.nasa_markers} NASA structures · ${count.loop_names} Loop eddy names (${count.published_loop_positions} published center points) · ${count.geography_names} other eddy names`;
 }
 
-function renderCurrents(data, index, taxonomy, tiles, lengthEvidence, nasaCurrentCrosswalk) {
-  const entries = [...data.entries].sort((a, b) =>
-    (b.length_km ?? -1) - (a.length_km ?? -1) || a.name.localeCompare(b.name));
-  const byId = Object.fromEntries(entries.map(item => [item.id, item]));
+async function renderCurrents() {
+  const initial = await window.oswIndexCurrents({});
   const input = document.querySelector("#current-search");
   const setting = document.querySelector("#current-setting");
   const lengthStatus = document.querySelector("#current-length-status");
   const nasaStatus = document.querySelector("#current-nasa-status");
-  const lengthById = Object.fromEntries(lengthEvidence.entries.map(item => [item.current_id, item]));
-  const nasaById = Object.fromEntries(nasaCurrentCrosswalk.entries.map(item => [item.current_id, item]));
-  for (const [status, definition] of Object.entries(lengthEvidence.status_definitions)) {
+  for (const [status, definition] of Object.entries(initial.length_definitions)) {
     const option = document.createElement("option");
     option.value = status;
-    option.textContent = `${facetLabel(status)} (${lengthEvidence.counts[status]})`;
+    option.textContent = `${facetLabel(status)} (${initial.length_counts[status]})`;
     option.title = definition;
     lengthStatus.append(option);
   }
-  for (const [status, definition] of Object.entries(nasaCurrentCrosswalk.status_definitions)) {
+  for (const [status, definition] of Object.entries(initial.nasa_definitions)) {
     const option = document.createElement("option");
     option.value = status;
-    option.textContent = `${facetLabel(status)} (${nasaCurrentCrosswalk.counts[status]})`;
+    option.textContent = `${facetLabel(status)} (${initial.nasa_counts[status]})`;
     option.title = definition;
     nasaStatus.append(option);
   }
-  const settings = [...new Set(entries.map(item => index.entries[item.id].setting))].sort();
-  for (const key of settings) {
+  for (const key of initial.settings) {
     const option = document.createElement("option");
     option.value = key;
     option.textContent = facetLabel(key);
@@ -292,30 +162,24 @@ function renderCurrents(data, index, taxonomy, tiles, lengthEvidence, nasaCurren
   }
   const body = document.querySelector("#current-rows");
   const count = document.querySelector("#current-count");
-  function draw() {
-    const query = input.value.trim().toLocaleLowerCase();
+  let serial = 0;
+  async function draw() {
+    const ticket = ++serial;
+    const view = await window.oswIndexCurrents({text: input.value, setting: setting.value,
+      length_status: lengthStatus.value, nasa_status: nasaStatus.value});
+    if (ticket !== serial) return;
+    window.oswIndexCurrentView = view;
     body.replaceChildren();
-    let rank = 0;
-    let previousLength = null;
-    let measuredCount = 0;
-    for (const item of entries) {
-      const classification = index.entries[item.id];
-      if (item.length_km != null) {
-        measuredCount += 1;
-        if (item.length_km !== previousLength) rank = measuredCount;
-        previousLength = item.length_km;
-      }
-      const relatedNames = [item.part_of_system, ...(item.component_current_ids || [])].filter(Boolean).map(id => byId[id].name).join(" ");
-      const haystack = `${item.name} ${item.basin} ${item.kind} ${relatedNames} ${facetLabel(classification.identity_level)} ${facetLabel(classification.setting)}`.toLocaleLowerCase();
-      if (!haystack.includes(query) || (setting.value !== "all" && classification.setting !== setting.value) || (lengthStatus.value !== "all" && lengthById[item.id].status !== lengthStatus.value) || (nasaStatus.value !== "all" && nasaById[item.id].status !== nasaStatus.value)) continue;
+    for (const joined of view.rows) {
+      const item = joined.record, classification = joined.classification;
       const row = document.createElement("tr");
       row.id = `current-${item.id}`;
-      cell(row, item.length_km == null ? "—" : String(rank));
+      cell(row, joined.rank == null ? "—" : String(joined.rank));
       cell(row, item.name);
       cell(row, item.basin);
       const verticalSetting = classification.vertical_setting;
       const typeCell = cell(row, `${facetLabel(classification.identity_level)} · ${facetLabel(classification.setting)}${verticalSetting ? ` · ${facetLabel(verticalSetting)}` : ""}`);
-      typeCell.title = `${item.kind}; ${taxonomy.axes.time_behavior[classification.time_behavior]}${verticalSetting ? ` ${taxonomy.axes.vertical_setting[verticalSetting]}` : ""}`;
+      typeCell.title = `${item.kind}; ${view.taxonomy_axes.time_behavior[classification.time_behavior]}${verticalSetting ? ` ${view.taxonomy_axes.vertical_setting[verticalSetting]}` : ""}`;
       cell(row, item.length_km != null
         ? `≈ ${item.length_km.toLocaleString()} km`
         : item.hypothesized_length_km != null
@@ -328,7 +192,7 @@ function renderCurrents(data, index, taxonomy, tiles, lengthEvidence, nasaCurren
       if (item.section_observation) {
         const section = item.section_observation;
         const link = document.createElement("a");
-        link.href = data.sources[section.source];
+        link.href = view.sources[section.source];
         link.target = "_blank";
         link.rel = "noopener noreferrer";
         const place = section.reference_place
@@ -349,7 +213,7 @@ function renderCurrents(data, index, taxonomy, tiles, lengthEvidence, nasaCurren
       } else if (item.survey_section) {
         const section = item.survey_section;
         const link = document.createElement("a");
-        link.href = data.sources[section.source];
+        link.href = view.sources[section.source];
         link.target = "_blank";
         link.rel = "noopener noreferrer";
         const latitudeLabel = value => value < 0 ? `${Math.abs(value)}°S` : value > 0 ? `${value}°N` : "0°";
@@ -360,7 +224,7 @@ function renderCurrents(data, index, taxonomy, tiles, lengthEvidence, nasaCurren
       } else if (item.sampled_reach) {
         const reach = item.sampled_reach;
         const link = document.createElement("a");
-        link.href = data.sources[reach.source];
+        link.href = view.sources[reach.source];
         link.target = "_blank";
         link.rel = "noopener noreferrer";
         link.textContent = `~${reach.alongflow_km_approx.toLocaleString()} km sampled reach ↗`;
@@ -368,7 +232,7 @@ function renderCurrents(data, index, taxonomy, tiles, lengthEvidence, nasaCurren
         observation.append(link);
       } else if (item.section_review_source) {
         const link = document.createElement("a");
-        link.href = data.sources[item.section_review_source];
+        link.href = view.sources[item.section_review_source];
         link.target = "_blank";
         link.rel = "noopener noreferrer";
         link.textContent = "Section review ↗";
@@ -379,7 +243,7 @@ function renderCurrents(data, index, taxonomy, tiles, lengthEvidence, nasaCurren
         if (observation.textContent === "—") observation.textContent = "";
         else if (observation.childNodes.length) observation.append(document.createTextNode(" · "));
         const link = document.createElement("a");
-        link.href = data.sources[variant.source];
+        link.href = view.sources[variant.source];
         link.target = "_blank";
         link.rel = "noopener noreferrer";
         link.textContent = `≈${variant.length_km_approx.toLocaleString()} km source-specific scope ↗`;
@@ -390,7 +254,7 @@ function renderCurrents(data, index, taxonomy, tiles, lengthEvidence, nasaCurren
         if (observation.textContent === "—") observation.textContent = "";
         else if (observation.childNodes.length) observation.append(document.createTextNode(" · "));
         const link = document.createElement("a");
-        link.href = data.sources[item.identity_scope_source];
+        link.href = view.sources[item.identity_scope_source];
         link.target = "_blank";
         link.rel = "noopener noreferrer";
         link.textContent = "Identity scope review ↗";
@@ -399,48 +263,34 @@ function renderCurrents(data, index, taxonomy, tiles, lengthEvidence, nasaCurren
       }
       row.append(observation);
       const relations = document.createElement("td");
-      const linkedIds = item.part_of_system ? [item.part_of_system] : item.component_current_ids || [];
-      for (const id of linkedIds) {
+      for (const {id, name} of joined.linked_currents) {
         const link = document.createElement("a");
         link.href = `#current-${id}`;
-        link.textContent = byId[id].name;
-        link.addEventListener("click", () => {
-          input.value = "";
-          setting.value = "all";
-          input.dispatchEvent(new Event("input"));
-        });
+        link.textContent = name;
+        link.addEventListener("click", event => navigateCurrent(event, id));
         if (relations.childNodes.length) relations.append(document.createTextNode(" · "));
         relations.append(link);
       }
-      if (item.identity_review?.related_current_id) {
-        const id = item.identity_review.related_current_id;
+      if (joined.identity_related) {
+        const {id, name} = joined.identity_related;
         const link = document.createElement("a");
         link.href = `#current-${id}`;
-        link.textContent = `Name overlap: ${byId[id].name}`;
+        link.textContent = `Name overlap: ${name}`;
         link.title = item.identity_review.note;
-        link.addEventListener("click", () => {
-          input.value = "";
-          setting.value = "all";
-          input.dispatchEvent(new Event("input"));
-        });
+        link.addEventListener("click", event => navigateCurrent(event, id));
         if (relations.childNodes.length) relations.append(document.createTextNode(" · "));
         relations.append(link);
       }
-      for (const id of item.related_current_ids || []) {
+      for (const {id, name} of joined.related_currents) {
         const link = document.createElement("a");
         link.href = `#current-${id}`;
-        link.textContent = `Related: ${byId[id].name}`;
+        link.textContent = `Related: ${name}`;
         link.title = "A source-associated current; this relation does not establish a continuous measured path.";
-        link.addEventListener("click", () => {
-          input.value = "";
-          setting.value = "all";
-          input.dispatchEvent(new Event("input"));
-        });
+        link.addEventListener("click", event => navigateCurrent(event, id));
         if (relations.childNodes.length) relations.append(document.createTextNode(" · "));
         relations.append(link);
       }
-      for (const id of item.related_nasa_object_ids || []) {
-        const upstreamFeeder = nasaById[item.id].object_relations.some(relation => relation.nasa_object_id === id && relation.relation === "independently_named_upstream_feeder");
+      for (const {id, upstream_feeder: upstreamFeeder} of joined.nasa_links) {
         const link = document.createElement("a");
         link.href = `#nasa-${id}`;
         link.textContent = upstreamFeeder ? "NASA named receiving flow ↗" : "NASA described turn ↗";
@@ -455,7 +305,7 @@ function renderCurrents(data, index, taxonomy, tiles, lengthEvidence, nasaCurren
         if (relations.childNodes.length) relations.append(document.createTextNode(" · "));
         relations.append(link);
       }
-      if (index.nasa_current_scene_urls[item.id]) {
+      if (joined.scene_url) {
         const nasaLink = document.createElement("a");
         nasaLink.href = `#nasa-${item.id}`;
         nasaLink.textContent = "NASA object record ↗";
@@ -471,39 +321,58 @@ function renderCurrents(data, index, taxonomy, tiles, lengthEvidence, nasaCurren
       }
       if (!relations.childNodes.length) relations.textContent = "—";
       row.append(relations);
-      const nasaRelation = nasaById[item.id];
+      const nasaRelation = joined.nasa_relation;
       const nasaCell = cell(row, nasaRelation.status === "nasa_named_or_described" ? "NASA named or described" : nasaRelation.status === "independent_context" ? "Independently linked to NASA flow" : "Regional crop only");
-      nasaCell.title = nasaCurrentCrosswalk.status_definitions[nasaRelation.status];
+      nasaCell.title = view.nasa_definitions[nasaRelation.status];
       const sourceKey = item.length_source || item.hypothesis_source;
-      sourceCell(row, item.hypothesis_source ? "Published hypothesis" : item.length_bound_basis ? "Inferred lower bound" : item.length_lower_bound_km != null ? "Published lower bound" : item.length_source ? "Published estimate" : "Name source", sourceKey ? data.sources[sourceKey] : item.name_source_url || data.sources[item.name_source]);
-      mapLink(row, "Locate ↗", item.id, index.nasa_current_scene_urls[item.id], tiles.current_joins[item.id][0].url, verticalSetting);
+      sourceCell(row, item.hypothesis_source ? "Published hypothesis" : item.length_bound_basis ? "Inferred lower bound" : item.length_lower_bound_km != null ? "Published lower bound" : item.length_source ? "Published estimate" : "Name source", sourceKey ? view.sources[sourceKey] : item.name_source_url || view.sources[item.name_source]);
+      mapLink(row, "Locate ↗", item.id, joined.scene_url, joined.crop_url, verticalSetting);
       body.append(row);
     }
-    count.textContent = `${body.children.length} of ${entries.length} names · ${lengthEvidence.counts.published_estimate} ranked estimates · ${lengthEvidence.counts.derived_lower_bound + lengthEvidence.counts.published_lower_bound} unranked bounds`;
+    count.textContent = `${body.children.length} of ${view.total} names · ${view.length_counts.published_estimate} ranked estimates · ${view.length_counts.derived_lower_bound + view.length_counts.published_lower_bound} unranked bounds`;
   }
-  input.addEventListener("input", draw);
-  setting.addEventListener("change", draw);
-  lengthStatus.addEventListener("change", draw);
-  nasaStatus.addEventListener("change", draw);
-  draw();
+  function report(error) {
+    count.textContent = `Current query unavailable: ${error.message}`;
+    console.error(error);
+  }
+  async function navigateCurrent(event, id) {
+    event.preventDefault();
+    input.value = ""; setting.value = "all";
+    lengthStatus.value = "all"; nasaStatus.value = "all";
+    try {
+      await draw();
+      const target = document.getElementById(`current-${id}`);
+      if (target) { location.hash = target.id; target.scrollIntoView({block: "center"}); }
+    } catch (error) { report(error); }
+  }
+  window.oswNavigateIndexCurrent = navigateCurrent;
+  const redraw = () => { draw().catch(report); };
+  input.addEventListener("input", redraw);
+  setting.addEventListener("change", redraw);
+  lengthStatus.addEventListener("change", redraw);
+  nasaStatus.addEventListener("change", redraw);
+  await draw();
 }
 
-function renderIllustratedSpans(spans, currents) {
+async function renderIllustratedSpans() {
+  const view = await window.oswIndexSupport({section: "illustrated_spans"});
+  window.oswIndexIllustratedSpansView = view;
   const body = document.querySelector("#illustrated-span-rows");
-  const byId = Object.fromEntries(currents.entries.map(item => [item.id, item]));
-  for (const item of spans.entries.filter(entry => entry.illustrated_span_rank != null)) {
+  for (const joined of view.rows) {
+    const item = joined.record;
     const row = document.createElement("tr");
     cell(row, String(item.illustrated_span_rank));
     const name = document.createElement("td");
     const link = document.createElement("a");
     link.href = `#current-${item.current_id}`;
     link.textContent = item.name;
+    link.addEventListener("click", event => window.oswNavigateIndexCurrent(event, item.current_id));
     name.append(link);
     row.append(name);
     const span = cell(row, `≈ ${item.longest_arrow_span_km.toLocaleString()} km`);
     span.title = item.scope_note;
     cell(row, `${item.arrows[0].source_arrow_id} / ${item.source_arrow_count}`);
-    const published = byId[item.current_id].length_km;
+    const published = joined.current.length_km;
     cell(row, published == null ? "—" : `≈ ${published.toLocaleString()} km`);
     body.append(row);
   }
@@ -513,28 +382,20 @@ function formatTime(seconds) {
   return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
 }
 
-function renderNasaObjects(data, crosswalk, media, currents, forms, cartographicCrops, movieVariants, atlasCatalog) {
+async function renderNasaObjects() {
   const body = document.querySelector("#nasa-rows");
-  document.querySelector("#nasa-evidence-count").textContent = String(Object.values(crosswalk.objects).reduce((total, object) => total + Object.keys(object.release_evidence).length, 0));
   const input = document.querySelector("#nasa-search");
-  const releases = Object.fromEntries(data.releases.map(item => [item.id, item]));
-  const objectsById = Object.fromEntries(data.objects.map(item => [item.id, item]));
-  const currentsById = Object.fromEntries(currents.entries.map(item => [item.id, item]));
-  const mediaLookup = Object.fromEntries(media.assets.map(item => [item.id, item]));
-  const cartographicCropsById = Object.fromEntries(cartographicCrops.records.map(item => [item.nasa_object_id, item]));
-  const catalogById = Object.fromEntries(atlasCatalog.records.map(item => [item.id, item]));
-  const variantsByObject = {};
-  for (const movie of movieVariants.entries) {
-    for (const relation of movie.direct_object_relations) {
-      (variantsByObject[relation.object_id] ||= []).push({movie, relation});
-    }
-  }
-  function draw() {
-    const query = input.value.trim().toLocaleLowerCase();
+  const initial = await window.oswIndexNasa({});
+  document.querySelector("#nasa-evidence-count").textContent = String(initial.release_evidence_count);
+  let serial = 0;
+  async function draw() {
+    const ticket = ++serial;
+    const view = await window.oswIndexNasa({text: input.value});
+    if (ticket !== serial) return;
+    window.oswIndexNasaView = view;
     body.replaceChildren();
-    for (const item of data.objects) {
-      const form = forms.objects[item.id];
-      if (!`${item.name} ${item.support} ${form} ${item.description}`.toLocaleLowerCase().includes(query)) continue;
+    for (const joined of view.rows) {
+      const item = joined.record, form = joined.form;
       const row = document.createElement("tr");
       row.id = `nasa-${item.id}`;
       const name = cell(row, item.name);
@@ -542,7 +403,7 @@ function renderNasaObjects(data, crosswalk, media, currents, forms, cartographic
       const support = cell(row, facetLabel(item.support));
       const formLabel = document.createElement("small");
       formLabel.textContent = ` · ${form.replaceAll("_", " ")}`;
-      formLabel.title = forms.forms[form];
+      formLabel.title = view.form_definitions[form];
       support.append(formLabel);
       const oswCell = document.createElement("td");
       if (item.almanac_current_id || item.atlas_feature_id) {
@@ -558,18 +419,13 @@ function renderNasaObjects(data, crosswalk, media, currents, forms, cartographic
           oswCell.append(document.createTextNode(" · "), atlasLink);
         }
       } else if (item.parent_id) {
-        const parent = objectsById[item.parent_id];
+        const parent = joined.parent;
         const parentLink = document.createElement("a");
         parentLink.href = `#nasa-${item.parent_id}`;
         parentLink.textContent = `Parent: ${parent.name} ↗`;
-        parentLink.addEventListener("click", () => {
-          if (input.value) {
-            input.value = "";
-            draw();
-          }
-        });
+
         oswCell.append(parentLink);
-        const parentCurrentId = crosswalk.objects[item.id].parent_current_id;
+        const parentCurrentId = joined.crosswalk.parent_current_id;
         if (parentCurrentId) {
           const currentLink = document.createElement("a");
           currentLink.href = `#current-${parentCurrentId}`;
@@ -587,66 +443,53 @@ function renderNasaObjects(data, crosswalk, media, currents, forms, cartographic
         scopeNote.textContent = item.name_scope_note;
         oswCell.append(document.createElement("br"), scopeNote);
       }
-      for (const context of crosswalk.objects[item.id].external_current_context) {
+      for (const {relation: context, record: current} of joined.external_currents) {
         const currentLink = document.createElement("a");
         currentLink.href = `#current-${context.current_id}`;
-        currentLink.textContent = `Independently named: ${currentsById[context.current_id].name} ↗`;
+        currentLink.textContent = `Independently named: ${current.name} ↗`;
         currentLink.title = context.note;
         if (oswCell.childNodes.length) oswCell.append(document.createTextNode(" · "));
         oswCell.append(currentLink);
       }
-      for (const exampleId of crosswalk.objects[item.id].example_object_ids) {
+      for (const example of joined.examples) {
+        const exampleId = example.id;
         const exampleLink = document.createElement("a");
         exampleLink.href = `#nasa-${exampleId}`;
-        exampleLink.textContent = `Example: ${objectsById[exampleId].name} ↗`;
-        exampleLink.title = crosswalk.objects[item.id].example_relation;
-        exampleLink.addEventListener("click", () => {
-          if (input.value) {
-            input.value = "";
-            draw();
-          }
-        });
+        exampleLink.textContent = `Example: ${example.name} ↗`;
+        exampleLink.title = joined.crosswalk.example_relation;
+
         if (oswCell.childNodes.length) oswCell.append(document.createTextNode(" · "));
         oswCell.append(exampleLink);
       }
-      for (const context of crosswalk.objects[item.id].system_context) {
+      for (const {relation: context, record: system} of joined.systems) {
         const systemLink = document.createElement("a");
         systemLink.href = `#nasa-${context.system_id}`;
-        systemLink.textContent = `System: ${objectsById[context.system_id].name} ↗`;
+        systemLink.textContent = `System: ${system.name} ↗`;
         systemLink.title = `${context.note} NASA narration cues ${context.cue_numbers.join("–")}.`;
-        systemLink.addEventListener("click", () => {
-          if (input.value) {
-            input.value = "";
-            draw();
-          }
-        });
+
         if (oswCell.childNodes.length) oswCell.append(document.createTextNode(" · "));
         oswCell.append(systemLink);
       }
-      const classParent = crosswalk.objects[item.id].class_parent;
+      const classParent = joined.crosswalk.class_parent;
       if (classParent) {
         const classLink = document.createElement("a");
         classLink.href = `#nasa-${classParent.parent_id}`;
-        classLink.textContent = `Class: ${objectsById[classParent.parent_id].name} ↗`;
-        classLink.title = forms.class_relation_rule;
-        classLink.addEventListener("click", () => {
-          if (input.value) { input.value = ""; draw(); }
-        });
+        classLink.textContent = `Class: ${joined.class_parent.name} ↗`;
+        classLink.title = view.class_relation_rule;
+
         if (oswCell.childNodes.length) oswCell.append(document.createTextNode(" · "));
         oswCell.append(classLink);
       }
-      for (const edge of crosswalk.objects[item.id].class_children) {
+      for (const {relation: edge, record: child} of joined.class_children) {
         const childLink = document.createElement("a");
         childLink.href = `#nasa-${edge.child_id}`;
-        childLink.textContent = `Subtype: ${objectsById[edge.child_id].name} ↗`;
-        childLink.title = forms.class_relation_rule;
-        childLink.addEventListener("click", () => {
-          if (input.value) { input.value = ""; draw(); }
-        });
+        childLink.textContent = `Subtype: ${child.name} ↗`;
+        childLink.title = view.class_relation_rule;
+
         if (oswCell.childNodes.length) oswCell.append(document.createTextNode(" · "));
         oswCell.append(childLink);
       }
-      const namedContext = catalogById[item.id].named_eddy_context;
+      const namedContext = joined.catalog.named_eddy_context;
       if (namedContext.length) {
         const details = document.createElement("details");
         const summary = document.createElement("summary");
@@ -660,13 +503,9 @@ function renderNasaObjects(data, crosswalk, media, currents, forms, cartographic
           link.href = context.atlas_anchor;
           link.textContent = `${context.name} · ${context.source_event_date || context.event_year || facetLabel(context.identity_level)}`;
           link.title = `${context.relations.map(facetLabel).join(", ")}; ${facetLabel(context.locator_evidence_type || "unlocated")}; ${facetLabel(context.temporal_relation || "time_unresolved")}. Source: ${context.source_url}. No individual NASA identity claim.`;
-          link.addEventListener("click", () => {
+          link.addEventListener("click", event => {
             if (context.source_collection === "published_loop_current") return;
-            const sourceSearch = document.querySelector(context.source_collection === "horizon_loop_current" ? "#eddy-search" : "#eddy-geography-search");
-            if (sourceSearch.value) {
-              sourceSearch.value = "";
-              sourceSearch.dispatchEvent(new Event("input"));
-            }
+            window.oswNavigateIndexEddy(event, context.source_collection === "horizon_loop_current" ? "loop" : "geography", link.hash);
           });
           listItem.append(link);
           list.append(listItem);
@@ -676,7 +515,7 @@ function renderNasaObjects(data, crosswalk, media, currents, forms, cartographic
       }
       row.append(oswCell);
       const stateTd = document.createElement("td");
-      const evidence = crosswalk.objects[item.id].state_evidence;
+      const evidence = joined.crosswalk.state_evidence;
       for (const [kind, codes] of [
         ["mapped arrow", evidence.cartographic_current_crossings],
         ["map contact", evidence.width_sensitive_cartographic_contacts],
@@ -697,7 +536,7 @@ function renderNasaObjects(data, crosswalk, media, currents, forms, cartographic
       if (!stateTd.childNodes.length) stateTd.textContent = "No bounded state footprint";
       row.append(stateTd);
       const propertiesTd = document.createElement("td");
-      for (const property of crosswalk.objects[item.id].reported_properties) {
+      for (const property of joined.crosswalk.reported_properties) {
         const link = document.createElement("a");
         link.href = property.source_url;
         link.target = "_blank";
@@ -719,9 +558,7 @@ function renderNasaObjects(data, crosswalk, media, currents, forms, cartographic
       if (!propertiesTd.childNodes.length) propertiesTd.textContent = "—";
       row.append(propertiesTd);
       const sourceTd = document.createElement("td");
-      for (const releaseId of item.nasa_sources) {
-        const source = releases[releaseId];
-        const evidence = crosswalk.objects[item.id].release_evidence[releaseId];
+      for (const {record: source, evidence} of joined.releases) {
         const sourceLink = document.createElement("a");
         sourceLink.href = evidence.source_url;
         sourceLink.target = "_blank";
@@ -752,7 +589,7 @@ function renderNasaObjects(data, crosswalk, media, currents, forms, cartographic
       }
       if (item.narrated_start_s != null) {
         const time = document.createElement("a");
-        time.href = releases["po2-narrated"].transcript;
+        time.href = joined.narrated_release.transcript;
         time.target = "_blank";
         time.rel = "noopener noreferrer";
         time.textContent = ` · transcript ${formatTime(item.narrated_start_s)}–${formatTime(item.narrated_end_s)} ↗`;
@@ -762,14 +599,14 @@ function renderNasaObjects(data, crosswalk, media, currents, forms, cartographic
       const movie = document.createElement("td");
       if (item.narrated_start_s != null) {
         const narrated = document.createElement("a");
-        narrated.href = `${releases["po2-narrated"].timed_movie}#t=${item.narrated_start_s},${item.narrated_end_s}`;
+        narrated.href = `${joined.narrated_release.timed_movie}#t=${item.narrated_start_s},${item.narrated_end_s}`;
         narrated.target = "_blank";
         narrated.rel = "noopener noreferrer";
         narrated.textContent = `Narrated ${formatTime(item.narrated_start_s)}–${formatTime(item.narrated_end_s)} ↗`;
         narrated.title = "Open NASA's narrated movie at this object or process; large video file.";
         movie.append(narrated);
       }
-      const join = crosswalk.objects[item.id].regional_movie;
+      const join = joined.crosswalk.regional_movie;
       if (join) {
         const link = document.createElement("a");
         link.href = join.url;
@@ -780,8 +617,7 @@ function renderNasaObjects(data, crosswalk, media, currents, forms, cartographic
         if (movie.childNodes.length) movie.append(document.createTextNode(" · "));
         movie.append(link);
       }
-      for (const mediaId of crosswalk.objects[item.id].feature_media_ids) {
-        const asset = mediaLookup[mediaId];
+      for (const asset of joined.feature_media) {
         const mediaLink = document.createElement("a");
         mediaLink.href = asset.movie_url;
         mediaLink.target = "_blank";
@@ -791,7 +627,7 @@ function renderNasaObjects(data, crosswalk, media, currents, forms, cartographic
         if (movie.childNodes.length) movie.append(document.createTextNode(" · "));
         movie.append(mediaLink);
       }
-      const overview = crosswalk.objects[item.id].source_overview_movie;
+      const overview = joined.crosswalk.source_overview_movie;
       if (overview) {
         const overviewLink = document.createElement("a");
         overviewLink.href = overview.url;
@@ -802,12 +638,12 @@ function renderNasaObjects(data, crosswalk, media, currents, forms, cartographic
         if (movie.childNodes.length) movie.append(document.createTextNode(" · "));
         movie.append(overviewLink);
       }
-      const cropEvidence = cartographicCropsById[item.id];
+      const cropEvidence = joined.cartographic_crops;
       if (cropEvidence?.cartographic_crop_contacts.length) {
         const details = document.createElement("details");
         const summary = document.createElement("summary");
         summary.textContent = `${cropEvidence.cartographic_crop_contacts.length} map-arrow crop regions`;
-        summary.title = cartographicCrops.claim_limit;
+        summary.title = view.crop_claim_limit;
         details.append(summary);
         for (const contact of cropEvidence.cartographic_crop_contacts) {
           const link = document.createElement("a");
@@ -815,24 +651,24 @@ function renderNasaObjects(data, crosswalk, media, currents, forms, cartographic
           link.target = "_blank";
           link.rel = "noopener noreferrer";
           link.textContent = `${contact.tile_id}${contact.is_primary_locator_crop ? " (locator)" : ""} ↗`;
-          link.title = `${contact.map_contact.replaceAll("_", " ")}; independent map arrows ${contact.source_arrow_ids.join(", ")}. ${cartographicCrops.claim_limit}`;
+          link.title = `${contact.map_contact.replaceAll("_", " ")}; independent map arrows ${contact.source_arrow_ids.join(", ")}. ${view.crop_claim_limit}`;
           details.append(link, document.createElement("br"));
         }
         movie.append(details);
       }
-      const variants = variantsByObject[item.id] || [];
+      const variants = joined.variants;
       if (variants.length) {
         const details = document.createElement("details");
         const summary = document.createElement("summary");
         summary.textContent = `${variants.length} source-linked movie files`;
-        summary.title = movieVariants.rule;
+        summary.title = view.movie_variant_rule;
         details.append(summary);
-        for (const {movie: variant, relation} of variants) {
+        for (const {movie: variant, relation, release} of variants) {
           const link = document.createElement("a");
           link.href = relation.movie_url;
           link.target = "_blank";
           link.rel = "noopener noreferrer";
-          link.textContent = `${releases[variant.release_id].title} · ${variant.width}×${variant.height} · ${variant.filename} ↗`;
+          link.textContent = `${release.title} · ${variant.width}×${variant.height} · ${variant.filename} ↗`;
           link.title = relation.relation === "narrated_bounded_clip" ? `NASA narrated cues ${relation.cue_numbers.join(", ")}; clip bounds are editorial navigation.` : `NASA media group ${variant.group_id} contains this object name or description.`;
           details.append(link, document.createElement("br"));
         }
@@ -842,24 +678,45 @@ function renderNasaObjects(data, crosswalk, media, currents, forms, cartographic
       row.append(movie);
       body.append(row);
     }
-    document.querySelector("#nasa-count").textContent = `${body.children.length} of ${data.objects.length} NASA motion records`;
+    document.querySelector("#nasa-count").textContent = `${body.children.length} of ${view.total} NASA motion records`;
   }
-  input.addEventListener("input", draw);
-  draw();
+  const report = error => {document.querySelector("#nasa-count").textContent = `NASA query unavailable: ${error.message}`;};
+  input.addEventListener("input", () => draw().catch(report));
+  window.oswNavigateIndexNasa = async (event, hash) => {
+    event.preventDefault(); input.value = "";
+    try {
+      await draw();
+      const target = document.getElementById(hash.slice(1));
+      if (target) {location.hash = hash; target.scrollIntoView({block: "center"});}
+    } catch (error) {report(error);}
+  };
+  const targets = new Set(initial.rows.map(row => `#nasa-${row.record.id}`));
+  document.addEventListener("click", event => {
+    const link = event.target.closest("a");
+    const hash = link?.getAttribute("href");
+    if (!targets.has(hash)) return;
+    event.stopPropagation();
+    window.oswNavigateIndexNasa(event, hash);
+  }, true);
+  body.addEventListener("click", event => {
+    const link = event.target.closest("a");
+    const hash = link?.getAttribute("href");
+    if (hash?.startsWith("#current-")) window.oswNavigateIndexCurrent(event, hash.slice(9));
+  });
+  await draw();
 }
 
-function renderNasaReleaseMedia(catalog, audit, nasa, crosswalk, sourceRegistry) {
+async function renderNasaReleaseMedia() {
+  const view = await window.oswIndexReleaseMedia();
+  window.oswIndexReleaseMediaView = view;
   const host = document.querySelector("#nasa-media-releases");
   host.replaceChildren();
-  const auditedReleases = Object.fromEntries(audit.releases.map(item => [item.id, item]));
-  const objects = Object.fromEntries(nasa.objects.map(item => [item.id, item]));
-  const sources = Object.fromEntries(sourceRegistry.filter(item => item.url).map(item => [item.url, item]));
-  for (const release of catalog.releases) {
-    const identifiedIds = auditedReleases[release.release_id].object_ids;
+  for (const joined of view.rows) {
+    const release = joined.record;
     const details = document.createElement("details");
     details.className = "state-eddy-details";
     const summary = document.createElement("summary");
-    summary.textContent = `${release.title} · ${identifiedIds.length} identified records · ${release.movies.length} movie files`;
+    summary.textContent = `${release.title} · ${joined.objects.length} identified records · ${release.movies.length} movie files`;
     details.append(summary);
     const source = document.createElement("p");
     const sourceLink = document.createElement("a");
@@ -869,10 +726,7 @@ function renderNasaReleaseMedia(catalog, audit, nasa, crosswalk, sourceRegistry)
     sourceLink.textContent = "NASA release page ↗";
     source.append(sourceLink);
     details.append(source);
-    const sourceRecord = sources[release.source_page];
-    if (!sourceRecord?.preferred_citation || !sourceRecord.credit_text) {
-      throw new Error(`Missing NASA page citation for ${release.source_page}`);
-    }
+    const sourceRecord = joined.source;
     const citation = document.createElement("p");
     citation.className = "source-review-note";
     citation.append(document.createTextNode(`Credit: ${sourceRecord.credit_text} · Citation: `));
@@ -885,24 +739,21 @@ function renderNasaReleaseMedia(catalog, audit, nasa, crosswalk, sourceRegistry)
     details.append(objectHeading);
     const objectList = document.createElement("ul");
     objectList.className = "nasa-release-objects";
-    for (const objectId of identifiedIds) {
+    for (const {record: object, evidence} of joined.objects) {
+      const objectId = object.id;
       const item = document.createElement("li");
       const objectLink = document.createElement("a");
       objectLink.href = `#nasa-${objectId}`;
-      objectLink.textContent = `${objects[objectId].name} ↗`;
-      objectLink.addEventListener("click", () => {
-        const search = document.querySelector("#nasa-search");
-        if (search.value) { search.value = ""; search.dispatchEvent(new Event("input")); }
-      });
+      objectLink.textContent = `${object.name} ↗`;
       const evidenceLink = document.createElement("a");
-      evidenceLink.href = crosswalk.objects[objectId].release_evidence[release.release_id].source_url;
+      evidenceLink.href = evidence.source_url;
       evidenceLink.target = "_blank";
       evidenceLink.rel = "noopener noreferrer";
       evidenceLink.textContent = "NASA passage ↗";
       item.append(objectLink, document.createTextNode(" · "), evidenceLink);
       objectList.append(item);
     }
-    if (!identifiedIds.length) {
+    if (!joined.objects.length) {
       const item = document.createElement("li");
       item.textContent = "No named or individually described motion object in this release's page text.";
       objectList.append(item);
@@ -925,7 +776,7 @@ function renderNasaReleaseMedia(catalog, audit, nasa, crosswalk, sourceRegistry)
     details.append(list);
     host.append(details);
   }
-  document.querySelector("#nasa-media-count").textContent = `${catalog.release_count} releases · ${catalog.movie_listing_count} movie files`;
+  document.querySelector("#nasa-media-count").textContent = `${view.release_count} releases · ${view.movie_listing_count} movie files`;
 }
 
 function stateLinks(ids, lookup, prefix, fallback) {
@@ -935,28 +786,14 @@ function stateLinks(ids, lookup, prefix, fallback) {
     const link = document.createElement("a");
     link.href = `#${prefix}-${id}`;
     link.textContent = lookup[id]?.name || id.replaceAll("-", " ");
-    if (prefix === "current") link.addEventListener("click", () => {
-      const search = document.querySelector("#current-search");
-      const setting = document.querySelector("#current-setting");
-      search.value = "";
-      setting.value = "all";
-      search.dispatchEvent(new Event("input"));
-    });
+    if (prefix === "current") link.addEventListener("click", event => window.oswNavigateIndexCurrent(event, id));
     if (prefix === "nasa") link.addEventListener("click", () => {
       const search = document.querySelector("#nasa-search");
       search.value = "";
       search.dispatchEvent(new Event("input"));
     });
-    if (prefix === "eddy-geography") link.addEventListener("click", () => {
-      const search = document.querySelector("#eddy-geography-search");
-      search.value = "";
-      search.dispatchEvent(new Event("input"));
-    });
-    if (prefix === "eddy") link.addEventListener("click", () => {
-      const search = document.querySelector("#eddy-search");
-      search.value = "";
-      search.dispatchEvent(new Event("input"));
-    });
+    if (prefix === "eddy-geography") link.addEventListener("click", event => window.oswNavigateIndexEddy(event, "geography", link.hash));
+    if (prefix === "eddy") link.addEventListener("click", event => window.oswNavigateIndexEddy(event, "loop", link.hash));
     item.append(link);
     list.append(item);
   }
@@ -968,17 +805,28 @@ function stateLinks(ids, lookup, prefix, fallback) {
   return list;
 }
 
-function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seasonalManifest, cropTimeline, eddyCropJoin, tiles, cartographic, nasaStateTiles, nasaCrosswalk, nasaMatrix, currentMatrix, eddyGeography, eddyGeographyJoin, loopContext, gulfStreamFront, currentSourceObservations, operationalEddyObservations, geostrophicPath, referenceStateRoutes) {
+function stateMembershipLinks(members, prefix, fallback) {
+  const list = document.createElement("ul");
+  for (const member of members) {
+    const item = document.createElement("li"), link = document.createElement("a");
+    link.href = `#${prefix}-${member.id}`; link.textContent = member.name;
+    if (prefix === "current") link.addEventListener("click", event => window.oswNavigateIndexCurrent(event, member.id));
+    if (prefix === "eddy-geography") link.addEventListener("click", event => window.oswNavigateIndexEddy(event, "geography", link.hash));
+    if (prefix === "eddy") link.addEventListener("click", event => window.oswNavigateIndexEddy(event, "loop", link.hash));
+    item.append(link); list.append(item);
+  }
+  if (!members.length) {const item = document.createElement("li"); item.textContent = fallback; list.append(item);}
+  return list;
+}
+
+async function renderStates(seasonalManifest) {
   const select = document.querySelector("#state-select");
   const dateSelect = document.querySelector("#eddy-date-select");
   const result = document.querySelector("#state-result");
   const showEddies = document.querySelector("#show-state-eddies");
   const eddyLayer = document.querySelector("#detected-eddy-markers");
-  const cropById = Object.fromEntries(tiles.tiles.map(tile => [tile.id, tile]));
   const trackLayer = document.querySelector("#selected-eddy-track");
   const trackSummary = document.querySelector("#selected-track-summary");
-  const currentLookup = Object.fromEntries(currents.entries.map(item => [item.id, item]));
-  const nasaLookup = Object.fromEntries(nasa.objects.map(item => [item.id, item]));
   for (const snapshot of [...seasonalManifest.snapshots].reverse()) {
     const option = document.createElement("option");
     option.value = snapshot.date;
@@ -986,85 +834,86 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
     dateSelect.append(option);
   }
   dateSelect.value = "2023-06-01";
-  let eddies = eddySnapshots[dateSelect.value];
-  let eddyLookup = Object.fromEntries(eddies.entries.map(item => [item.id, item]));
-  let { tracks, centerVisits, weeklyContours } = weeklySnapshots[dateSelect.value];
-  const eddyGeographyLookup = Object.fromEntries(eddyGeography.entries.map(item => [item.id, item]));
-  const loopLookup = Object.fromEntries(loopContext.entries.map(item => [item.id, item]));
-  function showTrack(id, focusDate = eddies.date) {
-    trackLayer.replaceChildren();
-    if (!tracks) return;
-    const record = tracks.tracks[id];
-    if (!record) return;
-    const points = record.positions.map(item => locatorPosition(item.center));
-    const namespace = "http://www.w3.org/2000/svg";
-    const path = document.createElementNS(namespace, "path");
-    path.setAttribute("d", points.map(([x, y], index) =>
-      `${index === 0 || Math.abs(x - points[index - 1][0]) > 740 ? "M" : "L"}${x.toFixed(1)},${y.toFixed(1)}`).join(" "));
-    trackLayer.append(path);
-    for (const [x, y] of [points[0], points[points.length - 1]]) {
-      const marker = document.createElementNS(namespace, "circle");
-      marker.setAttribute("cx", x);
-      marker.setAttribute("cy", y);
-      marker.setAttribute("r", "7");
-      trackLayer.append(marker);
-    }
-    trackSummary.textContent = `${id}: ${record.positions.length} NOAA daily centers, ${record.positions[0].date} to ${record.positions.at(-1).date}. ${record.file_scoped_track_ref} is only an address within this seven-day file; it is not a NASA or named-ring identity.`;
-    const stateMovie = nasaStateTiles.states[select.value];
-    const tile = stateMovie?.matches.find(item => item.tile_id === stateMovie.recommended_regional_tiles[0]);
-    const seek = cropTimeline.dates[focusDate];
-    if (tile && seek) {
-      const link = document.createElement("a");
-      link.href = `${tile.url}#t=${seek.estimated_crop_seconds}`;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = `NASA regional view near ${focusDate} ↗`;
-      link.title = "Approximate model-date and regional view only; no NOAA to NASA eddy identity match.";
-      trackSummary.append(document.createTextNode(" "), link);
-    }
-    document.querySelector("#motion-map-section").scrollIntoView({ behavior: "smooth", block: "start" });
+  let selectedDate = dateSelect.value;
+  let paintedNoaa = null, trackSerial = 0;
+  async function showTrack(id, focusDate, sourceDate, stateCode) {
+    const ticket = ++trackSerial;
+    try {
+      const view = await window.oswIndexNoaaTrack({date: sourceDate, state_code: stateCode, detection_id: id, focus_date: focusDate});
+      if (ticket !== trackSerial || paintedNoaa?.date !== sourceDate || paintedNoaa?.state_code !== stateCode) return;
+      window.oswIndexNoaaTrackView = view;
+      trackLayer.replaceChildren();
+      const namespace = "http://www.w3.org/2000/svg";
+      const path = document.createElementNS(namespace, "path");
+      path.setAttribute("d", view.path); trackLayer.append(path);
+      for (const [x, y] of [view.points[0], view.points.at(-1)]) {
+        const marker = document.createElementNS(namespace, "circle");
+        marker.setAttribute("cx", x); marker.setAttribute("cy", y); marker.setAttribute("r", "7"); trackLayer.append(marker);
+      }
+      const record = view.record;
+      trackSummary.textContent = `${id}: ${record.positions.length} NOAA daily centers, ${record.positions[0].date} to ${record.positions.at(-1).date}. ${record.file_scoped_track_ref} is only an address within this seven-day file; it is not a NASA or named-ring identity.`;
+      if (view.movie_context) {
+        const movie = view.movie_context, link = document.createElement("a");
+        link.href = `${movie.tile.url}#t=${movie.seek.estimated_crop_seconds}`;
+        link.target = "_blank"; link.rel = "noopener noreferrer";
+        link.textContent = `NASA regional view near ${movie.date} ↗`; link.title = movie.scope;
+        trackSummary.append(document.createTextNode(" "), link);
+      }
+      document.querySelector("#motion-map-section").scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start"});
+    } catch (error) { if (ticket === trackSerial) trackSummary.textContent = `Weekly path unavailable: ${error.message}`; }
   }
   function drawEddyMap() {
     eddyLayer.replaceChildren();
-    if (!select.value || !showEddies.checked) return;
-    const relation = eddies.states[select.value];
+    if (!paintedNoaa || !showEddies.checked) return;
     const namespace = "http://www.w3.org/2000/svg";
-    for (const [status, ids] of [["contained", relation.contained], ["intersecting", relation.intersected]]) {
-      for (const id of ids) {
-        const eddy = eddyLookup[id];
-        if (eddy.center.some(value => value == null)) continue;
-        const [x, y] = locatorPosition(eddy.center);
-        const circle = document.createElementNS(namespace, "circle");
-        circle.setAttribute("cx", x);
-        circle.setAttribute("cy", y);
-        circle.setAttribute("r", "3.7");
-        circle.setAttribute("class", `${eddy.polarity} ${status}`);
-        const title = document.createElementNS(namespace, "title");
-        title.textContent = `${id} · ${eddy.polarity} · ${status} in ${select.value} on ${eddies.date}`;
-        circle.append(title);
-        eddyLayer.append(circle);
-      }
+    for (const group of paintedNoaa.groups) for (const row of group.rows) {
+      if (!row.point) continue;
+      const [x,y] = row.point, status = group.status === "intersected" ? "intersecting" : group.status;
+      const circle = document.createElementNS(namespace, "circle");
+      circle.setAttribute("cx", x); circle.setAttribute("cy", y); circle.setAttribute("r", "3.7");
+      circle.setAttribute("class", `${row.record.polarity} ${status}`);
+      const title = document.createElementNS(namespace, "title");
+      title.textContent = `${row.id} · ${row.record.polarity} · ${status} in ${paintedNoaa.state_code} on ${paintedNoaa.date}`;
+      circle.append(title); eddyLayer.append(circle);
     }
   }
-  for (const [code, state] of Object.entries(join.states).sort((a, b) => a[1].name.localeCompare(b[1].name))) {
+  const metadata = await window.oswIndexStateMemberships({});
+  const memberships = new Map(), contexts = new Map(), noaaViews = new Map();
+  let serial = 0;
+  for (const {code, name} of metadata.states) {
     const option = document.createElement("option");
-    option.value = code;
-    option.textContent = `${code} · ${state.name}`;
-    select.append(option);
+    option.value = code; option.textContent = `${code} · ${name}`; select.append(option);
   }
-  function draw() {
-    const code = select.value;
+  async function draw() {
+    const code = select.value, date = selectedDate, ticket = ++serial;
+    let membership = null, contextResult = null, context = null, noaa = null;
+    if (code) {
+      if (!memberships.has(code)) memberships.set(code, (await window.oswIndexStateMemberships({state_code: code})).views[0]);
+      membership = memberships.get(code);
+      const key = `${code}:${date}`;
+      if (!contexts.has(key)) contexts.set(key, await window.oswIndexStateContext({state_code: code, date}));
+      contextResult = contexts.get(key); context = contextResult.views[0];
+      if (!noaaViews.has(key)) noaaViews.set(key, await window.oswIndexNoaaState({state_code: code, date}));
+      noaa = noaaViews.get(key);
+    }
+    if (ticket !== serial) return;
+    window.oswIndexStateMembershipView = membership;
+    window.oswIndexStateContextView = contextResult;
+    window.oswIndexNoaaStateView = paintedNoaa = noaa;
+    ++trackSerial;
     trackLayer.replaceChildren();
-    trackSummary.textContent = tracks ? "Choose a state's detected eddy to see its NOAA weekly center path." : "Seven-day NOAA tracks are available for the June sample dates only.";
+    trackSummary.textContent = noaa?.weekly ? "Choose a state's detected eddy to see its NOAA weekly center path." : "Seven-day NOAA tracks are available for the June sample dates only.";
     drawEddyMap();
     result.replaceChildren();
     if (!code) {
       const message = document.createElement("p");
       message.textContent = "Choose a state to inspect its motion evidence.";
       result.append(message);
+      document.querySelector("#state-count").textContent = `${metadata.state_count} states`;
+      const url = new URL(window.location.href); url.searchParams.delete("state"); history.replaceState(null, "", url);
       return;
     }
-    const state = join.states[code];
+    const state = membership.state;
     const heading = document.createElement("h3");
     heading.textContent = `${code} · ${state.name}`;
     const atlas = document.createElement("a");
@@ -1073,14 +922,14 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
     result.append(heading, atlas);
     const currentSummary = document.createElement("p");
     currentSummary.className = "state-warning";
-    currentSummary.textContent = `${currentMatrix.states[code].atlas_linked_current_count} of ${currentMatrix.current_count} named currents have atlas evidence here. The remaining current/state pairs are unresolved; map arrows, sketches, and locators do not establish observed flow footprints.`;
+    currentSummary.textContent = `${membership.atlas_linked_current_count} of ${membership.current_count} named currents have atlas evidence here. The remaining current/state pairs are unresolved; map arrows, sketches, and locators do not establish observed flow footprints.`;
     result.append(currentSummary);
     const routeSection = document.createElement("section");
     routeSection.className = "state-reference-routes";
     const routeHeading = document.createElement("h4");
     routeHeading.textContent = "Reference routes through this diagram state";
     routeSection.append(routeHeading);
-    const routeState = referenceStateRoutes?.states[code];
+    const routeState = context.reference_routes;
     const routeSummary = document.createElement("p");
     routeSummary.textContent = routeState
       ? `${routeState.current_count} named currents have a crossing in at least one declared route scenario; ${routeState.nominal_current_count} cross in a nominal route. These are editorial line crossings, not observed current passage or eddy containment. Scenario counts are sensitivity cases, not probabilities or seasonal frequency.`
@@ -1113,35 +962,35 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
     }
     result.append(routeSection);
 
-    const observedFronts = gulfStreamFront.states[code].front_observations;
-    const observedFrontLengths = gulfStreamFront.states[code].front_intersection_lengths_km;
+    const observedFronts = context.front.front_observations;
+    const observedFrontLengths = context.front.front_intersection_lengths_km;
     if (Object.keys(observedFronts).length) {
       const front = document.createElement("p");
       front.className = "state-warning";
       const current = document.createElement("a");
       current.href = "object.html?id=current%3Agulf-stream-system";
       current.textContent = "Gulf Stream System";
-      front.append(document.createTextNode(`${gulfStreamFront.date} analyzed surface front: `), current,
+      front.append(document.createTextNode(`${context.front_date} analyzed surface front: `), current,
         document.createTextNode(` ${Object.entries(observedFronts).map(([side, kind]) => `${side.replaceAll("_", " ")} (${kind.replaceAll("_", " ")}, ≈${Math.round(observedFrontLengths[side]).toLocaleString()} km of analyzed front in this atlas state)`).join("; ")}. These lengths measure dated front segments clipped by approximate state shapes, not a whole current or perpetual passage. `));
       const source = document.createElement("a");
-      source.href = gulfStreamFront.source_url;
+      source.href = context.front_source_url;
       source.target = "_blank";
       source.rel = "noopener noreferrer";
       source.textContent = "NOAA source ↗";
       front.append(source);
       result.append(front);
     }
-    const diagnosedPathHere = geostrophicPath.state_relations.find(row => row.state_code === code);
+    const diagnosedPathHere = context.diagnosed_relation;
     if (diagnosedPathHere) {
       const paragraph = document.createElement("p");
       paragraph.className = "state-warning state-diagnosed-current-path";
       const current = document.createElement("a");
       current.href = "object.html?id=current%3Agulf-stream-system";
       current.textContent = "Gulf Stream System";
-      paragraph.append(document.createTextNode(`${geostrophicPath.observation_date} partial surface geostrophic streamline: `), current,
-        document.createTextNode(` · ≈${Math.round(diagnosedPathHere.intersection_length_km).toLocaleString()} km of this dated diagnostic line in ${code}. The entire seed-to-50°W reach is ≈${Math.round(geostrophicPath.representative.segment_length_km).toLocaleString()} km; a seed 0.25° north stopped before the gate. NOAA labels the source analysis experimental. This is neither a whole-current length nor permanent state passage. `));
+      paragraph.append(document.createTextNode(`${context.diagnosed_date} partial surface geostrophic streamline: `), current,
+        document.createTextNode(` · ≈${Math.round(diagnosedPathHere.intersection_length_km).toLocaleString()} km of this dated diagnostic line in ${code}. The entire seed-to-50°W reach is ≈${Math.round(context.diagnosed_length_km).toLocaleString()} km; a seed 0.25° north stopped before the gate. NOAA labels the source analysis experimental. This is neither a whole-current length nor permanent state passage. `));
       const source = document.createElement("a");
-      source.href = geostrophicPath.product_page;
+      source.href = context.diagnosed_product_page;
       source.target = "_blank";
       source.rel = "noopener noreferrer";
       source.textContent = "NOAA velocity product ↗";
@@ -1149,13 +998,12 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
       result.append(paragraph);
     }
     if(window.renderAtlasDatedStateSamples)window.renderAtlasDatedStateSamples(result,code);
-    const localCurrentObservations = currentSourceObservations.filter(row => row.state_id === `state:${code}`);
-    for (const observation of localCurrentObservations) {
+    for (const {record: observation, current: observedCurrent} of context.current_observations) {
       const paragraph = document.createElement("p");
       paragraph.className = "state-warning state-source-observation";
       const current = document.createElement("a");
       current.href = `object.html?id=${encodeURIComponent(observation.entity_id)}`;
-      current.textContent = currentLookup[observation.entity_id.replace("current:", "")].name;
+      current.textContent = observedCurrent.name;
       paragraph.append(document.createTextNode(`${observation.observation_start} to ${observation.observation_end} published local observation: `), current,
         document.createTextNode(` · ${observation.reported_locality}. ${observation.time_detail} ${observation.state_boundary_limit} This source-reported local section or locality does not establish a whole-current path, length, or permanent state crossing. `));
       const source = document.createElement("a");
@@ -1166,7 +1014,7 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
       paragraph.append(source);
       result.append(paragraph);
     }
-    const operationalEddiesHere = operationalEddyObservations.filter(row => row.state_id === `state:${code}`);
+    const operationalEddiesHere = context.operational_eddy_observations;
     if (operationalEddiesHere.length) {
       const details = document.createElement("details");
       details.className = "state-eddy-details operational-eddy-details";
@@ -1199,41 +1047,18 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
     }
     const groups = document.createElement("div");
     groups.className = "state-groups";
-    const mapped = cartographic.states[code];
-    for (const [title, ids, lookup, prefix, fallback] of [
-      ["Schematic current lines crossing", state.schematic_current_centerline_crossings, currentLookup, "current", "No drawn current line crosses this state."],
-      ["Cartographic current arrows crossing · four widths", mapped.stable_cartographic_current_crossings, currentLookup, "current", "No mapped current arrow crosses this state at all four source widths."],
-      ["Width-sensitive cartographic contacts", mapped.width_sensitive_cartographic_contacts, currentLookup, "current", "No source-arrow contacts change across the four display widths."],
-      ["NASA-named current sketch crossing", state.editorial_nasa_current_line_crossings, currentLookup, "current", "No additional NASA-named current sketch crosses this state."],
-      ["Editorial named continuation sketch crossing", state.editorial_named_current_line_crossings, currentLookup, "current", "No independently named continuation sketch crosses this state."],
-      ["NASA-identified current · mapped arrow crossing", nasaCrosswalk.states[code].cartographic_current_crossings, nasaLookup, "nasa", "No NASA-identified current has a mapped arrow crossing this state."],
-      ["NASA-identified current · width-sensitive map contact", nasaCrosswalk.states[code].width_sensitive_cartographic_contacts, nasaLookup, "nasa", "No NASA-identified current has a width-sensitive map contact here."],
-      ["NASA-identified current · schematic line crossing", nasaCrosswalk.states[code].schematic_current_crossings, nasaLookup, "nasa", "No NASA-identified current has a schematic line crossing here."],
-      ["NASA-identified object · OSW schematic gate crossing", nasaCrosswalk.states[code].schematic_object_crossings, nasaLookup, "nasa", "No NASA-identified object has an OSW gate line crossing here."],
-      ["NASA-identified current · editorial line crossing", nasaCrosswalk.states[code].editorial_current_line_crossings, nasaLookup, "nasa", "No NASA-identified current has an editorial line crossing here."],
-      ["Named current locators inside", state.current_locator_candidates, currentLookup, "current", "No current locator in this state."],
-      ["NASA object locators inside", state.nasa_object_locator_candidates, nasaLookup, "nasa", "No NASA object locator in this state."],
-      ["Named eddy locators or sample sites inside", eddyGeographyJoin.states[code], eddyGeographyLookup, "eddy-geography", "No separately named eddy locator or sample site in this state."],
-    ]) {
+    for (const groupView of membership.groups) {
       const group = document.createElement("div");
-      const h4 = document.createElement("h4");
-      h4.textContent = title;
-      const links = stateLinks(ids, lookup, prefix, fallback);
-      const arrowKind = title.startsWith("Cartographic current arrows") || title.startsWith("NASA-identified current · mapped arrow") ? "stable"
-        : title.startsWith("Width-sensitive cartographic contacts") || title.startsWith("NASA-identified current · width-sensitive") ? "width_sensitive" : null;
-      if (arrowKind) {
-        for (const [index, itemId] of ids.entries()) {
-          const relation = prefix === "nasa" ? nasaMatrix.states[code].objects[itemId] : currentMatrix.states[code].currents[itemId];
-          const sourceIds = relation.cartographic_source_arrow_ids[arrowKind];
-          if (sourceIds.length) links.children[index].append(document.createTextNode(` · source arrow ${sourceIds.join(", ")}`));
-        }
+      group.dataset.membershipKind = `${groupView.prefix}:${groupView.kind}`;
+      const h4 = document.createElement("h4"); h4.textContent = groupView.title;
+      const links = stateMembershipLinks(groupView.members, groupView.prefix, groupView.fallback);
+      for (const [index, member] of groupView.members.entries()) {
+        if (member.source_arrow_ids.length) links.children[index].append(document.createTextNode(` · source arrow ${member.source_arrow_ids.join(", ")}`));
       }
-      group.append(h4, links);
-      groups.append(group);
+      group.append(h4, links); groups.append(group);
     }
     result.append(groups);
-    const contextualClasses = Object.entries(nasaMatrix.states[code].objects)
-      .filter(([, relation]) => relation.contextual_members.length);
+    const contextualClasses = membership.contextual_classes;
     if (contextualClasses.length) {
       const details = document.createElement("details");
       details.className = "state-eddy-details";
@@ -1241,18 +1066,19 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
       summary.textContent = `${contextualClasses.length} NASA classes or systems with indexed examples here`;
       details.append(summary);
       const list = document.createElement("ul");
-      for (const [classId, relation] of contextualClasses) {
+      for (const context of contextualClasses) {
+        const classId = context.object.id;
         const item = document.createElement("li");
         const classLink = document.createElement("a");
         classLink.href = `#nasa-${classId}`;
-        classLink.textContent = nasaLookup[classId].name;
+        classLink.textContent = context.object.name;
         item.append(classLink, document.createTextNode(": "));
-        for (const [index, member] of relation.contextual_members.entries()) {
+        for (const [index, member] of context.members.entries()) {
           if (index) item.append(document.createTextNode(", "));
           const memberLink = document.createElement("a");
-          memberLink.href = `#nasa-${member.object_id}`;
-          memberLink.textContent = nasaLookup[member.object_id].name;
-          memberLink.title = `${facetLabel(member.relation)}; atlas evidence: ${member.evidence_kinds.map(facetLabel).join(", ")}.`;
+          memberLink.href = `#nasa-${member.id}`;
+          memberLink.textContent = member.name;
+          memberLink.title = `${facetLabel(member.relation.relation)}; atlas evidence: ${member.relation.evidence_kinds.map(facetLabel).join(", ")}.`;
           item.append(memberLink);
         }
         item.append(document.createTextNode(" · example context only; no class footprint or containment claim."));
@@ -1261,7 +1087,7 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
       details.append(list);
       result.append(details);
     }
-    const namedEddyPositions = eddyGeographyJoin.states_with_additional_observed_positions?.[code] || [];
+    const namedEddyPositions = context.named_eddy_positions;
     if (namedEddyPositions.length) {
       const details = document.createElement("details");
       details.className = "state-eddy-details";
@@ -1269,29 +1095,29 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
       summary.textContent = `${namedEddyPositions.length} source-reported named-eddy point${namedEddyPositions.length === 1 ? "" : "s"} inside`;
       details.append(summary);
       const list = document.createElement("ul");
-      for (const visit of namedEddyPositions) {
+      for (const {record: visit, eddy: observedEddy} of namedEddyPositions) {
         const item = document.createElement("li");
         const link = document.createElement("a");
         link.href = `#eddy-geography-${visit.eddy_id}`;
-        link.textContent = `${eddyGeographyLookup[visit.eddy_id]?.name || visit.eddy_id} · ${visit.date || visit.period}`;
+        link.textContent = `${observedEddy.name} · ${visit.date || visit.period}`;
         item.append(link, document.createTextNode(` · ${facetLabel(visit.evidence_type)}; point only, no footprint or containment claim.`));
         list.append(item);
       }
       details.append(list);
       result.append(details);
     }
-    if (loopContext.states[code]?.length) {
+    if (context.loop_region_names.length) {
       const details = document.createElement("details");
       details.className = "state-eddy-details";
       const summary = document.createElement("summary");
-      summary.textContent = `${loopContext.states[code].length} Horizon Loop eddy names · shared Gulf source-region gateway`;
-      details.append(summary, stateLinks(loopContext.states[code], loopLookup, "eddy", "No names in this source region."));
+      summary.textContent = `${context.loop_region_names.length} Horizon Loop eddy names · shared Gulf source-region gateway`;
+      details.append(summary, stateMembershipLinks(context.loop_region_names, "eddy", "No names in this source region."));
       const caveat = document.createElement("p");
       caveat.textContent = "These names share a regional locator. Horizon's table does not supply individual positions, so this list does not establish containment or intersection with the state.";
       details.append(caveat);
       result.append(details);
     }
-    const publishedLoopPositions = loopContext.states_with_published_positions?.[code] || [];
+    const publishedLoopPositions = context.published_loop_positions;
     if (publishedLoopPositions.length) {
       const details = document.createElement("details");
       details.className = "state-eddy-details";
@@ -1299,37 +1125,37 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
       summary.textContent = `${publishedLoopPositions.length} published Loop eddy center point${publishedLoopPositions.length === 1 ? "" : "s"} inside`;
       details.append(summary);
       const list = document.createElement("ul");
-      for (const eddyId of publishedLoopPositions) {
-        const position = loopLookup[eddyId].published_observed_position;
+      for (const observedEddy of publishedLoopPositions) {
+        const eddyId = observedEddy.id, position = observedEddy.published_observed_position;
         const item = document.createElement("li");
         const link = document.createElement("a");
         link.href = `#eddy-${eddyId}`;
-        link.textContent = `${loopLookup[eddyId].name} · ${position.period}`;
+        link.textContent = `${observedEddy.name} · ${position.period}`;
         item.append(link, document.createTextNode(" · approximate center point; no footprint or NASA identity claim."));
         list.append(item);
       }
       details.append(list);
       result.append(details);
     }
-    const movieJoin = nasaStateTiles.states[code];
+    const movieJoin = context.movie_selection;
     const movieHeading = document.createElement("h4");
     movieHeading.textContent = "NASA regional movie views";
     result.append(movieHeading);
     const movieList = document.createElement("ul");
     movieList.className = "state-movie-list";
     function appendDateSeek(item, url) {
-      const seek = cropTimeline.dates[eddies.date];
+      const seek = contextResult.movie_seek;
       if (!seek) return;
       const link = document.createElement("a");
       link.href = `${url}#t=${seek.estimated_crop_seconds}`;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
-      link.textContent = `~${eddies.date} model date ↗`;
+      link.textContent = `~${selectedDate} model date ↗`;
       link.title = "Approximate cross-release date alignment; NASA did not publish crop frame timestamps or identify the NOAA eddy in this movie.";
       item.append(document.createTextNode(" · "), link);
     }
-    for (const [index, tileId] of movieJoin.recommended_regional_tiles.entries()) {
-      const match = movieJoin.matches.find(item => item.tile_id === tileId);
+    for (const [index, match] of context.recommended_movies.entries()) {
+      const tileId = match.tile_id;
       const entry = document.createElement("li");
       const link = document.createElement("a");
       link.href = match.url;
@@ -1341,7 +1167,7 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
       appendDateSeek(entry, match.url);
       movieList.append(entry);
     }
-    const overview = movieJoin.matches.find(item => item.tile_id === movieJoin.overview_tile);
+    const overview = context.overview_movie;
     const overviewItem = document.createElement("li");
     const overviewLink = document.createElement("a");
     overviewLink.href = overview.url;
@@ -1373,9 +1199,9 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
       gate.textContent = `Schematic NASA-linked gate line crossing: ${state.schematic_nasa_object_crossings.join(", ").replaceAll("-", " ")}.`;
       result.append(gate);
     }
-    const detected = eddies.states[code];
+    const detected = Object.fromEntries(noaa.groups.map(group => [group.status, group.rows]));
     const eddyHeading = document.createElement("h4");
-    eddyHeading.textContent = `NOAA detected eddies · ${eddies.date}`;
+    eddyHeading.textContent = `NOAA detected eddies · ${selectedDate}`;
     result.append(eddyHeading);
     for (const [label, ids] of [["Fully contained contours", detected.contained], ["Contours intersecting this state", detected.intersected]]) {
       const details = document.createElement("details");
@@ -1384,25 +1210,25 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
       summary.textContent = `${label}: ${ids.length}`;
       details.append(summary);
       const list = document.createElement("ul");
-      for (const id of ids) {
-        const eddy = eddyLookup[id];
+      for (const row of ids) {
+        const id = row.id, eddy = row.record;
         const item = document.createElement("li");
         const [longitude, latitude] = eddy.center;
         const description = `${id} · ${eddy.polarity} · center ${latitude?.toFixed(2)}°, ${longitude?.toFixed(2)}° · radius ${eddy.radius_km?.toFixed(1) ?? "?"} km`;
-        if (tracks?.tracks[id]) {
+        if (row.track_available) {
           const button = document.createElement("button");
           button.type = "button";
           button.textContent = `${description} · show weekly path`;
-          button.addEventListener("click", () => showTrack(id, eddies.date));
+          button.addEventListener("click", () => showTrack(id, date, date, code));
           item.append(button);
         } else {
           item.textContent = description;
         }
-        const datedCrop = eddyCropJoin.dates[eddies.date];
-        const tileId = datedCrop?.detections[id];
+        const datedCrop = row.crop;
+        const tileId = datedCrop?.tile.id;
         if (tileId) {
           const movie = document.createElement("a");
-          movie.href = `${cropById[tileId].url}#t=${datedCrop.estimated_crop_seconds}`;
+          movie.href = `${datedCrop.tile.url}#t=${datedCrop.estimated_crop_seconds}`;
           movie.target = "_blank";
           movie.rel = "noopener noreferrer";
           movie.textContent = `NASA crop ${tileId} near this center/date ↗`;
@@ -1419,12 +1245,12 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
       details.append(list);
       result.append(details);
     }
-    if (centerVisits && weeklyContours) {
-    const weeklyDates = centerVisits.states[code].track_dates;
+    if (noaa.weekly) {
+    const weeklyDates = noaa.weekly.center_relations.track_dates;
     const weeklyDetails = document.createElement("details");
     weeklyDetails.className = "state-eddy-details";
     const weeklySummary = document.createElement("summary");
-    weeklySummary.textContent = `NOAA weekly center visits · ${Object.keys(weeklyDates).length} day-one tracks · ${centerVisits.start_date} to ${centerVisits.end_date}`;
+    weeklySummary.textContent = `NOAA weekly center visits · ${Object.keys(weeklyDates).length} day-one tracks · ${noaa.weekly.start_date} to ${noaa.weekly.end_date}`;
     weeklyDetails.append(weeklySummary);
     const weeklyList = document.createElement("ul");
     for (const [id, dates] of Object.entries(weeklyDates)) {
@@ -1432,7 +1258,7 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
       const button = document.createElement("button");
       button.type = "button";
       button.textContent = `${id} · center in state ${dates.join(", ")} · show weekly path`;
-      button.addEventListener("click", () => showTrack(id, dates[0]));
+      button.addEventListener("click", () => showTrack(id, dates[0], date, code));
       item.append(button);
       weeklyList.append(item);
     }
@@ -1444,11 +1270,11 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
     weeklyDetails.append(weeklyList);
     result.append(weeklyDetails);
     for (const [status, label] of [["contained", "Fully contained weekly contours"], ["intersected", "Weekly contours intersecting this state"]]) {
-      const trackDates = weeklyContours.states[code][status];
+      const trackDates = noaa.weekly.contour_relations[status];
       const details = document.createElement("details");
       details.className = "state-eddy-details";
       const summary = document.createElement("summary");
-      summary.textContent = `${label}: ${Object.keys(trackDates).length} day-one tracks · ${weeklyContours.start_date} to ${weeklyContours.end_date}`;
+      summary.textContent = `${label}: ${Object.keys(trackDates).length} day-one tracks · ${noaa.weekly.start_date} to ${noaa.weekly.end_date}`;
       details.append(summary);
       const list = document.createElement("ul");
       for (const [id, dates] of Object.entries(trackDates)) {
@@ -1456,7 +1282,7 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
         const button = document.createElement("button");
         button.type = "button";
         button.textContent = `${id} · ${dates.join(", ")} · show weekly path`;
-        button.addEventListener("click", () => showTrack(id, dates[0]));
+        button.addEventListener("click", () => showTrack(id, dates[0], date, code));
         item.append(button);
         list.append(item);
       }
@@ -1469,44 +1295,38 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
       result.append(details);
     }
     }
-    const nasaRelations = nasaMatrix.states[code];
-    const unresolvedIds = Object.entries(nasaRelations.objects).filter(([, relation]) => relation.atlas_relation === "unresolved").map(([id]) => id);
+    const unresolved = membership.unresolved_nasa;
     const nasaStatus = document.createElement("p");
     nasaStatus.className = "state-warning";
-    nasaStatus.textContent = `${nasaRelations.atlas_linked_object_count} of ${nasaMatrix.object_count} NASA-identified records have atlas map evidence in ${code}; ${unresolvedIds.length} object–state pairs remain unresolved. Map evidence does not establish a physical crossing or containment.`;
+    nasaStatus.textContent = `${membership.atlas_linked_object_count} of ${membership.nasa_object_count} NASA-identified records have atlas map evidence in ${code}; ${unresolved.length} object–state pairs remain unresolved. Map evidence does not establish a physical crossing or containment.`;
     result.append(nasaStatus);
     const unknownDetails = document.createElement("details");
     unknownDetails.className = "state-eddy-details nasa-unresolved-details";
     const unknownSummary = document.createElement("summary");
-    unknownSummary.textContent = `NASA object relations unresolved here · ${unresolvedIds.length}`;
-    unknownDetails.append(unknownSummary, stateLinks(unresolvedIds, nasaLookup, "nasa", "Every NASA object has atlas evidence in this state."));
+    unknownSummary.textContent = `NASA object relations unresolved here · ${unresolved.length}`;
+    unknownDetails.append(unknownSummary, stateMembershipLinks(unresolved, "nasa", "Every NASA object has atlas evidence in this state."));
     result.append(unknownDetails);
     const warning = document.createElement("p");
     warning.className = "state-warning";
-    warning.textContent = `These NOAA detections sample ${eddies.date} only, within the product's approximate 60°S–60°N latitude range. IDs are local to daily files; none is matched to a Horizon ring name or a NASA model eddy. Where present, NASA crop links use NOAA center position and an inferred same-model-date seek, not an identity match. ${centerVisits ? `The ${centerVisits.start_date} to ${centerVisits.end_date} center visits and dated contour relations are separate tests. ` : "Seven-day tracks are available for June sample dates only. "}Named-ring containment/intersection remains unknown. Editorial current sketches are approximate routes, not observed cores or verified passage; locator points are candidates only.`;
+    warning.textContent = `These NOAA detections sample ${selectedDate} only, within the product's approximate 60°S–60°N latitude range. IDs are local to daily files; none is matched to a Horizon ring name or a NASA model eddy. Where present, NASA crop links use NOAA center position and an inferred same-model-date seek, not an identity match. ${noaa.weekly ? `The ${noaa.weekly.start_date} to ${noaa.weekly.end_date} center visits and dated contour relations are separate tests. ` : "Seven-day tracks are available for June sample dates only. "}Named-ring containment/intersection remains unknown. Editorial current sketches are approximate routes, not observed cores or verified passage; locator points are candidates only.`;
     result.append(warning);
-    document.querySelector("#state-count").textContent = `${Object.keys(join.states).length} states · ${code} selected`;
+    document.querySelector("#state-count").textContent = `${metadata.state_count} states · ${code} selected`;
     const url = new URL(window.location.href);
     url.searchParams.set("state", code);
     history.replaceState(null, "", url);
   }
-  select.addEventListener("change", draw);
+  select.addEventListener("change", () => draw().catch(error => {trackSummary.textContent = `State query unavailable: ${error.message}`;}));
   dateSelect.addEventListener("change", async () => {
-    const previousDate = eddies.date;
+    const previousDate = selectedDate;
     const nextDate = dateSelect.value;
     dateSelect.disabled = true;
     try {
-      if (!eddySnapshots[nextDate]) {
-        const snapshot = seasonalManifest.snapshots.find(item => item.date === nextDate);
-        eddySnapshots[nextDate] = await loadJson(snapshot.path);
-      }
-      eddies = eddySnapshots[nextDate];
-      eddyLookup = Object.fromEntries(eddies.entries.map(item => [item.id, item]));
-      ({ tracks, centerVisits, weeklyContours } = weeklySnapshots[nextDate] || { tracks: null, centerVisits: null, weeklyContours: null });
+      selectedDate = nextDate;
       trackLayer.replaceChildren();
-      draw();
+      await draw();
     } catch (error) {
       dateSelect.value = previousDate;
+      selectedDate = previousDate;
       trackSummary.textContent = `Could not load ${nextDate}: ${error.message}`;
       console.error(error);
     } finally {
@@ -1515,39 +1335,35 @@ function renderStates(join, currents, nasa, eddySnapshots, weeklySnapshots, seas
   });
   showEddies.addEventListener("change", drawEddyMap);
   const requested = new URLSearchParams(window.location.search).get("state");
-  if (requested && join.states[requested]) select.value = requested;
-  document.querySelector("#state-count").textContent = `${Object.keys(join.states).length} states`;
-  draw();
+  if (requested && metadata.states.some(state => state.code === requested)) select.value = requested;
+  document.querySelector("#state-count").textContent = `${metadata.state_count} states`;
+  await draw();
 }
 
-function renderMarineRegionsCurrentCrosswalk(data, currents) {
+async function renderMarineRegionsCurrentCrosswalk() {
   const input = document.querySelector("#source-current-search");
   const filter = document.querySelector("#source-current-filter");
   const body = document.querySelector("#source-current-rows");
-  const currentNames = Object.fromEntries(currents.entries.map(item => [item.id, item.name]));
-  function draw() {
-    const query = input.value.trim().toLocaleLowerCase();
+  let serial = 0;
+  async function draw() {
+    const ticket = ++serial;
+    const view = await window.oswIndexSupport({section: "reconciliation", text: input.value, filter: filter.value});
+    if (ticket !== serial) return;
+    window.oswIndexReconciliationView = view;
     body.replaceChildren();
-    for (const record of data.records) {
-      const matched = record.join_status.startsWith("matched");
-      const excluded = !matched && record.join_status !== "candidate_needs_review";
-      if (filter.value === "matched" && !matched || filter.value === "excluded" && !excluded || filter.value === "candidate_needs_review" && record.join_status !== filter.value) continue;
-      if (!`${record.name} ${record.source || ""} ${record.join_note} ${record.review_note || ""}`.toLocaleLowerCase().includes(query)) continue;
+    for (const joined of view.rows) {
+      const record = joined.record;
       const row = document.createElement("tr");
       row.id = `mr-current-${record.mrgid}`;
       cell(row, record.name);
-      const status = cell(row, matched ? record.join_status === "matched_exact_name" ? "Exact name match" : "Alias to review" : excluded ? "Other type" : "Needs review");
+      const status = cell(row, joined.status_label);
       status.title = record.join_note;
       const osw = document.createElement("td");
       if (record.osw_current_id) {
         const link = document.createElement("a");
         link.href = `#current-${record.osw_current_id}`;
-        link.textContent = `${currentNames[record.osw_current_id]} ↗`;
-        link.addEventListener("click", () => {
-          document.querySelector("#current-search").value = "";
-          document.querySelector("#current-setting").value = "all";
-          document.querySelector("#current-search").dispatchEvent(new Event("input"));
-        });
+        link.textContent = `${joined.current.name} ↗`;
+        link.addEventListener("click", event => window.oswNavigateIndexCurrent(event, record.osw_current_id));
         osw.append(link);
       } else osw.textContent = "Unresolved";
       row.append(osw);
@@ -1578,27 +1394,46 @@ function renderMarineRegionsCurrentCrosswalk(data, currents) {
       row.append(recordCell);
       body.append(row);
     }
-    document.querySelector("#source-current-count").textContent = `${body.children.length} of ${data.source_record_count} source records`;
+    document.querySelector("#source-current-count").textContent = `${body.children.length} of ${view.total} source records`;
   }
-  input.addEventListener("input", draw);
-  filter.addEventListener("change", draw);
-  draw();
+  const refresh = () => draw().catch(error => {document.querySelector("#source-current-count").textContent = `Source query unavailable: ${error.message}`;});
+  input.addEventListener("input", refresh);
+  filter.addEventListener("change", refresh);
+  await draw();
 }
 
-function renderEddies(data, context) {
+window.oswNavigateIndexEddy = async function(event, section, hash) {
+  event.preventDefault();
+  const controller = window.oswIndexEddyControllers?.[section];
+  if (!controller) return;
+  controller.input.value = "";
+  try {
+    await controller.draw();
+    const target = document.getElementById(hash.slice(1));
+    if (target) {location.hash = hash; target.scrollIntoView({block: "center"});}
+  } catch (error) {
+    document.querySelector(section === "loop" ? "#eddy-count" : "#eddy-geography-count").textContent = `Eddy query unavailable: ${error.message}`;
+  }
+};
+
+async function renderEddies() {
+  const initial = await window.oswIndexEddies({section: "loop"});
   const input = document.querySelector("#eddy-search");
   const body = document.querySelector("#eddy-rows");
   const count = document.querySelector("#eddy-count");
-  document.querySelector("#eddy-date").textContent = data.retrieved_date;
-  const contextById = Object.fromEntries(context.entries.map(item => [item.id, item]));
-  function draw() {
-    const query = input.value.trim().toLocaleLowerCase();
+  document.querySelector("#eddy-date").textContent = initial.retrieved_date;
+  let serial = 0;
+  async function draw() {
+    const ticket = ++serial;
+    const view = await window.oswIndexEddies({section: "loop", text: input.value});
+    if (ticket !== serial) return;
+    (window.oswIndexEddyViews ||= {}).loop = view;
     body.replaceChildren();
-    for (const item of data.entries) {
-      if (!`${item.name} ${item.initial_separation || ""} ${item.role} ${item.source_number}`.toLocaleLowerCase().includes(query)) continue;
+    for (const joined of view.rows) {
+      const item = joined.record;
       const row = document.createElement("tr");
       row.id = `eddy-${item.id}`;
-      const relation = contextById[item.id];
+      const relation = joined.relation;
       cell(row, String(item.source_number));
       cell(row, item.name);
       cell(row, item.role === "primary" ? "Primary" : "Secondary eddy");
@@ -1612,7 +1447,7 @@ function renderEddies(data, context) {
         dateNote.textContent = " · linked event began in NASA model years";
         separation.append(dateNote);
       }
-      const parent = cell(row, item.related_primary_id ? `Linked to ${data.entries.find(entry => entry.id === item.related_primary_id).name}` : "—");
+      const parent = cell(row, item.related_primary_id ? `Linked to ${joined.parent.name}` : "—");
       const nasaClass = document.createElement("a");
       nasaClass.href = `#nasa-${relation.nasa_object_id}`;
       nasaClass.textContent = "NASA-described class ↗";
@@ -1666,22 +1501,25 @@ function renderEddies(data, context) {
       mapLink(row, relation.published_observed_position ? "Published center point ↗" : "Gulf region ↗", relation.published_observed_position ? item.id : "loop-rings", null, relation.published_observed_position?.nasa_region_movie.url || relation.nasa_region_movie.url, null, relation.published_observed_position ? "NASA regional model view of the approximate published eddy center, from a different period. NASA does not identify this ring or provide its footprint." : null);
       body.append(row);
     }
-    count.textContent = `${body.children.length} of ${data.entries.length} names · ${data.numbered_event_count} numbered events`;
+    count.textContent = `${body.children.length} of ${view.total} names · ${view.numbered_event_count} numbered events`;
   }
-  input.addEventListener("input", draw);
-  draw();
+  input.addEventListener("input", () => draw().catch(error => {count.textContent = `Eddy query unavailable: ${error.message}`;}));
+  (window.oswIndexEddyControllers ||= {}).loop = {input, draw};
+  await draw();
 }
 
-function renderNamedEddyGeography(data, join, currents) {
-  const currentById = Object.fromEntries(currents.entries.map(item => [item.id, item]));
+async function renderNamedEddyGeography() {
+  let serial = 0;
   const input = document.querySelector("#eddy-geography-search");
   const body = document.querySelector("#eddy-geography-rows");
-  function draw() {
-    const query = input.value.trim().toLocaleLowerCase();
+  async function draw() {
+    const ticket = ++serial;
+    const view = await window.oswIndexEddies({section: "geography", text: input.value});
+    if (ticket !== serial) return;
+    (window.oswIndexEddyViews ||= {}).geography = view;
     body.replaceChildren();
-    for (const item of data.entries) {
-      if (!`${item.name} ${item.basin} ${item.identity_level} ${item.event_year || ""}`.toLocaleLowerCase().includes(query)) continue;
-      const relation = join.entries[item.id];
+    for (const joined of view.rows) {
+      const item = joined.record, relation = joined.relation;
       const row = document.createElement("tr");
       row.id = `eddy-geography-${item.id}`;
       const name = cell(row, item.name);
@@ -1718,7 +1556,7 @@ function renderNamedEddyGeography(data, join, currents) {
       if (item.activity_region) {
         const box = item.activity_region;
         const regionSource = document.createElement("a");
-        regionSource.href = data.sources[box.source];
+        regionSource.href = view.sources[box.source];
         regionSource.target = "_blank";
         regionSource.rel = "noopener noreferrer";
         regionSource.textContent = `Study activity box ${box.west}–${box.east}°E, ${box.south}–${box.north}°N ↗`;
@@ -1733,7 +1571,7 @@ function renderNamedEddyGeography(data, join, currents) {
       }
       for (const key of item.supporting_sources || []) {
         const support = document.createElement("a");
-        support.href = data.sources[key];
+        support.href = view.sources[key];
         support.target = "_blank";
         support.rel = "noopener noreferrer";
         support.textContent = `${facetLabel(key)} ↗`;
@@ -1742,8 +1580,9 @@ function renderNamedEddyGeography(data, join, currents) {
       if (item.related_current_id) {
         const currentLink = document.createElement("a");
         currentLink.href = `#current-${item.related_current_id}`;
-        currentLink.textContent = `Related source current: ${currentById[item.related_current_id].name} ↗`;
+        currentLink.textContent = `Related source current: ${joined.related_current.name} ↗`;
         currentLink.title = "A source-described current relationship; the exact relation depends on the eddy record. This does not establish NASA identification or an observed whole-eddy path.";
+        currentLink.addEventListener("click", event => window.oswNavigateIndexCurrent(event, item.related_current_id));
         identity.append(document.createElement("br"), currentLink);
       }
       if (item.nasa_object_id) {
@@ -1797,7 +1636,7 @@ function renderNamedEddyGeography(data, join, currents) {
       if (item.independent_source_census) {
         const census = item.independent_source_census;
         const link = document.createElement("a");
-        link.href = data.sources[census.source];
+        link.href = view.sources[census.source];
         link.target = "_blank";
         link.rel = "noopener noreferrer";
         link.textContent = `${census.initial_shed_rings} shed rings; ${census.long_lived_walvis_crossing_tracks} long-lived Walvis-crossing tracks (${census.period}) ↗`;
@@ -1806,16 +1645,11 @@ function renderNamedEddyGeography(data, join, currents) {
       }
       if (item.source_activity_periods) identity.append(document.createTextNode(` · ${item.source_activity_periods} reported activity periods in ${item.source_activity_year}`));
       if (item.member_of) {
-        const parent = data.entries.find(entry => entry.id === item.member_of);
+        const parent = joined.parent;
         const link = document.createElement("a");
         link.href = `#eddy-geography-${item.member_of}`;
         link.textContent = `Family: ${parent.name} ↗`;
-        link.addEventListener("click", () => {
-          if (input.value) {
-            input.value = "";
-            draw();
-          }
-        });
+        link.addEventListener("click", event => window.oswNavigateIndexEddy(event, "geography", link.hash));
         identity.append(document.createElement("br"), link);
       }
       cell(row, item.basin);
@@ -1834,7 +1668,7 @@ function renderNamedEddyGeography(data, join, currents) {
       }
       if (!state.childNodes.length) state.textContent = "No suitable OSW state";
       row.append(state);
-      sourceCell(row, "Research source ↗", data.sources[item.source]);
+      sourceCell(row, "Research source ↗", view.sources[item.source]);
       const movie = document.createElement("td");
       const map = document.createElement("a");
       map.href = "#motion-map-section";
@@ -1865,123 +1699,71 @@ function renderNamedEddyGeography(data, join, currents) {
       row.append(movie);
       body.append(row);
     }
-    document.querySelector("#eddy-geography-count").textContent = `${body.children.length} of ${data.entries.length} names`;
+    document.querySelector("#eddy-geography-count").textContent = `${body.children.length} of ${view.total} names`;
   }
-  input.addEventListener("input", draw);
-  draw();
+  input.addEventListener("input", () => draw().catch(error => {document.querySelector("#eddy-geography-count").textContent = `Eddy query unavailable: ${error.message}`;}));
+  (window.oswIndexEddyControllers ||= {}).geography = {input, draw};
+  await draw();
 }
 
-function renderUnifiedEddyIndex(inventory) {
+async function renderUnifiedEddyIndex() {
+  const initial = await window.oswIndexEddies({section: "inventory"});
+  let serial = 0;
   const input = document.querySelector("#all-eddy-search");
   const results = document.querySelector("#all-eddy-results");
   const count = document.querySelector("#all-eddy-count");
-  count.textContent = `${inventory.record_count} source records · ${inventory.horizon_numbered_event_count} numbered Loop events`;
-  function draw() {
-    const query = input.value.trim().toLocaleLowerCase();
+  count.textContent = `${initial.total} source records · ${initial.horizon_numbered_event_count} numbered Loop events`;
+  async function draw() {
+    const ticket = ++serial;
+    const view = await window.oswIndexEddies({section: "inventory", text: input.value});
+    if (ticket !== serial) return;
+    (window.oswIndexEddyViews ||= {}).inventory = view;
     results.replaceChildren();
-    if (!query) return;
-    const matches = inventory.entries.filter(item =>
-      `${item.name} ${item.basin} ${item.identity_level} ${item.source_event_date || ""} ${item.event_year || ""} ${item.date_evidence?.observation_start || ""}`.toLocaleLowerCase().includes(query));
-    for (const item of matches) {
+    for (const joined of view.rows) {
+      const item = joined.record;
       const row = document.createElement("li");
       const link = document.createElement("a");
       link.href = item.atlas_anchor;
       link.textContent = item.name;
-      link.addEventListener("click", () => {
+      link.addEventListener("click", event => {
         if (item.source_collection === "published_loop_current") return;
-        const sourceSearch = document.querySelector(item.source_collection === "horizon_loop_current" ? "#eddy-search" : "#eddy-geography-search");
-        if (sourceSearch.value) { sourceSearch.value = ""; sourceSearch.dispatchEvent(new Event("input")); }
+        window.oswNavigateIndexEddy(event, item.source_collection === "horizon_loop_current" ? "loop" : "geography", link.hash);
       });
-      const sourceLabel = item.source_collection === "horizon_loop_current" ? "Loop register" :
-        item.source_collection === "published_loop_current" ? "Published study" : item.basin;
-      const dateLabel = item.date_evidence?.observation_start || item.source_event_date || item.event_year || item.identity_level;
+      const sourceLabel = joined.source_label, dateLabel = joined.date_label;
       row.append(link, document.createTextNode(` · ${sourceLabel} · ${dateLabel}`));
       results.append(row);
     }
-    if (!matches.length) {
+    if (view.text.trim() && !view.rows.length) {
       const row = document.createElement("li");
       row.textContent = "No name in the current source set matches this search.";
       results.append(row);
     }
   }
-  input.addEventListener("input", draw);
-  draw();
+  input.addEventListener("input", () => draw().catch(error => {results.textContent = `Eddy query unavailable: ${error.message}`;}));
+  await draw();
 }
 
 Promise.all([
-  loadJson("../research/ocean-current-almanac.json"),
-  loadJson("../research/named-loop-current-eddies.json"),
-  loadJson("../research/ocean-current-atlas-index.json"),
-  loadJson("../research/ocean-motion-taxonomy.json"),
-  loadJson("../research/nasa-perpetual-ocean-objects.json"),
-  loadJson("../research/nasa-perpetual-ocean-tile-join.json"),
-  loadJson("../research/ocean-motion-state-join.json"),
-  loadJson("../research/noaa-munster-eddy-state-20230601.json"),
-  loadJson("../research/noaa-munster-eddy-state-20220601.json"),
-  loadJson("../research/noaa-munster-eddy-state-20210601.json"),
-  loadJson("../research/noaa-munster-eddy-weekly-join-20230601-20230607.json"),
-  loadJson("../research/noaa-munster-eddy-weekly-state-join-20230601-20230607.json"),
-  loadJson("../research/noaa-munster-eddy-weekly-contour-state-join-20230601-20230607.json"),
-  loadJson("../research/noaa-munster-eddy-weekly-join-20220601-20220607.json"),
-  loadJson("../research/noaa-munster-eddy-weekly-state-join-20220601-20220607.json"),
-  loadJson("../research/noaa-munster-eddy-weekly-contour-state-join-20220601-20220607.json"),
-  loadJson("../research/noaa-munster-eddy-weekly-join-20210601-20210607.json"),
-  loadJson("../research/noaa-munster-eddy-weekly-state-join-20210601-20210607.json"),
-  loadJson("../research/noaa-munster-eddy-weekly-contour-state-join-20210601-20210607.json"),
-  loadJson("../research/cartographic-ocean-current-state-join.json"),
-  loadJson("../research/nasa-perpetual-ocean-state-tile-join.json"),
-  loadJson("../research/nasa-ocean-object-state-crosswalk.json"),
-  loadJson("../research/named-loop-current-eddy-identities.json"),
-  loadJson("../research/nasa-perpetual-ocean-object-media.json"),
-  loadJson("../research/nasa-perpetual-ocean-release-media.json"),
-  loadJson("../research/nasa-perpetual-ocean-crop-timeline.json"),
-  loadJson("../research/marine-regions-current-crosswalk.json"),
-  loadJson("../research/named-eddy-geography.json"),
-  loadJson("../research/named-eddy-geography-join.json"),
-  loadJson("../research/named-loop-eddy-nasa-context.json"),
-  loadJson("../research/nasa-perpetual-ocean-motion-forms.json"),
-  loadJson("../research/nasa-object-state-relation-matrix.json"),
-  loadJson("../research/ocean-current-state-relation-matrix.json"),
-  loadJson("../research/nasa-perpetual-ocean-source-audit.json"),
-  loadJson("../research/ocean-eddy-name-inventory.json"),
-  loadJson("../research/ocean-current-length-evidence.json"),
-  loadJson("../research/ocean-current-nasa-crosswalk.json"),
-  loadJson("../research/nasa-current-cartographic-crop-join.json"),
-  loadJson("../research/nasa-object-movie-variant-join.json"),
+  window.oswIndexMap(),
   loadJson("../research/noaa-munster-eddy-seasonal-manifest-2021-2023.json"),
-  loadJson("../research/nasa-perpetual-ocean-atlas-catalog.json"),
-  loadJson("../research/noaa-nasa-eddy-crop-join.json"),
-  loadJson("../research/ocean-current-illustrated-spans.json"),
-  loadJson("../research/gulf-stream-navo-state-snapshot-20260928.json"),
-  loadJson("../research/gulf-stream-navo-front-20260928.json"),
-  loadJson("release/v0.1.0/named_current_source_observations.json"),
-  loadJson("release/v0.1.0/operational_eddy_state_observations.json"),
-  loadJson("release/v0.1.0/source-ledgers/navo-freddies-eddy-state-join-20260925.json"),
-  loadJson("release/v0.1.0/source-ledgers/gulf-stream-geostrophic-path-20260925.json"),
-  loadJson("release/v0.1.0/sources.json"),
-  loadJson("../research/ocean-current-reference-route-state-join.json").catch(() => null),
-]).then(([currents, eddies, index, taxonomy, nasa, tiles, states, detected2023, detected2022, detected2021, weeklyTracks2023, centerVisits2023, weeklyContours2023, weeklyTracks2022, centerVisits2022, weeklyContours2022, weeklyTracks2021, centerVisits2021, weeklyContours2021, cartographic, nasaStateTiles, nasaCrosswalk, eddyNames, nasaMedia, releaseMedia, cropTimeline, marineRegionsCurrents, eddyGeography, eddyGeographyJoin, loopContext, nasaForms, nasaMatrix, currentMatrix, nasaAudit, eddyInventory, lengthEvidence, nasaCurrentCrosswalk, cartographicCrops, movieVariants, seasonalManifest, atlasCatalog, eddyCropJoin, illustratedSpans, gulfStreamFront, gulfStreamFrontReceipt, currentSourceObservations, operationalEddyObservations, operationalEddyJoin, geostrophicPath, sourceRegistry, referenceStateRoutes]) => {
-  renderGeostrophicPathMap(geostrophicPath);
-  renderOperationalEddyMap(operationalEddyJoin);
-  renderCurrents(currents, index, taxonomy, tiles, lengthEvidence, nasaCurrentCrosswalk);
-  renderIllustratedSpans(illustratedSpans, currents);
-  renderMarineRegionsCurrentCrosswalk(marineRegionsCurrents, currents);
-  renderEddies(eddyNames, loopContext);
-  renderNamedEddyGeography(eddyGeography, eddyGeographyJoin, currents);
-  renderUnifiedEddyIndex(eddyInventory);
-  renderMap(currents, eddyNames, index, nasa, eddyGeography, loopContext);
-  renderGulfStreamFrontMap(gulfStreamFrontReceipt);
-  document.querySelector("#north-front-length").textContent = `≈${Math.round(gulfStreamFront.front_lengths_km.north_wall).toLocaleString()} km`;
-  document.querySelector("#south-front-length").textContent = `≈${Math.round(gulfStreamFront.front_lengths_km.south_wall).toLocaleString()} km`;
-  renderNasaObjects(nasa, nasaCrosswalk, nasaMedia, currents, nasaForms, cartographicCrops, movieVariants, atlasCatalog);
-  renderNasaReleaseMedia(releaseMedia, nasaAudit, nasa, nasaCrosswalk, sourceRegistry);
-  const eddySnapshots = Object.fromEntries([detected2021, detected2022, detected2023].map(snapshot => [snapshot.date, snapshot]));
-  const weeklySnapshots = {
-    "2021-06-01": { tracks: weeklyTracks2021, centerVisits: centerVisits2021, weeklyContours: weeklyContours2021 },
-    "2022-06-01": { tracks: weeklyTracks2022, centerVisits: centerVisits2022, weeklyContours: weeklyContours2022 },
-    "2023-06-01": { tracks: weeklyTracks2023, centerVisits: centerVisits2023, weeklyContours: weeklyContours2023 },
-  };
-  renderStates(states, currents, nasa, eddySnapshots, weeklySnapshots, seasonalManifest, cropTimeline, eddyCropJoin, tiles, cartographic, nasaStateTiles, nasaCrosswalk, nasaMatrix, currentMatrix, eddyGeography, eddyGeographyJoin, loopContext, gulfStreamFront, currentSourceObservations, operationalEddyObservations, geostrophicPath, referenceStateRoutes);
+]).then(async ([map, seasonalManifest]) => {
+  window.oswIndexMapView = map;
+  renderGeostrophicPathMap(map);
+  renderOperationalEddyMap(map);
+  await renderCurrents();
+  await renderIllustratedSpans();
+  await renderMarineRegionsCurrentCrosswalk();
+  await renderEddies();
+  await renderNamedEddyGeography();
+  await renderUnifiedEddyIndex();
+  renderMap(map);
+  renderGulfStreamFrontMap(map);
+  document.querySelector("#north-front-length").textContent = `≈${Math.round(map.front_lengths_km.north_wall).toLocaleString()} km`;
+  document.querySelector("#south-front-length").textContent = `≈${Math.round(map.front_lengths_km.south_wall).toLocaleString()} km`;
+  await renderNasaObjects();
+  await renderNasaReleaseMedia();
+  await renderStates(seasonalManifest);
+  window.oswIndexPageReady = true;
 }).catch(error => {
   document.querySelector("#current-count").textContent = "Data unavailable";
   document.querySelector("#eddy-count").textContent = "Data unavailable";

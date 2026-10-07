@@ -5,7 +5,7 @@ import subprocess
 import tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
-from test_rust_query_browser import browser_query,BASE,ROOT
+from test_rust_query_browser import CLI,browser_query,BASE,ROOT
 
 
 def inspect_source(page):
@@ -29,8 +29,9 @@ def ready(page):
 
 
 def main():
+    (ROOT/'tmp').mkdir(exist_ok=True)
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'])
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
         context=browser.new_context(viewport={'width':1280,'height':1000})
         a=context.new_page();b=context.new_page();ready(a);ready(b)
         inspect_source(a);inspect_source(b)
@@ -58,7 +59,7 @@ def main():
         with tempfile.TemporaryDirectory(dir=ROOT/'tmp') as directory:
             folder=Path(directory);jp=folder/'journal.json';jp.write_text(json.dumps(journal),encoding='utf-8')
             query={'collection':'working_records','limit':50};qp=folder/'query.json';qp.write_text(json.dumps(query),encoding='utf-8')
-            exe=str(ROOT/'rust/osw-query/target/debug/osw-query-cli.exe')
+            exe=str(CLI)
             native=json.loads(subprocess.check_output([exe,str(ROOT/'almanac/query-data.json'),'--workspace',str(jp),str(qp)],text=True,encoding='utf-8'))
             assert native==browser_query(a,query)
             tx={'base_revision':2,'transaction_id':'native-revision-3','created_at':'2026-10-04T12:00:00Z','operations':[{'op':'upsert','record':native['rows'][0]}]}

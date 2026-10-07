@@ -1,17 +1,18 @@
 """State map navigation reuses masked OSW geometry and the inventory filter."""
 import os,xml.etree.ElementTree as ET
 from pathlib import Path
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright,expect
 ROOT=Path(__file__).resolve().parents[1];BASE='http://127.0.0.1:8788/almanac/reference-routes.html'
 def main():
     source=ET.parse(ROOT/'figures/ocean-motion-dashboard-ground.svg').getroot()
     shapes={g.attrib['data-code']:[p.attrib['d'] for p in g.findall('{http://www.w3.org/2000/svg}path')] for g in source.iter() if 'data-code' in g.attrib and g.tag.endswith('}g')}
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'],headless=True)
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'),headless=True)
         page=browser.new_page(viewport={'width':1200,'height':900});errors=[]
         page.on('pageerror',lambda error:errors.append(str(error)))
         page.goto(BASE+'#route-atlas',wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll(".atlas-state-region").length===56');page.wait_for_timeout(150)
+        expect(page.locator('.atlas-state-region')).to_have_count(56,timeout=90000)
+        expect(page.locator('#atlas-directory-state option')).to_have_count(57,timeout=90000)
         region=page.locator('.atlas-state-region');state=page.locator('#atlas-directory-state')
         for code,paths in shapes.items():
             item=page.locator(f'.atlas-state-region[data-state-code="{code}"]')
@@ -31,12 +32,12 @@ def main():
         point.focus();page.keyboard.press('Enter');assert page.locator('#route-atlas-select').input_value()
         state.select_option('PSAW');page.locator('#route-atlas-world').click()
         page.locator('#route-atlas-map').screenshot(path=str(ROOT/'figures/atlas-clickable-states-review.png'))
-        page.reload(wait_until='networkidle');assert state.input_value()=='PSAW'
+        page.reload(wait_until='networkidle');expect(state).to_have_value('PSAW',timeout=90000)
         assert page.locator('[data-state-code=PSAW]').get_attribute('aria-pressed')=='true'
         page.route('**/ocean-motion-dashboard-ground.svg',lambda route:route.fulfill(status=503,body='unavailable'))
         page.reload(wait_until='networkidle')
-        assert 'Clickable state shapes are unavailable' in page.locator('#atlas-state-map-note').inner_text()
-        assert page.locator('.atlas-directory-item').count()==240
+        expect(page.locator('#atlas-state-map-note')).to_contain_text('Clickable state shapes are unavailable',timeout=90000)
+        expect(page.locator('.atlas-directory-item')).to_have_count(240,timeout=90000)
         page.unroute('**/ocean-motion-dashboard-ground.svg')
         held=[]
         def hold_shape(route):
@@ -45,6 +46,7 @@ def main():
         page.route('**/ocean-motion-dashboard-ground.svg',hold_shape)
         page.goto(BASE+'#route-atlas',wait_until='domcontentloaded')
         page.wait_for_function('typeof window.restoreReferenceRouteAtlas === "function"')
+        expect(page.locator('#route-atlas-select option')).to_have_count(101,timeout=90000)
         assert held
         world=page.locator('#route-atlas-map').get_attribute('viewBox')
         page.locator('#route-atlas-in').click();assert page.locator('#route-atlas-map').get_attribute('viewBox')!=world
@@ -58,8 +60,8 @@ def main():
         broken=re.sub(r'(<g[^>]+data-code="BERS"[^>]*>.*?<path) d="[^"]+"',r'\1 d=""',broken,count=1,flags=re.S)
         page.route('**/ocean-motion-dashboard-ground.svg',lambda route:route.fulfill(status=200,content_type='image/svg+xml',body=broken))
         page.reload(wait_until='networkidle')
-        assert 'Clickable state shapes are unavailable' in page.locator('#atlas-state-map-note').inner_text()
-        assert page.locator('#route-atlas-select option').count()==101
+        expect(page.locator('#atlas-state-map-note')).to_contain_text('Clickable state shapes are unavailable',timeout=90000)
+        expect(page.locator('#route-atlas-select option')).to_have_count(101,timeout=90000)
         assert not errors,errors
         browser.close()
     print('OK: all 56 exact saved shapes, keyboard filters, pointer activation, selected state/reload, current marker navigation and missing geometry fallback')

@@ -2374,3 +2374,46 @@ preset zooms into the selected frame; **Play recorded days** advances through
 observations with pause controls. Complete frame receipts and stopped traces are
 queryable under **Dated diagnostic geometry frames**. These daily samples are not
 seasonal climatology, whole-current axes or current widths.
+
+
+### Current Rust/WASM migration — local candidate (2026-10-07)
+
+The local candidate extends the shared Rust engine across the query workspace,
+coverage dashboard, global route atlas and cards, object pages, seasons, movies,
+recorded-date diagnostics and standalone sections. The main query snapshot has
+38 collections. The almanac index uses a separate checked corpus containing all
+63 declared source documents, with typed current/eddy/NASA/release queries,
+56-state evidence views, dated NOAA detection/track views and map scenes.
+JavaScript handles controls, formatting and painting; source joins and checked
+geographic scenes are served by Rust/WASM. Implementation coverage does not add
+new scientific measurements, resolve source-use reviews or establish seasonal
+ranges where the evidence is missing.
+
+[Page coverage assignments](plans/almanac-page-coverage.json) explicitly list
+12 current interactive pages, one generated static diagnostic and one separately
+pinned historical screened preview. The historical preview retains its legacy
+renderer and frozen dataset; it is not included in the current WASM migration.
+Assignments identify validation paths, not passing results. CI checks for any
+new page without an assignment.
+
+This candidate is not yet published on main. All 47 registered browser checks
+passed locally against the same engine across sequential resumed segments and
+one focused rerun; an uninterrupted full run and remote CI remain unverified.
+The [internal role review](signals/roles/check/wasm-index-mainline-roles-check-2026-10-07.md)
+has one remaining publication condition. Current evidence, the unreproduced
+navigation timeout, native commands and source scopes are recorded in the
+[Rust query contract](plans/rust-query-store-v1.md).
+
+The shipped-engine browser gate runs sequentially:
+
+```sh
+python analysis/run_rust_query_browser_checks.py --start-server
+python analysis/check_almanac_page_coverage.py
+```
+
+Build the native query executable using the documented pinned Rust toolchain
+before the browser gate. Omit `--start-server` to reuse the existing preview on
+port 8788; the runner verifies that it serves this checkout. On systems without
+the installed Playwright Chromium, set `OSW_TEST_BROWSER` to an available Chrome
+or Chromium executable. The offline pytest, standard-library, NetCDF and syntax
+checks remain required independently of browser assignments.

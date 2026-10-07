@@ -1,23 +1,29 @@
 """Saved monthly profiles preserve selected identity, source scope and cleanup."""
-import copy,json,os,time
+import copy,json,os
 from pathlib import Path
 from urllib.parse import parse_qs,urlparse
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright,expect
 
 ROOT=Path(__file__).resolve().parents[1]
 BASE='http://127.0.0.1:8788/almanac/reference-routes.html'
-DATA='**/pacific-necc-oscar-2013-section-diagnostic.json'
 
 
 def main():
-    document=json.loads((ROOT/'research/pacific-necc-oscar-2013-section-diagnostic.json').read_text())
+    document=json.loads((ROOT/'research/pacific-necc-oscar-2013-section-diagnostic.json').read_bytes())
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=os.environ['OSW_TEST_BROWSER'])
-        page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
+        page=browser.new_page(viewport={'width':1440,'height':1000});errors=[];direct=[]
+        page.set_default_timeout(90000)
+        def block_direct(route):
+            if 'reference-routes.html' in route.request.frame.url:
+                direct.append(route.request.url);route.fulfill(status=503,body='Direct reads disabled')
+            else:route.continue_()
+        page.route('**/research/*.json',block_direct)
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.clock.install()
         page.goto(BASE+'?atlas-feature=current%3Apacific-north-equatorial-countercurrent#route-atlas',wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll(".route-card").length===62&&document.querySelectorAll(".inventory-addition-card").length===23')
+        expect(page.locator('.route-card')).to_have_count(62,timeout=90000)
+        expect(page.locator('.inventory-addition-card')).to_have_count(23,timeout=90000)
         page.clock.run_for(100)
         page.wait_for_function('document.querySelector(".atlas-monthly-select")?.disabled===false')
         select=page.locator('.atlas-monthly-select')
@@ -86,27 +92,23 @@ def main():
         assert page.locator('.atlas-monthly-overlay').count()==0
         assert 'has-observed-samples' not in (atlas.get_attribute('class') or '')
         page.locator('#route-atlas-world').click()
-        def delayed(route):
-            response=route.fetch();time.sleep(.3);route.fulfill(response=response)
-        page.route(DATA,delayed)
+        page.evaluate("""async()=>{window.oswTestAtlasDocuments=await window.oswAtlasSourcesReady;window.oswAtlasSourcesReady=new Promise(resolve=>setTimeout(()=>resolve(window.oswTestAtlasDocuments),300));}""")
         page.locator('#route-atlas-select').select_option('current:pacific-north-equatorial-countercurrent')
-        page.locator('#route-atlas-world').click();page.wait_for_load_state('networkidle')
+        page.locator('#route-atlas-world').click();page.clock.run_for(301)
         assert page.locator('.atlas-monthly-overlay').count()==0
         assert page.locator('#route-atlas-preview').is_hidden()
-        page.unroute(DATA,delayed)
         relabeled=copy.deepcopy(document);relabeled['annual_width_range_km']=[210,640]
         reversed_edges=copy.deepcopy(document)
         reversed_edges['months'][0]['zero_crossing']['boundaries']['south']['latitude']=11
         for invalid in [None,relabeled,reversed_edges]:
-            def bad(route):
-                route.fulfill(status=503,body='Unavailable') if invalid is None else route.fulfill(json=invalid)
-            page.route(DATA,bad)
+            # Inject a bad presentation document after checked source delivery.
+            page.evaluate("""doc=>{const docs=structuredClone(window.oswTestAtlasDocuments);if(doc===null)delete docs['research/pacific-necc-oscar-2013-section-diagnostic.json'];else docs['research/pacific-necc-oscar-2013-section-diagnostic.json']=doc;window.oswAtlasSourcesReady=Promise.resolve(docs);}""",invalid)
             page.locator('#route-atlas-select').select_option('current:pacific-north-equatorial-countercurrent')
-            page.wait_for_function('document.querySelector(".atlas-monthly-status")?.textContent.includes("standalone")')
+            expect(page.locator('.atlas-monthly-status')).to_contain_text('standalone',timeout=90000)
             assert page.locator('.atlas-monthly-overlay').count()==0
             assert page.locator('.atlas-monthly-details').get_attribute('href')=='necc-section.html'
-            page.unroute(DATA,bad);page.locator('#route-atlas-world').click()
-        assert not errors,errors
+            page.locator('#route-atlas-world').click()
+        assert not direct and not errors,(direct,errors)
         browser.close()
     print('OK: 12 monthly atlas profiles, 37 grid samples, boundaries, explicit playback/end stop, shared/reloaded month, detail return, keyboard values, mobile, reset and delayed/invalid fallback')
 

@@ -8,7 +8,7 @@ BASE='http://127.0.0.1:8788/almanac/reference-routes.html'
 
 def main():
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'],headless=True)
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'),headless=True)
         page=browser.new_page(viewport={'width':1200,'height':950});page.emulate_media(reduced_motion='reduce')
         errors=[];page.on('pageerror',lambda error:errors.append(str(error)))
         def ready():page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length===240')

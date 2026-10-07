@@ -1,8 +1,9 @@
 """Verify the custom atlas exposes every stored route/state crossing."""
-import json
+import json,os
 from pathlib import Path
 from urllib.parse import quote
 from playwright.sync_api import sync_playwright
+from test_rust_atlas_snapshot_browser import without_state_join
 
 
 def main():
@@ -13,7 +14,7 @@ def main():
         grouped.setdefault(row['current_id'],[]).append(row)
     url='http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas'
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page();errors=[]
         page.on('pageerror',lambda error:errors.append(str(error)))
         page.goto(url,wait_until='networkidle')
@@ -38,8 +39,9 @@ def main():
         page.locator('#route-atlas-select').select_option('current:agulhas')
         page.locator('.route-atlas-state-links li[data-state-code="EAFR"] a').click()
         page.wait_for_function('document.querySelector("#state-select").value==="EAFR"')
+        page.wait_for_function('window.oswIndexPageReady && window.oswIndexStateContextView?.views[0]?.state_code==="EAFR"',timeout=90000)
         assert page.locator('#state-result li[data-candidate-id="agulhas-reference-path-candidate"]').count()==1
-        page.route('**/research/ocean-current-reference-route-state-join.json',lambda route:route.fulfill(status=503,body='unavailable'))
+        without_state_join(page)
         page.goto(url,wait_until='networkidle')
         page.locator('#route-atlas-select').select_option('current:agulhas')
         assert 'State crossing inventory unavailable' in page.locator('.route-atlas-state-links').inner_text()

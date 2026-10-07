@@ -3,7 +3,8 @@ import copy
 import json
 import os
 from pathlib import Path
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright,expect
+from test_seasons_rust_snapshot_browser import route_bundle,replace_source
 
 
 def main():
@@ -16,12 +17,12 @@ def main():
         for key in ['length_km','width_km','route_coordinates','annual_length_range_km','annual_width_range_km']:
             assert phase[key] is None
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, executable_path=os.environ['OSW_TEST_BROWSER'])
+        browser = p.chromium.launch(headless=True, executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page = browser.new_page(viewport={'width':1280,'height':950})
         errors = []
         page.on('pageerror', lambda e: errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=new-guinea-coastal-current', wait_until='networkidle')
-        assert page.locator('#season-phase option').count() == 3
+        expect(page.locator('#season-phase option')).to_have_count(3,timeout=90000)
         assert page.locator('#season-direction').is_visible()
         assert page.locator('#season-map').is_hidden()
         assert page.locator('.season-scale').is_hidden()
@@ -61,9 +62,11 @@ def main():
         assert not errors, errors
         altered = copy.deepcopy(audit)
         altered['phases'][2]['playback_eligible'] = True
-        page.route('**/new-guinea-coastal-current-seasonal-direction-scope-audit.json', lambda route: route.fulfill(json=altered))
+        bundle=json.loads(Path('almanac/query-data.json').read_bytes())
+        replace_source(bundle,'directions',altered)
+        route_bundle(page,bundle)
         page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=new-guinea-coastal-current', wait_until='networkidle')
-        assert page.locator('#season-loading').inner_text() == 'Invalid local direction evidence'
+        expect(page.locator('#season-loading')).to_contain_text('Invalid local direction scope',timeout=90000)
         assert page.locator('#season-direction').is_hidden()
         browser.close()
     print('OK: NGCC month windows, no dimensions/axis, separate El Niño exception, exception excluded from playback, context cleanup, atlas scope links and 320 px layout')

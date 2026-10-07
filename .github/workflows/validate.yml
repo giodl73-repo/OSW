@@ -25,10 +25,24 @@ jobs:
         run: python -m unittest discover -s analysis -p "test_*.py"
       - name: Run complete offline test suite
         run: python -m pytest analysis -q
+      - name: Install pinned native Rust toolchain
+        run: rustup toolchain install 1.95.0 --profile minimal
+      - name: Test and build native query engine
+        run: |
+          cargo +1.95.0 test --locked --manifest-path rust/osw-query/Cargo.toml
+          cargo +1.95.0 build --locked --manifest-path rust/osw-query/Cargo.toml --bin osw-query-cli
+      - name: Install browser for shipped WASM checks
+        run: python -m playwright install --with-deps chromium
+      - name: Exercise shipped WASM UI and every query collection
+        run: python analysis/run_rust_query_browser_checks.py --start-server
       - name: Compile Python sources
         run: python -m compileall -q analysis
       - name: Check browser JavaScript syntax
         run: node --check atlas/app.js && node --check column/app.js && node --check exchange/app.js && node --check exchange/exchange-stage.js && node --check exchange/stability-stage.js && node --check exchange/events-stage.js && node --check exchange/decisions-stage.js && node --check event/scenes.js && node --check event/app.js
+      - name: Check every almanac JavaScript module
+        run: python analysis/check_almanac_javascript.py
+      - name: Check every almanac page has a validation assignment
+        run: python analysis/check_almanac_page_coverage.py
 
   netcdf-fixture:
     runs-on: ubuntu-latest

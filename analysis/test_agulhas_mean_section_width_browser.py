@@ -11,7 +11,7 @@ def main():
     expected=native(query);assert expected['ok'] and expected['total']==1
     row=expected['rows'][0];assert row['approximate_width_km']==219 and row['width_range_km'] is None
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER']);page=browser.new_page(viewport={'width':860,'height':1000});errors=[]
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'));page=browser.new_page(viewport={'width':860,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=agulhas&phase='+ID)
         expect(page.locator('#season-title')).to_have_text('Eulerian mean section span')

@@ -18,6 +18,20 @@ def main():
     shutil.copyfile(ROOT/'rust/osw-query/target/wasm32-unknown-unknown/release/osw_query.wasm',target)
     paths=['rust/osw-query/Cargo.toml','rust/osw-query/Cargo.lock','rust/osw-query/src/lib.rs','rust/osw-query/src/map.rs','rust/osw-query/src/spatial.rs','rust/osw-query/src/workspace.rs','rust/osw-query/src/rebase.rs','rust/osw-query/src/main.rs',
            'rust/osw-query/src/svg.rs','rust/osw-query/src/temporal.rs','rust/osw-query/src/seasonal.rs','rust/osw-query/src/samples.rs','rust/osw-query/src/charts.rs','rust/osw-query/src/planning.rs','rust/osw-query/src/loop_diagnostics.rs','rust/osw-query/src/network.rs','rust/osw-query/src/taxonomy.rs','figures/ocean-motion-dashboard-ground.svg','almanac/query-engine.wasm','almanac/query-data.json']
+    paths.append('rust/osw-query/src/dashboard.rs')
+    paths.append('rust/osw-query/src/dashboard_map.rs')
+    paths.append('rust/osw-query/src/dashboard_beck.rs')
+    paths.append('rust/osw-query/src/seasons_data.rs')
+    paths.append('rust/osw-query/src/object_view.rs')
+    paths.append('rust/osw-query/src/object_plot.rs')
+    paths.append('rust/osw-query/src/atlas_data.rs')
+    paths.append('rust/osw-query/src/observed_sections.rs')
+    paths.append('rust/osw-query/src/cartography.rs')
+    paths.append('rust/osw-query/src/norkyst_data.rs')
+    paths.append('rust/osw-query/src/movies.rs')
+    paths.append('rust/osw-query/src/model_sections.rs')
+    paths.append('rust/osw-query/src/loop_recorded.rs')
+    paths.extend(['rust/osw-query/src/index_store.rs','rust/osw-query/src/index_noaa.rs','rust/osw-query/src/index_support.rs','rust/osw-query/src/index_map.rs','almanac/index-catalog.json','almanac/index-data.json.gz'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',

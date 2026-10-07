@@ -3,7 +3,7 @@ import json
 import os
 from pathlib import Path
 from urllib.parse import quote
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright,expect
 
 
 def read(path):return json.loads(Path(path).read_text(encoding='utf-8'))
@@ -25,7 +25,7 @@ def main():
                 assert any(r['source_record_id']==assessment['id'] for r in records)
         assert all(r['source_record_id'] not in {a['id'] for a in assessments if a['eddy_id']==row['id'] and a['physical_relation']=='unknown_no_dated_eddy_footprint'} for r in records)
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER',r'C:\Program Files\Google\Chrome\Application\chrome.exe'))
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page();errors=[]
         page.on('pageerror',lambda error:errors.append(str(error)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
@@ -69,13 +69,15 @@ def main():
         page.locator('#route-atlas-eddy-select').select_option('eddy:published:kraken-2013')
         saved=page.url;box=page.locator('.route-atlas-eddy-map').get_attribute('viewBox')
         page.locator('#route-atlas-in').click()
-        assert page.locator('.route-atlas-eddy-map').get_attribute('viewBox')==box
+        assert page.locator('.route-atlas-eddy-map').get_attribute('viewBox')==box,(box,page.locator('.route-atlas-eddy-map').get_attribute('viewBox'),page.url)
         page.goto(saved,wait_until='networkidle')
-        assert page.locator('.route-atlas-eddy-map').get_attribute('viewBox')==box
+        # Shared atlas frames are explicitly encoded to six decimal places.
+        restored=page.locator('.route-atlas-eddy-map').get_attribute('viewBox')
+        assert all(abs(a-b)<.000002 for a,b in zip(map(float,box.split()),map(float,restored.split()))),(box,restored)
         page.locator('.route-atlas-eddy-map').screenshot(path='figures/eddy-atlas-card-review.png')
         page.evaluate('''()=>{const key="osw-motion-dashboard-seen-v2",baseline=JSON.parse(localStorage.getItem(key));baseline["eddy:published:kraken-2013"].fingerprint="older-fixture";localStorage.setItem(key,JSON.stringify(baseline));}''')
         page.reload(wait_until='networkidle')
-        assert page.locator('.route-atlas-eddy-map.updated').count()==1
+        expect(page.locator('.route-atlas-eddy-map.updated')).to_have_count(1,timeout=90000)
         assert 'Updated since your saved baseline' in page.locator('#route-atlas-preview').inner_text()
         point=next(r for r in eddies if r['map_features'][0]['geometry']['type']=='Point')
         page.locator('#route-atlas-eddy-select').select_option(point['id'])

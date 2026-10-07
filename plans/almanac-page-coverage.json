@@ -1,0 +1,92 @@
+{
+  "schema": "osw.almanac-page-coverage.v1",
+  "status": "local_candidate_not_mainline_publication",
+  "scope": "Declared validation assignments, not test results or scientific evidence completeness.",
+  "pages": [
+    {
+      "page": "antilles-sections.html",
+      "kind": "current_wasm",
+      "entrypoint": "checked-atlas.js",
+      "browser_check": "test_antilles_sections_browser.py"
+    },
+    {
+      "page": "dashboard.html",
+      "kind": "current_wasm",
+      "entrypoint": "dashboard.js",
+      "browser_check": "test_motion_dashboard_browser.py"
+    },
+    {
+      "page": "dated-current.html",
+      "kind": "current_wasm",
+      "entrypoint": "checked-atlas.js",
+      "browser_check": "test_dated_current_checked_browser.py"
+    },
+    {
+      "page": "index.html",
+      "kind": "current_wasm",
+      "entrypoint": "checked-index.js",
+      "browser_check": "test_rust_index_page_browser.py"
+    },
+    {
+      "page": "loop-current-recorded-dates.html",
+      "kind": "current_wasm",
+      "entrypoint": "loop-current-recorded-dates.js",
+      "browser_check": "test_rust_loop_recorded_dates.py"
+    },
+    {
+      "page": "movies.html",
+      "kind": "current_wasm",
+      "entrypoint": "movies.js",
+      "browser_check": "test_rust_movies_browser.py"
+    },
+    {
+      "page": "necc-section.html",
+      "kind": "current_wasm",
+      "entrypoint": "checked-atlas.js",
+      "browser_check": "test_pacific_necc_section_browser.py"
+    },
+    {
+      "page": "norkyst-section.html",
+      "kind": "current_wasm",
+      "entrypoint": "checked-atlas.js",
+      "browser_check": "test_norkyst_section_browser.py"
+    },
+    {
+      "page": "object.html",
+      "kind": "current_wasm",
+      "entrypoint": "object.js",
+      "browser_check": "test_rust_object_view_browser.py"
+    },
+    {
+      "page": "query.html",
+      "kind": "current_wasm",
+      "entrypoint": "query.js",
+      "browser_check": "test_rust_query_browser.py"
+    },
+    {
+      "page": "reference-routes.html",
+      "kind": "current_wasm",
+      "entrypoint": "reference-route-atlas.js",
+      "browser_check": "test_reference_route_atlas_browser.py"
+    },
+    {
+      "page": "seasons.html",
+      "kind": "current_wasm",
+      "entrypoint": "seasons.js",
+      "browser_check": "test_seasons_rust_snapshot_browser.py"
+    },
+    {
+      "page": "loop-current-experiment.html",
+      "kind": "static_diagnostic",
+      "source_builder": "analysis/build_loop_current_experiment_page.py",
+      "source_test": "analysis/test_loop_current_dated_streamline.py",
+      "scope": "Generated static September 2026 diagnostic and provenance; no runtime query claimed."
+    },
+    {
+      "page": "screened-atlas/index.html",
+      "kind": "frozen_preview",
+      "checker": "analysis/check_ocean_motion_safe_preview.py",
+      "scope": "Separately pinned portable review export. Its legacy renderer is not covered by the current WASM migration."
+    }
+  ]
+}

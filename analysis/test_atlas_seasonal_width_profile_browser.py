@@ -1,14 +1,15 @@
 """Four chart profiles retain missing samples, shared season and map independence."""
 import os
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright,expect
 
 BASE='http://127.0.0.1:8788/almanac/reference-routes.html?atlas-layout=map&atlas-feature=current%3Akuroshio'
 
 def main():
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'],headless=True)
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'),headless=True)
         page=browser.new_page(viewport={'width':860,'height':1100});page.emulate_media(reduced_motion='reduce')
-        errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+        errors=[];direct=[];page.on('pageerror',lambda e:errors.append(str(e)))
+        page.route('**/research/*.json',lambda r:(direct.append(r.request.url),r.fulfill(status=503,body='Direct reads disabled'))[-1])
         page.goto(BASE+'&atlas-width-season=spring#route-atlas',wait_until='networkidle')
         page.wait_for_function('document.querySelector(".atlas-width-season")?.disabled===false')
         assert page.locator('.atlas-width-season').input_value()=='spring'
@@ -36,14 +37,13 @@ def main():
         page.locator('.atlas-profile-play').click();page.locator('#route-atlas-select').select_option('current:agulhas')
         url=page.url;page.wait_for_timeout(2000);assert page.url==url and 'atlas-width-season=' not in url
         assert page.locator('.atlas-seasonal-width-profile').count()==0
-        def corrupt(route):
-            response=route.fetch();doc=response.json();doc['geographic_playback_eligible']=True;route.fulfill(response=response,json=doc)
-        page.route('**/research/kuroshio-ecs-seasonal-width-profile-extraction.json',corrupt)
-        page.goto(BASE+'#route-atlas',wait_until='networkidle')
-        page.wait_for_function('document.querySelector(".atlas-profile-status")?.textContent.includes("unavailable or invalid")')
+        # Exercise the presentation guard after verified snapshot delivery.
+        page.evaluate("""async()=>{const docs=structuredClone(await window.oswAtlasSourcesReady);docs['research/kuroshio-ecs-seasonal-width-profile-extraction.json'].geographic_playback_eligible=true;window.oswAtlasSourcesReady=Promise.resolve(docs);}""")
+        page.locator('#route-atlas-select').select_option('current:kuroshio')
+        expect(page.locator('.atlas-profile-status')).to_contain_text('unavailable or invalid',timeout=90000)
         assert page.locator('.atlas-profile-play').is_disabled()
         assert page.locator('.atlas-width-record').count()==3
-        assert not errors,errors;browser.close()
+        assert not direct and not errors,(direct,errors);browser.close()
     print('OK: four profiles, missing samples, shared season, map unchanged, autoplay stop/cleanup, mobile and invalid-source fallback')
 
 if __name__=='__main__':main()
