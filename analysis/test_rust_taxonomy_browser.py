@@ -2,7 +2,7 @@
 import copy,hashlib,json,os,subprocess,tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
-from test_rust_query_browser import native,browser_query
+from test_rust_query_browser import CLI,native,browser_query
 ROOT=Path(__file__).resolve().parents[1]
 
 def query(root,relation='descendants',include=False):return {'collection':'objects','taxonomy':{'root_id':root,'relation':relation,'include_root':include},'limit':100}
@@ -41,13 +41,13 @@ def main():
     bad=copy.deepcopy(bundle);bad['manifest']['taxonomy']['identity_levels']['family']='incorrect scope';cases.append(bad)
     with tempfile.TemporaryDirectory() as directory:
         for i,bad in enumerate(cases):
-            path=Path(directory)/'bad.json';path.write_text(json.dumps(bad),encoding='utf-8');run=subprocess.run([str(ROOT/'rust/osw-query/target/debug/osw-query-cli.exe'),str(path),'-'],input='{}',capture_output=True,text=True)
+            path=Path(directory)/'bad.json';path.write_text(json.dumps(bad),encoding='utf-8');run=subprocess.run([str(CLI),str(path),'-'],input='{}',capture_output=True,text=True)
             assert run.returncode==2 and not run.stdout,(i,run.stderr)
     browser_navigation(family,result,selected,narrow)
     print('PASS: complete declared graph closures, eight loader rejections, no measurement inheritance, native/WASM and builder/filter/share/parent/card/mobile navigation')
 def browser_navigation(family,result,selected,narrow):
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER']);page=browser.new_page(viewport={'width':1280,'height':1000});errors=[]
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'));page=browser.new_page(viewport={'width':1280,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/query.html');page.wait_for_function('window.oswLastQueryResult',timeout=60000)
         assert browser_query(page,family)==result

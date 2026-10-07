@@ -4,7 +4,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
   const world=[60,90,1480,740], minimumViewWidth=8, ns='http://www.w3.org/2000/svg';
   let view=[...world], drag=null, dragged=false, sectionGround=false, inventorySummary='Loading atlas inventory…', timelineCleanup=()=>{}, refreshDirectory=()=>{}, refreshStateMap=()=>{};
   let restoredView=null,restoringSelection=false;
-  const project=([lon,lat])=>[60+(lon+180)/360*1480,90+(90-lat)/180*740];
+  const project=point=>window.oswCartography({op:'project',coordinates:point}).point;
   function make(tag,attrs,parent=layer) {
     const el=document.createElementNS(ns,tag);
     for(const [key,value] of Object.entries(attrs))el.setAttribute(key,value);
@@ -43,9 +43,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
   function fit(coordinates) {
     if(restoredView){setView(restoredView);return;}
     if(!coordinates.length)return;
-    const points=coordinates.map(project),xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
-    const width=Math.min(1480,Math.max(coordinates.length===1?160:16,(Math.max(...xs)-Math.min(...xs))*1.4,(Math.max(...ys)-Math.min(...ys))*2.8));
-    setView([(Math.min(...xs)+Math.max(...xs))/2-width/2,(Math.min(...ys)+Math.max(...ys))/2-width/4,width,width/2]);
+    const box=window.oswCartography({op:'fit',coordinates}).view_box;if(box)setView(box);
   }
   function clearSelection() {
     if(!restoringSelection)restoredView=null;
@@ -105,19 +103,12 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
     return mark;
   }
   function pathData(coordinates,close=false) {
-    let previous;return coordinates.map(c=>{const p=project(c),command=!previous||Math.abs(p[0]-previous[0])>740?'M':'L';previous=p;return command+p.join(',');}).join(' ')+(close?' Z':'');
+    return window.oswCartography({op:'path',coordinates,closed:close}).d;
   }
   try {
-    const [response,stateJoin]=await Promise.all([
-      fetch('../research/ocean-motion-dashboard.json',{cache:'no-store'}),
-      fetch('../research/ocean-current-reference-route-state-join.json',{cache:'no-store'}).then(async response=>{
-        if(!response.ok)return null;
-        const data=await response.json();
-        return data.schema==='osw.current-reference-route-state-join.v1'&&data.states?data:null;
-      }).catch(()=>null)
-    ]);
-    if(!response.ok)throw Error(`HTTP ${response.status}`);
-    const snapshot=await response.json(),currents=snapshot.entries.filter(r=>r.type==='named_current');
+    const sources=await window.oswAtlasSourcesReady;
+    const stateJoin=sources['research/ocean-current-reference-route-state-join.json']||null;
+    const snapshot=sources['research/ocean-motion-dashboard.json'],currents=snapshot.entries.filter(r=>r.type==='named_current');
     const eddies=snapshot.entries.filter(r=>r.type==='named_eddy'||r.type==='operational_eddy_detection');
     inventorySummary=`${currents.length} named currents · ${catalog.counts.currents_with_route_candidates} with reference-route cards · ${eddies.filter(r=>r.type==='named_eddy').length} named eddies · ${eddies.filter(r=>r.type==='operational_eddy_detection').length} dated detections. Select a current, eddy or path.`;
     if(snapshot.schema!=='osw.motion-dashboard.v1'||snapshot.fingerprint_version!==2||new Set(snapshot.entries.map(r=>r.id)).size!==snapshot.entries.length||snapshot.entries.some(r=>typeof r.id!=='string'||typeof r.fingerprint!=='string'||!r.section_fingerprints||!Array.isArray(r.map_features)))throw Error('Invalid atlas inventory snapshot');
@@ -221,8 +212,8 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
       window.renderAtlasWidthEvidence(panel,current,widthInventory);
       if(current.id==='current:leeuwin'&&window.initAtlasMonthlyWidth)timelineCleanup=window.initAtlasMonthlyWidth(panel,current,requestedWidthMonth);
       if(current.id==='current:kuroshio'&&window.initAtlasSeasonalWidthProfile)timelineCleanup=window.initAtlasSeasonalWidthProfile(panel,current,requestedWidthSeason);
-      if(observedSeries&&window.initAtlasObservedSections)timelineCleanup=window.initAtlasObservedSections(panel,current,{svg,layer,fit,make,ns,project,shareSelection,requestedSection,refreshUpdates:renderUpdates,wasDragged:()=>dragged});
-      if(monthlySeries&&window.initAtlasMonthlySection)timelineCleanup=window.initAtlasMonthlySection(panel,current,{svg,layer,fit,make,ns,project,shareSelection,requestedSection,refreshUpdates:renderUpdates,wasDragged:()=>dragged});
+      if(observedSeries&&window.initAtlasObservedSections)timelineCleanup=window.initAtlasObservedSections(panel,current,{svg,layer,fit,make,ns,project,shareSelection,requestedSection,fitBounds:box=>setView(restoredView||box),refreshUpdates:renderUpdates,wasDragged:()=>dragged});
+      if(monthlySeries&&window.initAtlasMonthlySection)timelineCleanup=window.initAtlasMonthlySection(panel,current,{svg,layer,fit,make,ns,project,shareSelection,requestedSection,fitBounds:box=>setView(restoredView||box),refreshUpdates:renderUpdates,wasDragged:()=>dragged});
       if(!dated.length && current.id!=='current:gulf-stream-system')for(const series of current.series)previewLink(panel,series.label+' →',series.url);
       if(dated.length) {
         const section=document.createElement('section');section.className='route-atlas-dated-preview';panel.append(section);

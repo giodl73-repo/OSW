@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pacific NECC monthly sections — OSW</title><link rel="stylesheet" href="screened-atlas/styles.css"><style>.profile-grid{display:block;width:100%;height:auto}table{font-size:.9rem}.table-wrap{overflow:auto}main{overflow-wrap:anywhere}</style></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pacific NECC monthly sections — OSW</title><link rel="stylesheet" href="screened-atlas/styles.css"><style>.profile-grid{display:block;width:100%;height:auto}table{font-size:.9rem}.table-wrap{overflow:auto}main{overflow-wrap:anywhere}</style><script src="checked-atlas.js?v=1" defer></script><script src="necc-section.js?v=checked-section-1" defer></script></head>
 <body>
 <a class="skip" href="#main">Skip to section diagnostics</a>
 <header class="site-head"><strong>OSW</strong><nav><a href="index.html">Almanac</a><a href="reference-routes.html?atlas-feature=current%3Apacific-north-equatorial-countercurrent#route-atlas">Return to this current on the atlas</a></nav></header>
@@ -15,13 +15,5 @@
 <h2>Source and calculation</h2><p><a href="../research/pacific-necc-oscar-2013-section-diagnostic.json">Calculation records and brackets</a> · <a href="../research/pacific-necc-oscar-2013-section-inventory.json">Source inventory and timestamps</a> · <a href="../plans/pacific-necc-oscar-section-width-protocol-v1.md">Measurement rules</a> · <a href="https://oceanwatch.pifsc.noaa.gov/erddap/info/yearly_336c_0b32_9cd3/index.html">NOAA archive metadata</a></p>
 <p>ESR OSCAR third-degree product version 2017.0, mirrored by NOAA PIFSC. This calculation uses one section and one year. Hsin and Qiu (2012) used a different grid and 1992–2010 period; these profiles do not reproduce their climatology.</p>
 </main>
-<script>
-fetch('../research/pacific-necc-oscar-2013-section-diagnostic.json').then(r=>{if(!r.ok)throw Error('Saved diagnostic unavailable');return r.json()}).then(data=>{
- if(data.schema!=='osw.current-monthly-section-diagnostic.v1'||data.current_id!=='pacific-north-equatorial-countercurrent'||data.months.length!==12||data.whole_current_width_km!==null||data.is_climatology!==false)throw Error('Unsupported section diagnostic');
- const requested=new URL(location.href).searchParams.get('month');const selected=data.months.find(month=>month.label===requested);
- if(selected){const back=document.querySelector('header nav a[href*="atlas-feature"]');const address=new URL(back.href);address.searchParams.set('atlas-section',selected.id);back.href=address.href;}
- for(const month of data.months){const tr=document.createElement('tr');tr.id=month.id;const result=month.zero_crossing;const boundaries=result.boundaries;const values=[month.label,month.sample_count,boundaries.south?.latitude?.toFixed(2)??'unresolved',boundaries.north?.latitude?.toFixed(2)??'unresolved',result.span_km===null?'unresolved':`about ${Math.round(result.span_km/10)*10} km`,month.threshold_sensitivity.map(row=>`${row.threshold_m_s} m/s: ${row.span_km===null?'unresolved':Math.round(row.span_km/10)*10+' km'}`).join('; ')];for(const value of values){const td=document.createElement('td');td.textContent=value;tr.append(td)}document.getElementById('section-rows').append(tr)}
- document.getElementById('section-status').textContent=`${data.summary.resolved_months} resolved monthly mean spans; ${data.summary.unresolved_months} unresolved. Whole-current length, width and annual extrema remain unknown.`;
-}).catch(error=>document.getElementById('section-status').textContent=error.message);
-</script>
+
 </body></html>

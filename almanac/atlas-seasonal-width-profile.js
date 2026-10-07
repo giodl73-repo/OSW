@@ -56,7 +56,7 @@ window.initAtlasSeasonalWidthProfile=function(panel,current,requestedSeason){
   previous.addEventListener('click',()=>{stop();select.selectedIndex--;render();});next.addEventListener('click',()=>{stop();select.selectedIndex++;render();});
   play.addEventListener('click',()=>{if(timer!==null){stop();return;}play.textContent='Pause';play.setAttribute('aria-pressed','true');timer=setInterval(()=>{select.selectedIndex++;render();},1800);});
   const visibility=()=>{if(document.hidden)stop();};document.addEventListener('visibilitychange',visibility);
-  fetch('../research/kuroshio-ecs-seasonal-width-profile-extraction.json',{cache:'no-store'}).then(async r=>{if(!r.ok)throw Error('Missing seasonal profiles');return r.json();}).then(doc=>{
+  window.oswAtlasSourcesReady.then(docs=>{const doc=docs['research/kuroshio-ecs-seasonal-width-profile-extraction.json'];if(!doc)throw Error('Missing checked seasonal profiles');return doc;}).then(doc=>{
     if(disposed)return;if(!valid(doc))throw Error('Invalid seasonal profile scope');data=doc;
     for(const season of data.seasons){const option=html('option',season.label,select);option.value=season.label;}
     select.disabled=false;select.value=data.seasons.some(s=>s.label===requestedSeason)?requestedSeason:'winter';

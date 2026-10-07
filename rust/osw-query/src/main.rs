@@ -35,8 +35,133 @@ fn main() {
         let path = args.get(1).ok_or(
             "Usage: osw-query-cli BUNDLE.json [--workspace JOURNAL.json] [QUERY.json | --transaction TX.json | --export-workspace] [--output NEW-JOURNAL.json]; map: --svg QUERY.json --output NEW-MAP.svg; migration: --rebase OLD-BUNDLE.json REQUEST.json [--prepare --output NEW-JOURNAL.json]; '-' query reads stdin",
         )?;
+        if path == "--cartography" {
+            if args.len() != 2 {
+                return Err("--cartography reads one request from stdin".into());
+            }
+            let mut request = Vec::new();
+            io::stdin()
+                .read_to_end(&mut request)
+                .map_err(|e| e.to_string())?;
+            return osw_query::cartography::execute(&request);
+        }
+        if path == "--index" {
+            let file = args
+                .get(2)
+                .ok_or("--index needs decompressed bundle JSON")?;
+            let index = osw_query::index_store::IndexStore::load(
+                &fs::read(file).map_err(|e| e.to_string())?,
+            )?;
+            if args.len() == 3 {
+                return Ok(index.metadata());
+            }
+            let currents = args.len() == 5 && args[3] == "--currents" && args[4] == "-";
+            let eddies = args.len() == 5 && args[3] == "--eddies" && args[4] == "-";
+            let nasa = args.len() == 5 && args[3] == "--nasa" && args[4] == "-";
+            let release_media = args.len() == 5 && args[3] == "--release-media" && args[4] == "-";
+            let memberships = args.len() == 5 && args[3] == "--state-memberships" && args[4] == "-";
+            let state_context = args.len() == 5 && args[3] == "--state-context" && args[4] == "-";
+            let noaa_state = args.len() == 5 && args[3] == "--noaa-state" && args[4] == "-";
+            let noaa_track = args.len() == 5 && args[3] == "--noaa-track" && args[4] == "-";
+            let support = args.len() == 5 && args[3] == "--support" && args[4] == "-";
+            let map = args.len() == 5 && args[3] == "--map" && args[4] == "-";
+            if !currents
+                && !eddies
+                && !nasa
+                && !release_media
+                && !memberships
+                && !state_context
+                && !noaa_state
+                && !noaa_track
+                && !support
+                && !map
+                && (args.len() != 4 || args[3] != "-")
+            {
+                return Err("--index BUNDLE - reads a source query from stdin".into());
+            }
+            let mut request = Vec::new();
+            io::stdin()
+                .read_to_end(&mut request)
+                .map_err(|e| e.to_string())?;
+            return if currents {
+                index.current_view(&request)
+            } else if eddies {
+                index.eddy_view(&request)
+            } else if nasa {
+                index.nasa_view(&request)
+            } else if release_media {
+                index.release_media_view(&request)
+            } else if memberships {
+                index.state_membership_view(&request)
+            } else if map {
+                index.map_view(&request)
+            } else if support {
+                index.support_view(&request)
+            } else if noaa_state {
+                index.noaa_state_view(&request)
+            } else if noaa_track {
+                index.noaa_track_view(&request)
+            } else if state_context {
+                index.state_context_view(&request)
+            } else {
+                index.query(&request)
+            };
+        }
         let mut store = Store::load(&fs::read(path).map_err(|e| e.to_string())?)?;
         let mut position = 2;
+        if args.get(position).map(String::as_str) == Some("--movies") {
+            if args.len() != 3 {
+                return Err("--movies reads a selection from stdin".into());
+            }
+            let mut request = Vec::new();
+            io::stdin()
+                .read_to_end(&mut request)
+                .map_err(|e| e.to_string())?;
+            return store.movie_view(&request);
+        }
+        if args.get(position).map(String::as_str) == Some("--object-view") {
+            if args.len() != 4 {
+                return Err("--object-view requires one object ID".into());
+            }
+            return store.object_view(
+                &serde_json::to_vec(&serde_json::json!({"id":args[3]}))
+                    .map_err(|e| e.to_string())?,
+            );
+        }
+        if args.get(position).map(String::as_str) == Some("--seasons") {
+            if args.len() != 3 {
+                return Err("--seasons takes no additional arguments".into());
+            }
+            return store.seasons_snapshot();
+        }
+        if args.get(position).map(String::as_str) == Some("--loop-recorded") {
+            if args.len() != 3 {
+                return Err("--loop-recorded takes no additional arguments".into());
+            }
+            return store.loop_recorded_view();
+        }
+        if args.get(position).map(String::as_str) == Some("--atlas") {
+            if args.len() != 3 {
+                return Err("--atlas takes no additional arguments".into());
+            }
+            return store.atlas_snapshot();
+        }
+        if args.get(position).map(String::as_str) == Some("--dashboard-query") {
+            if args.len() != 3 {
+                return Err("--dashboard-query reads a request from stdin".into());
+            }
+            let mut request = Vec::new();
+            io::stdin()
+                .read_to_end(&mut request)
+                .map_err(|e| e.to_string())?;
+            return store.dashboard_select(&request);
+        }
+        if args.get(position).map(String::as_str) == Some("--dashboard") {
+            if args.len() != 3 {
+                return Err("--dashboard takes no additional arguments".into());
+            }
+            return store.dashboard_snapshot();
+        }
         if args.get(position).map(String::as_str) == Some("--workspace") {
             let journal = args
                 .get(position + 1)

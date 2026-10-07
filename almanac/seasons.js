@@ -1,10 +1,23 @@
 (() => {
   const byId = id => document.getElementById(id);
-  let inventory, catalog, seasonalRoutes, directionAudit, timer = null, phases = [];
-  function validDirectionAudit(data) {
-    if (data?.schema !== "osw.current-seasonal-direction-scope-audit.v1" || data.current_id !== "new-guinea-coastal-current" || !Array.isArray(data.phases) || data.phases.length !== 3) return false;
-    const expected = [[11,12,1,2,3,4],[5,6,7,8,9,10],null];
-    return data.phases.every((p,i) => p.current_id === data.current_id && p.flow_direction === ["southeastward","northwestward","southeastward NGCC absent; northwestward undercurrent shoals"][i] && p.geometry_role === "local_direction_symbol_not_current_axis" && JSON.stringify(p.site_lon_lat) === "[141.4,-1.7]" && JSON.stringify(p.calendar_months) === JSON.stringify(expected[i]) && p.playback_eligible === (i < 2) && p.phase_kind === (i < 2 ? "seasonal_direction_composite" : "event_exception") && ["length_km","width_km","route_coordinates","annual_length_range_km","annual_width_range_km"].every(key => p[key] === null));
+  let inventory, catalog, seasonalRoutes, directionAudit, timer = null, phases = [], playbackIndices = [];
+  function loadSeasonSources() {
+    return new Promise((resolve,reject)=>{
+      const worker=new Worker('query-worker.js?v=seasons-6');
+      const timer=setTimeout(()=>finish(Error('Seasonal data request timed out')),90000);
+      const finish=(error,result)=>{clearTimeout(timer);worker.terminate();if(error)reject(error);else resolve(result);};
+      worker.onerror=()=>finish(Error('Rust seasonal data worker failed'));
+      worker.onmessage=event=>{const {id,result}=event.data;
+        if(!result.ok){finish(Error(result.error));return;}
+        if(id===1){worker.postMessage({id:2,action:'seasons'});return;}
+        try {
+          window.oswSeasonSnapshot=result;
+          byId('season-loading').dataset.engine=result.engine;
+          finish(null,['widths','routes','frames','directions'].map(key=>JSON.parse(result.sources_json[key])));
+        } catch(error){finish(error);}
+      };
+      worker.postMessage({id:1,action:'load'});
+    });
   }
   function stop() { if (timer !== null) clearInterval(timer); timer = null; byId("season-play").textContent = "Play seasonal states"; }
   const phaseId = phase => phase?.frame?.id || phase?.width?.id || phase?.direction?.id;
@@ -129,26 +142,19 @@
   }
   function renderCurrent(requestedPhase = null) {
     stop(); const id = byId("season-current").value;
-    const frames = seasonalRoutes.frames.filter(row => row.current_id === id);
-    const linkedWidths = new Set(frames.flatMap(row => row.width_measurement_ids));
-    phases = inventory.measurements.filter(row => row.current_id === id && !linkedWidths.has(row.id)).map(row => ({width:row, label:row.phase_label || row.time_convention.split(" ")[0]}));
-    phases.push(...frames.map(row => ({frame:row, width:inventory.measurements.find(width => row.width_measurement_ids.includes(width.id)), label:row.phase_label})));
-    if (id === directionAudit.current_id) phases.push(...directionAudit.phases.map(row => ({direction:row,label:row.phase_label})));
+    const plan=window.oswSeasonSnapshot.phase_plans[id];
+    if(!plan)throw Error('No checked seasonal phase plan for this current');
+    const widths=new Map(inventory.measurements.map(row=>[row.id,row])),frames=new Map(seasonalRoutes.frames.map(row=>[row.id,row])),directions=new Map(directionAudit.phases.map(row=>[row.id,row]));
+    phases=plan.phases.map(row=>({width:widths.get(row.width_id),frame:frames.get(row.frame_id),direction:directions.get(row.direction_id),label:row.label}));
+    playbackIndices=plan.eligible_indices;
+    window.oswSeasonPlan=plan;
     const select = byId("season-phase"); select.replaceChildren();
     for (const [i, row] of phases.entries()) { const option = document.createElement("option"); option.value = i; option.textContent = row.label; select.append(option); }
     const requestedIndex = phases.findIndex(phase => phaseId(phase) === requestedPhase);
     if(requestedIndex >= 0)select.value=String(requestedIndex);
-    const summary = inventory.seasonal_summaries.find(row => row.current_id === id);
-    const restriction = inventory.comparability_notes?.find(row => row.current_id === id);
-    const comparableWidths = summary && phases.every(p => p.width && summary.measurement_ids.includes(p.width.id));
-    const routePhases = phases.length > 1 && phases.every(p => p.frame);
     select.disabled = !phases.length;
-    byId("season-play").disabled = phases.length < 2 || Boolean(restriction) || !(comparableWidths || routePhases || phases.filter(p => p.direction?.playback_eligible).length > 1);
-    byId("season-range").textContent = summary ? `${summary.reported_seasonal_value_span_km.join("–")} km: ${summary.interpretation}` : "Annual width range and measurement uncertainty: not available. A single dated section does not establish a seasonal cycle.";
-    const comparison = seasonalRoutes.comparability.find(row => row.current_id === id);
-    if (comparison) byId("season-range").textContent = comparison.reason;
-    if (restriction) byId("season-range").textContent = restriction.reason;
-    if (id === directionAudit.current_id) byId("season-range").textContent = directionAudit.interpretation;
+    byId("season-play").disabled = !plan.can_play;
+    byId("season-range").textContent = plan.range_note;
     renderPhase();
   }
   function renderMap(route, frame) {
@@ -159,15 +165,14 @@
     const nasa = byId("season-nasa"); nasa.replaceChildren();
     if (route) { const a = document.createElement("a"); a.href = `reference-routes.html#${route.id}`; a.textContent = "Inspect route assumptions and NASA geographic context"; nasa.append(a); }
   }
-  Promise.all([fetch("../research/ocean-current-width-inventory.json").then(r => { if (!r.ok) throw Error("Width evidence unavailable"); return r.json(); }), fetch("../research/ocean-current-reference-path-candidates.json").then(r => { if (!r.ok) throw Error("Route context unavailable"); return r.json(); }), fetch("../research/ocean-current-seasonal-route-frames.json").then(r => { if (!r.ok) throw Error("Seasonal route evidence unavailable"); return r.json(); }), fetch("../research/new-guinea-coastal-current-seasonal-direction-scope-audit.json").then(r => { if (!r.ok) throw Error("Local direction evidence unavailable"); return r.json(); })]).then(([widths, routes, routeFrames, directions]) => {
+  loadSeasonSources().then(([widths, routes, routeFrames, directions]) => {
     inventory = widths; catalog = routes; seasonalRoutes = routeFrames; directionAudit = directions;
-    if (!validDirectionAudit(directions)) throw Error("Invalid local direction evidence");
     for (const row of inventory.current_decisions) { const option = document.createElement("option"); option.value = row.current_id; option.textContent = row.name; byId("season-current").append(option); }
     const requestedCurrent = new URLSearchParams(window.location.search).get("current");
     byId("season-current").value = inventory.current_decisions.some(row => row.current_id === requestedCurrent) ? requestedCurrent : "northern-mediterranean";
     byId("season-current").addEventListener("change", () => renderCurrent());
     byId("season-phase").addEventListener("change", () => { stop(); renderPhase(); });
-    byId("season-play").addEventListener("click", () => { if (timer !== null) { stop(); return; } byId("season-play").textContent = "Pause"; timer = setInterval(() => { const eligible = phases.map((p,i) => p.direction && !p.direction.playback_eligible ? null : i).filter(i => i !== null); const current = eligible.indexOf(Number(byId("season-phase").value)); byId("season-phase").value = eligible[(current + 1) % eligible.length]; renderPhase(); }, 2200); });
+    byId("season-play").addEventListener("click", () => { if (timer !== null) { stop(); return; } byId("season-play").textContent = "Pause"; timer = setInterval(() => { const eligible = playbackIndices; const current = eligible.indexOf(Number(byId("season-phase").value)); byId("season-phase").value = eligible[(current + 1) % eligible.length]; renderPhase(); }, 2200); });
     document.addEventListener("visibilitychange", () => { if (document.hidden) stop(); });
     byId("season-loading").textContent = "100 currents indexed; Northern Current width states, Somali components and Sri Lanka Monsoon Current editorial seasonal routes can play. Azores sections, Mediterranean Undercurrent observations and the historical Davidson winter summary can be inspected. New Guinea local direction composites can play, with El Niño exceptions selectable separately. Scientific review pending.";
     renderCurrent(new URL(location.href).searchParams.get("phase"));

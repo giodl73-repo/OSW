@@ -5,7 +5,7 @@ from playwright.sync_api import sync_playwright
 
 def main():
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'],headless=True)
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'),headless=True)
         page=browser.new_page(viewport={'width':860,'height':1100},has_touch=True)
         errors=[]
         page.on('pageerror',lambda error:errors.append(str(error)))

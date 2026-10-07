@@ -2,7 +2,7 @@
 use serde_json::{Value, json};
 use std::collections::BTreeSet;
 
-fn point(value: &Value) -> Option<(f64, f64)> {
+pub(crate) fn point(value: &Value) -> Option<(f64, f64)> {
     let xy = value.as_array()?;
     let lon = xy.first()?.as_f64()?;
     let lat = xy.get(1)?.as_f64()?;
@@ -17,6 +17,13 @@ fn point(value: &Value) -> Option<(f64, f64)> {
 }
 
 fn path(value: &Value, closed: bool) -> Option<String> {
+    path_formatted(value, closed, |(x, y)| format!("{x:.5} {y:.5}"))
+}
+pub(crate) fn path_formatted(
+    value: &Value,
+    closed: bool,
+    format_point: impl Fn((f64, f64)) -> String,
+) -> Option<String> {
     let coordinates = value.as_array()?;
     if coordinates.len() < if closed { 4 } else { 2 } {
         return None;
@@ -30,10 +37,10 @@ fn path(value: &Value, closed: bool) -> Option<String> {
         if closed && seam {
             return None;
         }
-        result.push_str(&format!(
-            "{} {x:.5} {y:.5} ",
-            if previous.is_none() || seam { 'M' } else { 'L' }
-        ));
+        result.push(if previous.is_none() || seam { 'M' } else { 'L' });
+        result.push(' ');
+        result.push_str(&format_point((x, y)));
+        result.push(' ');
         previous = Some((x, y));
     }
     if closed {

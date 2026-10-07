@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 OUTPUT=ROOT/'almanac/query-data.json'
+CANONICAL=['entities', 'sources', 'claims', 'relations', 'measurements', 'geometries', 'names', 'length_assessments', 'classification_vocabularies', 'named_eddy_footprint_candidates', 'footprint_movie_context', 'media', 'tiles', 'tile_state_relations', 'named_eddy_state_assessments', 'named_eddy_source_observations', 'named_current_source_observations', 'operational_eddy_state_observations', 'diagnosed_current_path_observations', 'observation_sets']
 
 def build():
     inputs={}
@@ -13,7 +14,18 @@ def build():
         raw=(ROOT/path).read_bytes();inputs[path]=hashlib.sha256(raw).hexdigest()
         return json.loads(raw)
     base='almanac/release/v0.1.0/'
-    collections={name:read(base+name+'.json') for name in ['entities','sources','claims','relations','measurements','geometries']}
+    collections={name:read(base+name+'.json') for name in CANONICAL}
+    read(base+'manifest.json')
+    preview='almanac/release/v0.1.0-rights-screened-preview/'
+    preview_manifest=read(preview+'manifest.json')
+    if preview_manifest['source_manifest_sha256']!=inputs[base+'manifest.json']:raise ValueError('Stale screened preview parent')
+    movies_receipts={}
+    for name in ['manifest','tiles','tile_state_relations','media','entities']:
+        path=preview+name+'.json';document=read(path)
+        if name!='manifest':
+            digest=next(r['sha256'] for r in preview_manifest['files'] if r['path']==name+'.json')
+            if digest!=inputs[path]:raise ValueError('Changed screened movie input: '+path)
+        movies_receipts[name]={'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')}
     dashboard=read('research/ocean-motion-dashboard.json')
     widths=read('research/ocean-current-width-inventory.json')
     from check_current_width_inventory import validate
@@ -25,6 +37,7 @@ def build():
     collections['widths']=widths['measurements']
     collections['reference_routes']=routes['candidates']
     objects=copy.deepcopy(dashboard['entries'])
+    for row in objects:row['dashboard_search']=row['label']+' '+row['basin']
     entity_index={e['id']:e for e in collections['entities']}
     sources={s['id'] for s in collections['sources']}
     from build_query_taxonomy import build as build_taxonomy
@@ -286,11 +299,65 @@ def build():
     network_owner=next(row for row in objects if row['id']=='current:indonesian-throughflow')
     network_owner['flow_network_ids']=[r['id'] for r in collections['flow_networks']]
     network_owner['passage_sample_ids']=[r['id'] for r in collections['passage_samples']]
+    model_timeline=read('research/norkyst-ingoy-2024-section-timeline.json')
+    model_maps=read('research/norkyst-ingoy-2024-map-frames.json')
+    from check_norkyst_ingoy_timeline import validate as validate_model_timeline
+    from check_norkyst_ingoy_maps import validate as validate_model_maps
+    validate_model_timeline(model_timeline);validate_model_maps(model_maps,model_timeline)
+    for document in [model_timeline,model_maps]:
+        for kind in ['acquisition','generator','protocol','projection_helper']:
+            if kind+'_file' not in document:continue
+            path=document[kind+'_file'];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+            if inputs[path]!=document[kind+'_sha256']:raise ValueError('Stale model source provenance: '+path)
+        for frame in document['frames']:
+            for file_key,hash_key in [('receipt_file','receipt_sha256'),('figure','figure_sha256')]:
+                if file_key not in frame:continue
+                path=frame[file_key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+                if inputs[path]!=frame[hash_key]:raise ValueError('Stale model frame support: '+path)
+    from build_query_model_sections import build as build_model_sections, UNITS as MODEL_UNITS
+    for frame in model_timeline['frames']:
+        receipt=read(frame['receipt_file'])
+        if {key:receipt['packing'][key]['units'] for key in MODEL_UNITS}!=MODEL_UNITS:
+            raise ValueError('Changed model field units: '+frame['receipt_file'])
+    collections.update(build_model_sections(model_timeline,model_maps,inputs))
+    inputs['analysis/build_query_model_sections.py']=hashlib.sha256((ROOT/'analysis/build_query_model_sections.py').read_bytes()).hexdigest()
+    model_owner=next(row for row in objects if row['id']=='current:norwegian-coastal')
+    model_owner['model_frame_ids']=[row['id'] for row in collections['model_frames']]
+    model_owner['capabilities']['model_frames']=len(collections['model_frames'])
+    model_owner['capabilities']['model_samples']=len(collections['model_samples'])
     for name,rows in collections.items():
         if len({r['id'] for r in rows})!=len(rows):raise ValueError('Duplicate ID in '+name)
+    atlas_paths=['research/ocean-current-inventory-expansion-candidates.json',
+                 'research/ocean-current-reference-route-state-join.json',
+                 'research/ocean-current-dated-timeline-2025.json',
+                 'research/ocean-current-dated-timeline.json',
+                 'research/antilles-ab0505-400m-section-diagnostic.json',
+                 'research/leeuwin-a101-monthly-plot-extraction.json',
+                 'research/kuroshio-ecs-seasonal-width-profile-extraction.json',
+                 'research/pacific-necc-oscar-2013-section-diagnostic.json',
+                 'research/gulf-stream-section-width-series.json',
+                 'research/norkyst-ingoy-2024-section-timeline.json',
+                 'research/norkyst-ingoy-2024-map-frames.json',
+                 *[r['candidate_file'] for r in routes['candidates']]]
+    atlas_receipts={}
+    for path in atlas_paths:
+        document=read(path)
+        atlas_receipts[path]={'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')}
+        if path.endswith('reference-route-state-join.json'):
+            for dependency,digest in document['input_sha256'].items():
+                read(dependency)
+                if inputs[dependency]!=digest:raise ValueError('Stale atlas state join: '+dependency)
+        if path.endswith('antilles-ab0505-400m-section-diagnostic.json'):
+            read(document['inventory_file'])
+            if inputs[document['inventory_file']]!=document['inventory_sha256']:raise ValueError('Stale observed-section inventory')
     return {'schema':'osw.query-bundle.v1','manifest':{'status':'local_editorial_and_canonical_snapshot_not_new_scientific_admission',
-            'canonical_release':'v0.1.0','canonical_collections':['entities','sources','claims','relations','measurements','geometries'],
-            'taxonomy':taxonomy,'editorial_collections':['taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples'],
+            'canonical_release':'v0.1.0','canonical_collections':CANONICAL,
+            'atlas_receipts':atlas_receipts,
+            'movies_receipts':movies_receipts,
+            'loop_recorded_receipts':{path:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for path in ['research/loop-current-recorded-date-comparison.json','research/loop-current-recorded-date-sources.json']},
+            'taxonomy':taxonomy,'editorial_collections':['taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples'],
+            'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
+            'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
             'input_sha256':inputs,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},
             'scope':'State joins retain relation kinds; gateways are not containment. Widths retain scope. Published lengths and editorial route lengths are separate collections.'},
             'collections':collections}

@@ -2,8 +2,9 @@
 (async()=>{
  const byId=id=>document.getElementById(id),ns='http://www.w3.org/2000/svg';
  try {
-  const response=await fetch('../research/antilles-ab0505-400m-section-diagnostic.json');if(!response.ok)throw new Error('Section data unavailable');
-  const data=await response.json();
+  const {snapshot,documents}=await window.oswCheckedAtlasReady;
+  const path='research/antilles-ab0505-400m-section-diagnostic.json',data=documents[path],view=snapshot.observed_section_views[path];
+  if(!data||!view)throw new Error('Checked section data unavailable');
   if(data.schema!=='osw.ladcp-section-diagnostic.v1'||data.current_id!=='antilles'||data.status!=='derived_local_diagnostic_requires_review'||data.sections.length!==2)throw new Error('Unexpected section evidence');
   const select=byId('section-select');
   for(const section of data.sections){const option=document.createElement('option');option.value=section.id;option.textContent=section.label;select.append(option);}
@@ -17,9 +18,11 @@
    for(const sample of section.samples){
     const tr=document.createElement('tr');rows.append(tr);
     for(const value of [sample.cast_id,sample.average_cast_time_utc,...sample.coordinates_lon_lat,sample.northward_m_s,sample.error_velocity_m_s,sample.quality_class]){const td=document.createElement('td');td.textContent=value==null?'No sample':typeof value==='number'?value.toFixed(4):value;tr.append(td);}
-    const [lon,lat]=sample.coordinates_lon_lat,x=60+(lon+180)/360*1480,y=90+(90-lat)/180*740;
-    const group=document.createElementNS(ns,'g');group.classList.add('sample-station');group.setAttribute('tabindex','0');group.setAttribute('role','img');group.setAttribute('aria-label',`${sample.cast_id}, ${sample.average_cast_time_utc}, ${sample.quality_class}, ${sample.northward_m_s==null?'no sample at 400 m':sample.northward_m_s.toFixed(3)+' m/s northward'}`);layer.append(group);
-    const circle=document.createElementNS(ns,'circle');for(const [k,v] of Object.entries({cx:x,cy:y,r:.5,fill:sample.northward_m_s==null?'#a6aeb1':sample.quality_class==='caution'?'#f1b15b':'#64dfce'}))circle.setAttribute(k,v);group.append(circle);
+    const station=view.sections[section.id].stations.find(row=>row.cast_id===sample.cast_id);
+    if(!station)throw new Error('Checked cast position unavailable');
+    const {x,y}=station;
+    const group=document.createElementNS(ns,'g');group.classList.add('sample-station');group.setAttribute('tabindex','0');group.setAttribute('role','img');group.setAttribute('aria-label',station.label);layer.append(group);
+    const circle=document.createElementNS(ns,'circle');for(const [k,v] of Object.entries({cx:x,cy:y,r:.5,fill:station.color}))circle.setAttribute(k,v);group.append(circle);
     const title=document.createElementNS(ns,'title');title.textContent=group.getAttribute('aria-label');group.append(title);
     const text=document.createElementNS(ns,'text');text.classList.add('station-name');text.setAttribute('x',x);text.setAttribute('y',y-2);text.textContent=sample.cast_id;group.append(text);
    }

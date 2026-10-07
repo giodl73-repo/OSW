@@ -1,14 +1,31 @@
 use serde::Deserialize;
 use serde_json::{Value, json};
 use std::collections::{BTreeMap, BTreeSet};
+mod atlas_data;
+pub mod cartography;
 mod charts;
+mod dashboard;
+mod dashboard_beck;
+mod dashboard_map;
+mod index_map;
+mod index_noaa;
+pub mod index_store;
+mod index_support;
 mod loop_diagnostics;
+mod loop_recorded;
 mod map;
+mod model_sections;
+mod movies;
 mod network;
+mod norkyst_data;
+mod object_plot;
+mod object_view;
+mod observed_sections;
 mod planning;
 mod rebase;
 mod samples;
 mod seasonal;
+mod seasons_data;
 mod spatial;
 mod svg;
 mod taxonomy;
@@ -167,6 +184,7 @@ impl Store {
                 ("diagnostic_ids", "diagnostics"),
                 ("flow_network_ids", "flow_networks"),
                 ("passage_sample_ids", "passage_samples"),
+                ("model_frame_ids", "model_frames"),
             ] {
                 if let Some(list) = object.get(key) {
                     let list = list.as_array().ok_or_else(|| format!("Invalid {key}"))?;
@@ -186,7 +204,8 @@ impl Store {
                             || collection == "diagnostics"
                             || collection == "route_decisions"
                             || collection == "flow_networks"
-                            || collection == "passage_samples")
+                            || collection == "passage_samples"
+                            || collection == "model_frames")
                             && bundle.collections[collection][ids[collection][id]]["entity_id"]
                                 != object["id"]
                         {
@@ -223,8 +242,14 @@ impl Store {
         samples::validate(&bundle.collections, &bundle.manifest)?;
         planning::validate(&bundle.collections, &bundle.manifest)?;
         loop_diagnostics::validate(&bundle.collections, &bundle.manifest)?;
+        loop_recorded::validate(&bundle)?;
         network::validate(&bundle.collections, &bundle.manifest)?;
         taxonomy::validate(&bundle.collections, &bundle.manifest)?;
+        dashboard::validate(&bundle)?;
+        seasons_data::validate(&bundle)?;
+        atlas_data::validate(&bundle)?;
+        model_sections::validate(&bundle)?;
+        movies::validate(&bundle)?;
         let spatial = spatial::Index::build(&bundle.collections)?;
         fields.insert(
             "working_records".into(),
@@ -535,6 +560,8 @@ impl Store {
             scene
         } else if query.collection == "width_samples" {
             map::sample_scene(&matches)
+        } else if ["model_frames", "model_samples"].contains(&query.collection.as_str()) {
+            model_sections::scene(&matches, &query.collection)
         } else {
             Value::Null
         };
@@ -621,6 +648,7 @@ mod wasm {
     use std::cell::RefCell;
     thread_local! { static STORE: RefCell<Option<Store>>=const{RefCell::new(None)}; static RESULT:RefCell<Vec<u8>>=const{RefCell::new(Vec::new())}; }
     thread_local! {static REBASE_SOURCE:RefCell<Option<Store>>=const{RefCell::new(None)};}
+    thread_local! {static INDEX_STORE:RefCell<Option<index_store::IndexStore>>=const{RefCell::new(None)};}
     fn output(value: Value) {
         RESULT.with(|result| *result.borrow_mut() = serde_json::to_vec(&value).unwrap());
     }
@@ -648,6 +676,153 @@ mod wasm {
                 0
             }
         }
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_load(ptr: *const u8, len: usize) -> i32 {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        match index_store::IndexStore::load(bytes) {
+            Ok(store) => {
+                output(store.metadata());
+                INDEX_STORE.with(|s| *s.borrow_mut() = Some(store));
+                1
+            }
+            Err(error) => {
+                output(json!({"ok":false,"error":error}));
+                0
+            }
+        }
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_query(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.query(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_document(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.document(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_map(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.map_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_support(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.support_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_noaa_state(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.noaa_state_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_noaa_track(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.noaa_track_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_state_context(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.state_context_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_state_memberships(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.state_membership_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_release_media(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.release_media_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_nasa(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.nasa_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_eddies(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.eddy_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_currents(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.current_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
     }
     #[unsafe(no_mangle)]
     pub unsafe extern "C" fn osw_query(ptr: *const u8, len: usize) {
@@ -697,6 +872,87 @@ mod wasm {
     #[unsafe(no_mangle)]
     pub extern "C" fn osw_result_ptr() -> *const u8 {
         RESULT.with(|r| r.borrow().as_ptr())
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_object_view(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.object_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_movies(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.movie_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub extern "C" fn osw_seasons() {
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.seasons_snapshot())
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub extern "C" fn osw_loop_recorded() {
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.loop_recorded_view())
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_cartography(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        output(
+            crate::cartography::execute(bytes)
+                .unwrap_or_else(|error| json!({"ok":false,"error":error})),
+        );
+    }
+    #[unsafe(no_mangle)]
+    pub extern "C" fn osw_atlas() {
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.atlas_snapshot())
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub extern "C" fn osw_dashboard() {
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.dashboard_snapshot())
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_dashboard_select(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.dashboard_select(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
     }
     #[unsafe(no_mangle)]
     pub extern "C" fn osw_result_len() -> usize {

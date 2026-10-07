@@ -3,6 +3,7 @@ import json
 import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
+from test_motion_dashboard_browser import route_snapshot, settle
 
 ROOT=Path(__file__).resolve().parents[1]
 BASE='http://127.0.0.1:8788/almanac/dashboard.html'
@@ -10,15 +11,17 @@ BASE='http://127.0.0.1:8788/almanac/dashboard.html'
 def main():
     data=json.loads((ROOT/'research/ocean-motion-dashboard.json').read_bytes())
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'])
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1280,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto(BASE);expect(page.locator('.beck-station')).to_have_count(100)
         for metric,owner in [('dated_diagnostics','current:loop'),('flow_network','current:indonesian-throughflow'),('passage_transport','current:indonesian-throughflow')]:
             page.locator('#dashboard-metric').select_option(metric)
+            settle(page)
             expect(page.locator('.beck-station.lit')).to_have_count(1)
             assert page.locator('.beck-station.lit').get_attribute('data-current-id')==owner
         page.locator('#dashboard-metric').select_option('flow_network')
+        settle(page)
         page.locator('.beck-station.lit').focus();page.keyboard.press('Enter')
         link=page.locator('#dashboard-schematic-detail a').filter(has_text='Open passage network card')
         target=link.evaluate('(a)=>a.href');link.click()
@@ -32,13 +35,16 @@ def main():
         assert 'inspect=' not in page.url
         page.goto(BASE);expect(page.locator('.beck-station')).to_have_count(100)
         page.locator('#dashboard-metric').select_option('dated_diagnostics')
+        settle(page)
         page.locator('.beck-station.lit').focus();page.keyboard.press('Enter')
         page.locator('#dashboard-schematic-detail a').filter(has_text='Open mapped Loop Current card').click()
         expect(page.locator('#query-detail')).to_contain_text('Unranked method diagnostics (10)',timeout=60000)
         assert page.evaluate('window.oswLastQueryResult.map_scene.features.filter(f=>f.frame_id).length')==7
         page.goto(BASE);expect(page.locator('.beck-station')).to_have_count(100)
         page.locator('#dashboard-card-view').click();page.locator('#dashboard-metric').select_option('flow_network')
+        settle(page)
         page.locator('#dashboard-covered').check()
+        settle(page)
         expect(page.locator('.motion-card')).to_have_count(1)
         assert 'inspect=flow-network%3Aindonesian-throughflow' in page.locator('.motion-card h3 a').get_attribute('href')
         page.locator('.motion-card summary').click()
@@ -46,13 +52,17 @@ def main():
         page.locator('#dashboard-grid').screenshot(path=str(ROOT/'figures/dashboard-network-coverage-review.png'))
         changed=json.loads(json.dumps(data));owner=next(r for r in changed['entries'] if r['id']=='current:indonesian-throughflow')
         owner['fingerprint']='test-network-update';owner['section_fingerprints']['measurements']='test-passage-update'
-        page.route('**/research/ocean-motion-dashboard.json',lambda route:route.fulfill(json=changed))
+        route_snapshot(page,changed)
         page.locator('#dashboard-refresh').click()
+        expect(page.locator('#dashboard-refresh')).to_be_enabled(timeout=90000)
+        settle(page)
+        assert page.evaluate("window.oswDashboardSnapshot.snapshot.entries.find(r=>r.id==='current:indonesian-throughflow').fingerprint")=='test-network-update'
+        assert page.evaluate("window.oswDashboardSelection.result.changed_count")==1
         expect(page.locator('.motion-card.updated')).to_have_count(1)
         expect(page.locator('.change-reason')).to_contain_text('Measurements changed')
         page.set_viewport_size({'width':320,'height':900})
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
-        page.unroute('**/research/ocean-motion-dashboard.json')
+        page.unroute('**/query-data.json');page.unroute('**/query-engine.manifest.json')
         page.goto(target.replace('inspect=flow-network%3Aindonesian-throughflow','inspect=unknown'))
         expect(page.locator('#query-status')).to_contain_text('Selected record is not in this result page',timeout=60000)
         expect(page.locator('#query-detail')).to_be_hidden()

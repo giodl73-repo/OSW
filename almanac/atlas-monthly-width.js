@@ -47,7 +47,7 @@ window.initAtlasMonthlyWidth = function(panel, current, requestedMonth) {
   next.addEventListener('click',()=>{stop();select.value=String(Number(select.value)+1);render();});
   play.addEventListener('click',()=>{if(timer!==null){stop();return;}play.textContent='Pause';play.setAttribute('aria-pressed','true');timer=setInterval(()=>{select.value=String(Number(select.value)+1);render();},1800);});
   const visibility=()=>{if(document.hidden)stop();};document.addEventListener('visibilitychange',visibility);
-  fetch('../research/leeuwin-a101-monthly-plot-extraction.json',{cache:'no-store'}).then(async response=>{if(!response.ok)throw Error('Missing extraction');return response.json();}).then(doc=>{
+  window.oswAtlasSourcesReady.then(docs=>{const doc=docs['research/leeuwin-a101-monthly-plot-extraction.json'];if(!doc)throw Error('Missing checked extraction');return doc;}).then(doc=>{
     if(disposed)return;if(!valid(doc))throw Error('Invalid extraction scope');data=doc;
     for(const m of data.months){const option=html('option',m.label,select);option.value=String(m.month);}
     select.disabled=false;select.value=/^(?:[1-9]|1[0-2])$/.test(requestedMonth||'')?requestedMonth:'1';

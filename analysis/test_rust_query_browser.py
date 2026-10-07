@@ -7,10 +7,12 @@ from playwright.sync_api import sync_playwright, expect
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'http://127.0.0.1:8788/almanac/query.html'
+CLI = Path(os.environ.get('OSW_QUERY_CLI', str(ROOT / 'rust/osw-query/target/debug' /
+                                            ('osw-query-cli.exe' if os.name == 'nt' else 'osw-query-cli'))))
 
 
 def native(query):
-    result = subprocess.run([str(ROOT/'rust/osw-query/target/debug/osw-query-cli.exe'),
+    result = subprocess.run([str(CLI),
                              str(ROOT/'almanac/query-data.json'), '-'],
                             input=json.dumps(query), capture_output=True, text=True, encoding='utf-8')
     return json.loads(result.stdout)
@@ -40,7 +42,7 @@ def main():
         {'collection':'objects','spatial':{'state_code':'CAMR','predicate':'gateway'},'limit':50},
     ]
     with sync_playwright() as p:
-        browser = p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'])
+        browser = p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page = browser.new_page(viewport={'width':1280,'height':1000})
         errors = []
         page.on('pageerror', lambda e: errors.append(str(e)))
@@ -69,7 +71,7 @@ def main():
             actual = browser_query(page, query)
             expected = native(query)
             assert actual == expected, (query, actual, expected)
-        assert native(queries[0])['total'] == 28
+        assert native(queries[0])['total'] == 29
         lengths = native(queries[1])
         assert lengths['total'] == 11
         assert lengths['rows'][0]['published_length_km'] == 25000

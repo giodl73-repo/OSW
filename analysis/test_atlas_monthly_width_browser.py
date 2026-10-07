@@ -1,14 +1,15 @@
 """Historical chart months, cleanup, shared state and scope failure handling."""
 import os
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright,expect
 
 BASE='http://127.0.0.1:8788/almanac/reference-routes.html?atlas-layout=map&atlas-feature=current%3Aleeuwin'
 
 def main():
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'],headless=True)
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'),headless=True)
         page=browser.new_page(viewport={'width':1200,'height':950});page.emulate_media(reduced_motion='reduce')
-        errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+        errors=[];direct=[];page.on('pageerror',lambda e:errors.append(str(e)))
+        page.route('**/research/*.json',lambda r:(direct.append(r.request.url),r.fulfill(status=503,body='Direct reads disabled'))[-1])
         page.goto(BASE+'&atlas-width-month=4#route-atlas',wait_until='networkidle')
         page.wait_for_function('document.querySelector(".atlas-width-month")?.disabled===false')
         assert page.locator('.atlas-width-month').input_value()=='4'
@@ -43,15 +44,13 @@ def main():
         assert page.url==url and 'atlas-width-month=' not in url
         assert page.locator('.atlas-monthly-width').count()==0
         # Invalid source scope must not turn into chart playback or geometry.
-        def corrupt(route):
-            response=route.fetch();doc=response.json();doc['is_confidence_interval']=True
-            route.fulfill(response=response,json=doc)
-        page.route('**/research/leeuwin-a101-monthly-plot-extraction.json',corrupt)
-        page.goto(BASE+'#route-atlas',wait_until='networkidle')
-        page.wait_for_function('document.querySelector(".atlas-width-month-status")?.textContent.includes("unavailable or invalid")')
+        # Exercise the presentation guard after verified snapshot delivery.
+        page.evaluate("""async()=>{const docs=structuredClone(await window.oswAtlasSourcesReady);docs['research/leeuwin-a101-monthly-plot-extraction.json'].is_confidence_interval=true;window.oswAtlasSourcesReady=Promise.resolve(docs);}""")
+        page.locator('#route-atlas-select').select_option('current:leeuwin')
+        expect(page.locator('.atlas-width-month-status')).to_contain_text('unavailable or invalid',timeout=90000)
         assert page.locator('.atlas-width-play').is_disabled()
         assert page.locator('#route-atlas-preview h3').inner_text()=='Leeuwin Current'
-        assert not errors,errors;browser.close()
+        assert not direct and not errors,(direct,errors);browser.close()
     print('OK: 12 historical readings, margins, shared month, December stop, unchanged geometry, cleanup, mobile and invalid evidence')
 
 if __name__=='__main__':main()

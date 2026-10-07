@@ -1,6 +1,7 @@
 "use strict";
 // All record selection and joins run in Rust WASM, off the rendering thread.
 let engine=null;
+let engineBinary=null;
 let database=null,bundleHash=null,workspaceError=null;
 let sourceSnapshotBytes=null,rebaseRequest=null;
 const encoder=new TextEncoder(),decoder=new TextDecoder();
@@ -38,7 +39,7 @@ async function load(){
   for(const [path,bytes] of [['almanac/query-engine.wasm',wasm],['almanac/query-data.json',bundle]]){
     if(await digest(bytes)!==manifest.sha256[path])throw Error(`Changed ${path}; rebuild the query snapshot and engine manifest`);
   }
-  const result=await WebAssembly.instantiate(wasm,{});engine=result.instance.exports;
+  const result=await WebAssembly.instantiate(wasm,{});engine=result.instance.exports;engineBinary=wasm;
   let metadata=invoke('osw_load',new Uint8Array(bundle));
   if(!metadata.ok)throw Error(metadata.error);
   bundleHash=metadata.bundle_sha256;
@@ -55,7 +56,14 @@ self.onmessage=async event=>{
     else if(!engine)throw Error('Rust engine is not loaded');
     else if(action==='query')result=invoke('osw_query',value);
     else if(action==='query_svg')result=invoke('osw_query_svg',value);
+    else if(action==='object_view')result=invoke('osw_object_view',value);
+    else if(action==='movies')result=invoke('osw_movies',value);
     else if(action==='record')result=invoke('osw_record',value);
+    else if(action==='seasons')result=exported('osw_seasons');
+    else if(action==='loop_recorded')result=exported('osw_loop_recorded');
+    else if(action==='atlas'){result=exported('osw_atlas');if(result.ok)result.engine_binary=engineBinary;}
+    else if(action==='dashboard')result=exported('osw_dashboard');
+    else if(action==='dashboard_select')result=invoke('osw_dashboard_select',value);
     else if(action==='workspace_refresh')result=await refreshWorkspace();
     else if(action==='workspace_export')result=exported();
     else if(action==='workspace_snapshots'){

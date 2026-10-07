@@ -14,7 +14,7 @@ def main():
     assert row['width_statistics_context']['reported_statistics']['mean_confidence_level_percent'] is None
     assert row['annual_extrema_eligible'] is False and row['seasonal_playback_eligible'] is False
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER']);page=browser.new_page(viewport={'width':860,'height':1000});errors=[]
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'));page=browser.new_page(viewport={'width':860,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=florida&phase='+ID)
         expect(page.locator('#season-title')).to_have_text('Local surface jet width statistics')

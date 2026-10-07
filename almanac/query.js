@@ -55,6 +55,8 @@
   names.seasonal_routes='Source-defined seasonal routes';
   names.width_samples='Scoped width samples';
   names.route_decisions='Remaining current-length decisions';
+  names.model_frames='Hourly model section frames';
+  names.model_samples='Model section field samples';
   const widthFamilies={leeuwin_monthly_fitted_plot:'Monthly fitted-width plot readings at Leeuwin track a101',kuroshio_seasonal_profile_plot:'Seasonal axis-normal threshold-profile plot readings',necc_monthly_connected_component:'Monthly-mean positive-zonal connected-component diagnostics'};
   widthFamilies.loop_dated_half_peak_section='Recorded-day Yucatan gate half-peak northward-component spans';
   widthFamilies.gulf_stream_dated_half_peak_section='Recorded-day half-peak eastward-component section spans at 70 W';
@@ -62,11 +64,11 @@
   const ns='http://www.w3.org/2000/svg';let mapView=[0,0,360,180],mapDrag=null,mapMoved=false;
   function mapSet(view){const w=Math.min(360,Math.max(4,view[2]));mapView=[Math.max(0,Math.min(360-w,view[0])),Math.max(0,Math.min(180-w/2,view[1])),w,w/2];$('query-map').setAttribute('viewBox',mapView.join(' '));for(const point of $('query-map-features').querySelectorAll('circle'))point.setAttribute('r',w/288);$('query-map-ground').setAttribute('href',w<100?'../figures/ocean-motion-closeup-ground.svg':'../figures/ocean-motion-dashboard-ground.svg');const longitude=x=>Math.abs(x-180).toFixed(1)+'° '+(x<180?'W':'E'),latitude=y=>Math.abs(90-y).toFixed(1)+'° '+(y<=90?'N':'S');$('query-map-position').textContent='Display window: '+longitude(mapView[0])+' to '+longitude(mapView[0]+w)+' · '+latitude(mapView[1]+w/2)+' to '+latitude(mapView[1])+' · equirectangular, display only.';}
   function mapZoom(factor,x=mapView[0]+mapView[2]/2,y=mapView[1]+mapView[3]/2){const w=Math.min(360,Math.max(4,mapView[2]*factor));mapSet([x-(x-mapView[0])*w/mapView[2],y-(y-mapView[1])*w/mapView[2],w,w/2]);}
-  function fitMatches(){if(!$('query-map-features').childElementCount)return;const box=$('query-map-features').getBBox(),width=Math.max(lastQuery?.collection==='width_samples'?4:20,box.width*1.5,box.height*3);mapSet([box.x+box.width/2-width/2,box.y+box.height/2-width/4,width,width/2]);}
+  function fitMatches(){if(!$('query-map-features').childElementCount)return;const box=$('query-map-features').getBBox(),width=Math.max(['width_samples','model_frames','model_samples'].includes(lastQuery?.collection)?4:20,box.width*1.5,box.height*3);mapSet([box.x+box.width/2-width/2,box.y+box.height/2-width/4,width,width/2]);}
   $('query-map-fit').addEventListener('click',fitMatches);
   function renderMap(scene){
     $('query-map-section').hidden=!scene;$('query-map-features').replaceChildren();$('query-map-state').replaceChildren();if(!scene)return;
-    const samples=scene.inspection_collection==='width_samples',temporalObjects=lastQuery?.collection==='objects';
+    const samples=scene.inspection_collection==='width_samples',models=['model_frames','model_samples'].includes(scene.inspection_collection),temporalObjects=lastQuery?.collection==='objects';
     $('query-map-play-samples').hidden=!samples;
     $('query-map-play-samples').disabled=!samples;
     $('query-map-sample-playback-note').hidden=!samples;
@@ -74,10 +76,11 @@
     $('query-map-day').closest('label').hidden=!temporalObjects;
     for(const id of ['query-map-day','query-map-play','query-map-play-months']){$(id).disabled=!temporalObjects;if(id!=='query-map-day')$(id).hidden=!temporalObjects;}
     $('query-map-legend').textContent=samples?'Orange dashed: nominal local section spans. Individual recorded days may overlap. Use the sample day/year controls and table to inspect each record.':'Teal: editorial routes · orange dashed: dated diagnostic lines · purple: polygons · hollow: locators · amber dashed: shared gateways. Names appear on hover or focus.';
+    if(models)$('query-map-legend').textContent='Blue dashed lines: fixed model section support. Blue circles: sampling sites; gray dashed circles: missing fields. Dates may overlap; use date/month filters and the table to inspect individual records. No current boundary or state containment.';
     $('query-map-hover').textContent='Hover or focus a mark for its name; select it to inspect its record.';
     $('query-map-time').textContent=scene.geometry_time?`Observation window ${scene.geometry_time.from} through ${scene.geometry_time.to}. ${scene.features.filter(f=>f.undated_context).length} undated marks shown as context. Exact recorded days; gaps are not interpolated.`:'All recorded dates shown together. Undated routes and locators do not describe a particular day.';
     if(scene.seasonal)$('query-map-time').textContent=(scene.seasonal.month?`Source phases covering month ${scene.seasonal.month}. `:`Selected source phase: ${metadata.seasonal_phases.find(p=>p.id===scene.seasonal.phase_id)?.label||scene.seasonal.phase_id}. `)+scene.seasonal.scope;
-    if(scene.inspection_collection==='passage_samples')$('query-map-time').textContent=scene.scope;
+    if(scene.inspection_collection==='passage_samples'||models)$('query-map-time').textContent=scene.scope;
     if(samples)$('query-map-time').textContent=(scene.recorded_days?.length===1?'Recorded section day: '+scene.recorded_days[0]+' · '+[...new Set(scene.features.map(f=>f.source_algorithm).filter(Boolean))].join(', ')+'. ':'')+scene.scope;
     $('query-map-day').value=scene.geometry_time?.from===scene.geometry_time?.to?scene.geometry_time?.from||'':'';
     for(const feature of scene.state_features||[]){const node=document.createElementNS(ns,'path');node.setAttribute('d',feature.primitive.d);node.setAttribute('fill-rule','evenodd');$('query-map-state').append(node);}
@@ -87,9 +90,9 @@
     for(const feature of scene.features){
       const p=feature.primitive,node=document.createElementNS(ns,p.kind==='point'?'circle':'path');
       if(p.kind==='point'){node.setAttribute('cx',p.x);node.setAttribute('cy',p.y);node.setAttribute('r',mapView[2]/288);}else node.setAttribute('d',p.d);
-      node.setAttribute('class','query-map-mark '+p.kind+' '+feature.role+(feature.matches_selected_state===false?' context-only':'')+(feature.undated_context?' undated-context':''));node.setAttribute('fill-rule','evenodd');
+      node.setAttribute('class','query-map-mark '+p.kind+' '+feature.role+(feature.field_values_available===false?' model-fields-missing':'')+(feature.matches_selected_state===false?' context-only':'')+(feature.undated_context?' undated-context':''));node.setAttribute('fill-rule','evenodd');
       node.dataset.entity=feature.entity_id;node.dataset.role=feature.role;if(feature.phase_id)node.dataset.phase=feature.phase_id;node.setAttribute('tabindex','0');node.setAttribute('role','button');
-      const name=feature.label+' · '+feature.role.replaceAll('_',' ')+(feature.observation_date?' · '+feature.observation_date:'')+(feature.undated_context?' · undated context':'')+(feature.matches_selected_state===true?' · matches selected state':feature.matches_selected_state===false?' · context only':'');node.setAttribute('aria-label',name);
+      const name=feature.label+' · '+feature.role.replaceAll('_',' ')+(feature.observation_date?' · '+feature.observation_date:'')+(feature.sample_time_utc?' · '+feature.sample_time_utc:'')+(feature.undated_context?' · undated context':'')+(feature.matches_selected_state===true?' · matches selected state':feature.matches_selected_state===false?' · context only':'');node.setAttribute('aria-label',name);
       if(feature.phase_id)node.setAttribute('aria-label',name+' · '+feature.phase_label+' · '+feature.flow_direction);
       const title=document.createElementNS(ns,'title');title.textContent=node.getAttribute('aria-label');node.append(title);
       const announce=()=>{$('query-map-hover').textContent=node.getAttribute('aria-label')+(feature.note?' — '+feature.note:'');};node.addEventListener('pointerenter',announce);node.addEventListener('focus',announce);
@@ -118,7 +121,10 @@
   $('query-map').addEventListener('pointermove',e=>{if(!mapDrag||mapDrag.id!==e.pointerId)return;const dx=e.clientX-mapDrag.x,dy=e.clientY-mapDrag.y;if(Math.abs(dx)+Math.abs(dy)>5)mapMoved=true;if(mapMoved){const r=$('query-map').getBoundingClientRect();mapSet([mapDrag.view[0]-dx/r.width*mapDrag.view[2],mapDrag.view[1]-dy/r.height*mapDrag.view[3],mapDrag.view[2],mapDrag.view[3]]);}});
   for(const event of ['pointerup','pointercancel','lostpointercapture'])$('query-map').addEventListener(event,()=>{mapDrag=null;});
   const sortFields={objects:['label','published_length_km','capabilities.scoped_width','capabilities.reference_route','capabilities.time_samples'],widths:['name','current_id','approximate_width_km','phase_label'],reference_routes:['name','approximate_reference_path_km'],measurements:['entity_id','value','quantity'],states:['label','code'],state_links:['entity_label','state_code','kind'],sources:['label','title'],claims:['id','predicate','review_status'],relations:['id','predicate','subject_id'],entities:['label','type'],geometries:['id','entity_id'],series:['entity_id','frames'],diagnostics:['id']};
+  sortFields.model_frames=['date','sample_count','available_sample_count'];
+  sortFields.model_samples=['date','sample_index','distance_from_section_start_km','salinity','u_eastward','v_northward'];
   const fieldNames={label:'Name',name:'Name',published_length_km:'Published ranked length (km)',approximate_width_km:'Scoped width value (km)',approximate_reference_path_km:'Reference route estimate (km)','capabilities.scoped_width':'Width record count','capabilities.reference_route':'Route record count','capabilities.time_samples':'Time record count'};
+  Object.assign(fieldNames,{date:'Source date',sample_count:'Sampling sites',available_sample_count:'Sites with all fields',sample_index:'Section sample index',distance_from_section_start_km:'Distance from section start (km)',salinity:'Salinity (dimensionless)',u_eastward:'Eastward component (m/s)',v_northward:'Northward component (m/s)'});
   sortFields.geometry_frames=['date','label','source_algorithm'];
   sortFields.seasonal_routes=['label','phase_label','flow_direction'];
   sortFields.width_samples=['label','current_id','sample_family','month','year','observation_date','source_algorithm','longitude_degrees_east','value_km'];
@@ -135,6 +141,7 @@
   function rejectResult(message){failure(message);renderMap(null);window.oswCharts.render(null,inspect);$('query-detail').hidden=true;detailSequence++;$('query-share').hidden=true;$('query-export').disabled=true;$('query-previous').disabled=true;$('query-next').disabled=true;lastQuery=null;lastResult=null;window.oswLastQueryResult=null;$('query-rows').replaceChildren();$('query-page').textContent='';}
   function label(row){if(row.id?.startsWith('taxonomy-link:'))return row.child_label+' → '+row.parent_label;return row.label||row.name||row.title||row.entity_label||row.id;}
   function value(row){
+    const model=window.oswModelSectionCard?.value(row);if(model!==null&&model!==undefined)return model;
     if(row.document?.schema==='osw.flow-network.v1')return `${row.document.nodes.length} nodes · ${row.document.edges.length} connections · length unresolved`;
     if(row.quantity==='section_volume_transport')return `${row.value} Sv · 2004–2006 exit mean`;
     if(row.document?.schema==='osw.loop-section-spans.v1')return row.document.frames.length+' recorded-day local section spans · '+(row.document.product_key==='noaa'?'NOAA':'DUACS');
@@ -148,7 +155,7 @@
     if(row.published_length_km!==undefined&&row.published_length_km!==null)return `${row.published_length_km.toLocaleString()} km · published estimate`;
     return (row.type||row.kind||row.quantity||row.predicate||row.role||row.geometry_role||'record').replaceAll('_',' ');
   }
-  function scope(row){return row.summary||row.scope||row.geographic_scope||row.note||row.limitations||(row.state_code?`${row.state_code} · ${row.state_name} · ${row.label}`:row.basin)||row.source_locator||row.source_citation||'';}
+  function scope(row){const model=window.oswModelSectionCard?.scope(row);if(model)return model;return row.summary||row.scope||row.geographic_scope||row.note||row.limitations||(row.state_code?`${row.state_code} · ${row.state_name} · ${row.label}`:row.basin)||row.source_locator||row.source_citation||'';}
   function sampleFilters(filters){
     const represented={},extra=[],controls={current_id:'query-sample-current',sample_family:'query-sample-family',month:'query-sample-month',year:'query-sample-year',observation_date:'query-sample-day',value_km:'query-sample-availability'};
     for(const filter of filters||[]){
@@ -225,7 +232,7 @@
     for(const id of ['query-decision-current','query-decision-strategy','query-decision-status'])$(id).value=decisions.represented[id]?decisions.represented[id].value:'';
     $('query-decision-extra').hidden=query.collection!=='route_decisions'||!decisions.extra.length;
   }
-  function setBusy(value){busy=value;$('query-run').disabled=value;$('query-run-json').disabled=value;for(const b of document.querySelectorAll('[data-preset]'))b.disabled=value;}
+  function setBusy(value){busy=value;$('query-run').disabled=value;$('query-run-json').disabled=value;for(const b of document.querySelectorAll('[data-preset]'))b.disabled=value||!metadata.collections.some(c=>c.name===presets[b.dataset.preset]?.collection);}
   async function run(query,fromPlayback=false){
     if(!fromPlayback)stopPlayback();
     if(busy)return;setBusy(true);$('query-status').className='';$('query-status').textContent='Running query…';
@@ -281,6 +288,7 @@
     await inspect('objects',id);
   }
   function describe(parent,row){
+    if(window.oswModelSectionCard?.render(parent,row,inspect))return;
     if(row.id?.startsWith('taxonomy-link:')){
       element('h3',label(row),parent);element('p',row.scope,parent);
       element('p','This assignment is recorded in the editorial ledger. The naming reference does not independently establish the parent relationship.',parent);
@@ -388,6 +396,7 @@
       groups.push(['diagnostic_ids','diagnostics','Unranked method diagnostics']);
       groups.push(['flow_network_ids','flow_networks','Source-described flow networks']);
       groups.push(['passage_sample_ids','passage_samples','Observed passage transport']);
+      groups.push(['model_frame_ids','model_frames','Hourly model sections (context only)']);
       if(record.source_id)groups.push(['single_source','sources','Source']);
       for(const [key,target,title] of groups){
         const ids=key==='single_source'?[record.source_id]:record[key];if(!ids?.length)continue;
@@ -400,7 +409,7 @@
       panel.scrollIntoView({block:'start'});panel.focus({preventScroll:true});
     }catch(error){if(generation===detailSequence){panel.replaceChildren();element('p',error.message,panel);}}
   }
-  const presets={'countercurrent-family':{collection:'objects',taxonomy:{root_id:'current:equatorial-countercurrent',relation:'descendants',include_root:false},sort:{field:'label'},limit:100},width:{collection:'objects',record_type:'named_current',evidence:'scoped_width',sort:{field:'label',direction:'asc'},limit:50},
+  const presets={'norkyst-frames':{collection:'model_frames',sort:{field:'date'},limit:50},'norkyst-january':{collection:'model_samples',filters:[{field:'month',op:'eq',value:1}],sort:{field:'sample_index'},limit:100},'countercurrent-family':{collection:'objects',taxonomy:{root_id:'current:equatorial-countercurrent',relation:'descendants',include_root:false},sort:{field:'label'},limit:100},width:{collection:'objects',record_type:'named_current',evidence:'scoped_width',sort:{field:'label',direction:'asc'},limit:50},
     'itf-moorings-sund':{collection:'passage_samples',spatial:{state_code:'SUND',predicate:'locator'},limit:50},
     'loop-section-samples':{collection:'width_samples',filters:[{field:'sample_family',op:'eq',value:'loop_dated_half_peak_section'}],sort:{field:'observation_date'},limit:50},
     'length-decisions':{collection:'route_decisions',sort:{field:'strategy_label'},limit:100},
@@ -420,7 +429,7 @@
   for(const [chosen,other] of [['query-season-month','query-season-phase'],['query-season-phase','query-season-month']])$(chosen).addEventListener('change',()=>{if(!$(chosen).value)return;$(other).value='';$('query-time-from').value='';$('query-time-to').value='';$('query-time-context').checked=false;});
   for(const id of ['query-time-from','query-time-to'])$(id).addEventListener('change',()=>{if($(id).value){$('query-season-month').value='';$('query-season-phase').value='';}});
   $('query-run-json').addEventListener('click',()=>{try{const query=JSON.parse($('query-json').value);showBuilder(query);run(query);}catch(error){rejectResult('Invalid JSON query: '+error.message);}});
-  for(const button of document.querySelectorAll('[data-preset]'))button.addEventListener('click',async()=>{const query=presets[button.dataset.preset];showBuilder(query);await run(query);if(['gulf-dated','itf-moorings-sund'].includes(button.dataset.preset)&&lastResult)fitMatches();});
+  for(const button of document.querySelectorAll('[data-preset]'))button.addEventListener('click',async()=>{const query=presets[button.dataset.preset];showBuilder(query);await run(query);if(['gulf-dated','itf-moorings-sund','norkyst-frames','norkyst-january'].includes(button.dataset.preset)&&lastResult)fitMatches();});
   $('query-previous').addEventListener('click',()=>run({...lastQuery,offset:Math.max(0,(lastQuery.offset||0)-(lastQuery.limit||100))}));
   $('query-next').addEventListener('click',()=>run({...lastQuery,offset:(lastQuery.offset||0)+(lastQuery.limit||100)}));
   $('query-export').addEventListener('click',()=>{if(!lastResult)return;const blob=new Blob([JSON.stringify({query:lastQuery,bundle_sha256:metadata.bundle_sha256,result:lastResult},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob);const a=element('a');a.href=url;a.download='osw-query-result.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
@@ -439,7 +448,8 @@
       for(let month=1;month<=12;month++)option($('query-sample-month'),new Intl.DateTimeFormat('en',{month:'long',timeZone:'UTC'}).format(new Date(Date.UTC(2000,month-1,1))),String(month));
       const counts=Object.fromEntries(metadata.collections.map(c=>[c.name,c.count]));
       $('query-inventory').textContent=`${metadata.object_type_counts.named_current} currents · ${metadata.object_type_counts.named_eddy + metadata.object_type_counts.operational_eddy_detection} eddy records · ${counts.states} OSW states · ${counts.claims.toLocaleString()} claims · ${counts.widths} scoped width records · ${counts.width_samples} scoped width samples`;
-      for(const name of order)if(counts[name]!==undefined)option($('query-collection'),`${names[name]} (${counts[name].toLocaleString()})`,name);
+      const collectionOrder=[...order,...metadata.collections.map(row=>row.name).filter(name=>!order.includes(name))];
+      for(const name of collectionOrder)if(counts[name]!==undefined)option($('query-collection'),`${names[name]||name.replaceAll('_',' ')} (${counts[name].toLocaleString()})`,name);
       await window.oswWorkspace.initialize(metadata,rpc,(workspace,query)=>{
         const option=$('query-collection').querySelector('option[value="working_records"]');if(option)option.textContent=names.working_records+' ('+workspace.record_count+')';
         if(query){const q={collection:'working_records',limit:50};showBuilder(q);run(q);}
@@ -448,13 +458,13 @@
       for(const state of states.rows)option($('query-state'),state.code+' · '+state.label,state.code);
       for(const [key,definition] of Object.entries(metadata.taxonomy?.identity_levels||{})){option($('query-identity-level'),key.replaceAll('_',' '),key);$('query-identity-level').lastElementChild.title=definition;}
       for(const node of metadata.taxonomy?.nodes||[])option($('query-taxonomy-root'),node.label+' · '+node.identity_level.replaceAll('_',' '),node.id);
-      $('query-controls').disabled=false;$('query-run-json').disabled=false;for(const button of document.querySelectorAll('[data-preset]'))button.disabled=false;
+      $('query-controls').disabled=false;$('query-run-json').disabled=false;for(const button of document.querySelectorAll('[data-preset]'))button.disabled=!metadata.collections.some(c=>c.name===presets[button.dataset.preset]?.collection);
       $('query-engine-info').textContent=`${metadata.engine} · ${metadata.collections.length} collections · browser worker · snapshot ${metadata.bundle_sha256.slice(0,12)}.`;
       $('query-manifest').textContent=JSON.stringify(metadata.manifest,null,2);
       let query={collection:'objects',record_type:'named_current',sort:{field:'label',direction:'asc'},limit:50,offset:0};
       const shared=new URL(location.href).searchParams.get('q');if(shared){if(shared.length>20000)throw Error('Shared query is too large');query=JSON.parse(shared);}
       const selected=new URL(location.href).searchParams.get('inspect');
-      showBuilder(query);await run(query);if(query.seasonal?.phase_id&&lastResult)fitMatches();
+      showBuilder(query);await run(query);if((query.seasonal?.phase_id||['model_frames','model_samples'].includes(query.collection))&&lastResult)fitMatches();
       if(selected&&lastResult){if(lastResult.rows.some(r=>r.id===selected)){fitMatches();await inspect(lastResult.collection,selected);}else failure('Selected record is not in this result page. Choose a record from the results.');}
     }catch(error){failure('Query store unavailable: '+error.message);$('query-inventory').textContent='The query store could not be loaded.';}
   })();

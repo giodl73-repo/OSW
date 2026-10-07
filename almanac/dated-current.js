@@ -1,11 +1,14 @@
 (() => {
   const byId = id => document.getElementById(id);
-  let series, widths, timer = null;
+  let series, widths, timer = null, mapToken = 0;
   function stop() { if (timer !== null) clearInterval(timer); timer = null; byId('dated-play').textContent = 'Play observations'; }
   function render() {
     const index = Number(byId('dated-phase').value), frame = series.frames[index];
+    const address=new URL(location.href);address.searchParams.set('series',byId('dated-series').value);address.searchParams.set('date',frame.date);history.replaceState(null,'',address);
     byId('dated-value').textContent = `${frame.date}: ${Math.round(frame.diagnostic_length_km).toLocaleString('en-US')} km ${frame.reaches_downstream_gate ? 'gate-reaching diagnostic' : 'truncated diagnostic'}; not a whole-current length.`;
-    const map = byId('dated-map'); map.hidden = false; map.src = `../${frame.figure}`;
+    const map = byId('dated-map'),token=++mapToken;map.hidden = true;map.src = `../${frame.figure}`;
+    byId('dated-map-status').textContent='Loading selected diagnostic map…';
+    map.decode().then(()=>{if(token===mapToken){map.hidden=false;map.dataset.sampleDate=frame.date;byId('dated-map-status').textContent='';}}).catch(()=>{if(token===mapToken){stop();byId('dated-map-status').textContent='Selected diagnostic map unavailable; source calculations remain inspectable.';}});
     map.alt = `Gulf Stream surface geostrophic diagnostic on ${frame.date}, fixed seed to ${frame.reaches_downstream_gate ? '50 W gate' : 'threshold stop'}. OSW state context; no current footprint.`;
     byId('dated-stop').textContent = frame.reaches_downstream_gate ? 'Trace reaches the declared 50 W gate (dashed line).' : `Trace stopped: ${frame.stop_reason.replaceAll('_', ' ')}. The diagnostic does not measure the current endpoint or a change in whole-current length.${frame.stop_reason === 'distance_cap' ? ' The trace can circulate near its seed until the integration cap; its accumulated distance is not a downstream current extent.' : ''}`;
     const previous = series.frames[index - 1];
@@ -49,9 +52,13 @@
     const path = year === '2025' ? '../research/ocean-current-dated-timeline-2025.json' : '../research/ocean-current-dated-timeline.json';
     byId('dated-play').disabled = true;
     byId('dated-phase').disabled = true;
+    byId('dated-phase').replaceChildren();
+    ++mapToken;byId('dated-map').hidden=true;
+    for(const id of ['dated-value','dated-stop','dated-gap','dated-version','dated-width','dated-width-range','dated-width-samples','dated-sensitivity','dated-scenario-rows','dated-state-list','dated-source','dated-map-status'])byId(id).replaceChildren();
     byId('dated-status').textContent = 'Loading pinned frames…';
-    const read = url => fetch(url).then(r => { if (!r.ok) throw Error('Dated evidence unavailable'); return r.json(); });
-    return Promise.all([read(path), read('../research/gulf-stream-section-width-series.json')]).then(([value, widthSeries]) => {
+    return window.oswCheckedAtlasReady.then(({documents}) => {
+    const value=documents[path.replace(/^\.\.\//,'')],widthSeries=documents['research/gulf-stream-section-width-series.json'];
+    if(!value||!widthSeries)throw Error('Checked dated evidence unavailable');
     if (token !== loadToken) return;
     series = value;
     widths = widthSeries;

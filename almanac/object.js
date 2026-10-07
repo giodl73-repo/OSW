@@ -45,44 +45,38 @@ function link(label, url, parent) {
   return node;
 }
 
-function footprintPlot(geometry, center, parent) {
-  const ring = geometry.geometry.coordinates[0];
-  const xs = ring.map(point => point[0]), ys = ring.map(point => point[1]);
-  const west = Math.min(...xs), east = Math.max(...xs);
-  const south = Math.min(...ys), north = Math.max(...ys);
-  const scale = Math.min(480 / (east - west), 250 / (north - south));
-  const x = value => 300 + (value - (west + east) / 2) * scale;
-  const y = value => 165 - (value - (south + north) / 2) * scale;
-  const ns = "http://www.w3.org/2000/svg";
-  const svg = document.createElementNS(ns, "svg");
-  svg.setAttribute("viewBox", "0 0 600 350");
-  svg.setAttribute("role", "img");
-  svg.setAttribute("aria-label", `NAVO dated polygon, ${geometry.observation_date}. Longitude ${west.toFixed(3)} to ${east.toFixed(3)} degrees; latitude ${south.toFixed(3)} to ${north.toFixed(3)} degrees. Exact datum unspecified. State containment is described in the text below.`);
-  svg.classList.add("detection-footprint");
-  function child(tag, attributes, text) {
-    const node = document.createElementNS(ns, tag);
-    Object.entries(attributes).forEach(([key, value]) => node.setAttribute(key, value));
-    if (text) node.textContent = text;
-    svg.append(node);
-    return node;
-  }
-  child("path", {d: ring.map((point, index) => `${index ? "L" : "M"}${x(point[0]).toFixed(2)},${y(point[1]).toFixed(2)}`).join(" ") + " Z", fill: "#76d7e322", stroke: "#76d7e3", "stroke-width": 2});
-  if (center) {
-    child("path", {d: `M${x(center[0])-5},${y(center[1])}h10 M${x(center[0])},${y(center[1])-5}v10`, stroke: "#ffe17c", "stroke-width": 2});
-  }
-  child("text", {x: 300, y: 20, "text-anchor": "middle"}, `${geometry.observation_date} · full source polygon`);
-  child("text", {x: 300, y: 320, "text-anchor": "middle"}, `${west.toFixed(3)}° to ${east.toFixed(3)}° longitude`);
-  child("text", {x: 300, y: 342, "text-anchor": "middle"}, `${south.toFixed(3)}° to ${north.toFixed(3)}° latitude · north is up`);
-  parent.append(svg);
-  element("p", "Equal angular longitude/latitude plot. Outline: provider polygon; cross: provider center. No coastline or state boundary is drawn. Exact datum and positional uncertainty are unspecified; this is not a permanent eddy extent.", parent);
+function footprintPlot(scene,parent) {
+  if(!scene?.available){element('p',scene?.reason||'Provider polygon display unavailable.',parent);return;}
+  const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');
+  svg.setAttribute('viewBox',scene.view_box.join(' '));svg.setAttribute('role','img');svg.setAttribute('aria-label',scene.aria_label);svg.classList.add('detection-footprint');
+  function child(tag,attributes,text,container=svg){const node=document.createElementNS(ns,tag);for(const [key,value]of Object.entries(attributes))node.setAttribute(key,value);if(text)node.textContent=text;container.append(node);return node;}
+  const layer=child('g',{transform:scene.display_transform});
+  child('path',{d:scene.polygon_d,fill:'#76d7e322',stroke:'#76d7e3','stroke-width':2,'vector-effect':'non-scaling-stroke','fill-rule':'evenodd'},null,layer);
+  if(scene.center_d)child('path',{d:scene.center_d,stroke:'#ffe17c','stroke-width':2},null);
+  child('text',{x:300,y:20,'text-anchor':'middle'},scene.title);
+  child('text',{x:300,y:320,'text-anchor':'middle'},scene.longitude_label);
+  child('text',{x:300,y:342,'text-anchor':'middle'},scene.latitude_label);
+  parent.append(svg);element('p',scene.scope,parent);
+  if(scene.omitted_features?.length)element('p',`${scene.omitted_features.length} invalid or unsupported plot features omitted.`,parent);
 }
 
-Promise.all(collections.map(async name => {
-  const response = await fetch(packageRoot + name + ".json");
-  if (!response.ok) throw new Error(`${name}: HTTP ${response.status}`);
-  return response.json();
-})).then(values => {
-  const data = Object.fromEntries(collections.map((name, index) => [name, values[index]]));
+function loadObjectView() {
+  return new Promise((resolve,reject)=>{
+    const worker=new Worker('query-worker.js?v=object-view-7');
+    const timer=setTimeout(()=>finish(Error('Object request timed out')),90000);
+    const finish=(error,result)=>{clearTimeout(timer);worker.terminate();if(error)reject(error);else resolve(result);};
+    worker.onerror=()=>finish(Error('Rust object worker failed'));
+    worker.onmessage=event=>{const {id,result}=event.data;
+      if(!result.ok){finish(Error(result.error));return;}
+      if(id===1){worker.postMessage({id:2,action:'object_view',value:{id:new URL(location.href).searchParams.get('id')||'current:acc'}});return;}
+      window.oswObjectView=result;
+      document.querySelector('#object-summary').dataset.engine=result.engine;
+      finish(null,result.collections);
+    };
+    worker.postMessage({id:1,action:'load'});
+  });
+}
+loadObjectView().then(data => {
   const byId = Object.fromEntries(data.entities.map(item => [item.id, item]));
   const sources = Object.fromEntries(data.sources.map(item => [item.id, item]));
   let packetUrl;
@@ -174,7 +168,8 @@ Promise.all(collections.map(async name => {
     const footprintArea = document.querySelector("#footprints"); footprintArea.replaceChildren();
     for (const candidate of footprints) {
       const card = element("div", undefined, footprintArea);
-      renderOceanFootprintCandidate({parent: card, candidate,
+      renderRustOceanFootprintCandidate({parent: card, candidate,
+        plotScene: window.oswObjectView.footprint_plots[candidate.id],
         geometry: data.geometries.find(row => row.id === candidate.geometry_id),
         movieContexts: data.footprint_movie_context.filter(row => row.footprint_candidate_id === candidate.id),
         entityLink: (target, parent) => link(byId[target].label, "object.html?id=" + encodeURIComponent(target), parent),
@@ -303,7 +298,7 @@ Promise.all(collections.map(async name => {
     if (packetUrl) { URL.revokeObjectURL(packetUrl); packetUrl = undefined; }
     if (!detectionSection.hidden) {
       const geometry = locations.find(row => row.role === "dated_operational_eddy_polygon");
-      footprintPlot(geometry, operationalEddyRows[0]?.provider_center_lon_lat, detectionArea);
+      footprintPlot(window.oswObjectView.detection_plot, detectionArea);
       element("h3", "OSW state footprint relation", detectionArea);
       for (const row of operationalEddyRows) {
         const paragraph = element("p", undefined, detectionArea);

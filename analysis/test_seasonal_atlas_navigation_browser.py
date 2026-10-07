@@ -14,7 +14,7 @@ def main():
  linked={ident for f in frames for ident in f['width_measurement_ids']}
  records=frames+[r for r in widths if r['id'] not in linked]+directions
  with sync_playwright() as p:
-  browser=p.chromium.launch(headless=True,executable_path=os.environ['OSW_TEST_BROWSER'])
+  browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
   page=browser.new_page(viewport={'width':1440,'height':1100});errors=[]
   page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
@@ -47,6 +47,7 @@ def main():
     page.locator('#route-atlas-preview').get_by_role('link',name='Open this recorded seasonal phase →',exact=True).click()
     page.wait_for_function('(id)=>new URL(location.href).searchParams.get("phase")===id',arg=row['id'])
   page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=monsoon&phase=monsoon-winter-sri-lanka',wait_until='networkidle')
+  page.wait_for_function('window.oswSeasonSnapshot && document.querySelector("#season-current").options.length===100',timeout=90000)
   assert 'westward' in page.locator('#season-value').inner_text()
   page.locator('#season-phase').select_option('0')
   assert parse_qs(urlparse(page.url).query)['phase']==['monsoon-summer-sri-lanka']
@@ -57,6 +58,7 @@ def main():
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
   page.screenshot(path=str(root/'figures/seasonal-atlas-navigation-review.png'),full_page=True)
   page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=west-australian&phase=monsoon-winter-sri-lanka',wait_until='networkidle')
+  page.wait_for_function('window.oswSeasonSnapshot && document.querySelector("#season-current").options.length===100',timeout=90000)
   assert parse_qs(urlparse(page.url).query)['current']==['west-australian']
   assert 'phase' not in parse_qs(urlparse(page.url).query)
   assert page.locator('#season-play').is_disabled()
