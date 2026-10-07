@@ -25,7 +25,10 @@ def main():
             # form serves the same original; the pinned checksum remains mandatory.
             if name == 'florida-archer-2017':
                 source_url += '?download=1'
-            request = urllib.request.Request(source_url, headers={'User-Agent': 'OSW-source-validation/1.0'})
+            # NOAA accepts the standard urllib client but rejects our custom
+            # client header for this large-file endpoint.
+            headers = {} if name == 'florida-archer-2017' else {'User-Agent': 'OSW-source-validation/1.0'}
+            request = urllib.request.Request(source_url, headers=headers)
             with urllib.request.urlopen(request, timeout=60) as response:
                 maximum=50_000_000 if name=='florida-archer-2017' else 20_000_000
                 data = response.read(maximum+1)
