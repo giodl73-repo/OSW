@@ -50,6 +50,7 @@
     if(playing&&generation===playbackGeneration)playbackTimer=setTimeout(()=>playDay(index+1,generation),1000);
   }
   const names={objects:'Currents and eddies',widths:'Scoped width records',reference_routes:'Editorial reference routes',measurements:'Published measurement records',states:'OSW states',state_links:'Recorded state links',sources:'Sources',claims:'Claims',relations:'Relations',entities:'All ledger entities',geometries:'Stored geometries',series:'Time-series indexes',diagnostics:'Diagnostic documents',working_records:'Proposed working records',flow_networks:'Flow networks',flow_network_nodes:'Network nodes',flow_network_edges:'Network connections',passage_samples:'Passage transport samples'};
+  names.taxonomy_links='Declared identity memberships';
   names.geometry_frames='Dated diagnostic geometry frames';
   names.seasonal_routes='Source-defined seasonal routes';
   names.width_samples='Scoped width samples';
@@ -132,7 +133,7 @@
   function option(parent,text,value){const node=element('option',text,parent);node.value=value;}
   function failure(message){$('query-status').className='error';$('query-status').textContent=message;}
   function rejectResult(message){failure(message);renderMap(null);window.oswCharts.render(null,inspect);$('query-detail').hidden=true;detailSequence++;$('query-share').hidden=true;$('query-export').disabled=true;$('query-previous').disabled=true;$('query-next').disabled=true;lastQuery=null;lastResult=null;window.oswLastQueryResult=null;$('query-rows').replaceChildren();$('query-page').textContent='';}
-  function label(row){return row.label||row.name||row.title||row.entity_label||row.id;}
+  function label(row){if(row.id?.startsWith('taxonomy-link:'))return row.child_label+' → '+row.parent_label;return row.label||row.name||row.title||row.entity_label||row.id;}
   function value(row){
     if(row.document?.schema==='osw.flow-network.v1')return `${row.document.nodes.length} nodes · ${row.document.edges.length} connections · length unresolved`;
     if(row.quantity==='section_volume_transport')return `${row.value} Sv · 2004–2006 exit mean`;
@@ -166,8 +167,14 @@
     }
     return {represented,extra};
   }
+  function identityFilters(filters){
+    let represented=null;const extra=[];
+    for(const filter of filters||[]){if(!represented&&filter.field==='identity_level'&&filter.op==='eq'&&typeof filter.value==='string'&&[...$('query-identity-level').options].some(o=>o.value===filter.value&&o.value))represented=filter;else extra.push(filter);}
+    return {represented,extra};
+  }
   function updateFields(){
     const collection=$('query-collection').value,objects=collection==='objects',passages=collection==='passage_samples';
+    for(const id of ['query-identity-level','query-taxonomy-root','query-taxonomy-relation','query-taxonomy-include']){$(id).disabled=!objects;$(id).closest('label').hidden=!objects;}
     $('query-type').disabled=!objects;$('query-state').disabled=!(objects||passages);$('query-state-mode').disabled=!(objects||passages);$('query-evidence').disabled=!objects;
     for(const option of $('query-state-mode').options)option.disabled=passages&&option.value!=='locator';
     if(passages)$('query-state-mode').value='locator';
@@ -182,6 +189,11 @@
     const collection=$('query-collection').value,query={collection,limit:50,offset:0};
     if($('query-text').value.trim())query.text=$('query-text').value.trim();
     if(collection==='objects'){if($('query-type').value)query.record_type=$('query-type').value;if($('query-state-mode').value!=='recorded')query.spatial={state_code:$('query-state').value,predicate:$('query-state-mode').value};else if($('query-state').value)query.state_code=$('query-state').value;if($('query-evidence').value)query.evidence=$('query-evidence').value;}
+    if(collection==='objects'){
+      query.filters=lastQuery?.collection==='objects'?identityFilters(lastQuery.filters).extra:[];
+      if($('query-identity-level').value)query.filters.push({field:'identity_level',op:'eq',value:$('query-identity-level').value});
+      if($('query-taxonomy-root').value)query.taxonomy={root_id:$('query-taxonomy-root').value,relation:$('query-taxonomy-relation').value,include_root:$('query-taxonomy-include').checked};
+    }
     if(collection==='passage_samples'){if(lastQuery?.collection===collection&&lastQuery.filters)query.filters=lastQuery.filters;if($('query-state').value)query.spatial={state_code:$('query-state').value,predicate:'locator'};}
     if($('query-sort').value)query.sort={field:$('query-sort').value,direction:$('query-direction').value};
     if(collection==='objects'&&($('query-time-from').value||$('query-time-to').value))query.geometry_time={from:$('query-time-from').value,to:$('query-time-to').value,include_undated:$('query-time-context').checked};
@@ -202,6 +214,7 @@
   function showBuilder(query){
     $('query-collection').value=query.collection||'objects';updateFields();$('query-text').value=query.text||'';
     $('query-type').value=query.record_type||'';$('query-state').value=query.spatial?.state_code||query.state_code||'';$('query-state-mode').value=query.spatial?.predicate||(query.collection==='passage_samples'?'locator':'recorded');$('query-evidence').value=query.evidence||'';
+    $('query-identity-level').value=identityFilters(query.filters).represented?.value||'';$('query-taxonomy-root').value=query.taxonomy?.root_id||'';$('query-taxonomy-relation').value=query.taxonomy?.relation||'descendants';$('query-taxonomy-include').checked=query.taxonomy?.include_root||false;
     $('query-sort').value=query.sort?.field||'';$('query-direction').value=query.sort?.direction||'asc';
     $('query-time-from').value=query.geometry_time?.from||'';$('query-time-to').value=query.geometry_time?.to||'';$('query-time-context').checked=query.geometry_time?.include_undated||false;
     $('query-season-month').value=query.seasonal?.month||'';$('query-season-phase').value=query.seasonal?.phase_id||'';
@@ -224,6 +237,7 @@
       const url=new URL(location.href);url.searchParams.delete('inspect');url.searchParams.set('q',JSON.stringify(query));history.replaceState(null,'',url);
       $('query-share').hidden=false;$('query-share').href=url.href;$('query-export').disabled=false;
       $('query-status').textContent=`${result.total.toLocaleString()} matching ${names[result.collection]?.toLowerCase()||result.collection}. Query executed in Rust / WebAssembly.`;
+      if(result.taxonomy_scope)element('p',result.taxonomy_scope,$('query-status'));
       if(result.network_paths){const details=element('details',undefined,$('query-status'));element('summary',`${result.network_paths.paths.length} conceptual connections · no metric length`,details);element('p',result.network_paths.scope,details);const list=element('ol',undefined,details);for(const path of result.network_paths.paths)element('li',path.map(id=>result.network_paths.node_labels[id]||id).join(' → '),list);if(result.network_paths.truncated||result.network_paths.hop_limit_reached)element('p','Search limits were reached; these results may be incomplete.',details);}
       $('query-caption').textContent=names[result.collection]+' · '+result.total.toLocaleString()+' matches';
       renderMap(result.map_scene);
@@ -258,7 +272,23 @@
     const nodes=element('details',undefined,section);element('summary','All twelve named nodes',nodes);const list=element('ul',undefined,nodes);for(const node of doc.nodes){const item=element('li',undefined,list),button=element('button',node.label,item);button.type='button';button.addEventListener('click',()=>inspect('flow_network_nodes',node.id));}
     link('Query measured exit passages','query.html?q='+encodeURIComponent(JSON.stringify({collection:'passage_samples',filters:[{field:'network_id',op:'eq',value:row.id}]})),section);
   }
+  async function openIdentityCard(id){
+    if(busy)return;
+    if(lastQuery?.collection!=='objects'||!lastResult?.rows.some(row=>row.id===id)){
+      const query={collection:'objects',filters:[{field:'id',op:'eq',value:id}],limit:1};showBuilder(query);await run(query);
+      if(lastResult?.collection!=='objects'||!lastResult.rows.some(row=>row.id===id))return;
+    }
+    await inspect('objects',id);
+  }
   function describe(parent,row){
+    if(row.id?.startsWith('taxonomy-link:')){
+      element('h3',label(row),parent);element('p',row.scope,parent);
+      element('p','This assignment is recorded in the editorial ledger. The naming reference does not independently establish the parent relationship.',parent);
+      const links=element('div',undefined,parent);links.className='record-links';
+      for(const [id,text] of [[row.child_id,row.child_label],[row.parent_id,row.parent_label]]){const button=element('button',text,links);button.type='button';button.addEventListener('click',()=>openIdentityCard(id));}
+      link('Naming reference (context only)',row.naming_source_url,links);return;
+    }
+
     if(row.document?.schema==='osw.flow-network.v1')drawFlowNetwork(parent,row);
     if(row.quantity==='section_volume_transport'){element('p',`${row.value} Sv (negative toward the Indian Ocean), mean for 2004–2006; depth ${row.depth_range_m.join('–')} m.`,parent);element('p',`Calculation-choice interval: ${row.calculation_choice_interval_Sv.join(' to ')} Sv, from gap/extrapolation choices; not seasonal extrema or a confidence interval. Integration width: ${row.transport_integration_width_km} km; this is not a physical current width.`,parent);}
     if(row.moorings){const details=element('details',undefined,parent);element('summary',`Published mooring sites (${row.moorings.length})`,details);for(const site of row.moorings)element('p',`${site.label}: ${site.coordinates_lon_lat.join(', ')} (lon, lat); ${site.deployment_start} to ${site.deployment_end}; first-deployment location, not a current edge.`,details);}
@@ -331,6 +361,24 @@
       const result=await rpc('record',{collection,id});if(!result.ok)throw Error(result.error);if(generation!==detailSequence)return;
       panel.replaceChildren();const close=element('button','Close record',panel);close.type='button';close.addEventListener('click',()=>{panel.hidden=true;detailSequence++;});describe(panel,result.record);
       const record=result.record;
+      if(result.taxonomy_context){
+        const context=result.taxonomy_context,details=element('details',undefined,panel);details.open=true;
+        element('summary',`Declared identity memberships (${context.parents.length} parents, ${context.children.length} children)`,details);
+        element('p',context.scope,details);
+        const definition=metadata.taxonomy?.identity_levels[result.record.identity_level];if(definition)element('p',result.record.identity_level.replaceAll('_',' ')+': '+definition,details);
+        if(!context.parents.length&&!context.children.length)element('p','No parent or child assignment is recorded. This does not establish isolation or a complete physical taxonomy.',details);
+        for(const [direction,edges] of [['parents',context.parents],['children',context.children]]){
+          if(edges.length)element('h4',direction==='parents'?'Parent families or systems':'Declared members or components',details);
+          for(const edge of edges){
+          const id=direction==='parents'?edge.parent_id:edge.child_id,text=direction==='parents'?edge.parent_label:edge.child_label,item=element('p',undefined,details);
+          const button=element('button',text,item);button.type='button';button.addEventListener('click',()=>openIdentityCard(id));
+          element('span',' · '+edge.predicate.replaceAll('_',' ')+' · editorial assignment',item);
+        }
+        }
+        const actions=element('div',undefined,details);actions.className='record-links';
+        for(const [relation,text] of [['descendants','Query all declared descendants'],['ancestors','Query all declared ancestors']]){const button=element('button',text,actions);button.type='button';button.addEventListener('click',async()=>{const q={collection:'objects',taxonomy:{root_id:result.record.id,relation,include_root:false},sort:{field:'label'},limit:100};showBuilder(q);await run(q);if(lastResult)fitMatches();});}
+      }
+
       const spatial=lastResult?.map_scene?.spatial_relations?.[id];
       if(spatial?.length){const details=element('details',undefined,panel);details.open=true;element('summary','Computed state relations ('+spatial.length+')',details);element('p',lastResult.spatial_scope,details);element('pre',JSON.stringify(spatial,null,2),details);}
       const groups=[['width_ids','widths','Scoped width records'],['measurement_ids','measurements','Published measurements'],['route_ids','reference_routes','Editorial routes'],['source_ids','sources','Linked sources'],['frame_ids','geometry_frames','Dated diagnostic frames']];
@@ -351,7 +399,7 @@
       panel.scrollIntoView({block:'start'});panel.focus({preventScroll:true});
     }catch(error){if(generation===detailSequence){panel.replaceChildren();element('p',error.message,panel);}}
   }
-  const presets={width:{collection:'objects',record_type:'named_current',evidence:'scoped_width',sort:{field:'label',direction:'asc'},limit:50},
+  const presets={'countercurrent-family':{collection:'objects',taxonomy:{root_id:'current:equatorial-countercurrent',relation:'descendants',include_root:false},sort:{field:'label'},limit:100},width:{collection:'objects',record_type:'named_current',evidence:'scoped_width',sort:{field:'label',direction:'asc'},limit:50},
     'itf-moorings-sund':{collection:'passage_samples',spatial:{state_code:'SUND',predicate:'locator'},limit:50},
     'loop-section-samples':{collection:'width_samples',filters:[{field:'sample_family',op:'eq',value:'loop_dated_half_peak_section'}],sort:{field:'observation_date'},limit:50},
     'length-decisions':{collection:'route_decisions',sort:{field:'strategy_label'},limit:100},
@@ -397,6 +445,8 @@
       });
       const states=await rpc('query',{collection:'states',sort:{field:'label',direction:'asc'},limit:100});if(!states.ok)throw Error(states.error);
       for(const state of states.rows)option($('query-state'),state.code+' · '+state.label,state.code);
+      for(const [key,definition] of Object.entries(metadata.taxonomy?.identity_levels||{})){option($('query-identity-level'),key.replaceAll('_',' '),key);$('query-identity-level').lastElementChild.title=definition;}
+      for(const node of metadata.taxonomy?.nodes||[])option($('query-taxonomy-root'),node.label+' · '+node.identity_level.replaceAll('_',' '),node.id);
       $('query-controls').disabled=false;$('query-run-json').disabled=false;for(const button of document.querySelectorAll('[data-preset]'))button.disabled=false;
       $('query-engine-info').textContent=`${metadata.engine} · ${metadata.collections.length} collections · browser worker · snapshot ${metadata.bundle_sha256.slice(0,12)}.`;
       $('query-manifest').textContent=JSON.stringify(metadata.manifest,null,2);

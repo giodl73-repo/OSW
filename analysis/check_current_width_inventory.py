@@ -345,6 +345,25 @@ def validate(document, ledger):
             matches=[item for item in audit['monthly_values'] if item['month']==context.get('calendar_month')]
             if len(matches)!=1 or value!=matches[0]['approximate_width_km'] or row['calendar_months']!=[matches[0]['month']] or row['source_url']!=audit['source_url'] or row['source_locator']!=audit['source_locator']:
                 raise ValueError('Monthly fit differs from pinned extraction')
+        elif row['phase_kind'] == 'eulerian_mean_section_span':
+            if (row['measurement_type'],row['width_metric'],row.get('boundary_sides')) != ('published_eulerian_mean_section_span','coast_to_author_reported_mean_zero_isotach','coast_to_mean_zero_isotach') or span is not None:
+                raise ValueError('Conflated Eulerian mean section boundary')
+            if any(row.get(key) is not None for key in ['observed_period','calendar_months','section_geometry','fixed_layer_bounds_m']) or any(row.get(key) is not False for key in ['full_width_inference_eligible','annual_extrema_eligible','seasonal_playback_eligible','is_confidence_interval']):
+                raise ValueError('Invented Eulerian mean section support')
+            context=row.get('eulerian_section_context',{})
+            audit_file='research/agulhas-act-mean-section-width-scope-audit.json'
+            if context.get('audit_file') != audit_file or row['current_id'] != 'agulhas':
+                raise ValueError('Eulerian mean section provenance mismatch')
+            path=ROOT/audit_file
+            if hashlib.sha256(path.read_bytes()).hexdigest()!=context.get('audit_sha256'):
+                raise ValueError('Stale Eulerian mean section audit')
+            audit=json.loads(path.read_text(encoding='utf-8'))
+            for key in ['section_id','section_latitude_degrees_north_approx','averaging_period_months','reported_depth_extent_m','reported_depth_extent_is_fixed_measurement_layer']:
+                if context.get(key)!=audit[key]:raise ValueError('Eulerian section context differs from source audit')
+            if any(context.get(key) is not False for key in ['boundary_coordinates_extracted','instantaneous_moving_boundary_series_extracted','reported_depth_extent_is_fixed_measurement_layer']):
+                raise ValueError('Invented Eulerian boundary extraction or layer')
+            if (row['current_id'],value,row['source_url'],row['source_locator'],row['boundary_rule']) != (audit['current_id'],audit['reported_width_km_approx'],audit['source_url'],audit['source_locator'],audit['boundary_rule']):
+                raise ValueError('Eulerian span differs from pinned source extraction')
         elif row['phase_kind'] == 'regional_scalar_summary':
             if (row['measurement_type'],row['width_metric']) != ('published_regional_scalar_width_summary','author_reported_regional_current_scale') or span is not None:
                 raise ValueError('Conflated regional scalar width')

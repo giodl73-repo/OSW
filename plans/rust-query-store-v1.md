@@ -793,3 +793,56 @@ test_rust_passage_state_queries.py: independent 56-state oracle, four malformed
 metadata rejections, eight SUND markers, native/WASM parity, keyboard inspection,
 state selection, share/reload and 320 px layout. Canonical state/current relations
 and measured inventory remain unchanged; these are local computed point joins.
+
+## Agulhas ACT mean-section source record
+
+The width collection adds `agulhas-act-eulerian-mean-section-width`: 219 km at
+the ACT section near 34 S, April 2010-February 2013 (month precision). Its
+coast-to-author-reported-mean-zero-isotach metric retains the publisher and
+institutional source access limitations in a checksum-bound audit. General
+protocol v1.20 formalizes this evidence class. No exact occupations, recovered
+edge geometry, fixed measurement layer, seasonal width range or whole-current
+width is inferred. The source-reported 3000 m mean depth extent is contextual.
+
+Coverage: 38 source records for 25 named currents, 68 unassessed, two derived
+candidates and five reviewed without numeric width; 115 diagnostic samples
+remain separate. Atlas and seasonal evidence cards show the scalar with its
+period and boundary. The evidence page omits an unsupported bar and geographic
+locator, and disables annual playback. Existing 37 width records and all Gulf
+and Loop section values are unchanged; protocol receipts are refreshed.
+
+## Existing identity taxonomy and membership queries
+
+The complete object inventory retains canonical identity facets (type, identity
+level, geographic setting, basin and time behavior). The query bundle carries
+`taxonomy_links`: twenty existing `part_of_system` assignments from the current
+ledger, projected as basin/subfamily memberships or named system components.
+The source ledger and taxonomy vocabulary are stored with exact JSON/SHA
+receipts; the naming URLs are context, not independent evidence for the parent
+assignment. This adds no new canonical relation or scientific classification.
+
+Rust checks complete object identity coverage, exact facet projections, link
+identity/labels/pointers, declared source bytes and an acyclic graph. A malformed
+or incomplete projection fails loading. Canonical current and eddy collections
+remain unchanged. Missing members and missing parents are unassessed, not absent
+flows or isolated eddies.
+
+Query `objects` with `taxonomy: {root_id, relation, include_root}`. Relations are
+`children`, `parents`, `descendants` and `ancestors`; include_root defaults false.
+This selects existing object records before regular evidence, state, time,
+filter, sorting and pagination operations. It never aggregates or inherits
+lengths, widths, source dates, state memberships or map geometry. Other
+collections reject taxonomy selection. Unknown roots and directions fail.
+
+The countercurrent umbrella has two direct subfamilies and seven descendants:
+the subfamilies plus five basin members. A Pacific NECC ancestor query returns
+the NECC subfamily and countercurrent umbrella. The Gulf Stream system has three
+declared components (Florida, Gulf Stream and North Atlantic), without implying
+that these are an exhaustive physical network or a partition of system length.
+
+The query UI exposes identity level, membership root/direction and explicit
+root inclusion. Existing advanced object filters survive builder changes.
+Inspectors provide the identity definition, declared parent/child buttons and
+queries for ancestors/descendants. Share URLs retain these selections. The
+membership collection also provides direct links back to both object cards and
+labels its naming references as context only.

@@ -1,4 +1,4 @@
-# OSW current width measurement protocol v1.19
+# OSW current width measurement protocol v1.20
 
 Effective 2026-10-04. Editorial width evidence remains separate from canonical
 lengths and from OSW reference-route sensitivity. Not an official standard.
@@ -445,3 +445,20 @@ compatibility of layer, reference state, averaging, grid and method. Keep local
 section diagnostics, velocity-anomaly spans and whole-current width claims
 distinct. This clarifies the existing source, boundary and comparability gates;
 it does not change any existing admitted value or range calculation.
+
+## v1.20: coast-to-mean-isotach section spans
+
+Use `eulerian_mean_section_span` for an author-reported offshore distance from
+the coast to a mean zero-velocity isotach. Preserve section identity, approximate
+section latitude, month-precision averaging window and the stated boundary
+convention. A coastal boundary is not a second extracted zero contour. Keep the
+author's mean convention without claiming independent reconstruction of the
+averaging order. A fixed transport integration boundary and an instantaneous
+moving jet boundary are separate methods.
+
+Pin the source audit and preserve access limitations. A reported vertical
+extent is not a fixed measurement layer; averaging months are not exact section
+occupations or seasonal membership. Leave boundary coordinates, confidence,
+annual extrema, whole-current/ranking and geographic playback eligibility
+unresolved or false. Omit a map footprint and full-width bar. Different arrays,
+periods or model products remain separate records rather than an annual range.

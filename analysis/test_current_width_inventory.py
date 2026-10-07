@@ -247,6 +247,16 @@ class WidthInventoryTests(unittest.TestCase):
             invalid=copy.deepcopy(self.document);invalid['measurements'][index][key]=value
             with self.subTest(key=key,value=value),self.assertRaises(ValueError):validate(invalid,self.ledger)
 
+    def test_eulerian_mean_section_keeps_boundary_period_and_layer_support(self):
+        index=next(i for i,r in enumerate(self.document['measurements']) if r['phase_kind']=='eulerian_mean_section_span')
+        self.assertEqual(self.document['measurements'][index]['approximate_width_km'],219)
+        for key,value in [('approximate_width_km',260),('width_range_km',[219,260]),('fixed_layer_bounds_m',[0,3000]),('observed_period',{'start':'2010-04-01','end':'2013-02-28'}),('calendar_months',[12,1,2]),('annual_extrema_eligible',True),('seasonal_playback_eligible',True),('boundary_sides','paired_mean_zero_contours'),('current_id','agulhas-return')]:
+            invalid=copy.deepcopy(self.document);invalid['measurements'][index][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):validate(invalid,self.ledger)
+        for key,value in [('audit_sha256','changed'),('section_latitude_degrees_north_approx',-32),('averaging_period_months',{'start':'2016-04','end':'2018-06'}),('reported_depth_extent_is_fixed_measurement_layer',True),('boundary_coordinates_extracted',True),('instantaneous_moving_boundary_series_extracted',True)]:
+            invalid=copy.deepcopy(self.document);invalid['measurements'][index]['eulerian_section_context'][key]=value
+            with self.subTest(context=key),self.assertRaises(ValueError):validate(invalid,self.ledger)
+
     def test_rejects_one_sided_full_width_and_false_season(self):
         index = next(i for i, row in enumerate(self.document["measurements"]) if row["phase_kind"] == "ensemble_summary")
         for key, value in [("boundary_sides", "paired"), ("full_width_inference_eligible", True), ("phase_kind", "seasonal_summary")]:

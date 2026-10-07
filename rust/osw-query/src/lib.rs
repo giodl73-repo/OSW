@@ -11,6 +11,7 @@ mod samples;
 mod seasonal;
 mod spatial;
 mod svg;
+mod taxonomy;
 mod temporal;
 mod workspace;
 use sha2::{Digest, Sha256};
@@ -58,6 +59,7 @@ pub struct Query {
     pub geometry_time: Option<temporal::GeometryTime>,
     pub seasonal: Option<seasonal::SeasonalSelection>,
     pub network_path: Option<network::PathQuery>,
+    pub taxonomy: Option<taxonomy::Selection>,
     #[serde(default)]
     pub filters: Vec<Filter>,
     pub sort: Option<Sort>,
@@ -222,6 +224,7 @@ impl Store {
         planning::validate(&bundle.collections, &bundle.manifest)?;
         loop_diagnostics::validate(&bundle.collections, &bundle.manifest)?;
         network::validate(&bundle.collections, &bundle.manifest)?;
+        taxonomy::validate(&bundle.collections, &bundle.manifest)?;
         let spatial = spatial::Index::build(&bundle.collections)?;
         fields.insert(
             "working_records".into(),
@@ -262,6 +265,7 @@ impl Store {
         json!({"ok":true,"engine":"rust-osw-query-v1","manifest":self.bundle.manifest,
             "workspace_revision":self.workspace.events.len(),"bundle_sha256":self.workspace.bundle_sha256,
             "object_type_counts":object_type_counts,
+            "taxonomy":taxonomy::metadata(&self.bundle.collections,&self.bundle.manifest),
             "geometry_observation_dates":geometry_dates,
             "width_sample_currents":self.bundle.collections["objects"].iter().filter(|r|r["width_sample_ids"].as_array().is_some_and(|ids|!ids.is_empty())).map(|r|json!({"current_id":r["id"].as_str().unwrap().trim_start_matches("current:"),"label":r["label"]})).collect::<Vec<_>>(),
             "width_sample_years":self.bundle.collections.get("width_samples").map(|rs|rs.iter().filter_map(|r|r["year"].as_u64()).collect::<BTreeSet<_>>()).unwrap_or_default(),
@@ -281,6 +285,14 @@ impl Store {
         if query.network_path.is_some() && query.collection != "flow_networks" {
             return Err("Network path queries require flow_networks collection".into());
         }
+        if query.taxonomy.is_some() && query.collection != "objects" {
+            return Err("Taxonomy selection requires objects collection".into());
+        }
+        let taxonomy_ids = query
+            .taxonomy
+            .as_ref()
+            .map(|q| taxonomy::select(&self.bundle.collections, q))
+            .transpose()?;
         let records = self
             .bundle
             .collections
@@ -403,6 +415,12 @@ impl Store {
         let mut matches: Vec<&Value> = records
             .iter()
             .filter(|r| {
+                if taxonomy_ids
+                    .as_ref()
+                    .is_some_and(|ids| !ids.contains(r["id"].as_str().unwrap()))
+                {
+                    return false;
+                }
                 if query.seasonal.as_ref().is_some_and(|s| {
                     !r["map_features"]
                         .as_array()
@@ -575,7 +593,7 @@ impl Store {
             Value::Null
         };
         Ok(
-            json!({"network_paths":network_paths,"ok":true,"engine":"rust-osw-query-v1","collection":query.collection,"total":total,"offset":query.offset,"limit":limit,"rows":rows,"map_scene":map_scene,"chart_scene":chart_scene,
+            json!({"taxonomy_scope":if query.taxonomy.is_some(){json!(taxonomy::SCOPE)}else{Value::Null},"network_paths":network_paths,"ok":true,"engine":"rust-osw-query-v1","collection":query.collection,"total":total,"offset":query.offset,"limit":limit,"rows":rows,"map_scene":map_scene,"chart_scene":chart_scene,
                 "spatial_scope":if query.spatial.is_some(){json!("Computed display geometry, separate from recorded state links. Point locators and shared gateways require their own predicates; neither is current or eddy containment.")}else{Value::Null}}),
         )
     }
@@ -586,7 +604,7 @@ impl Store {
             .and_then(|ids| ids.get(id))
             .ok_or_else(|| format!("Record not found: {collection}/{id}"))?;
         Ok(
-            json!({"ok":true,"collection":collection,"record":self.bundle.collections[collection][*index]}),
+            json!({"ok":true,"collection":collection,"record":self.bundle.collections[collection][*index],"taxonomy_context":if collection=="objects"{taxonomy::context(&self.bundle.collections,id)}else{Value::Null}}),
         )
     }
     pub fn execute(&self, bytes: &[u8]) -> Value {

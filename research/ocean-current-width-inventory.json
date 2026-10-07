@@ -7,10 +7,10 @@
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 24,
-    "measurements": 37,
+    "currents_with_scoped_width_evidence": 25,
+    "measurements": 38,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 69,
+    "currents_not_assessed": 68,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 5
   },
@@ -2012,6 +2012,62 @@
         "isobath_is_measurement_layer": false,
         "intrusive_reach_is_mainstream_width": false
       }
+    },
+    {
+      "id": "agulhas-act-eulerian-mean-section-width",
+      "current_id": "agulhas",
+      "name": "Agulhas Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_eulerian_mean_section_span",
+      "width_metric": "coast_to_author_reported_mean_zero_isotach",
+      "width_metric_label": "ACT coast-to-mean-zero-isotach span",
+      "approximate_width_km": 219,
+      "width_range_km": null,
+      "range_interpretation": "No width uncertainty or annual range reported. Other arrays, periods and model products are not seasonal limits.",
+      "geographic_scope": "ACT section near 34 S off South Africa; not the whole Agulhas Current.",
+      "section_geometry": null,
+      "section_orientation": "Author cross-track ACT section; exact endpoints and normal angle not extracted.",
+      "layer": "Mean jet depth extent about 3000 m is context; no fixed width measurement layer assigned.",
+      "time_convention": "April 2010-February 2013 averaging period, month precision; no instantaneous or seasonal width series extracted.",
+      "boundary_rule": "Author-reported fixed offshore distance from the coast to the time-mean zero-velocity isotach; negative cross-track flow denotes southwestward jet.",
+      "source_url": "https://journals.ametsoc.org/view/journals/phoc/45/5/jpo-d-14-0119.1.xml",
+      "source_citation": "Beal, Elipot, Houk and Leber (2015), JPO 45, 1302-1324, doi:10.1175/JPO-D-14-0119.1.",
+      "source_locator": "Abstract and section 4; section 2a array period; section 3b boundary-layer transport definition (coast to time-mean zero isotach).",
+      "source_retrieved_date": "2026-10-04",
+      "source_evidence_kind": "published_moored_eulerian_mean_section",
+      "extraction_method": "Transcribed author-reported scalar and boundary convention; no coordinates or raw velocities digitized.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "remaining_gates": [
+        "Inspect original source PDF and averaging convention.",
+        "Recover matched dated boundary coordinates and layer-supported seasonal widths.",
+        "Independent scientific admission."
+      ],
+      "phase_label": "ACT mean section, April 2010-February 2013",
+      "phase_kind": "eulerian_mean_section_span",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "boundary_sides": "coast_to_mean_zero_isotach",
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "eulerian_section_context": {
+        "audit_file": "research/agulhas-act-mean-section-width-scope-audit.json",
+        "audit_sha256": "cb079f0487bc7f9bffbcd6702ecea04185180e6c88527b2ba0f2cc5c778981fa",
+        "section_id": "ACT at approximately 34 S",
+        "section_latitude_degrees_north_approx": -34,
+        "averaging_period_months": {
+          "start": "2010-04",
+          "end": "2013-02"
+        },
+        "reported_depth_extent_m": 3000,
+        "reported_depth_extent_is_fixed_measurement_layer": false,
+        "boundary_coordinates_extracted": false,
+        "instantaneous_moving_boundary_series_extracted": false
+      },
+      "source_quality_note": "Publisher-indexed text inspected for abstract, array period and transport boundary; direct article open returned HTTP 403. University of Miami abstract inspected. Original PDF, figures and raw arrays not retrieved."
     }
   ],
   "current_decisions": [
@@ -2082,12 +2138,14 @@
     {
       "current_id": "agulhas",
       "name": "Agulhas Current",
-      "width_decision": "width_not_assessed",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "agulhas-act-eulerian-mean-section-width"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
-      "existing_evidence_locator": null,
-      "existing_evidence_source_url": null
+      "next_action": "Recover matched dated ACT boundary positions and verify mean convention before seasonal or whole-current dimensions.",
+      "existing_evidence_locator": "Abstract and section 4; section 2a array period; section 3b boundary-layer transport definition (coast to time-mean zero isotach).",
+      "existing_evidence_source_url": "https://journals.ametsoc.org/view/journals/phoc/45/5/jpo-d-14-0119.1.xml"
     },
     {
       "current_id": "agulhas-return",
@@ -3093,7 +3151,7 @@
       "interpretation": "Winter about 25 km; summer about 40 km. Span between these published regional seasonal descriptions, not absolute annual extrema, statistical uncertainty or a matched continuous time series."
     }
   ],
-  "protocol_sha256": "bea5a9e964fba4eef291bc61c9da7e2f3fa5ff1cd1f6b6c9a8f183848624bc57",
+  "protocol_sha256": "1e41b65d67f791b367a84043ccfd83bf4e62ca1cfe0c9d614929302102ac78bd",
   "comparability_notes": [
     {
       "current_id": "mediterranean-undercurrent",
@@ -3196,13 +3254,18 @@
       "current_id": "kuroshio",
       "seasonal_playback_eligible": false,
       "reason": "218 km winter and 207 km summer are regional means of weekly diagnosed widths; 210 km is the study-period mean, not a third seasonal state. Spring/autumn values, calendar membership and seasonal map geometry remain unextracted. No 207–218 km physical annual range or full-current width inferred."
+    },
+    {
+      "current_id": "agulhas",
+      "seasonal_playback_eligible": false,
+      "reason": "ACT 219 km is an author-reported mean section span for April 2010-February 2013; seasonal width range and uncertainty remain unknown. Other arrays and model widths are not annual limits."
     }
   ],
   "derived_width_series_candidates": [
     {
       "current_id": "gulf-stream-system",
       "file": "research/gulf-stream-section-width-series.json",
-      "sha256": "0176dba389d9f06f81ee7688084c760b8ec59616e0182b784118ac5bb0ab83cd",
+      "sha256": "af93ba48b6eb1c1e481a41e1ebf6aa475920ec2df67414ee6ab18bbfe1908301",
       "status": "derived_width_candidate_requires_scientific_review"
     },
     {

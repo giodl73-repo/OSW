@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Query the ocean atlas — OSW</title>
-  <link rel="stylesheet" href="query.css?v=10"><script src="query-workspace.js?v=1" defer></script><script src="query-charts.js?v=2" defer></script><script src="query.js?v=20" defer></script>
+  <link rel="stylesheet" href="query.css?v=10"><script src="query-workspace.js?v=1" defer></script><script src="query-charts.js?v=2" defer></script><script src="query.js?v=22" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to query</a>
@@ -18,6 +18,7 @@
     <div class="presets" aria-label="Example queries">
       <button type="button" data-preset="width" disabled>Currents with widths</button>
       <button type="button" data-preset="lengths" disabled>Published lengths</button>
+      <button type="button" data-preset="countercurrent-family" disabled>Countercurrent family members</button>
       <button type="button" data-preset="length-decisions" disabled>Remaining length decisions</button>
       <button type="button" data-preset="unbuilt-decisions" disabled>Unbuilt remaining routes</button>
       <button type="button" data-preset="missing-routes" disabled>Routes still missing</button>
@@ -38,6 +39,10 @@
         <label>Records<select id="query-collection"></select></label>
         <label>Text<input id="query-text" type="search" placeholder="Name, scope, source or ID" maxlength="1000"></label>
         <label>Type<select id="query-type"><option value="">All types</option><option value="named_current">Currents</option><option value="named_eddy">Named eddies</option><option value="operational_eddy_detection">Dated detections</option></select></label>
+        <label>Identity level<select id="query-identity-level"><option value="">All identity levels</option></select></label>
+        <label>Family or system root<select id="query-taxonomy-root"><option value="">No membership filter</option></select></label>
+        <label>Membership direction<select id="query-taxonomy-relation"><option value="descendants">All declared descendants</option><option value="children">Direct children</option><option value="ancestors">All declared ancestors</option><option value="parents">Direct parents</option></select></label>
+        <label class="time-context"><input id="query-taxonomy-include" type="checkbox">Include root record</label>
         <label>OSW state<select id="query-state"><option value="">All states</option></select></label>
         <label>State relation<select id="query-state-mode"><option value="recorded">Recorded evidence links</option><option value="intersects">Line / polygon intersects</option><option value="within">Polygon covered by state</option><option value="locator">Locator in state</option><option value="gateway">Shared gateway in state</option></select></label>
         <label>Has evidence<select id="query-evidence"><option value="">Any / unresolved</option><option value="scoped_width">Scoped width</option><option value="reference_route">Reference route</option><option value="reported_length">Published ranked length</option><option value="geometry">Geometry beyond locator</option><option value="time_samples">Time samples / phases</option><option value="width_samples">Scoped width samples</option><option value="source_connectivity">Source-described links</option></select></label>
