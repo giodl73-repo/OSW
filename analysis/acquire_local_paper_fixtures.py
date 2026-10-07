@@ -20,7 +20,12 @@ def main():
         if destination.exists():
             data = destination.read_bytes()
         else:
-            request = urllib.request.Request(manifest['source_url'], headers={'User-Agent': 'OSW-source-validation/1.0'})
+            source_url = manifest['source_url']
+            # NOAA's bare large-file URL can return a cached 403. Its download
+            # form serves the same original; the pinned checksum remains mandatory.
+            if name == 'florida-archer-2017':
+                source_url += '?download=1'
+            request = urllib.request.Request(source_url, headers={'User-Agent': 'OSW-source-validation/1.0'})
             with urllib.request.urlopen(request, timeout=60) as response:
                 maximum=50_000_000 if name=='florida-archer-2017' else 20_000_000
                 data = response.read(maximum+1)
