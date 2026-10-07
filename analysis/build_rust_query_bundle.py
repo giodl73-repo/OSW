@@ -19,11 +19,17 @@ def build():
     from check_current_width_inventory import validate
     validate(widths,read('research/ocean-current-almanac.json'))
     routes=read('research/ocean-current-reference-path-candidates.json')
+    for record in widths['measurements']:
+        context=record.get('eulerian_section_context')
+        if context:read(context['audit_file'])
     collections['widths']=widths['measurements']
     collections['reference_routes']=routes['candidates']
     objects=copy.deepcopy(dashboard['entries'])
     entity_index={e['id']:e for e in collections['entities']}
     sources={s['id'] for s in collections['sources']}
+    from build_query_taxonomy import build as build_taxonomy
+    collections['taxonomy_links'],taxonomy=build_taxonomy(objects,collections['entities'],read)
+    inputs['analysis/build_query_taxonomy.py']=hashlib.sha256((ROOT/'analysis/build_query_taxonomy.py').read_bytes()).hexdigest()
     state_links=[]
     for row in objects:
         current=row['id'].removeprefix('current:')
@@ -279,7 +285,7 @@ def build():
         if len({r['id'] for r in rows})!=len(rows):raise ValueError('Duplicate ID in '+name)
     return {'schema':'osw.query-bundle.v1','manifest':{'status':'local_editorial_and_canonical_snapshot_not_new_scientific_admission',
             'canonical_release':'v0.1.0','canonical_collections':['entities','sources','claims','relations','measurements','geometries'],
-            'editorial_collections':['objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples'],
+            'taxonomy':taxonomy,'editorial_collections':['taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples'],
             'input_sha256':inputs,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},
             'scope':'State joins retain relation kinds; gateways are not containment. Widths retain scope. Published lengths and editorial route lengths are separate collections.'},
             'collections':collections}
