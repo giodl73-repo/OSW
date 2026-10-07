@@ -1,6 +1,6 @@
-# OSW current width measurement protocol v1.20
+# OSW current width measurement protocol v1.21
 
-Effective 2026-10-04. Editorial width evidence remains separate from canonical
+Effective 2026-10-06. Editorial width evidence remains separate from canonical
 lengths and from OSW reference-route sensitivity. Not an official standard.
 
 ## Definition and required records
@@ -462,3 +462,21 @@ occupations or seasonal membership. Leave boundary coordinates, confidence,
 annual extrema, whole-current/ranking and geographic playback eligibility
 unresolved or false. Omit a map footprint and full-width bar. Different arrays,
 periods or model products remain separate records rather than an annual range.
+
+## v1.21: filtered width time-series statistics
+
+Use `width_time_series_statistics` for published summary statistics of
+per-time diagnosed widths. Keep the mean, mean confidence allowance, standard
+deviation and sample minimum/maximum separate. Preserve the velocity component,
+relative threshold, jet-coordinate convention, metric filtering, local section,
+nominal measurement depth and year-precision sampling support. A nominal sensing
+depth is not a fixed vertical layer. Preserve gaps and observation limitations.
+
+The mean of diagnosed widths is not the width of an averaged velocity field.
+Two-year observed limits do not establish per-year extrema, seasonal limits or
+a climatological envelope. Report a confidence level only when source text
+specifies it. Qualitative seasonal phases and monthly plot standard deviations
+do not create numerical monthly widths or geographic boundaries. Preserve
+source-reported phase context separately; keep playback and annual extrema
+ineligible until matched values and support are recovered. No whole-current
+ranking, route buffer, full-width bar or footprint follows from these statistics.

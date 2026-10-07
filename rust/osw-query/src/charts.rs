@@ -102,6 +102,8 @@ pub fn scene(matches: &[&Value], corpus: &[Value]) -> Value {
                     "DUACS"
                 }
             )
+        } else if first["sample_family"] == "florida_monthly_half_peak_plot" {
+            "Florida Current - 2005-2006 monthly surface-jet widths at 25.42 N".into()
         } else if dated {
             "Gulf Stream system — recorded-day section diagnostics at 70 W".into()
         } else if longitude {

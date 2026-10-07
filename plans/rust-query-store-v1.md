@@ -846,3 +846,35 @@ Inspectors provide the identity definition, declared parent/child buttons and
 queries for ancestors/descendants. Share URLs retain these selections. The
 membership collection also provides direct links back to both object cards and
 labels its naming references as context only.
+
+## Local filtered-width statistics follow-up (2026-10-06)
+
+The `widths` collection now includes the Florida HF radar jet at 25.42 N for
+2005-2006. The mean (59 km), observed filtered-series span (41-76 km), standard
+deviation (6 km) and reported confidence allowance on the mean (+/-2 km) retain
+different statistical roles. Confidence percentage remains null. A nominal
+0.75 m sensing depth does not become a fixed layer. The half-core-speed jet
+coordinate definition and 40 h metric filter remain attached to the source audit.
+
+The audit and protocol v1.21 are pinned in bundle inputs. Atlas cards expose
+mean and observed range together; the evidence inspector explains the seasonal
+phase without fabricated numeric frames or boundaries. Exact occupations,
+monthly widths, map footprints, annual extrema and global ranking remain
+ineligible. Reproduce with the width validator, dashboard/bundle builders and
+`analysis/test_florida_width_statistics_browser.py` using a local atlas server
+and `OSW_TEST_BROWSER` pointing at Chrome.
+
+## Florida monthly graph readings and chart playback (2026-10-06)
+
+The separate Figure 9b diagnostic now projects twelve historical monthly
+readings into width_samples, with +/-1 km graph-reading allowances. Its raw
+source JSON and SHA bind each sample; source PDF, config, protocol and generator
+are pinned. The gray overall-average curve is distinct from the two individual
+years and the unextracted within-month standard-deviation envelope. No geographic
+width edges, fixed vertical layer, annual physical range or whole-current
+ranking are supplied. Chart playback and manual stepping highlight existing
+records only, with reduced-motion and hidden-page guards. Shared card selection
+also synchronizes the highlighted reading. Corpus: 127 samples, ten chart
+panels, five unresolved readings. Rebuild with build_florida_monthly_plot.py
+and the existing dashboard, bundle and engine builders. Verify with
+test_florida_monthly_plot.py and test_florida_monthly_plot_browser.py.

@@ -247,6 +247,22 @@ class WidthInventoryTests(unittest.TestCase):
             invalid=copy.deepcopy(self.document);invalid['measurements'][index][key]=value
             with self.subTest(key=key,value=value),self.assertRaises(ValueError):validate(invalid,self.ledger)
 
+    def test_width_statistics_preserve_variation_confidence_and_year_support(self):
+        index=next(i for i,r in enumerate(self.document['measurements']) if r['phase_kind']=='width_time_series_statistics')
+        row=self.document['measurements'][index]
+        self.assertEqual(row['width_range_km'],[41,76]);self.assertEqual(row['approximate_width_km'],59)
+        for key,value in [('approximate_width_km',60),('width_range_km',[57,61]),('range_kind','annual_range'),('current_id','gulf-stream'),('calendar_months',[8,9]),('fixed_layer_bounds_m',[0,.75]),('observed_period',{'start':'2005-01-01','end':'2006-12-31'}),('section_geometry',{'type':'LineString'}),('annual_extrema_eligible',True),('seasonal_playback_eligible',True),('is_confidence_interval',True),('boundary_sides','paired_mean_zero_contours')]:
+            invalid=copy.deepcopy(self.document);invalid['measurements'][index][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):validate(invalid,self.ledger)
+        for key,value in [('audit_sha256','changed'),('nominal_measurement_depth_m',14),('sample_period_years',[2005,2005]),('velocity_threshold_fraction',.4),('diagnostic_time_filter','unfiltered'),('boundary_coordinates_extracted',True)]:
+            invalid=copy.deepcopy(self.document);invalid['measurements'][index]['width_statistics_context'][key]=value
+            with self.subTest(context=key),self.assertRaises(ValueError):validate(invalid,self.ledger)
+        for key,value in [('standard_deviation_km',2),('mean_confidence_level_percent',95),('minimum_km',57)]:
+            invalid=copy.deepcopy(self.document);invalid['measurements'][index]['width_statistics_context']['reported_statistics'][key]=value
+            with self.subTest(statistic=key),self.assertRaises(ValueError):validate(invalid,self.ledger)
+        invalid=copy.deepcopy(self.document);invalid['measurements'][index]['width_statistics_context']['seasonal_context']['monthly_numeric_widths_km']=[59]*12
+        with self.assertRaises(ValueError):validate(invalid,self.ledger)
+
     def test_eulerian_mean_section_keeps_boundary_period_and_layer_support(self):
         index=next(i for i,r in enumerate(self.document['measurements']) if r['phase_kind']=='eulerian_mean_section_span')
         self.assertEqual(self.document['measurements'][index]['approximate_width_km'],219)

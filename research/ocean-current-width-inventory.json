@@ -1,16 +1,16 @@
 {
   "schema": "osw.current-width-inventory.v1",
-  "as_of": "2026-10-04",
+  "as_of": "2026-10-06",
   "status": "editorial_width_inventory_not_canonical",
   "protocol_file": "plans/ocean-current-width-measurement-protocol-v1.md",
   "current_ledger_sha256": "6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e",
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 25,
-    "measurements": 38,
+    "currents_with_scoped_width_evidence": 26,
+    "measurements": 39,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 68,
+    "currents_not_assessed": 67,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 5
   },
@@ -2068,6 +2068,91 @@
         "instantaneous_moving_boundary_series_extracted": false
       },
       "source_quality_note": "Publisher-indexed text inspected for abstract, array period and transport boundary; direct article open returned HTTP 403. University of Miami abstract inspected. Original PDF, figures and raw arrays not retrieved."
+    },
+    {
+      "id": "florida-hf-radar-width-statistics-2005-2006",
+      "current_id": "florida",
+      "name": "Florida Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_filtered_width_time_series_statistics",
+      "width_metric": "paired_half_core_speed_jet_coordinate_span",
+      "width_metric_label": "Local surface jet: mean and observed range",
+      "approximate_width_km": 59,
+      "width_range_km": [
+        41,
+        76
+      ],
+      "range_kind": "author_reported_minimum_maximum_of_filtered_width_time_series",
+      "range_interpretation": "Mean 59 km; observed filtered time-series minimum/maximum 41-76 km across 2005-2006. Standard deviation 6 km and reported mean confidence allowance +/-2 km are separate statistics; confidence percentage is unresolved. These are not per-year or seasonal extrema.",
+      "geographic_scope": "HF radar jet-coordinate section at 25.42 N off Miami; not the whole Florida Current.",
+      "section_geometry": null,
+      "section_orientation": "Local cross-stream coordinate perpendicular to the detected jet; geographic endpoints not extracted.",
+      "layer": "HF radar nominal measurement depth 0.75 m; no fixed vertical layer assigned.",
+      "time_convention": "2005-2006, year precision; jet metrics filtered with a 40 h Hanning window. Monthly graph readings are provided in a separate diagnostic; this record preserves whole-study statistics.",
+      "boundary_rule": "Distance between both jet edges at 50% of the instantaneous core speed in the jet-coordinate downstream velocity profile; author applies a 40 h Hanning temporal filter to the jet metrics.",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2017JC013286",
+      "source_citation": "Archer, Shay and Johns (2017), JGR Oceans 122, 9189-9208, doi:10.1002/2017JC013286.",
+      "source_locator": "Sections 2.2 and 3.4; Table 1 measurement depth; Table 2 width row and note; Figure 9 caption and section 6 item 5.",
+      "source_retrieved_date": "2026-10-06",
+      "source_evidence_kind": "published_hf_radar_jet_width_time_series_statistics",
+      "extraction_method": "Transcribed Table 2 width statistics and author-defined threshold/filter; monthly graph values and geographic edges not digitized.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "remaining_gates": [
+        "Recover year-specific monthly values and the source within-month variability envelope or original arrays.",
+        "Recover matched geographic boundary coordinates before physical map animation.",
+        "Independent scientific admission."
+      ],
+      "phase_label": "Local surface jet statistics, 2005-2006",
+      "phase_kind": "width_time_series_statistics",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "boundary_sides": "paired_half_core_speed_edges",
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "width_statistics_context": {
+        "audit_file": "research/florida-hf-radar-width-statistics-scope-audit.json",
+        "audit_sha256": "c01d54e0cf90b1335d83710e8c104e36ef532ea3caaebd0b73d78f493554abdc",
+        "section_latitude_degrees_north": 25.42,
+        "sample_period_years": [
+          2005,
+          2006
+        ],
+        "nominal_measurement_depth_m": 0.75,
+        "native_grid_spacing_km": 1.2,
+        "native_sampling_interval_minutes": 20,
+        "diagnostic_time_filter": "40 h Hanning window",
+        "velocity_component": "jet_coordinate_downstream_velocity",
+        "velocity_threshold_fraction": 0.5,
+        "reported_statistics": {
+          "mean_km": 59,
+          "mean_confidence_half_width_km": 2,
+          "mean_confidence_level_percent": null,
+          "confidence_method": "Student t distribution with effective degrees of freedom based on integral timescale",
+          "standard_deviation_km": 6,
+          "minimum_km": 41,
+          "maximum_km": 76,
+          "integral_timescale_days": 16
+        },
+        "seasonal_context": {
+          "source_locator": "Section 3.4, Figure 9 caption; section 6 item 5",
+          "reported_peak_months": [
+            8,
+            9
+          ],
+          "reported_minimum_phase": "late winter",
+          "minimum_calendar_months": null,
+          "monthly_numeric_widths_km": null,
+          "monthly_standard_deviations_km": null,
+          "monthly_mean_series_extracted": false,
+          "figure_shading_is_monthly_standard_deviation": true
+        },
+        "boundary_coordinates_extracted": false
+      },
+      "source_quality_note": "Publisher HTML and original NOAA PDF inspected, including Table 2 and Figure 9. PDF SHA256 matches the NOAA repository receipt. Gray monthly mean curve has a separate extraction artifact; raw HF radar arrays remain unavailable."
     }
   ],
   "current_decisions": [
@@ -2341,10 +2426,12 @@
     {
       "current_id": "florida",
       "name": "Florida Current",
-      "width_decision": "width_not_assessed",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "florida-hf-radar-width-statistics-2005-2006"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
+      "next_action": "Recover monthly width values and matched geographic jet boundaries; retain distinct confidence, variation and observed-range statistics.",
       "existing_evidence_locator": null,
       "existing_evidence_source_url": null
     },
@@ -3151,7 +3238,7 @@
       "interpretation": "Winter about 25 km; summer about 40 km. Span between these published regional seasonal descriptions, not absolute annual extrema, statistical uncertainty or a matched continuous time series."
     }
   ],
-  "protocol_sha256": "1e41b65d67f791b367a84043ccfd83bf4e62ca1cfe0c9d614929302102ac78bd",
+  "protocol_sha256": "0d363e4e281167896dca85ae40edb0a16f5c5edd4141efa6e860b677a7da4ef0",
   "comparability_notes": [
     {
       "current_id": "mediterranean-undercurrent",
@@ -3259,13 +3346,18 @@
       "current_id": "agulhas",
       "seasonal_playback_eligible": false,
       "reason": "ACT 219 km is an author-reported mean section span for April 2010-February 2013; seasonal width range and uncertainty remain unknown. Other arrays and model widths are not annual limits."
+    },
+    {
+      "current_id": "florida",
+      "seasonal_playback_eligible": false,
+      "reason": "Mean 59 km; observed filtered time-series minimum/maximum 41-76 km across 2005-2006. Standard deviation 6 km and reported mean confidence allowance +/-2 km are separate statistics; confidence percentage is unresolved. These are not per-year or seasonal extrema. A separate chart supplies approximate monthly graph readings; year-specific monthly values, variability bands and geographic boundaries remain unresolved."
     }
   ],
   "derived_width_series_candidates": [
     {
       "current_id": "gulf-stream-system",
       "file": "research/gulf-stream-section-width-series.json",
-      "sha256": "af93ba48b6eb1c1e481a41e1ebf6aa475920ec2df67414ee6ab18bbfe1908301",
+      "sha256": "28b20171b9bc10fdc9bc1c5c4f3b01fbce1136786bc8711e37de14b7f4f2ee4a",
       "status": "derived_width_candidate_requires_scientific_review"
     },
     {

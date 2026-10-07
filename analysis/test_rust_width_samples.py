@@ -13,21 +13,21 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def main():
     bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes());samples=bundle['collections']['width_samples']
-    assert samples==build(bundle['collections']['diagnostics']) and len(samples)==115
+    assert samples==build(bundle['collections']['diagnostics']) and len(samples)==127
     assert sum(row['value_km'] is None for row in samples)==5
     queries=[{'collection':'width_samples','limit':100},
         {'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':'leeuwin'}],'sort':{'field':'month'}},
         {'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':'kuroshio'},{'field':'phase_label','op':'eq','value':'winter'}],'sort':{'field':'longitude_degrees_east'}},
         {'collection':'width_samples','filters':[{'field':'value_km','op':'exists','value':False}]},
         {'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':'pacific-north-equatorial-countercurrent'}],'sort':{'field':'month'}},
-        {'collection':'width_samples','sort':{'field':'value_km','direction':'desc'},'limit':1,'offset':114},
+        {'collection':'width_samples','sort':{'field':'value_km','direction':'desc'},'limit':1,'offset':len(samples)-1},
         {'collection':'objects','evidence':'width_samples'},
         {'collection':'objects','filters':[{'field':'id','op':'eq','value':'current:leeuwin'}]}]
     results=[native(q) for q in queries];assert all(r['ok'] for r in results)
-    assert results[0]['total']==115 and results[0]['map_scene']['mapped_objects']==27 and results[0]['map_scene']['unmapped_objects']==88
+    assert results[0]['total']==127 and results[0]['map_scene']['mapped_objects']==27 and results[0]['map_scene']['unmapped_objects']==100
     assert results[1]['total']==12 and [r['month'] for r in results[1]['rows']]==list(range(1,13))
     assert results[2]['total']==16 and results[3]['total']==5 and results[4]['total']==12
-    assert results[5]['rows'][0]['value_km'] is None and results[6]['total']==5
+    assert results[5]['rows'][0]['value_km'] is None and results[6]['total']==6
     with tempfile.TemporaryDirectory(dir=ROOT/'tmp') as temp:
         path=Path(temp)/'bad-bundle.json';exe=str(ROOT/'rust/osw-query/target/debug/osw-query-cli.exe')
         for key,value in [('value_km',9999),('month',12),('metric','whole ocean width'),('plot_reading_interval_km',[1,2]),('is_confidence_interval',True),('entity_id','current:gulf-stream-system'),('sample_family','other'),('phase_path','/months/1')]:
@@ -77,6 +77,6 @@ def main():
         page.set_viewport_size({'width':320,'height':900});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         assert not errors
         browser.close()
-    print('PASS: 115 original scoped samples; five missing readings retained; native/WASM queries and null-last ordering; source/value/month/metric/interval binding; current-card links and mobile')
+    print('PASS: 127 original scoped samples; five missing readings retained; native/WASM queries and null-last ordering; source/value/month/metric/interval binding; current-card links and mobile')
 
 if __name__=='__main__':main()

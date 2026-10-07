@@ -3,6 +3,7 @@ import copy
 from datetime import date
 
 FAMILIES={
+    'diagnostic:florida-monthly-width':'florida_monthly_half_peak_plot',
     'diagnostic:leeuwin-monthly-width':'leeuwin_monthly_fitted_plot',
     'diagnostic:kuroshio-seasonal-width':'kuroshio_seasonal_profile_plot',
     'diagnostic:necc-monthly-section':'necc_monthly_connected_component',
