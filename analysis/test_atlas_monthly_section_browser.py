@@ -23,7 +23,7 @@ def main():
         page.clock.install()
         page.goto(BASE+'?atlas-feature=current%3Apacific-north-equatorial-countercurrent#route-atlas',wait_until='networkidle')
         expect(page.locator('.route-card')).to_have_count(62,timeout=90000)
-        expect(page.locator('.inventory-addition-card')).to_have_count(23,timeout=90000)
+        expect(page.locator('.inventory-addition-card')).to_have_count(28,timeout=90000)
         page.clock.run_for(100)
         page.wait_for_function('document.querySelector(".atlas-monthly-select")?.disabled===false')
         select=page.locator('.atlas-monthly-select')

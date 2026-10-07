@@ -13,6 +13,39 @@ ROOT = Path(__file__).resolve().parents[1]
 PROTOCOL = ROOT / "plans/ocean-current-measurement-protocol-v1.md"
 REPORT = ROOT / "research/ocean-current-measurement-protocol-audit.json"
 
+def validate_family_inventory(audit, proposals, ledger, input_hashes):
+    """Keep basin naming proposals separate from admitted physical identities."""
+    if audit.get('schema') != 'osw.equatorial-basin-family-inventory-audit.v1' or audit.get('status') != 'editorial_identity_proposals_not_canonical':
+        raise ValueError('Invalid family inventory audit scope')
+    if set(input_hashes) != {'research/ocean-current-almanac.json', 'research/ocean-current-reference-path-candidates.json', 'plans/ocean-current-measurement-protocol-v1.md'} or audit.get('inputs_sha256') != input_hashes:
+        raise ValueError('Stale family inventory audit basis')
+    existing = {row['id'] for row in ledger}
+    additions = {row['proposed_id']: row for row in proposals['entries']}
+    sources = {row['id'] for row in audit['sources']}
+    members = audit['proposed_members']
+    if len({row['proposed_id'] for row in members}) != len(members):
+        raise ValueError('Duplicate basin member proposal')
+    for row in members:
+        proposal = additions.get(row['proposed_id'])
+        if row['proposed_id'] in existing or row['parent_current_id'] not in existing or row['source_id'] not in sources:
+            raise ValueError('Invalid basin member identity or provenance')
+        if not proposal or any(proposal.get(key) != row[key] for key in ['parent_current_id', 'basin', 'whole_current_length_km', 'current_width_km', 'rank_eligible']) or proposal['name'] != row['proposed_label']:
+            raise ValueError('Basin member differs from proposal inventory')
+        if any(row[key] is not None for key in ['geometry', 'layer_scope', 'temporal_scope', 'whole_current_length_km', 'current_width_km']) or row['rank_eligible'] is not False:
+            raise ValueError('Naming evidence used as physical measurement')
+    for held in audit['held_source_conventions']:
+        if held['parent_current_id'] not in existing or held['possible_existing_current_id'] not in existing or held['source_id'] not in sources or held['comparison_source_id'] not in sources:
+            raise ValueError('Invalid held naming convention reference')
+        calendar = held['reported_name_calendar']
+        if held['distinct_current_admitted'] is not False or held['rank_eligible'] is not False or any(held[key] is not None for key in ['geometry', 'whole_current_length_km', 'current_width_km']):
+            raise ValueError('Held naming convention admitted as measurement')
+        months = calendar['months']
+        if calendar['role'] != 'glossary_name_usage_only' or calendar['supports_annual_route_geometry'] is not False or not months or len(set(months)) != len(months) or any(type(month) is not int or not 1 <= month <= 12 for month in months):
+            raise ValueError('Invalid naming calendar or annual geometry claim')
+    expected = {'canonical_currents_at_audit': len(ledger), 'families_reviewed': len({row['parent_current_id'] for row in members}), 'proposed_basin_members': len(members), 'source_convention_cases_on_hold': len(audit['held_source_conventions'])}
+    if audit['counts'] != expected:
+        raise ValueError('Incorrect family inventory counts')
+
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -152,6 +185,8 @@ def main():
     ids = {r["id"] for r in ledger}
     names = {r["name"].casefold().replace(" ", "") for r in ledger}
     additions = proposals["entries"]
+    family_audit = json.loads((ROOT / 'research/equatorial-basin-family-inventory-audit.json').read_bytes())
+    validate_family_inventory(family_audit, proposals, ledger, {path: digest(ROOT / path) for path in family_audit['inputs_sha256']})
     if len({r["proposed_id"] for r in additions}) != len(additions) or len({r["name"].casefold().replace(" ", "") for r in additions}) != len(additions):
         raise ValueError("Duplicate proposed identity")
     for row in additions:
