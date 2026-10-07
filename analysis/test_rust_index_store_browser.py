@@ -34,7 +34,7 @@ def main():
     assert hashlib.sha256(compressed).hexdigest() == catalog['compressed_sha256']
     assert hashlib.sha256(payload).hexdigest() == catalog['bundle_sha256']
     bundle = json.loads(payload)
-    assert len(bundle['documents']) == catalog['source_count'] == 63
+    assert len(bundle['documents']) == catalog['source_count'] == 65
     for path, digest in catalog['input_sha256'].items():
         assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == digest, path
     for descriptor in catalog['documents']:
@@ -54,6 +54,8 @@ def main():
          'sort':{'field':'record.radius_km','direction':'desc'},'offset':2,'limit':7},
         {'document':'research/noaa-munster-eddy-state-20210301.json','pointer':'/entries','offset':7000,'limit':11},
         {'document':'research/ocean-current-almanac.json','limit':5},
+        {'document':'research/equatorial-basin-family-inventory-audit.json','pointer':'/proposed_members','limit':10},
+        {'document':'research/ocean-current-inventory-expansion-candidates.json','pointer':'/entries','filters':[{'field':'record.parent_current_id','op':'eq','value':'south-equatorial'}],'limit':10},
     ]
     invalid = [
         {'document':'missing.json'},
@@ -80,6 +82,9 @@ def main():
         assert metadata['ok'] and metadata['catalog'] == catalog
         expected = [native(q) for q in queries]
         assert all(r['ok'] for r in expected)
+        assert [row['record']['proposed_id'] for row in expected[4]['rows']] == ['atlantic-north-equatorial','pacific-north-equatorial','atlantic-south-equatorial','pacific-south-equatorial','indian-south-equatorial']
+        assert expected[5]['total'] == 3
+        assert all(row['record']['whole_current_length_km'] is None and row['record']['rank_eligible'] is False for row in expected[5]['rows'])
         # Independent scientific-source oracle, not a second Rust projection.
         source = json.loads(bundle['documents'][queries[1]['document']])['entries']
         matched = [(i,r) for i,r in enumerate(source) if 'CAMR' in r['contained_states']]
@@ -123,7 +128,7 @@ def main():
                 assert not failed.evaluate("q => rpc('query',q)", queries[0])['ok']
                 failed.close()
             browser.close()
-    print('PASS: 63 exact sources, 12 seasonal snapshots, independent NOAA oracle, native/WASM parity and checked-input failures')
+    print('PASS: 65 exact sources, 12 seasonal snapshots, independent NOAA oracle, native/WASM parity and checked-input failures')
 
 
 if __name__ == '__main__':

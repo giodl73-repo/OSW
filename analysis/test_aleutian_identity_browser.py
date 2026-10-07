@@ -25,7 +25,7 @@ def main():
         assert 'not Aleutian' in card.inner_text()
         assert 'full article not acquired' in card.inner_text()
         assert 'no whole-current length or rank admitted' in card.inner_text()
-        assert '23 proposed inventory additions' in page.locator('#inventory-addition-status').inner_text()
+        assert '28 proposed inventory additions' in page.locator('#inventory-addition-status').inner_text()
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         page.set_viewport_size({'width':1440,'height':1100})
         card.screenshot(path=str(root/'figures/aleutian-north-slope-proposal-review.png'))

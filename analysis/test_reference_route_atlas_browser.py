@@ -13,8 +13,14 @@ def main():
         page.on('pageerror', lambda error: errors.append(str(error)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas', wait_until='networkidle')
         page.wait_for_function('document.querySelectorAll(".route-atlas-station").length === 100')
-        page.wait_for_function('document.querySelectorAll(".route-card").length === 62 && document.querySelectorAll(".inventory-addition-card").length === 23')
+        page.wait_for_function('document.querySelectorAll(".route-card").length === 62 && document.querySelectorAll(".inventory-addition-card").length === 28')
         assert page.locator('#route-atlas-select option').count() == 101
+        for ident,label in [('atlantic-north-equatorial','Atlantic North Equatorial Current'),('pacific-north-equatorial','Pacific North Equatorial Current'),('atlantic-south-equatorial','Atlantic South Equatorial Current'),('pacific-south-equatorial','Pacific South Equatorial Current'),('indian-south-equatorial','Indian South Equatorial Current')]:
+            card=page.locator('#inventory-addition-'+ident)
+            assert card.locator('h3').inner_text()==label
+            assert 'no whole-current length or rank admitted' in card.inner_text()
+            assert card.get_by_role('link',name='NOAA Tides & Currents glossary',exact=True).get_attribute('href')=='https://www.tidesandcurrents.noaa.gov/glossary.html'
+        assert page.locator('#inventory-addition-indian-north-equatorial').count()==0
         atlas = page.locator('#route-atlas-map')
         def view():
             return list(map(float, atlas.get_attribute('viewBox').split()))

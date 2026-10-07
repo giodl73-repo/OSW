@@ -4,9 +4,26 @@ import unittest
 from unittest.mock import patch
 import build_current_reference_path_catalog as catalog
 from pathlib import Path
-from check_current_measurement_protocol import validate_record, validate_route_topology
+from check_current_measurement_protocol import validate_record, validate_route_topology, validate_family_inventory, digest
 
 class ProtocolAuditTests(unittest.TestCase):
+    def test_family_naming_cannot_admit_measurements_or_annual_calendar(self):
+        root=Path(__file__).resolve().parents[1]
+        audit=json.loads((root/'research/equatorial-basin-family-inventory-audit.json').read_bytes())
+        proposals=json.loads((root/'research/ocean-current-inventory-expansion-candidates.json').read_bytes())
+        ledger=json.loads((root/'research/ocean-current-almanac.json').read_bytes())['entries']
+        hashes={path:digest(root/path) for path in audit['inputs_sha256']}
+        validate_family_inventory(audit,proposals,ledger,hashes)
+        changes=[('parent_current_id','absent'),('whole_current_length_km',1000),('current_width_km',100),('rank_eligible',True)]
+        for key,value in changes:
+            invalid=copy.deepcopy(audit);invalid['proposed_members'][0][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):validate_family_inventory(invalid,proposals,ledger,hashes)
+        invalid=copy.deepcopy(audit);invalid['held_source_conventions'][0]['reported_name_calendar']['supports_annual_route_geometry']=True
+        with self.assertRaises(ValueError):validate_family_inventory(invalid,proposals,ledger,hashes)
+        invalid=copy.deepcopy(audit);invalid['inputs_sha256'][next(iter(hashes))]='0'*64
+        with self.assertRaises(ValueError):validate_family_inventory(invalid,proposals,ledger,hashes)
+        invalid=copy.deepcopy(proposals);next(row for row in invalid['entries'] if row['proposed_id']==audit['proposed_members'][0]['proposed_id'])['basin']='Indian Ocean'
+        with self.assertRaises(ValueError):validate_family_inventory(audit,invalid,ledger,hashes)
     def test_frontal_anchor_role_dates_and_vertex_support_remain_explicit(self):
         row=json.loads((Path(__file__).resolve().parents[1]/'research/south-pacific-eastern-front-reach-reference-path-candidate.json').read_text(encoding='utf-8'))
         validate_record(row)
