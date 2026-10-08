@@ -44,7 +44,7 @@ def main():
         page.locator('#season-play').click()
         page.locator('#season-current').select_option('somali')
         assert page.locator('#season-direction').is_hidden()
-        assert page.locator('#season-map').is_visible()
+        expect(page.locator('#season-map')).to_be_visible(timeout=15000)
         assert page.locator('#season-play').is_enabled()
         page.locator('#season-current').select_option('atlantic-north-equatorial-countercurrent')
         assert page.locator('#season-play').is_disabled()
