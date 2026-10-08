@@ -9,6 +9,12 @@ pub(crate) fn validate(row: &Value) -> Result<(), String> {
                 "../../../research/algerian-cotroneo-2019-regional-width-scope-audit.json"
             ),
         ),
+        "alaska" => (
+            "research/alaska-weingartner-2002-regional-width-scope-audit.json",
+            include_str!(
+                "../../../research/alaska-weingartner-2002-regional-width-scope-audit.json"
+            ),
+        ),
         _ if row.get("original_regional_context").is_none() => return Ok(()),
         _ => return Err("Unknown original regional width source owner".into()),
     };

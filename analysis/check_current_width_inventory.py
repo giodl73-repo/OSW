@@ -21,7 +21,7 @@ def validate(document, ledger):
     by_id = {row["id"]: row for row in records}
     hydrographic_extraction = None
     for row in records:
-        if row.get("original_regional_context") or row["current_id"] == "algerian":
+        if row.get("original_regional_context") or row["current_id"] in {"algerian", "alaska"}:
             from check_original_regional_widths import validate_row
             validate_row(row)
         if row.get("model_regional_context") or row["current_id"] == "guinea":
@@ -472,7 +472,7 @@ def validate(document, ledger):
             from check_guinea_model_width import validate_row
             validate_row(row)
         elif row['phase_kind'] == 'regional_summary':
-            if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] != 'author_reported_current_width' or row['observed_period'] is not None or row.get('calendar_months') is not None or span is None:
+            if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] != 'author_reported_current_width' or row['observed_period'] is not None or row.get('calendar_months') is not None or (span is None and not row.get('original_regional_context')):
                 raise ValueError('Conflated regional range support')
             if row.get('regional_range_context') and row['current_id'] not in {'black-sea-rim','norwegian-coastal'}:
                 raise ValueError('Regional range source owner mismatch')
