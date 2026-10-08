@@ -195,6 +195,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             if key == "widths" {
                 adcp_width_scope(row)?;
                 crate::stream_tube_widths::validate(row)?;
+                crate::abstract_regional_widths::validate(row)?;
                 norwegian_coastal_width_scope(row)?;
             }
             let id = row["id"]

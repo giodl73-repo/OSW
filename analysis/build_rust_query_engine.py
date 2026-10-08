@@ -28,6 +28,7 @@ def main():
     paths.append('rust/osw-query/src/atlas_data.rs')
     paths.append('rust/osw-query/src/proposed_widths.rs')
     paths.append('rust/osw-query/src/stream_tube_widths.rs')
+    paths.append('rust/osw-query/src/abstract_regional_widths.rs')
     paths.append('rust/osw-query/src/observed_sections.rs')
     paths.append('rust/osw-query/src/cartography.rs')
     paths.append('rust/osw-query/src/norkyst_data.rs')
