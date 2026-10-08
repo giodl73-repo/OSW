@@ -1,0 +1,24 @@
+//! Original regional width descriptions do not inherit an article's survey support.
+use serde_json::Value;
+use sha2::{Digest, Sha256};
+pub(crate) fn validate(row: &Value) -> Result<(), String> {
+    let (path, raw) = match row["current_id"].as_str().unwrap_or("") {
+        "algerian" => (
+            "research/algerian-cotroneo-2019-regional-width-scope-audit.json",
+            include_str!(
+                "../../../research/algerian-cotroneo-2019-regional-width-scope-audit.json"
+            ),
+        ),
+        _ if row.get("original_regional_context").is_none() => return Ok(()),
+        _ => return Err("Unknown original regional width source owner".into()),
+    };
+    let doc: Value = serde_json::from_str(raw).map_err(|e| e.to_string())?;
+    let mut expected = doc["measurement"].clone();
+    expected["original_regional_context"]["audit_file"] = Value::String(path.into());
+    expected["original_regional_context"]["audit_sha256"] =
+        Value::String(format!("{:x}", Sha256::digest(raw.as_bytes())));
+    if *row != expected {
+        return Err("Original regional width source or survey scope mismatch".into());
+    }
+    Ok(())
+}

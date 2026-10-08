@@ -45,6 +45,7 @@
   }
   function renderRegionalRange(row) {
     const container=byId('regional-width-range');container.replaceChildren();container.hidden=true;
+    if(row?.original_regional_context){container.hidden=false;window.renderOriginalRegionalWidth(container,row);return;}
     if(row?.phase_kind==='model_regional_width_summary'){container.hidden=false;window.renderModelRegionalWidth(container,row);return;}
     if(row?.phase_kind==='seasonal_regional_width_range'){container.hidden=false;window.renderSeasonalRegionalWidth(container,row);return;}
     if(row?.source_scope_context){container.hidden=false;window.renderAbstractRegionalWidth(container,row);return;}
