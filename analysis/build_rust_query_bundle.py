@@ -348,6 +348,11 @@ def build():
     model_owner['capabilities']['model_samples']=len(collections['model_samples'])
     for name,rows in collections.items():
         if len({r['id'] for r in rows})!=len(rows):raise ValueError('Duplicate ID in '+name)
+    from check_norwegian_atlantic_branch_widths import validate as validate_proposed_widths, AUDIT, ACQUISITION, SOURCE
+    validate_proposed_widths(read('research/ocean-current-inventory-expansion-candidates.json'))
+    read(AUDIT);read(ACQUISITION)
+    inputs[SOURCE]=hashlib.sha256((ROOT/SOURCE).read_bytes()).hexdigest()
+    inputs['analysis/check_norwegian_atlantic_branch_widths.py']=hashlib.sha256((ROOT/'analysis/check_norwegian_atlantic_branch_widths.py').read_bytes()).hexdigest()
     atlas_paths=['research/ocean-current-inventory-expansion-candidates.json',
                  'research/ocean-current-reference-route-state-join.json',
                  'research/ocean-current-dated-timeline-2025.json',

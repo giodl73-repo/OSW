@@ -495,6 +495,15 @@
           "source_access": "Publisher relevant introduction and methods read, not all article sections; figures not digitized.",
           "source_license": "Creative Commons Attribution 4.0",
           "source_retrieved_date": "2026-10-03"
+        },
+        {
+          "url": "https://os.copernicus.org/articles/6/901/2010/",
+          "citation": "Mork, K. A. and Skagseth, O. (2010), A quantitative description of the Norwegian Atlantic Current by combining altimetry and hydrography, Ocean Science 6, 901-911, doi:10.5194/os-6-901-2010.",
+          "locator": "Introduction and Fig. 1; Sections 3 and 4.1.1, pp.904 and 906.",
+          "supports": "Separate slope/front branch identities and method-dependent local widths; no total system width or annual envelope.",
+          "source_access": "Original eleven-page PDF acquired; methods/results/discussion and Figures 2-3 visually inspected. No raw ADT field or width boundaries digitized.",
+          "source_license": "CC BY 3.0",
+          "source_retrieved_date": "2026-10-08"
         }
       ],
       "remaining_gates": [
@@ -502,6 +511,17 @@
         "Define source-specific branch gates, depth and time convention before route geometry.",
         "Do not treat heat-budget box dimensions or static mean core geometry as whole-current or annual dimensions.",
         "Integrate reviewed identities into canonical taxonomy and release before counting them as atlas currents."
+      ],
+      "width_evidence": [],
+      "width_scope_audit": {
+        "file": "research/norwegian-atlantic-branch-width-scope-audit.json",
+        "sha256": "b5bbb0d40ba0836deb82e50e19b8b9b4b503269331c200537feaf10b7c4420e8"
+      },
+      "whole_current_width_km": null,
+      "annual_width_range_km": null,
+      "component_proposed_ids": [
+        "norwegian-atlantic-slope",
+        "norwegian-atlantic-front"
       ]
     },
     {
@@ -523,6 +543,15 @@
           "source_access": "Publisher relevant introduction and methods read, not all article sections; figures not digitized.",
           "source_license": "Creative Commons Attribution 4.0",
           "source_retrieved_date": "2026-10-03"
+        },
+        {
+          "url": "https://os.copernicus.org/articles/6/901/2010/",
+          "citation": "Mork, K. A. and Skagseth, O. (2010), A quantitative description of the Norwegian Atlantic Current by combining altimetry and hydrography, Ocean Science 6, 901-911, doi:10.5194/os-6-901-2010.",
+          "locator": "Introduction and Fig. 1; Sections 3 and 4.1.1, pp.904 and 906.",
+          "supports": "Separate slope/front branch identities and method-dependent local widths; no total system width or annual envelope.",
+          "source_access": "Original eleven-page PDF acquired; methods/results/discussion and Figures 2-3 visually inspected. No raw ADT field or width boundaries digitized.",
+          "source_license": "CC BY 3.0",
+          "source_retrieved_date": "2026-10-08"
         }
       ],
       "remaining_gates": [
@@ -530,7 +559,113 @@
         "Define source-specific branch gates, depth and time convention before route geometry.",
         "Do not treat heat-budget box dimensions or static mean core geometry as whole-current or annual dimensions.",
         "Integrate reviewed identities into canonical taxonomy and release before counting them as atlas currents."
-      ]
+      ],
+      "width_evidence": [
+        {
+          "id": "norwegian-atlantic-slope-orvik-2001-regional-width",
+          "proposed_current_id": "norwegian-atlantic-slope",
+          "name": "Norwegian Atlantic Slope Current",
+          "status": "editorial_width_evidence_for_proposed_identity_not_canonical",
+          "source_current_label": "eastern branch",
+          "measurement_type": "published_regional_branch_width_summary",
+          "width_metric": "author_reported_branch_width",
+          "approximate_width_km": null,
+          "width_range_km": [
+            30,
+            50
+          ],
+          "range_kind": "reported_regional_branch_width_span",
+          "is_confidence_interval": false,
+          "geographic_scope": "Svinoy section north of the Faroe-Shetland Channel; local branch support, not whole-route dimensions.",
+          "layer": "Near-barotropic eastern branch; no fixed width measurement depth.",
+          "boundary_rule": "No paired coordinates or velocity cutoff supplied by the abstract width statement.",
+          "observed_period": null,
+          "calendar_months": null,
+          "fixed_layer_bounds_m": null,
+          "section_geometry": null,
+          "whole_current_representative": false,
+          "rank_eligible": false,
+          "annual_extrema_eligible": false,
+          "seasonal_playback_eligible": false,
+          "source_url": "https://www.sciencedirect.com/science/article/pii/S0967063700000388",
+          "source_citation": "Orvik, K. A., Skagseth, O. and Mork, M. (2001), Atlantic inflow to the Nordic Seas: current structure and volume fluxes from moored current meters, VM-ADCP and SeaSoar-CTD observations, 1995-1999, Deep-Sea Research I 48, 937-957, doi:10.1016/S0967-0637(00)00038-8.",
+          "source_locator": "Publisher-indexed abstract, eastern and western branch width statements.",
+          "source_access": "Publisher-indexed abstract inspected. Full original 2001 article and figures remain unreviewed.",
+          "source_retrieved_date": "2026-10-08",
+          "sampling_context": {
+            "mooring_context_months": {
+              "start": "1995-04",
+              "end": "1999-02"
+            },
+            "mooring_context_is_width_sampling_interval": false,
+            "mooring_bathymetry_m": [
+              490,
+              990
+            ],
+            "bathymetry_is_width_layer": false,
+            "reported_jet_depth_m": null,
+            "jet_depth_is_width_layer": false
+          },
+          "temporal_interpretation": "Mooring program dates are context, not a dated width series. No annual or seasonal range established.",
+          "unit": "km",
+          "full_width_inference_eligible": false,
+          "source_publication_year": 2001
+        },
+        {
+          "id": "norwegian-atlantic-slope-mork-2010-surface-scale",
+          "proposed_current_id": "norwegian-atlantic-slope",
+          "name": "Norwegian Atlantic Slope Current",
+          "status": "editorial_width_evidence_for_proposed_identity_not_canonical",
+          "source_current_label": "NwASC",
+          "measurement_type": "published_ADT_surface_branch_scale",
+          "width_metric": "author_reported_surface_branch_scale",
+          "approximate_width_km": 50,
+          "width_range_km": null,
+          "range_kind": null,
+          "is_confidence_interval": false,
+          "geographic_scope": "Svinoy section, eastern slope branch in surface-velocity description. The source 500 m isobath locates the branch core; it is not a width layer.",
+          "layer": "Altimetry-derived absolute geostrophic surface velocity; not the independent 100 m current-meter validation layer.",
+          "boundary_rule": "Approximate prose scale associated with Fig. 2; no numerical cutoff or width-edge coordinates extracted. Fig. 2 displays three-month moving averages.",
+          "observed_period": null,
+          "calendar_months": null,
+          "fixed_layer_bounds_m": null,
+          "section_geometry": null,
+          "whole_current_representative": false,
+          "rank_eligible": false,
+          "annual_extrema_eligible": false,
+          "seasonal_playback_eligible": false,
+          "source_url": "https://os.copernicus.org/articles/6/901/2010/",
+          "source_citation": "Mork, K. A. and Skagseth, O. (2010), A quantitative description of the Norwegian Atlantic Current by combining altimetry and hydrography, Ocean Science 6, 901-911, doi:10.5194/os-6-901-2010.",
+          "source_locator": "Section 3, printed p.904, first paragraph (approximately 50 km); Fig. 2 caption p.903; Sections 2.1-2.2 pp.902-903 and 4.1.1 p.906.",
+          "source_access": "Original eleven-page PDF acquired; methods/results/discussion and Figures 2-3 visually inspected. No raw ADT field or width boundaries digitized.",
+          "source_retrieved_date": "2026-10-08",
+          "sampling_context": {
+            "ADT_context_months": {
+              "start": "1992-10",
+              "end": "2009-07"
+            },
+            "ADT_context_is_exact_width_observation_interval": false,
+            "surface_grid_resolution_km_at_section_approx": 17,
+            "figure_2_moving_average_months": 3,
+            "width_is_temporal_mean_or_mean_of_widths": false,
+            "core_bathymetry_m_approx": 500,
+            "bathymetry_is_width_layer": false,
+            "validation_instrument_depth_m": 100,
+            "validation_depth_is_width_layer": false
+          },
+          "temporal_interpretation": "Regional scale described from a smoothed surface-velocity field. Not an instantaneous width, width of the long-term mean, mean of widths, or numerical seasonal series.",
+          "unit": "km",
+          "full_width_inference_eligible": false,
+          "source_publication_year": 2010
+        }
+      ],
+      "width_scope_audit": {
+        "file": "research/norwegian-atlantic-branch-width-scope-audit.json",
+        "sha256": "b5bbb0d40ba0836deb82e50e19b8b9b4b503269331c200537feaf10b7c4420e8"
+      },
+      "whole_current_width_km": null,
+      "annual_width_range_km": null,
+      "parent_proposed_id": "norwegian-atlantic"
     },
     {
       "proposed_id": "norwegian-atlantic-front",
@@ -551,6 +686,15 @@
           "source_access": "Publisher relevant introduction and methods read, not all article sections; figures not digitized.",
           "source_license": "Creative Commons Attribution 4.0",
           "source_retrieved_date": "2026-10-03"
+        },
+        {
+          "url": "https://os.copernicus.org/articles/6/901/2010/",
+          "citation": "Mork, K. A. and Skagseth, O. (2010), A quantitative description of the Norwegian Atlantic Current by combining altimetry and hydrography, Ocean Science 6, 901-911, doi:10.5194/os-6-901-2010.",
+          "locator": "Introduction and Fig. 1; Sections 3 and 4.1.1, pp.904 and 906.",
+          "supports": "Separate slope/front branch identities and method-dependent local widths; no total system width or annual envelope.",
+          "source_access": "Original eleven-page PDF acquired; methods/results/discussion and Figures 2-3 visually inspected. No raw ADT field or width boundaries digitized.",
+          "source_license": "CC BY 3.0",
+          "source_retrieved_date": "2026-10-08"
         }
       ],
       "remaining_gates": [
@@ -558,7 +702,66 @@
         "Define source-specific branch gates, depth and time convention before route geometry.",
         "Do not treat heat-budget box dimensions or static mean core geometry as whole-current or annual dimensions.",
         "Integrate reviewed identities into canonical taxonomy and release before counting them as atlas currents."
-      ]
+      ],
+      "width_evidence": [
+        {
+          "id": "norwegian-atlantic-front-orvik-2001-regional-width",
+          "proposed_current_id": "norwegian-atlantic-front",
+          "name": "Norwegian Atlantic Front Current",
+          "status": "editorial_width_evidence_for_proposed_identity_not_canonical",
+          "source_current_label": "western branch",
+          "measurement_type": "published_regional_branch_width_summary",
+          "width_metric": "author_reported_branch_width",
+          "approximate_width_km": null,
+          "width_range_km": [
+            30,
+            50
+          ],
+          "range_kind": "reported_regional_branch_width_span",
+          "is_confidence_interval": false,
+          "geographic_scope": "Svinoy section north of the Faroe-Shetland Channel; local branch support, not whole-route dimensions.",
+          "layer": "Frontal jet described as about 400 m deep; jet depth is not a fixed width measurement layer.",
+          "boundary_rule": "No paired coordinates or velocity cutoff supplied by the abstract width statement.",
+          "observed_period": null,
+          "calendar_months": null,
+          "fixed_layer_bounds_m": null,
+          "section_geometry": null,
+          "whole_current_representative": false,
+          "rank_eligible": false,
+          "annual_extrema_eligible": false,
+          "seasonal_playback_eligible": false,
+          "source_url": "https://www.sciencedirect.com/science/article/pii/S0967063700000388",
+          "source_citation": "Orvik, K. A., Skagseth, O. and Mork, M. (2001), Atlantic inflow to the Nordic Seas: current structure and volume fluxes from moored current meters, VM-ADCP and SeaSoar-CTD observations, 1995-1999, Deep-Sea Research I 48, 937-957, doi:10.1016/S0967-0637(00)00038-8.",
+          "source_locator": "Publisher-indexed abstract, eastern and western branch width statements.",
+          "source_access": "Publisher-indexed abstract inspected. Full original 2001 article and figures remain unreviewed.",
+          "source_retrieved_date": "2026-10-08",
+          "sampling_context": {
+            "mooring_context_months": {
+              "start": "1995-04",
+              "end": "1999-02"
+            },
+            "mooring_context_is_width_sampling_interval": false,
+            "mooring_bathymetry_m": [
+              490,
+              990
+            ],
+            "bathymetry_is_width_layer": false,
+            "reported_jet_depth_m": 400,
+            "jet_depth_is_width_layer": false
+          },
+          "temporal_interpretation": "Mooring program dates are context, not a dated width series. No annual or seasonal range established.",
+          "unit": "km",
+          "full_width_inference_eligible": false,
+          "source_publication_year": 2001
+        }
+      ],
+      "width_scope_audit": {
+        "file": "research/norwegian-atlantic-branch-width-scope-audit.json",
+        "sha256": "b5bbb0d40ba0836deb82e50e19b8b9b4b503269331c200537feaf10b7c4420e8"
+      },
+      "whole_current_width_km": null,
+      "annual_width_range_km": null,
+      "parent_proposed_id": "norwegian-atlantic"
     },
     {
       "proposed_id": "new-guinea-coastal-intermediate",

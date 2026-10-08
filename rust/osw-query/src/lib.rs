@@ -24,6 +24,7 @@ mod object_plot;
 mod object_view;
 mod observed_sections;
 mod planning;
+mod proposed_widths;
 mod rebase;
 mod samples;
 mod seasonal;

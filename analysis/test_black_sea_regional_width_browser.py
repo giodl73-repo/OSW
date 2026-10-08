@@ -128,6 +128,32 @@ def main():
         wasm=page.evaluate('window.oswLastQueryResult');assert wasm==native(query)
         assert [(r['approximate_width_km'],r['reported_total_error_km']) for r in wasm['rows']]==[(48,14),(73,18),(78,18),(48,18)]
         assert all(r['width_range_km'] is None and r['adcp_threshold_context']['confidence_level'] is None for r in wasm['rows'])
+        # Explicit proposed branches expose numeric evidence without canonical transfer.
+        import gzip
+        packet=ROOT/'.pytest_cache/norwegian-branch-index.json'
+        packet.write_bytes(gzip.decompress((ROOT/'almanac/index-data.json.gz').read_bytes()))
+        for owner,count in [('norwegian-atlantic-slope',2),('norwegian-atlantic-front',1)]:
+            page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#inventory-addition-'+owner,wait_until='networkidle')
+            chart=page.locator(f'.proposed-width-chart[data-owner="{owner}"]')
+            chart.wait_for(state='visible',timeout=90000)
+            card=page.locator('#inventory-addition-'+owner)
+            assert card.locator('details[id^="proposed-width-"]').count()==count
+            assert chart.locator('circle').count()==(1 if count==2 else 0)
+            assert 'not a width trend' in chart.get_attribute('aria-label')
+            assert chart.locator('text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
+            assert 'ADT means absolute dynamic topography' in card.inner_text()
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            if count==1:assert 'mean width remains unknown' in card.inner_text()
+            chart.screenshot(path=str(ROOT/f'.pytest_cache/{owner}-width-chart.png'))
+            card.locator('a').filter(has_text='Query these branch-width records').click()
+            page.wait_for_function('n=>window.oswSourceQueryResult?.rows.length===n',arg=count,timeout=90000)
+            request={'document':'research/norwegian-atlantic-branch-width-scope-audit.json','pointer':'/measurements','filters':[{'field':'record.proposed_current_id','op':'eq','value':owner}],'limit':10}
+            expected=json.loads(subprocess.check_output([str(CLI),'--index',str(packet),'-'],input=json.dumps(request),encoding='utf8'))
+            assert page.evaluate('window.oswSourceQueryResult')==expected
+            assert all(r['record']['proposed_current_id']==owner and 'current_id' not in r['record'] for r in expected['rows'])
+        page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#inventory-addition-norwegian-atlantic',wait_until='networkidle')
+        page.wait_for_function('document.querySelector("#inventory-addition-norwegian-atlantic")?.textContent.includes("Branch widths cannot be added")',timeout=90000)
+        assert page.locator('#inventory-addition-norwegian-atlantic .proposed-width-chart').count()==0
         assert not errors,errors
         browser.close()
     # Coherent source/row rewrites must still fail the shared Rust scope guard.
@@ -152,6 +178,15 @@ def main():
         path=ROOT/'.pytest_cache/norwegian-coastal-scope-tampered.json';path.write_text(json.dumps(bad),encoding='utf8')
         result=subprocess.run([str(CLI),str(path),'-'],input=json.dumps(query),capture_output=True,text=True,encoding='utf8')
         assert result.returncode==2 and 'Norwegian coastal' in result.stderr,(key,result.stderr)
-    print('OK: Norwegian coastal and Black Sea regional range, primary source, null midpoint, no seasonal/edge inference, responsive range/ADCP error charts, cleanup, native/WASM query parity and coherent ADCP scope rejection')
+    for key,value in [('approximate_width_km',40),('fixed_layer_bounds_m',[0,400]),('seasonal_playback_eligible',True)]:
+        bad=copy.deepcopy(bundle);path='research/ocean-current-inventory-expansion-candidates.json'
+        receipt=bad['manifest']['atlas_receipts'][path];doc=json.loads(receipt['source_json'])
+        proposal=next(r for r in doc['entries'] if r['proposed_id']=='norwegian-atlantic-slope');proposal['width_evidence'][0][key]=value
+        receipt['source_json']=json.dumps(doc);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest()
+        bad['manifest']['input_sha256'][path]=receipt['source_sha256']
+        target=ROOT/'.pytest_cache/norwegian-proposed-scope-tampered.json';target.write_text(json.dumps(bad),encoding='utf8')
+        result=subprocess.run([str(CLI),str(target),'--atlas'],capture_output=True,text=True,encoding='utf8')
+        assert result.returncode==2 and 'Norwegian' in result.stderr,(key,result.stderr)
+    print('OK: proposed Norwegian Atlantic branches, Norwegian coastal and Black Sea regional range, primary source, null midpoint, no seasonal/edge inference, responsive range/ADCP error charts, cleanup, native/WASM query parity and coherent ADCP scope rejection')
 
 if __name__=='__main__':main()
