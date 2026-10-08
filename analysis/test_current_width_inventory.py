@@ -6,6 +6,16 @@ from check_current_width_inventory import validate
 ROOT = Path(__file__).resolve().parents[1]
 
 class WidthInventoryTests(unittest.TestCase):
+    def test_alaska_gulf_typical_width_does_not_acquire_winter_dates_or_edges(self):
+        index=next(i for i,r in enumerate(self.document['measurements']) if r['current_id']=='alaska-coastal-gulf')
+        row=self.document['measurements'][index]
+        self.assertEqual(row['approximate_width_km'],35)
+        self.assertIsNone(row['width_range_km'])
+        validate(self.document,self.ledger)
+        for key,value in [('approximate_width_km',37),('width_range_km',[20,35]),('current_id','alaska'),('observed_period',{'start':'2012-10-19','end':'2013-03-16'}),('calendar_months',[10,11,12,1,2,3]),('fixed_layer_bounds_m',[0,100]),('boundary_rule','paired speed edges'),('seasonal_playback_eligible',True),('annual_extrema_eligible',True)]:
+            invalid=copy.deepcopy(self.document);invalid['measurements'][index][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):validate(invalid,self.ledger)
+
     def test_black_sea_range_rejects_midpoint_temporal_and_source_relabeling(self):
         index=next(i for i,r in enumerate(self.document['measurements']) if r['current_id']=='black-sea-rim')
         self.assertEqual(self.document['measurements'][index]['width_range_km'],[40,80])

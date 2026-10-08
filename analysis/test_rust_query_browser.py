@@ -72,7 +72,7 @@ def main():
             expected = native(query)
             assert actual == expected, (query, actual, expected)
         width_currents = native(queries[0])
-        assert width_currents['total'] == 39
+        assert width_currents['total'] == 40
         assert {'current:' + owner for owner in ['falkland', 'brazil', 'benguela', 'canary',
                 'gulf-stream', 'north-atlantic', 'irminger', 'east-greenland', 'west-greenland', 'black-sea-rim']}.issubset(
                     {row['id'] for row in width_currents['rows']})

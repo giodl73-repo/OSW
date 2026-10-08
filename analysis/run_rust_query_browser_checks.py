@@ -67,6 +67,11 @@ def main():
                         help='Resume at this check; earlier checks are not rerun')
     args = parser.parse_args()
     environment = os.environ.copy()
+    if not environment.get('OSW_TEST_BROWSER'):
+        # Give every child check the same installed Playwright browser in CI.
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as playwright:
+            environment['OSW_TEST_BROWSER'] = playwright.chromium.executable_path
     server = None
     try:
         if args.start_server:

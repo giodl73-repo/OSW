@@ -1,16 +1,16 @@
 {
   "schema": "osw.current-width-inventory.v1",
-  "as_of": "2026-10-07",
+  "as_of": "2026-10-08",
   "status": "editorial_width_inventory_not_canonical",
   "protocol_file": "plans/ocean-current-width-measurement-protocol-v1.md",
   "current_ledger_sha256": "6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e",
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 36,
-    "measurements": 72,
+    "currents_with_scoped_width_evidence": 37,
+    "measurements": 73,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 57,
+    "currents_not_assessed": 56,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 5
   },
@@ -4564,6 +4564,53 @@
         "Acquire compatible repeat sections before annual variation or seasonal map animation.",
         "Independent scientific admission and protected-main publication."
       ]
+    },
+    {
+      "id": "alaska-coastal-gulf-jarosz-2017-typical-width",
+      "current_id": "alaska-coastal-gulf",
+      "name": "Alaska Coastal Current (Gulf of Alaska)",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_regional_scalar_width_summary",
+      "width_metric": "author_reported_regional_current_scale",
+      "width_metric_label": "typical Gulf-of-Alaska coastal flow; regional prose synthesis",
+      "approximate_width_km": 35,
+      "width_range_km": null,
+      "range_interpretation": "No annual extrema or numerical uncertainty interval supplied.",
+      "geographic_scope": "Gulf-of-Alaska coastal shelf current; no width transferred to offshore Alaska Current, Alaskan Stream or the Arctic/Bering namesake.",
+      "section_geometry": null,
+      "section_orientation": "Unspecified in regional prose; no occupied section extracted.",
+      "layer": "Regional coastal-current description; no fixed measurement layer assigned to the typical-width statement.",
+      "time_convention": "Introductory regional literature summary in a 2017 winter study. The October 2012-March 2013 experiment dates do not date this typical width; seasonal variation is qualitative only.",
+      "boundary_rule": "Author-reported typical regional width; no paired boundaries, velocity threshold or width occupation interval assigned to the 35 km introduction statement.",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2016JC012102",
+      "source_citation": "Jarosz, Wang, Wijesekera, Pegau and Moum (2017), Flow variability within the Alaska Coastal Current in winter, JGR Oceans 122, 3884-3906, doi:10.1002/2016JC012102.",
+      "source_locator": "Section 1 Introduction, second paragraph: typical approximately 35 km width; distinct shelf circulation from subarctic gyre in preceding paragraph.",
+      "source_retrieved_date": "2026-10-08",
+      "source_evidence_kind": "published_regional_prose_synthesis",
+      "extraction_method": "Approximate 35 km scalar transcribed from publisher Introduction; no axis, footprint or paired edges reconstructed.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "phase_label": "Typical Gulf-of-Alaska coastal width (regional summary)",
+      "phase_kind": "regional_scalar_summary",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "regional_scalar_context": {
+        "audit_file": "research/alaska-coastal-gulf-jarosz-2017-regional-width-scope-audit.json",
+        "audit_sha256": "308e05e7c1c8122aaee0b917b85822b1162b8b25021aa0f77387eca11714843b",
+        "boundary_coordinates_supplied": false,
+        "bathymetry_is_measurement_layer": false
+      },
+      "remaining_gates": [
+        "Review original width definitions behind the introductory literature synthesis.",
+        "Obtain paired boundaries and compatible repeated sections before seasonal dimension ranges.",
+        "Independent scientific and canonical admission review."
+      ],
+      "source_quality_note": "Typical-width literature statement, not a measured winter width from the article experiment. Original contributing definitions remain unreviewed."
     }
   ],
   "current_decisions": [
@@ -5659,10 +5706,12 @@
     {
       "current_id": "alaska-coastal-gulf",
       "name": "Alaska Coastal Current (Gulf of Alaska)",
-      "width_decision": "width_not_assessed",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "alaska-coastal-gulf-jarosz-2017-typical-width"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
+      "next_action": "Review original typical-width support and collect paired repeated boundaries; preserve unknown seasonal/annual ranges.",
       "existing_evidence_locator": null,
       "existing_evidence_source_url": null
     },

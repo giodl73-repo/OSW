@@ -403,7 +403,7 @@ def validate(document, ledger):
             if any(row.get(key) is not False for key in ['full_width_inference_eligible','annual_extrema_eligible','seasonal_playback_eligible','is_confidence_interval']):
                 raise ValueError('Promoted regional scalar width')
             context=row.get('regional_scalar_context',{})
-            audits={'labrador':'research/labrador-thompson-2009-regional-width-scope-audit.json','east-australian':'research/east-australian-imos-regional-width-scope-audit.json'}
+            audits={'alaska-coastal-gulf':'research/alaska-coastal-gulf-jarosz-2017-regional-width-scope-audit.json','labrador':'research/labrador-thompson-2009-regional-width-scope-audit.json','east-australian':'research/east-australian-imos-regional-width-scope-audit.json'}
             if context.get('boundary_coordinates_supplied') is not False or context.get('bathymetry_is_measurement_layer') is not False or context.get('audit_file')!=audits.get(row['current_id']) or row['current_id'] not in audits:
                 raise ValueError('Regional scalar provenance mismatch')
             if row['current_id']=='east-australian' and context.get('reported_depth_extent_is_fixed_measurement_layer') is not False:
@@ -412,7 +412,7 @@ def validate(document, ledger):
             if hashlib.sha256(path.read_bytes()).hexdigest()!=context.get('audit_sha256'):
                 raise ValueError('Stale regional scalar audit')
             audit=json.loads(path.read_text(encoding='utf-8'))
-            if (row['current_id'],value,row['source_url'],row['source_locator'])!=(audit['current_id'],audit['reported_width_km_approx'],audit['source_url'],audit['source_locator']):
+            if (row['current_id'],value,row['source_url'],row['source_locator'],row['boundary_rule'])!=(audit['current_id'],audit['reported_width_km_approx'],audit['source_url'],audit['source_locator'],audit['boundary_rule']):
                 raise ValueError('Regional scalar differs from pinned source extraction')
         elif row['phase_kind'] == 'regional_summary':
             if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] != 'author_reported_current_width' or row['observed_period'] is not None or row.get('calendar_months') is not None or span is None:

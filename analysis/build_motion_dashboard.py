@@ -88,7 +88,7 @@ def build():
     widths = width_inventory['measurements']
     width_audits={}
     for record in widths:
-        audit_file=record.get('extraction_file') or (record.get('stream_mean_context') or record.get('eulerian_section_context') or record.get('width_statistics_context') or record.get('regional_range_context') or {}).get('audit_file')
+        audit_file=record.get('extraction_file') or (record.get('stream_mean_context') or record.get('eulerian_section_context') or record.get('width_statistics_context') or record.get('regional_range_context') or record.get('regional_scalar_context') or {}).get('audit_file')
         if audit_file and audit_file not in width_audits:width_audits[audit_file]=read(audit_file)
     phases = read('research/ocean-current-seasonal-route-frames.json')['frames']
     proposals = read('research/ocean-current-inventory-expansion-candidates.json')['entries']

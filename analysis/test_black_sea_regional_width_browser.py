@@ -50,7 +50,7 @@ def main():
         assert wasm['rows']==native(query)['rows']
         row=wasm['rows'][0];assert row['width_range_km']==[40,80] and row['approximate_width_km'] is None
         assert row['annual_extrema_eligible'] is False and row['section_geometry'] is None
-        assert len(inventory['measurements'])==72
+        assert len(inventory['measurements'])==73
         assert not errors,errors
         browser.close()
     print('OK: Black Sea regional range, primary source, null midpoint, no seasonal/edge inference, responsive chart, cleanup and native/WASM query parity')

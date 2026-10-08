@@ -42,7 +42,7 @@ def build():
                 read(extra['acquisition_file'])
                 for key in ['source_file', 'parser_file']:
                     inputs[extra[key]]=hashlib.sha256((ROOT/extra[key]).read_bytes()).hexdigest()
-        context=record.get('eulerian_section_context') or record.get('width_statistics_context') or record.get('regional_range_context')
+        context=record.get('eulerian_section_context') or record.get('width_statistics_context') or record.get('regional_range_context') or record.get('regional_scalar_context')
         if context:
             audit=read(context['audit_file'])
             if audit.get('source_document_file'):
