@@ -30,6 +30,7 @@ def main():
     paths.append('rust/osw-query/src/stream_tube_widths.rs')
     paths.append('rust/osw-query/src/abstract_regional_widths.rs')
     paths.append('rust/osw-query/src/astrid_scales.rs')
+    paths.append('rust/osw-query/src/ring_radii.rs')
     paths.append('rust/osw-query/src/somali_width.rs')
     paths.append('rust/osw-query/src/guinea_width.rs')
     paths.append('rust/osw-query/src/original_regional_widths.rs')

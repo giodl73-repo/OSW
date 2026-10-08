@@ -114,6 +114,7 @@ impl Store {
             "reported_length",
             "reference_route",
             "scoped_width",
+            "radius_evidence",
             "geometry",
             "time_samples",
             "source_connectivity",

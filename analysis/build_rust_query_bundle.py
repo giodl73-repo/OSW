@@ -377,7 +377,12 @@ def build():
     read('research/source-data/van-aken-astrid-2003/acquisition.json')
     for path in ['research/source-data/van-aken-astrid-2003/journal-article.pdf','analysis/check_astrid_radial_scales.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
-    atlas_paths=['research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
+    from build_agulhas_ring_radius_audit import validate as validate_ring_radii
+    validate_ring_radii(read('research/agulhas-guerra-2022-ring-radius-scope-audit.json'),read('research/named-eddy-geography.json'))
+    read('research/source-data/guerra-agulhas-2022/acquisition.json')
+    for path in ['research/source-data/guerra-agulhas-2022/journal-article.pdf','analysis/build_agulhas_ring_radius_audit.py','plans/agulhas-ring-radius-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    atlas_paths=['research/agulhas-guerra-2022-ring-radius-scope-audit.json','research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
                  'research/ocean-current-reference-route-state-join.json',
                  'research/ocean-current-dated-timeline-2025.json',
                  'research/ocean-current-dated-timeline.json',

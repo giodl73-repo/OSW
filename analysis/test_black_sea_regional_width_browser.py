@@ -50,7 +50,17 @@ def main():
         assert wasm['rows']==native(query)['rows']
         row=wasm['rows'][0];assert row['width_range_km']==[40,80] and row['approximate_width_km'] is None
         assert row['annual_extrema_eligible'] is False and row['section_geometry'] is None
-        assert len(inventory['measurements'])==88
+        # New source additions must not invalidate this regional-width check.
+        # Compare the full inventory identities with the shipped query projection.
+        width_ids=set();offset=0
+        while True:
+            all_widths=native({'collection':'widths','limit':100,'offset':offset})
+            assert all_widths['total']==len(inventory['measurements'])
+            assert all_widths['rows']
+            width_ids.update(r['id'] for r in all_widths['rows'])
+            offset+=len(all_widths['rows'])
+            if offset>=all_widths['total']:break
+        assert width_ids=={r['id'] for r in inventory['measurements']}
         # A mean offshore extent uses a distinct label and retains sampling metadata.
         page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=mindanao-current',wait_until='networkidle')
         page.wait_for_function("document.querySelector('#season-title').textContent==='Mean surface offshore extent'",timeout=90000)

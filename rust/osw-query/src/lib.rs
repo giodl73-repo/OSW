@@ -30,6 +30,7 @@ mod original_regional_widths;
 mod planning;
 mod proposed_widths;
 mod rebase;
+mod ring_radii;
 mod samples;
 mod seasonal;
 mod seasons_data;

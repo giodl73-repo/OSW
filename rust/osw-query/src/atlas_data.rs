@@ -380,6 +380,29 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         crate::astrid_scales::validate(&astrid)?;
         paths.insert(astrid_path);
     }
+    let radius_path = crate::ring_radii::PATH;
+    if receipts.contains_key(radius_path)
+        || bundle.collections.get("objects").is_some_and(|rows| {
+            rows.iter().any(|r| {
+                matches!(
+                    r["id"].as_str(),
+                    Some(
+                        "eddy:geography:ana-2004"
+                            | "eddy:geography:eliza-2007"
+                            | "eddy:geography:jeannette-2012"
+                    )
+                )
+            })
+        })
+    {
+        let radii = document(
+            bundle,
+            radius_path,
+            "osw.agulhas-ring-radius-scope-audit.v1",
+        )?;
+        crate::ring_radii::validate(&radii)?;
+        paths.insert(radius_path);
+    }
     let routes = bundle
         .collections
         .get("reference_routes")

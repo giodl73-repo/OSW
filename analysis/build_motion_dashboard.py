@@ -141,6 +141,9 @@ def build():
     guinea_width_audit=read('research/guinea-djakoure-2017-model-width-source-review.json')
     algerian_width_audit=read('research/algerian-cotroneo-2019-regional-width-scope-audit.json')
     alaska_width_audit=read('research/alaska-weingartner-2002-regional-width-scope-audit.json')
+    ring_radius_audit=read('research/agulhas-guerra-2022-ring-radius-scope-audit.json')
+    from build_agulhas_ring_radius_audit import validate as validate_ring_radii
+    validate_ring_radii(ring_radius_audit, {'entries':list(eddy_geography.values())})
     astrid_audit=read('research/astrid-2000-radial-scale-scope-audit.json')
     from check_astrid_radial_scales import validate as validate_astrid
     validate_astrid(astrid_audit, {'entries':list(eddy_geography.values())})
@@ -354,6 +357,7 @@ def build():
                     'url':'query.html?q='+quote(json.dumps({'collection':'width_samples','filters':[{'field':'diagnostic_id','op':'eq','value':'diagnostic:yucatan-'+document['product_key']+'-sections'}],'limit':50},separators=(',',':')),safe=''),
                     'frames':len(document['frames']),'evidence_role':'local_component_section_span_not_whole_current_width'})
         capabilities = {
+            'radius_evidence': len(geography.get('published_ring_radius_evidence',geography.get('radial_scale_evidence',[]))) if geography else 0,
             'reported_length': sum(m.get('rank_eligible') is True for m in own_measures),
             'reference_route': len(own_routes),
             'scoped_width': len(own_widths),
@@ -377,6 +381,13 @@ def build():
             url = 'query.html?q=' + quote(json.dumps(query,separators=(',',':')),safe='')
             if record_id: url += '&inspect=' + quote(record_id,safe='')
             evidence_links.append({'label':label,'url':url})
+        radius_evidence=next((e for e in ring_radius_audit['entities'].values() if e['entity_id']==ident),None)
+        if radius_evidence:
+            payload['published_ring_radius_evidence']=radius_evidence
+            groups['measurements'].append(radius_evidence['measurements'])
+            groups['sources'].append(ring_radius_audit)
+            groups['time_evidence'].append(radius_evidence['measurements'])
+            evidence_links.append({'label':'Inspect published radius claims and conflicts','url':'reference-routes.html?atlas-feature='+quote(ident,safe='')+'#route-atlas'})
         if ident == astrid_audit['entity_id']:
             payload['radial_scale_evidence']=astrid_audit
             groups['measurements'].append(astrid_audit['measurements'])

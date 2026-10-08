@@ -432,6 +432,9 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
       const panel=preview(eddy.label);paragraph(panel,kind);
       const radial=sources['research/astrid-2000-radial-scale-scope-audit.json'];
       if(radial?.entity_id===eddy.id)window.renderEddyRadialScales(panel,radial);
+      const radiusAudit=sources['research/agulhas-guerra-2022-ring-radius-scope-audit.json'];
+      const radiusOwner=eddy.id.replace(/^eddy:geography:/,'');
+      if(radiusAudit?.entities?.[radiusOwner])window.renderPublishedRingRadii(panel,radiusAudit.entities[radiusOwner],'research/agulhas-guerra-2022-ring-radius-scope-audit.json',radiusOwner);
       const map=document.createElementNS(ns,'svg');map.classList.add('route-atlas-eddy-map');map.setAttribute('viewBox',view.join(' '));map.setAttribute('role','img');map.setAttribute('aria-label',`${eddy.label} · ${kind}`);panel.append(map);
       map.classList.toggle('updated',changed(eddy));
       if(changed(eddy))paragraph(panel,changeDescription(eddy));

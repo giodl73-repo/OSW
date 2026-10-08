@@ -1542,6 +1542,7 @@ async function renderNamedEddyGeography() {
         movie.rel = "noopener noreferrer";
         identity.append(document.createElement("br"), note, movie);
       }
+      if(item.published_ring_radius_evidence)window.renderPublishedRingRadii(identity,{name:item.name,measurements:item.published_ring_radius_evidence},item.ring_radius_audit_file,item.id);
       if(item.radial_scale_evidence) window.renderEddyRadialScales(identity,{measurements:item.radial_scale_evidence});
       if (item.reported_radius_km && !item.radial_scale_evidence) identity.append(document.createTextNode(` · ~${item.reported_radius_km} km radius`));
       if (item.reported_track_period) identity.append(document.createTextNode(` · source track ${item.reported_track_period.start} to ${item.reported_track_period.end}`));
