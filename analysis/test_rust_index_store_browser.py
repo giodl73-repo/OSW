@@ -152,7 +152,7 @@ def main():
                 assert not failed.evaluate("q => rpc('query',q)", queries[0])['ok']
                 failed.close()
             browser.close()
-    print('PASS: 68 exact sources, 12 seasonal snapshots, independent NOAA oracle, native/WASM parity and checked-input failures')
+    print(f'PASS: {len(expected_sources)} exact sources, 12 seasonal snapshots, independent NOAA oracle, native/WASM parity and checked-input failures')
 
 
 if __name__ == '__main__':

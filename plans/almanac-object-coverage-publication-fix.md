@@ -60,3 +60,9 @@ two required standalone timelines. It requires exact address sets, no duplicate
 registrations/descriptors, exact source bytes and every checksum. The page check
 uses that independently checked expected count for both root and /OSW/ URLs.
 The runner resumes at this specific failure; earlier passing checks are retained.
+
+The source-index store check passed with all 80 registered documents, byte and
+checksum equality, all twelve seasonal snapshots, native/WASM/source equality
+and checked-input rejection cases. Its completion message also now uses the
+verified count instead of the old literal 68. The remaining ten index page/view
+checks are running in the same resumed runner; no full completion claimed yet.
