@@ -417,6 +417,24 @@ def validate(document, ledger):
         elif row['phase_kind'] == 'regional_summary':
             if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] != 'author_reported_current_width' or row['observed_period'] is not None or row.get('calendar_months') is not None or span is None:
                 raise ValueError('Conflated regional range support')
+            if row.get('regional_range_context') and row['current_id'] != 'black-sea-rim':
+                raise ValueError('Regional range source owner mismatch')
+            if row['current_id'] == 'black-sea-rim':
+                context = row.get('regional_range_context', {})
+                audit_file = 'research/black-sea-rim-korotaev-2011-width-scope-audit.json'
+                path = ROOT / audit_file
+                if context.get('audit_file') != audit_file or context.get('audit_sha256') != hashlib.sha256(path.read_bytes()).hexdigest():
+                    raise ValueError('Stale Black Sea regional range audit')
+                audit = json.loads(path.read_bytes())
+                source = ROOT / audit['source_document_file']
+                if len(source.read_bytes()) != audit['source_document_bytes'] or hashlib.sha256(source.read_bytes()).hexdigest() != audit['source_document_sha256']:
+                    raise ValueError('Changed Black Sea primary source')
+                if (span, row['source_url'], row['source_locator'], row['boundary_rule']) != (audit['reported_width_range_km'], audit['source_url'], audit['source_locator'], audit['boundary_rule']):
+                    raise ValueError('Black Sea range differs from primary-source extraction')
+                if any(row.get(key) is not None for key in ['section_geometry','fixed_layer_bounds_m']) or any(row.get(key) is not False for key in ['full_width_inference_eligible','seasonal_playback_eligible']):
+                    raise ValueError('Regional Black Sea range promoted to mapped or seasonal width')
+                if context.get('pycnocline_is_measurement_layer') is not False or context.get('boundary_coordinates_supplied') is not False:
+                    raise ValueError('Invented Black Sea range boundaries or layer')
         elif row["phase_kind"] != "seasonal_summary" or row["measurement_type"] != "published_regional_seasonal_summary" or row["observed_period"] is not None:
             raise ValueError("Unsupported or conflated temporal evidence")
     reviews = document.get('review_assessments', [])

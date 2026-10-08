@@ -42,8 +42,12 @@ def build():
                 read(extra['acquisition_file'])
                 for key in ['source_file', 'parser_file']:
                     inputs[extra[key]]=hashlib.sha256((ROOT/extra[key]).read_bytes()).hexdigest()
-        context=record.get('eulerian_section_context') or record.get('width_statistics_context')
-        if context:read(context['audit_file'])
+        context=record.get('eulerian_section_context') or record.get('width_statistics_context') or record.get('regional_range_context')
+        if context:
+            audit=read(context['audit_file'])
+            if audit.get('source_document_file'):
+                path=audit['source_document_file']
+                inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     collections['widths']=widths['measurements']
     collections['reference_routes']=routes['candidates']
     objects=copy.deepcopy(dashboard['entries'])

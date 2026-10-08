@@ -21,9 +21,28 @@
   }
   function stop() { if (timer !== null) clearInterval(timer); timer = null; byId("season-play").textContent = "Play seasonal states"; }
   const phaseId = phase => phase?.frame?.id || phase?.width?.id || phase?.direction?.id;
+  function renderRegionalRange(row) {
+    const container=byId('regional-width-range');container.replaceChildren();container.hidden=true;
+    if(row?.phase_kind!=='regional_summary'||!row.width_range_km)return;
+    container.hidden=false;
+    const [low,high]=row.width_range_km, maximum=Math.ceil(high/50)*50;
+    const ns='http://www.w3.org/2000/svg', svg=document.createElementNS(ns,'svg');
+    svg.setAttribute('viewBox','0 0 500 110');svg.setAttribute('role','img');
+    svg.setAttribute('aria-label',`${row.name}: reported regional width range ${low} to ${high} kilometres. Not annual extrema or a confidence interval.`);
+    svg.style.cssText='width:100%;max-width:650px;background:#f6f5ef;color:#102f3b';
+    const add=(tag,attrs,text)=>{const e=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(text)e.textContent=text;svg.append(e);};
+    const x=v=>40+420*v/maximum;
+    add('line',{x1:40,x2:460,y1:80,y2:80,stroke:'#47616b'});
+    add('line',{x1:x(low),x2:x(high),y1:45,y2:45,stroke:'#176b82','stroke-width':5});
+    for(const v of [low,high]){add('line',{x1:x(v),x2:x(v),y1:35,y2:55,stroke:'#176b82','stroke-width':2});add('text',{x:x(v),y:25,'text-anchor':'middle',fill:'#102f3b','font-size':16},`${v} km`);}
+    for(const v of [0,maximum])add('text',{x:x(v),y:101,'text-anchor':'middle',fill:'#102f3b','font-size':14},`${v} km`);
+    container.append(svg);
+    const caption=document.createElement('figcaption');caption.textContent=`Reported regional span: ${low}–${high} km. No midpoint selected. This is not an annual range, confidence interval or mapped current envelope.`;container.append(caption);
+  }
   function renderPhase() {
     const phase = phases[Number(byId("season-phase").value)];
     const row = phase?.width;
+    renderRegionalRange(row);
     const barMaximum = Math.max(50, Math.ceil(Math.max(...phases.filter(p => p.width?.approximate_width_km != null).map(p => p.width.approximate_width_km), 0) / 50) * 50);
     const frame = phase?.frame;
     const direction = phase?.direction;
@@ -53,6 +72,7 @@
     }
     if(row?.phase_kind==='inverse_hydrographic_section_span')byId('season-title').textContent='Hydrographic cruise-section span';
     if(row?.phase_kind==='regional_scalar_summary')byId('season-title').textContent='Regional width summary';
+    if(row?.phase_kind==='regional_summary')byId('season-title').textContent='Regional width range';
     if(row?.phase_kind==='campaign_hydrographic_core') {
       byId('season-title').textContent='Local salinity-core observation';
       byId('season-value').textContent=`${row.name}: ${row.width_range_km?row.width_range_km.join('–'):'about '+row.approximate_width_km} km local water-mass core · ${row.phase_label} · ${row.time_convention}`;

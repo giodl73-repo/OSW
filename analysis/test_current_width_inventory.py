@@ -6,6 +6,17 @@ from check_current_width_inventory import validate
 ROOT = Path(__file__).resolve().parents[1]
 
 class WidthInventoryTests(unittest.TestCase):
+    def test_black_sea_range_rejects_midpoint_temporal_and_source_relabeling(self):
+        index=next(i for i,r in enumerate(self.document['measurements']) if r['current_id']=='black-sea-rim')
+        self.assertEqual(self.document['measurements'][index]['width_range_km'],[40,80])
+        validate(self.document,self.ledger)
+        for key,value in [('approximate_width_km',60),('width_range_km',[40,90]),('section_geometry',{'type':'LineString'}),('fixed_layer_bounds_m',[150,300]),('calendar_months',[1,2,3]),('annual_extrema_eligible',True),('seasonal_playback_eligible',True),('full_width_inference_eligible',True),('source_url','https://example.com'),('boundary_rule','speed > 0.1 m/s')]:
+            invalid=copy.deepcopy(self.document);invalid['measurements'][index][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):validate(invalid,self.ledger)
+        for key,value in [('audit_sha256','changed'),('boundary_coordinates_supplied',True),('pycnocline_is_measurement_layer',True)]:
+            invalid=copy.deepcopy(self.document);invalid['measurements'][index]['regional_range_context'][key]=value
+            with self.subTest(context=key),self.assertRaises(ValueError):validate(invalid,self.ledger)
+
     def test_stream_means_preserve_threshold_averaging_and_scope(self):
         indexes=[i for i,r in enumerate(self.document['measurements']) if r['phase_kind']=='stream_mean_threshold_summary']
         self.assertEqual(len(indexes),3)

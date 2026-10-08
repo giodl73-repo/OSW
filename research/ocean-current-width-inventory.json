@@ -7,10 +7,10 @@
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 35,
-    "measurements": 71,
+    "currents_with_scoped_width_evidence": 36,
+    "measurements": 72,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 58,
+    "currents_not_assessed": 57,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 5
   },
@@ -4515,6 +4515,55 @@
       ],
       "extraction_file": "research/atlantic-cruise-section-width-extraction.json",
       "extraction_sha256": "c8f4e2e6211bff2caef9d0b41df0c027bee43aaee8c38b50c0b28b06e6c4d63b"
+    },
+    {
+      "id": "black-sea-rim-korotaev-2011-regional-width-range",
+      "current_id": "black-sea-rim",
+      "name": "Black Sea Rim Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_regional_summary",
+      "width_metric": "author_reported_current_width",
+      "approximate_width_km": null,
+      "width_range_km": [
+        40,
+        80
+      ],
+      "range_kind": "reported_typical_regional_width_span",
+      "range_interpretation": "Published descriptive regional span; not measured annual extrema, seasonal endpoints or a confidence interval. No midpoint selected.",
+      "geographic_scope": "Black Sea continental-slope Rim Current regional description, without an occupied width section or width edges.",
+      "section_geometry": null,
+      "section_orientation": "Unspecified in regional prose; no perpendicular-to-flow section reconstructed.",
+      "layer": "Upper-layer flow described as concentrated above the shallow pycnocline. The separately described 150–300 m pycnocline is hydrographic context, not a fixed measurement layer for the width.",
+      "time_convention": "Undated regional description in a paper published 11 October 2011. Width occupation and climatology years are unspecified; publication year is not an observation interval.",
+      "boundary_rule": "Author-reported regional width span; no paired edge coordinates, velocity threshold, specific section or width sampling period supplied for this description.",
+      "source_url": "https://os.copernicus.org/articles/7/629/2011/os-7-629-2011.pdf",
+      "source_citation": "Korotaev, Oguz, Dorofeyev, Demyshev, Kubryakov and Ratner (2011), Development of Black Sea nowcasting and forecasting system, Ocean Science 7, 629-649, doi:10.5194/os-7-629-2011.",
+      "source_locator": "Section 3.1, printed page 632 (PDF page index 3), right column, paragraph describing the Rim Current above the continental slope.",
+      "source_retrieved_date": "2026-10-07",
+      "source_evidence_kind": "published_regional_literature_summary",
+      "extraction_method": "40–80 km range transcribed from original PDF prose, checked on the rendered page. No figure digitization, midpoint, bathymetric buffer or seasonal assignments.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "phase_label": "Regional width description (2011 publication)",
+      "phase_kind": "regional_summary",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "regional_range_context": {
+        "audit_file": "research/black-sea-rim-korotaev-2011-width-scope-audit.json",
+        "audit_sha256": "a292de32ff40d0d3ceeb731391ee9d692d6ed19c8b1042fc728317c7b0eca513",
+        "pycnocline_is_measurement_layer": false,
+        "boundary_coordinates_supplied": false
+      },
+      "remaining_gates": [
+        "Recover underlying width observations and paired boundaries with layer and occupation support.",
+        "Acquire compatible repeat sections before annual variation or seasonal map animation.",
+        "Independent scientific admission and protected-main publication."
+      ]
     }
   ],
   "current_decisions": [
@@ -4795,10 +4844,12 @@
     {
       "current_id": "black-sea-rim",
       "name": "Black Sea Rim Current",
-      "width_decision": "width_not_assessed",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "black-sea-rim-korotaev-2011-regional-width-range"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
+      "next_action": "40–80 km regional prose range verified; recover paired boundaries and repeat sampling before seasonal or whole-current dimensions.",
       "existing_evidence_locator": null,
       "existing_evidence_source_url": null
     },

@@ -88,7 +88,7 @@ def build():
     widths = width_inventory['measurements']
     width_audits={}
     for record in widths:
-        audit_file=record.get('extraction_file') or (record.get('stream_mean_context') or record.get('eulerian_section_context') or record.get('width_statistics_context') or {}).get('audit_file')
+        audit_file=record.get('extraction_file') or (record.get('stream_mean_context') or record.get('eulerian_section_context') or record.get('width_statistics_context') or record.get('regional_range_context') or {}).get('audit_file')
         if audit_file and audit_file not in width_audits:width_audits[audit_file]=read(audit_file)
     phases = read('research/ocean-current-seasonal-route-frames.json')['frames']
     proposals = read('research/ocean-current-inventory-expansion-candidates.json')['entries']
@@ -397,7 +397,7 @@ def build():
         if current_id == leeuwin_plot['current_id']:
             payload['monthly_width_plot']=leeuwin_plot
         if current_id == kuroshio_profiles['current_id']:payload['seasonal_width_profiles']=kuroshio_profiles
-        own_width_audits=[width_audits[path] for path in sorted({context['audit_file'] for w in own_widths for context in [w.get('stream_mean_context') or w.get('eulerian_section_context') or w.get('width_statistics_context')] if context})]
+        own_width_audits=[width_audits[path] for path in sorted({context['audit_file'] for w in own_widths for context in [w.get('stream_mean_context') or w.get('eulerian_section_context') or w.get('width_statistics_context') or w.get('regional_range_context')] if context})]
         if own_width_audits:payload['width_scope_audits']=own_width_audits
         groups = {
             'identity': entity, 'sources': [own_sources, own_notes, own_audits] if own_notes else own_sources, 'claims': own_claims,
