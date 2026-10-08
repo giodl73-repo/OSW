@@ -18,6 +18,10 @@ def main():
         for owner in owners:
             page.locator('#season-current').select_option(owner)
             expected = [r for r in document['measurements'] if r['current_id'] == owner]
+            reconciled = [r for r in expected if r['hydrographic_section_context'].get('nominal_latitude_reconciliation')]
+            if reconciled:
+                expect(page.locator('#cruise-span-panel')).to_contain_text('Table 1 prints 19°S')
+                assert page.get_by_role('link', name='Cruise archive verifying the 2018 section label').get_attribute('href') == 'https://cchdo.ucsd.edu/cruise/740H20180228'
             bars = page.locator('.cruise-span-chart rect')
             expect(bars).to_have_count(len(expected))
             assert bars.evaluate_all('(nodes)=>nodes.map(n=>Number(n.dataset.valueKm))') == [r['approximate_width_km'] for r in expected]
@@ -52,14 +56,14 @@ def main():
         query = {'collection': 'widths', 'filters': [{'field': 'phase_kind', 'op': 'eq', 'value': 'inverse_hydrographic_section_span'}], 'sort': {'field': 'id'}, 'limit': 100}
         result = browser_query(page, query)
         assert result == native(query)
-        assert result['total'] == 30
+        assert result['total'] == 32
         assert {r['id'] for r in result['rows']} == {r['id'] for r in document['measurements']}
         for row in result['rows']:
             expected = next(r for r in document['measurements'] if r['id'] == row['id'])
             assert {k:v for k,v in row.items() if k not in ('extraction_file', 'extraction_sha256')} == expected
         assert not errors, errors
         browser.close()
-    print('PASS: all 30 cruise spans / 9 currents, source dates and layers, independent bars, direct record links, mobile keyboard scroll, hidden unsupported edges/playback, native/WASM query parity')
+    print('PASS: all 32 cruise spans / 9 currents, source dates and layers, independent bars, direct record links, mobile keyboard scroll, hidden unsupported edges/playback, native/WASM query parity')
 
 
 if __name__ == '__main__': main()

@@ -5,10 +5,23 @@
   "source_license": "CC-BY-4.0",
   "acquisition_file": "research/source-data/cainzos-atlantic-2023/acquisition.json",
   "acquisition_sha256": "04628fc76664bb4124b205a61ecd6d03b09d661e950b704861a2d9fc50104771",
-  "protocol_file": "plans/atlantic-cruise-section-width-protocol-v1.md",
-  "protocol_sha256": "5f4646ea6c75474d85a4d676c7657bbb30fdebc0dc01e6e4f0ad1f3307dcc432",
+  "protocol_file": "plans/atlantic-cruise-section-width-protocol-v2.md",
+  "protocol_sha256": "807cf9128977be2aa87289fc1dc7cc99bb9cff94113d2c4c93fc1b8a659a817d",
   "generator_file": "analysis/build_atlantic_cruise_widths.py",
-  "generator_sha256": "6e3946a8f1bb8d81dd58000acd6f6f7faefea1427ab5f5db77f537fb40aebb7e",
+  "generator_sha256": "0c1d22c5bc4999ba1e512b8778888c61d950f843b46dbd328e9c1088c84c3364",
+  "additional_source_receipts": {
+    "source_file": "research/source-data/cchdo-atlantic-stations/740H20180228-summary.txt",
+    "source_sha256": "9dc86c872478d1cf6e9ae38c4b5359e58e5beeea4e4666ae0b330520c9573a27",
+    "source_url": "https://cchdo.ucsd.edu/data/34926/740H20180228su.txt",
+    "cruise_url": "https://cchdo.ucsd.edu/cruise/740H20180228",
+    "source_bytes": 17498,
+    "archive_section_label": "A09.5_24S",
+    "acquisition_file": "research/source-data/cchdo-atlantic-stations/acquisition.json",
+    "acquisition_sha256": "abbd4a405d25549359df87b02b992d4428111834fe9ab084638f802b2fd125a8",
+    "parser_file": "analysis/build_atlantic_station_context.py",
+    "parser_sha256": "27557d2ff6e52e391d9382382be1703fddc561a74c20982f39ecab57edc56d7f",
+    "scope": "Independent nominal cruise-section correspondence only; not width endpoints or model station-index recovery."
+  },
   "original_tables": {
     "1": [
       {
@@ -2095,6 +2108,90 @@
       ]
     },
     {
+      "id": "cainzos-2023-t02-row-14-section-span",
+      "current_id": "brazil",
+      "name": "Brazil Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_inverse_hydrographic_section_span",
+      "width_metric": "transport_diagnosed_hydrographic_section_span",
+      "width_metric_label": "transport-selected cruise-section span",
+      "approximate_width_km": 47,
+      "width_range_km": null,
+      "range_interpretation": "Publisher Table 2 distance rounded to kilometres. Width uncertainty is not reported. Transport uncertainty is a separate quantity. Separate cruises and layers are not an annual range.",
+      "geographic_scope": "Brazil Current 24∘ S; source longitude limits -41.0:-40.6 degrees east. Section track may deviate from nominal latitude near boundaries. Endpoint latitudes remain unextracted.",
+      "section_geometry": null,
+      "section_orientation": "Nominally zonal hydrographic track; boundary/platform stations may deviate to cross the main flow. Exact boundary track orientation unresolved.",
+      "layer": "Publisher neutral-density layer indices 1:3; reported depth extent 0 to 515 m. Density surfaces are not a uniform fixed-depth slice.",
+      "time_convention": "740H20180228: section sampled 2018-03-02 to 2018-04-05; inverse-model group 2010–2019. Cruise snapshot, not a decade mean or seasonal composite.",
+      "boundary_rule": "Section 2.3: station pairs selected by consistent slope of eastward accumulated horizontal mass transport; vertical extent by the same integrated flow direction. No fixed speed cutoff or instantaneous velocity envelope inferred.",
+      "boundary_sides": "source_selected_station_limits",
+      "source_url": "https://os.copernicus.org/articles/19/1009/2023/",
+      "source_citation": "Caínzos et al. (2023), Consistent picture of the horizontal circulation of the Atlantic Ocean over 3 decades, Ocean Science 19, 1009–1045, doi:10.5194/os-19-1009-2023.",
+      "source_locator": "Table 2, Worksheet 1, row 14, columns A–F; Table 1 row 17; Sections 2.1–2.3.",
+      "source_retrieved_date": "2026-10-07",
+      "source_evidence_kind": "published_inverse_model_hydrographic_cruise_snapshot",
+      "extraction_method": "Publisher XLSX cells retained and distance transcribed directly; explicit section/cruise join. No map or longitude-to-distance conversion.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "full_width_inference_eligible": false,
+      "is_confidence_interval": false,
+      "phase_kind": "inverse_hydrographic_section_span",
+      "phase_label": "740H20180228 · -24 degrees north",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "hydrographic_section_context": {
+        "table_2_row": 14,
+        "table_1_row": 17,
+        "source_group": "Brazil Current 24∘ S",
+        "inverse_model_decade_group": "2010–2019",
+        "cruise_id": "740H20180228",
+        "section_id": "A095",
+        "cruise_sampling_window": {
+          "start": "2018-03-02",
+          "end": "2018-04-05"
+        },
+        "sampling_window_role": "whole_section_sampling_window_not_exact_boundary_station_occupation",
+        "nominal_section_latitude_degrees_north": -24.0,
+        "table_1_latitude_label": "19∘ S",
+        "source_station_range_label": "1:6",
+        "source_longitude_limits_degrees_east": [
+          -41.0,
+          -40.6
+        ],
+        "source_layer_indices_label": "1:3",
+        "source_depth_extent_m": [
+          0,
+          515
+        ],
+        "station_index_convention": "publisher_table_label_not_reindexed_against_table_1_station_count",
+        "nominal_latitude_is_endpoint_latitude": false,
+        "depth_extent_is_uniform_fixed_measurement_layer": false,
+        "decade_group_is_time_average": false,
+        "source_distance_is_recomputed_from_nominal_latitude": false,
+        "source_width_uncertainty_km": null,
+        "nominal_latitude_reconciliation": {
+          "source_file": "research/source-data/cchdo-atlantic-stations/740H20180228-summary.txt",
+          "source_sha256": "9dc86c872478d1cf6e9ae38c4b5359e58e5beeea4e4666ae0b330520c9573a27",
+          "source_url": "https://cchdo.ucsd.edu/data/34926/740H20180228su.txt",
+          "cruise_url": "https://cchdo.ucsd.edu/cruise/740H20180228",
+          "source_bytes": 17498,
+          "archive_section_label": "A09.5_24S",
+          "acquisition_file": "research/source-data/cchdo-atlantic-stations/acquisition.json",
+          "acquisition_sha256": "abbd4a405d25549359df87b02b992d4428111834fe9ab084638f802b2fd125a8",
+          "parser_file": "analysis/build_atlantic_station_context.py",
+          "parser_sha256": "27557d2ff6e52e391d9382382be1703fddc561a74c20982f39ecab57edc56d7f",
+          "scope": "Independent nominal cruise-section correspondence only; not width endpoints or model station-index recovery."
+        }
+      },
+      "remaining_gates": [
+        "Recover actual station coordinates before a geographic edge locator or state intersection.",
+        "Independent scientific admission and release review."
+      ]
+    },
+    {
       "id": "cainzos-2023-t02-row-19-section-span",
       "current_id": "brazil",
       "name": "Brazil Current",
@@ -2514,6 +2611,90 @@
         "decade_group_is_time_average": false,
         "source_distance_is_recomputed_from_nominal_latitude": false,
         "source_width_uncertainty_km": null
+      },
+      "remaining_gates": [
+        "Recover actual station coordinates before a geographic edge locator or state intersection.",
+        "Independent scientific admission and release review."
+      ]
+    },
+    {
+      "id": "cainzos-2023-t02-row-32-section-span",
+      "current_id": "benguela",
+      "name": "Benguela Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_inverse_hydrographic_section_span",
+      "width_metric": "transport_diagnosed_hydrographic_section_span",
+      "width_metric_label": "transport-selected cruise-section span",
+      "approximate_width_km": 108,
+      "width_range_km": null,
+      "range_interpretation": "Publisher Table 2 distance rounded to kilometres. Width uncertainty is not reported. Transport uncertainty is a separate quantity. Separate cruises and layers are not an annual range.",
+      "geographic_scope": "Benguela Current 24∘ S; source longitude limits 8.7:9.7 degrees east. Section track may deviate from nominal latitude near boundaries. Endpoint latitudes remain unextracted.",
+      "section_geometry": null,
+      "section_orientation": "Nominally zonal hydrographic track; boundary/platform stations may deviate to cross the main flow. Exact boundary track orientation unresolved.",
+      "layer": "Publisher neutral-density layer indices 1:4; reported depth extent 0 to 552 m. Density surfaces are not a uniform fixed-depth slice.",
+      "time_convention": "740H20180228: section sampled 2018-03-02 to 2018-04-05; inverse-model group 2010–2019. Cruise snapshot, not a decade mean or seasonal composite.",
+      "boundary_rule": "Section 2.3: station pairs selected by consistent slope of eastward accumulated horizontal mass transport; vertical extent by the same integrated flow direction. No fixed speed cutoff or instantaneous velocity envelope inferred.",
+      "boundary_sides": "source_selected_station_limits",
+      "source_url": "https://os.copernicus.org/articles/19/1009/2023/",
+      "source_citation": "Caínzos et al. (2023), Consistent picture of the horizontal circulation of the Atlantic Ocean over 3 decades, Ocean Science 19, 1009–1045, doi:10.5194/os-19-1009-2023.",
+      "source_locator": "Table 2, Worksheet 1, row 32, columns A–F; Table 1 row 17; Sections 2.1–2.3.",
+      "source_retrieved_date": "2026-10-07",
+      "source_evidence_kind": "published_inverse_model_hydrographic_cruise_snapshot",
+      "extraction_method": "Publisher XLSX cells retained and distance transcribed directly; explicit section/cruise join. No map or longitude-to-distance conversion.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "full_width_inference_eligible": false,
+      "is_confidence_interval": false,
+      "phase_kind": "inverse_hydrographic_section_span",
+      "phase_label": "740H20180228 · -24 degrees north",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "hydrographic_section_context": {
+        "table_2_row": 32,
+        "table_1_row": 17,
+        "source_group": "Benguela Current 24∘ S",
+        "inverse_model_decade_group": "2010–2019",
+        "cruise_id": "740H20180228",
+        "section_id": "A095",
+        "cruise_sampling_window": {
+          "start": "2018-03-02",
+          "end": "2018-04-05"
+        },
+        "sampling_window_role": "whole_section_sampling_window_not_exact_boundary_station_occupation",
+        "nominal_section_latitude_degrees_north": -24.0,
+        "table_1_latitude_label": "19∘ S",
+        "source_station_range_label": "103:106",
+        "source_longitude_limits_degrees_east": [
+          8.7,
+          9.7
+        ],
+        "source_layer_indices_label": "1:4",
+        "source_depth_extent_m": [
+          0,
+          552
+        ],
+        "station_index_convention": "publisher_table_label_not_reindexed_against_table_1_station_count",
+        "nominal_latitude_is_endpoint_latitude": false,
+        "depth_extent_is_uniform_fixed_measurement_layer": false,
+        "decade_group_is_time_average": false,
+        "source_distance_is_recomputed_from_nominal_latitude": false,
+        "source_width_uncertainty_km": null,
+        "nominal_latitude_reconciliation": {
+          "source_file": "research/source-data/cchdo-atlantic-stations/740H20180228-summary.txt",
+          "source_sha256": "9dc86c872478d1cf6e9ae38c4b5359e58e5beeea4e4666ae0b330520c9573a27",
+          "source_url": "https://cchdo.ucsd.edu/data/34926/740H20180228su.txt",
+          "cruise_url": "https://cchdo.ucsd.edu/cruise/740H20180228",
+          "source_bytes": 17498,
+          "archive_section_label": "A09.5_24S",
+          "acquisition_file": "research/source-data/cchdo-atlantic-stations/acquisition.json",
+          "acquisition_sha256": "abbd4a405d25549359df87b02b992d4428111834fe9ab084638f802b2fd125a8",
+          "parser_file": "analysis/build_atlantic_station_context.py",
+          "parser_sha256": "27557d2ff6e52e391d9382382be1703fddc561a74c20982f39ecab57edc56d7f",
+          "scope": "Independent nominal cruise-section correspondence only; not width endpoints or model station-index recovery."
+        }
       },
       "remaining_gates": [
         "Recover actual station coordinates before a geographic edge locator or state intersection.",
@@ -3887,11 +4068,6 @@
       "reason": "Outside this first batch: recirculation, water/front identity or already-assessed current; no identity or width admission inferred."
     },
     {
-      "table_2_row": 14,
-      "source_group": "Brazil Current 24∘ S",
-      "reason": "Table 2 labels 24 S, but Table 1 row 17 labels the 2018 A095 section 19 S. Cruise/section correspondence requires resolution before admission."
-    },
-    {
       "table_2_row": 16,
       "source_group": "Brazil Current recirculation 24∘ S",
       "reason": "Outside this first batch: recirculation, water/front identity or already-assessed current; no identity or width admission inferred."
@@ -3910,11 +4086,6 @@
       "table_2_row": 23,
       "source_group": "Antarctic Circumpolar Current Front 45∘ S",
       "reason": "Outside this first batch: recirculation, water/front identity or already-assessed current; no identity or width admission inferred."
-    },
-    {
-      "table_2_row": 32,
-      "source_group": "Benguela Current 24∘ S",
-      "reason": "Table 2 labels 24 S, but Table 1 row 17 labels the 2018 A095 section 19 S. Cruise/section correspondence requires resolution before admission."
     },
     {
       "table_2_row": 36,

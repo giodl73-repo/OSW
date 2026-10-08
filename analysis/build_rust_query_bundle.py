@@ -37,6 +37,11 @@ def build():
             read(extraction['acquisition_file'])
             for dependency in [extraction['protocol_file'], extraction['generator_file'], *[s['file'] for s in json.loads((ROOT / extraction['acquisition_file']).read_bytes())['files']]]:
                 inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
+            extra = extraction.get('additional_source_receipts')
+            if extra:
+                read(extra['acquisition_file'])
+                for key in ['source_file', 'parser_file']:
+                    inputs[extra[key]]=hashlib.sha256((ROOT/extra[key]).read_bytes()).hexdigest()
         context=record.get('eulerian_section_context') or record.get('width_statistics_context')
         if context:read(context['audit_file'])
     collections['widths']=widths['measurements']

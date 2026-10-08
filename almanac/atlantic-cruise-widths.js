@@ -57,6 +57,12 @@ window.renderAtlanticCruiseWidths = function(container, current, inventory) {
     node("td", `${context.source_station_range_label} / Table 2 row ${context.table_2_row}`, record);
   }
   node("p", "Sampling windows cover the whole cruise section. Selected station-pair occupation dates and actual endpoint latitudes are unresolved. Reported density-layer depth extents are not uniform fixed-depth slices. Width uncertainty is unreported.");
+  const reconciled = records.find(row => row.hydrographic_section_context.nominal_latitude_reconciliation);
+  if (reconciled) {
+    node("p", "2018 section-label correction: the publisher’s Table 1 prints 19°S. Table 2 and the independently archived A09.5_24S cruise summary identify 24°S. The original cell and correction evidence are retained in the exact source records. This resolves cruise correspondence; current boundary station pairing remains unresolved.");
+    const evidence = node("a", "Cruise archive verifying the 2018 section label", node("p", ""));
+    evidence.href = reconciled.hydrographic_section_context.nominal_latitude_reconciliation.cruise_url;
+  }
   const source = node("a", "Published source and original tables", node("p", "")); source.href = records[0].source_url;
   const query = {collection: "widths", filters: [{field: "current_id", op: "eq", value: current}, {field: "phase_kind", op: "eq", value: "inverse_hydrographic_section_span"}], limit: 100};
   const inspect = node("a", "Query these exact source records", node("p", "")); inspect.href = "query.html?q=" + encodeURIComponent(JSON.stringify(query));

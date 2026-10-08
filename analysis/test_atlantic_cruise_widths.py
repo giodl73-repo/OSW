@@ -8,9 +8,17 @@ from check_current_width_inventory import validate
 def test_extraction_matches_publisher_and_preserves_exclusions():
     document = build()
     assert document == json.loads((ROOT / OUTPUT).read_bytes())
-    assert len(document['measurements']) == 30
+    assert len(document['measurements']) == 32
     assert len({r['current_id'] for r in document['measurements']}) == 9
-    assert {r['table_2_row'] for r in document['excluded_rows'] if '2018 A095' in r['reason']} == {14, 32}
+    assert not {14, 32}.intersection(r['table_2_row'] for r in document['excluded_rows'])
+    resolved = [r for r in document['measurements'] if r['hydrographic_section_context']['table_1_row'] == 17]
+    assert [(r['current_id'], r['approximate_width_km']) for r in resolved] == [('brazil', 47), ('benguela', 108)]
+    for row in resolved:
+        context = row['hydrographic_section_context']
+        assert context['nominal_section_latitude_degrees_north'] == -24
+        assert context['table_1_latitude_label'].startswith('19')
+        assert context['nominal_latitude_reconciliation']['archive_section_label'] == 'A09.5_24S'
+        assert row['section_geometry'] is None and row['width_rank_eligible'] is False
     malvinas = document['measurements'][0]
     assert malvinas['current_id'] == 'falkland'
     assert malvinas['approximate_width_km'] == 109
@@ -50,4 +58,12 @@ def test_width_inventory_rejects_changed_source_context(key, value):
     ledger = json.loads((ROOT / 'research/ocean-current-almanac.json').read_bytes())
     row = next(r for r in document['measurements'] if r['phase_kind'] == 'inverse_hydrographic_section_span')
     row['hydrographic_section_context'][key] = value
+    with pytest.raises(ValueError): validate(document, ledger)
+
+
+def test_width_inventory_rejects_unproven_2018_reconciliation():
+    document = json.loads((ROOT / 'research/ocean-current-width-inventory.json').read_bytes())
+    ledger = json.loads((ROOT / 'research/ocean-current-almanac.json').read_bytes())
+    row = next(r for r in document['measurements'] if r['id'] == 'cainzos-2023-t02-row-14-section-span')
+    row['hydrographic_section_context']['nominal_latitude_reconciliation']['source_sha256'] = 'invented'
     with pytest.raises(ValueError): validate(document, ledger)

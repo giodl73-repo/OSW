@@ -10,8 +10,8 @@ def test_checked_extraction_is_reproducible():
     assert actual == json.loads((module.ROOT / module.OUTPUT).read_bytes())
     assert len(actual['cruises']) == 18
     assert sum(c['source_event_count'] for c in actual['cruises']) == 4772
-    assert len(actual['measurement_contexts']) == 30
-    assert sum(bool(c['points']) for c in actual['measurement_contexts']) == 30
+    assert len(actual['measurement_contexts']) == 32
+    assert sum(bool(c['points']) for c in actual['measurement_contexts']) == 32
     for context in actual['measurement_contexts']:
         assert context['geometry_role'] == 'cruise_sampling_context_not_current_boundary'
         assert context['boundary_station_mapping_status'] == 'unresolved'

@@ -21,7 +21,7 @@ def main():
         source_request = {'document': 'research/atlantic-cruise-station-context.json', 'pointer': '/measurement_contexts', 'limit': 100}
         response = subprocess.run([str(CLI), '--index', str(packet), '-'], input=json.dumps(source_request), text=True, encoding='utf-8', capture_output=True, check=True)
         native = json.loads(response.stdout)
-        assert native['total'] == 30
+        assert native['total'] == 32
         assert [r['record'] for r in native['rows']] == audit['measurement_contexts']
         with sync_playwright() as p:
             browser = p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
@@ -87,7 +87,7 @@ def main():
             expect(bad.locator('.cruise-station-context [role=status]')).to_contain_text('Station context unavailable', timeout=90000)
             assert bad.locator('.cruise-station-context svg').count() == 0
             browser.close()
-    print('PASS: 30 exact station-context joins and Rust-projected maps, corrected timestamp provenance, source-query/native parity, mobile containment, changed-source rejection')
+    print('PASS: 32 exact station-context joins and Rust-projected maps, corrected timestamp provenance, source-query/native parity, mobile containment, changed-source rejection')
 
 
 if __name__ == '__main__': main()

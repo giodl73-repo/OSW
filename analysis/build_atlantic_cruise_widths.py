@@ -9,7 +9,7 @@ from zipfile import ZipFile
 ROOT = Path(__file__).resolve().parents[1]
 DIRECTORY = 'research/source-data/cainzos-atlantic-2023/'
 OUTPUT = 'research/atlantic-cruise-section-width-extraction.json'
-PROTOCOL = 'plans/atlantic-cruise-section-width-protocol-v1.md'
+PROTOCOL = 'plans/atlantic-cruise-section-width-protocol-v2.md'
 URL = 'https://os.copernicus.org/articles/19/1009/2023/'
 NS = {'s': 'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
 # Explicit source section -> canonical identity; recirculations remain separate.
@@ -37,6 +37,7 @@ CRUISES = {
     (53, '2000–2009'): (14, '2005-05-29', '2005-06-03'),
     (58, '2000–2009'): (15, '2007-09-12', '2007-09-22'),
     (-30, '2010–2019'): (16, '2011-09-28', '2011-10-29'),
+    (-24, '2010–2019'): (17, '2018-03-02', '2018-04-05'),
     (24.5, '2010–2019'): (18, '2011-01-28', '2011-03-11'),
     (47, '2010–2019'): (19, '2013-05-29', '2013-06-14'),
     (53, '2010–2019'): (20, '2014-06-09', '2014-06-18'),
@@ -84,6 +85,24 @@ def build():
     for source in acquisition['files']:
         if digest(source['file']) != source['sha256'] or (ROOT / source['file']).stat().st_size != source['bytes']:
             raise ValueError('Changed publisher workbook: ' + source['file'])
+    from build_atlantic_station_context import parse_events
+    station_acquisition_file = 'research/source-data/cchdo-atlantic-stations/acquisition.json'
+    station_acquisition = json.loads((ROOT / station_acquisition_file).read_bytes())
+    source_2018 = next(s for s in station_acquisition['files'] if s['paper_cruise_id'] == '740H20180228')
+    if digest(source_2018['file']) != source_2018['sha256'] or (ROOT / source_2018['file']).stat().st_size != source_2018['bytes']:
+        raise ValueError('Changed 2018 independent cruise identity source')
+    archive_events = parse_events((ROOT / source_2018['file']).read_bytes(), 2000)
+    if not archive_events or any(e['archive_cruise_label'] != '740H20180228' or e['archive_section_label'] != 'A09.5_24S' for e in archive_events):
+        raise ValueError('2018 nominal cruise/section correspondence unresolved')
+    identity_evidence = {
+        'source_file': source_2018['file'], 'source_sha256': source_2018['sha256'],
+        'source_url': source_2018['source_url'], 'cruise_url': source_2018['cruise_url'],
+        'source_bytes': source_2018['bytes'], 'archive_section_label': 'A09.5_24S',
+        'acquisition_file': station_acquisition_file, 'acquisition_sha256': digest(station_acquisition_file),
+        'parser_file': 'analysis/build_atlantic_station_context.py',
+        'parser_sha256': digest('analysis/build_atlantic_station_context.py'),
+        'scope': 'Independent nominal cruise-section correspondence only; not width endpoints or model station-index recovery.',
+    }
     tables = {str(i): read_cells(DIRECTORY + f'table-{i}.xlsx') for i in (1, 2)}
     cruise_rows = {r['row']: r['cells'] for r in tables['1']}
     names = {r['id']: r['name'] for r in json.loads((ROOT / 'research/ocean-current-almanac.json').read_bytes())['entries']}
@@ -101,9 +120,6 @@ def build():
         decade = cells['A']
         if label not in OWNERS:
             exclusions.append({'table_2_row': source_row['row'], 'source_group': group, 'reason': 'Outside this first batch: recirculation, water/front identity or already-assessed current; no identity or width admission inferred.'})
-            continue
-        if latitude == -24 and decade == '2010–2019':
-            exclusions.append({'table_2_row': source_row['row'], 'source_group': group, 'reason': 'Table 2 labels 24 S, but Table 1 row 17 labels the 2018 A095 section 19 S. Cruise/section correspondence requires resolution before admission.'})
             continue
         table_1_row, start, end = CRUISES[(latitude, decade)]
         cruise = cruise_rows[table_1_row]
@@ -127,6 +143,10 @@ def build():
             'source_distance_is_recomputed_from_nominal_latitude': False,
             'source_width_uncertainty_km': None,
         }
+        if table_1_row == 17:
+            if cruise['D'] != '740H20180228' or cruise['A'] != 'A095':
+                raise ValueError('Changed publisher 2018 cruise identity')
+            source_context['nominal_latitude_reconciliation'] = identity_evidence
         records.append({
             'id': f'cainzos-2023-t02-row-{source_row["row"]}-section-span',
             'current_id': current, 'name': names[current],
@@ -166,6 +186,7 @@ def build():
         'protocol_file': PROTOCOL, 'protocol_sha256': digest(PROTOCOL),
         'generator_file': 'analysis/build_atlantic_cruise_widths.py',
         'generator_sha256': digest('analysis/build_atlantic_cruise_widths.py'),
+        'additional_source_receipts': identity_evidence,
         'original_tables': tables, 'measurements': records, 'excluded_rows': exclusions,
         'scope': 'Local transport-selected hydrographic spans. Cruise snapshots remain separate by section and layer; no global width ranking, annual extrema, route buffers or geographic boundaries.',
     }
@@ -191,7 +212,7 @@ def update_inventory():
             decision['measurement_ids'] = members
             decision['width_decision'] = 'scoped_width_evidence_present'
             if decision['current_id'] in OWNERS.values():
-                decision['next_action'] = 'Recover actual section station coordinates and evaluate independent scientific admission. Separate cruise spans do not establish seasonal or whole-current width.'
+                decision['next_action'] = 'Resolve inverse-model station boundary pairings and evaluate independent scientific admission. Separate cruise spans do not establish seasonal or whole-current width.'
     inventory['counts']['measurements'] = len(inventory['measurements'])
     inventory['counts']['currents_with_scoped_width_evidence'] = len({r['current_id'] for r in inventory['measurements']})
     inventory['counts']['currents_not_assessed'] = sum(d['width_decision'] == 'width_not_assessed' for d in inventory['current_decisions'])
