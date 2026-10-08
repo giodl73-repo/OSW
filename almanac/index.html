@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="OSW motion atlas and almanac: named ocean currents, taxonomy, approximate map locators, reported lengths, and named Loop Current eddies.">
   <title>Ocean Motion Almanac — OSW</title>
-  <link rel="stylesheet" href="styles.css?v=reference-state-routes-1">
+  <link rel="stylesheet" href="styles.css?v=branching-cycles-1">
   <script src="atlas-sample-states.js?v=dated-state-links-1" defer></script>
   <script src="cartography.js?v=checked-index-1" defer></script>
   <script src="checked-index.js?v=checked-index-1" defer></script>
   <script src="app.js?v=checked-index-1" defer></script>
+  <script src="bifurcation.js?v=branching-cycles-1" defer></script>
 </head>
 <body>
   <header>
@@ -20,6 +21,7 @@
     <p class="eyebrow">Ocean States of the World · motion records</p>
     <h1>Ocean motion almanac</h1>
     <p class="lead">Names are useful addresses for moving water. They are not fixed lines on a map. This first ledger separates named current systems from individual, short lived eddies and keeps every reported length tied to its source and scope.</p>
+    <p><a href="#branching-title">Explore the Indian South Equatorial monthly branching cycles</a>.</p>
     <p class="footnote"><strong>Research candidate status:</strong> this atlas displays the full working source set, including provider-derived records whose public reuse terms remain under review. The separate <a href="../site-review/ocean-motion-screened/">rights-screened review atlas</a> and <a href="release/v0.1.0-rights-screened-preview/README.md">data export</a> omit those records and explain their smaller counts. Neither package is a published dataset. See the <a href="release/PUBLICATION-BOUNDARY.md">site boundary audit</a> and <a href="release/source-terms-audit.md">source terms audit</a>.</p>
     <p class="footnote">Explore the <a href="object.html">versioned object pages</a> or download the <a href="release/v0.1.0/manifest.json">v0.1.0 release candidate manifest</a>, <a href="release/v0.1.0/coverage.json">coverage report</a>, <a href="release/v0.1.0/METHODS.md">methods</a>, <a href="release/v0.1.0/DATASET-CITATION-DRAFT.json">citation draft</a>, and <a href="release/v0.1.0/relations.csv">relation table</a>. The package has stable IDs and source-linked evidence classes; it has not yet been published as a cited dataset.</p>
 
@@ -108,6 +110,21 @@
       <label class="search">Find a regional eddy <input id="eddy-geography-search" type="search" placeholder="Name or basin" autocomplete="off"></label>
       <div class="table-wrap"><table><caption>Named eddy regions and source-dated individuals beyond the Loop Current</caption><thead><tr><th scope="col">Name</th><th scope="col">Identity</th><th scope="col">Basin</th><th scope="col">Locator</th><th scope="col">Rotation</th><th scope="col">OSW state locator</th><th scope="col">Source</th><th scope="col">NASA region</th></tr></thead><tbody id="eddy-geography-rows"></tbody></table></div>
       <p class="footnote"><a href="../research/named-eddy-geography.json">Download the named eddy geography ledger</a> · <a href="../research/named-eddy-geography-join.json">Download state and NASA crop joins</a>. This source-specific register is still growing. The Black Sea has no suitable OSW state in the current 56-state map; approximate MEDI and REDS polygon overlaps are excluded.</p>
+    </section>
+    <section id="branching-cycles" aria-labelledby="branching-title">
+      <p class="eyebrow">Seasonal source evidence</p>
+      <h2 id="branching-title">Where does the Indian South Equatorial flow branch?</h2>
+      <p>Historical monthly branching latitudes off Madagascar. Surface SSH and the upper-400-m hydrographic mean describe different layers. This basin-qualified current identity is an inventory proposal. These curves do not establish current length, width or a changing geographic route.</p>
+      <div class="current-controls">
+        <label>Selected source layer <select id="branch-series" disabled><option value="surface_ssh">Surface SSH</option><option value="wod_upper400">Upper 400 m hydrographic mean</option></select></label>
+        <label>Month <input id="branch-month" type="range" min="1" max="12" step="1" value="1" disabled></label>
+        <button id="branch-prev" type="button" disabled>Previous month</button><button id="branch-next" type="button" disabled>Next month</button><button id="branch-play" type="button" disabled>Play months</button>
+      </div>
+      <p id="branch-status" role="status" aria-live="polite">Loading checked seasonal evidence…</p>
+      <div id="branch-chart" hidden></div>
+      <p class="footnote">Solid gray: surface SSH. Dashed red: upper 400 m. Bars show ±0.1° graph-reading allowances, not measurement uncertainty or confidence intervals. Latitudes are displayed in degrees south. Each source provides one historical monthly cycle; the repeated cycle in its figure is not a second observed year.</p>
+      <p id="branch-scope"></p><p><a id="branch-share" href="#branching-title">Link to this month and layer</a> · <a id="branch-source" href="https://doi.org/10.1175/JPO-D-13-0147.1">Chen et al. (2014), figure 3</a> · <a href="reference-routes.html#inventory-addition-indian-south-equatorial">Proposed current card</a></p>
+      <div class="table-wrap"><table><caption>Selected source layer: monthly branching latitude and graph-reading allowance</caption><thead><tr><th scope="col">Month</th><th scope="col">Latitude</th><th scope="col">Reading allowance</th></tr></thead><tbody id="branch-rows"></tbody></table></div>
     </section>
   </main>
   <footer>OSW · Every number needs a defined object, method, and source.</footer>

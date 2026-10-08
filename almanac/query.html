@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Query the ocean atlas — OSW</title>
-  <link rel="stylesheet" href="query.css?v=11"><script src="query-workspace.js?v=1" defer></script><script src="query-charts.js?v=3" defer></script><script src="model-section-card.js?v=1" defer></script><script src="query.js?v=model-collections-38" defer></script>
+  <link rel="stylesheet" href="query.css?v=source-documents-1"><script src="query-workspace.js?v=1" defer></script><script src="query-charts.js?v=3" defer></script><script src="model-section-card.js?v=1" defer></script><script src="query.js?v=model-collections-38" defer></script><script src="source-query.js?v=1" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to query</a>
@@ -12,6 +12,26 @@
   <p class="eyebrow">Ocean atlas · record workspace</p><h1>Ask the atlas</h1>
   <p class="lead">Find currents and eddies by state, measurements and available evidence. Inspect the records, then open their maps.</p>
   <p id="query-inventory" class="inventory">Loading the record store…</p>
+  <details id="source-query-panel">
+    <summary>Query checked source documents</summary>
+    <h2 id="source-query-title">Source evidence workspace</h2>
+    <p>Search the checked documents behind the almanac, including source audits, name decisions and monthly extractions. Records retain their original evidence status, source address and checksum. This workspace loads when opened.</p>
+    <form id="source-query-form"><fieldset disabled id="source-query-fields">
+      <label>Source document<select id="source-query-document"></select></label>
+      <label>Path within source (JSON Pointer)<input id="source-query-pointer" value="/entries" placeholder="/series/0/months"></label>
+      <label>Text contains<input id="source-query-text" type="search"></label>
+      <label>Rows per page<input id="source-query-limit" type="number" min="1" max="500" value="25"></label>
+      <button id="source-query-run" type="submit">Run source query</button>
+    </fieldset></form>
+    <p class="note">A path selects an array or object; leave it empty for the document root. Filter fields in the structured query start with <code>record.</code>, such as <code>record.month</code>. Returned addresses identify the original row before filtering or sorting.</p>
+    <details><summary>Structured source query</summary><label for="source-query-json">Source request</label><textarea id="source-query-json" rows="8" spellcheck="false" disabled></textarea><button id="source-query-run-json" type="button" disabled>Run structured source query</button></details>
+    <p id="source-query-status" role="status" aria-live="polite">Open this workspace to load the checked source catalog.</p>
+    <p id="source-query-active" class="note" hidden></p>
+    <p id="source-query-receipt" class="note"></p>
+    <div class="record-links"><a id="source-query-share" hidden>Link to this source query</a><button id="source-query-export" type="button" disabled>Download this result page</button></div>
+    <div id="source-query-results" class="table-wrap"><table><caption>Source query results</caption><thead><tr><th scope="col">Source address</th><th scope="col">Record preview</th></tr></thead><tbody id="source-query-rows"></tbody></table></div>
+    <div class="pagination"><button id="source-query-previous" type="button" disabled>Previous source page</button><span id="source-query-page"></span><button id="source-query-next" type="button" disabled>Next source page</button></div>
+  </details>
   <details id="workspace-controls"><summary>Local working records</summary><p>Save full proposed copies with revision history. Working records are pending changes to the imported snapshot. Browser storage stays on this device; export a journal to back it up or use it with the native Rust tool.</p><p id="workspace-status" role="status">Loading workspace…</p><button id="workspace-query" type="button" disabled>Query working records</button> <button id="workspace-refresh" type="button" disabled>Reload working records</button> <button id="workspace-export" type="button" disabled>Export revision journal</button><label>Import revision journal<input id="workspace-import" type="file" accept="application/json,.json" disabled></label><details id="workspace-archive-controls"><summary>Journals for previous snapshots</summary><p>Source updates create a new workspace. Preview a three-way rebase to carry proposed changes into the current snapshot. The original journal stays available.</p><button id="workspace-list" type="button" disabled>List saved snapshot journals</button><label>Saved snapshot<select id="workspace-snapshots"></select></label><button id="workspace-export-snapshot" type="button" disabled>Export selected snapshot journal</button> <button id="workspace-export-source" type="button" disabled>Export matching source snapshot</button><label>Attach old source snapshot if unavailable locally<input id="workspace-rebase-source" type="file" accept="application/json,.json"></label><button id="workspace-rebase-preview" type="button" disabled>Preview rebase into current snapshot</button><section id="workspace-rebase-plan" hidden aria-label="Rebase preview and conflict decisions"></section></details></details>
   <section aria-labelledby="query-title">
     <h2 id="query-title">Build a query</h2>
