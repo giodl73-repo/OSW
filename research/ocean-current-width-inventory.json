@@ -7,10 +7,10 @@
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 43,
-    "measurements": 87,
+    "currents_with_scoped_width_evidence": 44,
+    "measurements": 88,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 50,
+    "currents_not_assessed": 49,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 5
   },
@@ -5633,6 +5633,67 @@
         "audit_file": "research/oyashio-2005-abstract-width-scope-audit.json",
         "audit_sha256": "7fd3b4cfbe3249d7d7e4ea78242d3f809db99e6a9d2b6f8c2a7d5ea42693c605"
       }
+    },
+    {
+      "id": "somali-schott-2001-march-may-coastal-width",
+      "current_id": "somali",
+      "name": "Somali Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_seasonal_regional_prose_width_span",
+      "width_metric": "author_reported_seasonal_regional_current_scale",
+      "approximate_width_km": null,
+      "width_range_km": [
+        50,
+        100
+      ],
+      "range_interpretation": "One seasonal regional prose span, not an annual range, probability interval or three monthly measurements. Other months have no compatible width evidence here.",
+      "geographic_scope": "Northern Somali coastal upwelling regime, farther north than the southern EACC extension that turns offshore near 3-4 N. Northern latitude limits unresolved; no width assigned to the southern gyre, Great Whirl or the entire Somali Current.",
+      "section_geometry": null,
+      "section_orientation": "No reproducible section endpoints extracted from the abstract.",
+      "layer": "Shallow northward coastal flow overlying a southward undercurrent; no numerical fixed layer or velocity threshold extracted for the width.",
+      "time_convention": "March-May seasonal synthesis in the 2001 review; no specific year, exact occupied section dates or monthly width values supplied.",
+      "boundary_rule": "Author-reported order-of-magnitude width scale of the northern shallow coastal flow. Paired geographic edges and a speed cutoff are unextracted.",
+      "source_url": "https://www.whoi.edu/cms/files/schott_mccreary_41948.pdf",
+      "source_citation": "Schott, F. A. and McCreary, J. P. Jr. (2001), The monsoon circulation of the Indian Ocean, Progress in Oceanography 51, 1-123, doi:10.1016/S0079-6611(01)00083-0.",
+      "source_locator": "Section 4.1.1, printed p. 38 (PDF page 38), March-May paragraph, final sentence and preceding northern-flow context.",
+      "source_retrieved_date": "2026-10-08",
+      "source_evidence_kind": "published_seasonal_synthesis_of_prior_observations",
+      "extraction_method": "Numerical seasonal width scale transcribed from inspected full original prose; no contour, section or raw observation digitization.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "phase_label": "March-May northern coastal flow",
+      "phase_kind": "seasonal_regional_width_range",
+      "observed_period": null,
+      "calendar_months": [
+        3,
+        4,
+        5
+      ],
+      "fixed_layer_bounds_m": null,
+      "remaining_gates": [
+        "Recover underlying dated northern coastal sections and boundary convention.",
+        "Obtain compatible repeat widths across the other nine months before a yearly cycle.",
+        "Independent scientific and canonical admission."
+      ],
+      "source_quality_note": "Full original review inspected and printed p. 38 rendered. This is a seasonal synthesis; underlying width occupations and boundary methods remain unextracted.",
+      "range_kind": "author_reported_seasonal_regional_width_scale_span",
+      "calendar_source_locator": "Section 4.1.1, printed p. 38 (PDF page 38), March-May paragraph heading.",
+      "seasonal_regional_context": {
+        "southern_turnoff_latitude_is_width_edge": false,
+        "undercurrent_is_same_width_layer": false,
+        "Great_Whirl_scale_is_coastal_width": false,
+        "season_months_are_monthly_measurements": false,
+        "boundary_coordinates_extracted": false,
+        "full_original_inspected": true,
+        "protocol_file": "plans/somali-seasonal-width-protocol-v1.md",
+        "protocol_sha256": "5182a21bd951600e62581469470a0cf3a2b74d2ab17a7475e93d070d7e90e53a",
+        "audit_file": "research/somali-schott-2001-premonsoon-width-scope-audit.json",
+        "audit_sha256": "6d56e45ef84e83a7582981316ac0befa9f85488fd1849edad486a4bc354ab0e9"
+      }
     }
   ],
   "current_decisions": [
@@ -6296,10 +6357,12 @@
     {
       "current_id": "somali",
       "name": "Somali Current",
-      "width_decision": "width_not_assessed",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "somali-schott-2001-march-may-coastal-width"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
+      "next_action": "Recover underlying northern coastal width sections for March-May and compatible observations in other months; keep editorial routes independent.",
       "existing_evidence_locator": null,
       "existing_evidence_source_url": null
     },

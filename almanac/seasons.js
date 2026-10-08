@@ -45,6 +45,7 @@
   }
   function renderRegionalRange(row) {
     const container=byId('regional-width-range');container.replaceChildren();container.hidden=true;
+    if(row?.phase_kind==='seasonal_regional_width_range'){container.hidden=false;window.renderSeasonalRegionalWidth(container,row);return;}
     if(row?.source_scope_context){container.hidden=false;window.renderAbstractRegionalWidth(container,row);return;}
     if(row?.phase_kind==='survey_layer_median_threshold_width'){renderAdcpComparison(container,row);return;}
     if(!['regional_summary','mean_offshore_extent_range'].includes(row?.phase_kind)||!row.width_range_km)return;
@@ -68,6 +69,7 @@
     const phase = phases[Number(byId("season-phase").value)];
     const row = phase?.width;
     renderRegionalRange(row);
+    if(row?.phase_kind==='seasonal_regional_width_range')byId("season-play").disabled=true;else byId("season-play").disabled=!window.oswSeasonPlan.can_play;
     const barMaximum = Math.max(50, Math.ceil(Math.max(...phases.filter(p => p.width?.approximate_width_km != null).map(p => p.width.approximate_width_km), 0) / 50) * 50);
     const frame = phase?.frame;
     const direction = phase?.direction;
@@ -104,6 +106,7 @@
     }
     if(row?.phase_kind==='synoptic_stream_tube_section')byId('season-title').textContent='Synoptic stream-tube section width';
     if(row?.phase_kind==='regional_summary')byId('season-title').textContent='Regional width range';
+    if(row?.phase_kind==='seasonal_regional_width_range'){byId('season-title').textContent='Seasonal regional width scale';byId('season-value').textContent=`${row.name}: ${row.width_range_km.join('–')} km seasonal regional scale · ${row.phase_label}`;}
     if(row?.phase_kind==='mean_offshore_extent_range') {
       byId('season-title').textContent='Mean surface offshore extent';
       byId('season-value').textContent=`${row.name}: ${row.width_range_km.join('–')} km reported offshore extent · not full width`;
@@ -210,6 +213,7 @@
     for (const [i, row] of phases.entries()) { const option = document.createElement("option"); option.value = i; option.textContent = row.label; select.append(option); }
     const requestedIndex = phases.findIndex(phase => phaseId(phase) === requestedPhase);
     if(requestedIndex >= 0)select.value=String(requestedIndex);
+    else if(playbackIndices.length)select.value=String(playbackIndices[0]);
     select.disabled = !phases.length;
     byId("season-play").disabled = !plan.can_play;
     byId("season-range").textContent = plan.range_note;

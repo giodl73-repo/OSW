@@ -28,6 +28,9 @@ def build():
         movies_receipts[name]={'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')}
     dashboard=read('research/ocean-motion-dashboard.json')
     widths=read('research/ocean-current-width-inventory.json')
+    read('research/somali-schott-2001-premonsoon-width-scope-audit.json');read('research/source-data/schott-mccreary-2001/acquisition.json')
+    for path in ['research/source-data/schott-mccreary-2001/journal-article.pdf','plans/somali-seasonal-width-protocol-v1.md','analysis/check_somali_seasonal_width.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     for path in ['research/california-2011-abstract-width-scope-audit.json','research/oyashio-2005-abstract-width-scope-audit.json']:
         read(path)
     inputs['analysis/check_abstract_regional_widths.py']=hashlib.sha256((ROOT/'analysis/check_abstract_regional_widths.py').read_bytes()).hexdigest()

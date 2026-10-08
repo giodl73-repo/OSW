@@ -195,6 +195,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             if key == "widths" {
                 adcp_width_scope(row)?;
                 crate::stream_tube_widths::validate(row)?;
+                crate::somali_width::validate(row)?;
                 crate::abstract_regional_widths::validate(row)?;
                 norwegian_coastal_width_scope(row)?;
             }
@@ -312,7 +313,7 @@ fn plans(docs: &Value) -> Result<Value, String> {
                         .next()
                         .unwrap()
                 });
-            phases.push(json!({"id":row["id"],"width_id":row["id"],"frame_id":null,"direction_id":null,"label":label,"playback_step_eligible":true}));
+            phases.push(json!({"id":row["id"],"width_id":row["id"],"frame_id":null,"direction_id":null,"label":label,"playback_step_eligible":row["seasonal_playback_eligible"] != false}));
         }
         for row in owned {
             let linked = row["width_measurement_ids"]
@@ -342,7 +343,11 @@ fn plans(docs: &Value) -> Result<Value, String> {
                     .all(|p| !p["width_id"].is_null() && ids.contains(&p["width_id"]))
             })
         });
-        let route_only = phases.len() > 1 && phases.iter().all(|p| !p["frame_id"].is_null());
+        let route_only = phases.iter().filter(|p| !p["frame_id"].is_null()).count() > 1
+            && phases
+                .iter()
+                .filter(|p| p["playback_step_eligible"] == true)
+                .all(|p| !p["frame_id"].is_null());
         let direction_count = phases
             .iter()
             .filter(|p| !p["direction_id"].is_null() && p["playback_step_eligible"] == true)

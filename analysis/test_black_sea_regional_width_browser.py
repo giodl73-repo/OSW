@@ -50,7 +50,7 @@ def main():
         assert wasm['rows']==native(query)['rows']
         row=wasm['rows'][0];assert row['width_range_km']==[40,80] and row['approximate_width_km'] is None
         assert row['annual_extrema_eligible'] is False and row['section_geometry'] is None
-        assert len(inventory['measurements'])==87
+        assert len(inventory['measurements'])==88
         # A mean offshore extent uses a distinct label and retains sampling metadata.
         page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=mindanao-current',wait_until='networkidle')
         page.wait_for_function("document.querySelector('#season-title').textContent==='Mean surface offshore extent'",timeout=90000)
@@ -193,6 +193,33 @@ def main():
             page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)),wait_until='networkidle')
             page.wait_for_function('window.oswLastQueryResult?.rows?.length===1',timeout=90000)
             assert page.evaluate('window.oswLastQueryResult')==native(query)
+        page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=somali&phase=somali-schott-2001-march-may-coastal-width',wait_until='networkidle')
+        chart=page.locator('.seasonal-regional-width svg');chart.wait_for(state='visible',timeout=90000)
+        assert page.locator('#season-title').inner_text()=='Seasonal regional width scale'
+        assert '50–100 km seasonal regional scale' in page.locator('#season-value').inner_text()
+        assert page.locator('[data-width-evidence="seasonal_statement"]').count()==3
+        assert page.locator('[data-width-evidence="unknown"]').count()==9
+        assert chart.locator('text').all_text_contents()==['50 km','100 km','0 km','150 km']
+        assert chart.locator('text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
+        assert page.locator('#season-play').is_disabled()
+        assert page.locator('#season-section-locator').is_hidden()
+        assert page.locator('#season-bar').evaluate('(e)=>e.parentElement.hidden')
+        assert page.evaluate('oswSeasonPlan.eligible_indices')==[1,2]
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        chart.screenshot(path=str(ROOT/'.pytest_cache/somali-premonsoon-width-mobile.png'))
+        page.locator('#season-phase').select_option('1');assert page.locator('#season-play').is_enabled()
+        page.locator('#season-play').click()
+        page.wait_for_function('document.querySelector("#season-phase").value==="2"',timeout=7000)
+        assert 'Width: unknown' in page.locator('#season-definition').inner_text()
+        page.locator('#season-play').click();page.locator('#season-phase').select_option('0')
+        assert page.locator('#season-play').is_disabled()
+        page.locator('#season-atlas').click()
+        page.wait_for_function('document.querySelector("#route-atlas-select")?.value==="current:somali"',timeout=90000)
+        assert page.locator('#route-atlas-preview [data-width-evidence="seasonal_statement"]').count()==3
+        query={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'somali'}],'limit':10}
+        page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)),wait_until='networkidle')
+        page.wait_for_function('window.oswLastQueryResult?.rows?.length===1',timeout=90000)
+        assert page.evaluate('window.oswLastQueryResult')==native(query)
         assert not errors,errors
         browser.close()
     # WSC semantic scope survives coherent record and receipt rewrites.
@@ -245,6 +272,9 @@ def main():
         path=ROOT/'.pytest_cache/abstract-width-tampered.json';path.write_text(json.dumps(bad),encoding='utf8')
         result=subprocess.run([str(CLI),str(path),'-'],input=json.dumps(query),capture_output=True,text=True,encoding='utf8')
         assert result.returncode==2 and 'Abstract regional width' in result.stderr,result.stderr
+    from test_somali_seasonal_width import check_compiled_scope_and_independent_route_playback
+    scratch=ROOT/'.pytest_cache/somali-native-gate';scratch.mkdir(exist_ok=True)
+    check_compiled_scope_and_independent_route_playback(scratch)
     print('OK: proposed Norwegian Atlantic branches, Norwegian coastal and Black Sea regional range, primary source, null midpoint, no seasonal/edge inference, responsive range/ADCP error charts, cleanup, native/WASM query parity and coherent ADCP scope rejection')
 
 if __name__=='__main__':main()
