@@ -58,8 +58,8 @@
     const x=v=>40+420*v/maximum;
     add('line',{x1:40,x2:460,y1:80,y2:80,stroke:'#47616b'});
     add('line',{x1:x(low),x2:x(high),y1:45,y2:45,stroke:'#176b82','stroke-width':5});
-    for(const v of [low,high]){add('line',{x1:x(v),x2:x(v),y1:35,y2:55,stroke:'#176b82','stroke-width':2});add('text',{x:x(v),y:25,'text-anchor':offshore?(v===low?'end':'start'):'middle',fill:'#102f3b','font-size':16},`${v} km`);}
-    for(const v of [0,maximum])add('text',{x:x(v),y:101,'text-anchor':'middle',fill:'#102f3b','font-size':14},`${v} km`);
+    for(const v of [low,high]){add('line',{x1:x(v),x2:x(v),y1:35,y2:55,stroke:'#176b82','stroke-width':2});add('text',{x:x(v),y:25,'text-anchor':offshore?(v===low?'end':'start'):'middle',fill:'#102f3b','font-size':22},`${v} km`);}
+    for(const v of [0,maximum])add('text',{x:x(v),y:101,'text-anchor':'middle',fill:'#102f3b','font-size':22},`${v} km`);
     container.append(svg);
     const caption=document.createElement('figcaption');caption.textContent=`${offshore?'Mean surface offshore extent':'Reported regional span'}: ${low}–${high} km. No midpoint selected. ${offshore?'This is a one-sided prose extent of averaged flow, not a paired-boundary full width. ':''}This is not an annual range, confidence interval or mapped current envelope.`;container.append(caption);
   }

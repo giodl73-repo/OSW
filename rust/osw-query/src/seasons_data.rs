@@ -122,6 +122,54 @@ fn adcp_width_scope(row: &Value) -> Result<(), String> {
     }
     Ok(())
 }
+fn norwegian_coastal_width_scope(row: &Value) -> Result<(), String> {
+    let id = "norwegian-coastal-saetre-1999-halten-regional-width";
+    if row["id"] != id && row["current_id"] != "norwegian-coastal" {
+        return Ok(());
+    }
+    let context = &row["regional_range_context"];
+    if row["id"] != id
+        || row["current_id"] != "norwegian-coastal"
+        || row["phase_kind"] != "regional_summary"
+        || row["measurement_type"] != "published_regional_summary"
+        || row["width_metric"] != "author_reported_current_width"
+        || row["width_range_km"] != json!([20, 30])
+        || row["range_kind"] != "reported_typical_regional_width_span"
+        || row["source_url"]
+            != "https://www.sciencedirect.com/science/article/abs/pii/S0278434399000412"
+        || [
+            "approximate_width_km",
+            "observed_period",
+            "calendar_months",
+            "section_geometry",
+            "fixed_layer_bounds_m",
+        ]
+        .iter()
+        .any(|k| row.get(k) != Some(&Value::Null))
+        || [
+            "whole_current_representative",
+            "width_rank_eligible",
+            "annual_extrema_eligible",
+            "seasonal_playback_eligible",
+            "full_width_inference_eligible",
+            "is_confidence_interval",
+        ]
+        .iter()
+        .any(|k| row.get(k) != Some(&json!(false)))
+        || [
+            "boundary_coordinates_supplied",
+            "adjacent_hydrography_is_width_sampling_period",
+            "water_mass_extent_is_current_width",
+            "shelf_width_is_current_width",
+            "drifter_speed_filter_is_width_boundary",
+        ]
+        .iter()
+        .any(|k| context.get(k) != Some(&json!(false)))
+    {
+        return Err("Norwegian coastal regional width scope mismatch".into());
+    }
+    Ok(())
+}
 pub fn validate(bundle: &Bundle) -> Result<(), String> {
     if bundle.manifest.get("seasons_receipts").is_none() {
         return Ok(());
@@ -146,6 +194,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         for row in source {
             if key == "widths" {
                 adcp_width_scope(row)?;
+                norwegian_coastal_width_scope(row)?;
             }
             let id = row["id"]
                 .as_str()

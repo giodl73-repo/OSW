@@ -6,6 +6,17 @@ from check_current_width_inventory import validate
 ROOT = Path(__file__).resolve().parents[1]
 
 class WidthInventoryTests(unittest.TestCase):
+    def test_norwegian_coastal_range_preserves_branch_and_unresolved_sampling(self):
+        i=next(i for i,r in enumerate(self.document['measurements']) if r['current_id']=='norwegian-coastal')
+        self.assertEqual(self.document['measurements'][i]['width_range_km'],[20,30])
+        validate(self.document,self.ledger)
+        for key,value in [('approximate_width_km',25),('width_range_km',[20,80]),('current_id','norwegian'),('phase_kind','seasonal_summary'),('calendar_months',[1,2,3]),('observed_period',{'start':'1981-01-01','end':'1999-01-01'}),('fixed_layer_bounds_m',[0,150]),('section_geometry',{'type':'LineString'}),('boundary_rule','velocity > 0.4 m/s'),('seasonal_playback_eligible',True),('source_url','https://example.com')]:
+            bad=copy.deepcopy(self.document);bad['measurements'][i][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):validate(bad,self.ledger)
+        for key in ['boundary_coordinates_supplied','adjacent_hydrography_is_width_sampling_period','water_mass_extent_is_current_width','shelf_width_is_current_width','drifter_speed_filter_is_width_boundary']:
+            bad=copy.deepcopy(self.document);bad['measurements'][i]['regional_range_context'][key]=True
+            with self.subTest(context=key),self.assertRaises(ValueError):validate(bad,self.ledger)
+
     def test_all_callers_reject_stale_protocol_receipts(self):
         for key,value in [('protocol_sha256','0'*64),('protocol_file','plans/unreviewed.md')]:
             bad=copy.deepcopy(self.document);bad[key]=value

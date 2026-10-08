@@ -21,6 +21,15 @@ def validate(document, ledger):
     by_id = {row["id"]: row for row in records}
     hydrographic_extraction = None
     for row in records:
+        if row.get('id') == 'norwegian-coastal-saetre-1999-halten-regional-width' or row.get('current_id') == 'norwegian-coastal':
+            audit_file = 'research/norwegian-coastal-saetre-1999-regional-width-scope-audit.json'
+            path = ROOT / audit_file
+            context = row.get('regional_range_context', {})
+            if context.get('audit_file') != audit_file or context.get('audit_sha256') != hashlib.sha256(path.read_bytes()).hexdigest():
+                raise ValueError('Stale Norwegian coastal regional width audit')
+            audit = json.loads(path.read_bytes())
+            if {k:v for k,v in row.items() if k != 'regional_range_context'} != audit['measurement'] or {k:v for k,v in context.items() if k not in ['audit_file','audit_sha256']} != audit['regional_range_context']:
+                raise ValueError('Norwegian coastal width differs from source range or scope')
         if row["current_id"] not in ids or row["status"] != "editorial_source_extraction_not_canonical" or row["whole_current_representative"] is not False or row["width_rank_eligible"] is not False:
             raise ValueError("Width admission or identity mismatch")
         value = row["approximate_width_km"]
@@ -445,7 +454,7 @@ def validate(document, ledger):
         elif row['phase_kind'] == 'regional_summary':
             if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] != 'author_reported_current_width' or row['observed_period'] is not None or row.get('calendar_months') is not None or span is None:
                 raise ValueError('Conflated regional range support')
-            if row.get('regional_range_context') and row['current_id'] != 'black-sea-rim':
+            if row.get('regional_range_context') and row['current_id'] not in {'black-sea-rim','norwegian-coastal'}:
                 raise ValueError('Regional range source owner mismatch')
             if row['current_id'] == 'black-sea-rim':
                 context = row.get('regional_range_context', {})
