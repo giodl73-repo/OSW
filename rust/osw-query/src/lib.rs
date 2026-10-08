@@ -10,6 +10,7 @@ mod dashboard;
 mod dashboard_beck;
 mod dashboard_map;
 mod eddy_recurrence;
+mod guinea_width;
 mod index_bifurcation;
 mod index_map;
 mod index_noaa;

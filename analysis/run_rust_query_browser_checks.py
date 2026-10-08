@@ -24,7 +24,7 @@ CHECKS = ('test_rust_query_browser.py', 'test_rust_collection_coverage_browser.p
           'test_reference_route_atlas_browser.py',
           'test_atlas_directory_states_browser.py',
           'test_atlas_route_state_links_browser.py',
-          'test_seasons_rust_snapshot_browser.py', 'test_atlantic_cruise_widths_browser.py', 'test_atlantic_station_context_browser.py', 'test_black_sea_regional_width_browser.py', 'test_ngcc_seasonal_direction_browser.py',
+          'test_seasons_rust_snapshot_browser.py', 'test_atlantic_cruise_widths_browser.py', 'test_atlantic_station_context_browser.py', 'test_black_sea_regional_width_browser.py', 'test_guinea_model_width_browser.py', 'test_ngcc_seasonal_direction_browser.py',
           'test_rust_object_view_browser.py', 'test_black_sea_eddy_recurrence_browser.py', 'test_rust_atlas_snapshot_browser.py',
           'test_atlas_timeline_browser.py', 'test_atlas_observed_sections_browser.py',
           'test_rust_cartography_browser.py', 'test_norkyst_section_browser.py',

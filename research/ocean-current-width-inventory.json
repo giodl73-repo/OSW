@@ -7,10 +7,10 @@
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 44,
-    "measurements": 88,
+    "currents_with_scoped_width_evidence": 45,
+    "measurements": 89,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 49,
+    "currents_not_assessed": 48,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 5
   },
@@ -5649,7 +5649,7 @@
       "range_interpretation": "One seasonal regional prose span, not an annual range, probability interval or three monthly measurements. Other months have no compatible width evidence here.",
       "geographic_scope": "Northern Somali coastal upwelling regime, farther north than the southern EACC extension that turns offshore near 3-4 N. Northern latitude limits unresolved; no width assigned to the southern gyre, Great Whirl or the entire Somali Current.",
       "section_geometry": null,
-      "section_orientation": "No reproducible section endpoints extracted from the abstract.",
+      "section_orientation": "No reproducible section endpoints extracted from the original review prose.",
       "layer": "Shallow northward coastal flow overlying a southward undercurrent; no numerical fixed layer or velocity threshold extracted for the width.",
       "time_convention": "March-May seasonal synthesis in the 2001 review; no specific year, exact occupied section dates or monthly width values supplied.",
       "boundary_rule": "Author-reported order-of-magnitude width scale of the northern shallow coastal flow. Paired geographic edges and a speed cutoff are unextracted.",
@@ -5692,7 +5692,77 @@
         "protocol_file": "plans/somali-seasonal-width-protocol-v1.md",
         "protocol_sha256": "5182a21bd951600e62581469470a0cf3a2b74d2ab17a7475e93d070d7e90e53a",
         "audit_file": "research/somali-schott-2001-premonsoon-width-scope-audit.json",
-        "audit_sha256": "6d56e45ef84e83a7582981316ac0befa9f85488fd1849edad486a4bc354ab0e9"
+        "audit_sha256": "726977308ec5be08932acf561d01d05c350778a9aad78cebb0770ef375cd5388"
+      }
+    },
+    {
+      "id": "guinea-djakoure-2017-reference-mean-regional-width",
+      "current_id": "guinea",
+      "name": "Guinea Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_model_regional_prose_width",
+      "width_metric": "author_reported_regional_width_of_annual_mean_reference_model_surface_flow",
+      "width_metric_label": "Regional annual-mean reference-model width",
+      "approximate_width_km": 200,
+      "width_range_km": null,
+      "range_interpretation": "One approximate regional model-mean width; numerical uncertainty and monthly/annual extrema unresolved. The separate theoretical 210 km inertial scale is not a width bound.",
+      "geographic_scope": "Northern Gulf of Guinea: eastward surface current between 2 N and African coast; no paired geographic edges extracted.",
+      "section_geometry": null,
+      "section_orientation": "No paired transverse section endpoints extracted; published regional model comparison prose.",
+      "layer": "Surface velocity field; numerical top-cell depth unextracted. Introductory 30-40 m thickness is not assigned as a width layer.",
+      "time_convention": "Reference model years 5-10, from a ten-year climatologically forced ROMS integration. Model years are not calendar years; annual mean is not an annual width minimum/maximum.",
+      "boundary_rule": "Approximate width reported in model comparison prose; cutoff and paired section boundaries unextracted.",
+      "source_url": "https://archimer.ifremer.fr/doc/00391/50248/69638.pdf",
+      "source_citation": "Djakoure, S., Penven, P., Bourles, B., Kone, V., and Veitch, J. (2017). Respective Roles of the Guinea Current and Local Winds on the Coastal Upwelling in the Northern Gulf of Guinea. Journal of Physical Oceanography 47, 1367-1387. doi:10.1175/JPO-D-16-0126.1",
+      "source_locator": "printed p1379, section 3c(2), first paragraph; Figure 1d context in section 3a(1), pp1371-1372",
+      "source_retrieved_date": "2026-10-08",
+      "source_evidence_kind": "published_reference_model_regional_mean",
+      "extraction_method": "Approximate width transcribed from inspected original p1379 prose; no figure, contour or model-field digitization.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "phase_label": "Regional annual-mean reference model",
+      "phase_kind": "model_regional_width_summary",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "uncertainty_km": null,
+      "remaining_gates": [
+        "Resolve top-cell depth and model figure caption conflict before edge digitization.",
+        "Acquire compatible repeated regional boundaries before monthly/annual variation.",
+        "Independent scientific admission."
+      ],
+      "source_quality_note": "Original institutionally hosted publisher article inspected. Figure 1 caption calls model panels idealized while section 3a(1) calls them reference; width retained from explicit p1379 reference-experiment prose.",
+      "model_regional_context": {
+        "model": {
+          "parent_resolution_degrees": 0.2,
+          "child_resolution_degrees": 0.06666666666666667,
+          "ten_year_climatological_integration": true,
+          "analysis_model_years": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "calendar_dates": null
+        },
+        "theoretical_inertial_scale_is_width_bound": false,
+        "model_years_are_calendar_years": false,
+        "annual_mean_is_annual_extrema": false,
+        "introduction_thickness_is_fixed_width_layer": false,
+        "velocity_maximum_is_boundary_cutoff": false,
+        "boundary_coordinates_extracted": false,
+        "figure_caption_conflict_resolved": false,
+        "full_original_inspected": true,
+        "protocol_file": "plans/guinea-model-regional-width-protocol-v1.md",
+        "protocol_sha256": "10fc2a7ad5855a266e9a7b1d2f21dc74d957f8b7dba968ad3db4472f9cf7df29",
+        "audit_file": "research/guinea-djakoure-2017-model-width-source-review.json",
+        "audit_sha256": "15d7b34f39d840541cb5d10deb0fac79f029640866ebc0c0acd61dc5dfd5eea6"
       }
     }
   ],
@@ -6120,12 +6190,14 @@
     {
       "current_id": "guinea",
       "name": "Guinea Current",
-      "width_decision": "width_not_assessed",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "guinea-djakoure-2017-reference-mean-regional-width"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
-      "existing_evidence_locator": null,
-      "existing_evidence_source_url": null
+      "next_action": "Resolve model top-cell support and caption discrepancy; obtain repeated compatible regional boundaries. Model mean does not establish monthly or annual width variation.",
+      "existing_evidence_locator": "printed p1379, section 3c(2), first paragraph; Figure 1d context in section 3a(1), pp1371-1372",
+      "existing_evidence_source_url": "https://archimer.ifremer.fr/doc/00391/50248/69638.pdf"
     },
     {
       "current_id": "irminger",
