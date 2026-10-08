@@ -362,6 +362,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         ADDITIONS,
         "osw.current-inventory-expansion-candidates.v1",
     )?;
+    crate::proposed_widths::validate_proposals(&additions)?;
     if additions["current_ledger_sha256"]
         != bundle.manifest["input_sha256"]["research/ocean-current-almanac.json"]
     {

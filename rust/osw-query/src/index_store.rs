@@ -979,6 +979,16 @@ impl IndexStore {
                 return Err("Index source hash, shape, schema or identity mismatch".into());
             }
         }
+        if let Some(doc) =
+            documents.get("research/ocean-current-inventory-expansion-candidates.json")
+        {
+            crate::proposed_widths::validate_proposals(doc)?;
+        }
+        if let Some(doc) =
+            documents.get("research/norwegian-atlantic-branch-width-scope-audit.json")
+        {
+            crate::proposed_widths::validate_audit(doc)?;
+        }
         Ok(Self { documents, catalog })
     }
     pub fn metadata(&self) -> Value {

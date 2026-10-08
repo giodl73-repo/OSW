@@ -91,7 +91,12 @@ def build():
         audit_file=record.get('extraction_file') or (record.get('stream_mean_context') or record.get('eulerian_section_context') or record.get('width_statistics_context') or record.get('regional_range_context') or record.get('regional_scalar_context') or record.get('mean_offshore_context') or record.get('adcp_threshold_context') or {}).get('audit_file')
         if audit_file and audit_file not in width_audits:width_audits[audit_file]=read(audit_file)
     phases = read('research/ocean-current-seasonal-route-frames.json')['frames']
-    proposals = read('research/ocean-current-inventory-expansion-candidates.json')['entries']
+    proposals_document = read('research/ocean-current-inventory-expansion-candidates.json')
+    from check_norwegian_atlantic_branch_widths import validate as validate_proposed_widths, AUDIT, ACQUISITION, SOURCE
+    validate_proposed_widths(proposals_document)
+    read(AUDIT);read(ACQUISITION)
+    inputs[SOURCE]=hashlib.sha256((ROOT/SOURCE).read_bytes()).hexdigest()
+    proposals = proposals_document['entries']
     timeline = read('research/ocean-current-dated-timeline.json')
     annual = read('research/ocean-current-dated-timeline-2025.json')
     norkyst = read('research/norkyst-ingoy-2024-section-timeline.json')
