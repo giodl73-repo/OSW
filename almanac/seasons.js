@@ -45,6 +45,7 @@
   }
   function renderRegionalRange(row) {
     const container=byId('regional-width-range');container.replaceChildren();container.hidden=true;
+    if(row?.source_scope_context){container.hidden=false;window.renderAbstractRegionalWidth(container,row);return;}
     if(row?.phase_kind==='survey_layer_median_threshold_width'){renderAdcpComparison(container,row);return;}
     if(!['regional_summary','mean_offshore_extent_range'].includes(row?.phase_kind)||!row.width_range_km)return;
     const offshore=row.phase_kind==='mean_offshore_extent_range';

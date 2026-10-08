@@ -28,6 +28,9 @@ def build():
         movies_receipts[name]={'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')}
     dashboard=read('research/ocean-motion-dashboard.json')
     widths=read('research/ocean-current-width-inventory.json')
+    for path in ['research/california-2011-abstract-width-scope-audit.json','research/oyashio-2005-abstract-width-scope-audit.json']:
+        read(path)
+    inputs['analysis/check_abstract_regional_widths.py']=hashlib.sha256((ROOT/'analysis/check_abstract_regional_widths.py').read_bytes()).hexdigest()
     for path in ['research/west-spitsbergen-kolas-2018-stream-tube-width-scope-audit.json','research/source-data/kolas-fer-wsc-2018/acquisition.json']:
         read(path)
     for path in ['research/source-data/kolas-fer-wsc-2018/journal-article.pdf','plans/west-spitsbergen-stream-tube-width-protocol-v1.md','analysis/check_west_spitsbergen_stream_tubes.py']:
