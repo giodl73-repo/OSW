@@ -50,6 +50,11 @@ def build():
                             'root_kind': 'object' if isinstance(doc, dict) else 'array',
                             'source_schema': doc.get('schema') if isinstance(doc, dict) else None,
                             'optional': path == OPTIONAL})
+    station_path = 'research/atlantic-cruise-station-context.json'
+    if station_path in documents:
+        from build_atlantic_station_context import build as build_station_context
+        if json.loads(documents[station_path]) != build_station_context():
+            raise ValueError('Stale or changed Atlantic station context; regenerate from checked archive bytes')
     # Bind on-demand discovery to the complete manifest; file support stays distinct
     # from the manifest's source_product/source_subset hashes.
     seasons = json.loads(SEASONS.read_bytes())

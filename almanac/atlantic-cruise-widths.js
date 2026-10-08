@@ -1,6 +1,7 @@
 "use strict";
 window.renderAtlanticCruiseWidths = function(container, current, inventory) {
   container.replaceChildren();
+  window.oswAtlanticStationContext = null;
   const records = inventory.measurements.filter(row => row.current_id === current && row.phase_kind === "inverse_hydrographic_section_span");
   container.hidden = records.length === 0;
   if (!records.length) return;
@@ -59,4 +60,5 @@ window.renderAtlanticCruiseWidths = function(container, current, inventory) {
   const source = node("a", "Published source and original tables", node("p", "")); source.href = records[0].source_url;
   const query = {collection: "widths", filters: [{field: "current_id", op: "eq", value: current}, {field: "phase_kind", op: "eq", value: "inverse_hydrographic_section_span"}], limit: 100};
   const inspect = node("a", "Query these exact source records", node("p", "")); inspect.href = "query.html?q=" + encodeURIComponent(JSON.stringify(query));
+  window.renderAtlanticStationContext(container, records);
 };
