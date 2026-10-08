@@ -503,7 +503,7 @@ def validate(document, ledger):
         date.fromisoformat(review['source_retrieved_date'])
         if any(not evidence.get(key, '').strip() for evidence in review['evidence'] for key in ['url', 'citation', 'locator', 'supports']):
             raise ValueError('Missing width source-review evidence')
-    states = {"scoped_width_evidence_present", "existing_width_mention_requires_source_review", "width_not_assessed", "derived_width_candidate_requires_review", "sources_reviewed_no_comparable_numeric_current_width"}
+    states = {"section_span_diagnostic_present_width_unresolved", "scoped_width_evidence_present", "existing_width_mention_requires_source_review", "width_not_assessed", "derived_width_candidate_requires_review", "sources_reviewed_no_comparable_numeric_current_width"}
     derived = document.get('derived_width_series_candidates', [])
     if len({row['current_id'] for row in derived}) != len(derived):
         raise ValueError('Duplicate derived width identity')
@@ -514,6 +514,24 @@ def validate(document, ledger):
         series = json.loads(path.read_text(encoding='utf-8'))
         if series['current_id'] != candidate['current_id'] or series['status'] != 'derived_width_candidate_requires_scientific_review' or series['whole_current_representative'] is not False:
             raise ValueError('Invalid derived width admission')
+    spans = document.get('section_span_diagnostics', [])
+    if len({row['current_id'] for row in spans}) != len(spans):
+        raise ValueError('Duplicate section-span identity')
+    for diagnostic in spans:
+        if diagnostic['current_id'] != 'loop' or diagnostic['status'] != 'local_component_section_diagnostic_requires_scientific_review' or diagnostic['metric'] != 'zonal_half_peak_northward_velocity_section_span':
+            raise ValueError('Invalid component section-span classification')
+        if diagnostic['whole_current_width_km'] is not None or diagnostic['annual_width_range_km'] is not None or diagnostic['width_rank_eligible'] is not False or diagnostic['annual_extrema_eligible'] is not False:
+            raise ValueError('Component section span promoted to current width')
+        expected_files = {'research/loop-current-noaa-section-spans.json', 'research/loop-current-adt-section-spans.json'}
+        if len(diagnostic['sources']) != 2 or {source['file'] for source in diagnostic['sources']} != expected_files:
+            raise ValueError('Incomplete component section-span sources')
+        for source in diagnostic['sources']:
+            path = ROOT / source['file']
+            if hashlib.sha256(path.read_bytes()).hexdigest() != source['sha256']:
+                raise ValueError('Changed component section-span source')
+            series = json.loads(path.read_text(encoding='utf-8'))
+            if series['current_id'] != diagnostic['current_id'] or series['status'] != diagnostic['status'] or series['metric'] != diagnostic['metric'] or series['whole_current_representative'] is not False:
+                raise ValueError('Invalid component section-span source')
     for note in document.get("comparability_notes", []):
         if note["current_id"] not in ids or note["seasonal_playback_eligible"] is not False or not note["reason"].strip():
             raise ValueError("Invalid comparability restriction")
@@ -521,6 +539,8 @@ def validate(document, ledger):
         expected = {record["id"] for record in records if record["current_id"] == row["current_id"]}
         if set(row["measurement_ids"]) != expected or row["whole_current_width_km"] is not None or row["width_decision"] not in states or bool(expected) != (row["width_decision"] == "scoped_width_evidence_present"):
             raise ValueError("Width decision mismatch")
+        if (row['width_decision'] == 'section_span_diagnostic_present_width_unresolved') != any(span['current_id'] == row['current_id'] for span in spans):
+            raise ValueError('Section-span decision mismatch')
         if (row['width_decision'] == 'derived_width_candidate_requires_review') != any(candidate['current_id'] == row['current_id'] for candidate in derived):
             raise ValueError('Derived width decision mismatch')
         if (row['width_decision'] == 'sources_reviewed_no_comparable_numeric_current_width') != any(review['current_id'] == row['current_id'] for review in reviews):
@@ -532,6 +552,7 @@ def validate(document, ledger):
         if summary["range_kind"] != "span_of_reported_seasonal_typical_values" or summary["reported_seasonal_value_span_km"] != [min(row["approximate_width_km"] for row in members), max(row["approximate_width_km"] for row in members)]:
             raise ValueError("Seasonal span mismatch")
     counts = {"currents": len(ids), "currents_with_scoped_width_evidence": len({row["current_id"] for row in records}), "measurements": len(records), "currents_with_existing_mentions_pending_review": sum(row["width_decision"] == "existing_width_mention_requires_source_review" for row in decisions), "currents_not_assessed": sum(row["width_decision"] == "width_not_assessed" for row in decisions)}
+    counts['currents_with_section_span_diagnostics_width_unresolved'] = len(spans)
     counts['currents_with_derived_width_candidates_pending_review'] = len(derived)
     counts['currents_with_sources_reviewed_no_numeric_width'] = len(reviews)
     if counts != document["counts"]:

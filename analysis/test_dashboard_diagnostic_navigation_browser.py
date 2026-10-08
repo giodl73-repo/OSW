@@ -4,6 +4,8 @@ import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 from test_motion_dashboard_browser import route_snapshot, settle
+from test_rust_query_browser import native
+from urllib.parse import urlparse, parse_qs
 
 ROOT=Path(__file__).resolve().parents[1]
 BASE='http://127.0.0.1:8788/almanac/dashboard.html'
@@ -14,6 +16,19 @@ def main():
         browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1280,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
+        page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Aloop#route-atlas')
+        row=page.locator('#width-decision-loop')
+        expect(row).to_contain_text('section span diagnostic present width unresolved',timeout=90000)
+        expect(page.locator('#width-status')).to_contain_text('1 have component-span diagnostics with width unresolved')
+        atlas=page.locator('#route-atlas-preview .atlas-width-evidence')
+        expect(atlas).to_contain_text('Not flow-normal widths',timeout=90000)
+        atlas.get_by_role('link',name='Map dated component spans').click()
+        page.wait_for_function('window.oswLastQueryResult?.ok',timeout=90000)
+        query=json.loads(parse_qs(urlparse(page.url).query)['q'][0])
+        assert page.evaluate('oswLastQueryResult')==native(query)
+        assert page.evaluate('oswLastQueryResult.total')==10
+        assert page.evaluate('oswLastQueryResult.rows.every(r=>r.current_id==="loop" && r.sample_family==="loop_dated_half_peak_section" && r.width_rank_eligible===false && r.annual_width_range_km===null)')
+        assert page.evaluate('oswLastQueryResult.map_scene.features.length')>0
         page.goto(BASE);expect(page.locator('.beck-station')).to_have_count(100)
         for metric,owner in [('dated_diagnostics','current:loop'),('flow_network','current:indonesian-throughflow'),('passage_transport','current:indonesian-throughflow')]:
             page.locator('#dashboard-metric').select_option(metric)
