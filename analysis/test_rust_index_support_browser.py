@@ -128,10 +128,30 @@ def main():
                 page.wait_for_function('month=>window.oswIndexBifurcationView?.month===month',arg=month)
             assert page.locator('#branch-play').inner_text()=='Play months'
             assert page.locator('#branch-next').is_disabled()
+            # Hold the Home request: the focused slider must survive loading and
+            # accept the next key. A late older reply must not repaint January.
+            page.evaluate("""() => {
+                const original=window.oswIndexSupport; let hold=true;
+                window.oswIndexSupport=request=>{
+                    if(hold){hold=false;return new Promise(resolve=>{
+                        window.releaseBranchRequest=()=>original(request).then(resolve);
+                    });}
+                    return original(request);
+                };
+                window.restoreBranchSupport=()=>{window.oswIndexSupport=original;};
+            }""")
             page.locator('#branch-month').focus();page.keyboard.press('Home')
-            page.wait_for_function('window.oswIndexBifurcationView?.month===1')
+            page.wait_for_function('document.querySelector("#branch-status").dataset.pending==="true"')
+            assert page.locator('#branch-month').is_enabled()
+            assert page.locator('#branch-month').evaluate('(el)=>document.activeElement===el')
+            assert page.locator('#branch-month').input_value()=='1'
             page.keyboard.press('ArrowRight')
-            page.wait_for_function('window.oswIndexBifurcationView?.month===2')
+            page.wait_for_function('window.oswIndexBifurcationView?.month===2&&document.querySelector("#branch-status").dataset.pending==="false"')
+            page.evaluate('()=>window.releaseBranchRequest()')
+            assert page.evaluate('window.oswIndexBifurcationView.month')==2
+            assert page.locator('#branch-month').input_value()=='2'
+            assert page.locator('#branch-month').evaluate('(el)=>document.activeElement===el')
+            page.evaluate('()=>window.restoreBranchSupport()')
             page.locator('#branch-play').click()
             page.emulate_media(reduced_motion='reduce')
             page.wait_for_function('document.querySelector("#branch-play").textContent==="Play months"')

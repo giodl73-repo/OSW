@@ -11,7 +11,7 @@
   layers();
   const saved=Number(params.get("branch-month")); if(Number.isInteger(saved)&&saved>=1&&saved<=12)month.value=saved;
   function stop(){clearTimeout(timer);timer=null;playing=false;play.textContent="Play months";}
-  function controls(pending=false){owner.disabled=series.disabled=month.disabled=play.disabled=!ready||pending;previous.disabled=!ready||pending||Number(month.value)===1;next.disabled=!ready||pending||Number(month.value)===12;}
+  function controls(pending=false){owner.disabled=series.disabled=play.disabled=!ready||pending;month.disabled=!ready;previous.disabled=!ready||pending||Number(month.value)===1;next.disabled=!ready||pending||Number(month.value)===12;}
   function shape(tag,attrs,parent,text){const node=document.createElementNS("http://www.w3.org/2000/svg",tag);for(const [k,v] of Object.entries(attrs))node.setAttribute(k,v);if(text!==undefined)node.textContent=text;parent.append(node);return node;}
   function latitude(value){return `${Math.abs(value).toFixed(1)}°${value<0?"S":"N"}`;}
   function interval(values){const ordered=values[1]<0?[values[1],values[0]]:values;return `${Math.abs(ordered[0]).toFixed(1)}–${latitude(ordered[1])}`;}
