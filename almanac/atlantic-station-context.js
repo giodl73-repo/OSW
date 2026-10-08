@@ -86,7 +86,7 @@
             dot.setAttribute("cx", coordinates[0]); dot.setAttribute("cy", coordinates[1]);
             dot.setAttribute("r", view[2] / 220); dot.setAttribute("fill", "#ffe090");
             dot.dataset.sourceLine = point.source_line;
-            title.textContent = `Station ${point.station_label}, cast ${point.cast_label}, ${point.event_code}; ${point.decoded_date} UTC ${point.raw_time_utc}; ${point.raw_latitude}, ${point.raw_longitude}; source line ${point.source_line}`;
+            title.textContent = `Station ${point.station_label}, cast ${point.cast_label}, ${point.event_code}; ${point.sampling_date} UTC ${point.sampling_time_utc}; ${point.raw_latitude}, ${point.raw_longitude}; source line ${point.source_line}`;
             dot.append(title); svg.append(dot);
           }
           drawing.append(svg);
@@ -103,10 +103,15 @@
           for (const point of context.points) {
             const row = node("tr", "", body);
             for (const value of [`${point.station_label} / ${point.cast_label} / ${point.event_code}`,
-                                `${point.decoded_date} / ${point.raw_time_utc}`, point.raw_latitude,
+                                `${point.sampling_date} / ${point.sampling_time_utc}`, point.raw_latitude,
                                 point.raw_longitude, point.source_line]) node("td", String(value), row);
           }
           status.textContent = `${context.point_count} reported casts · ${context.sampling_window.start} to ${context.sampling_window.end}. Sampling locations; no current boundary or width is drawn. Coordinate datum and uncertainty are unreported.`;
+          if (context.date_reconciliation_file) {
+            status.textContent += " Dates and times follow the corrected bottle archive; original summary timestamps remain in the source records.";
+            const correction = node("a", "Inspect the original-to-corrected timestamp matches", node("p", "", drawing));
+            correction.href = "query.html?source-q=" + encodeURIComponent(JSON.stringify({document: context.date_reconciliation_file, pointer: "/records", limit: 100})) + "#source-query-title";
+          }
         }
         if (context.cruise_url) {
           const provider = node("a", "Original cruise archive", receipt); provider.href = context.cruise_url;

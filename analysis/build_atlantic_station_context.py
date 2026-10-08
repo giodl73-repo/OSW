@@ -64,14 +64,17 @@ def context_points(events, window):
     for event in events:
         if event['instrument'] not in ('ROS', 'CTD') or not event['decoded_date']:
             continue
-        if not window['start'] <= event['decoded_date'] <= window['end']:
+        sampling_date = event.get('reconciled_sampling_date', event['decoded_date'])
+        if not window['start'] <= sampling_date <= window['end']:
             continue
         key = (event['archive_section_label'], event['station_label'], event['cast_label'])
         rank = (priority.get(event['event_code'], 4), event['source_line'])
         previous = selected.get(key)
         if previous is None or rank < previous[0]:
             selected[key] = (rank, event)
-    return [dict(event) for _, event in sorted(selected.values(), key=lambda pair: pair[1]['source_line'])]
+    return [{**event, 'sampling_date': event.get('reconciled_sampling_date', event['decoded_date']),
+             'sampling_time_utc': event.get('reconciled_sampling_time_utc', event['raw_time_utc'])}
+            for _, event in sorted(selected.values(), key=lambda pair: pair[1]['source_line'])]
 
 
 def build():
@@ -108,11 +111,23 @@ def build():
             'source_date_conflict_lines': conflicting, 'events': events,
         })
     by_cruise = {row['paper_cruise_id']: row for row in cruises}
+    from build_pelagia_date_reconciliation import build as build_reconciliation, OUTPUT as reconciliation_path
+    reconciliation = build_reconciliation()
+    if reconciliation != json.loads((ROOT / reconciliation_path).read_bytes()):
+        raise ValueError('Stale Pelagia date reconciliation')
+    reconciled_events = []
+    for event, correction in zip(by_cruise['64PE20070830']['events'], reconciliation['records'], strict=True):
+        if event['source_line'] != correction['summary_source_line']:
+            raise ValueError('Changed reconciliation row order')
+        reconciled_events.append({**event, 'reconciled_sampling_date': correction['corrected_bottle_date'],
+                                  'reconciled_sampling_time_utc': correction['corrected_bottle_time_utc'],
+                                  'date_reconciliation_pointer': '/records/' + str(len(reconciled_events))})
     spans = []
     for record in extraction['measurements']:
         ctx = record['hydrographic_section_context']
         cruise = by_cruise.get(ctx['cruise_id'])
-        points = context_points(cruise['events'], ctx['cruise_sampling_window']) if cruise else []
+        events = reconciled_events if ctx['cruise_id'] == '64PE20070830' else cruise['events'] if cruise else []
+        points = context_points(events, ctx['cruise_sampling_window'])
         spans.append({
             'measurement_id': record['id'], 'current_id': record['current_id'],
             'paper_cruise_id': ctx['cruise_id'], 'paper_section_id': ctx['section_id'],
@@ -128,6 +143,8 @@ def build():
             'source_file': cruise['file'] if cruise else None,
             'source_sha256': cruise['sha256'] if cruise else None,
             'cruise_url': cruise['cruise_url'] if cruise else None,
+            'date_reconciliation_file': reconciliation_path if ctx['cruise_id'] == '64PE20070830' else None,
+            'date_reconciliation_sha256': digest(reconciliation_path) if ctx['cruise_id'] == '64PE20070830' else None,
         })
     return {
         'schema': 'osw.atlantic-cruise-station-context.v1',
@@ -140,14 +157,19 @@ def build():
         'scope': 'Original archive event positions and dated cruise sampling context. Paper station indices are unresolved; no current edges, route distances, annual cycles or state joins.',
         'cruises': cruises, 'measurement_contexts': spans,
         'source_conflicts': [
+            {'paper_cruise_id': '74AB20050501', 'kind': 'archive_section_label_differs_from_paper',
+             'paper_section_label': 'A03 at nominal 36 N', 'archive_summary_section_label': 'Atl32N',
+             'evidence_url': 'https://cchdo.ucsd.edu/cruise/74AB20050501',
+             'resolution': 'Cruise identity matches exactly. Preserve both section labels and use actual reported positions for sampling context. The archive has 143 casts versus the paper model subset of 112 stations; no model station-index mapping inferred.'},
             {'paper_cruise_id': '740H20180228', 'kind': 'nominal_latitude_conflict_resolved',
              'paper_table_1_label': '19 S', 'paper_table_2_label': '24 S',
              'archive_summary_section_label': 'A09.5_24S',
              'evidence_url': 'https://cchdo.ucsd.edu/cruise/740H20180228',
              'evidence_locator': "Brian King's 2018-04-23 station-section note and 2018-04-18 submission",
              'resolution': 'Use nominal 24 S for the cruise correspondence; original publisher cell retained. Station-index pairing remains unresolved. Held-out widths are not admitted by this audit.'},
-            {'paper_cruise_id': '64PE20070830', 'kind': 'station_date_year_conflict_unresolved',
-             'resolution': 'Summary dates decode to 2005 despite paper sampling window in 2007. Retain source dates and omit dated map points until independently corrected.'},
+            {'paper_cruise_id': '64PE20070830', 'kind': 'station_date_year_conflict_resolved_by_corrected_bottle_product',
+             'reconciliation_file': reconciliation_path, 'reconciliation_sha256': digest(reconciliation_path),
+             'resolution': 'All 46 original station/cast identities independently matched against the explicitly corrected bottle product. Original 2005 summary dates retained; derived sampling date/time fields use the newer product. Three one-minute time differences are recorded.'},
         ],
     }
 

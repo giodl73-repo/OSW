@@ -55,6 +55,9 @@ def build():
         from build_atlantic_station_context import build as build_station_context
         if json.loads(documents[station_path]) != build_station_context():
             raise ValueError('Stale or changed Atlantic station context; regenerate from checked archive bytes')
+        from build_pelagia_date_reconciliation import build as build_date_reconciliation, OUTPUT as date_path
+        if date_path not in documents or json.loads(documents[date_path]) != build_date_reconciliation():
+            raise ValueError('Missing or stale corrected station-date source')
     # Bind on-demand discovery to the complete manifest; file support stays distinct
     # from the manifest's source_product/source_subset hashes.
     seasons = json.loads(SEASONS.read_bytes())

@@ -8,10 +8,10 @@ import build_atlantic_station_context as module
 def test_checked_extraction_is_reproducible():
     actual = module.build()
     assert actual == json.loads((module.ROOT / module.OUTPUT).read_bytes())
-    assert len(actual['cruises']) == 17
-    assert sum(c['source_event_count'] for c in actual['cruises']) == 4629
+    assert len(actual['cruises']) == 18
+    assert sum(c['source_event_count'] for c in actual['cruises']) == 4772
     assert len(actual['measurement_contexts']) == 30
-    assert sum(bool(c['points']) for c in actual['measurement_contexts']) == 26
+    assert sum(bool(c['points']) for c in actual['measurement_contexts']) == 30
     for context in actual['measurement_contexts']:
         assert context['geometry_role'] == 'cruise_sampling_context_not_current_boundary'
         assert context['boundary_station_mapping_status'] == 'unresolved'
@@ -22,18 +22,23 @@ def test_checked_extraction_is_reproducible():
         assert context['coordinate_uncertainty_degrees'] is None
         assert context['point_count'] == len(context['points'])
         for point in context['points']:
-            assert context['sampling_window']['start'] <= point['decoded_date'] <= context['sampling_window']['end']
+            assert context['sampling_window']['start'] <= point['sampling_date'] <= context['sampling_window']['end']
             assert point['instrument'] in ('ROS', 'CTD')
 
 
-def test_date_conflict_is_preserved_and_quarantined():
+def test_original_date_conflict_is_preserved_and_independently_reconciled():
     actual = module.build()
     cruise = next(c for c in actual['cruises'] if c['paper_cruise_id'] == '64PE20070830')
     assert len(cruise['source_date_conflict_lines']) == 46
     assert all(e['decoded_date'].startswith('2005-') for e in cruise['events'])
     contexts = [c for c in actual['measurement_contexts'] if c['paper_cruise_id'] == cruise['paper_cruise_id']]
     assert len(contexts) == 3
-    assert all(c['status'] == 'source_date_conflict' and not c['points'] for c in contexts)
+    assert all(c['points'] and c['date_reconciliation_file'] for c in contexts)
+    for context in contexts:
+        for point in context['points']:
+            assert point['decoded_date'].startswith('2005-')
+            assert point['sampling_date'].startswith('2007-')
+            assert point['date_reconciliation_pointer'].startswith('/records/')
 
 
 def test_archive_aliases_and_blank_sections_are_retained():

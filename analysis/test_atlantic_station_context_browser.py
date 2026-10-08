@@ -30,6 +30,7 @@ def main():
             page.route('**/research/*.json', lambda route: route.fulfill(status=503, body='Direct source reads disabled'))
             page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=brazil')
             expect(page.locator('#cruise-span-panel')).to_be_visible(timeout=90000)
+            correction_address = None
             for owner, contexts in groups.items():
                 page.locator('#season-current').select_option(owner)
                 panel = page.locator('.cruise-station-context')
@@ -43,6 +44,10 @@ def main():
                         expect(panel.locator('[role=status]')).to_contain_text('no current boundary or width')
                         assert panel.locator('path').count() == 0
                         assert panel.locator('circle').evaluate_all('(nodes)=>nodes.map(n=>Number(n.dataset.sourceLine))') == [r['source_line'] for r in context['points']]
+                        if context['date_reconciliation_file']:
+                            expect(panel.locator('[role=status]')).to_contain_text('corrected bottle archive')
+                            assert panel.get_by_role('link', name='Inspect the original-to-corrected timestamp matches').count() == 1
+                            correction_address = panel.get_by_role('link', name='Inspect the original-to-corrected timestamp matches').get_attribute('href')
                     else:
                         expect(panel.locator('[role=status]')).to_contain_text('Map unavailable')
                         if context['status'] == 'source_date_conflict':
@@ -62,6 +67,13 @@ def main():
             inspect.wait_for_function('window.oswSourceQueryResult', timeout=90000)
             result = inspect.evaluate('window.oswSourceQueryResult')
             assert result['total'] == 1 and result['rows'][0]['record'] == context
+            assert correction_address
+            inspect.goto('http://127.0.0.1:8788/almanac/' + correction_address)
+            inspect.wait_for_function('window.oswSourceQueryResult', timeout=90000)
+            correction_result = inspect.evaluate('window.oswSourceQueryResult')
+            corrections = json.loads((ROOT / 'research/pelagia-2007-station-date-reconciliation.json').read_bytes())['records']
+            assert correction_result['total'] == 46
+            assert [r['record'] for r in correction_result['rows']] == corrections
             page.locator('#season-current').select_option('acc')
             assert page.locator('.cruise-station-context').count() == 0
             assert page.evaluate('window.oswAtlanticStationContext') is None
@@ -75,7 +87,7 @@ def main():
             expect(bad.locator('.cruise-station-context [role=status]')).to_contain_text('Station context unavailable', timeout=90000)
             assert bad.locator('.cruise-station-context svg').count() == 0
             browser.close()
-    print('PASS: 30 exact station-context joins, 26 Rust-projected maps, 4 explicit gaps, source-query/native parity, mobile containment, changed-source rejection')
+    print('PASS: 30 exact station-context joins and Rust-projected maps, corrected timestamp provenance, source-query/native parity, mobile containment, changed-source rejection')
 
 
 if __name__ == '__main__': main()
