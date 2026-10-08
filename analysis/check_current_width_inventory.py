@@ -210,6 +210,9 @@ def validate(document, ledger):
                 raise ValueError('Profile segment assignment disagrees with ledger')
             if parent is None and row.get('segment_assignment_role') is not None:
                 raise ValueError('Segment assignment requires source parent identity')
+        elif row['phase_kind'] == 'synoptic_stream_tube_section':
+            from check_west_spitsbergen_stream_tubes import validate_row
+            validate_row(row)
         elif row['phase_kind'] == 'survey_profile_composite':
             if row['measurement_type'] != 'published_survey_profile_fit_scale' or row['width_metric'] != 'gaussian_e_folding_distance_from_profile_center' or row.get('boundary_sides') != 'fitted_center_to_e_folding_distance':
                 raise ValueError('Profile scale is not a paired-boundary width')

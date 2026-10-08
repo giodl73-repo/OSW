@@ -50,7 +50,7 @@ def main():
         assert wasm['rows']==native(query)['rows']
         row=wasm['rows'][0];assert row['width_range_km']==[40,80] and row['approximate_width_km'] is None
         assert row['annual_extrema_eligible'] is False and row['section_geometry'] is None
-        assert len(inventory['measurements'])==79
+        assert len(inventory['measurements'])==85
         # A mean offshore extent uses a distinct label and retains sampling metadata.
         page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=mindanao-current',wait_until='networkidle')
         page.wait_for_function("document.querySelector('#season-title').textContent==='Mean surface offshore extent'",timeout=90000)
@@ -128,6 +128,24 @@ def main():
         wasm=page.evaluate('window.oswLastQueryResult');assert wasm==native(query)
         assert [(r['approximate_width_km'],r['reported_total_error_km']) for r in wasm['rows']]==[(48,14),(73,18),(78,18),(48,18)]
         assert all(r['width_range_km'] is None and r['adcp_threshold_context']['confidence_level'] is None for r in wasm['rows'])
+        # Table 2 stream-tube widths preserve threshold sensitivity and transport definitions.
+        page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=west-spitsbergen&phase=west-spitsbergen-kolas-2018-b-tube-1',wait_until='networkidle')
+        chart=page.locator('.stream-tube-width-chart');chart.wait_for(state='visible',timeout=90000)
+        assert page.locator('#season-play').is_disabled()
+        assert page.locator('#season-bar').evaluate('(e)=>e.parentElement.hidden')
+        assert page.locator('.stream-tube-width-table tbody tr').count()==6
+        assert '0.02 m/s: 24 km; 0.08 m/s: 11 km' in page.locator('.stream-tube-width-table').inner_text()
+        assert 'not confidence intervals or seasonal changes' in page.locator('#season-section-locator').inner_text()
+        assert chart.locator('text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        chart.screenshot(path=str(ROOT/'.pytest_cache/wsc-stream-tube-width-chart.png'))
+        page.locator('a').filter(has_text='Query all six width records').click()
+        page.wait_for_function('window.oswLastQueryResult?.total===6',timeout=90000)
+        request={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'west-spitsbergen'}],'limit':100}
+        assert page.evaluate('window.oswLastQueryResult')==native(request)
+        page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Awest-spitsbergen#route-atlas',wait_until='networkidle')
+        page.locator('.atlas-width-evidence .stream-tube-width-chart').wait_for(state='visible',timeout=90000)
+        assert page.locator('.atlas-width-record').count()==6
         # Explicit proposed branches expose numeric evidence without canonical transfer.
         import gzip
         packet=ROOT/'.pytest_cache/norwegian-branch-index.json'
@@ -156,6 +174,15 @@ def main():
         assert page.locator('#inventory-addition-norwegian-atlantic .proposed-width-chart').count()==0
         assert not errors,errors
         browser.close()
+    # WSC semantic scope survives coherent record and receipt rewrites.
+    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    for key,value in [('width_range_km',[11,61]),('fixed_layer_bounds_m',[45,475]),('seasonal_playback_eligible',True)]:
+        bad=copy.deepcopy(packet);row=next(r for r in bad['collections']['widths'] if r['id']=='west-spitsbergen-kolas-2018-b-tube-1');row[key]=value
+        receipt=bad['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json']);next(r for r in doc['measurements'] if r['id']==row['id'])[key]=value
+        receipt['source_json']=json.dumps(doc,ensure_ascii=False);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest();bad['manifest']['input_sha256'][receipt['source_file']]=receipt['source_sha256']
+        path=ROOT/'.pytest_cache/wsc-stream-tube-tampered.json';path.write_text(json.dumps(bad),encoding='utf8')
+        result=subprocess.run([str(CLI),str(path),'-'],input=json.dumps(request),capture_output=True,text=True,encoding='utf8')
+        assert result.returncode==2 and 'WSC' in result.stderr,(key,result.stderr)
     # Coherent source/row rewrites must still fail the shared Rust scope guard.
     bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
     i=next(i for i,r in enumerate(bundle['collections']['widths']) if r['phase_kind']=='survey_layer_median_threshold_width')
