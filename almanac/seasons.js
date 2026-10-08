@@ -28,6 +28,7 @@
     const frame = phase?.frame;
     const direction = phase?.direction;
     const current=byId("season-current").value;
+    window.renderAtlanticCruiseWidths(byId('cruise-span-panel'), current, inventory);
     const address=new URL(location.href);address.searchParams.set("current",current);
     if(phaseId(phase))address.searchParams.set("phase",phaseId(phase));else address.searchParams.delete("phase");
     history.replaceState(null,"",address);
@@ -50,12 +51,13 @@
       byId('season-title').textContent='General jet width summary';
       byId('season-value').textContent=`${row.name}: source reports ${row.ensemble_angular_context.source_reported_latitude_span_degrees}° latitude, approximately ${row.approximate_width_km} km · shared study summary`;
     }
+    if(row?.phase_kind==='inverse_hydrographic_section_span')byId('season-title').textContent='Hydrographic cruise-section span';
     if(row?.phase_kind==='regional_scalar_summary')byId('season-title').textContent='Regional width summary';
     if(row?.phase_kind==='campaign_hydrographic_core') {
       byId('season-title').textContent='Local salinity-core observation';
       byId('season-value').textContent=`${row.name}: ${row.width_range_km?row.width_range_km.join('–'):'about '+row.approximate_width_km} km local water-mass core · ${row.phase_label} · ${row.time_convention}`;
     }
-    byId("season-bar").parentElement.hidden = row?.approximate_width_km == null || row?.mean_section_context?.section_axis_kind==='oblique' || (["survey_profile_composite","dated_band_section","climatological_core_distribution","campaign_hydrographic_core","ensemble_angular_summary","regional_scalar_summary","monthly_climatological_fit","stream_mean_threshold_summary","eulerian_mean_section_span","width_time_series_statistics"].includes(row?.phase_kind));
+    byId("season-bar").parentElement.hidden = row?.approximate_width_km == null || row?.mean_section_context?.section_axis_kind==='oblique' || (["inverse_hydrographic_section_span","survey_profile_composite","dated_band_section","climatological_core_distribution","campaign_hydrographic_core","ensemble_angular_summary","regional_scalar_summary","monthly_climatological_fit","stream_mean_threshold_summary","eulerian_mean_section_span","width_time_series_statistics"].includes(row?.phase_kind));
     byId("season-bar").style.width = row ? `${Math.min(100, row.approximate_width_km / barMaximum * 100)}%` : "0%";
     byId("season-definition").textContent = row ? `${row.geographic_scope} ${row.layer} ${row.boundary_rule} ${byId("season-bar").parentElement.hidden ? row.range_interpretation : `Bar scale: 0–${barMaximum} km.`}` : "This current needs scoped seasonal observations; unknown does not mean zero width.";
     if (frame) {

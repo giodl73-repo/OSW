@@ -32,6 +32,11 @@ def build():
     validate(widths,read('research/ocean-current-almanac.json'))
     routes=read('research/ocean-current-reference-path-candidates.json')
     for record in widths['measurements']:
+        if record.get('extraction_file'):
+            extraction = read(record['extraction_file'])
+            read(extraction['acquisition_file'])
+            for dependency in [extraction['protocol_file'], extraction['generator_file'], *[s['file'] for s in json.loads((ROOT / extraction['acquisition_file']).read_bytes())['files']]]:
+                inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
         context=record.get('eulerian_section_context') or record.get('width_statistics_context')
         if context:read(context['audit_file'])
     collections['widths']=widths['measurements']

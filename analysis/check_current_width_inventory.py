@@ -17,6 +17,7 @@ def validate(document, ledger):
     if len({row["id"] for row in records}) != len(records):
         raise ValueError("Duplicate width measurement")
     by_id = {row["id"]: row for row in records}
+    hydrographic_extraction = None
     for row in records:
         if row["current_id"] not in ids or row["status"] != "editorial_source_extraction_not_canonical" or row["whole_current_representative"] is not False or row["width_rank_eligible"] is not False:
             raise ValueError("Width admission or identity mismatch")
@@ -383,6 +384,17 @@ def validate(document, ledger):
                 raise ValueError('Invented Eulerian boundary extraction or layer')
             if (row['current_id'],value,row['source_url'],row['source_locator'],row['boundary_rule']) != (audit['current_id'],audit['reported_width_km_approx'],audit['source_url'],audit['source_locator'],audit['boundary_rule']):
                 raise ValueError('Eulerian span differs from pinned source extraction')
+        elif row['phase_kind'] == 'inverse_hydrographic_section_span':
+            from build_atlantic_cruise_widths import build, OUTPUT
+            if hydrographic_extraction is None:
+                hydrographic_extraction = build()
+                if json.loads((ROOT / OUTPUT).read_bytes()) != hydrographic_extraction:
+                    raise ValueError('Changed Atlantic cruise extraction; source review required')
+            expected = next((r for r in hydrographic_extraction['measurements'] if r['id'] == row['id']), None)
+            actual = {k:v for k,v in row.items() if k not in ['extraction_file', 'extraction_sha256']}
+            if (expected is None or actual != expected or row.get('extraction_file') != OUTPUT
+                    or row.get('extraction_sha256') != hashlib.sha256((ROOT / OUTPUT).read_bytes()).hexdigest()):
+                raise ValueError('Cruise span differs from pinned publisher cells or scope')
         elif row['phase_kind'] == 'regional_scalar_summary':
             if (row['measurement_type'],row['width_metric']) != ('published_regional_scalar_width_summary','author_reported_regional_current_scale') or span is not None:
                 raise ValueError('Conflated regional scalar width')
