@@ -55,6 +55,8 @@ def validate(document, ledger):
             elif row['phase_kind']=='mean_offshore_extent_range':
                 if value is not None or row.get('range_kind')!='author_reported_approximate_offshore_extent_of_mean_surface_flow':
                     raise ValueError('Offshore extent promoted to midpoint or temporal width')
+            elif row['phase_kind']=='seasonal_regional_width_range':
+                if value is not None or row.get('range_kind')!='author_reported_seasonal_regional_width_scale_span':raise ValueError('Invented seasonal regional width midpoint or annual range')
             elif value is not None or row.get('range_kind') != 'reported_typical_regional_width_span' or row['phase_kind'] != 'regional_summary':
                 raise ValueError('Unsupported regional range or invented representative width')
         elif not isinstance(value, (float, int)) or isinstance(value, bool) or not math.isfinite(value) or value <= 0:
@@ -65,7 +67,7 @@ def validate(document, ledger):
         date.fromisoformat(row["source_retrieved_date"])
         if row.get("calendar_months") is not None:
             months = row["calendar_months"]
-            if row["phase_kind"] not in {"seasonal_summary", "seasonal_mean_width_range", "monthly_climatological_fit"} or not isinstance(months, list) or not months or len(set(months)) != len(months) or any(type(month) is not int or not 1 <= month <= 12 for month in months) or not row.get("calendar_source_locator", "").strip():
+            if row["phase_kind"] not in {"seasonal_summary", "seasonal_mean_width_range", "monthly_climatological_fit", "seasonal_regional_width_range"} or not isinstance(months, list) or not months or len(set(months)) != len(months) or any(type(month) is not int or not 1 <= month <= 12 for month in months) or not row.get("calendar_source_locator", "").strip():
                 raise ValueError("Unsupported seasonal calendar")
         if row.get("source_evidence_kind") == "published_historical_regional_synthesis":
             year = row.get("source_publication_year")
@@ -213,6 +215,9 @@ def validate(document, ledger):
                 raise ValueError('Profile segment assignment disagrees with ledger')
             if parent is None and row.get('segment_assignment_role') is not None:
                 raise ValueError('Segment assignment requires source parent identity')
+        elif row['phase_kind'] == 'seasonal_regional_width_range':
+            from check_somali_seasonal_width import validate_row
+            validate_row(row)
         elif row['phase_kind'] == 'synoptic_stream_tube_section':
             from check_west_spitsbergen_stream_tubes import validate_row
             validate_row(row)

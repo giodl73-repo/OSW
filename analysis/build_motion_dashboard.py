@@ -137,6 +137,7 @@ def build():
         or antilles_sections.get('width_rank_eligible') is not False or antilles_sections.get('seasonal_playback_eligible') is not False):
         raise ValueError('Antilles section diagnostic must preserve scoped, unadmitted evidence and inventory checksum')
     eddy_geography = {e['id']: e for e in read('research/named-eddy-geography.json')['entries']}
+    somali_width_audit=read('research/somali-schott-2001-premonsoon-width-scope-audit.json')
     astrid_audit=read('research/astrid-2000-radial-scale-scope-audit.json')
     from check_astrid_radial_scales import validate as validate_astrid
     validate_astrid(astrid_audit, {'entries':list(eddy_geography.values())})
@@ -439,6 +440,11 @@ def build():
             groups['sources']=[groups['sources'],own_width_audits]
             groups['measurements'].append(own_width_audits)
             groups['time_evidence'].append(own_width_audits)
+        if current_id == 'somali':
+            payload['seasonal_width_scope']=somali_width_audit
+            groups['measurements'].append(somali_width_audit)
+            groups['sources'].append(somali_width_audit)
+            groups['time_evidence'].append(somali_width_audit)
         if current_id == 'loop':
             groups['time_evidence'].append(loop_documents)
             groups['time_evidence'].append(loop_sections)
