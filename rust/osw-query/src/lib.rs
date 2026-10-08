@@ -7,6 +7,7 @@ mod charts;
 mod dashboard;
 mod dashboard_beck;
 mod dashboard_map;
+mod index_bifurcation;
 mod index_map;
 mod index_noaa;
 pub mod index_store;
