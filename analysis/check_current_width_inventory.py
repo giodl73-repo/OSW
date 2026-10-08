@@ -38,6 +38,9 @@ def validate(document, ledger):
             elif row['phase_kind'] == 'seasonal_mean_width_range':
                 if value is not None or row.get('range_kind') != 'author_reported_width_span_of_seasonal_mean_section':
                     raise ValueError('Conflated seasonal mean width span or invented midpoint')
+            elif row['phase_kind']=='mean_offshore_extent_range':
+                if value is not None or row.get('range_kind')!='author_reported_approximate_offshore_extent_of_mean_surface_flow':
+                    raise ValueError('Offshore extent promoted to midpoint or temporal width')
             elif value is not None or row.get('range_kind') != 'reported_typical_regional_width_span' or row['phase_kind'] != 'regional_summary':
                 raise ValueError('Unsupported regional range or invented representative width')
         elif not isinstance(value, (float, int)) or isinstance(value, bool) or not math.isfinite(value) or value <= 0:
@@ -395,6 +398,17 @@ def validate(document, ledger):
             if (expected is None or actual != expected or row.get('extraction_file') != OUTPUT
                     or row.get('extraction_sha256') != hashlib.sha256((ROOT / OUTPUT).read_bytes()).hexdigest()):
                 raise ValueError('Cruise span differs from pinned publisher cells or scope')
+        elif row['phase_kind']=='mean_offshore_extent_range':
+            context=row.get('mean_offshore_context',{})
+            audit_file='research/mindanao-schonau-2015-mean-offshore-extent-scope-audit.json'
+            path=ROOT/audit_file
+            if context.get('audit_file')!=audit_file or context.get('audit_sha256')!=hashlib.sha256(path.read_bytes()).hexdigest():
+                raise ValueError('Stale mean offshore extent audit')
+            audit=json.loads(path.read_bytes())
+            actual={k:v for k,v in row.items() if k!='mean_offshore_context'}
+            actual_context={k:v for k,v in context.items() if k not in ['audit_file','audit_sha256']}
+            if actual!=audit['measurement'] or actual_context!=audit['mean_offshore_context']:
+                raise ValueError('Mean offshore extent differs from source description or sampling support')
         elif row['phase_kind'] == 'regional_scalar_summary':
             if (row['measurement_type'],row['width_metric']) != ('published_regional_scalar_width_summary','author_reported_regional_current_scale') or span is not None:
                 raise ValueError('Conflated regional scalar width')

@@ -6,6 +6,19 @@ from check_current_width_inventory import validate
 ROOT = Path(__file__).resolve().parents[1]
 
 class WidthInventoryTests(unittest.TestCase):
+    def test_mean_offshore_extent_preserves_surface_and_sampling_scope(self):
+        i=next(i for i,r in enumerate(self.document['measurements']) if r['phase_kind']=='mean_offshore_extent_range')
+        r=self.document['measurements'][i]
+        self.assertEqual(r['width_range_km'],[250,300])
+        self.assertIsNone(r['approximate_width_km'])
+        validate(self.document,self.ledger)
+        for key,value in [('approximate_width_km',275),('width_range_km',[200,300]),('phase_kind','regional_summary'),('fixed_layer_bounds_m',[0,1000]),('calendar_months',[6,7]),('section_geometry',{'type':'LineString'}),('boundary_sides','paired'),('full_width_inference_eligible',True),('seasonal_playback_eligible',True),('boundary_rule','velocity > 0.1 m/s'),('current_id','mindanao-undercurrent')]:
+            bad=copy.deepcopy(self.document);bad['measurements'][i][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):validate(bad,self.ledger)
+        for key,value in [('audit_sha256','changed'),('velocity_threshold_m_s',0.1),('campaign_context_is_mean_sampling_interval',True),('velocity_reference_depth_range_m',[0,200]),('mean_line_endpoints_lon_lat',[[126,8],[130,8]]),('source_date_discrepancy','')]:
+            bad=copy.deepcopy(self.document);bad['measurements'][i]['mean_offshore_context'][key]=value
+            with self.subTest(context=key),self.assertRaises(ValueError):validate(bad,self.ledger)
+
     def test_alaska_gulf_typical_width_does_not_acquire_winter_dates_or_edges(self):
         index=next(i for i,r in enumerate(self.document['measurements']) if r['current_id']=='alaska-coastal-gulf')
         row=self.document['measurements'][index]

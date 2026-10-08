@@ -480,3 +480,18 @@ do not create numerical monthly widths or geographic boundaries. Preserve
 source-reported phase context separately; keep playback and annual extrema
 ineligible until matched values and support are recovered. No whole-current
 ranking, route buffer, full-width bar or footprint follows from these statistics.
+
+## v1.22: mean surface offshore extent
+
+Keep an author-reported offshore extent of averaged flow as a one-sided
+metric. Preserve its prose range without inventing a midpoint, uncertainty
+or seasonal limits. Record the mean-line endpoints, projection corridor,
+velocity method and reference depths separately from current boundaries.
+A velocity-reference layer is not the measurement layer of a surface extent.
+Campaign dates are context until exact contributing profiles are recovered;
+retain conflicting campaign descriptions. Core position, an offshore eddy
+core and a transport integration limit are separate quantities.
+
+Pin the source audit and bind the complete measurement and sampling context.
+No full-width bar, route buffer, occupied footprint, annual extrema, ranking
+or seasonal playback follows from this description.

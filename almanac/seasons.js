@@ -23,21 +23,22 @@
   const phaseId = phase => phase?.frame?.id || phase?.width?.id || phase?.direction?.id;
   function renderRegionalRange(row) {
     const container=byId('regional-width-range');container.replaceChildren();container.hidden=true;
-    if(row?.phase_kind!=='regional_summary'||!row.width_range_km)return;
+    if(!['regional_summary','mean_offshore_extent_range'].includes(row?.phase_kind)||!row.width_range_km)return;
+    const offshore=row.phase_kind==='mean_offshore_extent_range';
     container.hidden=false;
-    const [low,high]=row.width_range_km, maximum=Math.ceil(high/50)*50;
+    const [low,high]=row.width_range_km, maximum=Math.ceil(high/50)*50+(offshore?50:0);
     const ns='http://www.w3.org/2000/svg', svg=document.createElementNS(ns,'svg');
     svg.setAttribute('viewBox','0 0 500 110');svg.setAttribute('role','img');
-    svg.setAttribute('aria-label',`${row.name}: reported regional width range ${low} to ${high} kilometres. Not annual extrema or a confidence interval.`);
+    svg.setAttribute('aria-label',`${row.name}: ${offshore?'mean surface offshore extent':'reported regional width range'} ${low} to ${high} kilometres. Not annual extrema or a confidence interval.`);
     svg.style.cssText='width:100%;max-width:650px;background:#f6f5ef;color:#102f3b';
     const add=(tag,attrs,text)=>{const e=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(text)e.textContent=text;svg.append(e);};
     const x=v=>40+420*v/maximum;
     add('line',{x1:40,x2:460,y1:80,y2:80,stroke:'#47616b'});
     add('line',{x1:x(low),x2:x(high),y1:45,y2:45,stroke:'#176b82','stroke-width':5});
-    for(const v of [low,high]){add('line',{x1:x(v),x2:x(v),y1:35,y2:55,stroke:'#176b82','stroke-width':2});add('text',{x:x(v),y:25,'text-anchor':'middle',fill:'#102f3b','font-size':16},`${v} km`);}
+    for(const v of [low,high]){add('line',{x1:x(v),x2:x(v),y1:35,y2:55,stroke:'#176b82','stroke-width':2});add('text',{x:x(v),y:25,'text-anchor':offshore?(v===low?'end':'start'):'middle',fill:'#102f3b','font-size':16},`${v} km`);}
     for(const v of [0,maximum])add('text',{x:x(v),y:101,'text-anchor':'middle',fill:'#102f3b','font-size':14},`${v} km`);
     container.append(svg);
-    const caption=document.createElement('figcaption');caption.textContent=`Reported regional span: ${low}–${high} km. No midpoint selected. This is not an annual range, confidence interval or mapped current envelope.`;container.append(caption);
+    const caption=document.createElement('figcaption');caption.textContent=`${offshore?'Mean surface offshore extent':'Reported regional span'}: ${low}–${high} km. No midpoint selected. ${offshore?'This is a one-sided prose extent of averaged flow, not a paired-boundary full width. ':''}This is not an annual range, confidence interval or mapped current envelope.`;container.append(caption);
   }
   function renderPhase() {
     const phase = phases[Number(byId("season-phase").value)];
@@ -73,6 +74,10 @@
     if(row?.phase_kind==='inverse_hydrographic_section_span')byId('season-title').textContent='Hydrographic cruise-section span';
     if(row?.phase_kind==='regional_scalar_summary')byId('season-title').textContent='Regional width summary';
     if(row?.phase_kind==='regional_summary')byId('season-title').textContent='Regional width range';
+    if(row?.phase_kind==='mean_offshore_extent_range') {
+      byId('season-title').textContent='Mean surface offshore extent';
+      byId('season-value').textContent=`${row.name}: ${row.width_range_km.join('–')} km reported offshore extent · not full width`;
+    }
     if(row?.phase_kind==='campaign_hydrographic_core') {
       byId('season-title').textContent='Local salinity-core observation';
       byId('season-value').textContent=`${row.name}: ${row.width_range_km?row.width_range_km.join('–'):'about '+row.approximate_width_km} km local water-mass core · ${row.phase_label} · ${row.time_convention}`;
@@ -87,6 +92,7 @@
     byId("season-length").textContent = frame && route ? `Approximate scoped route length: ${route.approximate_reference_path_km.toLocaleString("en-US")} km; ${route.scenario_range_km.map(v => v.toLocaleString("en-US")).join("–")} km editorial sensitivity envelope. Different phase scopes cannot supply annual extrema.` : "Seasonal length: unknown for this recorded phase. No annual minimum/maximum or uncertainty margin inferred.";
     if(row?.phase_kind==='campaign_hydrographic_core')byId('season-definition').textContent=`${row.geographic_scope}. ${row.layer} Boundary: ${row.boundary_rule}. This is a water-mass core metric, not a paired velocity envelope. Bar omitted; section locations and occupations cannot supply an annual cycle.`;
     if(row?.phase_kind==='ensemble_angular_summary')byId('season-definition').textContent=`${row.geographic_scope} ${row.layer} ${row.boundary_rule} Equator used only for unit conversion, not an observed location. Shared source claim, not independent jet measurements. Core displacement and PV-front scale are separate metrics. Bar omitted; annual variation unresolved.`;
+    if(row?.phase_kind==='mean_offshore_extent_range')byId('season-definition').textContent+=` ${row.time_convention} ${row.mean_offshore_context.source_date_discrepancy} No edge locator or route buffer inferred; annual variation unresolved.`;
     if(row?.phase_kind==='regional_scalar_summary')byId('season-definition').textContent=`${row.geographic_scope} ${row.layer} ${row.boundary_rule} No edge locator or full-width bar inferred from this regional scalar. Annual variation unresolved.`;
     if(row?.phase_kind==='width_time_series_statistics') {
       const statistics=row.width_statistics_context.reported_statistics;

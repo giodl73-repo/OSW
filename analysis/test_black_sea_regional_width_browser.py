@@ -50,7 +50,34 @@ def main():
         assert wasm['rows']==native(query)['rows']
         row=wasm['rows'][0];assert row['width_range_km']==[40,80] and row['approximate_width_km'] is None
         assert row['annual_extrema_eligible'] is False and row['section_geometry'] is None
-        assert len(inventory['measurements'])==73
+        assert len(inventory['measurements'])==74
+        # A mean offshore extent uses a distinct label and retains sampling metadata.
+        page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=mindanao-current',wait_until='networkidle')
+        page.wait_for_function("document.querySelector('#season-title').textContent==='Mean surface offshore extent'",timeout=90000)
+        assert '250–300 km reported offshore extent' in page.locator('#season-value').inner_text()
+        assert 'not a paired-boundary full width' in page.locator('#regional-width-range').inner_text()
+        assert 'mean surface offshore extent' in page.locator('#regional-width-range svg').get_attribute('aria-label')
+        assert page.locator('#regional-width-range svg text').evaluate_all('(es)=>es[0].getBoundingClientRect().right < es[1].getBoundingClientRect().left')
+        assert 'January 2014' in page.locator('#season-definition').inner_text()
+        assert page.locator('#season-bar').evaluate('(e)=>e.parentElement.hidden')
+        assert page.locator('#season-play').is_disabled()
+        assert page.locator('#season-section-locator').is_hidden()
+        assert 'not available' in page.locator('#season-range').inner_text()
+        assert 'not a fixed measurement layer' in page.locator('#season-definition').inner_text()
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        page.locator('#regional-width-range').scroll_into_view_if_needed()
+        page.screenshot(path=str(ROOT/'.pytest_cache/mindanao-extent-mobile.png'),full_page=True)
+        page.locator('#season-atlas').click()
+        page.wait_for_function('document.querySelector("#route-atlas-select").value==="current:mindanao-current"',timeout=90000)
+        assert 'offshore extent of mean surface flow' in page.locator('#width-mindanao-schonau-2015-mean-surface-offshore-extent').inner_text()
+        query={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'mindanao-current'}],'limit':10}
+        page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)),wait_until='networkidle')
+        page.wait_for_function('window.oswLastQueryResult?.rows?.length===1',timeout=90000)
+        wasm=page.evaluate('window.oswLastQueryResult');assert wasm==native(query)
+        row=wasm['rows'][0];assert row['width_range_km']==[250,300] and row['approximate_width_km'] is None
+        context=row['mean_offshore_context'];assert context['campaign_context_is_mean_sampling_interval'] is False
+        assert context['velocity_reference_depth_range_m']==[0,1000]
+        assert context['source_date_discrepancy']
         assert not errors,errors
         browser.close()
     print('OK: Black Sea regional range, primary source, null midpoint, no seasonal/edge inference, responsive chart, cleanup and native/WASM query parity')

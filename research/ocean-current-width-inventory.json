@@ -7,10 +7,10 @@
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 37,
-    "measurements": 73,
+    "currents_with_scoped_width_evidence": 38,
+    "measurements": 74,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 56,
+    "currents_not_assessed": 55,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 5
   },
@@ -4611,6 +4611,81 @@
         "Independent scientific and canonical admission review."
       ],
       "source_quality_note": "Typical-width literature statement, not a measured winter width from the article experiment. Original contributing definitions remain unreviewed."
+    },
+    {
+      "id": "mindanao-schonau-2015-mean-surface-offshore-extent",
+      "current_id": "mindanao-current",
+      "name": "Mindanao Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_mean_surface_offshore_extent_range",
+      "width_metric": "author_reported_mean_surface_equatorward_offshore_extent",
+      "approximate_width_km": null,
+      "width_range_km": [
+        250,
+        300
+      ],
+      "range_kind": "author_reported_approximate_offshore_extent_of_mean_surface_flow",
+      "range_interpretation": "Approximate range in the author’s prose description of one averaged surface section; not uncertainty, seasonal extrema or a paired-boundary full width.",
+      "geographic_scope": "Oblique mean line from 8.16 N, 126.61 E to 8.77 N, 130 E off Mindanao. Profiles within 80 km were projected and objectively mapped; not an along-current envelope.",
+      "section_geometry": null,
+      "section_orientation": "Oblique mean line; reported offshore distance retained without converting it to paired cross-flow edges.",
+      "layer": "Surface expression of averaged absolute geostrophic equatorward flow. The 0–1000 m glider velocity reference is not a fixed measurement layer for this extent.",
+      "fixed_layer_bounds_m": null,
+      "time_convention": "Spatial and temporal mean of glider profiles; campaign context June 2009–July 2014. Exact contributing dates of the Figure 2 mean unresolved.",
+      "boundary_rule": "Author-reported offshore extent of equatorward mean flow, not a diagnosed pair of current boundaries. Figure 2 contours are 0.1 m/s intervals; no numerical extent threshold assigned.",
+      "source_url": "https://www.soest.hawaii.edu/oceanography/bo/Schonau_etal_TOS2015.pdf",
+      "source_citation": "Schönau et al. (2015), The Mindanao Current: Mean Structure and Connectivity, Oceanography 28(4), 34–45, doi:10.5670/oceanog.2015.79.",
+      "source_locator": "Printed p.38 / PDF p.6, Velocity and Transport, glider paragraph and Figure 2a; mean-line sampling described on pp.36–37 / PDF pp.4–5.",
+      "source_retrieved_date": "2026-10-08",
+      "source_evidence_kind": "published_observational_mean_section_description",
+      "extraction_method": "250–300 km transcribed from p.38 prose after inspecting Figure 2a; no edge digitization, midpoint or route buffer.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "full_width_inference_eligible": false,
+      "is_confidence_interval": false,
+      "calendar_months": null,
+      "observed_period": null,
+      "boundary_sides": "author_reported_one_sided_offshore_extent",
+      "phase_label": "glider mean surface offshore extent",
+      "phase_kind": "mean_offshore_extent_range",
+      "remaining_gates": [
+        "Obtain contributing profile dates and machine-readable velocity fields.",
+        "Diagnose paired edges with a consistent threshold before full-width or seasonal ranges.",
+        "Independent scientific and canonical admission review."
+      ],
+      "mean_offshore_context": {
+        "mean_line_endpoints_lon_lat": [
+          [
+            126.61,
+            8.16
+          ],
+          [
+            130,
+            8.77
+          ]
+        ],
+        "projection_corridor_km": 80,
+        "velocity_method": "absolute_geostrophic_referenced_to_glider_depth_average",
+        "velocity_reference_depth_range_m": [
+          0,
+          1000
+        ],
+        "campaign_context_months": {
+          "start": "2009-06",
+          "end": "2014-07"
+        },
+        "campaign_context_is_mean_sampling_interval": false,
+        "source_date_discrepancy": "p.35 describes intended repeated sections June 2009–January 2014; p.36 reports deployments June 2009–July 2014. Neither supplies exact profiles entering Figure 2.",
+        "boundary_coordinates_extracted": false,
+        "velocity_threshold_m_s": null,
+        "offshore_secondary_core_may_be_eddy": true,
+        "secondary_core_location_is_current_width": false,
+        "transport_integration_limit_is_current_width": false,
+        "audit_file": "research/mindanao-schonau-2015-mean-offshore-extent-scope-audit.json",
+        "audit_sha256": "6d5ff66c68d353d6f34bd3440945327baca6578d130a2014bd439c1af37f376d"
+      }
     }
   ],
   "current_decisions": [
@@ -5622,12 +5697,14 @@
     {
       "current_id": "mindanao-current",
       "name": "Mindanao Current",
-      "width_decision": "width_not_assessed",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "mindanao-schonau-2015-mean-surface-offshore-extent"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
-      "existing_evidence_locator": null,
-      "existing_evidence_source_url": null
+      "next_action": "Resolve Figure 2 contributing dates and paired velocity boundaries; offshore mean extent is not a full width or seasonal range.",
+      "existing_evidence_locator": "Printed p.38 / PDF p.6, Velocity and Transport, glider paragraph and Figure 2a; mean-line sampling described on pp.36–37 / PDF pp.4–5.",
+      "existing_evidence_source_url": "https://www.soest.hawaii.edu/oceanography/bo/Schonau_etal_TOS2015.pdf"
     },
     {
       "current_id": "new-guinea-coastal-undercurrent",
@@ -5860,7 +5937,7 @@
     {
       "current_id": "gulf-stream-system",
       "file": "research/gulf-stream-section-width-series.json",
-      "sha256": "28b20171b9bc10fdc9bc1c5c4f3b01fbce1136786bc8711e37de14b7f4f2ee4a",
+      "sha256": "08afc7f4e671e91f13735894286bc0a307925e7f08e412e59cd8b616feeed7d3",
       "status": "derived_width_candidate_requires_scientific_review"
     },
     {
