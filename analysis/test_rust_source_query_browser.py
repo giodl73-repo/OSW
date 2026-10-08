@@ -81,6 +81,12 @@ def main():
                 assert page.locator('#source-query-export').is_disabled()
                 assert page.locator('#source-query-share').is_hidden()
                 assert page.locator('#source-query-status').inner_text().startswith('Source query unavailable:')
+            pacific_request={'document':'research/pacific-nec-monthly-bifurcation-extraction.json','pointer':'/series/0/months','sort':{'field':'record.month','direction':'asc'},'limit':12}
+            pacific_rows=json.loads((ROOT/pacific_request['document']).read_bytes())['series'][0]['months']
+            pacific_result=query(pacific_request)
+            assert pacific_result==native(pacific_request)
+            assert [r['record'] for r in pacific_result['rows']]==pacific_rows
+            assert page.locator('#source-query-rows tr').count()==12
             assert query(value)==native(value)
             shared=page.locator('#source-query-share').get_attribute('href')
             assert json.loads(parse_qs(urlparse(shared).query)['q'][0])==original

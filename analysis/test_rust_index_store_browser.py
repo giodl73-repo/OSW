@@ -34,7 +34,7 @@ def main():
     assert hashlib.sha256(compressed).hexdigest() == catalog['compressed_sha256']
     assert hashlib.sha256(payload).hexdigest() == catalog['bundle_sha256']
     bundle = json.loads(payload)
-    assert len(bundle['documents']) == catalog['source_count'] == 67
+    assert len(bundle['documents']) == catalog['source_count'] == 68
     for path, digest in catalog['input_sha256'].items():
         assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == digest, path
     for descriptor in catalog['documents']:
@@ -58,6 +58,7 @@ def main():
         {'document':'research/ocean-current-inventory-expansion-candidates.json','pointer':'/entries','filters':[{'field':'record.parent_current_id','op':'eq','value':'south-equatorial'}],'limit':10},
         {'document':'research/equatorial-bifurcation-endpoint-scope-audit.json','pointer':'/entries','limit':10},
         {'document':'research/indian-sec-monthly-bifurcation-extraction.json','pointer':'/series','limit':10},
+        {'document':'research/pacific-nec-monthly-bifurcation-extraction.json','pointer':'/series/0/months','sort':{'field':'record.month','direction':'asc'},'limit':12},
     ]
     invalid = [
         {'document':'missing.json'},
@@ -93,6 +94,9 @@ def main():
         assert expected[7]['total'] == 2
         assert expected[7]['rows'][0]['record']['months'][5]['approximate_latitude_degrees_north'] == -17.6
         assert expected[7]['rows'][1]['record']['source_period'] is None
+        pacific=json.loads((ROOT/'research/pacific-nec-monthly-bifurcation-extraction.json').read_bytes())['series'][0]['months']
+        assert expected[8]['total']==12
+        assert expected[8]['rows']==[{'record':row,'source_key':str(i),'source_pointer':f'/series/0/months/{i}'} for i,row in enumerate(pacific)]
         # Independent scientific-source oracle, not a second Rust projection.
         source = json.loads(bundle['documents'][queries[1]['document']])['entries']
         matched = [(i,r) for i,r in enumerate(source) if 'CAMR' in r['contained_states']]
@@ -136,7 +140,7 @@ def main():
                 assert not failed.evaluate("q => rpc('query',q)", queries[0])['ok']
                 failed.close()
             browser.close()
-    print('PASS: 67 exact sources, 12 seasonal snapshots, independent NOAA oracle, native/WASM parity and checked-input failures')
+    print('PASS: 68 exact sources, 12 seasonal snapshots, independent NOAA oracle, native/WASM parity and checked-input failures')
 
 
 if __name__ == '__main__':
