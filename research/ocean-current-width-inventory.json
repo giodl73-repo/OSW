@@ -7,10 +7,10 @@
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 45,
-    "measurements": 89,
+    "currents_with_scoped_width_evidence": 46,
+    "measurements": 90,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 48,
+    "currents_not_assessed": 47,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 5
   },
@@ -5764,6 +5764,66 @@
         "audit_file": "research/guinea-djakoure-2017-model-width-source-review.json",
         "audit_sha256": "15d7b34f39d840541cb5d10deb0fac79f029640866ebc0c0acd61dc5dfd5eea6"
       }
+    },
+    {
+      "id": "algerian-cotroneo-2019-regional-width",
+      "current_id": "algerian",
+      "name": "Algerian Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_regional_summary",
+      "width_metric": "author_reported_current_width",
+      "approximate_width_km": null,
+      "width_range_km": [
+        30,
+        50
+      ],
+      "range_kind": "reported_typical_regional_width_span",
+      "range_interpretation": "One reported regional along-slope width span; not annual extrema, a confidence interval, three autumn observations or a selected midpoint.",
+      "geographic_scope": "Eastward along-slope Atlantic Water flow along the Algerian coast after leaving the Alboran Sea; no exact longitudinal terminal gates or paired width edges supplied.",
+      "section_geometry": null,
+      "section_orientation": "No reproducible transverse section endpoints supplied for the introductory width description.",
+      "layer": "Surface Atlantic Water regional flow; numerical width layer unresolved. Dataset sampling down to 975 m is not assigned as a width layer.",
+      "time_convention": "Regional background synthesis in a 2019 article; no width occupation dates or calendar supplied. Autumn 2014-2016 describes the separate ABACUS survey dataset.",
+      "boundary_rule": "Author-reported regional span, citing Testor et al. (2005). No paired edge positions or velocity cutoff extracted.",
+      "source_url": "https://essd.copernicus.org/articles/11/147/2019/",
+      "source_citation": "Cotroneo, Aulicino, Ruiz, Sanchez Roman, Torner Tomas, Pascual, Fusco, Heslop, Tintore and Budillon (2019), Glider data collected during the Algerian Basin Circulation Unmanned Survey, Earth System Science Data 11, 147-161, doi:10.5194/essd-11-147-2019.",
+      "source_locator": "Section 1 Introduction, printed p148 (PDF page 2), left column paragraph beginning with the Alboran Sea departure and citing Testor et al. (2005).",
+      "source_retrieved_date": "2026-10-08",
+      "source_evidence_kind": "published_original_regional_background_synthesis",
+      "extraction_method": "Numerical span transcribed from inspected publisher original prose; no glider, image or velocity-field boundary digitization.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "phase_label": "Regional along-slope background synthesis",
+      "phase_kind": "regional_summary",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "uncertainty_km": null,
+      "source_quality_note": "Original publisher PDF and p148 visually inspected. Introductory width cites prior work, not an ABACUS width calculation. Underlying Testor et al. boundary method remains unreviewed.",
+      "remaining_gates": [
+        "Review the underlying width citation and paired boundary method.",
+        "Obtain compatible repeat sections before monthly or annual variation.",
+        "Independent scientific admission."
+      ],
+      "original_regional_context": {
+        "full_original_inspected": true,
+        "underlying_width_source": "Testor et al. (2005), cited in section 1",
+        "underlying_width_methods_reviewed": false,
+        "survey_years_are_width_occupations": false,
+        "survey_depth_is_width_layer": false,
+        "LIW_depth_is_width_layer": false,
+        "eddy_diameter_is_current_width": false,
+        "span_is_annual_range": false,
+        "boundary_coordinates_extracted": false,
+        "protocol_file": "plans/algerian-regional-width-protocol-v1.md",
+        "protocol_sha256": "e19cf5ac14c488820940035164fde4185138b777b4e389313d28737317617789",
+        "audit_file": "research/algerian-cotroneo-2019-regional-width-scope-audit.json",
+        "audit_sha256": "417252a69db47dd73f102c06408807ed43c14acc6fa6c81470ca8141aba3c600"
+      }
     }
   ],
   "current_decisions": [
@@ -6327,12 +6387,14 @@
     {
       "current_id": "algerian",
       "name": "Algerian Current",
-      "width_decision": "width_not_assessed",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "algerian-cotroneo-2019-regional-width"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
-      "existing_evidence_locator": null,
-      "existing_evidence_source_url": null
+      "next_action": "Review cited width methods and obtain compatible dated paired boundaries; introductory regional span is not autumn glider width or annual variation.",
+      "existing_evidence_locator": "Section 1 Introduction, printed p148 (PDF page 2), left column paragraph beginning with the Alboran Sea departure and citing Testor et al. (2005).",
+      "existing_evidence_source_url": "https://essd.copernicus.org/articles/11/147/2019/"
     },
     {
       "current_id": "balearic",

@@ -26,6 +26,7 @@ mod norkyst_data;
 mod object_plot;
 mod object_view;
 mod observed_sections;
+mod original_regional_widths;
 mod planning;
 mod proposed_widths;
 mod rebase;
