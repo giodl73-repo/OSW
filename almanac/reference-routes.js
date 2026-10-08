@@ -145,6 +145,8 @@
       const action = node("td", row.next_action, tr);
       const derived=value.derived_width_series_candidates?.find(candidate=>candidate.current_id===row.current_id);
       if(derived)link("Inspect derived section-width candidate",derived.visual_url||"../"+derived.file,node("p",null,action));
+      const span=value.section_span_diagnostics?.find(diagnostic=>diagnostic.current_id===row.current_id);
+      if(span){node("p",span.scope_note,action);link("Map dated component spans",span.visual_url,node("p",null,action));}
       const review = value.review_assessments?.find(review => review.current_id === row.current_id);
       if (review) {
         node("p", review.reason, action);
@@ -155,7 +157,7 @@
       }
     }
     const counts = value.counts;
-    byId("width-status").textContent = `${counts.measurements} scoped width records for ${counts.currents_with_scoped_width_evidence} of ${counts.currents} currents; ${counts.currents_with_existing_mentions_pending_review} have existing mentions pending source review; ${counts.currents_with_derived_width_candidates_pending_review} have derived section-width series pending scientific review; ${counts.currents_with_sources_reviewed_no_numeric_width} reviewed without a comparable numeric current width; ${counts.currents_not_assessed} not yet assessed. No annual whole-current widths admitted.`;
+    byId("width-status").textContent = `${counts.measurements} scoped width records for ${counts.currents_with_scoped_width_evidence} of ${counts.currents} currents; ${counts.currents_with_existing_mentions_pending_review} have existing mentions pending source review; ${counts.currents_with_derived_width_candidates_pending_review} have derived section-width series pending scientific review; ${counts.currents_with_sources_reviewed_no_numeric_width} reviewed without a comparable numeric current width; ${counts.currents_with_section_span_diagnostics_width_unresolved} have component-span diagnostics with width unresolved; ${counts.currents_not_assessed} not yet assessed. No annual whole-current widths admitted.`;
     return value;
   }).catch(error => { byId("width-status").textContent = `Width evidence unavailable: ${error.message}`; return null; });
   const seasonalRoutesReady = load("../research/ocean-current-seasonal-route-frames.json").catch(() => ({frames:[]}));

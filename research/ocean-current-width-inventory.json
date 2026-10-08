@@ -10,9 +10,10 @@
     "currents_with_scoped_width_evidence": 46,
     "measurements": 90,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 47,
+    "currents_not_assessed": 46,
     "currents_with_derived_width_candidates_pending_review": 2,
-    "currents_with_sources_reviewed_no_numeric_width": 5
+    "currents_with_sources_reviewed_no_numeric_width": 5,
+    "currents_with_section_span_diagnostics_width_unresolved": 1
   },
   "measurements": [
     {
@@ -6123,11 +6124,11 @@
     {
       "current_id": "loop",
       "name": "Loop Current",
-      "width_decision": "width_not_assessed",
+      "width_decision": "section_span_diagnostic_present_width_unresolved",
       "measurement_ids": [],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
-      "existing_evidence_locator": null,
+      "next_action": "Review the existing dated component spans, then obtain flow-normal width evidence with paired boundaries, declared layer and sampling period. Whole-current and annual widths remain unknown.",
+      "existing_evidence_locator": "plans/loop-current-section-span-protocol-v1.md",
       "existing_evidence_source_url": null
     },
     {
@@ -7198,6 +7199,29 @@
           "citation": "Peters et al. (2005), doi:10.1175/JPO2679.1",
           "locator": "Abstract; sections 2, 3a and 5a.",
           "supports": "Channel description and winter velocity-supported reach; spanwise plume structure left for separate analysis."
+        }
+      ]
+    }
+  ],
+  "section_span_diagnostics": [
+    {
+      "current_id": "loop",
+      "status": "local_component_section_diagnostic_requires_scientific_review",
+      "metric": "zonal_half_peak_northward_velocity_section_span",
+      "whole_current_width_km": null,
+      "annual_width_range_km": null,
+      "width_rank_eligible": false,
+      "annual_extrema_eligible": false,
+      "visual_url": "query.html?q=%7B%22collection%22%3A%22width_samples%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22loop%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22observation_date%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A100%7D#query-map-section",
+      "scope_note": "Fixed Yucatan-gate northward-component spans at 21.875 N. Not flow-normal widths or whole-current dimensions; five recorded days per product do not establish seasonal or annual ranges. Products can share altimetry observations.",
+      "sources": [
+        {
+          "file": "research/loop-current-noaa-section-spans.json",
+          "sha256": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2"
+        },
+        {
+          "file": "research/loop-current-adt-section-spans.json",
+          "sha256": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
         }
       ]
     }
