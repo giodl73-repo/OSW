@@ -9,7 +9,7 @@ def test_original_radius_definitions_and_scope():
         bad=copy.deepcopy(doc);bad['measurements'][0][key]=value
         with pytest.raises(ValueError):validate(bad,geo)
 
-def test_compiled_loader_rejects_coherent_scope_rewrites(tmp_path):
+def check_compiled_loader_rejects_coherent_scope_rewrites(tmp_path):
     bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
     cli=CLI
     for key,value in [('metric','outer_footprint_radius'),('footprint_inference_eligible',True),('value_km',240)]:

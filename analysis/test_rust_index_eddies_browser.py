@@ -126,6 +126,9 @@ def main():
             assert [r['record']['value_km'] for r in expected['rows']]==[120,140]
             assert not errors,errors
             browser.close()
+    from test_astrid_radial_scales import check_compiled_loader_rejects_coherent_scope_rewrites
+    scratch=ROOT/'.pytest_cache/astrid-native-gate';scratch.mkdir(exist_ok=True)
+    check_compiled_loader_rejects_coherent_scope_rewrites(scratch)
     print('PASS: 96 Loop/35 geography source records and joins; all 136 inventory identities, six native/WASM views, family/map/inventory navigation, rapid search and mobile layout')
 
 
