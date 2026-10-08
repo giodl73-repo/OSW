@@ -40,6 +40,9 @@ def build():
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from check_current_width_inventory import validate
     validate(widths,read('research/ocean-current-almanac.json'))
+    read('research/guinea-djakoure-2017-model-width-source-review.json');read('research/source-data/djakoure-guinea-2017/acquisition.json')
+    for path in ['research/source-data/djakoure-guinea-2017/journal-article.pdf','plans/guinea-model-regional-width-protocol-v1.md','analysis/check_guinea_model_width.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     routes=read('research/ocean-current-reference-path-candidates.json')
     for record in widths['measurements']:
         if record.get('extraction_file'):

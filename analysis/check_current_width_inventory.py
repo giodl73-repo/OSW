@@ -21,6 +21,9 @@ def validate(document, ledger):
     by_id = {row["id"]: row for row in records}
     hydrographic_extraction = None
     for row in records:
+        if row.get("model_regional_context") or row["current_id"] == "guinea":
+            from check_guinea_model_width import validate_row
+            validate_row(row)
         if row.get("source_scope_context") or row["current_id"] in {"california","oyashio"}:
             from check_abstract_regional_widths import validate_row
             validate_row(row)
@@ -462,6 +465,9 @@ def validate(document, ledger):
             audit=json.loads(path.read_text(encoding='utf-8'))
             if (row['current_id'],value,row['source_url'],row['source_locator'],row['boundary_rule'])!=(audit['current_id'],audit['reported_width_km_approx'],audit['source_url'],audit['source_locator'],audit['boundary_rule']):
                 raise ValueError('Regional scalar differs from pinned source extraction')
+        elif row['phase_kind'] == 'model_regional_width_summary':
+            from check_guinea_model_width import validate_row
+            validate_row(row)
         elif row['phase_kind'] == 'regional_summary':
             if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] != 'author_reported_current_width' or row['observed_period'] is not None or row.get('calendar_months') is not None or span is None:
                 raise ValueError('Conflated regional range support')

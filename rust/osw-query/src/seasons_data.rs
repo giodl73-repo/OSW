@@ -196,6 +196,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
                 adcp_width_scope(row)?;
                 crate::stream_tube_widths::validate(row)?;
                 crate::somali_width::validate(row)?;
+                crate::guinea_width::validate(row)?;
                 crate::abstract_regional_widths::validate(row)?;
                 norwegian_coastal_width_scope(row)?;
             }

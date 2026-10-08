@@ -1,6 +1,6 @@
 {
   "schema": "osw.guinea-width-source-review.v1",
-  "status": "original_review_complete_inventory_admission_pending",
+  "status": "editorial_original_review_extraction_scientific_review_pending",
   "current_id": "guinea",
   "source_citation": "Djakoure, S., Penven, P., Bourles, B., Kone, V., and Veitch, J. (2017). Respective Roles of the Guinea Current and Local Winds on the Coastal Upwelling in the Northern Gulf of Guinea. Journal of Physical Oceanography 47, 1367-1387. doi:10.1175/JPO-D-16-0126.1",
   "source_url": "https://archimer.ifremer.fr/doc/00391/50248/69638.pdf",
@@ -84,9 +84,78 @@
     }
   ],
   "remaining_steps": [
-    "Add a source-specific model regional scalar convention and strict Python/Rust audit binding.",
-    "Add the scoped row, update source/index/query/dashboard receipts and visualize a point with unknown numerical uncertainty; retain model support explicitly.",
-    "Resolve top-cell support and figure caption discrepancy before edge digitization or geographical footprint.",
-    "Independent scientific review and protected-main publication."
-  ]
+    "Resolve top-cell depth and figure-label conflict before edge digitization.",
+    "Obtain compatible monthly or dated paired-boundary widths.",
+    "Independent scientific admission and protected-main publication."
+  ],
+  "protocol_file": "plans/guinea-model-regional-width-protocol-v1.md",
+  "protocol_sha256": "10fc2a7ad5855a266e9a7b1d2f21dc74d957f8b7dba968ad3db4472f9cf7df29",
+  "measurement": {
+    "id": "guinea-djakoure-2017-reference-mean-regional-width",
+    "current_id": "guinea",
+    "name": "Guinea Current",
+    "status": "editorial_source_extraction_not_canonical",
+    "measurement_type": "published_model_regional_prose_width",
+    "width_metric": "author_reported_regional_width_of_annual_mean_reference_model_surface_flow",
+    "width_metric_label": "Regional annual-mean reference-model width",
+    "approximate_width_km": 200,
+    "width_range_km": null,
+    "range_interpretation": "One approximate regional model-mean width; numerical uncertainty and monthly/annual extrema unresolved. The separate theoretical 210 km inertial scale is not a width bound.",
+    "geographic_scope": "Northern Gulf of Guinea: eastward surface current between 2 N and African coast; no paired geographic edges extracted.",
+    "section_geometry": null,
+    "section_orientation": "No paired transverse section endpoints extracted; published regional model comparison prose.",
+    "layer": "Surface velocity field; numerical top-cell depth unextracted. Introductory 30-40 m thickness is not assigned as a width layer.",
+    "time_convention": "Reference model years 5-10, from a ten-year climatologically forced ROMS integration. Model years are not calendar years; annual mean is not an annual width minimum/maximum.",
+    "boundary_rule": "Approximate width reported in model comparison prose; cutoff and paired section boundaries unextracted.",
+    "source_url": "https://archimer.ifremer.fr/doc/00391/50248/69638.pdf",
+    "source_citation": "Djakoure, S., Penven, P., Bourles, B., Kone, V., and Veitch, J. (2017). Respective Roles of the Guinea Current and Local Winds on the Coastal Upwelling in the Northern Gulf of Guinea. Journal of Physical Oceanography 47, 1367-1387. doi:10.1175/JPO-D-16-0126.1",
+    "source_locator": "printed p1379, section 3c(2), first paragraph; Figure 1d context in section 3a(1), pp1371-1372",
+    "source_retrieved_date": "2026-10-08",
+    "source_evidence_kind": "published_reference_model_regional_mean",
+    "extraction_method": "Approximate width transcribed from inspected original p1379 prose; no figure, contour or model-field digitization.",
+    "whole_current_representative": false,
+    "width_rank_eligible": false,
+    "full_width_inference_eligible": false,
+    "annual_extrema_eligible": false,
+    "seasonal_playback_eligible": false,
+    "is_confidence_interval": false,
+    "phase_label": "Regional annual-mean reference model",
+    "phase_kind": "model_regional_width_summary",
+    "observed_period": null,
+    "calendar_months": null,
+    "fixed_layer_bounds_m": null,
+    "uncertainty_km": null,
+    "remaining_gates": [
+      "Resolve top-cell depth and model figure caption conflict before edge digitization.",
+      "Acquire compatible repeated regional boundaries before monthly/annual variation.",
+      "Independent scientific admission."
+    ],
+    "source_quality_note": "Original institutionally hosted publisher article inspected. Figure 1 caption calls model panels idealized while section 3a(1) calls them reference; width retained from explicit p1379 reference-experiment prose.",
+    "model_regional_context": {
+      "model": {
+        "parent_resolution_degrees": 0.2,
+        "child_resolution_degrees": 0.06666666666666667,
+        "ten_year_climatological_integration": true,
+        "analysis_model_years": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "calendar_dates": null
+      },
+      "theoretical_inertial_scale_is_width_bound": false,
+      "model_years_are_calendar_years": false,
+      "annual_mean_is_annual_extrema": false,
+      "introduction_thickness_is_fixed_width_layer": false,
+      "velocity_maximum_is_boundary_cutoff": false,
+      "boundary_coordinates_extracted": false,
+      "figure_caption_conflict_resolved": false,
+      "full_original_inspected": true,
+      "protocol_file": "plans/guinea-model-regional-width-protocol-v1.md",
+      "protocol_sha256": "10fc2a7ad5855a266e9a7b1d2f21dc74d957f8b7dba968ad3db4472f9cf7df29"
+    }
+  }
 }
