@@ -21,7 +21,7 @@ def without_state_join(page):
 def main():
     bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
     native=json.loads(subprocess.check_output([str(CLI),str(ROOT/'almanac/query-data.json'),'--atlas'],encoding='utf-8'))
-    assert native['state_join_available'] and len(native['sources_json'])==78
+    assert native['state_join_available'] and len(native['sources_json'])==79
     for path,raw in native['sources_json'].items():assert raw==(ROOT/path).read_bytes().decode('utf-8'),path
     report=bundle['collections']['reference_routes'][0]['candidate_file']
     with tempfile.TemporaryDirectory() as directory:
@@ -122,6 +122,6 @@ def main():
         assert failed.locator('.route-card').count()==0
         assert failed.locator('#route-atlas-select option').count()==1
         browser.close()
-    print('PASS: 78 exact atlas source documents, eighteen loader rejections, native/WASM parity, 100 current/140 eddy selectors, 63 cards, no direct source reads, mobile and optional/unavailable data')
+    print('PASS: 79 exact atlas source documents, eighteen loader rejections, native/WASM parity, 100 current/140 eddy selectors, 63 cards, no direct source reads, mobile and optional/unavailable data')
 
 if __name__=='__main__':main()

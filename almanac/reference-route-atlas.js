@@ -430,6 +430,8 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
         : 'Source geography locator; this point does not establish an eddy footprint or trajectory.';
       byId('route-atlas-status').textContent=`${eddy.label} · ${kind}${changed(eddy)?' '+changeDescription(eddy):''}`;
       const panel=preview(eddy.label);paragraph(panel,kind);
+      const radial=sources['research/astrid-2000-radial-scale-scope-audit.json'];
+      if(radial?.entity_id===eddy.id)window.renderEddyRadialScales(panel,radial);
       const map=document.createElementNS(ns,'svg');map.classList.add('route-atlas-eddy-map');map.setAttribute('viewBox',view.join(' '));map.setAttribute('role','img');map.setAttribute('aria-label',`${eddy.label} · ${kind}`);panel.append(map);
       map.classList.toggle('updated',changed(eddy));
       if(changed(eddy))paragraph(panel,changeDescription(eddy));

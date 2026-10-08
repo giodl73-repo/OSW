@@ -103,6 +103,27 @@ def main():
             assert page.evaluate('oswIndexEddyViews.geography.rows')==oracle('geography','sitka')
             page.set_viewport_size({'width':320,'height':800})
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.locator('#eddy-geography-search').fill('Astrid')
+            page.wait_for_function("oswIndexEddyViews.geography.text==='Astrid'",timeout=90000)
+            chart=page.locator('#eddy-geography-astrid-2000 .eddy-radial-scales svg')
+            assert '120 km maximum-speed radius' in chart.locator('text').all_text_contents()
+            assert '140 km integration limit' in chart.locator('text').all_text_contents()
+            assert 'not a seasonal range' in chart.get_attribute('aria-label')
+            assert chart.locator('text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=eddy%3Ageography%3Aastrid-2000#route-atlas',wait_until='networkidle')
+            chart=page.locator('#route-atlas-preview .eddy-radial-scales svg');chart.wait_for(state='visible',timeout=90000)
+            assert chart.locator('text').evaluate_all('(es)=>es.every(e=>{const b=e.getBoundingClientRect(),s=e.ownerSVGElement.getBoundingClientRect();return b.left>=s.left && b.right<=s.right})')
+            assert chart.locator('text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
+            assert 'closed footprint' in page.locator('#route-atlas-preview .eddy-radial-scales').inner_text()
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            chart.screenshot(path=str(ROOT/'.pytest_cache/astrid-radial-scales-mobile.png'))
+            page.locator('#route-atlas-preview .eddy-radial-scales a').click()
+            page.wait_for_function('window.oswSourceQueryResult?.rows.length===2',timeout=90000)
+            request={'document':'research/astrid-2000-radial-scale-scope-audit.json','pointer':'/measurements','limit':10}
+            expected=json.loads(subprocess.check_output([str(CLI),'--index',str(packet),'-'],input=json.dumps(request),encoding='utf8'))
+            assert page.evaluate('oswSourceQueryResult')==expected
+            assert [r['record']['value_km'] for r in expected['rows']]==[120,140]
             assert not errors,errors
             browser.close()
     print('PASS: 96 Loop/35 geography source records and joins; all 136 inventory identities, six native/WASM views, family/map/inventory navigation, rapid search and mobile layout')

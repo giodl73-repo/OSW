@@ -360,7 +360,12 @@ def build():
     read(AUDIT);read(ACQUISITION)
     inputs[SOURCE]=hashlib.sha256((ROOT/SOURCE).read_bytes()).hexdigest()
     inputs['analysis/check_norwegian_atlantic_branch_widths.py']=hashlib.sha256((ROOT/'analysis/check_norwegian_atlantic_branch_widths.py').read_bytes()).hexdigest()
-    atlas_paths=['research/ocean-current-inventory-expansion-candidates.json',
+    from check_astrid_radial_scales import validate as validate_astrid
+    validate_astrid(read('research/astrid-2000-radial-scale-scope-audit.json'),read('research/named-eddy-geography.json'))
+    read('research/source-data/van-aken-astrid-2003/acquisition.json')
+    for path in ['research/source-data/van-aken-astrid-2003/journal-article.pdf','analysis/check_astrid_radial_scales.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    atlas_paths=['research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
                  'research/ocean-current-reference-route-state-join.json',
                  'research/ocean-current-dated-timeline-2025.json',
                  'research/ocean-current-dated-timeline.json',

@@ -2,6 +2,7 @@ use serde::Deserialize;
 use serde_json::{Value, json};
 use std::collections::{BTreeMap, BTreeSet};
 mod abstract_regional_widths;
+mod astrid_scales;
 mod atlas_data;
 pub mod cartography;
 mod charts;

@@ -137,6 +137,9 @@ def build():
         or antilles_sections.get('width_rank_eligible') is not False or antilles_sections.get('seasonal_playback_eligible') is not False):
         raise ValueError('Antilles section diagnostic must preserve scoped, unadmitted evidence and inventory checksum')
     eddy_geography = {e['id']: e for e in read('research/named-eddy-geography.json')['entries']}
+    astrid_audit=read('research/astrid-2000-radial-scale-scope-audit.json')
+    from check_astrid_radial_scales import validate as validate_astrid
+    validate_astrid(astrid_audit, {'entries':list(eddy_geography.values())})
     from build_black_sea_eddy_recurrence import validate as validate_recurrence
     recurrence_document=read('research/black-sea-eddy-recurrence.json')
     validate_recurrence(recurrence_document)
@@ -370,6 +373,10 @@ def build():
             url = 'query.html?q=' + quote(json.dumps(query,separators=(',',':')),safe='')
             if record_id: url += '&inspect=' + quote(record_id,safe='')
             evidence_links.append({'label':label,'url':url})
+        if ident == astrid_audit['entity_id']:
+            payload['radial_scale_evidence']=astrid_audit
+            groups['measurements'].append(astrid_audit['measurements'])
+            groups['sources'].append(astrid_audit)
         if ident in recurrence:
             payload['eddy_recurrence']=recurrence[ident]
             query_link('Inspect published occurrence and event lifetime', 'eddy_recurrence', recurrence[ident]['id'])
