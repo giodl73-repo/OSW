@@ -46,6 +46,9 @@ def build():
     read('research/algerian-cotroneo-2019-regional-width-scope-audit.json');read('research/source-data/cotroneo-algerian-2019/acquisition.json')
     for path in ['research/source-data/cotroneo-algerian-2019/journal-article.pdf','plans/algerian-regional-width-protocol-v1.md','analysis/check_original_regional_widths.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/alaska-weingartner-2002-regional-width-scope-audit.json');read('research/source-data/weingartner-alaska-2002/acquisition.json')
+    for path in ['research/source-data/weingartner-alaska-2002/journal-article.pdf','plans/alaska-regional-width-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     routes=read('research/ocean-current-reference-path-candidates.json')
     for record in widths['measurements']:
         if record.get('extraction_file'):

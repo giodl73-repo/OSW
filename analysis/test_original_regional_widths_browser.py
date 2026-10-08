@@ -54,10 +54,41 @@ def main():
         page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)))
         page.wait_for_function('window.oswLastQueryResult?.rows.length===1',timeout=90000)
         assert page.evaluate('oswLastQueryResult')==expected
+        page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=alaska&phase=alaska-weingartner-2002-regional-width')
+        page.wait_for_function('window.oswSeasonPlan?.current_id==="alaska"',timeout=90000)
+        assert page.locator('#season-title').inner_text()=='Regional width summary'
+        assert '300 km' in page.locator('#season-value').inner_text()
+        chart=page.locator('#regional-width-range .original-regional-width svg')
+        assert chart.locator('circle').count()==1 and chart.locator('line').count()==1
+        assert chart.locator('text').all_text_contents()==['≈ 300 km','0 km','325 km']
+        assert 'No width range supplied' in chart.get_attribute('aria-label')
+        assert page.locator('#season-play').is_disabled() and page.evaluate('oswSeasonPlan.eligible_indices')==[]
+        assert page.locator('#season-section-locator').is_hidden()
+        assert page.locator('#season-bar').evaluate('(e)=>e.parentElement.hidden')
+        page.set_viewport_size({'width':320,'height':800})
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        assert chart.locator('text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
+        assert chart.locator('text').evaluate_all('(es)=>es.every(e=>{const b=e.getBoundingClientRect(),s=e.ownerSVGElement.getBoundingClientRect();return b.left>=s.left && b.right<=s.right})')
+        page.locator('#regional-width-range').screenshot(path=str(ROOT/'.pytest_cache/alaska-regional-width-mobile.png'))
+        page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Aalaska#route-atlas')
+        chart=page.locator('#route-atlas-preview .original-regional-width svg');chart.wait_for(state='visible',timeout=90000)
+        assert chart.locator('circle').count()==1 and chart.locator('line').count()==1
+        page.locator('#route-atlas-preview .original-regional-width a').click()
+        page.wait_for_function('window.oswSourceQueryResult?.ok',timeout=90000)
+        request={'document':'research/alaska-weingartner-2002-regional-width-scope-audit.json','pointer':'/measurement','limit':50}
+        with tempfile.TemporaryDirectory(dir=ROOT/'.pytest_cache') as directory:
+            packet=Path(directory)/'index.json';packet.write_bytes(gzip.decompress((ROOT/'almanac/index-data.json.gz').read_bytes()))
+            source_expected=json.loads(subprocess.check_output([str(CLI),'--index',str(packet),'-'],input=json.dumps(request),encoding='utf8'))
+            assert page.evaluate('oswSourceQueryResult')==source_expected
+        query={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'alaska'}],'limit':100}
+        expected=native(query)
+        page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)))
+        page.wait_for_function('window.oswLastQueryResult?.rows.length===1',timeout=90000)
+        assert page.evaluate('oswLastQueryResult')==expected
         assert not errors,errors
         browser.close()
     scratch=ROOT/'.pytest_cache/algerian-native-gate';scratch.mkdir(exist_ok=True)
     check_compiled_original_scope(scratch)
-    print('PASS: Algerian regional synthesis, no midpoint or survey-date/depth inference, mobile chart, cleanup, source query and native/WASM scope guards')
+    print('PASS: Algerian span and Alaska approximate point, no survey/forcing support inference, mobile charts, cleanup, source queries and native/WASM scope guards')
 
 if __name__=='__main__':main()

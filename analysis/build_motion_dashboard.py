@@ -140,6 +140,7 @@ def build():
     somali_width_audit=read('research/somali-schott-2001-premonsoon-width-scope-audit.json')
     guinea_width_audit=read('research/guinea-djakoure-2017-model-width-source-review.json')
     algerian_width_audit=read('research/algerian-cotroneo-2019-regional-width-scope-audit.json')
+    alaska_width_audit=read('research/alaska-weingartner-2002-regional-width-scope-audit.json')
     astrid_audit=read('research/astrid-2000-radial-scale-scope-audit.json')
     from check_astrid_radial_scales import validate as validate_astrid
     validate_astrid(astrid_audit, {'entries':list(eddy_geography.values())})
@@ -442,11 +443,12 @@ def build():
             groups['sources']=[groups['sources'],own_width_audits]
             groups['measurements'].append(own_width_audits)
             groups['time_evidence'].append(own_width_audits)
-        if current_id == 'algerian':
-            payload['original_regional_width_scope']=algerian_width_audit
-            groups['measurements'].append(algerian_width_audit)
-            groups['sources'].append(algerian_width_audit)
-            groups['time_evidence'].append(algerian_width_audit)
+        if current_id in {'algerian','alaska'}:
+            original_width_audit=algerian_width_audit if current_id=='algerian' else alaska_width_audit
+            payload['original_regional_width_scope']=original_width_audit
+            groups['measurements'].append(original_width_audit)
+            groups['sources'].append(original_width_audit)
+            groups['time_evidence'].append(original_width_audit)
         if current_id == 'guinea':
             payload['model_width_scope']=guinea_width_audit
             groups['measurements'].append(guinea_width_audit)
