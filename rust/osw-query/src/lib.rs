@@ -30,6 +30,7 @@ mod samples;
 mod seasonal;
 mod seasons_data;
 mod spatial;
+mod stream_tube_widths;
 mod svg;
 mod taxonomy;
 mod temporal;
