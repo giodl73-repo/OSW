@@ -57,6 +57,6 @@ def main():
         failures=page.evaluate('(requests)=>requests.map(r=>{try{window.oswCartography(r);return null}catch(e){return e.message}})',invalid)
         assert all(failures)
         assert not errors,errors;browser.close()
-    print(f'PASS: {len(requests)} unique source geometry requests covering 62 reports and all atlas features; independent projection/fit, native/WASM equality, seam breaks and five invalid requests')
+    print(f'PASS: {len(requests)} unique source geometry requests covering 63 reports and all atlas features; independent projection/fit, native/WASM equality, seam breaks and five invalid requests')
 
 if __name__=='__main__':main()

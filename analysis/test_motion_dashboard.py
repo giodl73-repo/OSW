@@ -121,7 +121,7 @@ class DashboardEvidenceTests(unittest.TestCase):
         self.assertEqual(aleutian['scope_notes'][0]['related_proposed_currents'], [
             {'id':'alaskan-stream','name':'Alaskan Stream'},
             {'id':'aleutian-north-slope','name':'Aleutian North Slope Current'}])
-        self.assertEqual(aleutian['capabilities']['reference_route'],0)
+        self.assertEqual(aleutian['capabilities']['reference_route'],1)
         self.assertEqual(aleutian['capabilities']['scoped_width'],0)
         self.assertNotIn('current:aleutian-north-slope',rows)
         notes_path=ROOT/'research/ocean-current-scope-notes.json'
@@ -227,7 +227,7 @@ class DashboardEvidenceTests(unittest.TestCase):
         self.assertEqual({c['predicate'] for c in result['connections']}, {'source_described_downstream_continuation', 'source_described_feeding_relation', 'source_described_branching_relation'})
         rows = {row['id']: row for row in result['entries']}
         self.assertEqual(rows['current:aleutian']['capabilities']['source_connectivity'], 3)
-        self.assertEqual(rows['current:aleutian']['capabilities']['reference_route'], 0)
+        self.assertEqual(rows['current:aleutian']['capabilities']['reference_route'], 1)
         self.assertIsNone(rows['current:aleutian']['latest_observation_date'])
         self.assertNotIn('current:alaskan-stream', rows)
         for connection in result['connections']:

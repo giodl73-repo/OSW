@@ -11,7 +11,7 @@ def main():
         page=browser.new_page(viewport={'width':1200,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto(BASE+'#route-atlas',wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll(".route-card").length===62');page.wait_for_timeout(100)
+        page.wait_for_function('document.querySelectorAll(".route-card").length===63');page.wait_for_timeout(100)
         seen=[]
         for decision in decisions:
             ident=decision['current_id'];page.locator('#route-atlas-select').select_option('current:'+ident)

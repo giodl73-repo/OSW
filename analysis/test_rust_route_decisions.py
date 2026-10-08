@@ -18,8 +18,8 @@ def main():
     originals={r['current_id']:r for r in source['remaining_current_decisions']}
     owners={r['id']:r for r in collections['objects']}
     assert {r['current_id'] for r in rows}==set(originals)
-    assert sum(r['candidate_count']==0 for r in rows)==30
-    assert sum(r['candidate_count'] for r in rows)==62
+    assert sum(r['candidate_count']==0 for r in rows)==29
+    assert sum(r['candidate_count'] for r in rows)==63
     for row in rows:
         assert row['source_decision']==originals[row['current_id']]
         assert sorted(row['route_ids'])==sorted(owners[row['entity_id']]['route_ids'])
@@ -36,7 +36,7 @@ def main():
     queries=[{'collection':'route_decisions','limit':100},
         {'collection':'route_decisions','filters':[{'field':'candidate_count','op':'eq','value':0}],'sort':{'field':'strategy_label'},'limit':100},
         {'collection':'route_decisions','filters':[{'field':'strategy_id','op':'eq','value':'split_basin_family'}],'limit':100}]
-    assert [native(q)['total'] for q in queries]==[89,30,8]
+    assert [native(q)['total'] for q in queries]==[89,29,8]
     # Loader rejects forged planner coverage, cross-owner joins and admission.
     with tempfile.TemporaryDirectory() as temporary:
         path=Path(temporary)/'bundle.json'
@@ -63,11 +63,11 @@ def main():
         page.goto('http://127.0.0.1:8788/almanac/query.html');page.wait_for_function('window.oswLastQueryResult',timeout=60000)
         for query in queries:assert browser_query(page,query)==native(query)
         page.locator('[data-preset="unbuilt-decisions"]').click()
-        expect(page.locator('#query-page')).to_contain_text('30 of 30')
+        expect(page.locator('#query-page')).to_contain_text('29 of 29')
         expect(page.locator('#query-decision-status')).to_have_value('reference_path_not_constructed')
         page.locator('#query-sort').select_option('label')
         page.evaluate('window.oswLastQueryResult=null');page.locator('#query-run').click()
-        page.wait_for_function('window.oswLastQueryResult?.total===30')
+        page.wait_for_function('window.oswLastQueryResult?.total===29')
         page.locator('#query-decision-strategy').select_option('seasonal_routes')
         page.evaluate('window.oswLastQueryResult=null');page.locator('#query-run').click()
         page.wait_for_function('window.oswLastQueryResult?.total===5')
@@ -100,6 +100,6 @@ def main():
         page.set_viewport_size({'width':320,'height':900})
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         assert not errors;browser.close()
-    print('PASS: all 89 route decisions; 30 unbuilt; eight families; 62 route references; source receipts and scope fidelity; seven loader rejection cases; native/WASM parity and keyboard/card/mobile navigation')
+    print('PASS: all 89 route decisions; 29 unbuilt; eight families; 63 route references; source receipts and scope fidelity; seven loader rejection cases; native/WASM parity and keyboard/card/mobile navigation')
 
 if __name__=='__main__':main()
