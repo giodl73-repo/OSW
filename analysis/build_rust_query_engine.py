@@ -23,6 +23,7 @@ def main():
     paths.append('rust/osw-query/src/dashboard_beck.rs')
     paths.append('rust/osw-query/src/seasons_data.rs')
     paths.append('rust/osw-query/src/object_view.rs')
+    paths.append('rust/osw-query/src/eddy_recurrence.rs')
     paths.append('rust/osw-query/src/object_plot.rs')
     paths.append('rust/osw-query/src/atlas_data.rs')
     paths.append('rust/osw-query/src/observed_sections.rs')
@@ -31,6 +32,7 @@ def main():
     paths.append('rust/osw-query/src/movies.rs')
     paths.append('rust/osw-query/src/model_sections.rs')
     paths.append('rust/osw-query/src/loop_recorded.rs')
+    paths.append('rust/osw-query/src/index_bifurcation.rs')
     paths.extend(['rust/osw-query/src/index_store.rs','rust/osw-query/src/index_noaa.rs','rust/osw-query/src/index_support.rs','rust/osw-query/src/index_map.rs','almanac/index-catalog.json','almanac/index-data.json.gz'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()

@@ -1,0 +1,157 @@
+"""Source range chart, no invented midpoint/annual cycle, native/WASM parity."""
+import copy, hashlib, json, os, subprocess
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+from test_rust_query_browser import native, CLI
+ROOT=Path(__file__).resolve().parents[1]
+
+def main():
+    inventory=json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())
+    identifier='black-sea-rim-korotaev-2011-regional-width-range'
+    query={'collection':'widths','filters':[{'field':'id','op':'eq','value':identifier}],'limit':10}
+    with sync_playwright() as p:
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'),headless=True)
+        page=browser.new_page(viewport={'width':1200,'height':950});errors=[]
+        page.on('pageerror',lambda e:errors.append(str(e)))
+        page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=black-sea-rim',wait_until='networkidle')
+        page.wait_for_function("document.querySelector('#regional-width-range').hidden===false")
+        assert page.locator('#season-title').inner_text()=='Regional width range'
+        assert '40–80 km' in page.locator('#season-value').inner_text()
+        assert 'No midpoint selected' in page.locator('#regional-width-range').inner_text()
+        assert 'Not annual extrema' in page.locator('#regional-width-range svg').get_attribute('aria-label')
+        assert page.locator('#regional-width-range svg text').all_text_contents()==['40 km','80 km','0 km','100 km']
+        assert 'not a fixed measurement layer' in page.locator('#season-definition').inner_text()
+        assert page.locator('#season-bar').evaluate('(e)=>e.parentElement.hidden')
+        assert page.locator('#season-section-locator').is_hidden()
+        assert page.locator('#season-play').is_disabled()
+        assert 'not available' in page.locator('#season-range').inner_text()
+        assert 'os-7-629-2011.pdf' in page.locator('#season-source a').get_attribute('href')
+        page.screenshot(path=str(ROOT/'.pytest_cache/black-sea-range-review.png'))
+        page.set_viewport_size({'width':320,'height':800})
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        page.locator('#regional-width-range').scroll_into_view_if_needed()
+        assert page.locator('#regional-width-range svg text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
+        page.screenshot(path=str(ROOT/'.pytest_cache/black-sea-range-mobile-review.png'))
+        # Switching removes stale range evidence; the earlier regional range also renders.
+        page.locator('#season-current').select_option('labrador')
+        assert page.locator('#regional-width-range').is_hidden()
+        page.locator('#season-current').select_option('gaspe')
+        assert '10–20 km' in page.locator('#regional-width-range').inner_text()
+        page.locator('#season-current').select_option('black-sea-rim')
+        page.locator('#season-atlas').click()
+        page.wait_for_function('document.querySelector("#route-atlas-select").value==="current:black-sea-rim"')
+        assert 'Black Sea Rim Current' in page.locator('#route-atlas-preview h3').inner_text()
+        assert '40–80' in page.locator('#width-'+identifier).inner_text()
+        assert page.locator('#width-rows tr').count()==len(inventory['measurements'])
+        from urllib.parse import quote
+        page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)),wait_until='networkidle')
+        page.wait_for_function('window.oswLastQueryResult?.rows?.length===1')
+        wasm=page.evaluate('window.oswLastQueryResult')
+        assert wasm['rows']==native(query)['rows']
+        row=wasm['rows'][0];assert row['width_range_km']==[40,80] and row['approximate_width_km'] is None
+        assert row['annual_extrema_eligible'] is False and row['section_geometry'] is None
+        assert len(inventory['measurements'])==79
+        # A mean offshore extent uses a distinct label and retains sampling metadata.
+        page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=mindanao-current',wait_until='networkidle')
+        page.wait_for_function("document.querySelector('#season-title').textContent==='Mean surface offshore extent'",timeout=90000)
+        assert '250–300 km reported offshore extent' in page.locator('#season-value').inner_text()
+        assert 'not a paired-boundary full width' in page.locator('#regional-width-range').inner_text()
+        assert 'mean surface offshore extent' in page.locator('#regional-width-range svg').get_attribute('aria-label')
+        assert page.locator('#regional-width-range svg text').evaluate_all('(es)=>es[0].getBoundingClientRect().right < es[1].getBoundingClientRect().left')
+        assert 'January 2014' in page.locator('#season-definition').inner_text()
+        assert page.locator('#season-bar').evaluate('(e)=>e.parentElement.hidden')
+        assert page.locator('#season-play').is_disabled()
+        assert page.locator('#season-section-locator').is_hidden()
+        assert 'not available' in page.locator('#season-range').inner_text()
+        assert 'not a fixed measurement layer' in page.locator('#season-definition').inner_text()
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        page.locator('#regional-width-range').scroll_into_view_if_needed()
+        page.screenshot(path=str(ROOT/'.pytest_cache/mindanao-extent-mobile.png'),full_page=True)
+        page.locator('#season-atlas').click()
+        page.wait_for_function('document.querySelector("#route-atlas-select").value==="current:mindanao-current"',timeout=90000)
+        assert 'offshore extent of mean surface flow' in page.locator('#width-mindanao-schonau-2015-mean-surface-offshore-extent').inner_text()
+        query={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'mindanao-current'}],'limit':10}
+        page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)),wait_until='networkidle')
+        page.wait_for_function('window.oswLastQueryResult?.rows?.length===1',timeout=90000)
+        wasm=page.evaluate('window.oswLastQueryResult');assert wasm==native(query)
+        row=wasm['rows'][0];assert row['width_range_km']==[250,300] and row['approximate_width_km'] is None
+        context=row['mean_offshore_context'];assert context['campaign_context_is_mean_sampling_interval'] is False
+        assert context['velocity_reference_depth_range_m']==[0,1000]
+        assert context['source_date_discrepancy']
+        page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=norwegian-coastal',wait_until='networkidle')
+        page.wait_for_function("document.querySelector('#season-title').textContent==='Regional width range'",timeout=90000)
+        assert '20–30 km' in page.locator('#season-value').inner_text()
+        assert 'Halten Bank' in page.locator('#season-definition').inner_text()
+        assert 'full original article and Fig. 1 remain unreviewed' in page.locator('#season-definition').inner_text()
+        assert 'no fixed measurement depth' in page.locator('#season-definition').inner_text()
+        assert page.locator('#regional-width-range svg text').all_text_contents()==['20 km','30 km','0 km','50 km']
+        assert page.locator('#regional-width-range svg text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
+        assert page.locator('#season-play').is_disabled()
+        assert page.locator('#season-section-locator').is_hidden()
+        assert page.locator('#season-bar').evaluate('(e)=>e.parentElement.hidden')
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        page.locator('#regional-width-range').scroll_into_view_if_needed()
+        page.screenshot(path=str(ROOT/'.pytest_cache/norwegian-coastal-width-mobile.png'),full_page=True)
+        page.locator('#season-atlas').click()
+        page.wait_for_function('document.querySelector("#route-atlas-select").value==="current:norwegian-coastal"',timeout=90000)
+        assert '20–30' in page.locator('#width-norwegian-coastal-saetre-1999-halten-regional-width').inner_text()
+        query={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'norwegian-coastal'}],'limit':10}
+        page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)),wait_until='networkidle')
+        page.wait_for_function('window.oswLastQueryResult?.rows?.length===1',timeout=90000)
+        wasm=page.evaluate('window.oswLastQueryResult');assert wasm==native(query)
+        assert wasm['rows'][0]['width_range_km']==[20,30] and wasm['rows'][0]['approximate_width_km'] is None
+        page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=agulhas-return',wait_until='networkidle')
+        page.wait_for_function("document.querySelector('#season-title').textContent==='ADCP crossing width · layer median'",timeout=90000)
+        assert '48 ±14 km' in page.locator('#season-value').inner_text()
+        assert page.locator('#regional-width-range svg circle').count()==4
+        assert 'Projection error is included already' in page.locator('#regional-width-range').inner_text()
+        assert 'acoustic Doppler current profiler' in page.locator('#regional-width-range').inner_text()
+        assert '1997 cruise' in page.locator('#season-value').inner_text()
+        assert page.locator('#regional-width-range svg text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
+        assert page.locator('#season-play').is_disabled()
+        assert page.locator('#season-section-locator').is_hidden()
+        assert page.locator('#season-bar').evaluate('(e)=>e.parentElement.hidden')
+        assert 'not a fixed-depth surface width' in page.locator('#season-definition').inner_text()
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        for index,(width,error) in enumerate([(48,14),(73,18),(78,18),(48,18)]):
+            page.locator('#season-phase').select_option(str(index))
+            assert f'{width} ±{error} km' in page.locator('#season-value').inner_text()
+        page.locator('#regional-width-range').scroll_into_view_if_needed()
+        page.screenshot(path=str(ROOT/'.pytest_cache/agulhas-return-adcp-mobile.png'),full_page=True)
+        page.locator('#season-atlas').click()
+        page.wait_for_function('document.querySelector("#route-atlas-select").value==="current:agulhas-return"',timeout=90000)
+        assert page.locator('.atlas-width-record').count()==4
+        assert '48 ±14 km source width and total error' in page.locator('.atlas-width-record').first.inner_text()
+        query={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'agulhas-return'}],'limit':10}
+        page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)),wait_until='networkidle')
+        page.wait_for_function('window.oswLastQueryResult?.total===4',timeout=90000)
+        wasm=page.evaluate('window.oswLastQueryResult');assert wasm==native(query)
+        assert [(r['approximate_width_km'],r['reported_total_error_km']) for r in wasm['rows']]==[(48,14),(73,18),(78,18),(48,18)]
+        assert all(r['width_range_km'] is None and r['adcp_threshold_context']['confidence_level'] is None for r in wasm['rows'])
+        assert not errors,errors
+        browser.close()
+    # Coherent source/row rewrites must still fail the shared Rust scope guard.
+    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    i=next(i for i,r in enumerate(bundle['collections']['widths']) if r['phase_kind']=='survey_layer_median_threshold_width')
+    for key,value in [('confidence_level',0.95),('projection_error_is_included_in_total',False),('depth_bin_range_is_fixed_width_layer',True)]:
+        bad=copy.deepcopy(bundle);bad['collections']['widths'][i]['adcp_threshold_context'][key]=value
+        receipt=bad['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json']);doc['measurements']=bad['collections']['widths']
+        receipt['source_json']=json.dumps(doc,ensure_ascii=False);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest()
+        bad['manifest']['input_sha256'][receipt['source_file']]=receipt['source_sha256']
+        path=ROOT/'.pytest_cache/adcp-scope-tampered.json';path.write_text(json.dumps(bad),encoding='utf8')
+        result=subprocess.run([str(CLI),str(path),'-'],input=json.dumps(query),capture_output=True,text=True,encoding='utf8')
+        assert result.returncode==2 and 'ADCP' in result.stderr,(key,result.stderr)
+    query={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'norwegian-coastal'}],'limit':10}
+    for key,value in [('approximate_width_km',25),('fixed_layer_bounds_m',[0,150]),('seasonal_playback_eligible',True),('width_range_km',[20,80])]:
+        bad=copy.deepcopy(bundle)
+        row=next(r for r in bad['collections']['widths'] if r['current_id']=='norwegian-coastal');row[key]=value
+        receipt=bad['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json'])
+        source=next(r for r in doc['measurements'] if r['current_id']=='norwegian-coastal');source[key]=value
+        receipt['source_json']=json.dumps(doc);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest()
+        bad['manifest']['input_sha256'][receipt['source_file']]=receipt['source_sha256']
+        path=ROOT/'.pytest_cache/norwegian-coastal-scope-tampered.json';path.write_text(json.dumps(bad),encoding='utf8')
+        result=subprocess.run([str(CLI),str(path),'-'],input=json.dumps(query),capture_output=True,text=True,encoding='utf8')
+        assert result.returncode==2 and 'Norwegian coastal' in result.stderr,(key,result.stderr)
+    print('OK: Norwegian coastal and Black Sea regional range, primary source, null midpoint, no seasonal/edge inference, responsive range/ADCP error charts, cleanup, native/WASM query parity and coherent ADCP scope rejection')
+
+if __name__=='__main__':main()

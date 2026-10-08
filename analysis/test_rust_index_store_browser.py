@@ -27,6 +27,14 @@ window.rpc = (action, value) => new Promise(resolve => {
 </script>'''
 
 
+def registered_sources():
+    registry=json.loads((ROOT/'almanac/index-sources.json').read_bytes())['documents']
+    assert len(registry)==len(set(registry)), 'Duplicate registered document'
+    seasonal=json.loads((ROOT/'research/noaa-munster-eddy-seasonal-manifest-2021-2023.json').read_bytes())
+    snapshots={(ROOT/'almanac'/r['path']).resolve().relative_to(ROOT).as_posix() for r in seasonal['snapshots']}
+    return set(registry)|snapshots|{'research/ocean-current-dated-timeline.json','research/ocean-current-dated-timeline-2025.json'}
+
+
 def main():
     catalog = json.loads((ROOT/'almanac/index-catalog.json').read_text(encoding='utf-8'))
     compressed = (ROOT/'almanac/index-data.json.gz').read_bytes()
@@ -34,7 +42,11 @@ def main():
     assert hashlib.sha256(compressed).hexdigest() == catalog['compressed_sha256']
     assert hashlib.sha256(payload).hexdigest() == catalog['bundle_sha256']
     bundle = json.loads(payload)
-    assert len(bundle['documents']) == catalog['source_count'] == 65
+    expected_sources=registered_sources()
+    assert set(bundle['documents'])==expected_sources
+    assert {r['path'] for r in catalog['documents']}==expected_sources
+    assert len(catalog['documents'])==len(expected_sources)
+    assert len(bundle['documents']) == catalog['source_count'] == len(expected_sources)
     for path, digest in catalog['input_sha256'].items():
         assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == digest, path
     for descriptor in catalog['documents']:
@@ -56,6 +68,9 @@ def main():
         {'document':'research/ocean-current-almanac.json','limit':5},
         {'document':'research/equatorial-basin-family-inventory-audit.json','pointer':'/proposed_members','limit':10},
         {'document':'research/ocean-current-inventory-expansion-candidates.json','pointer':'/entries','filters':[{'field':'record.parent_current_id','op':'eq','value':'south-equatorial'}],'limit':10},
+        {'document':'research/equatorial-bifurcation-endpoint-scope-audit.json','pointer':'/entries','limit':10},
+        {'document':'research/indian-sec-monthly-bifurcation-extraction.json','pointer':'/series','limit':10},
+        {'document':'research/pacific-nec-monthly-bifurcation-extraction.json','pointer':'/series/0/months','sort':{'field':'record.month','direction':'asc'},'limit':12},
     ]
     invalid = [
         {'document':'missing.json'},
@@ -85,6 +100,15 @@ def main():
         assert [row['record']['proposed_id'] for row in expected[4]['rows']] == ['atlantic-north-equatorial','pacific-north-equatorial','atlantic-south-equatorial','pacific-south-equatorial','indian-south-equatorial']
         assert expected[5]['total'] == 3
         assert all(row['record']['whole_current_length_km'] is None and row['record']['rank_eligible'] is False for row in expected[5]['rows'])
+        assert expected[6]['total'] == 2
+        assert expected[6]['rows'][0]['record']['reported_values'][1]['range'] == [11.5,12.5]
+        assert all(row['record']['current_width_km'] is None and row['record']['rank_eligible'] is False for row in expected[6]['rows'])
+        assert expected[7]['total'] == 2
+        assert expected[7]['rows'][0]['record']['months'][5]['approximate_latitude_degrees_north'] == -17.6
+        assert expected[7]['rows'][1]['record']['source_period'] is None
+        pacific=json.loads((ROOT/'research/pacific-nec-monthly-bifurcation-extraction.json').read_bytes())['series'][0]['months']
+        assert expected[8]['total']==12
+        assert expected[8]['rows']==[{'record':row,'source_key':str(i),'source_pointer':f'/series/0/months/{i}'} for i,row in enumerate(pacific)]
         # Independent scientific-source oracle, not a second Rust projection.
         source = json.loads(bundle['documents'][queries[1]['document']])['entries']
         matched = [(i,r) for i,r in enumerate(source) if 'CAMR' in r['contained_states']]
@@ -128,7 +152,7 @@ def main():
                 assert not failed.evaluate("q => rpc('query',q)", queries[0])['ok']
                 failed.close()
             browser.close()
-    print('PASS: 65 exact sources, 12 seasonal snapshots, independent NOAA oracle, native/WASM parity and checked-input failures')
+    print(f'PASS: {len(expected_sources)} exact sources, 12 seasonal snapshots, independent NOAA oracle, native/WASM parity and checked-input failures')
 
 
 if __name__ == '__main__':

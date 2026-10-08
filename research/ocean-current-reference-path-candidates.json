@@ -3,10 +3,10 @@
   "status": "editorial_candidates_not_canonical_length_admissions",
   "counts": {
     "currents_without_published_ranked_estimate": 89,
-    "currents_with_route_candidates": 59,
-    "currents_without_route_candidates": 30,
-    "route_candidates": 62,
-    "studied_reach_candidates": 23
+    "currents_with_route_candidates": 60,
+    "currents_without_route_candidates": 29,
+    "route_candidates": 63,
+    "studied_reach_candidates": 24
   },
   "comparison_rule": "Descending length of declared OSW reference routes only. Coherent jets, specified branches and source/region-defined extents differ in scope; their order is provisional and is not a uniform whole-current ranking. Studied reaches are excluded from the reference-route order. No number replaces the existing length evidence or published ranking.",
   "reference_route_length_order": [
@@ -106,7 +106,7 @@
         "description": "Aliases, source-dependent limits or proposed continuity need an explicit identity/extent decision. A regional candidate may use a declared convention meanwhile.",
         "next_action": "Read competing definitions, resolve aliases versus distinct flows, and retain source-convention routes without merging their extents.",
         "current_count": 16,
-        "unbuilt_count": 7
+        "unbuilt_count": 6
       },
       {
         "id": "layer_specific_route",
@@ -623,6 +623,43 @@
         "Independent review of the source-defined western origin, eastern termination and source-specific flow identity.",
         "Validate the editorial meander and regional waypoints against reproducible geographic or model geometry.",
         "Canonical claim/measurement/geometry and atlas interface integration; retain source-specific scope."
+      ],
+      "parent_current_id": null,
+      "parent_scope_note": null,
+      "ordering_sensitivity": null
+    },
+    {
+      "id": "aleutian-reach-reference-path-candidate",
+      "current_id": "aleutian",
+      "name": "Aleutian Current",
+      "status": "editorial_reference_path_candidate_not_scientifically_reviewed",
+      "comparison_group": "osw_studied_reach_routes",
+      "scope": "OSW regional eastward Subarctic/Aleutian reference reach, 175 E to 140 W, following the circulation convention in Favorite (1967) Figure 27. Gates truncate the schematic and are selected by OSW; they are not current origin or termination. Westward Alaskan Stream, West Wind Drift/North Pacific Current, Bering branches and downstream Alaska/California branches are excluded.",
+      "route_extent_kind": "Subarctic schematic regional reach",
+      "approximate_reference_path_km": 3300,
+      "scenario_range_km": [
+        2900,
+        3500
+      ],
+      "scenario_count": 108,
+      "source_url": "https://www.webapps.nwfsc.noaa.gov/assets/4/8131_09242014_161208_Favorite.1967-INPFC-Bull-21.pdf",
+      "source_locator": "Printed p. 2 Background (Aleutian/Subarctic naming); pp. 11-12 Relative Currents (eastward Subarctic versus westward Alaskan Stream); p. 19 Figure 27 schematic. Cited text pages read; Figure 27 visually inspected.",
+      "supporting_sources": [],
+      "candidate_file": "research/aleutian-reach-reference-path-candidate.json",
+      "candidate_sha256": "efbc4a4a87bb8daf3649a89706f667456b356a6173aa524d729ad4326b5e07d2",
+      "generator_sha256": "1362693ec7075e014d065691923248db455a5c3cd78c9a94880b3b472594d240",
+      "figure": "figures/aleutian-reach-reference-path-candidate.svg",
+      "nominal_atlas_state_crossings": [
+        "BERS",
+        "NPPF",
+        "PSAE"
+      ],
+      "recommended_nasa_tile_id": "level2_H_1",
+      "remaining_gates": [
+        "Review schematic identity against modern layer-compatible velocity fields and North Pacific Current naming.",
+        "Replace editorial waypoints with connected, sourced velocity-core geometry; diagnose upstream and downstream gates.",
+        "Resolve Bering and Alaska/California branches without adding overlapping components.",
+        "Acquire month/depth-resolved axes and paired boundaries before annual length or width ranges; no seasonal playback from this schematic."
       ],
       "parent_current_id": null,
       "parent_scope_note": null,
@@ -3417,15 +3454,17 @@
       "existing_length_evidence_status": "no_numeric_length",
       "existing_scope": "The meteorological glossary identifies this as the southern eastward limb of the North Pacific subpolar gyre, also called the Subarctic Current. Its mixing with the North Pacific Current and variable frontal boundary leave no source-defined whole-current length for this ledger.",
       "name_source_url": "https://glossary.ametsoc.org/wiki/aleutian-current/",
-      "candidate_ids": [],
-      "reference_path_decision": "reference_path_not_constructed",
+      "candidate_ids": [
+        "aleutian-reach-reference-path-candidate"
+      ],
+      "reference_path_decision": "editorial_candidate_present_scientific_review_pending",
       "published_length_rank_eligible": false,
       "ledger_kind": "eastward subpolar-gyre current",
       "route_strategy_id": "resolve_naming_scope",
       "route_strategy_label": "Resolve naming or extent convention",
       "planning_status": "editorial_planning_crosswalk_not_scientific_classification_approval",
       "planning_basis": "The meteorological glossary identifies this as the southern eastward limb of the North Pacific subpolar gyre, also called the Subarctic Current. Its mixing with the North Pacific Current and variable frontal boundary leave no source-defined whole-current length for this ledger.",
-      "next_action": "AMS naming review distinguishes eastward Aleutian/Subarctic Current from the proposed westward Alaskan Stream. Resolve Oyashio-interface and eastern bifurcation gates using suitable velocity/front evidence; no whole-current endpoints or route length admitted. Scope audit: research/aleutian-alaskan-stream-naming-scope-audit.json",
+      "next_action": "Review the existing editorial route against scientific gates; broader/system/family scope remains governed by the planning strategy.",
       "strategy_next_action": "Read competing definitions, resolve aliases versus distinct flows, and retain source-convention routes without merging their extents.",
       "known_component_currents": [],
       "component_inventory_status": "not_assessed_by_this_planning_crosswalk"
@@ -5240,7 +5279,7 @@
     "file": "plans/ocean-current-measurement-protocol-v1.md",
     "sha256": "83afac80f4b530c598f46d435e21d010927c129543675a1e6de440385c00145f",
     "audit_file": "research/ocean-current-measurement-protocol-audit.json",
-    "audit_sha256": "2e2e8394d72c64e9ad6d760c7fe76329dedb31395eed69a038cd81737b578777",
+    "audit_sha256": "fcb7d727bd0462293675adc9995aa78598bdc41cde78dbb431606c707ca25aa9",
     "status": "editorial_conformance_checks_passed_not_scientific_approval"
   }
 }

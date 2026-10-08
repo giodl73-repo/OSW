@@ -9,6 +9,8 @@ from pyproj import Geod
 ROOT = Path(__file__).resolve().parents[1]
 
 def validate(document, ledger):
+    if document.get('protocol_file')!='plans/ocean-current-width-measurement-protocol-v1.md' or document.get('protocol_sha256')!=hashlib.sha256((ROOT/'plans/ocean-current-width-measurement-protocol-v1.md').read_bytes()).hexdigest():
+        raise ValueError('Stale width measurement protocol')
     decisions = document["current_decisions"]
     ids = {row["id"] for row in ledger["entries"]}
     if len(decisions) != len(ids) or {row["current_id"] for row in decisions} != ids:
@@ -17,7 +19,17 @@ def validate(document, ledger):
     if len({row["id"] for row in records}) != len(records):
         raise ValueError("Duplicate width measurement")
     by_id = {row["id"]: row for row in records}
+    hydrographic_extraction = None
     for row in records:
+        if row.get('id') == 'norwegian-coastal-saetre-1999-halten-regional-width' or row.get('current_id') == 'norwegian-coastal':
+            audit_file = 'research/norwegian-coastal-saetre-1999-regional-width-scope-audit.json'
+            path = ROOT / audit_file
+            context = row.get('regional_range_context', {})
+            if context.get('audit_file') != audit_file or context.get('audit_sha256') != hashlib.sha256(path.read_bytes()).hexdigest():
+                raise ValueError('Stale Norwegian coastal regional width audit')
+            audit = json.loads(path.read_bytes())
+            if {k:v for k,v in row.items() if k != 'regional_range_context'} != audit['measurement'] or {k:v for k,v in context.items() if k not in ['audit_file','audit_sha256']} != audit['regional_range_context']:
+                raise ValueError('Norwegian coastal width differs from source range or scope')
         if row["current_id"] not in ids or row["status"] != "editorial_source_extraction_not_canonical" or row["whole_current_representative"] is not False or row["width_rank_eligible"] is not False:
             raise ValueError("Width admission or identity mismatch")
         value = row["approximate_width_km"]
@@ -37,6 +49,9 @@ def validate(document, ledger):
             elif row['phase_kind'] == 'seasonal_mean_width_range':
                 if value is not None or row.get('range_kind') != 'author_reported_width_span_of_seasonal_mean_section':
                     raise ValueError('Conflated seasonal mean width span or invented midpoint')
+            elif row['phase_kind']=='mean_offshore_extent_range':
+                if value is not None or row.get('range_kind')!='author_reported_approximate_offshore_extent_of_mean_surface_flow':
+                    raise ValueError('Offshore extent promoted to midpoint or temporal width')
             elif value is not None or row.get('range_kind') != 'reported_typical_regional_width_span' or row['phase_kind'] != 'regional_summary':
                 raise ValueError('Unsupported regional range or invented representative width')
         elif not isinstance(value, (float, int)) or isinstance(value, bool) or not math.isfinite(value) or value <= 0:
@@ -211,6 +226,18 @@ def validate(document, ledger):
             period = row['cruise_context_period']
             if date.fromisoformat(period['start']) > date.fromisoformat(period['end']):
                 raise ValueError('Reversed cruise context dates')
+        elif row['phase_kind']=='survey_layer_median_threshold_width':
+            context=row.get('adcp_threshold_context',{})
+            audit_file='research/agulhas-return-boebel-2003-adcp-width-scope-audit.json'
+            path=ROOT/audit_file
+            if context.get('audit_file')!=audit_file or context.get('audit_sha256')!=hashlib.sha256(path.read_bytes()).hexdigest():
+                raise ValueError('Stale ADCP threshold width audit')
+            audit=json.loads(path.read_bytes())
+            actual=dict(row)
+            actual['adcp_threshold_context']={k:v for k,v in context.items() if k not in ['audit_file','audit_sha256']}
+            expected=next((r for r in audit['measurements'] if r['id']==row['id']),None)
+            if actual!=expected:
+                raise ValueError('ADCP width differs from source table, error or layer-median support')
         elif row['phase_kind']=='survey_threshold_section':
             if (row['measurement_type'],row['width_metric'],row.get('boundary_sides'))!=('published_relative_velocity_section_span','relative_inner_jet_velocity_threshold_span','paired_relative_velocity_boundaries'):
                 raise ValueError('Conflated threshold section metric')
@@ -383,6 +410,28 @@ def validate(document, ledger):
                 raise ValueError('Invented Eulerian boundary extraction or layer')
             if (row['current_id'],value,row['source_url'],row['source_locator'],row['boundary_rule']) != (audit['current_id'],audit['reported_width_km_approx'],audit['source_url'],audit['source_locator'],audit['boundary_rule']):
                 raise ValueError('Eulerian span differs from pinned source extraction')
+        elif row['phase_kind'] == 'inverse_hydrographic_section_span':
+            from build_atlantic_cruise_widths import build, OUTPUT
+            if hydrographic_extraction is None:
+                hydrographic_extraction = build()
+                if json.loads((ROOT / OUTPUT).read_bytes()) != hydrographic_extraction:
+                    raise ValueError('Changed Atlantic cruise extraction; source review required')
+            expected = next((r for r in hydrographic_extraction['measurements'] if r['id'] == row['id']), None)
+            actual = {k:v for k,v in row.items() if k not in ['extraction_file', 'extraction_sha256']}
+            if (expected is None or actual != expected or row.get('extraction_file') != OUTPUT
+                    or row.get('extraction_sha256') != hashlib.sha256((ROOT / OUTPUT).read_bytes()).hexdigest()):
+                raise ValueError('Cruise span differs from pinned publisher cells or scope')
+        elif row['phase_kind']=='mean_offshore_extent_range':
+            context=row.get('mean_offshore_context',{})
+            audit_file='research/mindanao-schonau-2015-mean-offshore-extent-scope-audit.json'
+            path=ROOT/audit_file
+            if context.get('audit_file')!=audit_file or context.get('audit_sha256')!=hashlib.sha256(path.read_bytes()).hexdigest():
+                raise ValueError('Stale mean offshore extent audit')
+            audit=json.loads(path.read_bytes())
+            actual={k:v for k,v in row.items() if k!='mean_offshore_context'}
+            actual_context={k:v for k,v in context.items() if k not in ['audit_file','audit_sha256']}
+            if actual!=audit['measurement'] or actual_context!=audit['mean_offshore_context']:
+                raise ValueError('Mean offshore extent differs from source description or sampling support')
         elif row['phase_kind'] == 'regional_scalar_summary':
             if (row['measurement_type'],row['width_metric']) != ('published_regional_scalar_width_summary','author_reported_regional_current_scale') or span is not None:
                 raise ValueError('Conflated regional scalar width')
@@ -391,7 +440,7 @@ def validate(document, ledger):
             if any(row.get(key) is not False for key in ['full_width_inference_eligible','annual_extrema_eligible','seasonal_playback_eligible','is_confidence_interval']):
                 raise ValueError('Promoted regional scalar width')
             context=row.get('regional_scalar_context',{})
-            audits={'labrador':'research/labrador-thompson-2009-regional-width-scope-audit.json','east-australian':'research/east-australian-imos-regional-width-scope-audit.json'}
+            audits={'alaska-coastal-gulf':'research/alaska-coastal-gulf-jarosz-2017-regional-width-scope-audit.json','labrador':'research/labrador-thompson-2009-regional-width-scope-audit.json','east-australian':'research/east-australian-imos-regional-width-scope-audit.json'}
             if context.get('boundary_coordinates_supplied') is not False or context.get('bathymetry_is_measurement_layer') is not False or context.get('audit_file')!=audits.get(row['current_id']) or row['current_id'] not in audits:
                 raise ValueError('Regional scalar provenance mismatch')
             if row['current_id']=='east-australian' and context.get('reported_depth_extent_is_fixed_measurement_layer') is not False:
@@ -400,11 +449,29 @@ def validate(document, ledger):
             if hashlib.sha256(path.read_bytes()).hexdigest()!=context.get('audit_sha256'):
                 raise ValueError('Stale regional scalar audit')
             audit=json.loads(path.read_text(encoding='utf-8'))
-            if (row['current_id'],value,row['source_url'],row['source_locator'])!=(audit['current_id'],audit['reported_width_km_approx'],audit['source_url'],audit['source_locator']):
+            if (row['current_id'],value,row['source_url'],row['source_locator'],row['boundary_rule'])!=(audit['current_id'],audit['reported_width_km_approx'],audit['source_url'],audit['source_locator'],audit['boundary_rule']):
                 raise ValueError('Regional scalar differs from pinned source extraction')
         elif row['phase_kind'] == 'regional_summary':
             if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] != 'author_reported_current_width' or row['observed_period'] is not None or row.get('calendar_months') is not None or span is None:
                 raise ValueError('Conflated regional range support')
+            if row.get('regional_range_context') and row['current_id'] not in {'black-sea-rim','norwegian-coastal'}:
+                raise ValueError('Regional range source owner mismatch')
+            if row['current_id'] == 'black-sea-rim':
+                context = row.get('regional_range_context', {})
+                audit_file = 'research/black-sea-rim-korotaev-2011-width-scope-audit.json'
+                path = ROOT / audit_file
+                if context.get('audit_file') != audit_file or context.get('audit_sha256') != hashlib.sha256(path.read_bytes()).hexdigest():
+                    raise ValueError('Stale Black Sea regional range audit')
+                audit = json.loads(path.read_bytes())
+                source = ROOT / audit['source_document_file']
+                if len(source.read_bytes()) != audit['source_document_bytes'] or hashlib.sha256(source.read_bytes()).hexdigest() != audit['source_document_sha256']:
+                    raise ValueError('Changed Black Sea primary source')
+                if (span, row['source_url'], row['source_locator'], row['boundary_rule']) != (audit['reported_width_range_km'], audit['source_url'], audit['source_locator'], audit['boundary_rule']):
+                    raise ValueError('Black Sea range differs from primary-source extraction')
+                if any(row.get(key) is not None for key in ['section_geometry','fixed_layer_bounds_m']) or any(row.get(key) is not False for key in ['full_width_inference_eligible','seasonal_playback_eligible']):
+                    raise ValueError('Regional Black Sea range promoted to mapped or seasonal width')
+                if context.get('pycnocline_is_measurement_layer') is not False or context.get('boundary_coordinates_supplied') is not False:
+                    raise ValueError('Invented Black Sea range boundaries or layer')
         elif row["phase_kind"] != "seasonal_summary" or row["measurement_type"] != "published_regional_seasonal_summary" or row["observed_period"] is not None:
             raise ValueError("Unsupported or conflated temporal evidence")
     reviews = document.get('review_assessments', [])

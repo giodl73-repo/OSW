@@ -17,8 +17,15 @@ impl IndexStore {
             text: Option<String>,
             filter: Option<String>,
             state_code: Option<String>,
+            month: Option<u8>,
+            current_id: Option<String>,
         }
         let r: Request = serde_json::from_slice(bytes).map_err(|e| e.to_string())?;
+        if (r.month.is_some() || r.current_id.is_some()) && r.section != "monthly_bifurcation" {
+            return Err(
+                "Month and current selection are only supported for branching-point cycles".into(),
+            );
+        }
         let names = self.support_source("research/ocean-current-almanac.json")?["entries"]
             .as_array()
             .ok_or("Missing current ledger")?;
@@ -29,6 +36,18 @@ impl IndexStore {
                 .ok_or_else(|| "Unresolved source current".to_string())
         };
         match r.section.as_str() {
+            "monthly_bifurcation" => {
+                if r.text.is_some() || r.state_code.is_some() {
+                    return Err("Branching-point cycles do not accept text or state joins".into());
+                }
+                crate::index_bifurcation::view(
+                    self.support_source(crate::index_bifurcation::source(
+                        r.current_id.as_deref().unwrap_or("indian-south-equatorial"),
+                    )?)?,
+                    r.filter.as_deref().unwrap_or("surface_ssh"),
+                    r.month.unwrap_or(1),
+                )
+            }
             "reconciliation" => {
                 if r.state_code.is_some() {
                     return Err("State selection is not supported for source names".into());

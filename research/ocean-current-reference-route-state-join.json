@@ -6,10 +6,10 @@
   "absence_meaning": "No candidate crossing recorded; physical current passage remains unresolved.",
   "counts": {
     "states": 56,
-    "route_candidates": 62,
-    "currents_with_route_candidates": 59,
-    "states_with_candidate_crossings": 47,
-    "candidate_state_pairs": 124
+    "route_candidates": 63,
+    "currents_with_route_candidates": 60,
+    "states_with_candidate_crossings": 48,
+    "candidate_state_pairs": 128
   },
   "excluded_display_contacts": [
     {
@@ -32,7 +32,7 @@
     }
   ],
   "input_sha256": {
-    "research/ocean-current-reference-path-candidates.json": "2825e893b77f454a4b1cb17cf326c2316ccbe9805713bb4ef0f30027f3f73fd2",
+    "research/ocean-current-reference-path-candidates.json": "548f1df78f04f281c4b4c62c8ce65d3388fde11ef5be0a3d3c653077c22337f1",
     "research/ocean-motion-state-join.json": "c7a49187e74ac9959f18b23cf5ecaa826c017eacb8e387f2bf6e8605b6ab65f9",
     "research/indian-seuc-mam-reach-reference-path-candidate.json": "09e20729d63ef0930ba1835f95fdc24285726de590f4d2c9915604358867c117",
     "research/pacific-necc-reach-reference-path-candidate.json": "0df217ce291f5e8d4804a2fa25f86a2bb8a6fdd5101f00abe2401583ec00df01",
@@ -45,6 +45,7 @@
     "research/deep-western-boundary-reach-reference-path-candidate.json": "93d9cf1b2390fa421475e6f87f66621d0a95661ed96a3e5421af958d4b5e3183",
     "research/azores-reference-path-candidate.json": "67aa89df57823098ed8b80cd06f93113847335ea6af5b0c68b6f5e7eb799ad8c",
     "research/agulhas-return-reach-reference-path-candidate.json": "66a28f8a81bbe975dcd0b339e5feaf4bf95d83f35179dfbcb8d7a5611bc00e12",
+    "research/aleutian-reach-reference-path-candidate.json": "efbc4a4a87bb8daf3649a89706f667456b356a6173aa524d729ad4326b5e07d2",
     "research/north-atlantic-reference-path-candidate.json": "288f4507f53008bda00d14aeb189cadf17ccf3a7e277208dbf364da71f461c93",
     "research/brazil-reference-path-candidate.json": "0b8bd13661715e0f7e66ed62172e9b6f768325cf57d1081b650798f2c7b27592",
     "research/leeuwin-reference-path-candidate.json": "fa33d759c41494c5db7cd06bda58f4e7d74e8dc373dd3f7f54b4314d08dbc239",
@@ -100,9 +101,26 @@
   "states": {
     "BERS": {
       "name": "North Pacific epicontinental sea",
-      "route_candidates": [],
-      "current_count": 0,
-      "nominal_current_count": 0
+      "route_candidates": [
+        {
+          "candidate_id": "aleutian-reach-reference-path-candidate",
+          "current_id": "aleutian",
+          "name": "Aleutian Current",
+          "scope": "OSW regional eastward Subarctic/Aleutian reference reach, 175 E to 140 W, following the circulation convention in Favorite (1967) Figure 27. Gates truncate the schematic and are selected by OSW; they are not current origin or termination. Westward Alaskan Stream, West Wind Drift/North Pacific Current, Bering branches and downstream Alaska/California branches are excluded.",
+          "layer": "Upper-ocean schematic geography; source Figure 27 is a circulation schematic with transports referred to 1000 m, not a fixed-depth velocity axis. No depth-specific geometry extracted.",
+          "time_convention": "Undated OSW reference sketch of the author circulation schematic. Paper observations May-August 1959 provide context; this line is neither simultaneous observed geometry nor a 1959 seasonal frame.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "Subarctic schematic regional reach",
+          "route_url": "reference-routes.html#aleutian-reach-reference-path-candidate",
+          "source_url": "https://www.webapps.nwfsc.noaa.gov/assets/4/8131_09242014_161208_Favorite.1967-INPFC-Bull-21.pdf",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 108,
+          "scenario_count": 108,
+          "crosses_in_all_declared_scenarios": true
+        }
+      ],
+      "current_count": 1,
+      "nominal_current_count": 1
     },
     "PSAW": {
       "name": "Western Pacific subarctic gyres",
@@ -163,42 +181,19 @@
       "name": "North Pacific polar front",
       "route_candidates": [
         {
-          "candidate_id": "north-pacific-reference-path-candidate",
-          "current_id": "north-pacific",
-          "name": "North Pacific Current",
-          "scope": "NOAA glossary regional extent from about 160 degrees E to an OSW gate at 145 degrees W, somewhat beyond the source's approximate 150 degrees W region. Alternative ends at 150 degrees W. This convention excludes downstream Alaska/California branches and the Kuroshio Extension. It is not the entire Japan-to-North-America circulation or a universal naming extent; AMS describes a different western origin near 170 degrees W.",
-          "layer": "Upper-ocean regional reference geography; no depth-specific velocity axis extracted.",
-          "time_convention": "Undated glossary-convention sketch; no simultaneous or climatological current axis inferred.",
-          "comparison_group": "osw_approximate_reference_routes",
-          "route_extent_kind": "NOAA North Pacific regional extent",
-          "route_url": "reference-routes.html#north-pacific-reference-path-candidate",
-          "source_url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
+          "candidate_id": "aleutian-reach-reference-path-candidate",
+          "current_id": "aleutian",
+          "name": "Aleutian Current",
+          "scope": "OSW regional eastward Subarctic/Aleutian reference reach, 175 E to 140 W, following the circulation convention in Favorite (1967) Figure 27. Gates truncate the schematic and are selected by OSW; they are not current origin or termination. Westward Alaskan Stream, West Wind Drift/North Pacific Current, Bering branches and downstream Alaska/California branches are excluded.",
+          "layer": "Upper-ocean schematic geography; source Figure 27 is a circulation schematic with transports referred to 1000 m, not a fixed-depth velocity axis. No depth-specific geometry extracted.",
+          "time_convention": "Undated OSW reference sketch of the author circulation schematic. Paper observations May-August 1959 provide context; this line is neither simultaneous observed geometry nor a 1959 seasonal frame.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "Subarctic schematic regional reach",
+          "route_url": "reference-routes.html#aleutian-reach-reference-path-candidate",
+          "source_url": "https://www.webapps.nwfsc.noaa.gov/assets/4/8131_09242014_161208_Favorite.1967-INPFC-Bull-21.pdf",
           "nominal_crossing": true,
-          "crossing_scenario_count": 162,
-          "scenario_count": 162,
-          "crosses_in_all_declared_scenarios": true
-        }
-      ],
-      "current_count": 1,
-      "nominal_current_count": 1
-    },
-    "PSAE": {
-      "name": "Eastern Pacific subarctic gyres",
-      "route_candidates": [
-        {
-          "candidate_id": "alaska-reference-path-candidate",
-          "current_id": "alaska",
-          "name": "Alaska Current",
-          "scope": "Regional northward Alaska Current branch offshore British Columbia and southeast Alaska, using OSW latitude gates at 48 and 58.5 degrees N. Excludes the northern/northwestern Alaskan Stream, the distinct nearshore Alaska Coastal Current, individual fjords and offshore eddy excursions. Gate alternatives vary the regional reach; not the entire counterclockwise Gulf of Alaska gyre or an observed continuous shelf-edge jet.",
-          "layer": "Regional upper-ocean flow geography; no common fixed depth or measured current core diagnosed.",
-          "time_convention": "Undated regional sketch using the source's naming convention. The 1977 Kodiak observations support a distinction between current names, not this full route or a simultaneous 1977 northern branch path.",
-          "comparison_group": "osw_approximate_reference_routes",
-          "route_extent_kind": "northward Alaska regional branch",
-          "route_url": "reference-routes.html#alaska-reference-path-candidate",
-          "source_url": "https://www.pmel.noaa.gov/pubs/PDF/schu323/schu323.pdf",
-          "nominal_crossing": true,
-          "crossing_scenario_count": 81,
-          "scenario_count": 81,
+          "crossing_scenario_count": 108,
+          "scenario_count": 108,
           "crosses_in_all_declared_scenarios": true
         },
         {
@@ -221,6 +216,61 @@
       "current_count": 2,
       "nominal_current_count": 2
     },
+    "PSAE": {
+      "name": "Eastern Pacific subarctic gyres",
+      "route_candidates": [
+        {
+          "candidate_id": "alaska-reference-path-candidate",
+          "current_id": "alaska",
+          "name": "Alaska Current",
+          "scope": "Regional northward Alaska Current branch offshore British Columbia and southeast Alaska, using OSW latitude gates at 48 and 58.5 degrees N. Excludes the northern/northwestern Alaskan Stream, the distinct nearshore Alaska Coastal Current, individual fjords and offshore eddy excursions. Gate alternatives vary the regional reach; not the entire counterclockwise Gulf of Alaska gyre or an observed continuous shelf-edge jet.",
+          "layer": "Regional upper-ocean flow geography; no common fixed depth or measured current core diagnosed.",
+          "time_convention": "Undated regional sketch using the source's naming convention. The 1977 Kodiak observations support a distinction between current names, not this full route or a simultaneous 1977 northern branch path.",
+          "comparison_group": "osw_approximate_reference_routes",
+          "route_extent_kind": "northward Alaska regional branch",
+          "route_url": "reference-routes.html#alaska-reference-path-candidate",
+          "source_url": "https://www.pmel.noaa.gov/pubs/PDF/schu323/schu323.pdf",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        },
+        {
+          "candidate_id": "aleutian-reach-reference-path-candidate",
+          "current_id": "aleutian",
+          "name": "Aleutian Current",
+          "scope": "OSW regional eastward Subarctic/Aleutian reference reach, 175 E to 140 W, following the circulation convention in Favorite (1967) Figure 27. Gates truncate the schematic and are selected by OSW; they are not current origin or termination. Westward Alaskan Stream, West Wind Drift/North Pacific Current, Bering branches and downstream Alaska/California branches are excluded.",
+          "layer": "Upper-ocean schematic geography; source Figure 27 is a circulation schematic with transports referred to 1000 m, not a fixed-depth velocity axis. No depth-specific geometry extracted.",
+          "time_convention": "Undated OSW reference sketch of the author circulation schematic. Paper observations May-August 1959 provide context; this line is neither simultaneous observed geometry nor a 1959 seasonal frame.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "Subarctic schematic regional reach",
+          "route_url": "reference-routes.html#aleutian-reach-reference-path-candidate",
+          "source_url": "https://www.webapps.nwfsc.noaa.gov/assets/4/8131_09242014_161208_Favorite.1967-INPFC-Bull-21.pdf",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 108,
+          "scenario_count": 108,
+          "crosses_in_all_declared_scenarios": true
+        },
+        {
+          "candidate_id": "north-pacific-reference-path-candidate",
+          "current_id": "north-pacific",
+          "name": "North Pacific Current",
+          "scope": "NOAA glossary regional extent from about 160 degrees E to an OSW gate at 145 degrees W, somewhat beyond the source's approximate 150 degrees W region. Alternative ends at 150 degrees W. This convention excludes downstream Alaska/California branches and the Kuroshio Extension. It is not the entire Japan-to-North-America circulation or a universal naming extent; AMS describes a different western origin near 170 degrees W.",
+          "layer": "Upper-ocean regional reference geography; no depth-specific velocity axis extracted.",
+          "time_convention": "Undated glossary-convention sketch; no simultaneous or climatological current axis inferred.",
+          "comparison_group": "osw_approximate_reference_routes",
+          "route_extent_kind": "NOAA North Pacific regional extent",
+          "route_url": "reference-routes.html#north-pacific-reference-path-candidate",
+          "source_url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 162,
+          "scenario_count": 162,
+          "crosses_in_all_declared_scenarios": true
+        }
+      ],
+      "current_count": 3,
+      "nominal_current_count": 3
+    },
     "ALSK": {
       "name": "Alaska coastal downwelling",
       "route_candidates": [
@@ -239,9 +289,25 @@
           "crossing_scenario_count": 75,
           "scenario_count": 81,
           "crosses_in_all_declared_scenarios": false
+        },
+        {
+          "candidate_id": "aleutian-reach-reference-path-candidate",
+          "current_id": "aleutian",
+          "name": "Aleutian Current",
+          "scope": "OSW regional eastward Subarctic/Aleutian reference reach, 175 E to 140 W, following the circulation convention in Favorite (1967) Figure 27. Gates truncate the schematic and are selected by OSW; they are not current origin or termination. Westward Alaskan Stream, West Wind Drift/North Pacific Current, Bering branches and downstream Alaska/California branches are excluded.",
+          "layer": "Upper-ocean schematic geography; source Figure 27 is a circulation schematic with transports referred to 1000 m, not a fixed-depth velocity axis. No depth-specific geometry extracted.",
+          "time_convention": "Undated OSW reference sketch of the author circulation schematic. Paper observations May-August 1959 provide context; this line is neither simultaneous observed geometry nor a 1959 seasonal frame.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "Subarctic schematic regional reach",
+          "route_url": "reference-routes.html#aleutian-reach-reference-path-candidate",
+          "source_url": "https://www.webapps.nwfsc.noaa.gov/assets/4/8131_09242014_161208_Favorite.1967-INPFC-Bull-21.pdf",
+          "nominal_crossing": false,
+          "crossing_scenario_count": 27,
+          "scenario_count": 108,
+          "crosses_in_all_declared_scenarios": false
         }
       ],
-      "current_count": 1,
+      "current_count": 2,
       "nominal_current_count": 1
     },
     "KURO": {

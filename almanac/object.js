@@ -123,6 +123,25 @@ loadObjectView().then(data => {
       element("p", `Observation date: ${item.observation_date}. Provider labels: ${item.provider_type}, ${item.provider_rotation}. Source reuse decision: ${sources[item.source_id].rights_status.replaceAll("_", " ")}. Internal research candidate.`, identity);
     }
     sourceLink(item.source_id, identity);
+    for(const record of (data.eddy_recurrence||[]).filter(row=>row.entity_id===item.id)) {
+      const section=element('section',undefined,identity);section.id='eddy-recurrence-summary';
+      element('h3','Published occurrence and event lifetime',section);
+      const days=record.reported_occurrence_days_per_year_approx;
+      const label=element('label',`About ${days} presence days per year (reported average)`,section);
+      label.htmlFor='eddy-presence-meter';
+      const meter=element('meter',undefined,section);meter.id='eddy-presence-meter';meter.min=0;meter.max=365;meter.value=days;
+      meter.style.cssText='display:block;width:100%;max-width:36rem;height:1.5rem';
+      element('p','Scale: 0–365 days in a descriptive average year. Presence may comprise several events; it is not the lifetime of one eddy.',section);
+      const lifetime=record.reported_event_lifetime_approx;
+      element('p',lifetime===null?'Event lifetime: not quantified in this summary.':`Event lifetime: about ${lifetime} ${record.event_lifetime_unit}${lifetime===1?'':'s'} (${record.event_lifetime_statistic}).`,section);
+      element('p',record.seasonal_description,section);
+      element('p',record.scope_note,section);
+      element('p','No dated footprint, NASA identity match or seasonal map animation is established.',section);
+      link('Read the primary source ↗',record.source_url,section);
+      element('p',record.source_citation+' '+record.source_locator,section);
+      const query={collection:'eddy_recurrence',sort:{field:'reported_occurrence_days_per_year_approx',direction:'desc'},limit:50};
+      link('Compare all nine Black Sea recurrence summaries','query.html?q='+encodeURIComponent(JSON.stringify(query)),section);
+    }
     if (item.almanac_url) {
       element("span", " · ", identity);
       link("Open almanac entry ↗", item.almanac_url, identity);

@@ -13,7 +13,7 @@ def main():
         page.on('pageerror', lambda error: errors.append(str(error)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas', wait_until='networkidle')
         page.wait_for_function('document.querySelectorAll(".route-atlas-station").length === 100')
-        page.wait_for_function('document.querySelectorAll(".route-card").length === 62 && document.querySelectorAll(".inventory-addition-card").length === 28')
+        page.wait_for_function('document.querySelectorAll(".route-card").length === 63 && document.querySelectorAll(".inventory-addition-card").length === 28')
         assert page.locator('#route-atlas-select option').count() == 101
         for ident,label in [('atlantic-north-equatorial','Atlantic North Equatorial Current'),('pacific-north-equatorial','Pacific North Equatorial Current'),('atlantic-south-equatorial','Atlantic South Equatorial Current'),('pacific-south-equatorial','Pacific South Equatorial Current'),('indian-south-equatorial','Indian South Equatorial Current')]:
             card=page.locator('#inventory-addition-'+ident)
@@ -25,6 +25,14 @@ def main():
         def view():
             return list(map(float, atlas.get_attribute('viewBox').split()))
         assert view() == [60,90,1480,740]
+        # Aleutian is a sourced schematic reach, crossing the date line.
+        page.locator('#route-atlas-select').select_option('current:aleutian')
+        assert view() == [60,90,1480,740]  # Global fit preserves both sides of the date line.
+        aleutian = page.locator('#route-atlas-preview')
+        assert aleutian.locator('.route-map').is_visible()
+        assert 'regional' in aleutian.inner_text().lower()
+        assert page.locator('#route-atlas-card-link').get_attribute('href') == '#aleutian-reach-reference-path-candidate'
+        page.locator('#route-atlas-world').click()
         page.locator('#route-atlas-select').select_option('current:ligurian')
         assert view()[2] < 30  # Short coastal routes fill a local view, not a continent.
         route=json.loads(Path('research/ligurian-reach-reference-path-candidate.json').read_text(encoding='utf-8'))

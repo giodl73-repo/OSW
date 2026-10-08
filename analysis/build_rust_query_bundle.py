@@ -32,8 +32,22 @@ def build():
     validate(widths,read('research/ocean-current-almanac.json'))
     routes=read('research/ocean-current-reference-path-candidates.json')
     for record in widths['measurements']:
-        context=record.get('eulerian_section_context') or record.get('width_statistics_context')
-        if context:read(context['audit_file'])
+        if record.get('extraction_file'):
+            extraction = read(record['extraction_file'])
+            read(extraction['acquisition_file'])
+            for dependency in [extraction['protocol_file'], extraction['generator_file'], *[s['file'] for s in json.loads((ROOT / extraction['acquisition_file']).read_bytes())['files']]]:
+                inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
+            extra = extraction.get('additional_source_receipts')
+            if extra:
+                read(extra['acquisition_file'])
+                for key in ['source_file', 'parser_file']:
+                    inputs[extra[key]]=hashlib.sha256((ROOT/extra[key]).read_bytes()).hexdigest()
+        context=record.get('eulerian_section_context') or record.get('width_statistics_context') or record.get('regional_range_context') or record.get('regional_scalar_context') or record.get('mean_offshore_context') or record.get('adcp_threshold_context')
+        if context:
+            audit=read(context['audit_file'])
+            if audit.get('source_document_file'):
+                path=audit['source_document_file']
+                inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     collections['widths']=widths['measurements']
     collections['reference_routes']=routes['candidates']
     objects=copy.deepcopy(dashboard['entries'])
@@ -61,6 +75,13 @@ def build():
         for i,relation in enumerate(row['state_evidence']):
             state_links.append({'id':f"query-state:{row['id']}:{i}",'entity_id':row['id'],'entity_label':row['label'],**relation})
     collections['objects']=objects
+    recurrence_path='research/black-sea-eddy-recurrence.json'
+    recurrence=read(recurrence_path)
+    from build_black_sea_eddy_recurrence import validate as validate_recurrence
+    validate_recurrence(recurrence)
+    collections['eddy_recurrence']=recurrence['entries']
+    for key in ['source_document_file','protocol_file','generator_file']:
+        path=recurrence[key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     collections['state_links']=state_links
     collections['states']=[{**e,'code':e['id'].removeprefix('state:')} for e in collections['entities'] if e['type']=='osw_state']
     # Import the same coarse, land-masked OSW polygons as the existing state joins.
@@ -352,10 +373,11 @@ def build():
             if inputs[document['inventory_file']]!=document['inventory_sha256']:raise ValueError('Stale observed-section inventory')
     return {'schema':'osw.query-bundle.v1','manifest':{'status':'local_editorial_and_canonical_snapshot_not_new_scientific_admission',
             'canonical_release':'v0.1.0','canonical_collections':CANONICAL,
+            'eddy_recurrence_receipt':{'source_file':recurrence_path,'source_sha256':inputs[recurrence_path],'source_json':(ROOT/recurrence_path).read_bytes().decode('utf-8')},
             'atlas_receipts':atlas_receipts,
             'movies_receipts':movies_receipts,
             'loop_recorded_receipts':{path:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for path in ['research/loop-current-recorded-date-comparison.json','research/loop-current-recorded-date-sources.json']},
-            'taxonomy':taxonomy,'editorial_collections':['taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples'],
+            'taxonomy':taxonomy,'editorial_collections':['eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples'],
             'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
             'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
             'input_sha256':inputs,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},

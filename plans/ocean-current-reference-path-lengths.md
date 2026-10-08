@@ -1,8 +1,8 @@
 # Reference-path estimates for the other 89 currents
 
-Date: 2026-10-04. Status: working editorial candidates; no new canonical
-numeric estimates admitted. Current coverage: 62 candidates for 59
-of the 89 currents; 30 awaiting routes. Progress entries below are chronological.
+Date: 2026-10-08. Status: working editorial candidates; no new canonical
+numeric estimates admitted. Current coverage: 63 candidates for 60
+of the 89 currents; 29 awaiting routes. Progress entries below are chronological.
 
 The current inventory contains 100 names and 11 source-reported ranked length
 estimates. The remaining 89 consist of seven OSW geographic lower bounds, one
@@ -1315,3 +1315,15 @@ paired current edges, exact occupation support and independent identity review
 remain required. No route candidate added: current totals are 62 candidates /
 59 of 89 names / 30 pending / 4,113 scenarios. The canonical ledger is unchanged.
 
+
+## 2026-10-08: Aleutian regional schematic reach
+
+Favorite (1967), printed pp. 2, 11–12 and Figure 27 on p. 19, distinguishes
+eastward Subarctic/Aleutian flow from westward Alaskan Stream and West Wind
+Drift. OSW selects a 175 E–140 W regional sketch, approximately 3,300 km with
+108 declared editorial scenarios spanning 2,900–3,500 km. This is an undated
+schematic reach, excluded from the whole reference-route comparison and
+published length ranking. The source’s 1959 study context does not create a
+dated route, physical width, annual range or physical OSW membership.
+
+Batch receipt: `plans/aleutian-reference-reach-batch.md`.

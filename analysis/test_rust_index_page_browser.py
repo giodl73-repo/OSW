@@ -5,11 +5,13 @@ import os
 from urllib.parse import urlparse
 from playwright.sync_api import sync_playwright, expect
 from test_rust_query_browser import ROOT
+from test_rust_index_store_browser import registered_sources
 
 BASE = 'http://127.0.0.1:8788/almanac/index.html?state=CAMR'
 
 
 def main():
+    expected_source_count=len(registered_sources())
     manifest = json.loads((ROOT/'research/noaa-munster-eddy-seasonal-manifest-2021-2023.json').read_bytes())
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
@@ -20,7 +22,7 @@ def main():
         page.goto(BASE)
         page.wait_for_function("window.oswIndexPageReady",timeout=90000)
         assert page.locator('#current-rows tr').count() == 100
-        assert page.evaluate('oswIndexMetadata.source_count') == 65
+        assert page.evaluate('oswIndexMetadata.source_count') == expected_source_count
         assert page.locator('#eddy-date-select option').count() == 12
         assert page.locator('#state-select option').count() == 57
         assert page.locator('#state-select').input_value() == 'CAMR'
@@ -76,7 +78,7 @@ def main():
         prefixed.goto(BASE.replace('/almanac/','/OSW/almanac/'))
         prefixed.wait_for_function("window.oswIndexPageReady",timeout=90000)
         assert prefixed.locator('#current-rows tr').count() == 100
-        assert prefixed.evaluate('oswIndexMetadata.source_count') == 65
+        assert prefixed.evaluate('oswIndexMetadata.source_count') == expected_source_count
         prefixed.close()
         browser.close()
     print('PASS: checked index page, 100 currents, all 12 dated NOAA map inventories, source projection, saved state, diagnostic links, mobile and unavailable corpus')

@@ -480,3 +480,35 @@ do not create numerical monthly widths or geographic boundaries. Preserve
 source-reported phase context separately; keep playback and annual extrema
 ineligible until matched values and support are recovered. No whole-current
 ranking, route buffer, full-width bar or footprint follows from these statistics.
+
+## v1.22: mean surface offshore extent
+
+Keep an author-reported offshore extent of averaged flow as a one-sided
+metric. Preserve its prose range without inventing a midpoint, uncertainty
+or seasonal limits. Record the mean-line endpoints, projection corridor,
+velocity method and reference depths separately from current boundaries.
+A velocity-reference layer is not the measurement layer of a surface extent.
+Campaign dates are context until exact contributing profiles are recovered;
+retain conflicting campaign descriptions. Core position, an offshore eddy
+core and a transport integration limit are separate quantities.
+
+Pin the source audit and bind the complete measurement and sampling context.
+No full-width bar, route buffer, occupied footprint, annual extrema, ranking
+or seasonal playback follows from this description.
+
+## v1.23: multilayer ADCP threshold widths and source errors
+
+Preserve a source-reported median across depth-bin threshold widths as a
+multilayer section statistic. Record the relative threshold, per-bin maximum
+reference and flow-normal projection. Do not assign the statistic to a fixed
+surface depth or to the full observed bin range as a uniform current layer.
+Keep each crossing independent and retain unknown dates or bin membership.
+
+Store source total errors separately from width ranges. Preserve their error
+model and components; a projection component already included in total error
+must not be added twice. Do not assign a confidence level unless stated.
+Error whiskers display the reported plus/minus allowance only, not observed
+seasonal extrema or geographic edges. Summary widths and processing widths
+used to normalize profiles are not additional independent observations.
+Pin the full source table extraction and context; keep ranking, full-width
+inference, annual extrema and geographic/seasonal playback ineligible.

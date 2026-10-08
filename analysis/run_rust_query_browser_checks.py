@@ -10,7 +10,7 @@ import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 URL = 'http://127.0.0.1:8788/almanac/query.html'
-CHECKS = ('test_rust_query_browser.py', 'test_rust_collection_coverage_browser.py',
+CHECKS = ('test_rust_query_browser.py', 'test_rust_collection_coverage_browser.py', 'test_rust_source_query_browser.py',
           'test_motion_dashboard_browser.py', 'test_dashboard_diagnostic_navigation_browser.py',
           'test_rust_workspace_browser.py', 'test_rust_rebase_browser.py',
           'test_rust_taxonomy_browser.py', 'test_florida_width_statistics_browser.py',
@@ -24,8 +24,8 @@ CHECKS = ('test_rust_query_browser.py', 'test_rust_collection_coverage_browser.p
           'test_reference_route_atlas_browser.py',
           'test_atlas_directory_states_browser.py',
           'test_atlas_route_state_links_browser.py',
-          'test_seasons_rust_snapshot_browser.py', 'test_ngcc_seasonal_direction_browser.py',
-          'test_rust_object_view_browser.py', 'test_rust_atlas_snapshot_browser.py',
+          'test_seasons_rust_snapshot_browser.py', 'test_atlantic_cruise_widths_browser.py', 'test_atlantic_station_context_browser.py', 'test_black_sea_regional_width_browser.py', 'test_ngcc_seasonal_direction_browser.py',
+          'test_rust_object_view_browser.py', 'test_black_sea_eddy_recurrence_browser.py', 'test_rust_atlas_snapshot_browser.py',
           'test_atlas_timeline_browser.py', 'test_atlas_observed_sections_browser.py',
           'test_rust_cartography_browser.py', 'test_norkyst_section_browser.py',
           'test_atlas_monthly_width_browser.py',
@@ -67,6 +67,11 @@ def main():
                         help='Resume at this check; earlier checks are not rerun')
     args = parser.parse_args()
     environment = os.environ.copy()
+    if not environment.get('OSW_TEST_BROWSER'):
+        # Give every child check the same installed Playwright browser in CI.
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as playwright:
+            environment['OSW_TEST_BROWSER'] = playwright.chromium.executable_path
     server = None
     try:
         if args.start_server:

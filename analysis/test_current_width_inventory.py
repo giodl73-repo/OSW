@@ -6,6 +6,68 @@ from check_current_width_inventory import validate
 ROOT = Path(__file__).resolve().parents[1]
 
 class WidthInventoryTests(unittest.TestCase):
+    def test_norwegian_coastal_range_preserves_branch_and_unresolved_sampling(self):
+        i=next(i for i,r in enumerate(self.document['measurements']) if r['current_id']=='norwegian-coastal')
+        self.assertEqual(self.document['measurements'][i]['width_range_km'],[20,30])
+        validate(self.document,self.ledger)
+        for key,value in [('approximate_width_km',25),('width_range_km',[20,80]),('current_id','norwegian'),('phase_kind','seasonal_summary'),('calendar_months',[1,2,3]),('observed_period',{'start':'1981-01-01','end':'1999-01-01'}),('fixed_layer_bounds_m',[0,150]),('section_geometry',{'type':'LineString'}),('boundary_rule','velocity > 0.4 m/s'),('seasonal_playback_eligible',True),('source_url','https://example.com')]:
+            bad=copy.deepcopy(self.document);bad['measurements'][i][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):validate(bad,self.ledger)
+        for key in ['boundary_coordinates_supplied','adjacent_hydrography_is_width_sampling_period','water_mass_extent_is_current_width','shelf_width_is_current_width','drifter_speed_filter_is_width_boundary']:
+            bad=copy.deepcopy(self.document);bad['measurements'][i]['regional_range_context'][key]=True
+            with self.subTest(context=key),self.assertRaises(ValueError):validate(bad,self.ledger)
+
+    def test_all_callers_reject_stale_protocol_receipts(self):
+        for key,value in [('protocol_sha256','0'*64),('protocol_file','plans/unreviewed.md')]:
+            bad=copy.deepcopy(self.document);bad[key]=value
+            with self.subTest(key=key),self.assertRaisesRegex(ValueError,'protocol'):validate(bad,self.ledger)
+
+    def test_ADCP_layer_medians_keep_source_error_and_sampling_scope(self):
+        rows=[(i,r) for i,r in enumerate(self.document['measurements']) if r['phase_kind']=='survey_layer_median_threshold_width']
+        self.assertEqual([(r['approximate_width_km'],r['reported_total_error_km']) for _,r in rows],[(48,14),(73,18),(78,18),(48,18)])
+        validate(self.document,self.ledger)
+        for i,r in rows:
+            for key,value in [('approximate_width_km',70),('reported_total_error_km',9),('width_range_km',[48,78]),('phase_kind','seasonal_summary'),('fixed_layer_bounds_m',[0,1000]),('observed_period',{'start':'1997-08-23','end':'1997-09-02'}),('calendar_months',[8,9]),('section_geometry',{'type':'LineString'}),('full_width_inference_eligible',True),('is_confidence_interval',True),('annual_extrema_eligible',True),('source_url','https://example.com')]:
+                bad=copy.deepcopy(self.document);bad['measurements'][i][key]=value
+                with self.subTest(crossing=r['id'],key=key),self.assertRaises(ValueError):validate(bad,self.ledger)
+            for key,value in [('velocity_threshold_fraction',0.1),('projection_error_is_included_in_total',False),('confidence_level',0.95),('depth_bin_range_is_fixed_width_layer',True),('exact_crossing_dates_extracted',True),('reported_projection_uncertainty_km',0),('crossing_id','unknown'),('audit_sha256','changed')]:
+                bad=copy.deepcopy(self.document);bad['measurements'][i]['adcp_threshold_context'][key]=value
+                with self.subTest(crossing=r['id'],context=key),self.assertRaises(ValueError):validate(bad,self.ledger)
+
+    def test_mean_offshore_extent_preserves_surface_and_sampling_scope(self):
+        i=next(i for i,r in enumerate(self.document['measurements']) if r['phase_kind']=='mean_offshore_extent_range')
+        r=self.document['measurements'][i]
+        self.assertEqual(r['width_range_km'],[250,300])
+        self.assertIsNone(r['approximate_width_km'])
+        validate(self.document,self.ledger)
+        for key,value in [('approximate_width_km',275),('width_range_km',[200,300]),('phase_kind','regional_summary'),('fixed_layer_bounds_m',[0,1000]),('calendar_months',[6,7]),('section_geometry',{'type':'LineString'}),('boundary_sides','paired'),('full_width_inference_eligible',True),('seasonal_playback_eligible',True),('boundary_rule','velocity > 0.1 m/s'),('current_id','mindanao-undercurrent')]:
+            bad=copy.deepcopy(self.document);bad['measurements'][i][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):validate(bad,self.ledger)
+        for key,value in [('audit_sha256','changed'),('velocity_threshold_m_s',0.1),('campaign_context_is_mean_sampling_interval',True),('velocity_reference_depth_range_m',[0,200]),('mean_line_endpoints_lon_lat',[[126,8],[130,8]]),('source_date_discrepancy','')]:
+            bad=copy.deepcopy(self.document);bad['measurements'][i]['mean_offshore_context'][key]=value
+            with self.subTest(context=key),self.assertRaises(ValueError):validate(bad,self.ledger)
+
+    def test_alaska_gulf_typical_width_does_not_acquire_winter_dates_or_edges(self):
+        index=next(i for i,r in enumerate(self.document['measurements']) if r['current_id']=='alaska-coastal-gulf')
+        row=self.document['measurements'][index]
+        self.assertEqual(row['approximate_width_km'],35)
+        self.assertIsNone(row['width_range_km'])
+        validate(self.document,self.ledger)
+        for key,value in [('approximate_width_km',37),('width_range_km',[20,35]),('current_id','alaska'),('observed_period',{'start':'2012-10-19','end':'2013-03-16'}),('calendar_months',[10,11,12,1,2,3]),('fixed_layer_bounds_m',[0,100]),('boundary_rule','paired speed edges'),('seasonal_playback_eligible',True),('annual_extrema_eligible',True)]:
+            invalid=copy.deepcopy(self.document);invalid['measurements'][index][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):validate(invalid,self.ledger)
+
+    def test_black_sea_range_rejects_midpoint_temporal_and_source_relabeling(self):
+        index=next(i for i,r in enumerate(self.document['measurements']) if r['current_id']=='black-sea-rim')
+        self.assertEqual(self.document['measurements'][index]['width_range_km'],[40,80])
+        validate(self.document,self.ledger)
+        for key,value in [('approximate_width_km',60),('width_range_km',[40,90]),('section_geometry',{'type':'LineString'}),('fixed_layer_bounds_m',[150,300]),('calendar_months',[1,2,3]),('annual_extrema_eligible',True),('seasonal_playback_eligible',True),('full_width_inference_eligible',True),('source_url','https://example.com'),('boundary_rule','speed > 0.1 m/s')]:
+            invalid=copy.deepcopy(self.document);invalid['measurements'][index][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):validate(invalid,self.ledger)
+        for key,value in [('audit_sha256','changed'),('boundary_coordinates_supplied',True),('pycnocline_is_measurement_layer',True)]:
+            invalid=copy.deepcopy(self.document);invalid['measurements'][index]['regional_range_context'][key]=value
+            with self.subTest(context=key),self.assertRaises(ValueError):validate(invalid,self.ledger)
+
     def test_stream_means_preserve_threshold_averaging_and_scope(self):
         indexes=[i for i,r in enumerate(self.document['measurements']) if r['phase_kind']=='stream_mean_threshold_summary']
         self.assertEqual(len(indexes),3)

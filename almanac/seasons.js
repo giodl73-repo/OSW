@@ -21,13 +21,57 @@
   }
   function stop() { if (timer !== null) clearInterval(timer); timer = null; byId("season-play").textContent = "Play seasonal states"; }
   const phaseId = phase => phase?.frame?.id || phase?.width?.id || phase?.direction?.id;
+  function renderAdcpComparison(container, selected) {
+    container.hidden=false;
+    const rows=inventory.measurements.filter(r=>r.current_id===selected.current_id&&r.phase_kind==='survey_layer_median_threshold_width');
+    const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');
+    svg.setAttribute('viewBox','0 0 500 230');svg.setAttribute('role','img');
+    svg.setAttribute('aria-label',rows.map(r=>`${r.phase_label}: ${r.approximate_width_km} kilometres, source total error plus or minus ${r.reported_total_error_km} kilometres`).join('; ')+'. Layer medians of four local crossings, not seasonal ranges or confidence intervals.');
+    svg.style.cssText='width:100%;max-width:650px;background:#f6f5ef;color:#102f3b';
+    const add=(tag,attrs,text)=>{const e=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(text)e.textContent=text;svg.append(e);};
+    const maximum=100,x=v=>80+380*v/maximum;
+    rows.forEach((r,i)=>{
+      const y=42+i*44,v=r.approximate_width_km,e=r.reported_total_error_km,color=r.id===selected.id?'#176b82':'#526c77';
+      add('text',{x:16,y:y+7,fill:'#102f3b','font-size':22},r.adcp_threshold_context.crossing_id.toUpperCase());
+      add('text',{x:460,y:y-12,'text-anchor':'end',fill:'#102f3b','font-size':22},`${v} ±${e} km`);
+      add('line',{x1:x(v-e),x2:x(v+e),y1:y,y2:y,stroke:color,'stroke-width':3});
+      for(const n of [v-e,v+e])add('line',{x1:x(n),x2:x(n),y1:y-6,y2:y+6,stroke:color,'stroke-width':2});
+      add('circle',{cx:x(v),cy:y,r:5,fill:color});
+    });
+    add('line',{x1:80,x2:460,y1:204,y2:204,stroke:'#526c77'});
+    for(const v of [0,50,100])add('text',{x:x(v),y:225,'text-anchor':'middle',fill:'#102f3b','font-size':22},`${v} km`);
+    container.append(svg);
+    const caption=document.createElement('figcaption');caption.textContent='ADCP means acoustic Doppler current profiler. A, B1, B2 and C are four 1997 cruise crossings; exact crossing dates remain unresolved. Points show the reported layer-median widths; whiskers show source total error estimates. Projection error is included already. No confidence level or seasonal range inferred.';container.append(caption);
+  }
+  function renderRegionalRange(row) {
+    const container=byId('regional-width-range');container.replaceChildren();container.hidden=true;
+    if(row?.phase_kind==='survey_layer_median_threshold_width'){renderAdcpComparison(container,row);return;}
+    if(!['regional_summary','mean_offshore_extent_range'].includes(row?.phase_kind)||!row.width_range_km)return;
+    const offshore=row.phase_kind==='mean_offshore_extent_range';
+    container.hidden=false;
+    const [low,high]=row.width_range_km, maximum=Math.ceil(high/50)*50+(offshore?50:0);
+    const ns='http://www.w3.org/2000/svg', svg=document.createElementNS(ns,'svg');
+    svg.setAttribute('viewBox','0 0 500 110');svg.setAttribute('role','img');
+    svg.setAttribute('aria-label',`${row.name}: ${offshore?'mean surface offshore extent':'reported regional width range'} ${low} to ${high} kilometres. Not annual extrema or a confidence interval.`);
+    svg.style.cssText='width:100%;max-width:650px;background:#f6f5ef;color:#102f3b';
+    const add=(tag,attrs,text)=>{const e=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(text)e.textContent=text;svg.append(e);};
+    const x=v=>40+420*v/maximum;
+    add('line',{x1:40,x2:460,y1:80,y2:80,stroke:'#47616b'});
+    add('line',{x1:x(low),x2:x(high),y1:45,y2:45,stroke:'#176b82','stroke-width':5});
+    for(const v of [low,high]){add('line',{x1:x(v),x2:x(v),y1:35,y2:55,stroke:'#176b82','stroke-width':2});add('text',{x:x(v),y:25,'text-anchor':offshore?(v===low?'end':'start'):'middle',fill:'#102f3b','font-size':22},`${v} km`);}
+    for(const v of [0,maximum])add('text',{x:x(v),y:101,'text-anchor':'middle',fill:'#102f3b','font-size':22},`${v} km`);
+    container.append(svg);
+    const caption=document.createElement('figcaption');caption.textContent=`${offshore?'Mean surface offshore extent':'Reported regional span'}: ${low}–${high} km. No midpoint selected. ${offshore?'This is a one-sided prose extent of averaged flow, not a paired-boundary full width. ':''}This is not an annual range, confidence interval or mapped current envelope.`;container.append(caption);
+  }
   function renderPhase() {
     const phase = phases[Number(byId("season-phase").value)];
     const row = phase?.width;
+    renderRegionalRange(row);
     const barMaximum = Math.max(50, Math.ceil(Math.max(...phases.filter(p => p.width?.approximate_width_km != null).map(p => p.width.approximate_width_km), 0) / 50) * 50);
     const frame = phase?.frame;
     const direction = phase?.direction;
     const current=byId("season-current").value;
+    window.renderAtlanticCruiseWidths(byId('cruise-span-panel'), current, inventory);
     const address=new URL(location.href);address.searchParams.set("current",current);
     if(phaseId(phase))address.searchParams.set("phase",phaseId(phase));else address.searchParams.delete("phase");
     history.replaceState(null,"",address);
@@ -50,12 +94,22 @@
       byId('season-title').textContent='General jet width summary';
       byId('season-value').textContent=`${row.name}: source reports ${row.ensemble_angular_context.source_reported_latitude_span_degrees}° latitude, approximately ${row.approximate_width_km} km · shared study summary`;
     }
+    if(row?.phase_kind==='inverse_hydrographic_section_span')byId('season-title').textContent='Hydrographic cruise-section span';
     if(row?.phase_kind==='regional_scalar_summary')byId('season-title').textContent='Regional width summary';
+    if(row?.phase_kind==='survey_layer_median_threshold_width') {
+      byId('season-title').textContent='ADCP crossing width · layer median';
+      byId('season-value').textContent=`${row.name}: ${row.approximate_width_km} ±${row.reported_total_error_km} km · source total error · ${row.phase_label} · 1997 cruise`;
+    }
+    if(row?.phase_kind==='regional_summary')byId('season-title').textContent='Regional width range';
+    if(row?.phase_kind==='mean_offshore_extent_range') {
+      byId('season-title').textContent='Mean surface offshore extent';
+      byId('season-value').textContent=`${row.name}: ${row.width_range_km.join('–')} km reported offshore extent · not full width`;
+    }
     if(row?.phase_kind==='campaign_hydrographic_core') {
       byId('season-title').textContent='Local salinity-core observation';
       byId('season-value').textContent=`${row.name}: ${row.width_range_km?row.width_range_km.join('–'):'about '+row.approximate_width_km} km local water-mass core · ${row.phase_label} · ${row.time_convention}`;
     }
-    byId("season-bar").parentElement.hidden = row?.approximate_width_km == null || row?.mean_section_context?.section_axis_kind==='oblique' || (["survey_profile_composite","dated_band_section","climatological_core_distribution","campaign_hydrographic_core","ensemble_angular_summary","regional_scalar_summary","monthly_climatological_fit","stream_mean_threshold_summary","eulerian_mean_section_span","width_time_series_statistics"].includes(row?.phase_kind));
+    byId("season-bar").parentElement.hidden = row?.approximate_width_km == null || row?.mean_section_context?.section_axis_kind==='oblique' || (["survey_layer_median_threshold_width","inverse_hydrographic_section_span","survey_profile_composite","dated_band_section","climatological_core_distribution","campaign_hydrographic_core","ensemble_angular_summary","regional_scalar_summary","monthly_climatological_fit","stream_mean_threshold_summary","eulerian_mean_section_span","width_time_series_statistics"].includes(row?.phase_kind));
     byId("season-bar").style.width = row ? `${Math.min(100, row.approximate_width_km / barMaximum * 100)}%` : "0%";
     byId("season-definition").textContent = row ? `${row.geographic_scope} ${row.layer} ${row.boundary_rule} ${byId("season-bar").parentElement.hidden ? row.range_interpretation : `Bar scale: 0–${barMaximum} km.`}` : "This current needs scoped seasonal observations; unknown does not mean zero width.";
     if (frame) {
@@ -65,6 +119,7 @@
     byId("season-length").textContent = frame && route ? `Approximate scoped route length: ${route.approximate_reference_path_km.toLocaleString("en-US")} km; ${route.scenario_range_km.map(v => v.toLocaleString("en-US")).join("–")} km editorial sensitivity envelope. Different phase scopes cannot supply annual extrema.` : "Seasonal length: unknown for this recorded phase. No annual minimum/maximum or uncertainty margin inferred.";
     if(row?.phase_kind==='campaign_hydrographic_core')byId('season-definition').textContent=`${row.geographic_scope}. ${row.layer} Boundary: ${row.boundary_rule}. This is a water-mass core metric, not a paired velocity envelope. Bar omitted; section locations and occupations cannot supply an annual cycle.`;
     if(row?.phase_kind==='ensemble_angular_summary')byId('season-definition').textContent=`${row.geographic_scope} ${row.layer} ${row.boundary_rule} Equator used only for unit conversion, not an observed location. Shared source claim, not independent jet measurements. Core displacement and PV-front scale are separate metrics. Bar omitted; annual variation unresolved.`;
+    if(row?.phase_kind==='mean_offshore_extent_range')byId('season-definition').textContent+=` ${row.time_convention} ${row.mean_offshore_context.source_date_discrepancy} No edge locator or route buffer inferred; annual variation unresolved.`;
     if(row?.phase_kind==='regional_scalar_summary')byId('season-definition').textContent=`${row.geographic_scope} ${row.layer} ${row.boundary_rule} No edge locator or full-width bar inferred from this regional scalar. Annual variation unresolved.`;
     if(row?.phase_kind==='width_time_series_statistics') {
       const statistics=row.width_statistics_context.reported_statistics;

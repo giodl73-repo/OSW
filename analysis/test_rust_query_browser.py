@@ -71,7 +71,11 @@ def main():
             actual = browser_query(page, query)
             expected = native(query)
             assert actual == expected, (query, actual, expected)
-        assert native(queries[0])['total'] == 29
+        width_currents = native(queries[0])
+        assert width_currents['total'] == 43
+        assert {'current:' + owner for owner in ['falkland', 'brazil', 'benguela', 'canary',
+                'gulf-stream', 'north-atlantic', 'irminger', 'east-greenland', 'west-greenland', 'black-sea-rim']}.issubset(
+                    {row['id'] for row in width_currents['rows']})
         lengths = native(queries[1])
         assert lengths['total'] == 11
         assert lengths['rows'][0]['published_length_km'] == 25000

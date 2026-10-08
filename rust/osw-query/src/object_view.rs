@@ -81,6 +81,17 @@ impl Store {
             .as_array()
             .ok_or("Missing footprint inventory")?
             .clone();
+        data["eddy_recurrence"] = json!(
+            self.bundle
+                .collections
+                .get("eddy_recurrence")
+                .map(|rows| rows
+                    .iter()
+                    .filter(|r| r["entity_id"] == id)
+                    .cloned()
+                    .collect::<Vec<_>>())
+                .unwrap_or_default()
+        );
         let footprint_ids: BTreeSet<_> =
             footprints.iter().filter_map(|r| r["id"].as_str()).collect();
         let geometry_ids: BTreeSet<_> = footprints

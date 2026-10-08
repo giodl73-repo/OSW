@@ -21,6 +21,8 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
     const angular=row.ensemble_angular_context;
     const value=angular?`${format(angular.source_reported_latitude_span_degrees)}° latitude (~${format(row.approximate_width_km)} km conversion)`
       :row.phase_kind==='width_time_series_statistics'?`${format(row.approximate_width_km)} km mean (${row.width_range_km.map(format).join('–')} km observed)`
+      :row.phase_kind==='survey_layer_median_threshold_width'?`${format(row.approximate_width_km)} ±${format(row.reported_total_error_km)} km source width and total error`
+      :row.phase_kind==='mean_offshore_extent_range'?`${row.width_range_km.map(format).join('–')} km mean surface offshore extent (not full width)`
       :row.approximate_width_km===null?`${row.width_range_km.map(format).join('–')} km reported span`:`about ${format(row.approximate_width_km)} km`;
     node('summary',`${value} · ${row.width_metric_label||row.width_metric.replaceAll('_',' ')} · ${row.phase_label}`,details);
     node('p',row.time_convention,details);
