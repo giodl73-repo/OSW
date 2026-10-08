@@ -362,12 +362,24 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         ADDITIONS,
         "osw.current-inventory-expansion-candidates.v1",
     )?;
+    crate::proposed_widths::validate_proposals(&additions)?;
     if additions["current_ledger_sha256"]
         != bundle.manifest["input_sha256"]["research/ocean-current-almanac.json"]
     {
         return Err("Atlas proposed additions refer to a different current ledger".into());
     }
+    let astrid_path = crate::astrid_scales::PATH;
     let mut paths = BTreeSet::from([ADDITIONS]);
+    if receipts.contains_key(astrid_path)
+        || bundle
+            .collections
+            .get("objects")
+            .is_some_and(|rows| rows.iter().any(|r| r["id"] == "eddy:geography:astrid-2000"))
+    {
+        let astrid = document(bundle, astrid_path, "osw.named-eddy-radial-scale-audit.v1")?;
+        crate::astrid_scales::validate(&astrid)?;
+        paths.insert(astrid_path);
+    }
     let routes = bundle
         .collections
         .get("reference_routes")

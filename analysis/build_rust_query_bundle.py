@@ -28,6 +28,13 @@ def build():
         movies_receipts[name]={'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')}
     dashboard=read('research/ocean-motion-dashboard.json')
     widths=read('research/ocean-current-width-inventory.json')
+    for path in ['research/california-2011-abstract-width-scope-audit.json','research/oyashio-2005-abstract-width-scope-audit.json']:
+        read(path)
+    inputs['analysis/check_abstract_regional_widths.py']=hashlib.sha256((ROOT/'analysis/check_abstract_regional_widths.py').read_bytes()).hexdigest()
+    for path in ['research/west-spitsbergen-kolas-2018-stream-tube-width-scope-audit.json','research/source-data/kolas-fer-wsc-2018/acquisition.json']:
+        read(path)
+    for path in ['research/source-data/kolas-fer-wsc-2018/journal-article.pdf','plans/west-spitsbergen-stream-tube-width-protocol-v1.md','analysis/check_west_spitsbergen_stream_tubes.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from check_current_width_inventory import validate
     validate(widths,read('research/ocean-current-almanac.json'))
     routes=read('research/ocean-current-reference-path-candidates.json')
@@ -348,7 +355,17 @@ def build():
     model_owner['capabilities']['model_samples']=len(collections['model_samples'])
     for name,rows in collections.items():
         if len({r['id'] for r in rows})!=len(rows):raise ValueError('Duplicate ID in '+name)
-    atlas_paths=['research/ocean-current-inventory-expansion-candidates.json',
+    from check_norwegian_atlantic_branch_widths import validate as validate_proposed_widths, AUDIT, ACQUISITION, SOURCE
+    validate_proposed_widths(read('research/ocean-current-inventory-expansion-candidates.json'))
+    read(AUDIT);read(ACQUISITION)
+    inputs[SOURCE]=hashlib.sha256((ROOT/SOURCE).read_bytes()).hexdigest()
+    inputs['analysis/check_norwegian_atlantic_branch_widths.py']=hashlib.sha256((ROOT/'analysis/check_norwegian_atlantic_branch_widths.py').read_bytes()).hexdigest()
+    from check_astrid_radial_scales import validate as validate_astrid
+    validate_astrid(read('research/astrid-2000-radial-scale-scope-audit.json'),read('research/named-eddy-geography.json'))
+    read('research/source-data/van-aken-astrid-2003/acquisition.json')
+    for path in ['research/source-data/van-aken-astrid-2003/journal-article.pdf','analysis/check_astrid_radial_scales.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    atlas_paths=['research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
                  'research/ocean-current-reference-route-state-join.json',
                  'research/ocean-current-dated-timeline-2025.json',
                  'research/ocean-current-dated-timeline.json',

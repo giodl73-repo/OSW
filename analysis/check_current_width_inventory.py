@@ -21,6 +21,9 @@ def validate(document, ledger):
     by_id = {row["id"]: row for row in records}
     hydrographic_extraction = None
     for row in records:
+        if row.get("source_scope_context") or row["current_id"] in {"california","oyashio"}:
+            from check_abstract_regional_widths import validate_row
+            validate_row(row)
         if row.get('id') == 'norwegian-coastal-saetre-1999-halten-regional-width' or row.get('current_id') == 'norwegian-coastal':
             audit_file = 'research/norwegian-coastal-saetre-1999-regional-width-scope-audit.json'
             path = ROOT / audit_file
@@ -210,6 +213,9 @@ def validate(document, ledger):
                 raise ValueError('Profile segment assignment disagrees with ledger')
             if parent is None and row.get('segment_assignment_role') is not None:
                 raise ValueError('Segment assignment requires source parent identity')
+        elif row['phase_kind'] == 'synoptic_stream_tube_section':
+            from check_west_spitsbergen_stream_tubes import validate_row
+            validate_row(row)
         elif row['phase_kind'] == 'survey_profile_composite':
             if row['measurement_type'] != 'published_survey_profile_fit_scale' or row['width_metric'] != 'gaussian_e_folding_distance_from_profile_center' or row.get('boundary_sides') != 'fitted_center_to_e_folding_distance':
                 raise ValueError('Profile scale is not a paired-boundary width')
@@ -440,7 +446,7 @@ def validate(document, ledger):
             if any(row.get(key) is not False for key in ['full_width_inference_eligible','annual_extrema_eligible','seasonal_playback_eligible','is_confidence_interval']):
                 raise ValueError('Promoted regional scalar width')
             context=row.get('regional_scalar_context',{})
-            audits={'alaska-coastal-gulf':'research/alaska-coastal-gulf-jarosz-2017-regional-width-scope-audit.json','labrador':'research/labrador-thompson-2009-regional-width-scope-audit.json','east-australian':'research/east-australian-imos-regional-width-scope-audit.json'}
+            audits={'oyashio':'research/oyashio-2005-abstract-width-scope-audit.json','alaska-coastal-gulf':'research/alaska-coastal-gulf-jarosz-2017-regional-width-scope-audit.json','labrador':'research/labrador-thompson-2009-regional-width-scope-audit.json','east-australian':'research/east-australian-imos-regional-width-scope-audit.json'}
             if context.get('boundary_coordinates_supplied') is not False or context.get('bathymetry_is_measurement_layer') is not False or context.get('audit_file')!=audits.get(row['current_id']) or row['current_id'] not in audits:
                 raise ValueError('Regional scalar provenance mismatch')
             if row['current_id']=='east-australian' and context.get('reported_depth_extent_is_fixed_measurement_layer') is not False:

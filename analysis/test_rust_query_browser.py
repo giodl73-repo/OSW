@@ -72,7 +72,13 @@ def main():
             expected = native(query)
             assert actual == expected, (query, actual, expected)
         width_currents = native(queries[0])
-        assert width_currents['total'] == 43
+        # Inventory widths and separately reviewed derived candidates are queryable.
+        inventory = json.loads((ROOT/'research/ocean-current-width-inventory.json').read_text(encoding='utf-8'))
+        expected_width_ids = {'current:' + row['current_id'] for row in inventory['measurements']}
+        expected_width_ids.update({'current:gulf-stream-system', 'current:loop',
+                                   'current:pacific-north-equatorial-countercurrent'})
+        assert width_currents['total'] == len(expected_width_ids)
+        assert {row['id'] for row in width_currents['rows']} == expected_width_ids
         assert {'current:' + owner for owner in ['falkland', 'brazil', 'benguela', 'canary',
                 'gulf-stream', 'north-atlantic', 'irminger', 'east-greenland', 'west-greenland', 'black-sea-rim']}.issubset(
                     {row['id'] for row in width_currents['rows']})

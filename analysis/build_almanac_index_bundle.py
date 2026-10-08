@@ -50,6 +50,8 @@ def build():
                             'root_kind': 'object' if isinstance(doc, dict) else 'array',
                             'source_schema': doc.get('schema') if isinstance(doc, dict) else None,
                             'optional': path == OPTIONAL})
+    from check_astrid_radial_scales import validate
+    validate(json.loads(documents['research/astrid-2000-radial-scale-scope-audit.json']), json.loads(documents['research/named-eddy-geography.json']))
     station_path = 'research/atlantic-cruise-station-context.json'
     recurrence_path = 'research/black-sea-eddy-recurrence.json'
     if recurrence_path in documents:
