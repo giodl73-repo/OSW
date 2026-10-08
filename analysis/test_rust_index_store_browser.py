@@ -27,6 +27,14 @@ window.rpc = (action, value) => new Promise(resolve => {
 </script>'''
 
 
+def registered_sources():
+    registry=json.loads((ROOT/'almanac/index-sources.json').read_bytes())['documents']
+    assert len(registry)==len(set(registry)), 'Duplicate registered document'
+    seasonal=json.loads((ROOT/'research/noaa-munster-eddy-seasonal-manifest-2021-2023.json').read_bytes())
+    snapshots={(ROOT/'almanac'/r['path']).resolve().relative_to(ROOT).as_posix() for r in seasonal['snapshots']}
+    return set(registry)|snapshots|{'research/ocean-current-dated-timeline.json','research/ocean-current-dated-timeline-2025.json'}
+
+
 def main():
     catalog = json.loads((ROOT/'almanac/index-catalog.json').read_text(encoding='utf-8'))
     compressed = (ROOT/'almanac/index-data.json.gz').read_bytes()
@@ -34,7 +42,11 @@ def main():
     assert hashlib.sha256(compressed).hexdigest() == catalog['compressed_sha256']
     assert hashlib.sha256(payload).hexdigest() == catalog['bundle_sha256']
     bundle = json.loads(payload)
-    assert len(bundle['documents']) == catalog['source_count'] == 68
+    expected_sources=registered_sources()
+    assert set(bundle['documents'])==expected_sources
+    assert {r['path'] for r in catalog['documents']}==expected_sources
+    assert len(catalog['documents'])==len(expected_sources)
+    assert len(bundle['documents']) == catalog['source_count'] == len(expected_sources)
     for path, digest in catalog['input_sha256'].items():
         assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == digest, path
     for descriptor in catalog['documents']:

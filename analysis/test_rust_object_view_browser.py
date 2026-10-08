@@ -17,11 +17,14 @@ def main():
     detection=next(r['id'] for r in c['entities'] if r['type']=='operational_eddy_detection')
     vocabulary=c['classification_vocabularies'][0]['entity_id']
     detections=[r['id'] for r in c['entities'] if r['type']=='operational_eddy_detection']
-    ids=list(dict.fromkeys(['current:acc','current:gulf-stream-system','eddy:published:kraken-2013',*detections,'state:CAMR',vocabulary]))
+    ids=list(dict.fromkeys(['current:acc','current:gulf-stream-system','eddy:published:kraken-2013',*detections,'state:CAMR',vocabulary,c['eddy_recurrence'][0]['entity_id']]))
     expected={ident:native(ident) for ident in ids}
     for ident,view in expected.items():
         assert view['ok'] and view['id']==ident
-        data=view['collections'];assert set(data)==set(bundle['manifest']['canonical_collections'])
+        data=view['collections']
+        assert 'eddy_recurrence' in bundle['manifest']['editorial_collections']
+        assert set(data)==set(bundle['manifest']['canonical_collections'])|{'eddy_recurrence'}
+        assert data['eddy_recurrence']==[r for r in c['eddy_recurrence'] if r['entity_id']==ident]
         for name,rows in data.items():
             original={r['id']:r for r in c[name]}
             assert all(r['id'] in original for r in rows),name
@@ -95,7 +98,7 @@ def main():
         failed.goto(base+'current:acc');expect(failed.locator('#object-summary')).to_contain_text('Release data unavailable',timeout=90000)
         assert failed.locator('#object-options option').count()==0
         browser.close()
-    print(f'PASS: 20 exact canonical imports, {len(c)} declared collections, nine native/WASM object cases, source-bound named contour and four detection plots, packet, no direct JSON reads, mobile and unavailable first load')
+    print(f'PASS: 20 exact canonical imports, {len(c)} declared collections, {len(ids)} native/WASM object cases including scoped editorial recurrence, source-bound named contour and four detection plots, packet, no direct JSON reads, mobile and unavailable first load')
 
 
 def check_source_plot(plot,geometry,frame):
