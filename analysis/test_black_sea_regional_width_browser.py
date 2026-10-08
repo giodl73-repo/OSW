@@ -30,6 +30,7 @@ def main():
         page.set_viewport_size({'width':320,'height':800})
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         page.locator('#regional-width-range').scroll_into_view_if_needed()
+        assert page.locator('#regional-width-range svg text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
         page.screenshot(path=str(ROOT/'.pytest_cache/black-sea-range-mobile-review.png'))
         # Switching removes stale range evidence; the earlier regional range also renders.
         page.locator('#season-current').select_option('labrador')

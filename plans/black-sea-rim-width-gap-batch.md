@@ -52,6 +52,10 @@ No copyrighted closed-license fixture is redistributed.
 - Dashboard browser passed: exact native/WASM parity, four source/projection
   rejection cases, 240 objects, update lights, keyboard, outage retention/mobile.
 - Original source page and desktop/mobile range screenshots visually inspected.
+- Mobile inspection found undersized SVG labels. A presentation-only follow-up
+  enlarges labels below 500 px; the dedicated browser check now requires at least
+  12 screen pixels per label. It passed again after the CSS change. The full
+  pytest result above precedes this CSS/browser-assertion follow-up.
 - 39 JavaScript modules pass syntax checking. All 14 page validation assignments
   pass; assignments do not prove all 51 declared browser checks ran this batch.
 - Whitespace check passed with Windows CRLF policy.
