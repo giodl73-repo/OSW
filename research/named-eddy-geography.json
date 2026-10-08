@@ -1,6 +1,6 @@
 {
   "schema": "osw.almanac.named-eddy-geography.v1",
-  "as_of": "2026-09-29",
+  "as_of": "2026-10-08",
   "method": "Separate named eddy families and recurring geographic names from source-dated individuals. Regional locators are editorial gateways; dated study centers and core-water CTD stations retain their distinct evidence types. A study center is not a closed footprint or NASA ECCO identity. Do not infer OSW state containment from these points.",
   "sources": {
     "black_sea_altimetry": "https://doi.org/10.1029/2002JC001508",
@@ -463,7 +463,47 @@
       "reported_track_period": {
         "start": "2004-08-15",
         "end": "2007-05-09"
-      }
+      },
+      "published_ring_radius_evidence": [
+        {
+          "id": "ana-2004-may-2005-radius",
+          "entity_id": "eddy:geography:ana-2004",
+          "name": "Agulhas Ring Ana",
+          "metric": "author_reported_altimetric_area_equivalent_radius",
+          "value_km": 67,
+          "period_label": "May 2005",
+          "period_month": "2005-05",
+          "period_precision": "source_section_month",
+          "source_claims": [
+            {
+              "value_km": 67,
+              "reported_period": "25-26 May 2005 XBT context",
+              "source_locator": "Figure 8 caption, printed p11; section 3.1.1, printed p10",
+              "figure_panel_time_label": "25-26 / May / 2005"
+            }
+          ],
+          "radius_conflict": false,
+          "date_conflict": false,
+          "conflict_resolution": null,
+          "definition": "Source-described area-equivalent circle radius from altimetry; L is the ring radius in the two-layer diagnostic model. Not a mapped occupied perimeter.",
+          "layer": "Altimetric surface geometry; no full-depth radius layer or occupied volume inferred.",
+          "observation_date": null,
+          "observed_period": null,
+          "reported_uncertainty_km": null,
+          "radius_range_km": null,
+          "geometry": null,
+          "annual_extrema_eligible": false,
+          "seasonal_playback_eligible": false,
+          "footprint_inference_eligible": false,
+          "diameter_inference_eligible": false,
+          "area_inference_eligible": false,
+          "rank_eligible": false,
+          "evidence_kind": "published_altimetric_radius_source_claims_not_canonical",
+          "source_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.958733/full"
+        }
+      ],
+      "ring_radius_audit_file": "research/agulhas-guerra-2022-ring-radius-scope-audit.json",
+      "ring_radius_audit_sha256": "16e45c4f6c271a69654effb7785667b489596bb8e6e633644430cd55c1ddecd6"
     },
     {
       "id": "eliza-2007",
@@ -494,7 +534,137 @@
         "start": "2007-08-01",
         "end": "2010-05-04",
         "scope": "source track from parent-ring shedding through Eliza's reported demise; not an unbroken individual lifetime"
-      }
+      },
+      "published_ring_radius_evidence": [
+        {
+          "id": "eliza-2007-feb-2009-radius",
+          "entity_id": "eddy:geography:eliza-2007",
+          "name": "Agulhas Ring Eliza",
+          "metric": "author_reported_altimetric_area_equivalent_radius",
+          "value_km": null,
+          "period_label": "Feb 2009",
+          "period_month": "2009-02",
+          "period_precision": "source_section_month",
+          "source_claims": [
+            {
+              "value_km": 88,
+              "reported_period": "Feb/09",
+              "source_locator": "Table 1, printed p16, Eliza Feb/09 L column",
+              "figure_panel_time_label": null
+            },
+            {
+              "value_km": 93,
+              "reported_period": "February 2009",
+              "source_locator": "Figure 10 caption, printed p12, older-to-younger ordering",
+              "figure_panel_time_label": "14-Feb-2009"
+            }
+          ],
+          "radius_conflict": true,
+          "date_conflict": false,
+          "conflict_resolution": null,
+          "definition": "Source-described area-equivalent circle radius from altimetry; L is the ring radius in the two-layer diagnostic model. Not a mapped occupied perimeter.",
+          "layer": "Altimetric surface geometry; no full-depth radius layer or occupied volume inferred.",
+          "observation_date": null,
+          "observed_period": null,
+          "reported_uncertainty_km": null,
+          "radius_range_km": null,
+          "geometry": null,
+          "annual_extrema_eligible": false,
+          "seasonal_playback_eligible": false,
+          "footprint_inference_eligible": false,
+          "diameter_inference_eligible": false,
+          "area_inference_eligible": false,
+          "rank_eligible": false,
+          "evidence_kind": "published_altimetric_radius_source_claims_not_canonical",
+          "source_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.958733/full"
+        },
+        {
+          "id": "eliza-2007-jul-2009-radius",
+          "entity_id": "eddy:geography:eliza-2007",
+          "name": "Agulhas Ring Eliza",
+          "metric": "author_reported_altimetric_area_equivalent_radius",
+          "value_km": 95,
+          "period_label": "Jul 2009",
+          "period_month": "2009-07",
+          "period_precision": "source_section_month",
+          "source_claims": [
+            {
+              "value_km": 95,
+              "reported_period": "Jul/09",
+              "source_locator": "Table 1, printed p16, Eliza Jul/09 L column",
+              "figure_panel_time_label": null
+            },
+            {
+              "value_km": 95,
+              "reported_period": "July 2009",
+              "source_locator": "Figure 10 caption, printed p12, middle section",
+              "figure_panel_time_label": "20-Jul-2009"
+            }
+          ],
+          "radius_conflict": false,
+          "date_conflict": false,
+          "conflict_resolution": null,
+          "definition": "Source-described area-equivalent circle radius from altimetry; L is the ring radius in the two-layer diagnostic model. Not a mapped occupied perimeter.",
+          "layer": "Altimetric surface geometry; no full-depth radius layer or occupied volume inferred.",
+          "observation_date": null,
+          "observed_period": null,
+          "reported_uncertainty_km": null,
+          "radius_range_km": null,
+          "geometry": null,
+          "annual_extrema_eligible": false,
+          "seasonal_playback_eligible": false,
+          "footprint_inference_eligible": false,
+          "diameter_inference_eligible": false,
+          "area_inference_eligible": false,
+          "rank_eligible": false,
+          "evidence_kind": "published_altimetric_radius_source_claims_not_canonical",
+          "source_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.958733/full"
+        },
+        {
+          "id": "eliza-2007-january-section-radius",
+          "entity_id": "eddy:geography:eliza-2007",
+          "name": "Agulhas Ring Eliza",
+          "metric": "author_reported_altimetric_area_equivalent_radius",
+          "value_km": null,
+          "period_label": "Jan 2010 / 2019",
+          "period_month": null,
+          "period_precision": "unresolved_source_year_conflict",
+          "source_claims": [
+            {
+              "value_km": 93,
+              "reported_period": "Jan/10",
+              "source_locator": "Table 1, printed p16, Eliza Jan/10 L column",
+              "figure_panel_time_label": null
+            },
+            {
+              "value_km": 88,
+              "reported_period": "January 2019",
+              "source_locator": "Figure 10 caption, printed p12, younger section",
+              "figure_panel_time_label": "31-Jan-2010"
+            }
+          ],
+          "radius_conflict": true,
+          "date_conflict": true,
+          "conflict_resolution": null,
+          "definition": "Source-described area-equivalent circle radius from altimetry; L is the ring radius in the two-layer diagnostic model. Not a mapped occupied perimeter.",
+          "layer": "Altimetric surface geometry; no full-depth radius layer or occupied volume inferred.",
+          "observation_date": null,
+          "observed_period": null,
+          "reported_uncertainty_km": null,
+          "radius_range_km": null,
+          "geometry": null,
+          "annual_extrema_eligible": false,
+          "seasonal_playback_eligible": false,
+          "footprint_inference_eligible": false,
+          "diameter_inference_eligible": false,
+          "area_inference_eligible": false,
+          "rank_eligible": false,
+          "evidence_kind": "published_altimetric_radius_source_claims_not_canonical",
+          "source_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.958733/full"
+        }
+      ],
+      "ring_radius_audit_file": "research/agulhas-guerra-2022-ring-radius-scope-audit.json",
+      "ring_radius_audit_sha256": "16e45c4f6c271a69654effb7785667b489596bb8e6e633644430cd55c1ddecd6"
     },
     {
       "id": "jeannette-2012",
@@ -537,7 +707,95 @@
         "start": "2012-01-28",
         "end": "2015-12-27"
       },
-      "identity_note": "This study's Ring Jeannette track spans a merger. It says Nencioli et al. (2018) instead label its pre-merger southern track AS2 and post-merger ring B12, with northern contributing track AN1. Those are source-scoped track identifiers, not three additional personal ring names or proven continuous identities."
+      "identity_note": "This study's Ring Jeannette track spans a merger. It says Nencioli et al. (2018) instead label its pre-merger southern track AS2 and post-merger ring B12, with northern contributing track AN1. Those are source-scoped track identifiers, not three additional personal ring names or proven continuous identities.",
+      "published_ring_radius_evidence": [
+        {
+          "id": "jeannette-2012-may-2013-radius",
+          "entity_id": "eddy:geography:jeannette-2012",
+          "name": "Agulhas Ring Jeannette",
+          "metric": "author_reported_altimetric_area_equivalent_radius",
+          "value_km": 74,
+          "period_label": "May 2013",
+          "period_month": "2013-05",
+          "period_precision": "source_section_month",
+          "source_claims": [
+            {
+              "value_km": 74,
+              "reported_period": "May/13",
+              "source_locator": "Table 1, printed p16, Jeannette May/13 L column",
+              "figure_panel_time_label": null
+            },
+            {
+              "value_km": 74,
+              "reported_period": "May/2013",
+              "source_locator": "Figure 13 caption, printed p14, Cape Basin section",
+              "figure_panel_time_label": "25-May-2013"
+            }
+          ],
+          "radius_conflict": false,
+          "date_conflict": false,
+          "conflict_resolution": null,
+          "definition": "Source-described area-equivalent circle radius from altimetry; L is the ring radius in the two-layer diagnostic model. Not a mapped occupied perimeter.",
+          "layer": "Altimetric surface geometry; no full-depth radius layer or occupied volume inferred.",
+          "observation_date": null,
+          "observed_period": null,
+          "reported_uncertainty_km": null,
+          "radius_range_km": null,
+          "geometry": null,
+          "annual_extrema_eligible": false,
+          "seasonal_playback_eligible": false,
+          "footprint_inference_eligible": false,
+          "diameter_inference_eligible": false,
+          "area_inference_eligible": false,
+          "rank_eligible": false,
+          "evidence_kind": "published_altimetric_radius_source_claims_not_canonical",
+          "source_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.958733/full"
+        },
+        {
+          "id": "jeannette-2012-nov-2015-radius",
+          "entity_id": "eddy:geography:jeannette-2012",
+          "name": "Agulhas Ring Jeannette",
+          "metric": "author_reported_altimetric_area_equivalent_radius",
+          "value_km": 72,
+          "period_label": "Nov 2015",
+          "period_month": "2015-11",
+          "period_precision": "source_section_month",
+          "source_claims": [
+            {
+              "value_km": 72,
+              "reported_period": "Nov/15",
+              "source_locator": "Table 1, printed p16, Jeannette Nov/15 L column",
+              "figure_panel_time_label": null
+            },
+            {
+              "value_km": 72,
+              "reported_period": "Nov/2015",
+              "source_locator": "Figure 13 caption, printed p14, western basin section",
+              "figure_panel_time_label": "29-Nov-2015"
+            }
+          ],
+          "radius_conflict": false,
+          "date_conflict": false,
+          "conflict_resolution": null,
+          "definition": "Source-described area-equivalent circle radius from altimetry; L is the ring radius in the two-layer diagnostic model. Not a mapped occupied perimeter.",
+          "layer": "Altimetric surface geometry; no full-depth radius layer or occupied volume inferred.",
+          "observation_date": null,
+          "observed_period": null,
+          "reported_uncertainty_km": null,
+          "radius_range_km": null,
+          "geometry": null,
+          "annual_extrema_eligible": false,
+          "seasonal_playback_eligible": false,
+          "footprint_inference_eligible": false,
+          "diameter_inference_eligible": false,
+          "area_inference_eligible": false,
+          "rank_eligible": false,
+          "evidence_kind": "published_altimetric_radius_source_claims_not_canonical",
+          "source_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.958733/full"
+        }
+      ],
+      "ring_radius_audit_file": "research/agulhas-guerra-2022-ring-radius-scope-audit.json",
+      "ring_radius_audit_sha256": "16e45c4f6c271a69654effb7785667b489596bb8e6e633644430cd55c1ddecd6"
     },
     {
       "id": "lilian-2006",

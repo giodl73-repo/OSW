@@ -52,6 +52,8 @@ def build():
                             'optional': path == OPTIONAL})
     from check_astrid_radial_scales import validate
     validate(json.loads(documents['research/astrid-2000-radial-scale-scope-audit.json']), json.loads(documents['research/named-eddy-geography.json']))
+    from build_agulhas_ring_radius_audit import validate as validate_ring_radii
+    validate_ring_radii(json.loads(documents['research/agulhas-guerra-2022-ring-radius-scope-audit.json']),json.loads(documents['research/named-eddy-geography.json']))
     station_path = 'research/atlantic-cruise-station-context.json'
     recurrence_path = 'research/black-sea-eddy-recurrence.json'
     if recurrence_path in documents:
