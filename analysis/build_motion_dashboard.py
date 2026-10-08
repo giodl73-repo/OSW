@@ -132,6 +132,10 @@ def build():
         or antilles_sections.get('width_rank_eligible') is not False or antilles_sections.get('seasonal_playback_eligible') is not False):
         raise ValueError('Antilles section diagnostic must preserve scoped, unadmitted evidence and inventory checksum')
     eddy_geography = {e['id']: e for e in read('research/named-eddy-geography.json')['entries']}
+    from build_black_sea_eddy_recurrence import validate as validate_recurrence
+    recurrence_document=read('research/black-sea-eddy-recurrence.json')
+    validate_recurrence(recurrence_document)
+    recurrence={r['entity_id']:r for r in recurrence_document['entries']}
     loop_context = read('research/named-loop-eddy-nasa-context.json')
     loop_entries = {e['id']: e for e in loop_context['entries']}
     eddy_state_assessments = read(base + 'named_eddy_state_assessments.json')
@@ -361,6 +365,9 @@ def build():
             url = 'query.html?q=' + quote(json.dumps(query,separators=(',',':')),safe='')
             if record_id: url += '&inspect=' + quote(record_id,safe='')
             evidence_links.append({'label':label,'url':url})
+        if ident in recurrence:
+            payload['eddy_recurrence']=recurrence[ident]
+            query_link('Inspect published occurrence and event lifetime', 'eddy_recurrence', recurrence[ident]['id'])
         if current_id == 'loop':
             payload['section_spans'] = loop_sections
             capabilities['scoped_width'] += len(loop_sections)
@@ -432,6 +439,9 @@ def build():
             groups['sources'].append({'source_url':network['source_url'],'source_file_sha256':inputs[network_path]})
         if series:
             groups['time_evidence'].append(series)
+        if ident in recurrence:
+            groups['time_evidence'].append(recurrence[ident])
+            groups['sources'].append(recurrence[ident])
         if state_evidence:
             groups['routes_geometry'].append(state_evidence)
         rows.append({'id': ident, 'label': entity['label'], 'type': entity['type'],
@@ -456,6 +466,8 @@ def build():
                      'season_url': 'seasons.html?current=' + current_id if current_id else None})
         if current_id in {'persian-gulf-saline-overflow','red-sea-saline-overflow'}:
             rows[-1]['scope_audits']=own_audits
+        if ident in recurrence:
+            rows[-1]['eddy_recurrence_ids']=[recurrence[ident]['id']]
     order = {'named_current': 0, 'named_eddy': 1, 'operational_eddy_detection': 2}
     rows.sort(key=lambda row: (order[row['type']], row['label'].casefold(), row['id']))
     counts = {kind: sum(r['type'] == kind for r in rows) for kind in ['named_current', 'named_eddy', 'operational_eddy_detection']}

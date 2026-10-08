@@ -7,6 +7,7 @@ mod charts;
 mod dashboard;
 mod dashboard_beck;
 mod dashboard_map;
+mod eddy_recurrence;
 mod index_bifurcation;
 mod index_map;
 mod index_noaa;
@@ -240,6 +241,7 @@ impl Store {
             }
         }
         seasonal::validate_features(&bundle.collections)?;
+        eddy_recurrence::validate(&bundle)?;
         samples::validate(&bundle.collections, &bundle.manifest)?;
         planning::validate(&bundle.collections, &bundle.manifest)?;
         loop_diagnostics::validate(&bundle.collections, &bundle.manifest)?;

@@ -49,7 +49,7 @@
     if(!lastResult){stopPlayback();return;}
     if(playing&&generation===playbackGeneration)playbackTimer=setTimeout(()=>playDay(index+1,generation),1000);
   }
-  const names={objects:'Currents and eddies',widths:'Scoped width records',reference_routes:'Editorial reference routes',measurements:'Published measurement records',states:'OSW states',state_links:'Recorded state links',sources:'Sources',claims:'Claims',relations:'Relations',entities:'All ledger entities',geometries:'Stored geometries',series:'Time-series indexes',diagnostics:'Diagnostic documents',working_records:'Proposed working records',flow_networks:'Flow networks',flow_network_nodes:'Network nodes',flow_network_edges:'Network connections',passage_samples:'Passage transport samples'};
+  const names={eddy_recurrence:'Published eddy recurrence',objects:'Currents and eddies',widths:'Scoped width records',reference_routes:'Editorial reference routes',measurements:'Published measurement records',states:'OSW states',state_links:'Recorded state links',sources:'Sources',claims:'Claims',relations:'Relations',entities:'All ledger entities',geometries:'Stored geometries',series:'Time-series indexes',diagnostics:'Diagnostic documents',working_records:'Proposed working records',flow_networks:'Flow networks',flow_network_nodes:'Network nodes',flow_network_edges:'Network connections',passage_samples:'Passage transport samples'};
   names.taxonomy_links='Declared identity memberships';
   names.geometry_frames='Dated diagnostic geometry frames';
   names.seasonal_routes='Source-defined seasonal routes';
@@ -141,6 +141,7 @@
   function rejectResult(message){failure(message);renderMap(null);window.oswCharts.render(null,inspect);$('query-detail').hidden=true;detailSequence++;$('query-share').hidden=true;$('query-export').disabled=true;$('query-previous').disabled=true;$('query-next').disabled=true;lastQuery=null;lastResult=null;window.oswLastQueryResult=null;$('query-rows').replaceChildren();$('query-page').textContent='';}
   function label(row){if(row.id?.startsWith('taxonomy-link:'))return row.child_label+' → '+row.parent_label;return row.label||row.name||row.title||row.entity_label||row.id;}
   function value(row){
+    if(row.reported_occurrence_days_per_year_approx!==undefined)return `≈ ${row.reported_occurrence_days_per_year_approx} presence days/year · event lifetime ${row.reported_event_lifetime_approx===null?"unknown":"≈ "+row.reported_event_lifetime_approx+" "+row.event_lifetime_unit+" ("+row.event_lifetime_statistic+")"}`;
     const model=window.oswModelSectionCard?.value(row);if(model!==null&&model!==undefined)return model;
     if(row.document?.schema==='osw.flow-network.v1')return `${row.document.nodes.length} nodes · ${row.document.edges.length} connections · length unresolved`;
     if(row.quantity==='section_volume_transport')return `${row.value} Sv · 2004–2006 exit mean`;

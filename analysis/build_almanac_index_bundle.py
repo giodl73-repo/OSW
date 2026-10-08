@@ -51,6 +51,10 @@ def build():
                             'source_schema': doc.get('schema') if isinstance(doc, dict) else None,
                             'optional': path == OPTIONAL})
     station_path = 'research/atlantic-cruise-station-context.json'
+    recurrence_path = 'research/black-sea-eddy-recurrence.json'
+    if recurrence_path in documents:
+        from build_black_sea_eddy_recurrence import validate as validate_recurrence
+        validate_recurrence(json.loads(documents[recurrence_path]))
     if station_path in documents:
         from build_atlantic_station_context import build as build_station_context
         if json.loads(documents[station_path]) != build_station_context():
