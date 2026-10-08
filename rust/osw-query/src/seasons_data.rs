@@ -55,6 +55,73 @@ fn projection(source: &Value, actual: &Value) -> bool {
         _ => source == actual,
     }
 }
+fn adcp_width_scope(row: &Value) -> Result<(), String> {
+    let id = row["id"].as_str().unwrap_or("");
+    if row["phase_kind"] != "survey_layer_median_threshold_width"
+        && row.get("adcp_threshold_context").is_none()
+        && !id.starts_with("agulhas-return-boebel-2003-adcp-")
+    {
+        return Ok(());
+    }
+    let crossing = id
+        .strip_prefix("agulhas-return-boebel-2003-adcp-")
+        .ok_or("ADCP width identity mismatch")?;
+    let (width, error, projection) = match crossing {
+        "a" => (48, 14, 1),
+        "b1" => (73, 18, 6),
+        "b2" => (78, 18, 1),
+        "c" => (48, 18, 17),
+        _ => return Err("ADCP width crossing mismatch".into()),
+    };
+    let context = &row["adcp_threshold_context"];
+    if row["current_id"] != "agulhas-return"
+        || row["phase_kind"] != "survey_layer_median_threshold_width"
+        || row["measurement_type"] != "published_multilayer_ADCP_threshold_width"
+        || row["width_metric"]
+            != "median_across_ADCP_depth_bins_of_flow_normal_half_maximum_isotach_distance"
+        || row["boundary_sides"] != "paired_half_maximum_isotachs_per_bin_median"
+        || row["approximate_width_km"] != width
+        || row["reported_total_error_km"] != error
+        || context["crossing_id"] != crossing
+        || context["velocity_threshold_fraction"] != 0.5
+        || context["reported_projection_uncertainty_km"] != projection
+        || context["projection_error_is_included_in_total"] != true
+        || context["campaign_context_year"] != 1997
+        || context["deepest_reported_ADCP_bin_m"] != json!([325, 375])
+        || ["confidence_level"]
+            .iter()
+            .any(|k| context.get(k) != Some(&Value::Null))
+        || [
+            "boundary_coordinates_extracted",
+            "depth_bin_range_is_fixed_width_layer",
+            "exact_crossing_dates_extracted",
+        ]
+        .iter()
+        .any(|k| context.get(k) != Some(&json!(false)))
+        || [
+            "width_range_km",
+            "observed_period",
+            "calendar_months",
+            "section_geometry",
+            "fixed_layer_bounds_m",
+        ]
+        .iter()
+        .any(|k| row.get(k) != Some(&Value::Null))
+        || [
+            "whole_current_representative",
+            "width_rank_eligible",
+            "annual_extrema_eligible",
+            "seasonal_playback_eligible",
+            "full_width_inference_eligible",
+            "is_confidence_interval",
+        ]
+        .iter()
+        .any(|k| row.get(k) != Some(&json!(false)))
+    {
+        return Err("ADCP layer-median width or source-error scope mismatch".into());
+    }
+    Ok(())
+}
 pub fn validate(bundle: &Bundle) -> Result<(), String> {
     if bundle.manifest.get("seasons_receipts").is_none() {
         return Ok(());
@@ -77,6 +144,9 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             return Err("Incomplete seasonal source projection".into());
         }
         for row in source {
+            if key == "widths" {
+                adcp_width_scope(row)?;
+            }
             let id = row["id"]
                 .as_str()
                 .ok_or("Missing seasonal record identity")?;

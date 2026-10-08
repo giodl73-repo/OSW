@@ -1,8 +1,8 @@
 """Source range chart, no invented midpoint/annual cycle, native/WASM parity."""
-import json, os
+import copy, hashlib, json, os, subprocess
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-from test_rust_query_browser import native
+from test_rust_query_browser import native, CLI
 ROOT=Path(__file__).resolve().parents[1]
 
 def main():
@@ -50,7 +50,7 @@ def main():
         assert wasm['rows']==native(query)['rows']
         row=wasm['rows'][0];assert row['width_range_km']==[40,80] and row['approximate_width_km'] is None
         assert row['annual_extrema_eligible'] is False and row['section_geometry'] is None
-        assert len(inventory['measurements'])==74
+        assert len(inventory['measurements'])==78
         # A mean offshore extent uses a distinct label and retains sampling metadata.
         page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=mindanao-current',wait_until='networkidle')
         page.wait_for_function("document.querySelector('#season-title').textContent==='Mean surface offshore extent'",timeout=90000)
@@ -78,8 +78,47 @@ def main():
         context=row['mean_offshore_context'];assert context['campaign_context_is_mean_sampling_interval'] is False
         assert context['velocity_reference_depth_range_m']==[0,1000]
         assert context['source_date_discrepancy']
+        page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=agulhas-return',wait_until='networkidle')
+        page.wait_for_function("document.querySelector('#season-title').textContent==='ADCP crossing width · layer median'",timeout=90000)
+        assert '48 ±14 km' in page.locator('#season-value').inner_text()
+        assert page.locator('#regional-width-range svg circle').count()==4
+        assert 'Projection error is included already' in page.locator('#regional-width-range').inner_text()
+        assert 'acoustic Doppler current profiler' in page.locator('#regional-width-range').inner_text()
+        assert '1997 cruise' in page.locator('#season-value').inner_text()
+        assert page.locator('#regional-width-range svg text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
+        assert page.locator('#season-play').is_disabled()
+        assert page.locator('#season-section-locator').is_hidden()
+        assert page.locator('#season-bar').evaluate('(e)=>e.parentElement.hidden')
+        assert 'not a fixed-depth surface width' in page.locator('#season-definition').inner_text()
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        for index,(width,error) in enumerate([(48,14),(73,18),(78,18),(48,18)]):
+            page.locator('#season-phase').select_option(str(index))
+            assert f'{width} ±{error} km' in page.locator('#season-value').inner_text()
+        page.locator('#regional-width-range').scroll_into_view_if_needed()
+        page.screenshot(path=str(ROOT/'.pytest_cache/agulhas-return-adcp-mobile.png'),full_page=True)
+        page.locator('#season-atlas').click()
+        page.wait_for_function('document.querySelector("#route-atlas-select").value==="current:agulhas-return"',timeout=90000)
+        assert page.locator('.atlas-width-record').count()==4
+        assert '48 ±14 km source width and total error' in page.locator('.atlas-width-record').first.inner_text()
+        query={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'agulhas-return'}],'limit':10}
+        page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)),wait_until='networkidle')
+        page.wait_for_function('window.oswLastQueryResult?.total===4',timeout=90000)
+        wasm=page.evaluate('window.oswLastQueryResult');assert wasm==native(query)
+        assert [(r['approximate_width_km'],r['reported_total_error_km']) for r in wasm['rows']]==[(48,14),(73,18),(78,18),(48,18)]
+        assert all(r['width_range_km'] is None and r['adcp_threshold_context']['confidence_level'] is None for r in wasm['rows'])
         assert not errors,errors
         browser.close()
-    print('OK: Black Sea regional range, primary source, null midpoint, no seasonal/edge inference, responsive chart, cleanup and native/WASM query parity')
+    # Coherent source/row rewrites must still fail the shared Rust scope guard.
+    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    i=next(i for i,r in enumerate(bundle['collections']['widths']) if r['phase_kind']=='survey_layer_median_threshold_width')
+    for key,value in [('confidence_level',0.95),('projection_error_is_included_in_total',False),('depth_bin_range_is_fixed_width_layer',True)]:
+        bad=copy.deepcopy(bundle);bad['collections']['widths'][i]['adcp_threshold_context'][key]=value
+        receipt=bad['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json']);doc['measurements']=bad['collections']['widths']
+        receipt['source_json']=json.dumps(doc,ensure_ascii=False);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest()
+        bad['manifest']['input_sha256'][receipt['source_file']]=receipt['source_sha256']
+        path=ROOT/'.pytest_cache/adcp-scope-tampered.json';path.write_text(json.dumps(bad),encoding='utf8')
+        result=subprocess.run([str(CLI),str(path),'-'],input=json.dumps(query),capture_output=True,text=True,encoding='utf8')
+        assert result.returncode==2 and 'ADCP' in result.stderr,(key,result.stderr)
+    print('OK: Black Sea regional range, primary source, null midpoint, no seasonal/edge inference, responsive range/ADCP error charts, cleanup, native/WASM query parity and coherent ADCP scope rejection')
 
 if __name__=='__main__':main()

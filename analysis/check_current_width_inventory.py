@@ -9,6 +9,8 @@ from pyproj import Geod
 ROOT = Path(__file__).resolve().parents[1]
 
 def validate(document, ledger):
+    if document.get('protocol_file')!='plans/ocean-current-width-measurement-protocol-v1.md' or document.get('protocol_sha256')!=hashlib.sha256((ROOT/'plans/ocean-current-width-measurement-protocol-v1.md').read_bytes()).hexdigest():
+        raise ValueError('Stale width measurement protocol')
     decisions = document["current_decisions"]
     ids = {row["id"] for row in ledger["entries"]}
     if len(decisions) != len(ids) or {row["current_id"] for row in decisions} != ids:
@@ -215,6 +217,18 @@ def validate(document, ledger):
             period = row['cruise_context_period']
             if date.fromisoformat(period['start']) > date.fromisoformat(period['end']):
                 raise ValueError('Reversed cruise context dates')
+        elif row['phase_kind']=='survey_layer_median_threshold_width':
+            context=row.get('adcp_threshold_context',{})
+            audit_file='research/agulhas-return-boebel-2003-adcp-width-scope-audit.json'
+            path=ROOT/audit_file
+            if context.get('audit_file')!=audit_file or context.get('audit_sha256')!=hashlib.sha256(path.read_bytes()).hexdigest():
+                raise ValueError('Stale ADCP threshold width audit')
+            audit=json.loads(path.read_bytes())
+            actual=dict(row)
+            actual['adcp_threshold_context']={k:v for k,v in context.items() if k not in ['audit_file','audit_sha256']}
+            expected=next((r for r in audit['measurements'] if r['id']==row['id']),None)
+            if actual!=expected:
+                raise ValueError('ADCP width differs from source table, error or layer-median support')
         elif row['phase_kind']=='survey_threshold_section':
             if (row['measurement_type'],row['width_metric'],row.get('boundary_sides'))!=('published_relative_velocity_section_span','relative_inner_jet_velocity_threshold_span','paired_relative_velocity_boundaries'):
                 raise ValueError('Conflated threshold section metric')

@@ -66,3 +66,12 @@ checksum equality, all twelve seasonal snapshots, native/WASM/source equality
 and checked-input rejection cases. Its completion message also now uses the
 verified count instead of the old literal 68. The remaining ten index page/view
 checks are running in the same resumed runner; no full completion claimed yet.
+
+## Terminal resumed-run results
+
+The two sequential resumed runs completed: the first 16 checks passed before
+the index-store literal-count failure; after correction, the final 11 index
+checks passed. This covers all final 27 registered browser checks, including
+100 currents, 136 named eddy inventory identities, 56 states, all twelve source
+dates, source addresses, maps and navigation. It does not claim that the first
+25 checks ran locally on this head. These results precede the Agulhas ADCP batch.

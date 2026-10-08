@@ -6,6 +6,23 @@ from check_current_width_inventory import validate
 ROOT = Path(__file__).resolve().parents[1]
 
 class WidthInventoryTests(unittest.TestCase):
+    def test_all_callers_reject_stale_protocol_receipts(self):
+        for key,value in [('protocol_sha256','0'*64),('protocol_file','plans/unreviewed.md')]:
+            bad=copy.deepcopy(self.document);bad[key]=value
+            with self.subTest(key=key),self.assertRaisesRegex(ValueError,'protocol'):validate(bad,self.ledger)
+
+    def test_ADCP_layer_medians_keep_source_error_and_sampling_scope(self):
+        rows=[(i,r) for i,r in enumerate(self.document['measurements']) if r['phase_kind']=='survey_layer_median_threshold_width']
+        self.assertEqual([(r['approximate_width_km'],r['reported_total_error_km']) for _,r in rows],[(48,14),(73,18),(78,18),(48,18)])
+        validate(self.document,self.ledger)
+        for i,r in rows:
+            for key,value in [('approximate_width_km',70),('reported_total_error_km',9),('width_range_km',[48,78]),('phase_kind','seasonal_summary'),('fixed_layer_bounds_m',[0,1000]),('observed_period',{'start':'1997-08-23','end':'1997-09-02'}),('calendar_months',[8,9]),('section_geometry',{'type':'LineString'}),('full_width_inference_eligible',True),('is_confidence_interval',True),('annual_extrema_eligible',True),('source_url','https://example.com')]:
+                bad=copy.deepcopy(self.document);bad['measurements'][i][key]=value
+                with self.subTest(crossing=r['id'],key=key),self.assertRaises(ValueError):validate(bad,self.ledger)
+            for key,value in [('velocity_threshold_fraction',0.1),('projection_error_is_included_in_total',False),('confidence_level',0.95),('depth_bin_range_is_fixed_width_layer',True),('exact_crossing_dates_extracted',True),('reported_projection_uncertainty_km',0),('crossing_id','unknown'),('audit_sha256','changed')]:
+                bad=copy.deepcopy(self.document);bad['measurements'][i]['adcp_threshold_context'][key]=value
+                with self.subTest(crossing=r['id'],context=key),self.assertRaises(ValueError):validate(bad,self.ledger)
+
     def test_mean_offshore_extent_preserves_surface_and_sampling_scope(self):
         i=next(i for i,r in enumerate(self.document['measurements']) if r['phase_kind']=='mean_offshore_extent_range')
         r=self.document['measurements'][i]
