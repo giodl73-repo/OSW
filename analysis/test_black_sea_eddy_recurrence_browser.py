@@ -12,7 +12,7 @@ def main():
     expected=native(query);assert expected['total']==9
     assert expected['rows'][0]['label']=='Bosphorus Eddy'
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'],headless=True)
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'),headless=True)
         page=browser.new_page(viewport={'width':1100,'height':950});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         for row in rows:

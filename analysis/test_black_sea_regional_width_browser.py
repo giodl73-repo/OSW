@@ -10,7 +10,7 @@ def main():
     identifier='black-sea-rim-korotaev-2011-regional-width-range'
     query={'collection':'widths','filters':[{'field':'id','op':'eq','value':identifier}],'limit':10}
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'],headless=True)
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'),headless=True)
         page=browser.new_page(viewport={'width':1200,'height':950});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=black-sea-rim',wait_until='networkidle')
