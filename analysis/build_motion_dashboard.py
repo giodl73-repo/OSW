@@ -85,6 +85,18 @@ def build():
     routes = read('research/ocean-current-reference-path-candidates.json')['candidates']
     width_inventory = read('research/ocean-current-width-inventory.json')
     validate_width_inventory(width_inventory, read('research/ocean-current-almanac.json'))
+    from build_antarctic_slope_m6_velocity import build as rebuild_m6
+    velocity_path='research/antarctic-slope-m6-velocity-series.json'
+    velocity=read(velocity_path)
+    if velocity!=rebuild_m6():raise ValueError('Stale M6 velocity evidence')
+    for kind in ['source','protocol','generator']:
+        path=velocity[kind+'_file'];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=velocity[kind+'_sha256']:raise ValueError('Changed M6 dependency')
+    slope_audit=read('research/antarctic-slope-darelius-2024-scope-audit.json')
+    from check_antarctic_slope_scope import validate as validate_slope
+    validate_slope(slope_audit,width_inventory)
+    read('research/source-data/darelius-asc-2024/acquisition.json')
+    inputs[slope_audit['source_pdf_file']]=slope_audit['source_pdf_sha256']
     widths = width_inventory['measurements']
     width_audits={}
     for record in widths:
@@ -400,7 +412,15 @@ def build():
                 series.append({'label':'Yucatan inflow section spans — '+document['product_key'].upper(),
                     'url':'query.html?q='+quote(json.dumps({'collection':'width_samples','filters':[{'field':'diagnostic_id','op':'eq','value':'diagnostic:yucatan-'+document['product_key']+'-sections'}],'limit':50},separators=(',',':')),safe=''),
                     'frames':len(document['frames']),'evidence_role':'local_component_section_span_not_whole_current_width'})
+        if current_id == velocity['current_id']:
+            series.append({'label':'M6 observed velocity · 49 monthly means / 12 seasonal composites',
+                'url':'query.html?q='+quote(json.dumps({'collection':'current_velocity_samples','limit':100},separators=(',',':')),safe='')+'#query-chart-section',
+                'frames':len(velocity['samples']),'evidence_role':'local_observed_velocity_summaries_not_current_dimensions',
+                'source_file':velocity_path,'source_sha256':inputs[velocity_path],
+                'paired_source_readings':velocity['selected_paired_readings'],'source_period':velocity['source_period'],
+                'nominal_depth_m':velocity['station']['nominal_depth_m']})
         capabilities = {
+            'observed_velocity': len(velocity['samples']) if current_id==velocity['current_id'] else 0,
             'radius_evidence': len(geography.get('published_ring_radius_evidence',geography.get('radial_scale_evidence',[]))) if geography else 0,
             'reported_length': sum(m.get('rank_eligible') is True for m in own_measures),
             'reference_route': len(own_routes),
@@ -459,6 +479,7 @@ def build():
             payload['state_evidence'] = state_evidence
         observation_dates = [c.get('observation_time') for c in own_claims] + [g.get('observation_date') for g in own_geometry] + [w.get('observed_period') for w in own_widths]
         observation_dates += [note.get('observed_period') for note in own_notes]
+        if current_id == velocity['current_id']: observation_dates += velocity['source_period']
         if current_id == 'loop': observation_dates += [d['observation_date'] for _, d in loop_documents]
         # Pin the actual time series contents, not just their frame counts.
         if current_id == timeline['current_id']:
@@ -531,6 +552,10 @@ def build():
             groups['routes_geometry'].append([network['nodes'],network['edges']])
             groups['measurements'].append(network['passage_samples'])
             groups['sources'].append({'source_url':network['source_url'],'source_file_sha256':inputs[network_path]})
+        if current_id == velocity['current_id']:
+            payload['observed_velocity']=velocity
+            groups['time_evidence'].append(velocity)
+            groups['sources'].append({'source_url':velocity['source_url'],'source_sha256':velocity['source_sha256'],'source_file':velocity['source_file']})
         if series:
             groups['time_evidence'].append(series)
         if ident in recurrence:

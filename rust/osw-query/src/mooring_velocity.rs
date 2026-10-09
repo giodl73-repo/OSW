@@ -39,6 +39,66 @@ pub(crate) fn validate(bundle: &Bundle) -> Result<(), String> {
             return Err("M6 velocity owner join changed".into());
         }
     }
+    let audit_path = "research/antarctic-slope-darelius-2024-scope-audit.json";
+    if !bundle.manifest["input_sha256"][audit_path].is_null() {
+        let raw = include_str!("../../../research/antarctic-slope-darelius-2024-scope-audit.json");
+        let audit: Value = serde_json::from_str(raw).map_err(|e| e.to_string())?;
+        if bundle.manifest["input_sha256"][audit_path]
+            != format!("{:x}", Sha256::digest(raw.as_bytes()))
+        {
+            return Err("M6 width source review changed".into());
+        }
+        let widths: Value = serde_json::from_str(
+            bundle.manifest["seasons_receipts"]["widths"]["source_json"]
+                .as_str()
+                .ok_or("Missing M6 width review source")?,
+        )
+        .map_err(|e| e.to_string())?;
+        let reviews: Vec<&Value> = widths["review_assessments"]
+            .as_array()
+            .ok_or("Missing width reviews")?
+            .iter()
+            .filter(|r| r["current_id"] == "antarctic-slope")
+            .collect();
+        if reviews != vec![&audit["width_review"]]
+            || bundle.collections["widths"]
+                .iter()
+                .any(|r| r["current_id"] == "antarctic-slope")
+        {
+            return Err("M6 velocity or mooring scales promoted to width".into());
+        }
+        for object in &bundle.collections["objects"] {
+            let count = if object["id"] == "current:antarctic-slope" {
+                61
+            } else {
+                0
+            };
+            if object["capabilities"]["observed_velocity"] != count {
+                return Err("M6 observed velocity coverage changed".into());
+            }
+            if count == 61 {
+                let series: Vec<&Value> = object["series"]
+                    .as_array()
+                    .ok_or("Missing M6 series")?
+                    .iter()
+                    .filter(|s| {
+                        s["evidence_role"]
+                            == "local_observed_velocity_summaries_not_current_dimensions"
+                    })
+                    .collect();
+                if series.len() != 1
+                    || series[0]["frames"] != 61
+                    || series[0]["paired_source_readings"] != 16393
+                    || series[0]["source_period"] != approved["source_period"]
+                    || series[0]["source_sha256"] != digest
+                    || series[0]["nominal_depth_m"] != 228
+                    || object["latest_observation_date"] != "2021-02-13"
+                {
+                    return Err("M6 observed series metadata changed".into());
+                }
+            }
+        }
+    }
     Ok(())
 }
 

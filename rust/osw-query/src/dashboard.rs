@@ -117,6 +117,7 @@ impl Store {
             "radius_evidence",
             "geometry",
             "time_samples",
+            "observed_velocity",
             "source_connectivity",
             "scope_notes",
             "dated_diagnostics",

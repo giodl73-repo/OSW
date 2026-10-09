@@ -1,6 +1,6 @@
 (() => {
   const $ = id => document.getElementById(id);
-  const labels = {radius_evidence:'Scoped radius evidence',reported_length:'Published ranked length',reference_route:'Editorial reference route',scoped_width:'Scoped width evidence',geometry:'Geometry beyond a locator',time_samples:'Time samples / phase records',source_connectivity:'Source-described current links',scope_notes:'Source scope notes',dated_diagnostics:'Dated method diagnostics',flow_network:'Passage networks',passage_transport:'Observed passage transport'};
+  const labels = {observed_velocity:'Observed velocity summaries',radius_evidence:'Scoped radius evidence',reported_length:'Published ranked length',reference_route:'Editorial reference route',scoped_width:'Scoped width evidence',geometry:'Geometry beyond a locator',time_samples:'Time samples / phase records',source_connectivity:'Source-described current links',scope_notes:'Source scope notes',dated_diagnostics:'Dated method diagnostics',flow_network:'Passage networks',passage_transport:'Observed passage transport'};
   const kinds = {named_current:'Current',named_eddy:'Named eddy',operational_eddy_detection:'Dated detection'};
   const key = 'osw-motion-dashboard-seen-v2';
   const groupLabels = {identity:'Identity',sources:'Sources',claims:'Claims / reviews',measurements:'Measurements',routes_geometry:'Routes / geometry',media:'Media links',time_evidence:'Time evidence'};
