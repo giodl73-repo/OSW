@@ -144,6 +144,9 @@ def build():
     zeehan_width_audit=read('research/zeehan-cresswell-2000-width-section-scope-audit.json');read('research/source-data/cresswell-zeehan-2000/acquisition.json')
     for path in ['research/source-data/cresswell-zeehan-2000/journal-article.pdf','plans/zeehan-width-source-separation-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/baffin-fissel-1982-regional-width-scope-audit.json');read('research/source-data/fissel-baffin-1982/acquisition.json')
+    for path in ['research/source-data/fissel-baffin-1982/journal-article.pdf','plans/baffin-regional-width-support-protocol-v1.md','analysis/check_baffin_regional_widths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/humboldt-fuenzalida-2008-regional-width-scope-audit.json');read('research/source-data/fuenzalida-humboldt-2008/text-review.json')
     for path in ['plans/humboldt-regional-width-support-protocol-v1.md','analysis/check_humboldt_width_descriptions.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()

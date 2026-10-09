@@ -40,11 +40,11 @@ def erased_alias_packet(packet,owner='peru-humboldt'):
     bad=copy.deepcopy(packet);receipt=bad['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json'])
     identity=next(r['id'] for r in doc['measurements'] if r['current_id']==owner and r.get('original_regional_context'))
     for rows in [doc['measurements'],bad['collections']['widths']]:
-        row=next(r for r in rows if r['id']==identity);row.pop('original_regional_context');row['current_id']='baffin'
+        row=next(r for r in rows if r['id']==identity);row.pop('original_regional_context');row['current_id']='portugal'
     receipt['source_json']=json.dumps(doc);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest();bad['manifest']['input_sha256'][receipt['source_file']]=receipt['source_sha256']
     return bad
 
-@pytest.mark.parametrize('owner',['peru-humboldt','west-australian','zeehan','kuroshio-extension','new-guinea-coastal-undercurrent','algerian','alaska','atlantic-equatorial-undercurrent','pacific-equatorial-undercurrent'])
+@pytest.mark.parametrize('owner',['baffin','peru-humboldt','west-australian','zeehan','kuroshio-extension','new-guinea-coastal-undercurrent','algerian','alaska','atlantic-equatorial-undercurrent','pacific-equatorial-undercurrent'])
 def test_context_deletion_and_alias_transfer_rejected(tmp_path,owner):
     packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());bad=erased_alias_packet(packet,owner)
     ledger=json.loads((ROOT/'research/ocean-current-almanac.json').read_bytes())
