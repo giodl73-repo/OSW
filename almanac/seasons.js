@@ -45,6 +45,7 @@
   }
   function renderRegionalRange(row) {
     const container=byId('regional-width-range');container.replaceChildren();container.hidden=true;
+    if(row?.phase_kind==='lagrangian_composite_zero_velocity_width'){container.hidden=false;window.renderDwbcFloatComposite(container,window.oswSeasonSnapshot?.dwbc_float_composite_scene);return;}
     if(row?.phase_kind==='coastal_composite_threshold_section'){container.hidden=false;window.renderCoastalCompositeWidths(container,window.oswSeasonSnapshot?.coastal_composite_width_scene,row.id);return;}
     if(row?.modal_decay_context){container.hidden=false;window.renderModalDecayWidth(container,row);return;}
     if(row?.original_regional_context){container.hidden=false;window.renderOriginalRegionalWidth(container,row);return;}
@@ -93,7 +94,7 @@
     byId("season-atlas").href=atlas.href;
     renderDirection(direction);
     byId("season-title").textContent = frame || row?.phase_kind === "seasonal_summary" ? "Seasonal state" : row?.phase_kind === "survey_threshold_section" ? "Survey section observation" : row?.phase_kind === "month_dated_section" ? "Historical section observation" : row?.phase_kind === "ensemble_profile_band" ? "Composite profile observation" : "Recorded evidence";
-    if(row?.phase_kind==='coastal_composite_threshold_section')byId('season-title').textContent=row.original_regional_context.display_title;
+    if(['coastal_composite_threshold_section','lagrangian_composite_zero_velocity_width'].includes(row?.phase_kind))byId('season-title').textContent=row.original_regional_context.display_title;
     const route = frame ? catalog.candidates.find(row => row.candidate_file === frame.route_candidate_file) : catalog.candidates.find(row => row.current_id === byId("season-current").value);
     renderMap(route, frame);
     const sectionLocator=byId("season-section-locator"); sectionLocator.replaceChildren(); sectionLocator.hidden=true;

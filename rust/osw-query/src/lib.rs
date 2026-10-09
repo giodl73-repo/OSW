@@ -11,6 +11,7 @@ mod coastal_composite_widths;
 mod dashboard;
 mod dashboard_beck;
 mod dashboard_map;
+mod dwbc_float_composite;
 mod eddy_recurrence;
 mod guinea_width;
 mod index_bifurcation;
@@ -266,6 +267,7 @@ impl Store {
         dashboard::validate(&bundle)?;
         seasons_data::validate(&bundle)?;
         coastal_composite_widths::validate(&bundle)?;
+        dwbc_float_composite::validate(&bundle)?;
         atlas_data::validate(&bundle)?;
         atlantic_euc_sections::validate(&bundle)?;
         qualitative_calendar::validate(&bundle)?;
@@ -624,7 +626,15 @@ impl Store {
         let chart_scene = if query.collection == "width_samples" {
             charts::scene(&matches, records)
         } else if query.collection == "widths" {
-            coastal_composite_widths::scene(&matches, records)
+            let coastal = coastal_composite_widths::scene(&matches, records);
+            let dwbc = dwbc_float_composite::scene(&matches, records);
+            if !coastal.is_null() && !dwbc.is_null() {
+                json!({"kind":"scoped_width_comparisons","scope":"Available source composite comparisons retain separate definitions, sampling and error roles.","scenes":[coastal,dwbc]})
+            } else if coastal.is_null() {
+                dwbc
+            } else {
+                coastal
+            }
         } else if query.collection == "current_velocity_samples" {
             mooring_velocity::scene(&matches, records)
         } else {

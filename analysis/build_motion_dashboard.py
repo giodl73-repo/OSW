@@ -156,6 +156,9 @@ def build():
     zeehan_width_audit=read('research/zeehan-cresswell-2000-width-section-scope-audit.json');read('research/source-data/cresswell-zeehan-2000/acquisition.json')
     for path in ['research/source-data/cresswell-zeehan-2000/journal-article.pdf','plans/zeehan-width-source-separation-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/dwbc-richardson-1993-upper-core-width-scope-audit.json');read('research/source-data/richardson-dwbc-1993/acquisition.json')
+    for path in ['research/source-data/richardson-dwbc-1993/journal-article.pdf','plans/dwbc-richardson-float-composite-width-protocol-v1.md','analysis/check_dwbc_float_composite.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/antarctic-coastal-schubert-2021-composite-width-scope-audit.json');read('research/source-data/schubert-aacc-2021/acquisition.json');read('research/source-data/schubert-aacc-2021/source-figure.json')
     for path in ['research/source-data/schubert-aacc-2021/journal-article.pdf','plans/antarctic-coastal-composite-width-protocol-v1.md','analysis/check_antarctic_coastal_composites.py','figures/schubert-aacc-2021-source-sections.png']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
