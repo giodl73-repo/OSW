@@ -49,7 +49,7 @@ def main():
         page.locator('#route-atlas-select').select_option('current:leeuwin')
         expect(page.locator('.atlas-width-month-status')).to_contain_text('unavailable or invalid',timeout=90000)
         assert page.locator('.atlas-width-play').is_disabled()
-        assert page.locator('#route-atlas-preview h3').inner_text()=='Leeuwin Current'
+        assert page.locator('#route-atlas-preview > h3').inner_text()=='Leeuwin Current'
         assert not direct and not errors,(direct,errors);browser.close()
     print('OK: 12 historical readings, margins, shared month, December stop, unchanged geometry, cleanup, mobile and invalid evidence')
 

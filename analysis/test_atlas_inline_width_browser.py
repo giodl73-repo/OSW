@@ -56,7 +56,7 @@ def main():
         page.reload(wait_until='networkidle');page.locator('#route-atlas-select').select_option('current:labrador')
         assert page.locator('.atlas-width-record').count()==len([r for r in inventory['measurements'] if r['current_id']=='labrador'])
         assert not direct_width_requests
-        assert page.locator('#route-atlas-preview h3').inner_text()=='Labrador Current'
+        assert page.locator('#route-atlas-preview > h3').inner_text()=='Labrador Current'
         assert not errors,errors
         browser.close()
     print(f"OK: all 100 current cards, {len(inventory['measurements'])} unique scoped widths, definitions/source/record links, keyboard disclosure, conflict, inspector return, reset, mobile and stored widths without direct source requests")

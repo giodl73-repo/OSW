@@ -13,6 +13,7 @@ mod dashboard_beck;
 mod dashboard_map;
 mod dwbc_float_composite;
 mod eddy_recurrence;
+mod eddy_source_panels;
 mod guinea_width;
 mod index_bifurcation;
 mod index_map;
@@ -190,6 +191,7 @@ impl Store {
         }
         published_transports::validate(&bundle)?;
         pacific_neuc_breadths::validate(&bundle)?;
+        eddy_source_panels::validate(&bundle)?;
         // Joined object IDs must resolve in the imported collections.
         for object in &bundle.collections["objects"] {
             for (key, collection) in [

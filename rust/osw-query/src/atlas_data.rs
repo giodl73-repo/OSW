@@ -368,8 +368,19 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     {
         return Err("Atlas proposed additions refer to a different current ledger".into());
     }
+    if receipts.contains_key(crate::eddy_source_panels::PATH) {
+        crate::eddy_source_panels::validate(bundle)?;
+        document(
+            bundle,
+            crate::eddy_source_panels::PATH,
+            "osw.named-eddy-dated-source-panels.v1",
+        )?;
+    }
     let astrid_path = crate::astrid_scales::PATH;
     let mut paths = BTreeSet::from([ADDITIONS]);
+    if receipts.contains_key(crate::eddy_source_panels::PATH) {
+        paths.insert(crate::eddy_source_panels::PATH);
+    }
     if receipts.contains_key(crate::qualitative_calendar::PATH) {
         document(
             bundle,
@@ -583,7 +594,7 @@ impl Store {
         }
         Ok(
             json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],
-                "sources_json":sources,"state_join_available":receipts.contains_key(JOIN),"timeline_scenes":timeline_scenes,"observed_section_views":observed_section_views,"coastal_composite_width_scene":seasons["coastal_composite_width_scene"],"dwbc_float_composite_scene":seasons["dwbc_float_composite_scene"],"published_transport_scenes":seasons["published_transport_scenes"],"pacific_neuc_breadth_scene":seasons["pacific_neuc_breadth_scene"]}),
+                "sources_json":sources,"state_join_available":receipts.contains_key(JOIN),"timeline_scenes":timeline_scenes,"observed_section_views":observed_section_views,"coastal_composite_width_scene":seasons["coastal_composite_width_scene"],"dwbc_float_composite_scene":seasons["dwbc_float_composite_scene"],"published_transport_scenes":seasons["published_transport_scenes"],"pacific_neuc_breadth_scene":seasons["pacific_neuc_breadth_scene"],"eddy_source_panel_scenes":crate::eddy_source_panels::scenes(&self.bundle)?}),
         )
     }
 }

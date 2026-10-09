@@ -483,7 +483,11 @@ def build():
     calendar_audit=validate_calendar(read(calendar_path))
     protocol=calendar_audit['protocol_file']
     inputs[protocol]=hashlib.sha256((ROOT/protocol).read_bytes()).hexdigest()
-    atlas_paths=[calendar_path,atlantic_path,'research/agulhas-guerra-2022-ring-radius-scope-audit.json','research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
+    from build_thor_ursa_source_panels import PATH as panel_path, validate as validate_panels
+    panel_audit=validate_panels(read(panel_path));read(panel_audit['acquisition_file'])
+    for dependency in [panel_audit['source_document_file'],panel_audit['protocol_file'],*[e['source_image_file'] for e in panel_audit['events']],'analysis/build_thor_ursa_source_panels.py']:
+        inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
+    atlas_paths=[panel_path,calendar_path,atlantic_path,'research/agulhas-guerra-2022-ring-radius-scope-audit.json','research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
                  'research/ocean-current-reference-route-state-join.json',
                  'research/ocean-current-dated-timeline-2025.json',
                  'research/ocean-current-dated-timeline.json',

@@ -40,7 +40,7 @@ def main():
         page.locator('#season-current').select_option('black-sea-rim')
         page.locator('#season-atlas').click()
         page.wait_for_function('document.querySelector("#route-atlas-select").value==="current:black-sea-rim"')
-        assert 'Black Sea Rim Current' in page.locator('#route-atlas-preview h3').inner_text()
+        assert 'Black Sea Rim Current' in page.locator('#route-atlas-preview > h3').inner_text()
         assert '40–80' in page.locator('#width-'+identifier).inner_text()
         assert page.locator('#width-rows tr').count()==len(inventory['measurements'])
         from urllib.parse import quote
