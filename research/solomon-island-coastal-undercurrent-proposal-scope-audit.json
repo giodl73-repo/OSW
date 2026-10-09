@@ -1,29 +1,70 @@
 {
   "schema": "osw.current-source-scope-audit.v1",
   "current_id": "solomon-island-coastal-undercurrent",
-  "as_of": "2026-10-03",
+  "as_of": "2026-10-09",
   "status": "editorial_source_scope_audit_not_canonical",
   "source_url": "https://faculty.washington.edu/kessler/abstracts/melet_etal_2010.html",
-  "source_citation": "Melet, Gourdeau, Kessler, Verron and Molines (2010), Thermocline circulation in the Solomon Sea: A modeling study, J. Phys. Oceanogr. 40, 1302\u20131319, doi:10.1175/2009JPO4264.1.",
-  "source_access": "Coauthor-hosted abstract read. Publisher full page returned 403; indexed excerpts identify proposed equatorward flow and a modeled section caption. No full-paper read, figure digitization or observed route extraction claimed.",
+  "source_citation": "Melet, Gourdeau, Kessler, Verron and Molines (2010), Thermocline circulation in the Solomon Sea: A modeling study, J. Phys. Oceanogr. 40, 1302–1319, doi:10.1175/2009JPO4264.1.",
+  "source_access": "Melet et al. (2010) coauthor-hosted abstract read; indexed primary text provides additional model context but the original full article remains inaccessible. Ganachaud et al. (2017) original 27-page PDF acquired from NOAA, checksum matched to institutional record; relevant methods, figures and SICU discussion inspected. No velocity field or source axis digitized.",
   "source_locator": "Author-hosted abstract: previously unknown current east of Solomon Sea formed where SEC meets Solomon Islands; named Solomon Islands Coastal Undercurrent.",
   "source_name": "Solomon Islands Coastal Undercurrent",
   "ledger_name": "Solomon Island Coastal Undercurrent",
   "name_scope_decision": "Plural spelling is the source label; no canonical alias mutation in this audit.",
-  "flow_evidence_class": "source_proposed_modeled_flow",
+  "flow_evidence_class": "modeled_proposal_with_later_regional_observational_interpretation",
   "source_model_resolution_degrees": 0.08333333333333333,
   "source_model_resolution_is_route_precision": false,
-  "scope": "Modeled equatorward boundary flow on the Pacific side of the Solomon Islands, with potential contribution to NICU. Exact coastal gates, layer limits, dated axis and continuity are not extracted from the available abstract.",
+  "scope": "Equatorward boundary flow on the Pacific side of the Solomon Islands proposed in the 2010 model. The 2017 paper interprets northward SICU flow near northeast Bougainville using Pandora ADCP and Al/Mn station contrasts. Neither the abstract nor these local observations establishes a measured continuous island-chain axis, complete endpoints or whole-current dimensions.",
   "observed_period": null,
   "whole_current_length_km": null,
   "whole_current_width_km": null,
   "annual_length_range_km": null,
   "annual_width_range_km": null,
-  "route_construction_status": "full_source_and_extent_review_required",
+  "route_construction_status": "editorial_regional_geographic_reach_available_continuity_unresolved",
   "remaining_gates": [
-    "Retrieve full primary model and observational papers before selecting a measured regional axis.",
-    "Distinguish model proposal from observed continuity; keep plural naming scope explicit.",
-    "Define gates and thermocline support without transferring NICU or EUC dimensions.",
-    "No dated footprint, annual range or NASA surface identification inferred."
-  ]
+    "Acquire and visually review the original 2010 model Figure 4 before digitizing a model axis.",
+    "Review finer coastline and bathymetry, source velocity fields and the density-dependent flow before identifying an actual current core.",
+    "Resolve complete entrance/exit gates and connectivity to NICU separately; no connector across Solomon Strait is drawn.",
+    "No whole-current width, annual range, dated footprint or NASA surface identification inferred."
+  ],
+  "source_document_file": "research/source-data/ganachaud-solomon-2017/journal-article.pdf",
+  "source_document_sha256": "981f64dfa09125766a185228391a4e8099f98285cedaaaedecccc9533fa03b9e",
+  "acquisition_file": "research/source-data/ganachaud-solomon-2017/acquisition.json",
+  "acquisition_sha256": "938ba5c93669ea72a390046bd9bc00e922605b1c7e17ab0212c18428855677d1",
+  "evidence_contexts": [
+    {
+      "id": "melet-2010-model-proposal",
+      "class": "source_proposed_modeled_flow",
+      "source_url": "https://faculty.washington.edu/kessler/abstracts/melet_etal_2010.html",
+      "locator": "Coauthor abstract; indexed primary Figure 4 caption and mean thermocline discussion",
+      "layer": "Model thermocline sigma 24.0-26.5; roughly 100-400 m but density layer varies in depth, not a fixed depth slab",
+      "time": "1986-2004 model mean, from indexed Figure 4 caption; not an observation period",
+      "access": "Abstract and indexed excerpts; original full article and Figure 4 not acquired or visually reviewed",
+      "continuity_observed": false
+    },
+    {
+      "id": "ganachaud-2017-pandora-interpretation",
+      "class": "regional_observational_interpretation",
+      "source_url": "https://doi.org/10.1525/elementa.221",
+      "locator": "Pages 5-7 methods and cruise context; Figure 7 and pages 11-12; page 17 Al/Mn discussion",
+      "campaign_voyage_dates": [
+        "2012-06-28",
+        "2012-08-06"
+      ],
+      "current_axis_observation_dates": null,
+      "layer": "Figure 7c shipboard ADCP layers 0-100 m and 100-300 m are separate from the model density layer; page 17 does not define an SICU core depth",
+      "finding": "The source interprets northward SICU flow near station 43 northeast of Bougainville. Station 42 in Solomon Strait differs from station 43; reported ADCP shows no flow between those adjacent sites. Similarities to station 13 do not prove a continuous axis.",
+      "continuity_observed": false
+    },
+    {
+      "id": "ganachaud-2017-surface-context",
+      "class": "surface_context_not_undercurrent_geometry",
+      "source_url": "https://doi.org/10.1525/elementa.221",
+      "locator": "Figure 7 caption and page 12 ocean circulation",
+      "finding": "Northwestward surface flow near the east Bougainville coast is associated with cyclonic circulation. Figure 7a/b combines campaign mean altimetric anomalies with GDP 1979-March 2015 annual mean climatology; Figure 7c/d is cruise shipboard ADCP. These operators are not interchangeable.",
+      "whole_undercurrent_geometry": false
+    }
+  ],
+  "reference_route_role": "OSW editorial offshore island-chain geography, not a traced model streamline or continuous observed axis",
+  "rank_eligible": false,
+  "seasonal_playback_eligible": false
 }

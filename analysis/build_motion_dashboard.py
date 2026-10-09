@@ -168,6 +168,9 @@ def build():
     geography_states = read('research/named-eddy-geography-join.json')['entries']
     state_names = {code: state['name'] for code, state in read('research/ocean-motion-state-join.json')['states'].items()}
     route_shapes = {r['id']: read(r['candidate_file']) for r in routes}
+    from build_current_reference_path_catalog import validate_source_receipt
+    for shape in route_shapes.values():
+        inputs.update(validate_source_receipt(shape))
     connections = read('research/ocean-current-connectivity-candidates.json')['entries']
     scope_notes = read('research/ocean-current-scope-notes.json')['entries']
     scope_audits = {note['audit_file']: read(note['audit_file']) for note in scope_notes}

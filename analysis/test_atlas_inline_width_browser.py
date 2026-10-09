@@ -11,7 +11,7 @@ def main():
         page=browser.new_page(viewport={'width':1200,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto(BASE+'#route-atlas',wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll(".route-card").length===63');page.wait_for_timeout(100)
+        page.wait_for_function('document.querySelectorAll(".route-card").length===64');page.wait_for_timeout(100)
         seen=[]
         for decision in decisions:
             ident=decision['current_id'];page.locator('#route-atlas-select').select_option('current:'+ident)
@@ -46,11 +46,18 @@ def main():
         page.set_viewport_size({'width':320,'height':800})
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         page.locator('#route-atlas-world').click();assert page.locator('.atlas-width-evidence').count()==0
-        page.route('**/ocean-current-width-inventory.json',lambda route:route.fulfill(status=503,body='unavailable'))
+        # Widths now come from the checked Rust snapshot. A legacy JSON URL
+        # outage must not erase stored records or trigger a direct source fetch.
+        direct_width_requests=[]
+        def blocked_width(route):
+            direct_width_requests.append(route.request.url)
+            route.fulfill(status=503,body='unavailable')
+        page.route('**/ocean-current-width-inventory.json',blocked_width)
         page.reload(wait_until='networkidle');page.locator('#route-atlas-select').select_option('current:labrador')
-        assert 'Width inventory unavailable' in page.locator('.atlas-width-evidence').inner_text()
+        assert page.locator('.atlas-width-record').count()==len([r for r in inventory['measurements'] if r['current_id']=='labrador'])
+        assert not direct_width_requests
         assert page.locator('#route-atlas-preview h3').inner_text()=='Labrador Current'
         assert not errors,errors
         browser.close()
-    print(f"OK: all 100 current cards, {len(inventory['measurements'])} unique scoped widths, definitions/source/record links, keyboard disclosure, conflict, inspector return, reset, mobile and unavailable inventory")
+    print(f"OK: all 100 current cards, {len(inventory['measurements'])} unique scoped widths, definitions/source/record links, keyboard disclosure, conflict, inspector return, reset, mobile and stored widths without direct source requests")
 if __name__=='__main__':main()
