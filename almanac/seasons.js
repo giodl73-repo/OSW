@@ -46,6 +46,7 @@
   function renderRegionalRange(row) {
     const container=byId('regional-width-range');container.replaceChildren();container.hidden=true;
     if(row?.phase_kind==='lagrangian_composite_zero_velocity_width'){container.hidden=false;window.renderDwbcFloatComposite(container,window.oswSeasonSnapshot?.dwbc_float_composite_scene);return;}
+    if(row?.phase_kind==='isopycnal_jet_breadth_summary'){container.hidden=false;window.renderPacificNeucBreadths(container,window.oswSeasonSnapshot?.pacific_neuc_breadth_scene,row.id);return;}
     if(row?.phase_kind==='coastal_composite_threshold_section'){container.hidden=false;window.renderCoastalCompositeWidths(container,window.oswSeasonSnapshot?.coastal_composite_width_scene,row.id);return;}
     if(row?.modal_decay_context){container.hidden=false;window.renderModalDecayWidth(container,row);return;}
     if(row?.original_regional_context){container.hidden=false;window.renderOriginalRegionalWidth(container,row);return;}
@@ -109,6 +110,7 @@
     }
     if(row?.phase_kind==='inverse_hydrographic_section_span')byId('season-title').textContent='Hydrographic cruise-section span';
     if(row?.phase_kind==='model_regional_width_summary'){byId('season-title').textContent='Regional model-mean width';byId('season-value').textContent=`${row.name}: approximately ${row.approximate_width_km} km · annual-mean reference model`; }
+    if(row?.phase_kind==='isopycnal_jet_breadth_summary'){byId('season-title').textContent='Isopycnal jet component breadth';const c=row.original_regional_context;byId('season-value').textContent=`${c.component} jet: approximately ${c.source_reported_latitude_span_degrees}° latitude (~${row.approximate_width_km} km) · 27.0 σθ · Argo 2004–2014 mean`; }
     if(row?.phase_kind==='regional_scalar_summary')byId('season-title').textContent='Regional width summary';
     if(row?.phase_kind==='survey_layer_median_threshold_width') {
       byId('season-title').textContent='ADCP crossing width · layer median';

@@ -51,7 +51,7 @@ def main():
             panel.get_by_role('button',name='Inspect width record',exact=True).click()
             expect(page.locator('#query-detail')).to_contain_text(record()['id'])
             page.goto(BASE+'query.html?q='+quote(json.dumps({'collection':'widths','limit':1})))
-            page.wait_for_function('window.oswLastQueryResult?.total===125',timeout=90000)
+            page.wait_for_function('window.oswLastQueryResult?.total===127',timeout=90000)
             assert page.locator('.dwbc-float-composite').count()==1 and page.locator('.coastal-composite-widths').count()==1
             assert page.evaluate('oswLastQueryResult')==native({'collection':'widths','limit':1})
             page.goto(BASE+'dashboard.html');page.wait_for_function('window.oswDashboardSnapshot?.snapshot',timeout=90000)

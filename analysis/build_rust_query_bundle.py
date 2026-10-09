@@ -61,6 +61,13 @@ def build():
     zeehan_width_audit=read('research/zeehan-cresswell-2000-width-section-scope-audit.json');read('research/source-data/cresswell-zeehan-2000/acquisition.json')
     for path in ['research/source-data/cresswell-zeehan-2000/journal-article.pdf','plans/zeehan-width-source-separation-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_pacific_neuc_isopycnal_breadths import document as neuc_document, AUDIT as NEUC_AUDIT
+    neuc=neuc_document();read(NEUC_AUDIT)
+    for kind in ['source_document','acquisition','protocol','source_figure_receipt']:
+        path=neuc[kind+'_file'];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for figure in neuc['source_figures']:
+        path=figure['asset_file'];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    inputs['analysis/check_pacific_neuc_isopycnal_breadths.py']=hashlib.sha256((ROOT/'analysis/check_pacific_neuc_isopycnal_breadths.py').read_bytes()).hexdigest()
     read('research/dwbc-richardson-1993-upper-core-width-scope-audit.json');read('research/source-data/richardson-dwbc-1993/acquisition.json')
     for path in ['research/source-data/richardson-dwbc-1993/journal-article.pdf','plans/dwbc-richardson-float-composite-width-protocol-v1.md','analysis/check_dwbc_float_composite.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()

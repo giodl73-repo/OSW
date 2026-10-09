@@ -79,4 +79,4 @@ def test_native_source_scene_and_combined_comparisons():
     assert scene['panels'][0]['points'][1]['standard_error']==5
     all_widths=native({'collection':'widths','limit':1})
     assert all_widths['chart_scene']['kind']=='scoped_width_comparisons'
-    assert [s['kind'] for s in all_widths['chart_scene']['scenes']]==['coastal_composite_widths','dwbc_float_composite']
+    assert [s['kind'] for s in all_widths['chart_scene']['scenes']]==['coastal_composite_widths','dwbc_float_composite','pacific_neuc_isopycnal_breadths']

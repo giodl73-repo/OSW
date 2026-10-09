@@ -21,7 +21,7 @@ def validate(document, ledger):
     by_id = {row["id"]: row for row in records}
     hydrographic_extraction = None
     for row in records:
-        if str(row.get("id", "")).startswith(("acc-park-2019-udintsev-", "monsoon-webber-2018-", "tasman-front-nilsson-1980-", "antarctic-coastal-schubert-2021-", "deep-western-boundary-richardson-1993-")) or row.get("original_regional_context") or row["current_id"] in {"algerian", "alaska", "pacific-equatorial-undercurrent", "atlantic-equatorial-undercurrent", "kuroshio-extension", "new-guinea-coastal-undercurrent", "zeehan", "west-australian", "peru-humboldt", "baffin", "western-adriatic", "jutland", "solomon-island-coastal-undercurrent", "new-ireland-coastal-undercurrent", "north-pacific", "acc", "monsoon", "tasman-front", "antarctic-coastal", "deep-western-boundary"}:
+        if str(row.get("id", "")).startswith(("acc-park-2019-udintsev-", "monsoon-webber-2018-", "tasman-front-nilsson-1980-", "antarctic-coastal-schubert-2021-", "deep-western-boundary-richardson-1993-", "pacific-neuc-li-2018-")) or row.get("original_regional_context") or row["current_id"] in {"algerian", "alaska", "pacific-equatorial-undercurrent", "atlantic-equatorial-undercurrent", "kuroshio-extension", "new-guinea-coastal-undercurrent", "zeehan", "west-australian", "peru-humboldt", "baffin", "western-adriatic", "jutland", "solomon-island-coastal-undercurrent", "new-ireland-coastal-undercurrent", "north-pacific", "acc", "monsoon", "tasman-front", "antarctic-coastal", "deep-western-boundary", "pacific-north-equatorial-undercurrent"}:
             from check_original_regional_widths import validate_row
             validate_row(row)
         if row.get("model_regional_context") or row["current_id"] == "guinea":
@@ -482,6 +482,9 @@ def validate(document, ledger):
             validate_row(row)
         elif row['phase_kind'] == 'lagrangian_composite_zero_velocity_width':
             from check_dwbc_float_composite import validate_row
+            validate_row(row)
+        elif row['phase_kind'] == 'isopycnal_jet_breadth_summary':
+            from check_pacific_neuc_isopycnal_breadths import validate_row
             validate_row(row)
         elif row['phase_kind'] == 'coastal_composite_threshold_section':
             from check_antarctic_coastal_composites import validate_row
