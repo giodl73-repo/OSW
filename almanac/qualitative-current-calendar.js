@@ -6,7 +6,7 @@
     add('h4','Seasonal calendar · source interpretation',panel);
     add('p','Select a month to explore the reported behavior. Categories have no numerical strength scale.',panel);
     const controls=add('div',null,panel);controls.setAttribute('role','group');controls.setAttribute('aria-label','Calendar month');
-    controls.style.cssText='display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.35rem';
+    controls.style.cssText='display:grid;grid-template-columns:repeat(auto-fit,minmax(4.5rem,1fr));gap:.35rem';
     const names=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     const output=add('div',null,panel);output.setAttribute('aria-live','polite');output.setAttribute('aria-atomic','true');
     const buttons=[];
