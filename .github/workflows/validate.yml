@@ -21,16 +21,16 @@ jobs:
         run: python -m pip install -r requirements-test.txt
       - name: Acquire checksum-pinned local paper fixtures
         run: python analysis/acquire_local_paper_fixtures.py
-      - name: Run standard-library test baseline
-        run: python -m unittest discover -s analysis -p "test_*.py"
-      - name: Run complete offline test suite
-        run: python -m pytest analysis -q
       - name: Install pinned native Rust toolchain
         run: rustup toolchain install 1.95.0 --profile minimal
       - name: Test and build native query engine
         run: |
           cargo +1.95.0 test --locked --manifest-path rust/osw-query/Cargo.toml
           cargo +1.95.0 build --locked --manifest-path rust/osw-query/Cargo.toml --bin osw-query-cli
+      - name: Run standard-library test baseline
+        run: python -m unittest discover -s analysis -p "test_*.py"
+      - name: Run complete offline test suite
+        run: python -m pytest analysis -q
       - name: Install browser for shipped WASM checks
         run: python -m playwright install --with-deps chromium
       - name: Exercise shipped WASM UI and every query collection
