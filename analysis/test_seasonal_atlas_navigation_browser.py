@@ -60,7 +60,10 @@ def main():
   page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=west-australian&phase=monsoon-winter-sri-lanka',wait_until='networkidle')
   page.wait_for_function('window.oswSeasonSnapshot && document.querySelector("#season-current").options.length===100',timeout=90000)
   assert parse_qs(urlparse(page.url).query)['current']==['west-australian']
-  assert 'phase' not in parse_qs(urlparse(page.url).query)
+  own=next(r for r in widths if r['current_id']=='west-australian')
+  assert parse_qs(urlparse(page.url).query)['phase']==[own['id']]
+  assert page.evaluate('oswSeasonPlan.current_id')=='west-australian'
+  assert own['phase_label'] in page.locator('#season-phase option:checked').inner_text()
   assert page.locator('#season-play').is_disabled()
   assert not errors,errors
   browser.close()

@@ -4,6 +4,13 @@ use sha2::{Digest, Sha256};
 const SOURCES: &[(&str, &str, &str)] = &[
     (
         "jutland",
+        "research/jutland-nielsen-2000-cited-satellite-width-scope-audit.json",
+        include_str!(
+            "../../../research/jutland-nielsen-2000-cited-satellite-width-scope-audit.json"
+        ),
+    ),
+    (
+        "jutland",
         "research/jutland-skov-2019-water-mass-breadth-scope-audit.json",
         include_str!("../../../research/jutland-skov-2019-water-mass-breadth-scope-audit.json"),
     ),
@@ -74,18 +81,26 @@ pub(crate) fn validate(row: &Value) -> Result<(), String> {
     let owner = row["current_id"].as_str().unwrap_or("");
     let id = row["id"].as_str().unwrap_or("");
     // Find the reviewed identity independently of editable owner/context fields.
-    for (reviewed_owner, _, raw) in SOURCES {
+    let mut reviewed_source = None;
+    for (reviewed_owner, path, raw) in SOURCES {
         let doc: Value = serde_json::from_str(raw).map_err(|e| e.to_string())?;
         let known = doc["measurement"]["id"].as_str() == Some(id)
             || doc["measurements"].as_array().map_or(false, |rows| {
                 rows.iter().any(|r| r["id"].as_str() == Some(id))
             });
-        if known && owner != *reviewed_owner {
-            return Err("Original regional width identity reassigned".into());
+        if known {
+            if owner != *reviewed_owner {
+                return Err("Original regional width identity reassigned".into());
+            }
+            reviewed_source = Some((*path, *raw));
+            break;
         }
     }
-    let (path, raw) = match SOURCES.iter().find(|source| source.0 == owner) {
-        Some((_, path, raw)) => (*path, *raw),
+    let (path, raw) = match reviewed_source {
+        Some(source) => source,
+        None if SOURCES.iter().any(|source| source.0 == owner) => {
+            return Err("Unknown original regional description".into());
+        }
         None if row.get("original_regional_context").is_none() => return Ok(()),
         None => return Err("Unknown original regional width source owner".into()),
     };

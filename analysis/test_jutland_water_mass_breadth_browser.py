@@ -15,8 +15,8 @@ def main():
             page.on('pageerror',lambda e:errors.append(str(e)))
             page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Ajutland#route-atlas')
             diagrams=page.locator('#route-atlas-preview .original-regional-width');diagrams.first.wait_for(state='visible',timeout=90000)
-            assert diagrams.count()==1
-            assert page.locator('#route-atlas-preview .atlas-width-record').count()==1
+            assert diagrams.count()==4
+            assert page.locator('#route-atlas-preview .atlas-width-record').count()==4
             for i,row in enumerate(records()):
                 assert '10' in diagrams.nth(i).inner_text() and '20' in diagrams.nth(i).inner_text()
                 assert 'surface-water-mass breadth' in diagrams.nth(i).inner_text()
@@ -41,7 +41,7 @@ def main():
                 assert page.evaluate('oswSourceQueryResult')==expected
             query={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'jutland'}],'limit':100}
             page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)))
-            page.wait_for_function('window.oswLastQueryResult?.total===1',timeout=90000)
+            page.wait_for_function('window.oswLastQueryResult?.total===4',timeout=90000)
             assert page.evaluate('oswLastQueryResult')==native(query)
             assert not errors,errors
             browser.close()

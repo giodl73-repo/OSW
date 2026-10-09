@@ -6,7 +6,7 @@ from test_rust_query_browser import CLI
 from test_humboldt_width_descriptions import erased_alias_packet
 
 def records():
-    return [r for r in json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())['measurements'] if r['current_id']=='jutland']
+    return [r for r in json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())['measurements'] if r['id']=='jutland-skov-2019-coastal-water-mass-breadth']
 
 def test_regional_water_mass_span():
     row,=records();validate_row(row)
