@@ -2,7 +2,11 @@
 
 Parent `27e4579ff117f820837f56f886ed5fd04be87492` / draft PR78.
 Branch `codex/pacific-neuc-isopycnal-widths`.
-Status: locally verified; stacked draft publication pending.
+Status: locally verified and pushed as stacked draft PR79 above PR78; no
+mainline publication or independent scientific admission.
+
+PR: https://github.com/giodl73-repo/OSW/pull/79
+Implementation commit: `25a0fdddef0e70c840fb009a9def110bdc2abbb7`.
 
 ## Original evidence
 
@@ -27,7 +31,9 @@ remains immutable across future requests.
 Audit SHA256:
 `2edff326fd4b7bbc2c6a8cdd1ef0324bac77a62f7e85579cd8ff38753e2db9a6`.
 Protocol: `plans/pacific-neuc-isopycnal-breadth-protocol-v1.md`.
-Scoped Git attributes preserve original JATS response bytes on every platform.
+Scoped Git attributes preserve original JATS response bytes on every platform
+and exempt the original math-markup whitespace from code whitespace checks.
+The source response is not cleaned or reformatted.
 
 ## Measurements and exclusions
 

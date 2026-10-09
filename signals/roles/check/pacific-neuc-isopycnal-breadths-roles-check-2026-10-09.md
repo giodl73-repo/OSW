@@ -13,6 +13,7 @@ Artifact: source extraction, scientific guards, native query comparison,
 dashboard coverage and atlas/seasons/browser rendering. Source parent commit
 `27e4579ff117f820837f56f886ed5fd04be87492` (draft PR78). This is an internal
 functional review; independent scientific admission remains outstanding.
+Implementation commit `25a0fdddef0e70c840fb009a9def110bdc2abbb7`; stacked draft PR79.
 ORBIT is excluded because no planetary analogy is made.
 
 ## CURRENT — physical support
