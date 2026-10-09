@@ -15,6 +15,7 @@ window.oswCharts=(()=>{
     document.getElementById('chart-title').textContent=scene.kind==='mooring_velocity'?'Observed current velocity':'Width profiles';
     if(scene.kind==='dwbc_float_composite'||scene.kind==='scoped_width_comparisons'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Scoped source comparisons';for(const s of scene.scenes||[scene]){if(s.kind==='coastal_composite_widths')window.renderCoastalCompositeWidths(root(),s,null,inspect);else window.renderDwbcFloatComposite(root(),s,inspect);}return;}
     if(scene.kind==='coastal_composite_widths'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Composite section widths';window.renderCoastalCompositeWidths(root(),scene,null,inspect);return;}
+    if(scene.kind==='published_section_transports'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Published section transport';window.renderPublishedSectionTransports(root(),scene,inspect);return;}
     if(scene.kind==='mooring_velocity'){window.oswMooringVelocityCharts.render(scene,inspect,root(),stop=>stops.push(stop));return;}
     if(!scene.panels.length)html('p','No source samples match this query. Missing coverage does not mean zero width.',root());
     for(const [index,panel] of scene.panels.entries()){
