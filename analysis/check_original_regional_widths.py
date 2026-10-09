@@ -6,6 +6,9 @@ AUDIT='research/algerian-cotroneo-2019-regional-width-scope-audit.json'
 SOURCE_SHA='9f4bd73abd9785762fa1f498d30c120392f4847e1f573528c86d8cec13b44a18'
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 def validate_row(row,audit=None):
+    if row.get('current_id')=='pacific-north-equatorial-undercurrent' or str(row.get('id','')).startswith('pacific-neuc-li-2018-'):
+        from check_pacific_neuc_isopycnal_breadths import validate_row as validate_neuc
+        return validate_neuc(row,audit)
     if row.get("current_id")=="deep-western-boundary" or str(row.get("id","")).startswith("deep-western-boundary-richardson-1993-"):
         from check_dwbc_float_composite import validate_row as validate_dwbc
         return validate_dwbc(row,audit)
