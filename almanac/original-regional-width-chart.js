@@ -19,6 +19,20 @@ window.renderOriginalRegionalWidth=function(container,row){
   const caption=document.createElement("figcaption");caption.textContent=row.original_regional_context.display_caption||"Regional along-slope Atlantic Water flow · one 30–50 km background description, no midpoint selected. Numerical uncertainty unknown. The article's autumn 2014–2016 glider missions and 975 m sampling depth do not define this width's observation dates or layer. No annual range, monthly widths or mapped edges inferred.";figure.append(caption);
   const note=document.createElement("p");note.textContent=row.original_regional_context.display_method_note||"Original publisher text inspected; the width description cites Testor et al. (2005). The underlying width method remains unreviewed. Detached eddy diameters are separate quantities.";figure.append(note);
   const q={document:row.original_regional_context.audit_file,pointer:"/measurement",limit:50},a=document.createElement("a");a.href="query.html?source-q="+encodeURIComponent(JSON.stringify(q));a.textContent="Inspect regional width scope and source";figure.append(a);
+  if(row.original_regional_context.section_comparison)window.renderQualitativeSectionComparison(figure,row);
+};
+
+window.renderQualitativeSectionComparison=function(container,row){
+  const comparison=row.original_regional_context.section_comparison;
+  const add=(tag,text,parent)=>{const el=document.createElement(tag);if(text!=null)el.textContent=text;parent?.append(el);return el;};
+  const panel=add('section',null,container);panel.className='qualitative-section-comparison';
+  add('h4','Strahan · two 1997 occupations',panel);
+  add('p',comparison.width_relation+'. '+comparison.strength_relation+'. Numerical section widths and width ratio remain unknown.',panel);
+  const grid=add('div',null,panel);grid.style.cssText='display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.5rem';
+  for(const record of comparison.records){const item=add('div',null,grid);item.style.cssText='border:1px solid #68818a;padding:.6rem;min-width:0';add('strong',record.observed_month,item);add('p',record.width_description,item);add('p','Numerical width: unknown',item);add('small','Stations '+record.station_label+' · exact occupation day unknown',item);}
+  add('p','Relative comparison from the source; the historical 40 km value is not assigned to either section. Two occupations do not establish annual extrema, a seasonal range or monthly evolution.',panel);
+  add('small',comparison.source_locator,panel);
+  const link=add('a','Query both occupation contexts',add('p',null,panel));link.href='query.html?source-q='+encodeURIComponent(JSON.stringify({document:row.original_regional_context.audit_file,pointer:'/measurement/original_regional_context/section_comparison/records',limit:50}));
 };
 
 window.renderReportedWidthConstraint=function(container,row){

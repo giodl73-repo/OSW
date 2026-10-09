@@ -7,6 +7,7 @@ import hashlib
 import http.client
 import json
 import os
+import re
 from pathlib import Path
 import tempfile
 import time
@@ -14,15 +15,34 @@ import urllib.error
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPERS = ('kuroshio-liu-gan-2012', 'leeuwin-deng-2008', 'florida-archer-2017', 'chen-madagascar-2014', 'qiu-chen-nec-2010', 'van-aken-astrid-2003', 'schott-mccreary-2001', 'djakoure-guinea-2017', 'gouriou-atlantic-1988', 'sasaki-kuroshio-extension-2013', 'zenk-ngcu-1999', 'siedler-sonne-1997')
+PAPERS = ('kuroshio-liu-gan-2012', 'leeuwin-deng-2008', 'florida-archer-2017', 'chen-madagascar-2014', 'qiu-chen-nec-2010', 'van-aken-astrid-2003', 'schott-mccreary-2001', 'djakoure-guinea-2017', 'gouriou-atlantic-1988', 'sasaki-kuroshio-extension-2013', 'zenk-ngcu-1999', 'siedler-sonne-1997', 'cresswell-zeehan-2000')
 RETRY_DELAYS = (1, 3)
 TRANSIENT_HTTP = {408, 429, 500, 502, 503, 504}
+
+
+def normalize_transport_identity(name, manifest, data):
+    """Restore one verified volatile PDF ID; every other byte must match the pin."""
+    pinned = '483dd114d6bbbff9b153460edf28a3391958a78e1a0b6a646db548eefcb8a674'
+    if name != 'sasaki-kuroshio-extension-2013' or manifest['sha256'] != pinned:
+        return data
+    if hashlib.sha256(data).hexdigest() == pinned:
+        return data
+    start, end = 3_831_094, 3_831_126
+    prefix = b'/ID [<996ea1892d5650af4f179c438e82877f><'
+    if len(data) != 3_831_641 or data[start-len(prefix):start] != prefix or data[end:end+3] != b'>] ' or not re.fullmatch(b'[0-9a-f]{32}', data[start:end]):
+        return data
+    canonical = data[:start] + b'd90a76365c4c151ec2c33f8c7cdfe942' + data[end:]
+    if hashlib.sha256(canonical).hexdigest() != pinned:
+        return data
+    print(f'{name}: restored verified transport-only PDF second ID; response SHA256 {hashlib.sha256(data).hexdigest()}; fixture SHA256 {pinned}', flush=True)
+    return canonical
 
 
 def verify(name, manifest, data):
     maximum = 50_000_000 if name == 'florida-archer-2017' else 20_000_000
     if len(data) > maximum or not data.startswith(b'%PDF-'):
         raise ValueError(f'{name}: expected a PDF below {maximum//1_000_000} MB')
+    data = normalize_transport_identity(name, manifest, data)
     if hashlib.sha256(data).hexdigest() != manifest['sha256']:
         raise ValueError(f'{name}: source checksum differs from the pinned acquisition')
     return data
