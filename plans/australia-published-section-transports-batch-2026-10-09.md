@@ -2,7 +2,11 @@
 
 Parent: `f52db2ed2b79e85565cd2dd83879fd03a93806dd` (draft PR77).
 Branch: `codex/australia-published-section-transports`.
-Status: locally verified; stacked draft publication pending.
+Status: locally verified, pushed as stacked draft PR78 above PR77; no mainline
+publication or independent scientific admission.
+
+PR: https://github.com/giodl73-repo/OSW/pull/78
+Implementation commit: `39a7bbe87d493bb5e91fe85862212ce5f68191a1`.
 
 ## Evidence and extraction
 

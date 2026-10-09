@@ -12,7 +12,8 @@ verdict: APPROVED-WITH-CONDITIONS
 Artifact: pinned scientific table extraction, Rust query projection, dashboard
 coverage and shared browser cards. Reviewed working changes based on
 `f52db2ed2b79e85565cd2dd83879fd03a93806dd`; this is an internal functional
-review, without independent scientific admission. ORBIT is excluded because
+review, without independent scientific admission. Implementation commit:
+`39a7bbe87d493bb5e91fe85862212ce5f68191a1`; stacked draft PR78 above PR77. ORBIT is excluded because
 the batch makes no planetary comparison.
 
 ## CURRENT — statistical and physical support
