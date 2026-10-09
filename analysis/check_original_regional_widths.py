@@ -6,6 +6,9 @@ AUDIT='research/algerian-cotroneo-2019-regional-width-scope-audit.json'
 SOURCE_SHA='9f4bd73abd9785762fa1f498d30c120392f4847e1f573528c86d8cec13b44a18'
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 def validate_row(row,audit=None):
+    if row.get("current_id") == "jutland":
+        from check_jutland_water_mass_breadth import validate_row as validate_jutland
+        return validate_jutland(row,audit)
     if row.get("current_id") == "western-adriatic":
         from check_western_adriatic_mean_widths import validate_row as validate_wac
         return validate_wac(row,audit)

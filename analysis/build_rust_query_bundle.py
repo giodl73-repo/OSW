@@ -61,6 +61,9 @@ def build():
     zeehan_width_audit=read('research/zeehan-cresswell-2000-width-section-scope-audit.json');read('research/source-data/cresswell-zeehan-2000/acquisition.json')
     for path in ['research/source-data/cresswell-zeehan-2000/journal-article.pdf','plans/zeehan-width-source-separation-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/jutland-skov-2019-water-mass-breadth-scope-audit.json');read('research/source-data/skov-jutland-2019/acquisition.json')
+    for path in ['research/source-data/skov-jutland-2019/journal-article.pdf','plans/jutland-water-mass-breadth-protocol-v1.md','analysis/check_jutland_water_mass_breadth.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/western-adriatic-chavanne-2007-mean-width-scope-audit.json');read('research/source-data/chavanne-adriatic-2007/acquisition.json')
     for path in ['research/source-data/chavanne-adriatic-2007/journal-article.pdf','plans/western-adriatic-radar-width-support-protocol-v1.md','analysis/check_western_adriatic_mean_widths.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
