@@ -18,6 +18,14 @@ ROOT = Path(__file__).resolve().parents[1]
 PAPERS = ('kuroshio-liu-gan-2012', 'leeuwin-deng-2008', 'florida-archer-2017', 'chen-madagascar-2014', 'qiu-chen-nec-2010', 'van-aken-astrid-2003', 'schott-mccreary-2001', 'djakoure-guinea-2017', 'gouriou-atlantic-1988', 'sasaki-kuroshio-extension-2013', 'zenk-ngcu-1999', 'siedler-sonne-1997', 'cresswell-zeehan-2000', 'matsuyama-tsushima-1990', 'glenn-wac-2008', 'fissel-baffin-1982', 'chavanne-adriatic-2007', 'skov-jutland-2019', 'nielsen-jutland-2000', 'melet-solomon-2010', 'tomczak-regional-2005', 'park-acc-2019', 'nilsson-tasman-1980', 'richardson-dwbc-1993')
 RETRY_DELAYS = (1, 3)
 TRANSIENT_HTTP = {408, 429, 500, 502, 503, 504}
+# Byte-identical institutional locations verified on 2026-10-09. These are
+# transport alternatives, not permission to substitute another PDF edition.
+PINNED_MIRRORS = {
+    ('zenk-ngcu-1999', 'https://oceanrep.geomar.de/1816/1/news34.pdf',
+     'f38a100dc030a94ce776a914b96ea798dd40c6dc1aac80fce3563806c01a6407'):
+    ('https://oceanrep.geomar.de/id/eprint/1816/1/news34.pdf',
+     'https://oceanrep.geomar.de/6814/1/news34.pdf'),
+}
 
 
 def normalize_transport_identity(name, manifest, data):
@@ -48,8 +56,7 @@ def verify(name, manifest, data):
     return data
 
 
-def download(name, manifest):
-    source_url = manifest['source_url']
+def download_url(name, manifest, source_url):
     # Preserve the already verified NOAA download form and client behavior.
     if name == 'florida-archer-2017':
         source_url += '?download=1'
@@ -74,6 +81,24 @@ def download(name, manifest):
         delay = RETRY_DELAYS[attempt]
         print(f'{name}: transient download failure; retry {attempt+2}/3 in {delay}s', flush=True)
         time.sleep(delay)
+
+
+def download(name, manifest):
+    primary = manifest['source_url']
+    alternatives = PINNED_MIRRORS.get((name, primary, manifest['sha256']), ())
+    urls = (primary, *alternatives)
+    for i, url in enumerate(urls):
+        try:
+            data = download_url(name, manifest, url)
+            if i:
+                print(f'{name}: verified pinned original from institutional mirror {url}; SHA256 {manifest["sha256"]}', flush=True)
+            return data
+        except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.IncompleteRead) as error:
+            error.add_note(f'{name}: acquisition failed at {url}')
+            if i == len(urls) - 1:
+                raise
+            print(f'{name}: transport failed at {url}: {error}; trying verified institutional mirror', flush=True)
+    # Integrity and format exceptions are deliberately not transport fallback.
 
 
 def acquire(name, directory):
