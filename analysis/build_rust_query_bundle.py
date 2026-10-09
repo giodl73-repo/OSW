@@ -413,6 +413,16 @@ def build():
     model_owner['model_frame_ids']=[row['id'] for row in collections['model_frames']]
     model_owner['capabilities']['model_frames']=len(collections['model_frames'])
     model_owner['capabilities']['model_samples']=len(collections['model_samples'])
+    from build_antarctic_slope_m6_velocity import build as rebuild_velocity
+    velocity_path='research/antarctic-slope-m6-velocity-series.json'
+    velocity=read(velocity_path)
+    if velocity!=rebuild_velocity():raise ValueError('Stale M6 observed velocity aggregation')
+    for key in ['source','protocol','generator']:
+        path=velocity[key+'_file'];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=velocity[key+'_sha256']:raise ValueError('Changed M6 dependency: '+path)
+    collections['current_velocity_samples']=velocity['samples']
+    for row in objects:
+        row['velocity_sample_ids']=[r['id'] for r in velocity['samples'] if r['entity_id']==row['id']]
     for name,rows in collections.items():
         if len({r['id'] for r in rows})!=len(rows):raise ValueError('Duplicate ID in '+name)
     from check_norwegian_atlantic_branch_widths import validate as validate_proposed_widths, AUDIT, ACQUISITION, SOURCE
@@ -469,7 +479,7 @@ def build():
             'atlas_receipts':atlas_receipts,
             'movies_receipts':movies_receipts,
             'loop_recorded_receipts':{path:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for path in ['research/loop-current-recorded-date-comparison.json','research/loop-current-recorded-date-sources.json']},
-            'taxonomy':taxonomy,'editorial_collections':['eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples'],
+            'taxonomy':taxonomy,'editorial_collections':['eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples'],
             'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
             'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
             'input_sha256':inputs,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},
