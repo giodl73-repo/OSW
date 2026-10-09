@@ -370,6 +370,14 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     }
     let astrid_path = crate::astrid_scales::PATH;
     let mut paths = BTreeSet::from([ADDITIONS]);
+    if receipts.contains_key(crate::atlantic_euc_sections::PATH) {
+        document(
+            bundle,
+            crate::atlantic_euc_sections::PATH,
+            "osw.current-source-scope-audit.v1",
+        )?;
+        paths.insert(crate::atlantic_euc_sections::PATH);
+    }
     if receipts.contains_key(astrid_path)
         || bundle
             .collections

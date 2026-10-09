@@ -264,6 +264,7 @@
       const list = node("ul", null, details); for (const gate of row.remaining_gates) node("li", gate, list);
       const phase = seasonalRoutes.frames.find(frame => frame.route_candidate_file === row.candidate_file);
       link("Widths and seasonal evidence", `seasons.html?current=${encodeURIComponent(row.current_id)}${phase ? `&phase=${encodeURIComponent(phase.id)}` : ""}`, node("p", null, card));
+      if(row.current_id==='atlantic-equatorial-undercurrent')window.renderAtlanticEucSectionProperties(card,await load('../research/atlantic-euc-layer-island-scope-audit.json'));
       link("Download coordinates, all scenarios and joins (JSON)", `../${row.candidate_file}`, card);
     }
     const counts = catalog.counts;

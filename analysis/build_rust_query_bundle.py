@@ -385,7 +385,13 @@ def build():
     read('research/source-data/guerra-agulhas-2022/acquisition.json')
     for path in ['research/source-data/guerra-agulhas-2022/journal-article.pdf','analysis/build_agulhas_ring_radius_audit.py','plans/agulhas-ring-radius-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
-    atlas_paths=['research/agulhas-guerra-2022-ring-radius-scope-audit.json','research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
+    from check_atlantic_euc_section_properties import validate as validate_atlantic_sections
+    atlantic_path='research/atlantic-euc-layer-island-scope-audit.json'
+    atlantic_audit=read(atlantic_path);validate_atlantic_sections(atlantic_audit)
+    read(atlantic_audit['section_properties']['acquisition_file'])
+    protocol=atlantic_audit['section_properties']['protocol_file']
+    inputs[protocol]=hashlib.sha256((ROOT/protocol).read_bytes()).hexdigest()
+    atlas_paths=[atlantic_path,'research/agulhas-guerra-2022-ring-radius-scope-audit.json','research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
                  'research/ocean-current-reference-route-state-join.json',
                  'research/ocean-current-dated-timeline-2025.json',
                  'research/ocean-current-dated-timeline.json',
