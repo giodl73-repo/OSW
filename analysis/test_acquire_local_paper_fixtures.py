@@ -3,7 +3,7 @@ import hashlib, io, json, tempfile, unittest
 from pathlib import Path
 from unittest.mock import patch
 from urllib.error import HTTPError, URLError
-from acquire_local_paper_fixtures import acquire, download
+from acquire_local_paper_fixtures import acquire, download, verify
 
 DATA=b'%PDF-1.7\ncontrolled source fixture'
 MANIFEST={'source_url':'https://example.invalid/paper.pdf','sha256':hashlib.sha256(DATA).hexdigest()}
@@ -20,6 +20,14 @@ class AcquisitionTests(unittest.TestCase):
                 manifest['document_filename']=name;(directory/'acquisition.json').write_text(json.dumps(manifest),encoding='utf8')
                 with patch('urllib.request.urlopen') as opener,self.assertRaises(ValueError):acquire('gouriou-atlantic-1988',directory)
                 opener.assert_not_called()
+
+    def test_large_government_report_cap_and_pin_are_fixture_specific(self):
+        data=b'%PDF-'+b'x'*50_913_968
+        manifest=dict(MANIFEST,sha256=hashlib.sha256(data).hexdigest())
+        self.assertEqual(verify('glenn-wac-2008',manifest,data),data)
+        for name in ['qiu-chen-nec-2010','florida-archer-2017']:
+            with self.assertRaisesRegex(ValueError,'expected a PDF below'):verify(name,manifest,data)
+        with self.assertRaisesRegex(ValueError,'checksum'):verify('glenn-wac-2008',MANIFEST,data)
 
     def setUp(self):
         self.scratch=Path(__file__).resolve().parents[1]/'.pytest_cache'/'paper-acquisition-tests'

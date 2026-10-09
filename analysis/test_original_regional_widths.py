@@ -4,6 +4,21 @@ import pytest
 from check_original_regional_widths import ROOT,AUDIT,ALASKA_AUDIT,PACIFIC_EUC_AUDIT,validate_row
 from test_rust_query_browser import CLI
 
+def test_west_australian_breadth_is_not_core_width_or_annual_range():
+    from check_current_width_inventory import validate
+    document=json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())
+    ledger=json.loads((ROOT/'research/ocean-current-almanac.json').read_bytes())
+    row=next(r for r in document['measurements'] if r['current_id']=='west-australian');validate_row(row)
+    for key,value in [('approximate_width_km',1000),('width_range_km',[100,1000]),('calendar_months',[12,1,2]),('observed_period',{'start':'2008-01-01','end':'2008-12-31'}),('seasonal_playback_eligible',True),('original_regional_context',{}),('reported_width_constraint',{}),('current_id','leeuwin')]:
+        bad=copy.deepcopy(row);bad[key]=value
+        with pytest.raises(ValueError):validate_row(bad)
+    for key,value in [('kind','strict_lower_bound'),('is_rigorous_lower_bound',True),('representative_width_km',1000),('upper_bound_km',2000)]:
+        bad=copy.deepcopy(row);bad['reported_width_constraint'][key]=value
+        with pytest.raises(ValueError):validate_row(bad)
+    for key in ['original_regional_context','reported_width_constraint']:
+        bad=copy.deepcopy(document);target=next(r for r in bad['measurements'] if r['current_id']=='west-australian');target.pop(key);target['approximate_width_km']=1000
+        with pytest.raises(ValueError):validate(bad,ledger)
+
 def test_ngcu_qualified_constraint_is_not_point_interval_or_season():
     row=next(r for r in json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())['measurements'] if r['current_id']=='new-guinea-coastal-undercurrent');validate_row(row)
     for key,value in [('approximate_width_km',20),('approximate_width_km',40),('width_range_km',[0,20]),('width_range_km',[20,40]),('calendar_months',[11]),('observed_period',{'start':'1996-11-07','end':'1996-11-08'}),('fixed_layer_bounds_m',[200,200]),('boundary_rule','velocity >80 cm/s'),('uncertainty_km',20),('seasonal_playback_eligible',True),('current_id','new-guinea-coastal-current'),('reported_width_constraint',{}),('original_regional_context',{})]:
@@ -87,6 +102,14 @@ def check_compiled_original_scope(tmp_path):
         next(r for r in bad['collections']['widths'] if r['current_id']=='kuroshio-extension')[key]=value
         receipt['source_json']=json.dumps(doc);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest();bad['manifest']['input_sha256'][receipt['source_file']]=receipt['source_sha256']
         target=tmp_path/'ke-tampered.json';target.write_text(json.dumps(bad),encoding='utf8')
+        result=subprocess.run([str(CLI),str(target),'--seasons'],capture_output=True,text=True,encoding='utf8')
+        assert result.returncode==2 and 'Original regional width' in result.stderr,result.stderr
+    for key,value in [('approximate_width_km',1000),('width_range_km',[100,1000]),('calendar_months',[1]),('seasonal_playback_eligible',True),('original_regional_context',{}),('reported_width_constraint',{'kind':'strict_lower_bound','reference_scale_km':1000})]:
+        bad=copy.deepcopy(packet);receipt=bad['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json'])
+        next(r for r in doc['measurements'] if r['current_id']=='west-australian')[key]=value
+        next(r for r in bad['collections']['widths'] if r['current_id']=='west-australian')[key]=value
+        receipt['source_json']=json.dumps(doc);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest();bad['manifest']['input_sha256'][receipt['source_file']]=receipt['source_sha256']
+        target=tmp_path/'wac-tampered.json';target.write_text(json.dumps(bad),encoding='utf8')
         result=subprocess.run([str(CLI),str(target),'--seasons'],capture_output=True,text=True,encoding='utf8')
         assert result.returncode==2 and 'Original regional width' in result.stderr,result.stderr
     plan=json.loads(subprocess.check_output([str(CLI),str(path),'--seasons'],encoding='utf8'))['phase_plans']['algerian']

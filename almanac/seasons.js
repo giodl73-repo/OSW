@@ -48,7 +48,7 @@
     if(row?.modal_decay_context){container.hidden=false;window.renderModalDecayWidth(container,row);return;}
     if(row?.original_regional_context){container.hidden=false;window.renderOriginalRegionalWidth(container,row);return;}
     if(row?.phase_kind==='model_regional_width_summary'){container.hidden=false;window.renderModelRegionalWidth(container,row);return;}
-    if(row?.reported_width_constraint)byId('season-title').textContent='Reported band size constraint';
+    if(row?.reported_width_constraint)byId('season-title').textContent=row.reported_width_constraint.kind==='issuer_reported_greater_than_geographic_breadth'?'Reported offshore breadth':'Reported band size constraint';
     if(row?.phase_kind==='seasonal_regional_width_range'){container.hidden=false;window.renderSeasonalRegionalWidth(container,row);return;}
     if(row?.source_scope_context){container.hidden=false;window.renderAbstractRegionalWidth(container,row);return;}
     if(row?.phase_kind==='survey_layer_median_threshold_width'){renderAdcpComparison(container,row);return;}
@@ -73,7 +73,7 @@
     const phase = phases[Number(byId("season-phase").value)];
     const row = phase?.width;
     renderRegionalRange(row);
-    if(row?.reported_width_constraint)byId('season-title').textContent='Reported band size constraint';
+    if(row?.reported_width_constraint)byId('season-title').textContent=row.reported_width_constraint.kind==='issuer_reported_greater_than_geographic_breadth'?'Reported offshore breadth':'Reported band size constraint';
     if(row?.phase_kind==='seasonal_regional_width_range')byId("season-play").disabled=true;else byId("season-play").disabled=!window.oswSeasonPlan.can_play;
     const barMaximum = Math.max(50, Math.ceil(Math.max(...phases.filter(p => p.width?.approximate_width_km != null).map(p => p.width.approximate_width_km), 0) / 50) * 50);
     const frame = phase?.frame;
@@ -113,7 +113,7 @@
     if(row?.phase_kind==='synoptic_stream_tube_section')byId('season-title').textContent='Synoptic stream-tube section width';
     if(row?.phase_kind==='campaign_modal_decay_width'){byId('season-title').textContent='Campaign modal decay estimate';byId('season-value').textContent=`${row.name}: source reports ${row.approximate_width_km} km · coastal branch (1980)`;}
     if(row?.phase_kind==='regional_summary')byId('season-title').textContent=row.width_range_km?'Regional width range':'Regional width summary';
-    if(row?.reported_width_constraint)byId('season-title').textContent='Reported band size constraint';
+    if(row?.reported_width_constraint)byId('season-title').textContent=row.reported_width_constraint.kind==='issuer_reported_greater_than_geographic_breadth'?'Reported offshore breadth':'Reported band size constraint';
     if(row?.phase_kind==='seasonal_regional_width_range'){byId('season-title').textContent='Seasonal regional width scale';byId('season-value').textContent=`${row.name}: ${row.width_range_km.join('–')} km seasonal regional scale · ${row.phase_label}`;}
     if(row?.phase_kind==='mean_offshore_extent_range') {
       byId('season-title').textContent='Mean surface offshore extent';

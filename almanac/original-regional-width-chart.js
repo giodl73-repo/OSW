@@ -39,9 +39,10 @@ window.renderReportedWidthConstraint=function(container,row){
   const figure=document.createElement('figure');figure.className='original-regional-width reported-width-constraint';figure.style.margin='0';container.append(figure);
   const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');figure.append(svg);
   svg.setAttribute('viewBox','0 0 500 100');svg.setAttribute('role','img');
-  svg.setAttribute('aria-label',`${row.name}: source reports ${row.reported_width_constraint.source_notation}. Approximate less-than size description, not a measured 20 km width, rigorous hard bound or zero-to-20 km interval. Representative width and numerical uncertainty unknown.`);
+  const breadth=row.reported_width_constraint.kind==='issuer_reported_greater_than_geographic_breadth';
+  svg.setAttribute('aria-label',breadth?`${row.name}: source reports offshore geographic breadth ${row.reported_width_constraint.source_notation}. Government synthesis, not a measured velocity-core width, finite interval or seasonal range. Representative width and numerical uncertainty unknown.`:`${row.name}: source reports ${row.reported_width_constraint.source_notation}. Approximate less-than size description, not a measured 20 km width, rigorous hard bound or zero-to-20 km interval. Representative width and numerical uncertainty unknown.`);
   svg.style.cssText='display:block;width:100%;max-width:650px;background:#f6f5ef;color:#102f3b';
-  for(const [label,y,size] of [[row.reported_width_constraint.source_notation,40,36],['Reported size constraint',80,28]]){
+  for(const [label,y,size] of [[row.reported_width_constraint.source_notation,40,36],[breadth?'Reported offshore breadth':'Reported size constraint',80,breadth?32:28]]){
     const text=document.createElementNS(ns,'text');text.setAttribute('x',25);text.setAttribute('y',y);text.setAttribute('font-size',size);text.setAttribute('fill','#102f3b');text.textContent=label;svg.append(text);
   }
   const caption=document.createElement('figcaption');caption.textContent=row.original_regional_context.display_caption;figure.append(caption);
