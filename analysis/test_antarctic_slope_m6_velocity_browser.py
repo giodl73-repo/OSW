@@ -1,5 +1,8 @@
 """Signed source-bound native/WASM velocity charts and mobile inspection."""
 import json
+import tempfile
+from pathlib import Path
+from antarctic_slope_guard_fixtures import prepare,wasm_rejections
 import os
 from urllib.parse import quote
 from playwright.sync_api import sync_playwright, expect
@@ -36,23 +39,10 @@ def main():
         result=browser_query(page,filtered);assert result==native(filtered)
         assert result['total']==1 and result['rows'][0]['contributing_years']==[2018,2019,2020]
         assert result['chart_scene']['panels'][0]['y_domain_cm_s']==actual['chart_scene']['panels'][2]['y_domain_cm_s']
-        rejections=page.evaluate('''async()=>{
-          const original=await(await fetch('/almanac/query-data.json')).json(),results=[];
-          const mutations=[b=>b.collections.current_velocity_samples[0].eastward_mean_cm_s=0,
-            b=>b.collections.current_velocity_samples[0].nominal_depth_m=506,
-            b=>b.collections.current_velocity_samples[0].hourly_coverage_fraction=1,
-            b=>b.collections.current_velocity_samples[50].contributing_years.push(2017),
-            b=>b.collections.objects.find(r=>r.id==='current:antarctic-slope').velocity_sample_ids=[],
-            b=>delete b.collections.current_velocity_samples];
-          for(const mutate of mutations){const b=structuredClone(original);mutate(b);
-            const {instance}=await WebAssembly.instantiate(await(await fetch('/almanac/query-engine.wasm')).arrayBuffer(),{}),e=instance.exports,
-              data=new TextEncoder().encode(JSON.stringify(b)),ptr=e.osw_alloc(data.length);
-            try{new Uint8Array(e.memory.buffer,ptr,data.length).set(data);e.osw_load(ptr,data.length);
-              results.push(JSON.parse(new TextDecoder().decode(new Uint8Array(e.memory.buffer,e.osw_result_ptr(),e.osw_result_len()))));
-            }finally{e.osw_dealloc(ptr,data.length);}
-          }return results;
-        }''')
-        assert all(r['ok'] is False for r in rejections),rejections
+        with tempfile.TemporaryDirectory(dir=ROOT/'.pytest_cache',prefix='m6-velocity-') as tmp:
+            targets=prepare(Path(tmp),'velocity')
+            rejections=wasm_rejections(page,targets)
+            assert all(r['ok'] is False and any(e in r['error'] for e in ['M6 velocity','Unresolved current_velocity_samples']) for r in rejections),rejections
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Aantarctic-slope#route-atlas')
         atlas_link=page.get_by_role('link',name='Observed M6 velocity · monthly and seasonal charts →')
         atlas_link.wait_for(state='visible',timeout=90000)

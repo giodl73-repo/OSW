@@ -416,6 +416,11 @@ def build():
     from build_antarctic_slope_m6_velocity import build as rebuild_velocity
     velocity_path='research/antarctic-slope-m6-velocity-series.json'
     velocity=read(velocity_path)
+    from check_antarctic_slope_scope import validate as validate_slope, AUDIT as SLOPE_AUDIT, PAPER as SLOPE_PAPER
+    slope_audit=read(SLOPE_AUDIT);validate_slope(slope_audit,widths)
+    read('research/source-data/darelius-asc-2024/acquisition.json')
+    inputs[SLOPE_PAPER]=hashlib.sha256((ROOT/SLOPE_PAPER).read_bytes()).hexdigest()
+    inputs['analysis/check_antarctic_slope_scope.py']=hashlib.sha256((ROOT/'analysis/check_antarctic_slope_scope.py').read_bytes()).hexdigest()
     if velocity!=rebuild_velocity():raise ValueError('Stale M6 observed velocity aggregation')
     for key in ['source','protocol','generator']:
         path=velocity[key+'_file'];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()

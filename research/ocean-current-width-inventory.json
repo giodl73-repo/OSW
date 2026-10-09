@@ -10,9 +10,9 @@
     "currents_with_scoped_width_evidence": 62,
     "measurements": 114,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 30,
+    "currents_not_assessed": 29,
     "currents_with_derived_width_candidates_pending_review": 2,
-    "currents_with_sources_reviewed_no_numeric_width": 5,
+    "currents_with_sources_reviewed_no_numeric_width": 6,
     "currents_with_section_span_diagnostics_width_unresolved": 1
   },
   "measurements": [
@@ -9463,12 +9463,12 @@
     {
       "current_id": "antarctic-slope",
       "name": "Antarctic Slope Current",
-      "width_decision": "width_not_assessed",
+      "width_decision": "sources_reviewed_no_comparable_numeric_current_width",
       "measurement_ids": [],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
-      "existing_evidence_locator": null,
-      "existing_evidence_source_url": null
+      "next_action": "Acquire paired lateral velocity boundaries with layer, orientation, boundary rule and temporal support before numeric width admission.",
+      "existing_evidence_locator": "Original PDF pp1,3–4,9,13; whole extracted text searched for numerical width support. Selected pages visually inspected; not a complete study reproduction.",
+      "existing_evidence_source_url": "https://doi.org/10.1029/2023JC020666"
     }
   ],
   "seasonal_summaries": [
@@ -9704,6 +9704,28 @@
           "citation": "Peters et al. (2005), doi:10.1175/JPO2679.1",
           "locator": "Abstract; sections 2, 3a and 5a.",
           "supports": "Channel description and winter velocity-supported reach; spanwise plume structure left for separate analysis."
+        }
+      ]
+    },
+    {
+      "current_id": "antarctic-slope",
+      "decision": "sources_reviewed_no_comparable_numeric_current_width",
+      "whole_current_width_km": null,
+      "annual_width_range_km": null,
+      "source_retrieved_date": "2026-10-09",
+      "reason": "M6 local velocity measurements and the inspected 2017–2021 study do not supply paired current-width boundaries. Mooring spacing and dynamical length scales cannot be admitted as current width.",
+      "evidence": [
+        {
+          "url": "https://doi.org/10.1029/2023JC020666",
+          "citation": "Darelius, Fer, Janout, Daae and Steiger (2024), Observations of the Antarctic Slope Current in the Southeastern Weddell Sea: A Bottom-Enhanced Current and Its Seasonal Variability, JGR Oceans 129, e2023JC020666.",
+          "locator": "Original PDF pp3–4, Table 1 and section 2.1; p13, section 4.",
+          "supports": "5 km is M530–M740 spacing; 80 km separates M2570 and M740. L=10 km is a dynamical scale selected with reference to a trough corner; later 10 km is a radius-of-curvature estimate. None is current width."
+        },
+        {
+          "url": "https://doi.pangaea.de/10.1594/PANGAEA.964717",
+          "citation": "Darelius, Janout, Fer and Sallée (2024), PANGAEA.964717, CC BY 4.0.",
+          "locator": "Dataset parameter list, coverage and released nominal 228 m ADCP bin.",
+          "supports": "Geographic velocity at one fixed station and depth supplies no lateral current edges or annual width range."
         }
       ]
     }
