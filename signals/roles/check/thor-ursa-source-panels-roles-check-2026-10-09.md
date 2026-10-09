@@ -75,3 +75,9 @@ the browser suite and failed on a title selector matching a new evidence
 subheading. Direct feature-title selectors and a directory reload readiness
 wait were corrected and all affected checks re-run. Hosted verification of this
 branch remains pending.
+
+Implementation published for review at commit
+`27bcf4349252a747ee088869b9fe3161392d586d`, draft
+https://github.com/giodl73-repo/OSW/pull/80, base PR 79. Original XML and both
+figure blobs retain exact pinned bytes after Git publication. This is a draft
+review branch, with no independent scientific admission or mainline claim.

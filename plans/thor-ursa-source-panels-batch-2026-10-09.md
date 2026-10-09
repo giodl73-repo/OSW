@@ -6,6 +6,10 @@ admission and hosted checks pending. No mainline or scientific-release claim.
 Parent: `44f96072cbefcea7743364e48c2862abec21a971`,
 `codex/pacific-neuc-isopycnal-widths`, draft PR 79.
 Branch: `codex/thor-ursa-dated-source-panels`.
+Implementation commit: `27bcf4349252a747ee088869b9fe3161392d586d`, pushed.
+Draft PR: https://github.com/giodl73-repo/OSW/pull/80, stacked on draft PR 79.
+Committed original XML and both figure blobs rechecked against their pinned
+SHA-256 and byte sizes after commit; all match.
 
 ## Delivered data and presentation
 
