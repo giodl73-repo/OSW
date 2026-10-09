@@ -3,6 +3,11 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 const SOURCES: &[(&str, &str, &str)] = &[
     (
+        "baffin",
+        "research/baffin-fissel-1982-regional-width-scope-audit.json",
+        include_str!("../../../research/baffin-fissel-1982-regional-width-scope-audit.json"),
+    ),
+    (
         "peru-humboldt",
         "research/humboldt-fuenzalida-2008-regional-width-scope-audit.json",
         include_str!("../../../research/humboldt-fuenzalida-2008-regional-width-scope-audit.json"),
@@ -73,14 +78,11 @@ pub(crate) fn validate(row: &Value) -> Result<(), String> {
         None => return Err("Unknown original regional width source owner".into()),
     };
     let doc: Value = serde_json::from_str(raw).map_err(|e| e.to_string())?;
-    let mut expected = if row["current_id"] == "peru-humboldt" {
-        let list = doc["measurements"]
-            .as_array()
-            .ok_or("Missing Humboldt descriptions")?;
+    let mut expected = if let Some(list) = doc["measurements"].as_array() {
         let i = list
             .iter()
             .position(|r| r["id"] == row["id"])
-            .ok_or("Unknown Humboldt description")?;
+            .ok_or("Unknown original regional description")?;
         let mut source = list[i].clone();
         source["original_regional_context"]["audit_pointer"] =
             Value::String(format!("/measurements/{i}"));
