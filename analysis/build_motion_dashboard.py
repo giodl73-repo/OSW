@@ -165,6 +165,8 @@ def build():
     for audit in scope_audits.values():
         if audit.get('current_id')=='persian-gulf-saline-overflow':validate_persian_gulf_scope(audit)
         if audit.get('current_id')=='red-sea-saline-overflow':validate_red_sea_scope(audit)
+    from check_atlantic_euc_section_properties import validate as validate_atlantic_sections
+    validate_atlantic_sections(scope_audits['research/atlantic-euc-layer-island-scope-audit.json'])
     from build_flow_network import validate as validate_network
     network_path = 'research/indonesian-throughflow-network-input.json'
     network = validate_network(read(network_path))

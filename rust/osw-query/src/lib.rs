@@ -3,6 +3,7 @@ use serde_json::{Value, json};
 use std::collections::{BTreeMap, BTreeSet};
 mod abstract_regional_widths;
 mod astrid_scales;
+mod atlantic_euc_sections;
 mod atlas_data;
 pub mod cartography;
 mod charts;
@@ -259,6 +260,7 @@ impl Store {
         dashboard::validate(&bundle)?;
         seasons_data::validate(&bundle)?;
         atlas_data::validate(&bundle)?;
+        atlantic_euc_sections::validate(&bundle)?;
         model_sections::validate(&bundle)?;
         movies::validate(&bundle)?;
         let spatial = spatial::Index::build(&bundle.collections)?;

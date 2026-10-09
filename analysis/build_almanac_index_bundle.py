@@ -50,6 +50,8 @@ def build():
                             'root_kind': 'object' if isinstance(doc, dict) else 'array',
                             'source_schema': doc.get('schema') if isinstance(doc, dict) else None,
                             'optional': path == OPTIONAL})
+    from check_atlantic_euc_section_properties import validate as validate_atlantic_sections
+    validate_atlantic_sections(json.loads(documents["research/atlantic-euc-layer-island-scope-audit.json"]))
     from check_astrid_radial_scales import validate
     validate(json.loads(documents['research/astrid-2000-radial-scale-scope-audit.json']), json.loads(documents['research/named-eddy-geography.json']))
     from build_agulhas_ring_radius_audit import validate as validate_ring_radii

@@ -1,7 +1,7 @@
 {
   "schema": "osw.current-source-scope-audit.v1",
   "current_id": "atlantic-equatorial-undercurrent",
-  "as_of": "2026-10-03",
+  "as_of": "2026-10-08",
   "status": "editorial_source_scope_audit_not_canonical",
   "source_access": [
     {
@@ -15,6 +15,11 @@
       "status": "full_primary_publisher_page_read",
       "doi": "10.1029/2006JC003931",
       "supports": "35 W equatorial observational section and approximately 100 m core; depth/time/model distinctions."
+    },
+    {
+      "url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/cahiers/ocea_tro/15471.pdf",
+      "status": "institutional_original_pdf_visually_reviewed",
+      "supports": "Campaign core speed/depth and unresolved Table I/II date conflicts; Figure 2 dated velocity sections, not extracted horizontal widths."
     }
   ],
   "declared_gates": {
@@ -42,6 +47,133 @@
     "Review 35 W and pre-island truncation; source retroflections and eastern branches are not represented.",
     "Obtain compatible depth/time-resolved velocity axis before physical length or seasonal dimensions.",
     "Resolve island interaction and return-flow topology without treating generated eddies as named identities.",
-    "No occupied footprint, route-buffer width or whole-basin system length inferred."
-  ]
+    "No occupied footprint, route-buffer width or whole-basin system length inferred.",
+    "Resolve campaign 7910/7912 Table I/II date conflicts before dated frames.",
+    "Extract reproducible paired velocity edges from original sections before assigning local horizontal width."
+  ],
+  "section_properties": {
+    "schema": "osw.atlantic-euc-section-properties.v1",
+    "current_id": "atlantic-equatorial-undercurrent",
+    "status": "editorial_source_extraction_not_canonical",
+    "source_url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/cahiers/ocea_tro/15471.pdf",
+    "source_document_file": "research/source-data/voituriez-atlantic-euc-1983/journal-article.pdf",
+    "source_document_sha256": "a1c4b1dfc46247cb9c7da90ea03aa1a240bc987bd26b21c9cdf49f027d457e0b",
+    "source_document_bytes": 1887693,
+    "acquisition_file": "research/source-data/voituriez-atlantic-euc-1983/acquisition.json",
+    "acquisition_sha256": "1734746902c37f4fe31bc0dbf2a39b6f173a96e0759aa7604257683cca32736b",
+    "protocol_file": "plans/atlantic-euc-section-properties-protocol-v1.md",
+    "protocol_sha256": "4d8ff5480aba2d14be3d3a082e805f9b90843c2db5fb6ef52bc46f1d596a068e",
+    "source_locator": "Printed pp165,167–168: Table I, Figure 2, Table II; methods pp164–165.",
+    "section_longitude_deg_e": -4,
+    "station_latitude_deg": null,
+    "velocity_reference_depth_m": 500,
+    "reference_assumption": "500 m assumed motionless; drifting-ship Aanderaa profiler.",
+    "transport_context": {
+      "eastward_speed_threshold_cm_s": 20,
+      "depth_bounds_m": [
+        0,
+        200
+      ],
+      "is_horizontal_width_definition": false
+    },
+    "uncertainty_cm_s": null,
+    "core_depth_uncertainty_m": null,
+    "whole_current_width_km": null,
+    "seasonal_playback_eligible": false,
+    "annual_extrema_eligible": false,
+    "width_inference_eligible": false,
+    "occupied_geometry_eligible": false,
+    "date_conflict_count": 2,
+    "display_caption": "Eight campaign core-property records at 4°W, in printed table order. Speed maxima and their depths are distinct from horizontal width. Hollow points have unresolved dates; no interpolated seasonal cycle.",
+    "records": [
+      {
+        "id": "atlantic-euc-cap-7701",
+        "campaign": "7701",
+        "station_label": "26",
+        "table_ii_date_text": "Jan 77",
+        "table_i_campaign_period": "January 1977",
+        "date_conflict": false,
+        "resolved_observation_date": null,
+        "maximum_eastward_speed_cm_s": 98,
+        "maximum_speed_depth_m": 65
+      },
+      {
+        "id": "atlantic-euc-cap-7706",
+        "campaign": "7706",
+        "station_label": "7",
+        "table_ii_date_text": "Jul 77",
+        "table_i_campaign_period": "July 1977",
+        "date_conflict": false,
+        "resolved_observation_date": null,
+        "maximum_eastward_speed_cm_s": 30,
+        "maximum_speed_depth_m": 50
+      },
+      {
+        "id": "atlantic-euc-cap-7802",
+        "campaign": "7802",
+        "station_label": "7",
+        "table_ii_date_text": "Août 78",
+        "table_i_campaign_period": "August–September 1978",
+        "date_conflict": false,
+        "resolved_observation_date": null,
+        "maximum_eastward_speed_cm_s": 68,
+        "maximum_speed_depth_m": 65
+      },
+      {
+        "id": "atlantic-euc-cap-7902",
+        "campaign": "7902",
+        "station_label": "48",
+        "table_ii_date_text": "Jan 79",
+        "table_i_campaign_period": "January–February 1979",
+        "date_conflict": false,
+        "resolved_observation_date": null,
+        "maximum_eastward_speed_cm_s": 110,
+        "maximum_speed_depth_m": 65
+      },
+      {
+        "id": "atlantic-euc-cap-7906",
+        "campaign": "7906",
+        "station_label": "8",
+        "table_ii_date_text": "Avr 79",
+        "table_i_campaign_period": "April 1979",
+        "date_conflict": false,
+        "resolved_observation_date": null,
+        "maximum_eastward_speed_cm_s": 96,
+        "maximum_speed_depth_m": 55
+      },
+      {
+        "id": "atlantic-euc-cap-7910",
+        "campaign": "7910",
+        "station_label": "4",
+        "table_ii_date_text": "Juin 79",
+        "table_i_campaign_period": "June 1980",
+        "date_conflict": true,
+        "resolved_observation_date": null,
+        "maximum_eastward_speed_cm_s": 64,
+        "maximum_speed_depth_m": 60
+      },
+      {
+        "id": "atlantic-euc-cap-7912",
+        "campaign": "7912",
+        "station_label": "82",
+        "table_ii_date_text": "Nov 74",
+        "table_i_campaign_period": "October–November 1979",
+        "date_conflict": true,
+        "resolved_observation_date": null,
+        "maximum_eastward_speed_cm_s": 103,
+        "maximum_speed_depth_m": 70
+      },
+      {
+        "id": "atlantic-euc-cap-8001",
+        "campaign": "8001",
+        "station_label": "2",
+        "table_ii_date_text": "Jan 80",
+        "table_i_campaign_period": "January 1980",
+        "date_conflict": false,
+        "resolved_observation_date": null,
+        "maximum_eastward_speed_cm_s": 110,
+        "maximum_speed_depth_m": 65
+      }
+    ]
+  }
 }
