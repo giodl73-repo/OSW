@@ -1,0 +1,33 @@
+"use strict";
+window.renderModalDecayWidth=function(container,row){
+  const c=row?.modal_decay_context;if(!c)return;
+  const add=(tag,text,parent)=>{const e=document.createElement(tag);if(text!=null)e.textContent=text;parent.append(e);return e;};
+  const figure=add('figure',null,container);figure.className='modal-decay-width';figure.style.margin='0';
+  add('h4','Tsushima coastal branch · 1980 modal estimate',figure);
+  const values=add('dl',null,figure);
+  for(const [label,value] of [['Source reports',c.source_reported_width_km+' km'],['Same estimate summarized', 'About '+c.source_summary_width_km_approx+' km'],['Printed coefficient recalculated',c.recalculated_width_km.toFixed(1)+' km']]){add('dt',label,values);add('dd',value,values);}
+  add('p',c.display_method_note,figure);
+  const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');figure.append(svg);
+  svg.setAttribute('viewBox','0 0 500 280');svg.setAttribute('role','img');
+  svg.setAttribute('aria-label','Mathematical modal decay illustration: amplitude relative to the coast decreases exponentially. The adopted exp(-3) edge gives 23.1 km from the printed coefficient. The source reports 22 km; discrepancy unresolved. No observed offshore profile or mapped footprint.');
+  svg.style.cssText='display:block;width:100%;max-width:650px;background:#f6f5ef;color:#102f3b';
+  const draw=(tag,attrs,text)=>{const e=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(text)e.textContent=text;svg.append(e);return e;};
+  const x=v=>55+420*v/40,y=v=>190-130*v;
+  draw('text',{x:20,y:35,'font-size':30,fill:'#102f3b'},'Relative amplitude (model)');
+  draw('path',{d:'M55,60V190H475',stroke:'#526c77',fill:'none'});
+  const path=Array.from({length:81},(_,i)=>`${i?'L':'M'}${x(i/2)},${y(Math.exp(-c.printed_gamma_per_m*i*500))}`).join(' ');
+  draw('path',{d:path,stroke:'#176b82','stroke-width':3,fill:'none'});
+  draw('path',{d:`M55,${y(c.edge_relative_amplitude)}H${x(c.recalculated_width_km)}V190`,stroke:'#102f3b','stroke-dasharray':'5 4',fill:'none'});
+  draw('circle',{cx:x(c.recalculated_width_km),cy:y(c.edge_relative_amplitude),r:5,fill:'#102f3b'});
+  draw('text',{x:70,y:155,'font-size':30,fill:'#102f3b'},'exp(−3) ≈ 5%');
+  for(const v of [0,20,40])draw('text',{x:x(v),y:230,'text-anchor':v===40?'end':'middle','font-size':30,fill:'#102f3b'},`${v} km`);
+  draw('text',{x:55,y:270,'font-size':30,fill:'#102f3b'},'Offshore distance from coast');
+  for(const [v,label] of [[1,'1'],[0,'0']])draw('text',{x:40,y:y(v)+6,'text-anchor':'end','font-size':30,fill:'#102f3b'},label);
+  add('figcaption',c.display_caption,figure);
+  add('p','Campaign: 26 July–25 August 1980. Stations A/B cover the full campaign; C/D/E end 14 August. The five-station mean uses 26 July–14 August; the density profile is dated 8 August. These supports do not define monthly width observations.',figure);
+  add('p','The separate 1964–1985 hydrographic climatology has a caption/body longitude conflict (134°E / 132°E). Its dates and location are not assigned to this width. Fixed layer bounds and numerical uncertainty remain unknown.',figure);
+  const method=add('details',null,figure);add('summary','Unresolved equation sign',method);
+  add('p','The source’s offshore differential equation has a plus sign, inconsistent with its stated exponential solution for a real positive coefficient. This diagram illustrates that published expression; it does not validate the printed differential equation or supply a correction.',method);
+  const links=add('p',null,figure),a=add('a','Inspect method, dates and source',links);
+  a.href='query.html?source-q='+encodeURIComponent(JSON.stringify({document:c.audit_file,pointer:'/measurement/modal_decay_context',limit:50}));
+};

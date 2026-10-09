@@ -20,6 +20,7 @@ mod index_support;
 mod loop_diagnostics;
 mod loop_recorded;
 mod map;
+mod modal_decay_widths;
 mod model_sections;
 mod movies;
 mod network;

@@ -41,6 +41,9 @@ def validate(document, ledger):
                 raise ValueError('Norwegian coastal width differs from source range or scope')
         if row["current_id"] not in ids or row["status"] != "editorial_source_extraction_not_canonical" or row["whole_current_representative"] is not False or row["width_rank_eligible"] is not False:
             raise ValueError("Width admission or identity mismatch")
+        if row.get("modal_decay_context") or row["current_id"] == "tsushima":
+            from check_tsushima_modal_width import validate_row
+            validate_row(row)
         value = row["approximate_width_km"]
         span = row['width_range_km']
         if span is not None:
@@ -473,6 +476,9 @@ def validate(document, ledger):
                 raise ValueError('Regional scalar differs from pinned source extraction')
         elif row['phase_kind'] == 'model_regional_width_summary':
             from check_guinea_model_width import validate_row
+            validate_row(row)
+        elif row['phase_kind'] == 'campaign_modal_decay_width':
+            from check_tsushima_modal_width import validate_row
             validate_row(row)
         elif row['phase_kind'] == 'regional_summary':
             if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] != 'author_reported_current_width' or row['observed_period'] is not None or row.get('calendar_months') is not None or (span is None and not row.get('original_regional_context')):

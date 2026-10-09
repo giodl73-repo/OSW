@@ -144,6 +144,9 @@ def build():
     zeehan_width_audit=read('research/zeehan-cresswell-2000-width-section-scope-audit.json');read('research/source-data/cresswell-zeehan-2000/acquisition.json')
     for path in ['research/source-data/cresswell-zeehan-2000/journal-article.pdf','plans/zeehan-width-source-separation-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    tsushima_modal_audit=read('research/tsushima-matsuyama-1990-modal-width-scope-audit.json');read('research/source-data/matsuyama-tsushima-1990/acquisition.json')
+    for path in ['research/source-data/matsuyama-tsushima-1990/journal-article.pdf','plans/campaign-modal-decay-width-protocol-v1.md','analysis/check_tsushima_modal_width.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     ngcu_width_audit=read('research/ngcu-zenk-1999-width-constraint-scope-audit.json')
     kuroshio_extension_width_audit=read('research/kuroshio-extension-sasaki-2013-width-averaging-scope-audit.json')
     atlantic_euc_width_audit=read('research/atlantic-euc-gouriou-1988-background-width-scope-audit.json')
@@ -475,6 +478,9 @@ def build():
             groups['measurements'].append(original_width_audit)
             groups['sources'].append(original_width_audit)
             groups['time_evidence'].append(original_width_audit)
+        if current_id == 'tsushima':
+            payload['modal_decay_width_scope']=tsushima_modal_audit
+            for group in ['measurements','sources','time_evidence']:groups[group].append(tsushima_modal_audit)
         if current_id == 'guinea':
             payload['model_width_scope']=guinea_width_audit
             groups['measurements'].append(guinea_width_audit)
