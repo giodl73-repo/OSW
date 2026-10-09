@@ -400,7 +400,11 @@ def build():
     read(atlantic_audit['section_properties']['acquisition_file'])
     protocol=atlantic_audit['section_properties']['protocol_file']
     inputs[protocol]=hashlib.sha256((ROOT/protocol).read_bytes()).hexdigest()
-    atlas_paths=[atlantic_path,'research/agulhas-guerra-2022-ring-radius-scope-audit.json','research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
+    from check_zeehan_seasonal_calendar import PATH as calendar_path, validate as validate_calendar
+    calendar_audit=validate_calendar(read(calendar_path))
+    protocol=calendar_audit['protocol_file']
+    inputs[protocol]=hashlib.sha256((ROOT/protocol).read_bytes()).hexdigest()
+    atlas_paths=[calendar_path,atlantic_path,'research/agulhas-guerra-2022-ring-radius-scope-audit.json','research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
                  'research/ocean-current-reference-route-state-join.json',
                  'research/ocean-current-dated-timeline-2025.json',
                  'research/ocean-current-dated-timeline.json',

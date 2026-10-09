@@ -168,6 +168,8 @@ def build():
     for audit in scope_audits.values():
         if audit.get('current_id')=='persian-gulf-saline-overflow':validate_persian_gulf_scope(audit)
         if audit.get('current_id')=='red-sea-saline-overflow':validate_red_sea_scope(audit)
+    from check_zeehan_seasonal_calendar import validate as validate_zeehan_calendar
+    validate_zeehan_calendar(scope_audits['research/zeehan-ridgway-2007-seasonal-scope-audit.json'])
     from check_atlantic_euc_section_properties import validate as validate_atlantic_sections
     validate_atlantic_sections(scope_audits['research/atlantic-euc-layer-island-scope-audit.json'])
     from build_flow_network import validate as validate_network
@@ -414,6 +416,9 @@ def build():
             query_link('Map exit transport mooring sites', 'passage_samples', filters=[{'field':'network_id','op':'eq','value':network['id']}])
         if own_notes:
             payload.update({'scope_notes': own_notes, 'scope_audits': own_audits})
+        if current_id == 'zeehan':
+            calendar = scope_audits['research/zeehan-ridgway-2007-seasonal-scope-audit.json']['seasonal_calendar']
+            evidence_links.append({'label':'Explore the qualitative seasonal calendar','url':'reference-routes.html#zeehan-reference-path-candidate'})
         if state_evidence:
             payload['state_evidence'] = state_evidence
         observation_dates = [c.get('observation_time') for c in own_claims] + [g.get('observation_date') for g in own_geometry] + [w.get('observed_period') for w in own_widths]
@@ -445,6 +450,7 @@ def build():
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],
         }
+        if current_id == 'zeehan':groups['time_evidence'].append(calendar)
         if current_id == florida_plot['current_id']:
             groups['measurements'].append(florida_plot);groups['time_evidence'].append(florida_plot)
             groups['sources']=[groups['sources'],{key:florida_plot[key] for key in ['source_pdf_sha256','source_url','source_locator','config_sha256','protocol_sha256','scope_audit_sha256']}]

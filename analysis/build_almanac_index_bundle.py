@@ -50,6 +50,8 @@ def build():
                             'root_kind': 'object' if isinstance(doc, dict) else 'array',
                             'source_schema': doc.get('schema') if isinstance(doc, dict) else None,
                             'optional': path == OPTIONAL})
+    from check_zeehan_seasonal_calendar import PATH as calendar_path, validate as validate_calendar
+    validate_calendar(json.loads(documents[calendar_path]))
     from check_atlantic_euc_section_properties import validate as validate_atlantic_sections
     validate_atlantic_sections(json.loads(documents["research/atlantic-euc-layer-island-scope-audit.json"]))
     from check_astrid_radial_scales import validate

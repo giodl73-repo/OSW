@@ -30,6 +30,7 @@ mod observed_sections;
 mod original_regional_widths;
 mod planning;
 mod proposed_widths;
+mod qualitative_calendar;
 mod rebase;
 mod ring_radii;
 mod samples;
@@ -261,6 +262,7 @@ impl Store {
         seasons_data::validate(&bundle)?;
         atlas_data::validate(&bundle)?;
         atlantic_euc_sections::validate(&bundle)?;
+        qualitative_calendar::validate(&bundle)?;
         model_sections::validate(&bundle)?;
         movies::validate(&bundle)?;
         let spatial = spatial::Index::build(&bundle.collections)?;
