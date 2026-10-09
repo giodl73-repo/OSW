@@ -3,6 +3,10 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 pub(crate) fn validate(row: &Value) -> Result<(), String> {
     let (path, raw) = match row["current_id"].as_str().unwrap_or("") {
+        "zeehan" => (
+            "research/zeehan-cresswell-2000-width-section-scope-audit.json",
+            include_str!("../../../research/zeehan-cresswell-2000-width-section-scope-audit.json"),
+        ),
         "kuroshio-extension" => (
             "research/kuroshio-extension-sasaki-2013-width-averaging-scope-audit.json",
             include_str!(

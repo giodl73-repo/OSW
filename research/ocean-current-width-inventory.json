@@ -7,10 +7,10 @@
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 51,
-    "measurements": 95,
+    "currents_with_scoped_width_evidence": 52,
+    "measurements": 96,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 41,
+    "currents_not_assessed": 40,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 5,
     "currents_with_section_span_diagnostics_width_unresolved": 1
@@ -6231,6 +6231,127 @@
         "lower_bound_km": null,
         "numerical_uncertainty_km": null
       }
+    },
+    {
+      "id": "zeehan-cresswell-2000-historical-slope-width",
+      "current_id": "zeehan",
+      "name": "Zeehan Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_regional_summary",
+      "width_metric": "author_reported_current_width",
+      "approximate_width_km": 40,
+      "width_range_km": null,
+      "range_kind": "approximate_regional_point_no_reported_interval",
+      "range_interpretation": "One approximate regional background value; no numerical uncertainty, range, confidence interval, annual extrema or seasonal observations supplied.",
+      "geographic_scope": "Continental slope at the western entrance of Bass Strait; attributed historical estimate, not all western Tasmanian shelf flow.",
+      "section_geometry": null,
+      "section_orientation": "Regional cross-current description; exact transverse axis and paired edges unresolved.",
+      "layer": "Warm baroclinic slope-current context; fixed width depth bounds unresolved.",
+      "time_convention": "Historical Baines et al. (1983) description repeated in Cresswell (2000); exact width occupation support unresolved.",
+      "boundary_rule": "Attributed author approximate width; no numerical threshold or paired edge coordinates extracted.",
+      "source_url": "https://eprints.utas.edu.au/13585/7/2000_Cresswell_Currents_rst.pdf",
+      "source_citation": "Cresswell, G. (2000), Currents of the continental shelf and upper slope of Tasmania, Papers and Proceedings of the Royal Society of Tasmania 133(3):21–30, doi:10.26749/rstpp.133.3.21.",
+      "source_locator": "Introduction, printed p21 / PDF page 1, paragraph on Baines et al. (1983). Separate Strahan sections: pp24–25 and Figure 5C p28 / PDF page 8.",
+      "source_retrieved_date": "2026-10-08",
+      "source_evidence_kind": "published_original_attributed_historical_regional_summary",
+      "extraction_method": "Approximate width from visually reviewed original paragraph; qualitative section comparison transcribed separately, no velocity-contour digitization.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "phase_label": "Attributed historical Bass Strait slope width",
+      "phase_kind": "regional_summary",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "uncertainty_km": null,
+      "source_quality_note": "The 40 km summary is attributed to Baines et al. (1983); March/December 1997 Strahan widths remain numerically unknown. Neither the survey depth nor later seasonal calendar supplies this width support.",
+      "remaining_gates": [
+        "Resolve original width boundary operator, layer and occupation support.",
+        "Extract compatible dated paired boundaries before numerical seasonal ranges.",
+        "Independent scientific admission."
+      ],
+      "original_regional_context": {
+        "width_passage_visually_inspected": true,
+        "underlying_width_source": "Baines, Edwards & Fandry (1983), doi:10.1071/MF9830155, as attributed in Cresswell Introduction.",
+        "underlying_width_methods_reviewed": false,
+        "historical_width_is_1997_section_width": false,
+        "two_occupations_are_annual_extrema": false,
+        "survey_months_are_width_calendar": false,
+        "adcp_depth_coverage_is_fixed_width_layer": false,
+        "mooring_isobaths_are_width_layer": false,
+        "drifter_drogue_is_width_layer": false,
+        "velocity_sign_contours_are_admitted_paired_edges": false,
+        "boundary_coordinates_extracted": false,
+        "original_width_source_access": {
+          "doi": "10.1071/MF9830155",
+          "archive_url": "https://citeseerx.ist.psu.edu/document?doi=82056fb29ae09eb8f42aa4b8174a95a3c70b533c&repid=rep1&type=pdf",
+          "access": "Three-page archived article text readable through web PDF extraction; original bytes not acquired or visually inspected. Publisher download 403; direct archive request 404.",
+          "source_response_sha256": null,
+          "is_independent_width_record": false
+        },
+        "method_context": {
+          "ship_adcp_frequency_khz": 150,
+          "ship_depth_coverage_m": 300,
+          "lowest_water_column_fraction_excluded": 0.15,
+          "mooring_isobaths_m": [
+            100,
+            200
+          ],
+          "drifter_drogue_depth_m": 15,
+          "is_historical_width_layer": false,
+          "december_flow_extends_beyond_adcp_depth_coverage": true
+        },
+        "section_comparison": {
+          "site": "Strahan, western Tasmania",
+          "source_locator": "Printed p25, Strahan December paragraph; Figure 5C printed p28 / PDF page 8.",
+          "comparison_kind": "author_qualitative_between_two_occupations",
+          "width_relation": "December narrower than March",
+          "strength_relation": "December slightly stronger than March",
+          "numerical_width_ratio": null,
+          "annual_range_eligible": false,
+          "monthly_climatology_eligible": false,
+          "occupied_geometry_eligible": false,
+          "records": [
+            {
+              "id": "strahan-1997-03",
+              "observed_month": "1997-03",
+              "station_label": "19:27",
+              "width_km": null,
+              "width_range_km": null,
+              "width_description": "Broader of the two reported occupations",
+              "strength_description": "Reported southward speeds up to 0.2 m/s in prose",
+              "whole_voyage_context": {
+                "start": "1997-03-19",
+                "end": "1997-03-27",
+                "is_exact_section_support": false
+              }
+            },
+            {
+              "id": "strahan-1997-12",
+              "observed_month": "1997-12",
+              "station_label": "41–49",
+              "width_km": null,
+              "width_range_km": null,
+              "width_description": "Narrower than March",
+              "strength_description": "Slightly stronger than March; maximum not transcribed",
+              "whole_voyage_context": {
+                "start": "1997-12-01",
+                "end": "1997-12-09",
+                "is_exact_section_support": false
+              }
+            }
+          ]
+        },
+        "protocol_file": "plans/zeehan-width-source-separation-protocol-v1.md",
+        "protocol_sha256": "fadd4e4eff23f524ccdd16aaa6e1f906bb46c9b2bc23dca8cc082c7865f82411",
+        "display_caption": "Approximate 40 km historical slope-current width near western Bass Strait, attributed to Baines et al. (1983). Numerical uncertainty and paired edges unknown; not a 1997 Strahan section width.",
+        "display_method_note": "Separate 1997 Strahan evidence: December is described as narrower and slightly stronger than March. Neither section has a numerical width here. Two occupations do not establish annual extrema or a monthly climatology; 300 m ADCP coverage is not the historical width layer.",
+        "audit_file": "research/zeehan-cresswell-2000-width-section-scope-audit.json",
+        "audit_sha256": "83b7c97d7d30ff2b2044bfc12316d99806b3005da5709afbf385a7f485c1f0c5"
+      }
     }
   ],
   "current_decisions": [
@@ -6987,12 +7108,14 @@
     {
       "current_id": "zeehan",
       "name": "Zeehan Current",
-      "width_decision": "width_not_assessed",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "zeehan-cresswell-2000-historical-slope-width"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
-      "existing_evidence_locator": null,
-      "existing_evidence_source_url": null
+      "next_action": "Historical regional point retained; resolve numerical dated section widths, compatible layer and uncertainty before annual ranges.",
+      "existing_evidence_locator": "Introduction, printed p21 / PDF page 1, paragraph on Baines et al. (1983). Separate Strahan sections: pp24–25 and Figure 5C p28 / PDF page 8.",
+      "existing_evidence_source_url": "https://eprints.utas.edu.au/13585/7/2000_Cresswell_Currents_rst.pdf"
     },
     {
       "current_id": "caribbean",

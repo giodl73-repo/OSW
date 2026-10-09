@@ -10,7 +10,7 @@ import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 URL = 'http://127.0.0.1:8788/almanac/query.html'
-CHECKS = ('test_rust_query_browser.py', 'test_zeehan_seasonal_calendar_browser.py', 'test_rust_collection_coverage_browser.py', 'test_rust_source_query_browser.py',
+CHECKS = ('test_rust_query_browser.py', 'test_zeehan_seasonal_calendar_browser.py', 'test_zeehan_historical_width_browser.py', 'test_rust_collection_coverage_browser.py', 'test_rust_source_query_browser.py',
           'test_motion_dashboard_browser.py', 'test_dashboard_diagnostic_navigation_browser.py',
           'test_rust_workspace_browser.py', 'test_rust_rebase_browser.py',
           'test_rust_taxonomy_browser.py', 'test_florida_width_statistics_browser.py',
