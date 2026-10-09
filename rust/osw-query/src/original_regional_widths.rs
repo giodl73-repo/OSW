@@ -3,6 +3,16 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 const SOURCES: &[(&str, &str, &str)] = &[
     (
+        "solomon-island-coastal-undercurrent",
+        "research/solomon-melet-2010-coastal-confinement-scope-audit.json",
+        include_str!("../../../research/solomon-melet-2010-coastal-confinement-scope-audit.json"),
+    ),
+    (
+        "new-ireland-coastal-undercurrent",
+        "research/solomon-melet-2010-coastal-confinement-scope-audit.json",
+        include_str!("../../../research/solomon-melet-2010-coastal-confinement-scope-audit.json"),
+    ),
+    (
         "jutland",
         "research/jutland-nielsen-2000-cited-satellite-width-scope-audit.json",
         include_str!(
@@ -84,9 +94,13 @@ pub(crate) fn validate(row: &Value) -> Result<(), String> {
     let mut reviewed_source = None;
     for (reviewed_owner, path, raw) in SOURCES {
         let doc: Value = serde_json::from_str(raw).map_err(|e| e.to_string())?;
-        let known = doc["measurement"]["id"].as_str() == Some(id)
+        let known = (doc["measurement"]["id"].as_str() == Some(id)
+            && doc["measurement"]["current_id"].as_str() == Some(*reviewed_owner))
             || doc["measurements"].as_array().map_or(false, |rows| {
-                rows.iter().any(|r| r["id"].as_str() == Some(id))
+                rows.iter().any(|r| {
+                    r["id"].as_str() == Some(id)
+                        && r["current_id"].as_str() == Some(*reviewed_owner)
+                })
             });
         if known {
             if owner != *reviewed_owner {
