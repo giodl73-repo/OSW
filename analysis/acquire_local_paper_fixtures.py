@@ -14,7 +14,7 @@ import urllib.error
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPERS = ('kuroshio-liu-gan-2012', 'leeuwin-deng-2008', 'florida-archer-2017', 'chen-madagascar-2014', 'qiu-chen-nec-2010', 'van-aken-astrid-2003', 'schott-mccreary-2001', 'djakoure-guinea-2017')
+PAPERS = ('kuroshio-liu-gan-2012', 'leeuwin-deng-2008', 'florida-archer-2017', 'chen-madagascar-2014', 'qiu-chen-nec-2010', 'van-aken-astrid-2003', 'schott-mccreary-2001', 'djakoure-guinea-2017', 'gouriou-atlantic-1988')
 RETRY_DELAYS = (1, 3)
 TRANSIENT_HTTP = {408, 429, 500, 502, 503, 504}
 
@@ -58,7 +58,10 @@ def download(name, manifest):
 
 def acquire(name, directory):
     manifest = json.loads((directory / 'acquisition.json').read_text(encoding='utf-8'))
-    destination = directory / 'journal-article.pdf'
+    filename = manifest.get('document_filename', 'journal-article.pdf')
+    if filename not in {'journal-article.pdf','source-book.pdf'}:
+        raise ValueError('Unsupported local source document filename')
+    destination = directory / filename
     if destination.exists():
         return verify(name, manifest, destination.read_bytes())
     data = download(name, manifest)

@@ -36,6 +36,6 @@
     for(const row of data.records){const tr=el('tr',null,body);el('th',`${row.campaign} / ${row.station_label}`,tr).scope='row';for(const value of [row.table_ii_date_text,row.table_i_campaign_period,row.maximum_eastward_speed_cm_s,row.maximum_speed_depth_m,row.date_conflict?'Unresolved conflict':'Compatible month / campaign period'])el('td',value,tr);}
     const source=el('a','Read original paper · Tables I/II and Figure 2',el('p',null,panel));source.href=data.source_url;
     const query=el('a','Query all original section records',el('p',null,panel));const url=new URL('query.html',location.href);url.searchParams.set('source-q',JSON.stringify({document:'research/atlantic-euc-layer-island-scope-audit.json',pointer:'/section_properties/records',limit:100}));query.href=url;
-    el('p','Width remains unresolved. The transport cutoff ≥20 cm/s in the upper 200 m and the approximate 200 km FAO background lead do not supply paired width boundaries for these campaigns.',panel);
+    el('p','Campaign width remains unresolved. The transport cutoff ≥20 cm/s in the upper 200 m and the separate approximate 200 km FAO background summary do not supply paired width boundaries for these campaigns.',panel);
   };
 })();

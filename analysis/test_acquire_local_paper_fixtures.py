@@ -9,6 +9,18 @@ DATA=b'%PDF-1.7\ncontrolled source fixture'
 MANIFEST={'source_url':'https://example.invalid/paper.pdf','sha256':hashlib.sha256(DATA).hexdigest()}
 
 class AcquisitionTests(unittest.TestCase):
+    def test_book_filename_and_path_restriction(self):
+        with tempfile.TemporaryDirectory() as folder:
+            directory=Path(folder);manifest=dict(MANIFEST,document_filename='source-book.pdf')
+            (directory/'acquisition.json').write_text(json.dumps(manifest),encoding='utf8')
+            with patch('urllib.request.urlopen',return_value=io.BytesIO(DATA)):
+                self.assertEqual(acquire('gouriou-atlantic-1988',directory),DATA)
+            self.assertEqual((directory/'source-book.pdf').read_bytes(),DATA)
+            for name in ['../outside.pdf','nested/book.pdf','C:/outside.pdf']:
+                manifest['document_filename']=name;(directory/'acquisition.json').write_text(json.dumps(manifest),encoding='utf8')
+                with patch('urllib.request.urlopen') as opener,self.assertRaises(ValueError):acquire('gouriou-atlantic-1988',directory)
+                opener.assert_not_called()
+
     def setUp(self):
         self.scratch=Path(__file__).resolve().parents[1]/'.pytest_cache'/'paper-acquisition-tests'
         self.scratch.mkdir(parents=True,exist_ok=True)

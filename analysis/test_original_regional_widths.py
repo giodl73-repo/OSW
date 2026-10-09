@@ -12,6 +12,15 @@ def test_original_span_is_not_campaign_series():
     a=json.loads((ROOT/AUDIT).read_bytes());a['measurement']['width_range_km']=[20,50]
     with pytest.raises(ValueError):validate_row(row,a)
 
+def test_atlantic_euc_background_is_not_campaign_or_translation_range():
+    row=next(r for r in json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())['measurements'] if r['current_id']=='atlantic-equatorial-undercurrent');validate_row(row)
+    for key,value in [('approximate_width_km',400),('width_range_km',[200,400]),('calendar_months',[4,8]),('fixed_layer_bounds_m',[50,125]),('observed_period',{'start':'1978-08-01','end':'1979-04-30'}),('uncertainty_km',40),('seasonal_playback_eligible',True),('annual_extrema_eligible',True),('width_rank_eligible',True),('current_id','equatorial-undercurrent'),('current_id','pacific-equatorial-undercurrent')]:
+        bad=copy.deepcopy(row);bad[key]=value
+        with pytest.raises(ValueError):validate_row(bad)
+    for key in ['thickness_is_fixed_width_layer','core_depths_are_fixed_width_layer','core_position_oscillation_is_width_range','compilation_years_are_width_occupations','figure_section_dates_are_background_width_dates','garp_transport_dates_are_width_occupations','transport_cutoff_is_background_width_boundary','translation_is_independent_width_observation','cross_basin_width_inheritance_eligible','boundary_coordinates_extracted']:
+        bad=copy.deepcopy(row);bad['original_regional_context'][key]=True
+        with pytest.raises(ValueError):validate_row(bad)
+
 def test_alaska_point_is_not_neighbor_or_forcing_range():
     row=next(r for r in json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())['measurements'] if r['current_id']=='alaska');validate_row(row)
     for key,value in [('approximate_width_km',100),('width_range_km',[100,300]),('calendar_months',list(range(1,13))),('fixed_layer_bounds_m',[0,40]),('annual_extrema_eligible',True),('seasonal_playback_eligible',True),('width_rank_eligible',True),('observed_period',{'start':'1946-01-01','end':'2000-12-31'}),('uncertainty_km',100),('current_id','alaska-coastal-gulf')]:
@@ -45,6 +54,14 @@ def check_compiled_original_scope(tmp_path):
         next(r for r in bad['collections']['widths'] if r['current_id']=='algerian')[key]=value
         receipt['source_json']=json.dumps(doc);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest();bad['manifest']['input_sha256'][receipt['source_file']]=receipt['source_sha256']
         target=tmp_path/'algerian-tampered.json';target.write_text(json.dumps(bad),encoding='utf8')
+        result=subprocess.run([str(CLI),str(target),'--seasons'],capture_output=True,text=True,encoding='utf8')
+        assert result.returncode==2 and 'Original regional width' in result.stderr,result.stderr
+    for key,value in [('approximate_width_km',400),('width_range_km',[200,400]),('calendar_months',[4,8]),('fixed_layer_bounds_m',[50,125]),('observed_period',{'start':'1978-08-01','end':'1979-04-30'}),('seasonal_playback_eligible',True),('original_regional_context',{})]:
+        bad=copy.deepcopy(packet);receipt=bad['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json'])
+        next(r for r in doc['measurements'] if r['current_id']=='atlantic-equatorial-undercurrent')[key]=value
+        next(r for r in bad['collections']['widths'] if r['current_id']=='atlantic-equatorial-undercurrent')[key]=value
+        receipt['source_json']=json.dumps(doc);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest();bad['manifest']['input_sha256'][receipt['source_file']]=receipt['source_sha256']
+        target=tmp_path/'atlantic-euc-tampered.json';target.write_text(json.dumps(bad),encoding='utf8')
         result=subprocess.run([str(CLI),str(target),'--seasons'],capture_output=True,text=True,encoding='utf8')
         assert result.returncode==2 and 'Original regional width' in result.stderr,result.stderr
     for key,value in [('approximate_width_km',500),('width_range_km',[400,500]),('calendar_months',list(range(1,13))),('fixed_layer_bounds_m',[87.5,310]),('observed_period',{'start':'1994-01-01','end':'2013-12-31'}),('seasonal_playback_eligible',True),('original_regional_context',{})]:

@@ -26,10 +26,10 @@ def main():
         row=next(r for r in snapshot['entries'] if r['id']=='current:atlantic-equatorial-undercurrent')
         assert row['capabilities']['reference_route']==1
         assert row['capabilities']['scope_notes']==1
-        assert row['capabilities']['scoped_width']==0
+        assert row['capabilities']['scoped_width']==1
         assert row['latest_observation_date'] is None
         assert not errors,errors
         browser.close()
-    print('OK: Atlantic EUC subsurface reach map, partial extent, 37-row comparison exclusion, global return and unresolved dimensions/dates')
+    print('OK: Atlantic EUC subsurface reach map, partial extent, 37-row comparison exclusion, global return and background width with unresolved campaign dimensions/dates')
 
 if __name__=='__main__':main()
