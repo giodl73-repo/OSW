@@ -431,6 +431,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
         : 'Source geography locator; this point does not establish an eddy footprint or trajectory.';
       byId('route-atlas-status').textContent=`${eddy.label} · ${kind}${changed(eddy)?' '+changeDescription(eddy):''}`;
       const panel=preview(eddy.label);paragraph(panel,kind);
+      window.renderEddySourcePanels(panel,window.oswAtlasSnapshot?.eddy_source_panel_scenes?.[eddy.id]);
       const radial=sources['research/astrid-2000-radial-scale-scope-audit.json'];
       if(radial?.entity_id===eddy.id)window.renderEddyRadialScales(panel,radial);
       const radiusAudit=sources['research/agulhas-guerra-2022-ring-radius-scope-audit.json'];

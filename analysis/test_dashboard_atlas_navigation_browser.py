@@ -47,7 +47,7 @@ def main():
             page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length===240')
             selector = '#route-atlas-select' if entry['type']=='named_current' else '#route-atlas-eddy-select'
             page.wait_for_function('(args)=>document.querySelector(args[0]).value===args[1]', arg=[selector,feature_id])
-            assert entry['label'] in page.locator('#route-atlas-preview h3').inner_text()
+            assert entry['label'] in page.locator('#route-atlas-preview > h3').inner_text()
             assert page.locator('#route-atlas-map').get_attribute('viewBox') != '60 90 1480 740'
             page.reload(wait_until='networkidle')
             page.wait_for_function('(args)=>document.querySelector(args[0]).value===args[1]', arg=[selector,feature_id])

@@ -969,6 +969,9 @@ impl IndexStore {
                 .get(path)
                 .ok_or("Missing index source bytes")?;
             let doc: Value = serde_json::from_str(raw).map_err(|_| "Invalid index source JSON")?;
+            if path == crate::eddy_source_panels::PATH {
+                crate::eddy_source_panels::validate_raw(raw)?;
+            }
             if descriptor["source_sha256"] != format!("{:x}", Sha256::digest(raw.as_bytes()))
                 || descriptor["source_bytes"] != raw.len()
                 || (descriptor["root_kind"] == "array" && !doc.is_array())

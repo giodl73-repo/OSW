@@ -20,7 +20,7 @@ def main():
         visible().click()
         assert page.locator('#route-atlas-select').input_value()=='current:agulhas-return'
         assert visible().get_attribute('aria-pressed')=='true'
-        assert 'Agulhas Return' in page.locator('#route-atlas-preview h3').inner_text()
+        assert 'Agulhas Return' in page.locator('#route-atlas-preview > h3').inner_text()
         assert page.locator('#route-atlas-map').get_attribute('viewBox')!='60 90 1480 740'
         page.locator('#route-atlas-world').click();assert visible().get_attribute('aria-pressed')=='false'
         search.fill('nonesuchxyz');assert visible().count()==0
@@ -32,7 +32,7 @@ def main():
         assert 'Shared regional gateway' in page.locator('#route-atlas-preview').inner_text()
         assert visible().first.get_attribute('aria-pressed')=='true'
         page.evaluate('''()=>{const key='osw-motion-dashboard-seen-v2';const baseline=JSON.parse(localStorage.getItem(key));baseline['current:agulhas'].fingerprint='older-value';localStorage.setItem(key,JSON.stringify(baseline));}''')
-        page.reload(wait_until='networkidle');page.wait_for_timeout(150)
+        page.reload(wait_until='networkidle');page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length===240',timeout=90000)
         search.fill('');filter.select_option('updated');assert visible().count()==1
         assert visible().get_attribute('data-feature-id')=='current:agulhas'
         assert 'updated' in visible().get_attribute('class')
