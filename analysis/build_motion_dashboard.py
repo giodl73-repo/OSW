@@ -141,6 +141,7 @@ def build():
     guinea_width_audit=read('research/guinea-djakoure-2017-model-width-source-review.json')
     algerian_width_audit=read('research/algerian-cotroneo-2019-regional-width-scope-audit.json')
     alaska_width_audit=read('research/alaska-weingartner-2002-regional-width-scope-audit.json')
+    ngcu_width_audit=read('research/ngcu-zenk-1999-width-constraint-scope-audit.json')
     kuroshio_extension_width_audit=read('research/kuroshio-extension-sasaki-2013-width-averaging-scope-audit.json')
     atlantic_euc_width_audit=read('research/atlantic-euc-gouriou-1988-background-width-scope-audit.json')
     pacific_euc_width_audit=read('research/pacific-euc-wang-2022-background-width-scope-audit.json')
@@ -459,8 +460,8 @@ def build():
             groups['sources']=[groups['sources'],own_width_audits]
             groups['measurements'].append(own_width_audits)
             groups['time_evidence'].append(own_width_audits)
-        if current_id in {'algerian','alaska','pacific-equatorial-undercurrent','atlantic-equatorial-undercurrent','kuroshio-extension'}:
-            original_width_audit={'algerian':algerian_width_audit,'alaska':alaska_width_audit,'pacific-equatorial-undercurrent':pacific_euc_width_audit,'atlantic-equatorial-undercurrent':atlantic_euc_width_audit,'kuroshio-extension':kuroshio_extension_width_audit}[current_id]
+        if current_id in {'algerian','alaska','pacific-equatorial-undercurrent','atlantic-equatorial-undercurrent','kuroshio-extension','new-guinea-coastal-undercurrent'}:
+            original_width_audit={'algerian':algerian_width_audit,'alaska':alaska_width_audit,'pacific-equatorial-undercurrent':pacific_euc_width_audit,'atlantic-equatorial-undercurrent':atlantic_euc_width_audit,'kuroshio-extension':kuroshio_extension_width_audit,'new-guinea-coastal-undercurrent':ngcu_width_audit}[current_id]
             payload['original_regional_width_scope']=original_width_audit
             groups['measurements'].append(original_width_audit)
             groups['sources'].append(original_width_audit)

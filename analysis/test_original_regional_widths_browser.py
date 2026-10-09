@@ -174,12 +174,45 @@ def main():
         page.wait_for_function('window.oswLastQueryResult?.rows.length===1',timeout=90000)
         assert page.evaluate('oswLastQueryResult')==expected
         assert expected['rows'][0]['approximate_width_km']==100 and expected['rows'][0]['width_range_km'] is None
+        page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=new-guinea-coastal-undercurrent&phase=ngcu-zenk-1999-vitiaz-width-constraint')
+        page.wait_for_function('window.oswSeasonPlan?.current_id==="new-guinea-coastal-undercurrent"',timeout=90000)
+        assert page.locator('#season-title').inner_text()=='Reported band size constraint'
+        assert 'O(<20 km)' in page.locator('#season-value').inner_text()
+        chart=page.locator('#regional-width-range .reported-width-constraint svg')
+        assert chart.locator('circle,line,path').count()==0
+        assert chart.locator('text').all_text_contents()==['O(<20 km)','Reported size constraint']
+        assert 'not a measured 20 km width' in chart.get_attribute('aria-label')
+        assert 'no 40 km width' in page.locator('#regional-width-range').inner_text()
+        assert page.locator('#season-play').is_disabled() and page.evaluate('oswSeasonPlan.eligible_indices')==[]
+        assert page.locator('#season-section-locator').is_hidden() and page.locator('#season-bar').evaluate('(e)=>e.parentElement.hidden')
+        assert chart.locator('text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
+        assert chart.locator('text').evaluate_all('(es)=>es.every(e=>{const b=e.getBoundingClientRect(),s=e.ownerSVGElement.getBoundingClientRect();return b.left>=s.left && b.right<=s.right})')
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        page.locator('#regional-width-range').screenshot(path=str(ROOT/'.pytest_cache/ngcu-width-constraint-mobile.png'))
+        page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Anew-guinea-coastal-undercurrent#route-atlas')
+        chart=page.locator('#route-atlas-preview .reported-width-constraint svg');chart.wait_for(state='visible',timeout=90000)
+        assert 'O(<20 km)' in page.locator('#width-ngcu-zenk-1999-vitiaz-width-constraint').inner_text()
+        assert 'O(<20 km)' in page.locator('#route-atlas-preview .atlas-width-record summary').inner_text()
+        page.locator('#route-atlas-preview .reported-width-constraint a').click()
+        page.wait_for_function('window.oswSourceQueryResult?.ok',timeout=90000)
+        request={'document':'research/ngcu-zenk-1999-width-constraint-scope-audit.json','pointer':'/measurement','limit':50}
+        with tempfile.TemporaryDirectory(dir=ROOT/'.pytest_cache') as directory:
+            packet=Path(directory)/'index.json';packet.write_bytes(gzip.decompress((ROOT/'almanac/index-data.json.gz').read_bytes()))
+            source_expected=json.loads(subprocess.check_output([str(CLI),'--index',str(packet),'-'],input=json.dumps(request),encoding='utf8'))
+            assert page.evaluate('oswSourceQueryResult')==source_expected
+        query={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'new-guinea-coastal-undercurrent'}],'limit':100}
+        expected=native(query)
+        page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)))
+        page.wait_for_function('window.oswLastQueryResult?.rows.length===1',timeout=90000)
+        assert page.evaluate('oswLastQueryResult')==expected
+        assert expected['rows'][0]['approximate_width_km'] is None and expected['rows'][0]['width_range_km'] is None
+        assert expected['rows'][0]['reported_width_constraint']['reference_scale_km']==20
         for owner in ['equatorial-undercurrent']:
             assert native({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':owner}],'limit':100})['total']==0
         assert not errors,errors
         browser.close()
     scratch=ROOT/'.pytest_cache/algerian-native-gate';scratch.mkdir(exist_ok=True)
     check_compiled_original_scope(scratch)
-    print('PASS: Algerian span, Alaska/Pacific/Atlantic EUC points and Kuroshio Extension monthly-field point; no pooled climatological range, dated width inference or cross-basin inheritance; mobile charts, source queries and native/WASM scope guards')
+    print('PASS: original regional spans/points, Kuroshio Extension averaging and NGCU qualified size constraint; mobile card/table/inspector, source queries, native/WASM parity and coherent scope mutation guards')
 
 if __name__=='__main__':main()

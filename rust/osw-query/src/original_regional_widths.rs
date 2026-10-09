@@ -9,6 +9,10 @@ pub(crate) fn validate(row: &Value) -> Result<(), String> {
                 "../../../research/kuroshio-extension-sasaki-2013-width-averaging-scope-audit.json"
             ),
         ),
+        "new-guinea-coastal-undercurrent" => (
+            "research/ngcu-zenk-1999-width-constraint-scope-audit.json",
+            include_str!("../../../research/ngcu-zenk-1999-width-constraint-scope-audit.json"),
+        ),
         "algerian" => (
             "research/algerian-cotroneo-2019-regional-width-scope-audit.json",
             include_str!(

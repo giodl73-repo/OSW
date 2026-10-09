@@ -47,6 +47,7 @@
     const container=byId('regional-width-range');container.replaceChildren();container.hidden=true;
     if(row?.original_regional_context){container.hidden=false;window.renderOriginalRegionalWidth(container,row);return;}
     if(row?.phase_kind==='model_regional_width_summary'){container.hidden=false;window.renderModelRegionalWidth(container,row);return;}
+    if(row?.reported_width_constraint)byId('season-title').textContent='Reported band size constraint';
     if(row?.phase_kind==='seasonal_regional_width_range'){container.hidden=false;window.renderSeasonalRegionalWidth(container,row);return;}
     if(row?.source_scope_context){container.hidden=false;window.renderAbstractRegionalWidth(container,row);return;}
     if(row?.phase_kind==='survey_layer_median_threshold_width'){renderAdcpComparison(container,row);return;}
@@ -71,6 +72,7 @@
     const phase = phases[Number(byId("season-phase").value)];
     const row = phase?.width;
     renderRegionalRange(row);
+    if(row?.reported_width_constraint)byId('season-title').textContent='Reported band size constraint';
     if(row?.phase_kind==='seasonal_regional_width_range')byId("season-play").disabled=true;else byId("season-play").disabled=!window.oswSeasonPlan.can_play;
     const barMaximum = Math.max(50, Math.ceil(Math.max(...phases.filter(p => p.width?.approximate_width_km != null).map(p => p.width.approximate_width_km), 0) / 50) * 50);
     const frame = phase?.frame;
@@ -94,7 +96,7 @@
     const sectionLocator=byId("season-section-locator"); sectionLocator.replaceChildren(); sectionLocator.hidden=true;
     if(row?.phase_kind==='synoptic_stream_tube_section'){sectionLocator.hidden=false;window.renderStreamTubeWidths(sectionLocator,inventory.measurements.filter(r=>r.current_id===row.current_id));}
     if(window.currentSectionLocator?.coordinates(row)) {window.currentSectionLocator.render(sectionLocator,row); sectionLocator.hidden=false;}
-    const widthText = row?.approximate_width_km == null ? row?.width_range_km ? `${row.width_range_km.join("–")} km reported typical regional range` : "width unknown" : `about ${row.approximate_width_km} km${row.phase_kind === "survey_profile_composite" ? " fitted profile scale (not full width)" : row.phase_kind === "month_dated_section" ? " reported section span (converted from latitude degrees)" : row.phase_kind === "ensemble_profile_band" ? " reported offshore flow-band span" : ""}`;
+    const widthText = row?.reported_width_constraint ? `${row.reported_width_constraint.source_notation} reported size constraint; representative width unknown` : row?.approximate_width_km == null ? row?.width_range_km ? `${row.width_range_km.join("–")} km reported typical regional range` : "width unknown" : `about ${row.approximate_width_km} km${row.phase_kind === "survey_profile_composite" ? " fitted profile scale (not full width)" : row.phase_kind === "month_dated_section" ? " reported section span (converted from latitude degrees)" : row.phase_kind === "ensemble_profile_band" ? " reported offshore flow-band span" : ""}`;
     byId("season-value").textContent = row ? `${row.name}: ${widthText}${row.width_metric_label ? ` · ${row.width_metric_label}` : ""} · ${row.time_convention}` : "Seasonal width not available in this pilot.";
     if(row?.phase_kind==='ensemble_angular_summary') {
       byId('season-title').textContent='General jet width summary';
@@ -109,6 +111,7 @@
     }
     if(row?.phase_kind==='synoptic_stream_tube_section')byId('season-title').textContent='Synoptic stream-tube section width';
     if(row?.phase_kind==='regional_summary')byId('season-title').textContent=row.width_range_km?'Regional width range':'Regional width summary';
+    if(row?.reported_width_constraint)byId('season-title').textContent='Reported band size constraint';
     if(row?.phase_kind==='seasonal_regional_width_range'){byId('season-title').textContent='Seasonal regional width scale';byId('season-value').textContent=`${row.name}: ${row.width_range_km.join('–')} km seasonal regional scale · ${row.phase_label}`;}
     if(row?.phase_kind==='mean_offshore_extent_range') {
       byId('season-title').textContent='Mean surface offshore extent';
