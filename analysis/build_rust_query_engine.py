@@ -26,6 +26,7 @@ def main():
     paths.append('rust/osw-query/src/eddy_recurrence.rs')
     paths.append('rust/osw-query/src/object_plot.rs')
     paths.append('rust/osw-query/src/atlas_data.rs')
+    paths.append('rust/osw-query/src/qualitative_calendar.rs')
     paths.append('rust/osw-query/src/atlantic_euc_sections.rs')
     paths.append('rust/osw-query/src/proposed_widths.rs')
     paths.append('rust/osw-query/src/stream_tube_widths.rs')
