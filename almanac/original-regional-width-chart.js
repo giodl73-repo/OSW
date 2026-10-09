@@ -1,6 +1,6 @@
 "use strict";
 window.renderOriginalRegionalWidth=function(container,row){
-  if(!row?.original_regional_context)return;
+  if(!row?.original_regional_context||row.original_regional_context.description_kind==='aacc_composite_threshold_section')return;
   if(row.reported_width_constraint){window.renderReportedWidthConstraint(container,row);return;}
   const figure=document.createElement("figure");figure.className="original-regional-width";figure.style.margin="0";container.append(figure);
   const ns="http://www.w3.org/2000/svg",svg=document.createElementNS(ns,"svg");figure.append(svg);

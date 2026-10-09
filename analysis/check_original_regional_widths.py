@@ -6,6 +6,9 @@ AUDIT='research/algerian-cotroneo-2019-regional-width-scope-audit.json'
 SOURCE_SHA='9f4bd73abd9785762fa1f498d30c120392f4847e1f573528c86d8cec13b44a18'
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 def validate_row(row,audit=None):
+    if row.get("current_id")=="antarctic-coastal" or str(row.get("id","")).startswith("antarctic-coastal-schubert-2021-"):
+        from check_antarctic_coastal_composites import validate_row as validate_coastal
+        return validate_coastal(row,audit)
     if row.get("current_id")=="tasman-front" or str(row.get("id","")).startswith("tasman-front-nilsson-1980-"):
         from check_tasman_front_band import validate_row as validate_tasman
         return validate_tasman(row,audit)

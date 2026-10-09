@@ -583,7 +583,7 @@ impl Store {
         }
         Ok(
             json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],
-                "sources_json":sources,"state_join_available":receipts.contains_key(JOIN),"timeline_scenes":timeline_scenes,"observed_section_views":observed_section_views}),
+                "sources_json":sources,"state_join_available":receipts.contains_key(JOIN),"timeline_scenes":timeline_scenes,"observed_section_views":observed_section_views,"coastal_composite_width_scene":seasons["coastal_composite_width_scene"]}),
         )
     }
 }

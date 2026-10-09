@@ -13,6 +13,7 @@ window.oswCharts=(()=>{
     document.getElementById('query-chart-scope').textContent=scene.scope;
     document.getElementById('query-chart-legend').hidden=scene.kind==='mooring_velocity';
     document.getElementById('chart-title').textContent=scene.kind==='mooring_velocity'?'Observed current velocity':'Width profiles';
+    if(scene.kind==='coastal_composite_widths'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Composite section widths';window.renderCoastalCompositeWidths(root(),scene,null,inspect);return;}
     if(scene.kind==='mooring_velocity'){window.oswMooringVelocityCharts.render(scene,inspect,root(),stop=>stops.push(stop));return;}
     if(!scene.panels.length)html('p','No source samples match this query. Missing coverage does not mean zero width.',root());
     for(const [index,panel] of scene.panels.entries()){
