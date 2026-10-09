@@ -68,6 +68,9 @@ def build():
     for path in ['research/source-data/zenk-ngcu-1999/journal-article.pdf','research/source-data/siedler-sonne-1997/journal-article.pdf','plans/ngcu-reported-width-constraint-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     routes=read('research/ocean-current-reference-path-candidates.json')
+    from build_current_reference_path_catalog import validate_source_receipt
+    for route in routes['candidates']:
+        inputs.update(validate_source_receipt(read(route['candidate_file'])))
     for record in widths['measurements']:
         if record.get('extraction_file'):
             extraction = read(record['extraction_file'])

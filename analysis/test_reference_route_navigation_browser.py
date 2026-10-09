@@ -10,7 +10,7 @@ def main():
         page = browser.new_page(viewport={'width': 1440, 'height': 1000})
         errors = []
         page.on('pageerror', lambda error: errors.append(str(error)))
-        for ident in ['agulhas-reference-path-candidate', 'south-atlantic-reach-reference-path-candidate']:
+        for ident in ['agulhas-reference-path-candidate', 'south-atlantic-reach-reference-path-candidate', 'solomon-island-coastal-undercurrent-reference-path-candidate']:
             page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#' + ident, wait_until='networkidle')
             page.wait_for_function('(id) => Math.abs(document.getElementById(id)?.getBoundingClientRect().top - 16) < 3', arg=ident)
             card = page.locator('#' + ident)
@@ -55,7 +55,7 @@ def main():
         page.locator('#inventory-addition-aleutian-north-slope').screenshot(path='figures/proposal-navigation-focus-review.png')
         assert not errors, errors
         browser.close()
-    print(f'OK: two mapped route links, all {len(proposals)} proposed-card deep links/Back/focus, Aleutian keyboard relation, repeated link and mobile reflow')
+    print(f'OK: three mapped route links, all {len(proposals)} proposed-card deep links/Back/focus, Aleutian keyboard relation, repeated link and mobile reflow')
 
 
 if __name__ == '__main__':

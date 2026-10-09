@@ -3,10 +3,10 @@
   "status": "editorial_candidates_not_canonical_length_admissions",
   "counts": {
     "currents_without_published_ranked_estimate": 89,
-    "currents_with_route_candidates": 60,
-    "currents_without_route_candidates": 29,
-    "route_candidates": 63,
-    "studied_reach_candidates": 24
+    "currents_with_route_candidates": 61,
+    "currents_without_route_candidates": 28,
+    "route_candidates": 64,
+    "studied_reach_candidates": 25
   },
   "comparison_rule": "Descending length of declared OSW reference routes only. Coherent jets, specified branches and source/region-defined extents differ in scope; their order is provisional and is not a uniform whole-current ranking. Studied reaches are excluded from the reference-route order. No number replaces the existing length evidence or published ranking.",
   "reference_route_length_order": [
@@ -56,7 +56,7 @@
     "author": "OSW",
     "scope": "Primary construction strategy for each of the 89 inventory names without a published ranked length. Categories are work priorities, can have overlapping physical constraints, and do not establish current boundaries or comparable lengths.",
     "input_file": "research/ocean-current-route-strategy-input.json",
-    "input_sha256": "ea1e19b3d2ad933f7f9c6e76b8453af8bdd6cd811de3dec9ebb72c77329f3195",
+    "input_sha256": "f1b33c151b22ff56d80db60113403e6090accfb903c372048ab4cbfd9dce6036",
     "current_ledger_sha256": "6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e",
     "parent_taxonomy": "research/ocean-motion-taxonomy.json",
     "strategies": [
@@ -114,7 +114,7 @@
         "description": "Subsurface jets, undercurrents and overflows require depth, density or tracer support along the route.",
         "next_action": "Specify source layer and time support, obtain intermediate pathway geometry, and separate branches or dilution thresholds before measuring.",
         "current_count": 13,
-        "unbuilt_count": 5
+        "unbuilt_count": 4
       },
       {
         "id": "expand_section_evidence",
@@ -2486,6 +2486,49 @@
         ],
         "interpretation": "Conservative positions within retained rounded route envelopes, treating choices independently; touching envelopes overlap. Not a statistical rank interval or a uniform whole-current comparison."
       }
+    },
+    {
+      "id": "solomon-island-coastal-undercurrent-reference-path-candidate",
+      "current_id": "solomon-island-coastal-undercurrent",
+      "name": "Solomon Island Coastal Undercurrent",
+      "status": "editorial_reference_path_candidate_not_scientifically_reviewed",
+      "comparison_group": "osw_studied_reach_routes",
+      "scope": "Editorial eastern Solomon Islands reach between offshore gates near 162.0 E, 9.6 S and 155.8 E, 4.6 S, following island-chain geography toward northeast Bougainville. Excludes the SEC upstream basin, Solomon Strait crossing, New Ireland coastal continuation and EUC. Source descriptions establish regional context; continuity between gates is unresolved. These are OSW truncations, not observed origins or termination.",
+      "route_extent_kind": "eastern Solomon Islands reference reach",
+      "approximate_reference_path_km": 900,
+      "scenario_range_km": [
+        800,
+        1000
+      ],
+      "scenario_count": 81,
+      "source_url": "https://faculty.washington.edu/kessler/abstracts/melet_etal_2010.html",
+      "source_locator": "Melet et al. (2010) coauthor abstract proposes SICU east of Solomon Islands; original model axis not acquired. Ganachaud et al. (2017), Figures 2 and 7 and pages 11-12/17, supply island geography and local observational context, not a continuous SICU axis.",
+      "supporting_sources": [
+        {
+          "label": "Ganachaud et al. (2017), Solomon Sea cruises",
+          "url": "https://doi.org/10.1525/elementa.221",
+          "locator": "Figures 2 and 7; pages 5-7, 11-12 and 17",
+          "access": "Original NOAA-hosted PDF acquired and institutional SHA256 matched; CC BY 4.0 printed page 27; selected pages and figures inspected."
+        }
+      ],
+      "candidate_file": "research/solomon-island-coastal-undercurrent-reference-path-candidate.json",
+      "candidate_sha256": "64c8f36d57216f978f94ed81debd6f4d8d95b74c985ee613870c3a41d2c7942d",
+      "generator_sha256": "1362693ec7075e014d065691923248db455a5c3cd78c9a94880b3b472594d240",
+      "figure": "figures/solomon-island-coastal-undercurrent-reference-path-candidate.svg",
+      "nominal_atlas_state_crossings": [
+        "AUSE",
+        "WARM"
+      ],
+      "recommended_nasa_tile_id": "level2_G_4",
+      "remaining_gates": [
+        "Acquire and visually review the original 2010 model Figure 4 before digitizing a model axis.",
+        "Review finer coastline and bathymetry, source velocity fields and the density-dependent flow before identifying an actual current core.",
+        "Resolve complete entrance/exit gates and connectivity to NICU separately; no connector across Solomon Strait is drawn.",
+        "No whole-current width, annual range, dated footprint or NASA surface identification inferred."
+      ],
+      "parent_current_id": null,
+      "parent_scope_note": null,
+      "ordering_sensitivity": null
     },
     {
       "id": "east-adriatic-reference-path-candidate",
@@ -4913,15 +4956,17 @@
       "existing_length_evidence_status": "no_numeric_length",
       "existing_scope": "The source schematically names this equatorward flow along the Solomon Islands and says it may feed the New Ireland Coastal Undercurrent. Its continuity and whole-current length are unresolved.",
       "name_source_url": "https://doi.org/10.1029/2011JC007477",
-      "candidate_ids": [],
-      "reference_path_decision": "reference_path_not_constructed",
+      "candidate_ids": [
+        "solomon-island-coastal-undercurrent-reference-path-candidate"
+      ],
+      "reference_path_decision": "editorial_candidate_present_scientific_review_pending",
       "published_length_rank_eligible": false,
       "ledger_kind": "proposed subsurface island boundary current",
       "route_strategy_id": "layer_specific_route",
       "route_strategy_label": "Construct layer-specific paths",
       "planning_status": "editorial_planning_crosswalk_not_scientific_classification_approval",
       "planning_basis": "The source schematically names this equatorward flow along the Solomon Islands and says it may feed the New Ireland Coastal Undercurrent. Its continuity and whole-current length are unresolved.",
-      "next_action": "Retrieve full source and define model-proposal extent/layer before route construction; see research/solomon-island-coastal-undercurrent-proposal-scope-audit.json.",
+      "next_action": "Review the existing editorial route against scientific gates; broader/system/family scope remains governed by the planning strategy.",
       "strategy_next_action": "Specify source layer and time support, obtain intermediate pathway geometry, and separate branches or dilution thresholds before measuring.",
       "known_component_currents": [],
       "component_inventory_status": "not_assessed_by_this_planning_crosswalk"
@@ -5279,7 +5324,7 @@
     "file": "plans/ocean-current-measurement-protocol-v1.md",
     "sha256": "83afac80f4b530c598f46d435e21d010927c129543675a1e6de440385c00145f",
     "audit_file": "research/ocean-current-measurement-protocol-audit.json",
-    "audit_sha256": "fcb7d727bd0462293675adc9995aa78598bdc41cde78dbb431606c707ca25aa9",
+    "audit_sha256": "25b6a1a2ef67c937cc88c46ca5d8c8d0b01d14bb6d6238944887cdd3f050a619",
     "status": "editorial_conformance_checks_passed_not_scientific_approval"
   }
 }
