@@ -207,12 +207,53 @@ def main():
         assert page.evaluate('oswLastQueryResult')==expected
         assert expected['rows'][0]['approximate_width_km'] is None and expected['rows'][0]['width_range_km'] is None
         assert expected['rows'][0]['reported_width_constraint']['reference_scale_km']==20
+        page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=west-australian&phase=west-australian-glenn-2008-offshore-breadth-constraint')
+        page.wait_for_function('window.oswSeasonPlan?.current_id==="west-australian"',timeout=90000)
+        assert page.locator('#season-title').inner_text()=='Reported offshore breadth'
+        chart=page.locator('#regional-width-range .reported-width-constraint svg')
+        assert chart.locator('circle,line,path').count()==0
+        assert chart.locator('text').all_text_contents()==['>1000 km','Reported offshore breadth']
+        assert 'not a measured velocity-core width' in chart.get_attribute('aria-label')
+        assert page.locator('#season-play').is_disabled() and page.evaluate('oswSeasonPlan.eligible_indices')==[]
+        assert chart.locator('text').evaluate_all('(es)=>es.every(e=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12)')
+        assert chart.locator('text').evaluate_all('(es)=>es.every(e=>{const b=e.getBoundingClientRect(),s=e.ownerSVGElement.getBoundingClientRect();return b.left>=s.left && b.right<=s.right})')
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        page.locator('#regional-width-range').screenshot(path=str(ROOT/'.pytest_cache/wac-breadth-mobile.png'))
+        page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Awest-australian#route-atlas')
+        chart=page.locator('#route-atlas-preview .reported-width-constraint svg');chart.wait_for(state='visible',timeout=90000)
+        page.locator('#route-atlas-preview .reported-width-constraint a').click()
+        page.wait_for_function('window.oswSourceQueryResult?.ok',timeout=90000)
+        request={'document':'research/west-australian-glenn-2008-breadth-scope-audit.json','pointer':'/measurement','limit':50}
+        with tempfile.TemporaryDirectory(dir=ROOT/'.pytest_cache') as directory:
+            packet=Path(directory)/'index.json';packet.write_bytes(gzip.decompress((ROOT/'almanac/index-data.json.gz').read_bytes()))
+            source_expected=json.loads(subprocess.check_output([str(CLI),'--index',str(packet),'-'],input=json.dumps(request),encoding='utf8'))
+            assert page.evaluate('oswSourceQueryResult')==source_expected
+        query={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'west-australian'}],'limit':100}
+        page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)))
+        page.wait_for_function('window.oswLastQueryResult?.rows.length===1',timeout=90000)
+        assert page.evaluate('oswLastQueryResult')==native(query)
         for owner in ['equatorial-undercurrent']:
             assert native({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':owner}],'limit':100})['total']==0
         assert not errors,errors
         browser.close()
     scratch=ROOT/'.pytest_cache/algerian-native-gate';scratch.mkdir(exist_ok=True)
     check_compiled_original_scope(scratch)
-    print('PASS: original regional spans/points, Kuroshio Extension averaging and NGCU qualified size constraint; mobile card/table/inspector, source queries, native/WASM parity and coherent scope mutation guards')
+    # Bypass browser receipt checks to exercise compiled WASM admission directly.
+    with sync_playwright() as p:
+        browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
+        page=browser.new_page()
+        page.route('**/wac-guard.html',lambda route:route.fulfill(body='<!doctype html><title>Breadth admission check</title>',content_type='text/html'))
+        page.goto('http://127.0.0.1:8788/wac-guard.html')
+        result=page.evaluate("""async path=>{
+          const wasm=await (await fetch('/almanac/query-engine.wasm')).arrayBuffer();
+          const {instance}=await WebAssembly.instantiate(wasm,{}),e=instance.exports;
+          const data=new Uint8Array(await (await fetch(path)).arrayBuffer()),ptr=e.osw_alloc(data.length);
+          try{new Uint8Array(e.memory.buffer,ptr,data.length).set(data);e.osw_load(ptr,data.length);
+            return JSON.parse(new TextDecoder().decode(new Uint8Array(e.memory.buffer,e.osw_result_ptr(),e.osw_result_len())));
+          }finally{e.osw_dealloc(ptr,data.length);}
+        }""",'/'+(scratch/'wac-tampered.json').relative_to(ROOT).as_posix())
+        assert result['ok'] is False and 'Original regional width' in result['error'],result
+        browser.close()
+    print('PASS: original regional spans/points, Kuroshio Extension averaging NGCU qualified size constraint and West Australian breadth; mobile card/table/inspector, source queries, native/WASM parity and coherent scope mutation guards')
 
 if __name__=='__main__':main()

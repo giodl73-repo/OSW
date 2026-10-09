@@ -15,7 +15,7 @@ import urllib.error
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPERS = ('kuroshio-liu-gan-2012', 'leeuwin-deng-2008', 'florida-archer-2017', 'chen-madagascar-2014', 'qiu-chen-nec-2010', 'van-aken-astrid-2003', 'schott-mccreary-2001', 'djakoure-guinea-2017', 'gouriou-atlantic-1988', 'sasaki-kuroshio-extension-2013', 'zenk-ngcu-1999', 'siedler-sonne-1997', 'cresswell-zeehan-2000', 'matsuyama-tsushima-1990')
+PAPERS = ('kuroshio-liu-gan-2012', 'leeuwin-deng-2008', 'florida-archer-2017', 'chen-madagascar-2014', 'qiu-chen-nec-2010', 'van-aken-astrid-2003', 'schott-mccreary-2001', 'djakoure-guinea-2017', 'gouriou-atlantic-1988', 'sasaki-kuroshio-extension-2013', 'zenk-ngcu-1999', 'siedler-sonne-1997', 'cresswell-zeehan-2000', 'matsuyama-tsushima-1990', 'glenn-wac-2008')
 RETRY_DELAYS = (1, 3)
 TRANSIENT_HTTP = {408, 429, 500, 502, 503, 504}
 
@@ -39,7 +39,7 @@ def normalize_transport_identity(name, manifest, data):
 
 
 def verify(name, manifest, data):
-    maximum = 50_000_000 if name == 'florida-archer-2017' else 20_000_000
+    maximum = {'florida-archer-2017':50_000_000,'glenn-wac-2008':60_000_000}.get(name,20_000_000)
     if len(data) > maximum or not data.startswith(b'%PDF-'):
         raise ValueError(f'{name}: expected a PDF below {maximum//1_000_000} MB')
     data = normalize_transport_identity(name, manifest, data)
@@ -55,7 +55,7 @@ def download(name, manifest):
         source_url += '?download=1'
     headers = {} if name == 'florida-archer-2017' else {'User-Agent': 'OSW-source-validation/1.0'}
     request = urllib.request.Request(source_url, headers=headers)
-    maximum = 50_000_000 if name == 'florida-archer-2017' else 20_000_000
+    maximum = {'florida-archer-2017':50_000_000,'glenn-wac-2008':60_000_000}.get(name,20_000_000)
     for attempt in range(len(RETRY_DELAYS) + 1):
         try:
             with urllib.request.urlopen(request, timeout=60) as response:
