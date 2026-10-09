@@ -19,7 +19,7 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
   node('p',`${records.length} local or regional source record${records.length===1?'':'s'}. Definitions differ; these do not establish a uniform whole-current width or annual extrema.`);
   const format=value=>Number(value).toLocaleString('en-US');
   window.renderStreamTubeWidths(section,records);
-  for(const row of records){window.renderOriginalRegionalWidth(section,row);window.renderModelRegionalWidth(section,row);window.renderAbstractRegionalWidth(section,row);if(row.phase_kind==='seasonal_regional_width_range')window.renderSeasonalRegionalWidth(section,row);}
+  for(const row of records){window.renderModalDecayWidth(section,row);window.renderOriginalRegionalWidth(section,row);window.renderModelRegionalWidth(section,row);window.renderAbstractRegionalWidth(section,row);if(row.phase_kind==='seasonal_regional_width_range')window.renderSeasonalRegionalWidth(section,row);}
   for(const row of records) {
     const details=document.createElement('details');details.className='atlas-width-record';details.dataset.measurementId=row.id;section.append(details);
     const angular=row.ensemble_angular_context;

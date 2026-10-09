@@ -7,10 +7,10 @@
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 52,
-    "measurements": 96,
+    "currents_with_scoped_width_evidence": 53,
+    "measurements": 97,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 40,
+    "currents_not_assessed": 39,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 5,
     "currents_with_section_span_diagnostics_width_unresolved": 1
@@ -6352,6 +6352,167 @@
         "audit_file": "research/zeehan-cresswell-2000-width-section-scope-audit.json",
         "audit_sha256": "83b7c97d7d30ff2b2044bfc12316d99806b3005da5709afbf385a7f485c1f0c5"
       }
+    },
+    {
+      "id": "tsushima-matsuyama-1990-nearshore-modal-width",
+      "current_id": "tsushima",
+      "name": "Tsushima Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_campaign_modal_decay_estimate",
+      "width_metric": "coast_to_modal_decay_threshold_distance",
+      "approximate_width_km": 22,
+      "width_range_km": null,
+      "range_kind": "reported_modal_estimate_with_unresolved_arithmetic_discrepancy",
+      "range_interpretation": "Reported 22 km; summary approximately 20 km and recalculation 23.0769 km describe the same estimate. They do not define a measured range or numerical uncertainty.",
+      "geographic_scope": "Nearshore branch over the continental shelf off the San’in coast, Japan Sea; not the entire Tsushima Current system.",
+      "section_geometry": null,
+      "section_orientation": "Offshore y direction approximately northward from the east–west coast in the source model; paired edge coordinates unresolved.",
+      "layer": "First baroclinic mode under summer density stratification; eastward above the seasonal thermocline and westward below. No fixed width slab extracted.",
+      "time_convention": "Finite July–August 1980 campaign. Modal coefficient from the 8 August hydrographic profile; station and current-average durations differ. No homogeneous width occupation interval or recurring seasonal calendar assigned.",
+      "boundary_rule": "Offshore modal amplitude exp(-gamma_1*y), relative to its coastal value; adopted exp(-3) decay criterion (approximately 5%). Printed gamma_1=1.3e-4 m^-1.",
+      "source_url": "https://www.jstage.jst.go.jp/article/kaiyou1942/46/4/46_4_156/_pdf",
+      "source_citation": "Matsuyama, M. (1990), The Structure of the Nearshore Branch of the Tsushima Current on the Shelf off the San’in Coast in Summer, Journal of the Oceanographical Society of Japan 46(4):156–166, doi:10.1007/BF02125576.",
+      "source_locator": "Printed p165 / PDF page 10, Discussion decay equation and Summary(1); eigenvalue and fit method p161 / PDF page 6; station dates p158 and common average p159; separate Fig10 p164.",
+      "source_retrieved_date": "2026-10-08",
+      "source_evidence_kind": "published_original_campaign_modal_diagnosis",
+      "extraction_method": "Manual original equation and context transcription with visual verification; independently calculate printed arithmetic, without digitizing current boundaries.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "phase_label": "1980 coastal-branch modal estimate",
+      "phase_kind": "campaign_modal_decay_width",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "uncertainty_km": null,
+      "source_quality_note": "Reported 22 km disagrees with 3/(1.3e-4) m = 23.0769 km; cause unresolved. Approximately 20 km is a summary of the same estimate. Fig10 caption 134°E conflicts with Discussion 132°E; the climatological section is separate support. Printed Eq8 plus sign is inconsistent with the stated exponential solution for real positive gamma; no correction inferred.",
+      "remaining_gates": [
+        "Resolve source differential-equation sign and arithmetic discrepancies; independent scientific admission.",
+        "Extract geographically located compatible boundaries and uncertainty.",
+        "Acquire repeat occupations before seasonal ranges or playback."
+      ],
+      "modal_decay_context": {
+        "normalized_amplitude_equation": "Y(y)/Y(0)=exp(-gamma_1*y)",
+        "coastal_reference_amplitude": 1,
+        "printed_gamma_per_m": 0.00013,
+        "edge_exponent": 3,
+        "edge_relative_amplitude": 0.049787068367863944,
+        "source_rounded_relative_amplitude": 0.05,
+        "source_reported_width_km": 22,
+        "source_summary_width_km_approx": 20,
+        "recalculated_width_km": 23.076923076923077,
+        "arithmetic_discrepancy_unresolved": true,
+        "summary_is_independent_measurement": false,
+        "discrepancy_is_uncertainty_interval": false,
+        "coefficient_method": "Separation constant of density-profile eigenvalue problem (Eq7 with boundary conditions); least-squares fits current data to computed mode shapes, not an offshore velocity-coefficient fit.",
+        "model_assumptions": [
+          "Hydrostatic and Boussinesq approximations",
+          "Flat bottom and rigid lid",
+          "Zero initial potential vorticity; coast-relative exponential offshore mode"
+        ],
+        "fitted_current_modes": [
+          "barotropic",
+          "first_baroclinic"
+        ],
+        "campaign_context": {
+          "start": "1980-07-26",
+          "end": "1980-08-25",
+          "is_homogeneous_width_observation_period": false
+        },
+        "station_support": [
+          {
+            "station": "A",
+            "start": "1980-07-26",
+            "end": "1980-08-25",
+            "source_reported_days": 31
+          },
+          {
+            "station": "B",
+            "start": "1980-07-26",
+            "end": "1980-08-25",
+            "source_reported_days": 31
+          },
+          {
+            "station": "C",
+            "start": "1980-07-26",
+            "end": "1980-08-14",
+            "source_reported_days": 19
+          },
+          {
+            "station": "D",
+            "start": "1980-07-26",
+            "end": "1980-08-14",
+            "source_reported_days": 19
+          },
+          {
+            "station": "E",
+            "start": "1980-07-26",
+            "end": "1980-08-14",
+            "source_reported_days": 19
+          }
+        ],
+        "common_current_mean_period": {
+          "start": "1980-07-26",
+          "end": "1980-08-14",
+          "source_locator": "Printed p159, section4: common period for five-station time averages."
+        },
+        "station_B_modal_mean_period": {
+          "start": "1980-07-26",
+          "end": "1980-08-25",
+          "source_locator": "Printed p162, Figure8 discussion: entire B record."
+        },
+        "hydrographic_profile_support": {
+          "station": "H",
+          "date": "1980-08-08",
+          "latitude_degrees_north": 36.15,
+          "longitude_degrees_east": 134.13333333333333,
+          "role": "Density profile input for computed vertical modes; not a current edge."
+        },
+        "instrument_context": {
+          "surface_offset_m": 10,
+          "bottom_offset_m": 10,
+          "sampling_interval_minutes": 10,
+          "is_fixed_width_layer": false
+        },
+        "shelf_context": {
+          "coast_to_200m_isobath_km": [
+            15,
+            20
+          ],
+          "is_width_range": false
+        },
+        "separate_hydrographic_climatology": {
+          "start_year": 1964,
+          "end_year": 1985,
+          "calendar_months": [
+            7,
+            8,
+            9
+          ],
+          "caption_longitude_degrees_east": 134,
+          "discussion_longitude_degrees_east": 132,
+          "longitude_conflict": true,
+          "is_1980_width_support": false
+        },
+        "boundary_coordinates_extracted": false,
+        "summer_campaign_is_recurring_calendar": false,
+        "display_caption": "Coastal branch · reported modal width 22 km (summer 1980). Diagram illustrates the published exponential expression; its differential-equation sign remains unresolved. No mapped edge or seasonal range.",
+        "display_method_note": "The source adopts roughly 5% of coastal amplitude as the edge. Its printed coefficient gives 23.1 km; the paper reports 22 km and summarizes about 20 km. Arithmetic discrepancy unresolved; numerical uncertainty unknown.",
+        "offshore_equation_consistency": {
+          "source_locator": "Printed p161 / PDF page 6, Eq8 and following solution statement; original visually verified.",
+          "printed_equation": "d2Y_n/dy2+gamma_n^2*Y_n=0",
+          "stated_solution": "Y_n~exp(-gamma_n*y)",
+          "finding_class": "editorial_mathematical_consistency_check_not_author_correction",
+          "inconsistent_for_real_positive_gamma": true,
+          "sign_resolution": null,
+          "diagram_validates_printed_differential_equation": false
+        },
+        "audit_file": "research/tsushima-matsuyama-1990-modal-width-scope-audit.json",
+        "audit_sha256": "587cccbd45b3673137523241a2bbab07f3ee681e8f5549a7b44f0ae6ced90fb6"
+      }
     }
   ],
   "current_decisions": [
@@ -7055,12 +7216,14 @@
     {
       "current_id": "tsushima",
       "name": "Tsushima Current",
-      "width_decision": "width_not_assessed",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "tsushima-matsuyama-1990-nearshore-modal-width"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
-      "existing_evidence_locator": null,
-      "existing_evidence_source_url": null
+      "next_action": "Resolve modal arithmetic and compatible branch boundaries; retain whole-current width and recurring seasonal variation as unknown.",
+      "existing_evidence_locator": "Printed p165 / PDF page 10, Discussion decay equation and Summary(1); eigenvalue and fit method p161 / PDF page 6; station dates p158 and common average p159; separate Fig10 p164.",
+      "existing_evidence_source_url": "https://www.jstage.jst.go.jp/article/kaiyou1942/46/4/46_4_156/_pdf"
     },
     {
       "current_id": "west-australian",

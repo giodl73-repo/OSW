@@ -61,6 +61,9 @@ def build():
     zeehan_width_audit=read('research/zeehan-cresswell-2000-width-section-scope-audit.json');read('research/source-data/cresswell-zeehan-2000/acquisition.json')
     for path in ['research/source-data/cresswell-zeehan-2000/journal-article.pdf','plans/zeehan-width-source-separation-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    tsushima_modal_audit=read('research/tsushima-matsuyama-1990-modal-width-scope-audit.json');read('research/source-data/matsuyama-tsushima-1990/acquisition.json')
+    for path in ['research/source-data/matsuyama-tsushima-1990/journal-article.pdf','plans/campaign-modal-decay-width-protocol-v1.md','analysis/check_tsushima_modal_width.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/ngcu-zenk-1999-width-constraint-scope-audit.json');read('research/source-data/zenk-ngcu-1999/acquisition.json');read('research/source-data/siedler-sonne-1997/acquisition.json')
     for path in ['research/source-data/zenk-ngcu-1999/journal-article.pdf','research/source-data/siedler-sonne-1997/journal-article.pdf','plans/ngcu-reported-width-constraint-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()

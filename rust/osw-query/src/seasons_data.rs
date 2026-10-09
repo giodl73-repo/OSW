@@ -198,6 +198,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
                 crate::somali_width::validate(row)?;
                 crate::guinea_width::validate(row)?;
                 crate::original_regional_widths::validate(row)?;
+                crate::modal_decay_widths::validate(row)?;
                 crate::abstract_regional_widths::validate(row)?;
                 norwegian_coastal_width_scope(row)?;
             }
