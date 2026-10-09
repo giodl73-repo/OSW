@@ -3,6 +3,13 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 const SOURCES: &[(&str, &str, &str)] = &[
     (
+        "antarctic-coastal",
+        "research/antarctic-coastal-schubert-2021-composite-width-scope-audit.json",
+        include_str!(
+            "../../../research/antarctic-coastal-schubert-2021-composite-width-scope-audit.json"
+        ),
+    ),
+    (
         "tasman-front",
         "research/tasman-front-nilsson-1980-meander-band-scope-audit.json",
         include_str!("../../../research/tasman-front-nilsson-1980-meander-band-scope-audit.json"),

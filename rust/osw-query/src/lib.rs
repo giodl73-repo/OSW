@@ -7,6 +7,7 @@ mod atlantic_euc_sections;
 mod atlas_data;
 pub mod cartography;
 mod charts;
+mod coastal_composite_widths;
 mod dashboard;
 mod dashboard_beck;
 mod dashboard_map;
@@ -264,6 +265,7 @@ impl Store {
         taxonomy::validate(&bundle.collections, &bundle.manifest)?;
         dashboard::validate(&bundle)?;
         seasons_data::validate(&bundle)?;
+        coastal_composite_widths::validate(&bundle)?;
         atlas_data::validate(&bundle)?;
         atlantic_euc_sections::validate(&bundle)?;
         qualitative_calendar::validate(&bundle)?;
@@ -621,6 +623,8 @@ impl Store {
         }
         let chart_scene = if query.collection == "width_samples" {
             charts::scene(&matches, records)
+        } else if query.collection == "widths" {
+            coastal_composite_widths::scene(&matches, records)
         } else if query.collection == "current_velocity_samples" {
             mooring_velocity::scene(&matches, records)
         } else {

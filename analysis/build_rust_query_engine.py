@@ -36,6 +36,7 @@ def main():
     paths.append('rust/osw-query/src/somali_width.rs')
     paths.append('rust/osw-query/src/guinea_width.rs')
     paths.append('rust/osw-query/src/original_regional_widths.rs')
+    paths.extend(['rust/osw-query/src/coastal_composite_widths.rs','figures/schubert-aacc-2021-source-sections.png'])
     paths.append('rust/osw-query/src/modal_decay_widths.rs')
     paths.append('rust/osw-query/src/observed_sections.rs')
     paths.append('rust/osw-query/src/cartography.rs')
