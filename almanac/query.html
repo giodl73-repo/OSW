@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Query the ocean atlas — OSW</title>
-  <link rel="stylesheet" href="query.css?v=source-documents-1"><script src="query-workspace.js?v=1" defer></script><script src="query-charts.js?v=3" defer></script><script src="model-section-card.js?v=1" defer></script><script src="query.js?v=model-collections-38" defer></script><script src="source-query.js?v=1" defer></script>
+  <link rel="stylesheet" href="query.css?v=source-documents-1"><script src="query-workspace.js?v=1" defer></script><script src="mooring-velocity-charts.js?v=1" defer></script><script src="query-charts.js?v=4" defer></script><script src="model-section-card.js?v=1" defer></script><script src="query.js?v=model-collections-38" defer></script><script src="source-query.js?v=1" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to query</a>
@@ -95,7 +95,7 @@
     <details id="query-advanced"><summary>Structured query</summary><p>Edit fields, filters, sort and pagination directly. This query runs in the same engine as the controls.</p><label class="sr" for="query-json">JSON query</label><textarea id="query-json" rows="9" spellcheck="false"></textarea><button id="query-run-json" type="button" disabled>Run structured query</button><a href="../plans/rust-query-store-v1.md">Query and storage contract</a></details>
   </section>
   <p id="query-status" role="status" aria-live="polite">Loading Rust WebAssembly engine…</p>
-  <section id="query-chart-section" aria-labelledby="chart-title" hidden><h2 id="chart-title">Width profiles</h2><p id="query-chart-scope" class="note"></p><p class="note">Circles: scoped numeric samples. Solid whiskers: plot-reading allowances. Dashed whiskers: finite threshold-choice sensitivity. Neither is a confidence interval. Crosses in the separate Missing strip: unresolved readings. Points are not connected or interpolated. The table and sample cards provide the original values and sources.</p><div id="query-chart-panels"></div></section>
+  <section id="query-chart-section" aria-labelledby="chart-title" hidden><h2 id="chart-title">Width profiles</h2><p id="query-chart-scope" class="note"></p><p id="query-chart-legend" class="note">Circles: scoped numeric samples. Solid whiskers: plot-reading allowances. Dashed whiskers: finite threshold-choice sensitivity. Neither is a confidence interval. Crosses in the separate Missing strip: unresolved readings. Points are not connected or interpolated. The table and sample cards provide the original values and sources.</p><div id="query-chart-panels"></div></section>
   <section id="query-map-section" aria-labelledby="map-title" hidden>
     <div class="result-head"><h2 id="map-title">Map the matches</h2><div><button type="button" id="query-map-in" aria-label="Zoom map in">+</button> <button type="button" id="query-map-out" aria-label="Zoom map out">−</button> <button type="button" id="query-map-world">World</button></div></div>
     <p id="query-map-count" role="status"></p>

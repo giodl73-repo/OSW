@@ -315,6 +315,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
         } else if(!dated.length&&!sectionRecords.some(row=>'current:'+row.current_id===current.id))paragraph(panel,current.capabilities.reported_length?'Reference-route card pending. A source-reported length is available in the current record; the name locator does not show the measured path.':'Reference route pending. The atlas shows a name locator; its route and length remain unresolved.');
         previewLink(panel,'Open current record →',current.object_url);
       }
+      if(current.id==='current:antarctic-slope')previewLink(panel,'Observed M6 velocity · monthly and seasonal charts →','query.html?q='+encodeURIComponent(JSON.stringify({collection:'current_velocity_samples',limit:100}))+'#query-chart-section');
       if(showDated) {
         showDated(dated.find(feature=>feature.geometry_id===requestedGeometry)||dated[0]);
         link.href=current.object_url;link.textContent='Open current evidence record →';
