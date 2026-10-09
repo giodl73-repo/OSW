@@ -9,12 +9,12 @@
     const ns='http://www.w3.org/2000/svg';
     for(const [field,title,unit,maximum] of [['maximum_eastward_speed_cm_s','Maximum eastward speed','cm/s',120],['maximum_speed_depth_m','Depth of the speed maximum','m',80]]) {
       const figure=el('figure',null,panel);figure.style.margin='0 0 1rem';
+      el('h5',`${title} (${unit})`,figure);
       const svg=document.createElementNS(ns,'svg');figure.append(svg);
       const h=100+data.records.length*70;svg.setAttribute('viewBox',`0 0 520 ${h}`);svg.setAttribute('role','img');
-      svg.setAttribute('aria-label',`${title} at 4 degrees west. Eight campaign records in table order. Two hollow markers indicate unresolved dates. Complete values and both dates follow in the table.`);
+      svg.setAttribute('aria-label',`${title} (${unit}) at 4 degrees west. Eight campaign records in table order. Two hollow markers indicate unresolved dates. Complete values and both dates follow in the table.`);
       svg.style.cssText='width:100%;max-width:650px;background:#f6f5ef;color:#102f3b';
       const add=(tag,attrs,text)=>{const n=document.createElementNS(ns,tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,v);if(text!=null)n.textContent=text;svg.append(n);return n;};
-      add('text',{x:20,y:34,'font-size':30,fill:'#102f3b'},`${title} (${unit})`);
       const x=v=>145+330*v/maximum;
       add('line',{x1:x(0),x2:x(maximum),y1:62,y2:62,stroke:'#53646b'});
       for(const v of [0,maximum/2,maximum])add('text',{x:x(v),y:90,'font-size':30,'text-anchor':'middle',fill:'#102f3b'},v);

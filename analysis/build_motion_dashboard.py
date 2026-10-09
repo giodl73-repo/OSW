@@ -144,6 +144,9 @@ def build():
     zeehan_width_audit=read('research/zeehan-cresswell-2000-width-section-scope-audit.json');read('research/source-data/cresswell-zeehan-2000/acquisition.json')
     for path in ['research/source-data/cresswell-zeehan-2000/journal-article.pdf','plans/zeehan-width-source-separation-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/acc-park-2019-udintsev-breadths-scope-audit.json');read('research/source-data/park-acc-2019/acquisition.json')
+    for path in ['research/source-data/park-acc-2019/journal-article.pdf','plans/acc-udintsev-breadths-protocol-v1.md','analysis/check_acc_udintsev_breadths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/north-pacific-tomczak-2005-broad-band-scope-audit.json');read('research/source-data/tomczak-regional-2005/acquisition.json')
     for path in ['research/source-data/tomczak-regional-2005/journal-article.pdf','plans/north-pacific-broad-band-protocol-v1.md','analysis/check_north_pacific_broad_band.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
