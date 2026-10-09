@@ -7,10 +7,10 @@
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 63,
-    "measurements": 116,
+    "currents_with_scoped_width_evidence": 64,
+    "measurements": 117,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 28,
+    "currents_not_assessed": 27,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 6,
     "currents_with_section_span_diagnostics_width_unresolved": 1
@@ -8465,6 +8465,84 @@
         "audit_sha256": "01add615729f0ebf28ac9632cf4f76b85d9a0d2e67af33cee9088e52018192c4",
         "audit_pointer": "/measurements/1"
       }
+    },
+    {
+      "id": "tasman-front-nilsson-1980-meander-occupied-band",
+      "current_id": "tasman-front",
+      "name": "Tasman Front",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_regional_summary",
+      "width_metric": "author_reported_meander_occupied_band_breadth",
+      "approximate_width_km": 600,
+      "width_range_km": null,
+      "range_kind": "approximate_regional_point_no_reported_interval",
+      "range_interpretation": "One approximate author description for this feature definition. Not a range endpoint, annual extrema or confidence interval.",
+      "geographic_scope": "Zonal band in the Tasman Sea containing a meandering front extending from Australia to New Zealand; band center described as near 33 or 34 S.",
+      "section_geometry": null,
+      "section_orientation": "Meridional breadth of a zonal occupied band; no exact paired cross-band edges extracted.",
+      "layer": "Regional dynamic-height and thermal-structure synthesis; no fixed numerical layer assigned to the band breadth.",
+      "time_convention": "Historical report synthesis using surveys and earlier sections; not a dated repeated-width series or annual climatology.",
+      "boundary_rule": "Author-reported approximate breadth of the band occupied by a meandering front and associated eddies; not boundaries of one jet.",
+      "source_url": "https://ntrs.nasa.gov/api/citations/19800022345/downloads/19800022345.pdf",
+      "source_citation": "Nilsson, Andrews, Lawrence, Ball and Latham (1980), Heat Capacity Mapping Mission Project HCM-051: Progress Report to 30 April 1980, RAN Research Laboratory Internal Technical Memorandum 3/80; NASA NTRS 19800022345.",
+      "source_locator": "Original PDF p27 / printed p23, section 3.9; p26 / printed p22 provides separate maximum-scale context.",
+      "source_retrieved_date": "2026-10-09",
+      "source_evidence_kind": "original_technical_report_regional_synthesis",
+      "extraction_method": "Factual numerical prose extraction from visually inspected original report; no map or boundary digitization.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "phase_label": "Meander and eddy occupied band",
+      "phase_kind": "regional_summary",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "uncertainty_km": null,
+      "source_quality_note": "Microfiche reproduction of an interim technical report. Width passage visually verified. No individual jet width, exact boundary criterion or dated width sequence established.",
+      "remaining_gates": [
+        "Obtain paired observed edges and a declared band/jet definition, layer and averaging rule.",
+        "Acquire comparable repeated observations before annual or seasonal margins.",
+        "Independent scientific admission."
+      ],
+      "original_regional_context": {
+        "description_kind": "tasman_meander_occupied_band",
+        "width_passage_visually_inspected": true,
+        "underlying_width_methods_reviewed": true,
+        "full_study_reproduced": false,
+        "temporal_operator": "historical_report_regional_synthesis",
+        "boundary_coordinates_extracted": false,
+        "map_buffer_eligible": false,
+        "cross_current_width_inheritance_eligible": false,
+        "seasonal_calendar_extracted": false,
+        "individual_jet_width_eligible": false,
+        "thermal_transition_is_occupied_band": false,
+        "maximum_scale_is_uncertainty_interval": false,
+        "band_center_latitude_context_degrees_south": [
+          33,
+          34
+        ],
+        "comparison_context": {
+          "maximum_scale_context_km": [
+            600,
+            700
+          ],
+          "surface_thermal_transition_km": 30,
+          "thermocline_thermal_transition_upper_limit_km": 120,
+          "older_postulated_zonal_flow_km": 500,
+          "role": "Distinct scales and supports, not band interval endpoints or annual extremes."
+        },
+        "display_title": "Meander and eddy occupied band",
+        "display_aria_label": "Tasman Front: approximately 600 kilometres for the zonal band occupied by the meandering front and associated eddies. Historical regional synthesis, not individual jet width, thermal transition thickness, dated boundaries or annual extrema. Numerical uncertainty unknown.",
+        "display_caption": "Approximately 600 km · band occupied by the meandering front and associated eddies. Individual jet and thermal-front widths differ. No annual range or mapped footprint; numerical uncertainty unknown.",
+        "display_method_note": "Original 1980 report discussion describes a band centered near 33 or 34 S. The 600 or 700 km maximum-scale discussion is not an uncertainty interval. Separate surface and thermocline transition widths are not this band. No exact edges, fixed measurement layer or repeated width series extracted.",
+        "audit_file": "research/tasman-front-nilsson-1980-meander-band-scope-audit.json",
+        "audit_sha256": "6205515eaa753b22b115dfebc5900b6e507bb4401644683ca14cf74c2ab838e6",
+        "audit_pointer": "/measurements/0"
+      },
+      "width_metric_label": "Meander and eddy occupied zonal band, not individual jet width"
     }
   ],
   "current_decisions": [
@@ -8581,10 +8659,12 @@
     {
       "current_id": "tasman-front",
       "name": "Tasman Front",
-      "width_decision": "width_not_assessed",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "tasman-front-nilsson-1980-meander-occupied-band"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
+      "next_action": "Distinguish occupied meander/eddy band from a narrow jet and thermal fronts; acquire compatible dated paired edges before seasonal dimensions or physical state joins.",
       "existing_evidence_locator": null,
       "existing_evidence_source_url": null
     },
