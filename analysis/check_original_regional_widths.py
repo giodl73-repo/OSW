@@ -6,6 +6,8 @@ AUDIT='research/algerian-cotroneo-2019-regional-width-scope-audit.json'
 SOURCE_SHA='9f4bd73abd9785762fa1f498d30c120392f4847e1f573528c86d8cec13b44a18'
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 def validate_row(row,audit=None):
+    if row.get('current_id') == 'kuroshio-extension':
+        return validate_kuroshio_extension_row(row,audit)
     if row.get('current_id') == 'atlantic-equatorial-undercurrent':
         return validate_atlantic_euc_row(row,audit)
     if row.get('current_id') == 'pacific-equatorial-undercurrent':
@@ -24,6 +26,32 @@ def validate_row(row,audit=None):
     if any(context[k] is not False for k in ['underlying_width_methods_reviewed','survey_years_are_width_occupations','survey_depth_is_width_layer','LIW_depth_is_width_layer','eddy_diameter_is_current_width','span_is_annual_range','boundary_coordinates_extracted']):raise ValueError('Conflated Algerian synthesis and survey supports')
     expected=copy.deepcopy(source);expected['original_regional_context'].update(audit_file=AUDIT,audit_sha256=digest(AUDIT))
     if row!=expected:raise ValueError('Algerian regional width differs from pinned source extraction')
+
+KUROSHIO_EXTENSION_AUDIT='research/kuroshio-extension-sasaki-2013-width-averaging-scope-audit.json'
+KUROSHIO_EXTENSION_SHA='483dd114d6bbbff9b153460edf28a3391958a78e1a0b6a646db548eefcb8a674'
+
+def validate_kuroshio_extension_row(row,audit=None):
+    audit=json.loads((ROOT/KUROSHIO_EXTENSION_AUDIT).read_bytes()) if audit is None else audit
+    if audit['source_document_sha256']!=KUROSHIO_EXTENSION_SHA or audit['source_document_bytes']!=3831641 or digest(audit['source_document_file'])!=KUROSHIO_EXTENSION_SHA:
+        raise ValueError('Changed Kuroshio Extension original source')
+    for kind in ['acquisition','protocol']:
+        if digest(audit[kind+'_file'])!=audit[kind+'_sha256']:raise ValueError('Changed Kuroshio Extension provenance or convention')
+    source=audit['measurement']
+    if (source['current_id'],source['phase_kind'],source['approximate_width_km'],source['width_range_km'])!=('kuroshio-extension','regional_summary',100,None):
+        raise ValueError('Changed Kuroshio Extension monthly-field point or pooled averaging scales')
+    if any(source[k] is not None for k in ['observed_period','calendar_months','section_geometry','fixed_layer_bounds_m','uncertainty_km']):
+        raise ValueError('Assigned illustration dates or invented width support')
+    if any(source[k] is not False for k in ['whole_current_representative','width_rank_eligible','full_width_inference_eligible','annual_extrema_eligible','seasonal_playback_eligible','is_confidence_interval']):
+        raise ValueError('Promoted Kuroshio Extension regional point')
+    context=source['original_regional_context']
+    exclusions=['underlying_width_methods_reviewed','monthly_mean_is_dated_width_series','illustrative_figure_date_is_width_occupation','analysis_period_is_width_occupation','climatological_scale_is_width_range_endpoint','jet_displacement_is_width_variation','axis_search_contours_are_width_edges','eof_anomaly_scale_is_width_measurement','low_pass_shading_is_monthly_width_series','meridional_width_is_flow_normal_width','boundary_coordinates_extracted']
+    if any(context[k] is not False for k in exclusions) or context['analysis_period_context']['is_width_measurement_support'] is not False:
+        raise ValueError('Conflated Kuroshio Extension averaging, position or axis supports')
+    scale=context['climatological_scale_context']
+    if context['temporal_operator']!='monthly_mean' or context['illustrative_figure_month']!='2005-01' or scale['meridional_scale_km']!=200 or scale['temporal_operator']!='climatological_mean' or scale['is_width_sample'] is not False or scale['is_range_endpoint'] is not False or scale['uncertainty_km'] is not None:
+        raise ValueError('Promoted Kuroshio Extension climatological context')
+    expected=copy.deepcopy(source);expected['original_regional_context'].update(audit_file=KUROSHIO_EXTENSION_AUDIT,audit_sha256=digest(KUROSHIO_EXTENSION_AUDIT))
+    if row!=expected:raise ValueError('Kuroshio Extension width differs from pinned source extraction')
 
 ALASKA_AUDIT='research/alaska-weingartner-2002-regional-width-scope-audit.json'
 ALASKA_SHA='9d8b6464a0d2d3817a088de7425935d0fdef3697534e1c33b7c552b370764b76'

@@ -144,12 +144,42 @@ def main():
         page.wait_for_function('window.oswLastQueryResult?.rows.length===1',timeout=90000)
         assert page.evaluate('oswLastQueryResult')==expected
         assert expected['rows'][0]['approximate_width_km']==200 and expected['rows'][0]['fixed_layer_bounds_m'] is None
+        page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=kuroshio-extension&phase=kuroshio-extension-sasaki-2013-monthly-field-width')
+        page.wait_for_function('window.oswSeasonPlan?.current_id==="kuroshio-extension"',timeout=90000)
+        chart=page.locator('#regional-width-range .original-regional-width svg')
+        assert chart.locator('circle').count()==1 and chart.locator('line').count()==1
+        assert chart.locator('text').all_text_contents()==['\u2248 100 km','0 km','125 km']
+        assert 'monthly mean fields' in chart.get_attribute('aria-label')
+        assert '200 km' in page.locator('#regional-width-range').inner_text()
+        assert 'seasonal range' in page.locator('#regional-width-range').inner_text()
+        assert page.locator('#season-play').is_disabled() and page.evaluate('oswSeasonPlan.eligible_indices')==[]
+        assert page.locator('#season-section-locator').is_hidden() and page.locator('#season-bar').evaluate('(e)=>e.parentElement.hidden')
+        assert chart.locator('text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
+        assert chart.locator('text').evaluate_all('(es)=>es.every(e=>{const b=e.getBoundingClientRect(),s=e.ownerSVGElement.getBoundingClientRect();return b.left>=s.left && b.right<=s.right})')
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        page.locator('#regional-width-range').screenshot(path=str(ROOT/'.pytest_cache/kuroshio-extension-width-mobile.png'))
+        page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Akuroshio-extension#route-atlas')
+        chart=page.locator('#route-atlas-preview .original-regional-width svg');chart.wait_for(state='visible',timeout=90000)
+        assert 'monthly mean fields' in chart.get_attribute('aria-label')
+        page.locator('#route-atlas-preview .original-regional-width a').click()
+        page.wait_for_function('window.oswSourceQueryResult?.ok',timeout=90000)
+        request={'document':'research/kuroshio-extension-sasaki-2013-width-averaging-scope-audit.json','pointer':'/measurement','limit':50}
+        with tempfile.TemporaryDirectory(dir=ROOT/'.pytest_cache') as directory:
+            packet=Path(directory)/'index.json';packet.write_bytes(gzip.decompress((ROOT/'almanac/index-data.json.gz').read_bytes()))
+            source_expected=json.loads(subprocess.check_output([str(CLI),'--index',str(packet),'-'],input=json.dumps(request),encoding='utf8'))
+            assert page.evaluate('oswSourceQueryResult')==source_expected
+        query={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'kuroshio-extension'}],'limit':100}
+        expected=native(query)
+        page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)))
+        page.wait_for_function('window.oswLastQueryResult?.rows.length===1',timeout=90000)
+        assert page.evaluate('oswLastQueryResult')==expected
+        assert expected['rows'][0]['approximate_width_km']==100 and expected['rows'][0]['width_range_km'] is None
         for owner in ['equatorial-undercurrent']:
             assert native({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':owner}],'limit':100})['total']==0
         assert not errors,errors
         browser.close()
     scratch=ROOT/'.pytest_cache/algerian-native-gate';scratch.mkdir(exist_ok=True)
     check_compiled_original_scope(scratch)
-    print('PASS: Algerian span, Alaska and Pacific/Atlantic EUC points; no survey/forcing/model-box inference or cross-basin inheritance; mobile charts, source queries and native/WASM scope guards')
+    print('PASS: Algerian span, Alaska/Pacific/Atlantic EUC points and Kuroshio Extension monthly-field point; no pooled climatological range, dated width inference or cross-basin inheritance; mobile charts, source queries and native/WASM scope guards')
 
 if __name__=='__main__':main()

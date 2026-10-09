@@ -21,7 +21,7 @@ def validate(document, ledger):
     by_id = {row["id"]: row for row in records}
     hydrographic_extraction = None
     for row in records:
-        if row.get("original_regional_context") or row["current_id"] in {"algerian", "alaska", "pacific-equatorial-undercurrent", "atlantic-equatorial-undercurrent"}:
+        if row.get("original_regional_context") or row["current_id"] in {"algerian", "alaska", "pacific-equatorial-undercurrent", "atlantic-equatorial-undercurrent", "kuroshio-extension"}:
             from check_original_regional_widths import validate_row
             validate_row(row)
         if row.get("model_regional_context") or row["current_id"] == "guinea":

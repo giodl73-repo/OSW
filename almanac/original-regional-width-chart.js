@@ -7,6 +7,7 @@ window.renderOriginalRegionalWidth=function(container,row){
   const [low,high]=point?[row.approximate_width_km,row.approximate_width_km]:row.width_range_km,maximum=Math.ceil(high/25)*25+25;
   svg.setAttribute("viewBox","0 0 500 135");svg.setAttribute("role","img");svg.setAttribute("aria-label",point?`${row.name}: approximate regional width ${low} km. Background synthesis, not dated width observations, annual extrema or mapped boundaries. No width range supplied; numerical uncertainty unknown.`:`${row.name}: reported regional width span ${low} to ${high} km. Background synthesis, not dated glider measurements, annual extrema or mapped boundaries. No midpoint selected; numerical uncertainty unknown.`);
   svg.style.cssText="display:block;width:100%;max-width:650px;background:#f6f5ef;color:#102f3b";
+  if(row.original_regional_context.temporal_operator==="monthly_mean")svg.setAttribute("aria-label",`${row.name}: approximate meridional jet width ${low} km in monthly mean fields. No dated width series extracted; numerical uncertainty unknown. Separate 200 km climatological meridional scale is contextual, not a width range endpoint.`);
   const add=(tag,attrs,text)=>{const e=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(text)e.textContent=text;svg.append(e);};
   const x=v=>40+420*v/maximum;
   add("line",{x1:40,x2:460,y1:95,y2:95,stroke:"#526c77"});
