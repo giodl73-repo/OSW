@@ -6,6 +6,8 @@ AUDIT='research/algerian-cotroneo-2019-regional-width-scope-audit.json'
 SOURCE_SHA='9f4bd73abd9785762fa1f498d30c120392f4847e1f573528c86d8cec13b44a18'
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 def validate_row(row,audit=None):
+    if row.get('current_id') == 'atlantic-equatorial-undercurrent':
+        return validate_atlantic_euc_row(row,audit)
     if row.get('current_id') == 'pacific-equatorial-undercurrent':
         return validate_pacific_euc_row(row,audit)
     if row.get('current_id') == 'alaska':
@@ -64,3 +66,25 @@ def validate_pacific_euc_row(row,audit=None):
         raise ValueError('Conflated Pacific EUC background and transport/model supports')
     expected=copy.deepcopy(source);expected['original_regional_context'].update(audit_file=PACIFIC_EUC_AUDIT,audit_sha256=digest(PACIFIC_EUC_AUDIT))
     if row!=expected:raise ValueError('Pacific EUC background width differs from pinned source extraction')
+
+ATLANTIC_EUC_AUDIT='research/atlantic-euc-gouriou-1988-background-width-scope-audit.json'
+ATLANTIC_EUC_SHA='5bb0c63ee27bd9f722d1d74c656187b57c0762b854d78abb7cba4546984e3db5'
+
+def validate_atlantic_euc_row(row,audit=None):
+    audit=json.loads((ROOT/ATLANTIC_EUC_AUDIT).read_bytes()) if audit is None else audit
+    if audit['source_document_sha256']!=ATLANTIC_EUC_SHA or audit['source_document_bytes']!=11747356 or digest(audit['source_document_file'])!=ATLANTIC_EUC_SHA:
+        raise ValueError('Changed Atlantic EUC original source')
+    for kind in ['acquisition','protocol']:
+        if digest(audit[kind+'_file'])!=audit[kind+'_sha256']:raise ValueError('Changed Atlantic EUC provenance or convention')
+    source=audit['measurement']
+    if (source['current_id'],source['phase_kind'],source['approximate_width_km'],source['width_range_km'])!=('atlantic-equatorial-undercurrent','regional_summary',200,None):
+        raise ValueError('Changed Atlantic EUC background point or invented range')
+    if any(source[k] is not None for k in ['observed_period','calendar_months','section_geometry','fixed_layer_bounds_m','uncertainty_km']):
+        raise ValueError('Assigned campaign support or invented Atlantic EUC boundaries')
+    if any(source[k] is not False for k in ['whole_current_representative','width_rank_eligible','full_width_inference_eligible','annual_extrema_eligible','seasonal_playback_eligible','is_confidence_interval']):
+        raise ValueError('Promoted Atlantic EUC background width point')
+    context=source['original_regional_context']
+    if any(context[k] is not False for k in ['underlying_width_methods_reviewed','thickness_is_fixed_width_layer','core_depths_are_fixed_width_layer','core_position_oscillation_is_width_range','compilation_years_are_width_occupations','figure_section_dates_are_background_width_dates','garp_transport_dates_are_width_occupations','transport_cutoff_is_background_width_boundary','translation_is_independent_width_observation','cross_basin_width_inheritance_eligible','boundary_coordinates_extracted']):
+        raise ValueError('Conflated Atlantic EUC background and campaign/transport supports')
+    expected=copy.deepcopy(source);expected['original_regional_context'].update(audit_file=ATLANTIC_EUC_AUDIT,audit_sha256=digest(ATLANTIC_EUC_AUDIT))
+    if row!=expected:raise ValueError('Atlantic EUC background width differs from pinned source extraction')

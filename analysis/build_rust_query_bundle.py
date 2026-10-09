@@ -52,6 +52,9 @@ def build():
     read('research/pacific-euc-wang-2022-background-width-scope-audit.json');read('research/source-data/wang-pacific-euc-2022/acquisition.json')
     for path in ['research/source-data/wang-pacific-euc-2022/journal-article.pdf','plans/pacific-euc-background-width-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/atlantic-euc-gouriou-1988-background-width-scope-audit.json');read('research/source-data/gouriou-atlantic-1988/acquisition.json')
+    for path in ['research/source-data/gouriou-atlantic-1988/source-book.pdf','plans/atlantic-euc-background-width-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     routes=read('research/ocean-current-reference-path-candidates.json')
     for record in widths['measurements']:
         if record.get('extraction_file'):

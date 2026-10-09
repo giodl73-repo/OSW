@@ -15,6 +15,12 @@ pub(crate) fn validate(row: &Value) -> Result<(), String> {
                 "../../../research/alaska-weingartner-2002-regional-width-scope-audit.json"
             ),
         ),
+        "atlantic-equatorial-undercurrent" => (
+            "research/atlantic-euc-gouriou-1988-background-width-scope-audit.json",
+            include_str!(
+                "../../../research/atlantic-euc-gouriou-1988-background-width-scope-audit.json"
+            ),
+        ),
         "pacific-equatorial-undercurrent" => (
             "research/pacific-euc-wang-2022-background-width-scope-audit.json",
             include_str!(
