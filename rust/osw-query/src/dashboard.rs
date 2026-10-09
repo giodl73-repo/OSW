@@ -123,6 +123,7 @@ impl Store {
             "dated_diagnostics",
             "flow_network",
             "passage_transport",
+            "section_transport",
         ]
         .contains(&request.metric.as_str())
         {

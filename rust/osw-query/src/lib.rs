@@ -34,6 +34,7 @@ mod observed_sections;
 mod original_regional_widths;
 mod planning;
 mod proposed_widths;
+mod published_transports;
 mod qualitative_calendar;
 mod rebase;
 mod ring_radii;
@@ -186,6 +187,7 @@ impl Store {
             ids.insert(name.clone(), index);
             fields.insert(name.clone(), keys);
         }
+        published_transports::validate(&bundle)?;
         // Joined object IDs must resolve in the imported collections.
         for object in &bundle.collections["objects"] {
             for (key, collection) in [
@@ -635,6 +637,10 @@ impl Store {
             } else {
                 coastal
             }
+        } else if ["section_transports", "transport_validations"]
+            .contains(&query.collection.as_str())
+        {
+            published_transports::query(&matches, &query.collection)
         } else if query.collection == "current_velocity_samples" {
             mooring_velocity::scene(&matches, records)
         } else {

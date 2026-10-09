@@ -81,6 +81,7 @@
     const frame = phase?.frame;
     const direction = phase?.direction;
     const current=byId("season-current").value;
+    const transports=byId("published-section-transports");transports.replaceChildren();const transportScene=window.oswSeasonSnapshot?.published_transport_scenes?.[current];transports.hidden=!transportScene;window.renderPublishedSectionTransports(transports,transportScene);
     window.renderAtlanticCruiseWidths(byId('cruise-span-panel'), current, inventory);
     const address=new URL(location.href);address.searchParams.set("current",current);
     if(phaseId(phase))address.searchParams.set("phase",phaseId(phase));else address.searchParams.delete("phase");

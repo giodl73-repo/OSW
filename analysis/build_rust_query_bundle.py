@@ -127,6 +127,11 @@ def build():
             if audit.get('source_document_file'):
                 path=audit['source_document_file']
                 inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from published_section_transports import document as transport_document, build as transport_records, SOURCE as TRANSPORT_SOURCE
+    transports=transport_document();read(TRANSPORT_SOURCE);read(transports['acquisition_file'])
+    for path in [transports['source_document_file'],transports['protocol_file'],'analysis/published_section_transports.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    collections.update(transport_records(transports))
     collections['widths']=widths['measurements']
     collections['reference_routes']=routes['candidates']
     objects=copy.deepcopy(dashboard['entries'])
@@ -440,6 +445,10 @@ def build():
     collections['current_velocity_samples']=velocity['samples']
     for row in objects:
         row['velocity_sample_ids']=[r['id'] for r in velocity['samples'] if r['entity_id']==row['id']]
+    for row in objects:
+        for collection in ['section_transports','transport_validations']:
+            owned=[r['id'] for r in collections[collection] if r['entity_id']==row['id']]
+            if owned:row[collection+'_ids']=owned
     for name,rows in collections.items():
         if len({r['id'] for r in rows})!=len(rows):raise ValueError('Duplicate ID in '+name)
     from check_norwegian_atlantic_branch_widths import validate as validate_proposed_widths, AUDIT, ACQUISITION, SOURCE
@@ -496,7 +505,7 @@ def build():
             'atlas_receipts':atlas_receipts,
             'movies_receipts':movies_receipts,
             'loop_recorded_receipts':{path:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for path in ['research/loop-current-recorded-date-comparison.json','research/loop-current-recorded-date-sources.json']},
-            'taxonomy':taxonomy,'editorial_collections':['eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples'],
+            'taxonomy':taxonomy,'editorial_collections':['eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','section_transports','transport_validations'],
             'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
             'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
             'input_sha256':inputs,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},

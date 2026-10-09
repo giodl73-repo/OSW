@@ -86,6 +86,11 @@ def build():
     width_inventory = read('research/ocean-current-width-inventory.json')
     validate_width_inventory(width_inventory, read('research/ocean-current-almanac.json'))
     from build_antarctic_slope_m6_velocity import build as rebuild_m6
+    from published_section_transports import document as transport_document, build as transport_records, SOURCE as TRANSPORT_SOURCE
+    transports=transport_document();read(TRANSPORT_SOURCE);read(transports['acquisition_file'])
+    for path in [transports['source_document_file'],transports['protocol_file'],'analysis/published_section_transports.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    transport_rows=transport_records(transports)
     velocity_path='research/antarctic-slope-m6-velocity-series.json'
     velocity=read(velocity_path)
     if velocity!=rebuild_m6():raise ValueError('Stale M6 velocity evidence')
@@ -568,6 +573,12 @@ def build():
             payload['observed_velocity']=velocity
             groups['time_evidence'].append(velocity)
             groups['sources'].append({'source_url':velocity['source_url'],'source_sha256':velocity['source_sha256'],'source_file':velocity['source_file']})
+        owned_transports=[r for collection in transport_rows.values() for r in collection if r['entity_id']==ident]
+        if owned_transports:
+            capabilities['section_transport']=len(owned_transports)
+            payload['published_section_transports']=owned_transports
+            groups['measurements'].append(owned_transports)
+            groups['sources'].append({'source_file':TRANSPORT_SOURCE,'source_sha256':inputs[TRANSPORT_SOURCE]})
         if series:
             groups['time_evidence'].append(series)
         if ident in recurrence:
