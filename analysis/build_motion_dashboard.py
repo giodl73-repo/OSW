@@ -156,6 +156,9 @@ def build():
     zeehan_width_audit=read('research/zeehan-cresswell-2000-width-section-scope-audit.json');read('research/source-data/cresswell-zeehan-2000/acquisition.json')
     for path in ['research/source-data/cresswell-zeehan-2000/journal-article.pdf','plans/zeehan-width-source-separation-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/monsoon-webber-2018-distinct-widths-scope-audit.json');read('research/source-data/webber-monsoon-2018/acquisition.json')
+    for path in ['research/source-data/webber-monsoon-2018/journal-article.pdf','plans/monsoon-webber-2018-width-protocol-v1.md','analysis/check_monsoon_webber_widths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/acc-park-2019-udintsev-breadths-scope-audit.json');read('research/source-data/park-acc-2019/acquisition.json')
     for path in ['research/source-data/park-acc-2019/journal-article.pdf','plans/acc-udintsev-breadths-protocol-v1.md','analysis/check_acc_udintsev_breadths.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()

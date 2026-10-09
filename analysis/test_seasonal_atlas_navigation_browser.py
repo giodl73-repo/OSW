@@ -49,7 +49,7 @@ def main():
   page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=monsoon&phase=monsoon-winter-sri-lanka',wait_until='networkidle')
   page.wait_for_function('window.oswSeasonSnapshot && document.querySelector("#season-current").options.length===100',timeout=90000)
   assert 'westward' in page.locator('#season-value').inner_text()
-  page.locator('#season-phase').select_option('0')
+  page.locator('#season-phase').select_option(str(page.evaluate('oswSeasonPlan.phases.findIndex(p=>p.frame_id==="monsoon-summer-sri-lanka")')))
   assert parse_qs(urlparse(page.url).query)['phase']==['monsoon-summer-sri-lanka']
   page.locator('#season-current').select_option('mauritanian')
   assert parse_qs(urlparse(page.url).query)['phase']==['mauritanian-upwelling-seasonal-mean-width-range']
