@@ -15,6 +15,12 @@ pub(crate) fn validate(row: &Value) -> Result<(), String> {
                 "../../../research/alaska-weingartner-2002-regional-width-scope-audit.json"
             ),
         ),
+        "pacific-equatorial-undercurrent" => (
+            "research/pacific-euc-wang-2022-background-width-scope-audit.json",
+            include_str!(
+                "../../../research/pacific-euc-wang-2022-background-width-scope-audit.json"
+            ),
+        ),
         _ if row.get("original_regional_context").is_none() => return Ok(()),
         _ => return Err("Unknown original regional width source owner".into()),
     };

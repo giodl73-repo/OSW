@@ -7,10 +7,10 @@
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 47,
-    "measurements": 91,
+    "currents_with_scoped_width_evidence": 48,
+    "measurements": 92,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 45,
+    "currents_not_assessed": 44,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 5,
     "currents_with_section_span_diagnostics_width_unresolved": 1
@@ -5886,6 +5886,94 @@
         "audit_file": "research/alaska-weingartner-2002-regional-width-scope-audit.json",
         "audit_sha256": "475b2cbc7c21e6aac907e2a61153b50088fb77010053f0957e6f2cf44f5535ad"
       }
+    },
+    {
+      "id": "pacific-euc-wang-2022-background-width",
+      "current_id": "pacific-equatorial-undercurrent",
+      "name": "Pacific Equatorial Undercurrent",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_regional_summary",
+      "width_metric": "author_reported_current_width",
+      "approximate_width_km": 400,
+      "width_range_km": null,
+      "range_kind": "approximate_regional_point_no_reported_interval",
+      "range_interpretation": "One approximate regional background value; no numerical uncertainty, range, confidence interval, annual extrema or seasonal observations supplied.",
+      "geographic_scope": "Pacific eastward equatorial subsurface jet; background approximation without a fixed section longitude or paired edge coordinates. Not the generic cross-basin family or Atlantic/Indian EUC.",
+      "section_geometry": null,
+      "section_orientation": "No reproducible transverse section endpoints supplied for the regional breadth description.",
+      "layer": "Subsurface current background; adjacent approximate thickness and 50–200 m core depths are context, not a fixed width measurement layer.",
+      "time_convention": "Background synthesis in a 2022 article; no dated width occupation or monthly width climatology. Simulation years and transport/velocity climatologies have different support.",
+      "boundary_rule": "Author-reported approximate background width. No velocity cutoff, paired boundaries or explicit transverse section extracted. Model transport boxes are not width boundaries.",
+      "source_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.908939/full",
+      "source_citation": "Wang et al. (2022), Wind-Driven Mechanisms for the Variations of the Pacific Equatorial Undercurrent Based on Adjoint Sensitivity Analysis, Frontiers in Marine Science 9:908939, doi:10.3389/fmars.2022.908939.",
+      "source_locator": "Introduction opening paragraph, printed p1 (PDF page 1); different model/transport supports in sections 2.1–2.2 and Figures 1/2, printed pp3–4.",
+      "source_retrieved_date": "2026-10-08",
+      "source_evidence_kind": "published_original_regional_background_synthesis",
+      "extraction_method": "Approximate width transcribed from visually inspected publisher original p1 prose; no map, current axis or model transport-box width digitization.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "phase_label": "Pacific subsurface jet background synthesis",
+      "phase_kind": "regional_summary",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "uncertainty_km": null,
+      "source_quality_note": "Original publisher p1 width and p4 transport/velocity context visually inspected. Background 400 km is not a derived width from the adjoint experiment. Underlying historical width method and exact attribution remain unreviewed.",
+      "remaining_gates": [
+        "Resolve the original historical width support and paired boundary method.",
+        "Obtain compatible repeated width sections before monthly or annual variation.",
+        "Independent scientific admission."
+      ],
+      "original_regional_context": {
+        "width_passage_visually_inspected": true,
+        "underlying_width_source": "Cromwell et al. (1954) cited in the opening current description; exact support for the background width and original measurement method not independently resolved.",
+        "underlying_width_methods_reviewed": false,
+        "approximate_thickness_is_fixed_width_layer": false,
+        "core_depths_are_fixed_width_layer": false,
+        "model_transport_bounds_are_width_edges": false,
+        "model_transport_depths_are_width_layer": false,
+        "model_years_are_width_occupations": false,
+        "transport_velocity_climatology_is_width_climatology": false,
+        "transport_seasonality_is_width_seasonality": false,
+        "other_publication_width_is_range_endpoint": false,
+        "cross_basin_width_inheritance_eligible": false,
+        "boundary_coordinates_extracted": false,
+        "transport_context": {
+          "longitude_deg_e": 165,
+          "latitude_bounds_deg": [
+            -3,
+            3
+          ],
+          "gecco_depth_bounds_m": [
+            87.5,
+            310
+          ],
+          "hycom_depth_bounds_m": [
+            85,
+            310
+          ],
+          "velocity_average_depth_bounds_m": [
+            100,
+            300
+          ],
+          "hycom_tao_velocity_climatology_years": [
+            1994,
+            2013
+          ],
+          "source_locator": "Sections 2.1–2.2, equation 6 and Figures 1/2, printed pp3–4",
+          "is_width_measurement_support": false
+        },
+        "protocol_file": "plans/pacific-euc-background-width-protocol-v1.md",
+        "protocol_sha256": "ef339570824337ee7a398ffd18a4aaba5e151c177912ce74da958222b09eec1b",
+        "display_caption": "Pacific eastward subsurface jet · one approximate 400 km background width. Numerical uncertainty, width range, fixed measurement layer and observation dates unknown. Transport and velocity seasonal cycles do not supply monthly widths. No annual range or mapped edges inferred.",
+        "display_method_note": "Publisher p1 width prose and p4 transport context inspected. About 200 m thickness and 50–200 m core depths are separate descriptions. The 3°S–3°N transport box is not a width observation. Historical boundary method remains unreviewed; no transfer to other basin currents.",
+        "audit_file": "research/pacific-euc-wang-2022-background-width-scope-audit.json",
+        "audit_sha256": "9be49243e762e82c9a7ce0e0348a3a8e29c4c8973b34f4773a4ebdb49799c998"
+      }
     }
   ],
   "current_decisions": [
@@ -6755,12 +6843,15 @@
     {
       "current_id": "pacific-equatorial-undercurrent",
       "name": "Pacific Equatorial Undercurrent",
-      "width_decision": "width_not_assessed",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "pacific-euc-wang-2022-background-width"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
+      "next_action": "Resolve original boundary method and obtain compatible repeated width sections before monthly or annual variation; independent scientific admission.",
       "existing_evidence_locator": null,
-      "existing_evidence_source_url": null
+      "existing_evidence_source_url": null,
+      "reason": "One original-source approximate background width; no dated or annual width series, mapped edges or whole-current width admission."
     },
     {
       "current_id": "atlantic-equatorial-undercurrent",

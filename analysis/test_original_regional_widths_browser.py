@@ -85,10 +85,43 @@ def main():
         page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)))
         page.wait_for_function('window.oswLastQueryResult?.rows.length===1',timeout=90000)
         assert page.evaluate('oswLastQueryResult')==expected
+        page.goto('http://127.0.0.1:8788/almanac/seasons.html?current=pacific-equatorial-undercurrent&phase=pacific-euc-wang-2022-background-width')
+        page.wait_for_function('window.oswSeasonPlan?.current_id==="pacific-equatorial-undercurrent"',timeout=90000)
+        assert page.locator('#season-title').inner_text()=='Regional width summary'
+        assert '400 km' in page.locator('#season-value').inner_text()
+        chart=page.locator('#regional-width-range .original-regional-width svg')
+        assert chart.locator('circle').count()==1 and chart.locator('line').count()==1
+        assert chart.locator('text').all_text_contents()==['≈ 400 km','0 km','425 km']
+        assert page.locator('#season-play').is_disabled() and page.evaluate('oswSeasonPlan.eligible_indices')==[]
+        assert page.locator('#season-section-locator').is_hidden()
+        assert page.locator('#season-bar').evaluate('(e)=>e.parentElement.hidden')
+        assert '3°S–3°N transport box is not a width observation' in page.locator('#regional-width-range').inner_text()
+        assert chart.locator('text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
+        assert chart.locator('text').evaluate_all('(es)=>es.every(e=>{const b=e.getBoundingClientRect(),s=e.ownerSVGElement.getBoundingClientRect();return b.left>=s.left && b.right<=s.right})')
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        page.locator('#regional-width-range').screenshot(path=str(ROOT/'.pytest_cache/pacific-euc-background-width-mobile.png'))
+        page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Apacific-equatorial-undercurrent#route-atlas')
+        chart=page.locator('#route-atlas-preview .original-regional-width svg');chart.wait_for(state='visible',timeout=90000)
+        assert chart.locator('circle').count()==1 and chart.locator('line').count()==1
+        page.locator('#route-atlas-preview .original-regional-width a').click()
+        page.wait_for_function('window.oswSourceQueryResult?.ok',timeout=90000)
+        request={'document':'research/pacific-euc-wang-2022-background-width-scope-audit.json','pointer':'/measurement','limit':50}
+        with tempfile.TemporaryDirectory(dir=ROOT/'.pytest_cache') as directory:
+            packet=Path(directory)/'index.json';packet.write_bytes(gzip.decompress((ROOT/'almanac/index-data.json.gz').read_bytes()))
+            source_expected=json.loads(subprocess.check_output([str(CLI),'--index',str(packet),'-'],input=json.dumps(request),encoding='utf8'))
+            assert page.evaluate('oswSourceQueryResult')==source_expected
+        query={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'pacific-equatorial-undercurrent'}],'limit':100}
+        expected=native(query)
+        page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)))
+        page.wait_for_function('window.oswLastQueryResult?.rows.length===1',timeout=90000)
+        assert page.evaluate('oswLastQueryResult')==expected
+        assert expected['rows'][0]['approximate_width_km']==400 and expected['rows'][0]['fixed_layer_bounds_m'] is None
+        for owner in ['equatorial-undercurrent','atlantic-equatorial-undercurrent']:
+            assert native({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':owner}],'limit':100})['total']==0
         assert not errors,errors
         browser.close()
     scratch=ROOT/'.pytest_cache/algerian-native-gate';scratch.mkdir(exist_ok=True)
     check_compiled_original_scope(scratch)
-    print('PASS: Algerian span and Alaska approximate point, no survey/forcing support inference, mobile charts, cleanup, source queries and native/WASM scope guards')
+    print('PASS: Algerian span, Alaska and Pacific EUC points; no survey/forcing/model-box inference or cross-basin inheritance; mobile charts, source queries and native/WASM scope guards')
 
 if __name__=='__main__':main()

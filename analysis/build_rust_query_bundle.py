@@ -49,6 +49,9 @@ def build():
     read('research/alaska-weingartner-2002-regional-width-scope-audit.json');read('research/source-data/weingartner-alaska-2002/acquisition.json')
     for path in ['research/source-data/weingartner-alaska-2002/journal-article.pdf','plans/alaska-regional-width-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/pacific-euc-wang-2022-background-width-scope-audit.json');read('research/source-data/wang-pacific-euc-2022/acquisition.json')
+    for path in ['research/source-data/wang-pacific-euc-2022/journal-article.pdf','plans/pacific-euc-background-width-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     routes=read('research/ocean-current-reference-path-candidates.json')
     for record in widths['measurements']:
         if record.get('extraction_file'):
