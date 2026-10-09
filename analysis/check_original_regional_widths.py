@@ -6,6 +6,9 @@ AUDIT='research/algerian-cotroneo-2019-regional-width-scope-audit.json'
 SOURCE_SHA='9f4bd73abd9785762fa1f498d30c120392f4847e1f573528c86d8cec13b44a18'
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 def validate_row(row,audit=None):
+    if row.get('current_id') == 'north-pacific':
+        from check_north_pacific_broad_band import validate_row as validate_band
+        return validate_band(row,audit)
     if row.get('current_id') in {'solomon-island-coastal-undercurrent','new-ireland-coastal-undercurrent'}:
         from check_solomon_coastal_confinement import validate_row as validate_confinement
         return validate_confinement(row,audit)

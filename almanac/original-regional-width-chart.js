@@ -45,13 +45,14 @@ window.renderReportedWidthConstraint=function(container,row){
   svg.setAttribute('viewBox','0 0 500 100');svg.setAttribute('role','img');
   const breadth=row.reported_width_constraint.kind==='issuer_reported_greater_than_geographic_breadth';
   const confinement=row.reported_width_constraint.kind==='author_reported_one_sided_coastal_confinement';
+  const broadBand=row.reported_width_constraint.kind==='author_reported_greater_than_broad_flow_band';
   svg.setAttribute('aria-label',breadth?`${row.name}: source reports offshore geographic breadth ${row.reported_width_constraint.source_notation}. Government synthesis, not a measured velocity-core width, finite interval or seasonal range. Representative width and numerical uncertainty unknown.`:`${row.name}: source reports ${row.reported_width_constraint.source_notation}. Approximate less-than size description, not a measured 20 km width, rigorous hard bound or zero-to-20 km interval. Representative width and numerical uncertainty unknown.`);
   svg.style.cssText='display:block;width:100%;max-width:650px;background:#f6f5ef;color:#102f3b';
-  if(confinement)svg.setAttribute('aria-label',row.original_regional_context.display_aria_label);
-  for(const [label,y,size] of [[row.reported_width_constraint.source_notation,40,36],[confinement?'Coastal confinement':breadth?'Reported offshore breadth':'Reported size constraint',80,breadth?32:28]]){
+  if(confinement||broadBand)svg.setAttribute('aria-label',row.original_regional_context.display_aria_label);
+  for(const [label,y,size] of [[row.reported_width_constraint.source_notation,40,36],[broadBand?row.original_regional_context.display_constraint_label:confinement?'Coastal confinement':breadth?'Reported offshore breadth':'Reported size constraint',80,breadth?32:28]]){
     const text=document.createElementNS(ns,'text');text.setAttribute('x',25);text.setAttribute('y',y);text.setAttribute('font-size',size);text.setAttribute('fill','#102f3b');text.textContent=label;svg.append(text);
   }
   const caption=document.createElement('figcaption');caption.textContent=row.original_regional_context.display_caption;figure.append(caption);
   const note=document.createElement('p');note.textContent=row.original_regional_context.display_method_note;figure.append(note);
-  const a=document.createElement('a');a.href='query.html?source-q='+encodeURIComponent(JSON.stringify({document:row.original_regional_context.audit_file,pointer:row.original_regional_context.audit_pointer||'/measurement',limit:50}));a.textContent=confinement?'Inspect coastal confinement and source':'Inspect size constraint and source';figure.append(a);
+  const a=document.createElement('a');a.href='query.html?source-q='+encodeURIComponent(JSON.stringify({document:row.original_regional_context.audit_file,pointer:row.original_regional_context.audit_pointer||'/measurement',limit:50}));a.textContent=broadBand?'Inspect broad flow definition and source':confinement?'Inspect coastal confinement and source':'Inspect size constraint and source';figure.append(a);
 };

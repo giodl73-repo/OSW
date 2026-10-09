@@ -144,6 +144,9 @@ def build():
     zeehan_width_audit=read('research/zeehan-cresswell-2000-width-section-scope-audit.json');read('research/source-data/cresswell-zeehan-2000/acquisition.json')
     for path in ['research/source-data/cresswell-zeehan-2000/journal-article.pdf','plans/zeehan-width-source-separation-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/north-pacific-tomczak-2005-broad-band-scope-audit.json');read('research/source-data/tomczak-regional-2005/acquisition.json')
+    for path in ['research/source-data/tomczak-regional-2005/journal-article.pdf','plans/north-pacific-broad-band-protocol-v1.md','analysis/check_north_pacific_broad_band.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/solomon-melet-2010-coastal-confinement-scope-audit.json');read('research/source-data/melet-solomon-2010/acquisition.json')
     for path in ['research/source-data/melet-solomon-2010/journal-article.pdf','plans/solomon-coastal-confinement-protocol-v1.md','analysis/check_solomon_coastal_confinement.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
