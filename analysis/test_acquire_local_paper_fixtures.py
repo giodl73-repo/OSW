@@ -3,12 +3,58 @@ import hashlib, io, json, tempfile, unittest
 from pathlib import Path
 from unittest.mock import patch
 from urllib.error import HTTPError, URLError
-from acquire_local_paper_fixtures import acquire, download, verify
+from acquire_local_paper_fixtures import acquire, download, verify, PINNED_MIRRORS
 
 DATA=b'%PDF-1.7\ncontrolled source fixture'
 MANIFEST={'source_url':'https://example.invalid/paper.pdf','sha256':hashlib.sha256(DATA).hexdigest()}
 
 class AcquisitionTests(unittest.TestCase):
+    def mirror_case(self):
+        key=next(iter(PINNED_MIRRORS));name,url,sha=key
+        return name,dict(MANIFEST,source_url=url,sha256=sha),PINNED_MIRRORS[key]
+
+    def test_blocked_primary_uses_verified_mirror_without_changing_manifest(self):
+        name,manifest,mirrors=self.mirror_case();before=dict(manifest)
+        with patch('urllib.request.urlopen',side_effect=[HTTPError(manifest['source_url'],403,'blocked',{},None),io.BytesIO(DATA)]) as opener,patch('acquire_local_paper_fixtures.verify',return_value=DATA) as check,patch('time.sleep') as sleep:
+            self.assertEqual(download(name,manifest),DATA)
+            self.assertEqual([c.args[0].full_url for c in opener.call_args_list],[manifest['source_url'],mirrors[0]])
+            check.assert_called_once_with(name,manifest,DATA);sleep.assert_not_called()
+        self.assertEqual(manifest,before)
+
+    def test_mirror_registry_requires_exact_fixture_source_and_pin(self):
+        name,manifest,_=self.mirror_case()
+        cases=[('other-paper',manifest),(name,dict(manifest,source_url='https://example.invalid/changed.pdf')),(name,dict(manifest,sha256=MANIFEST['sha256']))]
+        for fixture,receipt in cases:
+            with self.subTest(fixture=fixture,receipt=receipt):
+                with patch('urllib.request.urlopen',side_effect=HTTPError(receipt['source_url'],403,'blocked',{},None)) as opener,patch('time.sleep') as sleep:
+                    with self.assertRaises(HTTPError):download(fixture,receipt)
+                    self.assertEqual(opener.call_count,1);sleep.assert_not_called()
+
+    def test_integrity_failure_at_primary_or_mirror_never_falls_through(self):
+        name,manifest,_=self.mirror_case()
+        for responses in [[io.BytesIO(DATA)],[HTTPError(manifest['source_url'],403,'blocked',{},None),io.BytesIO(DATA)]]:
+            with self.subTest(attempts=len(responses)):
+                with patch('urllib.request.urlopen',side_effect=responses) as opener,patch('time.sleep') as sleep:
+                    with self.assertRaisesRegex(ValueError,'checksum'):download(name,manifest)
+                    self.assertEqual(opener.call_count,len(responses));sleep.assert_not_called()
+
+    def test_all_mirrors_blocked_identifies_fixture_and_failed_location(self):
+        name,manifest,mirrors=self.mirror_case();urls=[manifest['source_url'],*mirrors]
+        errors=[HTTPError(url,403,'blocked',{},None) for url in urls]
+        with patch('urllib.request.urlopen',side_effect=errors) as opener,patch('time.sleep') as sleep:
+            with self.assertRaises(HTTPError) as caught:download(name,manifest)
+            self.assertEqual(opener.call_count,len(urls));sleep.assert_not_called()
+            self.assertIn(f'{name}: acquisition failed at {urls[-1]}',caught.exception.__notes__)
+
+    def test_corrupt_mirror_is_not_staged_as_an_original(self):
+        name,manifest,_=self.mirror_case()
+        with tempfile.TemporaryDirectory() as folder:
+            directory=Path(folder);(directory/'acquisition.json').write_text(json.dumps(manifest),encoding='utf8')
+            with patch('urllib.request.urlopen',side_effect=[HTTPError(manifest['source_url'],403,'blocked',{},None),io.BytesIO(DATA)]):
+                with self.assertRaisesRegex(ValueError,'checksum'):acquire(name,directory)
+            self.assertFalse((directory/'journal-article.pdf').exists())
+            self.assertFalse(list(directory.glob('.paper-*.tmp')))
+
     def test_book_filename_and_path_restriction(self):
         with tempfile.TemporaryDirectory() as folder:
             directory=Path(folder);manifest=dict(MANIFEST,document_filename='source-book.pdf')
