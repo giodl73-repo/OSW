@@ -55,6 +55,9 @@ def build():
     read('research/atlantic-euc-gouriou-1988-background-width-scope-audit.json');read('research/source-data/gouriou-atlantic-1988/acquisition.json')
     for path in ['research/source-data/gouriou-atlantic-1988/source-book.pdf','plans/atlantic-euc-background-width-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/kuroshio-extension-sasaki-2013-width-averaging-scope-audit.json');read('research/source-data/sasaki-kuroshio-extension-2013/acquisition.json')
+    for path in ['research/source-data/sasaki-kuroshio-extension-2013/journal-article.pdf','plans/kuroshio-extension-width-averaging-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     routes=read('research/ocean-current-reference-path-candidates.json')
     for record in widths['measurements']:
         if record.get('extraction_file'):
