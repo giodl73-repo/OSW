@@ -4,6 +4,25 @@ import pytest
 from check_original_regional_widths import ROOT,AUDIT,ALASKA_AUDIT,PACIFIC_EUC_AUDIT,validate_row
 from test_rust_query_browser import CLI
 
+def test_ngcu_qualified_constraint_is_not_point_interval_or_season():
+    row=next(r for r in json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())['measurements'] if r['current_id']=='new-guinea-coastal-undercurrent');validate_row(row)
+    for key,value in [('approximate_width_km',20),('approximate_width_km',40),('width_range_km',[0,20]),('width_range_km',[20,40]),('calendar_months',[11]),('observed_period',{'start':'1996-11-07','end':'1996-11-08'}),('fixed_layer_bounds_m',[200,200]),('boundary_rule','velocity >80 cm/s'),('uncertainty_km',20),('seasonal_playback_eligible',True),('current_id','new-guinea-coastal-current'),('reported_width_constraint',{}),('original_regional_context',{})]:
+        bad=copy.deepcopy(row);bad[key]=value
+        with pytest.raises(ValueError):validate_row(bad)
+    for key,value in [('kind','strict_upper_bound'),('reference_scale_km',40),('is_rigorous_upper_bound',True),('representative_width_km',10),('lower_bound_km',0),('numerical_uncertainty_km',20)]:
+        bad=copy.deepcopy(row);bad['reported_width_constraint'][key]=value
+        with pytest.raises(ValueError):validate_row(bad)
+    for key in ['reference_scale_is_point_width','notation_is_rigorous_upper_bound','zero_to_reference_is_width_range','downstream_doubling_is_numeric_width','downstream_widening_is_seasonal_range','speed_exceedance_is_width_cutoff','core_depth_is_fixed_width_layer','adcp_depth_coverage_is_fixed_width_layer','salinity_section_is_width_boundary','cruise_dates_are_width_occupations','publication_month_is_width_observation','float_dates_are_width_occupations','boundary_coordinates_extracted']:
+        bad=copy.deepcopy(row);bad['original_regional_context'][key]=True
+        with pytest.raises(ValueError):validate_row(bad)
+
+def test_ngcu_constraint_cannot_bypass_inventory_validation():
+    from check_current_width_inventory import validate
+    document=json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes());ledger=json.loads((ROOT/'research/ocean-current-almanac.json').read_bytes())
+    for key in ['original_regional_context','reported_width_constraint']:
+        bad=copy.deepcopy(document);next(r for r in bad['measurements'] if r['current_id']=='new-guinea-coastal-undercurrent').pop(key)
+        with pytest.raises(ValueError):validate(bad,ledger)
+
 def test_kuroshio_extension_averaging_and_axis_supports_remain_separate():
     row=next(r for r in json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())['measurements'] if r['current_id']=='kuroshio-extension');validate_row(row)
     for key,value in [('approximate_width_km',200),('width_range_km',[100,200]),('calendar_months',[1]),('observed_period',{'start':'2005-01-01','end':'2005-01-31'}),('section_geometry',[[140,35],[180,35]]),('uncertainty_km',100),('seasonal_playback_eligible',True),('width_rank_eligible',True),('current_id','kuroshio'),('original_regional_context',{})]:
@@ -54,6 +73,14 @@ def test_pacific_euc_point_is_not_transport_box_or_cross_basin_width():
 
 def check_compiled_original_scope(tmp_path):
     path=ROOT/'almanac/query-data.json';packet=json.loads(path.read_bytes())
+    for key,value in [('approximate_width_km',20),('width_range_km',[20,40]),('calendar_months',[11]),('fixed_layer_bounds_m',[0,400]),('observed_period',{'start':'1996-11-07','end':'1996-11-08'}),('seasonal_playback_eligible',True),('original_regional_context',{}),('reported_width_constraint',{'kind':'strict_upper_bound','reference_scale_km':20})]:
+        bad=copy.deepcopy(packet);receipt=bad['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json'])
+        next(r for r in doc['measurements'] if r['current_id']=='new-guinea-coastal-undercurrent')[key]=value
+        next(r for r in bad['collections']['widths'] if r['current_id']=='new-guinea-coastal-undercurrent')[key]=value
+        receipt['source_json']=json.dumps(doc);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest();bad['manifest']['input_sha256'][receipt['source_file']]=receipt['source_sha256']
+        target=tmp_path/'ngcu-tampered.json';target.write_text(json.dumps(bad),encoding='utf8')
+        result=subprocess.run([str(CLI),str(target),'--seasons'],capture_output=True,text=True,encoding='utf8')
+        assert result.returncode==2 and 'Original regional width' in result.stderr,result.stderr
     for key,value in [('approximate_width_km',200),('width_range_km',[100,200]),('calendar_months',[1]),('observed_period',{'start':'2005-01-01','end':'2005-01-31'}),('seasonal_playback_eligible',True),('original_regional_context',{})]:
         bad=copy.deepcopy(packet);receipt=bad['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json'])
         next(r for r in doc['measurements'] if r['current_id']=='kuroshio-extension')[key]=value

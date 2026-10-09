@@ -21,7 +21,7 @@ def validate(document, ledger):
     by_id = {row["id"]: row for row in records}
     hydrographic_extraction = None
     for row in records:
-        if row.get("original_regional_context") or row["current_id"] in {"algerian", "alaska", "pacific-equatorial-undercurrent", "atlantic-equatorial-undercurrent", "kuroshio-extension"}:
+        if row.get("original_regional_context") or row["current_id"] in {"algerian", "alaska", "pacific-equatorial-undercurrent", "atlantic-equatorial-undercurrent", "kuroshio-extension", "new-guinea-coastal-undercurrent"}:
             from check_original_regional_widths import validate_row
             validate_row(row)
         if row.get("model_regional_context") or row["current_id"] == "guinea":
@@ -65,6 +65,9 @@ def validate(document, ledger):
                 if value is not None or row.get('range_kind')!='author_reported_seasonal_regional_width_scale_span':raise ValueError('Invented seasonal regional width midpoint or annual range')
             elif value is not None or row.get('range_kind') != 'reported_typical_regional_width_span' or row['phase_kind'] != 'regional_summary':
                 raise ValueError('Unsupported regional range or invented representative width')
+        elif row.get('reported_width_constraint'):
+            if row['current_id']!='new-guinea-coastal-undercurrent' or value is not None or span is not None:
+                raise ValueError('Unbound size constraint or promoted numeric width')
         elif not isinstance(value, (float, int)) or isinstance(value, bool) or not math.isfinite(value) or value <= 0:
             raise ValueError("Invalid width")
         for key in ["width_metric", "measurement_type", "geographic_scope", "section_orientation", "layer", "time_convention", "boundary_rule", "source_url", "source_citation", "source_locator", "range_interpretation", "source_evidence_kind", "extraction_method"]:

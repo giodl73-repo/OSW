@@ -6,6 +6,8 @@ AUDIT='research/algerian-cotroneo-2019-regional-width-scope-audit.json'
 SOURCE_SHA='9f4bd73abd9785762fa1f498d30c120392f4847e1f573528c86d8cec13b44a18'
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 def validate_row(row,audit=None):
+    if row.get('current_id') == 'new-guinea-coastal-undercurrent':
+        return validate_ngcu_row(row,audit)
     if row.get('current_id') == 'kuroshio-extension':
         return validate_kuroshio_extension_row(row,audit)
     if row.get('current_id') == 'atlantic-equatorial-undercurrent':
@@ -29,6 +31,33 @@ def validate_row(row,audit=None):
 
 KUROSHIO_EXTENSION_AUDIT='research/kuroshio-extension-sasaki-2013-width-averaging-scope-audit.json'
 KUROSHIO_EXTENSION_SHA='483dd114d6bbbff9b153460edf28a3391958a78e1a0b6a646db548eefcb8a674'
+
+NGCU_AUDIT='research/ngcu-zenk-1999-width-constraint-scope-audit.json'
+NGCU_SHA='f38a100dc030a94ce776a914b96ea798dd40c6dc1aac80fce3563806c01a6407'
+
+def validate_ngcu_row(row,audit=None):
+    audit=json.loads((ROOT/NGCU_AUDIT).read_bytes()) if audit is None else audit
+    if audit['source_document_sha256']!=NGCU_SHA or audit['source_document_bytes']!=8089173 or digest(audit['source_document_file'])!=NGCU_SHA:
+        raise ValueError('Changed NGCU original source')
+    for kind in ['acquisition','protocol']:
+        if digest(audit[kind+'_file'])!=audit[kind+'_sha256']:raise ValueError('Changed NGCU provenance or convention')
+    source=audit['measurement']
+    if source['current_id']!='new-guinea-coastal-undercurrent' or source['phase_kind']!='regional_summary' or any(source[k] is not None for k in ['approximate_width_km','width_range_km','observed_period','calendar_months','section_geometry','fixed_layer_bounds_m','uncertainty_km']):
+        raise ValueError('Promoted NGCU size constraint to numeric width or occupation')
+    if source['reported_width_constraint']!={'kind':'author_order_of_magnitude_less_than','reference_scale_km':20,'source_notation':'O(<20 km)','is_rigorous_upper_bound':False,'representative_width_km':None,'lower_bound_km':None,'numerical_uncertainty_km':None}:
+        raise ValueError('Changed NGCU qualified constraint or invented hard bound')
+    if any(source[k] is not False for k in ['whole_current_representative','width_rank_eligible','full_width_inference_eligible','annual_extrema_eligible','seasonal_playback_eligible','is_confidence_interval']):raise ValueError('Promoted NGCU width admission')
+    context=source['original_regional_context']
+    exclusions=['underlying_width_methods_reviewed','reference_scale_is_point_width','notation_is_rigorous_upper_bound','zero_to_reference_is_width_range','downstream_doubling_is_numeric_width','downstream_widening_is_seasonal_range','speed_exceedance_is_width_cutoff','core_depth_is_fixed_width_layer','adcp_depth_coverage_is_fixed_width_layer','salinity_section_is_width_boundary','cruise_dates_are_width_occupations','publication_month_is_width_observation','float_dates_are_width_occupations','boundary_coordinates_extracted']
+    if any(context[k] is not False for k in exclusions) or context['cruise_context']['is_width_measurement_support'] is not False or context['downstream_context']['derived_width_km'] is not None or context['downstream_context']['is_seasonal_variation'] is not False or context['method_context']['is_width_boundary_method'] is not False:
+        raise ValueError('Conflated NGCU band and surrounding supports')
+    if context['cruise_context']!={'prose_cruise_number':'113','figure_3_caption_cruise_number':'133','cruise_number_conflict':True,'voyage_start':'1996-10-10','voyage_end':'1996-11-19','is_width_measurement_support':False} or context['downstream_context']['reported_core_widening_factor']!=2 or context['method_context']!={'local_speed_exceeds_cm_s':80,'core_depth_context_m':200,'adcp_coverage_context_m':[350,400],'is_width_boundary_method':False}:
+        raise ValueError('Changed NGCU source context or concealed cruise conflict')
+    report=context['supporting_report']
+    if report['source_document_sha256']!='cc9e293b98a47581b9d162c63781af1e5842d6aa0de403a7f06941ea7e6f4cca' or digest(report['source_document_file'])!=report['source_document_sha256'] or (ROOT/report['source_document_file']).stat().st_size!=4094903 or digest(report['acquisition_file'])!=report['acquisition_sha256'] or report['is_independent_width_measurement'] is not False:
+        raise ValueError('Changed supporting SONNE original or width admission')
+    expected=copy.deepcopy(source);expected['original_regional_context'].update(audit_file=NGCU_AUDIT,audit_sha256=digest(NGCU_AUDIT))
+    if row!=expected:raise ValueError('NGCU size constraint differs from pinned source extraction')
 
 def validate_kuroshio_extension_row(row,audit=None):
     audit=json.loads((ROOT/KUROSHIO_EXTENSION_AUDIT).read_bytes()) if audit is None else audit

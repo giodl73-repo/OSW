@@ -58,6 +58,9 @@ def build():
     read('research/kuroshio-extension-sasaki-2013-width-averaging-scope-audit.json');read('research/source-data/sasaki-kuroshio-extension-2013/acquisition.json')
     for path in ['research/source-data/sasaki-kuroshio-extension-2013/journal-article.pdf','plans/kuroshio-extension-width-averaging-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/ngcu-zenk-1999-width-constraint-scope-audit.json');read('research/source-data/zenk-ngcu-1999/acquisition.json');read('research/source-data/siedler-sonne-1997/acquisition.json')
+    for path in ['research/source-data/zenk-ngcu-1999/journal-article.pdf','research/source-data/siedler-sonne-1997/journal-article.pdf','plans/ngcu-reported-width-constraint-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     routes=read('research/ocean-current-reference-path-candidates.json')
     for record in widths['measurements']:
         if record.get('extraction_file'):
