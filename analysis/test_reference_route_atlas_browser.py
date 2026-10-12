@@ -148,7 +148,13 @@ def main():
             if any(f['geometry']['type']=='Polygon' for f in eddy['map_features']):
                 assert eddy['latest_observation_date'] in status
                 assert 'not live extent' in status
-        assert page.locator('#route-atlas-map .route-atlas-eddy-footprint').count()==5
+        polygon_owners=[eddy for eddy in eddies if any(f['geometry']['type']=='Polygon' for f in eddy['map_features'])]
+        assert len(polygon_owners)==6  # Four operational outlines plus Kraken and Ursa proxies.
+        for eddy in polygon_owners:
+            marks=page.locator('#route-atlas-eddies .route-atlas-eddy-footprint').evaluate_all(
+                '(nodes,id)=>nodes.filter(node=>JSON.parse(node.dataset.eddyIds).includes(id)).length',eddy['id'])
+            assert marks==sum(f['geometry']['type']=='Polygon' for f in eddy['map_features'])
+        assert page.locator('#route-atlas-eddies .route-atlas-eddy-footprint').count()==6
         gateway=page.locator('[data-eddy-ids]').filter(has=page.locator('text')).filter(has_text='100 names')
         assert gateway.count()==1
         page.locator('#route-atlas-world').click()
