@@ -15,6 +15,7 @@ from urllib.parse import unquote, urlparse, urlsplit
 
 from build_ocean_motion_claims import apply_claim_reviews, build_claims
 from build_kraken_footprint_candidate import build as build_kraken_proxy
+from build_ursa_contour_candidate import validate as validate_ursa, records as ursa_records
 from build_footprint_movie_context import build as build_footprint_context
 
 
@@ -31,6 +32,7 @@ INPUTS = {
     "named_eddy_published_observations": "named-loop-eddy-published-observations.json",
     "loop_name_date_conflict": "loop-eddy-cameron-darwin-name-date-conflict.json",
     "kraken_figure": "kraken-2013-figure2-state-audit.json",
+    "ursa_figure": "ursa-2021-0307-figure-contour-audit.json",
     "named_current_published_observations": "named-current-published-observations.json",
     "states": "ocean-current-state-relation-matrix.json",
     "nasa_objects": "nasa-perpetual-ocean-objects.json",
@@ -80,6 +82,8 @@ def material_use_class(url: str) -> str:
     host = urlsplit(url).hostname or ""
     if host == "www.nature.com" and "/articles/s41598-018-29582-5" in url:
         return "figure_derived_measurement_and_factual_claim"
+    if host == "www.frontiersin.org" and "/fmars.2022.1049645/full" in url:
+        return "figure_derived_measurement_and_factual_claim"
     if host == "www.horizonmarine.com" and "/loop-current-eddies" in url:
         return "compiled_name_and_date_records"
     if host == "coastwatch.noaa.gov" and "MUNSTER_v1_eddyident_" in url:
@@ -112,6 +116,7 @@ def main() -> None:
     published_named_eddy_observations = data["named_eddy_published_observations"]["entries"]
     kraken_figure_candidate = data["kraken_figure"]["state_candidate"]
     kraken_ssh_candidate = data["kraken_figure"]["dated_ssh_footprint_candidate"]
+    validate_ursa(data["ursa_figure"])
     assert kraken_figure_candidate["id"] == "published:kraken-2013"
     assert kraken_figure_candidate["state_code"] == "CAMR"
     assert len(kraken_figure_candidate["observation_dates"]) == 3
@@ -165,7 +170,8 @@ def main() -> None:
             # True also for exported provider records/measurements extracted from
             # source files or registers, even when original files are absent.
             sources[sid]["provider_asset_redistributed"] = (
-                urlsplit(url).hostname == "www.horizonmarine.com" and "/loop-current-eddies" in url
+                urlsplit(url).hostname == "www.frontiersin.org" and "/fmars.2022.1049645/full" in url
+                or urlsplit(url).hostname == "www.horizonmarine.com" and "/loop-current-eddies" in url
                 or urlsplit(url).hostname == "coastwatch.noaa.gov" and "MUNSTER_v1_eddyident_" in url
                 or urlsplit(url).hostname == "ocean.weather.gov" and "/gulf_stream_text.php" in url
                 or urlsplit(url).hostname == "www.ncei.noaa.gov" and "/satellite_analysis/nafreddy.zip" in url
@@ -173,7 +179,9 @@ def main() -> None:
             review = source_use_reviews.get(url)
             if review:
                 assert review["material_use_class"] == sources[sid]["material_use_class"]
-                assert not sources[sid]["provider_asset_redistributed"]
+                if sources[sid]["provider_asset_redistributed"]:
+                    assert review.get("license_url") == "https://creativecommons.org/licenses/by/4.0/"
+                    assert review["material_use_class"] == "figure_derived_measurement_and_factual_claim"
                 sources[sid]["rights_status"] = review["rights_review_status"]
                 sources[sid]["rights_policy_url"] = review["policy_reference_url"]
                 sources[sid]["rights_review_date"] = review.get("review_date", data["source_use_reviews"]["review_date"])
@@ -976,7 +984,22 @@ def main() -> None:
         f"geometry:{len(geometries)+1:04d}",
         add_source("https://www.nature.com/articles/s41598-018-29582-5"), ledger_source["kraken_figure"])
     geometries.append(proxy_geometry)
-    footprint_candidates = [proxy_candidate]
+    ursa_geometry, ursa_candidate = ursa_records(data["ursa_figure"],
+        f"geometry:{len(geometries)+1:04d}", add_source(data["ursa_figure"]["source_url"]), ledger_source["ursa_figure"])
+    geometries.append(ursa_geometry)
+    footprint_candidates = [proxy_candidate, ursa_candidate]
+    for row in named_eddy_state_assessments:
+        if row["eddy_id"] != ursa_candidate["entity_id"]: continue
+        assessment = next((a for a in ursa_candidate["state_assessments"] if a["state_id"] == row["state_id"]), None)
+        if assessment is None: continue
+        row.update({"evidence_status":"figure_derived_dated_ssh_contour_candidate",
+            "physical_relation":"dated_ssh_proxy_intersection_candidate_whole_eddy_relation_unresolved",
+            "source_id":ledger_source["ursa_figure"],"source_locator":ursa_candidate["source_locator"],
+            "dated_ssh_contour_observation_date":ursa_candidate["observation_date"],
+            "dated_ssh_contour_assessment":assessment["intersection_assessment"],
+            "dated_ssh_contour_nominal_area_fraction":assessment["nominal_display_area_fraction"],
+            "dated_ssh_contour_area_fraction_range":assessment["display_area_fraction_range"],
+            "footprint_candidate_id":ursa_candidate["id"]})
     footprint_movie_context = build_footprint_context(footprint_candidates, geometries, tiles,
         data["nasa_tiles"]["model_period"], ledger_source["nasa_tiles"])
     classification_vocabularies = []
@@ -1031,7 +1054,10 @@ def main() -> None:
             internal_locators[relation["id"]] = (
                 f"{eddy_ledger_path}#/entries/{eddy_record_index[relation['subject_id']]}")
     for assessment in named_eddy_state_assessments:
-        if assessment["evidence_status"] in {"figure_derived_red_curve_candidate", "figure_derived_dated_ssh_contour_candidate"}:
+        if assessment.get("footprint_candidate_id") == ursa_candidate["id"]:
+            index = next(i for i, a in enumerate(ursa_candidate["state_assessments"]) if a["state_id"] == assessment["state_id"])
+            internal_locators[assessment["id"]] = f"{sources[ledger_source['ursa_figure']]['path']}#/state_assessments/{index}"
+        elif assessment["evidence_status"] in {"figure_derived_red_curve_candidate", "figure_derived_dated_ssh_contour_candidate"}:
             internal_locators[assessment["id"]] = (
                 f"{sources[ledger_source['kraken_figure']]['path']}#/" +
                 ("state_candidate" if assessment["evidence_status"] == "figure_derived_red_curve_candidate"
@@ -1596,6 +1622,10 @@ def main() -> None:
                     Path("analysis/build_navo_freddies_eddy_state_join.py"),
                     Path("analysis/build_published_kraken_figure_state_join.py"),
                     Path("analysis/build_kraken_footprint_candidate.py"),
+                    Path("analysis/build_ursa_contour_candidate.py"),
+                    Path("plans/ursa-dated-contour-digitization-protocol-v1.md"),
+                    Path("research/source-data/exley-loop-2022/journal-article.xml"),
+                    Path("figures/exley-loop-2022-source-figure-3.webp"),
                     Path("analysis/build_footprint_movie_context.py"),
                     Path("analysis/fetch_navo_freddies_eddy_snapshot.py"),
                     Path("analysis/fetch_noaa_lsa_geostrophic_snapshot.py"),
@@ -1608,6 +1638,7 @@ def main() -> None:
                     Path("analysis/build_motion_state_join.py"),
                     Path("analysis/build_cartographic_current_state_join.py"),
                     Path("almanac/screened-atlas/footprint-view.js"),
+                    Path("almanac/footprint-card.js"),
                     Path("almanac/object.js"), Path("almanac/object.html"),
                     Path("almanac/app.js"), Path("almanac/index.html"), Path("almanac/styles.css"),
                     Path("almanac/movies.js"), Path("almanac/movies.html"))],

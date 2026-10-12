@@ -222,7 +222,7 @@ def main() -> None:
         parts = pointer_parts(pointer)
         value = pointer_get(original_ledger, parts)
         excerpts[filename] = pointer_insert(excerpts.get(filename), parts, value)
-    assert len(excerpts) == 5
+    assert len(excerpts) == 6
     assert not any(url in json.dumps(excerpts, ensure_ascii=False) for url in pending_urls)
 
     OUTPUT.mkdir(parents=True, exist_ok=True)

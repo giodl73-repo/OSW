@@ -190,6 +190,8 @@ impl Store {
                 .as_array()
                 .and_then(|rs| rs.iter().find(|r| r["id"] == candidate["geometry_id"]));
             footprint_plots[candidate_id] = geometry.map(crate::object_plot::named_scene).unwrap_or(json!({"available":false,"reason":"No source geometry is recorded for this contour candidate."}));
+            footprint_plots[candidate_id]["source_panel_overlay"] =
+                crate::ursa_contour::overlay(&self.bundle, candidate)?;
         }
         Ok(
             json!({"ok":true,"engine":"rust-osw-query-v1","id":id,"bundle_sha256":self.metadata()["bundle_sha256"],"collections":data,"detection_plot":detection_plot,"footprint_plots":footprint_plots,"source_panel_scene":crate::eddy_source_panels::for_owner(&self.bundle,id)?}),
