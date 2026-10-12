@@ -155,11 +155,14 @@ def main():
                 '(nodes,id)=>nodes.filter(node=>JSON.parse(node.dataset.eddyIds).includes(id)).length',eddy['id'])
             assert marks==sum(f['geometry']['type']=='Polygon' for f in eddy['map_features'])
         assert page.locator('#route-atlas-eddies .route-atlas-eddy-footprint').count()==6
-        gateway=page.locator('[data-eddy-ids]').filter(has=page.locator('text')).filter(has_text='100 names')
+        gateway=page.locator('#route-atlas-eddies [data-eddy-ids]').filter(has_text='99 names')
         assert gateway.count()==1
+        gateway_ids=json.loads(gateway.get_attribute('data-eddy-ids'))
+        assert set(gateway_ids)=={eddy['id'] for eddy in eddies if any(f['role']=='shared_regional_gateway' for f in eddy['map_features'])}
+        assert len(gateway_ids)==99  # Ursa now has a dated proxy rather than a shared locator.
         page.locator('#route-atlas-world').click()
         gateway.focus();page.keyboard.press('Enter')
-        assert 'not 100 observed centers' in page.locator('#route-atlas-status').inner_text()
+        assert 'not 99 observed centers' in page.locator('#route-atlas-status').inner_text()
         assert page.locator('#route-atlas-card-link').is_hidden()
         page.locator('#route-atlas-eddy-toggle').uncheck()
         assert page.locator('#route-atlas-eddies').is_hidden()
