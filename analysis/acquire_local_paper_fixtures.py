@@ -18,13 +18,18 @@ ROOT = Path(__file__).resolve().parents[1]
 PAPERS = ('kuroshio-liu-gan-2012', 'leeuwin-deng-2008', 'florida-archer-2017', 'chen-madagascar-2014', 'qiu-chen-nec-2010', 'van-aken-astrid-2003', 'schott-mccreary-2001', 'djakoure-guinea-2017', 'gouriou-atlantic-1988', 'sasaki-kuroshio-extension-2013', 'zenk-ngcu-1999', 'siedler-sonne-1997', 'cresswell-zeehan-2000', 'matsuyama-tsushima-1990', 'glenn-wac-2008', 'fissel-baffin-1982', 'chavanne-adriatic-2007', 'skov-jutland-2019', 'nielsen-jutland-2000', 'melet-solomon-2010', 'tomczak-regional-2005', 'park-acc-2019', 'nilsson-tasman-1980', 'richardson-dwbc-1993', 'wijeratne-australia-2018')
 RETRY_DELAYS = (1, 3)
 TRANSIENT_HTTP = {408, 429, 500, 502, 503, 504}
-# Byte-identical institutional locations verified on 2026-10-09. These are
+# Byte-identical institutional locations verified 2026-10-09 (Zenk) and
+# 2026-10-12 (Qiu); see the corresponding verification receipts. These are
 # transport alternatives, not permission to substitute another PDF edition.
 PINNED_MIRRORS = {
     ('zenk-ngcu-1999', 'https://oceanrep.geomar.de/1816/1/news34.pdf',
      'f38a100dc030a94ce776a914b96ea798dd40c6dc1aac80fce3563806c01a6407'):
     ('https://oceanrep.geomar.de/id/eprint/1816/1/news34.pdf',
      'https://oceanrep.geomar.de/6814/1/news34.pdf'),
+    # Same university resource; exact 3,012,493-byte PDF verified 2026-10-12.
+    ('qiu-chen-nec-2010', 'https://www.soest.hawaii.edu/oceanography/bo/QC_NEC.pdf',
+     'b387e0e05e700fe66b3b2e98ebba56bf2d8151c3b703d37a7aecad43b5675987'):
+    ('https://soest.hawaii.edu/oceanography/bo/QC_NEC.pdf',),
 }
 
 

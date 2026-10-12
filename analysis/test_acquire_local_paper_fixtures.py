@@ -9,6 +9,37 @@ DATA=b'%PDF-1.7\ncontrolled source fixture'
 MANIFEST={'source_url':'https://example.invalid/paper.pdf','sha256':hashlib.sha256(DATA).hexdigest()}
 
 class AcquisitionTests(unittest.TestCase):
+    def qiu_mirror_case(self):
+        key=('qiu-chen-nec-2010','https://www.soest.hawaii.edu/oceanography/bo/QC_NEC.pdf',
+             'b387e0e05e700fe66b3b2e98ebba56bf2d8151c3b703d37a7aecad43b5675987')
+        return key[0],dict(MANIFEST,source_url=key[1],sha256=key[2]),PINNED_MIRRORS[key]
+
+    def test_qiu_timeout_exhaustion_uses_exact_verified_host_alias(self):
+        name,manifest,mirrors=self.qiu_mirror_case();before=dict(manifest)
+        with patch('urllib.request.urlopen',side_effect=[TimeoutError('timeout')]*3+[io.BytesIO(DATA)]) as opener,patch('acquire_local_paper_fixtures.verify',return_value=DATA) as check,patch('time.sleep') as sleep:
+            self.assertEqual(download(name,manifest),DATA)
+            self.assertEqual([c.args[0].full_url for c in opener.call_args_list],[manifest['source_url']]*3+[mirrors[0]])
+            self.assertEqual([c.args[0] for c in sleep.call_args_list],[1,3])
+            check.assert_called_once_with(name,manifest,DATA)
+        self.assertEqual(manifest,before)
+
+    def test_qiu_alias_rejects_changed_pin_or_original_location(self):
+        name,manifest,_=self.qiu_mirror_case()
+        for receipt in [dict(manifest,sha256=MANIFEST['sha256']),dict(manifest,source_url='https://example.invalid/renamed.pdf')]:
+            with self.subTest(receipt=receipt),patch('urllib.request.urlopen',side_effect=HTTPError(receipt['source_url'],403,'blocked',{},None)) as opener,patch('time.sleep'):
+                with self.assertRaises(HTTPError):download(name,receipt)
+                self.assertEqual(opener.call_count,1)
+
+    def test_qiu_alias_wrong_bytes_never_become_a_local_original(self):
+        name,manifest,_=self.qiu_mirror_case()
+        with tempfile.TemporaryDirectory() as folder:
+            directory=Path(folder);(directory/'acquisition.json').write_text(json.dumps(manifest),encoding='utf8')
+            with patch('urllib.request.urlopen',side_effect=[HTTPError(manifest['source_url'],403,'blocked',{},None),io.BytesIO(DATA)]) as opener,patch('time.sleep') as sleep:
+                with self.assertRaisesRegex(ValueError,'checksum'):acquire(name,directory)
+                self.assertEqual(opener.call_count,2);sleep.assert_not_called()
+            self.assertFalse((directory/'journal-article.pdf').exists())
+            self.assertFalse(list(directory.glob('.paper-*.tmp')))
+
     def mirror_case(self):
         key=next(iter(PINNED_MIRRORS));name,url,sha=key
         return name,dict(MANIFEST,source_url=url,sha256=sha),PINNED_MIRRORS[key]
