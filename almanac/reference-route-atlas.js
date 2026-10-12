@@ -432,6 +432,13 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
       byId('route-atlas-status').textContent=`${eddy.label} · ${kind}${changed(eddy)?' '+changeDescription(eddy):''}`;
       const panel=preview(eddy.label);paragraph(panel,kind);
       window.renderEddySourcePanels(panel,window.oswAtlasSnapshot?.eddy_source_panel_scenes?.[eddy.id]);
+      const footprint=window.oswAtlasSnapshot?.footprint_views?.[eddy.id];
+      if(footprint) {
+        const card=document.createElement('section');panel.append(card);
+        window.renderRustOceanFootprintCandidate({parent:card,candidate:footprint.candidate,plotScene:footprint.plot_scene,movieContexts:footprint.movie_contexts,
+          entityLink:(id,host)=>previewLink(host,id,`object.html?id=${encodeURIComponent(id)}`),
+          sourceLink:(id,host)=>previewLink(host,'Inspect source',`query.html?q=${encodeURIComponent(JSON.stringify({collection:'sources',filters:[{field:'id',op:'eq',value:id}],limit:1}))}`)});
+      }
       const radial=sources['research/astrid-2000-radial-scale-scope-audit.json'];
       if(radial?.entity_id===eddy.id)window.renderEddyRadialScales(panel,radial);
       const radiusAudit=sources['research/agulhas-guerra-2022-ring-radius-scope-audit.json'];

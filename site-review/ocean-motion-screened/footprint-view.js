@@ -40,13 +40,13 @@ window.renderOceanFootprintCandidate = function ({ parent, candidate, geometry, 
   add("p", candidate.physical_limit);
   add("p", `Source locator: ${candidate.source_locator}. Method: ${candidate.method}`);
   sourceLink(candidate.source_id, parent);
-  add("p", "Adapted by OSW from Beron-Vera et al. (2018), Figure 2; original authors retain copyright. The source figure image is not packaged.");
+  add("p", candidate.source_credit || "Adapted by OSW from Beron-Vera et al. (2018), Figure 2; original authors retain copyright. The source figure image is not packaged.");
   const license = add("a", "Source license: CC BY 4.0");
   license.href = "https://creativecommons.org/licenses/by/4.0/";
   if (movieContexts.length) {
     add("h4", "NASA views of this region");
     const first = movieContexts[0];
-    add("p", `Contour date: ${candidate.observation_date}. NASA movie model period: ${first.movie_model_period}. ${first.temporal_alignment_status === "outside_declared_model_years" ? "The contour date is outside the declared movie years." : "The year is in range; event alignment remains unresolved."} These links show geographic overlap; Kraken has not been identified in the movie.`);
+    add("p", `Contour date: ${candidate.observation_date}. NASA movie model period: ${first.movie_model_period}. ${first.temporal_alignment_status === "outside_declared_model_years" ? "The contour date is outside the declared movie years." : "The year is in range; event alignment remains unresolved."} These links show geographic overlap; This named event has not been identified in the movie.`);
     const movieLink = (row, host) => {
       const anchor = add("a", `Open NASA crop ${row.tile_id}`, host);
       anchor.href = row.url; anchor.target = "_blank"; anchor.rel = "noopener noreferrer";
@@ -60,5 +60,5 @@ window.renderOceanFootprintCandidate = function ({ parent, candidate, geometry, 
     add("p", "Crop selection uses the nominal contour and approximate movie bounds. Calibration and segmentation uncertainty are not included in these navigation overlaps.");
   }
   const details = add("details", null); add("summary", "Source and geometry checksums", details);
-  add("p", `PDF SHA-256: ${candidate.source_pdf_sha256}. Embedded figure SHA-256: ${candidate.embedded_figure_sha256}. Geometry SHA-256: ${candidate.geometry_sha256}.`, details);
+  add("p", `Source document SHA-256: ${candidate.source_pdf_sha256 || candidate.source_document_sha256}. Source figure SHA-256: ${candidate.embedded_figure_sha256 || candidate.source_image_sha256}. Geometry SHA-256: ${candidate.geometry_sha256}.`, details);
 };

@@ -969,6 +969,9 @@ impl IndexStore {
                 .get(path)
                 .ok_or("Missing index source bytes")?;
             let doc: Value = serde_json::from_str(raw).map_err(|_| "Invalid index source JSON")?;
+            if path == crate::ursa_contour::PATH {
+                crate::ursa_contour::validate_raw(raw)?;
+            }
             if path == crate::eddy_source_panels::PATH {
                 crate::eddy_source_panels::validate_raw(raw)?;
             }

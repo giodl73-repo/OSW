@@ -56,6 +56,8 @@ def build():
     validate_atlantic_sections(json.loads(documents["research/atlantic-euc-layer-island-scope-audit.json"]))
     from build_thor_ursa_source_panels import PATH as panel_path, validate as validate_panels
     validate_panels(json.loads(documents[panel_path]))
+    from build_ursa_contour_candidate import PATH as contour_path, validate as validate_contour
+    validate_contour(json.loads(documents[contour_path]))
     from check_astrid_radial_scales import validate
     validate(json.loads(documents['research/astrid-2000-radial-scale-scope-audit.json']), json.loads(documents['research/named-eddy-geography.json']))
     from build_agulhas_ring_radius_audit import validate as validate_ring_radii

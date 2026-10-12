@@ -49,6 +49,7 @@ mod stream_tube_widths;
 mod svg;
 mod taxonomy;
 mod temporal;
+mod ursa_contour;
 mod workspace;
 use sha2::{Digest, Sha256};
 
@@ -192,6 +193,7 @@ impl Store {
         published_transports::validate(&bundle)?;
         pacific_neuc_breadths::validate(&bundle)?;
         eddy_source_panels::validate(&bundle)?;
+        ursa_contour::validate(&bundle)?;
         // Joined object IDs must resolve in the imported collections.
         for object in &bundle.collections["objects"] {
             for (key, collection) in [

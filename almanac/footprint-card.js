@@ -29,6 +29,18 @@ window.renderRustOceanFootprintCandidate = function ({ parent, candidate, entity
     } else add("p", plotScene.reason);
     if (plotScene.omitted_features?.length) add("p", `${plotScene.omitted_features.length} unsupported or invalid plot features omitted.`);
   } else add("p", "Contour plot unavailable from the checked Rust object view.");
+  const overlay = plotScene?.source_panel_overlay;
+  if (overlay) {
+    add("h4", "Source panel and digitized trace");
+    const ns="http://www.w3.org/2000/svg", svg=document.createElementNS(ns,"svg");
+    svg.setAttribute("viewBox",overlay.view_box.join(" "));svg.setAttribute("role","img");svg.setAttribute("aria-label",overlay.aria_label);
+    svg.dataset.sourceOverlay="ursa";svg.dataset.engine=overlay.engine;svg.style.width="100%";svg.style.maxWidth="600px";
+    const image=document.createElementNS(ns,"image");image.setAttribute("href",overlay.image_href);image.setAttribute("width",overlay.image_size_pixels[0]);image.setAttribute("height",overlay.image_size_pixels[1]);
+    const path=document.createElementNS(ns,"path");path.setAttribute("d",overlay.polygon_d);path.setAttribute("fill","none");path.setAttribute("stroke","#00ffff");path.setAttribute("stroke-width","1.5");
+    svg.append(image,path);parent.append(svg);add("p",overlay.caption);
+    const original=add("a","Open complete original Figure 3");original.href=overlay.image_href;
+    const evidence=add("a","Inspect calibration and rejected cases");evidence.href='query.html?source-q='+encodeURIComponent(JSON.stringify({document:overlay.source_document,pointer:'/rejected_segmentation_cases',limit:25}));
+  }
   add("p", candidate.coordinate_reference_status);
   const list = add("ul", null);
   for (const assessment of candidate.state_assessments) {
@@ -42,13 +54,13 @@ window.renderRustOceanFootprintCandidate = function ({ parent, candidate, entity
   add("p", candidate.physical_limit);
   add("p", `Source locator: ${candidate.source_locator}. Method: ${candidate.method}`);
   sourceLink(candidate.source_id, parent);
-  add("p", "Adapted by OSW from Beron-Vera et al. (2018), Figure 2; original authors retain copyright. The source figure image is not packaged.");
+  add("p", candidate.source_credit || "Adapted by OSW from Beron-Vera et al. (2018), Figure 2; original authors retain copyright. The source figure image is not packaged.");
   const license = add("a", "Source license: CC BY 4.0");
   license.href = "https://creativecommons.org/licenses/by/4.0/";
   if (movieContexts.length) {
     add("h4", "NASA views of this region");
     const first = movieContexts[0];
-    add("p", `Contour date: ${candidate.observation_date}. NASA movie model period: ${first.movie_model_period}. ${first.temporal_alignment_status === "outside_declared_model_years" ? "The contour date is outside the declared movie years." : "The year is in range; event alignment remains unresolved."} These links show geographic overlap; Kraken has not been identified in the movie.`);
+    add("p", `Contour date: ${candidate.observation_date}. NASA movie model period: ${first.movie_model_period}. ${first.temporal_alignment_status === "outside_declared_model_years" ? "The contour date is outside the declared movie years." : "The year is in range; event alignment remains unresolved."} These links show geographic overlap; This named event has not been identified in the movie.`);
     const movieLink = (row, host) => {
       const anchor = add("a", `Open NASA crop ${row.tile_id}`, host);
       anchor.href = row.url; anchor.target = "_blank"; anchor.rel = "noopener noreferrer";
@@ -62,5 +74,5 @@ window.renderRustOceanFootprintCandidate = function ({ parent, candidate, entity
     add("p", "Crop selection uses the nominal contour and approximate movie bounds. Calibration and segmentation uncertainty are not included in these navigation overlaps.");
   }
   const details = add("details", null); add("summary", "Source and geometry checksums", details);
-  add("p", `PDF SHA-256: ${candidate.source_pdf_sha256}. Embedded figure SHA-256: ${candidate.embedded_figure_sha256}. Geometry SHA-256: ${candidate.geometry_sha256}.`, details);
+  add("p", `Source document SHA-256: ${candidate.source_pdf_sha256 || candidate.source_document_sha256}. Source figure SHA-256: ${candidate.embedded_figure_sha256 || candidate.source_image_sha256}. Geometry SHA-256: ${candidate.geometry_sha256}.`, details);
 };
