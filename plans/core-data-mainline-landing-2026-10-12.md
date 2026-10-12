@@ -38,3 +38,14 @@ Corrected settled-tree browser check passes: 100 current selectors, all 140
 eddy records, six individual polygon owners, exact 99-name shared gateway,
 zoom/pan, map-card return and mobile reflow. Generated review screenshots
 were restored; they are not part of this landing change.
+
+Additional local gates passed after publication: state directory and route/state
+links, seasonal controls, cruise widths/station contexts, regional/model widths,
+object cards, recurrence, atlas snapshot and saved timeline. A reused local server
+briefly refused a connection; checks resumed after verifying the correct checkout.
+Observed-section navigation then exposed a default 30-second standalone-page wait.
+Aligned that wait with the existing 90-second loader allowance and added saved-link
+failure diagnostics. The full observed-section gate passes, including saved
+occupation reload, keyboard casts, standalone return and mobile reflow.
+Automatic merge was disabled during investigation and will be re-enabled after
+publishing the corrected test. No production data or UI was changed by this wait.
