@@ -44,3 +44,9 @@ Hosted success must be observed separately. No scientific coverage increased:
 
 Stacked draft on `codex/ursa-dated-contour-candidate`; no automatic merge.
 Hosted run identifiers and outcomes will be recorded after publication.
+
+Published as draft PR #82:
+https://github.com/giodl73-repo/OSW/pull/82
+Implementation commit: `7612d326f69fca31324aea8e7037e1b6f145524f`.
+Hosted run 38285937558 was in progress at publication; acquisition and
+software gates were still pending. No hosted success is claimed.
