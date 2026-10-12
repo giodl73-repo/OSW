@@ -1,4 +1,4 @@
-# Ursa dated contour candidate â€” 2026-10-12
+# Ursa dated contour candidate — 2026-10-12
 
 Status: editorial implementation verified locally; hosted checks pending.
 Independent scientific boundary/unit/identity admission remains pending.
@@ -7,6 +7,12 @@ No mainline merge or published scientific-release claim.
 Parent: `1c9a8069fb9553840dc7dd9199a78ed7b1b5adb5`,
 `codex/thor-ursa-dated-source-panels`, draft PR 80.
 Branch: `codex/ursa-dated-contour-candidate`.
+Implementation commit: `961dcfe556a602b923613e79e7a273980a708ec2`, pushed.
+Draft PR: https://github.com/giodl73-repo/OSW/pull/81, stacked on PR 80.
+Committed audit and all six original/protocol/state dependencies rechecked
+against the frozen hashes; all match.
+Hosted implementation runs 38282885267 and 38282873175 are in progress
+at this receipt; no terminal result is claimed.
 
 ## Delivered scope
 
@@ -18,15 +24,15 @@ colors show deep reference pressure; the traced black curve is the surface Loop
 Current contour. No numerical SSH field was acquired or reconstructed.
 
 Thresholds 40/70/100, both stroke edges, nominal calibration plus sixteen
-independent Â±3-pixel anchor shifts yield 102 planned scenarios. Four accepted
+independent ±3-pixel anchor shifts yield 102 planned scenarios. Four accepted
 edge/threshold choices yield 68 valid polygons. Two threshold-100 non-simple
 pixel loops remain in the audit as rejected cases; no repair, smoothing or
 frame-edge closure is performed.
 
 | OSW display state | Nominal overlap | Tested calibration/segmentation range |
 |---|---:|---:|
-| CAMR, Central American coast | 71.20% | 69.24â€“73.27% |
-| CARB, Caribbean | 28.80% | 26.73â€“30.76% |
+| CAMR, Central American coast | 71.20% | 69.24–73.27% |
+| CARB, Caribbean | 28.80% | 26.73–30.76% |
 
 These are fractions of approximate display geometry, not physical uncertainty,
 probability or confidence intervals. Both intersections occur in every valid
@@ -37,7 +43,7 @@ season is admitted. Source datum and projection are unspecified.
 The atlas and object cards share Rust plot scenes and original-source overlays.
 The original complete Figure 3, dated source-panel viewer, state assessments,
 scientific limits and source-query access remain available. Ten NASA crop
-navigation rows are added; 2021 lies within the declared 2021â€“2023 model period,
+navigation rows are added; 2021 lies within the declared 2021–2023 model period,
 but individual-event alignment and identity remain unresolved.
 
 ## Frozen provenance

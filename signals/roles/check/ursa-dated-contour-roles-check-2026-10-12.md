@@ -28,7 +28,7 @@ ORBIT is inapplicable because no planetary analogy is used.
 | 8 | CHART | Crisp geographic output and seven decimals could imply survey accuracy or a known datum. | P2 | Resolved: inferred linear figure-axis coordinates, unspecified datum/projection, display precision only; overlap uses approximate coast-masked OSW geometry. |
 | 9 | CHART | Source tracing needs visible comparison with the original curve. | P2 | Resolved: Rust source-pixel SVG path over unchanged source Figure 3; cyan overlay inspected at 320 pixels, with full original figure available. No smoothing or frame closure. |
 | 10 | BEACON | Existing Kraken-specific prose could assign the wrong date, authors or method to Ursa. | P2 | Resolved: source-specific credit and generic checksums; Ursa state claims use March 7 method/date and precise internal audit pointers. |
-| 11 | BEACON | Geographic NASA crop overlap could be mistaken for event identification. | P2 | Resolved: 2021 is within declared 2021â€“2023 model years, individual-event alignment remains unresolved; ten navigation crops establish no NASA identity. |
+| 11 | BEACON | Geographic NASA crop overlap could be mistaken for event identification. | P2 | Resolved: 2021 is within declared 2021–2023 model years, individual-event alignment remains unresolved; ten navigation crops establish no NASA identity. |
 | 12 | BEACON | Tested ranges could be described as statistical or physical uncertainty. | P2 | Resolved: scenario ranges explicitly exclude field error, unknown datum/projection, instrument artifacts and OSW boundary uncertainty; no probability or confidence claim. |
 | 13 | HARBOR | Color alone cannot convey the source overlay's scientific meaning. | P2 | Resolved: SVG description and text provide date, tracing method, accepted/rejected cases and limits; state assessments are semantic text links. |
 | 14 | HARBOR | Source-image widths may break narrow reflow. | P2 | Resolved: responsive overlay and locally scrollable full original; browser checks pass 320-pixel document containment for atlas and object. |
@@ -63,3 +63,7 @@ Evidence: `plans/ursa-dated-contour-digitization-protocol-v1.md`,
 `analysis/test_ursa_contour_candidate.py`,
 `analysis/test_ursa_contour_candidate_browser.py`,
 `plans/ursa-dated-contour-batch-2026-10-12.md`.
+
+Implementation: `961dcfe556a602b923613e79e7a273980a708ec2`; draft PR 81,
+https://github.com/giodl73-repo/OSW/pull/81. Frozen committed source/dependency
+bytes verified; hosted implementation gates are still in progress.
