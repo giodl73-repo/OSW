@@ -18,14 +18,20 @@ def main():
     assert candidate['candidate_comparison_group']=='osw_studied_reach_routes'
     assert 'pacific-nscc-reach-reference-path-candidate' not in catalog['reference_route_length_order']
     assert nscc['latest_observation_date'] is None
-    assert nscc['capabilities']['scoped_width']==0
-    assert neuc['capabilities']['reference_route']==0
-    assert neuc['capabilities']['scoped_width']==0
+    widths=json.loads(Path('research/ocean-current-width-inventory.json').read_text(encoding='utf-8'))['measurements']
+    for row in [nscc,neuc]:
+        owner=row['id'].removeprefix('current:')
+        assert row['capabilities']['scoped_width']==sum(w['current_id']==owner for w in widths)
+        assert row['capabilities']['reference_route']==sum(r['current_id']==owner for r in catalog['candidates'])
+    neuc_routes=[r for r in catalog['candidates'] if r['current_id']==neuc['id'].removeprefix('current:')]
+    assert neuc_routes and all(r['id']!='pacific-nscc-reach-reference-path-candidate' for r in neuc_routes)
     with sync_playwright() as p:
         browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER',r'C:\Program Files\Google\Chrome\Application\chrome.exe'))
         page=browser.new_page(viewport={'width':1440,'height':1000})
+        page.emulate_media(reduced_motion='reduce')
         errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Apacific-north-subsurface-countercurrent#route-atlas',wait_until='networkidle')
+        page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=len(catalog['candidates']))
         preview=page.locator('#route-atlas-preview')
         assert preview.locator('.route-map').is_visible()
         for text in ['5,000 km','4,900–5,100','Studied reach only','220 m','130 m','not width']:
@@ -33,8 +39,9 @@ def main():
         assert preview.locator('.route-atlas-state-links li').count()==len(candidate['nominal_atlas_state_crossings'])
         page.locator('#route-atlas').screenshot(path='figures/pacific-nscc-reach-reference-path-review.png')
         page.locator('#route-atlas-select').select_option(neuc['id'])
-        assert preview.locator('.route-map').count()==0
+        assert preview.locator('.route-map').is_visible()
         assert 'length is not transferred' in preview.inner_text()
+        assert 'Studied reach only' in preview.inner_text()
         page.set_viewport_size({'width':320,'height':800})
         for row in [nscc,neuc]:
             page.locator('#route-atlas-select').select_option(row['id'])
@@ -44,7 +51,7 @@ def main():
         assert preview.is_hidden()
         assert not errors,errors
         browser.close()
-    print('OK: Tsuchiya studied reach visual/local depths/mobile; NEUC route pending; no borrowed length, width, date or rank; canonical ledger unchanged')
+    print('OK: Tsuchiya studied reach visual/local depths/mobile; independent NEUC component routes; no borrowed length, width, date or rank; canonical ledger unchanged')
 
 
 if __name__=='__main__':

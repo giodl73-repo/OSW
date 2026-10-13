@@ -51,6 +51,40 @@ def main():
             page.set_viewport_size({'width':1440,'height':1000})
             card.get_by_role('link',name='Back to global current map').click()
         page.locator('#route-atlas-world').click()
+        # Verify every source component, including branch buttons and share URLs.
+        for owner,count in [('pacific-north-equatorial-undercurrent',3),('red-sea-saline-overflow',2),('indian-equatorial-undercurrent',1)]:
+            components=[r for r in catalog['candidates'] if r['current_id']==owner]
+            assert len(components)==count
+            page.locator('#route-atlas-select').select_option('current:'+owner)
+            for index,component in enumerate(components):
+                preview=page.locator('#route-atlas-preview')
+                if count>1:
+                    buttons=preview.locator('button')
+                    assert buttons.count()==count
+                    buttons.nth(index).click()
+                    assert buttons.nth(index).get_attribute('aria-pressed')=='true'
+                assert component['scope'] in preview.inner_text()
+                assert preview.locator('.route-map').is_visible()
+                assert page.locator('#route-atlas-card-link').get_attribute('href')=='#'+component['id']
+                shared_url=preview.locator('[data-atlas-share]').get_attribute('href')
+                assert 'atlas-route='+component['id'] in shared_url
+                preview.get_by_role('link',name='Full route card, measurements and sources').click()
+                page.wait_for_function('(id)=>location.hash === "#"+id',arg=component['id'])
+                card=page.locator('#'+component['id'])
+                assert card.locator('.route-map').is_visible()
+                assert 'Studied reach only' in card.inner_text()
+                page.set_viewport_size({'width':320,'height':800})
+                assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                card.screenshot(path='.pytest_cache/current-route-batch/'+component['id']+'-mobile.png')
+                page.set_viewport_size({'width':1440,'height':1000})
+                card.get_by_role('link',name='Back to global current map').click()
+                page.locator('#route-atlas-select').select_option('current:'+owner)
+            shared=browser.new_page()
+            shared.goto(shared_url,wait_until='networkidle')
+            shared.wait_for_function('(id)=>document.querySelector("#route-atlas-card-link").getAttribute("href")==="#"+id',arg=components[-1]['id'])
+            assert components[-1]['scope'] in shared.locator('#route-atlas-preview').inner_text()
+            shared.close()
+        page.locator('#route-atlas-world').click()
         # Aleutian is a sourced schematic reach, crossing the date line.
         page.locator('#route-atlas-select').select_option('current:aleutian')
         assert view() == [60,90,1480,740]  # Global fit preserves both sides of the date line.

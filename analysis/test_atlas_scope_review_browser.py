@@ -12,8 +12,10 @@ def main():
     with sync_playwright() as p:
         browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER',r'C:\Program Files\Google\Chrome\Application\chrome.exe'))
         page=browser.new_page(viewport={'width':320,'height':800});errors=[]
+        page.emulate_media(reduced_motion='reduce')
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
+        page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=len(json.loads(Path('research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))['candidates']))
         page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length===101')
         for row in reviewed:
             page.locator('#route-atlas-select').select_option(row['id'])
@@ -31,6 +33,7 @@ def main():
         assert 'not annual extrema' in page.locator('.route-atlas-scope-reviews').inner_text()
         assert page.locator('#route-atlas-preview .route-map').count()==0
         page.reload(wait_until='networkidle')
+        page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=len(json.loads(Path('research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))['candidates']))
         assert page.locator('.route-atlas-local-dimensions tbody tr').count()==6
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         page.set_viewport_size({'width':1440,'height':1000})
@@ -42,12 +45,14 @@ def main():
         assert 'not a fixed depth interval' in reach.inner_text()
         assert 'not a whole-current length' in reach.inner_text()
         assert reach.locator('.route-atlas-outflow-branches li').count()==3
-        assert page.locator('#route-atlas-preview .route-map').count()==0
+        assert page.locator('#route-atlas-preview .route-map').is_visible()
+        assert 'Studied reach only' in page.locator('#route-atlas-preview').inner_text()
         reach.locator('summary').click()
         assert 'about 115 km long' in reach.inner_text() and 'about 120 km long' in reach.inner_text()
         assert 'not current width estimates' in reach.inner_text()
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         page.reload(wait_until='networkidle')
+        page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=len(json.loads(Path('research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))['candidates']))
         assert page.locator('.route-atlas-outflow-branches li').count()==3
         page.set_viewport_size({'width':1440,'height':1000})
         page.locator('.route-atlas-reported-reach').screenshot(path='figures/red-sea-reported-reach-card-review.png')

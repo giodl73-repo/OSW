@@ -78,7 +78,11 @@ class DashboardEvidenceTests(unittest.TestCase):
     def test_red_sea_reach_and_channels_do_not_become_ranked_length_or_current_width(self):
         current=next(row for row in build()['entries'] if row['id']=='current:red-sea-saline-overflow')
         self.assertEqual(current['capabilities']['scoped_width'],0)
-        self.assertEqual(current['capabilities']['reference_route'],0)
+        routes=json.loads((ROOT/'research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))['candidates']
+        owned=[r for r in routes if r['current_id']=='red-sea-saline-overflow']
+        self.assertEqual(current['capabilities']['reference_route'],len(owned))
+        self.assertTrue(owned)
+        self.assertTrue(all(r['comparison_group']=='osw_studied_reach_routes' for r in owned))
         self.assertEqual(current['capabilities']['reported_length'],0)
         self.assertEqual(current['scope_audits'][0]['reported_reach']['approximate_length_km'],130)
         self.assertEqual(len(current['scope_audits'][0]['branches']),3)

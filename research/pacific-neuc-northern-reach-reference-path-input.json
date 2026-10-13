@@ -1,0 +1,140 @@
+{
+  "schema": "osw.current-reference-path-input.v1",
+  "current_id": "pacific-north-equatorial-undercurrent",
+  "name": "Pacific NEUC - northern jet",
+  "status": "editorial_reference_path_candidate_not_scientifically_reviewed",
+  "geometry_role": "osw_editorial_reference_route",
+  "crs": "OGC:CRS84",
+  "scope": "Declared western-to-central northern NEUC component reach between OSW 135 E and 175 E gates. Near-western latitude context is 18 N; all connecting latitudes and bends are editorial. Excludes other NEUC components, 3 N SCC/Tsuchiya jet, western source paths and eastern continuation. Not a whole-component or parent-system length.",
+  "layer": "Argo P-vector absolute geostrophic zonal velocity on 27.0 sigma-theta (kg/m3), spatially varying depth. Not LICOM/SODA velocity, uniform depth, or the 3 N Tsuchiya jet.",
+  "time_convention": "2004-2014 Argo climatological mean, year precision; not a dated observed axis or monthly geometry. Model periods 1969-2007 are not transferred.",
+  "source_url": "https://doi.org/10.1038/s41598-018-35469-2",
+  "source_locator": "Li et al. (2018) complete JATS Results / Mean Structures of NEUCs: three Argo jets near 8/13/18 N at 130-135 E, tilting southwest-northeast. Figure 1(a) reviewed; Figure 2 samples 135-140 E and 175-180 E. Neither source curve nor velocity field digitized.",
+  "source_citation": "Li, Liu and Lin (2018), Interannual and decadal variability of the North Equatorial Undercurrents in an eddy-resolving ocean model, Scientific Reports 8, 17112, doi:10.1038/s41598-018-35469-2.",
+  "source_license": "CC BY 4.0 original article; attributed source facts and independent OSW geography. Existing licensed Figure 1 retained separately; no source curve digitization.",
+  "source_retrieved_date": "2026-10-13",
+  "coordinate_selection": "Source supports the declared regional geography or study-domain convention. OSW selects all gates, rounded connecting vertices and alternative bends; no velocity axis or source trajectory reconstructed. Independent longitude and endpoint-latitude shifts describe drawing choices, not current width, source position errors or seasonal extrema.",
+  "coordinates_lon_lat": [
+    [
+      135,
+      18
+    ],
+    [
+      145,
+      18.6
+    ],
+    [
+      155,
+      19.2
+    ],
+    [
+      165,
+      19.8
+    ],
+    [
+      175,
+      20.5
+    ]
+  ],
+  "alternative_routes": [
+    {
+      "id": "southern_bend",
+      "coordinates_lon_lat": [
+        [
+          135,
+          18
+        ],
+        [
+          145,
+          18.1
+        ],
+        [
+          155,
+          18.7
+        ],
+        [
+          165,
+          19.3
+        ],
+        [
+          175,
+          20.5
+        ]
+      ],
+      "interpretation": "Alternative editorial bend between the declared regional gates; not a measured seasonal state."
+    },
+    {
+      "id": "northern_bend",
+      "coordinates_lon_lat": [
+        [
+          135,
+          18
+        ],
+        [
+          145,
+          19.1
+        ],
+        [
+          155,
+          19.7
+        ],
+        [
+          165,
+          20.3
+        ],
+        [
+          175,
+          20.5
+        ]
+      ],
+      "interpretation": "Alternative editorial bend between the declared regional gates; not a measured seasonal state."
+    }
+  ],
+  "longitude_offsets_degrees": [
+    -0.25,
+    0,
+    0.25
+  ],
+  "endpoint_latitude_offsets_degrees": [
+    -0.5,
+    0,
+    0.5
+  ],
+  "scenario_rule": "Three declared shapes with three longitude shifts and independent three-value endpoint latitude shifts: 81 retained editorial scenarios, not statistical uncertainty or annual variation.",
+  "report_rounding_km": 100,
+  "rank_eligible_published_estimates": false,
+  "candidate_comparison_group": "osw_studied_reach_routes",
+  "whole_system_length": false,
+  "remaining_gates": [
+    "Independently validate component/naming,layer,gates,fine coastline and bathymetry before physical admission.",
+    "Acquire compatible dated velocity geometry before measuring a current axis or seasonal dimensions.",
+    "Do not sum component reaches or transfer neighboring current/channel widths.",
+    "Whole-current dimensions,annual ranges,occupied width polygons,physical state containment and NASA identity remain unresolved."
+  ],
+  "map_view_box": [
+    1330,
+    300,
+    210,
+    230
+  ],
+  "map_label_size": 2.6,
+  "legend_line_spacing": 4.16,
+  "map_symbol_scale": 0.65,
+  "endpoint_labels": [
+    "135 E OSW gate",
+    "175 E OSW gate"
+  ],
+  "figure_source_label": "Li et al. (2018), Argo Figure 1(a)",
+  "route_extent_kind": "northern NEUC isopycnal reference reach",
+  "source_component_id": "NEUCN",
+  "component_routes_are_additive": false,
+  "source_operator": "Argo P-vector absolute geostrophic zonal velocity",
+  "source_review_receipt": {
+    "source_document_file": "research/source-data/li-neuc-2018/journal-article.xml",
+    "source_document_sha256": "2321fff1a540d19d5da1409f16218efb748968e01e29c21926f9262fd0c6efc8",
+    "acquisition_file": "research/source-data/li-neuc-2018/acquisition.json",
+    "acquisition_sha256": "ad24957de2cd575ab44f3184e98bec00fb072ebea45e85d1293f92aa027abb76",
+    "audit_file": "research/pacific-neuc-northern-reach-scope-audit.json",
+    "audit_sha256": "1afbd7effdcb82a736a1ec9202b33783f2efb9d9d9155dcb3371e04622c48774"
+  }
+}

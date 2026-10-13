@@ -6,10 +6,10 @@
   "absence_meaning": "No candidate crossing recorded; physical current passage remains unresolved.",
   "counts": {
     "states": 56,
-    "route_candidates": 67,
-    "currents_with_route_candidates": 64,
+    "route_candidates": 73,
+    "currents_with_route_candidates": 67,
     "states_with_candidate_crossings": 49,
-    "candidate_state_pairs": 134
+    "candidate_state_pairs": 147
   },
   "excluded_display_contacts": [
     {
@@ -32,7 +32,7 @@
     }
   ],
   "input_sha256": {
-    "research/ocean-current-reference-path-candidates.json": "92bf2b1cbe1c4e3674ce040bd07f35052bd75c7243762c00911c6d7bf7b2c81c",
+    "research/ocean-current-reference-path-candidates.json": "745a4e86d35265ed974e852c9fb4b3c8710b2dd6fe84ed02dbdcbcd708ab692b",
     "research/ocean-motion-state-join.json": "c7a49187e74ac9959f18b23cf5ecaa826c017eacb8e387f2bf6e8605b6ab65f9",
     "research/indian-seuc-mam-reach-reference-path-candidate.json": "09e20729d63ef0930ba1835f95fdc24285726de590f4d2c9915604358867c117",
     "research/pacific-necc-reach-reference-path-candidate.json": "0df217ce291f5e8d4804a2fa25f86a2bb8a6fdd5101f00abe2401583ec00df01",
@@ -42,6 +42,10 @@
     "research/agulhas-return-extent-reference-path-candidate.json": "09648817d84443cb774ab7897eed8527fb9bc13a54c73ee0f279d700cf457766",
     "research/atlantic-euc-reach-reference-path-candidate.json": "1256ace4b349ed71d251f4f30f4a7296a7b137641d855c795538b05d41337974",
     "research/indian-secc-winter-reach-reference-path-candidate.json": "f4012b04e98fbddadd0d2af6636d18d04b5f89f84bbdd07cd069abdec6875ab7",
+    "research/pacific-neuc-southern-reach-reference-path-candidate.json": "f8c944ceb23570d6c4a0e74eaccf148e9ec95899fbe807001cbbb5db600bfe77",
+    "research/pacific-neuc-middle-reach-reference-path-candidate.json": "4eaccda3bcec80b6799bca0f424fcf05cd390ca52839e82027ab610c0c12c67b",
+    "research/indian-euc-spring-observation-reach-reference-path-candidate.json": "b032ee03a0b2174c4e16fa1328e516d244d408413f464a24c90dc327cb4c0132",
+    "research/pacific-neuc-northern-reach-reference-path-candidate.json": "c4e7c44f1fd9aae231627828cc7881fbc6749a220a0a42fc488fe8000eb1b34c",
     "research/deep-western-boundary-reach-reference-path-candidate.json": "93d9cf1b2390fa421475e6f87f66621d0a95661ed96a3e5421af958d4b5e3183",
     "research/azores-reference-path-candidate.json": "67aa89df57823098ed8b80cd06f93113847335ea6af5b0c68b6f5e7eb799ad8c",
     "research/agulhas-return-reach-reference-path-candidate.json": "66a28f8a81bbe975dcd0b339e5feaf4bf95d83f35179dfbcb8d7a5611bc00e12",
@@ -100,7 +104,9 @@
     "research/mauritanian-summer-reach-reference-path-candidate.json": "5058d0326091dda9f69585a56b5a09226c77fac3d5807c792c844c84df168557",
     "research/mediterranean-undercurrent-reach-reference-path-candidate.json": "42caecbf99f02d2287ab0e047973f376fd6e78e0cf8af4f2877314eba9d0418b",
     "research/north-cape-northern-reach-reference-path-candidate.json": "47a6a36819f5395eb2aab9e11169cc538e08f3bed79cac1b33610551537dd77e",
-    "research/ligurian-reach-reference-path-candidate.json": "097cef899d328b72f4069125e1f30d3d5663a9502ca500d74d0ccbeb318a0bba"
+    "research/redsox-northern-plume-reach-reference-path-candidate.json": "c5cbd42353d683815c523b611be5fd52f3f6639badc2ae9393c15a5118de5e45",
+    "research/ligurian-reach-reference-path-candidate.json": "097cef899d328b72f4069125e1f30d3d5663a9502ca500d74d0ccbeb318a0bba",
+    "research/redsox-southern-plume-reach-reference-path-candidate.json": "81b4da37f3410296f8fc005d7c543de1b091094ab1ea2a2adfc24f4892c152be"
   },
   "states": {
     "BERS": {
@@ -403,10 +409,58 @@
           "crossing_scenario_count": 108,
           "scenario_count": 162,
           "crosses_in_all_declared_scenarios": false
+        },
+        {
+          "candidate_id": "pacific-neuc-middle-reach-reference-path-candidate",
+          "current_id": "pacific-north-equatorial-undercurrent",
+          "name": "Pacific NEUC - middle jet",
+          "scope": "Declared western-to-central middle NEUC component reach between OSW 135 E and 175 E gates. Near-western latitude context is 13 N; all connecting latitudes and bends are editorial. Excludes other NEUC components, 3 N SCC/Tsuchiya jet, western source paths and eastern continuation. Not a whole-component or parent-system length.",
+          "layer": "Argo P-vector absolute geostrophic zonal velocity on 27.0 sigma-theta (kg/m3), spatially varying depth. Not LICOM/SODA velocity, uniform depth, or the 3 N Tsuchiya jet.",
+          "time_convention": "2004-2014 Argo climatological mean, year precision; not a dated observed axis or monthly geometry. Model periods 1969-2007 are not transferred.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "middle NEUC isopycnal reference reach",
+          "route_url": "reference-routes.html#pacific-neuc-middle-reach-reference-path-candidate",
+          "source_url": "https://doi.org/10.1038/s41598-018-35469-2",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        },
+        {
+          "candidate_id": "pacific-neuc-northern-reach-reference-path-candidate",
+          "current_id": "pacific-north-equatorial-undercurrent",
+          "name": "Pacific NEUC - northern jet",
+          "scope": "Declared western-to-central northern NEUC component reach between OSW 135 E and 175 E gates. Near-western latitude context is 18 N; all connecting latitudes and bends are editorial. Excludes other NEUC components, 3 N SCC/Tsuchiya jet, western source paths and eastern continuation. Not a whole-component or parent-system length.",
+          "layer": "Argo P-vector absolute geostrophic zonal velocity on 27.0 sigma-theta (kg/m3), spatially varying depth. Not LICOM/SODA velocity, uniform depth, or the 3 N Tsuchiya jet.",
+          "time_convention": "2004-2014 Argo climatological mean, year precision; not a dated observed axis or monthly geometry. Model periods 1969-2007 are not transferred.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "northern NEUC isopycnal reference reach",
+          "route_url": "reference-routes.html#pacific-neuc-northern-reach-reference-path-candidate",
+          "source_url": "https://doi.org/10.1038/s41598-018-35469-2",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        },
+        {
+          "candidate_id": "pacific-neuc-southern-reach-reference-path-candidate",
+          "current_id": "pacific-north-equatorial-undercurrent",
+          "name": "Pacific NEUC - southern jet",
+          "scope": "Declared western-to-central southern NEUC component reach between OSW 135 E and 175 E gates. Near-western latitude context is 8 N; all connecting latitudes and bends are editorial. Excludes other NEUC components, 3 N SCC/Tsuchiya jet, western source paths and eastern continuation. Not a whole-component or parent-system length.",
+          "layer": "Argo P-vector absolute geostrophic zonal velocity on 27.0 sigma-theta (kg/m3), spatially varying depth. Not LICOM/SODA velocity, uniform depth, or the 3 N Tsuchiya jet.",
+          "time_convention": "2004-2014 Argo climatological mean, year precision; not a dated observed axis or monthly geometry. Model periods 1969-2007 are not transferred.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "southern NEUC isopycnal reference reach",
+          "route_url": "reference-routes.html#pacific-neuc-southern-reach-reference-path-candidate",
+          "source_url": "https://doi.org/10.1038/s41598-018-35469-2",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
         }
       ],
-      "current_count": 2,
-      "nominal_current_count": 2
+      "current_count": 3,
+      "nominal_current_count": 3
     },
     "NPSE": {
       "name": "Northeast Pacific subtropical",
@@ -457,6 +511,22 @@
           "crosses_in_all_declared_scenarios": true
         },
         {
+          "candidate_id": "pacific-neuc-northern-reach-reference-path-candidate",
+          "current_id": "pacific-north-equatorial-undercurrent",
+          "name": "Pacific NEUC - northern jet",
+          "scope": "Declared western-to-central northern NEUC component reach between OSW 135 E and 175 E gates. Near-western latitude context is 18 N; all connecting latitudes and bends are editorial. Excludes other NEUC components, 3 N SCC/Tsuchiya jet, western source paths and eastern continuation. Not a whole-component or parent-system length.",
+          "layer": "Argo P-vector absolute geostrophic zonal velocity on 27.0 sigma-theta (kg/m3), spatially varying depth. Not LICOM/SODA velocity, uniform depth, or the 3 N Tsuchiya jet.",
+          "time_convention": "2004-2014 Argo climatological mean, year precision; not a dated observed axis or monthly geometry. Model periods 1969-2007 are not transferred.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "northern NEUC isopycnal reference reach",
+          "route_url": "reference-routes.html#pacific-neuc-northern-reach-reference-path-candidate",
+          "source_url": "https://doi.org/10.1038/s41598-018-35469-2",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        },
+        {
           "candidate_id": "tsushima-coastal-reference-path-candidate",
           "current_id": "tsushima",
           "name": "Tsushima Current",
@@ -473,8 +543,8 @@
           "crosses_in_all_declared_scenarios": true
         }
       ],
-      "current_count": 2,
-      "nominal_current_count": 2
+      "current_count": 3,
+      "nominal_current_count": 3
     },
     "NPTG": {
       "name": "North Pacific tropical gyre",
@@ -594,9 +664,25 @@
           "crossing_scenario_count": 81,
           "scenario_count": 81,
           "crosses_in_all_declared_scenarios": true
+        },
+        {
+          "candidate_id": "pacific-neuc-southern-reach-reference-path-candidate",
+          "current_id": "pacific-north-equatorial-undercurrent",
+          "name": "Pacific NEUC - southern jet",
+          "scope": "Declared western-to-central southern NEUC component reach between OSW 135 E and 175 E gates. Near-western latitude context is 8 N; all connecting latitudes and bends are editorial. Excludes other NEUC components, 3 N SCC/Tsuchiya jet, western source paths and eastern continuation. Not a whole-component or parent-system length.",
+          "layer": "Argo P-vector absolute geostrophic zonal velocity on 27.0 sigma-theta (kg/m3), spatially varying depth. Not LICOM/SODA velocity, uniform depth, or the 3 N Tsuchiya jet.",
+          "time_convention": "2004-2014 Argo climatological mean, year precision; not a dated observed axis or monthly geometry. Model periods 1969-2007 are not transferred.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "southern NEUC isopycnal reference reach",
+          "route_url": "reference-routes.html#pacific-neuc-southern-reach-reference-path-candidate",
+          "source_url": "https://doi.org/10.1038/s41598-018-35469-2",
+          "nominal_crossing": false,
+          "crossing_scenario_count": 9,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": false
         }
       ],
-      "current_count": 1,
+      "current_count": 2,
       "nominal_current_count": 1
     },
     "WARM": {
@@ -619,6 +705,54 @@
           "crosses_in_all_declared_scenarios": true
         },
         {
+          "candidate_id": "pacific-neuc-middle-reach-reference-path-candidate",
+          "current_id": "pacific-north-equatorial-undercurrent",
+          "name": "Pacific NEUC - middle jet",
+          "scope": "Declared western-to-central middle NEUC component reach between OSW 135 E and 175 E gates. Near-western latitude context is 13 N; all connecting latitudes and bends are editorial. Excludes other NEUC components, 3 N SCC/Tsuchiya jet, western source paths and eastern continuation. Not a whole-component or parent-system length.",
+          "layer": "Argo P-vector absolute geostrophic zonal velocity on 27.0 sigma-theta (kg/m3), spatially varying depth. Not LICOM/SODA velocity, uniform depth, or the 3 N Tsuchiya jet.",
+          "time_convention": "2004-2014 Argo climatological mean, year precision; not a dated observed axis or monthly geometry. Model periods 1969-2007 are not transferred.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "middle NEUC isopycnal reference reach",
+          "route_url": "reference-routes.html#pacific-neuc-middle-reach-reference-path-candidate",
+          "source_url": "https://doi.org/10.1038/s41598-018-35469-2",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        },
+        {
+          "candidate_id": "pacific-neuc-northern-reach-reference-path-candidate",
+          "current_id": "pacific-north-equatorial-undercurrent",
+          "name": "Pacific NEUC - northern jet",
+          "scope": "Declared western-to-central northern NEUC component reach between OSW 135 E and 175 E gates. Near-western latitude context is 18 N; all connecting latitudes and bends are editorial. Excludes other NEUC components, 3 N SCC/Tsuchiya jet, western source paths and eastern continuation. Not a whole-component or parent-system length.",
+          "layer": "Argo P-vector absolute geostrophic zonal velocity on 27.0 sigma-theta (kg/m3), spatially varying depth. Not LICOM/SODA velocity, uniform depth, or the 3 N Tsuchiya jet.",
+          "time_convention": "2004-2014 Argo climatological mean, year precision; not a dated observed axis or monthly geometry. Model periods 1969-2007 are not transferred.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "northern NEUC isopycnal reference reach",
+          "route_url": "reference-routes.html#pacific-neuc-northern-reach-reference-path-candidate",
+          "source_url": "https://doi.org/10.1038/s41598-018-35469-2",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        },
+        {
+          "candidate_id": "pacific-neuc-southern-reach-reference-path-candidate",
+          "current_id": "pacific-north-equatorial-undercurrent",
+          "name": "Pacific NEUC - southern jet",
+          "scope": "Declared western-to-central southern NEUC component reach between OSW 135 E and 175 E gates. Near-western latitude context is 8 N; all connecting latitudes and bends are editorial. Excludes other NEUC components, 3 N SCC/Tsuchiya jet, western source paths and eastern continuation. Not a whole-component or parent-system length.",
+          "layer": "Argo P-vector absolute geostrophic zonal velocity on 27.0 sigma-theta (kg/m3), spatially varying depth. Not LICOM/SODA velocity, uniform depth, or the 3 N Tsuchiya jet.",
+          "time_convention": "2004-2014 Argo climatological mean, year precision; not a dated observed axis or monthly geometry. Model periods 1969-2007 are not transferred.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "southern NEUC isopycnal reference reach",
+          "route_url": "reference-routes.html#pacific-neuc-southern-reach-reference-path-candidate",
+          "source_url": "https://doi.org/10.1038/s41598-018-35469-2",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        },
+        {
           "candidate_id": "solomon-island-coastal-undercurrent-reference-path-candidate",
           "current_id": "solomon-island-coastal-undercurrent",
           "name": "Solomon Island Coastal Undercurrent",
@@ -635,8 +769,8 @@
           "crosses_in_all_declared_scenarios": true
         }
       ],
-      "current_count": 2,
-      "nominal_current_count": 2
+      "current_count": 3,
+      "nominal_current_count": 3
     },
     "PEQD": {
       "name": "Pacific equatorial divergence",
@@ -1017,6 +1151,38 @@
       "name": "Red Sea and Persian Gulf",
       "route_candidates": [
         {
+          "candidate_id": "redsox-northern-plume-reach-reference-path-candidate",
+          "current_id": "red-sea-saline-overflow",
+          "name": "Red Sea saline overflow - northern plume reference reach",
+          "scope": "Declared northern descending-plume regional connection from an OSW Bab-el-Mandeb approach gate toward the Figure 1 lower-channel neighborhood. Every vertex is an independent rounded editorial choice. Excludes the other branch, gully products, late equilibrated-water spreading and a whole-parent length.",
+          "layer": "Descending dense Red Sea outflow plume branch, with bottom and interfacial layers and changing equilibrium depth. Not a surface flow, fixed 100-250 m depth slab, channel width or equilibrated-water boundary undercurrent.",
+          "time_convention": "REDSOX winter/summer 2001 geographic branch context; selected path is editorial, not a synoptic velocity axis or reconstructed seasonal routes. Cruises and station composites are separate occupations.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "northern descending-plume reference reach",
+          "route_url": "reference-routes.html#redsox-northern-plume-reach-reference-path-candidate",
+          "source_url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2018/03/Peters_2005_MixingEntrainment.pdf",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        },
+        {
+          "candidate_id": "redsox-southern-plume-reach-reference-path-candidate",
+          "current_id": "red-sea-saline-overflow",
+          "name": "Red Sea saline overflow - southern plume reference reach",
+          "scope": "Declared southern descending-plume regional connection from an OSW Bab-el-Mandeb approach gate toward the Figure 1 lower-channel neighborhood. Every vertex is an independent rounded editorial choice. Excludes the other branch, gully products, late equilibrated-water spreading and a whole-parent length.",
+          "layer": "Descending dense Red Sea outflow plume branch, with bottom and interfacial layers and changing equilibrium depth. Not a surface flow, fixed 100-250 m depth slab, channel width or equilibrated-water boundary undercurrent.",
+          "time_convention": "REDSOX winter/summer 2001 geographic branch context; selected path is editorial, not a synoptic velocity axis or reconstructed seasonal routes. Cruises and station composites are separate occupations.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "southern descending-plume reference reach",
+          "route_url": "reference-routes.html#redsox-southern-plume-reach-reference-path-candidate",
+          "source_url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2018/03/Peters_2005_MixingEntrainment.pdf",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        },
+        {
           "candidate_id": "somali-summer-southern-reference-path-candidate",
           "current_id": "somali",
           "name": "Somali Current",
@@ -1049,12 +1215,28 @@
           "crosses_in_all_declared_scenarios": true
         }
       ],
-      "current_count": 1,
-      "nominal_current_count": 1
+      "current_count": 2,
+      "nominal_current_count": 2
     },
     "IND W": {
       "name": "Western India coast",
       "route_candidates": [
+        {
+          "candidate_id": "indian-euc-spring-observation-reach-reference-path-candidate",
+          "current_id": "indian-equatorial-undercurrent",
+          "name": "Indian Equatorial Undercurrent - spring reference reach",
+          "scope": "Declared53 E to91 E spring Indian EUC reference corridor. Longitude gates follow the reviewed 1963 observational domain; OSW chooses the equatorial line, connecting vertices and alternatives. Excludes Wyrtki surface jets, westward undercurrent conventions, anomalous fall episodes and whole-basin endpoints.",
+          "layer": "Upper-thermocline eastward undercurrent geography. No uniform fixed depth reconstructed; 80.5 E, 50-150 m observations in 1994 are a different local occupation, not this route layer.",
+          "time_convention": "Spring eastward convention. Review reports several observations between 53 E and 91 E during March-April 1963; those stations do not establish a simultaneous continuous axis or annual recurrence.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "spring observational-domain reference reach",
+          "route_url": "reference-routes.html#indian-euc-spring-observation-reach-reference-path-candidate",
+          "source_url": "https://www.whoi.edu/cms/files/schott_mccreary_41948.pdf#page=29",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        },
         {
           "candidate_id": "indian-secc-winter-reach-reference-path-candidate",
           "current_id": "indian-south-equatorial-countercurrent",
@@ -1088,8 +1270,8 @@
           "crosses_in_all_declared_scenarios": false
         }
       ],
-      "current_count": 2,
-      "nominal_current_count": 2
+      "current_count": 3,
+      "nominal_current_count": 3
     },
     "ARAB": {
       "name": "Northwest Arabian Sea upwelling",
@@ -1117,6 +1299,22 @@
     "MONS": {
       "name": "Indian monsoon gyre",
       "route_candidates": [
+        {
+          "candidate_id": "indian-euc-spring-observation-reach-reference-path-candidate",
+          "current_id": "indian-equatorial-undercurrent",
+          "name": "Indian Equatorial Undercurrent - spring reference reach",
+          "scope": "Declared53 E to91 E spring Indian EUC reference corridor. Longitude gates follow the reviewed 1963 observational domain; OSW chooses the equatorial line, connecting vertices and alternatives. Excludes Wyrtki surface jets, westward undercurrent conventions, anomalous fall episodes and whole-basin endpoints.",
+          "layer": "Upper-thermocline eastward undercurrent geography. No uniform fixed depth reconstructed; 80.5 E, 50-150 m observations in 1994 are a different local occupation, not this route layer.",
+          "time_convention": "Spring eastward convention. Review reports several observations between 53 E and 91 E during March-April 1963; those stations do not establish a simultaneous continuous axis or annual recurrence.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "spring observational-domain reference reach",
+          "route_url": "reference-routes.html#indian-euc-spring-observation-reach-reference-path-candidate",
+          "source_url": "https://www.whoi.edu/cms/files/schott_mccreary_41948.pdf#page=29",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        },
         {
           "candidate_id": "indian-secc-winter-reach-reference-path-candidate",
           "current_id": "indian-south-equatorial-countercurrent",
@@ -1182,8 +1380,8 @@
           "crosses_in_all_declared_scenarios": true
         }
       ],
-      "current_count": 3,
-      "nominal_current_count": 3
+      "current_count": 4,
+      "nominal_current_count": 4
     },
     "IND E": {
       "name": "Eastern India coast",
@@ -1298,6 +1496,22 @@
           "crosses_in_all_declared_scenarios": true
         },
         {
+          "candidate_id": "indian-euc-spring-observation-reach-reference-path-candidate",
+          "current_id": "indian-equatorial-undercurrent",
+          "name": "Indian Equatorial Undercurrent - spring reference reach",
+          "scope": "Declared53 E to91 E spring Indian EUC reference corridor. Longitude gates follow the reviewed 1963 observational domain; OSW chooses the equatorial line, connecting vertices and alternatives. Excludes Wyrtki surface jets, westward undercurrent conventions, anomalous fall episodes and whole-basin endpoints.",
+          "layer": "Upper-thermocline eastward undercurrent geography. No uniform fixed depth reconstructed; 80.5 E, 50-150 m observations in 1994 are a different local occupation, not this route layer.",
+          "time_convention": "Spring eastward convention. Review reports several observations between 53 E and 91 E during March-April 1963; those stations do not establish a simultaneous continuous axis or annual recurrence.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "spring observational-domain reference reach",
+          "route_url": "reference-routes.html#indian-euc-spring-observation-reach-reference-path-candidate",
+          "source_url": "https://www.whoi.edu/cms/files/schott_mccreary_41948.pdf#page=29",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        },
+        {
           "candidate_id": "indian-secc-winter-reach-reference-path-candidate",
           "current_id": "indian-south-equatorial-countercurrent",
           "name": "Indian Ocean South Equatorial Countercurrent",
@@ -1362,8 +1576,8 @@
           "crosses_in_all_declared_scenarios": true
         }
       ],
-      "current_count": 5,
-      "nominal_current_count": 5
+      "current_count": 6,
+      "nominal_current_count": 6
     },
     "AUSW": {
       "name": "Western Australian and Indonesian coast",
