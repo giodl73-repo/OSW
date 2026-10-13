@@ -5,6 +5,7 @@ mod abstract_regional_widths;
 mod astrid_scales;
 mod atlantic_euc_sections;
 mod atlas_data;
+mod basin_spans;
 pub mod cartography;
 mod charts;
 mod coastal_composite_widths;
@@ -267,6 +268,7 @@ impl Store {
         seasonal::validate_features(&bundle.collections)?;
         eddy_recurrence::validate(&bundle)?;
         samples::validate(&bundle.collections, &bundle.manifest)?;
+        basin_spans::validate(&bundle)?;
         planning::validate(&bundle.collections, &bundle.manifest)?;
         loop_diagnostics::validate(&bundle.collections, &bundle.manifest)?;
         loop_recorded::validate(&bundle)?;

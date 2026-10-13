@@ -536,6 +536,17 @@ def validate(document, ledger):
     if len({row['current_id'] for row in spans}) != len(spans):
         raise ValueError('Duplicate section-span identity')
     for diagnostic in spans:
+        if diagnostic['current_id'] in ['portugal','south-atlantic','south-pacific']:
+            from build_basin_surface_section_spans import build as rebuild_basin, diagnostic_matches as basin_matches
+            calculated=next(d for d in rebuild_basin() if d['current_id']==diagnostic['current_id'])
+            expected='research/'+calculated['section_id']+'-2013-monthly-component-spans.json'
+            if len(diagnostic['sources'])!=1 or diagnostic['sources'][0]['file']!=expected or diagnostic['status']!=calculated['status'] or diagnostic['metric']!=calculated['width_metric']:
+                raise ValueError('Invalid basin component source identity')
+            source=diagnostic['sources'][0];raw=(ROOT/source['file']).read_bytes()
+            if hashlib.sha256(raw).hexdigest()!=source['sha256'] or not basin_matches(json.loads(raw),calculated):raise ValueError('Changed basin component diagnostic')
+            if diagnostic['whole_current_width_km'] is not None or diagnostic['annual_width_range_km'] is not None or diagnostic['width_rank_eligible'] is not False or diagnostic['annual_extrema_eligible'] is not False:
+                raise ValueError('Basin component promoted to current width')
+            continue
         if diagnostic['current_id'] != 'loop' or diagnostic['status'] != 'local_component_section_diagnostic_requires_scientific_review' or diagnostic['metric'] != 'zonal_half_peak_northward_velocity_section_span':
             raise ValueError('Invalid component section-span classification')
         if diagnostic['whole_current_width_km'] is not None or diagnostic['annual_width_range_km'] is not None or diagnostic['width_rank_eligible'] is not False or diagnostic['annual_extrema_eligible'] is not False:

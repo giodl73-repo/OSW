@@ -110,6 +110,11 @@ pub fn scene(matches: &[&Value], corpus: &[Value]) -> Value {
             format!("Kuroshio — {}", first["phase_label"].as_str().unwrap_or(""))
         } else if first["current_id"] == "leeuwin" {
             "Leeuwin — historical monthly fitted widths".into()
+        } else if first["sample_family"] == "basin_monthly_component_section" {
+            format!(
+                "{} — 2013 local component spans (current width unresolved)",
+                first["current_id"].as_str().unwrap_or("")
+            )
         } else {
             "Pacific NECC — 2013 monthly diagnostics at 140 W".into()
         };

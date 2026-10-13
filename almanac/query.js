@@ -58,7 +58,7 @@
   names.route_decisions='Remaining current-length decisions';
   names.model_frames='Hourly model section frames';
   names.model_samples='Model section field samples';
-  const widthFamilies={leeuwin_monthly_fitted_plot:'Monthly fitted-width plot readings at Leeuwin track a101',kuroshio_seasonal_profile_plot:'Seasonal axis-normal threshold-profile plot readings',necc_monthly_connected_component:'Monthly-mean positive-zonal connected-component diagnostics'};
+  const widthFamilies={leeuwin_monthly_fitted_plot:'Monthly fitted-width plot readings at Leeuwin track a101',kuroshio_seasonal_profile_plot:'Seasonal axis-normal threshold-profile plot readings',necc_monthly_connected_component:'Monthly-mean positive-zonal connected-component diagnostics',basin_monthly_component_section:'Monthly local component spans; current width unresolved'};
   widthFamilies.loop_dated_half_peak_section='Recorded-day Yucatan gate half-peak northward-component spans';
   widthFamilies.gulf_stream_dated_half_peak_section='Recorded-day half-peak eastward-component section spans at 70 W';
   const order=Object.keys(names);
@@ -340,6 +340,13 @@
         element('p','Finite 40–60% boundary-threshold sensitivity: '+(row.diagnostic_sensitivity_interval_km?.join('–')||'unresolved')+' km. Grid-bracket separation (display rounded outward to 10 km): '+brackets+' km. Original brackets remain in the source record. These ranges are neither confidence intervals nor measurement uncertainty.',parent);
         element('p','Resolution review flag: '+(row.resolution_review_required===null?'unresolved':row.resolution_review_required?'yes':'no')+'. Scientific boundary validation remains pending.',parent);
       }
+      if(row.sample_family==='basin_monthly_component_section'){
+        element('p','Current association is unresolved. These independently selected monthly peaks are not a tracked current axis or evolving footprint.',parent);
+        element('p',row.source_context.time_convention,parent);
+        element('p','Native resolution review: '+(row.resolution_review_required?'required (<4 grid spacings)':'four or more grid spacings; boundary validation still pending')+'. Peak at search-window edge: '+(row.source_sample.nominal.peak_at_search_edge?'yes':'no')+'.',parent);
+        element('p','40–60% peak threshold sensitivity: '+(row.diagnostic_sensitivity_interval_km?.join('–')||'unresolved')+' km. Sampling brackets and measurement uncertainty are separate. Width of the monthly-mean profile is not mean instantaneous width.',parent);
+        link('View all monthly velocity profiles','../figures/'+row.source_context.section_id+'-2013-monthly-component-profiles.svg',parent);
+      }
       if(row.source_phase?.calendar_months===null)element('p','Calendar months for this source season are unresolved.',parent);
     }
     if(row.eastward_mean_cm_s!==undefined){
@@ -353,7 +360,7 @@
     }
     const links=element('div',undefined,parent);links.className='record-links';
     if(/^almanac\/[a-z0-9-]+\.html$/.test(row.diagnostic_page||''))link('View mapped experiment','../'+row.diagnostic_page+(row.observation_date?'?date='+encodeURIComponent(row.observation_date):''),links);
-    if(['gulf_stream_dated_half_peak_section','loop_dated_half_peak_section'].includes(row.sample_family)&&row.status==='paired_boundaries'&&row.value_km!==null)link('Map this local section span','query.html?q='+encodeURIComponent(JSON.stringify({collection:'width_samples',filters:[{field:'id',op:'eq',value:row.id}],limit:50}))+'#query-map-section',links);
+    if(['gulf_stream_dated_half_peak_section','loop_dated_half_peak_section','basin_monthly_component_section'].includes(row.sample_family)&&row.status==='paired_boundaries'&&row.value_km!==null)link('Map this local section span','query.html?q='+encodeURIComponent(JSON.stringify({collection:'width_samples',filters:[{field:'id',op:'eq',value:row.id}],limit:50}))+'#query-map-section',links);
     if(row.velocity_sample_ids?.length)link('Observed velocity and seasonal charts','query.html?q='+encodeURIComponent(JSON.stringify({collection:'current_velocity_samples',filters:[{field:'current_id',op:'eq',value:row.id.replace(/^current:/,'')}],limit:100}))+'#query-chart-section',links);
     if(row.width_sample_ids?.length)link('Query scoped width samples','query.html?q='+encodeURIComponent(JSON.stringify({collection:'width_samples',filters:[{field:'current_id',op:'eq',value:row.id.replace(/^current:/,'')}],sort:{field:'label'},limit:100})),links);
     if(row.route_decision_ids?.length)link('Query remaining length decision','query.html?q='+encodeURIComponent(JSON.stringify({collection:'route_decisions',filters:[{field:'entity_id',op:'eq',value:row.id}],limit:50})),links);

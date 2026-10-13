@@ -13,7 +13,9 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def main():
     bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes());samples=bundle['collections']['width_samples']
-    assert samples==build(bundle['collections']['diagnostics']) and len(samples)==127
+    assert samples==build(bundle['collections']['diagnostics'])
+    assert len([r for r in samples if r['sample_family']!='basin_monthly_component_section'])==127
+    assert len([r for r in samples if r['sample_family']=='basin_monthly_component_section'])==36
     assert sum(row['value_km'] is None for row in samples)==5
     queries=[{'collection':'width_samples','limit':100},
         {'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':'leeuwin'}],'sort':{'field':'month'}},
@@ -24,10 +26,10 @@ def main():
         {'collection':'objects','evidence':'width_samples'},
         {'collection':'objects','filters':[{'field':'id','op':'eq','value':'current:leeuwin'}]}]
     results=[native(q) for q in queries];assert all(r['ok'] for r in results)
-    assert results[0]['total']==127 and results[0]['map_scene']['mapped_objects']==27 and results[0]['map_scene']['unmapped_objects']==100
+    assert results[0]['total']==len(samples) and results[0]['map_scene']['mapped_objects']==63 and results[0]['map_scene']['unmapped_objects']==100
     assert results[1]['total']==12 and [r['month'] for r in results[1]['rows']]==list(range(1,13))
     assert results[2]['total']==16 and results[3]['total']==5 and results[4]['total']==12
-    assert results[5]['rows'][0]['value_km'] is None and results[6]['total']==6
+    assert results[5]['rows'][0]['value_km'] is None and results[6]['total']==len({r['entity_id'] for r in samples})
     with tempfile.TemporaryDirectory(dir=ROOT/'tmp') as temp:
         path=Path(temp)/'bad-bundle.json';exe=str(ROOT/'rust/osw-query/target/debug/osw-query-cli.exe')
         for key,value in [('value_km',9999),('month',12),('metric','whole ocean width'),('plot_reading_interval_km',[1,2]),('is_confidence_interval',True),('entity_id','current:gulf-stream-system'),('sample_family','other'),('phase_path','/months/1')]:

@@ -18,6 +18,11 @@ pub fn validate(
             Some("diagnostic:leeuwin-monthly-width") => "leeuwin_monthly_fitted_plot",
             Some("diagnostic:kuroshio-seasonal-width") => "kuroshio_seasonal_profile_plot",
             Some("diagnostic:necc-monthly-section") => "necc_monthly_connected_component",
+            Some(
+                "diagnostic:basin-portugal-40n"
+                | "diagnostic:basin-south-atlantic-30w"
+                | "diagnostic:basin-south-pacific-100w",
+            ) => "basin_monthly_component_section",
             Some("diagnostic:gulf-stream-widths") => "gulf_stream_dated_half_peak_section",
             Some("diagnostic:yucatan-noaa-sections" | "diagnostic:yucatan-adt-sections") => {
                 "loop_dated_half_peak_section"
@@ -42,6 +47,13 @@ pub fn validate(
             "loop_dated_half_peak_section",
         ]
         .contains(&family);
+        let component = family == "basin_monthly_component_section";
+        if component
+            && (row["current_association_verified"] != false
+                || document["current_association_verified"] != false)
+        {
+            return Err("Local component current association is unresolved".into());
+        }
         if family == "loop_dated_half_peak_section" || family == "florida_monthly_half_peak_plot" {
             let owner = collections
                 .get("objects")
@@ -104,7 +116,7 @@ pub fn validate(
         } else {
             Value::Null
         };
-        let expected_value = if dated {
+        let expected_value = if dated || component {
             &sample["approximate_section_span_km"]
         } else if row["sample_family"] == "necc_monthly_connected_component" {
             &sample["zero_crossing"]["span_km"]
@@ -174,7 +186,7 @@ pub fn validate(
         {
             return Err("Width sample support differs from source".into());
         }
-        let status = if dated {
+        let status = if dated || component {
             &sample["nominal"]["status"]
         } else {
             sample
@@ -204,7 +216,7 @@ pub fn validate(
             ),
             (
                 "diagnostic_sensitivity_interval_km",
-                if dated {
+                if dated || component {
                     sample["threshold_sensitivity_span_km"].clone()
                 } else {
                     Value::Null
@@ -212,7 +224,7 @@ pub fn validate(
             ),
             (
                 "sampling_bracket_interval_km",
-                if dated {
+                if dated || component {
                     sample["nominal"]["grid_bracket_span_km"].clone()
                 } else {
                     Value::Null
@@ -220,7 +232,7 @@ pub fn validate(
             ),
             (
                 "resolution_review_required",
-                if dated {
+                if dated || component {
                     sample["nominal"]["resolution_review_required"].clone()
                 } else {
                     Value::Null

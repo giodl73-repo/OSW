@@ -83,6 +83,14 @@ def build():
     media = read(base + 'media.json')
     sources = {source['id']: source for source in read(base + 'sources.json')}
     routes = read('research/ocean-current-reference-path-candidates.json')['candidates']
+    from build_basin_surface_section_spans import build as rebuild_basin, diagnostic_matches as basin_matches
+    basin_sections={}
+    read('research/basin-surface-section-inventory.json')
+    for calculated in rebuild_basin():
+        path='research/'+calculated['section_id']+'-2013-monthly-component-spans.json'
+        saved=read(path)
+        if not basin_matches(saved,calculated):raise ValueError('Stale basin component section')
+        basin_sections[calculated['current_id']]=saved
     width_inventory = read('research/ocean-current-width-inventory.json')
     validate_width_inventory(width_inventory, read('research/ocean-current-almanac.json'))
     from build_antarctic_slope_m6_velocity import build as rebuild_m6
@@ -425,6 +433,13 @@ def build():
             series.append({'label':'2013 monthly surface-section diagnostics (not climatology)','url':'necc-section.html','frames':len(necc['months']),
                            'evidence_role':'monthly_mean_section_width_candidate','diagnostic_url':'../'+necc_path,
                            'evidence_sha256':inputs[necc_path],'inventory_sha256':inputs[necc['source_inventory_file']]})
+        if current_id in basin_sections:
+            doc=basin_sections[current_id]
+            series.append({'label':'2013 monthly local component spans (current width unresolved)',
+                'url':'query.html?q='+quote(json.dumps({'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':current_id}],'sort':{'field':'month','direction':'asc'},'limit':100},separators=(',',':')),safe='')+'#query-chart-section',
+                'frames':12,'evidence_role':'monthly_local_component_spans_current_width_unresolved',
+                'diagnostic_url':'../research/'+doc['section_id']+'-2013-monthly-component-spans.json',
+                'evidence_sha256':inputs['research/'+doc['section_id']+'-2013-monthly-component-spans.json']})
         if current_id == timeline['current_id']:
             series.append({'label': 'Dated surface diagnostics', 'url': 'dated-current.html', 'frames': len(timeline['frames']) + len(annual['frames'])})
         if current_id == 'norwegian-coastal':
@@ -534,6 +549,12 @@ def build():
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],
         }
+        if current_id in basin_sections:
+            doc=basin_sections[current_id]
+            groups['time_evidence'].append(doc)
+            groups['measurements'].append(doc)
+            groups['sources'].append({'inventory_sha256':doc['source_inventory_sha256'],'config_sha256':doc['config_sha256'],'protocol_sha256':doc['protocol_sha256']})
+            evidence_links.append({'label':'Monthly section profiles and resolution flags','url':'../figures/'+doc['section_id']+'-2013-monthly-component-profiles.svg'})
         if current_id == 'zeehan':groups['time_evidence'].append(calendar)
         if current_id == florida_plot['current_id']:
             groups['measurements'].append(florida_plot);groups['time_evidence'].append(florida_plot)

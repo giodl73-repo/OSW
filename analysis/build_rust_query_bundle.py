@@ -366,6 +366,26 @@ def build():
             'source_file':path,'source_file_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8'),'document':document})
         for dependency in ['analysis/build_loop_current_section_spans.py',document['protocol_file']]:
             inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
+    from build_basin_surface_section_spans import build as rebuild_basin, diagnostic_matches as basin_matches
+    basin_inventory=read('research/basin-surface-section-inventory.json')
+    for document in rebuild_basin():
+        path='research/'+document['section_id']+'-2013-monthly-component-spans.json'
+        original=read(path)
+        if not basin_matches(original,document):raise ValueError('Stale basin section diagnostic')
+        collections['diagnostics'].append({'id':'diagnostic:basin-'+document['section_id'],
+            'label':document['current_id'].replace('-',' ').title()+' local monthly component spans (width unresolved)',
+            'entity_id':'current:'+document['current_id'],'current_id':document['current_id'],'status':document['status'],'rank_eligible':False,
+            'source_file':path,'source_file_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8'),'document':original})
+        for key,value in original.items():
+            if key.endswith('_file') and key.removesuffix('_file')+'_sha256' in original:
+                inputs[value]=hashlib.sha256((ROOT/value).read_bytes()).hexdigest()
+                if inputs[value]!=original[key.removesuffix('_file')+'_sha256']:raise ValueError('Stale basin source dependency')
+    for path in ['analysis/build_basin_surface_section_spans.py','analysis/acquire_basin_surface_sections.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for name,receipt in basin_inventory['source_files'].items():
+        path='research/source-data/oscar-basin-sections-2013/'+name
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=receipt['sha256']:raise ValueError('Changed basin original bytes')
     from build_query_width_samples import build as build_width_samples
     from build_leeuwin_monthly_plot import build as rebuild_leeuwin
     from build_kuroshio_seasonal_width_profiles import build as rebuild_kuroshio

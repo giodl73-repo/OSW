@@ -16,7 +16,11 @@
     "almanac/release/v0.1.0/media.json": "5b3ae2e0aea28056027854f439e0a3444c5ade5c6a2708e74776c3f718596397",
     "almanac/release/v0.1.0/sources.json": "f4ea71b324f4fa9aa1cba56f2eb47ff40c63543ec5260346303908c494bfc841",
     "research/ocean-current-reference-path-candidates.json": "745a4e86d35265ed974e852c9fb4b3c8710b2dd6fe84ed02dbdcbcd708ab692b",
-    "research/ocean-current-width-inventory.json": "8600bbddf1bdde04d06f3c46a8b295002b498886f82b47016a55e401ba6078cd",
+    "research/basin-surface-section-inventory.json": "b8aacb149fbed36ac6f9b4382f916360a49101241b8d2c8785e64e8bf2cc8b7d",
+    "research/portugal-40n-2013-monthly-component-spans.json": "4c572e68e584c4b2f0bbcb5797ecb61ed930fc42989f30c82d60ac9f7cc5cc0b",
+    "research/south-atlantic-30w-2013-monthly-component-spans.json": "7a8f94499c380dd753ff8af334b1bb9ca4a69e5ae4ccf393a6940b79e2645095",
+    "research/south-pacific-100w-2013-monthly-component-spans.json": "f2f18137f8907e3bacfe70206ebb62ae95a8ff7d907d39910a35df2da857265d",
+    "research/ocean-current-width-inventory.json": "3392ce4d153fb2e17c31fc4f488b1be89cfc1a42fcb25ce2630c07d574054102",
     "research/ocean-current-almanac.json": "6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e",
     "research/australia-wijeratne-2018-section-transport-audit.json": "758f18afccfee1411434d59ff9a3d0c38daf8833abf285674a33f9386ec961dd",
     "research/source-data/wijeratne-australia-2018/acquisition.json": "c8c0e2959ddba356c33009891e77850f342da84a68ee816075387fa238227628",
@@ -330,7 +334,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "e23c74eb79686d714a7779b02c93816c1d501a643168af532afe628fbc93d451",
+  "snapshot_fingerprint": "610adf94dd0f48b958081469c9a58fb100221e0662193bde28760d41a4f9dd62",
   "entries": [
     {
       "id": "current:agulhas",
@@ -11576,7 +11580,7 @@
         "reference_route": 1,
         "scoped_width": 0,
         "geometry": 0,
-        "time_samples": 0,
+        "time_samples": 12,
         "source_connectivity": 0,
         "scope_notes": 0,
         "dated_diagnostics": 0,
@@ -11585,22 +11589,31 @@
       },
       "recorded_claims": 58,
       "nasa_links": 1,
-      "fingerprint": "60696c389de1ab301b983751bebd644b15dacb113827fbee79f3efc91f2c7d56",
-      "series": [],
+      "fingerprint": "86ac75b84df96cec0139c63ac0ce4ccc52a726e8891d8ad4cb25f4027d9b55e0",
+      "series": [
+        {
+          "label": "2013 monthly local component spans (current width unresolved)",
+          "url": "query.html?q=%7B%22collection%22%3A%22width_samples%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22portugal%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22month%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A100%7D#query-chart-section",
+          "frames": 12,
+          "evidence_role": "monthly_local_component_spans_current_width_unresolved",
+          "diagnostic_url": "../research/portugal-40n-2013-monthly-component-spans.json",
+          "evidence_sha256": "4c572e68e584c4b2f0bbcb5797ecb61ed930fc42989f30c82d60ac9f7cc5cc0b"
+        }
+      ],
       "section_fingerprints": {
         "identity": "e94a3ad9df7a014d3fd7f8ddd24d8b9c1cd8c9277065bc33849e367be3791ac6",
-        "sources": "4ca8df756ca5fb927b19dec214e56f1aa52b56dc3bb7a3769995af5327017da9",
+        "sources": "57c988556449307e54636a56734d7c8fd17f48a81f0530c4d2644395ac875155",
         "claims": "83a69644e73a3d5f931de360336c495f9f8f4865a3f6b5aab91108d32a50e673",
-        "measurements": "15c3552e1e91fe59730f30e986ed063d0d03207d363575360ca9d7ce269597f2",
+        "measurements": "7580941ca6f71fdc21158a298771c95cc3f228e723c1dabb95bea985df73551c",
         "routes_geometry": "0023e5b1998d0507fbb3091c7b8e201817975081415c5370fde5f99845ebf5e1",
         "media": "a1922f9f5bea98f1d3ee6261ead37e84e2835d9511c40f0a33363038a51a6306",
-        "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd"
+        "time_evidence": "c61828e41f998f19bf06c7b2b08e05ccf2a598f7fcc7407aa09a176c5b79f972"
       },
       "latest_observation_date": "2009-11-11",
       "claim_review_counts": {
         "not_individually_reviewed": 58
       },
-      "linked_source_count": 4,
+      "linked_source_count": 5,
       "map_features": [
         {
           "geometry": {
@@ -11654,7 +11667,12 @@
       "state_evidence": [],
       "connections": [],
       "scope_notes": [],
-      "evidence_links": [],
+      "evidence_links": [
+        {
+          "label": "Monthly section profiles and resolution flags",
+          "url": "../figures/portugal-40n-2013-monthly-component-profiles.svg"
+        }
+      ],
       "object_url": "object.html?id=current%3Aportugal",
       "route_url": "reference-routes.html#portugal-reference-path-candidate",
       "season_url": "seasons.html?current=portugal"
@@ -12169,7 +12187,7 @@
         "reference_route": 1,
         "scoped_width": 0,
         "geometry": 0,
-        "time_samples": 0,
+        "time_samples": 12,
         "source_connectivity": 0,
         "scope_notes": 0,
         "dated_diagnostics": 0,
@@ -12178,22 +12196,31 @@
       },
       "recorded_claims": 56,
       "nasa_links": 1,
-      "fingerprint": "f30440e4caeaecc3354da50165c9da1db122676b9e5958a73f680eacb38903fa",
-      "series": [],
+      "fingerprint": "8b607bf3a16cbf55deed82e288a8b04310e89f506cba51748645e7218b74806a",
+      "series": [
+        {
+          "label": "2013 monthly local component spans (current width unresolved)",
+          "url": "query.html?q=%7B%22collection%22%3A%22width_samples%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22south-atlantic%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22month%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A100%7D#query-chart-section",
+          "frames": 12,
+          "evidence_role": "monthly_local_component_spans_current_width_unresolved",
+          "diagnostic_url": "../research/south-atlantic-30w-2013-monthly-component-spans.json",
+          "evidence_sha256": "7a8f94499c380dd753ff8af334b1bb9ca4a69e5ae4ccf393a6940b79e2645095"
+        }
+      ],
       "section_fingerprints": {
         "identity": "5f6c588997d42fc9f34381720b173cb8e972879b0a60928f58a702c806e633d6",
-        "sources": "e6c8742f4f74670d21d7733aaea91cbecfff1704d9e1c0f3bfa7bc2e779669e8",
+        "sources": "41da6c4d5d0e5f8de0088d7f69e3ebb1454b7c34b01407ee6c1350ad32d974d6",
         "claims": "caf872696b8118d52220a63feae2d5f81e1674e6b3ee8d7b23d4058f9a492210",
-        "measurements": "15c3552e1e91fe59730f30e986ed063d0d03207d363575360ca9d7ce269597f2",
+        "measurements": "6f38a491eca87ab3192017f8e4a1a927b1423963aa117afa9087680f93ac1934",
         "routes_geometry": "6ed4f9ed75244a883a4ee24cd26b949ec1f4da9fc8a18be85f37f60a40861c8b",
         "media": "e9cc918f0bf2b3b4b44bb585c6289b53804b8697bbead3f1c8b50f18b075ed35",
-        "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd"
+        "time_evidence": "752791fbb62256c5f4bc037133747096d53b9f86213edc5ed5accaea3af13015"
       },
       "latest_observation_date": null,
       "claim_review_counts": {
         "not_individually_reviewed": 56
       },
-      "linked_source_count": 3,
+      "linked_source_count": 4,
       "map_features": [
         {
           "geometry": {
@@ -12243,7 +12270,12 @@
       "state_evidence": [],
       "connections": [],
       "scope_notes": [],
-      "evidence_links": [],
+      "evidence_links": [
+        {
+          "label": "Monthly section profiles and resolution flags",
+          "url": "../figures/south-atlantic-30w-2013-monthly-component-profiles.svg"
+        }
+      ],
       "object_url": "object.html?id=current%3Asouth-atlantic",
       "route_url": "reference-routes.html#south-atlantic-reach-reference-path-candidate",
       "season_url": "seasons.html?current=south-atlantic"
@@ -12697,7 +12729,7 @@
         "reference_route": 1,
         "scoped_width": 0,
         "geometry": 0,
-        "time_samples": 0,
+        "time_samples": 12,
         "source_connectivity": 0,
         "scope_notes": 1,
         "dated_diagnostics": 0,
@@ -12706,16 +12738,25 @@
       },
       "recorded_claims": 56,
       "nasa_links": 1,
-      "fingerprint": "362c61f335cfe0f91945bae169880c85a7d4b8fcd16325142ba95416823d112d",
-      "series": [],
+      "fingerprint": "7142a259924519aaf14edc517ffc9554786cc9329752daf231f591e9bd61079a",
+      "series": [
+        {
+          "label": "2013 monthly local component spans (current width unresolved)",
+          "url": "query.html?q=%7B%22collection%22%3A%22width_samples%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22south-pacific%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22month%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A100%7D#query-chart-section",
+          "frames": 12,
+          "evidence_role": "monthly_local_component_spans_current_width_unresolved",
+          "diagnostic_url": "../research/south-pacific-100w-2013-monthly-component-spans.json",
+          "evidence_sha256": "f2f18137f8907e3bacfe70206ebb62ae95a8ff7d907d39910a35df2da857265d"
+        }
+      ],
       "section_fingerprints": {
         "identity": "fefe4e5c34dc5bb13532793552e7921ca399e1bb5c8fa1f91abd5137ad8e365d",
-        "sources": "99e2165f286ad2306d516ed68e6fb0a5b9697f3b5cbe003d9254bc26385ba218",
+        "sources": "6337a3d8a92d78852501ff3c5c6bfeb7f218254637dcb3d96d5c050aa904b678",
         "claims": "d76fda616266630db51cf8c004949a942f8bd5b9d8d0b1c752d0a1f678560895",
-        "measurements": "15c3552e1e91fe59730f30e986ed063d0d03207d363575360ca9d7ce269597f2",
+        "measurements": "8161f56b9527c0b1c9f88627b58d0b3076e9b0dfc3fc8fd8750493ba92712217",
         "routes_geometry": "0fdbec70b584127f609f06d0732fafbe7b071b55ae0f88d95a775f552ada164d",
         "media": "d37af8c1c28c7312b1626123fd00404d9b4aab05d50d234f16cfa398a71b88ac",
-        "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd"
+        "time_evidence": "5833d395440d9af597049462c21e02b72e81a7ff821702f949b7552db8839d1e"
       },
       "latest_observation_date": null,
       "claim_review_counts": {
@@ -12777,7 +12818,12 @@
           "observed_period": null
         }
       ],
-      "evidence_links": [],
+      "evidence_links": [
+        {
+          "label": "Monthly section profiles and resolution flags",
+          "url": "../figures/south-pacific-100w-2013-monthly-component-profiles.svg"
+        }
+      ],
       "object_url": "object.html?id=current%3Asouth-pacific",
       "route_url": "reference-routes.html#south-pacific-eastern-front-reach-reference-path-candidate",
       "season_url": "seasons.html?current=south-pacific"
@@ -66750,5 +66796,5 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "built_at_utc": "2026-10-13T21:45:37.309865+00:00"
+  "built_at_utc": "2026-10-13T22:49:06.721485+00:00"
 }

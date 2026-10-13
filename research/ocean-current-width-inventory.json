@@ -10,10 +10,10 @@
     "currents_with_scoped_width_evidence": 70,
     "measurements": 131,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 21,
+    "currents_not_assessed": 18,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 6,
-    "currents_with_section_span_diagnostics_width_unresolved": 1
+    "currents_with_section_span_diagnostics_width_unresolved": 4
   },
   "measurements": [
     {
@@ -10299,10 +10299,10 @@
     {
       "current_id": "portugal",
       "name": "Portugal Current",
-      "width_decision": "width_not_assessed",
+      "width_decision": "section_span_diagnostic_present_width_unresolved",
       "measurement_ids": [],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
+      "next_action": "Review local component association, orientation and native resolution; acquire compatible sections/layers before current-width or annual-range admission.",
       "existing_evidence_locator": null,
       "existing_evidence_source_url": null
     },
@@ -11042,10 +11042,10 @@
     {
       "current_id": "south-atlantic",
       "name": "South Atlantic Current",
-      "width_decision": "width_not_assessed",
+      "width_decision": "section_span_diagnostic_present_width_unresolved",
       "measurement_ids": [],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
+      "next_action": "Review local component association, orientation and native resolution; acquire compatible sections/layers before current-width or annual-range admission.",
       "existing_evidence_locator": null,
       "existing_evidence_source_url": null
     },
@@ -11062,10 +11062,10 @@
     {
       "current_id": "south-pacific",
       "name": "South Pacific Current",
-      "width_decision": "width_not_assessed",
+      "width_decision": "section_span_diagnostic_present_width_unresolved",
       "measurement_ids": [],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
+      "next_action": "Review local component association, orientation and native resolution; acquire compatible sections/layers before current-width or annual-range admission.",
       "existing_evidence_locator": null,
       "existing_evidence_source_url": null
     },
@@ -11511,6 +11511,57 @@
         {
           "file": "research/loop-current-adt-section-spans.json",
           "sha256": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
+        }
+      ]
+    },
+    {
+      "current_id": "portugal",
+      "status": "local_component_section_diagnostic_requires_scientific_review",
+      "metric": "fixed_orientation_half_peak_southward_component_span",
+      "whole_current_width_km": null,
+      "annual_width_range_km": null,
+      "width_rank_eligible": false,
+      "annual_extrema_eligible": false,
+      "visual_url": "query.html?q=%7B%22collection%22%3A%22width_samples%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22portugal%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22month%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A100%7D#query-chart-section",
+      "scope_note": "One 2013 local monthly-mean OSCAR component section. Current association and resolution require review; no tracked annual current width or extrema.",
+      "sources": [
+        {
+          "file": "research/portugal-40n-2013-monthly-component-spans.json",
+          "sha256": "4c572e68e584c4b2f0bbcb5797ecb61ed930fc42989f30c82d60ac9f7cc5cc0b"
+        }
+      ]
+    },
+    {
+      "current_id": "south-atlantic",
+      "status": "local_component_section_diagnostic_requires_scientific_review",
+      "metric": "fixed_orientation_half_peak_eastward_component_span",
+      "whole_current_width_km": null,
+      "annual_width_range_km": null,
+      "width_rank_eligible": false,
+      "annual_extrema_eligible": false,
+      "visual_url": "query.html?q=%7B%22collection%22%3A%22width_samples%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22south-atlantic%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22month%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A100%7D#query-chart-section",
+      "scope_note": "One 2013 local monthly-mean OSCAR component section. Current association and resolution require review; no tracked annual current width or extrema.",
+      "sources": [
+        {
+          "file": "research/south-atlantic-30w-2013-monthly-component-spans.json",
+          "sha256": "7a8f94499c380dd753ff8af334b1bb9ca4a69e5ae4ccf393a6940b79e2645095"
+        }
+      ]
+    },
+    {
+      "current_id": "south-pacific",
+      "status": "local_component_section_diagnostic_requires_scientific_review",
+      "metric": "fixed_orientation_half_peak_eastward_component_span",
+      "whole_current_width_km": null,
+      "annual_width_range_km": null,
+      "width_rank_eligible": false,
+      "annual_extrema_eligible": false,
+      "visual_url": "query.html?q=%7B%22collection%22%3A%22width_samples%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22south-pacific%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22month%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A100%7D#query-chart-section",
+      "scope_note": "One 2013 local monthly-mean OSCAR component section. Current association and resolution require review; no tracked annual current width or extrema.",
+      "sources": [
+        {
+          "file": "research/south-pacific-100w-2013-monthly-component-spans.json",
+          "sha256": "f2f18137f8907e3bacfe70206ebb62ae95a8ff7d907d39910a35df2da857265d"
         }
       ]
     }
