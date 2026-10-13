@@ -123,6 +123,11 @@
     if(row?.current_id==='monsoon'&&row?.original_regional_context){byId('season-title').textContent=row.original_regional_context.display_title;byId('season-value').textContent=`${row.name}: approximately ${row.approximate_width_km} km · ${row.phase_label} · distinct July 2016 feature description`; }
     if(row?.original_regional_context?.description_kind?.startsWith('climatological-mdt-')){byId('season-title').textContent=row.original_regional_context.display_title;byId('season-value').textContent=`${row.name}: approximately ${row.approximate_width_km} km · ${row.phase_label} · meridional MDT contour separation`;}
     if(row?.reported_width_constraint)byId('season-title').textContent=row.reported_width_constraint.kind==='author_reported_greater_than_broad_flow_band'?row.original_regional_context.display_title:row.reported_width_constraint.kind==='author_reported_one_sided_coastal_confinement'?'Coastal confinement':row.reported_width_constraint.kind==='issuer_reported_greater_than_geographic_breadth'?'Reported offshore breadth':'Reported band size constraint';
+    if(row?.original_regional_context?.description_kind==='dated_local_descriptor') {
+      byId('season-title').textContent=row.original_regional_context.display_title;
+      byId('season-value').textContent=`${row.name}: approximately ${row.approximate_width_km} km · ${row.width_metric_label}`;
+      byId('season-definition').textContent=`${row.geographic_scope} ${row.layer} ${row.time_convention} ${row.original_regional_context.display_method_note}`;
+    }
     if(row?.phase_kind==='seasonal_regional_width_range'){byId('season-title').textContent='Seasonal regional width scale';byId('season-value').textContent=`${row.name}: ${row.width_range_km.join('–')} km seasonal regional scale · ${row.phase_label}`;}
     if(row?.phase_kind==='mean_offshore_extent_range') {
       byId('season-title').textContent='Mean surface offshore extent';

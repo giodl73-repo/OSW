@@ -43,6 +43,14 @@ def build():
     read('research/guinea-djakoure-2017-model-width-source-review.json');read('research/source-data/djakoure-guinea-2017/acquisition.json')
     for path in ['research/source-data/djakoure-guinea-2017/journal-article.pdf','plans/guinea-model-regional-width-protocol-v1.md','analysis/check_guinea_model_width.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_hiri_east_adriatic_local_widths import AUDITS as LOCAL_AUDITS
+    for audit_file, _ in LOCAL_AUDITS.values():
+        audit = read(audit_file)
+        read(audit['acquisition_file'])
+        for kind in ['source_document', 'protocol']:
+            path = audit[kind+'_file']; inputs[path] = hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for path in ['analysis/check_hiri_east_adriatic_local_widths.py','analysis/build_hiri_east_adriatic_local_widths.py']:
+        inputs[path] = hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/caribbean-duncan-1982-dated-width-scope-audit.json');read('research/source-data/duncan-caribbean-1982/acquisition.json')
     for path in ['research/source-data/duncan-caribbean-1982/journal-article.pdf','plans/caribbean-dated-width-protocol-v1.md','analysis/check_caribbean_dated_width.py','analysis/build_caribbean_dated_width.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
