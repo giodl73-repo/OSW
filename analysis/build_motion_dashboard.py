@@ -158,6 +158,7 @@ def build():
     guinea_width_audit=read('research/guinea-djakoure-2017-model-width-source-review.json')
     algerian_width_audit=read('research/algerian-cotroneo-2019-regional-width-scope-audit.json')
     alaska_width_audit=read('research/alaska-weingartner-2002-regional-width-scope-audit.json')
+    caribbean_width_audit=read('research/caribbean-duncan-1982-dated-width-scope-audit.json')
     zeehan_width_audit=read('research/zeehan-cresswell-2000-width-section-scope-audit.json');read('research/source-data/cresswell-zeehan-2000/acquisition.json')
     for path in ['research/source-data/cresswell-zeehan-2000/journal-article.pdf','plans/zeehan-width-source-separation-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -547,8 +548,8 @@ def build():
             groups['sources']=[groups['sources'],own_width_audits]
             groups['measurements'].append(own_width_audits)
             groups['time_evidence'].append(own_width_audits)
-        if current_id in {'algerian','alaska','pacific-equatorial-undercurrent','atlantic-equatorial-undercurrent','kuroshio-extension','new-guinea-coastal-undercurrent','zeehan'}:
-            original_width_audit={'algerian':algerian_width_audit,'alaska':alaska_width_audit,'pacific-equatorial-undercurrent':pacific_euc_width_audit,'atlantic-equatorial-undercurrent':atlantic_euc_width_audit,'kuroshio-extension':kuroshio_extension_width_audit,'new-guinea-coastal-undercurrent':ngcu_width_audit,'zeehan':zeehan_width_audit}[current_id]
+        if current_id in {'caribbean','algerian','alaska','pacific-equatorial-undercurrent','atlantic-equatorial-undercurrent','kuroshio-extension','new-guinea-coastal-undercurrent','zeehan'}:
+            original_width_audit={'caribbean':caribbean_width_audit,'algerian':algerian_width_audit,'alaska':alaska_width_audit,'pacific-equatorial-undercurrent':pacific_euc_width_audit,'atlantic-equatorial-undercurrent':atlantic_euc_width_audit,'kuroshio-extension':kuroshio_extension_width_audit,'new-guinea-coastal-undercurrent':ngcu_width_audit,'zeehan':zeehan_width_audit}[current_id]
             payload['original_regional_width_scope']=original_width_audit
             groups['measurements'].append(original_width_audit)
             groups['sources'].append(original_width_audit)

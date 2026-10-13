@@ -1,16 +1,16 @@
 {
   "schema": "osw.current-width-inventory.v1",
-  "as_of": "2026-10-09",
+  "as_of": "2026-10-13",
   "status": "editorial_width_inventory_not_canonical",
   "protocol_file": "plans/ocean-current-width-measurement-protocol-v1.md",
   "current_ledger_sha256": "6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e",
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 67,
-    "measurements": 127,
+    "currents_with_scoped_width_evidence": 68,
+    "measurements": 128,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 24,
+    "currents_not_assessed": 23,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 6,
     "currents_with_section_span_diagnostics_width_unresolved": 1
@@ -9687,6 +9687,107 @@
         "audit_sha256": "2edff326fd4b7bbc2c6a8cdd1ef0324bac77a62f7e85579cd8ff38753e2db9a6",
         "audit_pointer": "/measurements/1"
       }
+    },
+    {
+      "id": "caribbean-duncan-1982-october-1974-mainstream-width",
+      "current_id": "caribbean",
+      "name": "Caribbean Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_regional_summary",
+      "width_metric": "author_reported_current_width",
+      "width_metric_label": "dated meridional mainstream span",
+      "approximate_width_km": 410,
+      "width_range_km": null,
+      "range_kind": "dated_reported_point_with_unresolved_separate_range_units",
+      "range_interpretation": "One reported October value. Separate historical range has unresolved upper units; no numerical range, confidence interval or annual extrema admitted.",
+      "geographic_scope": "Southern Caribbean mainstream on the Puerto Rico-Venezuela meridian, 67 W.",
+      "section_geometry": null,
+      "section_orientation": "Meridional section; no perpendicular-to-axis correction reproduced.",
+      "layer": "Geostrophic sea-surface current relative to 1600 dbar. No fixed numerical width layer.",
+      "time_convention": "October 1974 author-reported section description. Exact observation day unknown; not a climatology or an annual maximum.",
+      "boundary_rule": "Southern limit selected geographically at Los Roques, 12 N. Northern edge method not independently reproduced; no paired velocity-boundary coordinates extracted.",
+      "source_url": "https://journals.lib.unb.ca/index.php/ihr/article/view/23548",
+      "source_citation": "Duncan, Schladow and Williams (1982), Surface Currents Near the Greater and Lesser Antilles, International Hydrographic Review 59(2), 67-78. Archive upload 2015.",
+      "source_locator": "Printed p77 / PDF p11, mainstream width bullet; p76 / PDF p10 methods and Figure 10 caption.",
+      "source_retrieved_date": "2026-10-13",
+      "source_evidence_kind": "published_original_dated_section_description",
+      "extraction_method": "Explicit kilometre value transcribed from visually inspected original prose; no figure boundary digitization.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "phase_label": "October 1974 mainstream at 67 W",
+      "phase_kind": "regional_summary",
+      "observed_month": "1974-10",
+      "time_precision": "month",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "uncertainty_km": null,
+      "source_quality_note": "Original paper inspected. Coarse station sampling and geographic southern boundary limit interpretation. Underlying 1976 section study and raw stations not independently reproduced; mixed range units unresolved.",
+      "remaining_gates": [
+        "Recover original section stations and paired velocity-edge rule.",
+        "Resolve the historical upper-endpoint mile unit.",
+        "Obtain compatible repeats before annual margins; independent scientific review."
+      ],
+      "original_regional_context": {
+        "description_kind": "dated_geostrophic_mainstream_section",
+        "width_passage_visually_inspected": true,
+        "underlying_width_methods_reviewed": false,
+        "full_study_reproduced": false,
+        "source_observed_month": "1974-10",
+        "section_longitude_degrees_east": -67,
+        "southern_limit_latitude_degrees_north": 12,
+        "southern_limit_kind": "author_selected_Los_Roques_geographic_limit",
+        "reference_pressure_dbar": 1600,
+        "reference_pressure_is_width_layer": false,
+        "typical_station_spacing_nautical_miles": 60,
+        "station_spacing_is_width_uncertainty": false,
+        "boundary_coordinates_extracted": false,
+        "map_buffer_eligible": false,
+        "historical_maximum_is_annual_extremum": false,
+        "range_context": {
+          "raw_endpoints": [
+            108,
+            225
+          ],
+          "raw_units": [
+            "nautical_miles",
+            "miles_unqualified"
+          ],
+          "upper_unit_resolved": false,
+          "normalized_range_km": null,
+          "source_figure_year_labels": [
+            1973,
+            1974,
+            1975
+          ]
+        },
+        "speed_context": {
+          "associated_october_1974_cm_s": 66,
+          "associated_october_1974_m_s": 0.66,
+          "reported_mainstream_speed_range_cm_s": [
+            41,
+            76
+          ],
+          "reported_mainstream_speed_range_m_s": [
+            0.41,
+            0.76
+          ],
+          "operator": "author_reported_geostrophic_station_pair_surface_speeds",
+          "is_width_uncertainty": false
+        },
+        "protocol_file": "plans/caribbean-dated-width-protocol-v1.md",
+        "protocol_sha256": "be2d9e1fc2085218aee4b12b46cada09dc3c5b10776894b44d0c77ebfe5f8a4f",
+        "display_title": "October 1974 mainstream section",
+        "display_aria_label": "Caribbean Current: approximately 410 km reported mainstream span at 67 W in October 1974. Southern limit fixed at Los Roques; paired velocity boundaries unresolved. No annual range or uncertainty supplied.",
+        "display_caption": "October 1974 at 67 W: approximately 410 km author-reported mainstream span, with associated surface-geostrophic speed 0.66 m/s. Reference pressure 1600 dbar is not a depth slab. Numerical uncertainty and annual range unknown.",
+        "display_method_note": "Southern limit fixed at Los Roques, 12 N; typical stations 60 nautical miles apart. The separate historical 108 nautical miles to 225 miles range retains an unresolved upper unit. No mapped edges or seasonal animation inferred.",
+        "audit_file": "research/caribbean-duncan-1982-dated-width-scope-audit.json",
+        "audit_sha256": "e9abd7a125b736381a2e29313fc30c2feac6711943ec5f35780d287f51fc9d2c"
+      }
     }
   ],
   "current_decisions": [
@@ -10489,10 +10590,12 @@
     {
       "current_id": "caribbean",
       "name": "Caribbean Current",
-      "width_decision": "width_not_assessed",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "caribbean-duncan-1982-october-1974-mainstream-width"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
+      "next_action": "Resolve historical range units and paired boundaries; obtain compatible repeated widths before annual margins.",
       "existing_evidence_locator": null,
       "existing_evidence_source_url": null
     },
