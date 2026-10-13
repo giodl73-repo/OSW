@@ -21,7 +21,7 @@ def main():
         assert parse_qs(urlparse(share).query)['atlas-feature']==['current:agulhas']
         same(list(map(float,parse_qs(urlparse(share).query)['atlas-view'][0].split(','))))
         page.goto(share,wait_until='networkidle');ready();same(expected)
-        assert page.locator('#route-atlas-preview h3').inner_text()=='Agulhas Current'
+        assert page.locator('#route-atlas-preview > h3').inner_text()=='Agulhas Current'
         page.reload(wait_until='networkidle');ready();same(expected)
         # New selection gets its own fit, not the previous current's framing.
         page.locator('#route-atlas-select').select_option('current:ligurian');assert view()!=expected

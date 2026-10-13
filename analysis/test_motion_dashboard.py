@@ -139,7 +139,7 @@ class DashboardEvidenceTests(unittest.TestCase):
         rows = {row['id']: row for row in build()['entries']}
         current = rows['current:west-australian']
         self.assertEqual(current['capabilities']['reference_route'], 0)
-        self.assertEqual(current['capabilities']['scoped_width'], 0)
+        self.assertEqual(current['capabilities']['scoped_width'], 1)
         self.assertIsNone(current['latest_observation_date'])
         note = current['scope_notes'][0]
         self.assertEqual(note['related_current_ids'], ['leeuwin'])

@@ -21,6 +21,12 @@ def validate(document, ledger):
     by_id = {row["id"]: row for row in records}
     hydrographic_extraction = None
     for row in records:
+        if str(row.get("id", "")).startswith(("acc-park-2019-udintsev-", "monsoon-webber-2018-", "tasman-front-nilsson-1980-", "antarctic-coastal-schubert-2021-", "deep-western-boundary-richardson-1993-", "pacific-neuc-li-2018-")) or row.get("original_regional_context") or row["current_id"] in {"algerian", "alaska", "pacific-equatorial-undercurrent", "atlantic-equatorial-undercurrent", "kuroshio-extension", "new-guinea-coastal-undercurrent", "zeehan", "west-australian", "peru-humboldt", "baffin", "western-adriatic", "jutland", "solomon-island-coastal-undercurrent", "new-ireland-coastal-undercurrent", "north-pacific", "acc", "monsoon", "tasman-front", "antarctic-coastal", "deep-western-boundary", "pacific-north-equatorial-undercurrent"}:
+            from check_original_regional_widths import validate_row
+            validate_row(row)
+        if row.get("model_regional_context") or row["current_id"] == "guinea":
+            from check_guinea_model_width import validate_row
+            validate_row(row)
         if row.get("source_scope_context") or row["current_id"] in {"california","oyashio"}:
             from check_abstract_regional_widths import validate_row
             validate_row(row)
@@ -35,6 +41,9 @@ def validate(document, ledger):
                 raise ValueError('Norwegian coastal width differs from source range or scope')
         if row["current_id"] not in ids or row["status"] != "editorial_source_extraction_not_canonical" or row["whole_current_representative"] is not False or row["width_rank_eligible"] is not False:
             raise ValueError("Width admission or identity mismatch")
+        if row.get("modal_decay_context") or row["current_id"] == "tsushima":
+            from check_tsushima_modal_width import validate_row
+            validate_row(row)
         value = row["approximate_width_km"]
         span = row['width_range_km']
         if span is not None:
@@ -55,8 +64,13 @@ def validate(document, ledger):
             elif row['phase_kind']=='mean_offshore_extent_range':
                 if value is not None or row.get('range_kind')!='author_reported_approximate_offshore_extent_of_mean_surface_flow':
                     raise ValueError('Offshore extent promoted to midpoint or temporal width')
+            elif row['phase_kind']=='seasonal_regional_width_range':
+                if value is not None or row.get('range_kind')!='author_reported_seasonal_regional_width_scale_span':raise ValueError('Invented seasonal regional width midpoint or annual range')
             elif value is not None or row.get('range_kind') != 'reported_typical_regional_width_span' or row['phase_kind'] != 'regional_summary':
                 raise ValueError('Unsupported regional range or invented representative width')
+        elif row.get('reported_width_constraint'):
+            if row['current_id'] not in {'new-guinea-coastal-undercurrent','west-australian','solomon-island-coastal-undercurrent','new-ireland-coastal-undercurrent','north-pacific'} or value is not None or span is not None:
+                raise ValueError('Unbound size constraint or promoted numeric width')
         elif not isinstance(value, (float, int)) or isinstance(value, bool) or not math.isfinite(value) or value <= 0:
             raise ValueError("Invalid width")
         for key in ["width_metric", "measurement_type", "geographic_scope", "section_orientation", "layer", "time_convention", "boundary_rule", "source_url", "source_citation", "source_locator", "range_interpretation", "source_evidence_kind", "extraction_method"]:
@@ -65,7 +79,7 @@ def validate(document, ledger):
         date.fromisoformat(row["source_retrieved_date"])
         if row.get("calendar_months") is not None:
             months = row["calendar_months"]
-            if row["phase_kind"] not in {"seasonal_summary", "seasonal_mean_width_range", "monthly_climatological_fit"} or not isinstance(months, list) or not months or len(set(months)) != len(months) or any(type(month) is not int or not 1 <= month <= 12 for month in months) or not row.get("calendar_source_locator", "").strip():
+            if row["phase_kind"] not in {"seasonal_summary", "seasonal_mean_width_range", "monthly_climatological_fit", "seasonal_regional_width_range"} or not isinstance(months, list) or not months or len(set(months)) != len(months) or any(type(month) is not int or not 1 <= month <= 12 for month in months) or not row.get("calendar_source_locator", "").strip():
                 raise ValueError("Unsupported seasonal calendar")
         if row.get("source_evidence_kind") == "published_historical_regional_synthesis":
             year = row.get("source_publication_year")
@@ -213,6 +227,9 @@ def validate(document, ledger):
                 raise ValueError('Profile segment assignment disagrees with ledger')
             if parent is None and row.get('segment_assignment_role') is not None:
                 raise ValueError('Segment assignment requires source parent identity')
+        elif row['phase_kind'] == 'seasonal_regional_width_range':
+            from check_somali_seasonal_width import validate_row
+            validate_row(row)
         elif row['phase_kind'] == 'synoptic_stream_tube_section':
             from check_west_spitsbergen_stream_tubes import validate_row
             validate_row(row)
@@ -457,8 +474,23 @@ def validate(document, ledger):
             audit=json.loads(path.read_text(encoding='utf-8'))
             if (row['current_id'],value,row['source_url'],row['source_locator'],row['boundary_rule'])!=(audit['current_id'],audit['reported_width_km_approx'],audit['source_url'],audit['source_locator'],audit['boundary_rule']):
                 raise ValueError('Regional scalar differs from pinned source extraction')
+        elif row['phase_kind'] == 'model_regional_width_summary':
+            from check_guinea_model_width import validate_row
+            validate_row(row)
+        elif row['phase_kind'] == 'campaign_modal_decay_width':
+            from check_tsushima_modal_width import validate_row
+            validate_row(row)
+        elif row['phase_kind'] == 'lagrangian_composite_zero_velocity_width':
+            from check_dwbc_float_composite import validate_row
+            validate_row(row)
+        elif row['phase_kind'] == 'isopycnal_jet_breadth_summary':
+            from check_pacific_neuc_isopycnal_breadths import validate_row
+            validate_row(row)
+        elif row['phase_kind'] == 'coastal_composite_threshold_section':
+            from check_antarctic_coastal_composites import validate_row
+            validate_row(row)
         elif row['phase_kind'] == 'regional_summary':
-            if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] != 'author_reported_current_width' or row['observed_period'] is not None or row.get('calendar_months') is not None or span is None:
+            if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] not in {'author_reported_current_width','author_reported_one_sided_coastal_confinement','author_reported_climatological_major_front_separation','author_reported_climatological_boundary_breadth','author_inferred_origin_proxy_component_width','author_reported_meander_occupied_band_breadth'} or row['observed_period'] is not None or row.get('calendar_months') is not None or (span is None and not row.get('original_regional_context')):
                 raise ValueError('Conflated regional range support')
             if row.get('regional_range_context') and row['current_id'] not in {'black-sea-rim','norwegian-coastal'}:
                 raise ValueError('Regional range source owner mismatch')
@@ -489,7 +521,7 @@ def validate(document, ledger):
         date.fromisoformat(review['source_retrieved_date'])
         if any(not evidence.get(key, '').strip() for evidence in review['evidence'] for key in ['url', 'citation', 'locator', 'supports']):
             raise ValueError('Missing width source-review evidence')
-    states = {"scoped_width_evidence_present", "existing_width_mention_requires_source_review", "width_not_assessed", "derived_width_candidate_requires_review", "sources_reviewed_no_comparable_numeric_current_width"}
+    states = {"section_span_diagnostic_present_width_unresolved", "scoped_width_evidence_present", "existing_width_mention_requires_source_review", "width_not_assessed", "derived_width_candidate_requires_review", "sources_reviewed_no_comparable_numeric_current_width"}
     derived = document.get('derived_width_series_candidates', [])
     if len({row['current_id'] for row in derived}) != len(derived):
         raise ValueError('Duplicate derived width identity')
@@ -500,6 +532,24 @@ def validate(document, ledger):
         series = json.loads(path.read_text(encoding='utf-8'))
         if series['current_id'] != candidate['current_id'] or series['status'] != 'derived_width_candidate_requires_scientific_review' or series['whole_current_representative'] is not False:
             raise ValueError('Invalid derived width admission')
+    spans = document.get('section_span_diagnostics', [])
+    if len({row['current_id'] for row in spans}) != len(spans):
+        raise ValueError('Duplicate section-span identity')
+    for diagnostic in spans:
+        if diagnostic['current_id'] != 'loop' or diagnostic['status'] != 'local_component_section_diagnostic_requires_scientific_review' or diagnostic['metric'] != 'zonal_half_peak_northward_velocity_section_span':
+            raise ValueError('Invalid component section-span classification')
+        if diagnostic['whole_current_width_km'] is not None or diagnostic['annual_width_range_km'] is not None or diagnostic['width_rank_eligible'] is not False or diagnostic['annual_extrema_eligible'] is not False:
+            raise ValueError('Component section span promoted to current width')
+        expected_files = {'research/loop-current-noaa-section-spans.json', 'research/loop-current-adt-section-spans.json'}
+        if len(diagnostic['sources']) != 2 or {source['file'] for source in diagnostic['sources']} != expected_files:
+            raise ValueError('Incomplete component section-span sources')
+        for source in diagnostic['sources']:
+            path = ROOT / source['file']
+            if hashlib.sha256(path.read_bytes()).hexdigest() != source['sha256']:
+                raise ValueError('Changed component section-span source')
+            series = json.loads(path.read_text(encoding='utf-8'))
+            if series['current_id'] != diagnostic['current_id'] or series['status'] != diagnostic['status'] or series['metric'] != diagnostic['metric'] or series['whole_current_representative'] is not False:
+                raise ValueError('Invalid component section-span source')
     for note in document.get("comparability_notes", []):
         if note["current_id"] not in ids or note["seasonal_playback_eligible"] is not False or not note["reason"].strip():
             raise ValueError("Invalid comparability restriction")
@@ -507,6 +557,8 @@ def validate(document, ledger):
         expected = {record["id"] for record in records if record["current_id"] == row["current_id"]}
         if set(row["measurement_ids"]) != expected or row["whole_current_width_km"] is not None or row["width_decision"] not in states or bool(expected) != (row["width_decision"] == "scoped_width_evidence_present"):
             raise ValueError("Width decision mismatch")
+        if (row['width_decision'] == 'section_span_diagnostic_present_width_unresolved') != any(span['current_id'] == row['current_id'] for span in spans):
+            raise ValueError('Section-span decision mismatch')
         if (row['width_decision'] == 'derived_width_candidate_requires_review') != any(candidate['current_id'] == row['current_id'] for candidate in derived):
             raise ValueError('Derived width decision mismatch')
         if (row['width_decision'] == 'sources_reviewed_no_comparable_numeric_current_width') != any(review['current_id'] == row['current_id'] for review in reviews):
@@ -518,6 +570,7 @@ def validate(document, ledger):
         if summary["range_kind"] != "span_of_reported_seasonal_typical_values" or summary["reported_seasonal_value_span_km"] != [min(row["approximate_width_km"] for row in members), max(row["approximate_width_km"] for row in members)]:
             raise ValueError("Seasonal span mismatch")
     counts = {"currents": len(ids), "currents_with_scoped_width_evidence": len({row["current_id"] for row in records}), "measurements": len(records), "currents_with_existing_mentions_pending_review": sum(row["width_decision"] == "existing_width_mention_requires_source_review" for row in decisions), "currents_not_assessed": sum(row["width_decision"] == "width_not_assessed" for row in decisions)}
+    counts['currents_with_section_span_diagnostics_width_unresolved'] = len(spans)
     counts['currents_with_derived_width_candidates_pending_review'] = len(derived)
     counts['currents_with_sources_reviewed_no_numeric_width'] = len(reviews)
     if counts != document["counts"]:

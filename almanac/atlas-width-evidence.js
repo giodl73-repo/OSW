@@ -1,6 +1,8 @@
 "use strict";
 window.renderAtlasWidthEvidence = function(panel, current, inventory) {
   const id=current.id.replace(/^current:/,'');
+  if(id==='pacific-north-equatorial-undercurrent')window.renderPacificNeucBreadths(panel,window.oswAtlasSnapshot?.pacific_neuc_breadth_scene);
+  window.renderPublishedSectionTransports(panel,window.oswAtlasSnapshot?.published_transport_scenes?.[id]);
   const section=document.createElement('section');section.className='atlas-width-evidence';panel.append(section);
   const node=(tag,text,parent=section)=>{const element=document.createElement(tag);element.textContent=text;parent.append(element);return element;};
   const link=(text,href,parent)=>{const anchor=node('a',text,parent);anchor.href=href;return anchor;};
@@ -12,12 +14,16 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
     const review=inventory.review_assessments?.find(row=>row.current_id===id);
     node('p',review?'Reviewed sources have not supplied a comparable numeric current width.':decision?.width_decision==='derived_width_candidate_requires_review'?'A derived section-width candidate is available; no published width record is stored here.':'No published width record is stored yet; width remains unresolved.');
     if(review) {node('p',review.reason);for(const evidence of review.evidence)link(evidence.citation,evidence.url,node('p',''));}
+    const span=inventory.section_span_diagnostics?.find(diagnostic=>diagnostic.current_id===id);
+    if(span){node('p',span.scope_note);link('Map dated component spans',span.visual_url,section);}
     node('p','Missing evidence does not mean zero width or physical absence.');return;
   }
   node('p',`${records.length} local or regional source record${records.length===1?'':'s'}. Definitions differ; these do not establish a uniform whole-current width or annual extrema.`);
   const format=value=>Number(value).toLocaleString('en-US');
   window.renderStreamTubeWidths(section,records);
-  for(const row of records)window.renderAbstractRegionalWidth(section,row);
+  if(id==='deep-western-boundary')window.renderDwbcFloatComposite(section,window.oswAtlasSnapshot?.dwbc_float_composite_scene);
+  if(id==='antarctic-coastal')window.renderCoastalCompositeWidths(section,window.oswAtlasSnapshot?.coastal_composite_width_scene);
+  for(const row of records){window.renderModalDecayWidth(section,row);window.renderOriginalRegionalWidth(section,row);window.renderModelRegionalWidth(section,row);window.renderAbstractRegionalWidth(section,row);if(row.phase_kind==='seasonal_regional_width_range')window.renderSeasonalRegionalWidth(section,row);}
   for(const row of records) {
     const details=document.createElement('details');details.className='atlas-width-record';details.dataset.measurementId=row.id;section.append(details);
     const angular=row.ensemble_angular_context;
@@ -25,6 +31,7 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
       :row.phase_kind==='width_time_series_statistics'?`${format(row.approximate_width_km)} km mean (${row.width_range_km.map(format).join('–')} km observed)`
       :row.phase_kind==='survey_layer_median_threshold_width'?`${format(row.approximate_width_km)} ±${format(row.reported_total_error_km)} km source width and total error`
       :row.phase_kind==='mean_offshore_extent_range'?`${row.width_range_km.map(format).join('–')} km mean surface offshore extent (not full width)`
+      :row.reported_width_constraint?`${row.reported_width_constraint.source_notation} reported size constraint`
       :row.approximate_width_km===null?`${row.width_range_km.map(format).join('–')} km reported span`:`about ${format(row.approximate_width_km)} km`;
     node('summary',`${value} · ${row.width_metric_label||row.width_metric.replaceAll('_',' ')} · ${row.phase_label}`,details);
     node('p',row.time_convention,details);

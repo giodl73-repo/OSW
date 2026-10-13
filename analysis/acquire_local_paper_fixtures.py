@@ -7,6 +7,7 @@ import hashlib
 import http.client
 import json
 import os
+import re
 from pathlib import Path
 import tempfile
 import time
@@ -14,28 +15,59 @@ import urllib.error
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPERS = ('kuroshio-liu-gan-2012', 'leeuwin-deng-2008', 'florida-archer-2017', 'chen-madagascar-2014', 'qiu-chen-nec-2010', 'van-aken-astrid-2003')
+PAPERS = ('kuroshio-liu-gan-2012', 'leeuwin-deng-2008', 'florida-archer-2017', 'chen-madagascar-2014', 'qiu-chen-nec-2010', 'van-aken-astrid-2003', 'schott-mccreary-2001', 'djakoure-guinea-2017', 'gouriou-atlantic-1988', 'sasaki-kuroshio-extension-2013', 'zenk-ngcu-1999', 'siedler-sonne-1997', 'cresswell-zeehan-2000', 'matsuyama-tsushima-1990', 'glenn-wac-2008', 'fissel-baffin-1982', 'chavanne-adriatic-2007', 'skov-jutland-2019', 'nielsen-jutland-2000', 'melet-solomon-2010', 'tomczak-regional-2005', 'park-acc-2019', 'nilsson-tasman-1980', 'richardson-dwbc-1993', 'wijeratne-australia-2018')
 RETRY_DELAYS = (1, 3)
 TRANSIENT_HTTP = {408, 429, 500, 502, 503, 504}
+# Byte-identical institutional locations verified 2026-10-09 (Zenk) and
+# 2026-10-12 (Qiu); see the corresponding verification receipts. These are
+# transport alternatives, not permission to substitute another PDF edition.
+PINNED_MIRRORS = {
+    ('zenk-ngcu-1999', 'https://oceanrep.geomar.de/1816/1/news34.pdf',
+     'f38a100dc030a94ce776a914b96ea798dd40c6dc1aac80fce3563806c01a6407'):
+    ('https://oceanrep.geomar.de/id/eprint/1816/1/news34.pdf',
+     'https://oceanrep.geomar.de/6814/1/news34.pdf'),
+    # Same university resource; exact 3,012,493-byte PDF verified 2026-10-12.
+    ('qiu-chen-nec-2010', 'https://www.soest.hawaii.edu/oceanography/bo/QC_NEC.pdf',
+     'b387e0e05e700fe66b3b2e98ebba56bf2d8151c3b703d37a7aecad43b5675987'):
+    ('https://soest.hawaii.edu/oceanography/bo/QC_NEC.pdf',),
+}
+
+
+def normalize_transport_identity(name, manifest, data):
+    """Restore one verified volatile PDF ID; every other byte must match the pin."""
+    pinned = '483dd114d6bbbff9b153460edf28a3391958a78e1a0b6a646db548eefcb8a674'
+    if name != 'sasaki-kuroshio-extension-2013' or manifest['sha256'] != pinned:
+        return data
+    if hashlib.sha256(data).hexdigest() == pinned:
+        return data
+    start, end = 3_831_094, 3_831_126
+    prefix = b'/ID [<996ea1892d5650af4f179c438e82877f><'
+    if len(data) != 3_831_641 or data[start-len(prefix):start] != prefix or data[end:end+3] != b'>] ' or not re.fullmatch(b'[0-9a-f]{32}', data[start:end]):
+        return data
+    canonical = data[:start] + b'd90a76365c4c151ec2c33f8c7cdfe942' + data[end:]
+    if hashlib.sha256(canonical).hexdigest() != pinned:
+        return data
+    print(f'{name}: restored verified transport-only PDF second ID; response SHA256 {hashlib.sha256(data).hexdigest()}; fixture SHA256 {pinned}', flush=True)
+    return canonical
 
 
 def verify(name, manifest, data):
-    maximum = 50_000_000 if name == 'florida-archer-2017' else 20_000_000
+    maximum = {'florida-archer-2017':50_000_000,'glenn-wac-2008':60_000_000,'tomczak-regional-2005':40_000_000}.get(name,20_000_000)
     if len(data) > maximum or not data.startswith(b'%PDF-'):
         raise ValueError(f'{name}: expected a PDF below {maximum//1_000_000} MB')
+    data = normalize_transport_identity(name, manifest, data)
     if hashlib.sha256(data).hexdigest() != manifest['sha256']:
         raise ValueError(f'{name}: source checksum differs from the pinned acquisition')
     return data
 
 
-def download(name, manifest):
-    source_url = manifest['source_url']
+def download_url(name, manifest, source_url):
     # Preserve the already verified NOAA download form and client behavior.
     if name == 'florida-archer-2017':
         source_url += '?download=1'
     headers = {} if name == 'florida-archer-2017' else {'User-Agent': 'OSW-source-validation/1.0'}
     request = urllib.request.Request(source_url, headers=headers)
-    maximum = 50_000_000 if name == 'florida-archer-2017' else 20_000_000
+    maximum = {'florida-archer-2017':50_000_000,'glenn-wac-2008':60_000_000,'tomczak-regional-2005':40_000_000}.get(name,20_000_000)
     for attempt in range(len(RETRY_DELAYS) + 1):
         try:
             with urllib.request.urlopen(request, timeout=60) as response:
@@ -56,9 +88,30 @@ def download(name, manifest):
         time.sleep(delay)
 
 
+def download(name, manifest):
+    primary = manifest['source_url']
+    alternatives = PINNED_MIRRORS.get((name, primary, manifest['sha256']), ())
+    urls = (primary, *alternatives)
+    for i, url in enumerate(urls):
+        try:
+            data = download_url(name, manifest, url)
+            if i:
+                print(f'{name}: verified pinned original from institutional mirror {url}; SHA256 {manifest["sha256"]}', flush=True)
+            return data
+        except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.IncompleteRead) as error:
+            error.add_note(f'{name}: acquisition failed at {url}')
+            if i == len(urls) - 1:
+                raise
+            print(f'{name}: transport failed at {url}: {error}; trying verified institutional mirror', flush=True)
+    # Integrity and format exceptions are deliberately not transport fallback.
+
+
 def acquire(name, directory):
     manifest = json.loads((directory / 'acquisition.json').read_text(encoding='utf-8'))
-    destination = directory / 'journal-article.pdf'
+    filename = manifest.get('document_filename', 'journal-article.pdf')
+    if filename not in {'journal-article.pdf','source-book.pdf'}:
+        raise ValueError('Unsupported local source document filename')
+    destination = directory / filename
     if destination.exists():
         return verify(name, manifest, destination.read_bytes())
     data = download(name, manifest)

@@ -73,7 +73,7 @@ def build_claims(relations: list[dict], measurements: list[dict],
             claim_id = "claim:" + record["id"]
             record["claim_id"] = claim_id
             source = sources[record["source_id"]]
-            locator = record.get("source_locator") or internal_locators.get(record["id"])
+            locator = (internal_locators.get(record["id"]) if source.get("path") else None) or record.get("source_locator") or internal_locators.get(record["id"])
             if not locator and source.get("url") and "#" in source["url"]:
                 locator = source["url"]
             internal_record = (record["id"] in internal_locators and
@@ -96,6 +96,8 @@ def build_claims(relations: list[dict], measurements: list[dict],
                           if record["evidence_status"] == "published_observed_center_point_candidate" else
                           "OSW source-set eddy/state assessment from regional gateway or point evidence; "
                           "without a dated footprint, physical containment and intersection remain unknown")
+                if record.get("footprint_candidate_id") == "footprint_candidate:ursa:2021-03-07":
+                    method = "OSW digitization of Figure 3, 7 March 2021: 68 valid threshold/stroke/axis calibration polygons and two retained rejected pixel paths; approximate state display overlap only, physical whole-eddy relation unresolved"
             elif collection_name == "operational_eddy_state_observations":
                 method = "Dated NAVO polygon containment in an approximate coast-masked OSW display state"
             elif collection_name == "diagnosed_current_path_observations":
@@ -106,6 +108,8 @@ def build_claims(relations: list[dict], measurements: list[dict],
             observation_time = (record.get("observation_date") or
                                 ({"start": record["observation_start"], "end": record["observation_end"]}
                                  if record.get("observation_start") and record.get("observation_end") else None))
+            if record.get("footprint_candidate_id") == "footprint_candidate:ursa:2021-03-07":
+                observation_time = record.get("dated_ssh_contour_observation_date") or record.get("observation_date")
             date_parts = source.get("publication_date_parts") or []
             source_date = (source.get("publication_date") or source.get("product_date") or
                            "-".join(str(part).zfill(2) if index else str(part)

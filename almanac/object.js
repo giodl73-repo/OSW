@@ -109,6 +109,7 @@ loadObjectView().then(data => {
     document.querySelector("#object-summary").textContent = `${item.type.replaceAll("_", " ")} · ${item.identity_level || "identity scope unresolved"} · ${item.basin || "basin unspecified"}`;
     const identity = document.querySelector("#identity");
     identity.replaceChildren();
+    window.renderEddySourcePanels(identity,window.oswObjectView.source_panel_scene);
     if (["named_current", "named_eddy", "operational_eddy_detection"].includes(item.type)) {
       link("Explore on the current atlas", `reference-routes.html?atlas-feature=${encodeURIComponent(item.id)}#route-atlas`, element("p", null, identity));
     }

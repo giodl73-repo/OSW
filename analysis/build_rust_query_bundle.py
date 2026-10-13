@@ -28,6 +28,9 @@ def build():
         movies_receipts[name]={'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')}
     dashboard=read('research/ocean-motion-dashboard.json')
     widths=read('research/ocean-current-width-inventory.json')
+    read('research/somali-schott-2001-premonsoon-width-scope-audit.json');read('research/source-data/schott-mccreary-2001/acquisition.json')
+    for path in ['research/source-data/schott-mccreary-2001/journal-article.pdf','plans/somali-seasonal-width-protocol-v1.md','analysis/check_somali_seasonal_width.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     for path in ['research/california-2011-abstract-width-scope-audit.json','research/oyashio-2005-abstract-width-scope-audit.json']:
         read(path)
     inputs['analysis/check_abstract_regional_widths.py']=hashlib.sha256((ROOT/'analysis/check_abstract_regional_widths.py').read_bytes()).hexdigest()
@@ -37,7 +40,83 @@ def build():
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from check_current_width_inventory import validate
     validate(widths,read('research/ocean-current-almanac.json'))
+    read('research/guinea-djakoure-2017-model-width-source-review.json');read('research/source-data/djakoure-guinea-2017/acquisition.json')
+    for path in ['research/source-data/djakoure-guinea-2017/journal-article.pdf','plans/guinea-model-regional-width-protocol-v1.md','analysis/check_guinea_model_width.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/algerian-cotroneo-2019-regional-width-scope-audit.json');read('research/source-data/cotroneo-algerian-2019/acquisition.json')
+    for path in ['research/source-data/cotroneo-algerian-2019/journal-article.pdf','plans/algerian-regional-width-protocol-v1.md','analysis/check_original_regional_widths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/alaska-weingartner-2002-regional-width-scope-audit.json');read('research/source-data/weingartner-alaska-2002/acquisition.json')
+    for path in ['research/source-data/weingartner-alaska-2002/journal-article.pdf','plans/alaska-regional-width-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/pacific-euc-wang-2022-background-width-scope-audit.json');read('research/source-data/wang-pacific-euc-2022/acquisition.json')
+    for path in ['research/source-data/wang-pacific-euc-2022/journal-article.pdf','plans/pacific-euc-background-width-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/atlantic-euc-gouriou-1988-background-width-scope-audit.json');read('research/source-data/gouriou-atlantic-1988/acquisition.json')
+    for path in ['research/source-data/gouriou-atlantic-1988/source-book.pdf','plans/atlantic-euc-background-width-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/kuroshio-extension-sasaki-2013-width-averaging-scope-audit.json');read('research/source-data/sasaki-kuroshio-extension-2013/acquisition.json')
+    for path in ['research/source-data/sasaki-kuroshio-extension-2013/journal-article.pdf','plans/kuroshio-extension-width-averaging-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    zeehan_width_audit=read('research/zeehan-cresswell-2000-width-section-scope-audit.json');read('research/source-data/cresswell-zeehan-2000/acquisition.json')
+    for path in ['research/source-data/cresswell-zeehan-2000/journal-article.pdf','plans/zeehan-width-source-separation-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_pacific_neuc_isopycnal_breadths import document as neuc_document, AUDIT as NEUC_AUDIT
+    neuc=neuc_document();read(NEUC_AUDIT)
+    for kind in ['source_document','acquisition','protocol','source_figure_receipt']:
+        path=neuc[kind+'_file'];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for figure in neuc['source_figures']:
+        path=figure['asset_file'];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    inputs['analysis/check_pacific_neuc_isopycnal_breadths.py']=hashlib.sha256((ROOT/'analysis/check_pacific_neuc_isopycnal_breadths.py').read_bytes()).hexdigest()
+    read('research/dwbc-richardson-1993-upper-core-width-scope-audit.json');read('research/source-data/richardson-dwbc-1993/acquisition.json')
+    for path in ['research/source-data/richardson-dwbc-1993/journal-article.pdf','plans/dwbc-richardson-float-composite-width-protocol-v1.md','analysis/check_dwbc_float_composite.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/antarctic-coastal-schubert-2021-composite-width-scope-audit.json');read('research/source-data/schubert-aacc-2021/acquisition.json');read('research/source-data/schubert-aacc-2021/source-figure.json')
+    for path in ['research/source-data/schubert-aacc-2021/journal-article.pdf','plans/antarctic-coastal-composite-width-protocol-v1.md','analysis/check_antarctic_coastal_composites.py','figures/schubert-aacc-2021-source-sections.png']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/tasman-front-nilsson-1980-meander-band-scope-audit.json');read('research/source-data/nilsson-tasman-1980/acquisition.json')
+    for path in ['research/source-data/nilsson-tasman-1980/journal-article.pdf','plans/tasman-front-meander-band-protocol-v1.md','analysis/check_tasman_front_band.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/monsoon-webber-2018-distinct-widths-scope-audit.json');read('research/source-data/webber-monsoon-2018/acquisition.json')
+    for path in ['research/source-data/webber-monsoon-2018/journal-article.pdf','plans/monsoon-webber-2018-width-protocol-v1.md','analysis/check_monsoon_webber_widths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/acc-park-2019-udintsev-breadths-scope-audit.json');read('research/source-data/park-acc-2019/acquisition.json')
+    for path in ['research/source-data/park-acc-2019/journal-article.pdf','plans/acc-udintsev-breadths-protocol-v1.md','analysis/check_acc_udintsev_breadths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/north-pacific-tomczak-2005-broad-band-scope-audit.json');read('research/source-data/tomczak-regional-2005/acquisition.json')
+    for path in ['research/source-data/tomczak-regional-2005/journal-article.pdf','plans/north-pacific-broad-band-protocol-v1.md','analysis/check_north_pacific_broad_band.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/solomon-melet-2010-coastal-confinement-scope-audit.json');read('research/source-data/melet-solomon-2010/acquisition.json')
+    for path in ['research/source-data/melet-solomon-2010/journal-article.pdf','plans/solomon-coastal-confinement-protocol-v1.md','analysis/check_solomon_coastal_confinement.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/jutland-nielsen-2000-cited-satellite-width-scope-audit.json');read('research/source-data/nielsen-jutland-2000/acquisition.json')
+    for path in ['research/source-data/nielsen-jutland-2000/journal-article.pdf','plans/jutland-satellite-width-support-protocol-v1.md','analysis/check_jutland_satellite_widths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/jutland-skov-2019-water-mass-breadth-scope-audit.json');read('research/source-data/skov-jutland-2019/acquisition.json')
+    for path in ['research/source-data/skov-jutland-2019/journal-article.pdf','plans/jutland-water-mass-breadth-protocol-v1.md','analysis/check_jutland_water_mass_breadth.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/western-adriatic-chavanne-2007-mean-width-scope-audit.json');read('research/source-data/chavanne-adriatic-2007/acquisition.json')
+    for path in ['research/source-data/chavanne-adriatic-2007/journal-article.pdf','plans/western-adriatic-radar-width-support-protocol-v1.md','analysis/check_western_adriatic_mean_widths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/baffin-fissel-1982-regional-width-scope-audit.json');read('research/source-data/fissel-baffin-1982/acquisition.json')
+    for path in ['research/source-data/fissel-baffin-1982/journal-article.pdf','plans/baffin-regional-width-support-protocol-v1.md','analysis/check_baffin_regional_widths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/humboldt-fuenzalida-2008-regional-width-scope-audit.json');read('research/source-data/fuenzalida-humboldt-2008/text-review.json')
+    for path in ['plans/humboldt-regional-width-support-protocol-v1.md','analysis/check_humboldt_width_descriptions.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    tsushima_modal_audit=read('research/tsushima-matsuyama-1990-modal-width-scope-audit.json');read('research/source-data/matsuyama-tsushima-1990/acquisition.json')
+    read('research/west-australian-glenn-2008-breadth-scope-audit.json');read('research/source-data/glenn-wac-2008/acquisition.json')
+    for path in ['research/source-data/glenn-wac-2008/journal-article.pdf','plans/west-australian-breadth-constraint-protocol-v1.md','analysis/check_west_australian_breadth.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for path in ['research/source-data/matsuyama-tsushima-1990/journal-article.pdf','plans/campaign-modal-decay-width-protocol-v1.md','analysis/check_tsushima_modal_width.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/ngcu-zenk-1999-width-constraint-scope-audit.json');read('research/source-data/zenk-ngcu-1999/acquisition.json');read('research/source-data/siedler-sonne-1997/acquisition.json')
+    for path in ['research/source-data/zenk-ngcu-1999/journal-article.pdf','research/source-data/siedler-sonne-1997/journal-article.pdf','plans/ngcu-reported-width-constraint-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     routes=read('research/ocean-current-reference-path-candidates.json')
+    from build_current_reference_path_catalog import validate_source_receipt
+    for route in routes['candidates']:
+        inputs.update(validate_source_receipt(read(route['candidate_file'])))
     for record in widths['measurements']:
         if record.get('extraction_file'):
             extraction = read(record['extraction_file'])
@@ -55,6 +134,11 @@ def build():
             if audit.get('source_document_file'):
                 path=audit['source_document_file']
                 inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from published_section_transports import document as transport_document, build as transport_records, SOURCE as TRANSPORT_SOURCE
+    transports=transport_document();read(TRANSPORT_SOURCE);read(transports['acquisition_file'])
+    for path in [transports['source_document_file'],transports['protocol_file'],'analysis/published_section_transports.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    collections.update(transport_records(transports))
     collections['widths']=widths['measurements']
     collections['reference_routes']=routes['candidates']
     objects=copy.deepcopy(dashboard['entries'])
@@ -353,6 +437,25 @@ def build():
     model_owner['model_frame_ids']=[row['id'] for row in collections['model_frames']]
     model_owner['capabilities']['model_frames']=len(collections['model_frames'])
     model_owner['capabilities']['model_samples']=len(collections['model_samples'])
+    from build_antarctic_slope_m6_velocity import build as rebuild_velocity
+    velocity_path='research/antarctic-slope-m6-velocity-series.json'
+    velocity=read(velocity_path)
+    from check_antarctic_slope_scope import validate as validate_slope, AUDIT as SLOPE_AUDIT, PAPER as SLOPE_PAPER
+    slope_audit=read(SLOPE_AUDIT);validate_slope(slope_audit,widths)
+    read('research/source-data/darelius-asc-2024/acquisition.json')
+    inputs[SLOPE_PAPER]=hashlib.sha256((ROOT/SLOPE_PAPER).read_bytes()).hexdigest()
+    inputs['analysis/check_antarctic_slope_scope.py']=hashlib.sha256((ROOT/'analysis/check_antarctic_slope_scope.py').read_bytes()).hexdigest()
+    if velocity!=rebuild_velocity():raise ValueError('Stale M6 observed velocity aggregation')
+    for key in ['source','protocol','generator']:
+        path=velocity[key+'_file'];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=velocity[key+'_sha256']:raise ValueError('Changed M6 dependency: '+path)
+    collections['current_velocity_samples']=velocity['samples']
+    for row in objects:
+        row['velocity_sample_ids']=[r['id'] for r in velocity['samples'] if r['entity_id']==row['id']]
+    for row in objects:
+        for collection in ['section_transports','transport_validations']:
+            owned=[r['id'] for r in collections[collection] if r['entity_id']==row['id']]
+            if owned:row[collection+'_ids']=owned
     for name,rows in collections.items():
         if len({r['id'] for r in rows})!=len(rows):raise ValueError('Duplicate ID in '+name)
     from check_norwegian_atlantic_branch_widths import validate as validate_proposed_widths, AUDIT, ACQUISITION, SOURCE
@@ -365,7 +468,31 @@ def build():
     read('research/source-data/van-aken-astrid-2003/acquisition.json')
     for path in ['research/source-data/van-aken-astrid-2003/journal-article.pdf','analysis/check_astrid_radial_scales.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
-    atlas_paths=['research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
+    from build_agulhas_ring_radius_audit import validate as validate_ring_radii
+    validate_ring_radii(read('research/agulhas-guerra-2022-ring-radius-scope-audit.json'),read('research/named-eddy-geography.json'))
+    read('research/source-data/guerra-agulhas-2022/acquisition.json')
+    for path in ['research/source-data/guerra-agulhas-2022/journal-article.pdf','analysis/build_agulhas_ring_radius_audit.py','plans/agulhas-ring-radius-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_atlantic_euc_section_properties import validate as validate_atlantic_sections
+    atlantic_path='research/atlantic-euc-layer-island-scope-audit.json'
+    atlantic_audit=read(atlantic_path);validate_atlantic_sections(atlantic_audit)
+    read(atlantic_audit['section_properties']['acquisition_file'])
+    protocol=atlantic_audit['section_properties']['protocol_file']
+    inputs[protocol]=hashlib.sha256((ROOT/protocol).read_bytes()).hexdigest()
+    from check_zeehan_seasonal_calendar import PATH as calendar_path, validate as validate_calendar
+    calendar_audit=validate_calendar(read(calendar_path))
+    protocol=calendar_audit['protocol_file']
+    inputs[protocol]=hashlib.sha256((ROOT/protocol).read_bytes()).hexdigest()
+    from build_thor_ursa_source_panels import PATH as panel_path, validate as validate_panels
+    panel_audit=validate_panels(read(panel_path));read(panel_audit['acquisition_file'])
+    for dependency in [panel_audit['source_document_file'],panel_audit['protocol_file'],*[e['source_image_file'] for e in panel_audit['events']],'analysis/build_thor_ursa_source_panels.py']:
+        inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
+    from build_ursa_contour_candidate import PATH as contour_path, validate as validate_contour
+    contour=validate_contour(read(contour_path))
+    for stem in ['source_document','source_image','source_panel_audit','acquisition','state_geometry','protocol']:
+        dependency=contour[stem+'_file']
+        inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
+    atlas_paths=[contour_path,panel_path,calendar_path,atlantic_path,'research/agulhas-guerra-2022-ring-radius-scope-audit.json','research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
                  'research/ocean-current-reference-route-state-join.json',
                  'research/ocean-current-dated-timeline-2025.json',
                  'research/ocean-current-dated-timeline.json',
@@ -394,7 +521,7 @@ def build():
             'atlas_receipts':atlas_receipts,
             'movies_receipts':movies_receipts,
             'loop_recorded_receipts':{path:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for path in ['research/loop-current-recorded-date-comparison.json','research/loop-current-recorded-date-sources.json']},
-            'taxonomy':taxonomy,'editorial_collections':['eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples'],
+            'taxonomy':taxonomy,'editorial_collections':['eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','section_transports','transport_validations'],
             'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
             'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
             'input_sha256':inputs,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},

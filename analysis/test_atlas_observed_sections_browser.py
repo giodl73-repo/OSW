@@ -51,7 +51,11 @@ def main():
         assert parse_qs(urlparse(page.url).query)['atlas-section']==['abaco_repeat']
         saved=page.locator('#route-atlas-preview [data-atlas-share]').get_attribute('href')
         page.reload(wait_until='networkidle')
-        expect(page.locator('.atlas-observed-section-select')).to_have_value('abaco_repeat',timeout=90000)
+        try:
+            expect(page.locator('.atlas-observed-section-select')).to_have_value('abaco_repeat',timeout=90000)
+        except AssertionError as error:
+            raise AssertionError({'url':page.url,'saved':saved,'status':page.locator('#route-atlas-status').all_text_contents(),
+                                  'preview':page.locator('#route-atlas-preview').all_text_contents(),'page_errors':errors}) from error
         assert page.url==saved
         x,y,w,h=map(float,page.locator('#route-atlas-map').get_attribute('viewBox').split())
         for sample in document['sections'][1]['samples']:
@@ -64,7 +68,7 @@ def main():
         assert 'AB0505_063' in page.locator('.atlas-observed-cast-info').inner_text(), (page.locator('.atlas-observed-cast-info').inner_text(),station.get_attribute('data-cast-id'),page.evaluate('document.activeElement.outerHTML'))
         assert 'no sample at 400 m' in page.locator('.atlas-observed-cast-info').inner_text()
         page.locator('.atlas-observed-details-link').click()
-        page.wait_for_function('document.querySelector("#section-select")?.value==="abaco_repeat"')
+        page.wait_for_function('document.querySelector("#section-select")?.value==="abaco_repeat"',timeout=90000)
         page.get_by_role('link',name='Return to Antilles on the atlas').click()
         try:
             page.wait_for_function('document.querySelector(".atlas-observed-section-select")?.disabled===false',timeout=90000)

@@ -114,13 +114,16 @@ impl Store {
             "reported_length",
             "reference_route",
             "scoped_width",
+            "radius_evidence",
             "geometry",
             "time_samples",
+            "observed_velocity",
             "source_connectivity",
             "scope_notes",
             "dated_diagnostics",
             "flow_network",
             "passage_transport",
+            "section_transport",
         ]
         .contains(&request.metric.as_str())
         {

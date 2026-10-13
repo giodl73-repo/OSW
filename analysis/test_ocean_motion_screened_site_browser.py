@@ -267,11 +267,12 @@ def main() -> None:
                 assert state_deep.locator("#state-select").input_value() == "state:MEDI"
                 assert "named-eddy/state assessments" in state_deep.locator("#state-body").inner_text()
                 state_deep.locator("#state-select").select_option("state:CAMR")
-                assert state_deep.locator("#state-body .footprint-candidate").count() == 1
-                assert "2013-05-29" in state_deep.locator("#state-body .footprint-candidate").inner_text()
+                assert state_deep.locator("#state-body .footprint-candidate").count() == 2
+                assert "2013-05-29" in state_deep.locator("#state-body .footprint-candidate").nth(0).inner_text()
+                assert "2021-03-07" in state_deep.locator("#state-body .footprint-candidate").nth(1).inner_text()
                 overview = state_deep.get_by_role("table", name="State evidence overview")
-                assert overview.get_by_role("row", name="Dated named-eddy evidence").locator("td").first.inner_text() == "2"
-                assert overview.get_by_role("row", name="Dated figure-footprint candidates").locator("td").first.inner_text() == "1"
+                assert overview.get_by_role("row", name="Dated named-eddy evidence").locator("td").first.inner_text() == "3"
+                assert overview.get_by_role("row", name="Dated figure-footprint candidates").locator("td").first.inner_text() == "2"
                 state_deep.set_viewport_size({"width": 320, "height": 900})
                 assert overview.evaluate("el => el.scrollWidth <= el.clientWidth")
                 if os.environ.get("OSW_STATE_SCREENSHOT"):

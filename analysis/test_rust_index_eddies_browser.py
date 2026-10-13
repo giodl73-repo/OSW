@@ -6,7 +6,64 @@ from pathlib import Path
 import subprocess
 import tempfile
 from playwright.sync_api import sync_playwright
-from test_rust_query_browser import ROOT, CLI
+from test_rust_query_browser import ROOT, CLI, native
+from urllib.parse import quote
+
+
+def check_published_ring_radii(page, packet):
+    """Sparse source claims stay separate in cards, queries and coverage lights."""
+    source='research/agulhas-guerra-2022-ring-radius-scope-audit.json'
+    owners={'ana-2004':[67], 'eliza-2007':[88,93,95,88,93], 'jeannette-2012':[74,72]}
+    page.goto('http://127.0.0.1:8788/almanac/index.html')
+    page.wait_for_function('window.oswIndexPageReady',timeout=90000)
+    for owner,values in owners.items():
+        chart=page.locator(f'#eddy-geography-{owner} .published-ring-radii svg')
+        assert [int(v) for v in chart.locator('circle').evaluate_all('(es)=>es.map(e=>e.dataset.valueKm)')]==values
+    for owner,values in owners.items():
+        page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature='+quote('eddy:geography:'+owner)+'#route-atlas')
+        figure=page.locator('#route-atlas-preview .published-ring-radii')
+        figure.wait_for(state='visible',timeout=90000)
+        chart=figure.locator('svg')
+        assert [int(v) for v in chart.locator('circle').evaluate_all('(es)=>es.map(e=>e.dataset.valueKm)')]==values
+        assert chart.locator('circle[fill="#f6f5ef"]').count()==(4 if owner=='eliza-2007' else 0)
+        assert chart.locator('line').count()==(3 if owner=='eliza-2007' else len(values))
+        assert 'not an uncertainty interval' in figure.inner_text()
+        assert chart.locator('text').evaluate_all('(es)=>es.every(e=>{const b=e.getBoundingClientRect(),s=e.ownerSVGElement.getBoundingClientRect();return b.left>=s.left && b.right<=s.right})')
+        assert chart.locator('text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        if owner=='eliza-2007':
+            assert 'year conflict unresolved' in figure.inner_text()
+            figure.screenshot(path=str(ROOT/'.pytest_cache/eliza-published-radii-mobile.png'))
+        figure.locator('a').click()
+        page.wait_for_function('window.oswSourceQueryResult?.ok',timeout=90000)
+        request={'document':source,'pointer':'/entities/'+owner+'/measurements','limit':20}
+        expected=json.loads(subprocess.check_output([str(CLI),'--index',str(packet),'-'],input=json.dumps(request),encoding='utf8'))
+        assert page.evaluate('oswSourceQueryResult')==expected
+        if owner=='eliza-2007':
+            assert [r['record']['value_km'] for r in expected['rows']]==[None,95,None]
+            assert expected['rows'][2]['record']['period_month'] is None
+    query={'collection':'objects','record_type':'named_eddy','evidence':'radius_evidence','sort':{'field':'label'},'limit':100}
+    expected=native(query)
+    ids={'eddy:geography:'+owner for owner in [*owners,'astrid-2000']}
+    assert {r['id'] for r in expected['rows']}==ids
+    page.goto('http://127.0.0.1:8788/almanac/query.html?q='+quote(json.dumps(query)))
+    page.wait_for_function('window.oswLastQueryResult?.ok',timeout=90000)
+    assert page.evaluate('oswLastQueryResult')==expected
+    assert page.locator('#query-evidence').input_value()=='radius_evidence'
+    page.goto('http://127.0.0.1:8788/almanac/dashboard.html')
+    page.wait_for_function('window.oswDashboardSnapshot',timeout=90000)
+    from test_motion_dashboard_browser import settle,native_selection
+    settle(page)
+    page.locator('#dashboard-metric').select_option('radius_evidence')
+    page.locator('#dashboard-type').select_option('named_eddy')
+    page.locator('#dashboard-covered').check()
+    settle(page)
+    selection=page.evaluate('oswDashboardSelection')
+    assert selection['result']==native_selection(selection['request'])
+    assert set(selection['result']['ids'])==ids
+    assert page.locator('.motion-card.lit').count()==4
+    assert page.locator('.atlas-marker.lit').count()==4
+    assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
 
 
 def main():
@@ -124,12 +181,16 @@ def main():
             expected=json.loads(subprocess.check_output([str(CLI),'--index',str(packet),'-'],input=json.dumps(request),encoding='utf8'))
             assert page.evaluate('oswSourceQueryResult')==expected
             assert [r['record']['value_km'] for r in expected['rows']]==[120,140]
+            check_published_ring_radii(page,packet)
             assert not errors,errors
             browser.close()
     from test_astrid_radial_scales import check_compiled_loader_rejects_coherent_scope_rewrites
     scratch=ROOT/'.pytest_cache/astrid-native-gate';scratch.mkdir(exist_ok=True)
     check_compiled_loader_rejects_coherent_scope_rewrites(scratch)
-    print('PASS: 96 Loop/35 geography source records and joins; all 136 inventory identities, six native/WASM views, family/map/inventory navigation, rapid search and mobile layout')
+    from test_agulhas_ring_radii import check_compiled_scope
+    scratch=ROOT/'.pytest_cache/ring-radius-native-gate';scratch.mkdir(exist_ok=True)
+    check_compiled_scope(scratch)
+    print('PASS: 96 Loop/35 geography records and joins; 136 inventory identities; native/WASM views, navigation and mobile layout; three ring-radius charts, conflict-preserving source queries, four-owner radius lights and compiled scope rejection')
 
 
 if __name__=='__main__': main()

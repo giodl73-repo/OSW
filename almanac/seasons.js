@@ -45,6 +45,14 @@
   }
   function renderRegionalRange(row) {
     const container=byId('regional-width-range');container.replaceChildren();container.hidden=true;
+    if(row?.phase_kind==='lagrangian_composite_zero_velocity_width'){container.hidden=false;window.renderDwbcFloatComposite(container,window.oswSeasonSnapshot?.dwbc_float_composite_scene);return;}
+    if(row?.phase_kind==='isopycnal_jet_breadth_summary'){container.hidden=false;window.renderPacificNeucBreadths(container,window.oswSeasonSnapshot?.pacific_neuc_breadth_scene,row.id);return;}
+    if(row?.phase_kind==='coastal_composite_threshold_section'){container.hidden=false;window.renderCoastalCompositeWidths(container,window.oswSeasonSnapshot?.coastal_composite_width_scene,row.id);return;}
+    if(row?.modal_decay_context){container.hidden=false;window.renderModalDecayWidth(container,row);return;}
+    if(row?.original_regional_context){container.hidden=false;window.renderOriginalRegionalWidth(container,row);return;}
+    if(row?.phase_kind==='model_regional_width_summary'){container.hidden=false;window.renderModelRegionalWidth(container,row);return;}
+    if(row?.reported_width_constraint)byId('season-title').textContent=row.reported_width_constraint.kind==='author_reported_greater_than_broad_flow_band'?row.original_regional_context.display_title:row.reported_width_constraint.kind==='author_reported_one_sided_coastal_confinement'?'Coastal confinement':row.reported_width_constraint.kind==='issuer_reported_greater_than_geographic_breadth'?'Reported offshore breadth':'Reported band size constraint';
+    if(row?.phase_kind==='seasonal_regional_width_range'){container.hidden=false;window.renderSeasonalRegionalWidth(container,row);return;}
     if(row?.source_scope_context){container.hidden=false;window.renderAbstractRegionalWidth(container,row);return;}
     if(row?.phase_kind==='survey_layer_median_threshold_width'){renderAdcpComparison(container,row);return;}
     if(!['regional_summary','mean_offshore_extent_range'].includes(row?.phase_kind)||!row.width_range_km)return;
@@ -68,10 +76,13 @@
     const phase = phases[Number(byId("season-phase").value)];
     const row = phase?.width;
     renderRegionalRange(row);
+    if(row?.reported_width_constraint)byId('season-title').textContent=row.reported_width_constraint.kind==='author_reported_greater_than_broad_flow_band'?row.original_regional_context.display_title:row.reported_width_constraint.kind==='author_reported_one_sided_coastal_confinement'?'Coastal confinement':row.reported_width_constraint.kind==='issuer_reported_greater_than_geographic_breadth'?'Reported offshore breadth':'Reported band size constraint';
+    byId("season-play").disabled=!window.oswSeasonPlan.can_play || !playbackIndices.includes(Number(byId("season-phase").value));
     const barMaximum = Math.max(50, Math.ceil(Math.max(...phases.filter(p => p.width?.approximate_width_km != null).map(p => p.width.approximate_width_km), 0) / 50) * 50);
     const frame = phase?.frame;
     const direction = phase?.direction;
     const current=byId("season-current").value;
+    const transports=byId("published-section-transports");transports.replaceChildren();const transportScene=window.oswSeasonSnapshot?.published_transport_scenes?.[current];transports.hidden=!transportScene;window.renderPublishedSectionTransports(transports,transportScene);
     window.renderAtlanticCruiseWidths(byId('cruise-span-panel'), current, inventory);
     const address=new URL(location.href);address.searchParams.set("current",current);
     if(phaseId(phase))address.searchParams.set("phase",phaseId(phase));else address.searchParams.delete("phase");
@@ -85,25 +96,34 @@
     byId("season-atlas").href=atlas.href;
     renderDirection(direction);
     byId("season-title").textContent = frame || row?.phase_kind === "seasonal_summary" ? "Seasonal state" : row?.phase_kind === "survey_threshold_section" ? "Survey section observation" : row?.phase_kind === "month_dated_section" ? "Historical section observation" : row?.phase_kind === "ensemble_profile_band" ? "Composite profile observation" : "Recorded evidence";
+    if(['coastal_composite_threshold_section','lagrangian_composite_zero_velocity_width'].includes(row?.phase_kind))byId('season-title').textContent=row.original_regional_context.display_title;
     const route = frame ? catalog.candidates.find(row => row.candidate_file === frame.route_candidate_file) : catalog.candidates.find(row => row.current_id === byId("season-current").value);
     renderMap(route, frame);
     const sectionLocator=byId("season-section-locator"); sectionLocator.replaceChildren(); sectionLocator.hidden=true;
     if(row?.phase_kind==='synoptic_stream_tube_section'){sectionLocator.hidden=false;window.renderStreamTubeWidths(sectionLocator,inventory.measurements.filter(r=>r.current_id===row.current_id));}
     if(window.currentSectionLocator?.coordinates(row)) {window.currentSectionLocator.render(sectionLocator,row); sectionLocator.hidden=false;}
-    const widthText = row?.approximate_width_km == null ? row?.width_range_km ? `${row.width_range_km.join("–")} km reported typical regional range` : "width unknown" : `about ${row.approximate_width_km} km${row.phase_kind === "survey_profile_composite" ? " fitted profile scale (not full width)" : row.phase_kind === "month_dated_section" ? " reported section span (converted from latitude degrees)" : row.phase_kind === "ensemble_profile_band" ? " reported offshore flow-band span" : ""}`;
+    const widthText = row?.reported_width_constraint ? `${row.reported_width_constraint.source_notation} ${row.reported_width_constraint.kind==='author_reported_greater_than_broad_flow_band'?'reported broad flow band':row.reported_width_constraint.kind==='author_reported_one_sided_coastal_confinement'?'coastal confinement':'reported size constraint'}; representative width unknown` : row?.approximate_width_km == null ? row?.width_range_km ? `${row.width_range_km.join("–")} km reported typical regional range` : "width unknown" : `about ${row.approximate_width_km} km${row.phase_kind === "survey_profile_composite" ? " fitted profile scale (not full width)" : row.phase_kind === "month_dated_section" ? " reported section span (converted from latitude degrees)" : row.phase_kind === "ensemble_profile_band" ? " reported offshore flow-band span" : ""}`;
     byId("season-value").textContent = row ? `${row.name}: ${widthText}${row.width_metric_label ? ` · ${row.width_metric_label}` : ""} · ${row.time_convention}` : "Seasonal width not available in this pilot.";
     if(row?.phase_kind==='ensemble_angular_summary') {
       byId('season-title').textContent='General jet width summary';
       byId('season-value').textContent=`${row.name}: source reports ${row.ensemble_angular_context.source_reported_latitude_span_degrees}° latitude, approximately ${row.approximate_width_km} km · shared study summary`;
     }
     if(row?.phase_kind==='inverse_hydrographic_section_span')byId('season-title').textContent='Hydrographic cruise-section span';
+    if(row?.phase_kind==='model_regional_width_summary'){byId('season-title').textContent='Regional model-mean width';byId('season-value').textContent=`${row.name}: approximately ${row.approximate_width_km} km · annual-mean reference model`; }
+    if(row?.phase_kind==='isopycnal_jet_breadth_summary'){byId('season-title').textContent='Isopycnal jet component breadth';const c=row.original_regional_context;byId('season-value').textContent=`${c.component} jet: approximately ${c.source_reported_latitude_span_degrees}° latitude (~${row.approximate_width_km} km) · 27.0 σθ · Argo 2004–2014 mean`; }
     if(row?.phase_kind==='regional_scalar_summary')byId('season-title').textContent='Regional width summary';
     if(row?.phase_kind==='survey_layer_median_threshold_width') {
       byId('season-title').textContent='ADCP crossing width · layer median';
       byId('season-value').textContent=`${row.name}: ${row.approximate_width_km} ±${row.reported_total_error_km} km · source total error · ${row.phase_label} · 1997 cruise`;
     }
     if(row?.phase_kind==='synoptic_stream_tube_section')byId('season-title').textContent='Synoptic stream-tube section width';
-    if(row?.phase_kind==='regional_summary')byId('season-title').textContent='Regional width range';
+    if(row?.phase_kind==='campaign_modal_decay_width'){byId('season-title').textContent='Campaign modal decay estimate';byId('season-value').textContent=`${row.name}: source reports ${row.approximate_width_km} km · coastal branch (1980)`;}
+    if(row?.phase_kind==='regional_summary')byId('season-title').textContent=row.width_range_km?'Regional width range':'Regional width summary';
+    if(row?.original_regional_context?.description_kind==='tasman_meander_occupied_band'){byId('season-title').textContent=row.original_regional_context.display_title;byId('season-value').textContent=`${row.name}: approximately ${row.approximate_width_km} km · occupied meander and eddy band · historical regional synthesis`; }
+    if(row?.current_id==='monsoon'&&row?.original_regional_context){byId('season-title').textContent=row.original_regional_context.display_title;byId('season-value').textContent=`${row.name}: approximately ${row.approximate_width_km} km · ${row.phase_label} · distinct July 2016 feature description`; }
+    if(row?.original_regional_context?.description_kind?.startsWith('climatological-mdt-')){byId('season-title').textContent=row.original_regional_context.display_title;byId('season-value').textContent=`${row.name}: approximately ${row.approximate_width_km} km · ${row.phase_label} · meridional MDT contour separation`;}
+    if(row?.reported_width_constraint)byId('season-title').textContent=row.reported_width_constraint.kind==='author_reported_greater_than_broad_flow_band'?row.original_regional_context.display_title:row.reported_width_constraint.kind==='author_reported_one_sided_coastal_confinement'?'Coastal confinement':row.reported_width_constraint.kind==='issuer_reported_greater_than_geographic_breadth'?'Reported offshore breadth':'Reported band size constraint';
+    if(row?.phase_kind==='seasonal_regional_width_range'){byId('season-title').textContent='Seasonal regional width scale';byId('season-value').textContent=`${row.name}: ${row.width_range_km.join('–')} km seasonal regional scale · ${row.phase_label}`;}
     if(row?.phase_kind==='mean_offshore_extent_range') {
       byId('season-title').textContent='Mean surface offshore extent';
       byId('season-value').textContent=`${row.name}: ${row.width_range_km.join('–')} km reported offshore extent · not full width`;
@@ -112,7 +132,7 @@
       byId('season-title').textContent='Local salinity-core observation';
       byId('season-value').textContent=`${row.name}: ${row.width_range_km?row.width_range_km.join('–'):'about '+row.approximate_width_km} km local water-mass core · ${row.phase_label} · ${row.time_convention}`;
     }
-    byId("season-bar").parentElement.hidden = row?.approximate_width_km == null || row?.mean_section_context?.section_axis_kind==='oblique' || (["synoptic_stream_tube_section","survey_layer_median_threshold_width","inverse_hydrographic_section_span","survey_profile_composite","dated_band_section","climatological_core_distribution","campaign_hydrographic_core","ensemble_angular_summary","regional_scalar_summary","monthly_climatological_fit","stream_mean_threshold_summary","eulerian_mean_section_span","width_time_series_statistics"].includes(row?.phase_kind));
+    byId("season-bar").parentElement.hidden = row?.approximate_width_km == null || !!row?.original_regional_context || !!row?.modal_decay_context || row?.mean_section_context?.section_axis_kind==='oblique' || (["model_regional_width_summary","synoptic_stream_tube_section","survey_layer_median_threshold_width","inverse_hydrographic_section_span","survey_profile_composite","dated_band_section","climatological_core_distribution","campaign_hydrographic_core","ensemble_angular_summary","regional_scalar_summary","monthly_climatological_fit","stream_mean_threshold_summary","eulerian_mean_section_span","width_time_series_statistics"].includes(row?.phase_kind));
     byId("season-bar").style.width = row ? `${Math.min(100, row.approximate_width_km / barMaximum * 100)}%` : "0%";
     byId("season-definition").textContent = row ? `${row.geographic_scope} ${row.layer} ${row.boundary_rule} ${byId("season-bar").parentElement.hidden ? row.range_interpretation : `Bar scale: 0–${barMaximum} km.`}` : "This current needs scoped seasonal observations; unknown does not mean zero width.";
     if (frame) {
@@ -210,6 +230,7 @@
     for (const [i, row] of phases.entries()) { const option = document.createElement("option"); option.value = i; option.textContent = row.label; select.append(option); }
     const requestedIndex = phases.findIndex(phase => phaseId(phase) === requestedPhase);
     if(requestedIndex >= 0)select.value=String(requestedIndex);
+    else if(playbackIndices.length)select.value=String(playbackIndices[0]);
     select.disabled = !phases.length;
     byId("season-play").disabled = !plan.can_play;
     byId("season-range").textContent = plan.range_note;

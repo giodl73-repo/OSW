@@ -261,14 +261,14 @@ def check():
             assert row["figure_snapshot_source_id"] == candidate["source_snapshot_id"]
             assert row["observation_date"] == candidate["observation_date"]
             assert row["movie_model_period"] == "2021–2023"
-            assert row["temporal_alignment_status"] == "outside_declared_model_years"
+            assert row["temporal_alignment_status"] == ("year_in_range_event_alignment_unresolved" if 2021 <= int(candidate["observation_date"][:4]) <= 2023 else "outside_declared_model_years")
             assert row["event_identity_status"] == "not_established"
         complete = [row for row in contexts if row["nominal_complete_view"]]
         best = min(complete, key=lambda row: (-row["zoom"], row["crop_center_distance_score"], row["tile_id"]))
         assert [row["id"] for row in contexts if row["recommended"]] == [best["id"]]
         assert best["tile_id"] == "level2_B_3"
-    assert coverage["claim_locator_statuses"]["internal_ledger_row"] == 5600 + 877
-    assert coverage["claim_locator_statuses"]["internal_ledger_record"] == 136 * 56 + 128
+    assert coverage["claim_locator_statuses"]["internal_ledger_row"] == 5600 + 877 + 2
+    assert coverage["claim_locator_statuses"]["internal_ledger_record"] == 136 * 56 + 128 - 2
     internal_documents = {}
     sources_by_claim_id = {row["id"]: row for row in rows["sources"]}
     targets_by_collection = {name: {row["id"]: row for row in rows[name]}
@@ -292,6 +292,9 @@ def check():
         target = targets_by_collection[claim["target_collection"]][claim["target_id"]]
         if claim["source_locator_status"] == "internal_ledger_record":
             assert selected["id"] == claim["subject_id"].split(":", 1)[1]
+        elif target.get("footprint_candidate_id") == "footprint_candidate:ursa:2021-03-07" and claim["target_collection"] == "named_eddy_state_assessments":
+            assert selected["state_id"] == target["state_id"]
+            assert selected["display_area_fraction_range"] == target["dated_ssh_contour_area_fraction_range"]
         elif claim["target_collection"] == "tile_state_relations":
             assert selected["tile_id"] == target["tile_id"]
         else:
@@ -426,7 +429,19 @@ def check():
         for state in rows["entities"] if state["type"] == "osw_state"}
     eddy_inventory = load(PACKAGE / "source-ledgers" / "ocean-eddy-name-inventory.json")
     eddies_by_id = {"eddy:" + item["id"]: item for item in eddy_inventory["entries"]}
+    ursa_audit = load(PACKAGE / "source-ledgers" / "ursa-2021-0307-figure-contour-audit.json")
     for row in eddy_state_rows:
+        if row["eddy_id"] == "eddy:published:ursa-2021" and row["state_id"] in {a["state_id"] for a in ursa_audit["state_assessments"]}:
+            a = next(a for a in ursa_audit["state_assessments"] if a["state_id"] == row["state_id"])
+            assert row["evidence_status"] == "figure_derived_dated_ssh_contour_candidate"
+            assert row["physical_relation"] == "dated_ssh_proxy_intersection_candidate_whole_eddy_relation_unresolved"
+            assert row["dated_ssh_contour_observation_date"] == "2021-03-07"
+            assert row["dated_ssh_contour_assessment"] == a["intersection_assessment"]
+            assert row["dated_ssh_contour_nominal_area_fraction"] == a["nominal_display_area_fraction"]
+            assert row["dated_ssh_contour_area_fraction_range"] == a["display_area_fraction_range"]
+            assert row["point_evidence_types"] == [] and row["observed_center_date"] is None
+            assert row["reported_center_lon_lat"] is None
+            continue
         item = eddies_by_id[row["eddy_id"]]
         code = row["state_id"].removeprefix("state:")
         primary = code in item["state_locator_candidates"]
@@ -510,8 +525,8 @@ def check():
     assert sum(row["role"] == "editorial_locator" and row["entity_id"].startswith("current:")
                for row in rows["geometries"]) == 134
     candidates = rows["named_eddy_footprint_candidates"]
-    assert len(candidates) == 1
-    candidate = candidates[0]
+    assert len(candidates) == 2
+    candidate = next(c for c in candidates if c["entity_id"] == "eddy:published:kraken-2013")
     assert candidate["entity_id"] == "eddy:published:kraken-2013" and candidate["observation_date"] == "2013-05-29"
     assert candidate["boundary_type"] == "figure_digitized_instantaneous_ssh_contour_proxy"
     proxy = next(row for row in rows["geometries"] if row["id"] == candidate["geometry_id"])
@@ -552,6 +567,18 @@ def check():
         expected = receipt["segmentation_sensitivity_cases"][1][code.lower()+"_footprint_area_fraction_range"]
         assert abs(min(values)-expected[0]) < 1e-6 and abs(max(values)-expected[1]) < 1e-6
     assert min(fractions["CAMR"]) > 0.9 and min(fractions["CARB"]) == 0 < max(fractions["CARB"])
+    from build_ursa_contour_candidate import validate as validate_ursa, records as ursa_records
+    validate_ursa(ursa_audit)
+    ursa = next(c for c in candidates if c["entity_id"] == "eddy:published:ursa-2021")
+    ursa_geometry = next(g for g in rows["geometries"] if g["id"] == ursa["geometry_id"])
+    expected_geometry, expected_candidate = ursa_records(ursa_audit, ursa["geometry_id"], ursa["source_id"], ursa["source_snapshot_id"])
+    assert ursa_geometry == expected_geometry
+    assert {k:v for k,v in ursa.items() if k != "claim_id"} == expected_candidate
+    assert ursa["scenario_polygon_count"] == 68 and ursa["scenario_attempt_count"] == 102
+    assert len(ursa["rejected_segmentation_cases"]) == 2
+    assert all(a["containment_assessment"] == "unresolved" for a in ursa["state_assessments"])
+    assert {a["state_id"] for a in ursa["state_assessments"]} == {"state:CAMR","state:CARB"}
+    assert not ursa["physical_boundary_admitted"] and not ursa["annual_extrema_eligible"]
     front_receipt = load(PACKAGE / "source-ledgers" / "gulf-stream-navo-front-20260928.json")
     front_states = load(PACKAGE / "source-ledgers" / "gulf-stream-navo-state-snapshot-20260928.json")
     assert front_states == build_front_state_snapshot(), "Dated front/state length join is stale"
@@ -794,7 +821,8 @@ def check():
         "https://www.horizonmarine.com/loop-current-eddies",
         "https://ocean.weather.gov/gulf_stream_text.php",
         "https://www.ncei.noaa.gov/jag/navy/data/satellite_analysis/nafreddy.zip",
-        "https://coastwatch.noaa.gov/data/pub0015/coastwatch/rads/sla/2026/rads_global_nrt_sla_20260925_20260926_001.nc"}
+        "https://coastwatch.noaa.gov/data/pub0015/coastwatch/rads/sla/2026/rads_global_nrt_sla_20260925_20260926_001.nc",
+        "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.1049645/full"}
     assert Counter(row["material_use_class"] for row in rows["sources"]
                    if row["id"] in used_sources) == coverage["used_external_material_use_classes"]
     assert sum(bool(row.get("title")) for row in rows["sources"] if row["id"] in used_sources) == coverage["used_external_sources_with_titles"]
@@ -822,7 +850,7 @@ def check():
                       "source_scoped_factual_claim", "figure_derived_measurement_and_factual_claim"}]
     assert len(linked_factual) == 84
     assert sum(row["material_use_class"] == "figure_derived_measurement_and_factual_claim"
-               for row in linked_factual) == 1
+               for row in linked_factual) == 2
     assert sum(row["citation_review_status"] ==
                "reviewed; source-page or institutional citation recorded"
                and bool(row["preferred_citation"]) for row in linked_factual) == 11
@@ -858,7 +886,10 @@ def check():
         assert item["policy_reference_url"] == review["policy_reference_url"]
         assert item["rights_review_note"] == review["review_note"]
         assert item["rights_review_date"] == review.get("review_date", reviews["review_date"])
-        assert not item["provider_asset_redistributed"]
+        if item["provider_asset_redistributed"]:
+            assert item["url"] == "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.1049645/full"
+            assert item["material_use_class"] == "figure_derived_measurement_and_factual_claim"
+            assert sources_by_id[item["source_id"]]["license_url"] == "https://creativecommons.org/licenses/by/4.0/"
     assert next(row for row in queue if row["url"] == "https://www.horizonmarine.com/loop-current-eddies")["material_use_class"] == "compiled_name_and_date_records"
     assert next(row for row in queue if row["url"] == "https://www.nasa.gov/centers-and-facilities/jpl/seal-takes-ocean-heat-transport-data-to-new-depths/")["material_use_class"] == "source_scoped_factual_claim"
     for row in queue:

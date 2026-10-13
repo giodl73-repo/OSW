@@ -10,7 +10,7 @@ import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 URL = 'http://127.0.0.1:8788/almanac/query.html'
-CHECKS = ('test_rust_query_browser.py', 'test_rust_collection_coverage_browser.py', 'test_rust_source_query_browser.py',
+CHECKS = ('test_ursa_contour_candidate_browser.py', 'test_thor_ursa_source_panels_browser.py', 'test_pacific_neuc_isopycnal_breadths_browser.py', 'test_published_section_transports_browser.py', 'test_dwbc_float_composite_browser.py', 'test_antarctic_coastal_composites_browser.py', 'test_tasman_front_band_browser.py', 'test_monsoon_webber_widths_browser.py', 'test_antarctic_slope_coverage_browser.py', 'test_antarctic_slope_m6_velocity_browser.py', 'test_rust_query_browser.py', 'test_zeehan_seasonal_calendar_browser.py', 'test_zeehan_historical_width_browser.py', 'test_tsushima_modal_width_browser.py', 'test_humboldt_width_descriptions_browser.py', 'test_baffin_regional_widths_browser.py', 'test_western_adriatic_mean_widths_browser.py', 'test_jutland_water_mass_breadth_browser.py', 'test_jutland_satellite_widths_browser.py', 'test_solomon_coastal_confinement_browser.py', 'test_north_pacific_broad_band_browser.py', 'test_acc_udintsev_breadths_browser.py', 'test_rust_collection_coverage_browser.py', 'test_rust_source_query_browser.py',
           'test_motion_dashboard_browser.py', 'test_dashboard_diagnostic_navigation_browser.py',
           'test_rust_workspace_browser.py', 'test_rust_rebase_browser.py',
           'test_rust_taxonomy_browser.py', 'test_florida_width_statistics_browser.py',
@@ -24,7 +24,7 @@ CHECKS = ('test_rust_query_browser.py', 'test_rust_collection_coverage_browser.p
           'test_reference_route_atlas_browser.py',
           'test_atlas_directory_states_browser.py',
           'test_atlas_route_state_links_browser.py',
-          'test_seasons_rust_snapshot_browser.py', 'test_atlantic_cruise_widths_browser.py', 'test_atlantic_station_context_browser.py', 'test_black_sea_regional_width_browser.py', 'test_ngcc_seasonal_direction_browser.py',
+          'test_seasons_rust_snapshot_browser.py', 'test_atlantic_cruise_widths_browser.py', 'test_atlantic_station_context_browser.py', 'test_black_sea_regional_width_browser.py', 'test_guinea_model_width_browser.py', 'test_original_regional_widths_browser.py', 'test_atlantic_euc_section_properties_browser.py', 'test_ngcc_seasonal_direction_browser.py',
           'test_rust_object_view_browser.py', 'test_black_sea_eddy_recurrence_browser.py', 'test_rust_atlas_snapshot_browser.py',
           'test_atlas_timeline_browser.py', 'test_atlas_observed_sections_browser.py',
           'test_rust_cartography_browser.py', 'test_norkyst_section_browser.py',

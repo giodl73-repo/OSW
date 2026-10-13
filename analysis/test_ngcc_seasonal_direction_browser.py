@@ -37,6 +37,9 @@ def main():
         assert 'exception' in page.locator('#season-title').inner_text()
         assert page.locator('#season-direction-arrow').get_attribute('visibility') == 'hidden'
         assert page.locator('#season-direction-months span').count() == 0
+        assert page.locator('#season-play').is_disabled()
+        page.locator('#season-phase').select_option('1')
+        assert page.locator('#season-play').is_enabled()
         page.locator('#season-play').click()
         page.wait_for_function('document.getElementById("season-phase").value === "0"')
         page.wait_for_function('document.getElementById("season-phase").value === "1"')

@@ -54,6 +54,7 @@
   names.geometry_frames='Dated diagnostic geometry frames';
   names.seasonal_routes='Source-defined seasonal routes';
   names.width_samples='Scoped width samples';
+  names.current_velocity_samples='Observed current velocity';
   names.route_decisions='Remaining current-length decisions';
   names.model_frames='Hourly model section frames';
   names.model_samples='Model section field samples';
@@ -141,6 +142,7 @@
   function rejectResult(message){failure(message);renderMap(null);window.oswCharts.render(null,inspect);$('query-detail').hidden=true;detailSequence++;$('query-share').hidden=true;$('query-export').disabled=true;$('query-previous').disabled=true;$('query-next').disabled=true;lastQuery=null;lastResult=null;window.oswLastQueryResult=null;$('query-rows').replaceChildren();$('query-page').textContent='';}
   function label(row){if(row.id?.startsWith('taxonomy-link:'))return row.child_label+' → '+row.parent_label;return row.label||row.name||row.title||row.entity_label||row.id;}
   function value(row){
+    if(row.eastward_mean_cm_s!==undefined)return `${row.eastward_mean_cm_s.toFixed(2)} eastward / ${row.northward_mean_cm_s.toFixed(2)} northward cm/s · ${(100*row.hourly_coverage_fraction).toFixed(1)}% hourly coverage`;
     if(row.reported_occurrence_days_per_year_approx!==undefined)return `≈ ${row.reported_occurrence_days_per_year_approx} presence days/year · event lifetime ${row.reported_event_lifetime_approx===null?"unknown":"≈ "+row.reported_event_lifetime_approx+" "+row.event_lifetime_unit+" ("+row.event_lifetime_statistic+")"}`;
     const model=window.oswModelSectionCard?.value(row);if(model!==null&&model!==undefined)return model;
     if(row.document?.schema==='osw.flow-network.v1')return `${row.document.nodes.length} nodes · ${row.document.edges.length} connections · length unresolved`;
@@ -340,6 +342,11 @@
       }
       if(row.source_phase?.calendar_months===null)element('p','Calendar months for this source season are unresolved.',parent);
     }
+    if(row.eastward_mean_cm_s!==undefined){
+      for(const [key,title] of [['station','Station'],['nominal_depth_m','Nominal depth (m)'],['series_kind','Aggregation'],['contributing_years','Contributing years'],['available_pairs','Available paired readings'],['expected_hourly_slots','Expected hourly slots within source window'],['hourly_coverage_fraction','Hourly coverage fraction'],['partial_month','Partial calendar month'],['eastward_mean_cm_s','Mean eastward velocity (cm/s)'],['northward_mean_cm_s','Mean northward velocity (cm/s)'],['eastward_interannual_span_cm_s','Interannual eastward monthly-mean span (cm/s)'],['northward_interannual_span_cm_s','Interannual northward monthly-mean span (cm/s)'],['measurement_uncertainty_cm_s','Measurement uncertainty (cm/s)'],['timestamp_convention','Timestamp convention']]){element('dt',title,dl);element('dd',row[key]===null?'unresolved / not applicable':Array.isArray(row[key])?row[key].join(', '):String(row[key]),dl);}
+      element('p','Spans describe variation across complete year-month means, not confidence intervals. Missing hours are omitted. Released nominal bins differ from article Table 1; no depth correction, interpolation, rotation or new quality filtering applied.',parent);
+      const method=element('p',undefined,parent);link('M6 measurement protocol','../plans/antarctic-slope-m6-velocity-protocol-v1.md',method);
+    }
     if(row.timeline_file){element('p',row.sampling_note,parent);for(const [key,title] of [['date','Observation day'],['method','Diagnostic method'],['stop_reason','Stop reason'],['reaches_downstream_gate','Reaches downstream gate'],['diagnostic_length_km','Diagnostic trace distance (km; not current length)'],['width_km','Current width (km)'],['positional_uncertainty_km','Positional uncertainty (km)'],['source_algorithm','Source processing algorithm'],['source_product_status','Source product status']]){if(row[key]!==undefined){element('dt',title,dl);element('dd',row[key]===null?'unresolved':String(row[key]),dl);}}element('p',row.attribution,parent);}
     for(const [key,title] of [['id','Record ID'],['scope','Scope'],['geographic_scope','Region'],['layer','Layer'],['time_convention','Time'],['boundary_rule','Boundary definition'],['range_interpretation','Range meaning'],['source_locator','Source location'],['source_quality_note','Source quality'],['kind','Relation kind'],['observation_date','Observation date'],['status','Status'],['width_rank_eligible','Width ranking eligible'],['rank_eligible','Published ranking eligible']]){
       if(row[key]!==undefined){element('dt',title,dl);element('dd',row[key]===null?'unresolved':key==='status'?String(row[key]).replaceAll('_',' '):String(row[key]),dl);}
@@ -347,6 +354,7 @@
     const links=element('div',undefined,parent);links.className='record-links';
     if(/^almanac\/[a-z0-9-]+\.html$/.test(row.diagnostic_page||''))link('View mapped experiment','../'+row.diagnostic_page+(row.observation_date?'?date='+encodeURIComponent(row.observation_date):''),links);
     if(['gulf_stream_dated_half_peak_section','loop_dated_half_peak_section'].includes(row.sample_family)&&row.status==='paired_boundaries'&&row.value_km!==null)link('Map this local section span','query.html?q='+encodeURIComponent(JSON.stringify({collection:'width_samples',filters:[{field:'id',op:'eq',value:row.id}],limit:50}))+'#query-map-section',links);
+    if(row.velocity_sample_ids?.length)link('Observed velocity and seasonal charts','query.html?q='+encodeURIComponent(JSON.stringify({collection:'current_velocity_samples',filters:[{field:'current_id',op:'eq',value:row.id.replace(/^current:/,'')}],limit:100}))+'#query-chart-section',links);
     if(row.width_sample_ids?.length)link('Query scoped width samples','query.html?q='+encodeURIComponent(JSON.stringify({collection:'width_samples',filters:[{field:'current_id',op:'eq',value:row.id.replace(/^current:/,'')}],sort:{field:'label'},limit:100})),links);
     if(row.route_decision_ids?.length)link('Query remaining length decision','query.html?q='+encodeURIComponent(JSON.stringify({collection:'route_decisions',filters:[{field:'entity_id',op:'eq',value:row.id}],limit:50})),links);
     if(row.diagnostic_id){const source=element('button','Inspect parent diagnostic',links);source.type='button';source.addEventListener('click',()=>inspect('diagnostics',row.diagnostic_id));}
@@ -397,6 +405,7 @@
       groups.push(['diagnostic_ids','diagnostics','Unranked method diagnostics']);
       groups.push(['flow_network_ids','flow_networks','Source-described flow networks']);
       groups.push(['passage_sample_ids','passage_samples','Observed passage transport']);
+      groups.push(['velocity_sample_ids','current_velocity_samples','Observed local velocity']);
       groups.push(['model_frame_ids','model_frames','Hourly model sections (context only)']);
       if(record.source_id)groups.push(['single_source','sources','Source']);
       for(const [key,target,title] of groups){

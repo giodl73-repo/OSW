@@ -368,8 +368,39 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     {
         return Err("Atlas proposed additions refer to a different current ledger".into());
     }
+    if receipts.contains_key(crate::eddy_source_panels::PATH) {
+        crate::eddy_source_panels::validate(bundle)?;
+        document(
+            bundle,
+            crate::eddy_source_panels::PATH,
+            "osw.named-eddy-dated-source-panels.v1",
+        )?;
+    }
+    crate::ursa_contour::validate(bundle)?;
     let astrid_path = crate::astrid_scales::PATH;
     let mut paths = BTreeSet::from([ADDITIONS]);
+    if receipts.contains_key(crate::ursa_contour::PATH) {
+        paths.insert(crate::ursa_contour::PATH);
+    }
+    if receipts.contains_key(crate::eddy_source_panels::PATH) {
+        paths.insert(crate::eddy_source_panels::PATH);
+    }
+    if receipts.contains_key(crate::qualitative_calendar::PATH) {
+        document(
+            bundle,
+            crate::qualitative_calendar::PATH,
+            "osw.current-qualitative-seasonal-scope-audit.v1",
+        )?;
+        paths.insert(crate::qualitative_calendar::PATH);
+    }
+    if receipts.contains_key(crate::atlantic_euc_sections::PATH) {
+        document(
+            bundle,
+            crate::atlantic_euc_sections::PATH,
+            "osw.current-source-scope-audit.v1",
+        )?;
+        paths.insert(crate::atlantic_euc_sections::PATH);
+    }
     if receipts.contains_key(astrid_path)
         || bundle
             .collections
@@ -379,6 +410,29 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         let astrid = document(bundle, astrid_path, "osw.named-eddy-radial-scale-audit.v1")?;
         crate::astrid_scales::validate(&astrid)?;
         paths.insert(astrid_path);
+    }
+    let radius_path = crate::ring_radii::PATH;
+    if receipts.contains_key(radius_path)
+        || bundle.collections.get("objects").is_some_and(|rows| {
+            rows.iter().any(|r| {
+                matches!(
+                    r["id"].as_str(),
+                    Some(
+                        "eddy:geography:ana-2004"
+                            | "eddy:geography:eliza-2007"
+                            | "eddy:geography:jeannette-2012"
+                    )
+                )
+            })
+        })
+    {
+        let radii = document(
+            bundle,
+            radius_path,
+            "osw.agulhas-ring-radius-scope-audit.v1",
+        )?;
+        crate::ring_radii::validate(&radii)?;
+        paths.insert(radius_path);
     }
     let routes = bundle
         .collections
@@ -544,7 +598,7 @@ impl Store {
         }
         Ok(
             json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],
-                "sources_json":sources,"state_join_available":receipts.contains_key(JOIN),"timeline_scenes":timeline_scenes,"observed_section_views":observed_section_views}),
+                "sources_json":sources,"state_join_available":receipts.contains_key(JOIN),"timeline_scenes":timeline_scenes,"observed_section_views":observed_section_views,"coastal_composite_width_scene":seasons["coastal_composite_width_scene"],"dwbc_float_composite_scene":seasons["dwbc_float_composite_scene"],"published_transport_scenes":seasons["published_transport_scenes"],"pacific_neuc_breadth_scene":seasons["pacific_neuc_breadth_scene"],"eddy_source_panel_scenes":crate::eddy_source_panels::scenes(&self.bundle)?,"footprint_views":crate::ursa_contour::atlas_views(&self.bundle)?}),
         )
     }
 }

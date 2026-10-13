@@ -16,6 +16,33 @@ def validate_generator(record: dict, expected_sha256: str) -> None:
         raise ValueError('Stale or missing candidate generator fingerprint; rebuild the route')
 
 
+def validate_source_receipt(record: dict, root: Path = ROOT) -> dict[str, str]:
+    """Verify retained originals separately from an editorial route's vertices."""
+    receipt = record.get('source_review_receipt', {})
+    if 'source_document_file' not in receipt:
+        return {}
+    pins = {}
+    for kind in ['audit', 'source_document', 'acquisition']:
+        path = receipt[kind + '_file']
+        resolved = (root / path).resolve()
+        resolved.relative_to(root.resolve())
+        digest = hashlib.sha256(resolved.read_bytes()).hexdigest()
+        if digest != receipt[kind + '_sha256']:
+            raise ValueError('Changed reference-route source receipt: ' + path)
+        pins[path] = digest
+    audit = json.loads((root / receipt['audit_file']).read_bytes())
+    acquisition = json.loads((root / receipt['acquisition_file']).read_bytes())
+    if audit['current_id'] != record['current_id'] or any(
+        audit.get(key) != receipt[key] for key in [
+            'source_document_file', 'source_document_sha256',
+            'acquisition_file', 'acquisition_sha256']
+    ) or acquisition['sha256'] != receipt['source_document_sha256']:
+        raise ValueError('Reference-route source receipt ownership or original mismatch')
+    if acquisition['bytes'] != (root / receipt['source_document_file']).stat().st_size:
+        raise ValueError('Reference-route original byte count mismatch')
+    return pins
+
+
 def validate_parent_scope(record: dict, ledger: dict) -> None:
     parent=record.get('parent_current_id')
     if parent is None:
@@ -90,6 +117,7 @@ def main() -> None:
         raw = path.read_bytes()
         record = json.loads(raw)
         validate_generator(record, generator_sha256)
+        validate_source_receipt(record)
         current_id = record['current_id']
         if current_id not in remaining:
             raise ValueError(f'Candidate does not belong to remaining-current inventory: {current_id}')

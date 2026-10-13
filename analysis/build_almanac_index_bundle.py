@@ -50,8 +50,21 @@ def build():
                             'root_kind': 'object' if isinstance(doc, dict) else 'array',
                             'source_schema': doc.get('schema') if isinstance(doc, dict) else None,
                             'optional': path == OPTIONAL})
+    from check_zeehan_seasonal_calendar import PATH as calendar_path, validate as validate_calendar
+    validate_calendar(json.loads(documents[calendar_path]))
+    from check_atlantic_euc_section_properties import validate as validate_atlantic_sections
+    validate_atlantic_sections(json.loads(documents["research/atlantic-euc-layer-island-scope-audit.json"]))
+    from build_thor_ursa_source_panels import PATH as panel_path, validate as validate_panels
+    validate_panels(json.loads(documents[panel_path]))
+    from build_ursa_contour_candidate import PATH as contour_path, validate as validate_contour
+    validate_contour(json.loads(documents[contour_path]))
     from check_astrid_radial_scales import validate
     validate(json.loads(documents['research/astrid-2000-radial-scale-scope-audit.json']), json.loads(documents['research/named-eddy-geography.json']))
+    from build_agulhas_ring_radius_audit import validate as validate_ring_radii
+    validate_ring_radii(json.loads(documents['research/agulhas-guerra-2022-ring-radius-scope-audit.json']),json.loads(documents['research/named-eddy-geography.json']))
+    from check_original_regional_widths import validate_row as validate_original_width
+    for row in json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())['measurements']:
+        if row.get('original_regional_context'):validate_original_width(row)
     station_path = 'research/atlantic-cruise-station-context.json'
     recurrence_path = 'research/black-sea-eddy-recurrence.json'
     if recurrence_path in documents:

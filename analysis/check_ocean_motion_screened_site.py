@@ -45,7 +45,7 @@ def check() -> None:
     data_report = json.loads((OUTPUT / "data" / "screening-report.json").read_text(encoding="utf-8"))
     assert data_report["counts"]["entities"] == 218
     assert data_report["counts"]["tiles"] == 70
-    assert data_report["retained_claim_reviews"] == {"not_individually_reviewed": 8709}
+    assert data_report["retained_claim_reviews"] == {"not_individually_reviewed": 8720}
     print(f"Screened site valid: {len(manifest['files'])} files, 218 objects, 70 NASA crops")
 
 

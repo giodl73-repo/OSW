@@ -26,7 +26,7 @@ def main():
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         page.locator('#season-atlas').click()
         page.wait_for_function('document.querySelector("#route-atlas-select").value==="current:labrador"')
-        assert 'Labrador Current' in page.locator('#route-atlas-preview h3').inner_text()
+        assert 'Labrador Current' in page.locator('#route-atlas-preview > h3').inner_text()
         row=page.locator('#width-labrador-thompson-2009-regional-width')
         assert '50' in row.inner_text() and 'published regional scalar width summary' in row.inner_text()
         assert page.locator('#width-rows tr').count()==len(inventory['measurements'])

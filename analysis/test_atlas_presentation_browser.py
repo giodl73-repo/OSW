@@ -18,7 +18,7 @@ def main():
         assert page.locator('#atlas-directory').is_hidden()
         assert page.locator('#comparison-title').is_hidden()
         page.locator('#route-atlas-select').select_option('current:agulhas')
-        assert page.locator('#route-atlas-preview h3').inner_text()=='Agulhas Current'
+        assert page.locator('#route-atlas-preview > h3').inner_text()=='Agulhas Current'
         page.locator('#route-atlas-in').click()
         view=page.locator('#route-atlas-map').get_attribute('viewBox')
         share=page.locator('[data-atlas-share]').get_attribute('href')

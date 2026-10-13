@@ -123,7 +123,7 @@
     for (const row of value.measurements) {
       const tr = node("tr", null, byId("width-rows")); tr.id = `width-${row.id}`;
       link(row.name, objectHref(`current:${row.current_id}`), node("td", null, tr));
-      node("td", row.approximate_width_km == null ? `${row.width_range_km.map(number).join("–")} km ${row.phase_kind === "mean_offshore_extent_range" ? "offshore extent of mean surface flow; not full width or annual extrema" : row.phase_kind === "seasonal_mean_width_range" ? "author-reported seasonal mean span; not annual extrema" : row.phase_kind === "campaign_hydrographic_core" ? "reported local salinity-core span; not annual extrema" : "reported typical regional range"}` : `About ${number(row.approximate_width_km)} km${row.phase_kind === "survey_layer_median_threshold_width" ? ` ±${number(row.reported_total_error_km)} km reported total error; layer median` : ""}${row.phase_kind === "climatological_core_distribution" ? ` median across longitudes (${row.width_range_km.map(number).join("–")} km spatial range; not seasonal extrema)` : row.phase_kind === "survey_profile_composite" ? " fitted profile scale (not full width)" : row.phase_kind === "dated_band_section" ? " described subsurface band span (not full width)" : row.phase_kind === "month_dated_section" ? (row.angular_span_conversion?.source_reported_latitude_limits_degrees ? " described meridional band span (not fixed-depth full width)" : " reported section span (converted from latitude degrees)") : row.phase_kind === "ensemble_profile_band" ? " reported offshore flow-band span" : row.phase_kind === "ensemble_angular_summary" ? ` (source ${row.ensemble_angular_context.source_reported_latitude_span_degrees}° latitude; shared general summary)` : ""}`, tr);
+      node("td", row.reported_width_constraint ? `${row.reported_width_constraint.source_notation} reported size constraint; representative width unknown` : row.approximate_width_km == null ? `${row.width_range_km.map(number).join("–")} km ${row.phase_kind === "mean_offshore_extent_range" ? "offshore extent of mean surface flow; not full width or annual extrema" : row.phase_kind === "seasonal_mean_width_range" ? "author-reported seasonal mean span; not annual extrema" : row.phase_kind === "campaign_hydrographic_core" ? "reported local salinity-core span; not annual extrema" : "reported typical regional range"}` : `About ${number(row.approximate_width_km)} km${row.phase_kind === "survey_layer_median_threshold_width" ? ` ±${number(row.reported_total_error_km)} km reported total error; layer median` : ""}${row.phase_kind === "climatological_core_distribution" ? ` median across longitudes (${row.width_range_km.map(number).join("–")} km spatial range; not seasonal extrema)` : row.phase_kind === "survey_profile_composite" ? " fitted profile scale (not full width)" : row.phase_kind === "dated_band_section" ? " described subsurface band span (not full width)" : row.phase_kind === "month_dated_section" ? (row.angular_span_conversion?.source_reported_latitude_limits_degrees ? " described meridional band span (not fixed-depth full width)" : " reported section span (converted from latitude degrees)") : row.phase_kind === "ensemble_profile_band" ? " reported offshore flow-band span" : row.phase_kind === "ensemble_angular_summary" ? ` (source ${row.ensemble_angular_context.source_reported_latitude_span_degrees}° latitude; shared general summary)` : ""}`, tr);
       node("td", row.time_convention, tr);
       const scope = node("td", row.geographic_scope, tr);
       node("p", row.layer, scope); node("p", row.boundary_rule, scope);
@@ -145,6 +145,8 @@
       const action = node("td", row.next_action, tr);
       const derived=value.derived_width_series_candidates?.find(candidate=>candidate.current_id===row.current_id);
       if(derived)link("Inspect derived section-width candidate",derived.visual_url||"../"+derived.file,node("p",null,action));
+      const span=value.section_span_diagnostics?.find(diagnostic=>diagnostic.current_id===row.current_id);
+      if(span){node("p",span.scope_note,action);link("Map dated component spans",span.visual_url,node("p",null,action));}
       const review = value.review_assessments?.find(review => review.current_id === row.current_id);
       if (review) {
         node("p", review.reason, action);
@@ -155,7 +157,7 @@
       }
     }
     const counts = value.counts;
-    byId("width-status").textContent = `${counts.measurements} scoped width records for ${counts.currents_with_scoped_width_evidence} of ${counts.currents} currents; ${counts.currents_with_existing_mentions_pending_review} have existing mentions pending source review; ${counts.currents_with_derived_width_candidates_pending_review} have derived section-width series pending scientific review; ${counts.currents_with_sources_reviewed_no_numeric_width} reviewed without a comparable numeric current width; ${counts.currents_not_assessed} not yet assessed. No annual whole-current widths admitted.`;
+    byId("width-status").textContent = `${counts.measurements} scoped width records for ${counts.currents_with_scoped_width_evidence} of ${counts.currents} currents; ${counts.currents_with_existing_mentions_pending_review} have existing mentions pending source review; ${counts.currents_with_derived_width_candidates_pending_review} have derived section-width series pending scientific review; ${counts.currents_with_sources_reviewed_no_numeric_width} reviewed without a comparable numeric current width; ${counts.currents_with_section_span_diagnostics_width_unresolved} have component-span diagnostics with width unresolved; ${counts.currents_not_assessed} not yet assessed. No annual whole-current widths admitted.`;
     return value;
   }).catch(error => { byId("width-status").textContent = `Width evidence unavailable: ${error.message}`; return null; });
   const seasonalRoutesReady = load("../research/ocean-current-seasonal-route-frames.json").catch(() => ({frames:[]}));
@@ -262,6 +264,8 @@
       const list = node("ul", null, details); for (const gate of row.remaining_gates) node("li", gate, list);
       const phase = seasonalRoutes.frames.find(frame => frame.route_candidate_file === row.candidate_file);
       link("Widths and seasonal evidence", `seasons.html?current=${encodeURIComponent(row.current_id)}${phase ? `&phase=${encodeURIComponent(phase.id)}` : ""}`, node("p", null, card));
+      if(row.current_id==='zeehan')window.renderQualitativeCurrentCalendar(card,await load('../research/zeehan-ridgway-2007-seasonal-scope-audit.json'));
+      if(row.current_id==='atlantic-equatorial-undercurrent')window.renderAtlanticEucSectionProperties(card,await load('../research/atlantic-euc-layer-island-scope-audit.json'));
       link("Download coordinates, all scenarios and joins (JSON)", `../${row.candidate_file}`, card);
     }
     const counts = catalog.counts;

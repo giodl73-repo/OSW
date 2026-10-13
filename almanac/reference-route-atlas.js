@@ -315,6 +315,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
         } else if(!dated.length&&!sectionRecords.some(row=>'current:'+row.current_id===current.id))paragraph(panel,current.capabilities.reported_length?'Reference-route card pending. A source-reported length is available in the current record; the name locator does not show the measured path.':'Reference route pending. The atlas shows a name locator; its route and length remain unresolved.');
         previewLink(panel,'Open current record →',current.object_url);
       }
+      if(current.id==='current:antarctic-slope')previewLink(panel,'Observed M6 velocity · monthly and seasonal charts →','query.html?q='+encodeURIComponent(JSON.stringify({collection:'current_velocity_samples',limit:100}))+'#query-chart-section');
       if(showDated) {
         showDated(dated.find(feature=>feature.geometry_id===requestedGeometry)||dated[0]);
         link.href=current.object_url;link.textContent='Open current evidence record →';
@@ -430,8 +431,19 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
         : 'Source geography locator; this point does not establish an eddy footprint or trajectory.';
       byId('route-atlas-status').textContent=`${eddy.label} · ${kind}${changed(eddy)?' '+changeDescription(eddy):''}`;
       const panel=preview(eddy.label);paragraph(panel,kind);
+      window.renderEddySourcePanels(panel,window.oswAtlasSnapshot?.eddy_source_panel_scenes?.[eddy.id]);
+      const footprint=window.oswAtlasSnapshot?.footprint_views?.[eddy.id];
+      if(footprint) {
+        const card=document.createElement('section');panel.append(card);
+        window.renderRustOceanFootprintCandidate({parent:card,candidate:footprint.candidate,plotScene:footprint.plot_scene,movieContexts:footprint.movie_contexts,
+          entityLink:(id,host)=>previewLink(host,id,`object.html?id=${encodeURIComponent(id)}`),
+          sourceLink:(id,host)=>previewLink(host,'Inspect source',`query.html?q=${encodeURIComponent(JSON.stringify({collection:'sources',filters:[{field:'id',op:'eq',value:id}],limit:1}))}`)});
+      }
       const radial=sources['research/astrid-2000-radial-scale-scope-audit.json'];
       if(radial?.entity_id===eddy.id)window.renderEddyRadialScales(panel,radial);
+      const radiusAudit=sources['research/agulhas-guerra-2022-ring-radius-scope-audit.json'];
+      const radiusOwner=eddy.id.replace(/^eddy:geography:/,'');
+      if(radiusAudit?.entities?.[radiusOwner])window.renderPublishedRingRadii(panel,radiusAudit.entities[radiusOwner],'research/agulhas-guerra-2022-ring-radius-scope-audit.json',radiusOwner);
       const map=document.createElementNS(ns,'svg');map.classList.add('route-atlas-eddy-map');map.setAttribute('viewBox',view.join(' '));map.setAttribute('role','img');map.setAttribute('aria-label',`${eddy.label} · ${kind}`);panel.append(map);
       map.classList.toggle('updated',changed(eddy));
       if(changed(eddy))paragraph(panel,changeDescription(eddy));

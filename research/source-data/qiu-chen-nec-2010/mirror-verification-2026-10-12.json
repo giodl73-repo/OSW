@@ -1,0 +1,53 @@
+{
+  "schema": "osw.pinned-paper-mirror-verification.v1",
+  "verified_on": "2026-10-12",
+  "fixture": "qiu-chen-nec-2010",
+  "doi": "10.1175/2010JPO4462.1",
+  "original_manifest": "research/source-data/qiu-chen-nec-2010/acquisition.json",
+  "sha256": "b387e0e05e700fe66b3b2e98ebba56bf2d8151c3b703d37a7aecad43b5675987",
+  "bytes": 3012493,
+  "pages": 14,
+  "verified_locations": [
+    {
+      "requested_url": "https://www.soest.hawaii.edu/oceanography/bo/QC_NEC.pdf",
+      "resolved_url": "https://www.soest.hawaii.edu/oceanography/bo/QC_NEC.pdf",
+      "exact_pinned_bytes": true
+    },
+    {
+      "requested_url": "https://soest.hawaii.edu/oceanography/bo/QC_NEC.pdf",
+      "resolved_url": "https://soest.hawaii.edu/oceanography/bo/QC_NEC.pdf",
+      "exact_pinned_bytes": true
+    }
+  ],
+  "live_fallback_exercise": {
+    "primary_failure": "controlled HTTP 403, not an observed local primary failure",
+    "alias_response": "actual network download through production acquire()",
+    "staged_file_matches_pin": true
+  },
+  "excluded_candidates": [
+    {
+      "url": "https://citeseerx.ist.psu.edu/document?doi=4582f66ee1fc4ca0efb65e85de2f52bf8da2dc7b&repid=rep1&type=pdf",
+      "response": "HTTP 404; no PDF bytes verified"
+    },
+    {
+      "url": "https://journals.ametsoc.org/downloadpdf/view/journals/phoc/40/11/2010jpo4462.1.xml",
+      "response": "HTTP 403; no PDF bytes verified"
+    }
+  ],
+  "limitations": [
+    "This is a hostname alias on the same university service, not an independent archival provider.",
+    "Local success does not establish availability from a GitHub-hosted runner.",
+    "Fallback is permitted only after transport failure, never checksum, format or size failure.",
+    "Original acquisition manifest and checksum remain unchanged.",
+    "PDF originals and probe downloads remain ignored; this receipt redistributes no paper."
+  ],
+  "regressions": {
+    "pytest_tests": 15,
+    "subtests": 7,
+    "new_cases": [
+      "timeout exhaustion then alias",
+      "changed pin or original URL does not unlock alias",
+      "wrong alias bytes are never staged"
+    ]
+  }
+}

@@ -1,6 +1,11 @@
 """Verify envelope ordering, including ties and excluded study reaches."""
 import unittest
+import tempfile
+import json
+import hashlib
+from pathlib import Path
 from build_current_reference_path_catalog import ordering_sensitivity, validate_generator, validate_strategies, validate_parent_scope
+from build_current_reference_path_catalog import validate_source_receipt
 
 
 def row(name, low, high, group='osw_approximate_reference_routes'):
@@ -8,6 +13,26 @@ def row(name, low, high, group='osw_approximate_reference_routes'):
 
 
 class EnvelopeOrderingTests(unittest.TestCase):
+    def test_retained_original_receipts_reject_changed_bytes_and_wrong_owner(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            (root/'original.pdf').write_bytes(b'pinned original')
+            digest=lambda p:hashlib.sha256((root/p).read_bytes()).hexdigest()
+            (root/'acquisition.json').write_text(json.dumps({'sha256':digest('original.pdf'),'bytes':15}))
+            audit={'current_id':'sample','source_document_file':'original.pdf',
+                   'source_document_sha256':digest('original.pdf'),
+                   'acquisition_file':'acquisition.json','acquisition_sha256':digest('acquisition.json')}
+            (root/'audit.json').write_text(json.dumps(audit))
+            receipt={**{k:v for k,v in audit.items() if k!='current_id'},'audit_file':'audit.json','audit_sha256':digest('audit.json')}
+            record={'current_id':'sample','source_review_receipt':receipt}
+            self.assertEqual(len(validate_source_receipt(record,root)),3)
+            with self.assertRaisesRegex(ValueError,'ownership'):
+                validate_source_receipt({**record,'current_id':'other'},root)
+            (root/'original.pdf').write_bytes(b'changed original')
+            with self.assertRaisesRegex(ValueError,'Changed'):
+                validate_source_receipt(record,root)
+            self.assertEqual(validate_source_receipt({'source_review_receipt':{'retrieved_bytes':100}},root),{})
+
     def test_parent_scope_requires_ledger_relation_and_note(self):
         ledger={'segment':{'part_of_current_id':'parent'},'parent':{},'other':{}}
         record={'current_id':'segment','parent_current_id':'parent','parent_scope_note':'Overlapping segment, not additive.'}

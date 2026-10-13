@@ -13,7 +13,7 @@ def main():
         page.on('pageerror', lambda error: errors.append(str(error)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas', wait_until='networkidle')
         page.wait_for_function('document.querySelectorAll(".route-atlas-station").length === 100')
-        page.wait_for_function('document.querySelectorAll(".route-card").length === 63 && document.querySelectorAll(".inventory-addition-card").length === 28')
+        page.wait_for_function('document.querySelectorAll(".route-card").length === 64 && document.querySelectorAll(".inventory-addition-card").length === 28')
         assert page.locator('#route-atlas-select option').count() == 101
         for ident,label in [('atlantic-north-equatorial','Atlantic North Equatorial Current'),('pacific-north-equatorial','Pacific North Equatorial Current'),('atlantic-south-equatorial','Atlantic South Equatorial Current'),('pacific-south-equatorial','Pacific South Equatorial Current'),('indian-south-equatorial','Indian South Equatorial Current')]:
             card=page.locator('#inventory-addition-'+ident)
@@ -32,6 +32,17 @@ def main():
         assert aleutian.locator('.route-map').is_visible()
         assert 'regional' in aleutian.inner_text().lower()
         assert page.locator('#route-atlas-card-link').get_attribute('href') == '#aleutian-reach-reference-path-candidate'
+        page.locator('#route-atlas-select').select_option('current:solomon-island-coastal-undercurrent')
+        solomon=page.locator('#route-atlas-preview')
+        assert solomon.locator('.route-map').is_visible()
+        assert '900 km' in solomon.inner_text() and '800' in solomon.inner_text() and '1,000' in solomon.inner_text()
+        assert 'continuity' in solomon.inner_text().lower()
+        assert 'Ganachaud' in solomon.inner_text()
+        assert page.locator('#route-atlas-card-link').get_attribute('href')=='#solomon-island-coastal-undercurrent-reference-path-candidate'
+        page.set_viewport_size({'width':320,'height':800})
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        solomon.screenshot(path='.pytest_cache/solomon-reference-card-mobile.png')
+        page.set_viewport_size({'width':1440,'height':1000})
         page.locator('#route-atlas-world').click()
         page.locator('#route-atlas-select').select_option('current:ligurian')
         assert view()[2] < 30  # Short coastal routes fill a local view, not a continent.
@@ -137,12 +148,21 @@ def main():
             if any(f['geometry']['type']=='Polygon' for f in eddy['map_features']):
                 assert eddy['latest_observation_date'] in status
                 assert 'not live extent' in status
-        assert page.locator('#route-atlas-map .route-atlas-eddy-footprint').count()==5
-        gateway=page.locator('[data-eddy-ids]').filter(has=page.locator('text')).filter(has_text='100 names')
+        polygon_owners=[eddy for eddy in eddies if any(f['geometry']['type']=='Polygon' for f in eddy['map_features'])]
+        assert len(polygon_owners)==6  # Four operational outlines plus Kraken and Ursa proxies.
+        for eddy in polygon_owners:
+            marks=page.locator('#route-atlas-eddies .route-atlas-eddy-footprint').evaluate_all(
+                '(nodes,id)=>nodes.filter(node=>JSON.parse(node.dataset.eddyIds).includes(id)).length',eddy['id'])
+            assert marks==sum(f['geometry']['type']=='Polygon' for f in eddy['map_features'])
+        assert page.locator('#route-atlas-eddies .route-atlas-eddy-footprint').count()==6
+        gateway=page.locator('#route-atlas-eddies [data-eddy-ids]').filter(has_text='99 names')
         assert gateway.count()==1
+        gateway_ids=json.loads(gateway.get_attribute('data-eddy-ids'))
+        assert set(gateway_ids)=={eddy['id'] for eddy in eddies if any(f['role']=='shared_regional_gateway' for f in eddy['map_features'])}
+        assert len(gateway_ids)==99  # Ursa now has a dated proxy rather than a shared locator.
         page.locator('#route-atlas-world').click()
         gateway.focus();page.keyboard.press('Enter')
-        assert 'not 100 observed centers' in page.locator('#route-atlas-status').inner_text()
+        assert 'not 99 observed centers' in page.locator('#route-atlas-status').inner_text()
         assert page.locator('#route-atlas-card-link').is_hidden()
         page.locator('#route-atlas-eddy-toggle').uncheck()
         assert page.locator('#route-atlas-eddies').is_hidden()

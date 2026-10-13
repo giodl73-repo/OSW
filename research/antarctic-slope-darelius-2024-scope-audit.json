@@ -1,0 +1,65 @@
+{
+  "schema": "osw.current-source-scope-audit.v1",
+  "current_id": "antarctic-slope",
+  "status": "editorial_source_scope_not_scientific_approval",
+  "source_retrieved_date": "2026-10-09",
+  "source_url": "https://doi.org/10.1029/2023JC020666",
+  "source_citation": "Darelius, Fer, Janout, Daae and Steiger (2024), Observations of the Antarctic Slope Current in the Southeastern Weddell Sea: A Bottom-Enhanced Current and Its Seasonal Variability, JGR Oceans 129, e2023JC020666.",
+  "source_locator": "Original PDF pp1,3–4,9,13; whole extracted text searched for numerical width support. Selected pages visually inspected; not a complete study reproduction.",
+  "source_access": "Original 16-page CC BY paper retained unchanged with checksum.",
+  "source_pdf_file": "research/source-data/darelius-asc-2024/journal-article.pdf",
+  "source_pdf_sha256": "acd1fd9be2546c270a6f2f26ed7d1ecb0bb6923be68298def3e6591e0bc38ab7",
+  "scope": "M6 local velocity measurements and the inspected 2017–2021 study do not supply paired current-width boundaries. Mooring spacing and dynamical length scales cannot be admitted as current width.",
+  "observed_period": {
+    "start": "2017-02-24",
+    "end": "2021-02-13"
+  },
+  "excluded_dimensions": [
+    {
+      "value_km": 5,
+      "meaning": "M530–M740 mooring spacing",
+      "locator": "PDF p4, section 2.1"
+    },
+    {
+      "value_km": 80,
+      "meaning": "M2570–M740 mooring separation",
+      "locator": "PDF p4, section 2.1"
+    },
+    {
+      "value_km": 10,
+      "meaning": "Dynamical length scale, and separate approximate radius of curvature",
+      "locator": "PDF p13, section 4"
+    }
+  ],
+  "width_review": {
+    "current_id": "antarctic-slope",
+    "decision": "sources_reviewed_no_comparable_numeric_current_width",
+    "whole_current_width_km": null,
+    "annual_width_range_km": null,
+    "source_retrieved_date": "2026-10-09",
+    "reason": "M6 local velocity measurements and the inspected 2017–2021 study do not supply paired current-width boundaries. Mooring spacing and dynamical length scales cannot be admitted as current width.",
+    "evidence": [
+      {
+        "url": "https://doi.org/10.1029/2023JC020666",
+        "citation": "Darelius, Fer, Janout, Daae and Steiger (2024), Observations of the Antarctic Slope Current in the Southeastern Weddell Sea: A Bottom-Enhanced Current and Its Seasonal Variability, JGR Oceans 129, e2023JC020666.",
+        "locator": "Original PDF pp3–4, Table 1 and section 2.1; p13, section 4.",
+        "supports": "5 km is M530–M740 spacing; 80 km separates M2570 and M740. L=10 km is a dynamical scale selected with reference to a trough corner; later 10 km is a radius-of-curvature estimate. None is current width."
+      },
+      {
+        "url": "https://doi.pangaea.de/10.1594/PANGAEA.964717",
+        "citation": "Darelius, Janout, Fer and Sallée (2024), PANGAEA.964717, CC BY 4.0.",
+        "locator": "Dataset parameter list, coverage and released nominal 228 m ADCP bin.",
+        "supports": "Geographic velocity at one fixed station and depth supplies no lateral current edges or annual width range."
+      }
+    ]
+  },
+  "whole_current_width_km": null,
+  "annual_width_range_km": null,
+  "map_buffer_eligible": false,
+  "velocity_series_file": "research/antarctic-slope-m6-velocity-series.json",
+  "velocity_series_sha256": "638409ef3b60632a3b0ece9f09e830d5f22ff6728b8398e549c2fc41fc4b3187",
+  "remaining_gates": [
+    "Acquire paired lateral velocity boundaries with layer, orientation, boundary rule and temporal support before numeric width admission.",
+    "Repeated cross-flow sections are needed for observed seasonal width margins; local velocity variation does not establish them."
+  ]
+}

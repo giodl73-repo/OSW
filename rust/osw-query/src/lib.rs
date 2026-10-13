@@ -3,13 +3,18 @@ use serde_json::{Value, json};
 use std::collections::{BTreeMap, BTreeSet};
 mod abstract_regional_widths;
 mod astrid_scales;
+mod atlantic_euc_sections;
 mod atlas_data;
 pub mod cartography;
 mod charts;
+mod coastal_composite_widths;
 mod dashboard;
 mod dashboard_beck;
 mod dashboard_map;
+mod dwbc_float_composite;
 mod eddy_recurrence;
+mod eddy_source_panels;
+mod guinea_width;
 mod index_bifurcation;
 mod index_map;
 mod index_noaa;
@@ -18,24 +23,33 @@ mod index_support;
 mod loop_diagnostics;
 mod loop_recorded;
 mod map;
+mod modal_decay_widths;
 mod model_sections;
+mod mooring_velocity;
 mod movies;
 mod network;
 mod norkyst_data;
 mod object_plot;
 mod object_view;
 mod observed_sections;
+mod original_regional_widths;
+mod pacific_neuc_breadths;
 mod planning;
 mod proposed_widths;
+mod published_transports;
+mod qualitative_calendar;
 mod rebase;
+mod ring_radii;
 mod samples;
 mod seasonal;
 mod seasons_data;
+mod somali_width;
 mod spatial;
 mod stream_tube_widths;
 mod svg;
 mod taxonomy;
 mod temporal;
+mod ursa_contour;
 mod workspace;
 use sha2::{Digest, Sha256};
 
@@ -176,6 +190,10 @@ impl Store {
             ids.insert(name.clone(), index);
             fields.insert(name.clone(), keys);
         }
+        published_transports::validate(&bundle)?;
+        pacific_neuc_breadths::validate(&bundle)?;
+        eddy_source_panels::validate(&bundle)?;
+        ursa_contour::validate(&bundle)?;
         // Joined object IDs must resolve in the imported collections.
         for object in &bundle.collections["objects"] {
             for (key, collection) in [
@@ -186,6 +204,7 @@ impl Store {
                 ("frame_ids", "geometry_frames"),
                 ("seasonal_route_ids", "seasonal_routes"),
                 ("width_sample_ids", "width_samples"),
+                ("velocity_sample_ids", "current_velocity_samples"),
                 ("route_decision_ids", "route_decisions"),
                 ("diagnostic_ids", "diagnostics"),
                 ("flow_network_ids", "flow_networks"),
@@ -207,6 +226,7 @@ impl Store {
                         if (collection == "geometry_frames"
                             || collection == "seasonal_routes"
                             || collection == "width_samples"
+                            || collection == "current_velocity_samples"
                             || collection == "diagnostics"
                             || collection == "route_decisions"
                             || collection == "flow_networks"
@@ -254,8 +274,13 @@ impl Store {
         taxonomy::validate(&bundle.collections, &bundle.manifest)?;
         dashboard::validate(&bundle)?;
         seasons_data::validate(&bundle)?;
+        coastal_composite_widths::validate(&bundle)?;
+        dwbc_float_composite::validate(&bundle)?;
         atlas_data::validate(&bundle)?;
+        atlantic_euc_sections::validate(&bundle)?;
+        qualitative_calendar::validate(&bundle)?;
         model_sections::validate(&bundle)?;
+        mooring_velocity::validate(&bundle)?;
         movies::validate(&bundle)?;
         let spatial = spatial::Index::build(&bundle.collections)?;
         fields.insert(
@@ -567,6 +592,8 @@ impl Store {
             scene
         } else if query.collection == "width_samples" {
             map::sample_scene(&matches)
+        } else if query.collection == "current_velocity_samples" {
+            mooring_velocity::map_scene(&matches)
         } else if ["model_frames", "model_samples"].contains(&query.collection.as_str()) {
             model_sections::scene(&matches, &query.collection)
         } else {
@@ -606,6 +633,28 @@ impl Store {
         }
         let chart_scene = if query.collection == "width_samples" {
             charts::scene(&matches, records)
+        } else if query.collection == "widths" {
+            let scenes: Vec<_> = [
+                coastal_composite_widths::scene(&matches, records),
+                dwbc_float_composite::scene(&matches, records),
+                pacific_neuc_breadths::scene(&matches, records),
+            ]
+            .into_iter()
+            .filter(|s| !s.is_null())
+            .collect();
+            match scenes.len() {
+                0 => Value::Null,
+                1 => scenes.into_iter().next().unwrap(),
+                _ => {
+                    json!({"kind":"scoped_width_comparisons","scope":"Source comparisons preserve different definitions, integration and sampling support.","scenes":scenes})
+                }
+            }
+        } else if ["section_transports", "transport_validations"]
+            .contains(&query.collection.as_str())
+        {
+            published_transports::query(&matches, &query.collection)
+        } else if query.collection == "current_velocity_samples" {
+            mooring_velocity::scene(&matches, records)
         } else {
             Value::Null
         };

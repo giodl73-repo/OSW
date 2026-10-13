@@ -195,6 +195,10 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             if key == "widths" {
                 adcp_width_scope(row)?;
                 crate::stream_tube_widths::validate(row)?;
+                crate::somali_width::validate(row)?;
+                crate::guinea_width::validate(row)?;
+                crate::original_regional_widths::validate(row)?;
+                crate::modal_decay_widths::validate(row)?;
                 crate::abstract_regional_widths::validate(row)?;
                 norwegian_coastal_width_scope(row)?;
             }
@@ -312,7 +316,7 @@ fn plans(docs: &Value) -> Result<Value, String> {
                         .next()
                         .unwrap()
                 });
-            phases.push(json!({"id":row["id"],"width_id":row["id"],"frame_id":null,"direction_id":null,"label":label,"playback_step_eligible":true}));
+            phases.push(json!({"id":row["id"],"width_id":row["id"],"frame_id":null,"direction_id":null,"label":label,"playback_step_eligible":row["seasonal_playback_eligible"] != false}));
         }
         for row in owned {
             let linked = row["width_measurement_ids"]
@@ -342,7 +346,11 @@ fn plans(docs: &Value) -> Result<Value, String> {
                     .all(|p| !p["width_id"].is_null() && ids.contains(&p["width_id"]))
             })
         });
-        let route_only = phases.len() > 1 && phases.iter().all(|p| !p["frame_id"].is_null());
+        let route_only = phases.iter().filter(|p| !p["frame_id"].is_null()).count() > 1
+            && phases
+                .iter()
+                .filter(|p| p["playback_step_eligible"] == true)
+                .all(|p| !p["frame_id"].is_null());
         let direction_count = phases
             .iter()
             .filter(|p| !p["direction_id"].is_null() && p["playback_step_eligible"] == true)
@@ -418,7 +426,7 @@ impl Store {
             }
         }
         Ok(
-            json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],"sources_json":sources,"phase_plans":plans}),
+            json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],"sources_json":sources,"phase_plans":plans,"published_transport_scenes":crate::published_transports::by_current(&self.bundle),"pacific_neuc_breadth_scene":crate::pacific_neuc_breadths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"dwbc_float_composite_scene":crate::dwbc_float_composite::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"coastal_composite_width_scene":crate::coastal_composite_widths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[]))}),
         )
     }
 }
