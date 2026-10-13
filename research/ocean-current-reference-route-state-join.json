@@ -6,10 +6,10 @@
   "absence_meaning": "No candidate crossing recorded; physical current passage remains unresolved.",
   "counts": {
     "states": 56,
-    "route_candidates": 64,
-    "currents_with_route_candidates": 61,
-    "states_with_candidate_crossings": 48,
-    "candidate_state_pairs": 130
+    "route_candidates": 67,
+    "currents_with_route_candidates": 64,
+    "states_with_candidate_crossings": 49,
+    "candidate_state_pairs": 134
   },
   "excluded_display_contacts": [
     {
@@ -32,7 +32,7 @@
     }
   ],
   "input_sha256": {
-    "research/ocean-current-reference-path-candidates.json": "96618e4f518246055aa8149f4cfe1590cec5f09bd4a430ed75e047f0e136ccae",
+    "research/ocean-current-reference-path-candidates.json": "92bf2b1cbe1c4e3674ce040bd07f35052bd75c7243762c00911c6d7bf7b2c81c",
     "research/ocean-motion-state-join.json": "c7a49187e74ac9959f18b23cf5ecaa826c017eacb8e387f2bf6e8605b6ab65f9",
     "research/indian-seuc-mam-reach-reference-path-candidate.json": "09e20729d63ef0930ba1835f95fdc24285726de590f4d2c9915604358867c117",
     "research/pacific-necc-reach-reference-path-candidate.json": "0df217ce291f5e8d4804a2fa25f86a2bb8a6fdd5101f00abe2401583ec00df01",
@@ -63,6 +63,7 @@
     "research/hiri-reference-path-candidate.json": "a419f982ad804b3e06d96723819a14798a8fb6231f771d5e3144e1db30069a35",
     "research/canary-reference-path-candidate.json": "b5a8dad9c074d00432e07cb45640469551f1686d3b96e31a4356d0861c7c4309",
     "research/south-indian-eastern-reach-reference-path-candidate.json": "5ffe93eddca3a110dedfc3a0d2dfb589504d60422e24729e0820629b4a94eafe",
+    "research/tasman-historical-connection-reach-reference-path-candidate.json": "f6f60ba8fee67cf1f8163b6f616f664c674e2a7977d36c0d420c0e9c8407a80d",
     "research/somali-winter-reference-path-candidate.json": "37cf752d61cfcfff451e3066e842e00f524b78400573b28ff731cf3ff12f4cda",
     "research/alaska-reference-path-candidate.json": "2424028bad238cb7b940726818ab93ce6509f01de4f52013d837099329f426da",
     "research/kuroshio-extension-reference-path-candidate.json": "0d776be891ec1cdcff094e51c10117deb5f55da3229a03b6c125e8c52f7ad96e",
@@ -92,9 +93,11 @@
     "research/new-guinea-coastal-undercurrent-reference-path-candidate.json": "3b1ab727292638925f04f615b6a4e82abfb7087c72185a959db297dfc76a0f3b",
     "research/somali-summer-southern-reference-path-candidate.json": "73efa37ee93f5a6985c891bb524fc2ec0d443d17807de420fc7a03a44ab5b295",
     "research/gaspe-reference-path-candidate.json": "f0a1ec4cf571055ffd5953f2b66f67e482f946673cb37b3845af12d994103312",
+    "research/new-guinea-coastal-surface-reach-reference-path-candidate.json": "4ff83e2732977c9c5eb97a4299c209c846c88cbcc2f1450410789cbaa0d960fd",
     "research/balearic-reference-path-candidate.json": "52d27b7b19c49942626d49973358c7f2d5f428b310d85b9a03dd7ced1c464299",
     "research/jutland-reference-path-candidate.json": "3a68dca59468fe3ca9ad06e3d1a6fca356775bb6624b0bfc173c7da1a7c1992b",
     "research/new-ireland-coastal-undercurrent-reference-path-candidate.json": "a3cfbbf90234f98e7207d51078b02ad61f0a9436939ae082d9e1f8a3c3ee4ba4",
+    "research/mauritanian-summer-reach-reference-path-candidate.json": "5058d0326091dda9f69585a56b5a09226c77fac3d5807c792c844c84df168557",
     "research/mediterranean-undercurrent-reach-reference-path-candidate.json": "42caecbf99f02d2287ab0e047973f376fd6e78e0cf8af4f2877314eba9d0418b",
     "research/north-cape-northern-reach-reference-path-candidate.json": "47a6a36819f5395eb2aab9e11169cc538e08f3bed79cac1b33610551537dd77e",
     "research/ligurian-reach-reference-path-candidate.json": "097cef899d328b72f4069125e1f30d3d5663a9502ca500d74d0ccbeb318a0bba"
@@ -836,6 +839,22 @@
           "crosses_in_all_declared_scenarios": false
         },
         {
+          "candidate_id": "new-guinea-coastal-surface-reach-reference-path-candidate",
+          "current_id": "new-guinea-coastal-current",
+          "name": "New Guinea Coastal Current",
+          "scope": "Declared 146 E to 142 E offshore north-New-Guinea surface reference reach, ordered northwestward for the trade-wind convention. Both gates and every vertex are selected by OSW. Excludes southeast coastal continuation, Vitiaz Strait, Halmahera branches and the deeper New Guinea Coastal Undercurrent; not a whole-current endpoint or observed axis.",
+          "layer": "Near-surface circulation schematic only; no fixed-depth slab, velocity core or undercurrent axis extracted.",
+          "time_convention": "Figure 8.6 depicts April-November trade-wind circulation; December-March northwest monsoon reverses the surface flow. This editorial sketch is not dated geometry or a monthly climatological axis. The year-round northwest flow below 200 m is excluded.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "north New Guinea surface reference reach",
+          "route_url": "reference-routes.html#new-guinea-coastal-surface-reach-reference-path-candidate",
+          "source_url": "https://ocg.aori.u-tokyo.ac.jp/member/eoka/documents/Tomczak_Godfrey.pdf",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        },
+        {
           "candidate_id": "new-guinea-coastal-undercurrent-reference-path-candidate",
           "current_id": "new-guinea-coastal-undercurrent",
           "name": "New Guinea Coastal Undercurrent",
@@ -868,8 +887,8 @@
           "crosses_in_all_declared_scenarios": false
         }
       ],
-      "current_count": 5,
-      "nominal_current_count": 4
+      "current_count": 6,
+      "nominal_current_count": 5
     },
     "SPSG": {
       "name": "South Pacific gyre",
@@ -879,9 +898,26 @@
     },
     "NEWZ": {
       "name": "New Zealand coast",
-      "route_candidates": [],
-      "current_count": 0,
-      "nominal_current_count": 0
+      "route_candidates": [
+        {
+          "candidate_id": "tasman-historical-connection-reach-reference-path-candidate",
+          "current_id": "tasman-front",
+          "name": "Tasman Front",
+          "scope": "Historical Tasman Front naming convention represented by an OSW offshore 154 E to 172 E near-34 S regional connection. Gates truncate the Australia-northern-New-Zealand geography; neither coastal endpoints nor a continuously identifiable jet is claimed. Excludes coastal EAC, southern extension and East Auckland coastal continuation.",
+          "layer": "Historical upper-ocean thermal/front circulation context, not a fixed-depth velocity core. No temperature contour or measured meander digitized.",
+          "time_convention": "Undated historical reference connection. The source discusses separate September-October 1979 hydrography and March 1982-April 1985 SST statistics; neither supplies this drawn route. Later Oke et al. (2019) disputes a commonly continuous zonal jet.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "historical Tasman reference connection",
+          "route_url": "reference-routes.html#tasman-historical-connection-reach-reference-path-candidate",
+          "source_url": "https://ocg.aori.u-tokyo.ac.jp/member/eoka/documents/Tomczak_Godfrey.pdf",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        }
+      ],
+      "current_count": 1,
+      "nominal_current_count": 1
     },
     "TASM": {
       "name": "Tasman Sea",
@@ -903,6 +939,22 @@
           "crosses_in_all_declared_scenarios": true
         },
         {
+          "candidate_id": "tasman-historical-connection-reach-reference-path-candidate",
+          "current_id": "tasman-front",
+          "name": "Tasman Front",
+          "scope": "Historical Tasman Front naming convention represented by an OSW offshore 154 E to 172 E near-34 S regional connection. Gates truncate the Australia-northern-New-Zealand geography; neither coastal endpoints nor a continuously identifiable jet is claimed. Excludes coastal EAC, southern extension and East Auckland coastal continuation.",
+          "layer": "Historical upper-ocean thermal/front circulation context, not a fixed-depth velocity core. No temperature contour or measured meander digitized.",
+          "time_convention": "Undated historical reference connection. The source discusses separate September-October 1979 hydrography and March 1982-April 1985 SST statistics; neither supplies this drawn route. Later Oke et al. (2019) disputes a commonly continuous zonal jet.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "historical Tasman reference connection",
+          "route_url": "reference-routes.html#tasman-historical-connection-reach-reference-path-candidate",
+          "source_url": "https://ocg.aori.u-tokyo.ac.jp/member/eoka/documents/Tomczak_Godfrey.pdf",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        },
+        {
           "candidate_id": "zeehan-reference-path-candidate",
           "current_id": "zeehan",
           "name": "Zeehan Current",
@@ -919,8 +971,8 @@
           "crosses_in_all_declared_scenarios": true
         }
       ],
-      "current_count": 2,
-      "nominal_current_count": 2
+      "current_count": 3,
+      "nominal_current_count": 3
     },
     "OCAL": {
       "name": "Oceanic California Current",
@@ -1979,6 +2031,22 @@
           "crosses_in_all_declared_scenarios": true
         },
         {
+          "candidate_id": "mauritanian-summer-reach-reference-path-candidate",
+          "current_id": "mauritanian",
+          "name": "Mauritanian Current",
+          "scope": "Declared 17 N to 20 N offshore Mauritanian summer surface reference reach south of Cap Blanc (21 N). OSW selects both regional truncation gates and offshore vertices. Excludes bank circulation, Canary equatorward upwelling jet and the subsurface winter continuation toward Cape Bojador; not complete current endpoints.",
+          "layer": "Summer surface poleward circulation geography; no fixed-depth velocity axis or physical width extracted.",
+          "time_convention": "Source summer surface-flow convention south of Cap Blanc, without an explicit month window in this passage. Winter flow is subsurface; no winter surface counterpart or annual geometry is asserted.",
+          "comparison_group": "osw_studied_reach_routes",
+          "route_extent_kind": "Mauritanian summer surface reference reach",
+          "route_url": "reference-routes.html#mauritanian-summer-reach-reference-path-candidate",
+          "source_url": "https://ocg.aori.u-tokyo.ac.jp/member/eoka/documents/Tomczak_Godfrey.pdf",
+          "nominal_crossing": true,
+          "crossing_scenario_count": 81,
+          "scenario_count": 81,
+          "crosses_in_all_declared_scenarios": true
+        },
+        {
           "candidate_id": "mediterranean-undercurrent-reach-reference-path-candidate",
           "current_id": "mediterranean-undercurrent",
           "name": "Mediterranean Undercurrent",
@@ -2011,8 +2079,8 @@
           "crosses_in_all_declared_scenarios": true
         }
       ],
-      "current_count": 4,
-      "nominal_current_count": 4
+      "current_count": 5,
+      "nominal_current_count": 5
     },
     "NATR": {
       "name": "North Atlantic tropical gyre",
