@@ -99,6 +99,13 @@ def build():
     saved=read('research/west-australian-32s-2013-monthly-component-spans.json')
     if not basin_matches(saved,rebuild_offshore()):raise ValueError('Stale offshore northward diagnostic')
     basin_sections['west-australian']=saved
+    from check_indian_secc_oscar_climatology import saved as indian_saved, DOCUMENTS as INDIAN_DOCS, OWNER as INDIAN_OWNER
+    indian_sections=indian_saved()
+    for path,doc in zip(INDIAN_DOCS,indian_sections):
+        read(path)
+        for dependency,pin in doc['input_sha256'].items():
+            inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
+            if inputs[dependency]!=pin:raise ValueError('Changed Indian SECC source support')
     read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
     for path in ['research/source-data/radenac-ngcc-2016/journal-article.pdf','plans/ngcc-seasonal-vein-width-protocol-v1.md','analysis/check_ngcc_seasonal_vein_widths.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -464,6 +471,14 @@ def build():
                 'frames':12,'evidence_role':'monthly_local_component_spans_current_width_unresolved',
                 'diagnostic_url':'../research/'+doc['section_id']+'-'+str(doc['year'])+'-monthly-component-spans.json',
                 'evidence_sha256':inputs['research/'+doc['section_id']+'-'+str(doc['year'])+'-monthly-component-spans.json']})
+        if current_id==INDIAN_OWNER:
+            for doc in indian_sections:
+                query={'collection':'width_samples','filters':[{'field':'diagnostic_id','op':'eq','value':'diagnostic:basin-'+doc['section_id']}],'sort':{'field':'month','direction':'asc'},'limit':100}
+                path='research/'+doc['section_id']+'-1995-2016-climatological-component-spans.json'
+                series.append({'label':doc['period_label']+' (current width unresolved)',
+                    'url':'query.html?q='+quote(json.dumps(query,separators=(',',':')),safe='')+'#query-chart-section',
+                    'frames':12,'evidence_role':'climatological_local_component_spans_current_width_unresolved',
+                    'diagnostic_url':'../'+path,'evidence_sha256':inputs[path]})
         if current_id == timeline['current_id']:
             series.append({'label': 'Dated surface diagnostics', 'url': 'dated-current.html', 'frames': len(timeline['frames']) + len(annual['frames'])})
         if current_id == 'norwegian-coastal':
@@ -602,6 +617,13 @@ def build():
             groups['measurements'].append(doc)
             groups['sources'].append(doc['input_sha256'] if 'input_sha256' in doc else {'inventory_sha256':doc['source_inventory_sha256'],'config_sha256':doc['config_sha256'],'protocol_sha256':doc['protocol_sha256']})
             evidence_links.append({'label':'Monthly section profiles and resolution flags','url':'../figures/'+doc['section_id']+'-'+str(doc['year'])+'-monthly-component-profiles.svg'})
+        if current_id==INDIAN_OWNER:
+            for doc in indian_sections:
+                groups['time_evidence'].append(doc)
+                groups['measurements'].append(doc)
+                groups['sources'].append(doc['input_sha256'])
+                evidence_links.append({'label':doc['period_label']+' profiles','url':'../'+doc['profile_figure']})
+            evidence_links.append({'label':'1995–2016 year-by-year monthly section spans','url':'../'+indian_sections[0]['interannual_figure']})
         if current_id == 'zeehan':groups['time_evidence'].append(calendar)
         if current_id == florida_plot['current_id']:
             groups['measurements'].append(florida_plot);groups['time_evidence'].append(florida_plot)

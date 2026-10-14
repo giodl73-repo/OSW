@@ -5,7 +5,17 @@ use sha2::{Digest, Sha256};
 use std::collections::BTreeSet;
 
 // Renew these receipts only after rebuilding/reviewing the original-data diagnostics.
-const SOURCES: [(&str, &str, &str); 7] = [
+const SOURCES: [(&str, &str, &str); 9] = [
+    (
+        "diagnostic:basin-indian-secc-80p333e",
+        "research/indian-secc-80p333e-1995-2016-climatological-component-spans.json",
+        "4213a1f5530f6d37714b0c3dd2e878349c8410b6d7dd5c4552a7bd2afbf09051",
+    ),
+    (
+        "diagnostic:basin-indian-secc-80p667e",
+        "research/indian-secc-80p667e-1995-2016-climatological-component-spans.json",
+        "f25b5c40e8af6ba40b176280e998130dd399bb6d60822bb7c4d277d2a9cab5d6",
+    ),
     (
         "diagnostic:basin-portugal-40n",
         "research/portugal-40n-2013-monthly-component-spans.json",
@@ -53,6 +63,9 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             "diagnostic:basin-aleutian-160w" => "current:aleutian",
             "diagnostic:basin-south-australian-132e-100m" => "current:south-australian",
             "diagnostic:basin-west-australian-32s" => "current:west-australian",
+            "diagnostic:basin-indian-secc-80p333e" | "diagnostic:basin-indian-secc-80p667e" => {
+                "current:indian-south-equatorial-countercurrent"
+            }
             _ => return Err("Unknown frozen basin source".into()),
         };
         let present = bundle.manifest["input_sha256"].get(file).is_some()
@@ -94,6 +107,14 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             || row["document"] != original
         {
             return Err("Changed frozen basin original or source binding".into());
+        }
+        if let Some(inputs) = original["input_sha256"].as_object() {
+            if inputs
+                .iter()
+                .any(|(file, pin)| bundle.manifest["input_sha256"][file] != *pin)
+            {
+                return Err("Changed basin diagnostic input binding".into());
+            }
         }
         let owner = original["current_id"]
             .as_str()

@@ -110,6 +110,15 @@ pub fn scene(matches: &[&Value], corpus: &[Value]) -> Value {
             format!("Kuroshio — {}", first["phase_label"].as_str().unwrap_or(""))
         } else if first["current_id"] == "leeuwin" {
             "Leeuwin — historical monthly fitted widths".into()
+        } else if first["sample_family"] == "basin_monthly_component_section"
+            && first["source_context"]["is_climatology"] == true
+        {
+            format!(
+                "{} — local component spans (current width unresolved)",
+                first["source_context"]["period_label"]
+                    .as_str()
+                    .unwrap_or("Calendar-month climatology")
+            )
         } else if first["sample_family"] == "basin_monthly_component_section" {
             format!(
                 "{} — {} local component spans (current width unresolved)",

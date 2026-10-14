@@ -15,7 +15,7 @@ from build_query_width_samples import build as project_samples
 def main():
     output=ROOT/'.pytest_cache/basin-current-width-review'
     bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
-    new=[r for r in bundle['collections']['width_samples'] if r['sample_family']=='basin_monthly_component_section']
+    new=[r for r in bundle['collections']['width_samples'] if r['sample_family']=='basin_monthly_component_section' and not r['source_context'].get('is_climatology')]
     assert len(new)==84 and sum(r['resolution_review_required'] for r in new)==49
     snapshot=json.loads((ROOT/'research/ocean-motion-dashboard.json').read_bytes())
     for owner in ['portugal','south-atlantic','south-pacific','south-indian','aleutian','south-australian','west-australian']:

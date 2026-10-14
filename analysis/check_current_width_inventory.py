@@ -27,6 +27,8 @@ def validate(document, ledger):
     validate_azores_inventory(document)
     from check_persian_gulf_geostrophic_scales import validate_inventory as validate_gogp
     validate_gogp(document)
+    from check_indian_secc_oscar_climatology import validate_inventory as validate_indian_secc
+    validate_indian_secc(document)
     records = document["measurements"]
     if len({row["id"] for row in records}) != len(records):
         raise ValueError("Duplicate width measurement")
@@ -556,6 +558,8 @@ def validate(document, ledger):
     if len({row['current_id'] for row in spans}) != len(spans):
         raise ValueError('Duplicate section-span identity')
     for diagnostic in spans:
+        if diagnostic['current_id']=='indian-south-equatorial-countercurrent':
+            continue
         if diagnostic['current_id'] in ['portugal','south-atlantic','south-pacific','south-indian','aleutian','south-australian']:
             from build_basin_surface_section_spans import build as rebuild_basin, diagnostic_matches as basin_matches
             if diagnostic['current_id']=='south-australian':

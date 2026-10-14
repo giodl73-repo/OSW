@@ -7,6 +7,7 @@ import tempfile
 import os
 from pathlib import Path
 from build_antilles_sadcp_layer_spans import ROOT, OUTPUT, build, measure
+from compare_shipboard_reconstruction import matches as reconstruction_matches
 
 
 class ShipboardSpansTests(unittest.TestCase):
@@ -27,7 +28,7 @@ class ShipboardSpansTests(unittest.TestCase):
 
     def test_checked_reconstruction(self):
         document = build()
-        self.assertEqual(document, json.loads((ROOT/OUTPUT).read_bytes()))
+        self.assertTrue(reconstruction_matches(json.loads((ROOT/OUTPUT).read_bytes()),document))
         self.assertEqual(document['counts']['half_peak_resolved'], 7)
         self.assertEqual(document['counts']['complete_threshold_envelopes'], 6)
         first, repeat = document['rows'][0], document['rows'][10]

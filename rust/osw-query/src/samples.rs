@@ -25,7 +25,9 @@ pub fn validate(
                 | "diagnostic:basin-south-indian-80e"
                 | "diagnostic:basin-aleutian-160w"
                 | "diagnostic:basin-south-australian-132e-100m"
-                | "diagnostic:basin-west-australian-32s",
+                | "diagnostic:basin-west-australian-32s"
+                | "diagnostic:basin-indian-secc-80p333e"
+                | "diagnostic:basin-indian-secc-80p667e",
             ) => "basin_monthly_component_section",
             Some("diagnostic:gulf-stream-widths") => "gulf_stream_dated_half_peak_section",
             Some("diagnostic:yucatan-noaa-sections" | "diagnostic:yucatan-adt-sections") => {

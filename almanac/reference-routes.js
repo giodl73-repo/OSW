@@ -165,7 +165,7 @@
       const derived=value.derived_width_series_candidates?.find(candidate=>candidate.current_id===row.current_id);
       if(derived)link("Inspect derived section-width candidate",derived.visual_url||"../"+derived.file,node("p",null,action));
       const span=value.section_span_diagnostics?.find(diagnostic=>diagnostic.current_id===row.current_id);
-      if(span){node("p",span.scope_note,action);link("Map dated component spans",span.visual_url,node("p",null,action));}
+      if(span){node("p",span.scope_note,action);link("Map local component spans",span.visual_url,node("p",null,action));}
       const review = value.review_assessments?.find(review => review.current_id === row.current_id);
       if (review) {
         node("p", review.reason, action);

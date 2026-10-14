@@ -134,6 +134,11 @@ pub fn sample_scene(records: &[&Value]) -> Value {
         feature["resolution_review_required"] = row["resolution_review_required"].clone();
         feature["sample_month"] = row["month"].clone();
         feature["sample_year"] = row["year"].clone();
+        if row["source_context"]["is_climatology"] == true {
+            feature["climatology_period_years"] =
+                row["source_context"]["climatology_period_years"].clone();
+            feature["time_support"] = row["source_context"]["period_label"].clone();
+        }
         feature["source_sample"] = json!({"diagnostic_id":row["diagnostic_id"],"sample_path":row["sample_path"],"coordinates":projected.iter().find(|r| r["id"] == row["id"]).unwrap()["map_features"][0]["geometry"]["coordinates"]});
     }
     scene

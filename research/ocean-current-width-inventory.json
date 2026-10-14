@@ -12,8 +12,8 @@
     "currents_with_existing_mentions_pending_review": 0,
     "currents_not_assessed": 13,
     "currents_with_derived_width_candidates_pending_review": 2,
-    "currents_with_sources_reviewed_no_numeric_width": 3,
-    "currents_with_section_span_diagnostics_width_unresolved": 7
+    "currents_with_sources_reviewed_no_numeric_width": 2,
+    "currents_with_section_span_diagnostics_width_unresolved": 8
   },
   "measurements": [
     {
@@ -12036,10 +12036,10 @@
     {
       "current_id": "indian-south-equatorial-countercurrent",
       "name": "Indian Ocean South Equatorial Countercurrent",
-      "width_decision": "sources_reviewed_no_comparable_numeric_current_width",
+      "width_decision": "section_span_diagnostic_present_width_unresolved",
       "measurement_ids": [],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
+      "next_action": "Review mode interference, native-column sensitivity and flow-normal current identification using the new1995-2016 yearly/climatological sections; no whole-current width or annual extrema admitted.",
       "existing_evidence_locator": null,
       "existing_evidence_source_url": null
     },
@@ -12540,22 +12540,6 @@
       ]
     },
     {
-      "current_id": "indian-south-equatorial-countercurrent",
-      "decision": "sources_reviewed_no_comparable_numeric_current_width",
-      "whole_current_width_km": null,
-      "annual_width_range_km": null,
-      "source_retrieved_date": "2026-10-03",
-      "reason": "The 6-2.5 S domain at 80.5 E is a frequency/amplitude/phase classification region, not paired velocity boundaries. No numeric current width extracted; annual extrema and complete seasonal geometry remain unresolved.",
-      "evidence": [
-        {
-          "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022JC019147",
-          "citation": "Huang et al. (2023), Meridional-Width Variability of Near-Equatorial Zonal Currents Along 80.5 E on Seasonal to Interannual Timescales in the Indian Ocean, doi:10.1029/2022JC019147.",
-          "locator": "Section 3.1 and Figure 2; OSCAR definition in 2.1.",
-          "supports": "Frequency and phase domains; not a comparable paired-edge numerical width."
-        }
-      ]
-    },
-    {
       "current_id": "red-sea-saline-overflow",
       "decision": "sources_reviewed_no_comparable_numeric_current_width",
       "whole_current_width_km": null,
@@ -12573,6 +12557,27 @@
     }
   ],
   "section_span_diagnostics": [
+    {
+      "current_id": "indian-south-equatorial-countercurrent",
+      "status": "local_component_section_diagnostic_requires_scientific_review",
+      "metric": "fixed_orientation_half_peak_eastward_component_span",
+      "whole_current_width_km": null,
+      "annual_width_range_km": null,
+      "width_rank_eligible": false,
+      "annual_extrema_eligible": false,
+      "visual_url": "query.html?q=%7B%22collection%22%3A%22width_samples%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22indian-south-equatorial-countercurrent%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22month%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A100%7D#query-chart-section",
+      "scope_note": "Two separate native columns bracket80.5 E. 1995–2016 equal-year calendar-month component climatology; 528 yearly monthly profiles retained. No current identification, physical annual extrema or pooled longitude uncertainty.",
+      "sources": [
+        {
+          "file": "research/indian-secc-80p333e-1995-2016-climatological-component-spans.json",
+          "sha256": "4213a1f5530f6d37714b0c3dd2e878349c8410b6d7dd5c4552a7bd2afbf09051"
+        },
+        {
+          "file": "research/indian-secc-80p667e-1995-2016-climatological-component-spans.json",
+          "sha256": "f25b5c40e8af6ba40b176280e998130dd399bb6d60822bb7c4d277d2a9cab5d6"
+        }
+      ]
+    },
     {
       "current_id": "loop",
       "status": "local_component_section_diagnostic_requires_scientific_review",

@@ -461,11 +461,28 @@ def build():
     for path,pin in original['input_sha256'].items():
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
         if inputs[path]!=pin:raise ValueError('Changed offshore source dependency')
+    from check_indian_secc_oscar_climatology import saved as indian_saved, DOCUMENTS as INDIAN_DOCS, DATA as INDIAN_DATA
+    from build_indian_secc_oscar_climatology import build as rebuild_indian
+    indian_sections=indian_saved()
+    if not basin_matches(read(INDIAN_DATA),rebuild_indian()):raise ValueError('Changed Indian SECC yearly/climatology reconstruction')
+    for file,doc in zip(INDIAN_DOCS,indian_sections):
+        original=read(file)
+        collections['diagnostics'].append({'id':'diagnostic:basin-'+doc['section_id'],
+            'label':doc['period_label']+' (current width unresolved)',
+            'entity_id':'current:'+doc['current_id'],'current_id':doc['current_id'],'status':doc['status'],'rank_eligible':False,
+            'source_file':file,'source_file_sha256':inputs[file],'source_json':(ROOT/file).read_bytes().decode('utf8'),'document':original})
+        for path,pin in doc['input_sha256'].items():
+            inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+            if inputs[path]!=pin:raise ValueError('Changed Indian SECC source dependency')
+        for path in [doc['profile_figure'],doc['interannual_figure']]:inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for path in ['analysis/check_indian_secc_oscar_climatology.py','analysis/build_indian_secc_climatology_figures.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from build_query_width_samples import build as build_width_samples
     from build_antilles_sadcp_layer_spans import build as rebuild_shipboard, OUTPUT as SHIPBOARD, INPUT as SHIPBOARD_INPUT, SUBSET as SHIPBOARD_SUBSET
     shipboard=read(SHIPBOARD)
-    if shipboard!=rebuild_shipboard():raise ValueError('Changed shipboard component-span reconstruction')
-    for path in [SHIPBOARD,SHIPBOARD_INPUT,SHIPBOARD_SUBSET,'research/source-data/noaa-wbts-ab0505-sadcp/acquisition.json','analysis/build_antilles_sadcp_layer_spans.py']:
+    from compare_shipboard_reconstruction import matches as shipboard_matches
+    if not shipboard_matches(shipboard,rebuild_shipboard()):raise ValueError('Changed shipboard component-span reconstruction')
+    for path in [SHIPBOARD,SHIPBOARD_INPUT,SHIPBOARD_SUBSET,'research/source-data/noaa-wbts-ab0505-sadcp/acquisition.json','analysis/build_antilles_sadcp_layer_spans.py','analysis/compare_shipboard_reconstruction.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     collections['observed_section_spans']=copy.deepcopy(shipboard['rows'])
     collections['diagnostics'].append({'id':'diagnostic:antilles-shipboard-layer-spans','label':'Antilles-region shipboard component spans','entity_id':'current:antilles','current_id':'antilles','status':shipboard['status'],'rank_eligible':False,'source_file':SHIPBOARD,'source_file_sha256':inputs[SHIPBOARD],'source_json':(ROOT/SHIPBOARD).read_bytes().decode('utf8'),'document':shipboard})

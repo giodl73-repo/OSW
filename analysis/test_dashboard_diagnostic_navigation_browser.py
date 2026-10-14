@@ -19,10 +19,11 @@ def main():
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Aloop#route-atlas')
         row=page.locator('#width-decision-loop')
         expect(row).to_contain_text('section span diagnostic present width unresolved',timeout=90000)
-        expect(page.locator('#width-status')).to_contain_text('1 have component-span diagnostics with width unresolved')
+        count=json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())['counts']['currents_with_section_span_diagnostics_width_unresolved']
+        expect(page.locator('#width-status')).to_contain_text(str(count)+' have component-span diagnostics with width unresolved')
         atlas=page.locator('#route-atlas-preview .atlas-width-evidence')
         expect(atlas).to_contain_text('Not flow-normal widths',timeout=90000)
-        atlas.get_by_role('link',name='Map dated component spans').click()
+        atlas.get_by_role('link',name='Map local component spans').click()
         page.wait_for_function('window.oswLastQueryResult?.ok',timeout=90000)
         query=json.loads(parse_qs(urlparse(page.url).query)['q'][0])
         assert page.evaluate('oswLastQueryResult')==native(query)
