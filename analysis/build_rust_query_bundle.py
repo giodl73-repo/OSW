@@ -28,6 +28,9 @@ def build():
         movies_receipts[name]={'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')}
     dashboard=read('research/ocean-motion-dashboard.json')
     widths=read('research/ocean-current-width-inventory.json')
+    core=read('research/atlantic-seuc-molinari-1981-core-width-scope-audit.json');read(core['acquisition_file'])
+    for path in [core['source_document_file'],core['protocol_file'],'analysis/check_atlantic_seuc_core_width.py','figures/atlantic-seuc-molinari-1981-core-width.svg']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     jet_audit = read('research/antarctic-slope-chavanne-2010-dated-width-constraint-scope-audit.json')
     for path in [jet_audit['protocol_file'], 'analysis/check_antarctic_slope_jet_constraint.py']:
         inputs[path] = hashlib.sha256((ROOT/path).read_bytes()).hexdigest()

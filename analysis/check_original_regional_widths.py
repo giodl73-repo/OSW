@@ -6,6 +6,9 @@ AUDIT='research/algerian-cotroneo-2019-regional-width-scope-audit.json'
 SOURCE_SHA='9f4bd73abd9785762fa1f498d30c120392f4847e1f573528c86d8cec13b44a18'
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 def validate_row(row,audit=None):
+    if row.get('id')=='atlantic-seuc-molinari-1981-core-width':
+        from check_atlantic_seuc_core_width import validate_row as validate_core
+        return validate_core(row,audit)
     if row.get('id') == 'antarctic-slope-chavanne-2009-02-23-jet-width-constraint':
         from check_antarctic_slope_jet_constraint import validate_row as validate_jet
         return validate_jet(row, audit)

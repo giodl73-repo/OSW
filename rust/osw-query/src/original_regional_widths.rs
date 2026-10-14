@@ -3,6 +3,11 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 const SOURCES: &[(&str, &str, &str)] = &[
     (
+        "atlantic-south-equatorial-undercurrent",
+        "research/atlantic-seuc-molinari-1981-core-width-scope-audit.json",
+        include_str!("../../../research/atlantic-seuc-molinari-1981-core-width-scope-audit.json"),
+    ),
+    (
         "antarctic-slope",
         "research/antarctic-slope-chavanne-2010-dated-width-constraint-scope-audit.json",
         include_str!(
@@ -244,6 +249,39 @@ pub(crate) fn validate_azores_inventory(bundle: &crate::Bundle) -> Result<(), St
         validate(row)?;
     }
     Ok(())
+}
+
+pub(crate) fn validate_atlantic_seuc_inventory(bundle: &crate::Bundle) -> Result<(), String> {
+    let (_, path, raw) = SOURCES
+        .iter()
+        .find(|s| s.0 == "atlantic-south-equatorial-undercurrent")
+        .ok_or("Missing Atlantic SEUC frozen source")?;
+    if bundle.manifest["input_sha256"].get(*path).is_none()
+        && !bundle
+            .collections
+            .get("objects")
+            .into_iter()
+            .flatten()
+            .any(|r| r["id"] == "current:atlantic-south-equatorial-undercurrent")
+    {
+        return Ok(());
+    }
+    let rows: Vec<_> = bundle
+        .collections
+        .get("widths")
+        .into_iter()
+        .flatten()
+        .filter(|r| {
+            r["id"] == "atlantic-seuc-molinari-1981-core-width"
+                || r["current_id"] == "atlantic-south-equatorial-undercurrent"
+        })
+        .collect();
+    if rows.len() != 1
+        || bundle.manifest["input_sha256"][path] != format!("{:x}", Sha256::digest(raw.as_bytes()))
+    {
+        return Err("Missing or rebound Atlantic SEUC core inventory".into());
+    }
+    validate(rows[0])
 }
 
 pub(crate) fn validate_balearic_inventory(bundle: &crate::Bundle) -> Result<(), String> {

@@ -23,7 +23,8 @@ def main():
         assert card.locator('.route-map').is_visible()
         assert 'surface drift' in card.inner_text()
         card.locator('.route-map').screenshot(path='figures/atlantic-seuc-reach-reference-path-review.png')
-        assert page.locator('#reference-route-rows tr').count()==37
+        catalog=json.loads(Path('research/ocean-current-reference-path-candidates.json').read_bytes())
+        assert page.locator('#reference-route-rows tr').count()==len(catalog['reference_route_length_order'])
         assert page.locator('#reference-route-rows a[href="#atlantic-seuc-reach-reference-path-candidate"]').count()==0
         card.get_by_role('link',name='Back to global current map').click()
         assert page.url.endswith('#route-atlas')
@@ -31,11 +32,11 @@ def main():
         row=next(r for r in json.loads(Path('research/ocean-motion-dashboard.json').read_text(encoding='utf-8'))['entries'] if r['id']=='current:atlantic-south-equatorial-undercurrent')
         assert row['capabilities']['reference_route']==1
         assert row['capabilities']['scope_notes']==1
-        assert row['capabilities']['scoped_width']==0
+        assert row['capabilities']['scoped_width']==1
         assert row['latest_observation_date'] is None
         width=json.loads(Path('research/ocean-current-width-inventory.json').read_text(encoding='utf-8'))
         decision=next(r for r in width['current_decisions'] if r['current_id']=='atlantic-south-equatorial-undercurrent')
-        assert decision['width_decision']=='sources_reviewed_no_comparable_numeric_current_width'
+        assert decision['width_decision']=='scoped_width_evidence_present'
         assert decision['whole_current_width_km'] is None
         page.set_viewport_size({'width':320,'height':800})
         page.locator('#route-atlas-select').select_option('current:atlantic-south-equatorial-undercurrent')

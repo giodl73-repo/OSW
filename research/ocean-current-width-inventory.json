@@ -7,15 +7,96 @@
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 74,
-    "measurements": 140,
+    "currents_with_scoped_width_evidence": 75,
+    "measurements": 141,
     "currents_with_existing_mentions_pending_review": 0,
     "currents_not_assessed": 13,
     "currents_with_derived_width_candidates_pending_review": 2,
-    "currents_with_sources_reviewed_no_numeric_width": 4,
+    "currents_with_sources_reviewed_no_numeric_width": 3,
     "currents_with_section_span_diagnostics_width_unresolved": 7
   },
   "measurements": [
+    {
+      "id": "atlantic-seuc-molinari-1981-core-width",
+      "current_id": "atlantic-south-equatorial-undercurrent",
+      "name": "Atlantic South Equatorial Undercurrent",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_regional_summary",
+      "width_metric": "author_reported_velocity_contour_core_span",
+      "approximate_width_km": 120,
+      "width_range_km": null,
+      "range_interpretation": "One approximate author-reported 20 cm/s core width. Abstract approximately 100 km is separate unreconciled context, not an endpoint, error or independent occupation.",
+      "geographic_scope": "Eastern and western Atlantic sections: approximately 25–29 W and 4 W, within the 1978–1980 study. Not the newer 35 W ledger section or the entire current.",
+      "section_geometry": null,
+      "section_orientation": "Source cross-current sections; no geographic edge pair or exact flow-normal projection extracted.",
+      "layer": "Subthermocline 20 cm/s isotach core. Reported core depths and vertical extent are context, not fixed width-layer limits.",
+      "time_convention": "Author summary across six 1978–1980 cruises. Individual figure dates do not date this characteristic width; no per-cruise or seasonal width series extracted.",
+      "boundary_rule": "Source defines the core as flow within the 20 cm/s isotach and reports about 120 km core width. This is not the net-flow boundary.",
+      "source_url": "https://archimer.ifremer.fr/doc/00121/23229/21063.pdf",
+      "source_citation": "Molinari, R. L., Voituriez, B., and Duncan, P. (1981), Observations in the subthermocline undercurrent of the Equatorial South Atlantic Ocean: 1978–1980, Oceanologica Acta 4(4), 451–456.",
+      "source_locator": "Printed p453/PDF p3, core definition and width paragraphs; abstract p451/PDF p1; methods/captions p452/PDF p2; net-flow boundary limitation p456/PDF p6.",
+      "source_retrieved_date": "2026-10-14",
+      "source_evidence_kind": "published_original_campaign_core_summary",
+      "extraction_method": "Transcribed the explicit contour-defined body core width after original-page review; no figure digitization or geographic edge inference.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "phase_label": "1978–1980 study · 20 cm/s core summary",
+      "phase_kind": "regional_summary",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "uncertainty_km": null,
+      "whole_current_width_km": null,
+      "annual_width_range_km": null,
+      "source_quality_note": "Body about 120 km versus abstract about 100 km retained separately. Reference captions use 1000 db while prose uses 1000 m. Numerical width uncertainty and net-flow boundaries unknown.",
+      "remaining_gates": [
+        "Resolve source approximate-width description discrepancy without manufacturing a range.",
+        "Recover paired geographic edges and compatible repeated sections before mapping or annual variability.",
+        "Independent scientific admission."
+      ],
+      "original_regional_context": {
+        "description_kind": "atlantic_seuc_contour_core_summary",
+        "core_threshold_cm_s": 20,
+        "abstract_description_width_km": 100,
+        "body_core_width_km": 120,
+        "abstract_body_discrepancy_reconciled": false,
+        "descriptions_are_independent_occupations": false,
+        "descriptions_define_range_or_error": false,
+        "geostrophic_reference_prose": "1000 m",
+        "geostrophic_reference_figure_captions": "1000 db",
+        "pressure_depth_expressions_are_exact_conversion": false,
+        "pcm_velocity_reference_depths_m": [
+          500,
+          600
+        ],
+        "velocity_references_are_width_layer": false,
+        "abstract_core_depth_context_m": [
+          150,
+          200
+        ],
+        "core_depth_context_is_fixed_width_layer": false,
+        "velocity_errors_are_width_uncertainty": false,
+        "float_sampling_band_is_width": false,
+        "newer_35w_section_is_measurement_support": false,
+        "net_flow_boundaries_resolved": false,
+        "per_cruise_width_values_available": false,
+        "campaign_years": [
+          1978,
+          1979,
+          1980
+        ],
+        "display_aria_label": "Atlantic SEUC: about 120 km 20 cm/s core width in the 1978–1980 study. Abstract about 100 km remains separate unresolved context, not a range or uncertainty. No fixed depth or annual width inferred.",
+        "display_caption": "About 120 km · source-defined 20 cm/s core. The abstract separately says about 100 km; no combined 100–120 km range or 110 km midpoint.",
+        "display_method_note": "1978–1980 regional summary; no width per cruise, fixed depth, numerical width error or net-flow boundary. 1000 db captions and 1000 m prose retained as distinct reference expressions.",
+        "comparison_figure": "figures/atlantic-seuc-molinari-1981-core-width.svg",
+        "audit_file": "research/atlantic-seuc-molinari-1981-core-width-scope-audit.json",
+        "audit_sha256": "577cccac98a3970272e7e2ab7a11bceba86138fec881adad570ba18d58c8ca1c"
+      }
+    },
     {
       "id": "northern-mediterranean-winter-width",
       "current_id": "northern-mediterranean",
@@ -11900,12 +11981,14 @@
     {
       "current_id": "atlantic-south-equatorial-undercurrent",
       "name": "Atlantic South Equatorial Undercurrent",
-      "width_decision": "sources_reviewed_no_comparable_numeric_current_width",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "atlantic-seuc-molinari-1981-core-width"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Diagnose paired layer/time-compatible lateral boundaries. Reviewed 3–6 S sampling domain and qualitative eastward widening do not supply a comparable numeric width.",
-      "existing_evidence_locator": "Fischer et al. (2008), sections 2 [7] and 4 [9]",
-      "existing_evidence_source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008GL035753"
+      "next_action": "Resolve approximate descriptions, paired geographic core edges and repeated compatible sections before whole-current or annual widths.",
+      "existing_evidence_locator": "Molinari et al. (1981), printed p453/PDF p3, 20 cm/s core width; abstract p451 discrepancy retained.",
+      "existing_evidence_source_url": "https://archimer.ifremer.fr/doc/00121/23229/21063.pdf"
     },
     {
       "current_id": "indian-south-equatorial-undercurrent",
@@ -12295,22 +12378,6 @@
           "citation": "Meinen et al. (2019), doi:10.1029/2018JC014836",
           "locator": "Table 3 and section 3.1",
           "supports": "Integration boundary, regional mean-flow structure and variability; no whole-current width admitted."
-        }
-      ]
-    },
-    {
-      "current_id": "atlantic-south-equatorial-undercurrent",
-      "decision": "sources_reviewed_no_comparable_numeric_current_width",
-      "whole_current_width_km": null,
-      "annual_width_range_km": null,
-      "source_retrieved_date": "2026-10-03",
-      "reason": "3–6 S describes a float sampling band. Section 4 reports relative widening eastward but no comparable numeric paired-edge width extracted.",
-      "evidence": [
-        {
-          "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008GL035753",
-          "citation": "Fischer, Hormann, Brandt, Schott, Rabe and Funk (2008), South Equatorial Undercurrent in the western to central tropical Atlantic, Geophysical Research Letters 35, doi:10.1029/2008GL035753.",
-          "locator": "Sections 2 [7] and 4 [9]",
-          "supports": "Sampling-band and qualitative widening context; no numeric paired-edge width admitted."
         }
       ]
     },
