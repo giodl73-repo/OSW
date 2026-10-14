@@ -15,13 +15,31 @@ def validate(document, ledger):
     ids = {row["id"] for row in ledger["entries"]}
     if len(decisions) != len(ids) or {row["current_id"] for row in decisions} != ids:
         raise ValueError("Incomplete or duplicated width inventory")
+    from check_ngcc_seasonal_vein_widths import validate_inventory as validate_ngcc_inventory
+    validate_ngcc_inventory(document)
+    from check_balearic_socib_width import validate_inventory as validate_balearic_inventory
+    validate_balearic_inventory(document)
+    from check_atlantic_seuc_core_width import validate_inventory as validate_atlantic_seuc
+    validate_atlantic_seuc(document)
+    from check_antarctic_slope_jet_constraint import validate_inventory as validate_jet_inventory
+    validate_jet_inventory(document)
+    from check_azores_model_core_widths import validate_inventory as validate_azores_inventory
+    validate_azores_inventory(document)
+    from check_persian_gulf_geostrophic_scales import validate_inventory as validate_gogp
+    validate_gogp(document)
+    from check_indian_secc_oscar_climatology import validate_inventory as validate_indian_secc
+    validate_indian_secc(document)
+    from check_southern_basin_oscar_climatology import validate_inventory as validate_southern
+    validate_southern(document)
+    from check_gulf_stream_published_widths import validate_inventory as validate_gulf
+    validate_gulf(document)
     records = document["measurements"]
     if len({row["id"] for row in records}) != len(records):
         raise ValueError("Duplicate width measurement")
     by_id = {row["id"]: row for row in records}
     hydrographic_extraction = None
     for row in records:
-        if str(row.get("id", "")).startswith(("acc-park-2019-udintsev-", "monsoon-webber-2018-", "tasman-front-nilsson-1980-", "antarctic-coastal-schubert-2021-", "deep-western-boundary-richardson-1993-", "pacific-neuc-li-2018-")) or row.get("original_regional_context") or row["current_id"] in {"algerian", "alaska", "pacific-equatorial-undercurrent", "atlantic-equatorial-undercurrent", "kuroshio-extension", "new-guinea-coastal-undercurrent", "zeehan", "west-australian", "peru-humboldt", "baffin", "western-adriatic", "jutland", "solomon-island-coastal-undercurrent", "new-ireland-coastal-undercurrent", "north-pacific", "acc", "monsoon", "tasman-front", "antarctic-coastal", "deep-western-boundary", "pacific-north-equatorial-undercurrent"}:
+        if str(row.get("id", "")).startswith(("ngcc-radenac-2016-", "pacific-secc-rotschi-1972-", "hiri-hughes-1993-", "east-adriatic-pasaric-2019-", "acc-park-2019-udintsev-", "monsoon-webber-2018-", "tasman-front-nilsson-1980-", "antarctic-coastal-schubert-2021-", "deep-western-boundary-richardson-1993-", "pacific-neuc-li-2018-")) or row.get("original_regional_context") or row["current_id"] == "antarctic-slope" or row["current_id"] in {"new-guinea-coastal-current", "pacific-south-equatorial-countercurrent", "hiri-current", "east-adriatic", "algerian", "alaska", "pacific-equatorial-undercurrent", "atlantic-equatorial-undercurrent", "kuroshio-extension", "new-guinea-coastal-undercurrent", "zeehan", "west-australian", "peru-humboldt", "baffin", "western-adriatic", "jutland", "solomon-island-coastal-undercurrent", "new-ireland-coastal-undercurrent", "north-pacific", "acc", "monsoon", "tasman-front", "antarctic-coastal", "deep-western-boundary", "pacific-north-equatorial-undercurrent"}:
             from check_original_regional_widths import validate_row
             validate_row(row)
         if row.get("model_regional_context") or row["current_id"] == "guinea":
@@ -52,6 +70,8 @@ def validate(document, ledger):
             if row['phase_kind'] == 'climatological_core_distribution':
                 if row.get('range_kind') != 'spatial_range_of_climatological_threshold_core_spans' or type(value) not in (float,int) or not math.isfinite(value) or not span[0] <= value <= span[1]:
                     raise ValueError('Invalid spatial core range or median')
+            elif row['phase_kind']=='campaign_width_statistics':
+                if row.get('id')!='gulf-stream-richardson-1967-transport-width-statistics' or row.get('range_kind')!='finite_span_of_three_author_reported_crossing_widths' or value!=135 or span!=[120,145]:raise ValueError('Changed source-bound campaign width statistics')
             elif row['phase_kind']=='width_time_series_statistics':
                 if row.get('range_kind')!='author_reported_minimum_maximum_of_filtered_width_time_series' or type(value) not in (float,int) or not span[0] <= value <= span[1]:
                     raise ValueError('Invalid time-series width statistics range')
@@ -66,10 +86,12 @@ def validate(document, ledger):
                     raise ValueError('Offshore extent promoted to midpoint or temporal width')
             elif row['phase_kind']=='seasonal_regional_width_range':
                 if value is not None or row.get('range_kind')!='author_reported_seasonal_regional_width_scale_span':raise ValueError('Invented seasonal regional width midpoint or annual range')
+            elif row['phase_kind']=='regional_summary' and row.get('range_kind')=='reported_historical_cruise_width_span':
+                if value is not None or row['current_id']!='pacific-south-equatorial-countercurrent' or span!=[300,900]:raise ValueError('Historical SECC range promoted to midpoint or different scope')
             elif value is not None or row.get('range_kind') != 'reported_typical_regional_width_span' or row['phase_kind'] != 'regional_summary':
                 raise ValueError('Unsupported regional range or invented representative width')
         elif row.get('reported_width_constraint'):
-            if row['current_id'] not in {'new-guinea-coastal-undercurrent','west-australian','solomon-island-coastal-undercurrent','new-ireland-coastal-undercurrent','north-pacific'} or value is not None or span is not None:
+            if row['current_id'] not in {'antarctic-slope','new-guinea-coastal-undercurrent','west-australian','solomon-island-coastal-undercurrent','new-ireland-coastal-undercurrent','north-pacific'} or value is not None or span is not None:
                 raise ValueError('Unbound size constraint or promoted numeric width')
         elif not isinstance(value, (float, int)) or isinstance(value, bool) or not math.isfinite(value) or value <= 0:
             raise ValueError("Invalid width")
@@ -489,8 +511,14 @@ def validate(document, ledger):
         elif row['phase_kind'] == 'coastal_composite_threshold_section':
             from check_antarctic_coastal_composites import validate_row
             validate_row(row)
+        elif row['phase_kind'] == 'dated_width_constraint':
+            from check_antarctic_slope_jet_constraint import validate_row as validate_jet_row
+            validate_jet_row(row)
         elif row['phase_kind'] == 'regional_summary':
-            if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] not in {'author_reported_current_width','author_reported_one_sided_coastal_confinement','author_reported_climatological_major_front_separation','author_reported_climatological_boundary_breadth','author_inferred_origin_proxy_component_width','author_reported_meander_occupied_band_breadth'} or row['observed_period'] is not None or row.get('calendar_months') is not None or (span is None and not row.get('original_regional_context')):
+            if row['width_metric']=='author_reported_velocity_contour_core_span':
+                from check_atlantic_seuc_core_width import validate_row as validate_core
+                validate_core(row)
+            if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] not in {'author_reported_geostrophic_band_scale','author_reported_geostrophic_peak_scale','author_reported_velocity_contour_core_span','author_reported_seasonal_surface_current_anomaly_vein_span','author_reported_seasonal_thermal_vein_span','author_reported_geostrophic_current_width_range','author_reported_e_folding_scale','author_reported_coastal_inflow_extent','author_reported_current_width','author_reported_one_sided_coastal_confinement','author_reported_climatological_major_front_separation','author_reported_climatological_boundary_breadth','author_inferred_origin_proxy_component_width','author_reported_meander_occupied_band_breadth'} or row['observed_period'] is not None or row.get('calendar_months') is not None or (span is None and not row.get('original_regional_context')):
                 raise ValueError('Conflated regional range support')
             if row.get('regional_range_context') and row['current_id'] not in {'black-sea-rim','norwegian-coastal'}:
                 raise ValueError('Regional range source owner mismatch')
@@ -510,6 +538,9 @@ def validate(document, ledger):
                     raise ValueError('Regional Black Sea range promoted to mapped or seasonal width')
                 if context.get('pycnocline_is_measurement_layer') is not False or context.get('boundary_coordinates_supplied') is not False:
                     raise ValueError('Invented Black Sea range boundaries or layer')
+        elif row['phase_kind'] in ['campaign_width_statistics','climatological_isopycnal_span']:
+            from check_gulf_stream_published_widths import validate_row as validate_gulf_row
+            validate_gulf_row(row)
         elif row["phase_kind"] != "seasonal_summary" or row["measurement_type"] != "published_regional_seasonal_summary" or row["observed_period"] is not None:
             raise ValueError("Unsupported or conflated temporal evidence")
     reviews = document.get('review_assessments', [])
@@ -536,6 +567,22 @@ def validate(document, ledger):
     if len({row['current_id'] for row in spans}) != len(spans):
         raise ValueError('Duplicate section-span identity')
     for diagnostic in spans:
+        if diagnostic['current_id']=='indian-south-equatorial-countercurrent':
+            continue
+        if diagnostic['current_id'] in ['portugal','south-atlantic','south-pacific','south-indian','aleutian','south-australian']:
+            from build_basin_surface_section_spans import build as rebuild_basin, diagnostic_matches as basin_matches
+            if diagnostic['current_id']=='south-australian':
+                from build_south_australian_hycom_spans import build as rebuild_hycom
+                calculated=rebuild_hycom()
+            else:calculated=next(d for d in rebuild_basin() if d['current_id']==diagnostic['current_id'])
+            expected='research/'+calculated['section_id']+'-'+str(calculated['year'])+'-monthly-component-spans.json'
+            if len(diagnostic['sources'])!=(2 if diagnostic['current_id'] in ['south-atlantic','south-pacific','south-indian'] else 1) or diagnostic['sources'][0]['file']!=expected or diagnostic['status']!=calculated['status'] or diagnostic['metric']!=calculated['width_metric']:
+                raise ValueError('Invalid basin component source identity')
+            source=diagnostic['sources'][0];raw=(ROOT/source['file']).read_bytes()
+            if hashlib.sha256(raw).hexdigest()!=source['sha256'] or not basin_matches(json.loads(raw),calculated):raise ValueError('Changed basin component diagnostic')
+            if diagnostic['whole_current_width_km'] is not None or diagnostic['annual_width_range_km'] is not None or diagnostic['width_rank_eligible'] is not False or diagnostic['annual_extrema_eligible'] is not False:
+                raise ValueError('Basin component promoted to current width')
+            continue
         if diagnostic['current_id'] != 'loop' or diagnostic['status'] != 'local_component_section_diagnostic_requires_scientific_review' or diagnostic['metric'] != 'zonal_half_peak_northward_velocity_section_span':
             raise ValueError('Invalid component section-span classification')
         if diagnostic['whole_current_width_km'] is not None or diagnostic['annual_width_range_km'] is not None or diagnostic['width_rank_eligible'] is not False or diagnostic['annual_extrema_eligible'] is not False:
@@ -564,6 +611,8 @@ def validate(document, ledger):
         if (row['width_decision'] == 'sources_reviewed_no_comparable_numeric_current_width') != any(review['current_id'] == row['current_id'] for review in reviews):
             raise ValueError('Width source-review decision mismatch')
     for summary in document["seasonal_summaries"]:
+        if not isinstance(summary.get('interpretation'),str) or not summary['interpretation'].strip():
+            raise ValueError('Missing seasonal interpretation')
         members = [by_id[identifier] for identifier in summary["measurement_ids"]]
         if len(members) < 2 or any(row["current_id"] != summary["current_id"] or row["phase_kind"] != "seasonal_summary" for row in members) or len({row["phase_label"] for row in members}) != len(members) or len({row["width_metric"] for row in members}) != 1:
             raise ValueError("Incompatible seasonal identities")

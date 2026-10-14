@@ -17,12 +17,22 @@ window.renderOriginalRegionalWidth=function(container,row){
   add("line",{x1:40,x2:460,y1:95,y2:95,stroke:"#526c77"});
   if(point)add("circle",{cx:x(low),cy:60,r:6,fill:"#176b82"});
   else add("line",{x1:x(low),x2:x(high),y1:60,y2:60,stroke:"#176b82","stroke-width":5});
+  if(row.phase_kind==='campaign_width_statistics'&&Number.isFinite(row.approximate_width_km))add("circle",{cx:x(row.approximate_width_km),cy:60,r:7,fill:"#b36616","data-author-mean-km":row.approximate_width_km});
   const closeLabels=!point&&x(high)-x(low)<labelSize*(`${low} km`.length+`${high} km`.length)*.3+8;
-  for(const v of point?[low]:[low,high]){if(!point)add("line",{x1:x(v),x2:x(v),y1:50,y2:70,stroke:"#176b82","stroke-width":3});add("text",{x:x(v),y:30,"text-anchor":closeLabels?(v===low?"end":"start"):point&&v/maximum>.8?"end":"middle","font-size":labelSize,fill:"#102f3b"},`${point?'≈ ':''}${v} km`);}
+  const valueLabels=[];
+  for(const v of point?[low]:[low,high]){if(!point)add("line",{x1:x(v),x2:x(v),y1:50,y2:70,stroke:"#176b82","stroke-width":3});add("text",{x:x(v),y:30,"text-anchor":closeLabels?"end":v/maximum>.8?"end":"middle","font-size":labelSize,fill:"#102f3b"},`${point?'≈ ':''}${v} km`);valueLabels.push(svg.lastElementChild);}
+  if(closeLabels){
+    const widths=valueLabels.map(e=>e.getComputedTextLength()||labelSize*e.textContent.length*.6);
+    let left=Math.max(40+widths[0],Math.min(x(low),x(high)-widths[1]-8));
+    let right=Math.max(x(high),left+widths[1]+8);
+    if(right>460){right=460;left=right-widths[1]-8;}
+    [left,right].forEach((position,i)=>{valueLabels[i].setAttribute("x",position);const original=x(i?high:low);if(Math.abs(position-original)>1)add("line",{x1:original,x2:position-widths[i]/2,y1:48,y2:36,stroke:"#526c77","stroke-width":1});});
+  }
   for(const v of [0,maximum])add("text",{x:x(v),y:125,"text-anchor":v?"end":"start","font-size":labelSize,fill:"#102f3b"},`${v} km`);
   const caption=document.createElement("figcaption");caption.textContent=row.original_regional_context.display_caption||"Regional along-slope Atlantic Water flow · one 30–50 km background description, no midpoint selected. Numerical uncertainty unknown. The article's autumn 2014–2016 glider missions and 975 m sampling depth do not define this width's observation dates or layer. No annual range, monthly widths or mapped edges inferred.";figure.append(caption);
   const note=document.createElement("p");note.textContent=row.original_regional_context.display_method_note||"Original publisher text inspected; the width description cites Testor et al. (2005). The underlying width method remains unreviewed. Detached eddy diameters are separate quantities.";figure.append(note);
   const q={document:row.original_regional_context.audit_file,pointer:row.original_regional_context.audit_pointer||"/measurement",limit:50},a=document.createElement("a");a.href="query.html?source-q="+encodeURIComponent(JSON.stringify(q));a.textContent="Inspect regional width scope and source";figure.append(a);
+  if(row.original_regional_context.comparison_figure){const a=document.createElement('a');a.href='../'+row.original_regional_context.comparison_figure;a.textContent=row.original_regional_context.comparison_figure_label||(row.original_regional_context.description_kind==='atlantic_seuc_contour_core_summary'?'View the source-defined core width graphic':'Compare reported seasonal model-core widths');a.style.display='block';a.style.marginTop='.5rem';figure.append(a);}
   if(row.original_regional_context.section_comparison)window.renderQualitativeSectionComparison(figure,row);
 };
 
@@ -49,6 +59,7 @@ window.renderReportedWidthConstraint=function(container,row){
   svg.setAttribute('aria-label',breadth?`${row.name}: source reports offshore geographic breadth ${row.reported_width_constraint.source_notation}. Government synthesis, not a measured velocity-core width, finite interval or seasonal range. Representative width and numerical uncertainty unknown.`:`${row.name}: source reports ${row.reported_width_constraint.source_notation}. Approximate less-than size description, not a measured 20 km width, rigorous hard bound or zero-to-20 km interval. Representative width and numerical uncertainty unknown.`);
   svg.style.cssText='display:block;width:100%;max-width:650px;background:#f6f5ef;color:#102f3b';
   if(confinement||broadBand)svg.setAttribute('aria-label',row.original_regional_context.display_aria_label);
+  if(row.reported_width_constraint.kind==='author_reported_dated_less_than')svg.setAttribute('aria-label',row.original_regional_context.display_aria_label);
   for(const [label,y,size] of [[row.reported_width_constraint.source_notation,40,36],[broadBand?row.original_regional_context.display_constraint_label:confinement?'Coastal confinement':breadth?'Reported offshore breadth':'Reported size constraint',80,breadth?32:28]]){
     const text=document.createElementNS(ns,'text');text.setAttribute('x',25);text.setAttribute('y',y);text.setAttribute('font-size',size);text.setAttribute('fill','#102f3b');text.textContent=label;svg.append(text);
   }

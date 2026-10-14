@@ -28,6 +28,41 @@ def build():
         movies_receipts[name]={'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')}
     dashboard=read('research/ocean-motion-dashboard.json')
     widths=read('research/ocean-current-width-inventory.json')
+    gogp=read('research/persian-gulf-gogp99-geostrophic-scales-scope-audit.json')
+    for source in [gogp,*gogp['supporting_originals']]:
+        read(source['acquisition_file'])
+        inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
+    for path in [gogp['protocol_file'],'analysis/check_persian_gulf_geostrophic_scales.py','figures/persian-gulf-gogp99-geostrophic-scales.svg']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+
+    from check_gulf_stream_published_widths import validate_inventory as validate_gulf, AUDIT as GULF_AUDIT
+    validate_gulf(widths)
+    gulf_audit=read(GULF_AUDIT)
+    for source in gulf_audit['sources']:
+        read(source['acquisition_file'])
+        inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
+    for path in [gulf_audit['protocol_file'],'analysis/check_gulf_stream_published_widths.py','figures/gulf-stream-published-width-definitions.svg']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    core=read('research/atlantic-seuc-molinari-1981-core-width-scope-audit.json');read(core['acquisition_file'])
+    for path in [core['source_document_file'],core['protocol_file'],'analysis/check_atlantic_seuc_core_width.py','figures/atlantic-seuc-molinari-1981-core-width.svg']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    jet_audit = read('research/antarctic-slope-chavanne-2010-dated-width-constraint-scope-audit.json')
+    for path in [jet_audit['protocol_file'], 'analysis/check_antarctic_slope_jet_constraint.py']:
+        inputs[path] = hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    socib_audit = read('research/balearic-socib-2023-regional-width-scope-audit.json')
+    read(socib_audit['acquisition_file'])
+    for path in [socib_audit['source_document_file'], socib_audit['protocol_file'], 'analysis/check_balearic_socib_width.py']:
+        inputs[path] = hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    coordinate_audit=read('research/azores-countercurrent-posaf-coordinate-meaning-audit.json')
+    from build_azcc_coordinate_meaning_figure import validate as validate_coordinate_meaning
+    validate_coordinate_meaning(coordinate_audit)
+    read('research/source-data/carracedo-caibox-2012/acquisition.json')
+    path='analysis/build_azcc_coordinate_meaning_figure.py'
+    inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for path in ['research/azores-carracedo-2014-model-core-width-scope-audit.json','research/azores-carracedo-2014-climatological-core-width-record.json','research/source-data/carracedo-azores-2014/acquisition.json','research/source-data/woa09-season-definition/acquisition.json']:
+        read(path)
+    for path in ['analysis/check_azores_model_core_widths.py','analysis/build_azores_climatological_core_width_figure.py','plans/azores-model-core-width-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/somali-schott-2001-premonsoon-width-scope-audit.json');read('research/source-data/schott-mccreary-2001/acquisition.json')
     for path in ['research/source-data/schott-mccreary-2001/journal-article.pdf','plans/somali-seasonal-width-protocol-v1.md','analysis/check_somali_seasonal_width.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -38,10 +73,37 @@ def build():
         read(path)
     for path in ['research/source-data/kolas-fer-wsc-2018/journal-article.pdf','plans/west-spitsbergen-stream-tube-width-protocol-v1.md','analysis/check_west_spitsbergen_stream_tubes.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
+    for path in ['research/source-data/radenac-ngcc-2016/journal-article.pdf','plans/ngcc-seasonal-vein-width-protocol-v1.md','analysis/check_ngcc_seasonal_vein_widths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/pacific-secc-rotschi-1972-width-range-scope-audit.json');read('research/source-data/rotschi-secc-1972/acquisition.json')
+    for path in ['research/source-data/rotschi-secc-1972/journal-article.pdf','plans/pacific-secc-historical-width-protocol-v1.md','analysis/check_pacific_secc_historical_width.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from check_current_width_inventory import validate
+    from check_nordic_section_widths import SOURCES as NORDIC_SOURCES, NOR, WSC, proposed_records, validate_proposal, validate_inventory as validate_nordic_inventory
+    for owner,(path,pin) in NORDIC_SOURCES.items():
+        audit=read(path);read(audit['acquisition_file'])
+        for dependency in [audit['source_document_file'],audit['protocol_file'],'analysis/check_nordic_section_widths.py',
+                           'analysis/build_nordic_section_width_figures.py',
+                           'figures/norwegian-fer-2020-section-width.svg' if owner==NOR else 'figures/spitsbergen-kolas-2018-section-widths.svg']:
+            inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
     validate(widths,read('research/ocean-current-almanac.json'))
+    validate_nordic_inventory(widths)
+    validate_proposal(read('research/ocean-current-inventory-expansion-candidates.json'))
+    collections['proposed_widths']=proposed_records()
     read('research/guinea-djakoure-2017-model-width-source-review.json');read('research/source-data/djakoure-guinea-2017/acquisition.json')
     for path in ['research/source-data/djakoure-guinea-2017/journal-article.pdf','plans/guinea-model-regional-width-protocol-v1.md','analysis/check_guinea_model_width.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_hiri_east_adriatic_local_widths import AUDITS as LOCAL_AUDITS
+    for audit_file, _ in LOCAL_AUDITS.values():
+        audit = read(audit_file)
+        read(audit['acquisition_file'])
+        for kind in ['source_document', 'protocol']:
+            path = audit[kind+'_file']; inputs[path] = hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for path in ['analysis/check_hiri_east_adriatic_local_widths.py','analysis/build_hiri_east_adriatic_local_widths.py']:
+        inputs[path] = hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/caribbean-duncan-1982-dated-width-scope-audit.json');read('research/source-data/duncan-caribbean-1982/acquisition.json')
+    for path in ['research/source-data/duncan-caribbean-1982/journal-article.pdf','plans/caribbean-dated-width-protocol-v1.md','analysis/check_caribbean_dated_width.py','analysis/build_caribbean_dated_width.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/algerian-cotroneo-2019-regional-width-scope-audit.json');read('research/source-data/cotroneo-algerian-2019/acquisition.json')
     for path in ['research/source-data/cotroneo-algerian-2019/journal-article.pdf','plans/algerian-regional-width-protocol-v1.md','analysis/check_original_regional_widths.py']:
@@ -87,7 +149,8 @@ def build():
     for path in ['research/source-data/tomczak-regional-2005/journal-article.pdf','plans/north-pacific-broad-band-protocol-v1.md','analysis/check_north_pacific_broad_band.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/solomon-melet-2010-coastal-confinement-scope-audit.json');read('research/source-data/melet-solomon-2010/acquisition.json')
-    for path in ['research/source-data/melet-solomon-2010/journal-article.pdf','plans/solomon-coastal-confinement-protocol-v1.md','analysis/check_solomon_coastal_confinement.py']:
+    from melet_hal_source import integrity_inputs as melet_inputs
+    for path in melet_inputs()+['plans/solomon-coastal-confinement-protocol-v1.md','analysis/check_solomon_coastal_confinement.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/jutland-nielsen-2000-cited-satellite-width-scope-audit.json');read('research/source-data/nielsen-jutland-2000/acquisition.json')
     for path in ['research/source-data/nielsen-jutland-2000/journal-article.pdf','plans/jutland-satellite-width-support-protocol-v1.md','analysis/check_jutland_satellite_widths.py']:
@@ -283,6 +346,11 @@ def build():
         ('diagnostic:necc-monthly-section','research/pacific-necc-oscar-2013-section-diagnostic.json'),
         ('diagnostic:antilles-observed-sections','research/antilles-ab0505-400m-section-diagnostic.json'),
         ('diagnostic:gulf-stream-widths','research/gulf-stream-section-width-series.json')]]
+    collections['diagnostics'].append({'id':'diagnostic:gulf-stream-published-width-definitions',
+        'label':'Gulf Stream transport-float occupations and historical isopycnal width',
+        'entity_id':'current:gulf-stream','current_id':'gulf-stream','status':gulf_audit['status'],'rank_eligible':False,
+        'source_file':GULF_AUDIT,'source_file_sha256':inputs[GULF_AUDIT],
+        'source_json':(ROOT/GULF_AUDIT).read_bytes().decode('utf8'),'document':gulf_audit})
     florida_diagnostic=next(d for d in collections['diagnostics'] if d['id']=='diagnostic:florida-monthly-width')
     florida_path='research/florida-monthly-width-plot-extraction.json'
     florida_diagnostic.update(source_file=florida_path,source_file_sha256=inputs[florida_path],source_json=(ROOT/florida_path).read_bytes().decode('utf-8'))
@@ -355,7 +423,99 @@ def build():
             'source_file':path,'source_file_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8'),'document':document})
         for dependency in ['analysis/build_loop_current_section_spans.py',document['protocol_file']]:
             inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
+    from build_basin_surface_section_spans import build as rebuild_basin, diagnostic_matches as basin_matches
+    basin_inventory=read('research/basin-surface-section-inventory.json')
+    for document in rebuild_basin():
+        path='research/'+document['section_id']+'-2013-monthly-component-spans.json'
+        original=read(path)
+        if not basin_matches(original,document):raise ValueError('Stale basin section diagnostic')
+        collections['diagnostics'].append({'id':'diagnostic:basin-'+document['section_id'],
+            'label':document['current_id'].replace('-',' ').title()+' local monthly component spans (width unresolved)',
+            'entity_id':'current:'+document['current_id'],'current_id':document['current_id'],'status':document['status'],'rank_eligible':False,
+            'source_file':path,'source_file_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8'),'document':original})
+        for key,value in original.items():
+            if key.endswith('_file') and key.removesuffix('_file')+'_sha256' in original:
+                inputs[value]=hashlib.sha256((ROOT/value).read_bytes()).hexdigest()
+                if inputs[value]!=original[key.removesuffix('_file')+'_sha256']:raise ValueError('Stale basin source dependency')
+    for path in ['analysis/build_basin_surface_section_spans.py','analysis/acquire_basin_surface_sections.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for name,receipt in basin_inventory['source_files'].items():
+        path='research/source-data/oscar-basin-sections-2013/'+name
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=receipt['sha256']:raise ValueError('Changed basin original bytes')
+    from build_south_australian_hycom_spans import build as rebuild_hycom
+    path='research/south-australian-132e-100m-2012-monthly-component-spans.json'
+    original=read(path);calculated=rebuild_hycom()
+    if not basin_matches(original,calculated):raise ValueError('Stale HYCOM section diagnostic')
+    collections['diagnostics'].append({'id':'diagnostic:basin-'+original['section_id'],
+        'label':'South Australian local monthly component spans (width unresolved)',
+        'entity_id':'current:south-australian','current_id':'south-australian','status':original['status'],'rank_eligible':False,
+        'source_file':path,'source_file_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8'),'document':original})
+    for key,value in original.items():
+        if key.endswith('_file') and key.removesuffix('_file')+'_sha256' in original:
+            inputs[value]=hashlib.sha256((ROOT/value).read_bytes()).hexdigest()
+            if inputs[value]!=original[key.removesuffix('_file')+'_sha256']:raise ValueError('Stale HYCOM source dependency')
+    for key,path in {'generator':'analysis/build_south_australian_hycom_spans.py','acquirer':'analysis/acquire_south_australian_hycom_section.py','operator':'analysis/build_basin_surface_section_spans.py'}.items():
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=original[key+'_sha256']:raise ValueError('Changed HYCOM operator')
+    hycom_inventory=read(original['source_inventory_file']);read(hycom_inventory['acquisition_file'])
+    for name,receipt in hycom_inventory['source_files'].items():
+        path='research/source-data/hycom-south-australian-2012/'+name
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=receipt['sha256']:raise ValueError('Changed HYCOM original bytes')
+    from build_west_australian_oscar_spans import build as rebuild_offshore
+    path='research/west-australian-32s-2013-monthly-component-spans.json'
+    original=read(path)
+    if not basin_matches(original,rebuild_offshore()):raise ValueError('Stale offshore northward diagnostic')
+    collections['diagnostics'].append({'id':'diagnostic:basin-'+original['section_id'],
+        'label':'West Australian offshore monthly component spans (width unresolved)',
+        'entity_id':'current:west-australian','current_id':'west-australian','status':original['status'],'rank_eligible':False,
+        'source_file':path,'source_file_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8'),'document':original})
+    for path,pin in original['input_sha256'].items():
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=pin:raise ValueError('Changed offshore source dependency')
+    from check_indian_secc_oscar_climatology import saved as indian_saved, DOCUMENTS as INDIAN_DOCS, DATA as INDIAN_DATA
+    from build_indian_secc_oscar_climatology import build as rebuild_indian
+    indian_sections=indian_saved()
+    if not basin_matches(read(INDIAN_DATA),rebuild_indian()):raise ValueError('Changed Indian SECC yearly/climatology reconstruction')
+    for file,doc in zip(INDIAN_DOCS,indian_sections):
+        original=read(file)
+        collections['diagnostics'].append({'id':'diagnostic:basin-'+doc['section_id'],
+            'label':doc['period_label']+' (current width unresolved)',
+            'entity_id':'current:'+doc['current_id'],'current_id':doc['current_id'],'status':doc['status'],'rank_eligible':False,
+            'source_file':file,'source_file_sha256':inputs[file],'source_json':(ROOT/file).read_bytes().decode('utf8'),'document':original})
+        for path,pin in doc['input_sha256'].items():
+            inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+            if inputs[path]!=pin:raise ValueError('Changed Indian SECC source dependency')
+        for path in [doc['profile_figure'],doc['interannual_figure']]:inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for path in ['analysis/check_indian_secc_oscar_climatology.py','analysis/build_indian_secc_climatology_figures.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_southern_basin_oscar_climatology import saved as southern_saved, DOCUMENTS as SOUTHERN_DOCS, DATA as SOUTHERN_DATA
+    from build_southern_basin_oscar_climatology import build as rebuild_southern
+    southern_sections=southern_saved()
+    if not basin_matches(read(SOUTHERN_DATA),rebuild_southern()):raise ValueError('Changed southern-basin yearly/climatology reconstruction')
+    for file,doc in zip(SOUTHERN_DOCS,southern_sections):
+        original=read(file)
+        collections['diagnostics'].append({'id':doc['diagnostic_id'],
+            'label':doc['period_label']+' (current width unresolved)',
+            'entity_id':'current:'+doc['current_id'],'current_id':doc['current_id'],'status':doc['status'],'rank_eligible':False,
+            'source_file':file,'source_file_sha256':inputs[file],'source_json':(ROOT/file).read_bytes().decode('utf8'),'document':original})
+        for path,pin in doc['input_sha256'].items():
+            inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+            if inputs[path]!=pin:raise ValueError('Changed southern-basin source dependency')
+        for path in [doc['profile_figure'],doc['interannual_figure']]:inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for path in ['analysis/check_southern_basin_oscar_climatology.py','analysis/build_southern_basin_climatology_figures.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from build_query_width_samples import build as build_width_samples
+    from build_antilles_sadcp_layer_spans import build as rebuild_shipboard, OUTPUT as SHIPBOARD, INPUT as SHIPBOARD_INPUT, SUBSET as SHIPBOARD_SUBSET
+    shipboard=read(SHIPBOARD)
+    from compare_shipboard_reconstruction import matches as shipboard_matches
+    if not shipboard_matches(shipboard,rebuild_shipboard()):raise ValueError('Changed shipboard component-span reconstruction')
+    for path in [SHIPBOARD,SHIPBOARD_INPUT,SHIPBOARD_SUBSET,'research/source-data/noaa-wbts-ab0505-sadcp/acquisition.json','analysis/build_antilles_sadcp_layer_spans.py','analysis/compare_shipboard_reconstruction.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    collections['observed_section_spans']=copy.deepcopy(shipboard['rows'])
+    collections['diagnostics'].append({'id':'diagnostic:antilles-shipboard-layer-spans','label':'Antilles-region shipboard component spans','entity_id':'current:antilles','current_id':'antilles','status':shipboard['status'],'rank_eligible':False,'source_file':SHIPBOARD,'source_file_sha256':inputs[SHIPBOARD],'source_json':(ROOT/SHIPBOARD).read_bytes().decode('utf8'),'document':shipboard})
+    next(r for r in objects if r['id']=='current:antilles')['observed_section_span_ids']=[r['id'] for r in shipboard['rows']]
     from build_leeuwin_monthly_plot import build as rebuild_leeuwin
     from build_kuroshio_seasonal_width_profiles import build as rebuild_kuroshio
     from build_pacific_necc_oscar_section_diagnostic import build as rebuild_necc, diagnostic_matches
@@ -521,7 +681,7 @@ def build():
             'atlas_receipts':atlas_receipts,
             'movies_receipts':movies_receipts,
             'loop_recorded_receipts':{path:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for path in ['research/loop-current-recorded-date-comparison.json','research/loop-current-recorded-date-sources.json']},
-            'taxonomy':taxonomy,'editorial_collections':['eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','section_transports','transport_validations'],
+            'taxonomy':taxonomy,'editorial_collections':['proposed_widths','observed_section_spans','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','section_transports','transport_validations'],
             'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
             'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
             'input_sha256':inputs,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},

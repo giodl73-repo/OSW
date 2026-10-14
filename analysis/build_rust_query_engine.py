@@ -18,6 +18,9 @@ def main():
     shutil.copyfile(ROOT/'rust/osw-query/target/wasm32-unknown-unknown/release/osw_query.wasm',target)
     paths=['rust/osw-query/Cargo.toml','rust/osw-query/Cargo.lock','rust/osw-query/src/lib.rs','rust/osw-query/src/map.rs','rust/osw-query/src/spatial.rs','rust/osw-query/src/workspace.rs','rust/osw-query/src/rebase.rs','rust/osw-query/src/main.rs',
            'rust/osw-query/src/svg.rs','rust/osw-query/src/temporal.rs','rust/osw-query/src/seasonal.rs','rust/osw-query/src/samples.rs','rust/osw-query/src/charts.rs','rust/osw-query/src/planning.rs','rust/osw-query/src/loop_diagnostics.rs','rust/osw-query/src/network.rs','rust/osw-query/src/taxonomy.rs','figures/ocean-motion-dashboard-ground.svg','almanac/query-engine.wasm','almanac/query-data.json']
+    paths.append('rust/osw-query/src/basin_spans.rs')
+    paths.append('rust/osw-query/src/observed_spans.rs')
+    paths.append('rust/osw-query/src/nordic_widths.rs')
     paths.append('rust/osw-query/src/dashboard.rs')
     paths.append('rust/osw-query/src/dashboard_map.rs')
     paths.append('rust/osw-query/src/dashboard_beck.rs')
@@ -38,6 +41,7 @@ def main():
     paths.append('rust/osw-query/src/somali_width.rs')
     paths.append('rust/osw-query/src/guinea_width.rs')
     paths.append('rust/osw-query/src/original_regional_widths.rs')
+    paths.append('research/gulf-stream-published-width-definitions-scope-audit.json')
     paths.append('rust/osw-query/src/dwbc_float_composite.rs')
     paths.extend(['rust/osw-query/src/published_transports.rs','rust/osw-query/src/pacific_neuc_breadths.rs'])
     paths.extend(['rust/osw-query/src/coastal_composite_widths.rs','figures/schubert-aacc-2021-source-sections.png'])

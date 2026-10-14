@@ -14,7 +14,7 @@ def main():
             assert row[field]==entities[row['id']].get(field, None if field=='source_kind' else 'unresolved'), (row['id'],field)
     currents=[r for r in snapshot['entries'] if r['type']=='named_current']
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER',r'C:\Program Files\Google\Chrome\Application\chrome.exe'))
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':320,'height':800})
         errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))

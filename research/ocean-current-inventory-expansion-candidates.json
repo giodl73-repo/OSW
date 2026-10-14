@@ -1,6 +1,6 @@
 {
   "schema": "osw.current-inventory-expansion-candidates.v1",
-  "as_of": "2026-10-07",
+  "as_of": "2026-10-14",
   "status": "editorial_inventory_candidates_not_canonical",
   "scope": "Source-backed proposed additions beyond the current 100-name ledger. Not an exhaustive gap census; no canonical counts or published ranking changed.",
   "current_ledger_sha256": "6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e",
@@ -515,7 +515,7 @@
       "width_evidence": [],
       "width_scope_audit": {
         "file": "research/norwegian-atlantic-branch-width-scope-audit.json",
-        "sha256": "b5bbb0d40ba0836deb82e50e19b8b9b4b503269331c200537feaf10b7c4420e8"
+        "sha256": "1d0df8d68b02025a055ab072ab52b522dcb6b989d6be388c8d5e7725421667ae"
       },
       "whole_current_width_km": null,
       "annual_width_range_km": null,
@@ -661,11 +661,96 @@
       ],
       "width_scope_audit": {
         "file": "research/norwegian-atlantic-branch-width-scope-audit.json",
-        "sha256": "b5bbb0d40ba0836deb82e50e19b8b9b4b503269331c200537feaf10b7c4420e8"
+        "sha256": "1d0df8d68b02025a055ab072ab52b522dcb6b989d6be388c8d5e7725421667ae"
       },
       "whole_current_width_km": null,
       "annual_width_range_km": null,
-      "parent_proposed_id": "norwegian-atlantic"
+      "parent_proposed_id": "norwegian-atlantic",
+      "section_width_evidence": [
+        {
+          "name": "Norwegian Atlantic Slope Current",
+          "status": "editorial_width_evidence_for_proposed_identity_not_canonical",
+          "section_geometry": null,
+          "source_url": "https://os.copernicus.org/articles/16/685/2020/os-16-685-2020.pdf",
+          "source_citation": "Fer, I., Bosse, A., and Dugstad, J. (2020), Norwegian Atlantic Slope Current along the Lofoten Escarpment, Ocean Sci., 16, 685–701, doi:10.5194/os-16-685-2020.",
+          "source_retrieved_date": "2026-10-14",
+          "source_evidence_kind": "published_original_hydrographic_section_width",
+          "extraction_method": "Transcribed published numerical widths after original-page visual review; no field or edge-coordinate digitization.",
+          "whole_current_representative": false,
+          "width_rank_eligible": false,
+          "full_width_inference_eligible": false,
+          "annual_extrema_eligible": false,
+          "seasonal_playback_eligible": false,
+          "is_confidence_interval": false,
+          "observed_period": null,
+          "calendar_months": null,
+          "fixed_layer_bounds_m": null,
+          "uncertainty_km": null,
+          "whole_current_width_km": null,
+          "annual_width_range_km": null,
+          "remaining_gates": [
+            "Resolve catalog-name equivalence without transferring branch dimensions.",
+            "Extract exact section dates, layer support and paired edge coordinates before mapped or seasonal widths.",
+            "Independent scientific admission."
+          ],
+          "id": "norwegian-fer-2020-gimsoy-relative-geostrophic-span",
+          "source_feature_name": "Norwegian Atlantic Slope Current",
+          "phase_kind": "campaign_relative_geostrophic_section_span",
+          "phase_label": "Gimsøy four-occupation relative-geostrophic span",
+          "measurement_type": "published_campaign_relative_geostrophic_span",
+          "width_metric": "relative_geostrophic_transport_density_twenty_percent_span",
+          "approximate_width_km": null,
+          "width_range_km": [
+            25,
+            30
+          ],
+          "range_kind": "author_reported_characteristic_section_span",
+          "range_interpretation": "Author-reported characteristic width span from the four-occupation analysis. No midpoint, per-date widths, confidence bounds or annual extrema.",
+          "geographic_scope": "Gimsøy hydrographic section near the Lofoten Escarpment; source-defined Norwegian Atlantic Slope Current, not Norwegian Coastal Current.",
+          "section_orientation": "Source hydrographic section across the continental slope; no reconstructed geographic edge coordinates.",
+          "layer": "Depth-integrated relative geostrophic current. Exact vertical integration limits for the width paragraph are unspecified; nearby mooring/transport layers are not assigned to width.",
+          "time_convention": "Four Gimsøy occupations: 2016-07-30, 2016-11-19, 2017-03-08, 2017-06-07. Source reports one characteristic range, not a width value for each date.",
+          "support_dates": [
+            "2016-07-30",
+            "2016-11-19",
+            "2017-03-08",
+            "2017-06-07"
+          ],
+          "boundary_rule": "Lateral depth-integrated relative geostrophic current reduced to 20% of its maximum; geostrophic reference is surface pressure.",
+          "source_locator": "Section 2.2, printed p688/PDF p4; Section 5, printed p692/PDF p8, right-column Gimsøy paragraph.",
+          "source_quality_note": "Width integration bounds and numerical width uncertainty unspecified. Effective 20.1 km mooring integration width and assumed 4 km error are different quantities. Catalog naming ambiguity remains.",
+          "original_regional_context": {
+            "description_kind": "gimsoy_relative_geostrophic_span",
+            "relative_threshold_fraction": 0.2,
+            "geostrophic_reference": "surface_pressure",
+            "exact_vertical_bounds_specified": false,
+            "catalogue_identity_ambiguity_retained": true,
+            "neighboring_transport_layer_is_width_layer": false,
+            "effective_transport_width_is_current_width": false,
+            "effective_transport_width_km": 20.1,
+            "effective_transport_width_error_km": 4,
+            "effective_transport_error_is_width_uncertainty": false,
+            "per_occupation_width_values_available": false,
+            "display_aria_label": "Source-defined Norwegian Atlantic Slope Current at Gimsøy: reported 25 to 30 km relative-geostrophic span, no midpoint or annual extrema. Catalog naming ambiguity retained.",
+            "display_caption": "Gimsøy: author-reported 25–30 km span at 20% of peak depth-integrated relative geostrophic current. Four occupations, not four dated numerical widths.",
+            "display_method_note": "Surface-pressure reference; width integration limits unspecified. The 20.1 km effective mooring integration width and its 4 km assumed error are separate. Norwegian Current naming remains unresolved.",
+            "comparison_figure": "figures/norwegian-fer-2020-section-width.svg",
+            "audit_file": "research/norwegian-fer-2020-gimsoy-width-scope-audit.json",
+            "audit_sha256": "084f2ab755c06589ab5985e362621e44eb1f08ec684d74e1086b65ede3c8c8bb",
+            "audit_pointer": "/measurements/0"
+          },
+          "proposed_current_id": "norwegian-atlantic-slope",
+          "canonical_current_id": null,
+          "canonical_transfer_eligible": false,
+          "rank_eligible": false,
+          "source_file": "research/norwegian-fer-2020-gimsoy-width-scope-audit.json",
+          "source_pointer": "/measurements/0"
+        }
+      ],
+      "section_width_scope_audit": {
+        "file": "research/norwegian-fer-2020-gimsoy-width-scope-audit.json",
+        "sha256": "084f2ab755c06589ab5985e362621e44eb1f08ec684d74e1086b65ede3c8c8bb"
+      }
     },
     {
       "proposed_id": "norwegian-atlantic-front",
@@ -753,11 +838,77 @@
           "unit": "km",
           "full_width_inference_eligible": false,
           "source_publication_year": 2001
+        },
+        {
+          "id": "norwegian-atlantic-front-bosse-2019-corrected-width",
+          "proposed_current_id": "norwegian-atlantic-front",
+          "name": "Norwegian Atlantic Front Current",
+          "status": "editorial_width_evidence_for_proposed_identity_not_canonical",
+          "source_current_label": "NwAFC / Polar Front",
+          "measurement_type": "published_corrected_glider_front_width_summary",
+          "width_metric": "positive_poleward_depth_averaged_gaussian_integration_span",
+          "approximate_width_km": 38,
+          "width_range_km": null,
+          "author_reported_error_km": 2,
+          "error_interpretation": "Reported plus/minus statistic; width-specific interpretation awaits corrected supporting Table S1. Adjacent velocity statistics use standard errors. No annual range or confidence level assigned.",
+          "range_kind": null,
+          "is_confidence_interval": false,
+          "geographic_scope": "Mohn Ridge Polar Front, not the Svinoy section or whole branch.",
+          "layer": "Depth-averaged absolute geostrophic jet, constrained by glider depth-average currents from upper-1000-m profiling; no fixed-depth width slab.",
+          "boundary_rule": "Fit a Gaussian to depth-averaged velocities above half peak; positive poleward integration boundaries within maximum plus/minus two fitted sigma. Theoretical transport coverage is not confidence coverage or FWHM.",
+          "observed_period": null,
+          "calendar_months": null,
+          "fixed_layer_bounds_m": null,
+          "section_geometry": null,
+          "whole_current_representative": false,
+          "rank_eligible": false,
+          "annual_extrema_eligible": false,
+          "seasonal_playback_eligible": false,
+          "full_width_inference_eligible": false,
+          "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2019GL084723",
+          "source_citation": "Bosse and Fer (2019), Mean Structure and Seasonality of the Norwegian Atlantic Front Current Along the Mohn Ridge From Repeated Glider Transects, doi:10.1029/2019GL084723; corrected 2020-09-28.",
+          "source_locator": "Corrected publisher HTML: sections 2.2-2.4, 3.1-3.2 and erratum.",
+          "source_access": "Corrected publisher text reviewed. Corrected original PDF and supporting Table S1 not acquired; raw-mission source QA is not paper reproduction.",
+          "source_retrieved_date": "2026-10-13",
+          "source_correction_date": "2020-09-28",
+          "source_publication_year": 2019,
+          "sampling_context": {
+            "glider_context_months": {
+              "start": "2016-06",
+              "end": "2017-07"
+            },
+            "glider_sections": 25,
+            "study_interval_is_exact_width_occupation_dates": false,
+            "seasonal_composite_months": {
+              "winter": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "summer": [
+                5,
+                6,
+                7,
+                8
+              ],
+              "fall": [
+                9,
+                10,
+                11,
+                12
+              ]
+            },
+            "seasonal_numeric_widths_verified": false,
+            "raw_mission_georeferencing_reproduction_verified": false
+          },
+          "temporal_interpretation": "Published mean-structure width. Source describes seasonal widths as compatible within error bars; numeric seasonal means and annual physical extrema unverified.",
+          "unit": "km"
         }
       ],
       "width_scope_audit": {
         "file": "research/norwegian-atlantic-branch-width-scope-audit.json",
-        "sha256": "b5bbb0d40ba0836deb82e50e19b8b9b4b503269331c200537feaf10b7c4420e8"
+        "sha256": "1d0df8d68b02025a055ab072ab52b522dcb6b989d6be388c8d5e7725421667ae"
       },
       "whole_current_width_km": null,
       "annual_width_range_km": null,

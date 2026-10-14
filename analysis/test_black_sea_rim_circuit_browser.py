@@ -1,4 +1,5 @@
 """Check closed-circuit navigation and transparent state-mask exclusions."""
+import os
 import hashlib,json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -16,7 +17,7 @@ def main():
     assert {r['state_code']:r['crossing_scenario_count'] for r in excluded}=={'MEDI':9,'REDS':4}
     assert not any(r['current_id']=='black-sea-rim' for s in join['states'].values() for r in s['route_candidates'])
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
         page.on('pageerror',lambda error:errors.append(str(error)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Ablack-sea-rim#route-atlas',wait_until='networkidle')

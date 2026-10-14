@@ -78,15 +78,20 @@ class DashboardEvidenceTests(unittest.TestCase):
     def test_red_sea_reach_and_channels_do_not_become_ranked_length_or_current_width(self):
         current=next(row for row in build()['entries'] if row['id']=='current:red-sea-saline-overflow')
         self.assertEqual(current['capabilities']['scoped_width'],0)
-        self.assertEqual(current['capabilities']['reference_route'],0)
+        routes=json.loads((ROOT/'research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))['candidates']
+        owned=[r for r in routes if r['current_id']=='red-sea-saline-overflow']
+        self.assertEqual(current['capabilities']['reference_route'],len(owned))
+        self.assertTrue(owned)
+        self.assertTrue(all(r['comparison_group']=='osw_studied_reach_routes' for r in owned))
         self.assertEqual(current['capabilities']['reported_length'],0)
         self.assertEqual(current['scope_audits'][0]['reported_reach']['approximate_length_km'],130)
         self.assertEqual(len(current['scope_audits'][0]['branches']),3)
 
-    def test_persian_gulf_core_records_are_scoped_widths_without_route_admission(self):
+    def test_persian_gulf_width_operators_and_editorial_reach_remain_scoped(self):
         current=next(row for row in build()['entries'] if row['id']=='current:persian-gulf-saline-overflow')
-        self.assertEqual(current['capabilities']['scoped_width'],6)
-        self.assertEqual(current['capabilities']['reference_route'],0)
+        self.assertEqual(current['capabilities']['scoped_width'],8)
+        self.assertEqual(current['capabilities']['reference_route'],1)
+        self.assertEqual(current['capabilities']['reported_length'],0)
         self.assertEqual(len(current['scope_audits'][0]['reported_local_core_widths']),6)
         self.assertEqual(current['scope_audits'][0]['reported_section_distances']['rows'][-1]['distance_km'],920)
 
@@ -104,7 +109,7 @@ class DashboardEvidenceTests(unittest.TestCase):
         current=next(row for row in build()['entries'] if row['id']=='current:antilles')
         self.assertEqual(current['series'][0]['frames'],2)
         self.assertEqual(current['capabilities']['scoped_width'],0)
-        self.assertEqual(current['capabilities']['reference_route'],0)
+        self.assertEqual(current['capabilities']['reference_route'],1)
         path=ROOT/'research/antilles-ab0505-400m-section-diagnostic.json'
         original=Path.read_bytes
         for key,value in [('inventory_sha256','wrong'),('whole_current_width_km',74),('width_rank_eligible',True),('seasonal_playback_eligible',True),('geographic_role','current_axis')]:
@@ -209,7 +214,8 @@ class DashboardEvidenceTests(unittest.TestCase):
         antilles = rows['current:antilles']
         self.assertEqual(antilles['capabilities']['scope_notes'], 1)
         self.assertEqual(antilles['capabilities']['scoped_width'], 0)
-        self.assertEqual(antilles['capabilities']['reference_route'], 0)
+        self.assertEqual(antilles['capabilities']['reference_route'], 1)
+        self.assertEqual(antilles['capabilities']['reported_length'], 0)
         self.assertEqual(antilles['latest_observation_date'], '2015-11-23')
         self.assertIn('Modern observations', antilles['scope_notes'][0]['summary'])
 

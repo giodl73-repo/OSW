@@ -5,6 +5,7 @@ from playwright.sync_api import sync_playwright
 
 
 def main():
+    (Path(__file__).resolve().parents[1] / '.pytest_cache/current-route-batch').mkdir(parents=True, exist_ok=True)
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True, executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page = browser.new_page(viewport={'width':1440, 'height':1000})
@@ -13,7 +14,8 @@ def main():
         page.on('pageerror', lambda error: errors.append(str(error)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas', wait_until='networkidle')
         page.wait_for_function('document.querySelectorAll(".route-atlas-station").length === 100')
-        page.wait_for_function('document.querySelectorAll(".route-card").length === 64 && document.querySelectorAll(".inventory-addition-card").length === 28')
+        catalog = json.loads((Path(__file__).resolve().parents[1] / 'research/ocean-current-reference-path-candidates.json').read_bytes())
+        page.wait_for_function('(counts) => document.querySelectorAll(".route-card").length === counts.routes && document.querySelectorAll(".inventory-addition-card").length === counts.additions', arg={'routes': catalog['counts']['route_candidates'], 'additions': 28})
         assert page.locator('#route-atlas-select option').count() == 101
         for ident,label in [('atlantic-north-equatorial','Atlantic North Equatorial Current'),('pacific-north-equatorial','Pacific North Equatorial Current'),('atlantic-south-equatorial','Atlantic South Equatorial Current'),('pacific-south-equatorial','Pacific South Equatorial Current'),('indian-south-equatorial','Indian South Equatorial Current')]:
             card=page.locator('#inventory-addition-'+ident)
@@ -25,6 +27,70 @@ def main():
         def view():
             return list(map(float, atlas.get_attribute('viewBox').split()))
         assert view() == [60,90,1480,740]
+        # New regional estimates must remain reachable as maps and source cards.
+        for owner,slug,number,caveat in [
+            ('new-guinea-coastal-current','new-guinea-coastal-surface-reach', '500 km','monsoon'),
+            ('mauritanian','mauritanian-summer-reach','300 km','winter'),
+            ('antilles','antilles-northern-bahamas', '200 km','conditional'),
+            ('tasman-front','tasman-historical-connection-reach','1,700 km','disputes'),
+        ]:
+            page.locator('#route-atlas-select').select_option('current:'+owner)
+            preview=page.locator('#route-atlas-preview')
+            assert preview.locator('.route-map').is_visible()
+            assert number in preview.inner_text()
+            assert caveat in preview.inner_text().lower()
+            ident=slug+'-reference-path-candidate'
+            assert page.locator('#route-atlas-card-link').get_attribute('href')=='#'+ident
+            preview.get_by_role('link',name='Full route card, measurements and sources').click()
+            page.wait_for_function('(id)=>location.hash === "#"+id',arg=ident)
+            card=page.locator('#'+ident)
+            assert card.locator('.route-map').is_visible()
+            assert ('Meinen' if owner == 'antilles' else 'Tomczak') in card.inner_text()
+            if owner == 'antilles':
+                assert '400 dbar' in card.inner_text()
+                assert 'not observed current origins' in card.inner_text()
+                assert '2011' in card.inner_text()
+                assert page.locator('#comparison-'+ident).count() == 0
+            page.set_viewport_size({'width':320,'height':800})
+            assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
+            card.screenshot(path='.pytest_cache/current-route-batch/'+owner+'-mobile.png')
+            page.set_viewport_size({'width':1440,'height':1000})
+            card.get_by_role('link',name='Back to global current map').click()
+        page.locator('#route-atlas-world').click()
+        # Verify every source component, including branch buttons and share URLs.
+        for owner,count in [('pacific-north-equatorial-undercurrent',3),('red-sea-saline-overflow',2),('indian-equatorial-undercurrent',1)]:
+            components=[r for r in catalog['candidates'] if r['current_id']==owner]
+            assert len(components)==count
+            page.locator('#route-atlas-select').select_option('current:'+owner)
+            for index,component in enumerate(components):
+                preview=page.locator('#route-atlas-preview')
+                if count>1:
+                    buttons=preview.locator('button')
+                    assert buttons.count()==count
+                    buttons.nth(index).click()
+                    assert buttons.nth(index).get_attribute('aria-pressed')=='true'
+                assert component['scope'] in preview.inner_text()
+                assert preview.locator('.route-map').is_visible()
+                assert page.locator('#route-atlas-card-link').get_attribute('href')=='#'+component['id']
+                shared_url=preview.locator('[data-atlas-share]').get_attribute('href')
+                assert 'atlas-route='+component['id'] in shared_url
+                preview.get_by_role('link',name='Full route card, measurements and sources').click()
+                page.wait_for_function('(id)=>location.hash === "#"+id',arg=component['id'])
+                card=page.locator('#'+component['id'])
+                assert card.locator('.route-map').is_visible()
+                assert 'Studied reach only' in card.inner_text()
+                page.set_viewport_size({'width':320,'height':800})
+                assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                card.screenshot(path='.pytest_cache/current-route-batch/'+component['id']+'-mobile.png')
+                page.set_viewport_size({'width':1440,'height':1000})
+                card.get_by_role('link',name='Back to global current map').click()
+                page.locator('#route-atlas-select').select_option('current:'+owner)
+            shared=browser.new_page()
+            shared.goto(shared_url,wait_until='networkidle')
+            shared.wait_for_function('(id)=>document.querySelector("#route-atlas-card-link").getAttribute("href")==="#"+id',arg=components[-1]['id'])
+            assert components[-1]['scope'] in shared.locator('#route-atlas-preview').inner_text()
+            shared.close()
+        page.locator('#route-atlas-world').click()
         # Aleutian is a sourced schematic reach, crossing the date line.
         page.locator('#route-atlas-select').select_option('current:aleutian')
         assert view() == [60,90,1480,740]  # Global fit preserves both sides of the date line.

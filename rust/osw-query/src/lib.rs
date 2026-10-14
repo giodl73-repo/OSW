@@ -5,6 +5,7 @@ mod abstract_regional_widths;
 mod astrid_scales;
 mod atlantic_euc_sections;
 mod atlas_data;
+mod basin_spans;
 pub mod cartography;
 mod charts;
 mod coastal_composite_widths;
@@ -28,10 +29,12 @@ mod model_sections;
 mod mooring_velocity;
 mod movies;
 mod network;
+mod nordic_widths;
 mod norkyst_data;
 mod object_plot;
 mod object_view;
 mod observed_sections;
+mod observed_spans;
 mod original_regional_widths;
 mod pacific_neuc_breadths;
 mod planning;
@@ -191,6 +194,15 @@ impl Store {
             fields.insert(name.clone(), keys);
         }
         published_transports::validate(&bundle)?;
+        original_regional_widths::validate_ngcc_inventory(&bundle)?;
+        original_regional_widths::validate_azores_inventory(&bundle)?;
+        original_regional_widths::validate_balearic_inventory(&bundle)?;
+        original_regional_widths::validate_atlantic_seuc_inventory(&bundle)?;
+        original_regional_widths::validate_gogp_inventory(&bundle)?;
+        original_regional_widths::validate_gulf_stream_inventory(&bundle)?;
+        original_regional_widths::validate_antarctic_jet_inventory(&bundle)?;
+        observed_spans::validate(&bundle)?;
+        nordic_widths::validate(&bundle)?;
         pacific_neuc_breadths::validate(&bundle)?;
         eddy_source_panels::validate(&bundle)?;
         ursa_contour::validate(&bundle)?;
@@ -267,6 +279,7 @@ impl Store {
         seasonal::validate_features(&bundle.collections)?;
         eddy_recurrence::validate(&bundle)?;
         samples::validate(&bundle.collections, &bundle.manifest)?;
+        basin_spans::validate(&bundle)?;
         planning::validate(&bundle.collections, &bundle.manifest)?;
         loop_diagnostics::validate(&bundle.collections, &bundle.manifest)?;
         loop_recorded::validate(&bundle)?;
@@ -631,10 +644,15 @@ impl Store {
             map_scene["state_features"] = map::scene(&[&display])["features"].clone();
             map_scene["selected_state_code"] = json!(spatial.state_code);
         }
-        let chart_scene = if query.collection == "width_samples" {
+        let chart_scene = if query.collection == "observed_section_spans" {
+            observed_spans::scene(&matches)
+        } else if query.collection == "proposed_widths" {
+            nordic_widths::scene(&matches, records)
+        } else if query.collection == "width_samples" {
             charts::scene(&matches, records)
         } else if query.collection == "widths" {
             let scenes: Vec<_> = [
+                nordic_widths::scene(&matches, records),
                 coastal_composite_widths::scene(&matches, records),
                 dwbc_float_composite::scene(&matches, records),
                 pacific_neuc_breadths::scene(&matches, records),

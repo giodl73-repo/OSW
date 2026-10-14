@@ -25,6 +25,7 @@ def main():
         expect(card).to_contain_text('Observed velocity summaries: 61 records')
         card.locator('details').evaluate('(e)=>e.open=true')
         expect(card).to_contain_text('Latest dated evidence: 2021-02-13')
+        expect(card).to_contain_text('Scoped width evidence: 1')
         expect(card).to_contain_text('current width unresolved')
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         card.screenshot(path=str(ROOT/'.pytest_cache/antarctic-slope-dashboard-mobile.png'))

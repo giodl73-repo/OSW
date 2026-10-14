@@ -15,7 +15,7 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
     node('p',review?'Reviewed sources have not supplied a comparable numeric current width.':decision?.width_decision==='derived_width_candidate_requires_review'?'A derived section-width candidate is available; no published width record is stored here.':'No published width record is stored yet; width remains unresolved.');
     if(review) {node('p',review.reason);for(const evidence of review.evidence)link(evidence.citation,evidence.url,node('p',''));}
     const span=inventory.section_span_diagnostics?.find(diagnostic=>diagnostic.current_id===id);
-    if(span){node('p',span.scope_note);link('Map dated component spans',span.visual_url,section);}
+    if(span){node('p',span.scope_note);link('Map local component spans',span.visual_url,section);}
     node('p','Missing evidence does not mean zero width or physical absence.');return;
   }
   node('p',`${records.length} local or regional source record${records.length===1?'':'s'}. Definitions differ; these do not establish a uniform whole-current width or annual extrema.`);
@@ -28,6 +28,7 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
     const details=document.createElement('details');details.className='atlas-width-record';details.dataset.measurementId=row.id;section.append(details);
     const angular=row.ensemble_angular_context;
     const value=angular?`${format(angular.source_reported_latitude_span_degrees)}° latitude (~${format(row.approximate_width_km)} km conversion)`
+      :row.phase_kind==='campaign_width_statistics'?`${format(row.approximate_width_km)} km mean (${row.width_range_km.map(format).join('–')} km across three complete crossings)`
       :row.phase_kind==='width_time_series_statistics'?`${format(row.approximate_width_km)} km mean (${row.width_range_km.map(format).join('–')} km observed)`
       :row.phase_kind==='survey_layer_median_threshold_width'?`${format(row.approximate_width_km)} ±${format(row.reported_total_error_km)} km source width and total error`
       :row.phase_kind==='mean_offshore_extent_range'?`${row.width_range_km.map(format).join('–')} km mean surface offshore extent (not full width)`

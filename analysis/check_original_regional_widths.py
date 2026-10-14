@@ -6,6 +6,36 @@ AUDIT='research/algerian-cotroneo-2019-regional-width-scope-audit.json'
 SOURCE_SHA='9f4bd73abd9785762fa1f498d30c120392f4847e1f573528c86d8cec13b44a18'
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 def validate_row(row,audit=None):
+    if str(row.get('id','')).startswith(('gulf-stream-richardson-1967-','gulf-stream-lozier-1995-')):
+        from check_gulf_stream_published_widths import validate_row as validate_gulf
+        return validate_gulf(row,audit)
+    if row.get('id') in {'persian-gulf-gogp99-r13-geostrophic-band','persian-gulf-gogp99-r13-geostrophic-peak'}:
+        from check_persian_gulf_geostrophic_scales import validate_row as validate_gogp
+        return validate_gogp(row,audit)
+    if row.get('id')=='atlantic-seuc-molinari-1981-core-width':
+        from check_atlantic_seuc_core_width import validate_row as validate_core
+        return validate_core(row,audit)
+    if row.get('id') == 'antarctic-slope-chavanne-2009-02-23-jet-width-constraint':
+        from check_antarctic_slope_jet_constraint import validate_row as validate_jet
+        return validate_jet(row, audit)
+    if row.get('current_id') == 'balearic' or row.get('id') == 'balearic-socib-2023-regional-width':
+        from check_balearic_socib_width import validate_row as validate_balearic
+        return validate_balearic(row, audit)
+    if str(row.get('id','')).startswith('azores-carracedo-2014-'):
+        from check_azores_model_core_widths import validate_row as validate_azores
+        return validate_azores(row,audit)
+    if row.get('current_id')=='new-guinea-coastal-current' or str(row.get('id','')).startswith('ngcc-radenac-2016-'):
+        from check_ngcc_seasonal_vein_widths import validate_row as validate_ngcc
+        return validate_ngcc(row,audit)
+    if row.get('current_id')=='pacific-south-equatorial-countercurrent' or str(row.get('id','')).startswith('pacific-secc-rotschi-1972-'):
+        from check_pacific_secc_historical_width import validate_row as validate_secc
+        return validate_secc(row,audit)
+    if row.get('current_id') in {'hiri-current','east-adriatic'} or str(row.get('id','')).startswith(('hiri-hughes-1993-','east-adriatic-pasaric-2019-')):
+        from check_hiri_east_adriatic_local_widths import validate_row as validate_local
+        return validate_local(row,audit)
+    if row.get("current_id")=="caribbean" or str(row.get("id","")).startswith("caribbean-duncan-1982-"):
+        from check_caribbean_dated_width import validate_row as validate_caribbean
+        return validate_caribbean(row,audit)
     if row.get('current_id')=='pacific-north-equatorial-undercurrent' or str(row.get('id','')).startswith('pacific-neuc-li-2018-'):
         from check_pacific_neuc_isopycnal_breadths import validate_row as validate_neuc
         return validate_neuc(row,audit)
@@ -55,6 +85,9 @@ def validate_row(row,audit=None):
         return validate_ngcu_row(row,audit)
     if row.get('current_id') == 'kuroshio-extension':
         return validate_kuroshio_extension_row(row,audit)
+    if row.get('current_id') == 'antarctic-slope':
+        from check_antarctic_slope_jet_constraint import validate_row as validate_jet
+        return validate_jet(row, audit)
     if row.get('current_id') == 'atlantic-equatorial-undercurrent':
         return validate_atlantic_euc_row(row,audit)
     if row.get('current_id') == 'pacific-equatorial-undercurrent':

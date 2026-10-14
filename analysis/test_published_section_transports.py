@@ -25,7 +25,10 @@ def test_native_scene_and_owner_scope():
     assert s['geographic_view']['role']=='partial_coordinate_context_not_section_geometry'
     owner=native({'collection':'objects','filters':[{'field':'id','op':'eq','value':'current:hiri-current'}]})['rows'][0]
     assert owner['capabilities']['section_transport']==1
-    assert owner['capabilities']['scoped_width']==0 and owner['capabilities']['time_samples']==0
+    widths=[row for row in json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())['measurements'] if row['current_id']=='hiri-current']
+    assert owner['capabilities']['scoped_width']==len(widths)
+    assert all(row['id']!=s['points'][0]['record']['id'] for row in widths)
+    assert owner['capabilities']['time_samples']==0
 
 def guard_fixtures(directory):
     packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());targets=[]

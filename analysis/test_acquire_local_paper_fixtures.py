@@ -9,6 +9,21 @@ DATA=b'%PDF-1.7\ncontrolled source fixture'
 MANIFEST={'source_url':'https://example.invalid/paper.pdf','sha256':hashlib.sha256(DATA).hexdigest()}
 
 class AcquisitionTests(unittest.TestCase):
+    def test_noaa_404_uses_bare_url_with_same_pin(self):
+        manifest=json.loads((Path(__file__).resolve().parents[1]/'research/source-data/florida-archer-2017/acquisition.json').read_text())
+        url=manifest['source_url'];before=dict(manifest)
+        with patch('urllib.request.urlopen',side_effect=[HTTPError(url+'?download=1',404,'missing',{},None),io.BytesIO(DATA)]) as opener,patch('acquire_local_paper_fixtures.verify',return_value=DATA) as check:
+            self.assertEqual(download('florida-archer-2017',manifest),DATA)
+            self.assertEqual([c.args[0].full_url for c in opener.call_args_list],[url+'?download=1',url])
+            check.assert_called_once_with('florida-archer-2017',manifest,DATA)
+        self.assertEqual(manifest,before)
+        with patch('urllib.request.urlopen',side_effect=[HTTPError(url,404,'missing',{},None),io.BytesIO(DATA)]) as opener:
+            with self.assertRaisesRegex(ValueError,'checksum'):download('florida-archer-2017',manifest)
+            self.assertEqual(opener.call_count,2)
+        with patch('urllib.request.urlopen',side_effect=HTTPError(url,404,'missing',{},None)) as opener:
+            with self.assertRaises(HTTPError):download('florida-archer-2017',dict(manifest,sha256=MANIFEST['sha256']))
+            self.assertEqual(opener.call_count,1)
+
     def qiu_mirror_case(self):
         key=('qiu-chen-nec-2010','https://www.soest.hawaii.edu/oceanography/bo/QC_NEC.pdf',
              'b387e0e05e700fe66b3b2e98ebba56bf2d8151c3b703d37a7aecad43b5675987')

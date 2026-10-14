@@ -59,6 +59,7 @@ pub fn sample_scene(records: &[&Value]) -> Value {
         [
             "gulf_stream_dated_half_peak_section",
             "loop_dated_half_peak_section",
+            "basin_monthly_component_section",
         ]
         .iter()
         .any(|f| r["sample_family"] == *f)
@@ -67,17 +68,18 @@ pub fn sample_scene(records: &[&Value]) -> Value {
     }
     let projected: Vec<Value> = records.iter().map(|row| {
         let mut record = json!({"id":row["id"],"label":row["label"],"type":"local_section_sample","map_features":[]});
-        if !["gulf_stream_dated_half_peak_section","loop_dated_half_peak_section"].iter().any(|f|row["sample_family"]==*f) || row["status"] != "paired_boundaries" || row["value_km"].is_null() {
+        if !["gulf_stream_dated_half_peak_section","loop_dated_half_peak_section","basin_monthly_component_section"].iter().any(|f|row["sample_family"]==*f) || row["status"] != "paired_boundaries" || row["value_km"].is_null() {
             return record;
         }
         let nominal = &row["source_sample"]["nominal"];
+        let component = row["sample_family"]=="basin_monthly_component_section";
         let zonal = row["sample_family"]=="loop_dated_half_peak_section";
-        let coordinates = if zonal {json!([[nominal["west_boundary"]["longitude"],row["latitude_degrees_north"]],[nominal["east_boundary"]["longitude"],row["latitude_degrees_north"]]])} else {json!([[row["longitude_degrees_east"],nominal["south_boundary"]["latitude"]],[row["longitude_degrees_east"],nominal["north_boundary"]["latitude"]]])};
-        let ordered = if zonal {nominal["west_boundary"]["longitude"].as_f64().zip(nominal["east_boundary"]["longitude"].as_f64()).is_some_and(|(w,e)|w<e)} else {nominal["south_boundary"]["latitude"].as_f64().zip(nominal["north_boundary"]["latitude"].as_f64()).is_some_and(|(s,n)|s<n)};
+        let coordinates = if component {json!([nominal["boundaries"]["low_coordinate"]["longitude_latitude"],nominal["boundaries"]["high_coordinate"]["longitude_latitude"]])} else if zonal {json!([[nominal["west_boundary"]["longitude"],row["latitude_degrees_north"]],[nominal["east_boundary"]["longitude"],row["latitude_degrees_north"]]])} else {json!([[row["longitude_degrees_east"],nominal["south_boundary"]["latitude"]],[row["longitude_degrees_east"],nominal["north_boundary"]["latitude"]]])};
+        let ordered = if component {nominal["boundaries"]["low_coordinate"]["coordinate"].as_f64().zip(nominal["boundaries"]["high_coordinate"]["coordinate"].as_f64()).is_some_and(|(a,b)|a<b)} else if zonal {nominal["west_boundary"]["longitude"].as_f64().zip(nominal["east_boundary"]["longitude"].as_f64()).is_some_and(|(w,e)|w<e)} else {nominal["south_boundary"]["latitude"].as_f64().zip(nominal["north_boundary"]["latitude"].as_f64()).is_some_and(|(s,n)|s<n)};
         let valid = coordinates.as_array().is_some_and(|c| c.iter().all(|p| point(p).is_some())) && ordered;
         if valid {
             record["map_features"] = json!([{"geometry":{"type":"LineString","coordinates":coordinates},
-                "role":"local_diagnostic_section_span","note":if zonal {"Nominal half-peak northward-component zonal section at 21.875 N. Not flow-normal width, current route, passage width or footprint. Boundary/resolution review pending."}else{"Nominal half-peak eastward-component section at 70 W. Surface diagnostic; not a flow-normal width, current route or occupied footprint. Paired interpolated boundaries and resolution remain under review."},
+                "role":"local_diagnostic_section_span","note":if component {row["scope"].as_str().unwrap_or("Local component section span; width unresolved.")}else if zonal {"Nominal half-peak northward-component zonal section at 21.875 N. Not flow-normal width, current route, passage width or footprint. Boundary/resolution review pending."}else{"Nominal half-peak eastward-component section at 70 W. Surface diagnostic; not a flow-normal width, current route or occupied footprint. Paired interpolated boundaries and resolution remain under review."},
                 "observation_date":row["observation_date"],"source_url":row["source_url"],"source_algorithm":row["source_algorithm"],
                 "source_subset_sha256":row["source_sample"]["source_subset_sha256"],"layer":row["source_context"]["layer"]}]);
         }
@@ -130,6 +132,13 @@ pub fn sample_scene(records: &[&Value]) -> Value {
             row["diagnostic_sensitivity_interval_km"].clone();
         feature["sampling_bracket_interval_km"] = row["sampling_bracket_interval_km"].clone();
         feature["resolution_review_required"] = row["resolution_review_required"].clone();
+        feature["sample_month"] = row["month"].clone();
+        feature["sample_year"] = row["year"].clone();
+        if row["source_context"]["is_climatology"] == true {
+            feature["climatology_period_years"] =
+                row["source_context"]["climatology_period_years"].clone();
+            feature["time_support"] = row["source_context"]["period_label"].clone();
+        }
         feature["source_sample"] = json!({"diagnostic_id":row["diagnostic_id"],"sample_path":row["sample_path"],"coordinates":projected.iter().find(|r| r["id"] == row["id"]).unwrap()["map_features"][0]["geometry"]["coordinates"]});
     }
     scene

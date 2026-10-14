@@ -59,6 +59,15 @@
     revealLinkedCard();
   });
   function renderProposedWidths(row, card) {
+    if(row.section_width_evidence?.length){
+      node('h4','Additional measurements for this proposed branch',card);
+      for(const r of row.section_width_evidence){
+        node('p',`${r.width_range_km.join('–')} km · ${r.layer} ${r.boundary_rule}`,card);
+        node('p','Proposed identity only; no dimensions assigned to Norwegian Current or Norwegian Coastal Current.',card);
+      }
+      const q={collection:'proposed_widths',filters:[{field:'proposed_current_id',op:'eq',value:row.proposed_id}],limit:20};
+      link('Compare proposed branch section widths','query.html?q='+encodeURIComponent(JSON.stringify(q))+'#query-chart-section',node('p',null,card));
+    }
     if (!row.width_scope_audit) return;
     const records=row.width_evidence;node('h4','Source-supported branch widths',card);
     if(!records.length) {
@@ -66,36 +75,46 @@
       for(const id of row.component_proposed_ids)link('Inspect '+id.replaceAll('-',' '),`#inventory-addition-${id}`,node('p',null,card));
       return;
     }
+    const bosse=r=>r.measurement_type==='published_corrected_glider_front_width_summary';
+    const label=r=>r.width_range_km?`${r.width_range_km.join('–')} km reported branch span`:bosse(r)?`${r.approximate_width_km} ± ${r.author_reported_error_km} km reported front width`:`About ${r.approximate_width_km} km surface scale`;
     const figure=node('figure',null,card);figure.style.margin='0';const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');
     svg.classList.add('proposed-width-chart');svg.dataset.owner=row.proposed_id;
     const h=records.length*90+42;svg.setAttribute('viewBox',`0 0 500 ${h}`);svg.setAttribute('role','img');
-    svg.setAttribute('aria-label',row.name+': '+records.map(r=>r.width_range_km?`${r.source_publication_year} reported branch span ${r.width_range_km.join(' to ')} kilometres, no midpoint`:`${r.source_publication_year} ADT surface scale about ${r.approximate_width_km} kilometres, no numeric uncertainty supplied`).join('; ')+'. Different methods; not a width trend, annual range or confidence interval.');
+    svg.setAttribute('aria-label',row.name+': '+records.map(r=>r.width_range_km?`${r.source_publication_year} reported branch span ${r.width_range_km.join(' to ')} kilometres, no midpoint`:bosse(r)?`${r.source_publication_year} corrected glider front width ${r.approximate_width_km} kilometres, reported plus or minus ${r.author_reported_error_km} kilometres, statistic interpretation pending`:`${r.source_publication_year} ADT surface scale about ${r.approximate_width_km} kilometres, no numeric uncertainty supplied`).join('; ')+'. Different methods; not a width trend, annual range or confidence interval.');
     svg.style.cssText='width:100%;max-width:650px;background:#f6f5ef;color:#102f3b';figure.append(svg);
     const add=(tag,attrs,text)=>{const n=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);if(text)n.textContent=text;svg.append(n);};
     const x=v=>50+390*v/75;
     records.forEach((r,i)=>{
       const y=70+i*90;
-      add('text',{x:20,y:y-45,'font-size':26,fill:'#102f3b'},`${r.source_publication_year} · ${r.width_range_km?'reported branch span':'ADT surface scale'}`);
+      add('text',{x:20,y:y-45,'font-size':26,fill:'#102f3b'},`${r.source_publication_year} · ${r.width_range_km?'reported branch span':bosse(r)?'glider front span':'ADT surface scale'}`);
       if(r.width_range_km){
         const [low,high]=r.width_range_km;
         add('line',{x1:x(low),x2:x(high),y1:y,y2:y,stroke:'#176b82','stroke-width':5});
         for(const v of [low,high]){add('line',{x1:x(v),x2:x(v),y1:y-6,y2:y+6,stroke:'#176b82','stroke-width':2});add('text',{x:x(v),y:y-15,'text-anchor':'middle','font-size':26,fill:'#102f3b'},`${v} km`);}
-      }else{add('circle',{cx:x(r.approximate_width_km),cy:y,r:5,fill:'#176b82'});add('text',{x:x(r.approximate_width_km),y:y-15,'text-anchor':'middle','font-size':26,fill:'#102f3b'},`About ${r.approximate_width_km} km`);}
+      }else{add('circle',{cx:x(r.approximate_width_km),cy:y,r:5,fill:'#176b82'});add('text',{x:x(r.approximate_width_km),y:y-15,'text-anchor':'middle','font-size':26,fill:'#102f3b'},bosse(r)?`${r.approximate_width_km} ± ${r.author_reported_error_km} km`:`About ${r.approximate_width_km} km`);}
     });
     const y=records.length*90+8;add('line',{x1:50,x2:440,y1:y,y2:y,stroke:'#526c77'});
     for(const v of [0,25,50,75])add('text',{x:x(v),y:y+25,'text-anchor':'middle','font-size':26,fill:'#102f3b'},`${v} km`);
-    node('figcaption','Different methods and smoothing: this comparison establishes no width trend, annual range or confidence interval. Range records have no selected midpoint; the approximate scalar has no numerical uncertainty supplied.',figure);
-    node('p','ADT means absolute dynamic topography; the surface scale comes from altimetry-derived geostrophic flow. All records are local branch evidence for proposed identities, not whole-current dimensions.',card);
+    node('figcaption','Different methods and smoothing: this comparison establishes no width trend, annual range or confidence interval. Range records have no selected midpoint. Reported plus/minus statistics retain their source meaning; confidence level and annual physical ranges are not inferred.',figure);
+    for(const r of records.filter(bosse))node('p',r.error_interpretation,figure);
+    if(records.some(r=>r.measurement_type==='published_ADT_surface_branch_scale'))node('p','ADT means absolute dynamic topography; the surface scale comes from altimetry-derived geostrophic flow.',card);
+    node('p','All records are local branch evidence for proposed identities, with distinct sections and methods. Whole-current dimensions remain unresolved.',card);
     for(const r of records){
       const detail=node('details',null,card);detail.id='proposed-width-'+r.id;
-      node('summary',r.width_range_km?`${r.width_range_km.join('–')} km reported branch span`:`About ${r.approximate_width_km} km surface scale`,detail);
+      node('summary',label(r),detail);
+      if(bosse(r))node('p',`Corrected 2020-09-28. ${r.error_interpretation}`,detail);
       node('p',`${r.geographic_scope} ${r.layer} ${r.boundary_rule}`,detail);
       node('p',`${r.temporal_interpretation} ${r.source_access}`,detail);
       link(r.source_citation,r.source_url,node('p',null,detail),true);
     }
     const url=new URL('query.html',location.href);url.searchParams.set('source-q',JSON.stringify({document:row.width_scope_audit.file,pointer:'/measurements',filters:[{field:'record.proposed_current_id',op:'eq',value:row.proposed_id}],limit:10}));
     link('Query these branch-width records',url.href,node('p',null,card));
-    if(row.proposed_id==='norwegian-atlantic-front')node('p','The 2010 study discusses a broader time-mean frontal flow but gives no new numeric width. Its mean width remains unknown.',card);
+    if(row.proposed_id==='norwegian-atlantic-front'){
+      link('Inspect original-mission source alignment','../figures/norwegian-front-glider-source-alignment.svg',node('p',null,card));
+      const source=new URL('query.html',location.href);source.searchParams.set('source-q',JSON.stringify({document:'research/norwegian-front-glider-source-alignment.json',pointer:'/missions/0/DAC_records',limit:20}));
+      link('Query retained glider current records',source.href,node('p',null,card));
+    }
+    if(row.proposed_id==='norwegian-atlantic-front')node('p','The 2010 study discusses a broader time-mean frontal flow but gives no new numeric width. Its mean width remains unknown. The corrected 2019 glider result belongs to the Mohn Ridge and does not fill that 2010 Svinoy mean.',card);
   }
   let catalog;
   load("../research/ocean-current-inventory-expansion-candidates.json").then(value => {
@@ -146,7 +165,7 @@
       const derived=value.derived_width_series_candidates?.find(candidate=>candidate.current_id===row.current_id);
       if(derived)link("Inspect derived section-width candidate",derived.visual_url||"../"+derived.file,node("p",null,action));
       const span=value.section_span_diagnostics?.find(diagnostic=>diagnostic.current_id===row.current_id);
-      if(span){node("p",span.scope_note,action);link("Map dated component spans",span.visual_url,node("p",null,action));}
+      if(span){node("p",span.scope_note,action);link("Map local component spans",span.visual_url,node("p",null,action));}
       const review = value.review_assessments?.find(review => review.current_id === row.current_id);
       if (review) {
         node("p", review.reason, action);
