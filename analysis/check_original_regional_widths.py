@@ -6,6 +6,9 @@ AUDIT='research/algerian-cotroneo-2019-regional-width-scope-audit.json'
 SOURCE_SHA='9f4bd73abd9785762fa1f498d30c120392f4847e1f573528c86d8cec13b44a18'
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 def validate_row(row,audit=None):
+    if row.get('id') in {'persian-gulf-gogp99-r13-geostrophic-band','persian-gulf-gogp99-r13-geostrophic-peak'}:
+        from check_persian_gulf_geostrophic_scales import validate_row as validate_gogp
+        return validate_gogp(row,audit)
     if row.get('id')=='atlantic-seuc-molinari-1981-core-width':
         from check_atlantic_seuc_core_width import validate_row as validate_core
         return validate_core(row,audit)

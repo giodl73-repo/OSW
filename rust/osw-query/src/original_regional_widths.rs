@@ -3,6 +3,11 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 const SOURCES: &[(&str, &str, &str)] = &[
     (
+        "persian-gulf-saline-overflow",
+        "research/persian-gulf-gogp99-geostrophic-scales-scope-audit.json",
+        include_str!("../../../research/persian-gulf-gogp99-geostrophic-scales-scope-audit.json"),
+    ),
+    (
         "atlantic-south-equatorial-undercurrent",
         "research/atlantic-seuc-molinari-1981-core-width-scope-audit.json",
         include_str!("../../../research/atlantic-seuc-molinari-1981-core-width-scope-audit.json"),
@@ -346,6 +351,53 @@ pub(crate) fn validate_antarctic_jet_inventory(bundle: &crate::Bundle) -> Result
     validate(rows[0])
 }
 
+pub(crate) fn validate_gogp_inventory(bundle: &crate::Bundle) -> Result<(), String> {
+    let (_, path, raw) = SOURCES
+        .iter()
+        .find(|s| s.0 == "persian-gulf-saline-overflow")
+        .ok_or("Missing GOGP99 frozen source")?;
+    if bundle.manifest["input_sha256"].get(*path).is_none()
+        && !bundle
+            .collections
+            .get("objects")
+            .into_iter()
+            .flatten()
+            .any(|r| r["id"] == "current:persian-gulf-saline-overflow")
+    {
+        return Ok(());
+    }
+    let document: Value = serde_json::from_str(raw).map_err(|e| e.to_string())?;
+    let definitions = document["measurements"]
+        .as_array()
+        .ok_or("Missing GOGP99 definitions")?;
+    let legacy = document["existing_salinity_records"]
+        .as_array()
+        .ok_or("Missing GOGP99 salinity definitions")?;
+    let rows: Vec<_> = bundle
+        .collections
+        .get("widths")
+        .into_iter()
+        .flatten()
+        .filter(|r| {
+            r["current_id"] == "persian-gulf-saline-overflow"
+                || definitions.iter().any(|e| r["id"] == e["id"])
+        })
+        .collect();
+    if bundle.manifest["input_sha256"][path] != format!("{:x}", Sha256::digest(raw.as_bytes()))
+        || rows.len() != definitions.len() + legacy.len()
+        || definitions
+            .iter()
+            .chain(legacy.iter())
+            .any(|e| rows.iter().filter(|r| r["id"] == e["id"]).count() != 1)
+    {
+        return Err("Missing or rebound GOGP99 velocity/salinity inventory".into());
+    }
+    for row in rows {
+        validate(row)?;
+    }
+    Ok(())
+}
+
 pub(crate) fn validate(row: &Value) -> Result<(), String> {
     let owner = row["current_id"].as_str().unwrap_or("");
     let id = row["id"].as_str().unwrap_or("");
@@ -371,6 +423,20 @@ pub(crate) fn validate(row: &Value) -> Result<(), String> {
     }
     let (path, raw) = match reviewed_source {
         Some(source) => source,
+        None if owner == "persian-gulf-saline-overflow" => {
+            let (_, _, raw) = SOURCES
+                .iter()
+                .find(|s| s.0 == owner)
+                .ok_or("Missing GOGP99 source")?;
+            let doc: Value = serde_json::from_str(raw).map_err(|e| e.to_string())?;
+            if doc["existing_salinity_records"]
+                .as_array()
+                .map_or(false, |rows| rows.contains(row))
+            {
+                return Ok(());
+            }
+            return Err("Changed GOGP99 salinity record or unknown velocity definition".into());
+        }
         None if owner == "azores"
             && id == "azores-2009-section-width"
             && row.get("original_regional_context").is_none() =>

@@ -31,7 +31,7 @@ def main():
         assert '30–35' in page.locator('.route-atlas-local-dimensions').inner_text()
         assert 'R17: 230' in page.locator('.route-atlas-local-dimensions').inner_text()
         assert 'not annual extrema' in page.locator('.route-atlas-scope-reviews').inner_text()
-        assert page.locator('#route-atlas-preview .route-map').count()==0
+        assert page.locator('#route-atlas-preview .route-map').is_visible()
         page.reload(wait_until='networkidle')
         page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=len(json.loads(Path('research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))['candidates']))
         assert page.locator('.route-atlas-local-dimensions tbody tr').count()==6

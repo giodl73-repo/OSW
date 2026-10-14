@@ -87,10 +87,11 @@ class DashboardEvidenceTests(unittest.TestCase):
         self.assertEqual(current['scope_audits'][0]['reported_reach']['approximate_length_km'],130)
         self.assertEqual(len(current['scope_audits'][0]['branches']),3)
 
-    def test_persian_gulf_core_records_are_scoped_widths_without_route_admission(self):
+    def test_persian_gulf_width_operators_and_editorial_reach_remain_scoped(self):
         current=next(row for row in build()['entries'] if row['id']=='current:persian-gulf-saline-overflow')
-        self.assertEqual(current['capabilities']['scoped_width'],6)
-        self.assertEqual(current['capabilities']['reference_route'],0)
+        self.assertEqual(current['capabilities']['scoped_width'],8)
+        self.assertEqual(current['capabilities']['reference_route'],1)
+        self.assertEqual(current['capabilities']['reported_length'],0)
         self.assertEqual(len(current['scope_audits'][0]['reported_local_core_widths']),6)
         self.assertEqual(current['scope_audits'][0]['reported_section_distances']['rows'][-1]['distance_km'],920)
 

@@ -28,6 +28,13 @@ def build():
         movies_receipts[name]={'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')}
     dashboard=read('research/ocean-motion-dashboard.json')
     widths=read('research/ocean-current-width-inventory.json')
+    gogp=read('research/persian-gulf-gogp99-geostrophic-scales-scope-audit.json')
+    for source in [gogp,*gogp['supporting_originals']]:
+        read(source['acquisition_file'])
+        inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
+    for path in [gogp['protocol_file'],'analysis/check_persian_gulf_geostrophic_scales.py','figures/persian-gulf-gogp99-geostrophic-scales.svg']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+
     core=read('research/atlantic-seuc-molinari-1981-core-width-scope-audit.json');read(core['acquisition_file'])
     for path in [core['source_document_file'],core['protocol_file'],'analysis/check_atlantic_seuc_core_width.py','figures/atlantic-seuc-molinari-1981-core-width.svg']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()

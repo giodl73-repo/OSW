@@ -25,6 +25,8 @@ def validate(document, ledger):
     validate_jet_inventory(document)
     from check_azores_model_core_widths import validate_inventory as validate_azores_inventory
     validate_azores_inventory(document)
+    from check_persian_gulf_geostrophic_scales import validate_inventory as validate_gogp
+    validate_gogp(document)
     records = document["measurements"]
     if len({row["id"] for row in records}) != len(records):
         raise ValueError("Duplicate width measurement")
@@ -508,7 +510,7 @@ def validate(document, ledger):
             if row['width_metric']=='author_reported_velocity_contour_core_span':
                 from check_atlantic_seuc_core_width import validate_row as validate_core
                 validate_core(row)
-            if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] not in {'author_reported_velocity_contour_core_span','author_reported_seasonal_surface_current_anomaly_vein_span','author_reported_seasonal_thermal_vein_span','author_reported_geostrophic_current_width_range','author_reported_e_folding_scale','author_reported_coastal_inflow_extent','author_reported_current_width','author_reported_one_sided_coastal_confinement','author_reported_climatological_major_front_separation','author_reported_climatological_boundary_breadth','author_inferred_origin_proxy_component_width','author_reported_meander_occupied_band_breadth'} or row['observed_period'] is not None or row.get('calendar_months') is not None or (span is None and not row.get('original_regional_context')):
+            if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] not in {'author_reported_geostrophic_band_scale','author_reported_geostrophic_peak_scale','author_reported_velocity_contour_core_span','author_reported_seasonal_surface_current_anomaly_vein_span','author_reported_seasonal_thermal_vein_span','author_reported_geostrophic_current_width_range','author_reported_e_folding_scale','author_reported_coastal_inflow_extent','author_reported_current_width','author_reported_one_sided_coastal_confinement','author_reported_climatological_major_front_separation','author_reported_climatological_boundary_breadth','author_inferred_origin_proxy_component_width','author_reported_meander_occupied_band_breadth'} or row['observed_period'] is not None or row.get('calendar_months') is not None or (span is None and not row.get('original_regional_context')):
                 raise ValueError('Conflated regional range support')
             if row.get('regional_range_context') and row['current_id'] not in {'black-sea-rim','norwegian-coastal'}:
                 raise ValueError('Regional range source owner mismatch')

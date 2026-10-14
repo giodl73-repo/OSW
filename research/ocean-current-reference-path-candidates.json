@@ -3,10 +3,10 @@
   "status": "editorial_candidates_not_canonical_length_admissions",
   "counts": {
     "currents_without_published_ranked_estimate": 89,
-    "currents_with_route_candidates": 68,
-    "currents_without_route_candidates": 21,
-    "route_candidates": 74,
-    "studied_reach_candidates": 35
+    "currents_with_route_candidates": 69,
+    "currents_without_route_candidates": 20,
+    "route_candidates": 75,
+    "studied_reach_candidates": 36
   },
   "comparison_rule": "Descending length of declared OSW reference routes only. Coherent jets, specified branches and source/region-defined extents differ in scope; their order is provisional and is not a uniform whole-current ranking. Studied reaches are excluded from the reference-route order. No number replaces the existing length evidence or published ranking.",
   "reference_route_length_order": [
@@ -114,7 +114,7 @@
         "description": "Subsurface jets, undercurrents and overflows require depth, density or tracer support along the route.",
         "next_action": "Specify source layer and time support, obtain intermediate pathway geometry, and separate branches or dilution thresholds before measuring.",
         "current_count": 13,
-        "unbuilt_count": 2
+        "unbuilt_count": 1
       },
       {
         "id": "expand_section_evidence",
@@ -3672,6 +3672,41 @@
       "ordering_sensitivity": null
     },
     {
+      "id": "persian-gulf-cascading-reach-reference-path-candidate",
+      "current_id": "persian-gulf-saline-overflow",
+      "name": "Persian Gulf saline overflow",
+      "status": "editorial_reference_path_candidate_not_scientifically_reviewed",
+      "comparison_group": "osw_studied_reach_routes",
+      "scope": "Northern outflow/cascading reference reach: OSW upstream truncation near 26 N, then the source-described vicinity of 25deg20N,57E and 24deg50N,56deg50E. No Arabian Sea downstream route or whole-system origin/termination.",
+      "route_extent_kind": "Northern outflow/cascading reference reach",
+      "approximate_reference_path_km": 140,
+      "scenario_range_km": [
+        120,
+        160
+      ],
+      "scenario_count": 81,
+      "source_url": "https://archimer.ifremer.fr/doc/00000/390/83.pdf",
+      "source_locator": "Part2 author version abstract PDF1 and regional pathways discussion printed pp4-6/PDF5-7. Source supplies approximate cascade/rejoining geography, not a digitized axis.",
+      "supporting_sources": [],
+      "candidate_file": "research/persian-gulf-cascading-reach-reference-path-candidate.json",
+      "candidate_sha256": "701cab9d83dde9a05cc9b2f18418b73667b1cad70e8230e1d39449f55e4451cb",
+      "generator_sha256": "1362693ec7075e014d065691923248db455a5c3cd78c9a94880b3b472594d240",
+      "figure": "figures/persian-gulf-cascading-reach-reference-path-candidate.svg",
+      "nominal_atlas_state_crossings": [
+        "ARAB"
+      ],
+      "recommended_nasa_tile_id": "level2_D_2",
+      "remaining_gates": [
+        "Independently review identity, layer, selected gates and fine coastline/bathymetry before physical admission.",
+        "Acquire dated velocity or suitable physical geometry before measuring a current axis or meander length.",
+        "Whole-current length, physical width and annual ranges remain unresolved.",
+        "No seasonal playback, occupied polygon, physical state containment or NASA current identity inferred."
+      ],
+      "parent_current_id": null,
+      "parent_scope_note": null,
+      "ordering_sensitivity": null
+    },
+    {
       "id": "redsox-northern-plume-reach-reference-path-candidate",
       "current_id": "red-sea-saline-overflow",
       "name": "Red Sea saline overflow - northern plume reference reach",
@@ -5273,15 +5308,17 @@
       "existing_length_evidence_status": "no_numeric_length",
       "existing_scope": "NASA identifies a saline overflow contribution from the Persian Gulf to the western Indian Ocean. The Strait of Hormuz gateway is not a measured plume endpoint or a whole-flow centerline; dilution and circulation beyond the strait require separate observations.",
       "name_source_url": "https://doi.org/10.1029/1999JC900297",
-      "candidate_ids": [],
-      "reference_path_decision": "reference_path_not_constructed",
+      "candidate_ids": [
+        "persian-gulf-cascading-reach-reference-path-candidate"
+      ],
+      "reference_path_decision": "editorial_candidate_present_scientific_review_pending",
       "published_length_rank_eligible": false,
       "ledger_kind": "dense saline strait overflow",
       "route_strategy_id": "layer_specific_route",
       "route_strategy_label": "Construct layer-specific paths",
       "planning_status": "editorial_planning_crosswalk_not_scientific_classification_approval",
       "planning_basis": "NASA identifies a saline overflow contribution from the Persian Gulf to the western Indian Ocean. The Strait of Hormuz gateway is not a measured plume endpoint or a whole-flow centerline; dilution and circulation beyond the strait require separate observations.",
-      "next_action": "Recover GOGP99 section/core geometry and occupation-specific boundaries; resolve source date/distance discrepancies and dilution/branch endpoints. Source distances and half-salinity core widths are scoped support, not whole-current or annual measurements. See research/persian-gulf-gogp99-core-scope-audit.json.",
+      "next_action": "Review the existing editorial route against scientific gates; broader/system/family scope remains governed by the planning strategy.",
       "strategy_next_action": "Specify source layer and time support, obtain intermediate pathway geometry, and separate branches or dilution thresholds before measuring.",
       "known_component_currents": [],
       "component_inventory_status": "not_assessed_by_this_planning_crosswalk"
@@ -5705,7 +5742,7 @@
     "file": "plans/ocean-current-measurement-protocol-v1.md",
     "sha256": "83afac80f4b530c598f46d435e21d010927c129543675a1e6de440385c00145f",
     "audit_file": "research/ocean-current-measurement-protocol-audit.json",
-    "audit_sha256": "5eacd9a78a9f9853e163b50d2d13af2f8c02da914a784b573c0bcbf87f7374d6",
+    "audit_sha256": "ef226dc87d9a88d61d93b198794a3fac39d2abac0a0c59d8fbc9548f671dc944",
     "status": "editorial_conformance_checks_passed_not_scientific_approval"
   }
 }
