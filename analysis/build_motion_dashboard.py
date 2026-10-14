@@ -170,6 +170,8 @@ def build():
 
     antilles_section_path='research/antilles-ab0505-400m-section-diagnostic.json'
     antilles_sections=read(antilles_section_path)
+    shipboard_path='research/antilles-ab0505-sadcp-layer-span-diagnostics.json'
+    shipboard=read(shipboard_path)
     antilles_inventory=read(antilles_sections['inventory_file'])
     if (antilles_sections.get('schema')!='osw.ladcp-section-diagnostic.v1' or antilles_sections.get('current_id')!='antilles'
         or antilles_sections.get('inventory_sha256')!=inputs[antilles_sections['inventory_file']]
@@ -465,6 +467,10 @@ def build():
         if current_id == 'norwegian-coastal':
             series.append({'label': 'Regional model samples (not current footprint)', 'url': 'norkyst-section.html', 'frames': len(norkyst['frames'])})
         if current_id == 'antilles':
+            series.append({'label':'Shipboard component profiles · 2 occupations / 10 depths',
+                           'url':'query.html?q='+quote(json.dumps({'collection':'observed_section_spans','filters':[{'field':'depth_m','op':'eq','value':95}],'limit':20},separators=(',',':')),safe='')+'#query-chart-section',
+                           'frames':2,'evidence_role':'local_component_spans_not_current_width',
+                           'diagnostic_url':'../'+shipboard_path,'evidence_sha256':inputs[shipboard_path]})
             series.append({'label':'Observed May 2005 sections (not an annual cycle)','url':'antilles-sections.html','frames':2,
                            'evidence_role':'observed_sections_with_unadmitted_one_sided_span',
                            'diagnostic_url':'../research/antilles-ab0505-400m-section-diagnostic.json',

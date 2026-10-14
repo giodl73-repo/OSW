@@ -55,6 +55,7 @@
   names.seasonal_routes='Source-defined seasonal routes';
   names.width_samples='Scoped width samples';
   names.current_velocity_samples='Observed current velocity';
+  names.observed_section_spans='Observed component survey spans';
   names.route_decisions='Remaining current-length decisions';
   names.model_frames='Hourly model section frames';
   names.model_samples='Model section field samples';

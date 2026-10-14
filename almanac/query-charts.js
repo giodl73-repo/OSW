@@ -11,6 +11,19 @@ window.oswCharts=(()=>{
     stopAll();stops=[];
     document.getElementById('query-chart-section').hidden=!scene;root().replaceChildren();if(!scene)return;
     document.getElementById('query-chart-scope').textContent=scene.scope;
+    if(scene.kind==='observed_section_spans'){
+      document.getElementById('query-chart-legend').hidden=true;
+      document.getElementById('chart-title').textContent='Observed component survey spans';
+      for(const panel of scene.panels){
+        const section=html('section',undefined,root());section.className='observed-section-span';
+        html('h3',panel.title,section);const figure=html('figure',undefined,section);figure.style.margin='0';
+        figure.innerHTML=panel.svg;figure.querySelector('svg').style.cssText='display:block;width:100%;max-width:820px';
+        html('p',panel.complete_threshold_envelope?`40/50/60% threshold-choice envelope: ${panel.threshold_span_range_km.join('–')} km. Operator sensitivity, not measurement error or annual extrema.`:'40/50/60% threshold envelope incomplete; unresolved crossings remain unknown.',section);
+        html('p',`${panel.paired_observation_count} paired observations. ${panel.valid_sample_period?panel.valid_sample_period.start+' to '+panel.valid_sample_period.end+' (provider clock; time zone unspecified)':'No valid paired observations at this exported depth.'}`,section);
+        const button=html('button','Inspect layer, boundaries and source',section);button.onclick=()=>inspect(panel.id);
+        const link=html('a','Inspect exact source profile',section);link.style.display='block';link.href='query.html?source-q='+encodeURIComponent(JSON.stringify({document:panel.source_file,pointer:panel.source_pointer,limit:100}));
+      }return;
+    }
     document.getElementById('query-chart-legend').hidden=scene.kind==='mooring_velocity';
     document.getElementById('chart-title').textContent=scene.kind==='mooring_velocity'?'Observed current velocity':scene.panels?.length&&scene.panels.every(p=>p.source_context?.current_association_verified===false)?'Local component section spans':'Width profiles';
     if(scene.kind==='dwbc_float_composite'||scene.kind==='scoped_width_comparisons'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Scoped source comparisons';for(const s of scene.scenes||[scene]){if(s.kind==='coastal_composite_widths')window.renderCoastalCompositeWidths(root(),s,null,inspect);else if(s.kind==='pacific_neuc_isopycnal_breadths')window.renderPacificNeucBreadths(root(),s,null,inspect);else window.renderDwbcFloatComposite(root(),s,inspect);}return;}

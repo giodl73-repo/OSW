@@ -33,6 +33,7 @@ mod norkyst_data;
 mod object_plot;
 mod object_view;
 mod observed_sections;
+mod observed_spans;
 mod original_regional_widths;
 mod pacific_neuc_breadths;
 mod planning;
@@ -196,6 +197,7 @@ impl Store {
         original_regional_widths::validate_azores_inventory(&bundle)?;
         original_regional_widths::validate_balearic_inventory(&bundle)?;
         original_regional_widths::validate_antarctic_jet_inventory(&bundle)?;
+        observed_spans::validate(&bundle)?;
         pacific_neuc_breadths::validate(&bundle)?;
         eddy_source_panels::validate(&bundle)?;
         ursa_contour::validate(&bundle)?;
@@ -637,7 +639,9 @@ impl Store {
             map_scene["state_features"] = map::scene(&[&display])["features"].clone();
             map_scene["selected_state_code"] = json!(spatial.state_code);
         }
-        let chart_scene = if query.collection == "width_samples" {
+        let chart_scene = if query.collection == "observed_section_spans" {
+            observed_spans::scene(&matches)
+        } else if query.collection == "width_samples" {
             charts::scene(&matches, records)
         } else if query.collection == "widths" {
             let scenes: Vec<_> = [
