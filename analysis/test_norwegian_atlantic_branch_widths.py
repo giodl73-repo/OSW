@@ -8,10 +8,19 @@ class NorwegianBranchWidths(unittest.TestCase):
         cls.audit=json.loads((ROOT/AUDIT).read_bytes())
 
     def test_complete_branch_extraction_and_no_canonical_transfer(self):
-        self.assertEqual(validate(self.proposals),{'records':3,'proposed_branch_owners':2})
+        self.assertEqual(validate(self.proposals),{'records':4,'proposed_branch_owners':2})
         widths=json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())
         self.assertFalse(any(r['current_id']=='norwegian' for r in widths['measurements']))
         self.assertEqual(len(self.proposals['entries']),28)
+
+    def test_corrected_width_error_and_scope_are_bound(self):
+        index=next(i for i,r in enumerate(self.audit['measurements']) if r['id']=='norwegian-atlantic-front-bosse-2019-corrected-width')
+        row=self.audit['measurements'][index]
+        self.assertEqual(row['author_reported_error_km'],2)
+        self.assertIsNone(row['width_range_km'])
+        for key,value in [('author_reported_error_km',20),('width_range_km',[36,40]),('source_correction_date','2019-10-25'),('width_metric','full_width_half_maximum'),('error_interpretation','95% confidence interval'),('source_access','original corrected PDF acquired')]:
+            bad=copy.deepcopy(self.audit);bad['measurements'][index][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):validate(self.proposals,bad)
 
     def test_numeric_time_layer_and_owner_promotions_rejected(self):
         for i,row in enumerate(self.audit['measurements']):

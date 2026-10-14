@@ -1,6 +1,6 @@
 {
   "schema": "osw.proposed-current-width-scope-audit.v1",
-  "as_of": "2026-10-08",
+  "as_of": "2026-10-13",
   "status": "editorial_source_extraction_identity_and_scientific_review_pending",
   "identity_rule": "Atlantic slope/front branches belong to the proposed Norwegian Atlantic system. Neither branch is assigned to ambiguous canonical norwegian or Norwegian Coastal Current.",
   "parent_proposed_id": "norwegian-atlantic",
@@ -161,11 +161,79 @@
       "unit": "km",
       "full_width_inference_eligible": false,
       "source_publication_year": 2010
+    },
+    {
+      "id": "norwegian-atlantic-front-bosse-2019-corrected-width",
+      "proposed_current_id": "norwegian-atlantic-front",
+      "name": "Norwegian Atlantic Front Current",
+      "status": "editorial_width_evidence_for_proposed_identity_not_canonical",
+      "source_current_label": "NwAFC / Polar Front",
+      "measurement_type": "published_corrected_glider_front_width_summary",
+      "width_metric": "positive_poleward_depth_averaged_gaussian_integration_span",
+      "approximate_width_km": 38,
+      "width_range_km": null,
+      "author_reported_error_km": 2,
+      "error_interpretation": "Reported plus/minus statistic; width-specific interpretation awaits corrected supporting Table S1. Adjacent velocity statistics use standard errors. No annual range or confidence level assigned.",
+      "range_kind": null,
+      "is_confidence_interval": false,
+      "geographic_scope": "Mohn Ridge Polar Front, not the Svinoy section or whole branch.",
+      "layer": "Depth-averaged absolute geostrophic jet, constrained by glider depth-average currents from upper-1000-m profiling; no fixed-depth width slab.",
+      "boundary_rule": "Fit a Gaussian to depth-averaged velocities above half peak; positive poleward integration boundaries within maximum plus/minus two fitted sigma. Theoretical transport coverage is not confidence coverage or FWHM.",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "section_geometry": null,
+      "whole_current_representative": false,
+      "rank_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "full_width_inference_eligible": false,
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2019GL084723",
+      "source_citation": "Bosse and Fer (2019), Mean Structure and Seasonality of the Norwegian Atlantic Front Current Along the Mohn Ridge From Repeated Glider Transects, doi:10.1029/2019GL084723; corrected 2020-09-28.",
+      "source_locator": "Corrected publisher HTML: sections 2.2-2.4, 3.1-3.2 and erratum.",
+      "source_access": "Corrected publisher text reviewed. Corrected original PDF and supporting Table S1 not acquired; raw-mission source QA is not paper reproduction.",
+      "source_retrieved_date": "2026-10-13",
+      "source_correction_date": "2020-09-28",
+      "source_publication_year": 2019,
+      "sampling_context": {
+        "glider_context_months": {
+          "start": "2016-06",
+          "end": "2017-07"
+        },
+        "glider_sections": 25,
+        "study_interval_is_exact_width_occupation_dates": false,
+        "seasonal_composite_months": {
+          "winter": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "summer": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "fall": [
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        "seasonal_numeric_widths_verified": false,
+        "raw_mission_georeferencing_reproduction_verified": false
+      },
+      "temporal_interpretation": "Published mean-structure width. Source describes seasonal widths as compatible within error bars; numeric seasonal means and annual physical extrema unverified.",
+      "unit": "km"
     }
   ],
   "remaining_gates": [
     "Review original 2001 width methods and occupation dates.",
     "Resolve name/branch admission independently of the ambiguous canonical Norwegian name.",
     "Acquire paired boundary sections before seasonal dimensions, physical footprints or state containment."
-  ]
+  ],
+  "corrected_front_record_file": "research/norwegian-front-bosse-2019-corrected-width-record.json",
+  "corrected_front_record_sha256": "ad24a759afe5fa8a487845528978864badfaa8fccde2fee9acf5bfeb56cfc402"
 }

@@ -995,6 +995,11 @@ impl IndexStore {
         {
             crate::proposed_widths::validate_audit(doc)?;
         }
+        if let Some(doc) =
+            documents.get("research/norwegian-front-bosse-2019-corrected-width-record.json")
+        {
+            crate::proposed_widths::validate_bosse_record(doc)?;
+        }
         Ok(Self { documents, catalog })
     }
     pub fn metadata(&self) -> Value {

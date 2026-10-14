@@ -160,7 +160,7 @@ def main():
         import gzip
         packet=ROOT/'.pytest_cache/norwegian-branch-index.json'
         packet.write_bytes(gzip.decompress((ROOT/'almanac/index-data.json.gz').read_bytes()))
-        for owner,count in [('norwegian-atlantic-slope',2),('norwegian-atlantic-front',1)]:
+        for owner,count in [('norwegian-atlantic-slope',2),('norwegian-atlantic-front',2)]:
             page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#inventory-addition-'+owner,wait_until='networkidle')
             chart=page.locator(f'.proposed-width-chart[data-owner="{owner}"]')
             chart.wait_for(state='visible',timeout=90000)
@@ -169,7 +169,12 @@ def main():
             assert chart.locator('circle').count()==(1 if count==2 else 0)
             assert 'not a width trend' in chart.get_attribute('aria-label')
             assert chart.locator('text').first.evaluate('(e)=>parseFloat(getComputedStyle(e).fontSize)*e.getScreenCTM().a>=12')
-            assert 'ADT means absolute dynamic topography' in card.inner_text()
+            if owner=='norwegian-atlantic-slope':assert 'ADT means absolute dynamic topography' in card.inner_text()
+            else:
+                assert '38 ± 2 km' in card.inner_text() and 'width-specific interpretation awaits' in card.inner_text()
+                assert 'Its mean width remains unknown' in card.inner_text()
+                assert card.get_by_role('link',name='Inspect original-mission source alignment').count()==1
+                assert card.get_by_role('link',name='Query retained glider current records').count()==1
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             if count==1:assert 'mean width remains unknown' in card.inner_text()
             chart.screenshot(path=str(ROOT/f'.pytest_cache/{owner}-width-chart.png'))

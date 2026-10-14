@@ -67,3 +67,11 @@ The three-panel visual was inspected; the paper's July 2017 endpoint is marked
 on both time plots. Core query engine and generated query/dashboard/index
 artifacts are unchanged from the verified `a130c3e` batch. No new full-suite
 result is claimed for this additive investigation.
+
+## Subsequent atlas integration
+
+The corrected Bosse width batch adds this audit to the checked source corpus
+and links its visual and original-mission current records from the proposed
+Norwegian Atlantic Front card. Source direction and corrected-method
+reproduction remain unresolved; the new published width does not use these
+raw records as its numerical reconstruction.
