@@ -57,6 +57,11 @@ def verify(name, manifest, data):
         raise ValueError(f'{name}: expected a PDF below {maximum//1_000_000} MB')
     data = normalize_transport_identity(name, manifest, data)
     if hashlib.sha256(data).hexdigest() != manifest['sha256']:
+        if name == 'melet-solomon-2010':
+            from melet_hal_source import verify_rendition
+            proof = verify_rendition(data, manifest)
+            print(f'{name}: verified unchanged journal edition with generated HAL cover; response SHA256 {proof["response_sha256"]}; reviewed original pin {manifest["sha256"]}', flush=True)
+            return data
         raise ValueError(f'{name}: source checksum differs from the pinned acquisition')
     return data
 
@@ -113,8 +118,16 @@ def acquire(name, directory):
         raise ValueError('Unsupported local source document filename')
     destination = directory / filename
     if destination.exists():
+        if name == 'melet-solomon-2010' and hashlib.sha256(destination.read_bytes()).hexdigest() != manifest['sha256']:
+            raise ValueError('Changed retained Melet original; no rendition fallback')
         return verify(name, manifest, destination.read_bytes())
+    if name == 'melet-solomon-2010':
+        from melet_hal_source import CURRENT_FILENAME
+        current = directory / CURRENT_FILENAME
+        if current.exists():return verify(name, manifest, current.read_bytes())
     data = download(name, manifest)
+    if name == 'melet-solomon-2010' and hashlib.sha256(data).hexdigest() != manifest['sha256']:
+        destination = directory / CURRENT_FILENAME
     # Stage only verified bytes. A failed write cannot leave a partial fixture.
     temporary = None
     try:
@@ -144,7 +157,12 @@ def acquire(name, directory):
 def main():
     for name in PAPERS:
         directory = ROOT / 'research/source-data' / name
-        acquire(name, directory)
+        data = acquire(name, directory)
+        if name == 'melet-solomon-2010':
+            from melet_hal_source import ORIGINAL_SHA
+            if hashlib.sha256(data).hexdigest() != ORIGINAL_SHA:
+                print(f'{name}: full repository rendition retained unchanged separately; reviewed original pin preserved; excluded from Git')
+                continue
         print(f'{name}: local original verified; excluded from Git')
 
 
