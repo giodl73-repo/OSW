@@ -112,8 +112,9 @@ pub fn scene(matches: &[&Value], corpus: &[Value]) -> Value {
             "Leeuwin — historical monthly fitted widths".into()
         } else if first["sample_family"] == "basin_monthly_component_section" {
             format!(
-                "{} — 2013 local component spans (current width unresolved)",
-                first["current_id"].as_str().unwrap_or("")
+                "{} — {} local component spans (current width unresolved)",
+                first["current_id"].as_str().unwrap_or(""),
+                first["year"]
             )
         } else {
             "Pacific NECC — 2013 monthly diagnostics at 140 W".into()

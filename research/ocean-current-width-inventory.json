@@ -10,10 +10,10 @@
     "currents_with_scoped_width_evidence": 72,
     "measurements": 136,
     "currents_with_existing_mentions_pending_review": 0,
-    "currents_not_assessed": 14,
+    "currents_not_assessed": 13,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 6,
-    "currents_with_section_span_diagnostics_width_unresolved": 6
+    "currents_with_section_span_diagnostics_width_unresolved": 7
   },
   "measurements": [
     {
@@ -11250,10 +11250,10 @@
     {
       "current_id": "south-australian",
       "name": "South Australian Current",
-      "width_decision": "width_not_assessed",
+      "width_decision": "section_span_diagnostic_present_width_unresolved",
       "measurement_ids": [],
       "whole_current_width_km": null,
-      "next_action": "Find source-supported regional width or diagnose suitable layer-specific cross-flow sections; retain unknown if insufficient.",
+      "next_action": "Review 2012 HYCOM 100 m local monthly component spans, current association, obliquity and native resolution; retain whole-current width and annual ranges unresolved.",
       "existing_evidence_locator": null,
       "existing_evidence_source_url": null
     },
@@ -12045,6 +12045,23 @@
         {
           "file": "research/aleutian-160w-2013-monthly-component-spans.json",
           "sha256": "e712741722e85ecf0155f5d140b44799d0f02abcea05c484f2ccc41044f5f34e"
+        }
+      ]
+    },
+    {
+      "current_id": "south-australian",
+      "status": "local_component_section_diagnostic_requires_scientific_review",
+      "metric": "fixed_orientation_half_peak_eastward_component_span",
+      "whole_current_width_km": null,
+      "annual_width_range_km": null,
+      "width_rank_eligible": false,
+      "annual_extrema_eligible": false,
+      "visual_url": "query.html?q=%7B%22collection%22%3A%22width_samples%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22south-australian%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22month%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A100%7D#query-chart-section",
+      "scope_note": "One 2012 local monthly-mean HYCOM 100 m eastward-component section. Association and resolution require review; no tracked annual current width or extrema.",
+      "sources": [
+        {
+          "file": "research/south-australian-132e-100m-2012-monthly-component-spans.json",
+          "sha256": "1a70cd4fdb8761b905c14ae7cce2419ae905a489c06421a57fbbd789f009e0e3"
         }
       ]
     }

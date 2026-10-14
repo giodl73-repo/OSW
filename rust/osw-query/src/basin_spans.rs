@@ -5,7 +5,7 @@ use sha2::{Digest, Sha256};
 use std::collections::BTreeSet;
 
 // Renew these receipts only after rebuilding/reviewing the original-data diagnostics.
-const SOURCES: [(&str, &str, &str); 5] = [
+const SOURCES: [(&str, &str, &str); 6] = [
     (
         "diagnostic:basin-portugal-40n",
         "research/portugal-40n-2013-monthly-component-spans.json",
@@ -31,6 +31,11 @@ const SOURCES: [(&str, &str, &str); 5] = [
         "research/aleutian-160w-2013-monthly-component-spans.json",
         "e712741722e85ecf0155f5d140b44799d0f02abcea05c484f2ccc41044f5f34e",
     ),
+    (
+        "diagnostic:basin-south-australian-132e-100m",
+        "research/south-australian-132e-100m-2012-monthly-component-spans.json",
+        "1a70cd4fdb8761b905c14ae7cce2419ae905a489c06421a57fbbd789f009e0e3",
+    ),
 ];
 
 pub fn validate(bundle: &Bundle) -> Result<(), String> {
@@ -41,6 +46,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             "diagnostic:basin-south-pacific-100w" => "current:south-pacific",
             "diagnostic:basin-south-indian-80e" => "current:south-indian",
             "diagnostic:basin-aleutian-160w" => "current:aleutian",
+            "diagnostic:basin-south-australian-132e-100m" => "current:south-australian",
             _ => return Err("Unknown frozen basin source".into()),
         };
         let present = bundle.manifest["input_sha256"].get(file).is_some()

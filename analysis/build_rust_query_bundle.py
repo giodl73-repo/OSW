@@ -392,6 +392,26 @@ def build():
         path='research/source-data/oscar-basin-sections-2013/'+name
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
         if inputs[path]!=receipt['sha256']:raise ValueError('Changed basin original bytes')
+    from build_south_australian_hycom_spans import build as rebuild_hycom
+    path='research/south-australian-132e-100m-2012-monthly-component-spans.json'
+    original=read(path);calculated=rebuild_hycom()
+    if not basin_matches(original,calculated):raise ValueError('Stale HYCOM section diagnostic')
+    collections['diagnostics'].append({'id':'diagnostic:basin-'+original['section_id'],
+        'label':'South Australian local monthly component spans (width unresolved)',
+        'entity_id':'current:south-australian','current_id':'south-australian','status':original['status'],'rank_eligible':False,
+        'source_file':path,'source_file_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8'),'document':original})
+    for key,value in original.items():
+        if key.endswith('_file') and key.removesuffix('_file')+'_sha256' in original:
+            inputs[value]=hashlib.sha256((ROOT/value).read_bytes()).hexdigest()
+            if inputs[value]!=original[key.removesuffix('_file')+'_sha256']:raise ValueError('Stale HYCOM source dependency')
+    for key,path in {'generator':'analysis/build_south_australian_hycom_spans.py','acquirer':'analysis/acquire_south_australian_hycom_section.py','operator':'analysis/build_basin_surface_section_spans.py'}.items():
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=original[key+'_sha256']:raise ValueError('Changed HYCOM operator')
+    hycom_inventory=read(original['source_inventory_file']);read(hycom_inventory['acquisition_file'])
+    for name,receipt in hycom_inventory['source_files'].items():
+        path='research/source-data/hycom-south-australian-2012/'+name
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=receipt['sha256']:raise ValueError('Changed HYCOM original bytes')
     from build_query_width_samples import build as build_width_samples
     from build_leeuwin_monthly_plot import build as rebuild_leeuwin
     from build_kuroshio_seasonal_width_profiles import build as rebuild_kuroshio

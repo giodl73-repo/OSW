@@ -540,10 +540,13 @@ def validate(document, ledger):
     if len({row['current_id'] for row in spans}) != len(spans):
         raise ValueError('Duplicate section-span identity')
     for diagnostic in spans:
-        if diagnostic['current_id'] in ['portugal','south-atlantic','south-pacific','south-indian','aleutian']:
+        if diagnostic['current_id'] in ['portugal','south-atlantic','south-pacific','south-indian','aleutian','south-australian']:
             from build_basin_surface_section_spans import build as rebuild_basin, diagnostic_matches as basin_matches
-            calculated=next(d for d in rebuild_basin() if d['current_id']==diagnostic['current_id'])
-            expected='research/'+calculated['section_id']+'-2013-monthly-component-spans.json'
+            if diagnostic['current_id']=='south-australian':
+                from build_south_australian_hycom_spans import build as rebuild_hycom
+                calculated=rebuild_hycom()
+            else:calculated=next(d for d in rebuild_basin() if d['current_id']==diagnostic['current_id'])
+            expected='research/'+calculated['section_id']+'-'+str(calculated['year'])+'-monthly-component-spans.json'
             if len(diagnostic['sources'])!=1 or diagnostic['sources'][0]['file']!=expected or diagnostic['status']!=calculated['status'] or diagnostic['metric']!=calculated['width_metric']:
                 raise ValueError('Invalid basin component source identity')
             source=diagnostic['sources'][0];raw=(ROOT/source['file']).read_bytes()

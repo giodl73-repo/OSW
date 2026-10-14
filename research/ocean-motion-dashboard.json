@@ -22,6 +22,7 @@
     "research/south-pacific-100w-2013-monthly-component-spans.json": "ea1f41ba0378aa7306f6de0e3c17d117a2f77b00f110d276e390a9479d97f44d",
     "research/south-indian-80e-2013-monthly-component-spans.json": "71242c8fe62379e4ed661dc2ad4a4ed4908aabc7558fe40ba715892883607346",
     "research/aleutian-160w-2013-monthly-component-spans.json": "e712741722e85ecf0155f5d140b44799d0f02abcea05c484f2ccc41044f5f34e",
+    "research/south-australian-132e-100m-2012-monthly-component-spans.json": "1a70cd4fdb8761b905c14ae7cce2419ae905a489c06421a57fbbd789f009e0e3",
     "research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json": "223405cce3aa4a5fecdf94dd25ebff225a9594f33fb04f784a469fd4e6e8ce10",
     "research/source-data/radenac-ngcc-2016/acquisition.json": "9060faccdfadc7c6cd0f5da461933bc29d9fc69f2c4f7175f7613409a4041a73",
     "research/source-data/radenac-ngcc-2016/journal-article.pdf": "6da50667b80790752fa0189ff9cf0cdfd88c521509b0f393365de306286bacbe",
@@ -29,7 +30,7 @@
     "analysis/check_ngcc_seasonal_vein_widths.py": "63ad121bc99bd9514537b0d0f2c673629417cdc3b6e1bef8edee7358901bfaca",
     "research/pacific-secc-rotschi-1972-width-range-scope-audit.json": "ef2dc83521f6a67900ac95353dd4e1860f345bc6471250943e8c7372d44ade22",
     "research/source-data/rotschi-secc-1972/acquisition.json": "a6f9cc7d926fe2195db133c8657d4f918cb95289c2bce682e68021279b3c3007",
-    "research/ocean-current-width-inventory.json": "af3797f8a2aa54939e6e7e7dcc37a1c3ade64077382e6fbd0e8171a142e5525f",
+    "research/ocean-current-width-inventory.json": "7557f8f401db1be9ad3842e0f8a4eb92163b02fda3937a28aae440ab6e145a77",
     "research/ocean-current-almanac.json": "6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e",
     "research/australia-wijeratne-2018-section-transport-audit.json": "758f18afccfee1411434d59ff9a3d0c38daf8833abf285674a33f9386ec961dd",
     "research/source-data/wijeratne-australia-2018/acquisition.json": "c8c0e2959ddba356c33009891e77850f342da84a68ee816075387fa238227628",
@@ -55,7 +56,7 @@
     "research/agulhas-return-boebel-2003-adcp-width-scope-audit.json": "c8689c63ddb0a77044f85e7b639869aba6794e7c370f48d81a2bcddff32dcd53",
     "research/norwegian-coastal-saetre-1999-regional-width-scope-audit.json": "39d907a63600a62062301a6f8bb4eb9ae6b1a8fbea6590c3757d84295f46c191",
     "research/oyashio-2005-abstract-width-scope-audit.json": "7fd3b4cfbe3249d7d7e4ea78242d3f809db99e6a9d2b6f8c2a7d5ea42693c605",
-    "research/ocean-current-seasonal-route-frames.json": "6a7fd27b2b7165823223ddd0675a723e8e734ccbcf70c9d77f566843abe93074",
+    "research/ocean-current-seasonal-route-frames.json": "f7a86eb448ad03e8e6fd5d3fbd8e75caad917de1e847792e7175c172664e8326",
     "research/ocean-current-inventory-expansion-candidates.json": "370eeec26599fc64a3b1d523d48eb138069d316cc61502087fa245b780e3e8b8",
     "research/norwegian-atlantic-branch-width-scope-audit.json": "b5bbb0d40ba0836deb82e50e19b8b9b4b503269331c200537feaf10b7c4420e8",
     "research/source-data/mork-norwegian-2010/acquisition.json": "d5df606c71f6887d981142b3f2a86fea0dce47797a03a7e443bf4af817981c26",
@@ -343,7 +344,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "d7ddda1095a9a9793c4f3a47b1f5ccc0dd68cabd4124c6f55dc3bac72d854db6",
+  "snapshot_fingerprint": "6d460f561d1ecc1bd8481854ad01677a57a38138a824c8930546132f85dbba6b",
   "entries": [
     {
       "id": "current:agulhas",
@@ -12319,7 +12320,7 @@
         "reference_route": 1,
         "scoped_width": 0,
         "geometry": 0,
-        "time_samples": 0,
+        "time_samples": 12,
         "source_connectivity": 0,
         "scope_notes": 0,
         "dated_diagnostics": 0,
@@ -12329,22 +12330,31 @@
       },
       "recorded_claims": 56,
       "nasa_links": 1,
-      "fingerprint": "00e46a5ed3fb855c1ba41c3e2597d79b23e300e08bc950b48ee11301bc59bcea",
-      "series": [],
+      "fingerprint": "c43de537d05fd22ba1ef91b304b54a43a88aa47f92fe744bca8717aeb358eb88",
+      "series": [
+        {
+          "label": "2012 monthly local component spans (current width unresolved)",
+          "url": "query.html?q=%7B%22collection%22%3A%22width_samples%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22south-australian%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22month%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A100%7D#query-chart-section",
+          "frames": 12,
+          "evidence_role": "monthly_local_component_spans_current_width_unresolved",
+          "diagnostic_url": "../research/south-australian-132e-100m-2012-monthly-component-spans.json",
+          "evidence_sha256": "1a70cd4fdb8761b905c14ae7cce2419ae905a489c06421a57fbbd789f009e0e3"
+        }
+      ],
       "section_fingerprints": {
         "identity": "ae793172e00dbbdb38759600021714f3fa8a897ec70992a0294bbbe56bee31a9",
-        "sources": "ab821663e38fe68e5a0257076957f61b5bc53e4cdff6848a490d0c58d059c90c",
+        "sources": "86cfc158fd42c949ae150774b22e761c15e06f3f8f147fed846957c076271ec4",
         "claims": "8610033def629d9795922962c42aa3a3814e4d286d68409feff596df6b35d6e5",
-        "measurements": "bc102b2fa9da84ed6ce0466a67007dfedd5fb91fa5cbf2d61f494b3e2aa08452",
+        "measurements": "1de0d966a3f494b2520ea74f4ea0d08a2e456a08b04e05c7e404fc4ddd8cd503",
         "routes_geometry": "3680b0d6210c45568c9d52463351acd18e077d10373617757154c396afc5f286",
         "media": "34e826874d95f31a6eab4118dd6c05a0e57b92e3342317796f79f540fd309d14",
-        "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd"
+        "time_evidence": "e3150c49f970fc5dab729a1de2d1cd9c4a3115c96bd08888628b06d1fc9701f1"
       },
       "latest_observation_date": null,
       "claim_review_counts": {
         "not_individually_reviewed": 56
       },
-      "linked_source_count": 4,
+      "linked_source_count": 5,
       "map_features": [
         {
           "geometry": {
@@ -12386,7 +12396,12 @@
       "state_evidence": [],
       "connections": [],
       "scope_notes": [],
-      "evidence_links": [],
+      "evidence_links": [
+        {
+          "label": "Monthly section profiles and resolution flags",
+          "url": "../figures/south-australian-132e-100m-2012-monthly-component-profiles.svg"
+        }
+      ],
       "object_url": "object.html?id=current%3Asouth-australian",
       "route_url": "reference-routes.html#south-australian-reference-path-candidate",
       "season_url": "seasons.html?current=south-australian"
@@ -66833,5 +66848,5 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "built_at_utc": "2026-10-14T02:32:28.683929+00:00"
+  "built_at_utc": "2026-10-14T03:22:42.800510+00:00"
 }

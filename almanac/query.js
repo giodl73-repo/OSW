@@ -345,7 +345,7 @@
         element('p',row.source_context.time_convention,parent);
         element('p','Native resolution review: '+(row.resolution_review_required?'required (<4 grid spacings)':'four or more grid spacings; boundary validation still pending')+'. Peak at search-window edge: '+(row.source_sample.nominal.peak_at_search_edge?'yes':'no')+'.',parent);
         element('p','40–60% peak threshold sensitivity: '+(row.diagnostic_sensitivity_interval_km?.join('–')||'unresolved')+' km. Sampling brackets and measurement uncertainty are separate. Width of the monthly-mean profile is not mean instantaneous width.',parent);
-        link('View all monthly velocity profiles','../figures/'+row.source_context.section_id+'-2013-monthly-component-profiles.svg',parent);
+        link('View all monthly velocity profiles','../figures/'+row.source_context.section_id+'-'+row.year+'-monthly-component-profiles.svg',parent);
       }
       if(row.source_phase?.calendar_months===null)element('p','Calendar months for this source season are unresolved.',parent);
     }

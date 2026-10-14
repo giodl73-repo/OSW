@@ -16,9 +16,9 @@ def main():
     output=ROOT/'.pytest_cache/basin-current-width-review'
     bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
     new=[r for r in bundle['collections']['width_samples'] if r['sample_family']=='basin_monthly_component_section']
-    assert len(new)==60 and sum(r['resolution_review_required'] for r in new)==37
+    assert len(new)==72 and sum(r['resolution_review_required'] for r in new)==39
     snapshot=json.loads((ROOT/'research/ocean-motion-dashboard.json').read_bytes())
-    for owner in ['portugal','south-atlantic','south-pacific','south-indian','aleutian']:
+    for owner in ['portugal','south-atlantic','south-pacific','south-indian','aleutian','south-australian']:
         entry=next(r for r in snapshot['entries'] if r['id']=='current:'+owner)
         expected_date='2009-11-11' if owner=='portugal' else None
         assert entry['capabilities']['scoped_width']==0 and entry['latest_observation_date']==expected_date
@@ -30,7 +30,7 @@ def main():
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/query.html')
         page.wait_for_function('window.oswLastQueryResult',timeout=60000)
-        for owner in ['portugal','south-atlantic','south-pacific','south-indian','aleutian']:
+        for owner in ['portugal','south-atlantic','south-pacific','south-indian','aleutian','south-australian']:
             query={'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':owner}],'sort':{'field':'month','direction':'asc'},'limit':5}
             expected=native(query);actual=browser_query(page,query)
             assert actual==expected and actual['total']==12
@@ -47,6 +47,9 @@ def main():
             expect(page.locator('#query-detail')).to_contain_text('Native resolution review')
             expect(page.locator('#query-detail')).to_contain_text('40–60% peak threshold sensitivity')
             assert page.locator('#query-detail').get_by_role('link',name='View all monthly velocity profiles').count()==1
+            if owner=='south-australian':
+                assert page.locator('#query-detail').get_by_role('link',name='View all monthly velocity profiles').get_attribute('href').endswith('-2012-monthly-component-profiles.svg')
+                expect(page.locator('#query-chart-panels')).to_contain_text('2012')
             page.get_by_role('button',name='Inspect parent diagnostic',exact=True).click()
             expect(page.locator('#query-detail')).to_contain_text('diagnostic:basin-')
             page.set_viewport_size({'width':320,'height':900})
@@ -60,9 +63,9 @@ def main():
         assert not errors,errors
         page.route('**/basin-guard.html',lambda route:route.fulfill(body='<title>Basin diagnostic guard</title>',content_type='text/html'))
         page.goto('http://127.0.0.1:8788/basin-guard.html')
-        for mode in ['value','association','rebound']:
+        for mode in ['value','association','rebound','hycom_rebound']:
             bad=copy.deepcopy(bundle)
-            if mode=='rebound':
+            if mode in ['rebound','hycom_rebound']:
                 diagnostic=next(r for r in bad['collections']['diagnostics'] if r['id']=='diagnostic:basin-portugal-40n')
                 diagnostic['document']['months'][0]['approximate_section_span_km']=999
                 diagnostic['source_json']=json.dumps(diagnostic['document'])
@@ -82,7 +85,7 @@ def main():
                     }finally{e.osw_dealloc(p,b.length);}
                 }''','/'+path.relative_to(ROOT).as_posix())
                 assert result['ok'] is False,result
-                if mode=='rebound':assert 'frozen basin' in result['error'].lower(),result
+                if mode in ['rebound','hycom_rebound']:assert 'frozen basin' in result['error'].lower(),result
         browser.close()
     with TemporaryDirectory(dir=output) as tmp:
         path=Path(tmp)/'forged.json'
@@ -100,7 +103,7 @@ def main():
         path.write_text(json.dumps(bad),encoding='utf-8')
         result=subprocess.run([str(CLI),str(path),'-'],input='{}',capture_output=True,text=True,encoding='utf-8')
         assert result.returncode==2 and 'frozen basin' in result.stderr.lower()
-    print('PASS: 60 monthly section samples, native/WASM parity, 12 mapped boundaries/chart points per owner before pagination, manual playback/inspect/source links/mobile; five native and three WASM rejections')
+    print('PASS: 72 monthly section samples, native/WASM parity, 12 mapped boundaries/chart points per owner before pagination, manual playback/inspect/source links/mobile; five native and four WASM rejections')
 
 
 if __name__=='__main__':

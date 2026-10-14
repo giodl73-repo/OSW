@@ -91,6 +91,10 @@ def build():
         saved=read(path)
         if not basin_matches(saved,calculated):raise ValueError('Stale basin component section')
         basin_sections[calculated['current_id']]=saved
+    from build_south_australian_hycom_spans import build as rebuild_hycom
+    saved=read('research/south-australian-132e-100m-2012-monthly-component-spans.json')
+    if not basin_matches(saved,rebuild_hycom()):raise ValueError('Stale HYCOM component section')
+    basin_sections['south-australian']=saved
     read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
     for path in ['research/source-data/radenac-ngcc-2016/journal-article.pdf','plans/ngcc-seasonal-vein-width-protocol-v1.md','analysis/check_ngcc_seasonal_vein_widths.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -439,11 +443,11 @@ def build():
                            'evidence_sha256':inputs[necc_path],'inventory_sha256':inputs[necc['source_inventory_file']]})
         if current_id in basin_sections:
             doc=basin_sections[current_id]
-            series.append({'label':'2013 monthly local component spans (current width unresolved)',
+            series.append({'label':str(doc['year'])+' monthly local component spans (current width unresolved)',
                 'url':'query.html?q='+quote(json.dumps({'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':current_id}],'sort':{'field':'month','direction':'asc'},'limit':100},separators=(',',':')),safe='')+'#query-chart-section',
                 'frames':12,'evidence_role':'monthly_local_component_spans_current_width_unresolved',
-                'diagnostic_url':'../research/'+doc['section_id']+'-2013-monthly-component-spans.json',
-                'evidence_sha256':inputs['research/'+doc['section_id']+'-2013-monthly-component-spans.json']})
+                'diagnostic_url':'../research/'+doc['section_id']+'-'+str(doc['year'])+'-monthly-component-spans.json',
+                'evidence_sha256':inputs['research/'+doc['section_id']+'-'+str(doc['year'])+'-monthly-component-spans.json']})
         if current_id == timeline['current_id']:
             series.append({'label': 'Dated surface diagnostics', 'url': 'dated-current.html', 'frames': len(timeline['frames']) + len(annual['frames'])})
         if current_id == 'norwegian-coastal':
@@ -561,7 +565,7 @@ def build():
             groups['time_evidence'].append(doc)
             groups['measurements'].append(doc)
             groups['sources'].append({'inventory_sha256':doc['source_inventory_sha256'],'config_sha256':doc['config_sha256'],'protocol_sha256':doc['protocol_sha256']})
-            evidence_links.append({'label':'Monthly section profiles and resolution flags','url':'../figures/'+doc['section_id']+'-2013-monthly-component-profiles.svg'})
+            evidence_links.append({'label':'Monthly section profiles and resolution flags','url':'../figures/'+doc['section_id']+'-'+str(doc['year'])+'-monthly-component-profiles.svg'})
         if current_id == 'zeehan':groups['time_evidence'].append(calendar)
         if current_id == florida_plot['current_id']:
             groups['measurements'].append(florida_plot);groups['time_evidence'].append(florida_plot)
