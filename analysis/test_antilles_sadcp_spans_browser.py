@@ -2,7 +2,7 @@
 import json
 import os
 from urllib.parse import quote
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, expect
 from test_rust_query_browser import native, browser_query, BASE
 
 def main():
@@ -22,6 +22,8 @@ def main():
         assert '40–130 km' in page.locator('#query-chart-panels').inner_text()
         assert 'incomplete' in page.locator('.observed-section-span').nth(1).inner_text()
         page.locator('.observed-section-span button').first.click()
+        expect(page.locator('#query-detail h3')).to_have_text(expected['rows'][0]['label'])
+        expect(page.locator('#query-detail')).to_contain_text(expected['rows'][0]['id'])
         page.locator('.observed-section-span a').first.click()
         page.wait_for_function('window.oswSourceQueryResult',timeout=90000)
         assert page.evaluate('window.oswSourceQueryResult.document')=='research/antilles-ab0505-sadcp-layer-span-diagnostics.json'

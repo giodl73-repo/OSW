@@ -62,7 +62,17 @@ def build():
     for path in ['research/source-data/rotschi-secc-1972/journal-article.pdf','plans/pacific-secc-historical-width-protocol-v1.md','analysis/check_pacific_secc_historical_width.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from check_current_width_inventory import validate
+    from check_nordic_section_widths import SOURCES as NORDIC_SOURCES, NOR, WSC, proposed_records, validate_proposal, validate_inventory as validate_nordic_inventory
+    for owner,(path,pin) in NORDIC_SOURCES.items():
+        audit=read(path);read(audit['acquisition_file'])
+        for dependency in [audit['source_document_file'],audit['protocol_file'],'analysis/check_nordic_section_widths.py',
+                           'analysis/build_nordic_section_width_figures.py',
+                           'figures/norwegian-fer-2020-section-width.svg' if owner==NOR else 'figures/spitsbergen-kolas-2018-section-widths.svg']:
+            inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
     validate(widths,read('research/ocean-current-almanac.json'))
+    validate_nordic_inventory(widths)
+    validate_proposal(read('research/ocean-current-inventory-expansion-candidates.json'))
+    collections['proposed_widths']=proposed_records()
     read('research/guinea-djakoure-2017-model-width-source-review.json');read('research/source-data/djakoure-guinea-2017/acquisition.json')
     for path in ['research/source-data/djakoure-guinea-2017/journal-article.pdf','plans/guinea-model-regional-width-protocol-v1.md','analysis/check_guinea_model_width.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -615,7 +625,7 @@ def build():
             'atlas_receipts':atlas_receipts,
             'movies_receipts':movies_receipts,
             'loop_recorded_receipts':{path:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for path in ['research/loop-current-recorded-date-comparison.json','research/loop-current-recorded-date-sources.json']},
-            'taxonomy':taxonomy,'editorial_collections':['observed_section_spans','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','section_transports','transport_validations'],
+            'taxonomy':taxonomy,'editorial_collections':['proposed_widths','observed_section_spans','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','section_transports','transport_validations'],
             'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
             'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
             'input_sha256':inputs,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},

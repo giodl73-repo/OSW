@@ -29,6 +29,7 @@ mod model_sections;
 mod mooring_velocity;
 mod movies;
 mod network;
+mod nordic_widths;
 mod norkyst_data;
 mod object_plot;
 mod object_view;
@@ -198,6 +199,7 @@ impl Store {
         original_regional_widths::validate_balearic_inventory(&bundle)?;
         original_regional_widths::validate_antarctic_jet_inventory(&bundle)?;
         observed_spans::validate(&bundle)?;
+        nordic_widths::validate(&bundle)?;
         pacific_neuc_breadths::validate(&bundle)?;
         eddy_source_panels::validate(&bundle)?;
         ursa_contour::validate(&bundle)?;
@@ -641,10 +643,13 @@ impl Store {
         }
         let chart_scene = if query.collection == "observed_section_spans" {
             observed_spans::scene(&matches)
+        } else if query.collection == "proposed_widths" {
+            nordic_widths::scene(&matches, records)
         } else if query.collection == "width_samples" {
             charts::scene(&matches, records)
         } else if query.collection == "widths" {
             let scenes: Vec<_> = [
+                nordic_widths::scene(&matches, records),
                 coastal_composite_widths::scene(&matches, records),
                 dwbc_float_composite::scene(&matches, records),
                 pacific_neuc_breadths::scene(&matches, records),

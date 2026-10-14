@@ -49,7 +49,7 @@
     if(!lastResult){stopPlayback();return;}
     if(playing&&generation===playbackGeneration)playbackTimer=setTimeout(()=>playDay(index+1,generation),1000);
   }
-  const names={eddy_recurrence:'Published eddy recurrence',objects:'Currents and eddies',widths:'Scoped width records',reference_routes:'Editorial reference routes',measurements:'Published measurement records',states:'OSW states',state_links:'Recorded state links',sources:'Sources',claims:'Claims',relations:'Relations',entities:'All ledger entities',geometries:'Stored geometries',series:'Time-series indexes',diagnostics:'Diagnostic documents',working_records:'Proposed working records',flow_networks:'Flow networks',flow_network_nodes:'Network nodes',flow_network_edges:'Network connections',passage_samples:'Passage transport samples'};
+  const names={proposed_widths:'Proposed branch widths',eddy_recurrence:'Published eddy recurrence',objects:'Currents and eddies',widths:'Scoped width records',reference_routes:'Editorial reference routes',measurements:'Published measurement records',states:'OSW states',state_links:'Recorded state links',sources:'Sources',claims:'Claims',relations:'Relations',entities:'All ledger entities',geometries:'Stored geometries',series:'Time-series indexes',diagnostics:'Diagnostic documents',working_records:'Proposed working records',flow_networks:'Flow networks',flow_network_nodes:'Network nodes',flow_network_edges:'Network connections',passage_samples:'Passage transport samples'};
   names.taxonomy_links='Declared identity memberships';
   names.geometry_frames='Dated diagnostic geometry frames';
   names.seasonal_routes='Source-defined seasonal routes';
@@ -153,7 +153,7 @@
     if(row.source_decision)return row.candidate_count+' editorial route'+(row.candidate_count===1?'':'s')+' · '+row.strategy_label;
     if(row.status==='proposed'&&row.proposed_data)return 'proposed working record';
     if(row.sample_family)return (row.value_km===null?'Unresolved':`≈ ${row.value_km.toLocaleString('en',{maximumFractionDigits:1})} km`)+(row.plot_reading_interval_km?` · plot reading ${row.plot_reading_interval_km.join('–')} km`:row.diagnostic_sensitivity_interval_km?` · threshold sensitivity ${row.diagnostic_sensitivity_interval_km.join('–')} km`:' · measurement uncertainty unresolved');
-    if(row.approximate_width_km!==undefined)return `${row.approximate_width_km===null?(row.width_range_km?.join('–')||'unknown'):'≈ '+row.approximate_width_km} km · ${row.phase_label||row.phase_kind}`;
+    if(row.approximate_width_km!==undefined)return `${row.approximate_width_km===null?(row.width_range_km?.join('–')||'unknown'):'≈ '+row.approximate_width_km} km · ${row.phase_label||row.phase_kind||row.source_current_label||row.measurement_type?.replaceAll('_',' ')||'scoped source width'}`;
     if(row.approximate_reference_path_km!==undefined)return `≈ ${row.approximate_reference_path_km} km · reference route`;
     if(row.value!==undefined)return `${row.value===null?'unknown':typeof row.value==='object'?JSON.stringify(row.value):row.value} ${row.unit||''}`;
     if(row.published_length_km!==undefined&&row.published_length_km!==null)return `${row.published_length_km.toLocaleString()} km · published estimate`;
@@ -377,6 +377,7 @@
     const entity=row.id.startsWith('current:')||row.id.startsWith('eddy:')||row.id.startsWith('operational-eddy:')?row.id:row.entity_id||row.subject_id||(row.current_id?'current:'+row.current_id:null);
     if(entity && (/^(current:|eddy:|operational-eddy:)/.test(entity)||row.type==='operational_eddy_detection')){link('Open atlas card',`reference-routes.html?atlas-layout=map&atlas-feature=${encodeURIComponent(entity)}#route-atlas`,links);link('Object record','object.html?id='+encodeURIComponent(entity),links);}
     if(row.source_url)link('Published source',row.source_url,links);else if(row.url)link('Source',row.url,links);
+    if(row.proposed_current_id&&row.source_file&&row.source_pointer)link('Inspect exact source width record','query.html?source-q='+encodeURIComponent(JSON.stringify({document:row.source_file,pointer:row.source_pointer,limit:100})),links);
     if(row.current_id&&row.phase_kind)link('Inspect width',`seasons.html?current=${encodeURIComponent(row.current_id)}&phase=${encodeURIComponent(row.id)}`,links);
     if(row.type==='named_current'&&row.state_codes?.length)element('p','Recorded state links: '+row.state_codes.join(', ')+'. Relation kinds are available in the state-links collection.',parent);
   }

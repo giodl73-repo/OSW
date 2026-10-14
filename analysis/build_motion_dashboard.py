@@ -138,6 +138,8 @@ def build():
     proposals_document = read('research/ocean-current-inventory-expansion-candidates.json')
     from check_norwegian_atlantic_branch_widths import validate as validate_proposed_widths, AUDIT, ACQUISITION, SOURCE
     validate_proposed_widths(proposals_document)
+    from check_nordic_section_widths import validate_proposal
+    validate_proposal(proposals_document)
     read(AUDIT);read(ACQUISITION)
     inputs[SOURCE]=hashlib.sha256((ROOT/SOURCE).read_bytes()).hexdigest()
     proposals = proposals_document['entries']
@@ -506,6 +508,12 @@ def build():
                    'media': own_media, 'phases': own_phases, 'series': series, 'sources': own_sources,
                    'map_features': map_features, 'connections': own_connections}
         evidence_links = []
+        if current_id == 'west-spitsbergen':
+            evidence_links.append({'label':'Compare the six existing WSC section/method records',
+                'url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':current_id}],'limit':20},separators=(',',':')),safe='')+'#query-chart-section'})
+        if current_id == 'norwegian':
+            evidence_links.append({'label':'Proposed Atlantic slope branch widths · separate identity',
+                'url':'query.html?q='+quote(json.dumps({'collection':'proposed_widths','filters':[{'field':'proposed_current_id','op':'eq','value':'norwegian-atlantic-slope'}],'limit':20},separators=(',',':')),safe='')+'#query-chart-section'})
         def query_link(label, collection, record_id=None, filters=None):
             query = {'collection': collection, 'limit': 50}
             if record_id: query['filters'] = [{'field':'id','op':'eq','value':record_id}]

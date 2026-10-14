@@ -7,10 +7,31 @@ window.oswCharts=(()=>{
   reducedMotion.addEventListener('change',stopAll);
   function svgNode(tag,attrs,parent,text){const n=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,String(v));if(text!==undefined)n.textContent=text;parent.append(n);return n;}
   function html(tag,text,parent){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;parent.append(n);return n;}
+  function nordic(scene,inspect){
+    for(const panel of scene.panels){
+      const section=html('section',undefined,root());section.className='nordic-section-width';
+      html('h3',panel.title,section);const figure=html('figure',undefined,section);figure.style.margin='0';
+      figure.innerHTML=panel.svg;figure.querySelector('svg').style.cssText='display:block;width:100%;max-width:900px';
+      html('p',scene.scope,section);
+      html('p',panel.collection==='proposed_widths'?'Proposed identity only. Vertical support: depth-integrated relative geostrophic current; exact width integration limits unspecified. Surface pressure is the reference.':'Vertical support: variable Atlantic Water layer or seabed, not fixed 45–475 m. The 100 dbar geostrophic reference is not a fixed 100 m layer.',section);
+      for(const row of panel.rows){
+        const line=html('p',undefined,section);line.style.margin='.35rem 0';
+        const button=html('button',row.label+(row.matching?' · matching query':''),line);button.onclick=()=>inspect(panel.collection,row.id);
+        const link=html('a','Source record',line);link.style.marginLeft='.6rem';
+        link.href='query.html?source-q='+encodeURIComponent(JSON.stringify({document:panel.source_file,pointer:row.source_pointer,limit:100}));
+      }
+      const original=html('a','Original paper · CC BY 4.0',section);original.href=panel.source_url;
+    }
+  }
   function render(scene,inspect){
     stopAll();stops=[];
     document.getElementById('query-chart-section').hidden=!scene;root().replaceChildren();if(!scene)return;
     document.getElementById('query-chart-scope').textContent=scene.scope;
+    if(scene.kind==='nordic_section_widths'){
+      document.getElementById('query-chart-legend').hidden=true;
+      document.getElementById('chart-title').textContent=scene.title;
+      nordic(scene,inspect);return;
+    }
     if(scene.kind==='observed_section_spans'){
       document.getElementById('query-chart-legend').hidden=true;
       document.getElementById('chart-title').textContent='Observed component survey spans';
@@ -20,13 +41,13 @@ window.oswCharts=(()=>{
         figure.innerHTML=panel.svg;figure.querySelector('svg').style.cssText='display:block;width:100%;max-width:820px';
         html('p',panel.complete_threshold_envelope?`40/50/60% threshold-choice envelope: ${panel.threshold_span_range_km.join('–')} km. Operator sensitivity, not measurement error or annual extrema.`:'40/50/60% threshold envelope incomplete; unresolved crossings remain unknown.',section);
         html('p',`${panel.paired_observation_count} paired observations. ${panel.valid_sample_period?panel.valid_sample_period.start+' to '+panel.valid_sample_period.end+' (provider clock; time zone unspecified)':'No valid paired observations at this exported depth.'}`,section);
-        const button=html('button','Inspect layer, boundaries and source',section);button.onclick=()=>inspect(panel.id);
+        const button=html('button','Inspect layer, boundaries and source',section);button.onclick=()=>inspect('observed_section_spans',panel.id);
         const link=html('a','Inspect exact source profile',section);link.style.display='block';link.href='query.html?source-q='+encodeURIComponent(JSON.stringify({document:panel.source_file,pointer:panel.source_pointer,limit:100}));
       }return;
     }
     document.getElementById('query-chart-legend').hidden=scene.kind==='mooring_velocity';
     document.getElementById('chart-title').textContent=scene.kind==='mooring_velocity'?'Observed current velocity':scene.panels?.length&&scene.panels.every(p=>p.source_context?.current_association_verified===false)?'Local component section spans':'Width profiles';
-    if(scene.kind==='dwbc_float_composite'||scene.kind==='scoped_width_comparisons'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Scoped source comparisons';for(const s of scene.scenes||[scene]){if(s.kind==='coastal_composite_widths')window.renderCoastalCompositeWidths(root(),s,null,inspect);else if(s.kind==='pacific_neuc_isopycnal_breadths')window.renderPacificNeucBreadths(root(),s,null,inspect);else window.renderDwbcFloatComposite(root(),s,inspect);}return;}
+    if(scene.kind==='dwbc_float_composite'||scene.kind==='scoped_width_comparisons'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Scoped source comparisons';for(const s of scene.scenes||[scene]){if(s.kind==='coastal_composite_widths')window.renderCoastalCompositeWidths(root(),s,null,inspect);else if(s.kind==='nordic_section_widths')nordic(s,inspect);else if(s.kind==='pacific_neuc_isopycnal_breadths')window.renderPacificNeucBreadths(root(),s,null,inspect);else window.renderDwbcFloatComposite(root(),s,inspect);}return;}
     if(scene.kind==='pacific_neuc_isopycnal_breadths'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Isopycnal jet breadths';window.renderPacificNeucBreadths(root(),scene,null,inspect);return;}
     if(scene.kind==='coastal_composite_widths'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Composite section widths';window.renderCoastalCompositeWidths(root(),scene,null,inspect);return;}
     if(scene.kind==='published_section_transports'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Published section transport';window.renderPublishedSectionTransports(root(),scene,inspect);return;}

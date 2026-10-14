@@ -59,6 +59,15 @@
     revealLinkedCard();
   });
   function renderProposedWidths(row, card) {
+    if(row.section_width_evidence?.length){
+      node('h4','Additional measurements for this proposed branch',card);
+      for(const r of row.section_width_evidence){
+        node('p',`${r.width_range_km.join('–')} km · ${r.layer} ${r.boundary_rule}`,card);
+        node('p','Proposed identity only; no dimensions assigned to Norwegian Current or Norwegian Coastal Current.',card);
+      }
+      const q={collection:'proposed_widths',filters:[{field:'proposed_current_id',op:'eq',value:row.proposed_id}],limit:20};
+      link('Compare proposed branch section widths','query.html?q='+encodeURIComponent(JSON.stringify(q))+'#query-chart-section',node('p',null,card));
+    }
     if (!row.width_scope_audit) return;
     const records=row.width_evidence;node('h4','Source-supported branch widths',card);
     if(!records.length) {

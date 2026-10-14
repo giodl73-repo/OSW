@@ -36,6 +36,7 @@ def main():
         row=page.locator('[data-measurement-id=north-brazil-hs2-oblique-mean-zero-width]')
         row.locator('summary').click();assert 'Discrepancy unresolved' in row.inner_text()
         row.get_by_text('Inspect this width record').click()
+        page.wait_for_function('window.oswSeasonSnapshot',timeout=60000)
         expect(page.locator('#season-value')).to_contain_text('about 220 km')
         page.locator('#season-atlas').click()
         page.wait_for_function('document.querySelector("#route-atlas-select").value==="current:north-brazil"')
