@@ -6,6 +6,9 @@ AUDIT='research/algerian-cotroneo-2019-regional-width-scope-audit.json'
 SOURCE_SHA='9f4bd73abd9785762fa1f498d30c120392f4847e1f573528c86d8cec13b44a18'
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 def validate_row(row,audit=None):
+    if row.get('current_id') == 'balearic' or row.get('id') == 'balearic-socib-2023-regional-width':
+        from check_balearic_socib_width import validate_row as validate_balearic
+        return validate_balearic(row, audit)
     if str(row.get('id','')).startswith('azores-carracedo-2014-'):
         from check_azores_model_core_widths import validate_row as validate_azores
         return validate_azores(row,audit)

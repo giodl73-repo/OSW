@@ -7,12 +7,12 @@
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 72,
-    "measurements": 138,
+    "currents_with_scoped_width_evidence": 73,
+    "measurements": 139,
     "currents_with_existing_mentions_pending_review": 0,
     "currents_not_assessed": 13,
     "currents_with_derived_width_candidates_pending_review": 2,
-    "currents_with_sources_reviewed_no_numeric_width": 6,
+    "currents_with_sources_reviewed_no_numeric_width": 5,
     "currents_with_section_span_diagnostics_width_unresolved": 7
   },
   "measurements": [
@@ -10742,6 +10742,74 @@
         "audit_file": "research/azores-carracedo-2014-model-core-width-scope-audit.json",
         "audit_sha256": "f8c1beef0caf8f3e98014d897579841cbdb2cdce6ac3fe7938e1010d9303dce9"
       }
+    },
+    {
+      "id": "balearic-socib-2023-regional-width",
+      "current_id": "balearic",
+      "name": "Balearic Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_regional_summary",
+      "width_metric": "author_reported_current_width",
+      "approximate_width_km": null,
+      "width_range_km": [
+        20,
+        35
+      ],
+      "range_kind": "reported_typical_regional_width_span",
+      "range_interpretation": "Provider-reported regional width range; no chosen midpoint, confidence interval or whole-current annual extrema. Numeric range is not assigned to seasons.",
+      "geographic_scope": "Northern shelf of the Balearic Islands; no specific section gates or paired edge coordinates in the provider summary.",
+      "section_geometry": null,
+      "section_orientation": "Not supplied by the regional summary.",
+      "layer": "Climatological satellite-imagery surface circulation context; no fixed depth or vertically uniform width layer is specified.",
+      "time_convention": "Undated multi-year regional synthesis. Provider version 13 November 2023 and suggested citation year 2021 do not identify width observation dates or the averaging period.",
+      "boundary_rule": "Provider-reported width; source does not specify paired edge coordinates or a velocity cutoff. Mean GV 0.2 m/s is not a boundary threshold.",
+      "source_url": "https://apps.socib.es/satellite-imagery/RegionalEstimates_satellite-imagery.pdf",
+      "source_citation": "Juza, M. (2021), Regional estimates in the application SOCIB Satellite imagery: western Mediterranean Sea and sub-regions, SOCIB. Reviewed document version 13 November 2023.",
+      "source_locator": "Section 4 Balearic Sea, PDF/printed page 5, acronym BC and regional-estimates BC row; introduction page 3, license page 2, data credits page 7.",
+      "source_retrieved_date": "2026-10-14",
+      "source_evidence_kind": "published_original_regional_background_synthesis",
+      "extraction_method": "Transcribed numerical endpoints from the visually inspected provider table. No field reproduction or width-edge digitization.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "phase_label": "SOCIB northern-shelf regional synthesis (version 13 November 2023)",
+      "phase_kind": "regional_summary",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "uncertainty_km": null,
+      "source_quality_note": "Provider original reviewed. Exact averaging period, product edition, grid and paired velocity-boundary method remain unspecified. Qualitative autumn maximum is not a numeric seasonal width assignment.",
+      "remaining_gates": [
+        "Recover row-specific underlying width calculation, source product and paired boundaries.",
+        "Recover compatible dated and layer-specific sections before annual or monthly physical widths.",
+        "Independent scientific admission."
+      ],
+      "original_regional_context": {
+        "description_kind": "provider_regional_width_range",
+        "full_original_inspected": false,
+        "source_access": "Relevant original pages read and table visually inspected; not all cited papers or underlying source products reviewed.",
+        "source_version_date": "2023-11-13",
+        "mean_geostrophic_velocity_m_s": 0.2,
+        "direction": "northeastward",
+        "source_temporal_variability": "Seasonal (max. autumn)",
+        "autumn_maximum_is_explicitly_width": false,
+        "numeric_endpoints_assigned_to_seasons": false,
+        "velocity_context_is_boundary_cutoff": false,
+        "document_version_is_observation_date": false,
+        "underlying_width_methods_reviewed": false,
+        "boundary_coordinates_extracted": false,
+        "span_is_annual_range": false,
+        "protocol_file": "plans/balearic-socib-regional-width-protocol-v1.md",
+        "protocol_sha256": "82182246e2242e0cf6ec3866a88b54c339a973414877f6ee4e92e63f56ce62df",
+        "display_aria_label": "Balearic Current: provider-reported regional width range 20 to 35 km along the northern island shelf. No midpoint, seasonal endpoint assignment, confidence interval or mapped edges.",
+        "display_caption": "SOCIB reports a 20–35 km regional width range along the northern Balearic shelf. Representative width and numeric uncertainty remain unknown; no midpoint selected.",
+        "display_method_note": "Provider table, version 13 November 2023. Mean GV 0.2 m/s is not an edge cutoff. Autumn maximum is qualitative variability, not a 35 km autumn width. Sampling period, paired boundaries and exact width method are unspecified; whole-current and annual ranges remain unknown.",
+        "audit_file": "research/balearic-socib-2023-regional-width-scope-audit.json",
+        "audit_sha256": "c4eb5039c0a77ece8e775c50637441d0e0816e2cc401363f85f65effc0f1e203"
+      }
     }
   ],
   "current_decisions": [
@@ -11349,12 +11417,14 @@
     {
       "current_id": "balearic",
       "name": "Balearic Current",
-      "width_decision": "sources_reviewed_no_comparable_numeric_current_width",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "balearic-socib-2023-regional-width"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Reviewed sources: qualitative current-width comparison and event upwelling band do not supply a comparable numeric current width. Obtain source-defined current boundaries and seasonal observations.",
-      "existing_evidence_locator": null,
-      "existing_evidence_source_url": null
+      "next_action": "Review the SOCIB underlying width calculation, paired edges and product/time support; 20–35 km is a reported regional synthesis, not annual extrema or a chosen midpoint.",
+      "existing_evidence_locator": "Section 4 Balearic Sea, PDF/printed page 5, acronym BC and regional-estimates BC row; introduction page 3, license page 2, data credits page 7.",
+      "existing_evidence_source_url": "https://apps.socib.es/satellite-imagery/RegionalEstimates_satellite-imagery.pdf"
     },
     {
       "current_id": "western-adriatic",
@@ -12120,32 +12190,6 @@
     }
   ],
   "review_assessments": [
-    {
-      "current_id": "balearic",
-      "decision": "sources_reviewed_no_comparable_numeric_current_width",
-      "whole_current_width_km": null,
-      "annual_width_range_km": null,
-      "source_retrieved_date": "2026-10-03",
-      "reason": "Reviewed source gives a qualitative broader/shallower comparison only. A separate 10-20 km event upwelling band is a thermal-water feature, not an admitted Balearic current width. No numerical current width or seasonal span extracted.",
-      "evidence": [
-        {
-          "url": "https://archimer.ifremer.fr/doc/00094/20507/18176.pdf",
-          "citation": "Garcia-Ladona et al. (1996), The Balearic current and volume transports in the Balearic basin, Oceanologica Acta 19(5), 489-497.",
-          "locator": "Printed 496 / PDF page 8, Conclusions; entire nine-page PDF reviewed for numerical width support.",
-          "supports": "Current described qualitatively as wider and shallower than Catalan current; layer depth and transport are not horizontal width."
-        },
-        {
-          "url": "https://sp.copernicus.org/articles/1-osr7/15/2023/sp-1-osr7-15-2023.html",
-          "citation": "Intense wind-driven coastal upwelling in the Balearic Islands in response to Storm Blas (November 2021), State of the Planet 1-osr7, 15 (2023).",
-          "locator": "Section 3, Surface expression of the upwelling.",
-          "supports": "10-20 km is offshore width of the upwelled-water region during an event, not a source-delimited named current velocity width. Southwestward wind-driven coastal flow is not a representative northeastward annual route. Text date 2022 conflicts with title/Figure 2 date 2021; no dated metric extracted."
-        }
-      ],
-      "remaining_gates": [
-        "Source a paired current boundary, orientation, layer and temporal support before numerical admission.",
-        "Keep thermal plume extent, transport and vertical thickness separate from horizontal current width."
-      ]
-    },
     {
       "current_id": "antilles",
       "decision": "sources_reviewed_no_comparable_numeric_current_width",

@@ -17,6 +17,8 @@ def validate(document, ledger):
         raise ValueError("Incomplete or duplicated width inventory")
     from check_ngcc_seasonal_vein_widths import validate_inventory as validate_ngcc_inventory
     validate_ngcc_inventory(document)
+    from check_balearic_socib_width import validate_inventory as validate_balearic_inventory
+    validate_balearic_inventory(document)
     from check_azores_model_core_widths import validate_inventory as validate_azores_inventory
     validate_azores_inventory(document)
     records = document["measurements"]

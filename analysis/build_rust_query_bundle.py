@@ -28,6 +28,10 @@ def build():
         movies_receipts[name]={'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')}
     dashboard=read('research/ocean-motion-dashboard.json')
     widths=read('research/ocean-current-width-inventory.json')
+    socib_audit = read('research/balearic-socib-2023-regional-width-scope-audit.json')
+    read(socib_audit['acquisition_file'])
+    for path in [socib_audit['source_document_file'], socib_audit['protocol_file'], 'analysis/check_balearic_socib_width.py']:
+        inputs[path] = hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     coordinate_audit=read('research/azores-countercurrent-posaf-coordinate-meaning-audit.json')
     from build_azcc_coordinate_meaning_figure import validate as validate_coordinate_meaning
     validate_coordinate_meaning(coordinate_audit)

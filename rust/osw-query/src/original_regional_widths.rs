@@ -3,6 +3,11 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 const SOURCES: &[(&str, &str, &str)] = &[
     (
+        "balearic",
+        "research/balearic-socib-2023-regional-width-scope-audit.json",
+        include_str!("../../../research/balearic-socib-2023-regional-width-scope-audit.json"),
+    ),
+    (
         "azores",
         "research/azores-carracedo-2014-model-core-width-scope-audit.json",
         include_str!("../../../research/azores-carracedo-2014-model-core-width-scope-audit.json"),
@@ -232,6 +237,38 @@ pub(crate) fn validate_azores_inventory(bundle: &crate::Bundle) -> Result<(), St
         validate(row)?;
     }
     Ok(())
+}
+
+pub(crate) fn validate_balearic_inventory(bundle: &crate::Bundle) -> Result<(), String> {
+    let (_, path, raw) = SOURCES
+        .iter()
+        .find(|s| s.0 == "balearic")
+        .ok_or("Missing SOCIB frozen source")?;
+    if bundle.manifest["input_sha256"].get(*path).is_none()
+        && !bundle
+            .collections
+            .get("objects")
+            .into_iter()
+            .flatten()
+            .any(|r| r["id"] == "current:balearic")
+    {
+        return Ok(());
+    }
+    let rows: Vec<_> = bundle
+        .collections
+        .get("widths")
+        .into_iter()
+        .flatten()
+        .filter(|r| {
+            r["id"] == "balearic-socib-2023-regional-width" || r["current_id"] == "balearic"
+        })
+        .collect();
+    if rows.len() != 1
+        || bundle.manifest["input_sha256"][path] != format!("{:x}", Sha256::digest(raw.as_bytes()))
+    {
+        return Err("Missing or rebound SOCIB Balearic inventory".into());
+    }
+    validate(rows[0])
 }
 
 pub(crate) fn validate(row: &Value) -> Result<(), String> {
