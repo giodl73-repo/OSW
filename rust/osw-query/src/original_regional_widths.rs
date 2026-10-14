@@ -3,6 +3,11 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 const SOURCES: &[(&str, &str, &str)] = &[
     (
+        "new-guinea-coastal-current",
+        "research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json",
+        include_str!("../../../research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json"),
+    ),
+    (
         "pacific-south-equatorial-countercurrent",
         "research/pacific-secc-rotschi-1972-width-range-scope-audit.json",
         include_str!("../../../research/pacific-secc-rotschi-1972-width-range-scope-audit.json"),
@@ -143,6 +148,45 @@ const SOURCES: &[(&str, &str, &str)] = &[
         include_str!("../../../research/pacific-euc-wang-2022-background-width-scope-audit.json"),
     ),
 ];
+
+pub(crate) fn validate_ngcc_inventory(bundle: &crate::Bundle) -> Result<(), String> {
+    let (_, path, raw) = SOURCES
+        .iter()
+        .find(|source| source.0 == "new-guinea-coastal-current")
+        .copied()
+        .ok_or("Missing frozen NGCC source")?;
+    let owner = "current:new-guinea-coastal-current";
+    let present = bundle.manifest["input_sha256"].get(path).is_some()
+        || bundle
+            .collections
+            .get("objects")
+            .into_iter()
+            .flatten()
+            .any(|r| r["id"] == owner);
+    if !present {
+        return Ok(());
+    }
+    let expected: Value = serde_json::from_str(raw).map_err(|e| e.to_string())?;
+    let descriptors = expected["measurements"]
+        .as_array()
+        .ok_or("Invalid NGCC frozen descriptors")?;
+    let actual: Vec<_> = bundle
+        .collections
+        .get("widths")
+        .into_iter()
+        .flatten()
+        .filter(|r| r["current_id"] == "new-guinea-coastal-current")
+        .collect();
+    if actual.len() != descriptors.len()
+        || descriptors
+            .iter()
+            .any(|e| actual.iter().filter(|r| r["id"] == e["id"]).count() != 1)
+        || bundle.manifest["input_sha256"][path] != format!("{:x}", Sha256::digest(raw.as_bytes()))
+    {
+        return Err("Missing or rebound NGCC seasonal vein inventory".into());
+    }
+    Ok(())
+}
 
 pub(crate) fn validate(row: &Value) -> Result<(), String> {
     let owner = row["current_id"].as_str().unwrap_or("");

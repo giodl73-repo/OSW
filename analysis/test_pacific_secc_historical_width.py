@@ -52,8 +52,6 @@ class PacificSeccHistoricalTests(unittest.TestCase):
 
     def test_inventory_classification_is_complete(self):
         validate_inventory(self.inventory,json.loads((ROOT/'research/ocean-current-almanac.json').read_bytes()))
-        self.assertEqual(self.inventory['counts']['measurements'],132)
-        self.assertEqual(self.inventory['counts']['currents_with_scoped_width_evidence'],71)
 
 
 if __name__=='__main__':

@@ -119,6 +119,11 @@
     if(row?.phase_kind==='synoptic_stream_tube_section')byId('season-title').textContent='Synoptic stream-tube section width';
     if(row?.phase_kind==='campaign_modal_decay_width'){byId('season-title').textContent='Campaign modal decay estimate';byId('season-value').textContent=`${row.name}: source reports ${row.approximate_width_km} km · coastal branch (1980)`;}
     if(row?.phase_kind==='regional_summary')byId('season-title').textContent=row.width_range_km?'Regional width range':'Regional width summary';
+    if(row?.original_regional_context?.description_kind?.startsWith('ngcc_trade_wind_')) {
+      byId('season-title').textContent=row.original_regional_context.display_title;
+      byId('season-value').textContent=`${row.name}: ${row.width_range_km?row.width_range_km.join('–')+' km':'approximately '+row.approximate_width_km+' km'} · ${row.width_metric_label}`;
+      byId('season-definition').textContent=`${row.geographic_scope} ${row.time_convention} ${row.original_regional_context.display_method_note}`;
+    }
     if(row?.original_regional_context?.description_kind==='tasman_meander_occupied_band'){byId('season-title').textContent=row.original_regional_context.display_title;byId('season-value').textContent=`${row.name}: approximately ${row.approximate_width_km} km · occupied meander and eddy band · historical regional synthesis`; }
     if(row?.current_id==='monsoon'&&row?.original_regional_context){byId('season-title').textContent=row.original_regional_context.display_title;byId('season-value').textContent=`${row.name}: approximately ${row.approximate_width_km} km · ${row.phase_label} · distinct July 2016 feature description`; }
     if(row?.original_regional_context?.description_kind?.startsWith('climatological-mdt-')){byId('season-title').textContent=row.original_regional_context.display_title;byId('season-value').textContent=`${row.name}: approximately ${row.approximate_width_km} km · ${row.phase_label} · meridional MDT contour separation`;}

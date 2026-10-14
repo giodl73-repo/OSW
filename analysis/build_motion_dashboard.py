@@ -91,6 +91,9 @@ def build():
         saved=read(path)
         if not basin_matches(saved,calculated):raise ValueError('Stale basin component section')
         basin_sections[calculated['current_id']]=saved
+    read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
+    for path in ['research/source-data/radenac-ngcc-2016/journal-article.pdf','plans/ngcc-seasonal-vein-width-protocol-v1.md','analysis/check_ngcc_seasonal_vein_widths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     pacific_secc_width_audit=read('research/pacific-secc-rotschi-1972-width-range-scope-audit.json');read('research/source-data/rotschi-secc-1972/acquisition.json')
     width_inventory = read('research/ocean-current-width-inventory.json')
     validate_width_inventory(width_inventory, read('research/ocean-current-almanac.json'))

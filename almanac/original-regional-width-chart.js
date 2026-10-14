@@ -18,7 +18,15 @@ window.renderOriginalRegionalWidth=function(container,row){
   if(point)add("circle",{cx:x(low),cy:60,r:6,fill:"#176b82"});
   else add("line",{x1:x(low),x2:x(high),y1:60,y2:60,stroke:"#176b82","stroke-width":5});
   const closeLabels=!point&&x(high)-x(low)<labelSize*(`${low} km`.length+`${high} km`.length)*.3+8;
-  for(const v of point?[low]:[low,high]){if(!point)add("line",{x1:x(v),x2:x(v),y1:50,y2:70,stroke:"#176b82","stroke-width":3});add("text",{x:x(v),y:30,"text-anchor":closeLabels?(v===low?"end":"start"):v/maximum>.8?"end":"middle","font-size":labelSize,fill:"#102f3b"},`${point?'≈ ':''}${v} km`);}
+  const valueLabels=[];
+  for(const v of point?[low]:[low,high]){if(!point)add("line",{x1:x(v),x2:x(v),y1:50,y2:70,stroke:"#176b82","stroke-width":3});add("text",{x:x(v),y:30,"text-anchor":closeLabels?"end":v/maximum>.8?"end":"middle","font-size":labelSize,fill:"#102f3b"},`${point?'≈ ':''}${v} km`);valueLabels.push(svg.lastElementChild);}
+  if(closeLabels){
+    const widths=valueLabels.map(e=>e.getComputedTextLength()||labelSize*e.textContent.length*.6);
+    let left=Math.max(40+widths[0],Math.min(x(low),x(high)-widths[1]-8));
+    let right=Math.max(x(high),left+widths[1]+8);
+    if(right>460){right=460;left=right-widths[1]-8;}
+    [left,right].forEach((position,i)=>{valueLabels[i].setAttribute("x",position);const original=x(i?high:low);if(Math.abs(position-original)>1)add("line",{x1:original,x2:position-widths[i]/2,y1:48,y2:36,stroke:"#526c77","stroke-width":1});});
+  }
   for(const v of [0,maximum])add("text",{x:x(v),y:125,"text-anchor":v?"end":"start","font-size":labelSize,fill:"#102f3b"},`${v} km`);
   const caption=document.createElement("figcaption");caption.textContent=row.original_regional_context.display_caption||"Regional along-slope Atlantic Water flow · one 30–50 km background description, no midpoint selected. Numerical uncertainty unknown. The article's autumn 2014–2016 glider missions and 975 m sampling depth do not define this width's observation dates or layer. No annual range, monthly widths or mapped edges inferred.";figure.append(caption);
   const note=document.createElement("p");note.textContent=row.original_regional_context.display_method_note||"Original publisher text inspected; the width description cites Testor et al. (2005). The underlying width method remains unreviewed. Detached eddy diameters are separate quantities.";figure.append(note);

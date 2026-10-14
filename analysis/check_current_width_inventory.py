@@ -15,13 +15,15 @@ def validate(document, ledger):
     ids = {row["id"] for row in ledger["entries"]}
     if len(decisions) != len(ids) or {row["current_id"] for row in decisions} != ids:
         raise ValueError("Incomplete or duplicated width inventory")
+    from check_ngcc_seasonal_vein_widths import validate_inventory as validate_ngcc_inventory
+    validate_ngcc_inventory(document)
     records = document["measurements"]
     if len({row["id"] for row in records}) != len(records):
         raise ValueError("Duplicate width measurement")
     by_id = {row["id"]: row for row in records}
     hydrographic_extraction = None
     for row in records:
-        if str(row.get("id", "")).startswith(("pacific-secc-rotschi-1972-", "hiri-hughes-1993-", "east-adriatic-pasaric-2019-", "acc-park-2019-udintsev-", "monsoon-webber-2018-", "tasman-front-nilsson-1980-", "antarctic-coastal-schubert-2021-", "deep-western-boundary-richardson-1993-", "pacific-neuc-li-2018-")) or row.get("original_regional_context") or row["current_id"] in {"pacific-south-equatorial-countercurrent", "hiri-current", "east-adriatic", "algerian", "alaska", "pacific-equatorial-undercurrent", "atlantic-equatorial-undercurrent", "kuroshio-extension", "new-guinea-coastal-undercurrent", "zeehan", "west-australian", "peru-humboldt", "baffin", "western-adriatic", "jutland", "solomon-island-coastal-undercurrent", "new-ireland-coastal-undercurrent", "north-pacific", "acc", "monsoon", "tasman-front", "antarctic-coastal", "deep-western-boundary", "pacific-north-equatorial-undercurrent"}:
+        if str(row.get("id", "")).startswith(("ngcc-radenac-2016-", "pacific-secc-rotschi-1972-", "hiri-hughes-1993-", "east-adriatic-pasaric-2019-", "acc-park-2019-udintsev-", "monsoon-webber-2018-", "tasman-front-nilsson-1980-", "antarctic-coastal-schubert-2021-", "deep-western-boundary-richardson-1993-", "pacific-neuc-li-2018-")) or row.get("original_regional_context") or row["current_id"] in {"new-guinea-coastal-current", "pacific-south-equatorial-countercurrent", "hiri-current", "east-adriatic", "algerian", "alaska", "pacific-equatorial-undercurrent", "atlantic-equatorial-undercurrent", "kuroshio-extension", "new-guinea-coastal-undercurrent", "zeehan", "west-australian", "peru-humboldt", "baffin", "western-adriatic", "jutland", "solomon-island-coastal-undercurrent", "new-ireland-coastal-undercurrent", "north-pacific", "acc", "monsoon", "tasman-front", "antarctic-coastal", "deep-western-boundary", "pacific-north-equatorial-undercurrent"}:
             from check_original_regional_widths import validate_row
             validate_row(row)
         if row.get("model_regional_context") or row["current_id"] == "guinea":
@@ -492,7 +494,7 @@ def validate(document, ledger):
             from check_antarctic_coastal_composites import validate_row
             validate_row(row)
         elif row['phase_kind'] == 'regional_summary':
-            if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] not in {'author_reported_geostrophic_current_width_range','author_reported_e_folding_scale','author_reported_coastal_inflow_extent','author_reported_current_width','author_reported_one_sided_coastal_confinement','author_reported_climatological_major_front_separation','author_reported_climatological_boundary_breadth','author_inferred_origin_proxy_component_width','author_reported_meander_occupied_band_breadth'} or row['observed_period'] is not None or row.get('calendar_months') is not None or (span is None and not row.get('original_regional_context')):
+            if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] not in {'author_reported_seasonal_surface_current_anomaly_vein_span','author_reported_seasonal_thermal_vein_span','author_reported_geostrophic_current_width_range','author_reported_e_folding_scale','author_reported_coastal_inflow_extent','author_reported_current_width','author_reported_one_sided_coastal_confinement','author_reported_climatological_major_front_separation','author_reported_climatological_boundary_breadth','author_inferred_origin_proxy_component_width','author_reported_meander_occupied_band_breadth'} or row['observed_period'] is not None or row.get('calendar_months') is not None or (span is None and not row.get('original_regional_context')):
                 raise ValueError('Conflated regional range support')
             if row.get('regional_range_context') and row['current_id'] not in {'black-sea-rim','norwegian-coastal'}:
                 raise ValueError('Regional range source owner mismatch')

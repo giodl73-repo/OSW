@@ -38,6 +38,9 @@ def build():
         read(path)
     for path in ['research/source-data/kolas-fer-wsc-2018/journal-article.pdf','plans/west-spitsbergen-stream-tube-width-protocol-v1.md','analysis/check_west_spitsbergen_stream_tubes.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
+    for path in ['research/source-data/radenac-ngcc-2016/journal-article.pdf','plans/ngcc-seasonal-vein-width-protocol-v1.md','analysis/check_ngcc_seasonal_vein_widths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/pacific-secc-rotschi-1972-width-range-scope-audit.json');read('research/source-data/rotschi-secc-1972/acquisition.json')
     for path in ['research/source-data/rotschi-secc-1972/journal-article.pdf','plans/pacific-secc-historical-width-protocol-v1.md','analysis/check_pacific_secc_historical_width.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
