@@ -1,4 +1,4 @@
-"""Four source-bound monthly charts/maps, playback, inspect/share and rejection."""
+"""Five source-bound monthly charts/maps, playback, inspect/share and rejection."""
 import copy
 import hashlib
 import json
@@ -16,9 +16,9 @@ def main():
     output=ROOT/'.pytest_cache/basin-current-width-review'
     bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
     new=[r for r in bundle['collections']['width_samples'] if r['sample_family']=='basin_monthly_component_section']
-    assert len(new)==48 and sum(r['resolution_review_required'] for r in new)==34
+    assert len(new)==60 and sum(r['resolution_review_required'] for r in new)==37
     snapshot=json.loads((ROOT/'research/ocean-motion-dashboard.json').read_bytes())
-    for owner in ['portugal','south-atlantic','south-pacific','south-indian']:
+    for owner in ['portugal','south-atlantic','south-pacific','south-indian','aleutian']:
         entry=next(r for r in snapshot['entries'] if r['id']=='current:'+owner)
         expected_date='2009-11-11' if owner=='portugal' else None
         assert entry['capabilities']['scoped_width']==0 and entry['latest_observation_date']==expected_date
@@ -30,7 +30,7 @@ def main():
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/query.html')
         page.wait_for_function('window.oswLastQueryResult',timeout=60000)
-        for owner in ['portugal','south-atlantic','south-pacific','south-indian']:
+        for owner in ['portugal','south-atlantic','south-pacific','south-indian','aleutian']:
             query={'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':owner}],'sort':{'field':'month','direction':'asc'},'limit':5}
             expected=native(query);actual=browser_query(page,query)
             assert actual==expected and actual['total']==12
@@ -100,7 +100,7 @@ def main():
         path.write_text(json.dumps(bad),encoding='utf-8')
         result=subprocess.run([str(CLI),str(path),'-'],input='{}',capture_output=True,text=True,encoding='utf-8')
         assert result.returncode==2 and 'frozen basin' in result.stderr.lower()
-    print('PASS: 48 monthly section samples, native/WASM parity, 12 mapped boundaries/chart points per owner before pagination, manual playback/inspect/source links/mobile; five native and three WASM rejections')
+    print('PASS: 60 monthly section samples, native/WASM parity, 12 mapped boundaries/chart points per owner before pagination, manual playback/inspect/source links/mobile; five native and three WASM rejections')
 
 
 if __name__=='__main__':

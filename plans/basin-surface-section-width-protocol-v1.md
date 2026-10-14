@@ -1,7 +1,7 @@
-# Basin surface section span protocol v1.1
+# Basin surface section span protocol v1.2
 
 2026-10-13. Local OSW diagnostics for the offshore Portugal, South Atlantic
-eastern South Pacific and South Indian contexts. Applies the general current width
+eastern South Pacific and South Indian and Aleutian contexts. Applies the general current width
 protocol; does not admit whole-current widths, ranked widths or annual extrema.
 
 ## Fixed rules
@@ -10,9 +10,9 @@ protocol; does not admit whole-current widths, ranked widths or annual extrema.
    bytes. The nominal 15 m coordinate represents satellite-derived near-surface
    flow, not an instrument depth or subsurface velocity. Preserve all 72 actual
    timestamps (January 1–December 26, four six-day gaps).
-2. Use the four sections, domains and peak-search windows in the pinned input.
+2. Use the five sections, domains and peak-search windows in the pinned input.
    Portugal uses southward velocity (`-v`) at 40 N; the other sections use
-   eastward velocity (`u`) at 30 W, 100 W and 80 E. The source identity contexts
+   eastward velocity (`u`) at 30 W, 100 W, 80 E and 160 W. The source identity contexts
    justify investigating these locations, not declaring every selected peak
    to be that current. Existing editorial route layers remain separate.
 3. Average complete `u,v` pairs at each native cell within each UTC month.
@@ -76,3 +76,23 @@ The original three queries, provider bytes, vector values and operators stay
 identical. Renewed shared dependencies change provenance hashes only for
 their earlier reports. No numeric result or admission is changed by that
 receipt refresh.
+
+## v1.2 Aleutian section
+
+Predeclare the 160 W meridional domain 40-56 N and positive-eastward peak
+search 46-51 N before acquiring its 2013 archive. Favorite (1967), Figure 27,
+and the retained naming audit establish the eastward Subarctic/Aleutian flow
+convention. OSW chooses the investigative window; no source edge or observed
+axis is inferred. The historical upper-1000 m schematic does not identify a
+2013 surface current. North Pacific exchange, eddies and cold-water property
+correspondence require independent review. Westward Alaskan Stream and the
+Bering-side Aleutian North Slope Current are different flows.
+
+Keep every actual source timestamp, both velocity components and coast/missing
+data. Use the same paired monthly average, 0.02 m/s peak eligibility and
+connected 40/50/60% boundaries. Do not bridge land gaps or invent cold-water
+classification. No conversion of a local component span into whole-current
+width, an annual range, flow-normal width or NASA/state footprint.
+
+Earlier four provider queries, profiles and numeric results remain unchanged;
+their shared source/config/protocol/acquirer dependency hashes are renewed.

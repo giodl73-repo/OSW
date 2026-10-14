@@ -51,9 +51,9 @@ class BasinComponentTests(unittest.TestCase):
         frames[1]['samples'][0]['northward_m_s']=None
         self.assertIsNone(monthly_profiles({'frames':frames,'component':'southward'})[0]['profile'][0]['component_m_s'])
 
-    def test_source_inventory_and_all_four_frozen_results(self):
+    def test_source_inventory_and_all_five_frozen_results(self):
         source=inventory()
-        self.assertEqual(sum(s['counts']['times']*s['counts']['cells_per_time'] for s in source['sections']),17568)
+        self.assertEqual(sum(s['counts']['times']*s['counts']['cells_per_time'] for s in source['sections']),21096)
         for doc in build():
             with self.subTest(current=doc['current_id']):
                 self.assertTrue(diagnostic_matches(json.loads((ROOT/'research'/ (doc['section_id']+'-2013-monthly-component-spans.json')).read_bytes()),doc))
@@ -84,7 +84,7 @@ class BasinComponentTests(unittest.TestCase):
         import csv, io
         from urllib.parse import unquote
         config=json.loads(CONFIG.read_bytes())
-        section=config['sections'][-1]
+        section=next(s for s in config['sections'] if s['current_id']=='south-indian')
         self.assertEqual(section['current_id'],'south-indian')
         url=unquote(urls(config)['south-indian-80e.csv'])
         self.assertIn('[(80)]',url)
@@ -103,6 +103,26 @@ class BasinComponentTests(unittest.TestCase):
         self.assertEqual(doc['summary']['sample_monthly_mean_span_range_km'],[120,180])
         self.assertEqual(sum(m['nominal']['resolution_review_required'] for m in doc['months']),6)
         self.assertTrue(doc['months'][5]['nominal']['peak_at_search_edge'])
+
+    def test_aleutian_source_masks_and_monthly_scope(self):
+        source=inventory()
+        section=next(s for s in source['sections'] if s['current_id']=='aleutian')
+        self.assertEqual(section['counts'],{'times':72,'cells_per_time':49,'missing_vector_pairs':144})
+        self.assertEqual(section['fixed_coordinate'],-160)
+        self.assertEqual(section['peak_search'],[46,51])
+        doc=next(d for d in build() if d['current_id']=='aleutian')
+        self.assertEqual(doc['summary']['sample_monthly_mean_span_range_km'],[90,320])
+        self.assertEqual(sum(m['nominal']['resolution_review_required'] for m in doc['months']),3)
+        self.assertFalse(any(m['nominal']['peak_at_search_edge'] for m in doc['months']))
+        self.assertFalse(doc['current_association_verified'])
+        self.assertIsNone(doc['annual_width_range_km'])
+        for month in doc['months']:
+            self.assertEqual(sum(p['component_m_s'] is None for p in month['profile']),2)
+            for scenario in month['threshold_scenarios']:
+                if scenario['status']=='paired_boundaries':
+                    low=scenario['boundaries']['low_coordinate']['coordinate']
+                    high=scenario['boundaries']['high_coordinate']['coordinate']
+                    self.assertTrue(all(p['component_m_s'] is not None for p in month['profile'] if low<=p['coordinate']<=high))
 
 if __name__=='__main__':
     unittest.main()

@@ -5,26 +5,31 @@ use sha2::{Digest, Sha256};
 use std::collections::BTreeSet;
 
 // Renew these receipts only after rebuilding/reviewing the original-data diagnostics.
-const SOURCES: [(&str, &str, &str); 4] = [
+const SOURCES: [(&str, &str, &str); 5] = [
     (
         "diagnostic:basin-portugal-40n",
         "research/portugal-40n-2013-monthly-component-spans.json",
-        "032abd513cc49dffecdac40851cd25bde7209f8900ee9d7446799f15515303fd",
+        "635e77ba016c361c85ad9e49f425d3b8a90ebeff0bcc3a2bc1840b6b4a0d920c",
     ),
     (
         "diagnostic:basin-south-atlantic-30w",
         "research/south-atlantic-30w-2013-monthly-component-spans.json",
-        "b547b05aa9565627197ac2e624e5947ad1c4ced969c1d322ac4b0f150528e5ed",
+        "c576f4444d2b551ec46043861e464f8fc9e8ee06c80cfcd3158f0c69c9bcafc1",
     ),
     (
         "diagnostic:basin-south-pacific-100w",
         "research/south-pacific-100w-2013-monthly-component-spans.json",
-        "24d513f31b9fc045755d4ca833896077222d078aec38023d74c06c17ebf02885",
+        "ea1f41ba0378aa7306f6de0e3c17d117a2f77b00f110d276e390a9479d97f44d",
     ),
     (
         "diagnostic:basin-south-indian-80e",
         "research/south-indian-80e-2013-monthly-component-spans.json",
-        "408b1d5a67d60668c111e0fd4d68f5a07132ff50c1f4b56efeaba2c7ae6082c7",
+        "71242c8fe62379e4ed661dc2ad4a4ed4908aabc7558fe40ba715892883607346",
+    ),
+    (
+        "diagnostic:basin-aleutian-160w",
+        "research/aleutian-160w-2013-monthly-component-spans.json",
+        "e712741722e85ecf0155f5d140b44799d0f02abcea05c484f2ccc41044f5f34e",
     ),
 ];
 
@@ -34,7 +39,9 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             "diagnostic:basin-portugal-40n" => "current:portugal",
             "diagnostic:basin-south-atlantic-30w" => "current:south-atlantic",
             "diagnostic:basin-south-pacific-100w" => "current:south-pacific",
-            _ => "current:south-indian",
+            "diagnostic:basin-south-indian-80e" => "current:south-indian",
+            "diagnostic:basin-aleutian-160w" => "current:aleutian",
+            _ => return Err("Unknown frozen basin source".into()),
         };
         let present = bundle.manifest["input_sha256"].get(file).is_some()
             || bundle

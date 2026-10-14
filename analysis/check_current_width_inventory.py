@@ -540,7 +540,7 @@ def validate(document, ledger):
     if len({row['current_id'] for row in spans}) != len(spans):
         raise ValueError('Duplicate section-span identity')
     for diagnostic in spans:
-        if diagnostic['current_id'] in ['portugal','south-atlantic','south-pacific','south-indian']:
+        if diagnostic['current_id'] in ['portugal','south-atlantic','south-pacific','south-indian','aleutian']:
             from build_basin_surface_section_spans import build as rebuild_basin, diagnostic_matches as basin_matches
             calculated=next(d for d in rebuild_basin() if d['current_id']==diagnostic['current_id'])
             expected='research/'+calculated['section_id']+'-2013-monthly-component-spans.json'

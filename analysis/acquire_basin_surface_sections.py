@@ -1,4 +1,4 @@
-"""Acquire/verify four exact archived OSCAR vector sections, without admission."""
+"""Acquire/verify five exact archived OSCAR vector sections, without admission."""
 import argparse
 import csv
 from datetime import datetime, timezone
@@ -21,6 +21,7 @@ EXPECTED_SECTIONS = (
     ('south-atlantic','south-atlantic-30w','longitude',-30,'latitude',[-48,-30],[-43,-36],'eastward','research/south-atlantic-reach-reference-path-input.json'),
     ('south-pacific','south-pacific-100w','longitude',-100,'latitude',[-45,-25],[-37,-31],'eastward','research/south-pacific-eastern-front-reach-layer-time-scope-audit.json'),
     ('south-indian','south-indian-80e','longitude',80,'latitude',[-48,-30],[-43,-37],'eastward','research/south-indian-eastern-reach-naming-layer-scope-audit.json'),
+    ('aleutian','aleutian-160w','longitude',-160,'latitude',[40,56],[46,51],'eastward','research/aleutian-alaskan-stream-naming-scope-audit.json'),
 )
 
 
