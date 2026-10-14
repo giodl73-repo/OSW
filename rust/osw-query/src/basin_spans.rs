@@ -5,21 +5,26 @@ use sha2::{Digest, Sha256};
 use std::collections::BTreeSet;
 
 // Renew these receipts only after rebuilding/reviewing the original-data diagnostics.
-const SOURCES: [(&str, &str, &str); 3] = [
+const SOURCES: [(&str, &str, &str); 4] = [
     (
         "diagnostic:basin-portugal-40n",
         "research/portugal-40n-2013-monthly-component-spans.json",
-        "4c572e68e584c4b2f0bbcb5797ecb61ed930fc42989f30c82d60ac9f7cc5cc0b",
+        "032abd513cc49dffecdac40851cd25bde7209f8900ee9d7446799f15515303fd",
     ),
     (
         "diagnostic:basin-south-atlantic-30w",
         "research/south-atlantic-30w-2013-monthly-component-spans.json",
-        "7a8f94499c380dd753ff8af334b1bb9ca4a69e5ae4ccf393a6940b79e2645095",
+        "b547b05aa9565627197ac2e624e5947ad1c4ced969c1d322ac4b0f150528e5ed",
     ),
     (
         "diagnostic:basin-south-pacific-100w",
         "research/south-pacific-100w-2013-monthly-component-spans.json",
-        "f2f18137f8907e3bacfe70206ebb62ae95a8ff7d907d39910a35df2da857265d",
+        "24d513f31b9fc045755d4ca833896077222d078aec38023d74c06c17ebf02885",
+    ),
+    (
+        "diagnostic:basin-south-indian-80e",
+        "research/south-indian-80e-2013-monthly-component-spans.json",
+        "408b1d5a67d60668c111e0fd4d68f5a07132ff50c1f4b56efeaba2c7ae6082c7",
     ),
 ];
 
@@ -28,7 +33,8 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         let expected_owner = match id {
             "diagnostic:basin-portugal-40n" => "current:portugal",
             "diagnostic:basin-south-atlantic-30w" => "current:south-atlantic",
-            _ => "current:south-pacific",
+            "diagnostic:basin-south-pacific-100w" => "current:south-pacific",
+            _ => "current:south-indian",
         };
         let present = bundle.manifest["input_sha256"].get(file).is_some()
             || bundle

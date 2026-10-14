@@ -21,7 +21,8 @@ pub fn validate(
             Some(
                 "diagnostic:basin-portugal-40n"
                 | "diagnostic:basin-south-atlantic-30w"
-                | "diagnostic:basin-south-pacific-100w",
+                | "diagnostic:basin-south-pacific-100w"
+                | "diagnostic:basin-south-indian-80e",
             ) => "basin_monthly_component_section",
             Some("diagnostic:gulf-stream-widths") => "gulf_stream_dated_half_peak_section",
             Some("diagnostic:yucatan-noaa-sections" | "diagnostic:yucatan-adt-sections") => {

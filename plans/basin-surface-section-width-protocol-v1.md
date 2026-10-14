@@ -1,7 +1,7 @@
-# Basin surface section span protocol v1
+# Basin surface section span protocol v1.1
 
 2026-10-13. Local OSW diagnostics for the offshore Portugal, South Atlantic
-and eastern South Pacific contexts. Applies the general current width
+eastern South Pacific and South Indian contexts. Applies the general current width
 protocol; does not admit whole-current widths, ranked widths or annual extrema.
 
 ## Fixed rules
@@ -10,9 +10,9 @@ protocol; does not admit whole-current widths, ranked widths or annual extrema.
    bytes. The nominal 15 m coordinate represents satellite-derived near-surface
    flow, not an instrument depth or subsurface velocity. Preserve all 72 actual
    timestamps (January 1–December 26, four six-day gaps).
-2. Use the three sections, domains and peak-search windows in the pinned input.
+2. Use the four sections, domains and peak-search windows in the pinned input.
    Portugal uses southward velocity (`-v`) at 40 N; the other sections use
-   eastward velocity (`u`) at 30 W and 100 W. The source identity contexts
+   eastward velocity (`u`) at 30 W, 100 W and 80 E. The source identity contexts
    justify investigating these locations, not declaring every selected peak
    to be that current. Existing editorial route layers remain separate.
 3. Average complete `u,v` pairs at each native cell within each UTC month.
@@ -60,3 +60,19 @@ route. SAC/ACC and branch attribution remain unresolved diagnostics gates.
 The South Pacific section investigates surface velocity near the eastern
 source frontal region. A hydrographic front at 150 m is not a surface velocity
 axis, and multiple bands need separate association review.
+
+## v1.1 South Indian section
+
+Declare an 80 E section over 48-30 S and a 43-37 S positive eastward peak
+search before acquiring its 2013 archive. Stramma (1992) identifies the SIOC
+near 40 S; Stramma and Lutjeharms (1997), section 3.2 and Figure 7, place
+the eastern regional flow between the western recirculation and 90 E split.
+These historical upper-1000 m contexts do not identify a 2013 surface peak.
+ACC, northern frontal bands, eddies and surface-layer association require
+independent review. No historical transport or front width is transferred.
+
+Provider longitude is requested modulo 360 and normalized to [-180,180).
+The original three queries, provider bytes, vector values and operators stay
+identical. Renewed shared dependencies change provenance hashes only for
+their earlier reports. No numeric result or admission is changed by that
+receipt refresh.

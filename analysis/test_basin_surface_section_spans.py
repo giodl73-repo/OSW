@@ -4,7 +4,7 @@ import json
 import unittest
 from pathlib import Path
 from pyproj import Geod
-from acquire_basin_surface_sections import build as inventory, validate_config, CONFIG
+from acquire_basin_surface_sections import build as inventory, validate_config, CONFIG, CACHE, parse, urls
 from build_basin_surface_section_spans import measure, monthly_profiles, build, ROOT, diagnostic_matches
 
 class BasinComponentTests(unittest.TestCase):
@@ -51,9 +51,9 @@ class BasinComponentTests(unittest.TestCase):
         frames[1]['samples'][0]['northward_m_s']=None
         self.assertIsNone(monthly_profiles({'frames':frames,'component':'southward'})[0]['profile'][0]['component_m_s'])
 
-    def test_source_inventory_and_all_three_frozen_results(self):
+    def test_source_inventory_and_all_four_frozen_results(self):
         source=inventory()
-        self.assertEqual(sum(s['counts']['times']*s['counts']['cells_per_time'] for s in source['sections']),13608)
+        self.assertEqual(sum(s['counts']['times']*s['counts']['cells_per_time'] for s in source['sections']),17568)
         for doc in build():
             with self.subTest(current=doc['current_id']):
                 self.assertTrue(diagnostic_matches(json.loads((ROOT/'research'/ (doc['section_id']+'-2013-monthly-component-spans.json')).read_bytes()),doc))
@@ -78,6 +78,31 @@ class BasinComponentTests(unittest.TestCase):
             with self.subTest(key=key),self.assertRaises(ValueError):validate_config(changed)
         changed=copy.deepcopy(original);changed['whole_current_representative']=True
         with self.assertRaises(ValueError):validate_config(changed)
+
+    def test_eastern_longitude_query_and_original_vectors(self):
+        """The 80 E source must not be requested as 440 E or shown as 280 W."""
+        import csv, io
+        from urllib.parse import unquote
+        config=json.loads(CONFIG.read_bytes())
+        section=config['sections'][-1]
+        self.assertEqual(section['current_id'],'south-indian')
+        url=unquote(urls(config)['south-indian-80e.csv'])
+        self.assertIn('[(80)]',url)
+        self.assertNotIn('[(440)]',url)
+        raw=(CACHE/'south-indian-80e.csv').read_bytes()
+        _,frames=parse((CACHE/'metadata.json').read_bytes(),raw,section)
+        original=list(csv.reader(io.StringIO(raw.decode())))[2:]
+        derived={(f['time'],s['latitude']):s for f in frames for s in f['samples']}
+        self.assertEqual(len(original),3960)
+        for row in original:
+            s=derived[row[0],float(row[2])]
+            self.assertEqual(s['longitude'],80)
+            self.assertEqual(s['eastward_m_s'],float(row[4]))
+            self.assertEqual(s['northward_m_s'],float(row[5]))
+        doc=next(d for d in build() if d['current_id']=='south-indian')
+        self.assertEqual(doc['summary']['sample_monthly_mean_span_range_km'],[120,180])
+        self.assertEqual(sum(m['nominal']['resolution_review_required'] for m in doc['months']),6)
+        self.assertTrue(doc['months'][5]['nominal']['peak_at_search_edge'])
 
 if __name__=='__main__':
     unittest.main()

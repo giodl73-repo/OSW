@@ -1,4 +1,4 @@
-"""Acquire/verify three exact archived OSCAR vector sections, without admission."""
+"""Acquire/verify four exact archived OSCAR vector sections, without admission."""
 import argparse
 import csv
 from datetime import datetime, timezone
@@ -20,6 +20,7 @@ EXPECTED_SECTIONS = (
     ('portugal','portugal-40n','latitude',40,'longitude',[-32,-8],[-24,-12],'southward','research/portugal-current-naming-seasonal-scope-audit.json'),
     ('south-atlantic','south-atlantic-30w','longitude',-30,'latitude',[-48,-30],[-43,-36],'eastward','research/south-atlantic-reach-reference-path-input.json'),
     ('south-pacific','south-pacific-100w','longitude',-100,'latitude',[-45,-25],[-37,-31],'eastward','research/south-pacific-eastern-front-reach-layer-time-scope-audit.json'),
+    ('south-indian','south-indian-80e','longitude',80,'latitude',[-48,-30],[-43,-37],'eastward','research/south-indian-eastern-reach-naming-layer-scope-audit.json'),
 )
 
 
@@ -44,7 +45,7 @@ def urls(config):
         if section['fixed_axis'] == 'latitude':
             coordinates = f"[({section['fixed_coordinate']})][({low+360}):1:({high+360})]"
         else:
-            coordinates = f"[({high}):1:({low})][({section['fixed_coordinate']+360})]"
+            coordinates = f"[({high}):1:({low})][({section['fixed_coordinate']%360})]"
         query = ','.join(f'{component}[(2013-01-01T00:00:00Z):1:(2013-12-28T00:00:00Z)][(15)]{coordinates}' for component in ['u', 'v'])
         result[section['section_id']+'.csv'] = f'{BASE}/griddap/{DATASET}.csv?'+quote(query, safe='')
     return result
@@ -66,7 +67,7 @@ def parse(metadata, raw, section):
             raise ValueError('Malformed vector-section row')
         instant = datetime.fromisoformat(line[0].replace('Z','+00:00'))
         depth, latitude, source_longitude, u, v = map(float, line[1:])
-        longitude = source_longitude-360
+        longitude = source_longitude-360 if source_longitude>=180 else source_longitude
         fixed = latitude if section['fixed_axis']=='latitude' else longitude
         coordinate = longitude if section['varying_axis']=='longitude' else latitude
         if instant.year != 2013 or instant.utcoffset().total_seconds()!=0 or depth!=15 or abs(fixed-section['fixed_coordinate'])>1e-8 or not low-1e-8<=coordinate<=high+1e-8:
