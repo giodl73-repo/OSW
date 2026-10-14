@@ -1,6 +1,6 @@
 {
   "schema": "osw.current-width-inventory.v1",
-  "as_of": "2026-10-13",
+  "as_of": "2026-10-14",
   "status": "editorial_width_inventory_not_canonical",
   "protocol_file": "plans/ocean-current-width-measurement-protocol-v1.md",
   "current_ledger_sha256": "6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e",
@@ -8,7 +8,7 @@
   "counts": {
     "currents": 100,
     "currents_with_scoped_width_evidence": 72,
-    "measurements": 136,
+    "measurements": 138,
     "currents_with_existing_mentions_pending_review": 0,
     "currents_not_assessed": 13,
     "currents_with_derived_width_candidates_pending_review": 2,
@@ -10468,6 +10468,280 @@
         "audit_sha256": "223405cce3aa4a5fecdf94dd25ebff225a9594f33fb04f784a469fd4e6e8ce10",
         "audit_pointer": "/measurements/3"
       }
+    },
+    {
+      "id": "azores-carracedo-2014-spring-core-width",
+      "phase_label": "WOA09 spring climatology (April-June)",
+      "source_season_label": "spring",
+      "calendar_months": [
+        4,
+        5,
+        6
+      ],
+      "approximate_width_km": 240,
+      "source_reported_maximum_core_depth_m": 790,
+      "width_range_km": null,
+      "measurement_uncertainty_interval_km": null,
+      "is_confidence_interval": false,
+      "current_id": "azores",
+      "name": "Azores Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_regional_seasonal_summary",
+      "width_metric": "author_reported_inverse_model_velocity_threshold_core_span",
+      "phase_kind": "seasonal_summary",
+      "range_interpretation": "Approximate source-reported seasonal core value; no width uncertainty interval supplied.",
+      "geographic_scope": "Western WOA-Box section at 19.5 W. A regional cross-current model core extent, with no paired edge coordinates extracted.",
+      "section_geometry": null,
+      "section_orientation": "Meridional western WOA-Box section; no exact flow-normal correction inferred.",
+      "layer": "Depth-varying inverse-model section. Source reports maximum core depth about 790 m in spring and 1100 m in autumn; these are source-reported vertical context, not fixed depth layers at which these widths were measured.",
+      "time_convention": "WOA09 mixed historical climatologies in a regional inverse model; source quarter WOA09 spring climatology (April-June). Not an individual occupation or dated current footprint.",
+      "boundary_rule": "Author defines the core using velocities greater than 2 cm/s. No full-current envelope or universal half-peak threshold inferred.",
+      "source_url": "https://nora.nerc.ac.uk/id/eprint/521101/1/1-s2.0-S0079661113002437-main.pdf",
+      "source_citation": "Carracedo, Gilcoto, Mercier and Perez (2014), Seasonal dynamics in the Azores-Gibraltar Strait region: A climatologically-based study, Progress in Oceanography 122, 116-130, doi:10.1016/j.pocean.2013.12.005.",
+      "source_locator": "Section 3.1.1.1, printed page 122 / PDF page 7; methods section 2.1, printed page 118 / PDF page 3.",
+      "source_retrieved_date": "2026-10-14",
+      "source_evidence_kind": "published_inverse_model_climatological_core_summary",
+      "extraction_method": "Author-reported values transcribed from original prose; no contour digitization or model reproduction.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "observed_period": null,
+      "fixed_layer_bounds_m": null,
+      "uncertainty_km": null,
+      "remaining_gates": [
+        "Recover original model fields and paired boundaries before geometry or scientific reproduction.",
+        "Width error and whole-current dimensions remain unknown.",
+        "Independent scientific and canonical admission."
+      ],
+      "calendar_source_locator": "World Ocean Atlas 2009 Volume 1, Introduction, printed page 1 / PDF page 13",
+      "calendar_source_url": "https://www.ncei.noaa.gov/sites/default/files/2020-04/woa09_vol1_text.pdf",
+      "original_regional_context": {
+        "description_kind": "azores_seasonal_model_core",
+        "audit_pointer": "/measurements/0",
+        "display_aria_label": "WOA09 spring climatology (April-June): about 240 km regional model core span; width error unknown.",
+        "display_caption": "WOA09 spring climatology (April-June) · about 240 km in the regional inverse-model core at 19.5 W. Model-climatological seasonal extremes are about 240–400 km; whole-current annual physical range and width uncertainty remain unknown.",
+        "display_method_note": "Source criterion: velocities greater than 2 cm/s. WOA09 input grid is 1 degree; finer integration is not improved observational resolution. Historical climatologies have mixed support. Depth varies; no fixed-layer width, monthly interpolation or mapped band inferred.",
+        "model_support": {
+          "hydrographic_product": "World Ocean Atlas 2009",
+          "native_horizontal_grid_degrees": 1,
+          "standard_depth_levels": 33,
+          "temperature_salinity_climatology_periods": [
+            [
+              1955,
+              1964
+            ],
+            [
+              1965,
+              1974
+            ],
+            [
+              1975,
+              1984
+            ],
+            [
+              1985,
+              1994
+            ],
+            [
+              1995,
+              2006
+            ]
+          ],
+          "temperature_salinity_decadal_climatologies_averaged": true,
+          "oxygen_nutrients_use_all_available_years": true,
+          "source_transport_integration_grid": {
+            "pressure_spacing_dbar": 1,
+            "latitude_spacing_degrees": 0.01
+          },
+          "integration_grid_is_native_observation_resolution": false,
+          "one_uniform_observation_period_assigned": false,
+          "publication_year_is_width_occupation": false
+        },
+        "season_convention": {
+          "basis": "WOA09 quarter definitions, not meteorological month windows",
+          "source_url": "https://www.ncei.noaa.gov/sites/default/files/2020-04/woa09_vol1_text.pdf",
+          "source_locator": "World Ocean Atlas 2009 Volume 1, Introduction, printed page 1 / PDF page 13",
+          "source_document_file": "research/source-data/woa09-season-definition/journal-article.pdf",
+          "source_document_bytes": 349881,
+          "source_document_sha256": "8f5046eeea5e4bb405f60dc526baf46143cc4ca1a2724f21203d9777277034da",
+          "source_access": "Original Introduction text read and page visually inspected.",
+          "source_retrieved_date": "2026-10-14",
+          "winter_months": [
+            1,
+            2,
+            3
+          ],
+          "spring_months": [
+            4,
+            5,
+            6
+          ],
+          "summer_months": [
+            7,
+            8,
+            9
+          ],
+          "autumn_months": [
+            10,
+            11,
+            12
+          ]
+        },
+        "reported_model_core_seasonal_extrema": {
+          "approximate_minimum_km": 240,
+          "minimum_source_season": "spring",
+          "approximate_maximum_km": 400,
+          "maximum_source_season": "autumn",
+          "range_kind": "author_reported_regional_climatological_core_seasonal_extrema",
+          "numerical_width_uncertainty_km": null,
+          "is_confidence_interval": false,
+          "is_whole_current_annual_physical_range": false
+        },
+        "source_record_file": "research/azores-carracedo-2014-climatological-core-width-record.json",
+        "source_record_sha256": "a692447701908505b1e59824c932e2f3a1d9eb4d59922f6a3cd0019fc1d213f4",
+        "comparison_figure": "figures/azores-carracedo-2014-climatological-core-widths.svg",
+        "audit_file": "research/azores-carracedo-2014-model-core-width-scope-audit.json",
+        "audit_sha256": "f8c1beef0caf8f3e98014d897579841cbdb2cdce6ac3fe7938e1010d9303dce9"
+      }
+    },
+    {
+      "id": "azores-carracedo-2014-autumn-core-width",
+      "phase_label": "WOA09 autumn climatology (October-December)",
+      "source_season_label": "autumn",
+      "calendar_months": [
+        10,
+        11,
+        12
+      ],
+      "approximate_width_km": 400,
+      "source_reported_maximum_core_depth_m": 1100,
+      "width_range_km": null,
+      "measurement_uncertainty_interval_km": null,
+      "is_confidence_interval": false,
+      "current_id": "azores",
+      "name": "Azores Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_regional_seasonal_summary",
+      "width_metric": "author_reported_inverse_model_velocity_threshold_core_span",
+      "phase_kind": "seasonal_summary",
+      "range_interpretation": "Approximate source-reported seasonal core value; no width uncertainty interval supplied.",
+      "geographic_scope": "Western WOA-Box section at 19.5 W. A regional cross-current model core extent, with no paired edge coordinates extracted.",
+      "section_geometry": null,
+      "section_orientation": "Meridional western WOA-Box section; no exact flow-normal correction inferred.",
+      "layer": "Depth-varying inverse-model section. Source reports maximum core depth about 790 m in spring and 1100 m in autumn; these are source-reported vertical context, not fixed depth layers at which these widths were measured.",
+      "time_convention": "WOA09 mixed historical climatologies in a regional inverse model; source quarter WOA09 autumn climatology (October-December). Not an individual occupation or dated current footprint.",
+      "boundary_rule": "Author defines the core using velocities greater than 2 cm/s. No full-current envelope or universal half-peak threshold inferred.",
+      "source_url": "https://nora.nerc.ac.uk/id/eprint/521101/1/1-s2.0-S0079661113002437-main.pdf",
+      "source_citation": "Carracedo, Gilcoto, Mercier and Perez (2014), Seasonal dynamics in the Azores-Gibraltar Strait region: A climatologically-based study, Progress in Oceanography 122, 116-130, doi:10.1016/j.pocean.2013.12.005.",
+      "source_locator": "Section 3.1.1.1, printed page 122 / PDF page 7; methods section 2.1, printed page 118 / PDF page 3.",
+      "source_retrieved_date": "2026-10-14",
+      "source_evidence_kind": "published_inverse_model_climatological_core_summary",
+      "extraction_method": "Author-reported values transcribed from original prose; no contour digitization or model reproduction.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "observed_period": null,
+      "fixed_layer_bounds_m": null,
+      "uncertainty_km": null,
+      "remaining_gates": [
+        "Recover original model fields and paired boundaries before geometry or scientific reproduction.",
+        "Width error and whole-current dimensions remain unknown.",
+        "Independent scientific and canonical admission."
+      ],
+      "calendar_source_locator": "World Ocean Atlas 2009 Volume 1, Introduction, printed page 1 / PDF page 13",
+      "calendar_source_url": "https://www.ncei.noaa.gov/sites/default/files/2020-04/woa09_vol1_text.pdf",
+      "original_regional_context": {
+        "description_kind": "azores_seasonal_model_core",
+        "audit_pointer": "/measurements/1",
+        "display_aria_label": "WOA09 autumn climatology (October-December): about 400 km regional model core span; width error unknown.",
+        "display_caption": "WOA09 autumn climatology (October-December) · about 400 km in the regional inverse-model core at 19.5 W. Model-climatological seasonal extremes are about 240–400 km; whole-current annual physical range and width uncertainty remain unknown.",
+        "display_method_note": "Source criterion: velocities greater than 2 cm/s. WOA09 input grid is 1 degree; finer integration is not improved observational resolution. Historical climatologies have mixed support. Depth varies; no fixed-layer width, monthly interpolation or mapped band inferred.",
+        "model_support": {
+          "hydrographic_product": "World Ocean Atlas 2009",
+          "native_horizontal_grid_degrees": 1,
+          "standard_depth_levels": 33,
+          "temperature_salinity_climatology_periods": [
+            [
+              1955,
+              1964
+            ],
+            [
+              1965,
+              1974
+            ],
+            [
+              1975,
+              1984
+            ],
+            [
+              1985,
+              1994
+            ],
+            [
+              1995,
+              2006
+            ]
+          ],
+          "temperature_salinity_decadal_climatologies_averaged": true,
+          "oxygen_nutrients_use_all_available_years": true,
+          "source_transport_integration_grid": {
+            "pressure_spacing_dbar": 1,
+            "latitude_spacing_degrees": 0.01
+          },
+          "integration_grid_is_native_observation_resolution": false,
+          "one_uniform_observation_period_assigned": false,
+          "publication_year_is_width_occupation": false
+        },
+        "season_convention": {
+          "basis": "WOA09 quarter definitions, not meteorological month windows",
+          "source_url": "https://www.ncei.noaa.gov/sites/default/files/2020-04/woa09_vol1_text.pdf",
+          "source_locator": "World Ocean Atlas 2009 Volume 1, Introduction, printed page 1 / PDF page 13",
+          "source_document_file": "research/source-data/woa09-season-definition/journal-article.pdf",
+          "source_document_bytes": 349881,
+          "source_document_sha256": "8f5046eeea5e4bb405f60dc526baf46143cc4ca1a2724f21203d9777277034da",
+          "source_access": "Original Introduction text read and page visually inspected.",
+          "source_retrieved_date": "2026-10-14",
+          "winter_months": [
+            1,
+            2,
+            3
+          ],
+          "spring_months": [
+            4,
+            5,
+            6
+          ],
+          "summer_months": [
+            7,
+            8,
+            9
+          ],
+          "autumn_months": [
+            10,
+            11,
+            12
+          ]
+        },
+        "reported_model_core_seasonal_extrema": {
+          "approximate_minimum_km": 240,
+          "minimum_source_season": "spring",
+          "approximate_maximum_km": 400,
+          "maximum_source_season": "autumn",
+          "range_kind": "author_reported_regional_climatological_core_seasonal_extrema",
+          "numerical_width_uncertainty_km": null,
+          "is_confidence_interval": false,
+          "is_whole_current_annual_physical_range": false
+        },
+        "source_record_file": "research/azores-carracedo-2014-climatological-core-width-record.json",
+        "source_record_sha256": "a692447701908505b1e59824c932e2f3a1d9eb4d59922f6a3cd0019fc1d213f4",
+        "comparison_figure": "figures/azores-carracedo-2014-climatological-core-widths.svg",
+        "audit_file": "research/azores-carracedo-2014-model-core-width-scope-audit.json",
+        "audit_sha256": "f8c1beef0caf8f3e98014d897579841cbdb2cdce6ac3fe7938e1010d9303dce9"
+      }
     }
   ],
   "current_decisions": [
@@ -10719,7 +10993,9 @@
       "name": "Azores Current",
       "width_decision": "scoped_width_evidence_present",
       "measurement_ids": [
-        "azores-2009-section-width"
+        "azores-2009-section-width",
+        "azores-carracedo-2014-spring-core-width",
+        "azores-carracedo-2014-autumn-core-width"
       ],
       "whole_current_width_km": null,
       "next_action": "Review dated meridional section and source date discrepancy; acquire repeated sections for temporal variation.",
@@ -11695,6 +11971,22 @@
       ],
       "range_kind": "span_of_reported_seasonal_typical_values",
       "interpretation": "Winter about 25 km; summer about 40 km. Span between these published regional seasonal descriptions, not absolute annual extrema, statistical uncertainty or a matched continuous time series."
+    },
+    {
+      "current_id": "azores",
+      "measurement_ids": [
+        "azores-carracedo-2014-spring-core-width",
+        "azores-carracedo-2014-autumn-core-width"
+      ],
+      "range_kind": "span_of_reported_seasonal_typical_values",
+      "reported_seasonal_value_span_km": [
+        240,
+        400
+      ],
+      "scope": "Regional WOA09 inverse-model >2 cm/s core. Author-reported model-climatological extremes; whole-current annual physical range unknown.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "interpretation": "About 240 km in WOA09 spring (April-June) and 400 km in autumn (October-December). Author-reported regional inverse-model core seasonal extrema; width uncertainty and whole-current annual physical range remain unknown."
     }
   ],
   "protocol_sha256": "1d4d577d8f3b422cf3252b973280cb7073bad7e3234bc40a2808bc16bda974bb",

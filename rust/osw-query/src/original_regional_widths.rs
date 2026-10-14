@@ -3,6 +3,11 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 const SOURCES: &[(&str, &str, &str)] = &[
     (
+        "azores",
+        "research/azores-carracedo-2014-model-core-width-scope-audit.json",
+        include_str!("../../../research/azores-carracedo-2014-model-core-width-scope-audit.json"),
+    ),
+    (
         "new-guinea-coastal-current",
         "research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json",
         include_str!("../../../research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json"),
@@ -188,6 +193,47 @@ pub(crate) fn validate_ngcc_inventory(bundle: &crate::Bundle) -> Result<(), Stri
     Ok(())
 }
 
+pub(crate) fn validate_azores_inventory(bundle: &crate::Bundle) -> Result<(), String> {
+    let (_, path, raw) = SOURCES
+        .iter()
+        .find(|s| s.0 == "azores")
+        .copied()
+        .ok_or("Missing Azores frozen source")?;
+    let present = bundle.manifest["input_sha256"].get(path).is_some()
+        || bundle
+            .collections
+            .get("objects")
+            .into_iter()
+            .flatten()
+            .any(|r| r["id"] == "current:azores");
+    if !present {
+        return Ok(());
+    }
+    let doc: Value = serde_json::from_str(raw).map_err(|e| e.to_string())?;
+    let expected = doc["measurements"]
+        .as_array()
+        .ok_or("Invalid Azores frozen source")?;
+    let rows: Vec<_> = bundle
+        .collections
+        .get("widths")
+        .into_iter()
+        .flatten()
+        .filter(|r| expected.iter().any(|e| e["id"] == r["id"]))
+        .collect();
+    if rows.len() != 2
+        || expected
+            .iter()
+            .any(|e| rows.iter().filter(|r| r["id"] == e["id"]).count() != 1)
+        || bundle.manifest["input_sha256"][path] != format!("{:x}", Sha256::digest(raw.as_bytes()))
+    {
+        return Err("Missing or rebound Azores model-core inventory".into());
+    }
+    for row in rows {
+        validate(row)?;
+    }
+    Ok(())
+}
+
 pub(crate) fn validate(row: &Value) -> Result<(), String> {
     let owner = row["current_id"].as_str().unwrap_or("");
     let id = row["id"].as_str().unwrap_or("");
@@ -213,6 +259,12 @@ pub(crate) fn validate(row: &Value) -> Result<(), String> {
     }
     let (path, raw) = match reviewed_source {
         Some(source) => source,
+        None if owner == "azores"
+            && id == "azores-2009-section-width"
+            && row.get("original_regional_context").is_none() =>
+        {
+            return Ok(());
+        }
         None if SOURCES.iter().any(|source| source.0 == owner) => {
             return Err("Unknown original regional description".into());
         }

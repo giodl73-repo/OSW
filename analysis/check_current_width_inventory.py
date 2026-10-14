@@ -17,6 +17,8 @@ def validate(document, ledger):
         raise ValueError("Incomplete or duplicated width inventory")
     from check_ngcc_seasonal_vein_widths import validate_inventory as validate_ngcc_inventory
     validate_ngcc_inventory(document)
+    from check_azores_model_core_widths import validate_inventory as validate_azores_inventory
+    validate_azores_inventory(document)
     records = document["measurements"]
     if len({row["id"] for row in records}) != len(records):
         raise ValueError("Duplicate width measurement")
@@ -582,6 +584,8 @@ def validate(document, ledger):
         if (row['width_decision'] == 'sources_reviewed_no_comparable_numeric_current_width') != any(review['current_id'] == row['current_id'] for review in reviews):
             raise ValueError('Width source-review decision mismatch')
     for summary in document["seasonal_summaries"]:
+        if not isinstance(summary.get('interpretation'),str) or not summary['interpretation'].strip():
+            raise ValueError('Missing seasonal interpretation')
         members = [by_id[identifier] for identifier in summary["measurement_ids"]]
         if len(members) < 2 or any(row["current_id"] != summary["current_id"] or row["phase_kind"] != "seasonal_summary" for row in members) or len({row["phase_label"] for row in members}) != len(members) or len({row["width_metric"] for row in members}) != 1:
             raise ValueError("Incompatible seasonal identities")

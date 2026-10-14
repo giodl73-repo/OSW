@@ -104,6 +104,9 @@ def build():
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     pacific_secc_width_audit=read('research/pacific-secc-rotschi-1972-width-range-scope-audit.json');read('research/source-data/rotschi-secc-1972/acquisition.json')
     width_inventory = read('research/ocean-current-width-inventory.json')
+    azores_core_audit=read('research/azores-carracedo-2014-model-core-width-scope-audit.json')
+    for path in ['research/azores-carracedo-2014-climatological-core-width-record.json','research/source-data/carracedo-azores-2014/acquisition.json','research/source-data/woa09-season-definition/acquisition.json']:
+        read(path)
     validate_width_inventory(width_inventory, read('research/ocean-current-almanac.json'))
     from build_antarctic_slope_m6_velocity import build as rebuild_m6
     from published_section_transports import document as transport_document, build as transport_records, SOURCE as TRANSPORT_SOURCE
@@ -562,6 +565,12 @@ def build():
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],
         }
+        if current_id=='azores':
+            groups['measurements'].append(azores_core_audit)
+            groups['sources'].append(azores_core_audit)
+            groups['time_evidence'].append(azores_core_audit)
+            evidence_links.append({'label':'Reported seasonal model-core comparison','url':'../figures/azores-carracedo-2014-climatological-core-widths.svg'})
+            evidence_links.append({'label':'Inspect Azores seasonal model core','url':'seasons.html?current=azores&phase=azores-carracedo-2014-spring-core-width'})
         if current_id=='pacific-south-equatorial-countercurrent':
             groups['measurements'].append(pacific_secc_width_audit)
             groups['sources'].append(pacific_secc_width_audit)

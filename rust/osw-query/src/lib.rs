@@ -193,6 +193,7 @@ impl Store {
         }
         published_transports::validate(&bundle)?;
         original_regional_widths::validate_ngcc_inventory(&bundle)?;
+        original_regional_widths::validate_azores_inventory(&bundle)?;
         pacific_neuc_breadths::validate(&bundle)?;
         eddy_source_panels::validate(&bundle)?;
         ursa_contour::validate(&bundle)?;
