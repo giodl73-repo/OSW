@@ -35,6 +35,14 @@ def build():
     for path in [gogp['protocol_file'],'analysis/check_persian_gulf_geostrophic_scales.py','figures/persian-gulf-gogp99-geostrophic-scales.svg']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
+    from check_gulf_stream_published_widths import validate_inventory as validate_gulf, AUDIT as GULF_AUDIT
+    validate_gulf(widths)
+    gulf_audit=read(GULF_AUDIT)
+    for source in gulf_audit['sources']:
+        read(source['acquisition_file'])
+        inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
+    for path in [gulf_audit['protocol_file'],'analysis/check_gulf_stream_published_widths.py','figures/gulf-stream-published-width-definitions.svg']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     core=read('research/atlantic-seuc-molinari-1981-core-width-scope-audit.json');read(core['acquisition_file'])
     for path in [core['source_document_file'],core['protocol_file'],'analysis/check_atlantic_seuc_core_width.py','figures/atlantic-seuc-molinari-1981-core-width.svg']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -338,6 +346,11 @@ def build():
         ('diagnostic:necc-monthly-section','research/pacific-necc-oscar-2013-section-diagnostic.json'),
         ('diagnostic:antilles-observed-sections','research/antilles-ab0505-400m-section-diagnostic.json'),
         ('diagnostic:gulf-stream-widths','research/gulf-stream-section-width-series.json')]]
+    collections['diagnostics'].append({'id':'diagnostic:gulf-stream-published-width-definitions',
+        'label':'Gulf Stream transport-float occupations and historical isopycnal width',
+        'entity_id':'current:gulf-stream','current_id':'gulf-stream','status':gulf_audit['status'],'rank_eligible':False,
+        'source_file':GULF_AUDIT,'source_file_sha256':inputs[GULF_AUDIT],
+        'source_json':(ROOT/GULF_AUDIT).read_bytes().decode('utf8'),'document':gulf_audit})
     florida_diagnostic=next(d for d in collections['diagnostics'] if d['id']=='diagnostic:florida-monthly-width')
     florida_path='research/florida-monthly-width-plot-extraction.json'
     florida_diagnostic.update(source_file=florida_path,source_file_sha256=inputs[florida_path],source_json=(ROOT/florida_path).read_bytes().decode('utf-8'))

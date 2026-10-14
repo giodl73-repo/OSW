@@ -17,6 +17,7 @@ window.renderOriginalRegionalWidth=function(container,row){
   add("line",{x1:40,x2:460,y1:95,y2:95,stroke:"#526c77"});
   if(point)add("circle",{cx:x(low),cy:60,r:6,fill:"#176b82"});
   else add("line",{x1:x(low),x2:x(high),y1:60,y2:60,stroke:"#176b82","stroke-width":5});
+  if(row.phase_kind==='campaign_width_statistics'&&Number.isFinite(row.approximate_width_km))add("circle",{cx:x(row.approximate_width_km),cy:60,r:7,fill:"#b36616","data-author-mean-km":row.approximate_width_km});
   const closeLabels=!point&&x(high)-x(low)<labelSize*(`${low} km`.length+`${high} km`.length)*.3+8;
   const valueLabels=[];
   for(const v of point?[low]:[low,high]){if(!point)add("line",{x1:x(v),x2:x(v),y1:50,y2:70,stroke:"#176b82","stroke-width":3});add("text",{x:x(v),y:30,"text-anchor":closeLabels?"end":v/maximum>.8?"end":"middle","font-size":labelSize,fill:"#102f3b"},`${point?'≈ ':''}${v} km`);valueLabels.push(svg.lastElementChild);}

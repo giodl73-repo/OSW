@@ -26,7 +26,7 @@ def main():
     neuc_routes=[r for r in catalog['candidates'] if r['current_id']==neuc['id'].removeprefix('current:')]
     assert neuc_routes and all(r['id']!='pacific-nscc-reach-reference-path-candidate' for r in neuc_routes)
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER',r'C:\Program Files\Google\Chrome\Application\chrome.exe'))
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1440,'height':1000})
         page.emulate_media(reduced_motion='reduce')
         errors=[];page.on('pageerror',lambda e:errors.append(str(e)))

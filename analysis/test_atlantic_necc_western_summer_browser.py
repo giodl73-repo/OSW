@@ -17,7 +17,7 @@ def main():
     assert row['capabilities']['scoped_width']==2 and row['capabilities']['reference_route']==1
     assert row['latest_observation_date'] is None
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER',r'C:\Program Files\Google\Chrome\Application\chrome.exe'))
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Aatlantic-north-equatorial-countercurrent#route-atlas',wait_until='networkidle')

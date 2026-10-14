@@ -3,6 +3,11 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 const SOURCES: &[(&str, &str, &str)] = &[
     (
+        "gulf-stream",
+        "research/gulf-stream-published-width-definitions-scope-audit.json",
+        include_str!("../../../research/gulf-stream-published-width-definitions-scope-audit.json"),
+    ),
+    (
         "persian-gulf-saline-overflow",
         "research/persian-gulf-gogp99-geostrophic-scales-scope-audit.json",
         include_str!("../../../research/persian-gulf-gogp99-geostrophic-scales-scope-audit.json"),
@@ -423,6 +428,20 @@ pub(crate) fn validate(row: &Value) -> Result<(), String> {
     }
     let (path, raw) = match reviewed_source {
         Some(source) => source,
+        None if owner == "gulf-stream" => {
+            let (_, _, raw) = SOURCES
+                .iter()
+                .find(|s| s.0 == owner)
+                .ok_or("Missing Gulf Stream source")?;
+            let doc: Value = serde_json::from_str(raw).map_err(|e| e.to_string())?;
+            if doc["existing_current_records"]
+                .as_array()
+                .is_some_and(|rows| rows.contains(row))
+            {
+                return Ok(());
+            }
+            return Err("Changed existing Gulf Stream section or unknown width definition".into());
+        }
         None if owner == "persian-gulf-saline-overflow" => {
             let (_, _, raw) = SOURCES
                 .iter()
@@ -467,6 +486,90 @@ pub(crate) fn validate(row: &Value) -> Result<(), String> {
         Value::String(format!("{:x}", Sha256::digest(raw.as_bytes())));
     if *row != expected {
         return Err("Original regional width source or survey scope mismatch".into());
+    }
+    Ok(())
+}
+
+pub(crate) fn validate_gulf_stream_inventory(bundle: &crate::Bundle) -> Result<(), String> {
+    let (_, path, raw) = SOURCES
+        .iter()
+        .find(|s| s.0 == "gulf-stream")
+        .ok_or("Missing Gulf Stream frozen source")?;
+    let present = bundle.manifest["input_sha256"].get(*path).is_some()
+        || bundle
+            .collections
+            .get("objects")
+            .into_iter()
+            .flatten()
+            .any(|r| r["id"] == "current:gulf-stream");
+    if !present {
+        return Ok(());
+    }
+    let doc: Value = serde_json::from_str(raw).map_err(|e| e.to_string())?;
+    let pin = format!("{:x}", Sha256::digest(raw.as_bytes()));
+    if bundle.manifest["input_sha256"][path] != pin {
+        return Err("Changed Gulf Stream audit binding".into());
+    }
+    for field in ["measurements", "existing_current_records"] {
+        for expected in doc[field]
+            .as_array()
+            .ok_or("Missing Gulf Stream source records")?
+        {
+            let rows: Vec<_> = bundle
+                .collections
+                .get("widths")
+                .into_iter()
+                .flatten()
+                .filter(|r| r["id"] == expected["id"])
+                .collect();
+            if rows.len() != 1 {
+                return Err("Missing or duplicate Gulf Stream published width".into());
+            }
+            validate(rows[0])?;
+        }
+    }
+    for source in doc["sources"]
+        .as_array()
+        .ok_or("Missing Gulf Stream original provenance")?
+    {
+        for (file_key, pin_key) in [
+            ("source_document_file", "source_document_sha256"),
+            ("acquisition_file", "acquisition_sha256"),
+        ] {
+            let name = source[file_key]
+                .as_str()
+                .ok_or("Invalid Gulf Stream source path")?;
+            if bundle.manifest["input_sha256"][name] != source[pin_key] {
+                return Err("Changed Gulf Stream original source binding".into());
+            }
+        }
+    }
+    if bundle.manifest["input_sha256"][doc["protocol_file"]
+        .as_str()
+        .ok_or("Missing Gulf Stream protocol")?]
+        != doc["protocol_sha256"]
+    {
+        return Err("Changed Gulf Stream width protocol binding".into());
+    }
+    let diagnostics: Vec<_> = bundle
+        .collections
+        .get("diagnostics")
+        .into_iter()
+        .flatten()
+        .filter(|r| r["id"] == "diagnostic:gulf-stream-published-width-definitions")
+        .collect();
+    if diagnostics.len() != 1 {
+        return Err("Missing Gulf Stream source diagnostic".into());
+    }
+    let d = diagnostics[0];
+    if d["document"] != doc
+        || d["source_file"] != *path
+        || d["source_file_sha256"] != pin
+        || d["source_json"].as_str() != Some(*raw)
+        || d["entity_id"] != "current:gulf-stream"
+        || d["current_id"] != "gulf-stream"
+    {
+        return Err("Changed Gulf Stream diagnostic or original binding".into());
     }
     Ok(())
 }

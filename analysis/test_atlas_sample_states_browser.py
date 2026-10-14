@@ -11,7 +11,7 @@ def main():
     states=json.loads(Path('research/ocean-current-reference-route-state-join.json').read_text(encoding='utf-8'))['states']
     expected={code:[(year,frame,relation) for year,data in sets.items() for frame in data['frames'] for relation in frame['state_relations'] if relation['state_code']==code] for code in states}
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER',r'C:\Program Files\Google\Chrome\Application\chrome.exe'))
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/index.html?state=GFST&diagnostic-series=2025&diagnostic-date=2025-03-15#state-title',wait_until='networkidle')

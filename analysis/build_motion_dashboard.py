@@ -138,6 +138,14 @@ def build():
     validate_slope(slope_audit,width_inventory)
     read('research/source-data/darelius-asc-2024/acquisition.json')
     inputs[slope_audit['source_pdf_file']]=slope_audit['source_pdf_sha256']
+    from check_gulf_stream_published_widths import validate_inventory as validate_gulf, AUDIT as GULF_AUDIT
+    validate_gulf(width_inventory)
+    gulf_audit=read(GULF_AUDIT)
+    for source in gulf_audit['sources']:
+        read(source['acquisition_file'])
+        inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
+    for path in [gulf_audit['protocol_file'],'analysis/check_gulf_stream_published_widths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     widths = width_inventory['measurements']
     width_audits={}
     for record in widths:
@@ -440,6 +448,13 @@ def build():
         temporal_widths = [w for w in own_widths if w['id'] not in linked_widths and w.get('phase_kind') in {'seasonal_summary', 'dated_section', 'survey_summary', 'ensemble_summary', 'survey_profile_composite', 'monthly_climatological_fit'}]
         temporal_widths += [w for w in own_widths if w.get('phase_kind')=='stream_mean_threshold_summary' and w.get('stream_mean_context',{}).get('season') is not None]
         series = []
+        if current_id=='gulf-stream':
+            source_query={'document':GULF_AUDIT,'pointer':'/measurements/0/original_regional_context/complete_crossing_occupations','limit':10}
+            series.append({'label':'1967 transport-float widths / three multi-day occupations',
+                'url':'query.html?source-q='+quote(json.dumps(source_query,separators=(',',':')),safe=''),
+                'frames':3,'evidence_role':'published_campaign_width_occupations_not_monthly_or_seasonal',
+                'diagnostic_url':'../'+GULF_AUDIT,'evidence_sha256':inputs[GULF_AUDIT]})
+
         if current_id == kuroshio_profiles['current_id']:
             temporal_widths=[w for w in temporal_widths if w['id'] not in kuroshio_profiles['regional_prose_measurement_ids']]
             series.append({'label':'Four historical ECS seasonal width profiles (graph extraction)',
@@ -600,6 +615,10 @@ def build():
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],
         }
+        if current_id=='gulf-stream':
+            groups['measurements'].append(gulf_audit);groups['sources'].append(gulf_audit)
+            groups['time_evidence'].append(gulf_audit)
+            evidence_links.append({'label':'Published transport / isopycnal width definitions','url':'../figures/gulf-stream-published-width-definitions.svg'})
         if current_id=='azores':
             groups['measurements'].append(azores_core_audit)
             groups['sources'].append(azores_core_audit)

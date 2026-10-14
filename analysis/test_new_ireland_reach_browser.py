@@ -1,4 +1,5 @@
 """Verify NICU regional reach without transferring modeled downstream paths."""
+import os
 import json,hashlib
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -11,7 +12,7 @@ def main():
     assert r['reported_approximate_reference_path_km']==400 and r['reported_scenario_range_km']==[300,500]
     assert r['scenario_count']==81 and r['candidate_comparison_group']=='osw_studied_reach_routes'
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Anew-ireland-coastal-undercurrent#route-atlas',wait_until='networkidle')

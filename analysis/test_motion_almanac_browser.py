@@ -11,7 +11,7 @@ from playwright.sync_api import sync_playwright
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CHROME = Path(r"C:\Program Files\Google\Chrome\Application\chrome.exe")
+CHROME = Path(os.environ.get('OSW_TEST_BROWSER', r"C:\Program Files\Google\Chrome\Application\chrome.exe"))
 
 
 class QuietHandler(SimpleHTTPRequestHandler):

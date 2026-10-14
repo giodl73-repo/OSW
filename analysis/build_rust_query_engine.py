@@ -41,6 +41,7 @@ def main():
     paths.append('rust/osw-query/src/somali_width.rs')
     paths.append('rust/osw-query/src/guinea_width.rs')
     paths.append('rust/osw-query/src/original_regional_widths.rs')
+    paths.append('research/gulf-stream-published-width-definitions-scope-audit.json')
     paths.append('rust/osw-query/src/dwbc_float_composite.rs')
     paths.extend(['rust/osw-query/src/published_transports.rs','rust/osw-query/src/pacific_neuc_breadths.rs'])
     paths.extend(['rust/osw-query/src/coastal_composite_widths.rs','figures/schubert-aacc-2021-source-sections.png'])

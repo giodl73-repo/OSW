@@ -31,6 +31,8 @@ def validate(document, ledger):
     validate_indian_secc(document)
     from check_southern_basin_oscar_climatology import validate_inventory as validate_southern
     validate_southern(document)
+    from check_gulf_stream_published_widths import validate_inventory as validate_gulf
+    validate_gulf(document)
     records = document["measurements"]
     if len({row["id"] for row in records}) != len(records):
         raise ValueError("Duplicate width measurement")
@@ -68,6 +70,8 @@ def validate(document, ledger):
             if row['phase_kind'] == 'climatological_core_distribution':
                 if row.get('range_kind') != 'spatial_range_of_climatological_threshold_core_spans' or type(value) not in (float,int) or not math.isfinite(value) or not span[0] <= value <= span[1]:
                     raise ValueError('Invalid spatial core range or median')
+            elif row['phase_kind']=='campaign_width_statistics':
+                if row.get('id')!='gulf-stream-richardson-1967-transport-width-statistics' or row.get('range_kind')!='finite_span_of_three_author_reported_crossing_widths' or value!=135 or span!=[120,145]:raise ValueError('Changed source-bound campaign width statistics')
             elif row['phase_kind']=='width_time_series_statistics':
                 if row.get('range_kind')!='author_reported_minimum_maximum_of_filtered_width_time_series' or type(value) not in (float,int) or not span[0] <= value <= span[1]:
                     raise ValueError('Invalid time-series width statistics range')
@@ -534,6 +538,9 @@ def validate(document, ledger):
                     raise ValueError('Regional Black Sea range promoted to mapped or seasonal width')
                 if context.get('pycnocline_is_measurement_layer') is not False or context.get('boundary_coordinates_supplied') is not False:
                     raise ValueError('Invented Black Sea range boundaries or layer')
+        elif row['phase_kind'] in ['campaign_width_statistics','climatological_isopycnal_span']:
+            from check_gulf_stream_published_widths import validate_row as validate_gulf_row
+            validate_gulf_row(row)
         elif row["phase_kind"] != "seasonal_summary" or row["measurement_type"] != "published_regional_seasonal_summary" or row["observed_period"] is not None:
             raise ValueError("Unsupported or conflated temporal evidence")
     reviews = document.get('review_assessments', [])
