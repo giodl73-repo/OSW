@@ -105,6 +105,10 @@ def build():
     pacific_secc_width_audit=read('research/pacific-secc-rotschi-1972-width-range-scope-audit.json');read('research/source-data/rotschi-secc-1972/acquisition.json')
     width_inventory = read('research/ocean-current-width-inventory.json')
     azores_core_audit=read('research/azores-carracedo-2014-model-core-width-scope-audit.json')
+    azcc_coordinate_audit=read('research/azores-countercurrent-posaf-coordinate-meaning-audit.json')
+    from build_azcc_coordinate_meaning_figure import validate as validate_coordinate_meaning
+    validate_coordinate_meaning(azcc_coordinate_audit)
+    read('research/source-data/carracedo-caibox-2012/acquisition.json')
     for path in ['research/azores-carracedo-2014-climatological-core-width-record.json','research/source-data/carracedo-azores-2014/acquisition.json','research/source-data/woa09-season-definition/acquisition.json']:
         read(path)
     validate_width_inventory(width_inventory, read('research/ocean-current-almanac.json'))
@@ -571,6 +575,10 @@ def build():
             groups['time_evidence'].append(azores_core_audit)
             evidence_links.append({'label':'Reported seasonal model-core comparison','url':'../figures/azores-carracedo-2014-climatological-core-widths.svg'})
             evidence_links.append({'label':'Inspect Azores seasonal model core','url':'seasons.html?current=azores&phase=azores-carracedo-2014-spring-core-width'})
+        if current_id=='azores-countercurrent':
+            groups['sources'].append(azcc_coordinate_audit)
+            evidence_links.append({'label':'Section positions and width interpretation','url':'../figures/azores-countercurrent-posaf-coordinate-meaning.svg'})
+            evidence_links.append({'label':'Inspect primary and secondary quantity meanings','url':'query.html?source-q='+quote(json.dumps({'document':'research/azores-countercurrent-posaf-coordinate-meaning-audit.json','pointer':'/','limit':50}),safe='')})
         if current_id=='pacific-south-equatorial-countercurrent':
             groups['measurements'].append(pacific_secc_width_audit)
             groups['sources'].append(pacific_secc_width_audit)
