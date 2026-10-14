@@ -23,6 +23,7 @@
     "research/south-indian-80e-2013-monthly-component-spans.json": "71242c8fe62379e4ed661dc2ad4a4ed4908aabc7558fe40ba715892883607346",
     "research/aleutian-160w-2013-monthly-component-spans.json": "e712741722e85ecf0155f5d140b44799d0f02abcea05c484f2ccc41044f5f34e",
     "research/south-australian-132e-100m-2012-monthly-component-spans.json": "1a70cd4fdb8761b905c14ae7cce2419ae905a489c06421a57fbbd789f009e0e3",
+    "research/west-australian-32s-2013-monthly-component-spans.json": "11627cb0cbc74674c75abe46fee68222ee8877a546d5068dda55ddc69274adc2",
     "research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json": "223405cce3aa4a5fecdf94dd25ebff225a9594f33fb04f784a469fd4e6e8ce10",
     "research/source-data/radenac-ngcc-2016/acquisition.json": "9060faccdfadc7c6cd0f5da461933bc29d9fc69f2c4f7175f7613409a4041a73",
     "research/source-data/radenac-ngcc-2016/journal-article.pdf": "6da50667b80790752fa0189ff9cf0cdfd88c521509b0f393365de306286bacbe",
@@ -345,7 +346,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "abe40f7a3b858e379515975f041e4522c91db45fc6df39ccd7fe266baf6c673b",
+  "snapshot_fingerprint": "833602ebf82f33912f95bdf59a9abd6dfea2b7ad9e4a42508bb97c8ac8ebaf66",
   "entries": [
     {
       "id": "current:agulhas",
@@ -13210,7 +13211,7 @@
         "reference_route": 0,
         "scoped_width": 1,
         "geometry": 0,
-        "time_samples": 0,
+        "time_samples": 12,
         "source_connectivity": 0,
         "scope_notes": 1,
         "dated_diagnostics": 0,
@@ -13219,16 +13220,25 @@
       },
       "recorded_claims": 56,
       "nasa_links": 1,
-      "fingerprint": "d18c5020981244efb413c31af009743ca4c22b681c82400edbf479ba61291ae3",
-      "series": [],
+      "fingerprint": "9c010a2ef2fb632f18890b204aba6510d3c9c6bf749a1f8b41f8b0313ce620be",
+      "series": [
+        {
+          "label": "2013 monthly local component spans (current width unresolved)",
+          "url": "query.html?q=%7B%22collection%22%3A%22width_samples%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22west-australian%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22month%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A100%7D#query-chart-section",
+          "frames": 12,
+          "evidence_role": "monthly_local_component_spans_current_width_unresolved",
+          "diagnostic_url": "../research/west-australian-32s-2013-monthly-component-spans.json",
+          "evidence_sha256": "11627cb0cbc74674c75abe46fee68222ee8877a546d5068dda55ddc69274adc2"
+        }
+      ],
       "section_fingerprints": {
         "identity": "ec3c1beb787ac261cf336c87fc80e4b5790e569cafdd65275139273b7a8e738b",
-        "sources": "cab36e2ab66ce70ae316fb8b945af77812e3a63c5e3c3f73dc9207efbf8e0c7a",
+        "sources": "87a41af434f4fecd8c45f2fc5d2242b78f45211cba5aed0ec41ba2f2b69a414c",
         "claims": "57c3dabc33aafa940356de63489097e24e10d9fedb16e25727c881d92f100eb9",
-        "measurements": "ed7a6121835875da6aada89ac9f2e76e044baddcae7a3d603769b8cbe6b15422",
+        "measurements": "4378637249782cae7a25d364fe034e4e5cd0a5b4c980c7e90c441d27d4cf4b18",
         "routes_geometry": "91b36dacb39cec14e4e9c1ef71c6de0e974a315fc5a7d7cec67486cd0abe966c",
         "media": "6e34b1de00598fe8483e35201e91e1082190f68964ec326bbdeaf18eaab8973f",
-        "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd"
+        "time_evidence": "18c9e9407211408355eae7fd0ddefb3b444f467f2b8cd11e4735010775898251"
       },
       "latest_observation_date": null,
       "claim_review_counts": {
@@ -13278,7 +13288,12 @@
           ]
         }
       ],
-      "evidence_links": [],
+      "evidence_links": [
+        {
+          "label": "Monthly section profiles and resolution flags",
+          "url": "../figures/west-australian-32s-2013-monthly-component-profiles.svg"
+        }
+      ],
       "object_url": "object.html?id=current%3Awest-australian",
       "route_url": null,
       "season_url": "seasons.html?current=west-australian"
@@ -66849,5 +66864,5 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "built_at_utc": "2026-10-14T05:35:41.193489+00:00"
+  "built_at_utc": "2026-10-14T06:33:26.444170+00:00"
 }

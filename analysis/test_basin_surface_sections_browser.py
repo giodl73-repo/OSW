@@ -16,12 +16,12 @@ def main():
     output=ROOT/'.pytest_cache/basin-current-width-review'
     bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
     new=[r for r in bundle['collections']['width_samples'] if r['sample_family']=='basin_monthly_component_section']
-    assert len(new)==72 and sum(r['resolution_review_required'] for r in new)==39
+    assert len(new)==84 and sum(r['resolution_review_required'] for r in new)==49
     snapshot=json.loads((ROOT/'research/ocean-motion-dashboard.json').read_bytes())
-    for owner in ['portugal','south-atlantic','south-pacific','south-indian','aleutian','south-australian']:
+    for owner in ['portugal','south-atlantic','south-pacific','south-indian','aleutian','south-australian','west-australian']:
         entry=next(r for r in snapshot['entries'] if r['id']=='current:'+owner)
         expected_date='2009-11-11' if owner=='portugal' else None
-        assert entry['capabilities']['scoped_width']==0 and entry['latest_observation_date']==expected_date
+        assert entry['capabilities']['scoped_width']==(1 if owner=='west-australian' else 0) and entry['latest_observation_date']==expected_date
         assert any(s['frames']==12 and s['evidence_role']=='monthly_local_component_spans_current_width_unresolved' for s in entry['series'])
     with sync_playwright() as p:
         browser=p.chromium.launch(headless=True,executable_path=os.environ['OSW_TEST_BROWSER'])
@@ -30,7 +30,7 @@ def main():
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/query.html')
         page.wait_for_function('window.oswLastQueryResult',timeout=60000)
-        for owner in ['portugal','south-atlantic','south-pacific','south-indian','aleutian','south-australian']:
+        for owner in ['portugal','south-atlantic','south-pacific','south-indian','aleutian','south-australian','west-australian']:
             query={'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':owner}],'sort':{'field':'month','direction':'asc'},'limit':5}
             expected=native(query);actual=browser_query(page,query)
             assert actual==expected and actual['total']==12
@@ -63,10 +63,11 @@ def main():
         assert not errors,errors
         page.route('**/basin-guard.html',lambda route:route.fulfill(body='<title>Basin diagnostic guard</title>',content_type='text/html'))
         page.goto('http://127.0.0.1:8788/basin-guard.html')
-        for mode in ['value','association','rebound','hycom_rebound']:
+        for mode in ['value','association','rebound','hycom_rebound','offshore_rebound']:
             bad=copy.deepcopy(bundle)
-            if mode in ['rebound','hycom_rebound']:
-                diagnostic=next(r for r in bad['collections']['diagnostics'] if r['id']=='diagnostic:basin-portugal-40n')
+            if mode in ['rebound','hycom_rebound','offshore_rebound']:
+                target={'rebound':'portugal-40n','hycom_rebound':'south-australian-132e-100m','offshore_rebound':'west-australian-32s'}[mode]
+                diagnostic=next(r for r in bad['collections']['diagnostics'] if r['id']=='diagnostic:basin-'+target)
                 diagnostic['document']['months'][0]['approximate_section_span_km']=999
                 diagnostic['source_json']=json.dumps(diagnostic['document'])
                 pin=hashlib.sha256(diagnostic['source_json'].encode()).hexdigest()
@@ -85,7 +86,7 @@ def main():
                     }finally{e.osw_dealloc(p,b.length);}
                 }''','/'+path.relative_to(ROOT).as_posix())
                 assert result['ok'] is False,result
-                if mode in ['rebound','hycom_rebound']:assert 'frozen basin' in result['error'].lower(),result
+                if mode in ['rebound','hycom_rebound','offshore_rebound']:assert 'frozen basin' in result['error'].lower(),result
         browser.close()
     with TemporaryDirectory(dir=output) as tmp:
         path=Path(tmp)/'forged.json'
@@ -103,7 +104,7 @@ def main():
         path.write_text(json.dumps(bad),encoding='utf-8')
         result=subprocess.run([str(CLI),str(path),'-'],input='{}',capture_output=True,text=True,encoding='utf-8')
         assert result.returncode==2 and 'frozen basin' in result.stderr.lower()
-    print('PASS: 72 monthly section samples, native/WASM parity, 12 mapped boundaries/chart points per owner before pagination, manual playback/inspect/source links/mobile; five native and four WASM rejections')
+    print('PASS: 84 monthly section samples, native/WASM parity, 12 mapped boundaries/chart points per owner before pagination, manual playback/inspect/source links/mobile; five native and five WASM rejections')
 
 
 if __name__=='__main__':

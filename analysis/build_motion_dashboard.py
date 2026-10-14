@@ -95,6 +95,10 @@ def build():
     saved=read('research/south-australian-132e-100m-2012-monthly-component-spans.json')
     if not basin_matches(saved,rebuild_hycom()):raise ValueError('Stale HYCOM component section')
     basin_sections['south-australian']=saved
+    from build_west_australian_oscar_spans import build as rebuild_offshore
+    saved=read('research/west-australian-32s-2013-monthly-component-spans.json')
+    if not basin_matches(saved,rebuild_offshore()):raise ValueError('Stale offshore northward diagnostic')
+    basin_sections['west-australian']=saved
     read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
     for path in ['research/source-data/radenac-ngcc-2016/journal-article.pdf','plans/ngcc-seasonal-vein-width-protocol-v1.md','analysis/check_ngcc_seasonal_vein_widths.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -565,7 +569,7 @@ def build():
             doc=basin_sections[current_id]
             groups['time_evidence'].append(doc)
             groups['measurements'].append(doc)
-            groups['sources'].append({'inventory_sha256':doc['source_inventory_sha256'],'config_sha256':doc['config_sha256'],'protocol_sha256':doc['protocol_sha256']})
+            groups['sources'].append(doc['input_sha256'] if 'input_sha256' in doc else {'inventory_sha256':doc['source_inventory_sha256'],'config_sha256':doc['config_sha256'],'protocol_sha256':doc['protocol_sha256']})
             evidence_links.append({'label':'Monthly section profiles and resolution flags','url':'../figures/'+doc['section_id']+'-'+str(doc['year'])+'-monthly-component-profiles.svg'})
         if current_id == 'zeehan':groups['time_evidence'].append(calendar)
         if current_id == florida_plot['current_id']:

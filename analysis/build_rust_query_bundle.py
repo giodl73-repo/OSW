@@ -413,6 +413,17 @@ def build():
         path='research/source-data/hycom-south-australian-2012/'+name
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
         if inputs[path]!=receipt['sha256']:raise ValueError('Changed HYCOM original bytes')
+    from build_west_australian_oscar_spans import build as rebuild_offshore
+    path='research/west-australian-32s-2013-monthly-component-spans.json'
+    original=read(path)
+    if not basin_matches(original,rebuild_offshore()):raise ValueError('Stale offshore northward diagnostic')
+    collections['diagnostics'].append({'id':'diagnostic:basin-'+original['section_id'],
+        'label':'West Australian offshore monthly component spans (width unresolved)',
+        'entity_id':'current:west-australian','current_id':'west-australian','status':original['status'],'rank_eligible':False,
+        'source_file':path,'source_file_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8'),'document':original})
+    for path,pin in original['input_sha256'].items():
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=pin:raise ValueError('Changed offshore source dependency')
     from build_query_width_samples import build as build_width_samples
     from build_leeuwin_monthly_plot import build as rebuild_leeuwin
     from build_kuroshio_seasonal_width_profiles import build as rebuild_kuroshio
