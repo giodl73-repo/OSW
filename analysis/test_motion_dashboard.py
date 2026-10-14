@@ -108,7 +108,7 @@ class DashboardEvidenceTests(unittest.TestCase):
         current=next(row for row in build()['entries'] if row['id']=='current:antilles')
         self.assertEqual(current['series'][0]['frames'],2)
         self.assertEqual(current['capabilities']['scoped_width'],0)
-        self.assertEqual(current['capabilities']['reference_route'],0)
+        self.assertEqual(current['capabilities']['reference_route'],1)
         path=ROOT/'research/antilles-ab0505-400m-section-diagnostic.json'
         original=Path.read_bytes
         for key,value in [('inventory_sha256','wrong'),('whole_current_width_km',74),('width_rank_eligible',True),('seasonal_playback_eligible',True),('geographic_role','current_axis')]:
@@ -213,7 +213,8 @@ class DashboardEvidenceTests(unittest.TestCase):
         antilles = rows['current:antilles']
         self.assertEqual(antilles['capabilities']['scope_notes'], 1)
         self.assertEqual(antilles['capabilities']['scoped_width'], 0)
-        self.assertEqual(antilles['capabilities']['reference_route'], 0)
+        self.assertEqual(antilles['capabilities']['reference_route'], 1)
+        self.assertEqual(antilles['capabilities']['reported_length'], 0)
         self.assertEqual(antilles['latest_observation_date'], '2015-11-23')
         self.assertIn('Modern observations', antilles['scope_notes'][0]['summary'])
 

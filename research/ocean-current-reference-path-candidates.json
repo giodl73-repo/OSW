@@ -3,10 +3,10 @@
   "status": "editorial_candidates_not_canonical_length_admissions",
   "counts": {
     "currents_without_published_ranked_estimate": 89,
-    "currents_with_route_candidates": 67,
-    "currents_without_route_candidates": 22,
-    "route_candidates": 73,
-    "studied_reach_candidates": 34
+    "currents_with_route_candidates": 68,
+    "currents_without_route_candidates": 21,
+    "route_candidates": 74,
+    "studied_reach_candidates": 35
   },
   "comparison_rule": "Descending length of declared OSW reference routes only. Coherent jets, specified branches and source/region-defined extents differ in scope; their order is provisional and is not a uniform whole-current ranking. Studied reaches are excluded from the reference-route order. No number replaces the existing length evidence or published ranking.",
   "reference_route_length_order": [
@@ -106,7 +106,7 @@
         "description": "Aliases, source-dependent limits or proposed continuity need an explicit identity/extent decision. A regional candidate may use a declared convention meanwhile.",
         "next_action": "Read competing definitions, resolve aliases versus distinct flows, and retain source-convention routes without merging their extents.",
         "current_count": 16,
-        "unbuilt_count": 6
+        "unbuilt_count": 5
       },
       {
         "id": "layer_specific_route",
@@ -3595,6 +3595,41 @@
       "ordering_sensitivity": null
     },
     {
+      "id": "antilles-northern-bahamas-reference-path-candidate",
+      "current_id": "antilles",
+      "name": "Antilles Current",
+      "status": "editorial_reference_path_candidate_not_scientifically_reviewed",
+      "comparison_group": "osw_studied_reach_routes",
+      "scope": "Conditional regional reference from OSW 26.5 N offshore-Abaco gate to OSW 28 N northwestward approach gate north of Little Bahama Bank. Both gates and all bends are editorial regional truncations, not observed current origins, terminations or a Gulf Stream junction. Southern Antilles, Florida Current, Gulf Stream, DWBC and eddy loops excluded.",
+      "route_extent_kind": "conditional northern Bahamas reference reach",
+      "approximate_reference_path_km": 200,
+      "scenario_range_km": [
+        200,
+        300
+      ],
+      "scenario_count": 81,
+      "source_url": "https://repository.library.noaa.gov/view/noaa/20909/noaa_20909_DS1.pdf",
+      "source_locator": "Meinen et al. 2019, PDF pp1-3 and 18: regional naming, observation support and uncertainty. KN-200-4 report pp1/10: cruise dates, conditional modeled pathway and local non-detection.",
+      "supporting_sources": [],
+      "candidate_file": "research/antilles-northern-bahamas-reference-path-candidate.json",
+      "candidate_sha256": "f9558395b4eaf57de113559fe1e5e31ab1e110351faa76a925ed99d7e49c99c6",
+      "generator_sha256": "1362693ec7075e014d065691923248db455a5c3cd78c9a94880b3b472594d240",
+      "figure": "figures/antilles-northern-bahamas-reference-path-candidate.svg",
+      "nominal_atlas_state_crossings": [
+        "CARB"
+      ],
+      "recommended_nasa_tile_id": "level2_A_2",
+      "remaining_gates": [
+        "Independently review identity, gates, bathymetry, pressure/layer correspondence and conditional continuity.",
+        "Acquire longitudinal velocity support before an observed axis or physical full-current length.",
+        "Whole-current width, annual dimension ranges and scientific admission remain open.",
+        "No surface-NASA depth/date match, physical state containment or occupied polygon inferred."
+      ],
+      "parent_current_id": null,
+      "parent_scope_note": null,
+      "ordering_sensitivity": null
+    },
+    {
       "id": "north-cape-northern-reach-reference-path-candidate",
       "current_id": "north-cape",
       "name": "North Cape Current — Northern branch",
@@ -3887,15 +3922,17 @@
       "existing_length_evidence_status": "no_numeric_length",
       "existing_scope": "NOAA's six sections near 28°35′N found variable northward and southward bands rather than the broad, persistent northward surface current shown on older charts. This section cannot establish a whole-current path or length and does not resolve flow farther south.",
       "name_source_url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
-      "candidate_ids": [],
-      "reference_path_decision": "reference_path_not_constructed",
+      "candidate_ids": [
+        "antilles-northern-bahamas-reference-path-candidate"
+      ],
+      "reference_path_decision": "editorial_candidate_present_scientific_review_pending",
       "published_length_rank_eligible": false,
       "ledger_kind": "regional current with disputed northern surface expression",
       "route_strategy_id": "resolve_naming_scope",
       "route_strategy_label": "Resolve naming or extent convention",
       "planning_status": "editorial_planning_crosswalk_not_scientific_classification_approval",
       "planning_basis": "NOAA's six sections near 28°35′N found variable northward and southward bands rather than the broad, persistent northward surface current shown on older charts. This section cannot establish a whole-current path or length and does not resolve flow farther south.",
-      "next_action": "Modern 2005â€“2015 observations support regional mean flow at 26.5 N, separate from the old 28 degrees 35 minutes N surface assessment. Resolve named-flow endpoints before a whole-current route. Table 3 integration span is not current width. Scope audit: research/antilles-current-naming-seasonal-scope-audit.json Acquired AB0505 profiles now support local diagnostic review via research/antilles-ab0505-400m-section-diagnostic.json; recover along-current velocity axes separately rather than use the transverse sampling line as a route.",
+      "next_action": "Review the existing editorial route against scientific gates; broader/system/family scope remains governed by the planning strategy.",
       "strategy_next_action": "Read competing definitions, resolve aliases versus distinct flows, and retain source-convention routes without merging their extents.",
       "known_component_currents": [],
       "component_inventory_status": "not_assessed_by_this_planning_crosswalk"
@@ -5668,7 +5705,7 @@
     "file": "plans/ocean-current-measurement-protocol-v1.md",
     "sha256": "83afac80f4b530c598f46d435e21d010927c129543675a1e6de440385c00145f",
     "audit_file": "research/ocean-current-measurement-protocol-audit.json",
-    "audit_sha256": "a5992936eab0bd3eda1681972a57307851b7d549c6206490dcedfc7494472504",
+    "audit_sha256": "5eacd9a78a9f9853e163b50d2d13af2f8c02da914a784b573c0bcbf87f7374d6",
     "status": "editorial_conformance_checks_passed_not_scientific_approval"
   }
 }

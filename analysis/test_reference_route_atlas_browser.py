@@ -31,6 +31,7 @@ def main():
         for owner,slug,number,caveat in [
             ('new-guinea-coastal-current','new-guinea-coastal-surface-reach', '500 km','monsoon'),
             ('mauritanian','mauritanian-summer-reach','300 km','winter'),
+            ('antilles','antilles-northern-bahamas', '200 km','conditional'),
             ('tasman-front','tasman-historical-connection-reach','1,700 km','disputes'),
         ]:
             page.locator('#route-atlas-select').select_option('current:'+owner)
@@ -44,7 +45,12 @@ def main():
             page.wait_for_function('(id)=>location.hash === "#"+id',arg=ident)
             card=page.locator('#'+ident)
             assert card.locator('.route-map').is_visible()
-            assert 'Tomczak' in card.inner_text()
+            assert ('Meinen' if owner == 'antilles' else 'Tomczak') in card.inner_text()
+            if owner == 'antilles':
+                assert '400 dbar' in card.inner_text()
+                assert 'not observed current origins' in card.inner_text()
+                assert '2011' in card.inner_text()
+                assert page.locator('#comparison-'+ident).count() == 0
             page.set_viewport_size({'width':320,'height':800})
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
             card.screenshot(path='.pytest_cache/current-route-batch/'+owner+'-mobile.png')
