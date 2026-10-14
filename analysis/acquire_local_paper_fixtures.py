@@ -30,6 +30,11 @@ PINNED_MIRRORS = {
     ('qiu-chen-nec-2010', 'https://www.soest.hawaii.edu/oceanography/bo/QC_NEC.pdf',
      'b387e0e05e700fe66b3b2e98ebba56bf2d8151c3b703d37a7aecad43b5675987'):
     ('https://soest.hawaii.edu/oceanography/bo/QC_NEC.pdf',),
+    # NOAA's bare download is byte-identical (40,242,350 bytes), verified
+    # 2026-10-13; some CI requests to ?download=1 return HTTP 404.
+    ('florida-archer-2017', 'https://repository.library.noaa.gov/view/noaa/49908/noaa_49908_DS1.pdf',
+     'f68fa48b85ce9cb37c04d8e32cffbc282fcc8dc60f82f725d5ba80f2b3234e0e'):
+    ('https://repository.library.noaa.gov/view/noaa/49908/noaa_49908_DS1.pdf',),
 }
 
 
@@ -67,9 +72,7 @@ def verify(name, manifest, data):
 
 
 def download_url(name, manifest, source_url):
-    # Preserve the already verified NOAA download form and client behavior.
-    if name == 'florida-archer-2017':
-        source_url += '?download=1'
+    # The caller selects the exact verified download form.
     headers = {} if name == 'florida-archer-2017' else {'User-Agent': 'OSW-source-validation/1.0'}
     request = urllib.request.Request(source_url, headers=headers)
     maximum = {'pasaric-adriatic-2019':110_000_000,'florida-archer-2017':50_000_000,'glenn-wac-2008':60_000_000,'tomczak-regional-2005':40_000_000}.get(name,20_000_000)
@@ -96,7 +99,10 @@ def download_url(name, manifest, source_url):
 def download(name, manifest):
     primary = manifest['source_url']
     alternatives = PINNED_MIRRORS.get((name, primary, manifest['sha256']), ())
-    urls = (primary, *alternatives)
+    # Preserve NOAA's original preferred transport, allowing its separately
+    # verified bare URL only for the exact acquisition tuple above.
+    preferred = primary + '?download=1' if name == 'florida-archer-2017' else primary
+    urls = (preferred, *alternatives)
     for i, url in enumerate(urls):
         try:
             data = download_url(name, manifest, url)
