@@ -3,6 +3,11 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 const SOURCES: &[(&str, &str, &str)] = &[
     (
+        "pacific-south-equatorial-countercurrent",
+        "research/pacific-secc-rotschi-1972-width-range-scope-audit.json",
+        include_str!("../../../research/pacific-secc-rotschi-1972-width-range-scope-audit.json"),
+    ),
+    (
         "hiri-current",
         "research/hiri-hughes-1993-local-decay-scales-scope-audit.json",
         include_str!("../../../research/hiri-hughes-1993-local-decay-scales-scope-audit.json"),

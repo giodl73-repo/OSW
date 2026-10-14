@@ -91,6 +91,7 @@ def build():
         saved=read(path)
         if not basin_matches(saved,calculated):raise ValueError('Stale basin component section')
         basin_sections[calculated['current_id']]=saved
+    pacific_secc_width_audit=read('research/pacific-secc-rotschi-1972-width-range-scope-audit.json');read('research/source-data/rotschi-secc-1972/acquisition.json')
     width_inventory = read('research/ocean-current-width-inventory.json')
     validate_width_inventory(width_inventory, read('research/ocean-current-almanac.json'))
     from build_antarctic_slope_m6_velocity import build as rebuild_m6
@@ -549,6 +550,9 @@ def build():
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],
         }
+        if current_id=='pacific-south-equatorial-countercurrent':
+            groups['measurements'].append(pacific_secc_width_audit)
+            groups['sources'].append(pacific_secc_width_audit)
         if current_id in basin_sections:
             doc=basin_sections[current_id]
             groups['time_evidence'].append(doc)
