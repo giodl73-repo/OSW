@@ -3,6 +3,13 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 const SOURCES: &[(&str, &str, &str)] = &[
     (
+        "antarctic-slope",
+        "research/antarctic-slope-chavanne-2010-dated-width-constraint-scope-audit.json",
+        include_str!(
+            "../../../research/antarctic-slope-chavanne-2010-dated-width-constraint-scope-audit.json"
+        ),
+    ),
+    (
         "balearic",
         "research/balearic-socib-2023-regional-width-scope-audit.json",
         include_str!("../../../research/balearic-socib-2023-regional-width-scope-audit.json"),
@@ -267,6 +274,36 @@ pub(crate) fn validate_balearic_inventory(bundle: &crate::Bundle) -> Result<(), 
         || bundle.manifest["input_sha256"][path] != format!("{:x}", Sha256::digest(raw.as_bytes()))
     {
         return Err("Missing or rebound SOCIB Balearic inventory".into());
+    }
+    validate(rows[0])
+}
+
+pub(crate) fn validate_antarctic_jet_inventory(bundle: &crate::Bundle) -> Result<(), String> {
+    let (_, path, raw) = SOURCES
+        .iter()
+        .find(|s| s.0 == "antarctic-slope")
+        .ok_or("Missing Antarctic jet frozen source")?;
+    if bundle.manifest["input_sha256"].get(*path).is_none()
+        && !bundle
+            .collections
+            .get("objects")
+            .into_iter()
+            .flatten()
+            .any(|r| r["id"] == "current:antarctic-slope")
+    {
+        return Ok(());
+    }
+    let rows: Vec<_> = bundle
+        .collections
+        .get("widths")
+        .into_iter()
+        .flatten()
+        .filter(|r| r["id"] == "antarctic-slope-chavanne-2009-02-23-jet-width-constraint")
+        .collect();
+    if rows.len() != 1
+        || bundle.manifest["input_sha256"][path] != format!("{:x}", Sha256::digest(raw.as_bytes()))
+    {
+        return Err("Missing or rebound Antarctic Slope dated jet constraint".into());
     }
     validate(rows[0])
 }

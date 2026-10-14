@@ -58,6 +58,7 @@ window.renderReportedWidthConstraint=function(container,row){
   svg.setAttribute('aria-label',breadth?`${row.name}: source reports offshore geographic breadth ${row.reported_width_constraint.source_notation}. Government synthesis, not a measured velocity-core width, finite interval or seasonal range. Representative width and numerical uncertainty unknown.`:`${row.name}: source reports ${row.reported_width_constraint.source_notation}. Approximate less-than size description, not a measured 20 km width, rigorous hard bound or zero-to-20 km interval. Representative width and numerical uncertainty unknown.`);
   svg.style.cssText='display:block;width:100%;max-width:650px;background:#f6f5ef;color:#102f3b';
   if(confinement||broadBand)svg.setAttribute('aria-label',row.original_regional_context.display_aria_label);
+  if(row.reported_width_constraint.kind==='author_reported_dated_less_than')svg.setAttribute('aria-label',row.original_regional_context.display_aria_label);
   for(const [label,y,size] of [[row.reported_width_constraint.source_notation,40,36],[broadBand?row.original_regional_context.display_constraint_label:confinement?'Coastal confinement':breadth?'Reported offshore breadth':'Reported size constraint',80,breadth?32:28]]){
     const text=document.createElementNS(ns,'text');text.setAttribute('x',25);text.setAttribute('y',y);text.setAttribute('font-size',size);text.setAttribute('fill','#102f3b');text.textContent=label;svg.append(text);
   }

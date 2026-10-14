@@ -19,6 +19,7 @@ def without_state_join(page):
     route_atlas_bundle(page,bundle)
 
 def main():
+    catalog_count=json.loads((ROOT/"research/ocean-current-reference-path-candidates.json").read_bytes())["counts"]["route_candidates"]
     bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
     native=json.loads(subprocess.check_output([str(CLI),str(ROOT/'almanac/query-data.json'),'--atlas'],encoding='utf-8'))
     expected_sources=set(bundle['manifest']['atlas_receipts'])
@@ -92,7 +93,7 @@ def main():
         expect(page.locator('#route-atlas-select option')).to_have_count(101,timeout=90000)
         expect(page.locator('#route-atlas-eddy-select option')).to_have_count(141)
         assert page.evaluate('window.oswAtlasSnapshot')==native
-        assert page.locator('.route-card').count()==64
+        assert page.locator('.route-card').count()==json.loads((ROOT/'research/ocean-current-reference-path-candidates.json').read_bytes())['counts']['route_candidates']
         assert page.locator('#route-status').get_attribute('data-engine')=='rust-osw-query-v1'
         page.locator('#route-atlas-select').select_option('current:agulhas')
         expect(page.locator('#route-atlas-preview')).to_contain_text('Agulhas')
@@ -125,6 +126,6 @@ def main():
         assert failed.locator('.route-card').count()==0
         assert failed.locator('#route-atlas-select option').count()==1
         browser.close()
-    print(f'PASS: {len(native["sources_json"])} exact atlas source documents, eighteen loader rejections, native/WASM parity, 100 current/140 eddy selectors, 64 cards, no direct source reads, mobile and optional/unavailable data')
+    print(f'PASS: {len(native["sources_json"])} exact atlas source documents, eighteen loader rejections, native/WASM parity, 100 current/140 eddy selectors, {catalog_count} cards, no direct source reads, mobile and optional/unavailable data')
 
 if __name__=='__main__':main()

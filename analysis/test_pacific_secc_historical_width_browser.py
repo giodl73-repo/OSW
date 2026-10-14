@@ -32,7 +32,8 @@ def main():
         expect(page.locator('#query-detail')).to_contain_text('no midpoint')
         expect(page.locator('#query-detail')).to_contain_text('geostrophic')
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3A'+OWNER+'#route-atlas',wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll(".route-card").length===73')
+        route_count=json.loads((ROOT/'research/ocean-current-reference-path-candidates.json').read_bytes())['counts']['route_candidates']
+        page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=route_count)
         preview=page.locator('#route-atlas-preview')
         assert preview.locator('.original-regional-width svg').count()==1
         expect(preview).to_contain_text('upper-300 m')

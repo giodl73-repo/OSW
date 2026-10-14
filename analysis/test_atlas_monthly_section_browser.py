@@ -22,7 +22,8 @@ def main():
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.clock.install()
         page.goto(BASE+'?atlas-feature=current%3Apacific-north-equatorial-countercurrent#route-atlas',wait_until='networkidle')
-        expect(page.locator('.route-card')).to_have_count(64,timeout=90000)
+        route_count=json.loads((ROOT/'research/ocean-current-reference-path-candidates.json').read_bytes())['counts']['route_candidates']
+        expect(page.locator('.route-card')).to_have_count(route_count,timeout=90000)
         expect(page.locator('.inventory-addition-card')).to_have_count(28,timeout=90000)
         page.clock.run_for(100)
         page.wait_for_function('document.querySelector(".atlas-monthly-select")?.disabled===false')

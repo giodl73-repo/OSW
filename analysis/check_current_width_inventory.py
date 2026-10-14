@@ -19,6 +19,8 @@ def validate(document, ledger):
     validate_ngcc_inventory(document)
     from check_balearic_socib_width import validate_inventory as validate_balearic_inventory
     validate_balearic_inventory(document)
+    from check_antarctic_slope_jet_constraint import validate_inventory as validate_jet_inventory
+    validate_jet_inventory(document)
     from check_azores_model_core_widths import validate_inventory as validate_azores_inventory
     validate_azores_inventory(document)
     records = document["measurements"]
@@ -27,7 +29,7 @@ def validate(document, ledger):
     by_id = {row["id"]: row for row in records}
     hydrographic_extraction = None
     for row in records:
-        if str(row.get("id", "")).startswith(("ngcc-radenac-2016-", "pacific-secc-rotschi-1972-", "hiri-hughes-1993-", "east-adriatic-pasaric-2019-", "acc-park-2019-udintsev-", "monsoon-webber-2018-", "tasman-front-nilsson-1980-", "antarctic-coastal-schubert-2021-", "deep-western-boundary-richardson-1993-", "pacific-neuc-li-2018-")) or row.get("original_regional_context") or row["current_id"] in {"new-guinea-coastal-current", "pacific-south-equatorial-countercurrent", "hiri-current", "east-adriatic", "algerian", "alaska", "pacific-equatorial-undercurrent", "atlantic-equatorial-undercurrent", "kuroshio-extension", "new-guinea-coastal-undercurrent", "zeehan", "west-australian", "peru-humboldt", "baffin", "western-adriatic", "jutland", "solomon-island-coastal-undercurrent", "new-ireland-coastal-undercurrent", "north-pacific", "acc", "monsoon", "tasman-front", "antarctic-coastal", "deep-western-boundary", "pacific-north-equatorial-undercurrent"}:
+        if str(row.get("id", "")).startswith(("ngcc-radenac-2016-", "pacific-secc-rotschi-1972-", "hiri-hughes-1993-", "east-adriatic-pasaric-2019-", "acc-park-2019-udintsev-", "monsoon-webber-2018-", "tasman-front-nilsson-1980-", "antarctic-coastal-schubert-2021-", "deep-western-boundary-richardson-1993-", "pacific-neuc-li-2018-")) or row.get("original_regional_context") or row["current_id"] == "antarctic-slope" or row["current_id"] in {"new-guinea-coastal-current", "pacific-south-equatorial-countercurrent", "hiri-current", "east-adriatic", "algerian", "alaska", "pacific-equatorial-undercurrent", "atlantic-equatorial-undercurrent", "kuroshio-extension", "new-guinea-coastal-undercurrent", "zeehan", "west-australian", "peru-humboldt", "baffin", "western-adriatic", "jutland", "solomon-island-coastal-undercurrent", "new-ireland-coastal-undercurrent", "north-pacific", "acc", "monsoon", "tasman-front", "antarctic-coastal", "deep-western-boundary", "pacific-north-equatorial-undercurrent"}:
             from check_original_regional_widths import validate_row
             validate_row(row)
         if row.get("model_regional_context") or row["current_id"] == "guinea":
@@ -77,7 +79,7 @@ def validate(document, ledger):
             elif value is not None or row.get('range_kind') != 'reported_typical_regional_width_span' or row['phase_kind'] != 'regional_summary':
                 raise ValueError('Unsupported regional range or invented representative width')
         elif row.get('reported_width_constraint'):
-            if row['current_id'] not in {'new-guinea-coastal-undercurrent','west-australian','solomon-island-coastal-undercurrent','new-ireland-coastal-undercurrent','north-pacific'} or value is not None or span is not None:
+            if row['current_id'] not in {'antarctic-slope','new-guinea-coastal-undercurrent','west-australian','solomon-island-coastal-undercurrent','new-ireland-coastal-undercurrent','north-pacific'} or value is not None or span is not None:
                 raise ValueError('Unbound size constraint or promoted numeric width')
         elif not isinstance(value, (float, int)) or isinstance(value, bool) or not math.isfinite(value) or value <= 0:
             raise ValueError("Invalid width")
@@ -497,6 +499,9 @@ def validate(document, ledger):
         elif row['phase_kind'] == 'coastal_composite_threshold_section':
             from check_antarctic_coastal_composites import validate_row
             validate_row(row)
+        elif row['phase_kind'] == 'dated_width_constraint':
+            from check_antarctic_slope_jet_constraint import validate_row as validate_jet_row
+            validate_jet_row(row)
         elif row['phase_kind'] == 'regional_summary':
             if row['measurement_type'] != 'published_regional_summary' or row['width_metric'] not in {'author_reported_seasonal_surface_current_anomaly_vein_span','author_reported_seasonal_thermal_vein_span','author_reported_geostrophic_current_width_range','author_reported_e_folding_scale','author_reported_coastal_inflow_extent','author_reported_current_width','author_reported_one_sided_coastal_confinement','author_reported_climatological_major_front_separation','author_reported_climatological_boundary_breadth','author_inferred_origin_proxy_component_width','author_reported_meander_occupied_band_breadth'} or row['observed_period'] is not None or row.get('calendar_months') is not None or (span is None and not row.get('original_regional_context')):
                 raise ValueError('Conflated regional range support')
