@@ -22,7 +22,7 @@ def main():
     legacy=[r for r in samples if not r['source_context'].get('is_climatology')]
     climate=[r for r in samples if r['source_context'].get('is_climatology')]
     assert len(legacy)==211 and sum(row['value_km'] is None for row in legacy)==5
-    assert len(climate)==24 and sum(row['value_km'] is None for row in climate)==16
+    assert len(climate)==60 and sum(row['value_km'] is None for row in climate)==19
     queries=[{'collection':'width_samples','limit':100},
         {'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':'leeuwin'}],'sort':{'field':'month'}},
         {'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':'kuroshio'},{'field':'phase_label','op':'eq','value':'winter'}],'sort':{'field':'longitude_degrees_east'}},
@@ -32,9 +32,9 @@ def main():
         {'collection':'objects','evidence':'width_samples'},
         {'collection':'objects','filters':[{'field':'id','op':'eq','value':'current:leeuwin'}]}]
     results=[native(q) for q in queries];assert all(r['ok'] for r in results)
-    assert results[0]['total']==len(samples) and results[0]['map_scene']['mapped_objects']==119 and results[0]['map_scene']['unmapped_objects']==116
+    assert results[0]['total']==len(samples) and results[0]['map_scene']['mapped_objects']==152 and results[0]['map_scene']['unmapped_objects']==119
     assert results[1]['total']==12 and [r['month'] for r in results[1]['rows']]==list(range(1,13))
-    assert results[2]['total']==16 and results[3]['total']==21 and results[4]['total']==12
+    assert results[2]['total']==16 and results[3]['total']==24 and results[4]['total']==12
     assert results[5]['rows'][0]['value_km'] is None and results[6]['total']==len({r['entity_id'] for r in samples})
     scratch=ROOT/'.pytest_cache/rust-width-samples';scratch.mkdir(parents=True,exist_ok=True)
     with tempfile.TemporaryDirectory(dir=scratch) as temp:
@@ -86,6 +86,6 @@ def main():
         page.set_viewport_size({'width':320,'height':900});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         assert not errors
         browser.close()
-    print('PASS: 235 scoped samples; 211 prior samples retained; 21 missing readings explicit; native/WASM queries and null-last ordering; source/value/month/metric/interval binding; current-card links and mobile')
+    print(f'PASS: {len(samples)} scoped samples; 211 one-year/dated prior samples retained; {sum(r["value_km"] is None for r in samples)} missing readings explicit; native/WASM queries and null-last ordering; source/value/month/metric/interval binding; current-card links and mobile')
 
 if __name__=='__main__':main()

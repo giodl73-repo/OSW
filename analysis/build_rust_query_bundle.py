@@ -477,6 +477,22 @@ def build():
         for path in [doc['profile_figure'],doc['interannual_figure']]:inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     for path in ['analysis/check_indian_secc_oscar_climatology.py','analysis/build_indian_secc_climatology_figures.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_southern_basin_oscar_climatology import saved as southern_saved, DOCUMENTS as SOUTHERN_DOCS, DATA as SOUTHERN_DATA
+    from build_southern_basin_oscar_climatology import build as rebuild_southern
+    southern_sections=southern_saved()
+    if not basin_matches(read(SOUTHERN_DATA),rebuild_southern()):raise ValueError('Changed southern-basin yearly/climatology reconstruction')
+    for file,doc in zip(SOUTHERN_DOCS,southern_sections):
+        original=read(file)
+        collections['diagnostics'].append({'id':doc['diagnostic_id'],
+            'label':doc['period_label']+' (current width unresolved)',
+            'entity_id':'current:'+doc['current_id'],'current_id':doc['current_id'],'status':doc['status'],'rank_eligible':False,
+            'source_file':file,'source_file_sha256':inputs[file],'source_json':(ROOT/file).read_bytes().decode('utf8'),'document':original})
+        for path,pin in doc['input_sha256'].items():
+            inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+            if inputs[path]!=pin:raise ValueError('Changed southern-basin source dependency')
+        for path in [doc['profile_figure'],doc['interannual_figure']]:inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for path in ['analysis/check_southern_basin_oscar_climatology.py','analysis/build_southern_basin_climatology_figures.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from build_query_width_samples import build as build_width_samples
     from build_antilles_sadcp_layer_spans import build as rebuild_shipboard, OUTPUT as SHIPBOARD, INPUT as SHIPBOARD_INPUT, SUBSET as SHIPBOARD_SUBSET
     shipboard=read(SHIPBOARD)

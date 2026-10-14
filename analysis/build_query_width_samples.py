@@ -7,7 +7,7 @@ FAMILIES={
     'diagnostic:leeuwin-monthly-width':'leeuwin_monthly_fitted_plot',
     'diagnostic:kuroshio-seasonal-width':'kuroshio_seasonal_profile_plot',
     'diagnostic:necc-monthly-section':'necc_monthly_connected_component',
-    **{'diagnostic:basin-'+s:'basin_monthly_component_section' for s in ['portugal-40n','south-atlantic-30w','south-pacific-100w','south-indian-80e','aleutian-160w','south-australian-132e-100m','west-australian-32s','indian-secc-80p333e','indian-secc-80p667e']},
+    **{'diagnostic:basin-'+s:'basin_monthly_component_section' for s in ['portugal-40n','south-atlantic-30w','south-pacific-100w','south-indian-80e','aleutian-160w','south-australian-132e-100m','west-australian-32s','indian-secc-80p333e','indian-secc-80p667e','south-atlantic-30w-climatology','south-pacific-100w-climatology','south-indian-80e-climatology']},
     'diagnostic:gulf-stream-widths':'gulf_stream_dated_half_peak_section',
     'diagnostic:yucatan-noaa-sections':'loop_dated_half_peak_section',
     'diagnostic:yucatan-adt-sections':'loop_dated_half_peak_section',

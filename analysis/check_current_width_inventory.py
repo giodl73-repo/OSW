@@ -29,6 +29,8 @@ def validate(document, ledger):
     validate_gogp(document)
     from check_indian_secc_oscar_climatology import validate_inventory as validate_indian_secc
     validate_indian_secc(document)
+    from check_southern_basin_oscar_climatology import validate_inventory as validate_southern
+    validate_southern(document)
     records = document["measurements"]
     if len({row["id"] for row in records}) != len(records):
         raise ValueError("Duplicate width measurement")
@@ -567,7 +569,7 @@ def validate(document, ledger):
                 calculated=rebuild_hycom()
             else:calculated=next(d for d in rebuild_basin() if d['current_id']==diagnostic['current_id'])
             expected='research/'+calculated['section_id']+'-'+str(calculated['year'])+'-monthly-component-spans.json'
-            if len(diagnostic['sources'])!=1 or diagnostic['sources'][0]['file']!=expected or diagnostic['status']!=calculated['status'] or diagnostic['metric']!=calculated['width_metric']:
+            if len(diagnostic['sources'])!=(2 if diagnostic['current_id'] in ['south-atlantic','south-pacific','south-indian'] else 1) or diagnostic['sources'][0]['file']!=expected or diagnostic['status']!=calculated['status'] or diagnostic['metric']!=calculated['width_metric']:
                 raise ValueError('Invalid basin component source identity')
             source=diagnostic['sources'][0];raw=(ROOT/source['file']).read_bytes()
             if hashlib.sha256(raw).hexdigest()!=source['sha256'] or not basin_matches(json.loads(raw),calculated):raise ValueError('Changed basin component diagnostic')

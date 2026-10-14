@@ -31,7 +31,7 @@ def main():
         page.goto('http://127.0.0.1:8788/almanac/query.html')
         page.wait_for_function('window.oswLastQueryResult',timeout=60000)
         for owner in ['portugal','south-atlantic','south-pacific','south-indian','aleutian','south-australian','west-australian']:
-            query={'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':owner}],'sort':{'field':'month','direction':'asc'},'limit':5}
+            query={'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':owner},{'field':'diagnostic_id','op':'eq','value':next(r['diagnostic_id'] for r in new if r['current_id']==owner)}],'sort':{'field':'month','direction':'asc'},'limit':5}
             expected=native(query);actual=browser_query(page,query)
             assert actual==expected and actual['total']==12
             assert actual['chart_scene']['panels'][0]['matching_samples']==12 and actual['map_scene']['mapped_objects']==12

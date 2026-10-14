@@ -5,7 +5,22 @@ use sha2::{Digest, Sha256};
 use std::collections::BTreeSet;
 
 // Renew these receipts only after rebuilding/reviewing the original-data diagnostics.
-const SOURCES: [(&str, &str, &str); 9] = [
+const SOURCES: [(&str, &str, &str); 12] = [
+    (
+        "diagnostic:basin-south-atlantic-30w-climatology",
+        "research/south-atlantic-30w-1995-2016-climatological-component-spans.json",
+        "3825f8ff3a55218d2f6808aedb17394f411e14ccfa0f88c5d7713e30fdc9c112",
+    ),
+    (
+        "diagnostic:basin-south-pacific-100w-climatology",
+        "research/south-pacific-100w-1995-2016-climatological-component-spans.json",
+        "708efa3c3bb40eaf503e99698e7b48e3445f24e75b27242641870e7251b70024",
+    ),
+    (
+        "diagnostic:basin-south-indian-80e-climatology",
+        "research/south-indian-80e-1995-2016-climatological-component-spans.json",
+        "f777b7689328f47a352a597dd30004a8e25c494aa083aeda24bb94ac31dc39e8",
+    ),
     (
         "diagnostic:basin-indian-secc-80p333e",
         "research/indian-secc-80p333e-1995-2016-climatological-component-spans.json",
@@ -57,9 +72,12 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     for (id, file, pin) in SOURCES {
         let expected_owner = match id {
             "diagnostic:basin-portugal-40n" => "current:portugal",
-            "diagnostic:basin-south-atlantic-30w" => "current:south-atlantic",
-            "diagnostic:basin-south-pacific-100w" => "current:south-pacific",
-            "diagnostic:basin-south-indian-80e" => "current:south-indian",
+            "diagnostic:basin-south-atlantic-30w"
+            | "diagnostic:basin-south-atlantic-30w-climatology" => "current:south-atlantic",
+            "diagnostic:basin-south-pacific-100w"
+            | "diagnostic:basin-south-pacific-100w-climatology" => "current:south-pacific",
+            "diagnostic:basin-south-indian-80e"
+            | "diagnostic:basin-south-indian-80e-climatology" => "current:south-indian",
             "diagnostic:basin-aleutian-160w" => "current:aleutian",
             "diagnostic:basin-south-australian-132e-100m" => "current:south-australian",
             "diagnostic:basin-west-australian-32s" => "current:west-australian",
