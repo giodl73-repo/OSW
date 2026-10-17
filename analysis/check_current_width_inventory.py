@@ -33,6 +33,8 @@ def validate(document, ledger):
     validate_southern(document)
     from check_gulf_stream_published_widths import validate_inventory as validate_gulf
     validate_gulf(document)
+    from check_loop_uhlhorn_core_width import validate_inventory as validate_loop_core
+    validate_loop_core(document)
     records = document["measurements"]
     if len({row["id"] for row in records}) != len(records):
         raise ValueError("Duplicate width measurement")
@@ -538,6 +540,9 @@ def validate(document, ledger):
                     raise ValueError('Regional Black Sea range promoted to mapped or seasonal width')
                 if context.get('pycnocline_is_measurement_layer') is not False or context.get('boundary_coordinates_supplied') is not False:
                     raise ValueError('Invented Black Sea range boundaries or layer')
+        elif row['phase_kind'] == 'campaign_geostrophic_core':
+            from check_loop_uhlhorn_core_width import validate_row as validate_loop_core_row
+            validate_loop_core_row(row)
         elif row['phase_kind'] in ['campaign_width_statistics','climatological_isopycnal_span']:
             from check_gulf_stream_published_widths import validate_row as validate_gulf_row
             validate_gulf_row(row)
@@ -604,7 +609,7 @@ def validate(document, ledger):
         expected = {record["id"] for record in records if record["current_id"] == row["current_id"]}
         if set(row["measurement_ids"]) != expected or row["whole_current_width_km"] is not None or row["width_decision"] not in states or bool(expected) != (row["width_decision"] == "scoped_width_evidence_present"):
             raise ValueError("Width decision mismatch")
-        if (row['width_decision'] == 'section_span_diagnostic_present_width_unresolved') != any(span['current_id'] == row['current_id'] for span in spans):
+        if (row['width_decision'] == 'section_span_diagnostic_present_width_unresolved') != (not expected and any(span['current_id'] == row['current_id'] for span in spans)):
             raise ValueError('Section-span decision mismatch')
         if (row['width_decision'] == 'derived_width_candidate_requires_review') != any(candidate['current_id'] == row['current_id'] for candidate in derived):
             raise ValueError('Derived width decision mismatch')
@@ -619,7 +624,7 @@ def validate(document, ledger):
         if summary["range_kind"] != "span_of_reported_seasonal_typical_values" or summary["reported_seasonal_value_span_km"] != [min(row["approximate_width_km"] for row in members), max(row["approximate_width_km"] for row in members)]:
             raise ValueError("Seasonal span mismatch")
     counts = {"currents": len(ids), "currents_with_scoped_width_evidence": len({row["current_id"] for row in records}), "measurements": len(records), "currents_with_existing_mentions_pending_review": sum(row["width_decision"] == "existing_width_mention_requires_source_review" for row in decisions), "currents_not_assessed": sum(row["width_decision"] == "width_not_assessed" for row in decisions)}
-    counts['currents_with_section_span_diagnostics_width_unresolved'] = len(spans)
+    counts['currents_with_section_span_diagnostics_width_unresolved'] = sum(row['width_decision'] == 'section_span_diagnostic_present_width_unresolved' for row in decisions)
     counts['currents_with_derived_width_candidates_pending_review'] = len(derived)
     counts['currents_with_sources_reviewed_no_numeric_width'] = len(reviews)
     if counts != document["counts"]:

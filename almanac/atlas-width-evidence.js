@@ -19,6 +19,8 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
     node('p','Missing evidence does not mean zero width or physical absence.');return;
   }
   node('p',`${records.length} local or regional source record${records.length===1?'':'s'}. Definitions differ; these do not establish a uniform whole-current width or annual extrema.`);
+  const retainedSpan=inventory.section_span_diagnostics?.find(diagnostic=>diagnostic.current_id===id);
+  if(retainedSpan){node('p',retainedSpan.scope_note);link('Map local component spans',retainedSpan.visual_url,section);}
   const format=value=>Number(value).toLocaleString('en-US');
   window.renderStreamTubeWidths(section,records);
   if(id==='deep-western-boundary')window.renderDwbcFloatComposite(section,window.oswAtlasSnapshot?.dwbc_float_composite_scene);

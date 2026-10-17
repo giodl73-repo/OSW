@@ -17,7 +17,8 @@ class DashboardEvidenceTests(unittest.TestCase):
         self.assertEqual(network['capabilities']['flow_network'],1)
         self.assertEqual(network['capabilities']['passage_transport'],3)
         self.assertIsNone(network['latest_observation_date'])
-        self.assertEqual(loop['capabilities']['scoped_width'],2)
+        # Two retained component diagnostics plus one published regional core.
+        self.assertEqual(loop['capabilities']['scoped_width'],3)
         self.assertEqual(network['capabilities']['scoped_width'],0)
         for row in [loop,network]:
             self.assertEqual(row['capabilities']['reported_length'],0)

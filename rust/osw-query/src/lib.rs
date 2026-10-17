@@ -200,6 +200,7 @@ impl Store {
         original_regional_widths::validate_atlantic_seuc_inventory(&bundle)?;
         original_regional_widths::validate_gogp_inventory(&bundle)?;
         original_regional_widths::validate_gulf_stream_inventory(&bundle)?;
+        original_regional_widths::validate_loop_core_inventory(&bundle)?;
         original_regional_widths::validate_antarctic_jet_inventory(&bundle)?;
         observed_spans::validate(&bundle)?;
         nordic_widths::validate(&bundle)?;

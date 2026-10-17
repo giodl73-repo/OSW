@@ -138,6 +138,12 @@ def build():
     validate_slope(slope_audit,width_inventory)
     read('research/source-data/darelius-asc-2024/acquisition.json')
     inputs[slope_audit['source_pdf_file']]=slope_audit['source_pdf_sha256']
+    from check_loop_uhlhorn_core_width import validate_inventory as validate_loop_core, AUDIT as LOOP_CORE_AUDIT
+    validate_loop_core(width_inventory)
+    loop_core_audit=read(LOOP_CORE_AUDIT)
+    read(loop_core_audit['acquisition_file']);read(loop_core_audit['integrity_contract_file'])
+    for path in [loop_core_audit['protocol_file'],'analysis/check_loop_uhlhorn_core_width.py','analysis/uhlhorn_thesis_source.py','analysis/melet_hal_source.py','figures/loop-uhlhorn-2008-core-width.svg']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from check_gulf_stream_published_widths import validate_inventory as validate_gulf, AUDIT as GULF_AUDIT
     validate_gulf(width_inventory)
     gulf_audit=read(GULF_AUDIT)
@@ -615,6 +621,9 @@ def build():
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],
         }
+        if current_id=='loop':
+            groups['measurements'].append(loop_core_audit);groups['sources'].append(loop_core_audit)
+            evidence_links.append({'label':'Pre-Lili geostrophic core width definition','url':'../figures/loop-uhlhorn-2008-core-width.svg'})
         if current_id=='gulf-stream':
             groups['measurements'].append(gulf_audit);groups['sources'].append(gulf_audit)
             groups['time_evidence'].append(gulf_audit)

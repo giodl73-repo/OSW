@@ -18,7 +18,7 @@ def main():
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Aloop#route-atlas')
         row=page.locator('#width-decision-loop')
-        expect(row).to_contain_text('section span diagnostic present width unresolved',timeout=90000)
+        expect(row).to_contain_text('scoped width evidence present',timeout=90000)
         count=json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())['counts']['currents_with_section_span_diagnostics_width_unresolved']
         expect(page.locator('#width-status')).to_contain_text(str(count)+' have component-span diagnostics with width unresolved')
         atlas=page.locator('#route-atlas-preview .atlas-width-evidence')

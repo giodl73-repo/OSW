@@ -3,6 +3,11 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 const SOURCES: &[(&str, &str, &str)] = &[
     (
+        "loop",
+        "research/loop-uhlhorn-2008-core-width-scope-audit.json",
+        include_str!("../../../research/loop-uhlhorn-2008-core-width-scope-audit.json"),
+    ),
+    (
         "gulf-stream",
         "research/gulf-stream-published-width-definitions-scope-audit.json",
         include_str!("../../../research/gulf-stream-published-width-definitions-scope-audit.json"),
@@ -570,6 +575,67 @@ pub(crate) fn validate_gulf_stream_inventory(bundle: &crate::Bundle) -> Result<(
         || d["current_id"] != "gulf-stream"
     {
         return Err("Changed Gulf Stream diagnostic or original binding".into());
+    }
+    Ok(())
+}
+
+pub(crate) fn validate_loop_core_inventory(bundle: &crate::Bundle) -> Result<(), String> {
+    let (_, path, raw) = SOURCES
+        .iter()
+        .find(|s| s.0 == "loop")
+        .ok_or("Missing Loop core source")?;
+    if bundle.manifest["input_sha256"].get(*path).is_none()
+        && !bundle
+            .collections
+            .get("objects")
+            .into_iter()
+            .flatten()
+            .any(|r| r["id"] == "current:loop")
+    {
+        return Ok(());
+    }
+    let doc: Value = serde_json::from_str(raw).map_err(|e| e.to_string())?;
+    let rows: Vec<_> = bundle
+        .collections
+        .get("widths")
+        .into_iter()
+        .flatten()
+        .filter(|r| r["id"] == doc["measurement"]["id"] || r["current_id"] == "loop")
+        .collect();
+    if rows.len() != 1
+        || bundle.manifest["input_sha256"][path] != format!("{:x}", Sha256::digest(raw.as_bytes()))
+    {
+        return Err("Missing or rebound Loop core inventory".into());
+    }
+    validate(rows[0])?;
+    for kind in ["acquisition", "protocol", "integrity_contract"] {
+        let key = doc[format!("{kind}_file")]
+            .as_str()
+            .ok_or("Missing Loop core source dependency")?;
+        if bundle.manifest["input_sha256"][key] != doc[format!("{kind}_sha256")] {
+            return Err("Changed Loop core provenance binding".into());
+        }
+    }
+    let diagnostics: Vec<_> = bundle
+        .collections
+        .get("diagnostics")
+        .into_iter()
+        .flatten()
+        .filter(|r| r["id"] == "diagnostic:uhlhorn-loop-core-width")
+        .collect();
+    if diagnostics.len() != 1 {
+        return Err("Missing Loop core diagnostic".into());
+    }
+    let d = diagnostics[0];
+    if d["document"] != doc
+        || d["source_file"] != *path
+        || d["source_json"] != *raw
+        || d["source_file_sha256"] != format!("{:x}", Sha256::digest(raw.as_bytes()))
+        || d["entity_id"] != "current:loop"
+        || d["current_id"] != "loop"
+        || d["rank_eligible"] != false
+    {
+        return Err("Changed Loop core source diagnostic".into());
     }
     Ok(())
 }

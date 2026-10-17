@@ -35,6 +35,12 @@ def build():
     for path in [gogp['protocol_file'],'analysis/check_persian_gulf_geostrophic_scales.py','figures/persian-gulf-gogp99-geostrophic-scales.svg']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
+    from check_loop_uhlhorn_core_width import validate_inventory as validate_loop_core, AUDIT as LOOP_CORE_AUDIT
+    validate_loop_core(widths)
+    loop_core_audit=read(LOOP_CORE_AUDIT)
+    read(loop_core_audit['acquisition_file']);read(loop_core_audit['integrity_contract_file'])
+    for path in [loop_core_audit['protocol_file'],'analysis/check_loop_uhlhorn_core_width.py','analysis/uhlhorn_thesis_source.py','analysis/melet_hal_source.py','figures/loop-uhlhorn-2008-core-width.svg']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from check_gulf_stream_published_widths import validate_inventory as validate_gulf, AUDIT as GULF_AUDIT
     validate_gulf(widths)
     gulf_audit=read(GULF_AUDIT)
@@ -351,6 +357,10 @@ def build():
         'entity_id':'current:gulf-stream','current_id':'gulf-stream','status':gulf_audit['status'],'rank_eligible':False,
         'source_file':GULF_AUDIT,'source_file_sha256':inputs[GULF_AUDIT],
         'source_json':(ROOT/GULF_AUDIT).read_bytes().decode('utf8'),'document':gulf_audit})
+    collections['diagnostics'].append({'id':'diagnostic:uhlhorn-loop-core-width','label':'Loop Current prestorm fixed-speed geostrophic core',
+        'entity_id':'current:loop','current_id':'loop','status':loop_core_audit['status'],'rank_eligible':False,
+        'source_file':LOOP_CORE_AUDIT,'source_file_sha256':inputs[LOOP_CORE_AUDIT],
+        'source_json':(ROOT/LOOP_CORE_AUDIT).read_bytes().decode('utf8'),'document':loop_core_audit})
     florida_diagnostic=next(d for d in collections['diagnostics'] if d['id']=='diagnostic:florida-monthly-width')
     florida_path='research/florida-monthly-width-plot-extraction.json'
     florida_diagnostic.update(source_file=florida_path,source_file_sha256=inputs[florida_path],source_json=(ROOT/florida_path).read_bytes().decode('utf-8'))
