@@ -53,6 +53,7 @@ than mislabeling fresh response bytes as the historical original checksum.
   their parent inventory hash. Four other cards change only that same hash
   inside seasonal map features; their geography and science remain unchanged.
 -60 focused source/acquisition tests and20 subtests pass in6.81 seconds.
+-39 inventory/climatology tests and538 subtests pass in406.77 seconds.
 -Fresh-only source tests:20 tests /13 subtests pass using an actual separately
   acquired HAL response, without the historical original file.
 -47 Rust tests pass in1.85 seconds.70 engine dependency hashes verify.
@@ -61,10 +62,12 @@ than mislabeling fresh response bytes as the historical original checksum.
 -Actual South Pacific atlas/seasons/query/source/inspector/mobile parity passes;
   all nine coherent native/WASM alterations reject. No PDF requests or seasonal
   playback. Mobile card and independent figure visually inspected.
+-Actual NGCC browser regression passes all four unchanged descriptors, both
+  distinct metrics, static phase handling, mobile and three native/WASM rejections.
 -JavaScript syntax passes for55 almanac files;14 pages have validation assignments.
 
 At this checkpoint the complete offline suite is running from clean62f2a2b;
-NGCC, retained southern climatologies, all-collection and all-card browser
+Retained southern climatologies, all-collection and all-card browser
 regressions are also in progress. These gates are not claimed as passing yet.
 Logs are local under `.pytest_cache/south-pacific-constraint-preparation/` and
 `.pytest_cache/radenac-cover-review/`. Update this receipt when terminal.
