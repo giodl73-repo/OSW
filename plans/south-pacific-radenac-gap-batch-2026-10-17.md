@@ -89,3 +89,10 @@ python analysis/run_rust_query_browser_checks.py --start-server
 Never rebuild the native executable while validation uses it. Existing
 loopback-server users should omit `--start-server`. No claim of complete
 current measurement coverage follows from the scoped-record count.
+
+## Subsequent acquisition transport repair
+
+Remote CI confirms both new South Pacific acquisition and Radenac edition
+verification, then finds a missing issuer-chain link at the Qiu2010 SOEST host.
+The separately tested scoped repair and unchanged source pin are documented in
+`plans/qiu-soest-chain-repair-2026-10-17.md`. No data or executable regenerated.
