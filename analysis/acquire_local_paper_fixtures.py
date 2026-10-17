@@ -15,7 +15,7 @@ import urllib.error
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPERS = ('uhlhorn-loop-2008', 'richardson-gulf-stream-1971', 'lozier-gulf-stream-1995', 'pous-hormuz-2004', 'pous-oman-2004', 'molinari-atlantic-seuc-1981', 'radenac-ngcc-2016', 'rotschi-secc-1972', 'peters-redsox-2005', 'pasaric-adriatic-2019', 'hughes-hiri-1993', 'duncan-caribbean-1982', 'kuroshio-liu-gan-2012', 'leeuwin-deng-2008', 'florida-archer-2017', 'chen-madagascar-2014', 'qiu-chen-nec-2010', 'van-aken-astrid-2003', 'schott-mccreary-2001', 'djakoure-guinea-2017', 'gouriou-atlantic-1988', 'sasaki-kuroshio-extension-2013', 'zenk-ngcu-1999', 'siedler-sonne-1997', 'cresswell-zeehan-2000', 'matsuyama-tsushima-1990', 'glenn-wac-2008', 'fissel-baffin-1982', 'chavanne-adriatic-2007', 'skov-jutland-2019', 'nielsen-jutland-2000', 'melet-solomon-2010', 'tomczak-regional-2005', 'park-acc-2019', 'nilsson-tasman-1980', 'richardson-dwbc-1993', 'wijeratne-australia-2018', 'meinen-antilles-2019', 'knorr-kn2004-2011', 'socib-regional-estimates-2023')
+PAPERS = ('stramma-south-pacific-1995', 'uhlhorn-loop-2008', 'richardson-gulf-stream-1971', 'lozier-gulf-stream-1995', 'pous-hormuz-2004', 'pous-oman-2004', 'molinari-atlantic-seuc-1981', 'radenac-ngcc-2016', 'rotschi-secc-1972', 'peters-redsox-2005', 'pasaric-adriatic-2019', 'hughes-hiri-1993', 'duncan-caribbean-1982', 'kuroshio-liu-gan-2012', 'leeuwin-deng-2008', 'florida-archer-2017', 'chen-madagascar-2014', 'qiu-chen-nec-2010', 'van-aken-astrid-2003', 'schott-mccreary-2001', 'djakoure-guinea-2017', 'gouriou-atlantic-1988', 'sasaki-kuroshio-extension-2013', 'zenk-ngcu-1999', 'siedler-sonne-1997', 'cresswell-zeehan-2000', 'matsuyama-tsushima-1990', 'glenn-wac-2008', 'fissel-baffin-1982', 'chavanne-adriatic-2007', 'skov-jutland-2019', 'nielsen-jutland-2000', 'melet-solomon-2010', 'tomczak-regional-2005', 'park-acc-2019', 'nilsson-tasman-1980', 'richardson-dwbc-1993', 'wijeratne-australia-2018', 'meinen-antilles-2019', 'knorr-kn2004-2011', 'socib-regional-estimates-2023')
 RETRY_DELAYS = (1, 3)
 TRANSIENT_HTTP = {408, 429, 500, 502, 503, 504}
 # Byte-identical institutional locations verified 2026-10-09 (Zenk) and
@@ -60,6 +60,10 @@ def verify(name, manifest, data):
     maximum = {'pasaric-adriatic-2019':110_000_000,'florida-archer-2017':50_000_000,'glenn-wac-2008':60_000_000,'tomczak-regional-2005':40_000_000}.get(name,20_000_000)
     if len(data) > maximum or not data.startswith(b'%PDF-'):
         raise ValueError(f'{name}: expected a PDF below {maximum//1_000_000} MB')
+    if name == 'radenac-ngcc-2016':
+        from radenac_hal_source import verify_rendition
+        verify_rendition(data, manifest)
+        return data
     if name == 'uhlhorn-loop-2008':
         from uhlhorn_thesis_source import verify_rendition
         verify_rendition(data, manifest)
@@ -130,15 +134,15 @@ def acquire(name, directory):
         raise ValueError('Unsupported local source document filename')
     destination = directory / filename
     if destination.exists():
-        if name in {'melet-solomon-2010','uhlhorn-loop-2008'} and hashlib.sha256(destination.read_bytes()).hexdigest() != manifest['sha256']:
+        if name in {'melet-solomon-2010','uhlhorn-loop-2008','radenac-ngcc-2016'} and hashlib.sha256(destination.read_bytes()).hexdigest() != manifest['sha256']:
             raise ValueError('Changed retained Melet original; no rendition fallback')
         return verify(name, manifest, destination.read_bytes())
-    if name in {'melet-solomon-2010','uhlhorn-loop-2008'}:
+    if name in {'melet-solomon-2010','uhlhorn-loop-2008','radenac-ngcc-2016'}:
         from melet_hal_source import CURRENT_FILENAME
         current = directory / CURRENT_FILENAME
         if current.exists():return verify(name, manifest, current.read_bytes())
     data = download(name, manifest)
-    if name in {'melet-solomon-2010','uhlhorn-loop-2008'} and hashlib.sha256(data).hexdigest() != manifest['sha256']:
+    if name in {'melet-solomon-2010','uhlhorn-loop-2008','radenac-ngcc-2016'} and hashlib.sha256(data).hexdigest() != manifest['sha256']:
         destination = directory / CURRENT_FILENAME
     # Stage only verified bytes. A failed write cannot leave a partial fixture.
     temporary = None
@@ -179,6 +183,11 @@ def main():
             from uhlhorn_thesis_source import ORIGINAL_SHA
             if hashlib.sha256(data).hexdigest() != ORIGINAL_SHA:
                 print(f'{name}: unchanged176-page thesis graph verified; generated-cover response retained separately; excluded from Git')
+                continue
+        if name == 'radenac-ngcc-2016':
+            from radenac_hal_source import ORIGINAL_SHA
+            if hashlib.sha256(data).hexdigest() != ORIGINAL_SHA:
+                print(f'{name}: unchanged22-page article graph verified; generated-cover response retained separately; excluded from Git')
                 continue
         print(f'{name}: local original verified; excluded from Git')
 

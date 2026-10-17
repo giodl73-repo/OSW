@@ -36,7 +36,11 @@ def validate_inventory(inventory):
         original,original_pin=BASE_SOURCES[owner]
         expected=[{'file':original,'sha256':original_pin},{'file':path,'sha256':DOCUMENTS[path]}]
         if len(entries)!=1 or entries[0]['sources']!=expected:raise ValueError('Missing, pooled or rebound southern-basin evidence')
-        if any(r['current_id']==owner for r in inventory['measurements']):raise ValueError('Southern-basin component promoted to published width')
+        published=[r for r in inventory['measurements'] if r['current_id']==owner]
+        if owner=='south-pacific':
+            from check_south_pacific_band_constraint import record
+            if published != [record()]:raise ValueError('Changed independent South Pacific published constraint')
+        elif published:raise ValueError('Southern-basin component promoted to published width')
         entry=entries[0]
         if entry['whole_current_width_km'] is not None or entry['annual_width_range_km'] is not None or entry['width_rank_eligible'] is not False or entry['annual_extrema_eligible'] is not False:
             raise ValueError('Southern-basin component promoted to physical dimension')

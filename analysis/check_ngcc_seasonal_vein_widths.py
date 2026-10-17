@@ -15,7 +15,11 @@ def validate_row(row,audit=None):
     reviewed=json.loads((ROOT/AUDIT).read_bytes())
     if digest(AUDIT)!=PIN or audit is not None and audit!=reviewed:
         raise ValueError('Changed reviewed NGCC seasonal vein audit')
-    for kind in ['source_document','acquisition','protocol']:
+    from radenac_hal_source import resolve_source, ORIGINAL_SHA
+    if reviewed['source_document_sha256'] != ORIGINAL_SHA:
+        raise ValueError('Changed reviewed NGCC original-response identity')
+    resolve_source()
+    for kind in ['acquisition','protocol']:
         if digest(reviewed[kind+'_file'])!=reviewed[kind+'_sha256']:
             raise ValueError('Changed NGCC original or descriptor support')
     i=next((i for i,r in enumerate(reviewed['measurements']) if r['id']==row.get('id')),None)

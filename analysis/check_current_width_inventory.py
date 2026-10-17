@@ -35,6 +35,8 @@ def validate(document, ledger):
     validate_gulf(document)
     from check_loop_uhlhorn_core_width import validate_inventory as validate_loop_core
     validate_loop_core(document)
+    from check_south_pacific_band_constraint import validate_inventory as validate_south_pacific
+    validate_south_pacific(document)
     records = document["measurements"]
     if len({row["id"] for row in records}) != len(records):
         raise ValueError("Duplicate width measurement")
@@ -93,7 +95,7 @@ def validate(document, ledger):
             elif value is not None or row.get('range_kind') != 'reported_typical_regional_width_span' or row['phase_kind'] != 'regional_summary':
                 raise ValueError('Unsupported regional range or invented representative width')
         elif row.get('reported_width_constraint'):
-            if row['current_id'] not in {'antarctic-slope','new-guinea-coastal-undercurrent','west-australian','solomon-island-coastal-undercurrent','new-ireland-coastal-undercurrent','north-pacific'} or value is not None or span is not None:
+            if row['current_id'] not in {'antarctic-slope','new-guinea-coastal-undercurrent','west-australian','solomon-island-coastal-undercurrent','new-ireland-coastal-undercurrent','north-pacific','south-pacific'} or value is not None or span is not None:
                 raise ValueError('Unbound size constraint or promoted numeric width')
         elif not isinstance(value, (float, int)) or isinstance(value, bool) or not math.isfinite(value) or value <= 0:
             raise ValueError("Invalid width")
@@ -513,6 +515,9 @@ def validate(document, ledger):
         elif row['phase_kind'] == 'coastal_composite_threshold_section':
             from check_antarctic_coastal_composites import validate_row
             validate_row(row)
+        elif row['phase_kind'] == 'month_dated_width_constraint':
+            from check_south_pacific_band_constraint import validate_row as validate_south_pacific_row
+            validate_south_pacific_row(row)
         elif row['phase_kind'] == 'dated_width_constraint':
             from check_antarctic_slope_jet_constraint import validate_row as validate_jet_row
             validate_jet_row(row)

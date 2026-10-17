@@ -109,7 +109,12 @@ def build():
             inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
             if inputs[dependency]!=pin:raise ValueError('Changed Indian SECC source support')
     read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
-    for path in ['research/source-data/radenac-ngcc-2016/journal-article.pdf','plans/ngcc-seasonal-vein-width-protocol-v1.md','analysis/check_ngcc_seasonal_vein_widths.py']:
+    from check_south_pacific_band_constraint import AUDIT as SPC_AUDIT
+    spc_audit=read(SPC_AUDIT);read(spc_audit['acquisition_file'])
+    for path in [spc_audit['source_document_file'],spc_audit['protocol_file'],spc_audit['figure_file'],'analysis/check_south_pacific_band_constraint.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from radenac_hal_source import integrity_inputs as radenac_inputs
+    for path in radenac_inputs()+['plans/ngcc-seasonal-vein-width-protocol-v1.md','analysis/check_ngcc_seasonal_vein_widths.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     pacific_secc_width_audit=read('research/pacific-secc-rotschi-1972-width-range-scope-audit.json');read('research/source-data/rotschi-secc-1972/acquisition.json')
     width_inventory = read('research/ocean-current-width-inventory.json')
@@ -638,6 +643,10 @@ def build():
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],
         }
+        if current_id=='south-pacific':
+            groups['measurements'].append(spc_audit);groups['sources'].append(spc_audit)
+            groups['time_evidence'].append(spc_audit)
+            evidence_links.append({'label':'March 1990 reported band width constraint','url':'../figures/south-pacific-stramma-1990-band-constraint.svg'})
         if current_id=='loop':
             groups['measurements'].append(loop_core_audit);groups['sources'].append(loop_core_audit)
             evidence_links.append({'label':'Pre-Lili geostrophic core width definition','url':'../figures/loop-uhlhorn-2008-core-width.svg'})

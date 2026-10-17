@@ -19,6 +19,7 @@ def main():
     paths=['rust/osw-query/Cargo.toml','rust/osw-query/Cargo.lock','rust/osw-query/src/lib.rs','rust/osw-query/src/map.rs','rust/osw-query/src/spatial.rs','rust/osw-query/src/workspace.rs','rust/osw-query/src/rebase.rs','rust/osw-query/src/main.rs',
            'rust/osw-query/src/svg.rs','rust/osw-query/src/temporal.rs','rust/osw-query/src/seasonal.rs','rust/osw-query/src/samples.rs','rust/osw-query/src/charts.rs','rust/osw-query/src/planning.rs','rust/osw-query/src/loop_diagnostics.rs','rust/osw-query/src/network.rs','rust/osw-query/src/taxonomy.rs','figures/ocean-motion-dashboard-ground.svg','almanac/query-engine.wasm','almanac/query-data.json']
     paths.extend(['rust/osw-query/src/current_sections.rs','research/agulhas-asca-100m-query-contract.json'])
+    paths.extend(['research/radenac-ngcc-2016-journal-integrity-contract.json','analysis/radenac_hal_source.py'])
     paths.append('rust/osw-query/src/basin_spans.rs')
     paths.append('rust/osw-query/src/observed_spans.rs')
     paths.append('rust/osw-query/src/nordic_widths.rs')
@@ -44,6 +45,7 @@ def main():
     paths.append('rust/osw-query/src/original_regional_widths.rs')
     paths.append('research/gulf-stream-published-width-definitions-scope-audit.json')
     paths.append('research/loop-uhlhorn-2008-core-width-scope-audit.json')
+    paths.append('research/south-pacific-stramma-1995-width-constraint-scope-audit.json')
     paths.append('rust/osw-query/src/dwbc_float_composite.rs')
     paths.extend(['rust/osw-query/src/published_transports.rs','rust/osw-query/src/pacific_neuc_breadths.rs'])
     paths.extend(['rust/osw-query/src/coastal_composite_widths.rs','figures/schubert-aacc-2021-source-sections.png'])

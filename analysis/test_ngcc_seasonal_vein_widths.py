@@ -14,9 +14,17 @@ class NgccSeasonalVeinTests(unittest.TestCase):
 
     def test_complete_original_and_width_passage(self):
         self.assertEqual(hashlib.sha256((ROOT/AUDIT).read_bytes()).hexdigest(),PIN)
-        raw=(ROOT/self.audit['source_document_file']).read_bytes()
-        self.assertEqual(len(raw),7675633)
-        self.assertEqual(hashlib.sha256(raw).hexdigest(),'6da50667b80790752fa0189ff9cf0cdfd88c521509b0f393365de306286bacbe')
+        from radenac_hal_source import resolve_source, verify_rendition, ORIGINAL_SHA
+        raw=resolve_source().read_bytes()
+        receipt=json.loads((ROOT/self.audit['acquisition_file']).read_bytes())
+        proof=verify_rendition(raw,receipt)
+        if hashlib.sha256(raw).hexdigest()==ORIGINAL_SHA:
+            self.assertEqual(len(raw),7675633)
+            self.assertEqual(proof['kind'],'exact_reviewed_original')
+        else:
+            self.assertEqual(proof['kind'],'verified_generated_HAL_cover_rendition')
+            self.assertEqual(proof['reviewed_original_sha256'],ORIGINAL_SHA)
+            self.assertEqual(proof['journal_graph_sha256'],'fe9a7071fe427195d563a0bc2a84752875ddd88b94252ca6b9aaa46e1b72ca34')
         with pymupdf.open(stream=raw,filetype='pdf') as doc:
             self.assertEqual(len(doc),23)
             text=doc[12].get_text()

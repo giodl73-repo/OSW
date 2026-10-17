@@ -80,7 +80,12 @@ def build():
     for path in ['research/source-data/kolas-fer-wsc-2018/journal-article.pdf','plans/west-spitsbergen-stream-tube-width-protocol-v1.md','analysis/check_west_spitsbergen_stream_tubes.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
-    for path in ['research/source-data/radenac-ngcc-2016/journal-article.pdf','plans/ngcc-seasonal-vein-width-protocol-v1.md','analysis/check_ngcc_seasonal_vein_widths.py']:
+    from check_south_pacific_band_constraint import AUDIT as SPC_AUDIT
+    spc_audit=read(SPC_AUDIT);read(spc_audit['acquisition_file'])
+    for path in [spc_audit['source_document_file'],spc_audit['protocol_file'],spc_audit['figure_file'],'analysis/check_south_pacific_band_constraint.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from radenac_hal_source import integrity_inputs as radenac_inputs
+    for path in radenac_inputs()+['plans/ngcc-seasonal-vein-width-protocol-v1.md','analysis/check_ngcc_seasonal_vein_widths.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/pacific-secc-rotschi-1972-width-range-scope-audit.json');read('research/source-data/rotschi-secc-1972/acquisition.json')
     for path in ['research/source-data/rotschi-secc-1972/journal-article.pdf','plans/pacific-secc-historical-width-protocol-v1.md','analysis/check_pacific_secc_historical_width.py']:
@@ -361,6 +366,11 @@ def build():
         'entity_id':'current:loop','current_id':'loop','status':loop_core_audit['status'],'rank_eligible':False,
         'source_file':LOOP_CORE_AUDIT,'source_file_sha256':inputs[LOOP_CORE_AUDIT],
         'source_json':(ROOT/LOOP_CORE_AUDIT).read_bytes().decode('utf8'),'document':loop_core_audit})
+    collections['diagnostics'].append({'id':'diagnostic:south-pacific-dated-band-constraint',
+        'label':'South Pacific March 1990 relative-geostrophic band constraint',
+        'entity_id':'current:south-pacific','current_id':'south-pacific','status':spc_audit['status'],'rank_eligible':False,
+        'source_file':SPC_AUDIT,'source_file_sha256':inputs[SPC_AUDIT],
+        'source_json':(ROOT/SPC_AUDIT).read_bytes().decode('utf8'),'document':spc_audit})
     florida_diagnostic=next(d for d in collections['diagnostics'] if d['id']=='diagnostic:florida-monthly-width')
     florida_path='research/florida-monthly-width-plot-extraction.json'
     florida_diagnostic.update(source_file=florida_path,source_file_sha256=inputs[florida_path],source_json=(ROOT/florida_path).read_bytes().decode('utf-8'))

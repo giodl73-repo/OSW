@@ -3,6 +3,13 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 const SOURCES: &[(&str, &str, &str)] = &[
     (
+        "south-pacific",
+        "research/south-pacific-stramma-1995-width-constraint-scope-audit.json",
+        include_str!(
+            "../../../research/south-pacific-stramma-1995-width-constraint-scope-audit.json"
+        ),
+    ),
+    (
         "loop",
         "research/loop-uhlhorn-2008-core-width-scope-audit.json",
         include_str!("../../../research/loop-uhlhorn-2008-core-width-scope-audit.json"),
@@ -186,6 +193,48 @@ const SOURCES: &[(&str, &str, &str)] = &[
     ),
 ];
 
+pub(crate) fn validate_south_pacific_inventory(bundle: &crate::Bundle) -> Result<(), String> {
+    let (_, path, raw) = SOURCES
+        .iter()
+        .find(|s| s.0 == "south-pacific")
+        .copied()
+        .unwrap();
+    let present = bundle.manifest["input_sha256"].get(path).is_some()
+        || bundle
+            .collections
+            .get("objects")
+            .into_iter()
+            .flatten()
+            .any(|r| r["id"] == "current:south-pacific");
+    if !present {
+        return Ok(());
+    }
+    let audit: Value = serde_json::from_str(raw).map_err(|e| e.to_string())?;
+    let rows: Vec<_> = bundle
+        .collections
+        .get("widths")
+        .into_iter()
+        .flatten()
+        .filter(|r| r["current_id"] == "south-pacific")
+        .collect();
+    if rows.len() != 1
+        || rows[0]["id"] != audit["measurement"]["id"]
+        || bundle.manifest["input_sha256"][path] != format!("{:x}", Sha256::digest(raw.as_bytes()))
+    {
+        return Err("Missing or rebound South Pacific dated band constraint".into());
+    }
+    validate(rows[0])?;
+    for key in ["source_document", "acquisition", "protocol", "figure"] {
+        let file = audit[format!("{key}_file")]
+            .as_str()
+            .ok_or("Missing South Pacific dependency")?;
+        if bundle.manifest["input_sha256"][file] != audit[format!("{key}_sha256")] {
+            return Err("Changed South Pacific source dependency".into());
+        }
+    }
+    Ok(())
+}
+
 pub(crate) fn validate_ngcc_inventory(bundle: &crate::Bundle) -> Result<(), String> {
     let (_, path, raw) = SOURCES
         .iter()
@@ -202,6 +251,14 @@ pub(crate) fn validate_ngcc_inventory(bundle: &crate::Bundle) -> Result<(), Stri
             .any(|r| r["id"] == owner);
     if !present {
         return Ok(());
+    }
+    let edition_path = "research/radenac-ngcc-2016-journal-integrity-contract.json";
+    let edition =
+        include_str!("../../../research/radenac-ngcc-2016-journal-integrity-contract.json");
+    if bundle.manifest["input_sha256"][edition_path]
+        != format!("{:x}", Sha256::digest(edition.as_bytes()))
+    {
+        return Err("NGCC original article edition contract changed".into());
     }
     let expected: Value = serde_json::from_str(raw).map_err(|e| e.to_string())?;
     let descriptors = expected["measurements"]

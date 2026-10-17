@@ -195,6 +195,7 @@ impl Store {
             fields.insert(name.clone(), keys);
         }
         published_transports::validate(&bundle)?;
+        original_regional_widths::validate_south_pacific_inventory(&bundle)?;
         original_regional_widths::validate_ngcc_inventory(&bundle)?;
         original_regional_widths::validate_azores_inventory(&bundle)?;
         original_regional_widths::validate_balearic_inventory(&bundle)?;
