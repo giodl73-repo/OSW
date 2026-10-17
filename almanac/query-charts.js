@@ -51,6 +51,7 @@ window.oswCharts=(()=>{
     if(scene.kind==='pacific_neuc_isopycnal_breadths'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Isopycnal jet breadths';window.renderPacificNeucBreadths(root(),scene,null,inspect);return;}
     if(scene.kind==='coastal_composite_widths'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Composite section widths';window.renderCoastalCompositeWidths(root(),scene,null,inspect);return;}
     if(scene.kind==='published_section_transports'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Published section transport';window.renderPublishedSectionTransports(root(),scene,inspect);return;}
+    if(scene.kind==='current_sections'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Observed current sections';window.oswCurrentSectionCharts.render(scene,inspect,root(),stop=>stops.push(stop));return;}
     if(scene.kind==='mooring_velocity'){window.oswMooringVelocityCharts.render(scene,inspect,root(),stop=>stops.push(stop));return;}
     if(!scene.panels.length)html('p','No source samples match this query. Missing coverage does not mean zero width.',root());
     for(const [index,panel] of scene.panels.entries()){

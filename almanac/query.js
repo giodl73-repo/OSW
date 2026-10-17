@@ -55,6 +55,7 @@
   names.seasonal_routes='Source-defined seasonal routes';
   names.width_samples='Scoped width samples';
   names.current_velocity_samples='Observed current velocity';
+  names.current_sections='Observed current sections';
   names.observed_section_spans='Observed component survey spans';
   names.route_decisions='Remaining current-length decisions';
   names.model_frames='Hourly model section frames';
@@ -373,6 +374,7 @@
     const links=element('div',undefined,parent);links.className='record-links';
     if(/^almanac\/[a-z0-9-]+\.html$/.test(row.diagnostic_page||''))link('View mapped experiment','../'+row.diagnostic_page+(row.observation_date?'?date='+encodeURIComponent(row.observation_date):''),links);
     if(['gulf_stream_dated_half_peak_section','loop_dated_half_peak_section','basin_monthly_component_section'].includes(row.sample_family)&&row.status==='paired_boundaries'&&row.value_km!==null)link('Map this local section span','query.html?q='+encodeURIComponent(JSON.stringify({collection:'width_samples',filters:[{field:'id',op:'eq',value:row.id}],limit:50}))+'#query-map-section',links);
+    if(row.current_section_ids?.length)link('Observed monthly section charts','query.html?q='+encodeURIComponent(JSON.stringify({collection:'current_sections',filters:[{field:'current_id',op:'eq',value:row.id.replace(/^current:/,'')}],limit:100}))+'#query-chart-section',links);
     if(row.velocity_sample_ids?.length)link('Observed velocity and seasonal charts','query.html?q='+encodeURIComponent(JSON.stringify({collection:'current_velocity_samples',filters:[{field:'current_id',op:'eq',value:row.id.replace(/^current:/,'')}],limit:100}))+'#query-chart-section',links);
     if(row.width_sample_ids?.length)link('Query scoped width samples','query.html?q='+encodeURIComponent(JSON.stringify({collection:'width_samples',filters:[{field:'current_id',op:'eq',value:row.id.replace(/^current:/,'')}],sort:{field:'label'},limit:100})),links);
     if(row.route_decision_ids?.length)link('Query remaining length decision','query.html?q='+encodeURIComponent(JSON.stringify({collection:'route_decisions',filters:[{field:'entity_id',op:'eq',value:row.id}],limit:50})),links);
@@ -426,6 +428,7 @@
       groups.push(['flow_network_ids','flow_networks','Source-described flow networks']);
       groups.push(['passage_sample_ids','passage_samples','Observed passage transport']);
       groups.push(['velocity_sample_ids','current_velocity_samples','Observed local velocity']);
+      groups.push(['current_section_ids','current_sections','Observed fixed-depth sections']);
       groups.push(['model_frame_ids','model_frames','Hourly model sections (context only)']);
       if(record.source_id)groups.push(['single_source','sources','Source']);
       for(const [key,target,title] of groups){

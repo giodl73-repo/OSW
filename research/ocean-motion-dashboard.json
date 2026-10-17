@@ -69,6 +69,12 @@
     "research/source-data/carracedo-azores-2014/acquisition.json": "52a988dc007bbd24922d110a450a2e631cb94f14462919583d101b1d0dce99cc",
     "research/source-data/woa09-season-definition/acquisition.json": "476096f63e5fdff74901adb5258d7b115c40c23eee602d7c2d934c33cfa13f38",
     "research/ocean-current-almanac.json": "6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e",
+    "research/agulhas-asca-100m-query-contract.json": "21682cf3d38d244f735ca43396d495e0dad64783bed4f45bcb5c5a16eca0e2cf",
+    "research/agulhas-asca-100m-observed-profiles.json": "c0b9423b9f1335a6455c87d8dda0a54794ac474118fa0a3f000048ffad69fd89",
+    "research/agulhas-asca-100m-monthly-sections.json": "fd64659cb63e5f560b3da9cdc830c69d4327b83ea55df7e016a12d2e6a8d8a4a",
+    "research/source-data/asca-2016-2018-100m/acquisition.json": "811666af518d1196a5b8a5e6dfee546f9a6cedcecca7cb046ec8585c3a89c828",
+    "plans/agulhas-asca-100m-section-aggregation-protocol-v1.md": "3bc06ffbbcca00894075a459ee727a4976d2a226a66c5669809bba6266fae374",
+    "analysis/build_asca_100m_sections.py": "98e3a4f53eea8947af37573b85f802149ee511b1ab526c58209bcfba775ce915",
     "research/australia-wijeratne-2018-section-transport-audit.json": "758f18afccfee1411434d59ff9a3d0c38daf8833abf285674a33f9386ec961dd",
     "research/source-data/wijeratne-australia-2018/acquisition.json": "c8c0e2959ddba356c33009891e77850f342da84a68ee816075387fa238227628",
     "research/source-data/wijeratne-australia-2018/journal-article.pdf": "1880c05374a7fb1cfed56910059a32c0884599d97ba040f532c07d28daecf0d9",
@@ -406,7 +412,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "57a589d769f91522d7d1ca617f2db7916f4a9f1ebd25c0cb241db96a80e1b634",
+  "snapshot_fingerprint": "7b17757540d1c1bbfec6fe41f9fafe96e4d8cbb5700f5c6ab934a926a3730181",
   "entries": [
     {
       "id": "current:agulhas",
@@ -424,27 +430,48 @@
         "reference_route": 1,
         "scoped_width": 1,
         "geometry": 0,
-        "time_samples": 0,
+        "time_samples": 27,
         "source_connectivity": 0,
         "scope_notes": 0,
         "dated_diagnostics": 0,
         "flow_network": 0,
-        "passage_transport": 0
+        "passage_transport": 0,
+        "current_sections": 27
       },
       "recorded_claims": 60,
       "nasa_links": 1,
-      "fingerprint": "156a83f4c8b30c5d1401b5e4dd89e4384fc6e5cc0bcbc2894a826e61e0127000",
-      "series": [],
+      "fingerprint": "3850ad20c4c58612d632f7b7059a103a97f99af114099bb907bd07c0b50a2380",
+      "series": [
+        {
+          "label": "ASCA 100 m / 27 recorded monthly sections / 931 source profiles",
+          "url": "query.html?q=%7B%22collection%22%3A%22current_sections%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22agulhas%22%7D%5D%2C%22limit%22%3A100%7D#query-chart-section",
+          "frames": 27,
+          "evidence_role": "processed_observational_fixed_section_not_current_dimensions",
+          "source_file": "research/agulhas-asca-100m-monthly-sections.json",
+          "source_sha256": "fd64659cb63e5f560b3da9cdc830c69d4327b83ea55df7e016a12d2e6a8d8a4a",
+          "source_profiles": 931,
+          "source_period": [
+            "2016-04-19",
+            "2018-06-03"
+          ],
+          "depth_m": 100,
+          "partial_calendar_bins": [
+            "2016-04",
+            "2018-06"
+          ],
+          "climatology": false
+        }
+      ],
       "section_fingerprints": {
         "identity": "07307d1c027a50c56d4d328141402829b5886316ada9e4d0d53f1884014fe048",
-        "sources": "81f5a92a9c8cd012fe4a84bd5cbda615a318fcf8499b8b12816c274d2c0d1504",
+        "sources": "20877d7ab4f509b09462a7628cb6e00e3d8117d987dbb363619765fa9479e05f",
         "claims": "62173133183a5bf7746d48f909001c25f7393aed97bbb8da95583ae3b754d0e4",
         "measurements": "f7dae949f8e19df9f92b1e257d49142afec2761bfdfcdb4df41b3664cf409885",
         "routes_geometry": "9f1e1771341035883852d0a080521a68b136e30aadbb4396c6458d29658d5910",
         "media": "2e7a6127476f706f39fefca486ff7531cfb28b063fb7676f7463b80780cd448e",
-        "time_evidence": "66d08a134212a5295c53c4496f3f2cf879dbb25b88bc9d3554df7df14175cf4f"
+        "time_evidence": "9e74d1fe1df9a3005a3cd9b0c39a0dbd5b48c7f676270929fd5959a1b00e9e01"
       },
-      "latest_observation_date": null,
+      "latest_observation_date": "2018-06-03",
       "claim_review_counts": {
         "not_individually_reviewed": 60
       },
@@ -498,7 +525,12 @@
       "state_evidence": [],
       "connections": [],
       "scope_notes": [],
-      "evidence_links": [],
+      "evidence_links": [
+        {
+          "label": "Explore ASCA 100 m monthly sections",
+          "url": "query.html?q=%7B%22collection%22%3A%22current_sections%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22agulhas%22%7D%5D%2C%22limit%22%3A100%7D#query-chart-section"
+        }
+      ],
       "object_url": "object.html?id=current%3Aagulhas",
       "route_url": "reference-routes.html#agulhas-reference-path-candidate",
       "season_url": "seasons.html?current=agulhas"
@@ -67110,5 +67142,5 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "built_at_utc": "2026-10-14T19:06:14.176047+00:00"
+  "built_at_utc": "2026-10-17T22:35:55.859390+00:00"
 }

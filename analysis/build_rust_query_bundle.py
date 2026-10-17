@@ -619,6 +619,17 @@ def build():
     for key in ['source','protocol','generator']:
         path=velocity[key+'_file'];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
         if inputs[path]!=velocity[key+'_sha256']:raise ValueError('Changed M6 dependency: '+path)
+    from build_asca_100m_sections import checked_packets as checked_asca
+    _, asca_sections, asca_contract = checked_asca()
+    del _
+    asca_path=asca_contract['monthly_section_file']
+    read('research/agulhas-asca-100m-query-contract.json')
+    for file_key,hash_key in [('raw_profile_file','raw_profile_sha256'),('monthly_section_file','monthly_section_sha256'),('source_acquisition_file','source_acquisition_sha256'),('protocol_file','protocol_sha256'),('builder_file','builder_sha256')]:
+        path=asca_contract[file_key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=asca_contract[hash_key]:raise ValueError('Changed ASCA section dependency: '+path)
+    collections['current_sections']=asca_sections['frames']
+    for row in objects:
+        row['current_section_ids']=[r['id'] for r in asca_sections['frames'] if r['entity_id']==row['id']]
     collections['current_velocity_samples']=velocity['samples']
     for row in objects:
         row['velocity_sample_ids']=[r['id'] for r in velocity['samples'] if r['entity_id']==row['id']]
@@ -689,9 +700,10 @@ def build():
             'canonical_release':'v0.1.0','canonical_collections':CANONICAL,
             'eddy_recurrence_receipt':{'source_file':recurrence_path,'source_sha256':inputs[recurrence_path],'source_json':(ROOT/recurrence_path).read_bytes().decode('utf-8')},
             'atlas_receipts':atlas_receipts,
+            'current_section_receipts':{asca_path:{'source_file':asca_path,'source_sha256':inputs[asca_path],'source_json':(ROOT/asca_path).read_bytes().decode('utf-8')}},
             'movies_receipts':movies_receipts,
             'loop_recorded_receipts':{path:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for path in ['research/loop-current-recorded-date-comparison.json','research/loop-current-recorded-date-sources.json']},
-            'taxonomy':taxonomy,'editorial_collections':['proposed_widths','observed_section_spans','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','section_transports','transport_validations'],
+            'taxonomy':taxonomy,'editorial_collections':['proposed_widths','observed_section_spans','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','current_sections','section_transports','transport_validations'],
             'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
             'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
             'input_sha256':inputs,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},

@@ -121,6 +121,14 @@ def build():
     for path in ['research/azores-carracedo-2014-climatological-core-width-record.json','research/source-data/carracedo-azores-2014/acquisition.json','research/source-data/woa09-season-definition/acquisition.json']:
         read(path)
     validate_width_inventory(width_inventory, read('research/ocean-current-almanac.json'))
+    from build_asca_100m_sections import checked_packets as checked_asca
+    _, asca_sections, asca_contract = checked_asca()
+    del _
+    asca_path=asca_contract['monthly_section_file']
+    read('research/agulhas-asca-100m-query-contract.json')
+    for file_key,hash_key in [('raw_profile_file','raw_profile_sha256'),('monthly_section_file','monthly_section_sha256'),('source_acquisition_file','source_acquisition_sha256'),('protocol_file','protocol_sha256'),('builder_file','builder_sha256')]:
+        path=asca_contract[file_key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=asca_contract[hash_key]:raise ValueError('Changed ASCA section dependency: '+path)
     from build_antarctic_slope_m6_velocity import build as rebuild_m6
     from published_section_transports import document as transport_document, build as transport_records, SOURCE as TRANSPORT_SOURCE
     transports=transport_document();read(TRANSPORT_SOURCE);read(transports['acquisition_file'])
@@ -527,6 +535,13 @@ def build():
                 'source_file':velocity_path,'source_sha256':inputs[velocity_path],
                 'paired_source_readings':velocity['selected_paired_readings'],'source_period':velocity['source_period'],
                 'nominal_depth_m':velocity['station']['nominal_depth_m']})
+        if current_id == 'agulhas':
+            series.append({'label':'ASCA 100 m / 27 recorded monthly sections / 931 source profiles',
+                'url':'query.html?q='+quote(json.dumps({'collection':'current_sections','filters':[{'field':'current_id','op':'eq','value':'agulhas'}],'limit':100},separators=(',',':')),safe='')+'#query-chart-section',
+                'frames':len(asca_sections['frames']),'evidence_role':'processed_observational_fixed_section_not_current_dimensions',
+                'source_file':asca_path,'source_sha256':inputs[asca_path],
+                'source_profiles':931,'source_period':['2016-04-19','2018-06-03'],'depth_m':100,
+                'partial_calendar_bins':['2016-04','2018-06'],'climatology':False})
         capabilities = {
             'observed_velocity': len(velocity['samples']) if current_id==velocity['current_id'] else 0,
             'radius_evidence': len(geography.get('published_ring_radius_evidence',geography.get('radial_scale_evidence',[]))) if geography else 0,
@@ -541,6 +556,7 @@ def build():
             'flow_network': int(ident == network['entity_id']),
             'passage_transport': len(network['passage_samples']) if ident == network['entity_id'] else 0,
         }
+        if current_id == 'agulhas': capabilities['current_sections']=len(asca_sections['frames'])
         payload = {'entity': entity, 'measurements': own_measures, 'routes': own_routes,
                    'widths': own_widths, 'geometry': own_geometry, 'claims': own_claims,
                    'media': own_media, 'phases': own_phases, 'series': series, 'sources': own_sources,
@@ -594,6 +610,7 @@ def build():
         observation_dates = [c.get('observation_time') for c in own_claims] + [g.get('observation_date') for g in own_geometry] + [w.get('observed_period') for w in own_widths]
         observation_dates += [note.get('observed_period') for note in own_notes]
         if current_id == velocity['current_id']: observation_dates += velocity['source_period']
+        if current_id == 'agulhas': observation_dates += ['2016-04-19','2018-06-03']
         if current_id == 'loop': observation_dates += [d['observation_date'] for _, d in loop_documents]
         # Pin the actual time series contents, not just their frame counts.
         if current_id == timeline['current_id']:
@@ -708,6 +725,11 @@ def build():
             payload['observed_velocity']=velocity
             groups['time_evidence'].append(velocity)
             groups['sources'].append({'source_url':velocity['source_url'],'source_sha256':velocity['source_sha256'],'source_file':velocity['source_file']})
+        if current_id == 'agulhas':
+            payload['current_sections']={'source_file':asca_path,'source_sha256':inputs[asca_path],'counts':asca_sections['counts'],'scope':asca_sections['scope']}
+            groups['time_evidence'].append(asca_sections)
+            groups['sources'].append({'source_file':asca_path,'source_sha256':inputs[asca_path],'source_contract':asca_contract})
+            evidence_links.append({'label':'Explore ASCA 100 m monthly sections','url':series[-1]['url']})
         owned_transports=[r for collection in transport_rows.values() for r in collection if r['entity_id']==ident]
         if owned_transports:
             capabilities['section_transport']=len(owned_transports)

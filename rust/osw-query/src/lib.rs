@@ -9,6 +9,7 @@ mod basin_spans;
 pub mod cartography;
 mod charts;
 mod coastal_composite_widths;
+mod current_sections;
 mod dashboard;
 mod dashboard_beck;
 mod dashboard_map;
@@ -218,6 +219,7 @@ impl Store {
                 ("seasonal_route_ids", "seasonal_routes"),
                 ("width_sample_ids", "width_samples"),
                 ("velocity_sample_ids", "current_velocity_samples"),
+                ("current_section_ids", "current_sections"),
                 ("route_decision_ids", "route_decisions"),
                 ("diagnostic_ids", "diagnostics"),
                 ("flow_network_ids", "flow_networks"),
@@ -240,6 +242,7 @@ impl Store {
                             || collection == "seasonal_routes"
                             || collection == "width_samples"
                             || collection == "current_velocity_samples"
+                            || collection == "current_sections"
                             || collection == "diagnostics"
                             || collection == "route_decisions"
                             || collection == "flow_networks"
@@ -295,6 +298,7 @@ impl Store {
         qualitative_calendar::validate(&bundle)?;
         model_sections::validate(&bundle)?;
         mooring_velocity::validate(&bundle)?;
+        current_sections::validate(&bundle)?;
         movies::validate(&bundle)?;
         let spatial = spatial::Index::build(&bundle.collections)?;
         fields.insert(
@@ -608,6 +612,8 @@ impl Store {
             map::sample_scene(&matches)
         } else if query.collection == "current_velocity_samples" {
             mooring_velocity::map_scene(&matches)
+        } else if query.collection == "current_sections" {
+            Value::Null
         } else if ["model_frames", "model_samples"].contains(&query.collection.as_str()) {
             model_sections::scene(&matches, &query.collection)
         } else {
@@ -674,6 +680,8 @@ impl Store {
             published_transports::query(&matches, &query.collection)
         } else if query.collection == "current_velocity_samples" {
             mooring_velocity::scene(&matches, records)
+        } else if query.collection == "current_sections" {
+            current_sections::scene(&matches, records)
         } else {
             Value::Null
         };
