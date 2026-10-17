@@ -2,8 +2,8 @@
 
 Continues the same current-gap branch and PR83. Source acquisition, quality
 review and Rust/query/atlas integration are complete. Dedicated actual
-native/WASM/source/inspector/mobile checks pass. All45 collection checks pass; current-card sweep and full
-publication gate remain pending. Dimensional operators, new width records and
+native/WASM/source/inspector/mobile checks pass. All45 collections and100 current cards pass. The complete offline publication
+gate passes1472 tests and1061 subtests in2360.24 seconds (39m20s). Dimensional operators, new width records and
 scientific current boundaries remain unadmitted.
 
 ## Source identity and rights
@@ -241,8 +241,9 @@ status `frozen_source_section_query_contract`.
   inspector, atlas navigation,320 px layout and reduced motion. All11 coherent
   source/projection/admission alterations reject in both native and WASM engines.
 - The dedicated integration test is registered first in the normal shipped-WASM
-  runner. All45 collection checks pass;100-current-card sweep is running; final default
-  offline publication validation and review remain pending.
+  runner. All45 collections and100 current cards /146 widths pass. Full offline publication
+  validation passes1472 tests /1061 subtests in2360.24 seconds (39m20s), from
+  clean committed checkout594f109. Seven-role review is APPROVED.
 
 The first browser attempt found the prior suite's temporary server had stopped.
 A verified loopback server was started before rerunning; the complete actual

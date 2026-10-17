@@ -2,10 +2,10 @@
 skill: roles-check
 topic: agulhas-asca-100m-sections
 date: 2026-10-17
-source_commit: 2efe752
+source_commit: 594f1096d7a8dcbcdb816586b0bd069812daeed3
 roles_used: [CURRENT, SOUNDER, CHART, BEACON, HARBOR, KEEL, LOGBOOK]
 p1_count: 0
-verdict: APPROVED-WITH-CONDITIONS
+verdict: APPROVED
 ---
 
 # Agulhas ASCA100 m source sections: preparation review
@@ -14,7 +14,7 @@ Internal functional review of the registered source packets, Rust module
 and chart renderer. This is not external scientific peer review or approval of
 current boundaries. Loop checkpoint8225959 and acquisition fix2efe752 are published on PR83.
 The Agulhas integration is live in the local mainline UI; publication checks
-remain pending. ORBIT is inapplicable: no planetary comparison is introduced.
+pass locally. ORBIT is inapplicable: no planetary comparison is introduced.
 
 | Role | Finding | Severity | Evidence / action |
 | --- | --- | --- | --- |
@@ -35,12 +35,12 @@ remain pending. ORBIT is inapplicable: no planetary comparison is introduced.
 | HARBOR | Autoplay and lifecycle handling need reduced-motion support. | P2 resolved | Isolated host exercises motion-change stop, manual controls and final-frame stop. Query host owns shared listeners; renderer adds no retained per-render global listener. Actual query host also passes reduced-motion and manual-control checks. |
 | KEEL | Stored JSON must agree with original float bytes and independent statistics. | P2 resolved |10 source tests pass; all finite float32 bits/null masks/timestamps preserved. Every monthly scalar and paired statistic agrees with independent Python statistics. Four source corruptions reject. |
 | KEEL | Mutable projections alone cannot establish source integrity. | P2 resolved | Small compiled contract binds exact monthly source/dependencies/owner joins; eleven coherent mutations reject in the isolated Rust harness. All eleven coherent alterations also reject in actual native/WASM stores. |
-| KEEL | Prepared code is not passing mainline publication coverage. | P2 pending publication gate | Integration, rebuilt native/WASM and dedicated UI/source/atlas/inspector/mobile check pass. All45 collections pass first/last pages, inspector, canonical imports and240 map marks. Current cards and full default offline gate remain pending. Never rebuild executable during validation. |
+| KEEL | Prepared code is not passing mainline publication coverage. | P2 resolved | Integration, rebuilt native/WASM and dedicated UI/source/atlas/inspector/mobile check pass. All45 collections,100 current cards /146 widths, and full1472 tests /1061 subtests pass. Full gate2360.24s from clean checkout594f109. Executable unchanged during validation. Never rebuild executable during validation. |
 | LOGBOOK | Source-only and prepared integration states need accurate reporting. | P2 resolved | Plan records live integration and pending publication gates. Contract freezes source sections; no new scoped width is counted. Mainline counts146 widths /76 owners /45 collections /269 indexed JSON sources. |
 | LOGBOOK | Source material must be redistributable and reproducible. | P2 resolved | Retained ASCA source subsets are CC BY4.0 with attribution and receipts. Copyrighted paper copies stay in ignored cache; independent source-field graphic is original. |
 | LOGBOOK | This work must not create another PR per gap. | P2 resolved | Same branch and draft PR83. No additional PR or merge. Loop checkpoint and acquisition fix are pushed; Agulhas continues on that branch. |
 
-## Evidence and remaining conditions
+## Validation and scientific limits
 
 - Source/aggregation protocol and source pass:
   `plans/agulhas-asca-100m-section-aggregation-protocol-v1.md` and
@@ -53,8 +53,8 @@ remain pending. ORBIT is inapplicable: no planetary comparison is introduced.
   browser checks pass from its27-frame scene; screenshots reviewed.
 - Integration patch is applied. All42 other legacy collections,24 prior series,
   widths/samples/routes and canonical arrays compare unchanged to8225959. Only
-  Agulhas dashboard content changes. All45 collections pass; current-card sweep and full offline
-  publication gate remain pending; dedicated test is registered in the normal runner.
+  Agulhas dashboard content changes. All45 collections and100 cards /146 widths pass. Full offline gate:1472 tests
+  /1061 subtests in2360.24 seconds (39m20s), clean commit594f109; dedicated test is registered in the normal runner.
 - Full corrected2022 tables/figures, source-array geographic coordinates,
   current-boundary rules and physical/annual widths remain open. These are not
   conditions for describing the pinned source fields, but they are conditions
@@ -62,4 +62,18 @@ remain pending. ORBIT is inapplicable: no planetary comparison is introduced.
 
 CURRENT, SOUNDER and CHART agree on retaining processed-field scope and explicit
 missing support. HARBOR's mobile failure has been corrected. KEEL and LOGBOOK
-require completed broad publication gates before the final review verdict.
+confirm the complete local publication gate. Remote CI is reported separately;
+Radenac/HAL acquisition still needs the prepared protected-edition fix.
+
+## Amendments completed
+
+1. Preserve source float bits, missing masks, partial months and paired-component
+   support; keep measured spread separate from uncertainty and current dimensions.
+2. Correct mobile control overflow, expose exact support and source links, and
+   honor discrete end-stopping playback and reduced motion in the actual host.
+3. Bind source/owner joins to the compiled contract and finish complete collection,
+   current-card and offline default validation before approving this checkpoint.
+
+Final gate on17October:1472 tests and1061 subtests pass in2360.24 seconds.
+Actual atlas/source/inspector/mobile parity and11 coherent native/WASM rejections
+pass;67 engine pins checked. No new physical current width or annual range.
