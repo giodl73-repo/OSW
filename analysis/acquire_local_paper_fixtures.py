@@ -175,9 +175,11 @@ def main():
             if hashlib.sha256(data).hexdigest() != ORIGINAL_SHA:
                 print(f'{name}: full repository rendition retained unchanged separately; reviewed original pin preserved; excluded from Git')
                 continue
-        if name == 'uhlhorn-loop-2008' and hashlib.sha256(data).hexdigest() != manifest['sha256']:
-            print(f'{name}: unchanged176-page thesis graph verified; generated-cover response retained separately; excluded from Git')
-            continue
+        if name == 'uhlhorn-loop-2008':
+            from uhlhorn_thesis_source import ORIGINAL_SHA
+            if hashlib.sha256(data).hexdigest() != ORIGINAL_SHA:
+                print(f'{name}: unchanged176-page thesis graph verified; generated-cover response retained separately; excluded from Git')
+                continue
         print(f'{name}: local original verified; excluded from Git')
 
 

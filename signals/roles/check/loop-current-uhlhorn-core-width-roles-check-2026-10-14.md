@@ -58,3 +58,15 @@ Top finding: the source's numerical threshold and relative e-folding wording
 must remain distinct. CURRENT and BEACON agree on keeping this definition beside
 the number; SOUNDER and KEEL require exact page/resource identity despite the
 repository's changing cover. Whole-current and annual dimensions remain open.
+
+## 17 October CI amendment
+
+Remote run39075684916 on8225959 exposed a main() reporting NameError before
+tests. The default local suite did not exercise that reporting entry point.
+KEEL finding: P2 resolved by using Uhlhorn's frozen original-response SHA and
+two regression cases covering both original and verified generated-cover paths.
+SOUNDER confirms no source, graph, receipt or acquisition pin is relaxed.
+Focused validation:37 tests /7 subtests pass in2.78 seconds; the actual CLI
+verifies all40 local fixtures. The prior full1460 /1061 result remains a
+checkpoint result, not a claim that it covered these two new regression cases.
+New-head remote CI must be reported separately.

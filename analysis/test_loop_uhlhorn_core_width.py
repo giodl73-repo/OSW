@@ -12,6 +12,19 @@ import check_loop_uhlhorn_core_width as widths
 import uhlhorn_thesis_source as thesis
 
 
+@pytest.mark.parametrize('filename,expected', [
+    ('journal-article.pdf', 'local original verified'),
+    ('repository-current.pdf', 'unchanged176-page thesis graph verified'),
+])
+def test_acquisition_cli_reports_original_and_verified_cover_without_local_manifest(filename, expected, monkeypatch, capsys):
+    import acquire_local_paper_fixtures as acquisition
+    data = (thesis.DIRECTORY / filename).read_bytes()
+    monkeypatch.setattr(acquisition, 'PAPERS', ('uhlhorn-loop-2008',))
+    monkeypatch.setattr(acquisition, 'acquire', lambda name, directory: data)
+    acquisition.main()
+    assert expected in capsys.readouterr().out
+
+
 def test_original_section_has_declared_cutoff_width_dates_and_reference():
     reader = PdfReader(thesis.resolve_source())
     text = reader.pages[64].extract_text()

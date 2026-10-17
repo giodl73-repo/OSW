@@ -80,3 +80,13 @@ retained separately as repository-current.pdf; all176 original pages/resources
 match the frozen graph. Prior-head5fffc07 PR run38617920029 failed acquiring
 the older Qiu original from Hawaii (timeout), before tests; no source pin relaxed.
 Remote CI is reported separately; institutional availability can fail before tests.
+
+## 17 October acquisition CLI correction
+
+Commit8225959 passed the full local default gate, but remote run39075684916
+stopped in acquisition before tests: main() referenced an undefined manifest
+while reporting the Uhlhorn source. Use the source module's frozen ORIGINAL_SHA,
+as the neighboring Melet branch does. No PDF, graph, receipt or scientific pin
+changes. Two regression cases reproduce the original and generated-cover CLI
+paths. The focused acquisition/source suite passes37 tests and7 subtests in
+2.78 seconds; the actual CLI verifies all40 retained local fixtures successfully.
