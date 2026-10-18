@@ -27,7 +27,7 @@ def test_source_scope_cannot_be_promoted(key,value):
     d=document();d['events'][1]['panels'][13][key]=value
     with pytest.raises(ValueError,match='Thor/Ursa'):validate(d)
 
-def fixtures(directory):
+def fixtures(directory,retain=True):
     bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes());targets=[]
     for kind in ['date','owner','crop','geometry','unit','annual','missing_proof','xml','figure']:
         bad=copy.deepcopy(bundle);receipt=bad['manifest']['atlas_receipts'][PATH]
@@ -50,10 +50,11 @@ def fixtures(directory):
         r=subprocess.run([str(CLI),str(file)],capture_output=True,text=True,encoding='utf8')
         assert r.returncode==2 and 'Thor/Ursa panels' in r.stderr,(kind,r.stderr)
         targets.append(file)
+        if not retain:file.unlink()
     return targets
 
 def test_native_guard_and_shared_views(tmp_path):
-    fixtures(tmp_path)
+    fixtures(tmp_path,retain=False)
     atlas=json.loads(subprocess.check_output([str(CLI),str(ROOT/'almanac/query-data.json'),'--atlas'],encoding='utf8'))
     for event in document()['events']:
         obj=json.loads(subprocess.check_output([str(CLI),str(ROOT/'almanac/query-data.json'),'--object-view',event['entity_id']],encoding='utf8'))

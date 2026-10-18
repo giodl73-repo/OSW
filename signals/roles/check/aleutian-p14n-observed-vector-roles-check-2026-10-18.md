@@ -41,3 +41,7 @@ Direct application of the installed CURRENT, SOUNDER, CHART, BEACON, HARBOR, KEE
 1. Preserve both components and their actual source support; explicitly report stationary reversals and the long gap.
 2. Share an observed-section figure and numeric inspection paths without promoting search windows to boundaries.
 3. Bind the new diagnostic in Rust, retain existing rejection cases, and separate initial, final, historical and running gate results.
+
+## Final focused evidence
+
+See `plans/aleutian-p14n-observed-vector-verification-2026-10-18.md`: final12source/registry tests with10subtests,60Rust tests, the dashboard test withfive subtests, allfive actual browser owners and34source documents, and32native/WASM rejection cases pass. All89engine and128registry working/committed pins match;155width rows,42diagnostics andfour earlier scenes remain unchanged. The prior complete gate failed on three disk-exhausted fixture writes; allthree repaired tests now pass with every one of their28cases retained. A clean combined successor gate remains the approval condition. Exact generated/provider bytes retain their hashes rather than undergoing whitespace normalization.
