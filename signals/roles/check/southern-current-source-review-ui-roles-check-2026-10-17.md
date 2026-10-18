@@ -73,3 +73,12 @@ with byte-identical artifacts and75 matching dependency hashes. The corrected
 combined full gate remains required. Remote20624b4 verifies the two new source
 originals and later times out at the unchanged Qiu provider. Conditional
 verdict remains; neither the failed baseline nor remote acquisition is a pass.
+
+## Corrected full gate completed
+
+The clean663bae6 run completed with1573 tests and1061 subtests passing in
+2028.82s on2026-10-18 at02:40UTC. The corrected post-promotion local gate is
+satisfied for that source-review UI baseline. Complete remote hydration remains
+open; latest observedf6bbac2 remote failure is the unchanged Reading/VanAken
+connection refusal. Subsequent research additions require their own combined
+gate; this baseline pass is not claimed for code added afterward.

@@ -134,3 +134,10 @@ This preparation is carried in the existing rolling branch and draft PR83.
 It adds reproducible research assets and their figure, without changing the
 compiled data store or atlas measurement counts. Product registration follows
 the scientific admission decision; the source experiment is reviewable now.
+
+## Later baseline result
+
+The previously running clean663bae6 gate completed:1573 tests and1061 subtests
+passed in2028.82s. It predates this experiment. The Indian and REDSOX focused
+checks subsequently pass together:33 tests in7.83s. A combined full gate for
+the later research additions remains required; neither result is overstated.

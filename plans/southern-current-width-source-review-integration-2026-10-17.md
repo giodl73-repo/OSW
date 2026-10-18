@@ -1,5 +1,15 @@
 # Southern-current source review integration
 
+## Completed baseline gate
+
+The corrected full run from clean663bae6 completed on2026-10-18 at02:40UTC:
+**1573 tests and1061 subtests passed in2028.82s**. This validates the promoted
+source-review UI and corrected combined scene expectation. Later Indian
+EOF/REDSOX research additions have separate focused results and require their
+combined gate; the663bae6 pass is not attributed to those later additions.
+
+The preparation/promotion narrative below is retained as historical evidence.
+
 Prepared in an isolated checkout fromfadcd11 while the main1573-test run
 continues. Land on the same rolling branch and draft PR83 after validation;
 no new PR or main merge. This receipt records candidate verification, not a
