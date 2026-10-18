@@ -28,6 +28,16 @@ def corrupt(packet, kind):
     bad = copy.deepcopy(packet)
     rows = [r for r in bad['collections']['diagnostics'] if 'research_evidence' in r]
     row = next(r for r in rows if r['current_id'] == 'red-sea-saline-overflow')
+    if kind.startswith('year_'):
+        row=next(r for r in rows if r['current_id']=='norwegian-coastal')
+        if kind=='year_hours':
+            document=copy.deepcopy(row['document']);document['calendar_hours']=12
+            raw=json.dumps(document);pin=hashlib.sha256(raw.encode()).hexdigest()
+            row.update(document=document,source_json=raw,source_file_sha256=pin)
+            bad['manifest']['input_sha256'][row['source_file']]=pin
+        elif kind=='year_figure':row['research_evidence']['additional_figures'][0]['file']='figures/wrong.svg'
+        elif kind=='year_width':row['research_evidence']['annual_width_range_km']=[1,2]
+        return bad
     if kind == 'rank': row['rank_eligible'] = True
     elif kind == 'owner': row['current_id'] = 'agulhas'; row['entity_id'] = 'current:agulhas'
     elif kind == 'source_json': row['source_json'] = '{}'
@@ -90,7 +100,7 @@ def main():
     registry = json.loads((ROOT / REGISTRY).read_bytes())
     packet = json.loads((ROOT / 'almanac/query-data.json').read_bytes())
     cases = ['rank', 'owner', 'source_json', 'missing', 'duplicate', 'owner_link', 'orphan', 'original_pin',
-             'whole_width', 'annual', 'blinding', 'identity', 'scene_width', 'geometry', 'figure', 'primary']
+             'whole_width', 'annual', 'blinding', 'identity', 'scene_width', 'geometry', 'figure', 'primary', 'year_hours', 'year_figure', 'year_width']
     with TemporaryDirectory(dir=output) as temporary, sync_playwright() as playwright:
         folder = Path(temporary)
         index = folder / 'index.json'
@@ -122,9 +132,17 @@ def main():
                 expect(details).to_contain_text('no fully blinded preregistration')
                 expect(details).to_contain_text('not zero width')
                 link = panel.get_by_role('link', name='Inspect declaration-history qualification')
-            else:
+            elif owner == 'indian-south-equatorial-countercurrent':
                 expect(details).to_contain_text('northern pattern peaks at the retained data edge')
                 link = panel.get_by_role('link', name='Inspect declared calculation')
+            else:
+                expect(panel).to_contain_text('8,784')
+                for index_choice,choice in enumerate(scene['additional_figures'],1):
+                    details.get_by_label('Analysis view').select_option(str(index_choice))
+                    expect(details.locator('img')).to_have_attribute('src','../'+choice['file'])
+                    expect(details.locator('img')).to_have_js_property('complete',True)
+                    assert details.locator('img').evaluate('(img)=>img.naturalWidth>0')
+                link=panel.get_by_role('link',name='Inspect complete-year acquisition')
             source_query = json.loads(unquote(link.get_attribute('href').split('source-q=')[1]))
             link.click()
             page.wait_for_function('window.oswSourceQueryResult', timeout=90000)
@@ -155,7 +173,7 @@ def main():
         page.goto(BASE + '/almanac/query.html?q=' + quote(json.dumps(query)))
         page.wait_for_function('window.oswLastQueryResult', timeout=90000)
         assert page.evaluate('oswLastQueryResult') == native(query)
-        assert page.locator('#query-chart-panels .current-research-evidence').count() == 2
+        assert page.locator('#query-chart-panels .current-research-evidence').count() == len(registry['scenes'])
         assert page.locator('#query-chart-panels .current-width-source-review').count() == 2
         assert not automatic_originals, automatic_originals
         page.route('**/research-evidence-guard.html', lambda route: route.fulfill(body='<title>Research evidence guard</title>', content_type='text/html'))
@@ -175,7 +193,7 @@ def main():
             assert result['ok'] is False, (kind, result)
         assert not errors, errors
         browser.close()
-    print(f'PASS: both research cards/seasons/query/source/inspector/mobile; 18 indexed documents; mixed diagnostics; {len(cases)} native/WASM corruption rejections; no automatic originals')
+    print(f'PASS: {len(registry['scenes'])} research cards/seasons/query/source/inspector/mobile; {len(registry['documents'])+1} indexed documents; mixed diagnostics; {len(cases)} native/WASM corruption rejections; no automatic originals')
 
 
 if __name__ == '__main__':

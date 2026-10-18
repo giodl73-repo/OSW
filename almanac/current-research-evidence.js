@@ -12,7 +12,16 @@ window.renderCurrentResearchEvidence=function(container,scene,inspect,options={}
   const summary=add('summary','View analysis, method and sources',details);summary.style.cssText='min-height:44px;padding:.35rem 0;box-sizing:border-box';
   const figure=add('figure','',details);figure.style.margin='1rem 0';
   const image=add('img',undefined,figure);image.src='../'+scene.figure_file;image.alt=scene.figure_alt;image.loading='lazy';image.style.cssText='display:block;width:100%;height:auto;background:white';
-  add('figcaption',scene.figure_alt,figure);
+  const caption=add('figcaption',scene.figure_alt,figure);caption.setAttribute('aria-live','polite');
+  const fullFigure=add('a','Open figure at full size',figure);fullFigure.href=image.src;fullFigure.style.cssText='display:inline-flex;align-items:center;min-height:44px';
+  if(scene.additional_figures?.length){
+    const label=add('label','Analysis view ',details),select=add('select',undefined,label);
+    select.style.cssText='min-height:44px;max-width:100%';
+    const choices=[{file:scene.figure_file,alt:scene.figure_alt,label:'Monthly regional maps'},
+      ...scene.additional_figures.map((f,i)=>({...f,label:i===0?'Monthly mean sections':'Monthly temporal variability'}))];
+    choices.forEach((choice,index)=>{const option=add('option',choice.label,select);option.value=String(index);});
+    select.addEventListener('change',()=>{const choice=choices[Number(select.value)];image.src='../'+choice.file;image.alt=choice.alt;caption.textContent=choice.alt;fullFigure.href=image.src;});
+  }
   for(const note of scene.notes)add('p',note,details);
   const table=add('table','',details);table.style.cssText='width:100%;min-width:0;max-width:100%;table-layout:fixed;border-collapse:collapse;overflow-wrap:anywhere;white-space:normal;font-size:.9rem';
   add('caption',scene.table.caption,table);const head=add('tr','',add('thead','',table));

@@ -1,4 +1,4 @@
-"""Bind two reviewed studies to shared evidence scenes without width admission."""
+"""Bind reviewed studies to shared evidence scenes without width admission."""
 from pathlib import Path
 import hashlib,json
 
@@ -23,6 +23,16 @@ FROZEN_INPUTS = {
     "research/source-data/redsox-lower-nc-2001/lower-northern-channel-section-preflight.json": "c9aa43ff540a180e606b984400aaa29d20f525e91dfee12b17791ece53c98660",
     "research/source-data/redsox-lower-nc-2001/matched-section-followup-preflight.json": "cfced47f8fc78bb1fc37b1e6033f499e687afab5239388f104d330a6e0dd410a"
 }
+YEAR='research/source-data/norkyst-ingoy-months-2024/section-diagnostic-year.json'
+YEAR_ROOT='research/source-data/norkyst-ingoy-months-2024/'
+FROZEN_INPUTS.update({
+    'research/source-data/norkyst-ingoy-months-2024/preflight.json': '64e2513c69d554e30d2cda61ccb4c26f47711163d12dcefbe98c720c3b2ee42d',
+    'research/source-data/norkyst-ingoy-months-2024/acquisition-pilot.json': 'a3b45fbd4d1bae694e23533cb6387c65d97e7f56f6c57852aab9340c9ebd0e35',
+    'research/source-data/norkyst-ingoy-months-2024/regional-monthly-means-year.json': 'a165a29e8c5f24fb88020194707d692c2f597cd3b65c55119f0a84486042bec5',
+    YEAR: '390c9457c116abadbd3c5efb79bd1899f1a98d5cae6c7a916610b909947002bf',
+    YEAR_ROOT+'figure-year.json': 'fd253485672fe34da50531046fb3145f7af738266679bc00e2bf4f9bde812d62',
+    YEAR_ROOT+'acquisition-year.json': '763ed97ac94fa7c220baa9333d4ab5b74d7f86fa296606a8c022c126e0fe01fc',
+})
 EOF='research/indian-secc-eof-classification-feasibility.json'
 SECTION='research/redsox-lower-nc-dated-section-diagnostic.json'
 
@@ -31,7 +41,7 @@ def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
 
 def build():
-    if len(FROZEN_INPUTS)!=17:raise ValueError('Missing reviewed research source registry')
+    if len(FROZEN_INPUTS)!=23:raise ValueError('Missing reviewed research source registry')
     documents={}
     for path,pin in FROZEN_INPUTS.items():
         if digest(path)!=pin:raise ValueError('Changed reviewed current research source '+path)
@@ -55,6 +65,16 @@ def build():
         'figures/indian-secc-eof-feasibility.svg','figures/redsox-ladcp-source-support.svg',
         'figures/redsox-lower-nc-section-diagnostic.svg']:
         dependencies[source]=digest(source)
+    year=documents[YEAR]
+    if (year['calendar_hours']!=8784 or year['completed_months']!=list(range(1,13))
+        or not year['complete_annual_section_support'] or year['new_width_record_admitted']):
+        raise ValueError('Changed complete-year model scope')
+    dependencies['analysis/build_norkyst_continuous_year.py']=year['generator_sha256']
+    dependencies['analysis/build_norkyst_continuous_year_figures.py']=documents[YEAR_ROOT+'figure-year.json']['generator_sha256']
+    for asset in year['monthly_assets']:dependencies[asset['file']]=asset['sha256']
+    for figure in documents[YEAR_ROOT+'figure-year.json']['figures'].values():
+        dependencies[figure['svg_file']]=figure['svg_sha256']
+        dependencies[figure['png_file']]=figure['png_sha256']
     for source,pin in dependencies.items():
         if digest(source)!=pin:raise ValueError('Changed current research dependency '+source)
     eof=documents[EOF];section=documents[SECTION]
@@ -118,6 +138,36 @@ def build():
                 (f"About {case['supported_local_core_diagnostics'][0]['span_km']:.0f} km · follow-up" if case['supported_local_core_diagnostics'][0]['span_km'] is not None else 'Unresolved')]
                 for case in section['cases']]}
     }]
+    scenes.append({
+        'current_id':'norwegian-coastal','label':'Norwegian Coastal Current',
+        'diagnostic_id':'diagnostic:current-research:norwegian-coastal',
+        'title':'Complete 2024 model year: monthly maps and sections',
+        'finding':'All twelve months retain 8,784 hourly model fields at 10 m, with complete support at the 191 fixed section positions. This improves seasonal sampling in the offshore Ingoy region; the section is not a verified current axis or a current-width measurement.',
+        'facts':[{'label':'Calendar coverage','value':'12 months · 8,784 hours'},
+            {'label':'Model layer','value':'10 m · 2024'},
+            {'label':'Current width','value':'Unknown'},{'label':'Annual width range','value':'Unknown'}],
+        'notes':['Monthly means use all calendar hours, including leap day. Source spacing is 800 m; retained spacing is 3.2 km. Interpolated section positions add no native resolution.',
+            'The 24/24/25-hour low-pass convolution attenuates tides and other high-frequency variability. It is not a harmonic tidal solution.',
+            'Temporal standard deviations and sample quantiles describe model variability, not confidence intervals or current-width uncertainty. Serial dependence remains.',
+            'This is a single model year at one layer, not observations, a climatology or a depth average. The offshore region does not establish coastal extent or physical current edges.',
+            'The declaration records prior exposure to twelve isolated snapshots; no fully blinded preregistration is claimed. Modified Norkyst data: MET Norway / Institute of Marine Research, CC BY 4.0.'],
+        'next_evidence':'Establish flow association and comparable paired physical boundaries before admitting a current width or annual width range.',
+        'figure_file':'figures/norkyst-ingoy-complete-year-maps.svg',
+        'figure_alt':'Twelve monthly low-pass model salinity maps at 10 m with mean velocity arrows and the fixed 24 degrees east section. These are regional model fields, not current boundaries.',
+        'additional_figures':[
+            {'file':'figures/norkyst-ingoy-complete-year-sections.svg','alt':'Monthly raw and low-pass mean salinity and velocity sections for all twelve months.'},
+            {'file':'figures/norkyst-ingoy-complete-year-variability.svg','alt':'Monthly temporal model standard deviations, raw and low-pass. These are not uncertainty intervals.'}],
+        'source_file':YEAR,'source_pointer':'','source_links':[
+            link('Inspect monthly means, quantiles and support',YEAR,'/months'),
+            link('Inspect complete-year acquisition',YEAR_ROOT+'acquisition-year.json'),
+            link('Inspect figure provenance',YEAR_ROOT+'figure-year.json'),
+            link('Inspect declared source and filtering rules',YEAR_ROOT+'preflight.json'),
+            link('Inspect monthly regional means',YEAR_ROOT+'regional-monthly-means-year.json','/months')],
+        'original_url':'https://thredds.met.no/thredds/catalog/romshindcast/norkyst_v3/zdepth/catalog.html',
+        'table':{'caption':'Complete hourly section support in each calendar month of 2024; current width remains unknown.',
+            'headers':['Month','Calendar hours','Current width'],
+            'rows':[[f"2024-{month['month']:02d}",str(month['expected_month_hours']),'Unknown'] for month in year['months']]}
+    })
     for scene in scenes:
         scene.update(kind='current_research_evidence',rank_eligible=False,new_width_record_admitted=False,
             whole_current_width_km=None,annual_width_range_km=None,
