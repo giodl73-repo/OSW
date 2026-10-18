@@ -206,7 +206,8 @@ def main():
             assert result.returncode == 2 and not result.stdout, (kind, result.stderr)
             result = page.evaluate('''async path=>{
               const {instance}=await WebAssembly.instantiate(await(await fetch('/almanac/query-engine.wasm')).arrayBuffer(),{}),e=instance.exports;
-              const b=new Uint8Array(await(await fetch(path)).arrayBuffer()),p=e.osw_alloc(b.length);
+              const response=await fetch(path);if(!response.ok)throw new Error(`Corruption fixture HTTP ${response.status}: ${path}`);
+              const b=new Uint8Array(await response.arrayBuffer()),p=e.osw_alloc(b.length);
               try{new Uint8Array(e.memory.buffer,p,b.length).set(b);e.osw_load(p,b.length);
                 return JSON.parse(new TextDecoder().decode(new Uint8Array(e.memory.buffer,e.osw_result_ptr(),e.osw_result_len())));
               }finally{e.osw_dealloc(p,b.length);}
