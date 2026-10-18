@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 AUDIT='research/west-spitsbergen-dundas-2026-selected-core-width-scope-audit.json'
 SOURCE='research/source-data/dundas-fer-wsc-2026/journal-article.pdf'
-AUDIT_SHA='f9fa965bb2c98f8afdb513ba7c6beea083a3a45fd1d317cdb46d87a810f70eee'
+AUDIT_SHA='87e5c16c7ea5787e1224cc19b05e4f7b885356268062e6c997f1e09c28dc09fa'
 SOURCE_SHA='b19a8eab70d72c12f55335d70950a1722283b330b1d805f9b82af1a1ff649fbf'
 
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -39,6 +39,21 @@ def validate(audit=None):
     if c['protocol_file']!=d['protocol_file'] or c['protocol_sha256']!=d['protocol_sha256']:raise ValueError('Changed selected-core protocol binding')
     if any(d.get(k) is not None for k in ['whole_current_width_km','annual_width_range_km']) or any(d.get(k) is not False for k in ['native_glider_fields_acquired','width_estimator_reproduced','independent_external_review']):raise ValueError('Promoted source extraction')
     return d
+
+def record():
+    """Project the frozen source statistic with an inspectable audit address."""
+    row=json.loads(json.dumps(validate()['measurement']))
+    figure=json.loads((ROOT/'research/source-data/dundas-fer-wsc-2026/figure.json').read_bytes())
+    if figure['audit_sha256']!=AUDIT_SHA:raise ValueError('Stale selected-core figure')
+    image='figures/west-spitsbergen-selected-core-width.svg'
+    if digest(image)!=figure['files'][image]:raise ValueError('Changed selected-core figure bytes')
+    row['selected_core_context'].update(audit_file=AUDIT,audit_sha256=AUDIT_SHA,section_windows=validate()['section_windows'],figure_file=image,figure_sha256=figure['files'][image])
+    row.update(source_file=AUDIT,source_pointer='/measurement')
+    return row
+
+
+def validate_row(row):
+    if row!=record():raise ValueError('Selected-core inventory statistic differs from source binding or scope')
 
 if __name__=='__main__':
     validate();print('PASS published 28 km core / 7 km standard deviation, exact mission windows, original source and nonannual scope')

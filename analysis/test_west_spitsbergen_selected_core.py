@@ -1,7 +1,14 @@
 import copy,unittest
-from check_west_spitsbergen_selected_core import validate
+from check_west_spitsbergen_selected_core import validate,record,validate_row
 
 class SelectedCoreTests(unittest.TestCase):
+    def test_inventory_projection_keeps_sd_and_source_binding(self):
+        r=record();validate_row(r);self.assertIsNone(r['width_range_km'])
+        for key,value in [('width_standard_deviation_km',0),('current_id','spitsbergen-atlantic'),('width_range_km',[21,35])]:
+            with self.subTest(key=key):
+                bad=copy.deepcopy(r);bad[key]=value
+                with self.assertRaises(ValueError):validate_row(bad)
+
     def test_original_and_exact_source_scope(self):
         d=validate();self.assertEqual(d['measurement']['approximate_width_km'],28)
         self.assertEqual(sum(w['sections'] for w in d['section_windows']),22)

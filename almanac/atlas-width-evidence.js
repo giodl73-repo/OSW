@@ -25,13 +25,15 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
   if(retainedSpan){node('p',retainedSpan.scope_note);link('Map local component spans',retainedSpan.visual_url,section);}
   const format=value=>Number(value).toLocaleString('en-US');
   window.renderStreamTubeWidths(section,records);
+  for(const row of records)window.renderSelectedCoreWidth(section,row);
   if(id==='deep-western-boundary')window.renderDwbcFloatComposite(section,window.oswAtlasSnapshot?.dwbc_float_composite_scene);
   if(id==='antarctic-coastal')window.renderCoastalCompositeWidths(section,window.oswAtlasSnapshot?.coastal_composite_width_scene);
   for(const row of records){window.renderModalDecayWidth(section,row);window.renderOriginalRegionalWidth(section,row);window.renderModelRegionalWidth(section,row);window.renderAbstractRegionalWidth(section,row);if(row.phase_kind==='seasonal_regional_width_range')window.renderSeasonalRegionalWidth(section,row);}
   for(const row of records) {
     const details=document.createElement('details');details.className='atlas-width-record';details.dataset.measurementId=row.id;section.append(details);
     const angular=row.ensemble_angular_context;
-    const value=angular?`${format(angular.source_reported_latitude_span_degrees)}° latitude (~${format(row.approximate_width_km)} km conversion)`
+    const value=row.selected_core_context?`${format(row.approximate_width_km)} km core · ${format(row.width_standard_deviation_km)} km reported standard deviation`
+      :angular?`${format(angular.source_reported_latitude_span_degrees)}° latitude (~${format(row.approximate_width_km)} km conversion)`
       :row.phase_kind==='campaign_width_statistics'?`${format(row.approximate_width_km)} km mean (${row.width_range_km.map(format).join('–')} km across three complete crossings)`
       :row.phase_kind==='width_time_series_statistics'?`${format(row.approximate_width_km)} km mean (${row.width_range_km.map(format).join('–')} km observed)`
       :row.phase_kind==='survey_layer_median_threshold_width'?`${format(row.approximate_width_km)} ±${format(row.reported_total_error_km)} km source width and total error`

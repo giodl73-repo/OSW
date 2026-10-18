@@ -29,7 +29,7 @@ def main():
             assert actual is not None,page.locator('#query-status').inner_text()
             assert actual==native(query)
             assert actual['map_scene'] is None
-            assert actual['total']==(6 if owner==WSC else 1)
+            assert actual['total']==(7 if owner==WSC else 1)
             expect(page.locator('.nordic-section-width svg')).to_be_visible()
             expect(page.locator('.nordic-section-width')).to_contain_text('Vertical support:')
             if owner==WSC:

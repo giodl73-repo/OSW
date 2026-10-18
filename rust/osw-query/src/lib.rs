@@ -50,6 +50,7 @@ mod ring_radii;
 mod samples;
 mod seasonal;
 mod seasons_data;
+mod selected_core_widths;
 mod somali_width;
 mod spatial;
 mod stream_tube_widths;
@@ -210,6 +211,7 @@ impl Store {
         original_regional_widths::validate_antarctic_jet_inventory(&bundle)?;
         observed_spans::validate(&bundle)?;
         nordic_widths::validate(&bundle)?;
+        selected_core_widths::validate(&bundle)?;
         pacific_neuc_breadths::validate(&bundle)?;
         eddy_source_panels::validate(&bundle)?;
         ursa_contour::validate(&bundle)?;
@@ -677,6 +679,7 @@ impl Store {
             charts::scene(&matches, records)
         } else if query.collection == "widths" {
             let scenes: Vec<_> = [
+                selected_core_widths::scene(&matches),
                 nordic_widths::scene(&matches, records),
                 coastal_composite_widths::scene(&matches, records),
                 dwbc_float_composite::scene(&matches, records),

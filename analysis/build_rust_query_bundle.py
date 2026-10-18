@@ -79,6 +79,14 @@ def build():
         read(path)
     for path in ['research/source-data/kolas-fer-wsc-2018/journal-article.pdf','plans/west-spitsbergen-stream-tube-width-protocol-v1.md','analysis/check_west_spitsbergen_stream_tubes.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_west_spitsbergen_selected_core import AUDIT as SELECTED_CORE_AUDIT, validate as validate_selected_core
+    selected_core=validate_selected_core();read(SELECTED_CORE_AUDIT)
+    for path in ['research/source-data/dundas-fer-wsc-2026/acquisition.json','research/source-data/dundas-fer-wsc-2026/figure.json','research/source-data/dundas-fer-wsc-2026/dataset-acquisition.json']:
+        read(path)
+    inputs.update(selected_core['input_sha256'])
+    inputs[selected_core['protocol_file']]=selected_core['protocol_sha256']
+    for path in ['analysis/check_west_spitsbergen_selected_core.py','analysis/build_west_spitsbergen_selected_core_figure.py','figures/west-spitsbergen-selected-core-width.svg','figures/west-spitsbergen-selected-core-width.png']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
     from check_southern_current_width_source_limits import AUDIT as SOURCE_LIMITS_AUDIT, verify as verify_source_limits
     source_limits=verify_source_limits();read(SOURCE_LIMITS_AUDIT)

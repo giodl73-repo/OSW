@@ -34,7 +34,9 @@ def main():
     paths.append('rust/osw-query/src/qualitative_calendar.rs')
     paths.append('rust/osw-query/src/atlantic_euc_sections.rs')
     paths.append('rust/osw-query/src/proposed_widths.rs')
-    paths.append('rust/osw-query/src/stream_tube_widths.rs')
+    paths.extend(['rust/osw-query/src/stream_tube_widths.rs','rust/osw-query/src/selected_core_widths.rs',
+                  'research/west-spitsbergen-dundas-2026-selected-core-width-scope-audit.json',
+                  'research/source-data/dundas-fer-wsc-2026/figure.json'])
     paths.append('rust/osw-query/src/abstract_regional_widths.rs')
     paths.append('rust/osw-query/src/astrid_scales.rs')
     paths.append('rust/osw-query/src/eddy_source_panels.rs')

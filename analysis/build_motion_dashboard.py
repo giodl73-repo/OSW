@@ -588,7 +588,7 @@ def build():
                    'map_features': map_features, 'connections': own_connections}
         evidence_links = []
         if current_id == 'west-spitsbergen':
-            evidence_links.append({'label':'Compare the six existing WSC section/method records',
+            evidence_links.append({'label':'Compare WSC source widths and their separate methods',
                 'url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':current_id}],'limit':20},separators=(',',':')),safe='')+'#query-chart-section'})
         if current_id == 'norwegian':
             evidence_links.append({'label':'Proposed Atlantic slope branch widths · separate identity',

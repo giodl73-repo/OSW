@@ -55,7 +55,8 @@ def validate_proposal(proposals):
 def validate_inventory(document):
     if any(r.get('current_id') in {'norwegian','spitsbergen-atlantic'} or r.get('id')==records(NOR)[0]['id'] for r in document['measurements']):
         raise ValueError('Unresolved names or proposed widths transferred to canonical inventory')
-    expected=records(WSC)
+    from check_west_spitsbergen_selected_core import record as selected_core_record
+    expected=records(WSC)+[selected_core_record()]
     actual=[r for r in document['measurements'] if r['current_id']==WSC]
     if actual!=expected:raise ValueError('Existing WSC records duplicated or changed')
 

@@ -561,6 +561,9 @@ def validate(document, ledger):
         elif row['phase_kind'] in ['campaign_width_statistics','climatological_isopycnal_span']:
             from check_gulf_stream_published_widths import validate_row as validate_gulf_row
             validate_gulf_row(row)
+        elif row['phase_kind'] == 'selected_section_core_width_statistics':
+            from check_west_spitsbergen_selected_core import validate_row as validate_selected_core
+            validate_selected_core(row)
         elif row["phase_kind"] != "seasonal_summary" or row["measurement_type"] != "published_regional_seasonal_summary" or row["observed_period"] is not None:
             raise ValueError("Unsupported or conflated temporal evidence")
     reviews = document.get('review_assessments', [])

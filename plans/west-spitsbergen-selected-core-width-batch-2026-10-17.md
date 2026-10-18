@@ -12,7 +12,7 @@ Dataset DOI 10.21335/NMDC-1222822416 resolves to current NMDC metadata. DataCite
 
 Four tests and ten subtests pass (0.50 s): original/exact scope, SD promotion rejection, operator/reference rejection and date-window rejection. Two successive figure generations yield identical SVG/PNG hashes. The new figure was visually inspected. The source package has a seven-role direct review with integration conditions.
 
-## Integration still required
+## Original integration checklist (implemented; release gates noted below)
 
 1. Add one scoped width row: 149 to 150 records, still 79 owners. Keep the reported SD separate from width_range_km.
 2. Extend WSC validation so the existing six stream-tube rows remain exact while the new known ID uses its own source/metric contract; reject unknown WSC rows and identity transfer.
@@ -22,3 +22,15 @@ Four tests and ten subtests pass (0.50 s): original/exact scope, SD promotion re
 6. Publish all commits to the existing branch/PR after checking the in-flight upload. No main merge.
 
 The separate be51979 annual model UI candidate is undergoing its own clean full offline suite in another worktree. That test result cannot be used as a full gate for this new source package or its future integration.
+
+## Integration candidate implemented
+
+The prepared inventory now contains 150 scoped records for 79 owners. All 149 prior width records are equal by value. A compiled Rust module binds the new row, standard deviation, method, owner, source dependencies, figure and three observation windows, and requires the record whenever its owner/evidence is present. Unknown or transferred copies reject. The six existing tube rows and their chart remain separate.
+
+One shared browser renderer presents the statistic, separately labelled SD, unknown whole-current/annual values, source figure, numeric mission table, source query and record inspection. Card details collapse by default; query and selected-record pages open them. Seasonal playback is disabled. All five new JSON sources are indexed (307 total).
+
+Preservation proof: all 42 other collections remain equal; all earlier width rows remain equal; other objects and six seasonal route projections differ only in the required seasonal source fingerprint. All six original frame objects are unchanged, and only WSC's dashboard update fingerprint changes. Query returns no map geometry for the new record.
+
+Build verification: all 53 Rust tests passed in 2.26 s; native and WASM compiled; JavaScript syntax passed. The focused browser path passed cards/seasons/query/inspector/source, 320 px/reduced motion, alias separation and the old six-method comparison. Four altered SD/range/identity/annual cases rejected in both engines before the final presentation-only compaction. The final UI-only path passed after compaction, including all five source documents; engine/data bytes were unchanged by that UI edit. A separate source-only run also passed all five documents. A broader Python validation run and clean combined suite remain tracked separately; do not treat historical be51979 results as this candidate's gate.
+
+Focused Python gate: 48 tests and 658 subtests passed in 454.99 s, including the full width-inventory and seasonal-route validators.
