@@ -1,0 +1,5646 @@
+{
+  "schema": "osw.redsox-matched-lower-NC-feasibility.v1",
+  "preflight_sha256": "c9aa43ff540a180e606b984400aaa29d20f525e91dfee12b17791ece53c98660",
+  "followup_preflight_sha256": "cfced47f8fc78bb1fc37b1e6033f499e687afab5239388f104d330a6e0dd410a",
+  "implementation_clarifications_sha256": "2fbf9636562ee5e22e420e1355220bded6368ab05aee82fe92f9949cc8e8a81b",
+  "declaration_history_qualification_file": "research/source-data/redsox-lower-nc-2001/declaration-history-note.json",
+  "declaration_history_qualification_sha256": "23f5f47e82136efe661cb35422b7d2bc7447648048965d1f44a75bb6c6fb9123",
+  "calculation_rules_declared_before_layer_and_span_computation": true,
+  "fully_blinded_before_any_selected_velocity_exposure": false,
+  "source_ladcp_inputs": {
+    "research/source-data/ncei-redsox-2001/preflight.json": "334a989a2b2f5205d345584f8c471641bac3eea7be4a44ab360cb1881a855b41",
+    "research/source-data/ncei-redsox-2001/acquisition.json": "f6453064d837cefa689fa274e72c5d5b84bcae85d119910a48f1092d7f11236c",
+    "research/source-data/ncei-redsox-2001/documentation.json": "12c56f526f1054643cdc72848bf791f6780cdb5aa2615c92a330079cc022bcd2",
+    "research/source-data/ncei-redsox-2001/ladcp-ascii-originals.zip": "950fa2e0481d59c3f5f9bbbd84b3c0df1144306ecdcfded13076c049e395b104"
+  },
+  "source_ctd_inputs": {
+    "research/source-data/ncei-redsox-2001/ctd-preflight.json": "1230ece2b9c4869d76d94b9f2e751273f10cb9ddd2d3bdbe466408ae7c02a326",
+    "research/source-data/ncei-redsox-2001/ctd-acquisition.json": "56f7c5bb42a7db5f891b47b7c53eb19501d7deb7fa0c2fa4612d0270945dc498",
+    "research/source-data/ncei-redsox-2001/ctd-ascii-originals.zip": "8bce8c17398f9a7cccf8f5a2364c6fbc29411783c784896c00efdeff7b2df478",
+    "research/redsox-cruise-log-metadata-reconciliation.json": "c20b965126a62925b35cf61c8d7b61cd887d236e478dba57714cbc1b7bba252b"
+  },
+  "generator_sha256": "63613b7c33f51f73ec6b5cf64ad78b3603b130abecd70283d8248e85c97d2349",
+  "source_parser_sha256": {
+    "build_redsox_ladcp_source_inventory.py": "987849fe5bc1fd9b3fdec59660359f4c3b056a8506795b02a5eb866dabb47385",
+    "build_redsox_ctd_companion_inventory.py": "6f56097cd9a25594347931f1e6b45b2e50f2970152baecebf0a5a5e5812ace88"
+  },
+  "interpretation": "Strict primary results preserve the initial all-profile-complete calculation. Supported-local-core results separately apply the existing OSW missing-before-crossing rule, with incomplete-global-search flags. Conditional values include unresolved source profiles and never replace either result.",
+  "gsw_version": "3.6.23",
+  "cases": [
+    {
+      "campaign": "RSX1",
+      "height_layer_m": [
+        20,
+        60
+      ],
+      "profiles": [
+        {
+          "id": "rsx1-007-hr",
+          "ctd_id": "rsx1-007-ctd",
+          "position_lon_lat": [
+            44.3366,
+            12.1834
+          ],
+          "time_utc": "2001-02-18T14:19:27Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx1-007-hr",
+            "ctd_id": "rsx1-007-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -705.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "87293d4c27458beab4c117a5d6d49cc460ca786ecdefc9b95522c303649db254",
+          "ctd_profile_sha256": "fb6da32f25f983c2d09849eefc92086ba8be2e2497656892594e15d9041b51c9",
+          "source_height_range_m": [
+            14.1015,
+            619.452
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": 0.04096296109331827,
+            "v_m_s": -0.1258986136861638,
+            "southward_m_s": 0.1258986136861638,
+            "speed_of_mean_vector_m_s": 0.13239495877725338,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              20.0,
+              24.1986,
+              34.4894,
+              43.9161,
+              53.6977,
+              60.0
+            ],
+            "source_depth_at_knots_m": [
+              629.2610026938428,
+              625.035,
+              614.567,
+              604.924,
+              595.096,
+              588.7619780996405
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                0.020717938643769,
+                -0.13521389836685782
+              ],
+              [
+                0.0221324,
+                -0.14801
+              ],
+              [
+                0.0182183,
+                -0.142386
+              ],
+              [
+                0.0324369,
+                -0.116086
+              ],
+              [
+                0.0751454,
+                -0.0999882
+              ],
+              [
+                0.10765232028556755,
+                -0.11330673697380586
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 37.51468417592207,
+            "salinity_at_velocity_knots_psu": [
+              37.247887679578454,
+              37.26127300191803,
+              37.31499738694287,
+              37.71065826975424,
+              37.71530724667229,
+              37.79047893365555
+            ],
+            "depth_operator": "minus_gsw.z_from_p_native_pressure_dbar_source_latitude_default_zero_dynamic_height_and_surface_geopotential",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx1-008-hr",
+          "ctd_id": "rsx1-008-ctd",
+          "position_lon_lat": [
+            44.2986,
+            12.1831
+          ],
+          "time_utc": "2001-02-18T15:56:05Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx1-008-hr",
+            "ctd_id": "rsx1-008-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -801.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "c918832a126924810d6933f055b3f1da5613f85f3ba54a9119c97eeadc140132",
+          "ctd_profile_sha256": "cc7e01b039f16642d65e31c16e808a6e9a0ac88068f1e3af2171b27a426bba28",
+          "source_height_range_m": [
+            12.2509,
+            694.48
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": 0.13017748935959436,
+            "v_m_s": -0.4791859778659477,
+            "southward_m_s": 0.4791859778659477,
+            "speed_of_mean_vector_m_s": 0.4965535017692573,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              20.0,
+              27.9718,
+              37.6073,
+              48.2658,
+              57.8962,
+              60.0
+            ],
+            "source_depth_at_knots_m": [
+              702.9034812842168,
+              694.942,
+              685.359,
+              674.958,
+              665.197,
+              663.103337219243
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                0.12255546929508128,
+                -0.41293040221958155
+              ],
+              [
+                0.129672,
+                -0.450647
+              ],
+              [
+                0.120458,
+                -0.475432
+              ],
+              [
+                0.126573,
+                -0.503745
+              ],
+              [
+                0.154766,
+                -0.524146
+              ],
+              [
+                0.1546634015310484,
+                -0.5176916979093806
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 39.32190040724896,
+            "salinity_at_velocity_knots_psu": [
+              39.47856791282066,
+              39.4756118537324,
+              39.3288098836218,
+              39.22795569527326,
+              39.17164374695345,
+              39.11921483064897
+            ],
+            "depth_operator": "minus_gsw.z_from_p_native_pressure_dbar_source_latitude_default_zero_dynamic_height_and_surface_geopotential",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx1-009-hr",
+          "ctd_id": "rsx1-009-ctd",
+          "position_lon_lat": [
+            44.266,
+            12.1831
+          ],
+          "time_utc": "2001-02-18T17:37:17Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx1-009-hr",
+            "ctd_id": "rsx1-009-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -1127.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "c91b5f7f2577e1ea06e9aca0cd6c6000e5cba80c896ef3670c90c4a6105e1b70",
+          "ctd_profile_sha256": "d1a16520eeb9e46fca9780612d73a3f07cdd81d22063958f267cf368eb312737",
+          "source_height_range_m": [
+            14.4057,
+            686.445
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": -0.017134246145766797,
+            "v_m_s": -0.3642895034131155,
+            "southward_m_s": 0.3642895034131155,
+            "speed_of_mean_vector_m_s": 0.36469223283195656,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              20.0,
+              21.181,
+              31.3591,
+              41.433,
+              51.2486,
+              60.0
+            ],
+            "source_depth_at_knots_m": [
+              696.498819255236,
+              695.317,
+              685.207,
+              674.81,
+              664.789,
+              655.8918951092612
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                -0.034998962223075,
+                -0.43391303515711477
+              ],
+              [
+                -0.0318605,
+                -0.444217
+              ],
+              [
+                -0.00159251,
+                -0.440405
+              ],
+              [
+                -0.0036985,
+                -0.368446
+              ],
+              [
+                -0.0255541,
+                -0.290032
+              ],
+              [
+                -0.044247035760665965,
+                -0.22310610106139442
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 39.08501385480763,
+            "salinity_at_velocity_knots_psu": [
+              39.533293802982726,
+              39.53010619974993,
+              39.30853232721718,
+              38.92969562057092,
+              38.84388669580594,
+              38.79411717582688
+            ],
+            "depth_operator": "minus_gsw.z_from_p_native_pressure_dbar_source_latitude_default_zero_dynamic_height_and_surface_geopotential",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx1-010-hr",
+          "ctd_id": "rsx1-010-ctd",
+          "position_lon_lat": [
+            44.2326,
+            12.1829
+          ],
+          "time_utc": "2001-02-18T19:41:51Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "upf",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [
+            "Author quality note declares downcast bad; inclusion/omission in this distributed product requires review."
+          ],
+          "filename_join_support": {
+            "ladcp_id": "rsx1-010-hr",
+            "ctd_id": "rsx1-010-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -2238.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": false,
+          "primary_exclusion_reasons": [
+            "cast10_upcast_only_treatment_unverified"
+          ],
+          "source_profile_sha256": "835fcca8940d3f755d50d77b1378c371ee9fd29cb6377c5723e086d03d6362f8",
+          "ctd_profile_sha256": "07ea2c145bdbbea5fcefae92cb41736d59d40d90830fd37e7b5e399e4702fd10",
+          "source_height_range_m": [
+            18.6027,
+            580.646
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": 0.007934769466630515,
+            "v_m_s": 0.10159220189214128,
+            "southward_m_s": -0.10159220189214128,
+            "speed_of_mean_vector_m_s": 0.10190159984898259,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              20.0,
+              26.0238,
+              35.5934,
+              45.1054,
+              54.6021,
+              60.0
+            ],
+            "source_depth_at_knots_m": [
+              590.1271999299295,
+              584.084,
+              574.566,
+              565.082,
+              555.59,
+              550.2004889448243
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                0.04122694908571505,
+                0.06922142213822749
+              ],
+              [
+                0.0340812,
+                0.0682843
+              ],
+              [
+                0.00521692,
+                0.0954531
+              ],
+              [
+                -0.0066388,
+                0.115154
+              ],
+              [
+                -0.00528024,
+                0.128895
+              ],
+              [
+                -0.007356246514401761,
+                0.1325423896913704
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 37.511047679209874,
+            "salinity_at_velocity_knots_psu": [
+              37.912321675438285,
+              37.89689244810283,
+              37.707285279709076,
+              37.319366240916004,
+              37.14272799414483,
+              36.946242073667825
+            ],
+            "depth_operator": "minus_gsw.z_from_p_native_pressure_dbar_source_latitude_default_zero_dynamic_height_and_surface_geopotential",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx1-011-hr",
+          "ctd_id": "rsx1-011-ctd",
+          "position_lon_lat": [
+            44.1997,
+            12.1831
+          ],
+          "time_utc": "2001-02-18T20:47:40Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx1-011-hr",
+            "ctd_id": "rsx1-011-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -685.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "d6dcf9abb71b0872034228a747fca68a2743aecfb2768882dc47e08393108a7d",
+          "ctd_profile_sha256": "e9906eb9f3d0043e226bbb81e6bb5f67e7d32cb848c8e132589f8bc299e1e5e9",
+          "source_height_range_m": [
+            10.7254,
+            489.963
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": 0.03908323533370708,
+            "v_m_s": 0.06474805610987427,
+            "southward_m_s": -0.06474805610987427,
+            "speed_of_mean_vector_m_s": 0.07562942584839155,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              20.0,
+              25.0857,
+              34.9945,
+              45.0098,
+              54.7196,
+              60.0
+            ],
+            "source_depth_at_knots_m": [
+              499.7117404490086,
+              494.808,
+              484.901,
+              474.928,
+              465.188,
+              459.87969430855975
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                0.04929705400447916,
+                0.06422340982902715
+              ],
+              [
+                0.0436947,
+                0.0714659
+              ],
+              [
+                0.0398391,
+                0.0704332
+              ],
+              [
+                0.0355495,
+                0.0687148
+              ],
+              [
+                0.0357731,
+                0.0522834
+              ],
+              [
+                0.0358963414923086,
+                0.04529297242490324
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 36.951884376093396,
+            "salinity_at_velocity_knots_psu": [
+              37.05632570663427,
+              36.99521269330894,
+              36.895472273602955,
+              36.91369410534992,
+              36.98078430180545,
+              37.00173057847262
+            ],
+            "depth_operator": "minus_gsw.z_from_p_native_pressure_dbar_source_latitude_default_zero_dynamic_height_and_surface_geopotential",
+            "pressure_equals_depth": false
+          }
+        }
+      ],
+      "primary": {
+        "fraction": 0.5,
+        "velocity_offset_m_s": 0,
+        "conditional_unverified_profiles_included": false,
+        "span_km": null,
+        "left_edge": null,
+        "right_edge": null,
+        "unavailable_profile_ids": [
+          "rsx1-010-hr"
+        ],
+        "global_peak_search_complete": false,
+        "supported_local_core_followup": false,
+        "status": "incomplete_peak_search_or_missing_profile"
+      },
+      "supported_local_core_diagnostics": [
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": {
+            "position_lon_lat": [
+              44.32437090069607,
+              12.18330345447918
+            ],
+            "interpolation_fraction_from_inner_sample": 0.6781815972649611,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4791859778659477,
+          "threshold_m_s": 0.23959298893297384,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "open_section_boundary"
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": {
+            "position_lon_lat": [
+              44.32275748324106,
+              12.183290716972955
+            ],
+            "interpolation_fraction_from_inner_sample": 0.6357232431859099,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4491859778659477,
+          "threshold_m_s": 0.22459298893297386,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "open_section_boundary"
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": {
+            "position_lon_lat": [
+              44.32598431815107,
+              12.183316191985403
+            ],
+            "interpolation_fraction_from_inner_sample": 0.7206399513440124,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.5091859778659477,
+          "threshold_m_s": 0.25459298893297383,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "open_section_boundary"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": {
+            "position_lon_lat": [
+              44.32952508083528,
+              12.183344145375015
+            ],
+            "interpolation_fraction_from_inner_sample": 0.8138179167179533,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4791859778659477,
+          "threshold_m_s": 0.19167439114637908,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "open_section_boundary"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": {
+            "position_lon_lat": [
+              44.32758897988928,
+              12.183328860367547
+            ],
+            "interpolation_fraction_from_inner_sample": 0.7628678918230919,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4491859778659477,
+          "threshold_m_s": 0.1796743911463791,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "open_section_boundary"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": {
+            "position_lon_lat": [
+              44.331461181781286,
+              12.183359430382485
+            ],
+            "interpolation_fraction_from_inner_sample": 0.8647679416128149,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.5091859778659477,
+          "threshold_m_s": 0.20367439114637909,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "open_section_boundary"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": {
+            "position_lon_lat": [
+              44.31921672055685,
+              12.183262763583343
+            ],
+            "interpolation_fraction_from_inner_sample": 0.5425452778119688,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4791859778659477,
+          "threshold_m_s": 0.2875115867195686,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "open_section_boundary"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": {
+            "position_lon_lat": [
+              44.31792598659285,
+              12.183252573578365
+            ],
+            "interpolation_fraction_from_inner_sample": 0.508578594548728,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4491859778659477,
+          "threshold_m_s": 0.2695115867195686,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "open_section_boundary"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": {
+            "position_lon_lat": [
+              44.32050745452086,
+              12.183272953588324
+            ],
+            "interpolation_fraction_from_inner_sample": 0.57651196107521,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.5091859778659477,
+          "threshold_m_s": 0.3055115867195686,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "open_section_boundary"
+        }
+      ],
+      "conditional_diagnostics": [
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 7.325376291189,
+          "left_edge": {
+            "position_lon_lat": [
+              44.25706025513299,
+              12.183046468593611
+            ],
+            "interpolation_fraction_from_inner_sample": 0.2676570319464198,
+            "inner_profile_id": "rsx1-009-hr",
+            "outer_profile_id": "rsx1-010-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.266,
+                12.1831
+              ],
+              [
+                44.2326,
+                12.1829
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.32437090069607,
+              12.18330345447918
+            ],
+            "interpolation_fraction_from_inner_sample": 0.6781815972649611,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4791859778659477,
+          "threshold_m_s": 0.23959298893297384,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 2.0304628177528783,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.80161005276963,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.056316576923223,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 7.032752409430945,
+          "left_edge": {
+            "position_lon_lat": [
+              44.25813563541578,
+              12.183052907996501
+            ],
+            "interpolation_fraction_from_inner_sample": 0.23546001749149145,
+            "inner_profile_id": "rsx1-009-hr",
+            "outer_profile_id": "rsx1-010-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.266,
+                12.1831
+              ],
+              [
+                44.2326,
+                12.1829
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.32275748324106,
+              12.183290716972955
+            ],
+            "interpolation_fraction_from_inner_sample": 0.6357232431859099,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4491859778659477,
+          "threshold_m_s": 0.22459298893297386,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.9493527303146523,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.80161005276963,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.056316576923223,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 7.618000298741473,
+          "left_edge": {
+            "position_lon_lat": [
+              44.25598487485019,
+              12.18304002919072
+            ],
+            "interpolation_fraction_from_inner_sample": 0.2998540464013482,
+            "inner_profile_id": "rsx1-009-hr",
+            "outer_profile_id": "rsx1-010-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.266,
+                12.1831
+              ],
+              [
+                44.2326,
+                12.1829
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.32598431815107,
+              12.183316191985403
+            ],
+            "interpolation_fraction_from_inner_sample": 0.7206399513440124,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.5091859778659477,
+          "threshold_m_s": 0.25459298893297383,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 2.1115729400590584,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.80161005276963,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.056316576923223,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 8.260185470934115,
+          "left_edge": {
+            "position_lon_lat": [
+              44.253624874117065,
+              12.183025897449802
+            ],
+            "interpolation_fraction_from_inner_sample": 0.37051275098607894,
+            "inner_profile_id": "rsx1-009-hr",
+            "outer_profile_id": "rsx1-010-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.266,
+                12.1831
+              ],
+              [
+                44.2326,
+                12.1829
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.32952508083528,
+              12.183344145375015
+            ],
+            "interpolation_fraction_from_inner_sample": 0.8138179167179533,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4791859778659477,
+          "threshold_m_s": 0.19167439114637908,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 2.2895751425967994,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.80161005276963,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.056316576923223,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 7.909036400328117,
+          "left_edge": {
+            "position_lon_lat": [
+              44.25491533045642,
+              12.183033624733271
+            ],
+            "interpolation_fraction_from_inner_sample": 0.33187633364016494,
+            "inner_profile_id": "rsx1-009-hr",
+            "outer_profile_id": "rsx1-010-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.266,
+                12.1831
+              ],
+              [
+                44.2326,
+                12.1829
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.32758897988928,
+              12.183328860367547
+            ],
+            "interpolation_fraction_from_inner_sample": 0.7628678918230919,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4491859778659477,
+          "threshold_m_s": 0.1796743911463791,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 2.1922429233343497,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.80161005276963,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.056316576923223,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 8.611334664791277,
+          "left_edge": {
+            "position_lon_lat": [
+              44.25233441777771,
+              12.183018170166333
+            ],
+            "interpolation_fraction_from_inner_sample": 0.40914916833199294,
+            "inner_profile_id": "rsx1-009-hr",
+            "outer_profile_id": "rsx1-010-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.266,
+                12.1831
+              ],
+              [
+                44.2326,
+                12.1829
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.331461181781286,
+              12.183359430382485
+            ],
+            "interpolation_fraction_from_inner_sample": 0.8647679416128149,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.5091859778659477,
+          "threshold_m_s": 0.20367439114637909,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 2.3869073960222598,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.80161005276963,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.056316576923223,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 6.390568415455997,
+          "left_edge": {
+            "position_lon_lat": [
+              44.26049563614891,
+              12.183067039737418
+            ],
+            "interpolation_fraction_from_inner_sample": 0.16480131290676067,
+            "inner_profile_id": "rsx1-009-hr",
+            "outer_profile_id": "rsx1-010-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.266,
+                12.1831
+              ],
+              [
+                44.2326,
+                12.1829
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.31921672055685,
+              12.183262763583343
+            ],
+            "interpolation_fraction_from_inner_sample": 0.5425452778119688,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4791859778659477,
+          "threshold_m_s": 0.2875115867195686,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.7713508543577074,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.80161005276963,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.056316576923223,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 6.156469720712247,
+          "left_edge": {
+            "position_lon_lat": [
+              44.26135594037515,
+              12.18307219125973
+            ],
+            "interpolation_fraction_from_inner_sample": 0.13904370134281802,
+            "inner_profile_id": "rsx1-009-hr",
+            "outer_profile_id": "rsx1-010-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.266,
+                12.1831
+              ],
+              [
+                44.2326,
+                12.1829
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.31792598659285,
+              12.183252573578365
+            ],
+            "interpolation_fraction_from_inner_sample": 0.508578594548728,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4491859778659477,
+          "threshold_m_s": 0.2695115867195686,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.7064628982354542,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.80161005276963,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.056316576923223,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 6.624667233733317,
+          "left_edge": {
+            "position_lon_lat": [
+              44.259635331922674,
+              12.183061888215105
+            ],
+            "interpolation_fraction_from_inner_sample": 0.19055892447070344,
+            "inner_profile_id": "rsx1-009-hr",
+            "outer_profile_id": "rsx1-010-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.266,
+                12.1831
+              ],
+              [
+                44.2326,
+                12.1829
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.32050745452086,
+              12.183272953588324
+            ],
+            "interpolation_fraction_from_inner_sample": 0.57651196107521,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.5091859778659477,
+          "threshold_m_s": 0.3055115867195686,
+          "peak_salinity_psu": 39.32190040724896,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.8362388447212488,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.80161005276963,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.056316576923223,
+          "is_flow_normal_current_width": false
+        }
+      ]
+    },
+    {
+      "campaign": "RSX1",
+      "height_layer_m": [
+        10,
+        50
+      ],
+      "profiles": [
+        {
+          "id": "rsx1-007-hr",
+          "ctd_id": "rsx1-007-ctd",
+          "position_lon_lat": [
+            44.3366,
+            12.1834
+          ],
+          "time_utc": "2001-02-18T14:19:27Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx1-007-hr",
+            "ctd_id": "rsx1-007-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -705.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": false,
+          "primary_exclusion_reasons": [
+            "Layer endpoint outside observed support"
+          ],
+          "source_profile_sha256": "87293d4c27458beab4c117a5d6d49cc460ca786ecdefc9b95522c303649db254",
+          "ctd_profile_sha256": "fb6da32f25f983c2d09849eefc92086ba8be2e2497656892594e15d9041b51c9",
+          "source_height_range_m": [
+            14.1015,
+            619.452
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": null
+        },
+        {
+          "id": "rsx1-008-hr",
+          "ctd_id": "rsx1-008-ctd",
+          "position_lon_lat": [
+            44.2986,
+            12.1831
+          ],
+          "time_utc": "2001-02-18T15:56:05Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx1-008-hr",
+            "ctd_id": "rsx1-008-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -801.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": false,
+          "primary_exclusion_reasons": [
+            "Layer endpoint outside observed support"
+          ],
+          "source_profile_sha256": "c918832a126924810d6933f055b3f1da5613f85f3ba54a9119c97eeadc140132",
+          "ctd_profile_sha256": "cc7e01b039f16642d65e31c16e808a6e9a0ac88068f1e3af2171b27a426bba28",
+          "source_height_range_m": [
+            12.2509,
+            694.48
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": null
+        },
+        {
+          "id": "rsx1-009-hr",
+          "ctd_id": "rsx1-009-ctd",
+          "position_lon_lat": [
+            44.266,
+            12.1831
+          ],
+          "time_utc": "2001-02-18T17:37:17Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx1-009-hr",
+            "ctd_id": "rsx1-009-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -1127.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": false,
+          "primary_exclusion_reasons": [
+            "Layer endpoint outside observed support"
+          ],
+          "source_profile_sha256": "c91b5f7f2577e1ea06e9aca0cd6c6000e5cba80c896ef3670c90c4a6105e1b70",
+          "ctd_profile_sha256": "d1a16520eeb9e46fca9780612d73a3f07cdd81d22063958f267cf368eb312737",
+          "source_height_range_m": [
+            14.4057,
+            686.445
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": null
+        },
+        {
+          "id": "rsx1-010-hr",
+          "ctd_id": "rsx1-010-ctd",
+          "position_lon_lat": [
+            44.2326,
+            12.1829
+          ],
+          "time_utc": "2001-02-18T19:41:51Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "upf",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [
+            "Author quality note declares downcast bad; inclusion/omission in this distributed product requires review."
+          ],
+          "filename_join_support": {
+            "ladcp_id": "rsx1-010-hr",
+            "ctd_id": "rsx1-010-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -2238.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": false,
+          "primary_exclusion_reasons": [
+            "cast10_upcast_only_treatment_unverified",
+            "Layer endpoint outside observed support"
+          ],
+          "source_profile_sha256": "835fcca8940d3f755d50d77b1378c371ee9fd29cb6377c5723e086d03d6362f8",
+          "ctd_profile_sha256": "07ea2c145bdbbea5fcefae92cb41736d59d40d90830fd37e7b5e399e4702fd10",
+          "source_height_range_m": [
+            18.6027,
+            580.646
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": null
+        },
+        {
+          "id": "rsx1-011-hr",
+          "ctd_id": "rsx1-011-ctd",
+          "position_lon_lat": [
+            44.1997,
+            12.1831
+          ],
+          "time_utc": "2001-02-18T20:47:40Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx1-011-hr",
+            "ctd_id": "rsx1-011-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -685.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": false,
+          "primary_exclusion_reasons": [
+            "Layer endpoint outside observed support"
+          ],
+          "source_profile_sha256": "d6dcf9abb71b0872034228a747fca68a2743aecfb2768882dc47e08393108a7d",
+          "ctd_profile_sha256": "e9906eb9f3d0043e226bbb81e6bb5f67e7d32cb848c8e132589f8bc299e1e5e9",
+          "source_height_range_m": [
+            10.7254,
+            489.963
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": null
+        }
+      ],
+      "primary": {
+        "fraction": 0.5,
+        "velocity_offset_m_s": 0,
+        "conditional_unverified_profiles_included": false,
+        "span_km": null,
+        "left_edge": null,
+        "right_edge": null,
+        "unavailable_profile_ids": [
+          "rsx1-011-hr",
+          "rsx1-010-hr",
+          "rsx1-009-hr",
+          "rsx1-008-hr",
+          "rsx1-007-hr"
+        ],
+        "global_peak_search_complete": false,
+        "supported_local_core_followup": false,
+        "status": "incomplete_peak_search_or_missing_profile"
+      },
+      "supported_local_core_diagnostics": [
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        }
+      ],
+      "conditional_diagnostics": [
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx1-011-hr",
+            "rsx1-010-hr",
+            "rsx1-009-hr",
+            "rsx1-008-hr",
+            "rsx1-007-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        }
+      ]
+    },
+    {
+      "campaign": "RSX1",
+      "height_layer_m": [
+        40,
+        80
+      ],
+      "profiles": [
+        {
+          "id": "rsx1-007-hr",
+          "ctd_id": "rsx1-007-ctd",
+          "position_lon_lat": [
+            44.3366,
+            12.1834
+          ],
+          "time_utc": "2001-02-18T14:19:27Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx1-007-hr",
+            "ctd_id": "rsx1-007-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -705.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "87293d4c27458beab4c117a5d6d49cc460ca786ecdefc9b95522c303649db254",
+          "ctd_profile_sha256": "fb6da32f25f983c2d09849eefc92086ba8be2e2497656892594e15d9041b51c9",
+          "source_height_range_m": [
+            14.1015,
+            619.452
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": 0.10131135748389783,
+            "v_m_s": -0.1191567883068498,
+            "southward_m_s": 0.1191567883068498,
+            "speed_of_mean_vector_m_s": 0.15640438406526064,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              40.0,
+              43.9161,
+              53.6977,
+              63.4327,
+              73.6779,
+              80.0
+            ],
+            "source_depth_at_knots_m": [
+              608.9299567292902,
+              604.924,
+              595.096,
+              585.312,
+              575.043,
+              568.6204918619086
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                0.026530118256653967,
+                -0.12701171419478716
+              ],
+              [
+                0.0324369,
+                -0.116086
+              ],
+              [
+                0.0751454,
+                -0.0999882
+              ],
+              [
+                0.125358,
+                -0.120561
+              ],
+              [
+                0.15536,
+                -0.138828
+              ],
+              [
+                0.1600016963092869,
+                -0.12413178653766575
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 37.718954788145965,
+            "salinity_at_velocity_knots_psu": [
+              37.427348533832564,
+              37.71065826975424,
+              37.71530724667229,
+              37.80651876078081,
+              37.71454047295722,
+              37.66365317608734
+            ],
+            "depth_operator": "minus_gsw.z_from_p_native_pressure_dbar_source_latitude_default_zero_dynamic_height_and_surface_geopotential",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx1-008-hr",
+          "ctd_id": "rsx1-008-ctd",
+          "position_lon_lat": [
+            44.2986,
+            12.1831
+          ],
+          "time_utc": "2001-02-18T15:56:05Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx1-008-hr",
+            "ctd_id": "rsx1-008-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -801.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "c918832a126924810d6933f055b3f1da5613f85f3ba54a9119c97eeadc140132",
+          "ctd_profile_sha256": "cc7e01b039f16642d65e31c16e808a6e9a0ac88068f1e3af2171b27a426bba28",
+          "source_height_range_m": [
+            12.2509,
+            694.48
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": 0.139351012521192,
+            "v_m_s": -0.49176275181071594,
+            "southward_m_s": 0.49176275181071594,
+            "speed_of_mean_vector_m_s": 0.5111255313121515,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              40.0,
+              48.2658,
+              57.8962,
+              68.1898,
+              78.1138,
+              80.0
+            ],
+            "source_depth_at_knots_m": [
+              683.024105530797,
+              674.958,
+              665.197,
+              654.953,
+              645.031,
+              643.1349476864382
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                0.12183074105174274,
+                -0.48178791453769293
+              ],
+              [
+                0.126573,
+                -0.503745
+              ],
+              [
+                0.154766,
+                -0.524146
+              ],
+              [
+                0.154264,
+                -0.492566
+              ],
+              [
+                0.122827,
+                -0.434947
+              ],
+              [
+                0.11815272712854674,
+                -0.4268571767954697
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 39.03167115764277,
+            "salinity_at_velocity_knots_psu": [
+              39.318537553006536,
+              39.22795569527326,
+              39.17164374695345,
+              38.830517696798836,
+              38.69603025686927,
+              38.69134930084452
+            ],
+            "depth_operator": "minus_gsw.z_from_p_native_pressure_dbar_source_latitude_default_zero_dynamic_height_and_surface_geopotential",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx1-009-hr",
+          "ctd_id": "rsx1-009-ctd",
+          "position_lon_lat": [
+            44.266,
+            12.1831
+          ],
+          "time_utc": "2001-02-18T17:37:17Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx1-009-hr",
+            "ctd_id": "rsx1-009-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -1127.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "c91b5f7f2577e1ea06e9aca0cd6c6000e5cba80c896ef3670c90c4a6105e1b70",
+          "ctd_profile_sha256": "d1a16520eeb9e46fca9780612d73a3f07cdd81d22063958f267cf368eb312737",
+          "source_height_range_m": [
+            14.4057,
+            686.445
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": -0.03652950845419502,
+            "v_m_s": -0.22788352954861515,
+            "southward_m_s": 0.22788352954861515,
+            "speed_of_mean_vector_m_s": 0.23079278157568026,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              40.0,
+              41.433,
+              51.2486,
+              60.8586,
+              70.5262,
+              80.0
+            ],
+            "source_depth_at_knots_m": [
+              676.2889605813041,
+              674.81,
+              664.789,
+              655.019,
+              645.215,
+              635.5981078885587
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                -0.003398925488638958,
+                -0.3786820800682953
+              ],
+              [
+                -0.0036985,
+                -0.368446
+              ],
+              [
+                -0.0255541,
+                -0.290032
+              ],
+              [
+                -0.046081,
+                -0.21654
+              ],
+              [
+                -0.0546142,
+                -0.149789
+              ],
+              [
+                -0.047051870481790034,
+                -0.09161487256975462
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 38.79134733109063,
+            "salinity_at_velocity_knots_psu": [
+              38.93606564643992,
+              38.92969562057092,
+              38.84388669580594,
+              38.796515865013056,
+              38.73226364500531,
+              38.60632051409358
+            ],
+            "depth_operator": "minus_gsw.z_from_p_native_pressure_dbar_source_latitude_default_zero_dynamic_height_and_surface_geopotential",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx1-010-hr",
+          "ctd_id": "rsx1-010-ctd",
+          "position_lon_lat": [
+            44.2326,
+            12.1829
+          ],
+          "time_utc": "2001-02-18T19:41:51Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "upf",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [
+            "Author quality note declares downcast bad; inclusion/omission in this distributed product requires review."
+          ],
+          "filename_join_support": {
+            "ladcp_id": "rsx1-010-hr",
+            "ctd_id": "rsx1-010-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -2238.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": false,
+          "primary_exclusion_reasons": [
+            "cast10_upcast_only_treatment_unverified"
+          ],
+          "source_profile_sha256": "835fcca8940d3f755d50d77b1378c371ee9fd29cb6377c5723e086d03d6362f8",
+          "ctd_profile_sha256": "07ea2c145bdbbea5fcefae92cb41736d59d40d90830fd37e7b5e399e4702fd10",
+          "source_height_range_m": [
+            18.6027,
+            580.646
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": -0.00863312040020074,
+            "v_m_s": 0.1262595304091979,
+            "southward_m_s": -0.1262595304091979,
+            "speed_of_mean_vector_m_s": 0.12655433531489757,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              40.0,
+              45.1054,
+              54.6021,
+              65.0904,
+              75.6337,
+              80.0
+            ],
+            "source_depth_at_knots_m": [
+              570.1723714886459,
+              565.082,
+              555.59,
+              545.118,
+              534.481,
+              529.9970315893491
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                -0.00027544919175777685,
+                0.10457988573801513
+              ],
+              [
+                -0.0066388,
+                0.115154
+              ],
+              [
+                -0.00528024,
+                0.128895
+              ],
+              [
+                -0.00931399,
+                0.135982
+              ],
+              [
+                -0.0134509,
+                0.127554
+              ],
+              [
+                -0.020690672905769,
+                0.12543465544945812
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 37.146829214693504,
+            "salinity_at_velocity_knots_psu": [
+              37.5798583433087,
+              37.319366240916004,
+              37.14272799414483,
+              36.97499101676329,
+              37.09157413140739,
+              37.09865032230895
+            ],
+            "depth_operator": "minus_gsw.z_from_p_native_pressure_dbar_source_latitude_default_zero_dynamic_height_and_surface_geopotential",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx1-011-hr",
+          "ctd_id": "rsx1-011-ctd",
+          "position_lon_lat": [
+            44.1997,
+            12.1831
+          ],
+          "time_utc": "2001-02-18T20:47:40Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx1-011-hr",
+            "ctd_id": "rsx1-011-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -685.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "d6dcf9abb71b0872034228a747fca68a2743aecfb2768882dc47e08393108a7d",
+          "ctd_profile_sha256": "e9906eb9f3d0043e226bbb81e6bb5f67e7d32cb848c8e132589f8bc299e1e5e9",
+          "source_height_range_m": [
+            10.7254,
+            489.963
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": 0.035873201959590095,
+            "v_m_s": 0.04855358191588107,
+            "southward_m_s": -0.04855358191588107,
+            "speed_of_mean_vector_m_s": 0.060368343821043426,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              40.0,
+              45.0098,
+              54.7196,
+              64.8998,
+              74.6926,
+              80.0
+            ],
+            "source_depth_at_knots_m": [
+              479.91664091939333,
+              474.928,
+              465.188,
+              454.954,
+              444.904,
+              439.3744821751377
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                0.03769522085509171,
+                0.06957436889159586
+              ],
+              [
+                0.0355495,
+                0.0687148
+              ],
+              [
+                0.0357731,
+                0.0522834
+              ],
+              [
+                0.0360107,
+                0.0388064
+              ],
+              [
+                0.0359256,
+                0.0348321
+              ],
+              [
+                0.03475973243158027,
+                0.03453852739521587
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 36.94926753925486,
+            "salinity_at_velocity_knots_psu": [
+              36.90709363775649,
+              36.91369410534992,
+              36.98078430180545,
+              36.98607903420812,
+              36.93555118162555,
+              36.87011859195025
+            ],
+            "depth_operator": "minus_gsw.z_from_p_native_pressure_dbar_source_latitude_default_zero_dynamic_height_and_surface_geopotential",
+            "pressure_equals_depth": false
+          }
+        }
+      ],
+      "primary": {
+        "fraction": 0.5,
+        "velocity_offset_m_s": 0,
+        "conditional_unverified_profiles_included": false,
+        "span_km": null,
+        "left_edge": null,
+        "right_edge": null,
+        "unavailable_profile_ids": [
+          "rsx1-010-hr"
+        ],
+        "global_peak_search_complete": false,
+        "supported_local_core_followup": false,
+        "status": "incomplete_peak_search_or_missing_profile"
+      },
+      "supported_local_core_diagnostics": [
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": 6.034865010454052,
+          "left_edge": {
+            "position_lon_lat": [
+              44.2682234785528,
+              12.1831
+            ],
+            "interpolation_fraction_from_inner_sample": 0.9317951364171209,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-009-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.266,
+                12.1831
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.32367606748035,
+              12.183297968953793
+            ],
+            "interpolation_fraction_from_inner_sample": 0.6598965126407772,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.49176275181071594,
+          "threshold_m_s": 0.24588137590535797,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.6727562553507922,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.17883960800413,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.67908702168873,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": 5.666708036239148,
+          "left_edge": {
+            "position_lon_lat": [
+              44.27007659906683,
+              12.1831
+            ],
+            "interpolation_fraction_from_inner_sample": 0.8749509488702094,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-009-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.266,
+                12.1831
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.3221463013042,
+              12.183285891852401
+            ],
+            "interpolation_fraction_from_inner_sample": 0.6196395080052506,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4617627518107159,
+          "threshold_m_s": 0.23088137590535796,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.570709750499035,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.17883960800413,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.67908702168873,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": 6.4030219677868665,
+          "left_edge": {
+            "position_lon_lat": [
+              44.26637035803877,
+              12.1831
+            ],
+            "interpolation_fraction_from_inner_sample": 0.9886393239640323,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-009-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.266,
+                12.1831
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.3252058336565,
+              12.183310046055183
+            ],
+            "interpolation_fraction_from_inner_sample": 0.7001535172763038,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.521762751810716,
+          "threshold_m_s": 0.260881375905358,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.7748027555231376,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.17883960800413,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.67908702168873,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": {
+            "position_lon_lat": [
+              44.328691280976415,
+              12.183337562744551
+            ],
+            "interpolation_fraction_from_inner_sample": 0.7918758151689326,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.49176275181071594,
+          "threshold_m_s": 0.19670510072428637,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "open_section_boundary"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": {
+            "position_lon_lat": [
+              44.32685556156504,
+              12.183323070222881
+            ],
+            "interpolation_fraction_from_inner_sample": 0.7435674096063007,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4617627518107159,
+          "threshold_m_s": 0.18470510072428636,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "open_section_boundary"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": {
+            "position_lon_lat": [
+              44.3305270003878,
+              12.18335205526622
+            ],
+            "interpolation_fraction_from_inner_sample": 0.8401842207315646,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.521762751810716,
+          "threshold_m_s": 0.20870510072428639,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "open_section_boundary"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": 4.827892369228013,
+          "left_edge": {
+            "position_lon_lat": [
+              44.27429878284224,
+              12.1831
+            ],
+            "interpolation_fraction_from_inner_sample": 0.7454361091336966,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-009-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.266,
+                12.1831
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.31866085398428,
+              12.183258375163033
+            ],
+            "interpolation_fraction_from_inner_sample": 0.5279172101126217,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.49176275181071594,
+          "threshold_m_s": 0.29505765108642956,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.338205104305871,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.17883960800413,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.67908702168873,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": 4.533366747006927,
+          "left_edge": {
+            "position_lon_lat": [
+              44.275781279253465,
+              12.1831
+            ],
+            "interpolation_fraction_from_inner_sample": 0.6999607590961676,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-009-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.266,
+                12.1831
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.317437041043355,
+              12.183248713481921
+            ],
+            "interpolation_fraction_from_inner_sample": 0.4957116064042005,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4617627518107159,
+          "threshold_m_s": 0.27705765108642955,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.2565678885474463,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.17883960800413,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.67908702168873,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": false,
+          "span_km": 5.122417980674965,
+          "left_edge": {
+            "position_lon_lat": [
+              44.272816286431016,
+              12.1831
+            ],
+            "interpolation_fraction_from_inner_sample": 0.7909114591712259,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-009-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.266,
+                12.1831
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.3198846669252,
+              12.183268036844147
+            ],
+            "interpolation_fraction_from_inner_sample": 0.560122813821043,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [
+            "rsx1-010-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.521762751810716,
+          "threshold_m_s": 0.3130576510864296,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.419842317077899,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.17883960800413,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.67908702168873,
+          "is_flow_normal_current_width": false
+        }
+      ],
+      "conditional_diagnostics": [
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 6.034865010454052,
+          "left_edge": {
+            "position_lon_lat": [
+              44.2682234785528,
+              12.1831
+            ],
+            "interpolation_fraction_from_inner_sample": 0.9317951364171209,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-009-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.266,
+                12.1831
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.32367606748035,
+              12.183297968953793
+            ],
+            "interpolation_fraction_from_inner_sample": 0.6598965126407772,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.49176275181071594,
+          "threshold_m_s": 0.24588137590535797,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.6727562553507922,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.17883960800413,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.67908702168873,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 5.666708036239148,
+          "left_edge": {
+            "position_lon_lat": [
+              44.27007659906683,
+              12.1831
+            ],
+            "interpolation_fraction_from_inner_sample": 0.8749509488702094,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-009-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.266,
+                12.1831
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.3221463013042,
+              12.183285891852401
+            ],
+            "interpolation_fraction_from_inner_sample": 0.6196395080052506,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4617627518107159,
+          "threshold_m_s": 0.23088137590535796,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.570709750499035,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.17883960800413,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.67908702168873,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 6.4030219677868665,
+          "left_edge": {
+            "position_lon_lat": [
+              44.26637035803877,
+              12.1831
+            ],
+            "interpolation_fraction_from_inner_sample": 0.9886393239640323,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-009-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.266,
+                12.1831
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.3252058336565,
+              12.183310046055183
+            ],
+            "interpolation_fraction_from_inner_sample": 0.7001535172763038,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.521762751810716,
+          "threshold_m_s": 0.260881375905358,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.7748027555231376,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.17883960800413,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.67908702168873,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 7.1426681125201466,
+          "left_edge": {
+            "position_lon_lat": [
+              44.26305949476221,
+              12.183082392184204
+            ],
+            "interpolation_fraction_from_inner_sample": 0.08803907897571925,
+            "inner_profile_id": "rsx1-009-hr",
+            "outer_profile_id": "rsx1-010-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.266,
+                12.1831
+              ],
+              [
+                44.2326,
+                12.1829
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.328691280976415,
+              12.183337562744551
+            ],
+            "interpolation_fraction_from_inner_sample": 0.7918758151689326,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.49176275181071594,
+          "threshold_m_s": 0.19670510072428637,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.979819390229206,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.17883960800413,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.67908702168873,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 6.758132388763116,
+          "left_edge": {
+            "position_lon_lat": [
+              44.26475711379806,
+              12.183092557567653
+            ],
+            "interpolation_fraction_from_inner_sample": 0.03721216173457884,
+            "inner_profile_id": "rsx1-009-hr",
+            "outer_profile_id": "rsx1-010-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.266,
+                12.1831
+              ],
+              [
+                44.2326,
+                12.1829
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.32685556156504,
+              12.183323070222881
+            ],
+            "interpolation_fraction_from_inner_sample": 0.7435674096063007,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4617627518107159,
+          "threshold_m_s": 0.18470510072428636,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.8732329900021656,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.17883960800413,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.67908702168873,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 7.5272040346648925,
+          "left_edge": {
+            "position_lon_lat": [
+              44.26136187572636,
+              12.183072226800757
+            ],
+            "interpolation_fraction_from_inner_sample": 0.13886599621685966,
+            "inner_profile_id": "rsx1-009-hr",
+            "outer_profile_id": "rsx1-010-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.266,
+                12.1831
+              ],
+              [
+                44.2326,
+                12.1829
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.3305270003878,
+              12.18335205526622
+            ],
+            "interpolation_fraction_from_inner_sample": 0.8401842207315646,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.521762751810716,
+          "threshold_m_s": 0.20870510072428639,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 2.08640584544576,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.17883960800413,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.67908702168873,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 4.827892369228013,
+          "left_edge": {
+            "position_lon_lat": [
+              44.27429878284224,
+              12.1831
+            ],
+            "interpolation_fraction_from_inner_sample": 0.7454361091336966,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-009-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.266,
+                12.1831
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.31866085398428,
+              12.183258375163033
+            ],
+            "interpolation_fraction_from_inner_sample": 0.5279172101126217,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.49176275181071594,
+          "threshold_m_s": 0.29505765108642956,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.338205104305871,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.17883960800413,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.67908702168873,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": -0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 4.533366747006927,
+          "left_edge": {
+            "position_lon_lat": [
+              44.275781279253465,
+              12.1831
+            ],
+            "interpolation_fraction_from_inner_sample": 0.6999607590961676,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-009-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.266,
+                12.1831
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.317437041043355,
+              12.183248713481921
+            ],
+            "interpolation_fraction_from_inner_sample": 0.4957116064042005,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.4617627518107159,
+          "threshold_m_s": 0.27705765108642955,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.2565678885474463,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.17883960800413,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.67908702168873,
+          "is_flow_normal_current_width": false
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0.03,
+          "conditional_unverified_profiles_included": true,
+          "span_km": 5.122417980674965,
+          "left_edge": {
+            "position_lon_lat": [
+              44.272816286431016,
+              12.1831
+            ],
+            "interpolation_fraction_from_inner_sample": 0.7909114591712259,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-009-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.266,
+                12.1831
+              ]
+            ]
+          },
+          "right_edge": {
+            "position_lon_lat": [
+              44.3198846669252,
+              12.183268036844147
+            ],
+            "interpolation_fraction_from_inner_sample": 0.560122813821043,
+            "inner_profile_id": "rsx1-008-hr",
+            "outer_profile_id": "rsx1-007-hr",
+            "source_position_bracket_lon_lat": [
+              [
+                44.2986,
+                12.1831
+              ],
+              [
+                44.3366,
+                12.1834
+              ]
+            ]
+          },
+          "unavailable_profile_ids": [],
+          "global_peak_search_complete": true,
+          "supported_local_core_followup": false,
+          "peak_profile_id": "rsx1-008-hr",
+          "peak_m_s": 0.521762751810716,
+          "threshold_m_s": 0.3130576510864296,
+          "peak_salinity_psu": 39.03167115764277,
+          "peak_saline_speed_screen": true,
+          "status": "paired_fixed_component_section_span_requires_review",
+          "native_station_spacings_km": [
+            3.5805305767597924,
+            3.6349438728497057,
+            3.547812299750512,
+            4.135617566980645
+          ],
+          "span_in_median_native_spacings": 1.419842317077899,
+          "fewer_than4_spacings": true,
+          "peak_vector_azimuth_degrees": 164.17883960800413,
+          "section_normal_azimuth_degrees": 179.85792662969286,
+          "peak_vector_section_normal_obliquity_degrees": 15.67908702168873,
+          "is_flow_normal_current_width": false
+        }
+      ]
+    },
+    {
+      "campaign": "RSX2",
+      "height_layer_m": [
+        20,
+        60
+      ],
+      "profiles": [
+        {
+          "id": "rsx2-030-hr",
+          "ctd_id": "rsx2-030-ctd",
+          "position_lon_lat": [
+            44.3379,
+            12.1824
+          ],
+          "time_utc": "2001-08-24T00:53:09Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx2-030-hr",
+            "ctd_id": "rsx2-030-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -676.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "11e8d1a0c3b62c6fcdcc87e6d1764a45330148ce794240b06265fbde8b315527",
+          "ctd_profile_sha256": "5c3a32b707a1ca2e244af6c67124355a09b4e18ade64fb43d0745d8e85f86784",
+          "source_height_range_m": [
+            15.6563,
+            620.864
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": -0.012197054066839966,
+            "v_m_s": -0.07463267677986987,
+            "southward_m_s": 0.07463267677986987,
+            "speed_of_mean_vector_m_s": 0.07562277812430554,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              20.0,
+              23.6814,
+              33.4886,
+              43.6309,
+              53.8749,
+              60.0
+            ],
+            "source_depth_at_knots_m": [
+              628.5736938978954,
+              624.885,
+              615.131,
+              605.044,
+              594.832,
+              588.7357047799536
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                -0.029294249427421464,
+                -0.057948603687181466
+              ],
+              [
+                -0.0267868,
+                -0.0567141
+              ],
+              [
+                -0.0157103,
+                -0.0656823
+              ],
+              [
+                -0.00305024,
+                -0.0820564
+              ],
+              [
+                -0.00273923,
+                -0.0918254
+              ],
+              [
+                -0.0140682727906627,
+                -0.08261640743916013
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 36.712743090799414,
+            "salinity_at_velocity_knots_psu": [
+              36.777771432475,
+              36.787447755365626,
+              36.7416975229293,
+              36.668187882762446,
+              36.6797736830954,
+              36.65124405404321
+            ],
+            "depth_operator": "source_explicit_depth_m_with_documented_unit_header_typo",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx2-031-hr",
+          "ctd_id": "rsx2-031-ctd",
+          "position_lon_lat": [
+            44.2997,
+            12.184
+          ],
+          "time_utc": "2001-08-24T02:15:59Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx2-031-hr",
+            "ctd_id": "rsx2-031-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -777.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "f6ec097818226f3820c919a0aa311444339279dc9451198b138c3aef6d3a94c6",
+          "ctd_profile_sha256": "415d280942672b98784560dbecf915f59a769967c6118047cc2546bce3622b31",
+          "source_height_range_m": [
+            13.2466,
+            695.749
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": -0.023208841755894688,
+            "v_m_s": -0.01483133822846365,
+            "southward_m_s": 0.01483133822846365,
+            "speed_of_mean_vector_m_s": 0.027543037764510437,
+            "original_samples_in_layer": 5,
+            "height_knots_m": [
+              20.0,
+              20.3045,
+              30.4205,
+              37.8453,
+              47.2608,
+              57.0289,
+              60.0
+            ],
+            "source_depth_at_knots_m": [
+              705.2923609713938,
+              704.975,
+              694.151,
+              684.833,
+              675.027,
+              665.051,
+              662.052821981053
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                0.02105002925232718,
+                -0.03717925242210856
+              ],
+              [
+                0.0206519,
+                -0.0368843
+              ],
+              [
+                0.00126365,
+                -0.0205639
+              ],
+              [
+                -0.0199055,
+                -0.0151195
+              ],
+              [
+                -0.0435554,
+                -0.0095611
+              ],
+              [
+                -0.0591776,
+                0.000583803
+              ],
+              [
+                -0.059185616518767234,
+                0.00015825114867889866
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 37.00368998828965,
+            "salinity_at_velocity_knots_psu": [
+              37.21603747606934,
+              37.21594137596899,
+              37.15067363996044,
+              36.978250600536946,
+              36.89888580108602,
+              36.851724309676634,
+              36.84220551036225
+            ],
+            "depth_operator": "source_explicit_depth_m_with_documented_unit_header_typo",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx2-032-hr",
+          "ctd_id": "rsx2-032-ctd",
+          "position_lon_lat": [
+            44.2661,
+            12.183
+          ],
+          "time_utc": "2001-08-24T03:35:47Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx2-032-hr",
+            "ctd_id": "rsx2-032-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -751.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "e79f26ebd7bc55049617a4f850809c66c8415fa4a5606d2cdee11663e02b2b12",
+          "ctd_profile_sha256": "929a0399387f49a8171bb9ed1267f50f41e749de55ccb6546fcaac878f404ad1",
+          "source_height_range_m": [
+            13.6907,
+            688.465
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": -0.007651843202758546,
+            "v_m_s": -0.017848051418671514,
+            "southward_m_s": 0.017848051418671514,
+            "speed_of_mean_vector_m_s": 0.019419156620284633,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              20.0,
+              22.2638,
+              31.667,
+              41.8644,
+              51.8045,
+              60.0
+            ],
+            "source_depth_at_knots_m": [
+              697.3976635406096,
+              695.089,
+              685.36,
+              674.907,
+              664.878,
+              656.608226567727
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                -0.0012724041025999932,
+                -0.031380036399902014
+              ],
+              [
+                -0.00428312,
+                -0.0347288
+              ],
+              [
+                -0.0236826,
+                -0.00826491
+              ],
+              [
+                -0.0166764,
+                -0.00989217
+              ],
+              [
+                0.00560965,
+                -0.0214538
+              ],
+              [
+                0.016958572295379438,
+                -0.024567967041745232
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 37.30391163291996,
+            "salinity_at_velocity_knots_psu": [
+              37.47736619483763,
+              37.38054301215278,
+              37.388448652576756,
+              37.300717959587395,
+              37.173001117233866,
+              37.24226222760581
+            ],
+            "depth_operator": "source_explicit_depth_m_with_documented_unit_header_typo",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx2-033-hr",
+          "ctd_id": "rsx2-033-ctd",
+          "position_lon_lat": [
+            44.233,
+            12.1826
+          ],
+          "time_utc": "2001-08-24T04:50:20Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx2-033-hr",
+            "ctd_id": "rsx2-033-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -683.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "34b7ed089cb1fcee4ce327a586f620b68dfeae6a1bb4746e7b73ff8476f47f38",
+          "ctd_profile_sha256": "1a97448178fe18ef392422ba6063c8f4433abf007ef0bb846a9b77aa5dc60562",
+          "source_height_range_m": [
+            10.1438,
+            576.097
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": 0.014202764370746782,
+            "v_m_s": -0.04903505218402032,
+            "southward_m_s": 0.04903505218402032,
+            "speed_of_mean_vector_m_s": 0.051050512812904736,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              20.0,
+              22.415,
+              32.4967,
+              41.8313,
+              51.7705,
+              60.0
+            ],
+            "source_depth_at_knots_m": [
+              587.6795256888634,
+              585.12,
+              574.99,
+              565.191,
+              555.05,
+              546.68049244888
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                0.024072964014064294,
+                -0.06735634374999999
+              ],
+              [
+                0.029079,
+                -0.0689915
+              ],
+              [
+                0.0375127,
+                -0.0667842
+              ],
+              [
+                0.0240348,
+                -0.0503537
+              ],
+              [
+                -0.0141572,
+                -0.0249958
+              ],
+              [
+                -0.026695235839871535,
+                -0.021462072973494856
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 37.14429764036574,
+            "salinity_at_velocity_knots_psu": [
+              37.61207418684925,
+              37.61813848125019,
+              37.66041003561088,
+              37.02046017511651,
+              36.55059928479921,
+              36.670566010821524
+            ],
+            "depth_operator": "source_explicit_depth_m_with_documented_unit_header_typo",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx2-034-hr",
+          "ctd_id": "rsx2-034-ctd",
+          "position_lon_lat": [
+            44.2003,
+            12.1828
+          ],
+          "time_utc": "2001-08-24T06:03:18Z",
+          "reference": "m",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx2-034-hr",
+            "ctd_id": "rsx2-034-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -666.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": false,
+          "primary_exclusion_reasons": [
+            "uninterpretable_source_reference",
+            "Nonmonotonic vertical profile"
+          ],
+          "source_profile_sha256": "fabc6715f1cf8ab17b2966afaea07fc9c5e21d8841e73feb5ea9a9097b505a82",
+          "ctd_profile_sha256": "7dfcb37bcebc4997a9197c785e5ed0c1bdd91e7317831266a5c0634cc1b76c9a",
+          "source_height_range_m": [
+            395.496,
+            881.43
+          ],
+          "source_height_axis_monotonic": false,
+          "layer": null
+        }
+      ],
+      "primary": {
+        "fraction": 0.5,
+        "velocity_offset_m_s": 0,
+        "conditional_unverified_profiles_included": false,
+        "span_km": null,
+        "left_edge": null,
+        "right_edge": null,
+        "unavailable_profile_ids": [
+          "rsx2-034-hr"
+        ],
+        "global_peak_search_complete": false,
+        "supported_local_core_followup": false,
+        "status": "incomplete_peak_search_or_missing_profile"
+      },
+      "supported_local_core_diagnostics": [
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.07463267677986987
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.03463267677986987
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.11463267677986988
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.07463267677986987
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.03463267677986987
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.11463267677986988
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.07463267677986987
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.03463267677986987
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.11463267677986988
+        }
+      ],
+      "conditional_diagnostics": [
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        }
+      ]
+    },
+    {
+      "campaign": "RSX2",
+      "height_layer_m": [
+        10,
+        50
+      ],
+      "profiles": [
+        {
+          "id": "rsx2-030-hr",
+          "ctd_id": "rsx2-030-ctd",
+          "position_lon_lat": [
+            44.3379,
+            12.1824
+          ],
+          "time_utc": "2001-08-24T00:53:09Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx2-030-hr",
+            "ctd_id": "rsx2-030-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -676.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": false,
+          "primary_exclusion_reasons": [
+            "Layer endpoint outside observed support"
+          ],
+          "source_profile_sha256": "11e8d1a0c3b62c6fcdcc87e6d1764a45330148ce794240b06265fbde8b315527",
+          "ctd_profile_sha256": "5c3a32b707a1ca2e244af6c67124355a09b4e18ade64fb43d0745d8e85f86784",
+          "source_height_range_m": [
+            15.6563,
+            620.864
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": null
+        },
+        {
+          "id": "rsx2-031-hr",
+          "ctd_id": "rsx2-031-ctd",
+          "position_lon_lat": [
+            44.2997,
+            12.184
+          ],
+          "time_utc": "2001-08-24T02:15:59Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx2-031-hr",
+            "ctd_id": "rsx2-031-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -777.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": false,
+          "primary_exclusion_reasons": [
+            "Layer endpoint outside observed support"
+          ],
+          "source_profile_sha256": "f6ec097818226f3820c919a0aa311444339279dc9451198b138c3aef6d3a94c6",
+          "ctd_profile_sha256": "415d280942672b98784560dbecf915f59a769967c6118047cc2546bce3622b31",
+          "source_height_range_m": [
+            13.2466,
+            695.749
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": null
+        },
+        {
+          "id": "rsx2-032-hr",
+          "ctd_id": "rsx2-032-ctd",
+          "position_lon_lat": [
+            44.2661,
+            12.183
+          ],
+          "time_utc": "2001-08-24T03:35:47Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx2-032-hr",
+            "ctd_id": "rsx2-032-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -751.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": false,
+          "primary_exclusion_reasons": [
+            "Layer endpoint outside observed support"
+          ],
+          "source_profile_sha256": "e79f26ebd7bc55049617a4f850809c66c8415fa4a5606d2cdee11663e02b2b12",
+          "ctd_profile_sha256": "929a0399387f49a8171bb9ed1267f50f41e749de55ccb6546fcaac878f404ad1",
+          "source_height_range_m": [
+            13.6907,
+            688.465
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": null
+        },
+        {
+          "id": "rsx2-033-hr",
+          "ctd_id": "rsx2-033-ctd",
+          "position_lon_lat": [
+            44.233,
+            12.1826
+          ],
+          "time_utc": "2001-08-24T04:50:20Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx2-033-hr",
+            "ctd_id": "rsx2-033-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -683.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": false,
+          "primary_exclusion_reasons": [
+            "Layer endpoint outside observed support"
+          ],
+          "source_profile_sha256": "34b7ed089cb1fcee4ce327a586f620b68dfeae6a1bb4746e7b73ff8476f47f38",
+          "ctd_profile_sha256": "1a97448178fe18ef392422ba6063c8f4433abf007ef0bb846a9b77aa5dc60562",
+          "source_height_range_m": [
+            10.1438,
+            576.097
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": null
+        },
+        {
+          "id": "rsx2-034-hr",
+          "ctd_id": "rsx2-034-ctd",
+          "position_lon_lat": [
+            44.2003,
+            12.1828
+          ],
+          "time_utc": "2001-08-24T06:03:18Z",
+          "reference": "m",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx2-034-hr",
+            "ctd_id": "rsx2-034-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -666.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": false,
+          "primary_exclusion_reasons": [
+            "uninterpretable_source_reference",
+            "Nonmonotonic vertical profile"
+          ],
+          "source_profile_sha256": "fabc6715f1cf8ab17b2966afaea07fc9c5e21d8841e73feb5ea9a9097b505a82",
+          "ctd_profile_sha256": "7dfcb37bcebc4997a9197c785e5ed0c1bdd91e7317831266a5c0634cc1b76c9a",
+          "source_height_range_m": [
+            395.496,
+            881.43
+          ],
+          "source_height_axis_monotonic": false,
+          "layer": null
+        }
+      ],
+      "primary": {
+        "fraction": 0.5,
+        "velocity_offset_m_s": 0,
+        "conditional_unverified_profiles_included": false,
+        "span_km": null,
+        "left_edge": null,
+        "right_edge": null,
+        "unavailable_profile_ids": [
+          "rsx2-034-hr",
+          "rsx2-033-hr",
+          "rsx2-032-hr",
+          "rsx2-031-hr",
+          "rsx2-030-hr"
+        ],
+        "global_peak_search_complete": false,
+        "supported_local_core_followup": false,
+        "status": "incomplete_peak_search_or_missing_profile"
+      },
+      "supported_local_core_diagnostics": [
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "no_supported_peak"
+        }
+      ],
+      "conditional_diagnostics": [
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr",
+            "rsx2-033-hr",
+            "rsx2-032-hr",
+            "rsx2-031-hr",
+            "rsx2-030-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        }
+      ]
+    },
+    {
+      "campaign": "RSX2",
+      "height_layer_m": [
+        40,
+        80
+      ],
+      "profiles": [
+        {
+          "id": "rsx2-030-hr",
+          "ctd_id": "rsx2-030-ctd",
+          "position_lon_lat": [
+            44.3379,
+            12.1824
+          ],
+          "time_utc": "2001-08-24T00:53:09Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx2-030-hr",
+            "ctd_id": "rsx2-030-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -676.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "11e8d1a0c3b62c6fcdcc87e6d1764a45330148ce794240b06265fbde8b315527",
+          "ctd_profile_sha256": "5c3a32b707a1ca2e244af6c67124355a09b4e18ade64fb43d0745d8e85f86784",
+          "source_height_range_m": [
+            15.6563,
+            620.864
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": -0.01534843914064039,
+            "v_m_s": -0.07212178920262322,
+            "southward_m_s": 0.07212178920262322,
+            "speed_of_mean_vector_m_s": 0.07373687721785864,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              40.0,
+              43.6309,
+              53.8749,
+              63.8478,
+              73.8969,
+              80.0
+            ],
+            "source_depth_at_knots_m": [
+              608.6551028366347,
+              605.044,
+              594.832,
+              584.906,
+              574.917,
+              568.8463047585655
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                -0.007582487306232311,
+                -0.07619454226654704
+              ],
+              [
+                -0.00305024,
+                -0.0820564
+              ],
+              [
+                -0.00273923,
+                -0.0918254
+              ],
+              [
+                -0.0211852,
+                -0.0768313
+              ],
+              [
+                -0.0315711,
+                -0.046497
+              ],
+              [
+                -0.02761392870967742,
+                -0.034211133206772194
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 36.578823108816366,
+            "salinity_at_velocity_knots_psu": [
+              36.679733441856094,
+              36.668187882762446,
+              36.6797736830954,
+              36.55277625225734,
+              36.43247700222946,
+              36.45398351081499
+            ],
+            "depth_operator": "source_explicit_depth_m_with_documented_unit_header_typo",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx2-031-hr",
+          "ctd_id": "rsx2-031-ctd",
+          "position_lon_lat": [
+            44.2997,
+            12.184
+          ],
+          "time_utc": "2001-08-24T02:15:59Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx2-031-hr",
+            "ctd_id": "rsx2-031-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -777.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "f6ec097818226f3820c919a0aa311444339279dc9451198b138c3aef6d3a94c6",
+          "ctd_profile_sha256": "415d280942672b98784560dbecf915f59a769967c6118047cc2546bce3622b31",
+          "source_height_range_m": [
+            13.2466,
+            695.749
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": -0.05166637044224752,
+            "v_m_s": -0.0018970153776455931,
+            "southward_m_s": 0.0018970153776455931,
+            "speed_of_mean_vector_m_s": 0.05170118472548353,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              40.0,
+              47.2608,
+              57.0289,
+              67.0357,
+              76.9086,
+              80.0
+            ],
+            "source_depth_at_knots_m": [
+              682.588935616802,
+              675.027,
+              665.051,
+              654.953,
+              644.987,
+              641.8679424173888
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                -0.02531768623864903,
+                -0.01384748210610164
+              ],
+              [
+                -0.0435554,
+                -0.0095611
+              ],
+              [
+                -0.0591776,
+                0.000583803
+              ],
+              [
+                -0.0592046,
+                -0.000849475
+              ],
+              [
+                -0.0545831,
+                0.00657461
+              ],
+              [
+                -0.04947594484318397,
+                0.010255880650881646
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 36.86353265641857,
+            "salinity_at_velocity_knots_psu": [
+              36.973411543374795,
+              36.89888580108602,
+              36.851724309676634,
+              36.82676856595015,
+              36.838043236424916,
+              36.82956314915862
+            ],
+            "depth_operator": "source_explicit_depth_m_with_documented_unit_header_typo",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx2-032-hr",
+          "ctd_id": "rsx2-032-ctd",
+          "position_lon_lat": [
+            44.2661,
+            12.183
+          ],
+          "time_utc": "2001-08-24T03:35:47Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx2-032-hr",
+            "ctd_id": "rsx2-032-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -751.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "e79f26ebd7bc55049617a4f850809c66c8415fa4a5606d2cdee11663e02b2b12",
+          "ctd_profile_sha256": "929a0399387f49a8171bb9ed1267f50f41e749de55ccb6546fcaac878f404ad1",
+          "source_height_range_m": [
+            13.6907,
+            688.465
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": 0.002683560299930206,
+            "v_m_s": -0.03260678897724341,
+            "southward_m_s": 0.03260678897724341,
+            "speed_of_mean_vector_m_s": 0.03271703200612555,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              40.0,
+              41.8644,
+              51.8045,
+              61.6691,
+              71.6279,
+              80.0
+            ],
+            "source_depth_at_knots_m": [
+              676.8181315825603,
+              674.907,
+              664.878,
+              654.924,
+              644.886,
+              636.4593995993991
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                -0.017957349975483948,
+                -0.009594656560888069
+              ],
+              [
+                -0.0166764,
+                -0.00989217
+              ],
+              [
+                0.00560965,
+                -0.0214538
+              ],
+              [
+                0.0192699,
+                -0.0252022
+              ],
+              [
+                0.00504175,
+                -0.0508617
+              ],
+              [
+                -0.016780869196652115,
+                -0.0737046402757197
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 37.19360663387255,
+            "salinity_at_velocity_knots_psu": [
+              37.32230841609866,
+              37.300717959587395,
+              37.173001117233866,
+              37.30034417196488,
+              37.15376927959474,
+              36.897156815201306
+            ],
+            "depth_operator": "source_explicit_depth_m_with_documented_unit_header_typo",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx2-033-hr",
+          "ctd_id": "rsx2-033-ctd",
+          "position_lon_lat": [
+            44.233,
+            12.1826
+          ],
+          "time_utc": "2001-08-24T04:50:20Z",
+          "reference": "'internal' bottom track (0.25) + external profile (0.75)",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx2-033-hr",
+            "ctd_id": "rsx2-033-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -683.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": true,
+          "primary_exclusion_reasons": [],
+          "source_profile_sha256": "34b7ed089cb1fcee4ce327a586f620b68dfeae6a1bb4746e7b73ff8476f47f38",
+          "ctd_profile_sha256": "1a97448178fe18ef392422ba6063c8f4433abf007ef0bb846a9b77aa5dc60562",
+          "source_height_range_m": [
+            10.1438,
+            576.097
+          ],
+          "source_height_axis_monotonic": true,
+          "layer": {
+            "u_m_s": -0.01779281792295397,
+            "v_m_s": -0.042253989010371584,
+            "southward_m_s": 0.042253989010371584,
+            "speed_of_mean_vector_m_s": 0.04584739858408538,
+            "original_samples_in_layer": 4,
+            "height_knots_m": [
+              40.0,
+              41.8313,
+              51.7705,
+              61.6101,
+              71.4377,
+              80.0
+            ],
+            "source_depth_at_knots_m": [
+              567.1134078910719,
+              565.191,
+              555.05,
+              545.043,
+              534.92,
+              525.9301183658638
+            ],
+            "velocity_at_knots_m_s": [
+              [
+                0.026678949537205662,
+                -0.05357710267927924
+              ],
+              [
+                0.0240348,
+                -0.0503537
+              ],
+              [
+                -0.0141572,
+                -0.0249958
+              ],
+              [
+                -0.0291483,
+                -0.0207707
+              ],
+              [
+                -0.0280072,
+                -0.0500818
+              ],
+              [
+                -0.04518140302533223,
+                -0.10109753371677742
+              ]
+            ]
+          },
+          "hydrography": {
+            "layer_mean_salinity_psu": 36.7794754256312,
+            "salinity_at_velocity_knots_psu": [
+              37.41988162367678,
+              37.02046017511651,
+              36.55059928479921,
+              36.663161989106314,
+              36.721044790962736,
+              37.232589857185985
+            ],
+            "depth_operator": "source_explicit_depth_m_with_documented_unit_header_typo",
+            "pressure_equals_depth": false
+          }
+        },
+        {
+          "id": "rsx2-034-hr",
+          "ctd_id": "rsx2-034-ctd",
+          "position_lon_lat": [
+            44.2003,
+            12.1828
+          ],
+          "time_utc": "2001-08-24T06:03:18Z",
+          "reference": "m",
+          "processing_tag": "duh",
+          "source_up_flag": "0",
+          "source_component_quality_notes": [],
+          "filename_join_support": {
+            "ladcp_id": "rsx2-034-hr",
+            "ctd_id": "rsx2-034-ctd",
+            "join_basis": "filename_cruise_and_station_only_not_validated_measurement_identity",
+            "header_station_agrees_with_filename": true,
+            "ctd_minus_ladcp_position_degrees": [
+              0.0,
+              0.0
+            ],
+            "ctd_start_minus_ladcp_header_time_seconds": -666.0,
+            "reviewed_ctd_position_lon_lat": null,
+            "same_physical_cast_verified": false,
+            "interpolated_velocity_or_hydrography": false
+          },
+          "primary_available": false,
+          "primary_exclusion_reasons": [
+            "uninterpretable_source_reference",
+            "Nonmonotonic vertical profile"
+          ],
+          "source_profile_sha256": "fabc6715f1cf8ab17b2966afaea07fc9c5e21d8841e73feb5ea9a9097b505a82",
+          "ctd_profile_sha256": "7dfcb37bcebc4997a9197c785e5ed0c1bdd91e7317831266a5c0634cc1b76c9a",
+          "source_height_range_m": [
+            395.496,
+            881.43
+          ],
+          "source_height_axis_monotonic": false,
+          "layer": null
+        }
+      ],
+      "primary": {
+        "fraction": 0.5,
+        "velocity_offset_m_s": 0,
+        "conditional_unverified_profiles_included": false,
+        "span_km": null,
+        "left_edge": null,
+        "right_edge": null,
+        "unavailable_profile_ids": [
+          "rsx2-034-hr"
+        ],
+        "global_peak_search_complete": false,
+        "supported_local_core_followup": false,
+        "status": "incomplete_peak_search_or_missing_profile"
+      },
+      "supported_local_core_diagnostics": [
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.07212178920262322
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.032121789202623215
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.11212178920262322
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.07212178920262322
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.032121789202623215
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.11212178920262322
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.07212178920262322
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.032121789202623215
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": false,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": true,
+          "status": "peak_below_predeclared_component_floor",
+          "peak_m_s": 0.11212178920262322
+        }
+      ],
+      "conditional_diagnostics": [
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.5,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.4,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": -0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        },
+        {
+          "fraction": 0.6,
+          "velocity_offset_m_s": 0.04,
+          "conditional_unverified_profiles_included": true,
+          "span_km": null,
+          "left_edge": null,
+          "right_edge": null,
+          "unavailable_profile_ids": [
+            "rsx2-034-hr"
+          ],
+          "global_peak_search_complete": false,
+          "supported_local_core_followup": false,
+          "status": "incomplete_peak_search_or_missing_profile"
+        }
+      ]
+    }
+  ],
+  "current_association_verified": false,
+  "width_rank_eligible": false,
+  "annual_extrema_eligible": false,
+  "new_width_record_admitted": false,
+  "whole_current_width_km": null,
+  "annual_width_range_km": null
+}
