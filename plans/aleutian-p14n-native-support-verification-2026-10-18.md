@@ -85,3 +85,15 @@ checks and a clean successor combined suite remain publication conditions.
 Hosted CI currently fails before tests on the Reading paper-host connection
 refusal; source hashes and TLS policy remain strict. No physical current
 width, annual range or mapped current edge is admitted by these software gates.
+
+## Publication check
+
+Scientific/UI checkpoint `74f1fe6dcd757dba4e6dbc7b75befd4144e90ba1` is
+committed and pushed to the continuing branch/PR. All91engine and166research
+dependency hashes match working files and committed blobs. Normal port8788
+HTTP serves the exact stores/WASM and corrected figures. The rebuilt root
+CLI returns the three companion views, four native support bindings and
+supported1993ensemble-end dates; the dashboard observation date is1993-07-18.
+The root CLI remains verified after completed build-cache reclamation.
+These satisfy the focused publication checks; the native successor combined
+suite remains required and is tracked separately.
