@@ -36,7 +36,7 @@ class ResearchEvidenceTests(unittest.TestCase):
         owner=next(s for s in registry['scenes'] if s['current_id']=='aleutian')
         self.assertEqual(owner['source_file'],evidence.SPANS)
         self.assertIn(evidence.AVERAGES,[s['document'] for s in owner['source_links']])
-        self.assertEqual(len(owner['additional_figures']),4)
+        self.assertEqual(len(owner['additional_figures']),5)
         table=owner['additional_tables'][0]
         self.assertEqual([r[2:4] for r in table['rows']],
             [['128','95'],['81','41'],['53','16'],['103','92'],['57','39'],['29','16'],['96','85'],['54','37'],['27','15']])
@@ -54,6 +54,18 @@ class ResearchEvidenceTests(unittest.TestCase):
                 return raw+b' ' if path==target else raw
             with self.subTest(source=name),patch.object(Path,'read_bytes',altered),self.assertRaises(ValueError):
                 evidence.verify()
+
+    def test_composite_cannot_replace_unresolved_nominal_or_no_bridge_result(self):
+        registry=evidence.verify()
+        owner=next(s for s in registry['scenes'] if s['current_id']=='aleutian')
+        self.assertEqual(len(owner['additional_tables']),2)
+        rows=owner['additional_tables'][1]['rows']
+        self.assertEqual(len(rows),9)
+        self.assertTrue(all(r[2:4]==['Unresolved','Unresolved'] for r in rows))
+        self.assertEqual(sum(int(r[-1].split('/')[0]) for r in rows),18)
+        self.assertIn(evidence.AVERAGES,[s['document'] for s in owner['source_links']])
+        self.assertIn(evidence.COMPOSITE,[s['document'] for s in owner['source_links']])
+        self.assertIs(owner['new_width_record_admitted'],False)
 
     def test_changed_source_archive_invalidates_the_registry(self):
         original = Path.read_bytes

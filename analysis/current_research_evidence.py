@@ -61,13 +61,18 @@ AVERAGE_FIGURE='research/aleutian-p14n-1993-underway-averages-figure.json'
 AVERAGE_INPUTS={AVERAGES:'92d6d3fc8717b010051b0fbbd96fe3b3955f7a86b2e0cf87cd6b5ed74783d626',
     AVERAGE_FIGURE:'6a7aed03a752123e5eb1841c68ab5a92cac42b80b5426b81e104b03d4b470bd1'}
 FROZEN_INPUTS.update(AVERAGE_INPUTS)
+COMPOSITE='research/aleutian-p14n-1993-run-composite.json'
+COMPOSITE_FIGURE='research/aleutian-p14n-1993-run-composite-figure.json'
+COMPOSITE_INPUTS={COMPOSITE:'2438e75f6714d44352422727cdd6653cd3a316210b439485702a7654497e965b',
+ COMPOSITE_FIGURE:'87a42f35d1db2470b73a4a75edae3afe8acf58b4a7dc6afc864c6c73739cb4b1'}
+FROZEN_INPUTS.update(COMPOSITE_INPUTS)
 
 
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
 
 def build():
-    if len(FROZEN_INPUTS)!=44:raise ValueError('Missing reviewed research source registry')
+    if len(FROZEN_INPUTS)!=46:raise ValueError('Missing reviewed research source registry')
     documents={}
     for path,pin in FROZEN_INPUTS.items():
         if digest(path)!=pin:raise ValueError('Changed reviewed current research source '+path)
@@ -160,6 +165,16 @@ def build():
     dependencies[averages['generator_file']]=averages['generator_sha256']
     figure=documents[AVERAGE_FIGURE]
     if figure['source_file']!=AVERAGES or figure['source_sha256']!=digest(AVERAGES):raise ValueError('Changed averaging figure source')
+    dependencies[figure['generator_file']]=figure['generator_sha256']
+    for asset in figure['figures'].values():dependencies[asset['file']]=asset['sha256']
+    from build_p14n_run_composite import verify as verify_composite
+    composite=documents[COMPOSITE]
+    if composite!=verify_composite():raise ValueError('Changed conditional run-composite evidence')
+    if composite['temporal_comparability_verified'] or composite['new_width_record_admitted'] or composite['existing_no_bridge_result_replaced']:
+        raise ValueError('Promoted conditional run composite')
+    dependencies[composite['generator_file']]=composite['generator_sha256']
+    figure=documents[COMPOSITE_FIGURE]
+    if figure['source_file']!=COMPOSITE or figure['source_sha256']!=digest(COMPOSITE):raise ValueError('Changed composite figure source')
     dependencies[figure['generator_file']]=figure['generator_sha256']
     for asset in figure['figures'].values():dependencies[asset['file']]=asset['sha256']
     for source,pin in dependencies.items():
@@ -299,6 +314,7 @@ def build():
             {'label':'Native regional support','value':'1,585 profiles · 1,582 layer means'},
             {'label':'Native underway eligibility','value':'568 profiles · 19 runs at ≥2 m/s'},
             {'label':'Native averaging boundary tests','value':'126 / 126 unresolved'},
+            {'label':'Conditional run-composite tests','value':'18 / 126 sensitivity cases resolve; all nominal 50% cases unresolved'},
             {'label':'Physical current width','value':'Unknown'}],
         'notes':['Hourly archive means at 10 m depth levels are reduced products, not the native five-minute ensembles or four-metre acquisition bins.',
             'Layer means use midpoint cell thickness clipped to 100–300 m, joint u/v validity and at least 160 m valid support. Missing velocities remain missing; no vertical interpolation or component-to-speed substitution.',
@@ -306,13 +322,14 @@ def build():
             'The paper places Subarctic branches near 42 N and 45 N. Fixed 41–43 N and 44–46 N windows are search context, not physical edges. The westward Alaskan Stream and Bering-side Aleutian North Slope Current are distinct.',
             'Provider metadata describe GPS selective availability, heading correction and CTD wire interference editing. Per-cell native editing history is not included in this reduced archive.',
             'One July 1993 transect is not a seasonal climatology or annual width range. No current-edge geometry, full width, uncertainty interval or seasonal playback is admitted. The separate 2013 OSCAR component diagnostic is retained.'],
-        'next_evidence':'The declared 30/60/150 minute native averages do not recover both boundaries in any of 126 scenarios. A future station-to-station composite needs separate temporal-comparability rules; do not join runs or tune the operator to complete a width. Independent branch/eddy attribution and transverse boundary support remain required.',
+        'next_evidence':'The separate declared run composite does not recover nominal half-peak boundaries under any tested gap cap. Eighteen other threshold cases resolve only under temporal-comparability assumptions and about 23 hours of bracketing observations. Independent repeated sections, branch/eddy attribution and transverse boundary support remain required; do not tune thresholds to replace the unresolved nominal result.',
         'figure_file':'figures/aleutian-p14n-1993-observed-vectors.svg',
         'figure_label':'Observed velocity section',
         'additional_figures':[{'file':'figures/aleutian-p14n-1993-hydrography-correspondence.svg','label':'CTD properties and pairing offsets','alt':'Measured in-situ ITS-90 temperature and PSS-78 salinity at 17 casts; QC2 cells and other quality codes distinguished; original velocity profiles and 84 candidate timing/distance offsets. No interpolated physical current edges.'},
             {'file':'figures/aleutian-p14n-1993-component-spans.svg','label':'Component spans and sensitivity','alt':'Both branch windows show actual vector means, half-peak crossings and native brackets; fourteen finite threshold and velocity scenarios remain separate. North about 100 km and south about 80 km are local component spans, not physical widths or annual ranges.'},
             {'file':'figures/aleutian-p14n-1993-native-vector-support.svg','label':'Native vectors and ship-motion support','alt':'Actual native observation latitude, ship-speed magnitude and both 100–300 m ocean velocity components against UTC ensemble end. Recorded CTD begin/end intervals and fixed ship-speed scenarios remain distinct. Source editing flags, gaps and uncertainty do not define physical current edges.'},
-            {'file':'figures/aleutian-p14n-1993-underway-averages.svg','label':'Native averages: unresolved boundaries','alt':'Six panels compare northern and southern 100–300 m eastward means for fixed 30, 60 and 150 minute windows and all three ship-speed cutoffs. Horizontal bars are contributor latitude footprints, not uncertainty or edges. Hollow markers have less than 80% time coverage. All 54 relative-peak and 72 velocity-sensitivity scenarios remain unresolved. Station gaps are not bridged; no physical width or annual range is admitted.'}],
+            {'file':'figures/aleutian-p14n-1993-underway-averages.svg','label':'Native averages: unresolved boundaries','alt':'Six panels compare northern and southern 100–300 m eastward means for fixed 30, 60 and 150 minute windows and all three ship-speed cutoffs. Horizontal bars are contributor latitude footprints, not uncertainty or edges. Hollow markers have less than 80% time coverage. All 54 relative-peak and 72 velocity-sensitivity scenarios remain unresolved. Station gaps are not bridged; no physical width or annual range is admitted.'},
+            {'file':'figures/aleutian-p14n-1993-run-composite.svg','label':'Conditional run composite: gap assumptions','alt':'Whole-run eastward means and spatial footprints remain in source order. Dashed links assume temporal comparability across eligible gaps, not measured velocities inside them. The complete 126-case matrix retains all 18 unresolved nominal half-peak cases and 18 successful sensitivity cases under other thresholds. Successful northern spans of about 80–140 km use roughly 23 hours of bracketing observations; these are separate assumptions, not a physical width range or uncertainty interval.'}],
         'figure_alt':'Unconnected P14N sampling locations; observed eastward and northward velocity by latitude and depth; 100–300 m layer means with a gap break. Missing values are marked and no physical current boundaries are drawn.',
         'source_file':SPANS,'source_pointer':'',
         'observation_kind':'direct_shipboard_adcp_velocity',
@@ -320,6 +337,9 @@ def build():
         'observation_times_utc':[native_observation_times[0],native_observation_times[-1]] if native_observation_times else [],
         'support_source_sha256':{name:dependencies[name] for name in sorted(NATIVE_INPUTS)},
         'source_links':[
+            link('Inspect conditional run-composite means and all assumptions',COMPOSITE),
+            link('Inspect all run summaries, gap barriers and crossing cases',COMPOSITE,'/experiments'),
+            link('Inspect conditional run-composite figure provenance',COMPOSITE_FIGURE),
             link('Inspect the unresolved native-averaging result',AVERAGES),
             link('Inspect all nine averaging experiments and boundary cases',AVERAGES,'/experiments'),
             link('Inspect native-averaging figure provenance',AVERAGE_FIGURE),
@@ -353,6 +373,7 @@ def build():
             str(sum(len(r['bins']) for r in e['runs'])),
             str(sum(b['boundary_eligible_coverage'] for r in e['runs'] for b in r['bins'])),'0 / 14'] for e in averages['experiments']]}]
     scenes[-1]['notes'].extend([
+        'A separate whole-run composite explicitly tests interpolation between summary positions under 3/6/12 hour gap caps, a 25 km unobserved-distance cap and unchanged source-order/quality barriers. All 18 nominal half-peak cases remain unresolved. Only northern 60% and positive threshold-offset cases resolve with 6/12 hour caps: 18 of 126 cases. Their about 80–140 km separations are different assumptions, not a width range. Their full bracketing observations span about 23 hours; temporal comparability and physical branch identity remain unverified. This does not replace the earlier no-bridge negative result.',
         'A separate exploratory OSW operator averages native supported layer means within each contiguous underway run, using fixed 30/60/150 minute windows and 1/2/3 m/s ship-speed cutoffs. Overlapping ensemble time is counted once and boundary analysis requires at least 80% of the full window duration. All 54 relative-peak and 72 velocity-sensitivity cases lack two resolved crossings. No station gap is bridged; run ends and incomplete windows cannot substitute for boundaries.',
         'The separate native products retain 1,585 regional ensemble profiles and 190,200 depth cells in their original files. There are 1,582 supported 100–300 m means and 182,081 jointly finite unflagged vectors. CODAS editing bits are distinct from CTD WOCE quality codes.',
         'Fixed ship-speed eligibility at 1/2/3 m/s gives 623/568/532 profiles in 42/19/19 contiguous runs. Every run remains available, including short ones. Source gaps, missing support and ineligible profiles break runs; no latitude sorting or station-gap bridge is applied.',
@@ -365,6 +386,18 @@ def build():
         'All 17 nominal timestamps agree with unique BO (bottom) events in the original station log. This does not establish simultaneous sampling at 100–300 m. Cast beginning/end events and actual offsets remain inspectable.',
         'Of 3,009 upper-ocean property cells, 2,525 meet joint WOCE QC2. Raw edited/despiked code7 and questionable code3 values remain available; other codes are not silently relabeled missing or acceptable.',
         'Temperature is in-situ ITS-90; salinity is practical PSS-78. Pressure is retained in dbar beside depth converted with GSW3.6.23. The source-history temperature-correction notice remains unresolved and is not reapplied.'])
+    composite_rows=[]
+    for experiment in composite['experiments']:
+        for cap in [3,6,12]:
+            cases=[c for c in experiment['cases'] if c['maximum_unobserved_time_gap_hours']==cap]
+            values=[c['scenarios'][1]['rounded_endpoint_separation_km'] for c in cases]
+            resolved=sum(s['endpoint_separation_km'] is not None for c in cases for s in c['scenarios'])
+            composite_rows.append([str(experiment['ship_speed_cutoff_m_s']),str(cap),
+                *['Unresolved' if v is None else f'{v} km, conditional' for v in values],f'{resolved} / 14'])
+    scenes[-1]['additional_tables'].append({
+        'caption':'Conditional run composite: all northern and southern nominal 50% spans remain unresolved. The resolved-case count includes other thresholds under explicit gap assumptions; cases are not independent observations and their separations are not a physical width range.',
+        'headers':['Minimum ship speed (m/s)','Maximum unobserved gap (h)','North nominal 50%','South nominal 50%','Resolved sensitivity cases'],
+        'rows':composite_rows})
     for scene in scenes:
         scene.update(kind='current_research_evidence',rank_eligible=False,new_width_record_admitted=False,
             whole_current_width_km=None,annual_width_range_km=None,

@@ -41,10 +41,11 @@ fn registry() -> Value {
     serde_json::from_str(RAW).expect("reviewed current research registry")
 }
 
-const SUPPORT_ONLY: [&str; 3] = [
+const SUPPORT_ONLY: [&str; 4] = [
     "research/aleutian-p14n-1993-native-product-metadata.json",
     "research/aleutian-p14n-1993-native-vector-support.json",
     "research/aleutian-p14n-1993-underway-averages.json",
+    "research/aleutian-p14n-1993-run-composite.json",
 ];
 
 fn is_research_source(value: &Value) -> bool {
