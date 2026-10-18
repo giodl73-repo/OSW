@@ -4,7 +4,11 @@ use sha2::{Digest, Sha256};
 
 const PATH: &str = "research/current-research-evidence-registry.json";
 const RAW: &str = include_str!("../../../research/current-research-evidence-registry.json");
-const STUDIES: [(&str, &str); 4] = [
+const STUDIES: [(&str, &str); 5] = [
+    (
+        "research/aleutian-p14n-1993-observed-vector-section.json",
+        include_str!("../../../research/aleutian-p14n-1993-observed-vector-section.json"),
+    ),
     (
         "research/pacific-necc-paired-vector-direction-evidence.json",
         include_str!("../../../research/pacific-necc-paired-vector-direction-evidence.json"),
@@ -182,6 +186,45 @@ mod tests {
             all["indian-south-equatorial-countercurrent"]["rank_eligible"],
             false
         );
+    }
+    #[test]
+    fn observed_section_keeps_vectors_and_rejects_rehashed_changes() {
+        let bundle = fixture();
+        let rows = &bundle.collections["diagnostics"];
+        let index = rows
+            .iter()
+            .position(|r| r["current_id"] == "aleutian")
+            .unwrap();
+        let doc = &rows[index]["document"];
+        assert_eq!(doc["retained_time_count"], 132);
+        assert_eq!(doc["joint_valid_vector_positions"], 4030);
+        assert_eq!(doc["new_width_record_admitted"], false);
+        assert_eq!(doc["current_association_verified"], false);
+        for field in ["whole_current_width_km", "annual_width_range_km"] {
+            assert!(doc[field].is_null());
+        }
+        for mutation in ["velocity", "mask", "units", "annual", "association"] {
+            let mut bad = fixture();
+            let row = &mut bad.collections.get_mut("diagnostics").unwrap()[index];
+            match mutation {
+                "velocity" => {
+                    row["document"]["profiles"][0]["profile"][0]["eastward_m_s"] = json!(3)
+                }
+                "mask" => {
+                    row["document"]["profiles"][0]["profile"][0]["joint_valid"] = json!(false)
+                }
+                "units" => row["document"]["provider_units"] = json!("centimetres per second"),
+                "annual" => row["document"]["annual_width_range_km"] = json!([1, 2]),
+                _ => row["document"]["current_association_verified"] = json!(true),
+            }
+            let raw = row["document"].to_string();
+            let pin = format!("{:x}", Sha256::digest(raw.as_bytes()));
+            let path = row["source_file"].as_str().unwrap().to_string();
+            row["source_json"] = json!(raw);
+            row["source_file_sha256"] = json!(pin);
+            bad.manifest["input_sha256"][path] = json!(pin);
+            assert!(validate(&bad).is_err(), "{mutation}");
+        }
     }
     #[test]
     fn research_row_promotion_and_deletion_reject() {

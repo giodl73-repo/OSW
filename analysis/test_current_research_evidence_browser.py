@@ -27,6 +27,26 @@ def native(query, packet=None, index=None):
 def corrupt(packet, kind):
     bad = copy.deepcopy(packet)
     rows = [r for r in bad['collections']['diagnostics'] if 'research_evidence' in r]
+    if kind.startswith('observed_'):
+        row=next(r for r in rows if r['current_id']=='aleutian')
+        if kind=='observed_missing':bad['collections']['diagnostics'].remove(row)
+        elif kind=='observed_duplicate':
+            extra=copy.deepcopy(row);extra['id']+=':copy';bad['collections']['diagnostics'].append(extra)
+        elif kind=='observed_original':bad['manifest']['input_sha256']['research/source-data/jasadcp-p14n-1993/hourly-vector-original.nc']='0'*64
+        else:
+            doc=copy.deepcopy(row['document'])
+            if kind=='observed_value':doc['profiles'][0]['profile'][0]['eastward_m_s']=3
+            elif kind=='observed_mask':doc['profiles'][0]['profile'][0]['joint_valid']=False
+            elif kind=='observed_units':doc['provider_units']='centimetres per second'
+            elif kind=='observed_layer':doc['layer_bounds_m']=[0,300]
+            elif kind=='observed_annual':doc['annual_width_range_km']=[1,2]
+            elif kind=='observed_association':doc['current_association_verified']=True
+            elif kind=='observed_reorder':doc['profiles'].sort(key=lambda r:r['latitude_degrees_north'])
+            else:raise AssertionError(kind)
+            raw=json.dumps(doc);pin=hashlib.sha256(raw.encode()).hexdigest()
+            row.update(document=doc,source_json=raw,source_file_sha256=pin)
+            bad['manifest']['input_sha256'][row['source_file']]=pin
+        return bad
     row = next(r for r in rows if r['current_id'] == 'red-sea-saline-overflow')
     if kind.startswith('necc_'):
         target=next(r for r in rows if r['current_id']=='pacific-north-equatorial-countercurrent')
@@ -101,6 +121,7 @@ def check_source_documents(page, registry):
         assert actual['document'] == document and actual['total'] == len(source)
         assert actual['source_sha256'] == hashlib.sha256((ROOT / document).read_bytes()).hexdigest()
         assert actual['rows'] == [{'source_key':key, 'source_pointer':'/' + key.replace('~','~0').replace('/','~1'), 'record':source[key]}]
+        print('PASS source document',document,flush=True)
 
 
 def main():
@@ -110,6 +131,7 @@ def main():
     packet = json.loads((ROOT / 'almanac/query-data.json').read_bytes())
     cases = ['rank', 'owner', 'source_json', 'missing', 'duplicate', 'owner_link', 'orphan', 'original_pin',
              'whole_width', 'annual', 'blinding', 'identity', 'scene_width', 'geometry', 'figure', 'primary', 'year_hours', 'year_figure', 'year_width','necc_flow_normal','necc_independence','necc_whole_width']
+    cases += ['observed_'+case for case in ['value','mask','units','layer','annual','association','reorder','original','missing','duplicate']]
     with TemporaryDirectory(dir=output) as temporary, sync_playwright() as playwright:
         folder = Path(temporary)
         index = folder / 'index.json'
@@ -120,9 +142,10 @@ def main():
         page = browser.new_page(viewport={'width':1280, 'height':1000})
         errors, automatic_originals = [], []
         page.on('pageerror', lambda e: errors.append(str(e)))
-        page.on('request', lambda r: automatic_originals.append(r.url) if any(x in r.url.lower().split('?')[0] for x in ('.pdf', '.zip', '.mat')) else None)
+        page.on('request', lambda r: automatic_originals.append(r.url) if r.url.lower().split('?')[0].endswith(('.pdf', '.zip', '.mat','.nc')) else None)
         for scene in registry['scenes']:
             owner = scene['current_id']
+            print('Checking shared views',owner,flush=True)
             page.goto(BASE + '/almanac/reference-routes.html?atlas-feature=current%3A' + owner + '#route-atlas')
             panel = page.locator('#route-atlas-preview .current-research-evidence')
             expect(panel).to_be_visible(timeout=90000)
@@ -152,6 +175,11 @@ def main():
                     expect(details.locator('img')).to_have_js_property('complete',True)
                     assert details.locator('img').evaluate('(img)=>img.naturalWidth>0')
                 link=panel.get_by_role('link',name='Inspect complete-year acquisition')
+            elif owner == 'aleutian':
+                expect(panel).to_contain_text('132 profiles')
+                expect(panel).to_contain_text('4,030 / 4,092')
+                expect(panel).to_contain_text('16 northward latitude steps')
+                link=panel.get_by_role('link',name='Inspect all observed profiles')
             else:
                 expect(panel).to_contain_text('7,992')
                 details.get_by_label('Analysis view').select_option('1')
@@ -185,6 +213,7 @@ def main():
             assert panel.locator('details').get_attribute('open') is not None
             panel.get_by_role('button', name='Inspect research evidence record').click()
             expect(page.locator('#query-detail')).to_contain_text(scene['diagnostic_id'])
+            print('PASS card/seasons/query/source/inspector/mobile',owner,flush=True)
         query = {'collection':'diagnostics', 'limit':100}
         page.goto(BASE + '/almanac/query.html?q=' + quote(json.dumps(query)))
         page.wait_for_function('window.oswLastQueryResult', timeout=90000)
@@ -201,19 +230,23 @@ def main():
             page.route('**/research-evidence-guard.html', lambda route: route.fulfill(body='<title>Research evidence guard</title>', content_type='text/html'))
             page.goto(BASE + '/research-evidence-guard.html')
             path = folder / 'corrupt.json'
-            path.write_bytes(json.dumps(corrupt(packet, kind)).encode())
+            bad=corrupt(packet,kind)
+            with path.open('w',encoding='utf8') as stream:json.dump(bad,stream)
+            del bad
             result = subprocess.run([str(CLI), str(path), '-'], input='{}', capture_output=True, text=True, encoding='utf8')
             assert result.returncode == 2 and not result.stdout, (kind, result.stderr)
-            result = page.evaluate('''async path=>{
-              const {instance}=await WebAssembly.instantiate(await(await fetch('/almanac/query-engine.wasm')).arrayBuffer(),{}),e=instance.exports;
-              const response=await fetch(path);if(!response.ok)throw new Error(`Corruption fixture HTTP ${response.status}: ${path}`);
+            result = page.evaluate('''async data=>{
+              const wasm=await fetch(data.wasm);if(!wasm.ok)throw new Error('Unserved WASM');
+              const {instance}=await WebAssembly.instantiate(await wasm.arrayBuffer(),{}),e=instance.exports;
+              const response=await fetch(data.fixture);if(!response.ok)throw new Error(`Corruption fixture HTTP ${response.status}`);
               const b=new Uint8Array(await response.arrayBuffer()),p=e.osw_alloc(b.length);
               try{new Uint8Array(e.memory.buffer,p,b.length).set(b);e.osw_load(p,b.length);
                 return JSON.parse(new TextDecoder().decode(new Uint8Array(e.memory.buffer,e.osw_result_ptr(),e.osw_result_len())));
               }finally{e.osw_dealloc(p,b.length);}
-            }''', '/' + path.relative_to(ROOT).as_posix())
+            }''', {'wasm':BASE+'/almanac/query-engine.wasm','fixture':BASE+'/' + path.relative_to(ROOT).as_posix()})
             assert result['ok'] is False, (kind, result)
             page.close()
+            print('PASS native/WASM',kind,flush=True)
         assert not errors, errors
         browser.close()
     print(f'PASS: {len(registry['scenes'])} research cards/seasons/query/source/inspector/mobile; {len(registry['documents'])+1} indexed documents; mixed diagnostics; {len(cases)} native/WASM corruption rejections; no automatic originals')

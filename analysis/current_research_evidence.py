@@ -38,13 +38,17 @@ NECC_BASE='research/source-data/oscar-necc-vectors-2013/'
 FROZEN_INPUTS.update({'research/pacific-necc-paired-vector-direction-evidence.json': '14c556b982c387a199fcddafce319843451e438739ee14b09ffb0a135c0216f6', 'research/pacific-necc-paired-vector-source-inventory.json': '549e5f09d5489133e498f50b886df0cf1b2cb56610874a17d7192d155e74b580', 'research/source-data/oscar-necc-vectors-2013/preflight.json': 'b65a57a268075c1e3efc6ebc6c1c319c3b6e7462c23ad7dedbbb2731e3427294', 'research/source-data/oscar-necc-vectors-2013/metadata.json': '8c1f41c4e7a0f91492482345e7038c47e461c46c56852dbe57f217e40b9ec2ba', 'research/source-data/oscar-necc-vectors-2013/metadata-acquisition.json': 'f9261037ca1d2bfc92ed91894736f8d29a05bb3e3c0ab6d49414a97fac110203', 'research/source-data/oscar-necc-vectors-2013/acquisition.json': 'e0f5c86892b9c7a73e3efef41a456cd46672238e08dc72c6927e12e9c25b0a05', 'research/source-data/oscar-necc-vectors-2013/figure.json': '5f547d1d2e9887d9668c958e4f82a8a4903965c955412498e7416aa8773a3d09'})
 EOF='research/indian-secc-eof-classification-feasibility.json'
 SECTION='research/redsox-lower-nc-dated-section-diagnostic.json'
+ALEUTIAN='research/aleutian-p14n-1993-observed-vector-section.json'
+ALEUTIAN_BASE='research/source-data/jasadcp-p14n-1993/'
+ALEUTIAN_INPUTS={'research/aleutian-p14n-1993-observed-vector-section.json': 'c454ed7a8d1de2a83956d74b25dceeb88d2098b2ff339daeb46ea4c9d2415426', 'research/source-data/jasadcp-p14n-1993/acquisition.json': '1aac36510a4857b02f3adcebaf47fc0d97366b33e48943ae6fc16212ac921ae3', 'research/source-data/jasadcp-p14n-1993/figure.json': '6fcafc536355b9efbda6140624b840c3dca40c00529b2bb629b5768bdb5464ae'}
+FROZEN_INPUTS.update(ALEUTIAN_INPUTS)
 
 
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
 
 def build():
-    if len(FROZEN_INPUTS)!=30:raise ValueError('Missing reviewed research source registry')
+    if len(FROZEN_INPUTS)!=33:raise ValueError('Missing reviewed research source registry')
     documents={}
     for path,pin in FROZEN_INPUTS.items():
         if digest(path)!=pin:raise ValueError('Changed reviewed current research source '+path)
@@ -86,6 +90,16 @@ def build():
     dependencies[figure['generator_file']]=figure['generator_sha256']
     for group in figure['figures'].values():
         for asset in group.values():dependencies[asset['file']]=asset['sha256']
+    for source,pin in dependencies.items():
+        if digest(source)!=pin:raise ValueError('Changed current research dependency '+source)
+    observed=documents[ALEUTIAN]
+    from build_aleutian_p14n_vector_section import verify as verify_observed
+    if observed!=verify_observed():raise ValueError('Changed observed vector section')
+    dependencies[observed['generator_file']]=observed['generator_sha256']
+    figure=documents[ALEUTIAN_BASE+'figure.json']
+    if figure['source_file']!=ALEUTIAN or figure['source_sha256']!=digest(ALEUTIAN):raise ValueError('Changed observed figure source binding')
+    dependencies[figure['generator_file']]=figure['generator_sha256']
+    for asset in figure['figures'].values():dependencies[asset['file']]=asset['sha256']
     for source,pin in dependencies.items():
         if digest(source)!=pin:raise ValueError('Changed current research dependency '+source)
     eof=documents[EOF];section=documents[SECTION]
@@ -207,6 +221,36 @@ def build():
         'table':{'caption':'140 W monthly product summaries. Component spans are not physical current widths; direction is from east, positive toward north.',
             'headers':['Month','Peak latitude','Direction from east','u=0 component span'],
             'rows':[[f"2013-{r['month']:02d}",f"{r['selected_peak_vector']['latitude']:.2f} N",f"{r['selected_peak_vector']['direction_degrees_from_east']:+.1f} degrees",f"{r['zero_crossing_component_span']['span_km']:.0f} km" if r['zero_crossing_component_span']['span_km'] is not None else 'Unresolved'] for r in necc['rows'] if r['source_longitude_degrees_east']==220]}
+    })
+    scenes.append({
+        'current_id':'aleutian','label':'Aleutian / Subarctic Current',
+        'diagnostic_id':'diagnostic:current-research:aleutian',
+        'title':'July 1993 observed section: paired current velocities',
+        'finding':'The archived P14N crossing retains 132 hourly shipboard profiles and 4,030 jointly valid eastward/northward vectors at 31 depth levels. These direct measurements improve regional support; matching water-mass evidence and physical current boundaries remain unresolved.',
+        'facts':[{'label':'Observed sampling','value':'132 profiles · 13–18 July 1993'},
+            {'label':'Joint vector support','value':'4,030 / 4,092 positions'},
+            {'label':'Primary depth layer','value':'100–300 m'},
+            {'label':'Supported layer means','value':'131 / 132 profiles'},
+            {'label':'Physical current width','value':'Unknown'}],
+        'notes':['Hourly archive means at 10 m depth levels are reduced products, not the native five-minute ensembles or four-metre acquisition bins.',
+            'Layer means use midpoint cell thickness clipped to 100–300 m, joint u/v validity and at least 160 m valid support. Missing velocities remain missing; no vertical interpolation or component-to-speed substitution.',
+            'The source track has 16 northward latitude steps and one two-hour gap. Points remain in acquisition order. The plot breaks the mean curve at the long gap; it does not silently fit a monotone current crossing.',
+            'The paper places Subarctic branches near 42 N and 45 N. Fixed 41–43 N and 44–46 N windows are search context, not physical edges. The westward Alaskan Stream and Bering-side Aleutian North Slope Current are distinct.',
+            'Provider metadata describe GPS selective availability, heading correction and CTD wire interference editing. Per-cell native editing history is not included in this reduced archive.',
+            'One July 1993 transect is not a seasonal climatology or annual width range. No current-edge geometry, full width, uncertainty interval or seasonal playback is admitted. The separate 2013 OSCAR component diagnostic is retained.'],
+        'next_evidence':'Match archived CTD hydrography to the observed branches, separate jets and eddies, and resolve transverse boundary brackets before admitting a named-current width.',
+        'figure_file':'figures/aleutian-p14n-1993-observed-vectors.svg',
+        'figure_alt':'Unconnected P14N sampling locations; observed eastward and northward velocity by latitude and depth; 100–300 m layer means with a gap break. Missing values are marked and no physical current boundaries are drawn.',
+        'source_file':ALEUTIAN,'source_pointer':'','source_links':[
+            link('Inspect all observed profiles',ALEUTIAN,'/profiles'),
+            link('Inspect fixed branch windows and unresolved widths',ALEUTIAN,'/branches'),
+            link('Inspect sampling gaps, spacing and bearings',ALEUTIAN,'/track_legs'),
+            link('Inspect original archive acquisition',ALEUTIAN_BASE+'acquisition.json'),
+            link('Inspect figure provenance',ALEUTIAN_BASE+'figure.json')],
+        'original_url':'https://uhslc.soest.hawaii.edu/sadcp/DATABASE/00016.html',
+        'table':{'caption':'Fixed paper-based search windows; neither window is a measured boundary pair.',
+            'headers':['Branch context','Search latitude','Profiles / layer means','Physical width'],
+            'rows':[[row['branch'].title(),'–'.join(map(str,row['latitude_search_window_degrees_north']))+' N',str(row['samples'])+' / '+str(row['joint_layer_means']),'Unknown'] for row in observed['branches']]}
     })
     for scene in scenes:
         scene.update(kind='current_research_evidence',rank_eligible=False,new_width_record_admitted=False,

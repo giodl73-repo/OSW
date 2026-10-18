@@ -69,7 +69,8 @@ def main():
     paths.extend(['rust/osw-query/src/current_research_evidence.rs','research/current-research-evidence-registry.json',
                   'research/indian-secc-eof-classification-feasibility.json','research/redsox-lower-nc-dated-section-diagnostic.json',
                   'research/source-data/norkyst-ingoy-months-2024/section-diagnostic-year.json',
-                  'research/pacific-necc-paired-vector-direction-evidence.json'])
+                  'research/pacific-necc-paired-vector-direction-evidence.json',
+                  'research/aleutian-p14n-1993-observed-vector-section.json'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',
