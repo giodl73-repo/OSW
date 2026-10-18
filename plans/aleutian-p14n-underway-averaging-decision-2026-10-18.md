@@ -113,3 +113,13 @@ about temporal comparability and preserve its gaps and sensitivities.
 Keep the physical-width gap open and prioritize another unresolved current
 with a directly supportable measurement. Registration of this negative
 result in the existing query/card source inspector is also pending.
+
+## Registration follow-up,2026-10-18
+
+The later registration batch completes the pending query/card source work:
+`plans/aleutian-underway-averaging-registration-2026-10-18.md`. The existing
+report and figure bytes are unchanged. Atlas cards, seasons source review
+and diagnostic query charts now expose the native averaging figure, all nine
+experiment summaries and exact source/provenance links. This supersedes the
+earlier registration-status sentences, not the scientific negative result.
+Physical width and annual variability remain unresolved.

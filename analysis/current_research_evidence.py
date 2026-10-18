@@ -56,13 +56,18 @@ NATIVE_FIGURE='research/aleutian-p14n-1993-native-vector-support-figure.json'
 NATIVE_BASE='research/source-data/jasadcp-p14n-1993-native/'
 NATIVE_INPUTS={'research/aleutian-p14n-1993-native-vector-support.json': 'b41d6f82bc60475de67c3bfb6e596dad0f72a726034126ae67bbed29cfd82962', 'research/aleutian-p14n-1993-native-product-metadata.json': '6b5050ba8c1aeaf08667df95ad432c1ab5faa63b563b8161f40dbb3d3906c859', 'research/aleutian-p14n-1993-native-vector-support-figure.json': 'ed75dd87a5d508c54bad75dd23ff04f0203bd349e791ef7b06dc05e9a4231df6', 'research/source-data/jasadcp-p14n-1993-native/acquisition.json': 'be53aa8de06de0355ce4fa597a0a6250873f955ed863bdc408c883364c704bc1'}
 FROZEN_INPUTS.update(NATIVE_INPUTS)
+AVERAGES='research/aleutian-p14n-1993-underway-averages.json'
+AVERAGE_FIGURE='research/aleutian-p14n-1993-underway-averages-figure.json'
+AVERAGE_INPUTS={AVERAGES:'92d6d3fc8717b010051b0fbbd96fe3b3955f7a86b2e0cf87cd6b5ed74783d626',
+    AVERAGE_FIGURE:'6a7aed03a752123e5eb1841c68ab5a92cac42b80b5426b81e104b03d4b470bd1'}
+FROZEN_INPUTS.update(AVERAGE_INPUTS)
 
 
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
 
 def build():
-    if len(FROZEN_INPUTS)!=42:raise ValueError('Missing reviewed research source registry')
+    if len(FROZEN_INPUTS)!=44:raise ValueError('Missing reviewed research source registry')
     documents={}
     for path,pin in FROZEN_INPUTS.items():
         if digest(path)!=pin:raise ValueError('Changed reviewed current research source '+path)
@@ -140,6 +145,21 @@ def build():
     dependencies[documents[NATIVE_META]['generator_file']]=documents[NATIVE_META]['generator_sha256']
     figure=documents[NATIVE_FIGURE]
     if figure['source_file']!=NATIVE or figure['source_sha256']!=digest(NATIVE):raise ValueError('Changed native figure source')
+    dependencies[figure['generator_file']]=figure['generator_sha256']
+    for asset in figure['figures'].values():dependencies[asset['file']]=asset['sha256']
+    from build_p14n_underway_averages import verify as verify_averages
+    averages=documents[AVERAGES]
+    if averages!=verify_averages():raise ValueError('Changed native underway averaging evidence')
+    relative=[s for e in averages['experiments'] for b in e['branches'] for s in b['boundary_choice_scenarios']]
+    velocity=[s for e in averages['experiments'] for b in e['branches'] for s in b['velocity_sensitivity_scenarios']]
+    if len(relative)!=54 or len(velocity)!=72 or any(s['endpoint_separation_km'] is not None for s in relative+velocity):
+        raise ValueError('Changed unresolved underway boundary result')
+    if (not averages['osw_temporal_ocean_velocity_averaging_applied'] or averages['station_gaps_bridged']
+        or averages['new_width_record_admitted'] or averages['seasonal_playback_supported']):
+        raise ValueError('Promoted underway averages')
+    dependencies[averages['generator_file']]=averages['generator_sha256']
+    figure=documents[AVERAGE_FIGURE]
+    if figure['source_file']!=AVERAGES or figure['source_sha256']!=digest(AVERAGES):raise ValueError('Changed averaging figure source')
     dependencies[figure['generator_file']]=figure['generator_sha256']
     for asset in figure['figures'].values():dependencies[asset['file']]=asset['sha256']
     for source,pin in dependencies.items():
@@ -278,6 +298,7 @@ def build():
             {'label':'Complete declared scenarios','value':'14 / 14 resolved'},
             {'label':'Native regional support','value':'1,585 profiles · 1,582 layer means'},
             {'label':'Native underway eligibility','value':'568 profiles · 19 runs at ≥2 m/s'},
+            {'label':'Native averaging boundary tests','value':'126 / 126 unresolved'},
             {'label':'Physical current width','value':'Unknown'}],
         'notes':['Hourly archive means at 10 m depth levels are reduced products, not the native five-minute ensembles or four-metre acquisition bins.',
             'Layer means use midpoint cell thickness clipped to 100–300 m, joint u/v validity and at least 160 m valid support. Missing velocities remain missing; no vertical interpolation or component-to-speed substitution.',
@@ -285,12 +306,13 @@ def build():
             'The paper places Subarctic branches near 42 N and 45 N. Fixed 41–43 N and 44–46 N windows are search context, not physical edges. The westward Alaskan Stream and Bering-side Aleutian North Slope Current are distinct.',
             'Provider metadata describe GPS selective availability, heading correction and CTD wire interference editing. Per-cell native editing history is not included in this reduced archive.',
             'One July 1993 transect is not a seasonal climatology or annual width range. No current-edge geometry, full width, uncertainty interval or seasonal playback is admitted. The separate 2013 OSCAR component diagnostic is retained.'],
-        'next_evidence':'Use the recovered native underway runs to declare time averaging and spatial boundary support, test temporal versus spatial crossings and branch/eddy attribution, then review transverse physical boundaries before admitting a current width.',
+        'next_evidence':'The declared 30/60/150 minute native averages do not recover both boundaries in any of 126 scenarios. A future station-to-station composite needs separate temporal-comparability rules; do not join runs or tune the operator to complete a width. Independent branch/eddy attribution and transverse boundary support remain required.',
         'figure_file':'figures/aleutian-p14n-1993-observed-vectors.svg',
         'figure_label':'Observed velocity section',
         'additional_figures':[{'file':'figures/aleutian-p14n-1993-hydrography-correspondence.svg','label':'CTD properties and pairing offsets','alt':'Measured in-situ ITS-90 temperature and PSS-78 salinity at 17 casts; QC2 cells and other quality codes distinguished; original velocity profiles and 84 candidate timing/distance offsets. No interpolated physical current edges.'},
             {'file':'figures/aleutian-p14n-1993-component-spans.svg','label':'Component spans and sensitivity','alt':'Both branch windows show actual vector means, half-peak crossings and native brackets; fourteen finite threshold and velocity scenarios remain separate. North about 100 km and south about 80 km are local component spans, not physical widths or annual ranges.'},
-            {'file':'figures/aleutian-p14n-1993-native-vector-support.svg','label':'Native vectors and ship-motion support','alt':'Actual native observation latitude, ship-speed magnitude and both 100–300 m ocean velocity components against UTC ensemble end. Recorded CTD begin/end intervals and fixed ship-speed scenarios remain distinct. Source editing flags, gaps and uncertainty do not define physical current edges.'}],
+            {'file':'figures/aleutian-p14n-1993-native-vector-support.svg','label':'Native vectors and ship-motion support','alt':'Actual native observation latitude, ship-speed magnitude and both 100–300 m ocean velocity components against UTC ensemble end. Recorded CTD begin/end intervals and fixed ship-speed scenarios remain distinct. Source editing flags, gaps and uncertainty do not define physical current edges.'},
+            {'file':'figures/aleutian-p14n-1993-underway-averages.svg','label':'Native averages: unresolved boundaries','alt':'Six panels compare northern and southern 100–300 m eastward means for fixed 30, 60 and 150 minute windows and all three ship-speed cutoffs. Horizontal bars are contributor latitude footprints, not uncertainty or edges. Hollow markers have less than 80% time coverage. All 54 relative-peak and 72 velocity-sensitivity scenarios remain unresolved. Station gaps are not bridged; no physical width or annual range is admitted.'}],
         'figure_alt':'Unconnected P14N sampling locations; observed eastward and northward velocity by latitude and depth; 100–300 m layer means with a gap break. Missing values are marked and no physical current boundaries are drawn.',
         'source_file':SPANS,'source_pointer':'',
         'observation_kind':'direct_shipboard_adcp_velocity',
@@ -298,6 +320,9 @@ def build():
         'observation_times_utc':[native_observation_times[0],native_observation_times[-1]] if native_observation_times else [],
         'support_source_sha256':{name:dependencies[name] for name in sorted(NATIVE_INPUTS)},
         'source_links':[
+            link('Inspect the unresolved native-averaging result',AVERAGES),
+            link('Inspect all nine averaging experiments and boundary cases',AVERAGES,'/experiments'),
+            link('Inspect native-averaging figure provenance',AVERAGE_FIGURE),
             link('Inspect native vector means and ship motion',NATIVE,'/profiles'),
             link('Inspect all three underway-run scenarios',NATIVE,'/run_sensitivity'),
             link('Inspect recorded CTD-event intervals',NATIVE,'/ctd_event_intervals'),
@@ -321,7 +346,14 @@ def build():
             'headers':['Branch context','Search latitude','50% component span','40/50/60% envelope','Physical width'],
             'rows':[[row['branch'].title(),'–'.join(map(str,row['latitude_search_window_degrees_north']))+' N','≈'+str(row['boundary_choice_scenarios'][1]['display_endpoint_separation_km'])+' km','–'.join(map(str,row['complete_boundary_choice_envelope_km']))+' km','Unknown'] for row in spans['branches']]}
     })
+    scenes[-1]['additional_tables']=[{
+        'caption':'Native averaging support across the full 40–48 N reach. Counts are retained bins, not boundary support inside either branch. Every experiment has 6 relative-peak and 8 velocity-sensitivity cases across both branches; none resolve two crossings.',
+        'headers':['Minimum ship speed (m/s)','Window (minutes)','All retained bins','Bins with ≥80% coverage','Resolved boundary cases'],
+        'rows':[[str(e['ship_speed_cutoff_m_s']),str(e['averaging_minutes']),
+            str(sum(len(r['bins']) for r in e['runs'])),
+            str(sum(b['boundary_eligible_coverage'] for r in e['runs'] for b in r['bins'])),'0 / 14'] for e in averages['experiments']]}]
     scenes[-1]['notes'].extend([
+        'A separate exploratory OSW operator averages native supported layer means within each contiguous underway run, using fixed 30/60/150 minute windows and 1/2/3 m/s ship-speed cutoffs. Overlapping ensemble time is counted once and boundary analysis requires at least 80% of the full window duration. All 54 relative-peak and 72 velocity-sensitivity cases lack two resolved crossings. No station gap is bridged; run ends and incomplete windows cannot substitute for boundaries.',
         'The separate native products retain 1,585 regional ensemble profiles and 190,200 depth cells in their original files. There are 1,582 supported 100–300 m means and 182,081 jointly finite unflagged vectors. CODAS editing bits are distinct from CTD WOCE quality codes.',
         'Fixed ship-speed eligibility at 1/2/3 m/s gives 623/568/532 profiles in 42/19/19 contiguous runs. Every run remains available, including short ones. Source gaps, missing support and ineligible profiles break runs; no latitude sorting or station-gap bridge is applied.',
         'All 685 profiles whose nominal ensemble intervals overlap recorded CTD BE–EN events fall outside the ≥2 m/s eligibility class. This event/speed agreement is context, not proof of depth-specific simultaneity or a new CTD-wire interference flag.',

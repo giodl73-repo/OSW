@@ -23,10 +23,16 @@ window.renderCurrentResearchEvidence=function(container,scene,inspect,options={}
     select.addEventListener('change',()=>{const choice=choices[Number(select.value)];image.src='../'+choice.file;image.alt=choice.alt;caption.textContent=choice.alt;fullFigure.href=image.src;});
   }
   for(const note of scene.notes)add('p',note,details);
-  const table=add('table','',details);table.style.cssText='width:100%;min-width:0;max-width:100%;table-layout:fixed;border-collapse:collapse;overflow-wrap:anywhere;white-space:normal;font-size:.9rem';
-  add('caption',scene.table.caption,table);const head=add('tr','',add('thead','',table));
-  for(const title of scene.table.headers){const th=add('th',title,head);th.scope='col';th.style.cssText='padding:.35rem;text-align:left;border-bottom:1px solid #587681';}
-  const body=add('tbody','',table);for(const row of scene.table.rows){const tr=add('tr','',body);for(const value of row){const td=add('td',value,tr);td.style.cssText='padding:.35rem;border-bottom:1px solid #587681';}}
+  for(const data of [scene.table,...(scene.additional_tables||[])]){
+    add('p',data.caption,details);
+    const scroll=add('div','',details);scroll.className='research-data-table-scroll';scroll.tabIndex=0;scroll.setAttribute('role','region');scroll.setAttribute('aria-label',scene.label+' research data table; scroll horizontally to compare columns');
+    scroll.style.cssText='max-width:100%;overflow-x:auto;margin:.6rem 0';
+    const table=add('table','',scroll);table.style.cssText=`width:100%;min-width:${Math.max(360,data.headers.length*100)}px;table-layout:fixed;border-collapse:collapse;overflow-wrap:normal;white-space:normal;font-size:.9rem`;
+    const tableCaption=add('caption',data.caption,table);tableCaption.style.cssText='position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)';
+    const head=add('tr','',add('thead','',table));
+    for(const title of data.headers){const th=add('th',title,head);th.scope='col';th.style.cssText='padding:.35rem;text-align:left;border-bottom:1px solid #587681';}
+    const body=add('tbody','',table);for(const row of data.rows){const tr=add('tr','',body);for(const value of row){const td=add('td',value,tr);td.style.cssText='padding:.35rem;border-bottom:1px solid #587681';}}
+  }
   add('p','Next evidence needed: '+scene.next_evidence,details);
   const links=add('ul','',details);
   for(const source of scene.source_links){const link=add('a',source.label,add('li','',links));link.href='query.html?source-q='+encodeURIComponent(JSON.stringify({document:source.document,pointer:source.pointer,limit:100}));link.style.cssText='display:inline-flex;align-items:center;min-height:44px';}

@@ -73,7 +73,9 @@ def main():
                   'research/pacific-necc-paired-vector-direction-evidence.json',
                   'research/aleutian-p14n-1993-observed-vector-section.json',
                   'research/aleutian-p14n-1993-hydrography-correspondence.json',
-                  'research/aleutian-p14n-1993-component-spans.json'])
+                  'research/aleutian-p14n-1993-component-spans.json',
+                  'research/aleutian-p14n-1993-underway-averages.json',
+                  'research/aleutian-p14n-1993-underway-averages-figure.json'])
     paths.extend(['rust/osw-query/src/measurement_scope.rs','research/current-measurement-object-scope-index.json'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()

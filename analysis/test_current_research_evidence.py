@@ -31,6 +31,30 @@ class ResearchEvidenceTests(unittest.TestCase):
         with patch.object(Path, 'read_bytes', altered), self.assertRaises(ValueError):
             evidence.verify()
 
+    def test_underway_negative_result_stays_distinct_from_hourly_spans(self):
+        registry=evidence.verify()
+        owner=next(s for s in registry['scenes'] if s['current_id']=='aleutian')
+        self.assertEqual(owner['source_file'],evidence.SPANS)
+        self.assertIn(evidence.AVERAGES,[s['document'] for s in owner['source_links']])
+        self.assertEqual(len(owner['additional_figures']),4)
+        table=owner['additional_tables'][0]
+        self.assertEqual([r[2:4] for r in table['rows']],
+            [['128','95'],['81','41'],['53','16'],['103','92'],['57','39'],['29','16'],['96','85'],['54','37'],['27','15']])
+        self.assertTrue(all(r[-1]=='0 / 14' for r in table['rows']))
+        self.assertIsNone(owner['whole_current_width_km'])
+        self.assertIsNone(owner['annual_width_range_km'])
+        self.assertIs(owner['new_width_record_admitted'],False)
+
+    def test_changed_underway_result_or_figure_invalidates_registration(self):
+        original=Path.read_bytes
+        for name in [evidence.AVERAGES,'figures/aleutian-p14n-1993-underway-averages.svg']:
+            target=evidence.ROOT/name
+            def altered(path):
+                raw=original(path)
+                return raw+b' ' if path==target else raw
+            with self.subTest(source=name),patch.object(Path,'read_bytes',altered),self.assertRaises(ValueError):
+                evidence.verify()
+
     def test_changed_source_archive_invalidates_the_registry(self):
         original = Path.read_bytes
         target = evidence.ROOT / 'research/source-data/ncei-redsox-2001/ladcp-ascii-originals.zip'
