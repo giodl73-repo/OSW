@@ -4,7 +4,11 @@ use sha2::{Digest, Sha256};
 
 const PATH: &str = "research/current-research-evidence-registry.json";
 const RAW: &str = include_str!("../../../research/current-research-evidence-registry.json");
-const STUDIES: [(&str, &str); 3] = [
+const STUDIES: [(&str, &str); 4] = [
+    (
+        "research/pacific-necc-paired-vector-direction-evidence.json",
+        include_str!("../../../research/pacific-necc-paired-vector-direction-evidence.json"),
+    ),
     (
         "research/source-data/norkyst-ingoy-months-2024/section-diagnostic-year.json",
         include_str!(

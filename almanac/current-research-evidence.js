@@ -17,8 +17,8 @@ window.renderCurrentResearchEvidence=function(container,scene,inspect,options={}
   if(scene.additional_figures?.length){
     const label=add('label','Analysis view ',details),select=add('select',undefined,label);
     select.style.cssText='min-height:44px;max-width:100%';
-    const choices=[{file:scene.figure_file,alt:scene.figure_alt,label:'Monthly regional maps'},
-      ...scene.additional_figures.map((f,i)=>({...f,label:i===0?'Monthly mean sections':'Monthly temporal variability'}))];
+    const choices=[{file:scene.figure_file,alt:scene.figure_alt,label:scene.figure_label||'Monthly regional maps'},
+      ...scene.additional_figures.map((f,i)=>({...f,label:f.label||(i===0?'Monthly mean sections':'Monthly temporal variability')}))];
     choices.forEach((choice,index)=>{const option=add('option',choice.label,select);option.value=String(index);});
     select.addEventListener('change',()=>{const choice=choices[Number(select.value)];image.src='../'+choice.file;image.alt=choice.alt;caption.textContent=choice.alt;fullFigure.href=image.src;});
   }

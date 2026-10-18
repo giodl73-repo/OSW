@@ -29,4 +29,12 @@ Five tests and five subtests pass: complete offline reproduction, missing/duplic
 - Keep all 150 width records, 79 owners, existing three research scenes and every other current unchanged. The raw/derived vector region does not admit a new physical current width, annual range, axis, polygon, length rank or current-state membership.
 - Verify native/WASM source and diagnostic parity, new-source inspection, corruption rejection, keyboard/320px/reduced motion and preservation; then run the clean combined gate and publish to the same PR.
 
-The eb16678 full suite is running independently in the WSC worktree. Its eventual result does not cover these later source additions or their future UI integration.
+## Shared integration status
+
+The shared registry now contains four research scenes. The new paired-vector report, full vector inventory and five supporting documents are indexed (314 sources total). The compiled Rust contract binds the new primary report; all 84 engine dependency hashes match. Cards, seasons and query use the existing renderer, with scene-specific figure labels, twelve numeric monthly rows and source inspection links. All 53 Rust unit tests pass.
+
+Preservation comparison against the source-only parent passes: all 150 width records, 43 other query collections, 41 prior diagnostics and three prior research scenes are unchanged; only the Pacific countercurrent object and its new diagnostic are added/updated. No physical width is admitted.
+
+The eb16678 clean full suite terminated with 1 failure, 1,650 passed tests and 1,094 passed subtests in 2,379.79 seconds. Its combined-chart test still expected five scene kinds after the WSC addition made six. The expectation now includes the WSC 28 km / 7 km reported-SD scene, keeps the earlier assertions using scene-kind lookup and passes its targeted rerun (10.92 seconds). That historical run does not cover this later NECC package.
+
+The first shared browser run exercised all four owners and reached corruption rejection before its renderer closed during repeated full-packet WASM instantiation. Each corruption now uses and closes its own page to release its heap; all 22 corruption assertions remain. The browser rerun and a clean combined gate for this integration remain pending. Candidate browser checks read candidate static bytes through isolated Playwright routes on the existing localhost origin; this is not a claim that the normal server already serves the candidate.

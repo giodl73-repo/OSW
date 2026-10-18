@@ -28,6 +28,15 @@ def corrupt(packet, kind):
     bad = copy.deepcopy(packet)
     rows = [r for r in bad['collections']['diagnostics'] if 'research_evidence' in r]
     row = next(r for r in rows if r['current_id'] == 'red-sea-saline-overflow')
+    if kind.startswith('necc_'):
+        target=next(r for r in rows if r['current_id']=='pacific-north-equatorial-countercurrent')
+        document=copy.deepcopy(target['document'])
+        field={'necc_flow_normal':'component_spans_are_flow_normal_widths','necc_independence':'same_product_columns_are_independent_validation','necc_whole_width':'whole_current_width_km'}[kind]
+        document[field]=500 if kind=='necc_whole_width' else True
+        raw=json.dumps(document);pin=hashlib.sha256(raw.encode()).hexdigest()
+        target.update(document=document,source_json=raw,source_file_sha256=pin)
+        bad['manifest']['input_sha256'][target['source_file']]=pin
+        return bad
     if kind.startswith('year_'):
         row=next(r for r in rows if r['current_id']=='norwegian-coastal')
         if kind=='year_hours':
@@ -100,7 +109,7 @@ def main():
     registry = json.loads((ROOT / REGISTRY).read_bytes())
     packet = json.loads((ROOT / 'almanac/query-data.json').read_bytes())
     cases = ['rank', 'owner', 'source_json', 'missing', 'duplicate', 'owner_link', 'orphan', 'original_pin',
-             'whole_width', 'annual', 'blinding', 'identity', 'scene_width', 'geometry', 'figure', 'primary', 'year_hours', 'year_figure', 'year_width']
+             'whole_width', 'annual', 'blinding', 'identity', 'scene_width', 'geometry', 'figure', 'primary', 'year_hours', 'year_figure', 'year_width','necc_flow_normal','necc_independence','necc_whole_width']
     with TemporaryDirectory(dir=output) as temporary, sync_playwright() as playwright:
         folder = Path(temporary)
         index = folder / 'index.json'
@@ -135,7 +144,7 @@ def main():
             elif owner == 'indian-south-equatorial-countercurrent':
                 expect(details).to_contain_text('northern pattern peaks at the retained data edge')
                 link = panel.get_by_role('link', name='Inspect declared calculation')
-            else:
+            elif owner == 'norwegian-coastal':
                 expect(panel).to_contain_text('8,784')
                 for index_choice,choice in enumerate(scene['additional_figures'],1):
                     details.get_by_label('Analysis view').select_option(str(index_choice))
@@ -143,6 +152,13 @@ def main():
                     expect(details.locator('img')).to_have_js_property('complete',True)
                     assert details.locator('img').evaluate('(img)=>img.naturalWidth>0')
                 link=panel.get_by_role('link',name='Inspect complete-year acquisition')
+            else:
+                expect(panel).to_contain_text('7,992')
+                details.get_by_label('Analysis view').select_option('1')
+                expect(details.locator('img')).to_have_attribute('src','../'+scene['additional_figures'][0]['file'])
+                expect(details.locator('img')).to_have_js_property('complete',True)
+                assert details.locator('img').evaluate('(img)=>img.naturalWidth>0')
+                link=panel.get_by_role('link',name='Inspect paired source vectors')
             source_query = json.loads(unquote(link.get_attribute('href').split('source-q=')[1]))
             link.click()
             page.wait_for_function('window.oswSourceQueryResult', timeout=90000)
@@ -176,9 +192,14 @@ def main():
         assert page.locator('#query-chart-panels .current-research-evidence').count() == len(registry['scenes'])
         assert page.locator('#query-chart-panels .current-width-source-review').count() == 2
         assert not automatic_originals, automatic_originals
-        page.route('**/research-evidence-guard.html', lambda route: route.fulfill(body='<title>Research evidence guard</title>', content_type='text/html'))
-        page.goto(BASE + '/research-evidence-guard.html')
+        page.close()
         for kind in cases:
+            # Release each WASM heap with its page; retaining 22 full packet
+            # instances in one renderer can exhaust memory before assertions run.
+            page = browser.new_page()
+            page.on('pageerror', lambda e: errors.append(str(e)))
+            page.route('**/research-evidence-guard.html', lambda route: route.fulfill(body='<title>Research evidence guard</title>', content_type='text/html'))
+            page.goto(BASE + '/research-evidence-guard.html')
             path = folder / 'corrupt.json'
             path.write_bytes(json.dumps(corrupt(packet, kind)).encode())
             result = subprocess.run([str(CLI), str(path), '-'], input='{}', capture_output=True, text=True, encoding='utf8')
@@ -191,6 +212,7 @@ def main():
               }finally{e.osw_dealloc(p,b.length);}
             }''', '/' + path.relative_to(ROOT).as_posix())
             assert result['ok'] is False, (kind, result)
+            page.close()
         assert not errors, errors
         browser.close()
     print(f'PASS: {len(registry['scenes'])} research cards/seasons/query/source/inspector/mobile; {len(registry['documents'])+1} indexed documents; mixed diagnostics; {len(cases)} native/WASM corruption rejections; no automatic originals')

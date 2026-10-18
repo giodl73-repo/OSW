@@ -3,6 +3,8 @@
   "status": "reviewed_research_evidence_pending_physical_measurement_admission",
   "documents": {
     "research/indian-secc-eof-classification-feasibility.json": "1ec87c83802445c8685a091fc1b8d9a7d70755bc203dd3c09e14baafa0e2d144",
+    "research/pacific-necc-paired-vector-direction-evidence.json": "14c556b982c387a199fcddafce319843451e438739ee14b09ffb0a135c0216f6",
+    "research/pacific-necc-paired-vector-source-inventory.json": "549e5f09d5489133e498f50b886df0cf1b2cb56610874a17d7192d155e74b580",
     "research/redsox-cruise-log-metadata-reconciliation.json": "c20b965126a62925b35cf61c8d7b61cd887d236e478dba57714cbc1b7bba252b",
     "research/redsox-ctd-companion-inventory.json": "b411184a90164368a75f36eba32c1e24c48a386c725859ab0e530bc5582ca7ee",
     "research/redsox-ladcp-source-inventory.json": "0c67399b66991f0160f09c21ce6a6966b4426fe7a434cd0126fd13a7f368a254",
@@ -20,6 +22,11 @@
     "research/source-data/norkyst-ingoy-months-2024/section-diagnostic-year.json": "390c9457c116abadbd3c5efb79bd1899f1a98d5cae6c7a916610b909947002bf",
     "research/source-data/oscar-indian-eof-1995-2016/acquisition.json": "dc684f969378f2ada64a6174fa23810ade8bbe8db2f86ea77e849384b7d95fae",
     "research/source-data/oscar-indian-eof-1995-2016/preflight.json": "b9c19d3c1abd87bf9b1c03910d383905a07de73ba2a957f597f83ab1224587a9",
+    "research/source-data/oscar-necc-vectors-2013/acquisition.json": "e0f5c86892b9c7a73e3efef41a456cd46672238e08dc72c6927e12e9c25b0a05",
+    "research/source-data/oscar-necc-vectors-2013/figure.json": "5f547d1d2e9887d9668c958e4f82a8a4903965c955412498e7416aa8773a3d09",
+    "research/source-data/oscar-necc-vectors-2013/metadata-acquisition.json": "f9261037ca1d2bfc92ed91894736f8d29a05bb3e3c0ab6d49414a97fac110203",
+    "research/source-data/oscar-necc-vectors-2013/metadata.json": "8c1f41c4e7a0f91492482345e7038c47e461c46c56852dbe57f217e40b9ec2ba",
+    "research/source-data/oscar-necc-vectors-2013/preflight.json": "b65a57a268075c1e3efc6ebc6c1c319c3b6e7462c23ad7dedbbb2731e3427294",
     "research/source-data/redsox-lower-nc-2001/alternate-format-acquisition.json": "f0cc0d599b9ae5262ec05183211611ffa1b483eeef313ad845ba3d035d6e11ac",
     "research/source-data/redsox-lower-nc-2001/declaration-history-note.json": "23f5f47e82136efe661cb35422b7d2bc7447648048965d1f44a75bb6c6fb9123",
     "research/source-data/redsox-lower-nc-2001/implementation-clarifications.json": "2fbf9636562ee5e22e420e1355220bded6368ab05aee82fe92f9949cc8e8a81b",
@@ -27,19 +34,28 @@
     "research/source-data/redsox-lower-nc-2001/matched-section-followup-preflight.json": "cfced47f8fc78bb1fc37b1e6033f499e687afab5239388f104d330a6e0dd410a"
   },
   "input_sha256": {
+    "analysis/acquire_necc_paired_vectors.py": "11de1e64ee499bcffa9aef9b00c5afa554b945644f1502d5922322d2eb928df1",
     "analysis/build_indian_secc_eof_feasibility.py": "068b0788c3d204b3464358a453240aa967515922b3b85f9524b0860caa69a439",
     "analysis/build_indian_secc_eof_feasibility_figure.py": "29e527f7691c06ced4301cf2f3e0c49cb4b7541ed185c9a3dd316db4f22ba13f",
+    "analysis/build_necc_paired_vector_evidence.py": "6e53605a48d893367695b39994695d1a27bf4871c3a568967fa7f1c37dd10e82",
+    "analysis/build_necc_paired_vector_figures.py": "5da6a44e3f37ed4804cbd57834535f6d1586a38229c52345c0a5263b9644b44d",
     "analysis/build_norkyst_continuous_sections.py": "4e8b037c45ee24976cf0f386ec46c1c564b5598a63bd1843e01c2382d4b315bf",
     "analysis/build_norkyst_continuous_year.py": "ba089dfe499b7497ec85f352f388c325c45cab029b8d2ebfa8b48921564a85a1",
     "analysis/build_norkyst_continuous_year_figures.py": "35990577189f84cfcaf150b2145b33e693fe662f956a4becb11da98b51145d4e",
     "analysis/build_norkyst_ingoy_maps.py": "4d3098aabc101032dd990213b6459d5b87c1769953b13af6ade23d1503cafba6",
     "analysis/build_norkyst_ingoy_timeline.py": "6f27b108e95f7cc182c647f73792b6eb03d52d115fcdc76560f2826a38524c6c",
+    "analysis/build_pacific_necc_oscar_section_diagnostic.py": "fa2960b73de47588dde934ddb30bf0a29d6c8149067715a42c4f9fee098ce0f8",
     "analysis/build_redsox_ctd_companion_inventory.py": "6f56097cd9a25594347931f1e6b45b2e50f2970152baecebf0a5a5e5812ace88",
     "analysis/build_redsox_ladcp_source_inventory.py": "987849fe5bc1fd9b3fdec59660359f4c3b056a8506795b02a5eb866dabb47385",
     "analysis/build_redsox_lower_nc_figure.py": "d7f99b62f9aece4342ba099e9efff609d49dcfd8b97df46a936ba75f23f44960",
     "analysis/build_redsox_lower_nc_section.py": "63613b7c33f51f73ec6b5cf64ad78b3603b130abecd70283d8248e85c97d2349",
+    "analysis/necc_paired_vectors.py": "c43b59cc343fd364f1f26cafeeb710dcdee9f0a3bdf02c5ffa83a47ff1d1f53c",
     "analysis/norkyst_continuous_source.py": "bd5aa0e7693030af275b7ecdf55875bd016a97d89f00a0d0cb23559646fecae5",
     "figures/indian-secc-eof-feasibility.svg": "65cb81417d19c9b4ebb1f6cbd1f0e5a003a67686bc877b9f6c08ace4f803aafb",
+    "figures/necc-paired-2013-direction-column-context.png": "ddefa8a14b9cf4f732a18762c943eb60afb4ab2427228cca1040dc70e82c6d97",
+    "figures/necc-paired-2013-direction-column-context.svg": "1677fde0bd5c3b67a6560c8fb853d4ece19d8ea1c75cc4cbd7281beeb6fe33de",
+    "figures/necc-paired-2013-monthly-vector-sections.png": "424d4facc7214ebf6cdefd86c7dc017f09ca9e5b666ef7ce31f5cc94230feaed",
+    "figures/necc-paired-2013-monthly-vector-sections.svg": "10e7bf099ae583a6a10fa393d8348f19195bad734a67dcba4248271aa254296b",
     "figures/norkyst-ingoy-complete-year-maps.png": "aba39d4eab773999d0063eb4277278d7468bb4d803c8a36697f91c75f59196f8",
     "figures/norkyst-ingoy-complete-year-maps.svg": "a93829b63315edff1aa3ef0bdadfd9e8119c6578ecf7578863e13967f4c0797c",
     "figures/norkyst-ingoy-complete-year-sections.png": "ea53db01a3c39020fa248664f06e62a917fc4b484c18b3962900eb3858684794",
@@ -51,9 +67,13 @@
     "plans/norkyst-ingoy-monthly-regional-map-rules-2026-10-17.md": "e08c49970f9382a45c0c6baf5ad2efdd61426aec1ee2db21d0a2b2ce78442394",
     "plans/norkyst-ingoy-section-sampling-protocol-v1.md": "76fad76627ede35fe67a9af843048fa868df29f1fc1ddecd280bc18713511b10",
     "plans/norkyst-ingoy-within-month-support-2026-10-17.md": "aac3cd4bc388e2c56b772e3d1878af75b8c60bd3d2504990b7d9104a7d94ef6f",
+    "plans/pacific-necc-paired-vector-native-column-protocol-v1.md": "ce51294ab11274e488f503792d1824a7d9a05931ce19fc814de3fcd4068f018b",
     "research/indian-secc-eof-classification-feasibility.json": "1ec87c83802445c8685a091fc1b8d9a7d70755bc203dd3c09e14baafa0e2d144",
     "research/norkyst-ingoy-2024-monthly-sample-receipts.json": "78ab68f749c62c8555cf877611c93787b0545f47e0052211a664167d26069c96",
     "research/norkyst-ingoy-2024-section-timeline.json": "5b11b1495f0c73d1dcf90a38502c28d72e6740fd7f926ce1ed680c0284e659fe",
+    "research/pacific-necc-oscar-2013-section-diagnostic.json": "7b05a062f2303202946f67dfcdd73f754560eb5fe8dbe15b87f8f70f9863aa74",
+    "research/pacific-necc-paired-vector-direction-evidence.json": "14c556b982c387a199fcddafce319843451e438739ee14b09ffb0a135c0216f6",
+    "research/pacific-necc-paired-vector-source-inventory.json": "549e5f09d5489133e498f50b886df0cf1b2cb56610874a17d7192d155e74b580",
     "research/redsox-cruise-log-metadata-reconciliation.json": "c20b965126a62925b35cf61c8d7b61cd887d236e478dba57714cbc1b7bba252b",
     "research/redsox-ctd-companion-inventory.json": "b411184a90164368a75f36eba32c1e24c48a386c725859ab0e530bc5582ca7ee",
     "research/redsox-ladcp-source-inventory.json": "0c67399b66991f0160f09c21ce6a6966b4426fe7a434cd0126fd13a7f368a254",
@@ -113,6 +133,15 @@
     "research/source-data/oscar-indian-eof-1995-2016/preflight.json": "b9c19d3c1abd87bf9b1c03910d383905a07de73ba2a957f597f83ab1224587a9",
     "research/source-data/oscar-indian-secc-1995-2016/indian-secc-80p333e.csv": "0e68169ff1ef04c03e558ddb06822e5544520f1390f44316217efebba308d622",
     "research/source-data/oscar-indian-secc-1995-2016/indian-secc-80p667e.csv": "b252abd065bf8875845b2408357e820b1cbf5eb1a240e8223721d20911c21c5d",
+    "research/source-data/oscar-necc-2013-140w/metadata.json": "8c1f41c4e7a0f91492482345e7038c47e461c46c56852dbe57f217e40b9ec2ba",
+    "research/source-data/oscar-necc-2013-140w/section.csv": "fb31640c8e809d405fdea3b479cbf843d97736c76225ff4d09a14a2035550741",
+    "research/source-data/oscar-necc-vectors-2013/acquisition.json": "e0f5c86892b9c7a73e3efef41a456cd46672238e08dc72c6927e12e9c25b0a05",
+    "research/source-data/oscar-necc-vectors-2013/figure.json": "5f547d1d2e9887d9668c958e4f82a8a4903965c955412498e7416aa8773a3d09",
+    "research/source-data/oscar-necc-vectors-2013/longitude.csv": "ae0a5ee5e5aaf200456e04274d4eb677c26f97c44ad08933db0661613fc8d811",
+    "research/source-data/oscar-necc-vectors-2013/metadata-acquisition.json": "f9261037ca1d2bfc92ed91894736f8d29a05bb3e3c0ab6d49414a97fac110203",
+    "research/source-data/oscar-necc-vectors-2013/metadata.json": "8c1f41c4e7a0f91492482345e7038c47e461c46c56852dbe57f217e40b9ec2ba",
+    "research/source-data/oscar-necc-vectors-2013/preflight.json": "b65a57a268075c1e3efc6ebc6c1c319c3b6e7462c23ad7dedbbb2731e3427294",
+    "research/source-data/oscar-necc-vectors-2013/vectors.csv": "13244f4c65816ad1d436420a188889675b10d6f62858663150186844b8e6c00d",
     "research/source-data/redsox-lower-nc-2001/alternate-format-acquisition.json": "f0cc0d599b9ae5262ec05183211611ffa1b483eeef313ad845ba3d035d6e11ac",
     "research/source-data/redsox-lower-nc-2001/cast10mat.mat": "1f353e1269647fc87270db2bc08c804b1a17c8691835a7db471cd4d44a704547",
     "research/source-data/redsox-lower-nc-2001/cast34mat.mat": "4eaa0c505260f4fe1e5f69bd99e4fade5f9ca252836ad212382475ce86a8ab27",
@@ -468,6 +497,165 @@
       "annual_width_range_km": null,
       "geometry_role": "research_evidence_no_current_axis_or_physical_width_geometry",
       "figure_sha256": "a93829b63315edff1aa3ef0bdadfd9e8119c6578ecf7578863e13967f4c0797c"
+    },
+    {
+      "current_id": "pacific-north-equatorial-countercurrent",
+      "label": "Pacific North Equatorial Countercurrent",
+      "diagnostic_id": "diagnostic:current-research:pacific-north-equatorial-countercurrent",
+      "title": "Paired surface-product vectors: direction and nearby columns",
+      "finding": "Both velocity components are retained at 140 W and its two native neighbors. All twelve central monthly means and component spans reproduce the earlier calculation. Nine of 36 selected monthly peaks depart more than 15 degrees from east, reaching about 46 degrees. These are product diagnostics, not physical current widths.",
+      "facts": [
+        {
+          "label": "Paired source support",
+          "value": "7,992 vectors · 3 native columns"
+        },
+        {
+          "label": "Archive sampling",
+          "value": "72 timestamps · 2013"
+        },
+        {
+          "label": "Physical current width",
+          "value": "Unknown"
+        },
+        {
+          "label": "Annual width range",
+          "value": "Unknown"
+        }
+      ],
+      "notes": [
+        "This is archived satellite-derived OSCAR 2017.0 near-surface velocity, not direct instrument sections. Nominal depth coordinate 15 m is product context.",
+        "Actual source times run from 1 January to 26 December 2013, including four six-day gaps. Equal-sample monthly means are not daily/time-weighted means or a climatology.",
+        "Directions are derived from paired monthly-mean vectors, not averaged source-frame headings. No cosine correction turns the component spans into flow-normal widths.",
+        "The 15-degree and two-native-cell attention guides are OSW choices, not admission limits or confidence intervals. Three months show larger peak-latitude separation between columns; same-product neighbors are not independent validation or measurement-error bounds.",
+        "The 1/3-degree grid does not establish independent effective resolution. Cells outside the selected component, including westward flow, are not assigned to the named NECC.",
+        "Target u was viewed before the new declaration. New v and neighboring velocity acquisition followed the declaration commit; no fully blinded or externally timestamped preregistration is claimed."
+      ],
+      "next_evidence": "Compatible independent velocity sections, verified named-flow association, source-error assessment and transverse physical edges before current width, annual ranges or mapped width admission.",
+      "figure_file": "figures/necc-paired-2013-monthly-vector-sections.svg",
+      "figure_label": "Monthly paired components",
+      "figure_alt": "Monthly eastward and northward near-surface OSCAR fields at three native longitudes in 2013. Dots are selected component peaks, not a current axis or physical edges.",
+      "additional_figures": [
+        {
+          "file": "figures/necc-paired-2013-direction-column-context.svg",
+          "label": "Direction and native-column context",
+          "alt": "Monthly peak directions and connected eastward-component spans across three native columns. Attention guides are not error bounds, annual ranges or flow-normal widths."
+        }
+      ],
+      "source_file": "research/pacific-necc-paired-vector-direction-evidence.json",
+      "source_pointer": "",
+      "source_links": [
+        {
+          "label": "Inspect paired source vectors",
+          "document": "research/pacific-necc-paired-vector-source-inventory.json",
+          "pointer": "/samples"
+        },
+        {
+          "label": "Inspect monthly paired profiles",
+          "document": "research/pacific-necc-paired-vector-direction-evidence.json",
+          "pointer": "/rows"
+        },
+        {
+          "label": "Inspect vector acquisition",
+          "document": "research/source-data/oscar-necc-vectors-2013/acquisition.json",
+          "pointer": ""
+        },
+        {
+          "label": "Inspect declared paired-vector rules",
+          "document": "research/source-data/oscar-necc-vectors-2013/preflight.json",
+          "pointer": ""
+        }
+      ],
+      "original_url": "https://oceanwatch.pifsc.noaa.gov/erddap/info/yearly_336c_0b32_9cd3/index.html",
+      "table": {
+        "caption": "140 W monthly product summaries. Component spans are not physical current widths; direction is from east, positive toward north.",
+        "headers": [
+          "Month",
+          "Peak latitude",
+          "Direction from east",
+          "u=0 component span"
+        ],
+        "rows": [
+          [
+            "2013-01",
+            "6.33 N",
+            "+10.0 degrees",
+            "537 km"
+          ],
+          [
+            "2013-02",
+            "5.33 N",
+            "+37.1 degrees",
+            "636 km"
+          ],
+          [
+            "2013-03",
+            "7.00 N",
+            "+8.5 degrees",
+            "460 km"
+          ],
+          [
+            "2013-04",
+            "7.33 N",
+            "+41.8 degrees",
+            "211 km"
+          ],
+          [
+            "2013-05",
+            "6.33 N",
+            "-33.9 degrees",
+            "555 km"
+          ],
+          [
+            "2013-06",
+            "7.00 N",
+            "+5.0 degrees",
+            "457 km"
+          ],
+          [
+            "2013-07",
+            "7.00 N",
+            "+6.0 degrees",
+            "573 km"
+          ],
+          [
+            "2013-08",
+            "7.00 N",
+            "-6.8 degrees",
+            "605 km"
+          ],
+          [
+            "2013-09",
+            "8.33 N",
+            "-2.8 degrees",
+            "575 km"
+          ],
+          [
+            "2013-10",
+            "8.00 N",
+            "-14.6 degrees",
+            "543 km"
+          ],
+          [
+            "2013-11",
+            "7.67 N",
+            "+2.4 degrees",
+            "619 km"
+          ],
+          [
+            "2013-12",
+            "7.33 N",
+            "-10.7 degrees",
+            "542 km"
+          ]
+        ]
+      },
+      "kind": "current_research_evidence",
+      "rank_eligible": false,
+      "new_width_record_admitted": false,
+      "whole_current_width_km": null,
+      "annual_width_range_km": null,
+      "geometry_role": "research_evidence_no_current_axis_or_physical_width_geometry",
+      "figure_sha256": "10e7bf099ae583a6a10fa393d8348f19195bad734a67dcba4248271aa254296b"
     }
   ]
 }

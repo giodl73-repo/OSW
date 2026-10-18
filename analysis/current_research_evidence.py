@@ -33,6 +33,9 @@ FROZEN_INPUTS.update({
     YEAR_ROOT+'figure-year.json': 'fd253485672fe34da50531046fb3145f7af738266679bc00e2bf4f9bde812d62',
     YEAR_ROOT+'acquisition-year.json': '763ed97ac94fa7c220baa9333d4ab5b74d7f86fa296606a8c022c126e0fe01fc',
 })
+NECC='research/pacific-necc-paired-vector-direction-evidence.json'
+NECC_BASE='research/source-data/oscar-necc-vectors-2013/'
+FROZEN_INPUTS.update({'research/pacific-necc-paired-vector-direction-evidence.json': '14c556b982c387a199fcddafce319843451e438739ee14b09ffb0a135c0216f6', 'research/pacific-necc-paired-vector-source-inventory.json': '549e5f09d5489133e498f50b886df0cf1b2cb56610874a17d7192d155e74b580', 'research/source-data/oscar-necc-vectors-2013/preflight.json': 'b65a57a268075c1e3efc6ebc6c1c319c3b6e7462c23ad7dedbbb2731e3427294', 'research/source-data/oscar-necc-vectors-2013/metadata.json': '8c1f41c4e7a0f91492482345e7038c47e461c46c56852dbe57f217e40b9ec2ba', 'research/source-data/oscar-necc-vectors-2013/metadata-acquisition.json': 'f9261037ca1d2bfc92ed91894736f8d29a05bb3e3c0ab6d49414a97fac110203', 'research/source-data/oscar-necc-vectors-2013/acquisition.json': 'e0f5c86892b9c7a73e3efef41a456cd46672238e08dc72c6927e12e9c25b0a05', 'research/source-data/oscar-necc-vectors-2013/figure.json': '5f547d1d2e9887d9668c958e4f82a8a4903965c955412498e7416aa8773a3d09'})
 EOF='research/indian-secc-eof-classification-feasibility.json'
 SECTION='research/redsox-lower-nc-dated-section-diagnostic.json'
 
@@ -41,7 +44,7 @@ def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
 
 def build():
-    if len(FROZEN_INPUTS)!=23:raise ValueError('Missing reviewed research source registry')
+    if len(FROZEN_INPUTS)!=30:raise ValueError('Missing reviewed research source registry')
     documents={}
     for path,pin in FROZEN_INPUTS.items():
         if digest(path)!=pin:raise ValueError('Changed reviewed current research source '+path)
@@ -75,6 +78,14 @@ def build():
     for figure in documents[YEAR_ROOT+'figure-year.json']['figures'].values():
         dependencies[figure['svg_file']]=figure['svg_sha256']
         dependencies[figure['png_file']]=figure['png_sha256']
+    necc=documents[NECC]
+    if necc['source_vector_positions']!=7992 or necc['target_u_values_and_masks_exact']!=2664 or necc['summary']['target_monthly_means_equal_old']!=12 or necc['new_width_record_admitted'] or necc['component_spans_are_flow_normal_widths']:
+        raise ValueError('Changed paired-vector source scope')
+    dependencies['analysis/build_necc_paired_vector_evidence.py']=necc['generator_sha256']
+    figure=documents[NECC_BASE+'figure.json']
+    dependencies[figure['generator_file']]=figure['generator_sha256']
+    for group in figure['figures'].values():
+        for asset in group.values():dependencies[asset['file']]=asset['sha256']
     for source,pin in dependencies.items():
         if digest(source)!=pin:raise ValueError('Changed current research dependency '+source)
     eof=documents[EOF];section=documents[SECTION]
@@ -167,6 +178,35 @@ def build():
         'table':{'caption':'Complete hourly section support in each calendar month of 2024; current width remains unknown.',
             'headers':['Month','Calendar hours','Current width'],
             'rows':[[f"2024-{month['month']:02d}",str(month['expected_month_hours']),'Unknown'] for month in year['months']]}
+    })
+    scenes.append({
+        'current_id':'pacific-north-equatorial-countercurrent','label':'Pacific North Equatorial Countercurrent',
+        'diagnostic_id':'diagnostic:current-research:pacific-north-equatorial-countercurrent',
+        'title':'Paired surface-product vectors: direction and nearby columns',
+        'finding':'Both velocity components are retained at 140 W and its two native neighbors. All twelve central monthly means and component spans reproduce the earlier calculation. Nine of 36 selected monthly peaks depart more than 15 degrees from east, reaching about 46 degrees. These are product diagnostics, not physical current widths.',
+        'facts':[{'label':'Paired source support','value':'7,992 vectors · 3 native columns'},
+            {'label':'Archive sampling','value':'72 timestamps · 2013'},
+            {'label':'Physical current width','value':'Unknown'},{'label':'Annual width range','value':'Unknown'}],
+        'notes':['This is archived satellite-derived OSCAR 2017.0 near-surface velocity, not direct instrument sections. Nominal depth coordinate 15 m is product context.',
+            'Actual source times run from 1 January to 26 December 2013, including four six-day gaps. Equal-sample monthly means are not daily/time-weighted means or a climatology.',
+            'Directions are derived from paired monthly-mean vectors, not averaged source-frame headings. No cosine correction turns the component spans into flow-normal widths.',
+            'The 15-degree and two-native-cell attention guides are OSW choices, not admission limits or confidence intervals. Three months show larger peak-latitude separation between columns; same-product neighbors are not independent validation or measurement-error bounds.',
+            'The 1/3-degree grid does not establish independent effective resolution. Cells outside the selected component, including westward flow, are not assigned to the named NECC.',
+            'Target u was viewed before the new declaration. New v and neighboring velocity acquisition followed the declaration commit; no fully blinded or externally timestamped preregistration is claimed.'],
+        'next_evidence':'Compatible independent velocity sections, verified named-flow association, source-error assessment and transverse physical edges before current width, annual ranges or mapped width admission.',
+        'figure_file':'figures/necc-paired-2013-monthly-vector-sections.svg',
+        'figure_label':'Monthly paired components',
+        'figure_alt':'Monthly eastward and northward near-surface OSCAR fields at three native longitudes in 2013. Dots are selected component peaks, not a current axis or physical edges.',
+        'additional_figures':[{'file':'figures/necc-paired-2013-direction-column-context.svg','label':'Direction and native-column context','alt':'Monthly peak directions and connected eastward-component spans across three native columns. Attention guides are not error bounds, annual ranges or flow-normal widths.'}],
+        'source_file':NECC,'source_pointer':'','source_links':[
+            link('Inspect paired source vectors','research/pacific-necc-paired-vector-source-inventory.json','/samples'),
+            link('Inspect monthly paired profiles',NECC,'/rows'),
+            link('Inspect vector acquisition',NECC_BASE+'acquisition.json'),
+            link('Inspect declared paired-vector rules',NECC_BASE+'preflight.json')],
+        'original_url':'https://oceanwatch.pifsc.noaa.gov/erddap/info/yearly_336c_0b32_9cd3/index.html',
+        'table':{'caption':'140 W monthly product summaries. Component spans are not physical current widths; direction is from east, positive toward north.',
+            'headers':['Month','Peak latitude','Direction from east','u=0 component span'],
+            'rows':[[f"2013-{r['month']:02d}",f"{r['selected_peak_vector']['latitude']:.2f} N",f"{r['selected_peak_vector']['direction_degrees_from_east']:+.1f} degrees",f"{r['zero_crossing_component_span']['span_km']:.0f} km" if r['zero_crossing_component_span']['span_km'] is not None else 'Unresolved'] for r in necc['rows'] if r['source_longitude_degrees_east']==220]}
     })
     for scene in scenes:
         scene.update(kind='current_research_evidence',rank_eligible=False,new_width_record_admitted=False,
