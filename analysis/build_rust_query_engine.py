@@ -46,6 +46,7 @@ def main():
     paths.append('research/gulf-stream-published-width-definitions-scope-audit.json')
     paths.append('research/loop-uhlhorn-2008-core-width-scope-audit.json')
     paths.append('research/south-pacific-stramma-1995-width-constraint-scope-audit.json')
+    paths.append('research/south-atlantic-stramma-1990-secondary-band-scope-audit.json')
     paths.append('rust/osw-query/src/dwbc_float_composite.rs')
     paths.extend(['rust/osw-query/src/published_transports.rs','rust/osw-query/src/pacific_neuc_breadths.rs'])
     paths.extend(['rust/osw-query/src/coastal_composite_widths.rs','figures/schubert-aacc-2021-source-sections.png'])

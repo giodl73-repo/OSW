@@ -37,6 +37,8 @@ def validate(document, ledger):
     validate_loop_core(document)
     from check_south_pacific_band_constraint import validate_inventory as validate_south_pacific
     validate_south_pacific(document)
+    from check_south_atlantic_secondary_band import validate_inventory as validate_sac_inventory
+    validate_sac_inventory(document)
     records = document["measurements"]
     if len({row["id"] for row in records}) != len(records):
         raise ValueError("Duplicate width measurement")
@@ -515,6 +517,9 @@ def validate(document, ledger):
         elif row['phase_kind'] == 'coastal_composite_threshold_section':
             from check_antarctic_coastal_composites import validate_row
             validate_row(row)
+        elif row['phase_kind'] == 'month_dated_subcomponent_band_breadth':
+            from check_south_atlantic_secondary_band import validate_row as validate_sac_row
+            validate_sac_row(row)
         elif row['phase_kind'] == 'month_dated_width_constraint':
             from check_south_pacific_band_constraint import validate_row as validate_south_pacific_row
             validate_south_pacific_row(row)

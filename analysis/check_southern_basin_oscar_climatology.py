@@ -40,6 +40,9 @@ def validate_inventory(inventory):
         if owner=='south-pacific':
             from check_south_pacific_band_constraint import record
             if published != [record()]:raise ValueError('Changed independent South Pacific published constraint')
+        elif owner=='south-atlantic':
+            from check_south_atlantic_secondary_band import record
+            if published != [record()]:raise ValueError('Changed independent South Atlantic published component breadth')
         elif published:raise ValueError('Southern-basin component promoted to published width')
         entry=entries[0]
         if entry['whole_current_width_km'] is not None or entry['annual_width_range_km'] is not None or entry['width_rank_eligible'] is not False or entry['annual_extrema_eligible'] is not False:

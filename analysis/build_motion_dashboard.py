@@ -109,6 +109,10 @@ def build():
             inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
             if inputs[dependency]!=pin:raise ValueError('Changed Indian SECC source support')
     read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
+    from check_south_atlantic_secondary_band import AUDIT as SAC_AUDIT
+    sac_audit=read(SAC_AUDIT);read(sac_audit['acquisition_file'])
+    for path in [sac_audit['source_document_file'],sac_audit['protocol_file'],sac_audit['figure_file'],'analysis/check_south_atlantic_secondary_band.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from check_south_pacific_band_constraint import AUDIT as SPC_AUDIT
     spc_audit=read(SPC_AUDIT);read(spc_audit['acquisition_file'])
     for path in [spc_audit['source_document_file'],spc_audit['protocol_file'],spc_audit['figure_file'],'analysis/check_south_pacific_band_constraint.py']:
@@ -643,6 +647,10 @@ def build():
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],
         }
+        if current_id=='south-atlantic':
+            groups['measurements'].append(sac_audit);groups['sources'].append(sac_audit)
+            groups['time_evidence'].append(sac_audit)
+            evidence_links.append({'label':'October 1983 southern component band breadth','url':'../figures/south-atlantic-stramma-1983-secondary-band.svg'})
         if current_id=='south-pacific':
             groups['measurements'].append(spc_audit);groups['sources'].append(spc_audit)
             groups['time_evidence'].append(spc_audit)

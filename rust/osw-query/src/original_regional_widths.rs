@@ -3,6 +3,13 @@ use serde_json::Value;
 use sha2::{Digest, Sha256};
 const SOURCES: &[(&str, &str, &str)] = &[
     (
+        "south-atlantic",
+        "research/south-atlantic-stramma-1990-secondary-band-scope-audit.json",
+        include_str!(
+            "../../../research/south-atlantic-stramma-1990-secondary-band-scope-audit.json"
+        ),
+    ),
+    (
         "south-pacific",
         "research/south-pacific-stramma-1995-width-constraint-scope-audit.json",
         include_str!(
@@ -230,6 +237,48 @@ pub(crate) fn validate_south_pacific_inventory(bundle: &crate::Bundle) -> Result
             .ok_or("Missing South Pacific dependency")?;
         if bundle.manifest["input_sha256"][file] != audit[format!("{key}_sha256")] {
             return Err("Changed South Pacific source dependency".into());
+        }
+    }
+    Ok(())
+}
+
+pub(crate) fn validate_south_atlantic_inventory(bundle: &crate::Bundle) -> Result<(), String> {
+    let (_, path, raw) = SOURCES
+        .iter()
+        .find(|s| s.0 == "south-atlantic")
+        .copied()
+        .unwrap();
+    let present = bundle.manifest["input_sha256"].get(path).is_some()
+        || bundle
+            .collections
+            .get("objects")
+            .into_iter()
+            .flatten()
+            .any(|r| r["id"] == "current:south-atlantic");
+    if !present {
+        return Ok(());
+    }
+    let audit: Value = serde_json::from_str(raw).map_err(|e| e.to_string())?;
+    let rows: Vec<_> = bundle
+        .collections
+        .get("widths")
+        .into_iter()
+        .flatten()
+        .filter(|r| r["current_id"] == "south-atlantic")
+        .collect();
+    if rows.len() != 1
+        || rows[0]["id"] != audit["measurement"]["id"]
+        || bundle.manifest["input_sha256"][path] != format!("{:x}", Sha256::digest(raw.as_bytes()))
+    {
+        return Err("Missing or rebound South Atlantic southern component breadth".into());
+    }
+    validate(rows[0])?;
+    for key in ["source_document", "acquisition", "protocol", "figure"] {
+        let file = audit[format!("{key}_file")]
+            .as_str()
+            .ok_or("Missing South Atlantic dependency")?;
+        if bundle.manifest["input_sha256"][file] != audit[format!("{key}_sha256")] {
+            return Err("Changed South Atlantic source dependency".into());
         }
     }
     Ok(())
