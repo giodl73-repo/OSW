@@ -4,7 +4,11 @@ use sha2::{Digest, Sha256};
 
 const PATH: &str = "research/current-research-evidence-registry.json";
 const RAW: &str = include_str!("../../../research/current-research-evidence-registry.json");
-const STUDIES: [(&str, &str); 5] = [
+const STUDIES: [(&str, &str); 6] = [
+    (
+        "research/aleutian-p14n-1993-hydrography-correspondence.json",
+        include_str!("../../../research/aleutian-p14n-1993-hydrography-correspondence.json"),
+    ),
     (
         "research/aleutian-p14n-1993-observed-vector-section.json",
         include_str!("../../../research/aleutian-p14n-1993-observed-vector-section.json"),
@@ -195,7 +199,7 @@ mod tests {
             .iter()
             .position(|r| r["current_id"] == "aleutian")
             .unwrap();
-        let doc = &rows[index]["document"];
+        let doc = &rows[index]["document"]["velocity_section"];
         assert_eq!(doc["retained_time_count"], 132);
         assert_eq!(doc["joint_valid_vector_positions"], 4030);
         assert_eq!(doc["new_width_record_admitted"], false);
@@ -208,12 +212,17 @@ mod tests {
             let row = &mut bad.collections.get_mut("diagnostics").unwrap()[index];
             match mutation {
                 "velocity" => {
-                    row["document"]["profiles"][0]["profile"][0]["eastward_m_s"] = json!(3)
+                    row["document"]["velocity_section"]["profiles"][0]["profile"][0]["eastward_m_s"] =
+                        json!(3)
                 }
                 "mask" => {
-                    row["document"]["profiles"][0]["profile"][0]["joint_valid"] = json!(false)
+                    row["document"]["velocity_section"]["profiles"][0]["profile"][0]["joint_valid"] =
+                        json!(false)
                 }
-                "units" => row["document"]["provider_units"] = json!("centimetres per second"),
+                "units" => {
+                    row["document"]["velocity_section"]["provider_units"] =
+                        json!("centimetres per second")
+                }
                 "annual" => row["document"]["annual_width_range_km"] = json!([1, 2]),
                 _ => row["document"]["current_association_verified"] = json!(true),
             }

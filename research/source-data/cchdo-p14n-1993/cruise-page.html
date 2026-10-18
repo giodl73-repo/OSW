@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CCHDO - Hydrographic Cruise: 325023_1 </title>
+    <link rel="icon" href="/static/svg/logo_cchdo.svg" sizes="any" type="image/svg+xml">
+    <link href="/static/lib/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome CSS -->
+        <link rel="stylesheet" href="/static/lib/fontawesome-free-6.7.2-web/css/fontawesome.min.css">
+        <link rel="stylesheet" href="/static/lib/fontawesome-free-6.7.2-web/css/solid.min.css">
+        <link rel="stylesheet" href="/static/lib/fontawesome-free-6.7.2-web/css/brands.min.css">
+    <style>
+body {
+  padding-bottom: 30px;
+}
+    .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+      background-color: #FFD6D6;
+    }
+    form:has(input[value="docs"]:checked) .typeahead {
+      display: none !important;
+    }
+    </style>
+    
+<style>
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+.timeline li {
+  margin-top: 10px;
+}
+.timeline li .timeline-content{
+  margin-left: 50px;
+  margin-top: -30px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: white;
+}
+.timeline li span {
+  width: 30px;
+  height: 30px;
+  display: block;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  background-color: white;
+}
+.timeline li span:after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  position: absolute;
+  background-color: #000;
+  margin-top: 15px;
+  z-index: -1;
+}
+.timeline:after {
+  content: '';
+  width: 1px;
+  height: 100%;
+  background-color: #000;
+  position: absolute;
+  top: 4px;
+  left: 15px;
+  z-index: -1;
+}
+
+.long-file-name {
+  max-width:100%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  font-size: 1.2em;
+}
+
+.timeline li details {
+  display: revert;
+}
+.timeline li details summary {
+  display: revert;
+}
+</style>
+<style>
+.cruise-info{
+  word-break: break-word;
+}
+.cruise-info dd {
+  margin-left: 1em;
+}
+</style>
+
+  </head>
+  <script>
+    // straight off https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
+    // except limited to the /data scope as that's all we want to modify the request of
+    const registerServiceWorker = async () => {
+  if ("serviceWorker" in navigator) {
+    try {
+      const registration = await navigator.serviceWorker.register("/sw.js", {
+        scope: "/data",
+      });
+      if (registration.installing) {
+        console.log("Service worker installing");
+      } else if (registration.waiting) {
+        console.log("Service worker installed");
+      } else if (registration.active) {
+        console.log("Service worker active");
+      }
+    } catch (error) {
+      console.error(`Registration failed with ${error}`);
+    }
+  }
+};
+
+// …
+
+registerServiceWorker();
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXRZ0WBHBV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CXRZ0WBHBV');
+</script>
+  <body>
+      <nav id="top_navbar" class="navbar navbar-default navbar-static-top">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img height="25px" width="25px" alt="Brand" src="/static/svg/logo_cchdo.svg">
+            </a>
+            <a class="navbar-brand" href="/">
+              CCHDO</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</span></a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Find Data <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/search/map">Map Search</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/search?bbox=-180,65,180,90">Arctic Ocean Data</a></li>
+                  <li><a href="/search?bbox=-75,-60,20,65">Atlantic Ocean Data</a></li>
+                  <li><a href="/search?bbox=120,-60,-75,65">Pacific Ocean Data</a></li>
+                  <li><a href="/search?bbox=21,-70,120,23">Indian Ocean Data</a></li>
+                  <li><a href="/search?bbox=-180,-90,180,-40">Southern Ocean Data</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/search?q=GO-SHIP">GO-SHIP Data</a></li>
+                  <li><a href="/search?q=SOCCOM">SOCCOM Data</a></li>
+                  <li><a href="/search?q=USHYDRO">USHYDRO Data</a></li>
+                  <li><a href="/search?q=WOCE">WOCE Data</a></li>
+                  <li><a href="/search?q=DIMES">DIMES Data</a></li>
+                  <li><a href="/search?q=ELLETT">ELLETT Data</a></li>
+                  <li><a href="/search?q=CARINA">Project Carina Data</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/search?q=PRS02">HOT Data</a></li>
+                  <li><a href="/search?q=ARS01">BATS Data</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/search/advanced">Advanced Search</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/products">Derived Products</a></li>
+                  <li><a href="https://doi.org/10.6075/J0CCHAM8">Full Dataset Snapshots <i class="fa-solid fa-arrow-up-right-from-square fa-xs"></i></a></li>
+                </ul>
+              </li>
+              <li><a href="/submit">Submit Data</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Information<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/citation">How to Cite</a></li>
+                  <li><a href="https://learning.cchdo.io/submitting_data/">Submission Guidelines</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/contact">Contact</a></li>
+                  <li><a href="/policy">Policies and Manuals</a></li>
+                  <li><a href="/formats">File Formats and Parameters</a></li>
+                  <li><a href="https://github.com/cchdo/cchdo.ucsd.edu/issues">Feature Requests and Bugs</a></li>
+                  <li class="divider"></li>
+                  <li><a href="/login">User Login</a></li>
+                </ul>
+              </li>
+            
+            </ul>
+            <form id="dummy"></form>
+            <form id="search_form" method="get" action="/search" class="navbar-form navbar-right" role="search">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <label class="radio-inline">
+                      <input type="radio" name="searchMode" value="data" checked form="dummy"> Data
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="searchMode" value="docs" form="dummy"> Site
+                    </label>
+                  </div>
+                  <input name='q' id='cchdo_search' autocomplete="off" type="search" class="form-control" placeholder="Data Search" value="">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div><!-- /.navbar-collapse -->
+        </div>
+      </nav>
+
+      
+        
+      
+      
+      
+      
+
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-3">
+    <h3>Hydrographic Cruise: 325023_1</h3>
+    <div id="map_container" class="well"></div>
+    <dl class="cruise-info">
+      </dd>
+
+      <dt>Date Start/End:</dt>
+      <dd>
+      1993-07-05/1993-09-02
+      </dd>
+
+      <dt>Chief Scientist:</dt>
+      <dd>
+      <ul class="list-unstyled">
+        <li><a href='/search?q=participant:"Gunnar%20I.%20Roden"'>Gunnar I. Roden</a> 
+</li>
+        </ul>
+      </dd>
+
+      <dt>Ship:</dt>
+      <dd>
+      <a href='/search?q=ship:"THOMAS%20G.%20THOMPSON"'>THOMAS G. THOMPSON</a>
+      </dd>
+
+      <dt>Country:</dt>
+      <dd>
+      <a href='/search?q=country:"US"'>US</a>
+      </dd>
+
+      <dt>Collections</dt>
+      <dd>
+      <ul class="list-inline" id="collection_list">
+        
+        <li><u><a href='/search?q=group:"Pacific%20Onetime"'>Pacific Onetime</a></u></li>
+        
+        <li><u><a href='/search?q=ocean:"pacific"'>pacific</a></u></li>
+        
+        <li><u><a href='/search?q=program:"WOCE"'>WOCE</a></u></li>
+        
+        <li><u><a href='/search?q=woce_line:"P14"'>P14</a></u></li>
+        
+        <li><u><a href='/search?q=woce_line:"P14N"'>P14N</a></u></li>
+        </ul>
+
+      <dt>
+  
+    Aliases
+  
+</dt>
+      <dd>
+        <ul class="list-unstyled">
+          <li>(CCHDO)&nbsp;325024_1</li>
+          <li>(CCHDO)&nbsp;175E</li>
+          <li>(GLODAP)&nbsp;325019930705</li>
+          </ul>
+      </dd>
+      </dd>
+    </dl>
+  </div>
+  <div class="col-md-9">
+    <h3 id="cruise-dataset">Dataset</h3>
+    <p>Files in the Dataset have been checked for format consistency, and merged into a single, integrated, downloadable file.</p>
+
+    <a href="?download=dataset" type="button" class="btn btn-sm btn-success">Download Entire Dataset</a>
+    <a href="/submit/for/325023_1" type="button" class="btn btn-sm btn-primary"><span class='glyphicon glyphicon-plus-sign' aria-hidden='true'></span> Submit Data For This Cruise</a>
+    <a href="/citation" type="button" class="btn btn-sm btn-info">How to Cite Dataset</a>
+    <ul class="list-unstyled">
+    <li><h4>bottle</h4>
+      <ul>
+      <li >
+      <b>CF netCDF:</b> 
+      <a href="/data/38488/325023_1_bottle.nc">325023_1_bottle.nc</a> 
+      (Updated 2023-07-24, 
+        648.0 kB)<br />
+    </li>
+      <li >
+      <b>exchange:</b> 
+      <a href="/data/27050/325023_1_hy1.csv">325023_1_hy1.csv</a> 
+      (Updated 2022-06-29, 
+        2.4 MB)<br />
+    </li>
+      <li >
+      <b>WHP netCDF:</b> 
+      <a href="/data/27051/325023_1_nc_hyd.zip">325023_1_nc_hyd.zip</a> 
+      (Updated 2022-06-29, 
+        943.1 kB)<br />
+    </li>
+      <li >
+      <b>WOCE:</b> 
+      <a href="/data/8169/p14nhy.txt">p14nhy.txt</a> 
+      (Updated <span data-toggle="tooltip" data-placement="top" title="This file was updated prior to 2015, see the data history below for full history notes">Prior to 2015</span>, 
+        1.7 MB)<br />
+    </li>
+      </ul>
+    </li>
+    <li><h4>ctd</h4>
+      <ul>
+      <li >
+      <b>CF netCDF:</b> 
+      <a href="/data/40783/325023_1_ctd.nc">325023_1_ctd.nc</a> 
+      (Updated 2023-07-24, 
+        6.3 MB)<br />
+    </li>
+      <li >
+      <b>exchange:</b> 
+      <a href="/data/9003/p14n_ct1.zip">p14n_ct1.zip</a> 
+      (Updated <span data-toggle="tooltip" data-placement="top" title="This file was updated prior to 2015, see the data history below for full history notes">Prior to 2015</span>, 
+        4.3 MB)<br />
+    </li>
+      <li >
+      <b>WHP netCDF:</b> 
+      <a href="/data/8128/p14n_nc_ctd.zip">p14n_nc_ctd.zip</a> 
+      (Updated <span data-toggle="tooltip" data-placement="top" title="This file was updated prior to 2015, see the data history below for full history notes">Prior to 2015</span>, 
+        5.1 MB)<br />
+    </li>
+      <li >
+      <b>WOCE:</b> 
+      <a href="/data/1238/p14nct.zip">p14nct.zip</a> 
+      (Updated <span data-toggle="tooltip" data-placement="top" title="This file was updated prior to 2015, see the data history below for full history notes">Prior to 2015</span>, 
+        5.1 MB)<br />
+    </li>
+      </ul>
+    </li>
+    <li><h4>documentation</h4>
+      <ul>
+      <li >
+      <b>pdf:</b> 
+      <a href="/data/1358/p14ndo.pdf">p14ndo.pdf</a> 
+      (Updated <span data-toggle="tooltip" data-placement="top" title="This file was updated prior to 2015, see the data history below for full history notes">Prior to 2015</span>, 
+        1.9 MB)<br />
+    </li>
+      <li >
+      <b>text:</b> 
+      <a href="/data/11174/p14ndo.txt">p14ndo.txt</a> 
+      (Updated <span data-toggle="tooltip" data-placement="top" title="This file was updated prior to 2015, see the data history below for full history notes">Prior to 2015</span>, 
+        308.1 kB)<br />
+    </li>
+      </ul>
+    </li>
+    <li><h4>summary</h4>
+      <ul>
+      <li >
+      <b>WOCE:</b> 
+      <a href="/data/9343/p14nsu.txt">p14nsu.txt</a> 
+      (Updated <span data-toggle="tooltip" data-placement="top" title="This file was updated prior to 2015, see the data history below for full history notes">Prior to 2015</span>, 
+        99.6 kB)<br />
+    </li>
+      </ul>
+    </li>
+    </ul>
+
+    <h3 id="cruise-data-history">Data History</h3>
+    <select id='timeline-filter' class="form-control input-sm">
+      <option value="fn">Files and History Notes</option>
+      <option value="fd">Files with Details and History Notes</option>
+      <option value="fo">Files Only</option>
+      <option value="no">History Notes Only</option>
+    </select>
+    <ul class="timeline">
+      <li class="file-event">
+      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+<div class="timeline-content">
+  <details>
+    <summary>325023_1_bottle.nc Online - <small>2023-07-24 - Andrew Barna</small></summary>
+  <h4>File Online <small>Andrew Barna</small></h4>
+          <a href="/data/38488/325023_1_bottle.nc">325023_1_bottle.nc (download)</a>
+          <small>#514a5</small><br>
+        <b>Date:</b> 2023-07-24<br>
+        <b>Current Status:</b> dataset<br>
+        <b>Notes</b><pre>
+CCHDO-1.0 CF netCDF files converted from bottle exchange file
+</pre><br>
+  </details>
+</div>
+
+      </li>
+      <li class="file-event">
+      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+<div class="timeline-content">
+  <details>
+    <summary>325023_1_ctd.nc Online - <small>2023-07-24 - Andrew Barna</small></summary>
+  <h4>File Online <small>Andrew Barna</small></h4>
+          <a href="/data/40783/325023_1_ctd.nc">325023_1_ctd.nc (download)</a>
+          <small>#290d1</small><br>
+        <b>Date:</b> 2023-07-24<br>
+        <b>Current Status:</b> dataset<br>
+        <b>Notes</b><pre>
+CCHDO-1.0 CF netCDF files converted from ctd exchange file
+</pre><br>
+  </details>
+</div>
+
+      </li>
+      <li class="file-event">
+      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+<div class="timeline-content">
+  <details>
+    <summary>325023_1_nc_hyd.zip Created - <small>2022-06-29 - CCHDO System</small></summary>
+  <h4>File Created <small>CCHDO System</small></h4>
+          <a href="/data/27051/325023_1_nc_hyd.zip">325023_1_nc_hyd.zip (download)</a>
+          <small>#8d4ed</small><br>
+        <b>Date:</b> 2022-06-29<br>
+        <b>Current Status:</b> dataset<br>
+        <b>Notes</b><pre>
+File created in the CCHDO system
+</pre><br>
+  </details>
+</div>
+
+      </li>
+      <li class="file-event">
+      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+<div class="timeline-content">
+  <details>
+    <summary>325023_1_hy1.csv Created - <small>2022-06-29 - CCHDO System</small></summary>
+  <h4>File Created <small>CCHDO System</small></h4>
+          <a href="/data/27050/325023_1_hy1.csv">325023_1_hy1.csv (download)</a>
+          <small>#12e49</small><br>
+        <b>Date:</b> 2022-06-29<br>
+        <b>Current Status:</b> dataset<br>
+        <b>Notes</b><pre>
+File created in the CCHDO system
+</pre><br>
+  </details>
+</div>
+
+      </li>
+      <li class="file-event">
+      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+<div class="timeline-content">
+  <details>
+    <summary>p14n_hy1.csv Merge - <small>2022-06-29 - Andrew Barna</small></summary>
+  <h4>File Merge <small>Andrew Barna</small></h4>
+          <a href="/data/283/p14n_hy1.csv">p14n_hy1.csv (download)</a>
+          <small>#1fb39</small><br>
+        <b>Date:</b> 2022-06-29<br>
+        <b>Current Status:</b> merged<br>
+        </div>
+
+      </li>
+      <li class="file-event">
+      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+<div class="timeline-content">
+  <details>
+    <summary>p14n_nc_hyd.zip Merge - <small>2022-06-29 - Andrew Barna</small></summary>
+  <h4>File Merge <small>Andrew Barna</small></h4>
+          <a href="/data/10929/p14n_nc_hyd.zip">p14n_nc_hyd.zip (download)</a>
+          <small>#ba4ad</small><br>
+        <b>Date:</b> 2022-06-29<br>
+        <b>Current Status:</b> merged<br>
+        </div>
+
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>Bottle data corrections
+          <small>Andrew Barna</small>
+          </h4>
+          
+          <b>Date:</b> 2022-06-29<br>
+          <b>Data Type:</b> Bottle<br>
+          <b>Action:</b> Website Update<br>
+          <b>Note:</b>
+          <pre>
+325023_1 processing - BTL
+
+2022-06-29
+
+A Barna
+
+Submissions
+
+ id  submit date  submitted by  file name
+---  -----------  ------------  ------------
+283                             p14n_hy1.csv
+
+
+Changes
+
+* Changed units of PH from 25_DEG to nothing (ambiguous scale)
+* Added PH_TMP column with 25 in all places with a PH value
+
+
+325023_1_hy1.csv and 325023_1_nc_hyd.zip opened in JOA with no apparent problems.
+
+
+Conversions
+note: converted and put online by C Berys
+
+file                 converted from    software
+-------------------  ----------------  -----------------------
+325023_1_nc_hyd.zip  325023_1_hy1.csv  hydro 0.8.2-61-g3353cfe
+
+note: these changes are not in the WOCE format file
+
+Updated Files Manifest
+
+file                 converted from
+-------------------  -----------------
+325023_1_hy1.csv     20220629CCHSIOAMB
+325023_1_nc_hyd.zip  20220629CCHSIOAMB
+          </pre>
+          </div>
+      </li>
+      <li class="file-event">
+      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+<div class="timeline-content">
+  <details>
+    <summary>p14ndo.txt Created - <small>2015-04-23 - CCHDO System</small></summary>
+  <h4>File Created <small>CCHDO System</small></h4>
+          <a href="/data/11174/p14ndo.txt">p14ndo.txt (download)</a>
+          <small>#b584d</small><br>
+        <b>Date:</b> 2015-04-23<br>
+        <b>Current Status:</b> dataset<br>
+        <b>Notes</b><pre>
+File was created on or before this date
+</pre><br>
+  </details>
+</div>
+
+      </li>
+      <li class="file-event">
+      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+<div class="timeline-content">
+  <details>
+    <summary>p14nsu.txt Created - <small>2015-04-23 - CCHDO System</small></summary>
+  <h4>File Created <small>CCHDO System</small></h4>
+          <a href="/data/9343/p14nsu.txt">p14nsu.txt (download)</a>
+          <small>#25337</small><br>
+        <b>Date:</b> 2015-04-23<br>
+        <b>Current Status:</b> dataset<br>
+        <b>Notes</b><pre>
+File was created on or before this date
+</pre><br>
+  </details>
+</div>
+
+      </li>
+      <li class="file-event">
+      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+<div class="timeline-content">
+  <details>
+    <summary>p14n_ct1.zip Created - <small>2015-04-23 - CCHDO System</small></summary>
+  <h4>File Created <small>CCHDO System</small></h4>
+          <a href="/data/9003/p14n_ct1.zip">p14n_ct1.zip (download)</a>
+          <small>#ce93d</small><br>
+        <b>Date:</b> 2015-04-23<br>
+        <b>Current Status:</b> dataset<br>
+        <b>Notes</b><pre>
+File was created on or before this date
+</pre><br>
+  </details>
+</div>
+
+      </li>
+      <li class="file-event">
+      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+<div class="timeline-content">
+  <details>
+    <summary>p14nhy.txt Created - <small>2015-04-23 - CCHDO System</small></summary>
+  <h4>File Created <small>CCHDO System</small></h4>
+          <a href="/data/8169/p14nhy.txt">p14nhy.txt (download)</a>
+          <small>#e928c</small><br>
+        <b>Date:</b> 2015-04-23<br>
+        <b>Current Status:</b> dataset<br>
+        <b>Notes</b><pre>
+File was created on or before this date
+</pre><br>
+  </details>
+</div>
+
+      </li>
+      <li class="file-event">
+      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+<div class="timeline-content">
+  <details>
+    <summary>p14n_nc_ctd.zip Created - <small>2015-04-23 - CCHDO System</small></summary>
+  <h4>File Created <small>CCHDO System</small></h4>
+          <a href="/data/8128/p14n_nc_ctd.zip">p14n_nc_ctd.zip (download)</a>
+          <small>#2d326</small><br>
+        <b>Date:</b> 2015-04-23<br>
+        <b>Current Status:</b> dataset<br>
+        <b>Notes</b><pre>
+File was created on or before this date
+</pre><br>
+  </details>
+</div>
+
+      </li>
+      <li class="file-event">
+      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+<div class="timeline-content">
+  <details>
+    <summary>pr14n_325023_1trk.jpg Created - <small>2015-04-23 - CCHDO System</small></summary>
+  <h4>File Created <small>CCHDO System</small></h4>
+          <a href="/data/6182/pr14n_325023_1trk.jpg">pr14n_325023_1trk.jpg (download)</a>
+          <small>#96cdd</small><br>
+        <b>Date:</b> 2015-04-23<br>
+        <b>Current Status:</b> merged<br>
+        <b>Notes</b><pre>
+File was created on or before this date
+</pre><br>
+  </details>
+</div>
+
+      </li>
+      <li class="file-event">
+      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+<div class="timeline-content">
+  <details>
+    <summary>p14ndo.pdf Created - <small>2015-04-23 - CCHDO System</small></summary>
+  <h4>File Created <small>CCHDO System</small></h4>
+          <a href="/data/1358/p14ndo.pdf">p14ndo.pdf (download)</a>
+          <small>#76d30</small><br>
+        <b>Date:</b> 2015-04-23<br>
+        <b>Current Status:</b> dataset<br>
+        <b>Notes</b><pre>
+File was created on or before this date
+</pre><br>
+  </details>
+</div>
+
+      </li>
+      <li class="file-event">
+      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+<div class="timeline-content">
+  <details>
+    <summary>p14nct.zip Created - <small>2015-04-23 - CCHDO System</small></summary>
+  <h4>File Created <small>CCHDO System</small></h4>
+          <a href="/data/1238/p14nct.zip">p14nct.zip (download)</a>
+          <small>#e200d</small><br>
+        <b>Date:</b> 2015-04-23<br>
+        <b>Current Status:</b> dataset<br>
+        <b>Notes</b><pre>
+File was created on or before this date
+</pre><br>
+  </details>
+</div>
+
+      </li>
+      <li class="file-event">
+      <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+<div class="timeline-content">
+  <details>
+    <summary>pr14n_325023_1trk.gif Created - <small>2015-04-23 - CCHDO System</small></summary>
+  <h4>File Created <small>CCHDO System</small></h4>
+          <a href="/data/44/pr14n_325023_1trk.gif">pr14n_325023_1trk.gif (download)</a>
+          <small>#86a86</small><br>
+        <b>Date:</b> 2015-04-23<br>
+        <b>Current Status:</b> merged<br>
+        <b>Notes</b><pre>
+File was created on or before this date
+</pre><br>
+  </details>
+</div>
+
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>questionable value
+          <small>Lynne Talley</small>
+          </h4>
+          
+          <b>Date:</b> 2004-10-08<br>
+          <b>Data Type:</b> TRITUM<br>
+          <b>Action:</b> Clarification Request<br>
+          <b>Note:</b>
+          <pre>
+To: Zafer Top
+Subject: P14 tritium value
+
+Hi Zafer - I am wondering about a deep tritium value on P14N, and if you could check to see if it&#39;s correct.
+
+It&#39;s been quite a long time since we first made the sections, but now we are going over them for the last time before publication.
+
+The value is on station 35, at the bottom bottle at 5861.2 dbar.The value is 0.273.  There aren&#39;t any other non-zero tritium values in the deep N. Pacific sections  (but on the other hand, there are very few deep tritium measurements).
+
+I&#39;ve got the section we&#39;ve made online, if you want to look.  You could also compare with the other tritium sections in the website
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>value is normal
+          <small>Zafer Top</small>
+          </h4>
+          
+          <b>Date:</b> 2004-10-08<br>
+          <b>Data Type:</b> TRITUM<br>
+          <b>Action:</b> Data Update: <br>
+          <b>Note:</b>
+          <pre>
+As odd as it seems that high tritium at 5861db at St35 is analytically normal. One cannot exclude the possibility of contamination during sample collection, or even at the lab during processing, but I have no reason to reject this number. Obviously any user of this datum must excercise caution; it is unexpected, it is alone!
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>Exchange values were 2 decimal points, now 4
+          <small>Stephen C. Diggs</small>
+          </h4>
+          
+          <b>Date:</b> 2004-07-07<br>
+          <b>Data Type:</b> PH<br>
+          <b>Action:</b> Website Updated<br>
+          <b>Note:</b>
+          <pre>
+I have fixed the code that produces the Exchange files and subsequent NetCDF files. PH is now an F9.4 number. Danie, Jim and I are working on a strategy to re-do all of the files online in the near future. 
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>pH values truncated in exchange file
+          <small>Alexander Kozyr</small>
+          </h4>
+          
+          <b>Date:</b> 2004-06-29<br>
+          <b>Data Type:</b> PH<br>
+          <b>Action:</b> Data correction needed<br>
+          <b>Note:</b>
+          <pre>
+One more thing I forgot to ask you. Andrew Dickson of SIO recently send me a message that for WOCE P14N and P14S sections pH was reported to 2 decimal points in exchange formatted files, but to 3 and 4 decimal points in old WHP formatted files. I did not check other files where pH is reported but I think that it is probably a mistake in that pearl code that converts the data. Could you please check this out. It is very important to have pH reported to 3 or 4 decimal points and many users now copy the data in exchange format. 
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>PH should be reported with 4 decimal places, see note:
+          <small>Robert Key</small>
+          </h4>
+          
+          <b>Date:</b> 2003-06-24<br>
+          <b>Data Type:</b> PH<br>
+          <b>Action:</b> Data Update: <br>
+          <b>Note:</b>
+          <pre>
+According to WOCE specs (WHP90-1, Appendix G), pH should be reported with F8.4 (4 decimal places). In cases where a PI reports fewer digits, they are supposed to append 0s for the less significant decimal places.
+
+I just checked the WOCE site and the &#34;Official&#34; bottle file for P16N has 4 decimals for pH while the &#34;shreadsheet friendly&#34; file has only 2. This is clearly a problem with the latter. The official P14N bottle file has pH-25 with 3 decimals while the spreadsheet file has only 2
+and the header gives no indication of the 25degree scale. At CDIAC P14N reports pH25 to 3 decimals in the .dat file while P16N is reported as pH with 4 decimals. I would guess that the PI only reported P14N with 3 decimals, perhaps because the values were either temperature adjusted or temperature equilibrated and that uncertainty was included. At any rate, in this case, WHP got their values from CDIAC.
+
+I never use the spreadsheet format and recomment that others don&#39;t since these files are provided as a courtesy and can have errors or be out of date. Regardless, a note to WHP pointing out the problem with the latter file(s) will result in a correction.
+
+WHP invested a significant effort including carbon system measurements in their records. These data were not WOCE parameters (except for C14), however. The best policy in my opinion is to get hydrography from WHP and carbon data from CDIAC whenever possible. Some of the NOAA cruises exist only at CDIAC and some of the Japanese files are only at WHP, but these are exceptions. Regardless of whether the files  are from CDIAC or WHP, they will never contain the GLODAP corrections, which as you know, are sometimes significant.
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>Revised temperatures merged into online file
+          <small>Dave Muus</small>
+          </h4>
+          
+          <b>Date:</b> 2002-08-12<br>
+          <b>Data Type:</b> CTD<br>
+          <b>Action:</b> Website Updated:<br>
+          <b>Note:</b>
+          <pre>
+*See THETA entry.
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>Revised temperatures merged into online file
+          <small>Dave Muus</small>
+          </h4>
+          
+          <b>Date:</b> 2002-08-12<br>
+          <b>Data Type:</b> CTDTMP<br>
+          <b>Action:</b> Website Updated:<br>
+          <b>Note:</b>
+          <pre>
+*See THETA entry.
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>Revised temperatures merged into online file
+          <small>Dave Muus</small>
+          </h4>
+          
+          <b>Date:</b> 2002-08-12<br>
+          <b>Data Type:</b> THETA<br>
+          <b>Action:</b> Website Updated:<br>
+          <b>Note:</b>
+          <pre>
+Merged revised ODF temperatures into current web bottle file. Replaced CTD files with revised ODF files. New bottle and ctd files now on web with new exchange files. Details in notes file sent to Jerry.
+
+Notes on P14N  merging:
+
+1. Merged P14N CTDTMP and THETA from ODF Revised Temperature file:
+/usr/export/ftp/pub/HydroData/woce/p14n/p14nhyd.zip
+into bottle file (p14nhy.txt 20010926WHPOSIODM)
+
+2. Replaced CTD data files with Revised ODF CTD files with corrected temperatures from:
+/usr/export/ftp/pub/HydroData/woce/p14n/p14nctd.zip
+Changed file names from ssscc.ctd to p14n_0sss.1.wct for Cast 1to p14n_0sss.2.wct for Cast 2
+     where sss = Station Number
+	    cc = Cast Number
+to conform to present WOCE file name format.
+
+3. Made new exchange files for CTD and Bottle data.
+
+4. Checked new data file with Java Ocean Atlas.
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>pdf, txt versions online
+          <small>Lauren Coartney</small>
+          </h4>
+          
+          <b>Date:</b> 2002-06-24<br>
+          <b>Data Type:</b> Cruise Report<br>
+          <b>Action:</b> Website Updated:<br>
+          <b>Note:</b>
+          <pre>
+New PDF and text docs online.
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>pdf, txt versions online
+          <small>Rachel Tibbetts</small>
+          </h4>
+          
+          <b>Date:</b> 2002-06-17<br>
+          <b>Data Type:</b> Cruise Report<br>
+          <b>Action:</b> Website Updated:<br>
+          <b>Note:</b>
+          <pre>
+New PDF &amp; TXT docs online
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>JK emailed J.Swift for alternates
+          <small>George Anderson</small>
+          </h4>
+          
+          <b>Date:</b> 2002-03-22<br>
+          <b>Data Type:</b> NUTs/S/O<br>
+          <b>Action:</b> Cannot do DQE<br>
+          <b>Note:</b>
+          <pre>
+I checked my files at ODF for information on P14N.  It would appear that I never got to the DQE work on this cruise.  I got the files and was ready to roll, when I got pulled off ODF work to work for my present boss.  His funding was restored to a level where I could work for him full time and he insisted on it.
+
+I don&#39;t know if there is anyone else who could work on this cruise, but I certainly couldn&#39;t get to it before August.  I can talk to Jim about this if  you like, but doing the DQE work on this cruise soon isn&#39;t likely.
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>Exchange file online
+          <small>Karla Uribe</small>
+          </h4>
+          
+          <b>Date:</b> 2002-01-15<br>
+          <b>Data Type:</b> CTD<br>
+          <b>Action:</b> Website Updated:<br>
+          <b>Note:</b>
+          <pre>
+CTD has been converted to exchange using the new code and put online.
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>CFC&#39;s merged into BTL, CSV File Added, He/Tr now public
+          <small>Dave Muus</small>
+          </h4>
+          
+          <b>Date:</b> 2001-10-01<br>
+          <b>Data Type:</b> BTL/CFC<br>
+          <b>Action:</b> Website Updated:<br>
+          <b>Note:</b>
+          <pre>
+Merged July 2001 CFCs into bottle file, made new exchange file and placed both on web. Helium and Tritium are now public.
+
+Notes on P14N CFC merging Sept 28, 2001.     D. Muus
+
+1. New CFC-11 and CFC-12 from:
+
+ /usr/export/html-public/data/onetime/pacific/p14/p14n/original/20010709_CFC_UPDT_WISEGARVER_P14N/20010709.173146_WISEGARVER_P14N/20010709.173146_WISEGARVER_P14N_p14n_CFC_DQE.dat
+
+merged into encrypted SEA file taken from web Sept 26, 2001 (20000628WHPOSIODMB)
+
+Helium &amp; Tritium data confirmed public by Zafer Top Sept 26, 2001, so newly merged file need not be encrypted.
+
+All &#34;1&#34;s in QUALT1 changed to &#34;9&#34;s and QUALT2 replaced by new QUALT1 prior to merging.
+
+3. Exchange file checked using Java Ocean Atlas.
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>Status Changed to Public
+          <small>Zafer Top</small>
+          </h4>
+          
+          <b>Date:</b> 2001-09-26<br>
+          <b>Data Type:</b> He/Tr<br>
+          <b>Action:</b> Website Updated:<br>
+          <b>Note:</b>
+          <pre>
+From: Zafer Top 
+Steve: Yes, you did bug me before about this! All data should have been public since 1998, and if they haven&#39;t then they should be!
+
+From Steve Diggs:
+I was asked the following question regarding Roden&#39;s 1993 cruise from Fiji aboard the Thompson:
+&#34;Steve,  The table says P14N HeTr are still Non-Public and has both an encrypted file and a public bottle file.  Data History has note from Zafer Top saying neon data is public (Aug 29, 2001) but can see no mention of Helium or Tritium.   Do I need to merge the CFCs into both the Public and Non-Public Bottle files or is there chance that the data is now all public?      Dave&#34;
+
+So, are your He/Tr data for P14N public, or would you like for them to be held as encrypted data?  Please let me know and sorry if we&#39;ve bugged you about this before.
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>Status Changed to Public
+          <small>Zafer Top</small>
+          </h4>
+          
+          <b>Date:</b> 2001-08-29<br>
+          <b>Data Type:</b> NEON<br>
+          <b>Action:</b> Website Updated:<br>
+          <b>Note:</b>
+          <pre>
+Zafer - Is it safe to assume that all WOCE One-Time Survey neon data from you are now public?  Jim
+
+Yes they are. Zafer
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>Exchange file online
+          <small>Karla Uribe</small>
+          </h4>
+          
+          <b>Date:</b> 2001-06-22<br>
+          <b>Data Type:</b> CTD/BTL<br>
+          <b>Action:</b> Website Updated:<br>
+          <b>Note:</b>
+          <pre>
+CTD and Bottle files in exchange format have been put online
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>Processing error corrected, revised data available by ftp.
+          <small>Mary Johnson</small>
+          </h4>
+          
+          <b>Date:</b> 2001-06-20<br>
+          <b>Data Type:</b> CTD<br>
+          <b>Action:</b> Data Update: <br>
+          <b>Note:</b>
+          <pre>
+6/20/01
+CTD
+Email
+Data Update
+Mary Johnson
+Yes
+N/a
+Processing error corrected, revised data available by ftp
+
+ODF has discovered a small error in the algorithm used to convert ITS90 temperature calibration data to IPTS68.  This error affects reported Mark III CTD temperature data for most cruises that occurred in 1992-1999.  A complete list of affected data sets appears below.
+
+ODF temperature calibrations are reported on the ITS90 temperature scale.  ODF internally maintains these calibrations for CTD data processing on the IPTS68 scale.  The error involved converting ITS90 calibrations to IPTS68.  The amount of error is close to linear with temperature: approximately -0.00024 degC/degC, with a -0.00036 degC offset at 0 degC.  Previously reported data were low by 0.00756 degC at 30 degC, decreasing to 0.00036 degC low at 0 degC.  Data reported as ITS90 were also affected by a similar amount.  CTD conductivity calibrations have been recalculated to account for the temperature change.  Reported CTD salinity and oxygen data were not significantly affected.
+
+Revised final data sets have been prepared and will be available soon from ODF (ftp://odf.ucsd.edu/pub/HydroData).  The data will eventually be updated on the whpo.ucsd.edu website as well.
+
+IPTS68 temperatures are reported for PCM11 and Antarktis X/5, as originally submitted to their chief scientists.  ITS90 temperatures are reported for all other cruises.
+_______________________________________________________________________
+Changes in the final data vs. previous release (other than temperature and negligible differences in salinity/oxygen):
+
+S04P:	694/03 CTD data were not reported, but CTD values were reported with the bottle data.  No conductivity correction was applied to these values in the original .sea file.  This release uses the same conductivity correction as the two nearest casts to correct salinity.
+
+AO94:	Eight CTD casts were fit for ctdoxy (previously uncalibrated) and resubmitted to the P.I. since the original release.  The WHP-format bottle file was not regenerated.  The CTDOXY for the following stations should be significantly different than the original .sea file values:
+	  009/01  013/02  017/01  018/01  026/04  033/01  036/01  036/02
+
+I09N:	The 243/01 original CTD data file was not rewritten after updating the ctdoxy fit.  This release uses the correct ctdoxy data for the .ctd file.  The original .sea file was written after the update occurred, so the ctdoxy values reported with bottle data should be minimally different.
+========================================================================
+DATA SETS AFFECTED:
+
+WOCE Final Data - NEW RELEASE AVAILABLE:
+
+	WOCE Section ID		P.I.			Cruise Dates
+----------------------------------------------
+S04P			(Koshlyakov/Richman)	Feb.-Apr. 1992
+P14C			(Roemmich)		Sept. 1992
+PCM11			(Rudnick)		Sept. 1992
+P16A/P17A (JUNO1)	(Reid)			Oct.-Nov. 1992
+P17E/P19S (JUNO2)	(Swift)			Dec. 1992 - Jan. 1993
+P19C			(Talley)		Feb.-Apr. 1993	
+P17N			(Musgrave)		May-June 1993
+P14N			(Roden)			July-Aug. 1993
+P31			(Roemmich)		Jan.-Feb. 1994
+A15/AR15		(Smethie)		Apr.-May 1994   
+I09N			(Gordon)		Jan.-Mar. 1995
+I08N/I05E		(Talley)		Mar.-Apr. 1995
+I03			(Nowlin)		Apr.-June 1995
+I04/I05W/I07C		(Toole)			June-July 1995
+I07N			(Olson)			July-Aug. 1995
+I10			(Bray/Sprintall)	Nov. 1995   
+ICM03			(Whitworth)		Jan.-Feb. 1997
+
+non-WOCE Final Data - NEW RELEASE AVAILABLE:
+
+	Cruise Name		P.I.			Cruise Dates
+------------------------------------------
+Antarktis X/5		(Peterson)		Aug.-Sept. 1992
+Arctic Ocean 94		(Swift)			July-Sept. 1994
+
+Preliminary Data - WILL BE CORRECTED FOR FINAL RELEASE ONLY/NOT YET AVAILABLE:
+
+	Cruise Name		P.I.			Cruise Dates
+------------------------------------------
+WOCE-S04I		(Whitworth)		May-July 1996   
+Arctic Ocean 97		(Swift)			Sept.-Oct. 1997
+HNRO7			(Talley)		June-July 1999
+KH36			(Talley)		July-Sept. 1999
+________________________________________________________________________
+&#34;Final&#34; Data from cruise dates prior to 1992, or cruises which did not
+use NBIS CTDs, are NOT AFFECTED.
+
+post-1991 Preliminary Data NOT AFFECTED:
+
+Cruise Name	        	P.I.    			Cruise Dates
+------------------------------------------
+Arctic Ocean 96		(Swift)			July-Sept. 1996
+WOCE-A24 (ACCE)		(Talley)		May-July 1997
+XP99			(Talley)		Aug.-Sept. 1999
+KH38			(Talley)		Feb.-Mar. 2000
+XP00			(Talley)		June-July 2000
+
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>See Note:
+          <small>James Swift</small>
+          </h4>
+          
+          <b>Date:</b> 2001-06-19<br>
+          <b>Data Type:</b> CTDTMP<br>
+          <b>Action:</b> Update Needed<br>
+          <b>Note:</b>
+          <pre>
+An oceanographically-insignificant error in CTDTMP data for this cruise has been found (ca. -0.00024*T - 0.00036 degC).  A data update is forthcoming. In the interim the corrected data files can be obtained from: ftp://odf.ucsd.edu/pub/HydroData/woce/crs
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>Maintain current Expocodes; see note:
+          <small>James Crease</small>
+          </h4>
+          
+          <b>Date:</b> 2001-04-11<br>
+          <b>Data Type:</b> Cruise ID<br>
+          <b>Action:</b> Clarification Request<br>
+          <b>Note:</b>
+          <pre>
+They seem to have numbered cruises from launch in1991. As the ship schedule for 1993 shows them as two separate cruises (both under Roden) it makes sense to go with the 23 24 numbering you have Jerry.
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>cfc reports submitted
+          <small>Mark J. Warner</small>
+          </h4>
+          
+          <b>Date:</b> 2000-08-23<br>
+          <b>Data Type:</b> Cruise Report<br>
+          <b>Action:</b> Doc Update<br>
+          <b>Note:</b>
+          <pre>
+The directory this information has been stored in is:
+20000823.165536_WARNER_P14N
+
+The format type is:  ASCII   
+
+The data type is: DOCFile Other Type of Data
+
+Here is the information regarding the &#39;OTHER&#39; format:
+Submitting only CFC data with Sample = 100*Castno +
+BottleNo
+
+
+The Bottle File has the following parameters: CFC-11, CFC-12
+WARNER, MARK would like the data PUBLIC.
+And would like the following done to the data:  Merge data, update data files
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>new carbon data merged/online
+          <small>Danie Bartolacci</small>
+          </h4>
+          
+          <b>Date:</b> 2000-06-30<br>
+          <b>Data Type:</b> CO2<br>
+          <b>Action:</b> Website Updated:<br>
+          <b>Note:</b>
+          <pre>
+Bottle: (tcarbn, alkali, ph, qualt1, qualt2)
+
+Carbon data sent by Alex Kozyr on 2000.05.09 was merged into current bottle file. Original data file sent by Kozyr had incorrect header on both TCARBN and ALKALI and needed editing (as per his email). One version of  merged bottle file was encrypted and one version had he/tr data masked out (public file). All files and tables were updated to reflect the new values. Merging notes are located in README file in &#34;original&#34; subdirectory for this line.
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>TCARBN, ALKALI, and pH
+          <small>Alexander Kozyr</small>
+          </h4>
+          
+          <b>Date:</b> 2000-05-09<br>
+          <b>Data Type:</b> CO2<br>
+          <b>Action:</b> Final Data Submitted<br>
+          <b>Note:</b>
+          <pre>
+I have put the final CO2-related data file for the Pacific Ocean WOCE Section P14N to the WHPO ftp INCOMING area. There are three CO2 parameters in the file: Total CO2, Total Alkalinity, and pH (measured @25deg.C) with quality flags.  Please let me know if you received the data okay.
+
+I still owe you P6E,W,C carbon data, but I do not have any words from Doug Wallace yet.
+
+Marilyn Roberts from NOAA/PMEL will send you their data from P16N, P18, and P14S15S cruises soon. So, we almost done for the Pacific.
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>P14N  Changed to indicate no samples collected.
+          <small>Danie Bartolacci</small>
+          </h4>
+          
+          <b>Date:</b> 2000-04-19<br>
+          <b>Data Type:</b> DELC14<br>
+          <b>Action:</b> Website Updated:<br>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>Status changed to Public
+          <small>Danie Bartolacci</small>
+          </h4>
+          
+          <b>Date:</b> 2000-01-11<br>
+          <b>Data Type:</b> CFCs<br>
+          <b>Action:</b> Website Updated:<br>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>file w/ non-pub params reformatted
+          <small>Danie Bartolacci</small>
+          </h4>
+          
+          <b>Date:</b> 2000-01-11<br>
+          <b>Data Type:</b> BTL<br>
+          <b>Action:</b> Data Update: <br>
+          <b>Note:</b>
+          <pre>
+Because it appears that Sarliee reformatted a version of the bottle file that had parameters &#34;masked out&#34; (which means that they were replaced with 9&#39;s) and not encrypted, and the old file which contained all the original values was not clearly marked, the file called p14nhy_ALL_PARAMETERS_1998.11.24.txt was reformatted according to her comments below, run thru wocecvt with no errors and renamed p14nhy_ALL_PARAMETERS_1998.11.24_edt.txt.  This file which appears to have all current values in it was then copied to p14nhy_2000.01.11_usd_to_mask.txt.
+  
+This file was copied once, had helium and tritium data masked out and was moved to the parent directory and renamed p14nhy.txt.
+
+p14nhy_2000.01.11_usd_to_mask.txt was also encrypted to make the new nonpublic version of the entire data set, renamed p14nhy.asc and moved to the parent directory.
+
+p14nhy_2000.01.11_usd_to_mask.txt is the most recent version of the bottle file at this date in time!
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>Changed date from   082285 TO 082993   to  082293 TO 082993
+          <small>Danie Bartolacci</small>
+          </h4>
+          
+          <b>Date:</b> 1999-04-06<br>
+          <b>Data Type:</b> BTL<br>
+          <b>Action:</b> Data Update: <br>
+          <b>Note:</b>
+          <pre>
+moved current .hy file to original/p14nhy_moved1999.04.06.txt
+moved current .su file to original/p14nsu_moved1999.04.06.txt_ANDERSON/P12 or P14N.
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>see note:
+          <small>Sarilee Anderson</small>
+          </h4>
+          
+          <b>Date:</b> 1999-02-10<br>
+          <b>Data Type:</b> SUM/BTL<br>
+          <b>Action:</b> Reformatted by WHPO<br>
+          <b>Note:</b>
+          <pre>
+I have reformatted P12 (S04, SR03, PR12).  Arnold is DQEing that line now.
+I have reformatted P14N.  George will DQE that line next.
+
+.sum
+*Changed EXPOCODE from 325023/1 and 325024/1 to 325023_1 and 325024_1.
+*Adding and/deleting columns to make conform with the WHPO standard format.
+*Added time stamp.
+*Ran over sumchk with no errors.
+
+.sea
+*Changed EXPOCODE from 325023/1-24/1 to 325023_1-24_1.
+*Format looks ok
+*Added time stamp.
+*Ran over wocecvt with no errors.
+
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>
+          <small>George Anderson</small>
+          </h4>
+          
+          <b>Date:</b> 1999-02-07<br>
+          <b>Data Type:</b> NUTs/S/O<br>
+          <b>Action:</b> DQE Begun<br>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>*S/O, NUTs
+          <small>Stephen C. Diggs</small>
+          </h4>
+          
+          <b>Date:</b> 1998-11-24<br>
+          <b>Data Type:</b> CTD/BTL*<br>
+          <b>Action:</b> Public except: CFCs/He/Tr<br>
+          <b>Note:</b>
+          <pre>
+Your data (both bottle and ctd) files are now unencryted on the WHPO
+website.   The CFCs, Helium and Tritium values have been removed and we
+would like to know if these parameters should be included in the public
+bottle files.
+          </pre>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>Status changed to Public
+          <small>Gunnar I. Roden</small>
+          </h4>
+          
+          <b>Date:</b> 1998-08-17<br>
+          <b>Data Type:</b> CTD/BTL<br>
+          <b>Action:</b> Website Updated:<br>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>
+          <small>Zafer Top</small>
+          </h4>
+          
+          <b>Date:</b> 1998-02-06<br>
+          <b>Data Type:</b> TRITUM<br>
+          <b>Action:</b> More Data Rcvd<br>
+          </div>
+      </li>
+      <li class="note-event">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="timeline-content">
+          <h4>
+          <small>Zafer Top</small>
+          </h4>
+          
+          <b>Date:</b> 1998-02-04<br>
+          <b>Data Type:</b> TRITUM<br>
+          <b>Action:</b> Submitted<br>
+          </div>
+      </li>
+      </ul> 
+  </div>
+</div>
+
+      </div>
+
+    <script src="/static/lib/jquery/2.1.3/jquery-2.1.3.min.js"></script>
+    <script src="/static/lib/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="/static/lib/typeahead/d5d71f28b0/bootstrap3-typeahead.min.js"></script>
+    <script>
+          $.get("/api/v1/typeahead", function(data){
+            $('#cchdo_search').typeahead({
+              source: data.typeahead,
+              autoSelect: false
+            });
+          });
+        const data_action = "/search"
+        const site_action = "https://learning.cchdo.io/search.html"
+      
+        const search_form = document.querySelector("#search_form")
+        const search_box = document.querySelector("#cchdo_search")
+
+        // Handle radio button change by attaching an event listener to a parent element
+        search_form.addEventListener("change", event => {
+          switch (event.target.value){
+            case "docs":
+              search_box.placeholder = "Site Search"
+              search_form.action = site_action;
+              break;
+            case "data":
+              search_box.placeholder = "Data Search"
+              search_form.action = data_action;
+              break;
+          }
+        })
+      </script>
+    
+
+<script type="application/ld+json">
+  {"@context": {"@vocab": "http://schema.org/", "geolink": "http://schema.geolink.org/1.0/base/main#"}, "@id": "https://cchdo.ucsd.edu/cruise/325023_1", "@type": "DataCatalog", "dataset": [{"@id": "https://cchdo.ucsd.edu/cruise/325023_1#bottle", "@type": "Dataset", "description": "Bottle (discrete sample) data from the hydrographic cruise 325023_1", "distribution": [{"@type": "DataDownload", "contentSize": "1694910 bytes", "contentUrl": "https://cchdo.ucsd.edu/data/8169/p14nhy.txt", "encodingFormat": "text/plain", "name": "woce"}, {"@type": "DataDownload", "contentSize": "2376902 bytes", "contentUrl": "https://cchdo.ucsd.edu/data/27050/325023_1_hy1.csv", "encodingFormat": "text/csv", "name": "exchange"}, {"@type": "DataDownload", "contentSize": "943127 bytes", "contentUrl": "https://cchdo.ucsd.edu/data/27051/325023_1_nc_hyd.zip", "encodingFormat": "application/zip", "name": "whp_netcdf"}, {"@type": "DataDownload", "contentSize": "647999 bytes", "contentUrl": "https://cchdo.ucsd.edu/data/38488/325023_1_bottle.nc", "encodingFormat": "application/x-netcdf", "name": "cf_netcdf"}], "isAccessibleForFree": true, "name": "US Hydrographic Cruise 325023_1: Bottle Dataset", "provider": {"@id": "https://cchdo.ucsd.edu"}, "publisher": {"@id": "https://cchdo.ucsd.edu", "@type": "Organization", "name": "CCHDO", "url": "https://cchdo.ucsd.edu"}, "spatialCoverage": {"@type": "Place", "geo": {"@type": "GeoShape", "box": "-15.9775 178.9692 59.001 -173.994", "elevation": -6014}}, "temporalCoverage": "1993-07-07/1993-08-29", "variableMeasured": [{"@type": "PropertyValue", "maxValue": 746586840, "minValue": 742030020, "name": "time", "propertyID": "http://vocab.nerc.ac.uk/standard_name/time"}, {"@type": "PropertyValue", "maxValue": 59.001, "minValue": -15.9775, "name": "latitude", "propertyID": "http://vocab.nerc.ac.uk/standard_name/latitude", "unitText": "degree_north"}, {"@type": "PropertyValue", "maxValue": -173.994, "minValue": 178.9692, "name": "longitude", "propertyID": "http://vocab.nerc.ac.uk/standard_name/longitude", "unitText": "degree_east"}, {"@type": "PropertyValue", "maxValue": 6997.0, "minValue": 125.0, "name": "btm_depth", "propertyID": "http://vocab.nerc.ac.uk/standard_name/sea_floor_depth_below_sea_surface", "unitText": "meters"}, {"@type": "PropertyValue", "maxValue": 6152.5, "minValue": 0.9, "name": "pressure", "propertyID": "http://vocab.nerc.ac.uk/standard_name/sea_water_pressure", "unitText": "dbar"}, {"@type": "PropertyValue", "maxValue": 31.1966, "minValue": 1.2234, "name": "ctd_temperature", "propertyID": "http://vocab.nerc.ac.uk/standard_name/sea_water_temperature", "unitText": "degC"}, {"@type": "PropertyValue", "maxValue": 36.195, "minValue": 32.4026, "name": "ctd_salinity", "propertyID": "http://vocab.nerc.ac.uk/standard_name/sea_water_practical_salinity", "unitText": "1"}, {"@type": "PropertyValue", "maxValue": 36.1964, "minValue": 32.404, "name": "bottle_salinity", "propertyID": "http://vocab.nerc.ac.uk/standard_name/sea_water_practical_salinity", "unitText": "1"}, {"@type": "PropertyValue", "name": "ctd_oxygen", "propertyID": "http://vocab.nerc.ac.uk/standard_name/moles_of_oxygen_per_unit_mass_in_sea_water", "unitText": "umol/kg"}, {"@type": "PropertyValue", "maxValue": 327.8, "minValue": 12.7, "name": "oxygen", "propertyID": "http://vocab.nerc.ac.uk/standard_name/moles_of_oxygen_per_unit_mass_in_sea_water", "unitText": "umol/kg"}, {"@type": "PropertyValue", "maxValue": 248.15, "minValue": 0.0, "name": "silicate", "propertyID": "http://vocab.nerc.ac.uk/standard_name/moles_of_silicate_per_unit_mass_in_sea_water", "unitText": "umol/kg"}, {"@type": "PropertyValue", "maxValue": 45.08, "minValue": 0.0, "name": "nitrate", "propertyID": "http://vocab.nerc.ac.uk/standard_name/moles_of_nitrate_per_unit_mass_in_sea_water", "unitText": "umol/kg"}, {"@type": "PropertyValue", "maxValue": 2.02, "minValue": 0.0, "name": "nitrite", "propertyID": "http://vocab.nerc.ac.uk/standard_name/moles_of_nitrite_per_unit_mass_in_sea_water", "unitText": "umol/kg"}, {"@type": "PropertyValue", "maxValue": 3.24, "minValue": 0.0, "name": "phosphate", "propertyID": "http://vocab.nerc.ac.uk/standard_name/moles_of_phosphate_per_unit_mass_in_sea_water", "unitText": "umol/kg"}, {"@type": "PropertyValue", "maxValue": 6.018, "minValue": -0.01, "name": "cfc_11", "propertyID": "http://vocab.nerc.ac.uk/standard_name/moles_of_cfc11_per_unit_mass_in_sea_water", "unitText": "pmol/kg"}, {"@type": "PropertyValue", "maxValue": 2873.7, "minValue": 1872.5, "name": "total_carbon", "propertyID": "http://vocab.nerc.ac.uk/standard_name/moles_of_dissolved_inorganic_carbon_per_unit_mass_in_sea_water", "unitText": "umol/kg"}, {"@type": "PropertyValue", "maxValue": 25.0, "minValue": 25.0, "name": "ph_temperature", "propertyID": "http://vocab.nerc.ac.uk/standard_name/temperature_of_analysis_of_sea_water", "unitText": "degC"}, {"@type": "PropertyValue", "maxValue": 31.1961, "minValue": 0.8006, "name": "potential_temperature_c", "propertyID": "http://vocab.nerc.ac.uk/standard_name/sea_water_potential_temperature", "unitText": "degC"}, {"@type": "PropertyValue", "maxValue": 6014.013130164256, "minValue": 0.8949493807055341, "name": "package_depth", "propertyID": "http://vocab.nerc.ac.uk/standard_name/depth", "unitText": "meters"}]}, {"@id": "https://cchdo.ucsd.edu/cruise/325023_1#ctd", "@type": "Dataset", "description": "CTD (continuous sample) data from the hydrographic cruise 325023_1", "distribution": [{"@type": "DataDownload", "contentSize": "5147260 bytes", "contentUrl": "https://cchdo.ucsd.edu/data/1238/p14nct.zip", "encodingFormat": "application/zip", "name": "woce"}, {"@type": "DataDownload", "contentSize": "5144953 bytes", "contentUrl": "https://cchdo.ucsd.edu/data/8128/p14n_nc_ctd.zip", "encodingFormat": "application/zip", "name": "whp_netcdf"}, {"@type": "DataDownload", "contentSize": "4254827 bytes", "contentUrl": "https://cchdo.ucsd.edu/data/9003/p14n_ct1.zip", "encodingFormat": "application/zip", "name": "exchange"}, {"@type": "DataDownload", "contentSize": "6298891 bytes", "contentUrl": "https://cchdo.ucsd.edu/data/40783/325023_1_ctd.nc", "encodingFormat": "application/x-netcdf", "name": "cf_netcdf"}], "isAccessibleForFree": true, "name": "US Hydrographic Cruise 325023_1: CTD dataset", "provider": {"@id": "https://cchdo.ucsd.edu"}, "publisher": {"@id": "https://cchdo.ucsd.edu", "@type": "Organization", "name": "CCHDO", "url": "https://cchdo.ucsd.edu"}, "spatialCoverage": {"@type": "Place", "geo": {"@type": "GeoShape", "box": "-15.9775 178.9692 59.001 -173.994", "elevation": -6025}}, "temporalCoverage": "1993-07-07/1993-08-29", "variableMeasured": [{"@type": "PropertyValue", "maxValue": 746586840, "minValue": 742030020, "name": "time", "propertyID": "http://vocab.nerc.ac.uk/standard_name/time"}, {"@type": "PropertyValue", "maxValue": 59.001, "minValue": -15.9775, "name": "latitude", "propertyID": "http://vocab.nerc.ac.uk/standard_name/latitude", "unitText": "degree_north"}, {"@type": "PropertyValue", "maxValue": -173.994, "minValue": 178.9692, "name": "longitude", "propertyID": "http://vocab.nerc.ac.uk/standard_name/longitude", "unitText": "degree_east"}, {"@type": "PropertyValue", "maxValue": 6997.0, "minValue": 125.0, "name": "btm_depth", "propertyID": "http://vocab.nerc.ac.uk/standard_name/sea_floor_depth_below_sea_surface", "unitText": "meters"}, {"@type": "PropertyValue", "maxValue": 6154.0, "minValue": 0.0, "name": "pressure", "propertyID": "http://vocab.nerc.ac.uk/standard_name/sea_water_pressure", "unitText": "dbar"}, {"@type": "PropertyValue", "maxValue": 31.0046, "minValue": 1.2187, "name": "ctd_temperature", "propertyID": "http://vocab.nerc.ac.uk/standard_name/sea_water_temperature", "unitText": "degC"}, {"@type": "PropertyValue", "maxValue": 36.2069, "minValue": 32.3939, "name": "ctd_salinity", "propertyID": "http://vocab.nerc.ac.uk/standard_name/sea_water_practical_salinity", "unitText": "1"}, {"@type": "PropertyValue", "maxValue": 348.7, "minValue": 11.3, "name": "ctd_oxygen", "propertyID": "http://vocab.nerc.ac.uk/standard_name/moles_of_oxygen_per_unit_mass_in_sea_water", "unitText": "umol/kg"}, {"@type": "PropertyValue", "maxValue": 6025.828113313396, "minValue": 0.0, "name": "package_depth", "propertyID": "http://vocab.nerc.ac.uk/standard_name/depth", "unitText": "meters"}]}], "description": "Data from the hydrographic cruise 325023_1", "keywords": ["THOMAS G. THOMPSON", "ctd", "bottle", "Gunnar I. Roden", "P14", "P14N", "WOCE", "pacific", "Pacific Onetime"], "name": "US Hydrographic Cruise 325023_1", "subjectOf": [{"@type": "DigitalDocument", "encodingFormat": "application/pdf", "url": "https://cchdo.ucsd.edu/data/1358/p14ndo.pdf"}, {"@type": "DigitalDocument", "encodingFormat": "text/plain", "url": "https://cchdo.ucsd.edu/data/11174/p14ndo.txt"}]}
+</script>
+
+<script src="/static/lib/d3/3.5.5/d3.min.js"></script>
+<script src="/static/lib/d3/3.5.5/topojson.v1.min.js"></script>
+<script>
+function timeline(){
+  var tl_filter = document.getElementById("timeline-filter").value;
+  switch(tl_filter){
+    case "fn":
+      $(".file-event").css("display", "block");
+      $(".note-event").css("display", "block");
+      document.querySelectorAll("details").forEach(elm => elm.open = false);
+      break;
+    case "fd":
+      document.querySelectorAll("details").forEach(elm => elm.open = true);
+      $(".file-event").css("display", "block");
+      $(".note-event").css("display", "block");
+      break;
+    case "fo":
+      document.querySelectorAll("details").forEach(elm => elm.open = true);
+      $(".file-event").css("display", "block");
+      $(".note-event").css("display", "none");
+      break;
+    case "no":
+      $(".file-event").css("display", "none");
+      $(".note-event").css("display", "block");
+      break;
+  }
+}
+document.getElementById("timeline-filter").addEventListener("change", timeline);
+</script>
+<script>
+var trackline = {"coordinates": [[-173.994, 59.001], [-174.4137, 58.4998], [-174.856, 58.0058], [-175.2472, 57.4992], [-175.6627, 56.9843], [-176.0938, 56.5022], [-176.4993, 56.0013], [-176.841, 55.4983], [-177.1992, 54.9998], [-177.5593, 54.494], [-177.903, 54.0003], [-178.2538, 53.4963], [-178.5973, 53.0012], [-178.7697, 52.5045], [-178.9995, 52.2572], [-179.3835, 52.0683], [-179.7845, 51.8588], [-179.9392, 51.6285], [179.901, 51.3978], [179.7422, 51.165], [179.5712, 50.934], [179.4168, 50.6997], [179.2667, 50.475], [179.1315, 50.239], [179.0012, 50.0057], [178.9943, 49.4982], [178.9955, 48.9953], [178.9987, 48.4983], [179.0027, 47.995], [179.0063, 47.4932], [179.0002, 47.0017], [179.0052, 46.4992], [179.0042, 45.9963], [179.0037, 45.5017], [179.0033, 45.0033], [179.0158, 44.5008], [178.9945, 43.9988], [179.0018, 43.4985], [178.999, 42.98], [179.0108, 42.482], [179.0068, 41.9803], [178.9943, 41.4898], [179.0047, 40.99], [178.9977, 40.4985], [179.0013, 40.0005], [179.004, 39.4842], [179.0033, 38.9932], [179.0085, 38.4823], [179.0098, 37.9962], [178.9978, 37.4945], [178.9965, 36.9912], [178.9988, 36.5023], [178.9997, 35.9965], [179.0195, 35.505], [179.0008, 35.0033], [178.9968, 34.495], [178.9987, 33.9918], [178.9905, 33.4818], [178.9912, 32.9793], [178.9963, 32.4842], [178.9952, 31.9932], [179.0163, 31.4983], [178.9945, 30.994], [178.9858, 30.4977], [178.998, 29.9968], [179.0535, 29.842], [179.0673, 29.814], [179.0417, 29.739], [178.986, 29.4943], [178.9982, 28.9942], [178.9968, 28.4957], [179.0007, 27.9988], [179.0063, 27.4992], [179.0002, 27.0087], [179, 26.4997], [179.0053, 25.9963], [179.0047, 25.4945], [179.0032, 24.9952], [179.0005, 24.501], [178.9967, 24.0007], [178.9983, 23.502], [178.9975, 23.0057], [179.0037, 22.5088], [179.0005, 22.0063], [178.9938, 21.5065], [178.9972, 21.0015], [179.0012, 20.5048], [179.0012, 20.0012], [179.0027, 19.5075], [178.9985, 19.0037], [179.004, 18.5018], [178.9955, 18.0007], [179.0015, 17.5045], [178.9975, 16.9942], [178.9947, 16.4972], [178.9992, 16.0008], [178.9993, 15.5057], [178.9982, 15.0098], [178.9922, 14.5035], [178.9973, 14.006], [178.9933, 13.4997], [178.9955, 13.0017], [179.0038, 12.5013], [178.9987, 11.9995], [179.0017, 11.5077], [178.9998, 11.0035], [179.0037, 10.506], [178.9983, 10.0038], [178.9997, 9.5047], [178.9977, 9.005], [179.0012, 8.7547], [178.9923, 8.4963], [179.0025, 8.2583], [178.993, 8.0015], [179, 7.7552], [178.9905, 7.501], [178.9998, 7.2452], [178.9978, 7.0038], [178.9993, 6.748], [178.9952, 6.4993], [178.996, 6.2422], [178.9932, 6], [178.9973, 5.7485], [178.9993, 5.4932], [178.9975, 5.2413], [178.9963, 4.9923], [178.9993, 4.7447], [179.006, 4.4855], [179.0043, 4.2398], [179.0057, 3.9918], [179.0012, 3.7418], [179.0055, 3.4965], [179.0022, 3.2463]], "type": "LineString"};
+var width = 520,
+    height = 400;
+
+var lat_min = (d3.min(trackline.coordinates, function(p){return p[1]}));
+
+if (lat_min > 60){
+  var projection = d3.geo.azimuthalEqualArea()
+    .rotate([0,-90,0])
+    .clipAngle(90 - 1e-3)
+    .scale(400)
+    .translate([width / 2, height / 2])
+    .precision(.1);
+} else {
+  
+  var x_rotate = 180;
+  
+  var projection = d3.geo.mercator().scale(150*0.54).translate([480*0.54, 400*0.54]).rotate([x_rotate,0,0]);
+}
+var graticule = d3.geo.graticule();
+
+var path = d3.geo.path()
+  .projection(projection);
+
+  var svg = d3.select("#map_container").append("svg")
+  .attr("width", "100%")
+  .attr("height", "100%")
+  .attr("version", "1.1")
+  .attr("preserveAspectRatio", "xMinYMin meet")
+  .attr("viewBox", "0 0 " + width +" "+height)
+  .attr("xmlns", "http://www.w3.org/2000/svg");
+
+  svg.append("path")
+.datum(graticule)
+  .attr("class", "graticule")
+  .attr("d", path)
+  .style("fill", "none")
+  .attr("stroke", "#000")
+  .attr("stroke-opacity", 0.3)
+  .attr("stroke-width", 0.3);
+
+  d3.json("/static/data/ne_10m_bathymetry_s0.0002_no_pole_stitch.topojson", function(error, world) {
+    var countries = topojson.feature(world, world.objects.output).features;
+
+    svg.selectAll(".bathy")
+      .data(countries)
+      .enter().insert("path", ".graticule")
+      .attr("class", function(d){return "bathy d" + d.properties.depth + "m"})
+      .attr("d", path)
+      .attr("fill", "#00f")
+      .attr("stroke", "none")
+      .attr("fill-opacity", 0.11);
+  });
+d3.json("/static/data/ne_110m_land.topojson", function(error, world) {
+  var countries = topojson.feature(world, world.objects.ne_110m_land).features;
+
+  svg.selectAll(".land")
+    .data(countries)
+    .enter().append("path", ".graticule")
+    .attr("class", "land")
+    .attr("d", path)
+    .attr("fill", "#000")
+    .attr("fill-opacity", 1);
+});
+  svg.selectAll(".cruise")
+.data([trackline])
+  .enter().append("path")
+  .attr("d", path)
+  .attr("fill", "none")
+  .attr("stroke", "#f00")
+  .attr("stroke-opacity", 1)
+  .attr("stroke-width", 4);
+</script>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+    
+    <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2167386-1', 'auto');
+ga('send', 'pageview');
+    </script>
+    
+  </body>
+</html>

@@ -42,13 +42,17 @@ ALEUTIAN='research/aleutian-p14n-1993-observed-vector-section.json'
 ALEUTIAN_BASE='research/source-data/jasadcp-p14n-1993/'
 ALEUTIAN_INPUTS={'research/aleutian-p14n-1993-observed-vector-section.json': 'c454ed7a8d1de2a83956d74b25dceeb88d2098b2ff339daeb46ea4c9d2415426', 'research/source-data/jasadcp-p14n-1993/acquisition.json': '1aac36510a4857b02f3adcebaf47fc0d97366b33e48943ae6fc16212ac921ae3', 'research/source-data/jasadcp-p14n-1993/figure.json': '6fcafc536355b9efbda6140624b840c3dca40c00529b2bb629b5768bdb5464ae'}
 FROZEN_INPUTS.update(ALEUTIAN_INPUTS)
+HYDRO='research/aleutian-p14n-1993-hydrography-correspondence.json'
+HYDRO_BASE='research/source-data/cchdo-p14n-1993/'
+HYDRO_INPUTS={'research/aleutian-p14n-1993-hydrography-correspondence.json': '6342f35f1a9f9affe71244eabd8e1dfe0bb7f46046bccf30eb564274cf202c04', 'research/source-data/cchdo-p14n-1993/acquisition.json': '6d9d9aad7a5e5fbe222bbdd00ca00b5d415aa0e75ed8a7def8aa19020e8d1b38', 'research/source-data/cchdo-p14n-1993/figure.json': 'eebdcea754f4b55098ce02022e183edb8db111e2f01834fd34282364e1e3cc78'}
+FROZEN_INPUTS.update(HYDRO_INPUTS)
 
 
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
 
 def build():
-    if len(FROZEN_INPUTS)!=33:raise ValueError('Missing reviewed research source registry')
+    if len(FROZEN_INPUTS)!=36:raise ValueError('Missing reviewed research source registry')
     documents={}
     for path,pin in FROZEN_INPUTS.items():
         if digest(path)!=pin:raise ValueError('Changed reviewed current research source '+path)
@@ -98,6 +102,14 @@ def build():
     dependencies[observed['generator_file']]=observed['generator_sha256']
     figure=documents[ALEUTIAN_BASE+'figure.json']
     if figure['source_file']!=ALEUTIAN or figure['source_sha256']!=digest(ALEUTIAN):raise ValueError('Changed observed figure source binding')
+    dependencies[figure['generator_file']]=figure['generator_sha256']
+    for asset in figure['figures'].values():dependencies[asset['file']]=asset['sha256']
+    hydro=documents[HYDRO]
+    from build_p14n_hydrography_companion import verify as verify_hydro
+    if hydro!=verify_hydro() or hydro['velocity_section']!=observed:raise ValueError('Changed observed hydrography join')
+    dependencies[hydro['generator_file']]=hydro['generator_sha256']
+    figure=documents[HYDRO_BASE+'figure.json']
+    if figure['source_file']!=HYDRO or figure['source_sha256']!=digest(HYDRO):raise ValueError('Changed hydrography figure source')
     dependencies[figure['generator_file']]=figure['generator_sha256']
     for asset in figure['figures'].values():dependencies[asset['file']]=asset['sha256']
     for source,pin in dependencies.items():
@@ -231,6 +243,7 @@ def build():
             {'label':'Joint vector support','value':'4,030 / 4,092 positions'},
             {'label':'Primary depth layer','value':'100–300 m'},
             {'label':'Supported layer means','value':'131 / 132 profiles'},
+            {'label':'Companion hydrography','value':'17 casts · 84 candidate profile pairs'},
             {'label':'Physical current width','value':'Unknown'}],
         'notes':['Hourly archive means at 10 m depth levels are reduced products, not the native five-minute ensembles or four-metre acquisition bins.',
             'Layer means use midpoint cell thickness clipped to 100–300 m, joint u/v validity and at least 160 m valid support. Missing velocities remain missing; no vertical interpolation or component-to-speed substitution.',
@@ -238,10 +251,16 @@ def build():
             'The paper places Subarctic branches near 42 N and 45 N. Fixed 41–43 N and 44–46 N windows are search context, not physical edges. The westward Alaskan Stream and Bering-side Aleutian North Slope Current are distinct.',
             'Provider metadata describe GPS selective availability, heading correction and CTD wire interference editing. Per-cell native editing history is not included in this reduced archive.',
             'One July 1993 transect is not a seasonal climatology or annual width range. No current-edge geometry, full width, uncertainty interval or seasonal playback is admitted. The separate 2013 OSCAR component diagnostic is retained.'],
-        'next_evidence':'Match archived CTD hydrography to the observed branches, separate jets and eddies, and resolve transverse boundary brackets before admitting a named-current width.',
+        'next_evidence':'Resolve the bottom-time offsets, quality and historical processing caveats, distinguish named branches from nearby jets/eddies, and recover transverse boundary brackets before admitting a current width.',
         'figure_file':'figures/aleutian-p14n-1993-observed-vectors.svg',
+        'figure_label':'Observed velocity section',
+        'additional_figures':[{'file':'figures/aleutian-p14n-1993-hydrography-correspondence.svg','label':'CTD properties and pairing offsets','alt':'Measured in-situ ITS-90 temperature and PSS-78 salinity at 17 casts; QC2 cells and other quality codes distinguished; original velocity profiles and 84 candidate timing/distance offsets. No interpolated physical current edges.'}],
         'figure_alt':'Unconnected P14N sampling locations; observed eastward and northward velocity by latitude and depth; 100–300 m layer means with a gap break. Missing values are marked and no physical current boundaries are drawn.',
-        'source_file':ALEUTIAN,'source_pointer':'','source_links':[
+        'source_file':HYDRO,'source_pointer':'','source_links':[
+            link('Inspect the joined hydrography and velocity record',HYDRO),
+            link('Inspect all CTD casts and quality codes',HYDRO,'/casts'),
+            link('Inspect candidate timing and position offsets',HYDRO,'/candidate_pairs'),
+            link('Inspect original CTD acquisition',HYDRO_BASE+'acquisition.json'),
             link('Inspect all observed profiles',ALEUTIAN,'/profiles'),
             link('Inspect fixed branch windows and unresolved widths',ALEUTIAN,'/branches'),
             link('Inspect sampling gaps, spacing and bearings',ALEUTIAN,'/track_legs'),
@@ -252,6 +271,11 @@ def build():
             'headers':['Branch context','Search latitude','Profiles / layer means','Physical width'],
             'rows':[[row['branch'].title(),'–'.join(map(str,row['latitude_search_window_degrees_north']))+' N',str(row['samples'])+' / '+str(row['joint_layer_means']),'Unknown'] for row in observed['branches']]}
     })
+    scenes[-1]['notes'].extend([
+        'Companion CCHDO hydrography retains 17 casts and all 84 qualifying cast-to-hourly-profile pairs within three hours of nominal cast-bottom time and 15 km. No nearest-only selection or interpolation is applied. Forty-eight hourly velocity profiles have no qualifying pair.',
+        'All 17 nominal timestamps agree with unique BO (bottom) events in the original station log. This does not establish simultaneous sampling at 100–300 m. Cast beginning/end events and actual offsets remain inspectable.',
+        'Of 3,009 upper-ocean property cells, 2,525 meet joint WOCE QC2. Raw edited/despiked code7 and questionable code3 values remain available; other codes are not silently relabeled missing or acceptable.',
+        'Temperature is in-situ ITS-90; salinity is practical PSS-78. Pressure is retained in dbar beside depth converted with GSW3.6.23. The source-history temperature-correction notice remains unresolved and is not reapplied.'])
     for scene in scenes:
         scene.update(kind='current_research_evidence',rank_eligible=False,new_width_record_admitted=False,
             whole_current_width_km=None,annual_width_range_km=None,
