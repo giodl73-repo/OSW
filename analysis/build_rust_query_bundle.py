@@ -630,6 +630,11 @@ def build():
     collections['diagnostics'].append(filtered_width_record(filtered_document))
     filtered_owner=next(r for r in objects if r['id']=='current:kuroshio')
     filtered_owner.setdefault('diagnostic_ids',[]).append(FILTERED_WIDTH_ID)
+    from asca_component_spans import verify_inputs as verify_asca_spans, record as asca_span_record, ID as ASCA_SPAN_ID
+    asca_span_document,_,asca_span_inputs=verify_asca_spans()
+    inputs.update(asca_span_inputs)
+    collections['diagnostics'].append(asca_span_record(asca_span_document))
+    next(r for r in objects if r['id']=='current:agulhas').setdefault('diagnostic_ids',[]).append(ASCA_SPAN_ID)
     collections['width_samples']=build_width_samples(collections['diagnostics'])
     for row in objects:
         row['width_sample_ids']=[sample['id'] for sample in collections['width_samples'] if sample['entity_id']==row['id']]

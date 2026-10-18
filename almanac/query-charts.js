@@ -51,6 +51,7 @@ window.oswCharts=(()=>{
       document.getElementById('chart-title').textContent='Current research evidence';
       for(const s of scene.source_review_scenes||[])window.renderCurrentWidthSourceReview(root(),s,inspect);
       for(const s of scene.filtered_width_curve_scenes||[])window.renderKuroshioFilteredWidths(root(),s,inspect,{open:true});
+      for(const s of scene.asca_component_span_scenes||[])window.renderAscaComponentSpans(root(),s,inspect,{open:true});
       for(const s of scene.kind==='current_research_evidence_panels'?scene.scenes:scene.research_evidence_scenes)window.renderCurrentResearchEvidence(root(),s,inspect,{open:true});return;
     }
     if(scene.kind==='current_width_source_reviews'){
@@ -61,6 +62,10 @@ window.oswCharts=(()=>{
     if(scene.kind==='kuroshio_filtered_width_curve'){
       document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Published filtered width curve';
       window.renderKuroshioFilteredWidths(root(),scene,inspect,{open:true});return;
+    }
+    if(scene.kind==='asca_dated_component_spans'){
+      document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Dated component-span experiment';
+      window.renderAscaComponentSpans(root(),scene,inspect,{open:true});return;
     }
     if(scene.kind==='selected_core_width_statistic'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Published selected-core width';window.renderSelectedCoreWidth(root(),scene.record,inspect);return;}
     if(scene.kind==='nordic_section_widths'){

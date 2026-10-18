@@ -215,6 +215,9 @@ def build():
     read('research/kuroshio-ecs-filtered-width-time-series.json')
     read('research/kuroshio-ecs-filtered-width-time-series-figure.json')
     inputs.update(filtered_inputs)
+    from asca_component_spans import verify_inputs as verify_asca_spans, ID as ASCA_SPAN_ID
+    asca_span_document,_,asca_span_inputs=verify_asca_spans()
+    inputs.update(asca_span_inputs)
     if kuroshio_profiles!=build_kuroshio_profiles():raise ValueError('Kuroshio seasonal profile differs from pinned extraction')
     for key in ['source_pdf_file','config_file','protocol_file','scope_audit_file']:
         path=kuroshio_profiles[key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -586,6 +589,13 @@ def build():
                 'source_file':asca_path,'source_sha256':inputs[asca_path],
                 'source_profiles':931,'source_period':['2016-04-19','2018-06-03'],'depth_m':100,
                 'partial_calendar_bins':['2016-04','2018-06'],'climatology':False})
+            series.append({'label':'ASCA100m dated component spans / 330 resolved of 931 profiles',
+                'url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':ASCA_SPAN_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section',
+                'frames':931,'evidence_role':'derived_component_diagnostics_from_existing_profiles_not_independent_width_observations',
+                'source_file':'research/agulhas-asca-100m-dated-component-spans.json',
+                'source_sha256':inputs['research/agulhas-asca-100m-dated-component-spans.json'],
+                'source_profiles':931,'resolved_primary_spans':330,'unresolved_primary_spans':601,
+                'source_period':['2016-04-19','2018-06-03'],'depth_m':100,'whole_current_representative':False})
         capabilities = {
             'observed_velocity': len(velocity['samples']) if current_id==velocity['current_id'] else 0,
             'radius_evidence': len(geography.get('published_ring_radius_evidence',geography.get('radial_scale_evidence',[]))) if geography else 0,
@@ -773,6 +783,13 @@ def build():
             groups['measurements'].append(own_width_audits)
             groups['time_evidence'].append(own_width_audits)
         if current_id in local_width_audits:
+            if current_id == 'agulhas':
+                span_support={'diagnostic_id':ASCA_SPAN_ID,'source_file':'research/agulhas-asca-100m-dated-component-spans.json',
+                    'source_sha256':inputs['research/agulhas-asca-100m-dated-component-spans.json'],
+                    'profiles':931,'resolved_primary_spans':330,'physical_width_admitted':False}
+                groups['measurements'].append(span_support)
+                groups['time_evidence'].append(span_support)
+                groups['sources'].append(span_support)
             payload['original_regional_width_scope'] = local_width_audits[current_id]
             groups['measurements'].append(local_width_audits[current_id])
             groups['sources'].append(local_width_audits[current_id])

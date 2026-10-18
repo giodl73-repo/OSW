@@ -341,6 +341,14 @@
     "analysis/kuroshio_filtered_width.py": "c0b451c3972a9363ef01e463fad3e810301555ad1488721b721741646bcf57c3",
     "figures/kuroshio-ecs-filtered-width-time-series.svg": "500dd0fcf30335b0569a341357fe716380b62000960574d0b82b9bd0120e3701",
     "figures/kuroshio-ecs-filtered-width-time-series.png": "48dbee3d6e4c1e582007db1b760e82087a2ab6197a09a2106cc68993fe9bfbe9",
+    "plans/agulhas-asca-100m-component-span-protocol-v1.md": "5c4424987396103237e88f8f5fd495e75d2e1dfc734b60d345ab0abf531c7d6f",
+    "analysis/build_asca_component_spans.py": "4638a5315187494d6f2243f91d380d21878480c41337c6d289c8ee419780c301",
+    "research/agulhas-asca-100m-dated-component-spans.json": "b03cfa7cd8d90098bf5da554981897f8c7ee3da0f95d08ff4afc8512835815e6",
+    "research/agulhas-asca-100m-dated-component-spans-figure.json": "876cd07e4c937cf8c5d8a7b806a1ec8a0d3c2018e7f368500ee43f004ca6756c",
+    "analysis/asca_component_spans.py": "0d7ed5287a3a74f7437f024bc85ac761f56d562e760ffd664650f5d3b819b5b9",
+    "analysis/build_asca_component_span_figure.py": "3ff5c84bbe9d6bf2cfc9259868ee7ca277c26d6b8e2f79143e971ffb667cde5a",
+    "figures/agulhas-asca-100m-dated-component-spans.png": "91fb1da5c665cb682e68d288e28f2f902c13391e2cc2e516089b7e88ac7eff77",
+    "figures/agulhas-asca-100m-dated-component-spans.svg": "c15f2bf2ed5b4c76c53e16b07f8d3255be0732ed345a046571e0b8cca006a147",
     "research/source-data/kuroshio-liu-gan-2012/figure6a-extraction.json": "ec9ce9bf6857aa5ec257d9ff202586dee7940c73ced3caff9720d24eaded9f2a",
     "plans/kuroshio-seasonal-width-profile-extraction-protocol-v1.md": "269b2397f87a4fe156f36b0618916d4ebb90b21308f9e5caaffae2d4a3c9694e",
     "research/florida-monthly-width-plot-extraction.json": "a19bd06ad71c508ffb9b3d2fe0bc67435de40f138aaf408e1cf930640c048e2c",
@@ -656,7 +664,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "5dbcd9e2274e3bc40d3b2d1a7c52fc89a49680c726128b3ce610a39c70bd1512",
+  "snapshot_fingerprint": "1b262a2f4a2e873347f5fe01c5734958337c5479fc1123e7a9971fd969d50a1f",
   "entries": [
     {
       "id": "current:agulhas",
@@ -674,7 +682,7 @@
         "reference_route": 1,
         "scoped_width": 1,
         "geometry": 0,
-        "time_samples": 27,
+        "time_samples": 958,
         "source_connectivity": 0,
         "scope_notes": 0,
         "dated_diagnostics": 0,
@@ -684,7 +692,7 @@
       },
       "recorded_claims": 60,
       "nasa_links": 1,
-      "fingerprint": "3850ad20c4c58612d632f7b7059a103a97f99af114099bb907bd07c0b50a2380",
+      "fingerprint": "535b2f8b1b36bdb16f0495f14b6d4040e95ba1dd752039cec25047f93e9ba951",
       "series": [
         {
           "label": "ASCA 100 m / 27 recorded monthly sections / 931 source profiles",
@@ -704,6 +712,23 @@
             "2018-06"
           ],
           "climatology": false
+        },
+        {
+          "label": "ASCA100m dated component spans / 330 resolved of 931 profiles",
+          "url": "query.html?q=%7B%22collection%22%3A%22diagnostics%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22diagnostic%3Aagulhas-asca100m-component-spans%22%7D%5D%2C%22limit%22%3A1%7D#query-chart-section",
+          "frames": 931,
+          "evidence_role": "derived_component_diagnostics_from_existing_profiles_not_independent_width_observations",
+          "source_file": "research/agulhas-asca-100m-dated-component-spans.json",
+          "source_sha256": "b03cfa7cd8d90098bf5da554981897f8c7ee3da0f95d08ff4afc8512835815e6",
+          "source_profiles": 931,
+          "resolved_primary_spans": 330,
+          "unresolved_primary_spans": 601,
+          "source_period": [
+            "2016-04-19",
+            "2018-06-03"
+          ],
+          "depth_m": 100,
+          "whole_current_representative": false
         }
       ],
       "section_fingerprints": {
@@ -713,7 +738,7 @@
         "measurements": "f7dae949f8e19df9f92b1e257d49142afec2761bfdfcdb4df41b3664cf409885",
         "routes_geometry": "9f1e1771341035883852d0a080521a68b136e30aadbb4396c6458d29658d5910",
         "media": "2e7a6127476f706f39fefca486ff7531cfb28b063fb7676f7463b80780cd448e",
-        "time_evidence": "9e74d1fe1df9a3005a3cd9b0c39a0dbd5b48c7f676270929fd5959a1b00e9e01"
+        "time_evidence": "3c1a4ece774c5d5126b3431537237da20ff909e9d60f0bcaee054a62c45de173"
       },
       "latest_observation_date": "2018-06-03",
       "claim_review_counts": {
@@ -772,7 +797,7 @@
       "evidence_links": [
         {
           "label": "Explore ASCA 100 m monthly sections",
-          "url": "query.html?q=%7B%22collection%22%3A%22current_sections%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22agulhas%22%7D%5D%2C%22limit%22%3A100%7D#query-chart-section"
+          "url": "query.html?q=%7B%22collection%22%3A%22diagnostics%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22diagnostic%3Aagulhas-asca100m-component-spans%22%7D%5D%2C%22limit%22%3A1%7D#query-chart-section"
         }
       ],
       "object_url": "object.html?id=current%3Aagulhas",
@@ -68394,5 +68419,5 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "built_at_utc": "2026-10-18T17:11:42.298570+00:00"
+  "built_at_utc": "2026-10-18T17:39:19.457876+00:00"
 }

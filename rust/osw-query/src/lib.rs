@@ -3,6 +3,7 @@ use serde_json::{Value, json};
 use std::collections::{BTreeMap, BTreeSet};
 mod abstract_regional_widths;
 mod antilles_cruise_spans;
+mod asca_component_spans;
 mod astrid_scales;
 mod atlantic_euc_sections;
 mod atlas_data;
@@ -308,6 +309,7 @@ impl Store {
         current_width_source_reviews::validate(&bundle)?;
         current_research_evidence::validate(&bundle)?;
         kuroshio_filtered_width::validate(&bundle)?;
+        asca_component_spans::validate(&bundle)?;
         coastal_composite_widths::validate(&bundle)?;
         dwbc_float_composite::validate(&bundle)?;
         atlas_data::validate(&bundle)?;
@@ -677,7 +679,18 @@ impl Store {
             let reviews = current_width_source_reviews::query(&matches, &self.bundle);
             let research = current_research_evidence::query(&matches, &self.bundle);
             let filtered = kuroshio_filtered_width::query(&matches, &self.bundle);
-            if !filtered.is_null() {
+            let asca = asca_component_spans::query(&matches, &self.bundle);
+            if !asca.is_null() {
+                if research.is_null() && reviews.is_null() && filtered.is_null() {
+                    asca
+                } else {
+                    json!({"kind":"current_diagnostic_evidence","scope":"Derived diagnostics retain source scope, unresolved cases and physical admission limits.",
+                    "source_review_scenes":reviews["scenes"].as_array().cloned().unwrap_or_default(),
+                    "research_evidence_scenes":research["scenes"].as_array().cloned().unwrap_or_default(),
+                    "filtered_width_curve_scenes":if filtered.is_null(){vec![]}else{vec![filtered]},
+                    "asca_component_span_scenes":[asca]})
+                }
+            } else if !filtered.is_null() {
                 if research.is_null() && reviews.is_null() {
                     filtered
                 } else {
