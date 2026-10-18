@@ -26,21 +26,22 @@ This is a review through the installed lenses, not independent human approval.
 | SOUNDER3 | Cover permission must be narrow and not include article resources. | P2 resolved |14 observed wrapper IDs are disjoint from protected graph; exact object inventory, cover text and remaining objects verified. |
 | CHART1 | A width buffer would imply geographic edges absent from the source. | P2 resolved | Independent qualifier graphic and text only; no new footprint or buffered route. |
 | CHART2 | An apparent annual cycle would overstate one historical section. | P2 resolved | New month-dated phase preserves1990-03; playback disabled, annual extrema null. Actual seasons card checked. |
-| CHART3 | Existing100 W climatology differs from historical170 W section. | P2 resolved | Separate diagnostics retained; actual atlas link survives. Full retained-climatology browser regression pending. |
+| CHART3 | Existing100 W climatology differs from historical170 W section. | P2 resolved | Separate diagnostics retained; actual atlas link survives. Full retained-climatology browser regression passes three cards,72 total monthly samples and nine coherent rejection cases. |
 | BEACON1 | Publication year must not replace observation month. | P2 resolved | Card prominently says March1990 and distinguishes publication1995. |
 | BEACON2 | The headline must retain the inequality. | P2 resolved | SVG and textual card show less than200 km; no numeric point admitted. |
 | BEACON3 | Source and method should be reachable directly. | P3 verified | Actual source query at /measurement equals native result; inspector works without fetching PDF. |
 | HARBOR1 | SVG meaning must be available without color. | P2 resolved | Explicit aria label, inequality text, caption and method note; inspected mobile rendering. |
 | HARBOR2 | Narrow screens must preserve qualification and source access. | P3 verified |320 px page reflow passes; full caption and ordinary source link visible. |
-| HARBOR3 | Reduced motion must not trigger seasonal animation. | P3 verified | Reduced-motion viewport checked; play control remains disabled. Broader current-card keyboard regression pending. |
+| HARBOR3 | Reduced motion must not trigger seasonal animation. | P3 verified | Reduced-motion viewport checked; play control remains disabled. All100 current-card keyboard, mobile and inspector-return regressions pass. |
 | KEEL1 | Complete default offline gate must run from a clean commit. | P2 pending | Full pytest invocation started from clean62f2a2b. Record terminal result before merge approval. |
 | KEEL2 | Generated provenance and prior data must remain coherent. | P2 resolved |70 engine hashes verified; staged bytes equal disk; prior146 widths /33 diagnostics unchanged. Seasonal parent hash refresh isolated. |
-| KEEL3 | Changed-source UI and broad regression gates must complete. | P2 pending | New integrated UI and nine coherent rejection cases pass. NGCC browser regression passes;39 inventory/climatology tests and538 subtests pass. Retained-climatology browser, all45 collections and all100 cards are running; record outcomes before merge approval. |
+| KEEL3 | Changed-source UI and broad regression gates must complete. | P2 resolved | New integrated UI and nine coherent rejection cases pass. NGCC browser regression passes;39 inventory/climatology tests and538 subtests pass. Retained-climatology browser, all45 collections and all100 cards /147 widths pass. |
 | LOGBOOK1 | Scope count must not be advertised as complete measurement coverage. | P2 resolved | Receipt calls147 records scoped; source boundaries, uncertainties and seasonal coverage remain open. |
 | LOGBOOK2 | Copyrighted original scans must stay outside Git. | P2 resolved | Only receipts, factual annotations, independent graphic and verifier contract staged; original PDF ignored. |
 | LOGBOOK3 | Continue one reviewable batch without PR proliferation. | P3 verified | Existing branch /draft PR83 retained; no merge or new PR. Source commit explicit. |
 
-Roles reviewed:7. Outstanding P1 blockers:0. Outstanding P2 gates:2.
+Roles reviewed:7. Outstanding P1 blockers:0. Outstanding P2 gates:2
+(full scientific suite and remote transport acquisition, detailed below).
 Verdict: **APPROVED-WITH-CONDITIONS**. No merge approval yet.
 
 Top finding: the source supplies a qualified local historical band description,

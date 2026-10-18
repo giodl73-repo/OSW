@@ -66,9 +66,18 @@ than mislabeling fresh response bytes as the historical original checksum.
   distinct metrics, static phase handling, mobile and three native/WASM rejections.
 -JavaScript syntax passes for55 almanac files;14 pages have validation assignments.
 
-At this checkpoint the complete offline suite is running from clean62f2a2b;
-Retained southern climatologies, all-collection and all-card browser
-regressions are also in progress. These gates are not claimed as passing yet.
+-Retained southern-climatology browser regression passes three cards,
+ 36 climatological and36 original monthly samples, source years, playback,
+ native/WASM parity, mobile and nine coherent rejection cases.
+-All45 shipped collections pass native/WASM UI, first/last pages, record
+ inspection, complete canonical imports and240 object map marks.
+-All100 current cards /147 scoped widths pass definitions/source/record links,
+ keyboard disclosure, conflict display, inspector return, reset and mobile,
+ without direct source requests.
+
+At this checkpoint the complete offline suite is still running from clean62f2a2b.
+Its terminal result is not claimed yet. Later transport-only changes have
+their own focused checks; they are not attributed to this earlier invocation.
 Logs are local under `.pytest_cache/south-pacific-constraint-preparation/` and
 `.pytest_cache/radenac-cover-review/`. Update this receipt when terminal.
 
