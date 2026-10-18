@@ -41,3 +41,7 @@ Direct application of installed CURRENT, SOUNDER, CHART, BEACON, HARBOR, KEEL an
 1. Preserve BO semantics, source quality distinctions and the unresolved correction notice beside the new evidence.
 2. Retain every qualifying pair and the complete original velocity section; show raw measured cells and actual offsets without invented geometry.
 3. Bind the joined data through the shared Rust record/source store, retain old corruption cases, and distinguish predecessor, focused and successor gates.
+
+## Final focused results
+
+`plans/aleutian-p14n-hydrography-verification-2026-10-18.md` records the completed gates:10source/registry tests with10subtests,60Rust tests, the dashboard test withfive subtests, allfive actual UI panels and37source documents, and42native/WASM rejection cases pass. All90engine and143research working/committed pins match. The original velocity record and prior measurements remain unchanged. The clean combined successor gate remains the approval condition; no independent named-flow identification or physical-width admission is inferred from this software verification.
