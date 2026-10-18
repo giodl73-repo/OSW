@@ -7,13 +7,13 @@
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 78,
-    "measurements": 148,
+    "currents_with_scoped_width_evidence": 79,
+    "measurements": 149,
     "currents_with_existing_mentions_pending_review": 0,
     "currents_not_assessed": 13,
     "currents_with_derived_width_candidates_pending_review": 2,
     "currents_with_sources_reviewed_no_numeric_width": 2,
-    "currents_with_section_span_diagnostics_width_unresolved": 5
+    "currents_with_section_span_diagnostics_width_unresolved": 4
   },
   "measurements": [
     {
@@ -11598,6 +11598,127 @@
         "audit_file": "research/south-atlantic-stramma-1990-secondary-band-scope-audit.json",
         "audit_sha256": "c4e7239d16a4c92089b1c2040089026ac5c2816f5de2d60b86ab3f22e83534ed"
       }
+    },
+    {
+      "id": "portugal-perez-2009-orca-source-section-span",
+      "current_id": "portugal",
+      "name": "Portugal Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_coordinate_derived_local_section_span",
+      "width_metric": "nominal_geodesic_span_of_published_current_section_limits",
+      "width_metric_label": "Published local section span; flow-normal and whole-current widths unknown",
+      "approximate_width_km": 116,
+      "width_range_km": null,
+      "range_kind": null,
+      "range_interpretation": "Nominal span calculated from source coordinates, not a source-reported kilometre width or physical uncertainty interval.",
+      "geographic_scope": "ORCA northern section at 37 N, Portugal band between 14.8 and 13.5 W, stations 19-23.",
+      "section_geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -14.8,
+            37
+          ],
+          [
+            -13.5,
+            37
+          ]
+        ]
+      },
+      "section_orientation": "Nominal zonal source section; local flow obliquity and ship track not reconstructed.",
+      "layer": "Surface and thermocline flow in neutral density layers 1-4 (gamma_n < 27.3800 kg/m3). Fixed depth bounds are not supplied.",
+      "time_convention": "Fall 2009. The 15 October-11 November dates bound the cruise; exact section occupation days remain unknown.",
+      "boundary_rule": "Published current-band coordinate limits; no independently digitized velocity cutoff or physical edge.",
+      "source_url": "https://doi.org/10.1002/jgrc.20227",
+      "source_citation": "Perez-Hernandez et al. (2013), The source of the Canary current in fall 2009, JGR Oceans 118, 2874-2891.",
+      "source_locator": "Abstract; section6 paragraph32 and Figure14a; Table1; section7 paragraph40; section2 paragraph7.",
+      "source_retrieved_date": "2026-10-17",
+      "source_evidence_kind": "primary_fulltext_review_plus_frozen_local_source_coordinates_no_raw_pdf",
+      "extraction_method": "WGS84 inverse geodesic between previously curated source limits; display rounded to nearest kilometre. No figure digitization.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "phase_label": "ORCA local section / fall 2009",
+      "phase_kind": "campaign_coordinate_derived_section_span",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": null,
+      "uncertainty_km": null,
+      "source_quality_note": "Source coordinate precision, datum, exact section dates, physical edges and obliquity remain unresolved. Cruise envelope is context only.",
+      "remaining_gates": [
+        "Recover original PDF bytes and review page images.",
+        "Recover exact section dates, station coordinates, layer-specific physical boundary criterion and uncertainty.",
+        "Obtain compatible repeat sections before seasonal or annual comparison."
+      ],
+      "published_section_context": {
+        "source_event_id": "orca-2009-portugal-north-section",
+        "source_event": {
+          "current_id": "portugal",
+          "observation_event_id": "orca-2009-portugal-north-section",
+          "name": "Portugal Current",
+          "state_code": "NAST E",
+          "reported_locality": "ORCA 37\u00b0N section, 14.8\u201313.5\u00b0W",
+          "observation_start": "2009-10-15",
+          "observation_end": "2009-11-11",
+          "observation_type": "hydrographic_section_and_inverse_box_model",
+          "time_detail": "The dates bound the entire ORCA cruise; the exact occupation dates of this current band are not separately assigned here.",
+          "source_url": "https://doi.org/10.1002/jgrc.20227",
+          "source_locator": "Portugal Current discussion; 37\u00b0N ORCA section",
+          "spatial_basis": "The paper reports the Portugal Current between 14.8\u00b0W and 13.5\u00b0W along its 37\u00b0N section. This is a cross-stream band, not an along-current trace.",
+          "reported_section_endpoints_lon_lat": [
+            [
+              -14.8,
+              37
+            ],
+            [
+              -13.5,
+              37
+            ]
+          ],
+          "state_assignment_method": "source_reported_section_intersects_approximate_osw_state_polygon",
+          "state_boundary_limit": "The reported cross-stream band intersects the approximate NAST E polygon; the state boundary and observed current extent are not surveyed together.",
+          "physical_relation": "observed_local_cross_stream_section_only_whole_current_passage_unresolved",
+          "geometry_status": "source_reported_section_bounds_not_current_axis"
+        },
+        "unrounded_geodesic_distance_km": 115.71427424571638,
+        "calculation_ellipsoid": "WGS84",
+        "ellipsoid_is_osw_assumption": true,
+        "calculation_method": "pyproj.Geod(ellps=WGS84).inv; metres divided by1000",
+        "display_rounding_km": 1,
+        "distance_is_author_reported_km": false,
+        "source_coordinate_datum": null,
+        "source_coordinate_uncertainty_degrees": null,
+        "cruise_context": {
+          "start": "2009-10-15",
+          "end": "2009-11-11",
+          "is_exact_section_occupation": false
+        },
+        "neutral_density_context": {
+          "layers": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "upper_bound_gamma_n_kg_m3": 27.38,
+          "is_fixed_depth_slab": false
+        },
+        "transport_uncertainty_is_width_uncertainty": false,
+        "flow_normal_width_km": null,
+        "whole_current_width_km": null,
+        "source_review": {
+          "publisher_html_reviewed": true,
+          "institutional_pdf_parsed_text_reviewed": true,
+          "raw_pdf_acquired": false,
+          "raw_pdf_sha256": null,
+          "page_images_reviewed": false
+        },
+        "audit_file": "research/portugal-perez-2013-orca-section-span-scope-audit.json",
+        "audit_sha256": "389d77f93a11e2b9cae6be934beba040f143bf7523c442b8bc27a6c491ea1b61"
+      }
     }
   ],
   "current_decisions": [
@@ -11875,10 +11996,12 @@
     {
       "current_id": "portugal",
       "name": "Portugal Current",
-      "width_decision": "section_span_diagnostic_present_width_unresolved",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "portugal-perez-2009-orca-source-section-span"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Review local component association, orientation and native resolution; acquire compatible sections/layers before current-width or annual-range admission.",
+      "next_action": "Retain fall2009 source-coordinate section span separately from whole-current width and40Nsurface diagnostics; recover original PDF, exact section days, physical boundary criteria, datum and compatible repeats before whole-current or annual inference.",
       "existing_evidence_locator": null,
       "existing_evidence_source_url": null
     },

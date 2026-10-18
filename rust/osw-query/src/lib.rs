@@ -39,6 +39,7 @@ mod observed_spans;
 mod original_regional_widths;
 mod pacific_neuc_breadths;
 mod planning;
+mod portugal_section_span;
 mod proposed_widths;
 mod published_transports;
 mod qualitative_calendar;
@@ -195,6 +196,7 @@ impl Store {
             fields.insert(name.clone(), keys);
         }
         published_transports::validate(&bundle)?;
+        portugal_section_span::validate_inventory(&bundle)?;
         original_regional_widths::validate_south_atlantic_inventory(&bundle)?;
         original_regional_widths::validate_south_pacific_inventory(&bundle)?;
         original_regional_widths::validate_ngcc_inventory(&bundle)?;
@@ -665,6 +667,7 @@ impl Store {
                 coastal_composite_widths::scene(&matches, records),
                 dwbc_float_composite::scene(&matches, records),
                 pacific_neuc_breadths::scene(&matches, records),
+                portugal_section_span::scene(&matches),
             ]
             .into_iter()
             .filter(|s| !s.is_null())

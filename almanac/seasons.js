@@ -49,6 +49,7 @@
     if(row?.phase_kind==='isopycnal_jet_breadth_summary'){container.hidden=false;window.renderPacificNeucBreadths(container,window.oswSeasonSnapshot?.pacific_neuc_breadth_scene,row.id);return;}
     if(row?.phase_kind==='coastal_composite_threshold_section'){container.hidden=false;window.renderCoastalCompositeWidths(container,window.oswSeasonSnapshot?.coastal_composite_width_scene,row.id);return;}
     if(row?.modal_decay_context){container.hidden=false;window.renderModalDecayWidth(container,row);return;}
+    if(row?.published_section_context){container.hidden=false;window.renderPublishedCoordinateSpan(container,row);return;}
     if(row?.original_regional_context){container.hidden=false;window.renderOriginalRegionalWidth(container,row);return;}
     if(row?.phase_kind==='model_regional_width_summary'){container.hidden=false;window.renderModelRegionalWidth(container,row);return;}
     if(row?.reported_width_constraint)byId('season-title').textContent=row.reported_width_constraint.kind==='author_reported_greater_than_broad_flow_band'?row.original_regional_context.display_title:row.reported_width_constraint.kind==='author_reported_one_sided_coastal_confinement'?'Coastal confinement':row.reported_width_constraint.kind==='issuer_reported_greater_than_geographic_breadth'?'Reported offshore breadth':'Reported band size constraint';

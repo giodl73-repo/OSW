@@ -8,7 +8,7 @@ from pyproj import Geod
 
 ROOT = Path(__file__).resolve().parents[1]
 AUDIT = 'research/portugal-perez-2013-orca-section-span-scope-audit.json'
-PIN = '19318587c034d11d0d5a14f830a5ff2d2dd69c06bc10103b7eeeac1cebbefa9f'
+PIN = '389d77f93a11e2b9cae6be934beba040f143bf7523c442b8bc27a6c491ea1b61'
 ID = 'portugal-perez-2009-orca-source-section-span'
 
 

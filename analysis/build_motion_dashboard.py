@@ -109,6 +109,11 @@ def build():
             inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
             if inputs[dependency]!=pin:raise ValueError('Changed Indian SECC source support')
     read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
+    from check_portugal_orca_section_span import AUDIT as PORTUGAL_AUDIT
+    portugal_audit=read(PORTUGAL_AUDIT)
+    read(portugal_audit['source_event_file'])
+    for path in [portugal_audit['protocol_file'],portugal_audit['figure_file'],'analysis/check_portugal_orca_section_span.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from check_south_atlantic_secondary_band import AUDIT as SAC_AUDIT
     sac_audit=read(SAC_AUDIT);read(sac_audit['acquisition_file'])
     for path in [sac_audit['source_document_file'],sac_audit['protocol_file'],sac_audit['figure_file'],'analysis/check_south_atlantic_secondary_band.py']:
@@ -647,6 +652,10 @@ def build():
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],
         }
+        if current_id=='portugal':
+            groups['measurements'].append(portugal_audit);groups['sources'].append(portugal_audit)
+            groups['time_evidence'].append(portugal_audit)
+            evidence_links.append({'label':'ORCA 2009 published section limits and calculated span','url':'../figures/portugal-orca-2009-section-span.svg'})
         if current_id=='south-atlantic':
             groups['measurements'].append(sac_audit);groups['sources'].append(sac_audit)
             groups['time_evidence'].append(sac_audit)

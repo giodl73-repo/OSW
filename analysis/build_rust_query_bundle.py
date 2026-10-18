@@ -80,6 +80,11 @@ def build():
     for path in ['research/source-data/kolas-fer-wsc-2018/journal-article.pdf','plans/west-spitsbergen-stream-tube-width-protocol-v1.md','analysis/check_west_spitsbergen_stream_tubes.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
+    from check_portugal_orca_section_span import AUDIT as PORTUGAL_AUDIT
+    portugal_audit=read(PORTUGAL_AUDIT)
+    read(portugal_audit['source_event_file'])
+    for path in [portugal_audit['protocol_file'],portugal_audit['figure_file'],'analysis/check_portugal_orca_section_span.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from check_south_atlantic_secondary_band import AUDIT as SAC_AUDIT
     sac_audit=read(SAC_AUDIT);read(sac_audit['acquisition_file'])
     for path in [sac_audit['source_document_file'],sac_audit['protocol_file'],sac_audit['figure_file'],'analysis/check_south_atlantic_secondary_band.py']:
@@ -380,6 +385,11 @@ def build():
         'entity_id':'current:south-atlantic','current_id':'south-atlantic','status':sac_audit['status'],'rank_eligible':False,
         'source_file':SAC_AUDIT,'source_file_sha256':inputs[SAC_AUDIT],
         'source_json':(ROOT/SAC_AUDIT).read_bytes().decode('utf8'),'document':sac_audit})
+    collections['diagnostics'].append({'id':'diagnostic:portugal-orca-section-span',
+        'label':'Portugal ORCA 2009 published-coordinate section span',
+        'entity_id':'current:portugal','current_id':'portugal','status':portugal_audit['status'],'rank_eligible':False,
+        'source_file':PORTUGAL_AUDIT,'source_file_sha256':inputs[PORTUGAL_AUDIT],
+        'source_json':(ROOT/PORTUGAL_AUDIT).read_bytes().decode('utf8'),'document':portugal_audit})
     florida_diagnostic=next(d for d in collections['diagnostics'] if d['id']=='diagnostic:florida-monthly-width')
     florida_path='research/florida-monthly-width-plot-extraction.json'
     florida_diagnostic.update(source_file=florida_path,source_file_sha256=inputs[florida_path],source_json=(ROOT/florida_path).read_bytes().decode('utf-8'))
