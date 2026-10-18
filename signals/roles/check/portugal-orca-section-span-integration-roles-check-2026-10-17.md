@@ -82,3 +82,17 @@ PDF requested or seasonal playback enabled. Final mobile graphic visually
 inspected. All100-card run is separately terminal PASS.73 engine dependency
 hashes match disk. The complete suite collects1573 tests; its combined run
 remains the outstanding local gate, with remote acquisition separately open.
+
+## Corrected admission-order follow-up
+
+The d5afdba full run exposed a P2 ordering regression: the new mandatory
+Portugal guard rejected an aliased Baffin descriptor before its original-source
+identity check. It was intentionally stopped after23%, with the focused
+failure reproduced and retained. This does not invalidate the prior invalid-
+input rejection result; it identifies incorrect diagnostic precedence.
+
+Moving the complete Portugal check immediately after seasonal per-row source
+validation preserves both guards.13 affected identity-transfer tests pass in
+99.98s; the rebuilt native/WASM Portugal UI and all nine coherent rejection
+cases pass again.73 final engine hashes match. Full-suite and remote-source
+conditions remain open. No source pin or rejection assertion was weakened.

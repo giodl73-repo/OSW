@@ -67,3 +67,19 @@ combined full run. None of this labels the intentionally stopped148-record run
 as a completed pass. All148 prior rows and35 prior diagnostics compare equal;
 41 other collections are unchanged. Four other cards and six seasonal rows
 have parent SHA refreshes only.
+
+## Validation-order follow-up
+
+The clean d5afdba full run found an existing Baffin identity-guard regression
+and was intentionally stopped after23%; it is not a pass. The invalid data was
+rejected, but the new Portugal complete-inventory guard masked the original
+source-identity error for records reassigned to Portugal. Its mandatory check
+now runs immediately after seasonal per-row source checks. No rejection,
+binding or scientific scope rule was removed.
+
+All13 affected identity-transfer regressions pass in99.98s. The final native
+and WASM Portugal browser suite passes again, including mixed query, atlas,
+source/record inspection, mobile and all nine coherent altered-input cases.
+The engine was rebuilt;73 dependency hashes match. The combined full suite
+must run from the corrected clean commit; partial d5afdba output is retained
+separately as failure evidence.

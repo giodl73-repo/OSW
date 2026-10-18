@@ -196,7 +196,6 @@ impl Store {
             fields.insert(name.clone(), keys);
         }
         published_transports::validate(&bundle)?;
-        portugal_section_span::validate_inventory(&bundle)?;
         original_regional_widths::validate_south_atlantic_inventory(&bundle)?;
         original_regional_widths::validate_south_pacific_inventory(&bundle)?;
         original_regional_widths::validate_ngcc_inventory(&bundle)?;
@@ -295,6 +294,7 @@ impl Store {
         taxonomy::validate(&bundle.collections, &bundle.manifest)?;
         dashboard::validate(&bundle)?;
         seasons_data::validate(&bundle)?;
+        portugal_section_span::validate_inventory(&bundle)?;
         coastal_composite_widths::validate(&bundle)?;
         dwbc_float_composite::validate(&bundle)?;
         atlas_data::validate(&bundle)?;
