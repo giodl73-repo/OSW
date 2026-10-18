@@ -80,6 +80,8 @@ def test_native_source_scene_and_combined_comparisons():
     all_widths=native({'collection':'widths','limit':1})
     assert all_widths['chart_scene']['kind']=='scoped_width_comparisons'
     scenes=all_widths['chart_scene']['scenes']
-    assert [s['kind'] for s in scenes]==['nordic_section_widths','coastal_composite_widths','dwbc_float_composite','pacific_neuc_isopycnal_breadths']
+    assert [s['kind'] for s in scenes]==['nordic_section_widths','coastal_composite_widths','dwbc_float_composite','pacific_neuc_isopycnal_breadths','published_coordinate_section_span']
+    assert scenes[4]['record']['id']=='portugal-perez-2009-orca-source-section-span'
+    assert scenes[4]['geometry_role']=='local_source_section_limits_not_axis_or_physical_edges'
     assert len(scenes[0]['panels'])==1
     assert [len(p['rows']) for p in scenes[0]['panels']]==[6]

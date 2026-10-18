@@ -43,6 +43,7 @@ def main():
     paths.append('rust/osw-query/src/somali_width.rs')
     paths.append('rust/osw-query/src/guinea_width.rs')
     paths.append('rust/osw-query/src/original_regional_widths.rs')
+    paths.extend(['rust/osw-query/src/current_width_source_reviews.rs','research/southern-current-width-source-limitations-audit.json'])
     paths.extend(['rust/osw-query/src/portugal_section_span.rs','research/portugal-perez-2013-orca-section-span-scope-audit.json'])
     paths.append('research/gulf-stream-published-width-definitions-scope-audit.json')
     paths.append('research/loop-uhlhorn-2008-core-width-scope-audit.json')

@@ -10,6 +10,7 @@ pub mod cartography;
 mod charts;
 mod coastal_composite_widths;
 mod current_sections;
+mod current_width_source_reviews;
 mod dashboard;
 mod dashboard_beck;
 mod dashboard_map;
@@ -295,6 +296,7 @@ impl Store {
         dashboard::validate(&bundle)?;
         seasons_data::validate(&bundle)?;
         portugal_section_span::validate_inventory(&bundle)?;
+        current_width_source_reviews::validate(&bundle)?;
         coastal_composite_widths::validate(&bundle)?;
         dwbc_float_composite::validate(&bundle)?;
         atlas_data::validate(&bundle)?;
@@ -659,6 +661,8 @@ impl Store {
             observed_spans::scene(&matches)
         } else if query.collection == "proposed_widths" {
             nordic_widths::scene(&matches, records)
+        } else if query.collection == "diagnostics" {
+            current_width_source_reviews::query(&matches, &self.bundle)
         } else if query.collection == "width_samples" {
             charts::scene(&matches, records)
         } else if query.collection == "widths" {

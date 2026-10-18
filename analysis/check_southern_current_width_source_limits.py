@@ -8,7 +8,7 @@ from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[1]
 AUDIT = 'research/southern-current-width-source-limitations-audit.json'
-PIN = 'ac6150cb510edc2af5e0356fba2f42cf0d40138141292021795b559ef044ff64'
+PIN = 'f0905f67f4cef033f48f7a598cc46f831b8fe8a41fae55df2e51dd935ffc65ba'
 
 
 def verify(acquire_originals=False):

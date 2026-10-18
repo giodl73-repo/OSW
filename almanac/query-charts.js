@@ -32,6 +32,11 @@ window.oswCharts=(()=>{
       document.getElementById('chart-title').textContent=scene.title;
       window.renderPublishedCoordinateSpan(root(),scene.record,inspect);return;
     }
+    if(scene.kind==='current_width_source_reviews'){
+      document.getElementById('query-chart-legend').hidden=true;
+      document.getElementById('chart-title').textContent='Current width source review';
+      for(const s of scene.scenes)window.renderCurrentWidthSourceReview(root(),s,inspect);return;
+    }
     if(scene.kind==='nordic_section_widths'){
       document.getElementById('query-chart-legend').hidden=true;
       document.getElementById('chart-title').textContent=scene.title;

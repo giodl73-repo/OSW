@@ -109,6 +109,12 @@ def build():
             inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
             if inputs[dependency]!=pin:raise ValueError('Changed Indian SECC source support')
     read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
+    from check_southern_current_width_source_limits import AUDIT as SOURCE_LIMITS_AUDIT, verify as verify_source_limits
+    source_limits=verify_source_limits();read(SOURCE_LIMITS_AUDIT)
+    for source in source_limits['sources']:
+        read(source['acquisition_file'])
+        inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
+    inputs['analysis/check_southern_current_width_source_limits.py']=hashlib.sha256((ROOT/'analysis/check_southern_current_width_source_limits.py').read_bytes()).hexdigest()
     from check_portugal_orca_section_span import AUDIT as PORTUGAL_AUDIT
     portugal_audit=read(PORTUGAL_AUDIT)
     read(portugal_audit['source_event_file'])
@@ -652,6 +658,14 @@ def build():
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],
         }
+        source_review=next((r for r in source_limits['reviews'] if r['current_id']==current_id),None)
+        if source_review:
+            payload['width_source_review']=source_review
+            groups['sources'].append(source_review)
+            groups['sources'].append(source_limits['sources'][source_review['source_index']])
+            capabilities['scope_notes']+=1
+            source_pointer='/reviews/'+str(source_limits['reviews'].index(source_review))
+            evidence_links.append({'label':'Why physical width remains unresolved','url':'query.html?source-q='+quote(json.dumps({'document':SOURCE_LIMITS_AUDIT,'pointer':source_pointer,'limit':100}))})
         if current_id=='portugal':
             groups['measurements'].append(portugal_audit);groups['sources'].append(portugal_audit)
             groups['time_evidence'].append(portugal_audit)

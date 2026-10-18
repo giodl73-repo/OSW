@@ -80,6 +80,12 @@ def build():
     for path in ['research/source-data/kolas-fer-wsc-2018/journal-article.pdf','plans/west-spitsbergen-stream-tube-width-protocol-v1.md','analysis/check_west_spitsbergen_stream_tubes.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
+    from check_southern_current_width_source_limits import AUDIT as SOURCE_LIMITS_AUDIT, verify as verify_source_limits
+    source_limits=verify_source_limits();read(SOURCE_LIMITS_AUDIT)
+    for source in source_limits['sources']:
+        read(source['acquisition_file'])
+        inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
+    inputs['analysis/check_southern_current_width_source_limits.py']=hashlib.sha256((ROOT/'analysis/check_southern_current_width_source_limits.py').read_bytes()).hexdigest()
     from check_portugal_orca_section_span import AUDIT as PORTUGAL_AUDIT
     portugal_audit=read(PORTUGAL_AUDIT)
     read(portugal_audit['source_event_file'])
@@ -390,6 +396,13 @@ def build():
         'entity_id':'current:portugal','current_id':'portugal','status':portugal_audit['status'],'rank_eligible':False,
         'source_file':PORTUGAL_AUDIT,'source_file_sha256':inputs[PORTUGAL_AUDIT],
         'source_json':(ROOT/PORTUGAL_AUDIT).read_bytes().decode('utf8'),'document':portugal_audit})
+    for review in source_limits['reviews']:
+        owner=review['current_id']
+        collections['diagnostics'].append({'id':'diagnostic:current-width-source-limits:'+owner,
+            'label':owner+' current width source limitations','entity_id':'current:'+owner,'current_id':owner,
+            'status':source_limits['status'],'rank_eligible':False,'source_file':SOURCE_LIMITS_AUDIT,
+            'source_file_sha256':inputs[SOURCE_LIMITS_AUDIT],
+            'source_json':(ROOT/SOURCE_LIMITS_AUDIT).read_bytes().decode('utf8'),'document':source_limits})
     florida_diagnostic=next(d for d in collections['diagnostics'] if d['id']=='diagnostic:florida-monthly-width')
     florida_path='research/florida-monthly-width-plot-extraction.json'
     florida_diagnostic.update(source_file=florida_path,source_file_sha256=inputs[florida_path],source_json=(ROOT/florida_path).read_bytes().decode('utf-8'))

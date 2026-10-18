@@ -1,6 +1,6 @@
 {
   "schema": "osw.southern-current-width-source-limitations.v1",
-  "status": "source_review_prepared_not_product_registered",
+  "status": "source_review_registered_current_width_unresolved",
   "as_of": "2026-10-17",
   "sources": [
     {
@@ -29,25 +29,25 @@
       "current_id": "south-indian",
       "source_index": 0,
       "source_locator": "Conclusion, printed p430 / original PDF page10",
-      "finding": "The original explicitly calls for denser station spacing to determine current width and seasonal variability. This paper does not supply an admitted numeric whole-current or seasonal width.",
+      "finding": "The original study calls for closer station spacing to resolve width and seasonal variability. Width and annual range remain unresolved here.",
       "whole_current_width_km": null,
       "annual_width_range_km": null,
       "new_width_record_admitted": false,
       "cross_source_guard": {
         "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/epdf/10.1029/96JC03455",
-        "source_locator": "Stramma and Lutjeharms1997, printed p5525 / PDF page13",
+        "source_locator": "Stramma and Lutjeharms (1997), printed p5525 / PDF page13",
         "review_method": "Remote PDF parsed text; raw1997PDF and original page images not acquired.",
         "contextual_value_km": 100,
         "value_owner": "Agulhas Front latitudinal width, western basin",
         "value_is_eastern_sioc_current_width": false
       },
-      "next_required_evidence": "Compatible resolved transverse velocity boundaries with time, layer, reference and eastern-current identity; keep80Esurface diagnostic independent."
+      "next_required_evidence": "Resolved cross-current velocity boundaries at a stated time, layer and reference, with eastern SIOC identity checked. Keep the 80 E surface-component diagnostic separate."
     },
     {
       "current_id": "south-australian",
       "source_index": 1,
       "source_locator": "AppendixB continuation and AppendixC, original p17; parsed dataset/method sections2.1-2.4",
-      "finding": "Fixed control volumes capture shelf-break transport. West of Portland their latitude offsets are3/8degree north and south of the700m isobath. They are not diagnosed velocity edges or seasonal width extrema.",
+      "finding": "The paper uses fixed boxes around shelf-break currents to calculate transport. Those boxes do not provide measured current edges or seasonal width extrema.",
       "control_volume_context": {
         "north_latitude_offset_degrees": 0.375,
         "south_latitude_offset_degrees": 0.375,
@@ -57,14 +57,14 @@
         "offsets_are_physical_current_edges": false,
         "kilometre_width_derived": false
       },
-      "temporal_product_guard": "CARS annual mean and MOM01 climatologically forced final7model years are not the2012HYCOM 100m profiles or calendar-year observations.",
+      "temporal_product_guard": "CARS annual mean and the final seven years of climatologically forced MOM01 are separate from the 2012 HYCOM profiles at 100 m and from calendar-year observations.",
       "whole_current_width_km": null,
       "annual_width_range_km": null,
       "new_width_record_admitted": false,
-      "next_required_evidence": "Layer/time-compatible physical edges or explicitly typed analysis-domain geometry; no box-to-width promotion and no automatic HYCOM current association."
+      "next_required_evidence": "Compatible boundaries for a stated time and layer, plus verified current association. Keep the 132 E, 100 m HYCOM component diagnostic separate."
     }
   ],
-  "product_counts_changed": false,
   "source_figures_or_original_pdf_redistributed": false,
-  "prepared_for": "Batch source/missingness context for existing current cards; no numeric gap marked filled."
+  "prepared_for": "Current-card and query source context; no numeric gap marked filled.",
+  "measurement_coverage_counts_changed": false
 }
