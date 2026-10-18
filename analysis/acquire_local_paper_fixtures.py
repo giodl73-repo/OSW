@@ -28,6 +28,11 @@ PINNED_MIRRORS = {
     ('stramma-south-pacific-1995', 'https://oceanrep.geomar.de/32120/1/1520-0485%281995%29025_0077_tspc_2.0.co%3B2.pdf',
      '9b471dbdeb5a010bda7411c40dcaa939fb5c55d1559c3a89c8281ca10c2efd28'):
     ('https://oceanrep.geomar.de/id/eprint/32120/1/1520-0485(1995)025_0077_tspc_2.0.co;2.pdf',),
+    # Same institutional item and exact 916,643-byte original, verified
+    # 2026-10-18. The encoded canonical URL can return HTTP403 in CI.
+    ('stramma-south-indian-1992', 'https://oceanrep.geomar.de/id/eprint/32119/1/1520-0485%281992%29022_0421_tsioc_2.0.co%3B2.pdf',
+     '96b8af6dc2b3f3084fd65245a20564068b557bf200b50c48f53bd38b13761013'):
+    ('https://oceanrep.geomar.de/id/eprint/32119/1/1520-0485(1992)022_0421_tsioc_2.0.co;2.pdf',),
     ('zenk-ngcu-1999', 'https://oceanrep.geomar.de/1816/1/news34.pdf',
      'f38a100dc030a94ce776a914b96ea798dd40c6dc1aac80fce3563806c01a6407'):
     ('https://oceanrep.geomar.de/id/eprint/1816/1/news34.pdf',

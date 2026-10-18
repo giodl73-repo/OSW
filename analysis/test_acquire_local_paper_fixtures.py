@@ -9,6 +9,30 @@ DATA=b'%PDF-1.7\ncontrolled source fixture'
 MANIFEST={'source_url':'https://example.invalid/paper.pdf','sha256':hashlib.sha256(DATA).hexdigest()}
 
 class AcquisitionTests(unittest.TestCase):
+    def test_stramma_south_indian_fallback_preserves_the_exact_original(self):
+        folder=Path(__file__).resolve().parents[1]/'research/source-data/stramma-south-indian-1992'
+        manifest=json.loads((folder/'acquisition.json').read_bytes());before=dict(manifest)
+        data=(folder/'journal-article.pdf').read_bytes();url=manifest['source_url']
+        mirror='https://oceanrep.geomar.de/id/eprint/32119/1/1520-0485(1992)022_0421_tsioc_2.0.co;2.pdf'
+        with patch('urllib.request.urlopen',side_effect=[HTTPError(url,403,'blocked',{},None),io.BytesIO(data)]) as opener,patch('time.sleep') as sleep:
+            self.assertEqual(download('stramma-south-indian-1992',manifest),data)
+            self.assertEqual([c.args[0].full_url for c in opener.call_args_list],[url,mirror])
+            sleep.assert_not_called()
+        self.assertEqual(manifest,before)
+        # The fallback neither accepts another edition nor authorizes another
+        # source/pin tuple, and failed validation cannot create a local paper.
+        with tempfile.TemporaryDirectory() as temporary:
+            directory=Path(temporary);(directory/'acquisition.json').write_text(json.dumps(manifest),encoding='utf8')
+            with patch('urllib.request.urlopen',side_effect=[HTTPError(url,403,'blocked',{},None),io.BytesIO(DATA)]):
+                with self.assertRaisesRegex(ValueError,'checksum'):
+                    acquire('stramma-south-indian-1992',directory)
+            self.assertFalse((directory/'journal-article.pdf').exists())
+            self.assertFalse(list(directory.glob('.paper-*.tmp')))
+        for changed in [dict(manifest,source_url='https://example.invalid/paper.pdf'),dict(manifest,sha256=MANIFEST['sha256'])]:
+            with self.subTest(manifest=changed),patch('urllib.request.urlopen',side_effect=HTTPError(changed['source_url'],403,'blocked',{},None)) as opener:
+                with self.assertRaises(HTTPError):download('stramma-south-indian-1992',changed)
+                self.assertEqual(opener.call_count,1)
+
     def test_noaa_404_uses_bare_url_with_same_pin(self):
         manifest=json.loads((Path(__file__).resolve().parents[1]/'research/source-data/florida-archer-2017/acquisition.json').read_text())
         url=manifest['source_url'];before=dict(manifest)
