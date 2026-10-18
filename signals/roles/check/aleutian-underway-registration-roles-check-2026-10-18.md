@@ -51,3 +51,15 @@ three-surface browser and preservation gates pass as recorded in the batch plan.
 The separate live baseline full run has a failure marker; retain its terminal
 diagnosis and resolve the failure before main release. This registration's
 focused success does not turn that broad run into a pass.
+
+## Source-context follow-up
+
+The live baseline run's Indian SEC monthly reconstruction failure was
+independently reproduced. SOUNDER/KEEL review traced it to the endpoint-audit
+checksum refresh leaving two downstream monthly reports stale. Both existing
+generators differ from their saved reports only in `scope_audit_sha256`.
+The repair replaces just that field and preserves all scientific values and
+rules. Four focused tests/eight subtests, 62 Rust tests, native atlas loading
+and exact two-document native/WASM source queries pass. See
+`plans/monthly-bifurcation-context-repair-2026-10-18.md`. The live full run
+still needs its terminal diagnosis; the main-release condition remains open.
