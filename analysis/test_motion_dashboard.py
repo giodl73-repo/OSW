@@ -296,5 +296,32 @@ class DashboardEvidenceTests(unittest.TestCase):
             self.assertEqual(row['capabilities'],old[row['id']]['capabilities'])
             self.assertEqual(row['latest_observation_date'],old[row['id']]['latest_observation_date'])
 
+    def test_native_support_provenance_change_highlights_only_aleutian(self):
+        import copy
+        import current_research_evidence as research
+        before=build()
+        registry=research.verify()
+        native=json.loads((ROOT/research.NATIVE).read_bytes())
+        valid_times=[row['ensemble_end_utc'] for row in native['profiles'] if row['layer_mean']['eastward_m_s'] is not None]
+        observed=next(scene for scene in registry['scenes'] if scene['current_id']=='aleutian')
+        self.assertEqual(observed['observation_times_utc'],[valid_times[0],valid_times[-1]])
+        self.assertEqual(next(row for row in before['entries'] if row['id']=='current:aleutian')['latest_observation_date'],valid_times[-1][:10])
+        self.assertEqual(valid_times[-1][:10],'1993-07-18')
+        changed_registry=copy.deepcopy(registry)
+        owner=next(scene for scene in changed_registry['scenes'] if scene['current_id']=='aleutian')
+        source=next(iter(owner['support_source_sha256']))
+        owner['support_source_sha256'][source]='f'*64  # Synthetic metadata stimulus; never written.
+        with patch.object(research,'verify',return_value=changed_registry):after=build()
+        previous={row['id']:row for row in before['entries']}
+        changed=[row for row in after['entries'] if row['fingerprint']!=previous[row['id']]['fingerprint']]
+        self.assertEqual([row['id'] for row in changed],['current:aleutian'])
+        for row in after['entries']:
+            old=previous[row['id']]
+            if row['id']!='current:aleutian':self.assertEqual(row,old)
+            else:
+                self.assertNotEqual(row['section_fingerprints']['sources'],old['section_fingerprints']['sources'])
+                self.assertEqual(row['capabilities'],old['capabilities'])
+                self.assertEqual(row['latest_observation_date'],old['latest_observation_date'])
+
 
 if __name__=='__main__': unittest.main()

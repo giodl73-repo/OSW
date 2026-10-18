@@ -14,6 +14,9 @@ class ResearchEvidenceTests(unittest.TestCase):
         serialized = json.dumps(source_index)
         for path in [evidence.PATH, *registry['documents']]:
             self.assertIn(path, serialized)
+        owner=next(scene for scene in registry['scenes'] if scene['current_id']=='aleutian')
+        self.assertEqual(set(owner['support_source_sha256']),set(evidence.NATIVE_INPUTS))
+        self.assertEqual(owner['support_source_sha256'],{path:registry['documents'][path] for path in evidence.NATIVE_INPUTS})
 
     def test_changed_scientific_source_is_rejected(self):
         original = Path.read_bytes

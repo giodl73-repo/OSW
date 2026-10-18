@@ -60,3 +60,14 @@ No new inventory width, physical current edge, annual range or width rank
 is admitted by passing these software checks. The 100 km and 80 km nominal
 values remain exploratory local component endpoint separations, with the
 temporal and velocity-sensitivity limitations recorded beside them.
+
+## Completed clean combined gate
+
+Committed head `9092076b12ba488e094a29f75d15efa6e73e3f52` passes the complete
+Python suite: **1,703 tests and 1,127 subtests in 2,250.30 seconds**, clean
+start/end, finished 2026-10-18 12:21:24 UTC. All60Rust tests and the required
+native CLI build preceded this successful attempt. The first fresh-checkout
+attempt was intentionally aborted after a confirmed missing-CLI prerequisite;
+its original log and receipt remain retained. No scientific assertion or
+case was removed. This result covers the component-span stage and does not
+certify the subsequent native-support additions.

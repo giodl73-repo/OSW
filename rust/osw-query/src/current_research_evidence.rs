@@ -41,6 +41,21 @@ fn registry() -> Value {
     serde_json::from_str(RAW).expect("reviewed current research registry")
 }
 
+const SUPPORT_ONLY: [&str; 2] = [
+    "research/aleutian-p14n-1993-native-product-metadata.json",
+    "research/aleutian-p14n-1993-native-vector-support.json",
+];
+
+fn is_research_source(value: &Value) -> bool {
+    STUDIES.iter().any(|(path, _)| value == *path) || SUPPORT_ONLY.iter().any(|path| value == *path)
+}
+
+fn mentions_research(raw: &str) -> bool {
+    raw.contains(PATH)
+        || STUDIES.iter().any(|(path, _)| raw.contains(path))
+        || SUPPORT_ONLY.iter().any(|path| raw.contains(path))
+}
+
 fn expected(scene: &Value, registry: &Value) -> Value {
     let path = scene["source_file"].as_str().unwrap();
     let raw = STUDIES.iter().find(|(p, _)| *p == path).unwrap().1;
@@ -69,11 +84,17 @@ pub(crate) fn validate(bundle: &crate::Bundle) -> Result<(), String> {
     let present = bundle.manifest["input_sha256"].get(PATH).is_some()
         || diagnostics.iter().any(|row| {
             row.get("research_evidence").is_some()
-                || STUDIES.iter().any(|(path, _)| row["source_file"] == *path)
+                || is_research_source(&row["source_file"])
                 || scenes
                     .iter()
                     .any(|scene| row["id"] == scene["diagnostic_id"])
         })
+        || bundle
+            .collections
+            .get("widths")
+            .into_iter()
+            .flatten()
+            .any(|r| mentions_research(&r.to_string()))
         || objects.iter().any(|o| {
             scenes
                 .iter()
@@ -111,8 +132,8 @@ pub(crate) fn validate(bundle: &crate::Bundle) -> Result<(), String> {
         }
     }
     for row in diagnostics {
-        let owned = STUDIES.iter().any(|(path, _)| row["source_file"] == *path)
-            || row.get("research_evidence").is_some();
+        let owned =
+            is_research_source(&row["source_file"]) || row.get("research_evidence").is_some();
         if owned && !scenes.iter().any(|s| s["diagnostic_id"] == row["id"]) {
             return Err("Unexpected duplicate current research evidence".into());
         }
@@ -124,7 +145,7 @@ pub(crate) fn validate(bundle: &crate::Bundle) -> Result<(), String> {
         .flatten()
         .any(|row| {
             let raw = row.to_string();
-            raw.contains(PATH) || STUDIES.iter().any(|(path, _)| raw.contains(path))
+            mentions_research(&raw)
         })
     {
         return Err("Research evidence cannot become an inventory width measurement".into());
@@ -247,6 +268,19 @@ mod tests {
         let mut bundle = fixture();
         bundle.collections.get_mut("diagnostics").unwrap().pop();
         assert!(validate(&bundle).is_err());
+    }
+
+    #[test]
+    fn native_support_widths_reject_even_after_owner_and_registry_erasure() {
+        for path in SUPPORT_ONLY {
+            let mut bundle = fixture();
+            bundle.collections.get_mut("widths").unwrap().push(json!({"id":"unsupported-native-width","source_file":path,"approximate_width_km":100}));
+            assert!(validate(&bundle).is_err(), "{path}");
+            bundle.collections.get_mut("objects").unwrap().clear();
+            bundle.collections.get_mut("diagnostics").unwrap().clear();
+            bundle.manifest = json!({});
+            assert!(validate(&bundle).is_err(), "orphan {path}");
+        }
     }
 
     #[test]

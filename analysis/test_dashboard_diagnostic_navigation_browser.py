@@ -1,6 +1,7 @@
 """Dashboard evidence lights and direct, shareable mapped record cards."""
 import json
 import os
+import tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 from test_motion_dashboard_browser import route_snapshot, settle
@@ -12,7 +13,8 @@ BASE='http://127.0.0.1:8788/almanac/dashboard.html'
 
 def main():
     data=json.loads((ROOT/'research/ocean-motion-dashboard.json').read_bytes())
-    with sync_playwright() as p:
+    fixture_root=ROOT/'.pytest_cache/dashboard-diagnostic-navigation-fixtures';fixture_root.mkdir(parents=True,exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=fixture_root) as fixture_folder,sync_playwright() as p:
         browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1280,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
@@ -68,7 +70,7 @@ def main():
         page.locator('#dashboard-grid').screenshot(path=str(ROOT/'figures/dashboard-network-coverage-review.png'))
         changed=json.loads(json.dumps(data));owner=next(r for r in changed['entries'] if r['id']=='current:indonesian-throughflow')
         owner['fingerprint']='test-network-update';owner['section_fingerprints']['measurements']='test-passage-update'
-        route_snapshot(page,changed)
+        route_snapshot(page,changed,fixture_folder)
         page.locator('#dashboard-refresh').click()
         expect(page.locator('#dashboard-refresh')).to_be_enabled(timeout=90000)
         settle(page)

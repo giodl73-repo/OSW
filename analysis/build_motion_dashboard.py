@@ -666,7 +666,14 @@ def build():
         study=next((s for s in research_evidence['scenes'] if s['current_id']==current_id),None)
         if study:
             payload['research_evidence_ids']=[study['diagnostic_id']]
-            groups['sources'].append({**study,'source_file_sha256':research_evidence['documents'][study['source_file']]})
+            research_source={**study,'source_file_sha256':research_evidence['documents'][study['source_file']]}
+            payload['research_evidence_source_fingerprint']=fingerprint(research_source)
+            groups['sources'].append(research_source)
+            if study.get('observation_kind')=='direct_shipboard_adcp_velocity':
+                observed_times=study.get('observation_times_utc',[])
+                observation_dates+=observed_times
+                payload['research_observation_times_utc']=observed_times
+                groups['time_evidence'].append({'source_file':study['observation_source_file'],'observation_kind':study['observation_kind'],'observation_times_utc':observed_times})
             capabilities['scope_notes']+=1
             evidence_query={'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':study['diagnostic_id']}],'limit':100}
             evidence_links.append({'label':'View current research evidence','url':'query.html?q='+quote(json.dumps(evidence_query,separators=(',',':')))+'#query-chart-section'})

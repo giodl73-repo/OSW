@@ -50,7 +50,7 @@ def check_selection_oracles(rows):
 
 
 
-def route_snapshot(page, data):
+def route_snapshot(page, data, fixture_folder):
     bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
     receipt=json.dumps(data,ensure_ascii=False);digest=hashlib.sha256(receipt.encode()).hexdigest()
     bundle['manifest']['dashboard_receipt'].update(source_json=receipt,source_sha256=digest)
@@ -60,10 +60,17 @@ def route_snapshot(page, data):
         row['fingerprint']=source[row['id']]['fingerprint']
         row['section_fingerprints']=source[row['id']]['section_fingerprints']
     raw=json.dumps(bundle,ensure_ascii=False).encode()
+    folder=Path(fixture_folder).resolve()
+    assert folder.is_relative_to(ROOT.resolve())
+    target=folder/f'snapshot-{len(list(folder.glob("snapshot-*.json")))}.json'
+    with target.open('xb') as stream:stream.write(raw)
+    fixture_url='http://127.0.0.1:8788/'+target.relative_to(ROOT).as_posix()
     manifest=json.loads((ROOT/'almanac/query-engine.manifest.json').read_bytes())
     manifest['sha256']['almanac/query-data.json']=hashlib.sha256(raw).hexdigest()
     page.route('**/query-engine.manifest.json',lambda route:route.fulfill(json=manifest))
-    page.route('**/query-data.json',lambda route:route.fulfill(body=raw,content_type='application/json'))
+    # Transfer the complete packet over HTTP. Base64 CDP fulfillment exceeds
+    # Chromium's100MiB control-message cap for the real atlas packet.
+    page.route('**/query-data.json',lambda route:route.continue_(url=fixture_url))
 
 
 def main():
@@ -86,7 +93,8 @@ def main():
             path=Path(directory)/'bad.json';path.write_text(json.dumps(bad),encoding='utf-8')
             rejected=subprocess.run([str(CLI),str(path),'--dashboard'],capture_output=True,text=True)
             assert rejected.returncode==2 and not rejected.stdout and 'dashboard' in rejected.stderr.lower(),mutation
-    with sync_playwright() as p:
+    fixture_root=ROOT/'.pytest_cache/motion-dashboard-browser-fixtures';fixture_root.mkdir(parents=True,exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=fixture_root) as fixture_folder,sync_playwright() as p:
         browser = p.chromium.launch(headless=True, executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page = browser.new_page(viewport={'width':1440,'height':1000})
         errors = []
@@ -203,6 +211,9 @@ def main():
         coastal.locator('summary').click()
         assert '2024-12-15' in coastal.inner_text()
         assert 'not individually reviewed' in coastal.inner_text()
+        aleutian=page.locator('[data-id="current:aleutian"]')
+        aleutian.locator('summary').click()
+        assert '1993-07-18' in aleutian.inner_text()
         for metric in ['reference_route','reported_length','scoped_width','geometry','time_samples','source_connectivity','scope_notes','dated_diagnostics','flow_network','passage_transport']:
             page.locator('#dashboard-metric').select_option(metric)
             settle(page)
@@ -235,7 +246,7 @@ def main():
         changed=json.loads(json.dumps(data))
         changed['entries'][0]['fingerprint']='test-new-record-content'
         changed['entries'][0]['section_fingerprints']['sources']='test-source-change'
-        route_snapshot(page,changed)
+        route_snapshot(page,changed,fixture_folder)
         page.locator('#dashboard-refresh').click()
         page.wait_for_function("document.querySelectorAll('.motion-card.updated').length === 1")
         assert '1 changed since marked seen' in page.locator('#dashboard-status').inner_text()

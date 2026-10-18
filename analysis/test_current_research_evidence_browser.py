@@ -27,6 +27,15 @@ def native(query, packet=None, index=None):
 def corrupt(packet, kind):
     bad = copy.deepcopy(packet)
     rows = [r for r in bad['collections']['diagnostics'] if 'research_evidence' in r]
+    if kind.startswith('native_'):
+        paths={'native_original':'research/source-data/jasadcp-p14n-1993-native/00016_short.nc',
+               'native_protocol':'plans/aleutian-p14n-native-field-audit-protocol-v1.md',
+               'native_report':'research/aleutian-p14n-1993-native-vector-support.json',
+               'native_figure':'figures/aleutian-p14n-1993-native-vector-support.svg'}
+        if kind in paths:bad['manifest']['input_sha256'][paths[kind]]='0'*64
+        elif kind=='native_width':bad['collections']['widths'].append({'id':'unsupported-native-width','current_id':'aleutian','source_file':'research/aleutian-p14n-1993-native-vector-support.json','approximate_width_km':100})
+        else:raise AssertionError(kind)
+        return bad
     if kind.startswith('span_'):
         row=next(r for r in rows if r['current_id']=='aleutian')
         doc=copy.deepcopy(row['document'])
@@ -168,6 +177,7 @@ def main():
     cases += ['observed_'+case for case in ['value','mask','units','layer','annual','association','reorder','original','missing','duplicate']]
     cases += ['hydro_'+case for case in ['property','quality','depth','bottom','pair_limit','pair_offsets','interpolation','correction','units','original']]
     cases += ['span_'+case for case in ['value','bracket','sensitivity','metric','admission','envelope','protocol']]
+    cases += ['native_'+case for case in ['original','protocol','report','figure','width']]
     with TemporaryDirectory(dir=output) as temporary, sync_playwright() as playwright:
         folder = Path(temporary)
         index = folder / 'index.json'
@@ -225,6 +235,12 @@ def main():
                 expect(details.locator('img')).to_have_js_property('complete',True)
                 assert details.locator('img').evaluate('(img)=>img.naturalWidth>0')
                 expect(panel).to_contain_text('North ≈100 km · south ≈80 km')
+                details.get_by_label('Analysis view').select_option('3')
+                expect(details.locator('img')).to_have_attribute('src','../figures/aleutian-p14n-1993-native-vector-support.svg')
+                expect(details.locator('img')).to_have_js_property('complete',True)
+                assert details.locator('img').evaluate('(img)=>img.naturalWidth>0')
+                expect(panel).to_contain_text('1,585 profiles · 1,582 layer means')
+                expect(panel).to_contain_text('568 profiles · 19 runs at ≥2 m/s')
                 link=panel.get_by_role('link',name='Inspect all CTD casts and quality codes')
             else:
                 expect(panel).to_contain_text('7,992')
