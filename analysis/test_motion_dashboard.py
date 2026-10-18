@@ -40,12 +40,17 @@ class DashboardEvidenceTests(unittest.TestCase):
         def altered(candidate):return json.dumps(data).encode() if candidate==path else original(candidate)
         with patch.object(Path,'read_bytes',altered),self.assertRaises(ValueError):build()
 
-    def test_kuroshio_counts_four_profiles_without_double_counting_prose(self):
+    def test_kuroshio_profiles_and_filtered_readings_keep_separate_counts(self):
         row=next(r for r in build()['entries'] if r['id']=='current:kuroshio')
         self.assertEqual(row['capabilities']['scoped_width'],3)
-        self.assertEqual(row['capabilities']['time_samples'],4)
+        self.assertEqual(row['capabilities']['time_samples'],196)
         self.assertEqual(row['series'][0]['evidence_role'],'seasonal_width_profile_plot_extraction')
         self.assertEqual(row['series'][0]['frames'],4)
+        self.assertEqual(len(row['series']),2)
+        filtered=row['series'][1]
+        self.assertEqual(filtered['frames'],192)
+        self.assertEqual(filtered['evidence_role'],'filtered_curve_plot_samples_not_raw_monthly_observations')
+        self.assertFalse(filtered['sample_time_is_observation_date'])
         self.assertIsNone(row['latest_observation_date'])
 
     def test_leeuwin_width_months_count_as_records_without_single_year_dates(self):

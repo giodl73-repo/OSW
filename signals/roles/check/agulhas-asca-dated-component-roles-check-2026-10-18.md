@@ -59,3 +59,21 @@ and reduced motion. Eight native/actual-WASM corruption cases reject. No page
 errors or automatic original downloads. Additional source pagination passes
 500+431rows with native/WASM parity, preserving every source index exactly once
 and330resolved/601unresolved outcomes. Mobile source table visually reviewed.
+
+Release follow-up: the live ad97d6a full run exposed an older Kuroshio count
+assertion (four instead of196). It was independently reproduced, then repaired
+to require the four profiles and192filtered readings separately while preserving
+three scoped widths and unknown observation date. Focused result: one pass in
+27.33seconds; existing NumPy warning retained. The original running/failing
+full-run receipt remains separate from this focused result.
+
+KEEL/LOGBOOK coverage amendment: both actual browser checks are versioned and
+registered in the standard shipped-WASM runner, respecting its shared browser
+override. Two runner environment tests/two subtests pass. The original local
+browser gates remain evidence, not substitutes for durable regression coverage.
+
+Final registered checks pass sequentially without changing their timeout or
+scientific assertions: ASCA all931outcomes/eight corruptions and Kuroshio
+all192readings/three sources/eight corruptions. The original concurrent
+failures remain in separate logs. Test-only follow-up changes no production
+almanac, research, figure or Rust bytes relative to c596ef8.

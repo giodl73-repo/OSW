@@ -91,3 +91,29 @@ The last terminal complete pass remains c749116:1741tests/1159subtests in
 2687.78seconds. A clean complete successor at ad97d6a is running and covers
 the Kuroshio batch. It does not cover this new Agulhas experiment. Preserve its
 actual terminal result and run a complete latest successor before main release.
+
+## Full-run finding and permanent browser coverage
+
+The still-running ad97d6a suite reports the older Kuroshio dashboard assertion:
+it expects four time entries and omits the192filtered readings added in that
+commit. Independently reproduced:196versus4, one failed test in33.87seconds.
+The corrected test separately requires four seasonal profiles and192filtered
+curve readings,196total time entries, three scoped widths and a null observation
+date. It passes in27.33seconds with the existing NumPy binary-size warning.
+No production values, flags, packet or rendering change in this repair.
+
+Both derived-evidence browser checks are now repository scripts registered in
+`analysis/run_rust_query_browser_checks.py`, using its shared
+`OSW_TEST_BROWSER` override. The ASCA entry also checks every source outcome
+through500+431row pagination. Two runner environment tests and two subtests
+pass. Initial concurrent direct browser invocations timed out before card
+selection; an independent diagnostic confirmed both compiled scenes and the
+rendered card. Sequential verification matching the normal runner is retained
+separately, without erasing those failed attempts or restarting the full suite.
+
+Both registered entrypoints now pass sequentially, matching the standard
+runner's execution model. ASCA retains every931source outcome and eight
+native/actual-WASM rejections; Kuroshio retains all192readings, three source
+documents and eight rejection cases. No timeout or scientific assertion was
+relaxed. These test/coverage repairs leave all almanac, research, figure and
+Rust production bytes identical to the c596ef8data checkpoint.
