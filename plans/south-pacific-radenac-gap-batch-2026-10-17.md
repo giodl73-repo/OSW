@@ -75,9 +75,11 @@ than mislabeling fresh response bytes as the historical original checksum.
  keyboard disclosure, conflict display, inspector return, reset and mobile,
  without direct source requests.
 
-At this checkpoint the complete offline suite is still running from clean62f2a2b.
-Its terminal result is not claimed yet. Later transport-only changes have
-their own focused checks; they are not attributed to this earlier invocation.
+The complete offline scientific suite passes **1512 tests /1061 subtests** in
+2210.98 seconds (36m50s), starting from clean62f2a2b. Later transport-only
+changes have their own31-test /7-subtest focused gate and actual HTTPS proof;
+they are not attributed to this earlier full-suite invocation. All validation
+processes using the executable are terminal; it is safe to start the next batch.
 Logs are local under `.pytest_cache/south-pacific-constraint-preparation/` and
 `.pytest_cache/radenac-cover-review/`. Update this receipt when terminal.
 
@@ -105,3 +107,8 @@ Remote CI confirms both new South Pacific acquisition and Radenac edition
 verification, then finds a missing issuer-chain link at the Qiu2010 SOEST host.
 The separately tested scoped repair and unchanged source pin are documented in
 `plans/qiu-soest-chain-repair-2026-10-17.md`. No data or executable regenerated.
+
+Run39082361630 on84ae8bf subsequently confirms South Pacific, Radenac and Qiu
+acquisition, then stops at the unchanged VanAken2003 Reading University source
+with connection refused. Remote CI remains non-green for that external-source
+failure; this is separate from the passing local scientific and UI gates.

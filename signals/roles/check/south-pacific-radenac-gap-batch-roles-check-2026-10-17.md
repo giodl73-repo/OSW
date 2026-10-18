@@ -33,15 +33,16 @@ This is a review through the installed lenses, not independent human approval.
 | HARBOR1 | SVG meaning must be available without color. | P2 resolved | Explicit aria label, inequality text, caption and method note; inspected mobile rendering. |
 | HARBOR2 | Narrow screens must preserve qualification and source access. | P3 verified |320 px page reflow passes; full caption and ordinary source link visible. |
 | HARBOR3 | Reduced motion must not trigger seasonal animation. | P3 verified | Reduced-motion viewport checked; play control remains disabled. All100 current-card keyboard, mobile and inspector-return regressions pass. |
-| KEEL1 | Complete default offline gate must run from a clean commit. | P2 pending | Full pytest invocation started from clean62f2a2b. Record terminal result before merge approval. |
+| KEEL1 | Complete default offline gate must run from a clean commit. | P2 resolved | Full scientific suite passes1512 tests /1061 subtests in2210.98s from clean62f2a2b. Later transport-only changes have separate31-test /7-subtest gate and actual source-download proof. |
 | KEEL2 | Generated provenance and prior data must remain coherent. | P2 resolved |70 engine hashes verified; staged bytes equal disk; prior146 widths /33 diagnostics unchanged. Seasonal parent hash refresh isolated. |
 | KEEL3 | Changed-source UI and broad regression gates must complete. | P2 resolved | New integrated UI and nine coherent rejection cases pass. NGCC browser regression passes;39 inventory/climatology tests and538 subtests pass. Retained-climatology browser, all45 collections and all100 cards /147 widths pass. |
 | LOGBOOK1 | Scope count must not be advertised as complete measurement coverage. | P2 resolved | Receipt calls147 records scoped; source boundaries, uncertainties and seasonal coverage remain open. |
 | LOGBOOK2 | Copyrighted original scans must stay outside Git. | P2 resolved | Only receipts, factual annotations, independent graphic and verifier contract staged; original PDF ignored. |
 | LOGBOOK3 | Continue one reviewable batch without PR proliferation. | P3 verified | Existing branch /draft PR83 retained; no merge or new PR. Source commit explicit. |
 
-Roles reviewed:7. Outstanding P1 blockers:0. Outstanding P2 gates:2
-(full scientific suite and remote transport acquisition, detailed below).
+Roles reviewed:7. Outstanding P1 blockers:0. Outstanding P2 gates:1
+(complete remote transport acquisition, detailed below). All local source,
+scientific-data and changed/broad UI gates pass.
 Verdict: **APPROVED-WITH-CONDITIONS**. No merge approval yet.
 
 Top finding: the source supplies a qualified local historical band description,
@@ -70,7 +71,7 @@ on the same branch. Applicable lenses for these transport-only changes:
 | SOUNDER T3 | Institutional redirect alternatives need exact byte proof. | P2 resolved | Actual canonical South Pacific repository response is byte-identical; acquisition tuple, source pin and scientific edition unchanged. |
 | KEEL T1 | The failure must reproduce independently of a successful workstation cache. | P2 resolved | Default Git/OpenSSL roots reproduce the live missing-issuer error; supplied link fixes it while downloading the exact pinned PDF. |
 | KEEL T2 | Other hosts and corrupted source responses must remain protected. | P2 resolved |31 combined tests /7 subtests cover scoped URL/name/pin, altered chain, original response integrity and retained-file behavior. |
-| KEEL T3 | A pre-existing scientific suite cannot prove later transport changes. | P2 pending | Existing clean62f2a2b invocation is reported separately. Focused transport tests pass; remote CI must confirm its own acquisition environment. |
+| KEEL T3 | A pre-existing scientific suite cannot prove later transport changes. | P2 pending | Clean62f2a2b full suite passes and is reported separately. Focused31-test /7-subtest transport gate passes. Remote39082361630 confirms changed South Pacific/Radenac/Qiu paths, then fails at unchanged VanAken2003 Reading source with connection refused. No full remote-success or merge-readiness claim. |
 | LOGBOOK T1 | Public certificate material must exclude private keys. | P2 resolved | Only public cross-signed issuer and receipt tracked; no private keys, server leaf certificate or source PDF added. |
 | LOGBOOK T2 | The operational record must name the remote failures precisely. | P3 resolved | Run39080669703:Qiu issuer error;39081090328:South Pacific legacy-path403 before Qiu. No false remote-pass claim. |
 | LOGBOOK T3 | One reviewable PR should accumulate fixes. | P3 verified | Same draftPR83; no new PR, no merge; transport receipt accompanies changes. |
@@ -83,3 +84,8 @@ Transport amendments:
    admitting a legacy-path403 fallback, preserving source pin and receipt.
 3. Pending: record terminal remote acquisition and complete scientific gates.
    Overall review remains conditional, with no merge approval.
+
+Scientific gate amendment: terminal full-suite and all45 collection /100 current
+card outcomes are now recorded. The remaining condition is remote acquisition
+of an unchanged external paper. No source pins were relaxed and no private or
+unlicensed originals were published. Continue gap work on the same PR.

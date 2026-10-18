@@ -55,3 +55,11 @@ This exact acquisition tuple now permits that byte-identical institutional
 transport alternative. Changed receipts do not gain a fallback, and altered
 responses cannot become a retained original.31 combined TLS/acquisition/path
 tests and7 subtests pass in1.21 seconds. The original receipt stays unchanged.
+
+## Remote confirmation
+
+Run39082361630 on84ae8bf passes the South Pacific acquisition, verifies the
+unchanged Radenac article edition, and passes Qiu acquisition. It then fails
+with connection refused at the unchanged VanAken2003 Reading University URL.
+The changed transports are confirmed in the runner; complete remote CI is still
+non-green because of the next external source. Keep that distinction explicit.
