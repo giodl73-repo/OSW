@@ -110,6 +110,22 @@ That live run has reported a failure marker; its final summary is still
 pending. The independently reproduced stale-date assertion is fixed and
 targeted checks pass at the successor, but the full predecessor is not passing.
 
+### Terminal predecessor and publication receipt
+
+The 25b286e run finished at **2026-10-18 14:13:05 UTC**: **1 failed,
+1,712 passed, 1,152 subtests passed in 2,344.34 seconds**. Start/end are clean;
+the test process has exited. The sole failure is the independently reproduced
+legacy Aleutian-date assertion above. It remains a recorded failure, not a
+retroactively passing gate. The successor fixes it with stronger invariance
+checks and still requires its own complete run.
+
+Scientific/UI commit **55fc722** passes working-file and committed-blob checks
+for all **91 engine pins, 166 research pins and 332 indexed source documents**
+(527 unique blobs). Normal root HTTP serves exact final assets; the final
+native CLI returns the new Guiana route and the exact family-context source
+after index rebuilding and completed compiler-cache cleanup. This does not
+certify the pending complete successor suite or make hosted CI green.
+
 ## Reproduction
 
 ```text

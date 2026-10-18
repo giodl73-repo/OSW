@@ -97,3 +97,18 @@ supported1993ensemble-end dates; the dashboard observation date is1993-07-18.
 The root CLI remains verified after completed build-cache reclamation.
 These satisfy the focused publication checks; the native successor combined
 suite remains required and is tracked separately.
+
+## Combined-run result and successor correction
+
+The clean 25b286e native-stage run finished 2026-10-18 at14:13:05UTC:
+**1failed,1712passed,1152subtests passed in2344.34seconds**. Its sole failure
+is a legacy dashboard test expecting Aleutian's observation date to remain
+null, despite the directly observed July1993 native profiles. A separate run
+of that exact predecessor test reproduces `'1993-07-18' is not None`.
+
+Commit55fc722 fixes the test and strengthens its original contract: removing
+all typed connectivity links leaves every owner's observation dates and
+dimension capabilities unchanged. Original null junction/transport and
+noncanonical-link assertions remain. That test and the new Guiana route
+ownership test pass together in44.84seconds. This does not turn the failed
+predecessor run into a pass; a fresh combined successor run is required.

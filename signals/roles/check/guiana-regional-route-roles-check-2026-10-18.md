@@ -48,3 +48,9 @@ scope and dependency checks. The three applied amendments are the disclosed
 OCR/vertex limitations, corrected legend extent and reviewed family-context
 hash refresh. Open conditions concern stronger original-source/axis review
 and a later complete combined gate; both remain visible in the batch record.
+
+Terminal update: predecessor25b286e finished clean with1failed/1712passed/
+1152subtests in2344.34seconds. The sole stale-date failure is corrected at
+55fc722 with the stronger targeted checks above. Complete successor
+validation remains pending; all91engine/166research/332index document pins
+match working and committed bytes at that scientific/UI checkpoint.
