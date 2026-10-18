@@ -41,11 +41,12 @@ def day_job(request, previous):
     day, first, last = request
     key = day.replace('-', '') + f'_{first:02d}-{last:02d}'
     old = previous.get(key, {})
+    known_day=next((r for r in previous.values() if r['date']==day),{})
     meta_name = day.replace('-', '') + '.das'
-    meta, meta_time = retrieve(dataset(day) + '.das', CACHE / meta_name, old.get('metadata_sha256'))
+    meta, meta_time = retrieve(dataset(day) + '.das', CACHE / meta_name, known_day.get('metadata_sha256'))
     source.metadata(meta, day)
-    meta_time=old.get('metadata_retrieved_utc',meta_time)
-    meta_basis=old.get('metadata_time_basis','Individual original-response acquisition completion')
+    meta_time=known_day.get('metadata_retrieved_utc',meta_time)
+    meta_basis=known_day.get('metadata_time_basis','Individual original-response acquisition completion')
     probe=json.loads((FOLDER/'metadata-probe.json').read_bytes())
     if any(r.get('date')==day and r.get('kind')=='das' and r.get('sha256')==source.sha(meta) for r in probe['records']):
         meta_time=probe['retrieved_utc']
@@ -71,7 +72,15 @@ def day_job(request, previous):
             'missing_or_nonwet_positions':count - int(valid.sum())}
 
 
-def archive(path, members):
+def archive(path, members, known_pin=None):
+    if path.exists():
+        if known_pin and source.sha(path.read_bytes())!=known_pin:
+            raise ValueError('Changed frozen original archive: '+path.name)
+        with zipfile.ZipFile(path) as existing:
+            if sorted(existing.namelist())!=sorted(members):raise ValueError('Changed original archive membership')
+            if any(existing.read(name)!=raw for name,raw in members.items()):raise ValueError('Changed original archive member')
+        return {'file':path.relative_to(ROOT).as_posix(),'sha256':source.sha(path.read_bytes()),
+                'bytes':path.stat().st_size,'members':{name:source.sha(raw) for name,raw in sorted(members.items())}}
     temporary = path.with_suffix('.zip.part')
     with zipfile.ZipFile(temporary, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as output:
         for name, raw in sorted(members.items()):
@@ -99,6 +108,24 @@ def retained_responses(*groups):
     return result
 
 
+def hydrate_originals(*groups):
+    """Reuse published originals locally, preserving their exact frozen containers."""
+    for group in groups:
+        for entry in group.get('archives',[]):
+            path=ROOT/entry['file']
+            if source.sha(path.read_bytes())!=entry['sha256']:raise ValueError('Changed retained original archive')
+            with zipfile.ZipFile(path) as original:
+                if sorted(original.namelist())!=sorted(entry['members']):raise ValueError('Unexpected retained original members')
+                for name,pin in entry['members'].items():
+                    if Path(name).name!=name:raise ValueError('Original member must be a plain filename')
+                    raw=original.read(name)
+                    if source.sha(raw)!=pin:raise ValueError('Changed retained original member')
+                    cache=CACHE/name
+                    if cache.exists():
+                        if source.sha(cache.read_bytes())!=pin:raise ValueError('Changed cached original')
+                    else:cache.write_bytes(raw)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--all-months', action='store_true')
@@ -110,9 +137,13 @@ def main():
     old = json.loads(path.read_bytes()) if path.exists() else {}
     pilot_path=FOLDER/'acquisition-pilot.json'
     pilot=json.loads(pilot_path.read_bytes()) if args.all_months and pilot_path.exists() else {}
+    if args.all_months and (pilot.get('status')!='complete_original_acquisition_pending_section_and_filter_analysis'
+                           or pilot.get('preflight_sha256')!=source.PREFLIGHT_SHA256):
+        raise ValueError('Validate the declared January/July stage before the full-year acquisition')
     previous = retained_responses(pilot.get('responses',[]),old.get('responses',[]))
     CACHE.mkdir(parents=True, exist_ok=True)
     (ROOT / '.pytest_cache/.gitignore').write_text('*\n', encoding='utf8')
+    hydrate_originals(pilot,old)
     # Reuse the metadata-only probe without replacing its original bytes.
     for day in ['20240101','20240701']:
         original = FOLDER / (day + '.das')
@@ -124,12 +155,14 @@ def main():
               'source_project':'Norkyst_v3','source_license':'CC-BY-4.0',
               'metadata_probe_file':source.SOURCE+'/metadata-probe.json',
               'metadata_probe_sha256':source.sha((FOLDER/'metadata-probe.json').read_bytes()),
+              'generator_sha256':source.sha(Path(__file__).read_bytes()),
+              'source_validator_sha256':source.sha((ROOT/'analysis/norkyst_continuous_source.py').read_bytes()),
               'credit':'Contains original Norkyst v3 hindcast subsets from MET Norway and Institute of Marine Research; OSW selects space, time and layer. Christensen et al. (2026), doi:10.5194/gmd-19-2785-2026.',
               'responses':[], 'failures':[], 'new_width_record_admitted':False,'annual_width_range_km':None}
     def save():
         result['responses'].sort(key=lambda r:r['key'])
         result['updated_utc'] = datetime.now(timezone.utc).isoformat()
-        path.write_bytes((json.dumps(result,indent=2)+'\n').encode())
+        temporary=path.with_suffix('.json.part');temporary.write_bytes((json.dumps(result,indent=2)+'\n').encode());temporary.replace(path)
     requests = source.daily_requests(months)
     with ThreadPoolExecutor(max_workers=2) as pool:
         futures = {pool.submit(day_job, request, previous):request for request in requests}
@@ -144,6 +177,10 @@ def main():
             save()
     if result['failures']:
         raise ValueError('Incomplete acquisition; originals and partial receipt retained. Rerun the same command to retry failed requests.')
+    if (source.sha(Path(__file__).read_bytes())!=result['generator_sha256']
+            or source.sha((ROOT/'analysis/norkyst_continuous_source.py').read_bytes())!=result['source_validator_sha256']):
+        result['status']='source_code_changed_during_acquisition';save()
+        raise ValueError('Source code changed during acquisition; originals retained, completion not claimed')
     buckets = {}
     for row in result['responses']:
         bucket = row['date'][:7]
@@ -153,7 +190,9 @@ def main():
             if source.sha(raw) != row[kind + '_sha256']:raise ValueError('Changed original before archiving')
             members[name] = raw
         row['archive_file'] = source.SOURCE + f'/originals-{phase}-{bucket}.zip'
-    result['archives'] = [archive(FOLDER / f'originals-{phase}-{bucket}.zip',members) for bucket,members in sorted(buckets.items())]
+    old_pins={a['file']:a['sha256'] for a in old.get('archives',[])}
+    result['archives'] = [archive(FOLDER / f'originals-{phase}-{bucket}.zip',members,
+                                old_pins.get(source.SOURCE+f'/originals-{phase}-{bucket}.zip')) for bucket,members in sorted(buckets.items())]
     result['acquired_hours'] = sum(r['hours'] for r in result['responses'])
     result['status'] = 'complete_original_acquisition_pending_section_and_filter_analysis'
     result['generator_sha256'] = source.sha(Path(__file__).read_bytes())

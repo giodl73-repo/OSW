@@ -46,3 +46,9 @@ CURRENT/BEACON agree that the whole-current and annual-width dimensions remain u
 1. Retained complete month/halo support, source/noon continuity comparisons and the explicit filter's null propagation.
 2. Qualified metadata timing and prior exposure; original bytes and older data remain intact.
 3. Added common comparison axes, SVG description/numeric alternatives, non-mutating reconstruction tests and explicit remaining acquisition/UI work.
+
+## Acquisition continuation review
+
+The subsequent collector change preserves the earlier producer version in f3572c1. SOUNDER/KEEL checked known daily metadata across differing hourly cuts, exact ZIP-container preservation and local cache hydration. KEEL checked atomic progress and startup code bindings. LOGBOOK checked that the completed 8130086 gate is not claimed for this research extension. CURRENT's physical-admission limits, CHART's unchanged figure semantics, BEACON's incomplete-year language and HARBOR's later UI conditions continue to apply.
+
+Three further amendments are implemented: local reuse of byte-pinned original archives; separate daily metadata and hourly-cut field identities; atomic journals and detection of code changes during acquisition. Four added collector tests join the sixteen source/filter/reconstruction tests: **20 tests and 20 subtests passed in 11.85 seconds**. Annual data, year visualization and shared UI integration remain incomplete; the approval scope is unchanged.
