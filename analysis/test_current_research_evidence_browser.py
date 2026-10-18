@@ -27,6 +27,21 @@ def native(query, packet=None, index=None):
 def corrupt(packet, kind):
     bad = copy.deepcopy(packet)
     rows = [r for r in bad['collections']['diagnostics'] if 'research_evidence' in r]
+    if kind.startswith('span_'):
+        row=next(r for r in rows if r['current_id']=='aleutian')
+        doc=copy.deepcopy(row['document'])
+        if kind=='span_value':doc['branches'][0]['boundary_choice_scenarios'][1]['endpoint_separation_km']=1
+        elif kind=='span_bracket':doc['branches'][0]['boundary_choice_scenarios'][1]['before_peak']['outside']['source_time_index']=1
+        elif kind=='span_sensitivity':doc['branches'][0]['velocity_sensitivity_scenarios'].pop()
+        elif kind=='span_metric':doc['metric']='physical flow-normal current width'
+        elif kind=='span_admission':doc['new_width_record_admitted']=True
+        elif kind=='span_envelope':doc['branches'][0]['complete_boundary_choice_envelope_km']=[1,2]
+        elif kind=='span_protocol':bad['manifest']['input_sha256'][doc['protocol_file']]='0'*64;return bad
+        else:raise AssertionError(kind)
+        raw=json.dumps(doc);pin=hashlib.sha256(raw.encode()).hexdigest()
+        row.update(document=doc,source_json=raw,source_file_sha256=pin)
+        bad['manifest']['input_sha256'][row['source_file']]=pin
+        return bad
     if kind.startswith('observed_'):
         row=next(r for r in rows if r['current_id']=='aleutian')
         if kind=='observed_missing':bad['collections']['diagnostics'].remove(row)
@@ -34,7 +49,7 @@ def corrupt(packet, kind):
             extra=copy.deepcopy(row);extra['id']+=':copy';bad['collections']['diagnostics'].append(extra)
         elif kind=='observed_original':bad['manifest']['input_sha256']['research/source-data/jasadcp-p14n-1993/hourly-vector-original.nc']='0'*64
         else:
-            doc=copy.deepcopy(row['document']);velocity=doc.get('velocity_section',doc)
+            doc=copy.deepcopy(row['document']);hydro=doc.get('hydrography_context',doc);velocity=hydro.get('velocity_section',hydro)
             if kind=='observed_value':velocity['profiles'][0]['profile'][0]['eastward_m_s']=3
             elif kind=='observed_mask':velocity['profiles'][0]['profile'][0]['joint_valid']=False
             elif kind=='observed_units':velocity['provider_units']='centimetres per second'
@@ -51,16 +66,16 @@ def corrupt(packet, kind):
         row=next(r for r in rows if r['current_id']=='aleutian')
         if kind=='hydro_original':bad['manifest']['input_sha256']['research/source-data/cchdo-p14n-1993/ctd-original.nc']='0'*64
         else:
-            doc=copy.deepcopy(row['document'])
-            if kind=='hydro_property':doc['casts'][0]['cells'][0]['practical_salinity_pss78']=0
-            elif kind=='hydro_quality':doc['casts'][0]['cells'][0]['salinity_qc']=7
-            elif kind=='hydro_depth':doc['casts'][0]['cells'][10]['depth_m']=doc['casts'][0]['cells'][10]['pressure_dbar']
-            elif kind=='hydro_bottom':doc['casts'][0]['nominal_bottom_time_utc']='1993-07-13T00:00:00Z'
-            elif kind=='hydro_pair_limit':doc['matching_rules']['maximum_absolute_bottom_time_offset_hours']=9
-            elif kind=='hydro_pair_offsets':doc['candidate_pairs'][0]['position_separation_km']=0
-            elif kind=='hydro_interpolation':doc['hydrography_interpolated_to_adcp']=True
-            elif kind=='hydro_correction':doc['historical_temperature_correction_application_verified']=True
-            elif kind=='hydro_units':doc['temperature_kind']='potential_temperature'
+            doc=copy.deepcopy(row['document']);hydro=doc.get('hydrography_context',doc)
+            if kind=='hydro_property':hydro['casts'][0]['cells'][0]['practical_salinity_pss78']=0
+            elif kind=='hydro_quality':hydro['casts'][0]['cells'][0]['salinity_qc']=7
+            elif kind=='hydro_depth':hydro['casts'][0]['cells'][10]['depth_m']=hydro['casts'][0]['cells'][10]['pressure_dbar']
+            elif kind=='hydro_bottom':hydro['casts'][0]['nominal_bottom_time_utc']='1993-07-13T00:00:00Z'
+            elif kind=='hydro_pair_limit':hydro['matching_rules']['maximum_absolute_bottom_time_offset_hours']=9
+            elif kind=='hydro_pair_offsets':hydro['candidate_pairs'][0]['position_separation_km']=0
+            elif kind=='hydro_interpolation':hydro['hydrography_interpolated_to_adcp']=True
+            elif kind=='hydro_correction':hydro['historical_temperature_correction_application_verified']=True
+            elif kind=='hydro_units':hydro['temperature_kind']='potential_temperature'
             else:raise AssertionError(kind)
             raw=json.dumps(doc);pin=hashlib.sha256(raw.encode()).hexdigest()
             row.update(document=doc,source_json=raw,source_file_sha256=pin)
@@ -152,6 +167,7 @@ def main():
              'whole_width', 'annual', 'blinding', 'identity', 'scene_width', 'geometry', 'figure', 'primary', 'year_hours', 'year_figure', 'year_width','necc_flow_normal','necc_independence','necc_whole_width']
     cases += ['observed_'+case for case in ['value','mask','units','layer','annual','association','reorder','original','missing','duplicate']]
     cases += ['hydro_'+case for case in ['property','quality','depth','bottom','pair_limit','pair_offsets','interpolation','correction','units','original']]
+    cases += ['span_'+case for case in ['value','bracket','sensitivity','metric','admission','envelope','protocol']]
     with TemporaryDirectory(dir=output) as temporary, sync_playwright() as playwright:
         folder = Path(temporary)
         index = folder / 'index.json'
@@ -204,6 +220,11 @@ def main():
                 expect(details.locator('img')).to_have_attribute('src','../figures/aleutian-p14n-1993-hydrography-correspondence.svg')
                 expect(details.locator('img')).to_have_js_property('complete',True)
                 assert details.locator('img').evaluate('(img)=>img.naturalWidth>0')
+                details.get_by_label('Analysis view').select_option('2')
+                expect(details.locator('img')).to_have_attribute('src','../figures/aleutian-p14n-1993-component-spans.svg')
+                expect(details.locator('img')).to_have_js_property('complete',True)
+                assert details.locator('img').evaluate('(img)=>img.naturalWidth>0')
+                expect(panel).to_contain_text('North ≈100 km · south ≈80 km')
                 link=panel.get_by_role('link',name='Inspect all CTD casts and quality codes')
             else:
                 expect(panel).to_contain_text('7,992')

@@ -71,7 +71,8 @@ def main():
                   'research/source-data/norkyst-ingoy-months-2024/section-diagnostic-year.json',
                   'research/pacific-necc-paired-vector-direction-evidence.json',
                   'research/aleutian-p14n-1993-observed-vector-section.json',
-                  'research/aleutian-p14n-1993-hydrography-correspondence.json'])
+                  'research/aleutian-p14n-1993-hydrography-correspondence.json',
+                  'research/aleutian-p14n-1993-component-spans.json'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',

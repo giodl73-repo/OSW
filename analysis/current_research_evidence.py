@@ -46,13 +46,17 @@ HYDRO='research/aleutian-p14n-1993-hydrography-correspondence.json'
 HYDRO_BASE='research/source-data/cchdo-p14n-1993/'
 HYDRO_INPUTS={'research/aleutian-p14n-1993-hydrography-correspondence.json': '6342f35f1a9f9affe71244eabd8e1dfe0bb7f46046bccf30eb564274cf202c04', 'research/source-data/cchdo-p14n-1993/acquisition.json': '6d9d9aad7a5e5fbe222bbdd00ca00b5d415aa0e75ed8a7def8aa19020e8d1b38', 'research/source-data/cchdo-p14n-1993/figure.json': 'eebdcea754f4b55098ce02022e183edb8db111e2f01834fd34282364e1e3cc78'}
 FROZEN_INPUTS.update(HYDRO_INPUTS)
+SPANS='research/aleutian-p14n-1993-component-spans.json'
+SPAN_FIGURE='research/aleutian-p14n-1993-component-spans-figure.json'
+SPAN_INPUTS={'research/aleutian-p14n-1993-component-spans.json': '9355c3dbc5ee86b6e50da63305e6498fbb8e3224bc67e08c097a5767efe10ebe', 'research/aleutian-p14n-1993-component-spans-figure.json': '240bfe1705d78af82d658bc279b10856a3a80cbe6055ff3c84e46849d321e895'}
+FROZEN_INPUTS.update(SPAN_INPUTS)
 
 
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
 
 def build():
-    if len(FROZEN_INPUTS)!=36:raise ValueError('Missing reviewed research source registry')
+    if len(FROZEN_INPUTS)!=38:raise ValueError('Missing reviewed research source registry')
     documents={}
     for path,pin in FROZEN_INPUTS.items():
         if digest(path)!=pin:raise ValueError('Changed reviewed current research source '+path)
@@ -110,6 +114,14 @@ def build():
     dependencies[hydro['generator_file']]=hydro['generator_sha256']
     figure=documents[HYDRO_BASE+'figure.json']
     if figure['source_file']!=HYDRO or figure['source_sha256']!=digest(HYDRO):raise ValueError('Changed hydrography figure source')
+    dependencies[figure['generator_file']]=figure['generator_sha256']
+    for asset in figure['figures'].values():dependencies[asset['file']]=asset['sha256']
+    spans=documents[SPANS]
+    from build_p14n_component_spans import verify as verify_spans
+    if spans!=verify_spans() or spans['hydrography_context']!=hydro:raise ValueError('Changed measured component spans or original context')
+    dependencies[spans['generator_file']]=spans['generator_sha256']
+    figure=documents[SPAN_FIGURE]
+    if figure['source_file']!=SPANS or figure['source_sha256']!=digest(SPANS):raise ValueError('Changed component-span figure source')
     dependencies[figure['generator_file']]=figure['generator_sha256']
     for asset in figure['figures'].values():dependencies[asset['file']]=asset['sha256']
     for source,pin in dependencies.items():
@@ -238,12 +250,14 @@ def build():
         'current_id':'aleutian','label':'Aleutian / Subarctic Current',
         'diagnostic_id':'diagnostic:current-research:aleutian',
         'title':'July 1993 observed section: paired current velocities',
-        'finding':'The archived P14N crossing retains 132 hourly shipboard profiles and 4,030 jointly valid eastward/northward vectors at 31 depth levels. These direct measurements improve regional support; matching water-mass evidence and physical current boundaries remain unresolved.',
+        'finding':'The July 1993 observations resolve local eastward-component spans of about 100 km in the northern branch window and 80 km in the southern window. Threshold-choice envelopes are 90–110 km and 60–90 km. Temporal crossings, velocity sensitivity and nearby eddy flow prevent treating these as verified physical current widths.',
         'facts':[{'label':'Observed sampling','value':'132 profiles · 13–18 July 1993'},
             {'label':'Joint vector support','value':'4,030 / 4,092 positions'},
             {'label':'Primary depth layer','value':'100–300 m'},
             {'label':'Supported layer means','value':'131 / 132 profiles'},
             {'label':'Companion hydrography','value':'17 casts · 84 candidate profile pairs'},
+            {'label':'Local 50% component spans','value':'North ≈100 km · south ≈80 km'},
+            {'label':'Complete declared scenarios','value':'14 / 14 resolved'},
             {'label':'Physical current width','value':'Unknown'}],
         'notes':['Hourly archive means at 10 m depth levels are reduced products, not the native five-minute ensembles or four-metre acquisition bins.',
             'Layer means use midpoint cell thickness clipped to 100–300 m, joint u/v validity and at least 160 m valid support. Missing velocities remain missing; no vertical interpolation or component-to-speed substitution.',
@@ -251,12 +265,15 @@ def build():
             'The paper places Subarctic branches near 42 N and 45 N. Fixed 41–43 N and 44–46 N windows are search context, not physical edges. The westward Alaskan Stream and Bering-side Aleutian North Slope Current are distinct.',
             'Provider metadata describe GPS selective availability, heading correction and CTD wire interference editing. Per-cell native editing history is not included in this reduced archive.',
             'One July 1993 transect is not a seasonal climatology or annual width range. No current-edge geometry, full width, uncertainty interval or seasonal playback is admitted. The separate 2013 OSCAR component diagnostic is retained.'],
-        'next_evidence':'Resolve the bottom-time offsets, quality and historical processing caveats, distinguish named branches from nearby jets/eddies, and recover transverse boundary brackets before admitting a current width.',
+        'next_evidence':'Resolve temporal versus spatial crossings near CTD occupations using underway section support, review branch/eddy attribution and velocity uncertainty, and establish transverse physical boundaries before admitting a current width.',
         'figure_file':'figures/aleutian-p14n-1993-observed-vectors.svg',
         'figure_label':'Observed velocity section',
-        'additional_figures':[{'file':'figures/aleutian-p14n-1993-hydrography-correspondence.svg','label':'CTD properties and pairing offsets','alt':'Measured in-situ ITS-90 temperature and PSS-78 salinity at 17 casts; QC2 cells and other quality codes distinguished; original velocity profiles and 84 candidate timing/distance offsets. No interpolated physical current edges.'}],
+        'additional_figures':[{'file':'figures/aleutian-p14n-1993-hydrography-correspondence.svg','label':'CTD properties and pairing offsets','alt':'Measured in-situ ITS-90 temperature and PSS-78 salinity at 17 casts; QC2 cells and other quality codes distinguished; original velocity profiles and 84 candidate timing/distance offsets. No interpolated physical current edges.'},
+            {'file':'figures/aleutian-p14n-1993-component-spans.svg','label':'Component spans and sensitivity','alt':'Both branch windows show actual vector means, half-peak crossings and native brackets; fourteen finite threshold and velocity scenarios remain separate. North about 100 km and south about 80 km are local component spans, not physical widths or annual ranges.'}],
         'figure_alt':'Unconnected P14N sampling locations; observed eastward and northward velocity by latitude and depth; 100–300 m layer means with a gap break. Missing values are marked and no physical current boundaries are drawn.',
-        'source_file':HYDRO,'source_pointer':'','source_links':[
+        'source_file':SPANS,'source_pointer':'','source_links':[
+            link('Inspect component spans and all crossing brackets',SPANS,'/branches'),
+            link('Inspect component-span figure provenance',SPAN_FIGURE),
             link('Inspect the joined hydrography and velocity record',HYDRO),
             link('Inspect all CTD casts and quality codes',HYDRO,'/casts'),
             link('Inspect candidate timing and position offsets',HYDRO,'/candidate_pairs'),
@@ -267,11 +284,14 @@ def build():
             link('Inspect original archive acquisition',ALEUTIAN_BASE+'acquisition.json'),
             link('Inspect figure provenance',ALEUTIAN_BASE+'figure.json')],
         'original_url':'https://uhslc.soest.hawaii.edu/sadcp/DATABASE/00016.html',
-        'table':{'caption':'Fixed paper-based search windows; neither window is a measured boundary pair.',
-            'headers':['Branch context','Search latitude','Profiles / layer means','Physical width'],
-            'rows':[[row['branch'].title(),'–'.join(map(str,row['latitude_search_window_degrees_north']))+' N',str(row['samples'])+' / '+str(row['joint_layer_means']),'Unknown'] for row in observed['branches']]}
+        'table':{'caption':'Hourly-track eastward-component spans in fixed search windows. Sensitivity is boundary choice, not a confidence interval or annual range.',
+            'headers':['Branch context','Search latitude','50% component span','40/50/60% envelope','Physical width'],
+            'rows':[[row['branch'].title(),'–'.join(map(str,row['latitude_search_window_degrees_north']))+' N','≈'+str(row['boundary_choice_scenarios'][1]['display_endpoint_separation_km'])+' km','–'.join(map(str,row['complete_boundary_choice_envelope_km']))+' km','Unknown'] for row in spans['branches']]}
     })
     scenes[-1]['notes'].extend([
+        'All 14 declared component scenarios resolve within the original fixed windows. Nominal half-peak endpoint separations are about 100 km north and 80 km south; 40/50/60% envelopes are 90–110 km and 60–90 km, not error bounds or annual ranges.',
+        'The northern first crossing bracket spans only 0.34 km in one hour near a CTD occupation. Nominal bracketing observations span about 13 hours north and 14 hours south. Temporal change can masquerade as a spatial edge.',
+        'Separate ±0.02 and ±0.06 m/s threshold-comparator scenarios yield roughly 43–152 km north and 56–90 km south. They explore GPS-related hourly velocity sensitivity; they are not a total error budget or a confidence interval. No rotation to a flow-normal width is applied.',
         'Companion CCHDO hydrography retains 17 casts and all 84 qualifying cast-to-hourly-profile pairs within three hours of nominal cast-bottom time and 15 km. No nearest-only selection or interpolation is applied. Forty-eight hourly velocity profiles have no qualifying pair.',
         'All 17 nominal timestamps agree with unique BO (bottom) events in the original station log. This does not establish simultaneous sampling at 100–300 m. Cast beginning/end events and actual offsets remain inspectable.',
         'Of 3,009 upper-ocean property cells, 2,525 meet joint WOCE QC2. Raw edited/despiked code7 and questionable code3 values remain available; other codes are not silently relabeled missing or acceptable.',

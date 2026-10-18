@@ -4,7 +4,11 @@ use sha2::{Digest, Sha256};
 
 const PATH: &str = "research/current-research-evidence-registry.json";
 const RAW: &str = include_str!("../../../research/current-research-evidence-registry.json");
-const STUDIES: [(&str, &str); 6] = [
+const STUDIES: [(&str, &str); 7] = [
+    (
+        "research/aleutian-p14n-1993-component-spans.json",
+        include_str!("../../../research/aleutian-p14n-1993-component-spans.json"),
+    ),
     (
         "research/aleutian-p14n-1993-hydrography-correspondence.json",
         include_str!("../../../research/aleutian-p14n-1993-hydrography-correspondence.json"),
@@ -199,7 +203,7 @@ mod tests {
             .iter()
             .position(|r| r["current_id"] == "aleutian")
             .unwrap();
-        let doc = &rows[index]["document"]["velocity_section"];
+        let doc = &rows[index]["document"]["hydrography_context"]["velocity_section"];
         assert_eq!(doc["retained_time_count"], 132);
         assert_eq!(doc["joint_valid_vector_positions"], 4030);
         assert_eq!(doc["new_width_record_admitted"], false);
@@ -212,15 +216,15 @@ mod tests {
             let row = &mut bad.collections.get_mut("diagnostics").unwrap()[index];
             match mutation {
                 "velocity" => {
-                    row["document"]["velocity_section"]["profiles"][0]["profile"][0]["eastward_m_s"] =
-                        json!(3)
+                    row["document"]["hydrography_context"]["velocity_section"]["profiles"][0]["profile"]
+                        [0]["eastward_m_s"] = json!(3)
                 }
                 "mask" => {
-                    row["document"]["velocity_section"]["profiles"][0]["profile"][0]["joint_valid"] =
-                        json!(false)
+                    row["document"]["hydrography_context"]["velocity_section"]["profiles"][0]["profile"]
+                        [0]["joint_valid"] = json!(false)
                 }
                 "units" => {
-                    row["document"]["velocity_section"]["provider_units"] =
+                    row["document"]["hydrography_context"]["velocity_section"]["provider_units"] =
                         json!("centimetres per second")
                 }
                 "annual" => row["document"]["annual_width_range_km"] = json!([1, 2]),
