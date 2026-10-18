@@ -54,14 +54,18 @@ def coherent_packet(packet,key,value):
 def check_native_guard(directory):
     packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());target=directory/'jutland-satellite-tampered.json'
     old=next(r for r in packet['collections']['widths'] if r['id']=='jutland-skov-2019-coastal-water-mass-breadth')
-    mutations=[coherent_packet(packet,k,v) for k,v in [('width_range_km',[10,40]),('fixed_layer_bounds_m',[0,30]),('calendar_months',[7,8]),('original_regional_context',old['original_regional_context'])]]
-    alias=coherent_packet(packet,'original_regional_context',{});receipt=alias['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json'])
-    for rows in [doc['measurements'],alias['collections']['widths']]:next(r for r in rows if r['id']==records()[0]['id'])['current_id']='portugal'
-    receipt['source_json']=json.dumps(doc);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest();alias['manifest']['input_sha256'][receipt['source_file']]=receipt['source_sha256'];mutations.append(alias)
-    for bad in mutations:
+    mutations=[lambda k=k,v=v:coherent_packet(packet,k,v) for k,v in [('width_range_km',[10,40]),('fixed_layer_bounds_m',[0,30]),('calendar_months',[7,8]),('original_regional_context',old['original_regional_context'])]]
+    def alias_mutation():
+        alias=coherent_packet(packet,'original_regional_context',{});receipt=alias['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json'])
+        for rows in [doc['measurements'],alias['collections']['widths']]:next(r for r in rows if r['id']==records()[0]['id'])['current_id']='portugal'
+        receipt['source_json']=json.dumps(doc);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest();alias['manifest']['input_sha256'][receipt['source_file']]=receipt['source_sha256'];return alias
+    mutations.append(alias_mutation)
+    for mutate in mutations:
+        bad=mutate()
         target.write_text(json.dumps(bad),encoding='utf8')
         result=subprocess.run([str(CLI),str(target),'--seasons'],capture_output=True,text=True,encoding='utf8')
         assert result.returncode==2 and 'Original regional' in result.stderr,result.stderr
+        del bad
     return target
 
 def test_coherent_native_scope_rejection(tmp_path):check_native_guard(tmp_path)

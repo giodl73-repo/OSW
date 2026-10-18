@@ -54,12 +54,14 @@ def coherent_packet(packet,key,value):
 
 def check_native_guard(directory):
     packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());target=directory/'western-adriatic-tampered.json'
-    mutations=[coherent_packet(packet,k,v) for k,v in [('approximate_width_km',20),('width_range_km',[40,50]),('fixed_layer_bounds_m',[0,1]),('calendar_months',[1,2,3]),('original_regional_context',{})]]
-    mutations.append(erased_alias_packet(packet,'western-adriatic'))
-    for bad in mutations:
+    mutations=[lambda k=k,v=v:coherent_packet(packet,k,v) for k,v in [('approximate_width_km',20),('width_range_km',[40,50]),('fixed_layer_bounds_m',[0,1]),('calendar_months',[1,2,3]),('original_regional_context',{})]]
+    mutations.append(lambda:erased_alias_packet(packet,'western-adriatic'))
+    for mutate in mutations:
+        bad=mutate()
         target.write_text(json.dumps(bad),encoding='utf8')
         result=subprocess.run([str(CLI),str(target),'--seasons'],capture_output=True,text=True,encoding='utf8')
         assert result.returncode==2 and 'Original regional width' in result.stderr,result.stderr
+        del bad
     return target
 
 def test_coherent_native_scope_rejection(tmp_path):check_native_guard(tmp_path)

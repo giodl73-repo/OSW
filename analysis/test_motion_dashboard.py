@@ -271,7 +271,8 @@ class DashboardEvidenceTests(unittest.TestCase):
         rows={row['id']:row for row in build()['entries']}
         for ident in ['norwegian','spitsbergen-atlantic']:
             row=rows['current:'+ident]
-            self.assertEqual(row['capabilities']['scope_notes'],1)
+            self.assertEqual(row['capabilities']['scope_notes'],2)
+            self.assertEqual(sum(bool(n.get('measurement_scope_assessment')) for n in row['scope_notes']),1)
             self.assertEqual(row['capabilities']['reference_route'],0)
             self.assertEqual(row['capabilities']['scoped_width'],0)
             self.assertIsNone(row['latest_observation_date'])

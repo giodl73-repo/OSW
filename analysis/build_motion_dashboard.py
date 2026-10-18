@@ -326,6 +326,12 @@ def build():
     for shape in route_shapes.values():
         inputs.update(validate_source_receipt(shape))
     connections = read('research/ocean-current-connectivity-candidates.json')['entries']
+    from build_current_measurement_scopes import verify as verify_measurement_scopes
+    scope_index=verify_measurement_scopes()
+    read('research/current-measurement-object-scope-index.json')
+    inputs.update(scope_index['input_sha256'])
+    inputs[scope_index['generator_file']]=scope_index['generator_sha256']
+    inputs.update({r['figure_file']:r['figure_sha256'] for r in scope_index['records']})
     scope_notes = read('research/ocean-current-scope-notes.json')['entries']
     scope_audits = {note['audit_file']: read(note['audit_file']) for note in scope_notes}
     for audit in scope_audits.values():
@@ -822,7 +828,7 @@ def build():
                      'object_url': 'object.html?id=' + quote(ident, safe=''),
                      'route_url': 'reference-routes.html#' + own_routes[0]['id'] if own_routes else None,
                      'season_url': 'seasons.html?current=' + current_id if current_id else None})
-        if current_id in {'persian-gulf-saline-overflow','red-sea-saline-overflow'}:
+        if current_id in {'persian-gulf-saline-overflow','red-sea-saline-overflow'} or any(n.get('measurement_scope_assessment') for n in own_notes):
             rows[-1]['scope_audits']=own_audits
         if ident in recurrence:
             rows[-1]['eddy_recurrence_ids']=[recurrence[ident]['id']]

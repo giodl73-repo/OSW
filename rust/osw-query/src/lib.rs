@@ -28,6 +28,7 @@ mod index_support;
 mod loop_diagnostics;
 mod loop_recorded;
 mod map;
+mod measurement_scope;
 mod modal_decay_widths;
 mod model_axis_spread;
 mod model_sections;
@@ -314,6 +315,7 @@ impl Store {
         mooring_velocity::validate(&bundle)?;
         current_sections::validate(&bundle)?;
         movies::validate(&bundle)?;
+        measurement_scope::validate(&bundle.collections, &bundle.manifest)?;
         let spatial = spatial::Index::build(&bundle.collections)?;
         fields.insert(
             "working_records".into(),

@@ -1,6 +1,7 @@
 """Compile the same pinned Rust engine for local CLI and browser WASM."""
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 from pathlib import Path
@@ -73,10 +74,14 @@ def main():
                   'research/aleutian-p14n-1993-observed-vector-section.json',
                   'research/aleutian-p14n-1993-hydrography-correspondence.json',
                   'research/aleutian-p14n-1993-component-spans.json'])
+    paths.extend(['rust/osw-query/src/measurement_scope.rs','research/current-measurement-object-scope-index.json'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',
         'abi_version':1,'rustc':rust,'sha256':hashes},indent=2)+'\n',encoding='utf-8')
+    cli=ROOT/'rust/osw-query/target/debug'/('osw-query-cli.exe' if os.name=='nt' else 'osw-query-cli')
+    subprocess.run([str(cli),str(ROOT/'almanac/query-data.json'),'--atlas'],cwd=ROOT,stdout=subprocess.DEVNULL,check=True)
+    print('Checked native atlas snapshot against the generated bundle')
     print('Built WASM query engine:',target.stat().st_size,'bytes; bundle:',(ROOT/'almanac/query-data.json').stat().st_size,'bytes')
 
 if __name__=='__main__':main()

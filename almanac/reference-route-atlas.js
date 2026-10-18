@@ -346,6 +346,24 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
         const heading=document.createElement('h4');heading.textContent='Source scope review';reviews.append(heading);
         for(const note of current.scope_notes) {
           paragraph(reviews,note.summary);
+          if(note.measurement_scope_assessment) {
+            const audit=current.scope_audits?.find(row=>row.current_id===note.current_id&&row.schema==='osw.current-measurement-object-scope.v1');
+            if(audit) {
+              const figure=document.createElement('figure');figure.className='measurement-object-scope';figure.style.margin='1rem 0';reviews.append(figure);
+              const image=document.createElement('img');image.src='../'+audit.figure;image.alt=audit.figure_alt;image.style.width='100%';image.style.height='auto';figure.append(image);
+              const caption=document.createElement('figcaption');caption.textContent='Measurement relationships only. Member values stay with their owners; proposals and related names are not confirmed aliases.';figure.append(caption);
+              if(audit.members.length) {
+                const list=document.createElement('ul');figure.append(list);
+                for(const member of audit.members) {
+                  const item=document.createElement('li');
+                  item.textContent=`${member.label} · ${member.record_status==='proposed'?'proposed basin member; not admitted':(member.relationship==='related_name_not_equated'?'related name; equivalence unresolved':'declared component')} · ${member.scoped_width_record_count===null?'no admitted member record':member.scoped_width_record_count+' scoped width records owned by this record'}`;
+                  list.append(item);
+                }
+              }
+              previewLink(reviews,'Inspect measurement scope data',`query.html?source-q=${encodeURIComponent(JSON.stringify({document:note.audit_file,pointer:'',limit:100}))}`);
+              previewLink(reviews,'Open relationship diagram at full size','../'+audit.figure);
+            }
+          }
           if(current.id==='current:red-sea-saline-overflow') {
             const audit=current.scope_audits?.find(row=>row.current_id==='red-sea-saline-overflow');
             if(audit?.reported_reach&&audit.whole_current_length_km===null) {

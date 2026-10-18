@@ -1,0 +1,877 @@
+{
+  "schema": "osw.current-measurement-object-scope-index.v1",
+  "status": "editorial_scope_assessments_not_measurement_admission",
+  "generator_file": "analysis/build_current_measurement_scopes.py",
+  "generator_sha256": "88d7be991b661bc9f4f21069a60da926e8ebc0a8d65f26b11d81666542d48a4e",
+  "protocol_file": "plans/current-measurement-object-scope-protocol-v1.md",
+  "input_sha256": {
+    "research/ocean-current-almanac.json": "6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e",
+    "research/ocean-current-width-inventory.json": "2679b55df7d8ae00e8f3bd190e074f7c08fb14451eee22c0bc7b711da70f6624",
+    "research/ocean-current-inventory-expansion-candidates.json": "195be96facff6876f637dac3322ef0ff659adfff3073c214c3e7610dddf4cdb9",
+    "research/equatorial-basin-family-inventory-audit.json": "dd053682b07525f818a0b5b9b6c03ecab717ff63926d2d273dfb0dae8ff4bac9",
+    "research/norwegian-naming-branch-scope-audit.json": "b191cb19d5fe5d82b786fb8bdcd3f4b1ffd7c251add3430c10b6e09d4acf2d9f",
+    "research/spitsbergen-atlantic-naming-branch-scope-audit.json": "f7a5c4a81ff9fb408097877b3cc0d2c85c8fd65618bccf3ac82bda09823158db",
+    "research/indonesian-throughflow-network-scope-audit.json": "a857f6be29353bfb10f79fb91f51466049fc3324cd769d56de44af60e1506a0a",
+    "plans/ocean-current-width-measurement-protocol-v1.md": "1d4d577d8f3b422cf3252b973280cb7073bad7e3234bc40a2808bc16bda974bb",
+    "plans/current-measurement-object-scope-protocol-v1.md": "df7611b56e14086f18c053ec0b20f95108717f80f72f0002c64f9eb5f5558842"
+  },
+  "counts": {
+    "basin_family": 8,
+    "unresolved_name": 2,
+    "continuity_hypothesis": 1,
+    "passage_network": 1,
+    "compound_current_system": 1
+  },
+  "scope_notes_sha256": "aaaf3955dfd6d49a10ee5c30ed45dbfddf316a15f0b294027eb2225b72c25992",
+  "records": [
+    {
+      "current_id": "north-equatorial",
+      "source_file": "research/current-measurement-scopes/north-equatorial.json",
+      "source_sha256": "7a2f1077955db15e9318162f10472dc7c05c302a56529d4d157867d1fed52461",
+      "document": {
+        "schema": "osw.current-measurement-object-scope.v1",
+        "current_id": "north-equatorial",
+        "name": "North Equatorial Current",
+        "status": "editorial_measurement_scope_assessment_not_physical_taxonomy_admission",
+        "scope_kind": "basin_family",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "members": [
+          {
+            "id": "atlantic-north-equatorial",
+            "label": "Atlantic North Equatorial Current",
+            "record_status": "proposed",
+            "relationship": "proposed_basin_member",
+            "scoped_width_record_count": null,
+            "width_values_inherited_by_parent": false
+          },
+          {
+            "id": "pacific-north-equatorial",
+            "label": "Pacific North Equatorial Current",
+            "record_status": "proposed",
+            "relationship": "proposed_basin_member",
+            "scoped_width_record_count": null,
+            "width_values_inherited_by_parent": false
+          }
+        ],
+        "source_registry_file": "research/current-measurement-object-scope-index.json",
+        "basis_object_sha256": "7fb86decf257d5e0efe97d55b8a7853b6d72413f75d667b9646a3bd205442dd6",
+        "generator_file": "analysis/build_current_measurement_scopes.py",
+        "generator_sha256": "88d7be991b661bc9f4f21069a60da926e8ebc0a8d65f26b11d81666542d48a4e",
+        "source_url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "source_access": "Existing cited ledger and retained scope evidence reviewed; no new field or original-page extraction claimed.",
+        "prior_scope_audit_file": null,
+        "prior_width_decision": "width_not_assessed",
+        "parent_width_km": null,
+        "annual_width_range_km": null,
+        "new_width_record_admitted": false,
+        "member_measurements_inherited": false,
+        "aliases_resolved": false,
+        "physical_taxonomy_admitted": false,
+        "physical_edge_geometry_admitted": false,
+        "observation_date_inherited": false,
+        "figure": "figures/current-measurement-scopes/north-equatorial.svg",
+        "figure_alt": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width. Relationships only; member measurements are not inherited."
+      },
+      "note": {
+        "current_id": "north-equatorial",
+        "label": "Measurement object scope: basin family",
+        "audit_file": "research/current-measurement-scopes/north-equatorial.json",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "source_url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "observed_period": null,
+        "measurement_scope_assessment": true,
+        "related_current_ids": [],
+        "related_proposed_current_ids": [
+          "atlantic-north-equatorial",
+          "pacific-north-equatorial"
+        ]
+      },
+      "figure_file": "figures/current-measurement-scopes/north-equatorial.svg",
+      "figure_sha256": "06420e147fc1783d8b58097a6079a4f7fba7c47f91c0a9370ba8d2a40188a538"
+    },
+    {
+      "current_id": "south-equatorial",
+      "source_file": "research/current-measurement-scopes/south-equatorial.json",
+      "source_sha256": "01a2f212018fd4487bfb100b5c255ab1fcf335a6356ea376e706e98dff80eb3e",
+      "document": {
+        "schema": "osw.current-measurement-object-scope.v1",
+        "current_id": "south-equatorial",
+        "name": "South Equatorial Current",
+        "status": "editorial_measurement_scope_assessment_not_physical_taxonomy_admission",
+        "scope_kind": "basin_family",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "members": [
+          {
+            "id": "atlantic-south-equatorial",
+            "label": "Atlantic South Equatorial Current",
+            "record_status": "proposed",
+            "relationship": "proposed_basin_member",
+            "scoped_width_record_count": null,
+            "width_values_inherited_by_parent": false
+          },
+          {
+            "id": "pacific-south-equatorial",
+            "label": "Pacific South Equatorial Current",
+            "record_status": "proposed",
+            "relationship": "proposed_basin_member",
+            "scoped_width_record_count": null,
+            "width_values_inherited_by_parent": false
+          },
+          {
+            "id": "indian-south-equatorial",
+            "label": "Indian South Equatorial Current",
+            "record_status": "proposed",
+            "relationship": "proposed_basin_member",
+            "scoped_width_record_count": null,
+            "width_values_inherited_by_parent": false
+          }
+        ],
+        "source_registry_file": "research/current-measurement-object-scope-index.json",
+        "basis_object_sha256": "e842d5d3305539aa22356e279d347f47afef92efc0ff0063331d7cb0e28d5711",
+        "generator_file": "analysis/build_current_measurement_scopes.py",
+        "generator_sha256": "88d7be991b661bc9f4f21069a60da926e8ebc0a8d65f26b11d81666542d48a4e",
+        "source_url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "source_access": "Existing cited ledger and retained scope evidence reviewed; no new field or original-page extraction claimed.",
+        "prior_scope_audit_file": null,
+        "prior_width_decision": "width_not_assessed",
+        "parent_width_km": null,
+        "annual_width_range_km": null,
+        "new_width_record_admitted": false,
+        "member_measurements_inherited": false,
+        "aliases_resolved": false,
+        "physical_taxonomy_admitted": false,
+        "physical_edge_geometry_admitted": false,
+        "observation_date_inherited": false,
+        "figure": "figures/current-measurement-scopes/south-equatorial.svg",
+        "figure_alt": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width. Relationships only; member measurements are not inherited."
+      },
+      "note": {
+        "current_id": "south-equatorial",
+        "label": "Measurement object scope: basin family",
+        "audit_file": "research/current-measurement-scopes/south-equatorial.json",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "source_url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "observed_period": null,
+        "measurement_scope_assessment": true,
+        "related_current_ids": [],
+        "related_proposed_current_ids": [
+          "atlantic-south-equatorial",
+          "pacific-south-equatorial",
+          "indian-south-equatorial"
+        ]
+      },
+      "figure_file": "figures/current-measurement-scopes/south-equatorial.svg",
+      "figure_sha256": "d53e3093d86aae418b0dc78ed29a6a5e5d35cb697961ef8e7352e10f91148741"
+    },
+    {
+      "current_id": "equatorial-countercurrent",
+      "source_file": "research/current-measurement-scopes/equatorial-countercurrent.json",
+      "source_sha256": "94178a24d87a5b62f7c4d9e67ee0af31605da77cabbbf5b63567b669e3e02c3c",
+      "document": {
+        "schema": "osw.current-measurement-object-scope.v1",
+        "current_id": "equatorial-countercurrent",
+        "name": "Equatorial Countercurrent",
+        "status": "editorial_measurement_scope_assessment_not_physical_taxonomy_admission",
+        "scope_kind": "basin_family",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "members": [
+          {
+            "id": "north-equatorial-countercurrent",
+            "label": "North Equatorial Countercurrent",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 0,
+            "width_values_inherited_by_parent": false
+          },
+          {
+            "id": "south-equatorial-countercurrent",
+            "label": "South Equatorial Countercurrent",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 0,
+            "width_values_inherited_by_parent": false
+          }
+        ],
+        "source_registry_file": "research/current-measurement-object-scope-index.json",
+        "basis_object_sha256": "dd595dc66a9dabf01d794e913295bb6609ad3a6692d35bb88a0e8c1c23f7b6c1",
+        "generator_file": "analysis/build_current_measurement_scopes.py",
+        "generator_sha256": "88d7be991b661bc9f4f21069a60da926e8ebc0a8d65f26b11d81666542d48a4e",
+        "source_url": "https://tidesandcurrents.noaa.gov/glossary.html",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "source_access": "Existing cited ledger and retained scope evidence reviewed; no new field or original-page extraction claimed.",
+        "prior_scope_audit_file": null,
+        "prior_width_decision": "width_not_assessed",
+        "parent_width_km": null,
+        "annual_width_range_km": null,
+        "new_width_record_admitted": false,
+        "member_measurements_inherited": false,
+        "aliases_resolved": false,
+        "physical_taxonomy_admitted": false,
+        "physical_edge_geometry_admitted": false,
+        "observation_date_inherited": false,
+        "figure": "figures/current-measurement-scopes/equatorial-countercurrent.svg",
+        "figure_alt": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width. Relationships only; member measurements are not inherited."
+      },
+      "note": {
+        "current_id": "equatorial-countercurrent",
+        "label": "Measurement object scope: basin family",
+        "audit_file": "research/current-measurement-scopes/equatorial-countercurrent.json",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "source_url": "https://tidesandcurrents.noaa.gov/glossary.html",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "observed_period": null,
+        "measurement_scope_assessment": true,
+        "related_current_ids": [
+          "north-equatorial-countercurrent",
+          "south-equatorial-countercurrent"
+        ],
+        "related_proposed_current_ids": []
+      },
+      "figure_file": "figures/current-measurement-scopes/equatorial-countercurrent.svg",
+      "figure_sha256": "9d9972342706a8aa1fc866d63b7a7a145459d02b1faf2eb706014b0d74dd5b10"
+    },
+    {
+      "current_id": "north-equatorial-countercurrent",
+      "source_file": "research/current-measurement-scopes/north-equatorial-countercurrent.json",
+      "source_sha256": "ab5cf6e173bba5452f74ee965f379bc97d5685b0b454c4b1c10f825f329190df",
+      "document": {
+        "schema": "osw.current-measurement-object-scope.v1",
+        "current_id": "north-equatorial-countercurrent",
+        "name": "North Equatorial Countercurrent",
+        "status": "editorial_measurement_scope_assessment_not_physical_taxonomy_admission",
+        "scope_kind": "basin_family",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "members": [
+          {
+            "id": "atlantic-north-equatorial-countercurrent",
+            "label": "Atlantic North Equatorial Countercurrent",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 2,
+            "width_values_inherited_by_parent": false
+          },
+          {
+            "id": "pacific-north-equatorial-countercurrent",
+            "label": "Pacific North Equatorial Countercurrent",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 2,
+            "width_values_inherited_by_parent": false
+          }
+        ],
+        "source_registry_file": "research/current-measurement-object-scope-index.json",
+        "basis_object_sha256": "3213a219310f4d12e2291ba3cf5c4da278ffe1b4e747953c833d0613dce29e42",
+        "generator_file": "analysis/build_current_measurement_scopes.py",
+        "generator_sha256": "88d7be991b661bc9f4f21069a60da926e8ebc0a8d65f26b11d81666542d48a4e",
+        "source_url": "https://www.marineregions.org/gazetteer.php?p=webservices",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "source_access": "Existing cited ledger and retained scope evidence reviewed; no new field or original-page extraction claimed.",
+        "prior_scope_audit_file": null,
+        "prior_width_decision": "width_not_assessed",
+        "parent_width_km": null,
+        "annual_width_range_km": null,
+        "new_width_record_admitted": false,
+        "member_measurements_inherited": false,
+        "aliases_resolved": false,
+        "physical_taxonomy_admitted": false,
+        "physical_edge_geometry_admitted": false,
+        "observation_date_inherited": false,
+        "figure": "figures/current-measurement-scopes/north-equatorial-countercurrent.svg",
+        "figure_alt": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width. Relationships only; member measurements are not inherited."
+      },
+      "note": {
+        "current_id": "north-equatorial-countercurrent",
+        "label": "Measurement object scope: basin family",
+        "audit_file": "research/current-measurement-scopes/north-equatorial-countercurrent.json",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "source_url": "https://www.marineregions.org/gazetteer.php?p=webservices",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "observed_period": null,
+        "measurement_scope_assessment": true,
+        "related_current_ids": [
+          "atlantic-north-equatorial-countercurrent",
+          "pacific-north-equatorial-countercurrent"
+        ],
+        "related_proposed_current_ids": []
+      },
+      "figure_file": "figures/current-measurement-scopes/north-equatorial-countercurrent.svg",
+      "figure_sha256": "fb338ee686b020c553e2c6cb2ab7eabc74da602c0548d14ddf1677b364bf7d79"
+    },
+    {
+      "current_id": "south-equatorial-countercurrent",
+      "source_file": "research/current-measurement-scopes/south-equatorial-countercurrent.json",
+      "source_sha256": "2f1dc2871e93ae5d2f4e32d1057127b568e7719fd09e013852330921375b40e8",
+      "document": {
+        "schema": "osw.current-measurement-object-scope.v1",
+        "current_id": "south-equatorial-countercurrent",
+        "name": "South Equatorial Countercurrent",
+        "status": "editorial_measurement_scope_assessment_not_physical_taxonomy_admission",
+        "scope_kind": "basin_family",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "members": [
+          {
+            "id": "atlantic-south-equatorial-countercurrent",
+            "label": "Atlantic South Equatorial Countercurrent",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 1,
+            "width_values_inherited_by_parent": false
+          },
+          {
+            "id": "pacific-south-equatorial-countercurrent",
+            "label": "Pacific South Equatorial Countercurrent",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 1,
+            "width_values_inherited_by_parent": false
+          },
+          {
+            "id": "indian-south-equatorial-countercurrent",
+            "label": "Indian Ocean South Equatorial Countercurrent",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 0,
+            "width_values_inherited_by_parent": false
+          }
+        ],
+        "source_registry_file": "research/current-measurement-object-scope-index.json",
+        "basis_object_sha256": "346369fcb2ad6fbfa79b4dfbb00240a59f9a1d6a70677f70251932d2f73dc76c",
+        "generator_file": "analysis/build_current_measurement_scopes.py",
+        "generator_sha256": "88d7be991b661bc9f4f21069a60da926e8ebc0a8d65f26b11d81666542d48a4e",
+        "source_url": "https://www.marineregions.org/gazetteer.php?p=webservices",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "source_access": "Existing cited ledger and retained scope evidence reviewed; no new field or original-page extraction claimed.",
+        "prior_scope_audit_file": null,
+        "prior_width_decision": "width_not_assessed",
+        "parent_width_km": null,
+        "annual_width_range_km": null,
+        "new_width_record_admitted": false,
+        "member_measurements_inherited": false,
+        "aliases_resolved": false,
+        "physical_taxonomy_admitted": false,
+        "physical_edge_geometry_admitted": false,
+        "observation_date_inherited": false,
+        "figure": "figures/current-measurement-scopes/south-equatorial-countercurrent.svg",
+        "figure_alt": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width. Relationships only; member measurements are not inherited."
+      },
+      "note": {
+        "current_id": "south-equatorial-countercurrent",
+        "label": "Measurement object scope: basin family",
+        "audit_file": "research/current-measurement-scopes/south-equatorial-countercurrent.json",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "source_url": "https://www.marineregions.org/gazetteer.php?p=webservices",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "observed_period": null,
+        "measurement_scope_assessment": true,
+        "related_current_ids": [
+          "atlantic-south-equatorial-countercurrent",
+          "pacific-south-equatorial-countercurrent",
+          "indian-south-equatorial-countercurrent"
+        ],
+        "related_proposed_current_ids": []
+      },
+      "figure_file": "figures/current-measurement-scopes/south-equatorial-countercurrent.svg",
+      "figure_sha256": "d862dd6c0061d09c13777b94b384176c2463c63cd0ccaf0c8ff4b9eb314e1fab"
+    },
+    {
+      "current_id": "equatorial-undercurrent",
+      "source_file": "research/current-measurement-scopes/equatorial-undercurrent.json",
+      "source_sha256": "11ccb60a216e119cf8197e1a02e06ea8d1a24ef92de9be89217ba7446afe81f9",
+      "document": {
+        "schema": "osw.current-measurement-object-scope.v1",
+        "current_id": "equatorial-undercurrent",
+        "name": "Equatorial Undercurrent",
+        "status": "editorial_measurement_scope_assessment_not_physical_taxonomy_admission",
+        "scope_kind": "basin_family",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "members": [
+          {
+            "id": "pacific-equatorial-undercurrent",
+            "label": "Pacific Equatorial Undercurrent",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 1,
+            "width_values_inherited_by_parent": false
+          },
+          {
+            "id": "atlantic-equatorial-undercurrent",
+            "label": "Atlantic Equatorial Undercurrent",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 1,
+            "width_values_inherited_by_parent": false
+          },
+          {
+            "id": "indian-equatorial-undercurrent",
+            "label": "Indian Ocean Equatorial Undercurrent",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 1,
+            "width_values_inherited_by_parent": false
+          }
+        ],
+        "source_registry_file": "research/current-measurement-object-scope-index.json",
+        "basis_object_sha256": "8d7efe40c074ae59e7d02d0fff3361152583dff3e627e4fc5f615bd11745e3b3",
+        "generator_file": "analysis/build_current_measurement_scopes.py",
+        "generator_sha256": "88d7be991b661bc9f4f21069a60da926e8ebc0a8d65f26b11d81666542d48a4e",
+        "source_url": "https://tidesandcurrents.noaa.gov/glossary.html",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "source_access": "Existing cited ledger and retained scope evidence reviewed; no new field or original-page extraction claimed.",
+        "prior_scope_audit_file": null,
+        "prior_width_decision": "width_not_assessed",
+        "parent_width_km": null,
+        "annual_width_range_km": null,
+        "new_width_record_admitted": false,
+        "member_measurements_inherited": false,
+        "aliases_resolved": false,
+        "physical_taxonomy_admitted": false,
+        "physical_edge_geometry_admitted": false,
+        "observation_date_inherited": false,
+        "figure": "figures/current-measurement-scopes/equatorial-undercurrent.svg",
+        "figure_alt": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width. Relationships only; member measurements are not inherited."
+      },
+      "note": {
+        "current_id": "equatorial-undercurrent",
+        "label": "Measurement object scope: basin family",
+        "audit_file": "research/current-measurement-scopes/equatorial-undercurrent.json",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "source_url": "https://tidesandcurrents.noaa.gov/glossary.html",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "observed_period": null,
+        "measurement_scope_assessment": true,
+        "related_current_ids": [
+          "pacific-equatorial-undercurrent",
+          "atlantic-equatorial-undercurrent",
+          "indian-equatorial-undercurrent"
+        ],
+        "related_proposed_current_ids": []
+      },
+      "figure_file": "figures/current-measurement-scopes/equatorial-undercurrent.svg",
+      "figure_sha256": "f43f81c88e39827edf680bdc19abeb35c8a96783d0588c651b672166553f353b"
+    },
+    {
+      "current_id": "north-equatorial-undercurrent",
+      "source_file": "research/current-measurement-scopes/north-equatorial-undercurrent.json",
+      "source_sha256": "c3b0e61857520977d22b3007e68a459927122a7abfcdc59a3f36c137c754af33",
+      "document": {
+        "schema": "osw.current-measurement-object-scope.v1",
+        "current_id": "north-equatorial-undercurrent",
+        "name": "North Equatorial Undercurrent",
+        "status": "editorial_measurement_scope_assessment_not_physical_taxonomy_admission",
+        "scope_kind": "basin_family",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "members": [
+          {
+            "id": "atlantic-north-equatorial-undercurrent",
+            "label": "Atlantic North Equatorial Undercurrent",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 2,
+            "width_values_inherited_by_parent": false
+          },
+          {
+            "id": "pacific-north-equatorial-undercurrent",
+            "label": "Pacific North Equatorial Undercurrent",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 2,
+            "width_values_inherited_by_parent": false
+          }
+        ],
+        "source_registry_file": "research/current-measurement-object-scope-index.json",
+        "basis_object_sha256": "1b611b968c280564142acc4b0214554072aed1c99415313d6ca98eba995d2ca5",
+        "generator_file": "analysis/build_current_measurement_scopes.py",
+        "generator_sha256": "88d7be991b661bc9f4f21069a60da926e8ebc0a8d65f26b11d81666542d48a4e",
+        "source_url": "https://www.marineregions.org/gazetteer.php?p=webservices",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "source_access": "Existing cited ledger and retained scope evidence reviewed; no new field or original-page extraction claimed.",
+        "prior_scope_audit_file": null,
+        "prior_width_decision": "width_not_assessed",
+        "parent_width_km": null,
+        "annual_width_range_km": null,
+        "new_width_record_admitted": false,
+        "member_measurements_inherited": false,
+        "aliases_resolved": false,
+        "physical_taxonomy_admitted": false,
+        "physical_edge_geometry_admitted": false,
+        "observation_date_inherited": false,
+        "figure": "figures/current-measurement-scopes/north-equatorial-undercurrent.svg",
+        "figure_alt": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width. Relationships only; member measurements are not inherited."
+      },
+      "note": {
+        "current_id": "north-equatorial-undercurrent",
+        "label": "Measurement object scope: basin family",
+        "audit_file": "research/current-measurement-scopes/north-equatorial-undercurrent.json",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "source_url": "https://www.marineregions.org/gazetteer.php?p=webservices",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "observed_period": null,
+        "measurement_scope_assessment": true,
+        "related_current_ids": [
+          "atlantic-north-equatorial-undercurrent",
+          "pacific-north-equatorial-undercurrent"
+        ],
+        "related_proposed_current_ids": []
+      },
+      "figure_file": "figures/current-measurement-scopes/north-equatorial-undercurrent.svg",
+      "figure_sha256": "3202947780f66e3bc4b0a87d144077330c9803146b8e1806e9faa6a0b6bc3e2c"
+    },
+    {
+      "current_id": "south-equatorial-undercurrent",
+      "source_file": "research/current-measurement-scopes/south-equatorial-undercurrent.json",
+      "source_sha256": "6e3e4f200bee6ade66b68cf64839c41f332351244c0ac179e9d00474c2607a05",
+      "document": {
+        "schema": "osw.current-measurement-object-scope.v1",
+        "current_id": "south-equatorial-undercurrent",
+        "name": "South Equatorial Undercurrent",
+        "status": "editorial_measurement_scope_assessment_not_physical_taxonomy_admission",
+        "scope_kind": "basin_family",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "members": [
+          {
+            "id": "atlantic-south-equatorial-undercurrent",
+            "label": "Atlantic South Equatorial Undercurrent",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 1,
+            "width_values_inherited_by_parent": false
+          },
+          {
+            "id": "indian-south-equatorial-undercurrent",
+            "label": "Indian Ocean South Equatorial Undercurrent",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 1,
+            "width_values_inherited_by_parent": false
+          }
+        ],
+        "source_registry_file": "research/current-measurement-object-scope-index.json",
+        "basis_object_sha256": "df0ab50b45860808e655ad9c2f7ad532f58c4a2ad3ff139a6f87bf324dc5ebf9",
+        "generator_file": "analysis/build_current_measurement_scopes.py",
+        "generator_sha256": "88d7be991b661bc9f4f21069a60da926e8ebc0a8d65f26b11d81666542d48a4e",
+        "source_url": "https://www.marineregions.org/gazetteer.php?p=webservices",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "source_access": "Existing cited ledger and retained scope evidence reviewed; no new field or original-page extraction claimed.",
+        "prior_scope_audit_file": null,
+        "prior_width_decision": "width_not_assessed",
+        "parent_width_km": null,
+        "annual_width_range_km": null,
+        "new_width_record_admitted": false,
+        "member_measurements_inherited": false,
+        "aliases_resolved": false,
+        "physical_taxonomy_admitted": false,
+        "physical_edge_geometry_admitted": false,
+        "observation_date_inherited": false,
+        "figure": "figures/current-measurement-scopes/south-equatorial-undercurrent.svg",
+        "figure_alt": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width. Relationships only; member measurements are not inherited."
+      },
+      "note": {
+        "current_id": "south-equatorial-undercurrent",
+        "label": "Measurement object scope: basin family",
+        "audit_file": "research/current-measurement-scopes/south-equatorial-undercurrent.json",
+        "summary": "Measure basin members separately. Define layer, period and paired boundaries for each member; the family has no shared global width.",
+        "source_url": "https://www.marineregions.org/gazetteer.php?p=webservices",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "observed_period": null,
+        "measurement_scope_assessment": true,
+        "related_current_ids": [
+          "atlantic-south-equatorial-undercurrent",
+          "indian-south-equatorial-undercurrent"
+        ],
+        "related_proposed_current_ids": []
+      },
+      "figure_file": "figures/current-measurement-scopes/south-equatorial-undercurrent.svg",
+      "figure_sha256": "c7f4c2401f0b2e3482fad2a3122fce9866a31417a7cde9f35ae8eb92095db2e6"
+    },
+    {
+      "current_id": "norwegian",
+      "source_file": "research/current-measurement-scopes/norwegian.json",
+      "source_sha256": "3133b397b0173a8f0cf7ee9c85dcecd7e208fdbc0c1e5f9e34d9b251735930d8",
+      "document": {
+        "schema": "osw.current-measurement-object-scope.v1",
+        "current_id": "norwegian",
+        "name": "Norwegian Current",
+        "status": "editorial_measurement_scope_assessment_not_physical_taxonomy_admission",
+        "scope_kind": "unresolved_name",
+        "summary": "Resolve the source-specific name and branch convention before attaching a width. Related records are not confirmed aliases or members.",
+        "members": [
+          {
+            "id": "norwegian-coastal",
+            "label": "Norwegian Coastal Current",
+            "record_status": "released",
+            "relationship": "related_name_not_equated",
+            "scoped_width_record_count": 1,
+            "width_values_inherited_by_parent": false
+          }
+        ],
+        "source_registry_file": "research/current-measurement-object-scope-index.json",
+        "basis_object_sha256": "854038e0d691b2719599b8a63bee7b1251f7bc7be29d4d6a37d943d9255877b5",
+        "generator_file": "analysis/build_current_measurement_scopes.py",
+        "generator_sha256": "88d7be991b661bc9f4f21069a60da926e8ebc0a8d65f26b11d81666542d48a4e",
+        "source_url": "https://tidesandcurrents.noaa.gov/glossary",
+        "source_locator": "Existing cited current ledger entry and explicit component links; retained source-scope audit research/norwegian-naming-branch-scope-audit.json",
+        "source_access": "Existing cited ledger and retained scope evidence reviewed; no new field or original-page extraction claimed.",
+        "prior_scope_audit_file": "research/norwegian-naming-branch-scope-audit.json",
+        "prior_width_decision": "width_not_assessed",
+        "parent_width_km": null,
+        "annual_width_range_km": null,
+        "new_width_record_admitted": false,
+        "member_measurements_inherited": false,
+        "aliases_resolved": false,
+        "physical_taxonomy_admitted": false,
+        "physical_edge_geometry_admitted": false,
+        "observation_date_inherited": false,
+        "figure": "figures/current-measurement-scopes/norwegian.svg",
+        "figure_alt": "Resolve the source-specific name and branch convention before attaching a width. Related records are not confirmed aliases or members. Relationships only; member measurements are not inherited."
+      },
+      "note": {
+        "current_id": "norwegian",
+        "label": "Measurement object scope: unresolved name",
+        "audit_file": "research/current-measurement-scopes/norwegian.json",
+        "summary": "Resolve the source-specific name and branch convention before attaching a width. Related records are not confirmed aliases or members.",
+        "source_url": "https://tidesandcurrents.noaa.gov/glossary",
+        "source_locator": "Existing cited current ledger entry and explicit component links; retained source-scope audit research/norwegian-naming-branch-scope-audit.json",
+        "observed_period": null,
+        "measurement_scope_assessment": true,
+        "related_current_ids": [
+          "norwegian-coastal"
+        ],
+        "related_proposed_current_ids": []
+      },
+      "figure_file": "figures/current-measurement-scopes/norwegian.svg",
+      "figure_sha256": "e80c007a893e20b31d693721b3ba843492253187263f1cd2fe8672b75a6dc84a"
+    },
+    {
+      "current_id": "spitsbergen-atlantic",
+      "source_file": "research/current-measurement-scopes/spitsbergen-atlantic.json",
+      "source_sha256": "445d0cf206b637b7b326b6a0f9fd848d61d7f27fd3d946c6f4788c19f10f6530",
+      "document": {
+        "schema": "osw.current-measurement-object-scope.v1",
+        "current_id": "spitsbergen-atlantic",
+        "name": "Spitsbergen Atlantic Current",
+        "status": "editorial_measurement_scope_assessment_not_physical_taxonomy_admission",
+        "scope_kind": "unresolved_name",
+        "summary": "Resolve the source-specific name and branch convention before attaching a width. Related records are not confirmed aliases or members.",
+        "members": [
+          {
+            "id": "west-spitsbergen",
+            "label": "West Spitsbergen Current",
+            "record_status": "released",
+            "relationship": "related_name_not_equated",
+            "scoped_width_record_count": 7,
+            "width_values_inherited_by_parent": false
+          }
+        ],
+        "source_registry_file": "research/current-measurement-object-scope-index.json",
+        "basis_object_sha256": "9695d941d8f6a08542a74ec3c2948a3278f5c2462d6d7f9089a90fee0388c858",
+        "generator_file": "analysis/build_current_measurement_scopes.py",
+        "generator_sha256": "88d7be991b661bc9f4f21069a60da926e8ebc0a8d65f26b11d81666542d48a4e",
+        "source_url": "https://tidesandcurrents.noaa.gov/glossary",
+        "source_locator": "Existing cited current ledger entry and explicit component links; retained source-scope audit research/spitsbergen-atlantic-naming-branch-scope-audit.json",
+        "source_access": "Existing cited ledger and retained scope evidence reviewed; no new field or original-page extraction claimed.",
+        "prior_scope_audit_file": "research/spitsbergen-atlantic-naming-branch-scope-audit.json",
+        "prior_width_decision": "width_not_assessed",
+        "parent_width_km": null,
+        "annual_width_range_km": null,
+        "new_width_record_admitted": false,
+        "member_measurements_inherited": false,
+        "aliases_resolved": false,
+        "physical_taxonomy_admitted": false,
+        "physical_edge_geometry_admitted": false,
+        "observation_date_inherited": false,
+        "figure": "figures/current-measurement-scopes/spitsbergen-atlantic.svg",
+        "figure_alt": "Resolve the source-specific name and branch convention before attaching a width. Related records are not confirmed aliases or members. Relationships only; member measurements are not inherited."
+      },
+      "note": {
+        "current_id": "spitsbergen-atlantic",
+        "label": "Measurement object scope: unresolved name",
+        "audit_file": "research/current-measurement-scopes/spitsbergen-atlantic.json",
+        "summary": "Resolve the source-specific name and branch convention before attaching a width. Related records are not confirmed aliases or members.",
+        "source_url": "https://tidesandcurrents.noaa.gov/glossary",
+        "source_locator": "Existing cited current ledger entry and explicit component links; retained source-scope audit research/spitsbergen-atlantic-naming-branch-scope-audit.json",
+        "observed_period": null,
+        "measurement_scope_assessment": true,
+        "related_current_ids": [
+          "west-spitsbergen"
+        ],
+        "related_proposed_current_ids": []
+      },
+      "figure_file": "figures/current-measurement-scopes/spitsbergen-atlantic.svg",
+      "figure_sha256": "98d91b8d3463e51e63cfdc9a83b72a486777664bbc61a695691de3d68f177265"
+    },
+    {
+      "current_id": "greenland-middle-atlantic-shelf-hypothesis",
+      "source_file": "research/current-measurement-scopes/greenland-middle-atlantic-shelf-hypothesis.json",
+      "source_sha256": "135a212b8b739512e2da1bcc1d85100ffdd79d70e9820bd9e5e32380cfd282ae",
+      "document": {
+        "schema": "osw.current-measurement-object-scope.v1",
+        "current_id": "greenland-middle-atlantic-shelf-hypothesis",
+        "name": "Greenland–Middle Atlantic shelf-current hypothesis",
+        "status": "editorial_measurement_scope_assessment_not_physical_taxonomy_admission",
+        "scope_kind": "continuity_hypothesis",
+        "summary": "Test continuity and define observed reaches before assigning a system-wide dimension. The proposed connection remains a hypothesis.",
+        "members": [],
+        "source_registry_file": "research/current-measurement-object-scope-index.json",
+        "basis_object_sha256": "6d7d853e0b03d2c934b6a6da727102f730a7b54a4830532b9060a24479bbfa6f",
+        "generator_file": "analysis/build_current_measurement_scopes.py",
+        "generator_sha256": "88d7be991b661bc9f4f21069a60da926e8ebc0a8d65f26b11d81666542d48a4e",
+        "source_url": "https://doi.org/10.1175/1520-0485(1989)019%3C0384:OTOOSW%3E2.0.CO;2",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "source_access": "Existing cited ledger and retained scope evidence reviewed; no new field or original-page extraction claimed.",
+        "prior_scope_audit_file": null,
+        "prior_width_decision": "width_not_assessed",
+        "parent_width_km": null,
+        "annual_width_range_km": null,
+        "new_width_record_admitted": false,
+        "member_measurements_inherited": false,
+        "aliases_resolved": false,
+        "physical_taxonomy_admitted": false,
+        "physical_edge_geometry_admitted": false,
+        "observation_date_inherited": false,
+        "figure": "figures/current-measurement-scopes/greenland-middle-atlantic-shelf-hypothesis.svg",
+        "figure_alt": "Test continuity and define observed reaches before assigning a system-wide dimension. The proposed connection remains a hypothesis. Relationships only; member measurements are not inherited."
+      },
+      "note": {
+        "current_id": "greenland-middle-atlantic-shelf-hypothesis",
+        "label": "Measurement object scope: continuity hypothesis",
+        "audit_file": "research/current-measurement-scopes/greenland-middle-atlantic-shelf-hypothesis.json",
+        "summary": "Test continuity and define observed reaches before assigning a system-wide dimension. The proposed connection remains a hypothesis.",
+        "source_url": "https://doi.org/10.1175/1520-0485(1989)019%3C0384:OTOOSW%3E2.0.CO;2",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "observed_period": null,
+        "measurement_scope_assessment": true,
+        "related_current_ids": [],
+        "related_proposed_current_ids": []
+      },
+      "figure_file": "figures/current-measurement-scopes/greenland-middle-atlantic-shelf-hypothesis.svg",
+      "figure_sha256": "cbc96d7beb0c06f565abcc52e54cf817b5bf329940c2e218eb90fb90f0c9dfa4"
+    },
+    {
+      "current_id": "indonesian-throughflow",
+      "source_file": "research/current-measurement-scopes/indonesian-throughflow.json",
+      "source_sha256": "9b1ed89a830dab0198a5fa930046383e4720dd9cbdf640ac1cd63924ca2ea980",
+      "document": {
+        "schema": "osw.current-measurement-object-scope.v1",
+        "current_id": "indonesian-throughflow",
+        "name": "Indonesian Throughflow",
+        "status": "editorial_measurement_scope_assessment_not_physical_taxonomy_admission",
+        "scope_kind": "passage_network",
+        "summary": "Measure each passage with explicit depth, period and boundary rules. Channel and transport-integration spans are not current-width boundaries.",
+        "members": [],
+        "source_registry_file": "research/current-measurement-object-scope-index.json",
+        "basis_object_sha256": "6f438c549817bd4f0099f727b6244b62fc99ad4a9607e1f3ed1bc89f655e360e",
+        "generator_file": "analysis/build_current_measurement_scopes.py",
+        "generator_sha256": "88d7be991b661bc9f4f21069a60da926e8ebc0a8d65f26b11d81666542d48a4e",
+        "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008JC005257",
+        "source_locator": "Existing cited current ledger entry and explicit component links; retained source-scope audit research/indonesian-throughflow-network-scope-audit.json",
+        "source_access": "Existing cited ledger and retained scope evidence reviewed; no new field or original-page extraction claimed.",
+        "prior_scope_audit_file": "research/indonesian-throughflow-network-scope-audit.json",
+        "prior_width_decision": "width_not_assessed",
+        "parent_width_km": null,
+        "annual_width_range_km": null,
+        "new_width_record_admitted": false,
+        "member_measurements_inherited": false,
+        "aliases_resolved": false,
+        "physical_taxonomy_admitted": false,
+        "physical_edge_geometry_admitted": false,
+        "observation_date_inherited": false,
+        "figure": "figures/current-measurement-scopes/indonesian-throughflow.svg",
+        "figure_alt": "Measure each passage with explicit depth, period and boundary rules. Channel and transport-integration spans are not current-width boundaries. Relationships only; member measurements are not inherited."
+      },
+      "note": {
+        "current_id": "indonesian-throughflow",
+        "label": "Measurement object scope: passage network",
+        "audit_file": "research/current-measurement-scopes/indonesian-throughflow.json",
+        "summary": "Measure each passage with explicit depth, period and boundary rules. Channel and transport-integration spans are not current-width boundaries.",
+        "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008JC005257",
+        "source_locator": "Existing cited current ledger entry and explicit component links; retained source-scope audit research/indonesian-throughflow-network-scope-audit.json",
+        "observed_period": null,
+        "measurement_scope_assessment": true,
+        "related_current_ids": [],
+        "related_proposed_current_ids": []
+      },
+      "figure_file": "figures/current-measurement-scopes/indonesian-throughflow.svg",
+      "figure_sha256": "422fe85fe915fe4ff21b3c9fb0c418714602e6f883376e909ebbcfe5e04404fd"
+    },
+    {
+      "current_id": "australian-west-south-boundary-flow",
+      "source_file": "research/current-measurement-scopes/australian-west-south-boundary-flow.json",
+      "source_sha256": "af51e1da3c90247c82d85e972209ac5d63bde6402478a31bafe257d680381e67",
+      "document": {
+        "schema": "osw.current-measurement-object-scope.v1",
+        "current_id": "australian-west-south-boundary-flow",
+        "name": "Western and southern Australian boundary flow",
+        "status": "editorial_measurement_scope_assessment_not_physical_taxonomy_admission",
+        "scope_kind": "compound_current_system",
+        "summary": "Measure components separately with explicit season, layer and boundary rules. Do not pool their different widths into one system width.",
+        "members": [
+          {
+            "id": "leeuwin",
+            "label": "Leeuwin Current",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 2,
+            "width_values_inherited_by_parent": false
+          },
+          {
+            "id": "south-australian",
+            "label": "South Australian Current",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 0,
+            "width_values_inherited_by_parent": false
+          },
+          {
+            "id": "zeehan",
+            "label": "Zeehan Current",
+            "record_status": "released",
+            "relationship": "declared_component",
+            "scoped_width_record_count": 1,
+            "width_values_inherited_by_parent": false
+          }
+        ],
+        "source_registry_file": "research/current-measurement-object-scope-index.json",
+        "basis_object_sha256": "447d59b7724fe664298f59d9d8273b7e2049686f5a2d1f07cea4eed975d227d9",
+        "generator_file": "analysis/build_current_measurement_scopes.py",
+        "generator_sha256": "88d7be991b661bc9f4f21069a60da926e8ebc0a8d65f26b11d81666542d48a4e",
+        "source_url": "https://doi.org/10.1029/2003JC001921",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "source_access": "Existing cited ledger and retained scope evidence reviewed; no new field or original-page extraction claimed.",
+        "prior_scope_audit_file": null,
+        "prior_width_decision": "width_not_assessed",
+        "parent_width_km": null,
+        "annual_width_range_km": null,
+        "new_width_record_admitted": false,
+        "member_measurements_inherited": false,
+        "aliases_resolved": false,
+        "physical_taxonomy_admitted": false,
+        "physical_edge_geometry_admitted": false,
+        "observation_date_inherited": false,
+        "figure": "figures/current-measurement-scopes/australian-west-south-boundary-flow.svg",
+        "figure_alt": "Measure components separately with explicit season, layer and boundary rules. Do not pool their different widths into one system width. Relationships only; member measurements are not inherited."
+      },
+      "note": {
+        "current_id": "australian-west-south-boundary-flow",
+        "label": "Measurement object scope: compound current system",
+        "audit_file": "research/current-measurement-scopes/australian-west-south-boundary-flow.json",
+        "summary": "Measure components separately with explicit season, layer and boundary rules. Do not pool their different widths into one system width.",
+        "source_url": "https://doi.org/10.1029/2003JC001921",
+        "source_locator": "Existing cited current ledger entry and explicit component links",
+        "observed_period": null,
+        "measurement_scope_assessment": true,
+        "related_current_ids": [
+          "leeuwin",
+          "south-australian",
+          "zeehan"
+        ],
+        "related_proposed_current_ids": []
+      },
+      "figure_file": "figures/current-measurement-scopes/australian-west-south-boundary-flow.svg",
+      "figure_sha256": "b0ad932e8a80bda52930eb8a5a5af1f89267800185aca6240b6a6b30c2cdbb6c"
+    }
+  ]
+}
