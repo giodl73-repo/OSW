@@ -34,6 +34,7 @@ def main():
     paths.append('rust/osw-query/src/qualitative_calendar.rs')
     paths.append('rust/osw-query/src/atlantic_euc_sections.rs')
     paths.extend(['rust/osw-query/src/antilles_cruise_spans.rs','research/antilles-cainzos-2023-cruise-section-spans.json'])
+    paths.extend(['rust/osw-query/src/model_axis_spread.rs','research/pacific-necc-chen-2016-axis-spread-scale-scope-audit.json'])
     paths.append('rust/osw-query/src/proposed_widths.rs')
     paths.extend(['rust/osw-query/src/stream_tube_widths.rs','rust/osw-query/src/selected_core_widths.rs',
                   'research/west-spitsbergen-dundas-2026-selected-core-width-scope-audit.json',

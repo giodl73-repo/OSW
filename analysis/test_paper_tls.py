@@ -13,6 +13,17 @@ import acquire_local_paper_fixtures as acquisition
 MANIFEST={'source_url':tls.URL,'sha256':tls.PAPER_SHA}
 
 
+def test_chen_source_uses_same_complete_chain_without_weakening_original_pin():
+    manifest={'source_url':tls.CHEN_URL,'sha256':tls.CHEN_SHA}
+    context=tls.options('chen-necc-2016',manifest,tls.CHEN_URL)['context']
+    assert context.check_hostname and context.verify_mode==ssl.CERT_REQUIRED
+    assert not context.verify_flags & ssl.VERIFY_X509_PARTIAL_CHAIN
+    with patch('urllib.request.urlopen',return_value=io.BytesIO(b'%PDF-1.7\nchanged')):
+        with pytest.raises(ValueError,match='checksum'):acquisition.download_url('chen-necc-2016',manifest,tls.CHEN_URL)
+    assert tls.options('chen-necc-2016',{**manifest,'sha256':'0'*64},tls.CHEN_URL)=={}
+    assert tls.options('chen-necc-2016',manifest,tls.CHEN_URL.replace('Chen_etal_JGR2016.pdf','other.pdf'))=={}
+
+
 @pytest.mark.parametrize('url',tls.ALIASES)
 def test_scoped_context_requires_hostname_complete_chain_and_system_root(url):
     context=tls.options('qiu-chen-nec-2010',MANIFEST,url)['context']

@@ -7,11 +7,11 @@
   "scope": "All 100 canonical names tracked; initial width evidence collection is incomplete. Proposed new current identities remain outside this inventory.",
   "counts": {
     "currents": 100,
-    "currents_with_scoped_width_evidence": 80,
-    "measurements": 153,
+    "currents_with_scoped_width_evidence": 81,
+    "measurements": 155,
     "currents_with_existing_mentions_pending_review": 0,
     "currents_not_assessed": 13,
-    "currents_with_derived_width_candidates_pending_review": 2,
+    "currents_with_derived_width_candidates_pending_review": 1,
     "currents_with_sources_reviewed_no_numeric_width": 1,
     "currents_with_section_span_diagnostics_width_unresolved": 4
   },
@@ -12116,6 +12116,204 @@
       ],
       "extraction_file": "research/antilles-cainzos-2023-cruise-section-spans.json",
       "extraction_sha256": "184ee96f6e9666a8ca7a69f8d47c01d68e82a5722284728d9f275d266bd58dd8"
+    },
+    {
+      "id": "pacific-necc-chen-2016-model-axis-spread-from",
+      "current_id": "pacific-north-equatorial-countercurrent",
+      "name": "Pacific North Equatorial Countercurrent",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_model_axis_distance_scale_summary",
+      "width_metric": "eastward_transport_weighted_mean_absolute_axis_distance",
+      "width_metric_label": "Model mean axis-distance scale W",
+      "approximate_width_km": 100,
+      "width_range_km": null,
+      "uncertainty_km": null,
+      "range_kind": "reported_approximate_change_state_not_temporal_extremum",
+      "range_interpretation": "Two reported model change states, not series minimum/maximum, an annual range or confidence limits. No width error reported.",
+      "geographic_scope": "Western Pacific; 0-10 N meridional integration and 135-155 E zonal averaging. No geographic current edges extracted.",
+      "section_geometry": null,
+      "section_orientation": "Meridional distance from a transport-weighted latitude axis; not diagnosed flow-normal paired edges.",
+      "layer": "0-150 m velocity-weight integration. Bounds define the operator support, not physical current edges at every depth.",
+      "time_convention": "1960-2014 OFES model context; 13-month running-mean diagnostic. Exact dates of the two reported change states are unextracted; not observation dates or annual extrema.",
+      "boundary_rule": "No edge threshold. Equation 3 is the eastward-transport-weighted mean absolute distance from the equation 2 axis.",
+      "boundary_sides": "not_an_edge_based_metric",
+      "source_url": "https://www.soest.hawaii.edu/oceanography/bo/Chen_etal_JGR2016.pdf",
+      "source_citation": "Chen, X., B. Qiu, Y. Du, S. Chen and Y. Qi (2016), Interannual and interdecadal variability of the North Equatorial Countercurrent in the Western Pacific, doi:10.1002/2016JC012190.",
+      "source_locator": "Section 4.2, equations 1-3 (printed pp7748-7749 / PDF 6-7); Figure 8 (PDF 9); conclusion p7757 / PDF 15; model data p7744 / PDF 2.",
+      "source_retrieved_date": "2026-10-18",
+      "source_evidence_kind": "published_model_diagnostic_summary_not_direct_current_width_observation",
+      "extraction_method": "Approximate kilometre states transcribed from original conclusion; formula and degree-axis figure checked visually. No curve digitization, unit conversion, raw-model reconstruction or full-width conversion.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "phase_kind": "published_model_axis_spread_scale",
+      "phase_label": "Reported change: from",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": [
+        0,
+        150
+      ],
+      "model_axis_spread_context": {
+        "model": "OFES",
+        "horizontal_grid_degrees": [
+          0.1,
+          0.1
+        ],
+        "vertical_levels": 54,
+        "forcing": "NCEP-NCAR reanalysis",
+        "model_analysis_period_years": [
+          1960,
+          2014
+        ],
+        "time_support": "Monthly model output; 13-month running mean for the diagnostic figure.",
+        "raw_model_fields_acquired": false,
+        "raw_width_series_extracted": false,
+        "exact_state_dates_extracted": false,
+        "author_estimator_reproduced": false,
+        "source_value_class": "two_approximate_author_reported_change_states_not_series_extrema",
+        "independent_observed_width_trend_verified": false,
+        "same_as_2013_140w_oscar_component_span": false,
+        "full_width_conversion_applied": false,
+        "operator": {
+          "weight": "q = max(integral from 0 to 150m of u dz,0)",
+          "axis": "Y = integral(q*y dy) / integral(q dy)",
+          "scale": "W = integral(q*abs(y-Y) dy) / integral(q dy)",
+          "source_latitude_integration_degrees_north": [
+            0,
+            10
+          ],
+          "source_zonal_averaging_degrees_east": [
+            135,
+            155
+          ],
+          "velocity_weight_layer_m": [
+            0,
+            150
+          ],
+          "running_mean_months": 13,
+          "weight_is_vector_speed": false,
+          "scale_is_rms_or_standard_deviation": false,
+          "scale_is_paired_edge_distance": false,
+          "scale_is_half_peak_width": false,
+          "normalization_at_zero_eastward_transport": "undefined_not_zero",
+          "source_figure_8_width_axis_unit": "degrees_latitude",
+          "reported_km_values_transcribed_from": "Conclusion, printed p7757 / original PDF page15",
+          "osw_latitude_to_kilometre_conversion_applied": false
+        },
+        "reported_change_state": "from",
+        "audit_file": "research/pacific-necc-chen-2016-axis-spread-scale-scope-audit.json",
+        "audit_sha256": "002fb6adf48ac655b97428431e021dbf8b0fc6135fa4a18d3c82cb817e495efc"
+      },
+      "remaining_gates": [
+        "Recover numerical model fields and reproduce the exact estimator before a derived series.",
+        "Independent observed widths, physical edges and compatible seasonal sampling remain separate requirements.",
+        "Do not pool with the 2013 eastern Pacific OSCAR component diagnostic."
+      ],
+      "source_file": "research/pacific-necc-chen-2016-axis-spread-scale-scope-audit.json",
+      "source_pointer": "/measurements/0"
+    },
+    {
+      "id": "pacific-necc-chen-2016-model-axis-spread-to",
+      "current_id": "pacific-north-equatorial-countercurrent",
+      "name": "Pacific North Equatorial Countercurrent",
+      "status": "editorial_source_extraction_not_canonical",
+      "measurement_type": "published_model_axis_distance_scale_summary",
+      "width_metric": "eastward_transport_weighted_mean_absolute_axis_distance",
+      "width_metric_label": "Model mean axis-distance scale W",
+      "approximate_width_km": 130,
+      "width_range_km": null,
+      "uncertainty_km": null,
+      "range_kind": "reported_approximate_change_state_not_temporal_extremum",
+      "range_interpretation": "Two reported model change states, not series minimum/maximum, an annual range or confidence limits. No width error reported.",
+      "geographic_scope": "Western Pacific; 0-10 N meridional integration and 135-155 E zonal averaging. No geographic current edges extracted.",
+      "section_geometry": null,
+      "section_orientation": "Meridional distance from a transport-weighted latitude axis; not diagnosed flow-normal paired edges.",
+      "layer": "0-150 m velocity-weight integration. Bounds define the operator support, not physical current edges at every depth.",
+      "time_convention": "1960-2014 OFES model context; 13-month running-mean diagnostic. Exact dates of the two reported change states are unextracted; not observation dates or annual extrema.",
+      "boundary_rule": "No edge threshold. Equation 3 is the eastward-transport-weighted mean absolute distance from the equation 2 axis.",
+      "boundary_sides": "not_an_edge_based_metric",
+      "source_url": "https://www.soest.hawaii.edu/oceanography/bo/Chen_etal_JGR2016.pdf",
+      "source_citation": "Chen, X., B. Qiu, Y. Du, S. Chen and Y. Qi (2016), Interannual and interdecadal variability of the North Equatorial Countercurrent in the Western Pacific, doi:10.1002/2016JC012190.",
+      "source_locator": "Section 4.2, equations 1-3 (printed pp7748-7749 / PDF 6-7); Figure 8 (PDF 9); conclusion p7757 / PDF 15; model data p7744 / PDF 2.",
+      "source_retrieved_date": "2026-10-18",
+      "source_evidence_kind": "published_model_diagnostic_summary_not_direct_current_width_observation",
+      "extraction_method": "Approximate kilometre states transcribed from original conclusion; formula and degree-axis figure checked visually. No curve digitization, unit conversion, raw-model reconstruction or full-width conversion.",
+      "whole_current_representative": false,
+      "width_rank_eligible": false,
+      "full_width_inference_eligible": false,
+      "annual_extrema_eligible": false,
+      "seasonal_playback_eligible": false,
+      "is_confidence_interval": false,
+      "phase_kind": "published_model_axis_spread_scale",
+      "phase_label": "Reported change: to",
+      "observed_period": null,
+      "calendar_months": null,
+      "fixed_layer_bounds_m": [
+        0,
+        150
+      ],
+      "model_axis_spread_context": {
+        "model": "OFES",
+        "horizontal_grid_degrees": [
+          0.1,
+          0.1
+        ],
+        "vertical_levels": 54,
+        "forcing": "NCEP-NCAR reanalysis",
+        "model_analysis_period_years": [
+          1960,
+          2014
+        ],
+        "time_support": "Monthly model output; 13-month running mean for the diagnostic figure.",
+        "raw_model_fields_acquired": false,
+        "raw_width_series_extracted": false,
+        "exact_state_dates_extracted": false,
+        "author_estimator_reproduced": false,
+        "source_value_class": "two_approximate_author_reported_change_states_not_series_extrema",
+        "independent_observed_width_trend_verified": false,
+        "same_as_2013_140w_oscar_component_span": false,
+        "full_width_conversion_applied": false,
+        "operator": {
+          "weight": "q = max(integral from 0 to 150m of u dz,0)",
+          "axis": "Y = integral(q*y dy) / integral(q dy)",
+          "scale": "W = integral(q*abs(y-Y) dy) / integral(q dy)",
+          "source_latitude_integration_degrees_north": [
+            0,
+            10
+          ],
+          "source_zonal_averaging_degrees_east": [
+            135,
+            155
+          ],
+          "velocity_weight_layer_m": [
+            0,
+            150
+          ],
+          "running_mean_months": 13,
+          "weight_is_vector_speed": false,
+          "scale_is_rms_or_standard_deviation": false,
+          "scale_is_paired_edge_distance": false,
+          "scale_is_half_peak_width": false,
+          "normalization_at_zero_eastward_transport": "undefined_not_zero",
+          "source_figure_8_width_axis_unit": "degrees_latitude",
+          "reported_km_values_transcribed_from": "Conclusion, printed p7757 / original PDF page15",
+          "osw_latitude_to_kilometre_conversion_applied": false
+        },
+        "reported_change_state": "to",
+        "audit_file": "research/pacific-necc-chen-2016-axis-spread-scale-scope-audit.json",
+        "audit_sha256": "002fb6adf48ac655b97428431e021dbf8b0fc6135fa4a18d3c82cb817e495efc"
+      },
+      "remaining_gates": [
+        "Recover numerical model fields and reproduce the exact estimator before a derived series.",
+        "Independent observed widths, physical edges and compatible seasonal sampling remain separate requirements.",
+        "Do not pool with the 2013 eastern Pacific OSCAR component diagnostic."
+      ],
+      "source_file": "research/pacific-necc-chen-2016-axis-spread-scale-scope-audit.json",
+      "source_pointer": "/measurements/1"
     }
   ],
   "current_decisions": [
@@ -12981,10 +13179,13 @@
     {
       "current_id": "pacific-north-equatorial-countercurrent",
       "name": "Pacific North Equatorial Countercurrent",
-      "width_decision": "derived_width_candidate_requires_review",
-      "measurement_ids": [],
+      "width_decision": "scoped_width_evidence_present",
+      "measurement_ids": [
+        "pacific-necc-chen-2016-model-axis-spread-from",
+        "pacific-necc-chen-2016-model-axis-spread-to"
+      ],
       "whole_current_width_km": null,
-      "next_action": "Review 2013 monthly OSCAR section at 140 W, boundary and threshold choices, product errors and branch identity before scientific admission. No whole-current or climatological widths.",
+      "next_action": "Published western-Pacific model axis-distance scales remain separate from the2013 OSCAR candidate. Recover independent physical width boundaries and compatible seasonal sampling; retain whole-current width and annual extrema unknown.",
       "existing_evidence_locator": null,
       "existing_evidence_source_url": null
     },
@@ -13707,5 +13908,6 @@
         }
       ]
     }
-  ]
+  ],
+  "coverage_counting_rule": "Counts follow exclusive current_decisions; source-specific pending candidates and reviews may coexist with scoped records."
 }

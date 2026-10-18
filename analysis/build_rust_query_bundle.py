@@ -28,6 +28,14 @@ def build():
         movies_receipts[name]={'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')}
     dashboard=read('research/ocean-motion-dashboard.json')
     widths=read('research/ocean-current-width-inventory.json')
+    from build_necc_chen_spread_scale import validate_inventory as validate_model_scale, OUTPUT as MODEL_SCALE
+    validate_model_scale(widths)
+    model_scale=read(MODEL_SCALE);read(model_scale['acquisition_file'])
+    for path,pin in model_scale['input_sha256'].items():
+        actual=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if actual!=pin:raise ValueError('Changed model axis-distance dependency: '+path)
+        inputs[path]=actual
+    inputs[model_scale['generator_file']]=hashlib.sha256((ROOT/model_scale['generator_file']).read_bytes()).hexdigest()
     gogp=read('research/persian-gulf-gogp99-geostrophic-scales-scope-audit.json')
     for source in [gogp,*gogp['supporting_originals']]:
         read(source['acquisition_file'])

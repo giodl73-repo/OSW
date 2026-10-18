@@ -41,6 +41,8 @@ def validate(document, ledger):
     validate_sac_inventory(document)
     from check_portugal_orca_section_span import validate_inventory as validate_portugal_inventory
     validate_portugal_inventory(document)
+    from build_necc_chen_spread_scale import validate_inventory as validate_necc_model_scale
+    validate_necc_model_scale(document)
     records = document["measurements"]
     if len({row["id"] for row in records}) != len(records):
         raise ValueError("Duplicate width measurement")
@@ -463,6 +465,9 @@ def validate(document, ledger):
                 raise ValueError('Invented Eulerian boundary extraction or layer')
             if (row['current_id'],value,row['source_url'],row['source_locator'],row['boundary_rule']) != (audit['current_id'],audit['reported_width_km_approx'],audit['source_url'],audit['source_locator'],audit['boundary_rule']):
                 raise ValueError('Eulerian span differs from pinned source extraction')
+        elif row['phase_kind'] == 'published_model_axis_spread_scale':
+            if not row.get('model_axis_spread_context'):
+                raise ValueError('Missing published model axis-distance definition')
         elif row['phase_kind'] == 'inverse_hydrographic_section_span':
             if row.get('extraction_file') == 'research/antilles-cainzos-2023-cruise-section-spans.json':
                 from build_antilles_cainzos_section_spans import build, OUTPUT
@@ -632,7 +637,7 @@ def validate(document, ledger):
             raise ValueError("Width decision mismatch")
         if (row['width_decision'] == 'section_span_diagnostic_present_width_unresolved') != (not expected and any(span['current_id'] == row['current_id'] for span in spans)):
             raise ValueError('Section-span decision mismatch')
-        if (row['width_decision'] == 'derived_width_candidate_requires_review') != any(candidate['current_id'] == row['current_id'] for candidate in derived):
+        if (row['width_decision'] == 'derived_width_candidate_requires_review') != (not expected and any(candidate['current_id'] == row['current_id'] for candidate in derived)):
             raise ValueError('Derived width decision mismatch')
         if (row['width_decision'] == 'sources_reviewed_no_comparable_numeric_current_width') != (not expected and any(review['current_id'] == row['current_id'] for review in reviews)):
             raise ValueError('Width source-review decision mismatch')
@@ -646,7 +651,7 @@ def validate(document, ledger):
             raise ValueError("Seasonal span mismatch")
     counts = {"currents": len(ids), "currents_with_scoped_width_evidence": len({row["current_id"] for row in records}), "measurements": len(records), "currents_with_existing_mentions_pending_review": sum(row["width_decision"] == "existing_width_mention_requires_source_review" for row in decisions), "currents_not_assessed": sum(row["width_decision"] == "width_not_assessed" for row in decisions)}
     counts['currents_with_section_span_diagnostics_width_unresolved'] = sum(row['width_decision'] == 'section_span_diagnostic_present_width_unresolved' for row in decisions)
-    counts['currents_with_derived_width_candidates_pending_review'] = len(derived)
+    counts['currents_with_derived_width_candidates_pending_review'] = sum(row['width_decision'] == 'derived_width_candidate_requires_review' for row in decisions)
     counts['currents_with_sources_reviewed_no_numeric_width'] = sum(row['width_decision'] == 'sources_reviewed_no_comparable_numeric_current_width' for row in decisions)
     if counts != document["counts"]:
         raise ValueError("Width coverage counts mismatch")

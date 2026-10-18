@@ -59,7 +59,7 @@ class DashboardEvidenceTests(unittest.TestCase):
 
     def test_necc_monthly_diagnostic_is_pinned_and_not_admitted_width(self):
         current=next(row for row in build()['entries'] if row['id']=='current:pacific-north-equatorial-countercurrent')
-        self.assertEqual(current['capabilities']['scoped_width'],1)
+        self.assertEqual(current['capabilities']['scoped_width'],3)  # Two published model states plus the still-pending OSCAR candidate.
         self.assertEqual(current['capabilities']['reported_length'],0)
         self.assertEqual(current['capabilities']['time_samples'],12)
         series=next(s for s in current['series'] if s['evidence_role']=='monthly_mean_section_width_candidate')

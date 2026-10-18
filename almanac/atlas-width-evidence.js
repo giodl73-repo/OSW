@@ -26,6 +26,7 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
   const format=value=>Number(value).toLocaleString('en-US');
   window.renderStreamTubeWidths(section,records);
   for(const row of records)window.renderSelectedCoreWidth(section,row);
+  window.renderModelAxisSpread(section,records);
   if(id==='antilles' && records.some(row=>row.phase_kind==='inverse_hydrographic_section_span')) {
     const details=node('details','');details.className='antilles-cruise-evidence';
     node('summary','Compare the three published cruise spans',details);

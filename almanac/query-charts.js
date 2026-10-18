@@ -31,6 +31,11 @@ window.oswCharts=(()=>{
     stopAll();stops=[];
     document.getElementById('query-chart-section').hidden=!scene;root().replaceChildren();if(!scene)return;
     document.getElementById('query-chart-scope').textContent=scene.scope;
+    if(scene.kind==='published_model_axis_spread'){
+      document.getElementById('query-chart-legend').hidden=true;
+      document.getElementById('chart-title').textContent='Published model axis-distance scale';
+      window.renderModelAxisSpread(root(),scene.records,inspect,{open:true,headingTag:'h3',matchingIds:scene.matching_ids});return;
+    }
     if(scene.kind==='antilles_cruise_section_spans'){
       document.getElementById('query-chart-legend').hidden=true;
       document.getElementById('chart-title').textContent='Antilles cruise-section spans';
@@ -73,7 +78,7 @@ window.oswCharts=(()=>{
     }
     document.getElementById('query-chart-legend').hidden=scene.kind==='mooring_velocity';
     document.getElementById('chart-title').textContent=scene.kind==='mooring_velocity'?'Observed current velocity':scene.panels?.length&&scene.panels.every(p=>p.source_context?.current_association_verified===false)?'Local component section spans':'Width profiles';
-    if(scene.kind==='dwbc_float_composite'||scene.kind==='scoped_width_comparisons'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Scoped source comparisons';for(const s of scene.scenes||[scene]){if(s.kind==='antilles_cruise_section_spans')antillesCruise(s,inspect);else if(s.kind==='selected_core_width_statistic')window.renderSelectedCoreWidth(root(),s.record,inspect);else if(s.kind==='published_coordinate_section_span')window.renderPublishedCoordinateSpan(root(),s.record,inspect);else if(s.kind==='coastal_composite_widths')window.renderCoastalCompositeWidths(root(),s,null,inspect);else if(s.kind==='nordic_section_widths')nordic(s,inspect);else if(s.kind==='pacific_neuc_isopycnal_breadths')window.renderPacificNeucBreadths(root(),s,null,inspect);else window.renderDwbcFloatComposite(root(),s,inspect);}return;}
+    if(scene.kind==='dwbc_float_composite'||scene.kind==='scoped_width_comparisons'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Scoped source comparisons';for(const s of scene.scenes||[scene]){if(s.kind==='published_model_axis_spread')window.renderModelAxisSpread(root(),s.records,inspect,{open:true,headingTag:'h3',matchingIds:s.matching_ids});else if(s.kind==='antilles_cruise_section_spans')antillesCruise(s,inspect);else if(s.kind==='selected_core_width_statistic')window.renderSelectedCoreWidth(root(),s.record,inspect);else if(s.kind==='published_coordinate_section_span')window.renderPublishedCoordinateSpan(root(),s.record,inspect);else if(s.kind==='coastal_composite_widths')window.renderCoastalCompositeWidths(root(),s,null,inspect);else if(s.kind==='nordic_section_widths')nordic(s,inspect);else if(s.kind==='pacific_neuc_isopycnal_breadths')window.renderPacificNeucBreadths(root(),s,null,inspect);else window.renderDwbcFloatComposite(root(),s,inspect);}return;}
     if(scene.kind==='pacific_neuc_isopycnal_breadths'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Isopycnal jet breadths';window.renderPacificNeucBreadths(root(),scene,null,inspect);return;}
     if(scene.kind==='coastal_composite_widths'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Composite section widths';window.renderCoastalCompositeWidths(root(),scene,null,inspect);return;}
     if(scene.kind==='published_section_transports'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Published section transport';window.renderPublishedSectionTransports(root(),scene,inspect);return;}

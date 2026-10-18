@@ -29,6 +29,7 @@ mod loop_diagnostics;
 mod loop_recorded;
 mod map;
 mod modal_decay_widths;
+mod model_axis_spread;
 mod model_sections;
 mod mooring_velocity;
 mod movies;
@@ -214,6 +215,7 @@ impl Store {
         nordic_widths::validate(&bundle)?;
         selected_core_widths::validate(&bundle)?;
         antilles_cruise_spans::validate(&bundle)?;
+        model_axis_spread::validate(&bundle)?;
         pacific_neuc_breadths::validate(&bundle)?;
         eddy_source_panels::validate(&bundle)?;
         ursa_contour::validate(&bundle)?;
@@ -688,6 +690,7 @@ impl Store {
                 pacific_neuc_breadths::scene(&matches, records),
                 portugal_section_span::scene(&matches),
                 antilles_cruise_spans::scene(&matches),
+                model_axis_spread::scene(&matches),
             ]
             .into_iter()
             .filter(|s| !s.is_null())
