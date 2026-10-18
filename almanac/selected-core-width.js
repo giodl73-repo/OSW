@@ -1,7 +1,7 @@
 "use strict";
 window.renderSelectedCoreWidth=function(container,row,inspect,options={}){
   const c=row?.selected_core_context;if(!c)return;
-  const panel=document.createElement('section');panel.className='selected-core-width';panel.dataset.measurementId=row.id;
+  const panel=document.createElement('section');panel.className='selected-core-width';panel.dataset.selectedCoreId=row.id;
   panel.style.cssText='border:1px solid #587681;padding:.8rem;margin:1rem 0;box-sizing:border-box;max-width:100%;overflow-wrap:anywhere';container.append(panel);
   let content=panel;
   const add=(tag,text,parent=content)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;parent.append(n);return n;};

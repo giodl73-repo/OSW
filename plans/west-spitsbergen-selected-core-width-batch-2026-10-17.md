@@ -34,3 +34,11 @@ Preservation proof: all 42 other collections remain equal; all earlier width row
 Build verification: all 53 Rust tests passed in 2.26 s; native and WASM compiled; JavaScript syntax passed. The focused browser path passed cards/seasons/query/inspector/source, 320 px/reduced motion, alias separation and the old six-method comparison. Four altered SD/range/identity/annual cases rejected in both engines before the final presentation-only compaction. The final UI-only path passed after compaction, including all five source documents; engine/data bytes were unchanged by that UI edit. A separate source-only run also passed all five documents. A broader Python validation run and clean combined suite remain tracked separately; do not treat historical be51979 results as this candidate's gate.
 
 Focused Python gate: 48 tests and 658 subtests passed in 454.99 s, including the full width-inventory and seasonal-route validators.
+
+## Combined-gate failure and repair
+
+The be51979 clean full run finished with one MemoryError in test_solomon_coastal_confinement::test_coherent_native_scope_rejection; 1,645 tests and 1,081 subtests passed in 2,348.70 s. The fixture accumulated twelve deep copies of the entire query packet before checking them. It now preserves the same twelve coherent mutations, constructs/checks one packet at a time, streams JSON to disk and releases it before the next case. All 31 tests in that file pass in 84.90 s. No scientific rejection assertion or source pin is relaxed.
+
+The shared new widget now uses its own selected-core data attribute, preserving the unique generic width-record selector. The unchanged all-current-card assertion matrix passes for all 100 cards and 150 unique records, including original definitions, source and record links, keyboard disclosures, conflict text, inspector return, reset, 320 px and stored widths without direct source requests. Only QA image destinations were redirected to the ignored cache in the isolated preview run.
+
+A new clean full suite is required on the combined repair/integration candidate. The older failed run is terminal and must not be described as active or passing.

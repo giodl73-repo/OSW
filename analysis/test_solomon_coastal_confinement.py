@@ -62,11 +62,14 @@ def check_native_guard(directory):
     for row in rows:
         other=next(r for r in rows if r['id']!=row['id'])
         for changes in [{'approximate_width_km':row['reported_width_constraint']['reference_scale_km']}, {'fixed_layer_bounds_m':[100,400]}, {'calendar_months':[6,7,8]}, {'original_regional_context':other['original_regional_context']}, {'original_regional_context':{},'current_id':'portugal'}, {'original_regional_context':{},'current_id':other['current_id']}]:
-            mutations.append(coherent_packet(packet,row['id'],changes))
-    for bad in mutations:
-        target.write_text(json.dumps(bad),encoding='utf8')
+            mutations.append((row['id'],changes))
+    # Keep the full twelve-case matrix, but only one tampered packet at a time.
+    for record_id,changes in mutations:
+        bad=coherent_packet(packet,record_id,changes)
+        with target.open('w',encoding='utf8') as stream:json.dump(bad,stream)
         result=subprocess.run([str(CLI),str(target),'--seasons'],capture_output=True,text=True,encoding='utf8')
         assert result.returncode==2 and 'Original regional' in result.stderr,result.stderr
+        del bad
     return target
 
 def test_coherent_native_scope_rejection(tmp_path):check_native_guard(tmp_path)

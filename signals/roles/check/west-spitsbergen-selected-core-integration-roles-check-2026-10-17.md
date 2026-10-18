@@ -40,3 +40,10 @@ Direct review through seven installed role lenses, not independent external revi
 1. Preserve the source statistic and its SD as separate quantities, with explicit geographic, layer and temporal support.
 2. Enforce original/owner/completeness bindings and preserve all earlier measurements and physical route definitions.
 3. Use one renderer across cards, seasons and query with numeric/source alternatives and keyboard-accessible compact details.
+
+## Post-review gate evidence
+
+- The final all-card check passed all 100 current cards and 150 unique width records. The new widget uses selectedCoreId; measurementId remains unique to the generic record disclosure.
+- The broad focused Python gate passed 48 tests and 658 subtests in 454.99 s.
+- be51979 full suite is TERMINAL_FAIL from a fixture MemoryError, with 1,645 passed tests and 1,081 subtests. The twelve-copy allocation was replaced with the same twelve sequential checks; all 31 affected tests pass in 84.90 s.
+- Combined clean full gate and remote-head verification remain conditions. Inspected be51979 CI runs 39102535428 and 39102528802 failed during unchanged Van Aken/Reading original acquisition (connection refused), before the offline suite; this does not establish the status of a future candidate.
