@@ -80,8 +80,9 @@ def test_native_source_scene_and_combined_comparisons():
     all_widths=native({'collection':'widths','limit':1})
     assert all_widths['chart_scene']['kind']=='scoped_width_comparisons'
     scenes=all_widths['chart_scene']['scenes']
-    assert [s['kind'] for s in scenes]==['selected_core_width_statistic','nordic_section_widths','coastal_composite_widths','dwbc_float_composite','pacific_neuc_isopycnal_breadths','published_coordinate_section_span']
+    assert [s['kind'] for s in scenes]==['selected_core_width_statistic','nordic_section_widths','coastal_composite_widths','dwbc_float_composite','pacific_neuc_isopycnal_breadths','published_coordinate_section_span','antilles_cruise_section_spans']
     by_kind={scene['kind']:scene for scene in scenes}
+    assert [r['approximate_width_km'] for r in by_kind['antilles_cruise_section_spans']['records']]==[125,38,39]
     core=by_kind['selected_core_width_statistic']
     assert core['record']['approximate_width_km']==28
     assert core['record']['width_standard_deviation_km']==7

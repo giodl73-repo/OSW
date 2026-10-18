@@ -214,7 +214,7 @@ class DashboardEvidenceTests(unittest.TestCase):
         rows = {row['id']: row for row in build()['entries']}
         antilles = rows['current:antilles']
         self.assertEqual(antilles['capabilities']['scope_notes'], 1)
-        self.assertEqual(antilles['capabilities']['scoped_width'], 0)
+        self.assertEqual(antilles['capabilities']['scoped_width'], 3)
         self.assertEqual(antilles['capabilities']['reference_route'], 1)
         self.assertEqual(antilles['capabilities']['reported_length'], 0)
         self.assertEqual(antilles['latest_observation_date'], '2015-11-23')

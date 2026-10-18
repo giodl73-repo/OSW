@@ -45,7 +45,7 @@ def validate(document, ledger):
     if len({row["id"] for row in records}) != len(records):
         raise ValueError("Duplicate width measurement")
     by_id = {row["id"]: row for row in records}
-    hydrographic_extraction = None
+    hydrographic_extraction = {}
     for row in records:
         if str(row.get("id", "")).startswith(("ngcc-radenac-2016-", "pacific-secc-rotschi-1972-", "hiri-hughes-1993-", "east-adriatic-pasaric-2019-", "acc-park-2019-udintsev-", "monsoon-webber-2018-", "tasman-front-nilsson-1980-", "antarctic-coastal-schubert-2021-", "deep-western-boundary-richardson-1993-", "pacific-neuc-li-2018-")) or row.get("original_regional_context") or row["current_id"] == "antarctic-slope" or row["current_id"] in {"new-guinea-coastal-current", "pacific-south-equatorial-countercurrent", "hiri-current", "east-adriatic", "algerian", "alaska", "pacific-equatorial-undercurrent", "atlantic-equatorial-undercurrent", "kuroshio-extension", "new-guinea-coastal-undercurrent", "zeehan", "west-australian", "peru-humboldt", "baffin", "western-adriatic", "jutland", "solomon-island-coastal-undercurrent", "new-ireland-coastal-undercurrent", "north-pacific", "acc", "monsoon", "tasman-front", "antarctic-coastal", "deep-western-boundary", "pacific-north-equatorial-undercurrent"}:
             from check_original_regional_widths import validate_row
@@ -464,12 +464,15 @@ def validate(document, ledger):
             if (row['current_id'],value,row['source_url'],row['source_locator'],row['boundary_rule']) != (audit['current_id'],audit['reported_width_km_approx'],audit['source_url'],audit['source_locator'],audit['boundary_rule']):
                 raise ValueError('Eulerian span differs from pinned source extraction')
         elif row['phase_kind'] == 'inverse_hydrographic_section_span':
-            from build_atlantic_cruise_widths import build, OUTPUT
-            if hydrographic_extraction is None:
-                hydrographic_extraction = build()
-                if json.loads((ROOT / OUTPUT).read_bytes()) != hydrographic_extraction:
+            if row.get('extraction_file') == 'research/antilles-cainzos-2023-cruise-section-spans.json':
+                from build_antilles_cainzos_section_spans import build, OUTPUT
+            else:
+                from build_atlantic_cruise_widths import build, OUTPUT
+            if OUTPUT not in hydrographic_extraction:
+                hydrographic_extraction[OUTPUT] = build()
+                if json.loads((ROOT / OUTPUT).read_bytes()) != hydrographic_extraction[OUTPUT]:
                     raise ValueError('Changed Atlantic cruise extraction; source review required')
-            expected = next((r for r in hydrographic_extraction['measurements'] if r['id'] == row['id']), None)
+            expected = next((r for r in hydrographic_extraction[OUTPUT]['measurements'] if r['id'] == row['id']), None)
             actual = {k:v for k,v in row.items() if k not in ['extraction_file', 'extraction_sha256']}
             if (expected is None or actual != expected or row.get('extraction_file') != OUTPUT
                     or row.get('extraction_sha256') != hashlib.sha256((ROOT / OUTPUT).read_bytes()).hexdigest()):
@@ -631,7 +634,7 @@ def validate(document, ledger):
             raise ValueError('Section-span decision mismatch')
         if (row['width_decision'] == 'derived_width_candidate_requires_review') != any(candidate['current_id'] == row['current_id'] for candidate in derived):
             raise ValueError('Derived width decision mismatch')
-        if (row['width_decision'] == 'sources_reviewed_no_comparable_numeric_current_width') != any(review['current_id'] == row['current_id'] for review in reviews):
+        if (row['width_decision'] == 'sources_reviewed_no_comparable_numeric_current_width') != (not expected and any(review['current_id'] == row['current_id'] for review in reviews)):
             raise ValueError('Width source-review decision mismatch')
     for summary in document["seasonal_summaries"]:
         if not isinstance(summary.get('interpretation'),str) or not summary['interpretation'].strip():
@@ -644,7 +647,7 @@ def validate(document, ledger):
     counts = {"currents": len(ids), "currents_with_scoped_width_evidence": len({row["current_id"] for row in records}), "measurements": len(records), "currents_with_existing_mentions_pending_review": sum(row["width_decision"] == "existing_width_mention_requires_source_review" for row in decisions), "currents_not_assessed": sum(row["width_decision"] == "width_not_assessed" for row in decisions)}
     counts['currents_with_section_span_diagnostics_width_unresolved'] = sum(row['width_decision'] == 'section_span_diagnostic_present_width_unresolved' for row in decisions)
     counts['currents_with_derived_width_candidates_pending_review'] = len(derived)
-    counts['currents_with_sources_reviewed_no_numeric_width'] = len(reviews)
+    counts['currents_with_sources_reviewed_no_numeric_width'] = sum(row['width_decision'] == 'sources_reviewed_no_comparable_numeric_current_width' for row in decisions)
     if counts != document["counts"]:
         raise ValueError("Width coverage counts mismatch")
 

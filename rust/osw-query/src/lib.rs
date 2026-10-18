@@ -2,6 +2,7 @@ use serde::Deserialize;
 use serde_json::{Value, json};
 use std::collections::{BTreeMap, BTreeSet};
 mod abstract_regional_widths;
+mod antilles_cruise_spans;
 mod astrid_scales;
 mod atlantic_euc_sections;
 mod atlas_data;
@@ -212,6 +213,7 @@ impl Store {
         observed_spans::validate(&bundle)?;
         nordic_widths::validate(&bundle)?;
         selected_core_widths::validate(&bundle)?;
+        antilles_cruise_spans::validate(&bundle)?;
         pacific_neuc_breadths::validate(&bundle)?;
         eddy_source_panels::validate(&bundle)?;
         ursa_contour::validate(&bundle)?;
@@ -685,6 +687,7 @@ impl Store {
                 dwbc_float_composite::scene(&matches, records),
                 pacific_neuc_breadths::scene(&matches, records),
                 portugal_section_span::scene(&matches),
+                antilles_cruise_spans::scene(&matches),
             ]
             .into_iter()
             .filter(|s| !s.is_null())

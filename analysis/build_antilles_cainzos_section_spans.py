@@ -102,7 +102,7 @@ def build():
           'coordinate_uncertainty_degrees':None,'coordinate_datum':None,'point_count':len(points),'points':points,
           'source_file':source['file'],'source_sha256':source['sha256'],'cruise_url':source['cruise_url']})
     return {'schema':'osw.antilles-published-cruise-spans.v1','status':'editorial_source_extraction_not_canonical',
-      'current_id':'antilles','source_url':URL,'source_license':'CC-BY-4.0','article_review':{'original_pdf_pages':[5,14],'review_scope':'Table2 continuation and Section3.1.7 visually inspected; not a full page-by-page review.'},'protocol_file':PROTOCOL,
+      'current_id':'antilles','source_url':URL,'source_license':'CC-BY-4.0','acquisition_file':DIRECTORY+'acquisition.json','article_review':{'original_pdf_pages':[5,14],'review_scope':'Table2 continuation and Section3.1.7 visually inspected; not a full page-by-page review.'},'protocol_file':PROTOCOL,
       'protocol_sha256':digest(PROTOCOL),'generator_file':'analysis/build_antilles_cainzos_section_spans.py',
       'generator_sha256':digest('analysis/build_antilles_cainzos_section_spans.py'),'input_sha256':FROZEN_INPUTS,
       'original_source_tables':tables,'source_conflicts':conflicts,'measurements':records,'measurement_contexts':contexts,

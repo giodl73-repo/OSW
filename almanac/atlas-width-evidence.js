@@ -26,6 +26,12 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
   const format=value=>Number(value).toLocaleString('en-US');
   window.renderStreamTubeWidths(section,records);
   for(const row of records)window.renderSelectedCoreWidth(section,row);
+  if(id==='antilles' && records.some(row=>row.phase_kind==='inverse_hydrographic_section_span')) {
+    const details=node('details','');details.className='antilles-cruise-evidence';
+    node('summary','Compare the three published cruise spans',details);
+    const body=node('div','',details);body.style.minWidth='0';
+    window.renderAtlanticCruiseWidths(body,id,inventory,{headingTag:'h5',recordBase:'seasons.html'});
+  }
   if(id==='deep-western-boundary')window.renderDwbcFloatComposite(section,window.oswAtlasSnapshot?.dwbc_float_composite_scene);
   if(id==='antarctic-coastal')window.renderCoastalCompositeWidths(section,window.oswAtlasSnapshot?.coastal_composite_width_scene);
   for(const row of records){window.renderModalDecayWidth(section,row);window.renderOriginalRegionalWidth(section,row);window.renderModelRegionalWidth(section,row);window.renderAbstractRegionalWidth(section,row);if(row.phase_kind==='seasonal_regional_width_range')window.renderSeasonalRegionalWidth(section,row);}

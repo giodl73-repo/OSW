@@ -222,6 +222,10 @@ def build():
     for record in widths['measurements']:
         if record.get('extraction_file'):
             extraction = read(record['extraction_file'])
+            for dependency,pin in extraction.get('input_sha256',{}).items():
+                actual=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
+                if actual!=pin:raise ValueError('Changed cruise extraction dependency: '+dependency)
+                inputs[dependency]=actual
             read(extraction['acquisition_file'])
             for dependency in [extraction['protocol_file'], extraction['generator_file'], *[s['file'] for s in json.loads((ROOT / extraction['acquisition_file']).read_bytes())['files']]]:
                 inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
