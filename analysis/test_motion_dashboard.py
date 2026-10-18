@@ -171,7 +171,15 @@ class DashboardEvidenceTests(unittest.TestCase):
         rows={row['id']:row for row in build()['entries']}
         guiana=rows['current:guiana']
         self.assertEqual(guiana['capabilities']['scope_notes'],1)
-        self.assertEqual(guiana['capabilities']['reference_route'],0)
+        self.assertEqual(guiana['capabilities']['reference_route'],1)
+        own_route=json.loads((ROOT/'research/guiana-reference-path-candidate.json').read_bytes())
+        self.assertEqual(own_route['current_id'],'guiana')
+        self.assertEqual(own_route['candidate_comparison_group'],'osw_studied_reach_routes')
+        self.assertFalse(own_route['rank_eligible_published_estimates'])
+        own_features=[f for f in guiana['map_features'] if f['role']=='editorial_reference_route']
+        self.assertEqual(len(own_features),1)
+        self.assertEqual(own_features[0]['geometry']['coordinates'],own_route['coordinates_lon_lat'])
+        self.assertNotIn(own_features[0]['geometry'],[f['geometry'] for f in rows['current:north-brazil']['map_features']])
         self.assertEqual(guiana['capabilities']['scoped_width'],1)
         self.assertEqual(rows['current:north-brazil']['capabilities']['scoped_width'],2)
         self.assertEqual(guiana['capabilities']['time_samples'],0)
@@ -237,12 +245,27 @@ class DashboardEvidenceTests(unittest.TestCase):
         rows = {row['id']: row for row in result['entries']}
         self.assertEqual(rows['current:aleutian']['capabilities']['source_connectivity'], 3)
         self.assertEqual(rows['current:aleutian']['capabilities']['reference_route'], 1)
-        self.assertIsNone(rows['current:aleutian']['latest_observation_date'])
+        self.assertEqual(rows['current:aleutian']['latest_observation_date'],'1993-07-18')
         self.assertNotIn('current:alaskan-stream', rows)
         for connection in result['connections']:
             self.assertIsNone(connection['junction_coordinate'])
             self.assertIsNone(connection['transport_sv'])
             self.assertIs(connection['canonical_admission'], False)
+        # The native ADCP observations supply Aleutian's date. Removing the
+        # independently described links must not change dates or dimensions.
+        path=ROOT/'research/ocean-current-connectivity-candidates.json'
+        links=json.loads(path.read_bytes());links['entries']=[]
+        original=Path.read_bytes
+        def without_links(candidate):
+            return json.dumps(links).encode() if candidate==path else original(candidate)
+        with patch.object(Path,'read_bytes',without_links):
+            unlinked=build()
+        self.assertEqual(unlinked['connections'],[])
+        for entry in unlinked['entries']:
+            prior=rows[entry['id']]
+            self.assertEqual(entry['latest_observation_date'],prior['latest_observation_date'])
+            for metric in ['reported_length','reference_route','scoped_width','time_samples']:
+                self.assertEqual(entry['capabilities'][metric],prior['capabilities'][metric])
 
     def test_naming_review_does_not_transfer_neighbor_dimensions_or_dates(self):
         rows={row['id']:row for row in build()['entries']}

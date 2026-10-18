@@ -3,10 +3,10 @@
   "status": "editorial_candidates_not_canonical_length_admissions",
   "counts": {
     "currents_without_published_ranked_estimate": 89,
-    "currents_with_route_candidates": 69,
-    "currents_without_route_candidates": 20,
-    "route_candidates": 75,
-    "studied_reach_candidates": 36
+    "currents_with_route_candidates": 70,
+    "currents_without_route_candidates": 19,
+    "route_candidates": 76,
+    "studied_reach_candidates": 37
   },
   "comparison_rule": "Descending length of declared OSW reference routes only. Coherent jets, specified branches and source/region-defined extents differ in scope; their order is provisional and is not a uniform whole-current ranking. Studied reaches are excluded from the reference-route order. No number replaces the existing length evidence or published ranking.",
   "reference_route_length_order": [
@@ -106,7 +106,7 @@
         "description": "Aliases, source-dependent limits or proposed continuity need an explicit identity/extent decision. A regional candidate may use a declared convention meanwhile.",
         "next_action": "Read competing definitions, resolve aliases versus distinct flows, and retain source-convention routes without merging their extents.",
         "current_count": 16,
-        "unbuilt_count": 5
+        "unbuilt_count": 4
       },
       {
         "id": "layer_specific_route",
@@ -2677,6 +2677,55 @@
       }
     },
     {
+      "id": "guiana-reference-path-candidate",
+      "current_id": "guiana",
+      "name": "Guiana Current",
+      "status": "editorial_reference_path_candidate_not_scientifically_reviewed",
+      "comparison_group": "osw_studied_reach_routes",
+      "scope": "Regional Guianas survey-domain corridor from an offshore Maroni approach through the Demerara and Orinoco approaches to east of Trinidad. Both endpoints and all vertices are OSW geographic choices within the report's regional context, not named-current origins, terminations or measured station positions. Excludes a whole North Brazil Current, Caribbean continuation, offshore retroflection, ring trajectories and river-plume boundaries.",
+      "route_extent_kind": "Guianas survey-domain regional reach",
+      "approximate_reference_path_km": 900,
+      "scenario_range_km": [
+        700,
+        900
+      ],
+      "scenario_count": 54,
+      "source_url": "https://www.fao.org/4/x6078e/x6078e03.htm",
+      "source_locator": "H. Gade, Chapter 2.1: sections 2.1.1.3 and 2.1.2.1-2.1.2.3; Guianas/eastern Trinidad regional context, named survey sections and hydrographic interpretation. Publisher HTML is OCR-derived; no original figure or station coordinates digitized.",
+      "supporting_sources": [
+        {
+          "url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
+          "citation": "NOAA Tides and Currents glossary, Guiana Current entry.",
+          "locator": "Guiana Current entry: northwestward flow along northeast South America.",
+          "role": "Current identity and direction only; no source-defined endpoints or numeric length."
+        },
+        {
+          "url": "https://www.fao.org/4/x6078e/x6078e00.htm",
+          "citation": "IMR/NORAD/UNDP/FAO report front matter, November 1989.",
+          "locator": "Report title, publication date, chapter attribution and electronic OCR notice.",
+          "role": "Survey and publication provenance; OCR limits remain explicit."
+        }
+      ],
+      "candidate_file": "research/guiana-reference-path-candidate.json",
+      "candidate_sha256": "fa12de259d0401bb677ca369a3f15a0a482d73542561116587f7e161285ff22b",
+      "generator_sha256": "1362693ec7075e014d065691923248db455a5c3cd78c9a94880b3b472594d240",
+      "figure": "figures/guiana-reference-path-candidate.svg",
+      "nominal_atlas_state_crossings": [
+        "GUIA"
+      ],
+      "recommended_nasa_tile_id": "level2_B_3",
+      "remaining_gates": [
+        "Review regional scope and selected offshore vertices against original survey charts and suitable bathymetry; coarse land clearance is insufficient.",
+        "Resolve Guiana versus North Brazil naming conventions and dated continuity before estimating whole-current length.",
+        "Do not infer a modern velocity axis, freshwater-plume edge, current polygon or physical OSW state passage from this editorial corridor.",
+        "Seasonal geometry, length variation, width and annual extrema remain unsupported by this geographic route.",
+        "Scientific and canonical admission review; retain studied-reach exclusion from the whole-current reference-route order."
+      ],
+      "parent_current_id": null,
+      "parent_scope_note": null,
+      "ordering_sensitivity": null
+    },
+    {
       "id": "solomon-island-coastal-undercurrent-reference-path-candidate",
       "current_id": "solomon-island-coastal-undercurrent",
       "name": "Solomon Island Coastal Undercurrent",
@@ -4494,15 +4543,17 @@
       "existing_length_evidence_status": "no_numeric_length",
       "existing_scope": "No comparable path-length estimate admitted yet.",
       "name_source_url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
-      "candidate_ids": [],
-      "reference_path_decision": "reference_path_not_constructed",
+      "candidate_ids": [
+        "guiana-reference-path-candidate"
+      ],
+      "reference_path_decision": "editorial_candidate_present_scientific_review_pending",
       "published_length_rank_eligible": false,
       "ledger_kind": "regional current",
       "route_strategy_id": "resolve_naming_scope",
       "route_strategy_label": "Resolve naming or extent convention",
       "planning_status": "editorial_planning_crosswalk_not_scientific_classification_approval",
       "planning_basis": "No comparable path-length estimate admitted yet.",
-      "next_action": "Select source-specific Guiana/Guyana extent and depth; separate shelf flow from ring passage. Local non-detection is not global absence. Resolve entry/Caribbean gates before an axis. Scope audit: research/guiana-north-brazil-naming-scope-audit.json",
+      "next_action": "Review the existing editorial route against scientific gates; broader/system/family scope remains governed by the planning strategy.",
       "strategy_next_action": "Read competing definitions, resolve aliases versus distinct flows, and retain source-convention routes without merging their extents.",
       "known_component_currents": [],
       "component_inventory_status": "not_assessed_by_this_planning_crosswalk"
@@ -5742,7 +5793,7 @@
     "file": "plans/ocean-current-measurement-protocol-v1.md",
     "sha256": "83afac80f4b530c598f46d435e21d010927c129543675a1e6de440385c00145f",
     "audit_file": "research/ocean-current-measurement-protocol-audit.json",
-    "audit_sha256": "ef226dc87d9a88d61d93b198794a3fac39d2abac0a0c59d8fbc9548f671dc944",
+    "audit_sha256": "581e36063ce85a7ea48323d810764312d145a8fc8ad1063b7418229bbdcbfca1",
     "status": "editorial_conformance_checks_passed_not_scientific_approval"
   }
 }
