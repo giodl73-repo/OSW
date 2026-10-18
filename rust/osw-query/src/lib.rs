@@ -25,6 +25,7 @@ mod index_map;
 mod index_noaa;
 pub mod index_store;
 mod index_support;
+mod kuroshio_filtered_width;
 mod loop_diagnostics;
 mod loop_recorded;
 mod map;
@@ -306,6 +307,7 @@ impl Store {
         portugal_section_span::validate_inventory(&bundle)?;
         current_width_source_reviews::validate(&bundle)?;
         current_research_evidence::validate(&bundle)?;
+        kuroshio_filtered_width::validate(&bundle)?;
         coastal_composite_widths::validate(&bundle)?;
         dwbc_float_composite::validate(&bundle)?;
         atlas_data::validate(&bundle)?;
@@ -674,7 +676,17 @@ impl Store {
         } else if query.collection == "diagnostics" {
             let reviews = current_width_source_reviews::query(&matches, &self.bundle);
             let research = current_research_evidence::query(&matches, &self.bundle);
-            if research.is_null() {
+            let filtered = kuroshio_filtered_width::query(&matches, &self.bundle);
+            if !filtered.is_null() {
+                if research.is_null() && reviews.is_null() {
+                    filtered
+                } else {
+                    json!({"kind":"current_diagnostic_evidence","scope":"Source readings preserve filtering, observation support and unresolved physical dimensions.",
+                    "source_review_scenes":reviews["scenes"].as_array().cloned().unwrap_or_default(),
+                    "research_evidence_scenes":research["scenes"].as_array().cloned().unwrap_or_default(),
+                    "filtered_width_curve_scenes":[filtered]})
+                }
+            } else if research.is_null() {
                 reviews
             } else if reviews.is_null() {
                 research

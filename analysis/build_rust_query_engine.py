@@ -79,6 +79,9 @@ def main():
                   'research/aleutian-p14n-1993-run-composite.json',
                   'research/aleutian-p14n-1993-run-composite-figure.json'])
     paths.extend(['rust/osw-query/src/measurement_scope.rs','research/current-measurement-object-scope-index.json'])
+    paths.extend(['rust/osw-query/src/kuroshio_filtered_width.rs','research/kuroshio-ecs-filtered-width-time-series.json',
+                  'research/kuroshio-ecs-filtered-width-time-series-figure.json',
+                  'research/source-data/kuroshio-liu-gan-2012/figure7a-time-extraction.json','analysis/kuroshio_filtered_width.py'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',

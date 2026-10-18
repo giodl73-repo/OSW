@@ -624,6 +624,12 @@ def build():
     for path in ['analysis/build_florida_monthly_plot.py','analysis/build_leeuwin_monthly_plot.py','analysis/build_kuroshio_seasonal_width_profiles.py','analysis/build_pacific_necc_oscar_section_diagnostic.py','analysis/acquire_pacific_necc_oscar_section.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     inputs['analysis/build_query_width_samples.py']=hashlib.sha256((ROOT/'analysis/build_query_width_samples.py').read_bytes()).hexdigest()
+    from kuroshio_filtered_width import verify_inputs as verify_filtered_width, record as filtered_width_record, ID as FILTERED_WIDTH_ID
+    filtered_document,filtered_figure,filtered_inputs=verify_filtered_width()
+    inputs.update(filtered_inputs)
+    collections['diagnostics'].append(filtered_width_record(filtered_document))
+    filtered_owner=next(r for r in objects if r['id']=='current:kuroshio')
+    filtered_owner.setdefault('diagnostic_ids',[]).append(FILTERED_WIDTH_ID)
     collections['width_samples']=build_width_samples(collections['diagnostics'])
     for row in objects:
         row['width_sample_ids']=[sample['id'] for sample in collections['width_samples'] if sample['entity_id']==row['id']]

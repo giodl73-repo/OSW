@@ -210,6 +210,11 @@ def build():
     read(necc['source_inventory_file'])
     kuroshio_profile_path='research/kuroshio-ecs-seasonal-width-profile-extraction.json'
     kuroshio_profiles=read(kuroshio_profile_path)
+    from kuroshio_filtered_width import verify_inputs as verify_filtered_width, ID as FILTERED_WIDTH_ID
+    filtered_width,filtered_figure,filtered_inputs=verify_filtered_width()
+    read('research/kuroshio-ecs-filtered-width-time-series.json')
+    read('research/kuroshio-ecs-filtered-width-time-series-figure.json')
+    inputs.update(filtered_inputs)
     if kuroshio_profiles!=build_kuroshio_profiles():raise ValueError('Kuroshio seasonal profile differs from pinned extraction')
     for key in ['source_pdf_file','config_file','protocol_file','scope_audit_file']:
         path=kuroshio_profiles[key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -508,6 +513,14 @@ def build():
                            'diagnostic_url':'../'+kuroshio_profile_path,'evidence_sha256':inputs[kuroshio_profile_path],
                            'source_pdf_sha256':kuroshio_profiles['source_pdf_sha256'],'protocol_sha256':kuroshio_profiles['protocol_sha256'],
                            'config_sha256':kuroshio_profiles['config_sha256']})
+            filtered_query={'collection':'width_samples','filters':[{'field':'sample_family','op':'eq','value':'kuroshio_filtered_curve_plot'}],
+                            'sort':{'field':'plot_year','direction':'asc'},'limit':250}
+            series.append({'label':'1993–2008 half-year-filtered regional width curve (192 plot samples)',
+                           'url':'query.html?q='+quote(json.dumps(filtered_query,separators=(',',':')),safe=''),
+                           'frames':filtered_width['sample_count'],'evidence_role':'filtered_curve_plot_samples_not_raw_monthly_observations',
+                           'diagnostic_url':'../research/kuroshio-ecs-filtered-width-time-series.json',
+                           'evidence_sha256':inputs['research/kuroshio-ecs-filtered-width-time-series.json'],
+                           'sample_time_is_observation_date':False})
         if current_id == florida_plot['current_id']:
             series.append({'label':'2005-2006 monthly surface-jet widths at 25.42 N (graph readings)',
                            'url':'query.html?q=%7B%22collection%22%3A%22width_samples%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22florida%22%7D%5D%2C%22limit%22%3A100%7D',
@@ -661,6 +674,7 @@ def build():
         if current_id == leeuwin_plot['current_id']:
             payload['monthly_width_plot']=leeuwin_plot
         if current_id == kuroshio_profiles['current_id']:payload['seasonal_width_profiles']=kuroshio_profiles
+        if current_id == 'kuroshio':payload['filtered_width_diagnostic_id']=FILTERED_WIDTH_ID
         own_width_audits=[width_audits[path] for path in sorted({context['audit_file'] for w in own_widths for context in [w.get('stream_mean_context') or w.get('eulerian_section_context') or w.get('width_statistics_context') or w.get('regional_range_context') or w.get('regional_scalar_context') or w.get('mean_offshore_context') or w.get('adcp_threshold_context')] if context})]
         if own_width_audits:payload['width_scope_audits']=own_width_audits
         groups = {
@@ -748,6 +762,12 @@ def build():
             groups['measurements'].append(kuroshio_profiles)
             groups['time_evidence'].append(kuroshio_profiles)
             groups['sources']=[groups['sources'],{key:kuroshio_profiles[key] for key in ['source_pdf_sha256','source_url','source_locator','config_sha256','protocol_sha256','scope_audit_sha256']}]
+            filtered_support={'diagnostic_id':FILTERED_WIDTH_ID,'source_file':'research/kuroshio-ecs-filtered-width-time-series.json',
+                'source_sha256':inputs['research/kuroshio-ecs-filtered-width-time-series.json'],'sample_count':filtered_width['sample_count'],
+                'metric':filtered_width['width_metric'],'sample_time_is_observation_date':False,'samples_are_raw_monthly_means':False}
+            groups['measurements'].append(filtered_support)
+            groups['time_evidence'].append(filtered_support)
+            groups['sources'].append(filtered_support)
         if own_width_audits:
             groups['sources']=[groups['sources'],own_width_audits]
             groups['measurements'].append(own_width_audits)

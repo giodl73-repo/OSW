@@ -50,12 +50,17 @@ window.oswCharts=(()=>{
       document.getElementById('query-chart-legend').hidden=true;
       document.getElementById('chart-title').textContent='Current research evidence';
       for(const s of scene.source_review_scenes||[])window.renderCurrentWidthSourceReview(root(),s,inspect);
+      for(const s of scene.filtered_width_curve_scenes||[])window.renderKuroshioFilteredWidths(root(),s,inspect,{open:true});
       for(const s of scene.kind==='current_research_evidence_panels'?scene.scenes:scene.research_evidence_scenes)window.renderCurrentResearchEvidence(root(),s,inspect,{open:true});return;
     }
     if(scene.kind==='current_width_source_reviews'){
       document.getElementById('query-chart-legend').hidden=true;
       document.getElementById('chart-title').textContent='Current width source review';
       for(const s of scene.scenes)window.renderCurrentWidthSourceReview(root(),s,inspect);return;
+    }
+    if(scene.kind==='kuroshio_filtered_width_curve'){
+      document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Published filtered width curve';
+      window.renderKuroshioFilteredWidths(root(),scene,inspect,{open:true});return;
     }
     if(scene.kind==='selected_core_width_statistic'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Published selected-core width';window.renderSelectedCoreWidth(root(),scene.record,inspect);return;}
     if(scene.kind==='nordic_section_widths'){
@@ -88,6 +93,7 @@ window.oswCharts=(()=>{
     for(const [index,panel] of scene.panels.entries()){
       const article=html('article',undefined,root());article.className='query-chart-panel';article.dataset.panel=panel.id;
       html('h3',panel.title,article);html('p',panel.matching_samples+' matching samples · '+panel.missing_samples+(panel.source_context?.current_association_verified===false?' missing spans. Current width remains unresolved.':' unresolved.')+' Axes remain fixed to the original diagnostic.',article);
+      if(panel.sample_time_note)html('p',panel.sample_time_note,article);
       const frame=html('div',undefined,article);frame.className='query-chart-frame';
       const svg=svgNode('svg',{viewBox:panel.view_box.join(' '),role:'group','aria-labelledby':'width-chart-title-'+index+' width-chart-desc-'+index},frame);
       svgNode('title',{id:'width-chart-title-'+index},svg,panel.title);
@@ -95,7 +101,7 @@ window.oswCharts=(()=>{
       for(const tick of panel.y_ticks){svgNode('line',{x1:58,x2:616,y1:tick.y,y2:tick.y,class:'chart-grid'},svg);svgNode('text',{x:49,y:tick.y+4,'text-anchor':'end'},svg,tick.value_km.toLocaleString('en',{maximumFractionDigits:1}));}
       svgNode('text',{x:58,y:18},svg,panel.source_context?.current_association_verified===false?'Local section span (km)':'Scoped width (km)');
       for(const tick of panel.x_ticks){const label=tick.label|| (panel.x_field==='month'?new Intl.DateTimeFormat('en',{month:'short',timeZone:'UTC'}).format(new Date(Date.UTC(2000,tick.value-1,1))):String(tick.value));svgNode('text',{x:tick.x,y:238,'text-anchor':panel.x_field==='observation_date'&&tick.x===58?'start':panel.x_field==='observation_date'&&tick.x===616?'end':'middle'},svg,label);}
-      svgNode('text',{x:8,y:259},svg,'Missing');svgNode('text',{x:338,y:277,'text-anchor':'middle'},svg,panel.x_field==='month'?'Source calendar month':panel.x_field==='observation_date'?'Recorded observation day · elapsed Gregorian time':'Section longitude (degrees east)');
+      svgNode('text',{x:8,y:259},svg,'Missing');svgNode('text',{x:338,y:277,'text-anchor':'middle'},svg,panel.x_field==='plot_year'?'Published plot year · half-year filtered':panel.x_field==='month'?'Source calendar month':panel.x_field==='observation_date'?'Recorded observation day · elapsed Gregorian time':'Section longitude (degrees east)');
       for(const point of panel.points){
         const p=point.primitive,mark=svgNode('g',{tabindex:0,role:'button','data-sample':point.sample_id,class:'chart-sample'},svg);
         const label=point.label+' · '+(point.value_km===null?'unresolved':point.value_km.toLocaleString('en',{maximumFractionDigits:1})+' km')+(point.plot_reading_interval_km?' · plot-reading allowance '+point.plot_reading_interval_km.join('–')+' km':point.diagnostic_sensitivity_interval_km?' · finite threshold sensitivity '+point.diagnostic_sensitivity_interval_km.join('–')+' km; measurement uncertainty unresolved':' · measurement uncertainty unresolved')+(point.source_algorithm?' · '+point.source_algorithm:'');

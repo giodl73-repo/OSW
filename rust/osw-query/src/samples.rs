@@ -17,6 +17,7 @@ pub fn validate(
             Some("diagnostic:florida-monthly-width") => "florida_monthly_half_peak_plot",
             Some("diagnostic:leeuwin-monthly-width") => "leeuwin_monthly_fitted_plot",
             Some("diagnostic:kuroshio-seasonal-width") => "kuroshio_seasonal_profile_plot",
+            Some("diagnostic:kuroshio-filtered-width") => "kuroshio_filtered_curve_plot",
             Some("diagnostic:necc-monthly-section") => "necc_monthly_connected_component",
             Some(
                 "diagnostic:basin-portugal-40n"
@@ -57,6 +58,7 @@ pub fn validate(
         ]
         .contains(&family);
         let component = family == "basin_monthly_component_section";
+        let filtered = family == "kuroshio_filtered_curve_plot";
         if component
             && (row["current_association_verified"] != false
                 || document["current_association_verified"] != false)
@@ -102,7 +104,14 @@ pub fn validate(
                 return Err("Width sample phase/path mismatch".into());
             }
         } else if parts.len() != 3
-            || parts[1] != if dated { "frames" } else { "months" }
+            || parts[1]
+                != if dated {
+                    "frames"
+                } else if filtered {
+                    "samples"
+                } else {
+                    "months"
+                }
             || !row["phase_path"].is_null()
         {
             return Err("Monthly sample path mismatch".into());
@@ -110,6 +119,9 @@ pub fn validate(
         let mut context = document.clone();
         let object = context.as_object_mut().ok_or("Invalid width diagnostic")?;
         object.remove("months");
+        if filtered {
+            object.remove("samples");
+        }
         object.remove("seasons");
         object.remove("frames");
         let phase = if let Some(path) = row["phase_path"].as_str() {
@@ -176,7 +188,9 @@ pub fn validate(
                 .get("longitude_degrees_east")
                 .unwrap_or(&document["section_longitude_degrees_east"])
         };
-        let label = if dated {
+        let label = if filtered {
+            &sample["sample_label"]
+        } else if dated {
             &sample["date"]
         } else if phase.is_null() {
             &sample["label"]
@@ -205,6 +219,21 @@ pub fn validate(
         };
         if row["status"] != *status {
             return Err("Width sample status differs from source".into());
+        }
+        if filtered {
+            for key in ["plot_year", "plot_year_label", "plot_month_label"] {
+                if row[key] != sample[key] {
+                    return Err("Filtered width plot coordinate mismatch".into());
+                }
+            }
+            if row["sample_time_kind"] != document["sample_time_kind"]
+                || row["source_temporal_filter"] != document["source_temporal_filter"]
+                || row["sample_time_is_observation_date"] != false
+                || row["samples_are_raw_monthly_means"] != false
+                || document["samples_are_raw_monthly_means"] != false
+            {
+                return Err("Filtered plot samples cannot become raw monthly observations".into());
+            }
         }
         for (key, expected) in [
             (

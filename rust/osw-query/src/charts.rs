@@ -16,6 +16,7 @@ pub fn scene(matches: &[&Value], corpus: &[Value]) -> Value {
     for (id, mut rows) in grouped {
         let first = rows[0];
         let longitude = first["sample_family"] == "kuroshio_seasonal_profile_plot";
+        let filtered = first["sample_family"] == "kuroshio_filtered_curve_plot";
         let dated = [
             "gulf_stream_dated_half_peak_section",
             "loop_dated_half_peak_section",
@@ -24,6 +25,8 @@ pub fn scene(matches: &[&Value], corpus: &[Value]) -> Value {
         .any(|f| first["sample_family"] == *f);
         let xfield = if dated {
             "observation_date"
+        } else if filtered {
+            "plot_year"
         } else if longitude {
             "longitude_degrees_east"
         } else {
@@ -45,12 +48,16 @@ pub fn scene(matches: &[&Value], corpus: &[Value]) -> Value {
             .filter(|r| r["diagnostic_id"] == first["diagnostic_id"])
             .collect();
         let xs: Vec<_> = source.iter().filter_map(|r| xvalue(r)).collect();
-        let xmin = if longitude || dated {
+        let xmin = if filtered {
+            1993.
+        } else if longitude || dated {
             xs.iter().copied().fold(f64::INFINITY, f64::min)
         } else {
             1.
         };
-        let xmax = if longitude || dated {
+        let xmax = if filtered {
+            2009.
+        } else if longitude || dated {
             xs.iter().copied().fold(f64::NEG_INFINITY, f64::max)
         } else {
             12.
@@ -72,7 +79,9 @@ pub fn scene(matches: &[&Value], corpus: &[Value]) -> Value {
         let ymax = (largest / 50.).ceil().max(1.) * 50.;
         let px = |x: f64| 58. + (x - xmin) / (xmax - xmin).max(1.) * 558.;
         let py = |y: f64| 220. - y / ymax * 180.;
-        let mut ticks: Vec<_> = if longitude || dated {
+        let mut ticks: Vec<_> = if filtered {
+            (1993..=2009).step_by(2).map(f64::from).collect()
+        } else if longitude || dated {
             xs.clone()
         } else {
             (1..=12).map(f64::from).collect()
@@ -93,7 +102,9 @@ pub fn scene(matches: &[&Value], corpus: &[Value]) -> Value {
                 "observation_date":r["observation_date"],"source_algorithm":r["source_algorithm"],"diagnostic_sensitivity_interval_km":r["diagnostic_sensitivity_interval_km"],
                 "primitive":{"kind":if value.is_some(){"reading"}else{"missing"},"x":px(x),"y":value.map(py),"missing_y":255.,"interval_y":interval.map(|(lo,hi)|[py(lo),py(hi)]),"sensitivity_y":sensitivity.map(|(lo,hi)|[py(lo),py(hi)])}})
         }).collect();
-        let title = if first["sample_family"] == "loop_dated_half_peak_section" {
+        let title = if filtered {
+            "Kuroshio — published half-year-filtered regional width curve".into()
+        } else if first["sample_family"] == "loop_dated_half_peak_section" {
             format!(
                 "Loop inflow - {} recorded-day spans at 21.875 N",
                 if first["source_context"]["product_key"] == "noaa" {
@@ -128,11 +139,17 @@ pub fn scene(matches: &[&Value], corpus: &[Value]) -> Value {
         } else {
             "Pacific NECC — 2013 monthly diagnostics at 140 W".into()
         };
-        panels.push(json!({"id":id,"title":title,"metric":first["metric"],"source_context":first["source_context"],"source_phase":first["source_phase"],
+        let mut panel = json!({"id":id,"title":title,"metric":first["metric"],"source_context":first["source_context"],"source_phase":first["source_phase"],
             "view_box":[0,0,640,280],"x_field":xfield,"x_domain":[xmin,xmax],"y_domain_km":[0,ymax],
             "x_ticks":ticks.iter().map(|x|json!({"value":x,"x":px(*x),"label":if dated {json!(crate::temporal::day_label(*x as i64))}else{Value::Null}})).collect::<Vec<_>>(),
             "y_ticks":(0..=4).map(|i|{let value=ymax*f64::from(i)/4.;json!({"value_km":value,"y":py(value)})}).collect::<Vec<_>>(),
-            "points":points,"matching_samples":rows.len(),"missing_samples":rows.iter().filter(|r|r["value_km"].is_null()).count()}));
+            "points":points,"matching_samples":rows.len(),"missing_samples":rows.iter().filter(|r|r["value_km"].is_null()).count()});
+        if filtered {
+            panel["sample_time_note"] = json!(
+                "Monthly plot-coordinate samples of a half-year-filtered curve; not raw monthly means or exact observation dates. Kernel and window alignment are unresolved."
+            );
+        }
+        panels.push(panel);
     }
     json!({"panels":panels,"matching_samples":matches.len(),"scope":"All matching samples before table pagination. Axes use the full source diagnostic and remain fixed under filtering. Dated axes use elapsed Gregorian days, preserving gaps. Solid whiskers are plot-reading allowances; dashed whiskers are finite threshold-choice sensitivity. Neither is a confidence interval. Missing readings are separate from the value axis. No interpolation, annual extrema, cross-method ranking or geographic width footprint."})
 }
@@ -140,6 +157,28 @@ pub fn scene(matches: &[&Value], corpus: &[Value]) -> Value {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn filtered_curve_uses_plot_years_without_synthesizing_observation_dates() {
+        let corpus = vec![
+            json!({"id":"a","diagnostic_id":"d","sample_family":"kuroshio_filtered_curve_plot","plot_year":1993.1,"value_km":200,"observation_date":null}),
+            json!({"id":"b","diagnostic_id":"d","sample_family":"kuroshio_filtered_curve_plot","plot_year":2008.9,"value_km":220,"observation_date":null}),
+        ];
+        let full = scene(&corpus.iter().collect::<Vec<_>>(), &corpus);
+        let one = scene(&[&corpus[1]], &corpus);
+        assert_eq!(full["panels"][0]["x_field"], "plot_year");
+        assert_eq!(one["panels"][0]["x_domain"], json!([1993., 2009.]));
+        assert_eq!(
+            one["panels"][0]["points"][0],
+            full["panels"][0]["points"][1]
+        );
+        assert!(one["panels"][0]["points"][0]["observation_date"].is_null());
+        assert!(
+            one["panels"][0]["sample_time_note"]
+                .as_str()
+                .unwrap()
+                .contains("not raw monthly means")
+        );
+    }
     #[test]
     fn filtered_axes_and_separate_missing_strip() {
         let corpus = vec![

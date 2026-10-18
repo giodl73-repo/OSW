@@ -330,7 +330,17 @@
     "research/gulf-stream-section-width-series.json": "0659a4bb43c89369e3732bdddb0ec82ce7f7e4e6c8f1bae5b231420a7c70992b",
     "research/pacific-necc-oscar-2013-section-inventory.json": "ee9f50bceede198b58bb5b66124820d35d02723c2fa6a34b3bc02625eebba29a",
     "research/kuroshio-ecs-seasonal-width-profile-extraction.json": "39bd432144e119c8a6f5cfd0a7235104f796269246462b9a5ac08a571a44cbfc",
+    "research/kuroshio-ecs-filtered-width-time-series.json": "a075adc8efa9d9b5999a68b565cf114979a259ad3a738b2d500a1d50f2b199f6",
+    "research/kuroshio-ecs-filtered-width-time-series-figure.json": "f1fd00c7b71e135057c49f9bf1bc9cb5473cd1fd9fc1207e62284c9c0ef88e66",
+    "research/source-data/kuroshio-liu-gan-2012/figure7a-time-extraction.json": "05a0be59242a846390472334c834c71b24cfc93302d82327d43933f3ee2a0729",
+    "plans/kuroshio-filtered-width-time-series-protocol-v1.md": "b9bc5e3480d3917de88df916c6a1d1325c8950a7f6c853505266f62c028b7910",
+    "research/source-data/kuroshio-liu-gan-2012/acquisition.json": "3c067c722f79ee4688de6adb176849587ce40e1612e4cd035ba4f2993eafac0d",
     "research/source-data/kuroshio-liu-gan-2012/journal-article.pdf": "a452007ff7f3b0051f811ba8172e9ae7932642ed1916a29c779db6335772203b",
+    "analysis/build_kuroshio_filtered_width_series.py": "7ae9485fc37be7e6688c16dfc6f26d00ff589f64fd64c26d19ee9495d7e61beb",
+    "analysis/build_kuroshio_filtered_width_figure.py": "c219732c29dc492227de04e2f65c8993ca716b4e15dc579089e77e51d2c30528",
+    "analysis/kuroshio_filtered_width.py": "c0b451c3972a9363ef01e463fad3e810301555ad1488721b721741646bcf57c3",
+    "figures/kuroshio-ecs-filtered-width-time-series.svg": "500dd0fcf30335b0569a341357fe716380b62000960574d0b82b9bd0120e3701",
+    "figures/kuroshio-ecs-filtered-width-time-series.png": "48dbee3d6e4c1e582007db1b760e82087a2ab6197a09a2106cc68993fe9bfbe9",
     "research/source-data/kuroshio-liu-gan-2012/figure6a-extraction.json": "ec9ce9bf6857aa5ec257d9ff202586dee7940c73ced3caff9720d24eaded9f2a",
     "plans/kuroshio-seasonal-width-profile-extraction-protocol-v1.md": "269b2397f87a4fe156f36b0618916d4ebb90b21308f9e5caaffae2d4a3c9694e",
     "research/florida-monthly-width-plot-extraction.json": "a19bd06ad71c508ffb9b3d2fe0bc67435de40f138aaf408e1cf930640c048e2c",
@@ -646,7 +656,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "a3f07381d2f76ea1994e45c5a003d4198f89000acc967e3fd0c2d01347cdc2e1",
+  "snapshot_fingerprint": "5dbcd9e2274e3bc40d3b2d1a7c52fc89a49680c726128b3ce610a39c70bd1512",
   "entries": [
     {
       "id": "current:agulhas",
@@ -8883,7 +8893,7 @@
         "reference_route": 0,
         "scoped_width": 3,
         "geometry": 0,
-        "time_samples": 4,
+        "time_samples": 196,
         "source_connectivity": 1,
         "scope_notes": 0,
         "dated_diagnostics": 0,
@@ -8892,7 +8902,7 @@
       },
       "recorded_claims": 61,
       "nasa_links": 1,
-      "fingerprint": "166ee255efd5717008abd38b397fe08b6d971f33a1061b3fa0499d7932d575b5",
+      "fingerprint": "e684f810bf3b701c529b81917f86bcbee4f53e7fa506fe590d38320d18cfba03",
       "series": [
         {
           "label": "Four historical ECS seasonal width profiles (graph extraction)",
@@ -8904,16 +8914,25 @@
           "source_pdf_sha256": "a452007ff7f3b0051f811ba8172e9ae7932642ed1916a29c779db6335772203b",
           "protocol_sha256": "269b2397f87a4fe156f36b0618916d4ebb90b21308f9e5caaffae2d4a3c9694e",
           "config_sha256": "ec9ce9bf6857aa5ec257d9ff202586dee7940c73ced3caff9720d24eaded9f2a"
+        },
+        {
+          "label": "1993–2008 half-year-filtered regional width curve (192 plot samples)",
+          "url": "query.html?q=%7B%22collection%22%3A%22width_samples%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22sample_family%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22kuroshio_filtered_curve_plot%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22plot_year%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A250%7D",
+          "frames": 192,
+          "evidence_role": "filtered_curve_plot_samples_not_raw_monthly_observations",
+          "diagnostic_url": "../research/kuroshio-ecs-filtered-width-time-series.json",
+          "evidence_sha256": "a075adc8efa9d9b5999a68b565cf114979a259ad3a738b2d500a1d50f2b199f6",
+          "sample_time_is_observation_date": false
         }
       ],
       "section_fingerprints": {
         "identity": "942e79d8ffacd4a867e2269dd568c54c100d282816a84590700731798d0b3a47",
-        "sources": "bacca5f4aa9fcc99ec42834c79e1c80bfdf627769f059a53d056f33739c87647",
+        "sources": "2795e13654ebca510f2a4824a78c7d3ce8a01b82950431610f60eec45c2bb483",
         "claims": "1009e553de390fa500e4db79048bc65a8ec7efc9334019d7068f2f7e3b8689f7",
-        "measurements": "ee2e2b4ac2dfd5720368c0fca5bb8cf04ea9e6960d2ac8f03771065155223f89",
+        "measurements": "e4b9e0ed977a34559975090109664637d41c8f9c630c43943035ef16cc396bab",
         "routes_geometry": "fd4fa937f9ca97ed27c839d82496d54b767f00f4477c089831fe8febafb4ff69",
         "media": "ab3afd393b96ce49943b38843305efaa18715bc0b666e4408844398a0c82eaac",
-        "time_evidence": "58a2df24fd55a700adcaad0bbcd81598eaf6ef68bb8432d351129ee645604a9f"
+        "time_evidence": "eda026db5e6eae2f01722e8ab4150f5dc1d51b37e18fc5bf12bdf257c6ca0f6b"
       },
       "latest_observation_date": null,
       "claim_review_counts": {
@@ -68375,5 +68394,5 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "built_at_utc": "2026-10-18T16:24:37.147913+00:00"
+  "built_at_utc": "2026-10-18T17:11:42.298570+00:00"
 }
