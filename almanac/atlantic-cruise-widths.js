@@ -27,7 +27,7 @@ window.renderAtlanticCruiseWidths = function(container, current, inventory, opti
   };
   shape("desc", {id: "cruise-span-description"}, records.map(row => `${row.hydrographic_section_context.cruise_id}, nominal ${row.hydrographic_section_context.nominal_section_latitude_degrees_north} degrees north: ${row.approximate_width_km} kilometres.`).join(" ") + " Bars encode reported scalar distances, not map edges. Width uncertainty is unreported.");
   const maximum = Math.ceil(Math.max(...records.map(row => row.approximate_width_km)) / 50) * 50;
-  for (let tick = 0; tick <= 4; tick++) {
+  for (let tick = 0; tick <= 4; tick += (compact ? 2 : 1)) {
     const x = labelWidth + tick * plotWidth / 4;
     shape("line", {x1: x, x2: x, y1: 32, y2: records.length * 48 + 24, stroke: "#c5cdd1"});
     shape("text", {x, y: 19, "text-anchor": "middle", fill: "#203642"}, `${maximum * tick / 4} km`);
