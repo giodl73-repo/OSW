@@ -56,3 +56,29 @@ and CHART agree that reference, support and inequality must travel with it.
    preserving original response identity and protected article resources.
 3. Pending: append terminal full-suite and broad browser results here and in the
    batch receipt; update the same PR. Keep verdict conditional until then.
+
+## Subsequent transport review
+
+Transport repair source commit `d34ffa1`; final repository-path fallback follows
+on the same branch. Applicable lenses for these transport-only changes:
+
+| Role / # | Finding | Severity / state | Evidence / recommendation |
+|---|---|---|---|
+| SOUNDER T1 | Source bytes must retain their reviewed identity. | P2 resolved | Actual university PDF download matches original3,012,493-byte pin; no source measurement changes. |
+| SOUNDER T2 | A provider's broken issuer chain does not justify changing trust anchors. | P2 resolved | Scoped cross-signed link completes a path to an existing system root; hostname/expiry/chain checks retained, partial-chain trust disabled. |
+| SOUNDER T3 | Institutional redirect alternatives need exact byte proof. | P2 resolved | Actual canonical South Pacific repository response is byte-identical; acquisition tuple, source pin and scientific edition unchanged. |
+| KEEL T1 | The failure must reproduce independently of a successful workstation cache. | P2 resolved | Default Git/OpenSSL roots reproduce the live missing-issuer error; supplied link fixes it while downloading the exact pinned PDF. |
+| KEEL T2 | Other hosts and corrupted source responses must remain protected. | P2 resolved |31 combined tests /7 subtests cover scoped URL/name/pin, altered chain, original response integrity and retained-file behavior. |
+| KEEL T3 | A pre-existing scientific suite cannot prove later transport changes. | P2 pending | Existing clean62f2a2b invocation is reported separately. Focused transport tests pass; remote CI must confirm its own acquisition environment. |
+| LOGBOOK T1 | Public certificate material must exclude private keys. | P2 resolved | Only public cross-signed issuer and receipt tracked; no private keys, server leaf certificate or source PDF added. |
+| LOGBOOK T2 | The operational record must name the remote failures precisely. | P3 resolved | Run39080669703:Qiu issuer error;39081090328:South Pacific legacy-path403 before Qiu. No false remote-pass claim. |
+| LOGBOOK T3 | One reviewable PR should accumulate fixes. | P3 verified | Same draftPR83; no new PR, no merge; transport receipt accompanies changes. |
+
+Transport amendments:
+
+1. Completed: require existing-root and hostname verification for the narrowly
+   scoped university request, with a checksum-pinned cross-signed chain link.
+2. Completed: verify the canonical institutional response independently before
+   admitting a legacy-path403 fallback, preserving source pin and receipt.
+3. Pending: record terminal remote acquisition and complete scientific gates.
+   Overall review remains conditional, with no merge approval.

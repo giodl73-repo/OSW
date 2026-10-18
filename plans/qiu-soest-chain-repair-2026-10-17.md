@@ -44,3 +44,14 @@ The full scientific-data suite started from clean62f2a2b before this transport
 repair; do not attribute that invocation to the later transport code. The
 focused transport suite above covers this repair. Remote CI must independently
 confirm acquisition in its environment. Same draft PR83; no merge approval.
+
+## South Pacific final-path fallback
+
+CI39081090328 then encounters403 at the legacy South Pacific repository path,
+before it reaches Qiu. The repository's canonical `/id/eprint/32120/1/` final
+path was acquired independently: exactly1,300,271 bytes, unchanged SHA256
+9b471dbdeb5a010bda7411c40dcaa939fb5c55d1559c3a89c8281ca10c2efd28.
+This exact acquisition tuple now permits that byte-identical institutional
+transport alternative. Changed receipts do not gain a fallback, and altered
+responses cannot become a retained original.31 combined TLS/acquisition/path
+tests and7 subtests pass in1.21 seconds. The original receipt stays unchanged.
