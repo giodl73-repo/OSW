@@ -99,6 +99,7 @@
     let sourceReview=byId('current-width-source-review');
     if(!sourceReview){sourceReview=document.createElement('section');sourceReview.id='current-width-source-review';byId('regional-width-range').before(sourceReview);}
     sourceReview.replaceChildren();
+    window.renderCurrentResearchEvidence(sourceReview,window.oswSeasonSnapshot?.research_evidence_scenes?.[current]);
     window.renderCurrentWidthSourceReview(sourceReview,window.oswSeasonSnapshot?.width_source_review_scenes?.[current]);
     byId("season-title").textContent = frame || row?.phase_kind === "seasonal_summary" ? "Seasonal state" : row?.phase_kind === "survey_threshold_section" ? "Survey section observation" : row?.phase_kind === "month_dated_section" ? "Historical section observation" : row?.phase_kind === "ensemble_profile_band" ? "Composite profile observation" : "Recorded evidence";
     if(['coastal_composite_threshold_section','lagrangian_composite_zero_velocity_width'].includes(row?.phase_kind))byId('season-title').textContent=row.original_regional_context.display_title;

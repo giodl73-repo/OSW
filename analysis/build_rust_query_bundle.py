@@ -82,6 +82,11 @@ def build():
     read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
     from check_southern_current_width_source_limits import AUDIT as SOURCE_LIMITS_AUDIT, verify as verify_source_limits
     source_limits=verify_source_limits();read(SOURCE_LIMITS_AUDIT)
+    from current_research_evidence import PATH as RESEARCH_EVIDENCE_PATH, verify as verify_research_evidence
+    research_evidence=verify_research_evidence();read(RESEARCH_EVIDENCE_PATH)
+    for path in research_evidence['documents']:read(path)
+    inputs.update(research_evidence['input_sha256'])
+    inputs['analysis/current_research_evidence.py']=hashlib.sha256((ROOT/'analysis/current_research_evidence.py').read_bytes()).hexdigest()
     for source in source_limits['sources']:
         read(source['acquisition_file'])
         inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
@@ -403,6 +408,11 @@ def build():
             'status':source_limits['status'],'rank_eligible':False,'source_file':SOURCE_LIMITS_AUDIT,
             'source_file_sha256':inputs[SOURCE_LIMITS_AUDIT],
             'source_json':(ROOT/SOURCE_LIMITS_AUDIT).read_bytes().decode('utf8'),'document':source_limits})
+    from current_research_evidence import record as research_evidence_record
+    for scene in research_evidence['scenes']:
+        collections['diagnostics'].append(research_evidence_record(scene,research_evidence))
+        owner=next(r for r in objects if r['id']=='current:'+scene['current_id'])
+        owner['research_evidence_ids']=[scene['diagnostic_id']]
     florida_diagnostic=next(d for d in collections['diagnostics'] if d['id']=='diagnostic:florida-monthly-width')
     florida_path='research/florida-monthly-width-plot-extraction.json'
     florida_diagnostic.update(source_file=florida_path,source_file_sha256=inputs[florida_path],source_json=(ROOT/florida_path).read_bytes().decode('utf-8'))

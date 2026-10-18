@@ -1,6 +1,7 @@
 "use strict";
 window.renderAtlasWidthEvidence = function(panel, current, inventory) {
   const id=current.id.replace(/^current:/,'');
+  window.renderCurrentResearchEvidence(panel,window.oswAtlasSnapshot?.research_evidence_scenes?.[id]);
   window.renderCurrentWidthSourceReview(panel,window.oswAtlasSnapshot?.width_source_review_scenes?.[id]);
   if(id==='pacific-north-equatorial-undercurrent')window.renderPacificNeucBreadths(panel,window.oswAtlasSnapshot?.pacific_neuc_breadth_scene);
   window.renderPublishedSectionTransports(panel,window.oswAtlasSnapshot?.published_transport_scenes?.[id]);

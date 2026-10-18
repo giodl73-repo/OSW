@@ -111,6 +111,11 @@ def build():
     read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
     from check_southern_current_width_source_limits import AUDIT as SOURCE_LIMITS_AUDIT, verify as verify_source_limits
     source_limits=verify_source_limits();read(SOURCE_LIMITS_AUDIT)
+    from current_research_evidence import PATH as RESEARCH_EVIDENCE_PATH, verify as verify_research_evidence
+    research_evidence=verify_research_evidence();read(RESEARCH_EVIDENCE_PATH)
+    for path in research_evidence['documents']:read(path)
+    inputs.update(research_evidence['input_sha256'])
+    inputs['analysis/current_research_evidence.py']=hashlib.sha256((ROOT/'analysis/current_research_evidence.py').read_bytes()).hexdigest()
     for source in source_limits['sources']:
         read(source['acquisition_file'])
         inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
@@ -658,6 +663,13 @@ def build():
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],
         }
+        study=next((s for s in research_evidence['scenes'] if s['current_id']==current_id),None)
+        if study:
+            payload['research_evidence_ids']=[study['diagnostic_id']]
+            groups['sources'].append({**study,'source_file_sha256':research_evidence['documents'][study['source_file']]})
+            capabilities['scope_notes']+=1
+            evidence_query={'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':study['diagnostic_id']}],'limit':100}
+            evidence_links.append({'label':'View current research evidence','url':'query.html?q='+quote(json.dumps(evidence_query,separators=(',',':')))+'#query-chart-section'})
         source_review=next((r for r in source_limits['reviews'] if r['current_id']==current_id),None)
         if source_review:
             payload['width_source_review']=source_review

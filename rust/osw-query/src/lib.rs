@@ -9,6 +9,7 @@ mod basin_spans;
 pub mod cartography;
 mod charts;
 mod coastal_composite_widths;
+mod current_research_evidence;
 mod current_sections;
 mod current_width_source_reviews;
 mod dashboard;
@@ -297,6 +298,7 @@ impl Store {
         seasons_data::validate(&bundle)?;
         portugal_section_span::validate_inventory(&bundle)?;
         current_width_source_reviews::validate(&bundle)?;
+        current_research_evidence::validate(&bundle)?;
         coastal_composite_widths::validate(&bundle)?;
         dwbc_float_composite::validate(&bundle)?;
         atlas_data::validate(&bundle)?;
@@ -662,7 +664,15 @@ impl Store {
         } else if query.collection == "proposed_widths" {
             nordic_widths::scene(&matches, records)
         } else if query.collection == "diagnostics" {
-            current_width_source_reviews::query(&matches, &self.bundle)
+            let reviews = current_width_source_reviews::query(&matches, &self.bundle);
+            let research = current_research_evidence::query(&matches, &self.bundle);
+            if research.is_null() {
+                reviews
+            } else if reviews.is_null() {
+                research
+            } else {
+                json!({"kind":"current_diagnostic_evidence","scope":"Source reviews and research calculations preserve their distinct definitions and unresolved physical dimensions.","source_review_scenes":reviews["scenes"],"research_evidence_scenes":research["scenes"]})
+            }
         } else if query.collection == "width_samples" {
             charts::scene(&matches, records)
         } else if query.collection == "widths" {

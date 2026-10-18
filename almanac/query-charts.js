@@ -32,6 +32,12 @@ window.oswCharts=(()=>{
       document.getElementById('chart-title').textContent=scene.title;
       window.renderPublishedCoordinateSpan(root(),scene.record,inspect);return;
     }
+    if(['current_research_evidence_panels','current_diagnostic_evidence'].includes(scene.kind)){
+      document.getElementById('query-chart-legend').hidden=true;
+      document.getElementById('chart-title').textContent='Current research evidence';
+      for(const s of scene.source_review_scenes||[])window.renderCurrentWidthSourceReview(root(),s,inspect);
+      for(const s of scene.kind==='current_research_evidence_panels'?scene.scenes:scene.research_evidence_scenes)window.renderCurrentResearchEvidence(root(),s,inspect,{open:true});return;
+    }
     if(scene.kind==='current_width_source_reviews'){
       document.getElementById('query-chart-legend').hidden=true;
       document.getElementById('chart-title').textContent='Current width source review';
