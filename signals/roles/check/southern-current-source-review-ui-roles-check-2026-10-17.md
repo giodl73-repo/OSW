@@ -63,3 +63,13 @@ verify.75 engine hashes match;43 collections/36 prior diagnostics, all map
 features and width-inventory/seasonal bytes remain equal. Conditional verdict
 now depends on the post-promotion full gate and complete remote acquisition;
 the running main gate remains distinct with its known stale scene assertion.
+
+## Promotion checkpoint
+
+Mainfadcd11 run completed with one known stale scene assertion,1572 passing
+tests and1061 passing subtests in2262.58s; no other failure. After termination,
+the work branch fast-forwarded to20624b4. Root native/WASM rebuilt successfully
+with byte-identical artifacts and75 matching dependency hashes. The corrected
+combined full gate remains required. Remote20624b4 verifies the two new source
+originals and later times out at the unchanged Qiu provider. Conditional
+verdict remains; neither the failed baseline nor remote acquisition is a pass.

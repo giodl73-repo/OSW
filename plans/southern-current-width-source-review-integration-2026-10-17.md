@@ -90,3 +90,21 @@ object map marks. The100-card sweep is separately PASS. All44 originals verify.
 Preservation proves43 unchanged collections,36 prior diagnostics, every map
 feature and exact width-inventory/seasonal-frame bytes.75 engine hashes match.
 Main full-suite and remote-source gates remain open and are separate evidence.
+
+## Main-worktree promotion and baseline result
+
+The earlier cleanfadcd11 run is terminal: **1 failed,1572 passed,1061 subtests
+passed in2262.58s**. Its sole failure is the stale four-type combined-chart
+assertion corrected in20624b4; no other test failure occurred. Full output is
+retained as failure evidence rather than described as a pass.
+
+After that process ended, the existing work branch fast-forwarded to20624b4.
+The normal8788 atlas now contains the source panels. The root native/WASM
+engine rebuilt successfully and produced byte-identical published artifacts;
+75 dependencies still match and the worktree is clean before this receipt.
+The corrected combined full gate runs from the next clean receipt commit.
+
+Remote20624b4 run39087956615 verifies both newly registered primary originals,
+then times out at the unchanged Qiu/SOEST paper. Earlierfadcd11 reached Reading
+and was refused there. Complete remote acquisition remains open; no pin or
+source check is relaxed.
