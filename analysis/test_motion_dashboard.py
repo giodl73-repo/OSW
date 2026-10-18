@@ -109,7 +109,9 @@ class DashboardEvidenceTests(unittest.TestCase):
     def test_antilles_section_series_preserves_pending_measurement_and_checksum(self):
         current=next(row for row in build()['entries'] if row['id']=='current:antilles')
         self.assertEqual(current['series'][0]['frames'],2)
-        self.assertEqual(current['capabilities']['scoped_width'],0)
+        # Three independent published cruise spans coexist with this pending
+        # 2005 LADCP diagnostic; they do not promote its one-sided extent.
+        self.assertEqual(current['capabilities']['scoped_width'],3)
         self.assertEqual(current['capabilities']['reference_route'],1)
         path=ROOT/'research/antilles-ab0505-400m-section-diagnostic.json'
         original=Path.read_bytes
