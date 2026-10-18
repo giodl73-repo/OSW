@@ -38,6 +38,17 @@ original requests. Final figure and Aleutian mobile panel visually inspected.
 Committed-pin and normal-root HTTP checks remain the publication condition
 immediately after commit. A clean combined successor suite remains required.
 
+### Publication check completed
+
+Scientific/UI checkpoint `73de1a21d750fae1481b622a02eb5a8334a7b61e`
+is committed and pushed to the same branch/PR. Normal port8788 HTTP serves
+the exact WASM, query packet, source catalog/store and both new figures.
+All91engine and152research dependency hashes match working files **and
+committed blobs**. The rebuilt native CLI returns the100/80km component
+spans and complete original17cast/132profile context; width admission remains
+false. The remote branch hash matches. These checks satisfy the focused
+publication conditions above; the clean successor full suite remains pending.
+
 The clean full suite at baseline `4f407bb` **PASSED: 1,695 tests and 1,119
 subtests in 2,215.36 seconds**, with clean start and end. It finished
 2026-10-18 11:27:42 UTC and covers the prior hydrography join, not this new
