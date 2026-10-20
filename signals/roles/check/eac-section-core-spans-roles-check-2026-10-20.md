@@ -60,14 +60,14 @@ because this batch makes no planetary comparison.
 | # | Finding | Severity | Evidence | Recommendation / disposition |
 |---|---|---|---|---|
 | 1 | Loading every large Value tree caused an actual initial browser timeout. | P2 | Two retained failed attempts; source request90second timeout | Authenticate all source bytes/root/schema/complete JSON and numeric range, then build requested trees lazily. Rust tests include1e400 rejection and signed-zero/null preservation; actual browser recheck required. |
-| 2 | The compact scene and full corpus require independent admission. | P2 | Frozen summary/operator/figure contract and checked source catalog | Test changed/coherently rebound summaries, invented widths and independently changed corpus records in native and actual WASM; durable gate registered. |
-| 3 | Focused Rust/Python checks do not certify a whole revision. | P2 | Source/operator tests; live clean82c290asuite predates new work | Keep full-gate commit/scope explicit, preserve failures and verify committed pins.30minute aggregate budget for two complete EAC matrices changes no90second interaction assertion. |
+| 2 | The compact scene/full corpus and a fresh CI environment require complete dependencies. | P2 | Frozen summary/operator/figure contract, checked source catalog and default acquisition-operator import | Exercise independent corruption guards and pin h5py3.16.0 in the complete test manifest, matching the observation manifest and tested environment; implemented. |
+| 3 | Focused Rust/Python checks do not certify a whole revision. | P2 | Source/operator tests; live clean82c290asuite predates new work | Keep full-gate commit/scope explicit, preserve failures and verify committed pins.30minute aggregate budgets for complete EAC and index support/NOAA matrices change no90second interaction assertion. |
 
 ## LOGBOOK — custody and publication
 
 | # | Finding | Severity | Evidence | Recommendation / disposition |
 |---|---|---|---|---|
-| 1 | One PR per gap contradicts the user's workflow. | P2 | Continuing branch and draft PR83 | Commit/push only into PR83, without main merge; implemented workflow. |
+| 1 | One PR per gap contradicts the user's workflow; remote gate status must stay truthful. | P2 | Continuing branch/PR83 and remote82c290apre-test HTTP429 failure | Continue PR83 without main merge. Respect provider Retry-After/backoff, preserve byte pins, and distinguish local test passes from remote fixture availability; implemented. |
 | 2 | A45.4MBcorpus must not be duplicated into an already large main packet. | P2 | Separate checked corpus and0.462MBsummary; packet89,712,747bytes | Keep raw profiles in the source index and compact scene in Rust; implemented. |
 | 3 | This batch leaves broader measurement gaps open. | P3 | Preserved155width rows/81owners,11lengths,76routes and explicit remaining work | Publish exact progress, not complete measurement coverage or physical-width approval. |
 

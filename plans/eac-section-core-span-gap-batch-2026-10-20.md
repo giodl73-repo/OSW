@@ -71,10 +71,13 @@ raw bytes and deferring its Value tree until requested. Existing special source
 validators still execute. A test catches the distinction between ignored JSON
 numbers and invalid1e400; a lazy read preserves signed zero and nulls.
 
-The two complete EAC matrices have an explicit30minute aggregate subprocess
-budget in the normal runner, because the previous smaller source check already
-exceeded its generic10minute budget. Per-interaction and worker-request limits
-remain90seconds. Every earlier browser check stays registered in original order.
+The complete EAC matrices and index support/NOAA matrices have an explicit
+30minute aggregate subprocess budget in the normal runner. The previous smaller
+source check exceeded its generic10minute budget; measured native admission of
+all364sources takes about19seconds, before any individual view is compared.
+The support matrix performs more than40such native admissions. Per-interaction
+and worker-request limits remain90seconds. Every earlier browser check stays
+registered in original order.
 Gate status is recorded in the PR and execution receipts; a running gate is not
 called passed by this document.
 
@@ -86,6 +89,19 @@ The new corpus does not authorize a physical-width inventory row.
 ## Reproduction and remaining work
 
 With repository test/figure/projection/observation dependencies installed:
+
+The complete test manifest now pins h5py3.16.0, matching the existing observation
+manifest and tested environment. The new offline EAC modules import the retained
+acquisition operator, so a fresh CI installation needs that package even when
+the large original NetCDF is not reacquired.
+
+The remote82c290aoffline job stopped before its tests: the JCU Hiri thesis
+endpoint returned HTTP429 after the existing1/3second retries. Fixture hydration
+now honors numeric/date Retry-After values and uses15/45second backoff for429
+without that header. Provider cooldowns longer than60seconds stop without an
+early retry or mirror fallback. Byte pins, PDF limits and integrity failures
+remain strict; no original paper is redistributed. Mocked transport tests cover
+these paths, while remote source availability remains an external gate.
 
 ```powershell
 python analysis/build_eac_section_core_spans.py --check

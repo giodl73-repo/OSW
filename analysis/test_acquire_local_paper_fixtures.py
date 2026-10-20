@@ -165,6 +165,28 @@ class AcquisitionTests(unittest.TestCase):
             with self.assertRaises(HTTPError):download('qiu-chen-nec-2010',MANIFEST)
             self.assertEqual(opener.call_count,1);sleep.assert_not_called()
 
+    def test_rate_limit_without_header_uses_polite_bounded_backoff(self):
+        failures=[HTTPError(MANIFEST['source_url'],429,'rate limited',{},None) for _ in range(2)]
+        with patch('urllib.request.urlopen',side_effect=[*failures,io.BytesIO(DATA)]) as opener,patch('time.sleep') as sleep:
+            self.assertEqual(download('qiu-chen-nec-2010',MANIFEST),DATA)
+            self.assertEqual(opener.call_count,3)
+            self.assertEqual([c.args[0] for c in sleep.call_args_list],[15,45])
+
+    def test_provider_retry_after_seconds_and_http_date_are_honored(self):
+        for header,now,expected in [('27',0,27),('Thu, 01 Jan 1970 00:00:42 GMT',10,32)]:
+            error=HTTPError(MANIFEST['source_url'],429,'rate limited',{'Retry-After':header},None)
+            with self.subTest(header=header),patch('urllib.request.urlopen',side_effect=[error,io.BytesIO(DATA)]),patch('time.sleep') as sleep,patch('time.time',return_value=now):
+                self.assertEqual(download('qiu-chen-nec-2010',MANIFEST),DATA)
+                sleep.assert_called_once_with(expected)
+
+    def test_long_cooldown_never_retries_early_or_uses_mirror(self):
+        from acquire_local_paper_fixtures import SourceCooldown
+        error=HTTPError(MANIFEST['source_url'],429,'rate limited',{'Retry-After':'3600'},None)
+        key=('qiu-chen-nec-2010',MANIFEST['source_url'],MANIFEST['sha256'])
+        with patch.dict(PINNED_MIRRORS,{key:('https://mirror.invalid/paper.pdf',)}),patch('urllib.request.urlopen',side_effect=error) as opener,patch('time.sleep') as sleep:
+            with self.assertRaises(SourceCooldown):download('qiu-chen-nec-2010',MANIFEST)
+            self.assertEqual(opener.call_count,1);sleep.assert_not_called()
+
     def test_integrity_failure_never_retries_or_persists(self):
         with tempfile.TemporaryDirectory(dir=self.scratch) as folder:
             directory=Path(folder);(directory/'acquisition.json').write_text(json.dumps(MANIFEST),encoding='utf-8')

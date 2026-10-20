@@ -92,7 +92,9 @@ def main():
             # allowance with the smaller corpus. Keep interaction assertions
             # unchanged and budget the complete matrix explicitly.
             timeout = 1800 if name in {'test_eac_source_fields_browser.py',
-                                      'test_eac_section_core_spans_browser.py'} else 600
+                                      'test_eac_section_core_spans_browser.py',
+                                      'test_rust_index_support_browser.py',
+                                      'test_rust_index_noaa_browser.py'} else 600
             subprocess.run([sys.executable, str(ROOT / 'analysis' / name)],
                            cwd=ROOT, env=environment, check=True, timeout=timeout)
     finally:
