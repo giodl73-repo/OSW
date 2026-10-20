@@ -1,4 +1,5 @@
 """Explore component boundaries without bridging native underway runs."""
+from scientific_readback import canonicalize
 from datetime import datetime, timedelta
 from pathlib import Path
 import hashlib
@@ -12,8 +13,8 @@ OUTPUT = 'research/aleutian-p14n-1993-underway-averages.json'
 PROTOCOL = 'plans/aleutian-p14n-underway-averaging-protocol-v1.md'
 INPUTS = {
     PROTOCOL: '25ebbc702dbec71e22229e960deda8366e69e147cfbe9cbc9cfd774d116451e7',
-    'research/aleutian-p14n-1993-native-vector-support.json': 'b41d6f82bc60475de67c3bfb6e596dad0f72a726034126ae67bbed29cfd82962',
-    'analysis/build_p14n_native_field_audit.py': '887ee7629dff09d25211f6544f8ba2558f7c89e5ee3c1c67b986289f72b6b83a',
+    'research/aleutian-p14n-1993-native-vector-support.json': 'd72cd5f1b01b02857029d325d32d59f84cf0559054e044290bafdcc29f11eeae',
+    'analysis/build_p14n_native_field_audit.py': '4f108c28ef4319cb916896a6c6a7213e992e49f6ab6e6c96e17ca4120e33df39',
 }
 GEOD = Geod(ellps='WGS84')
 FIELDS = ['eastward_m_s', 'northward_m_s', 'latitude_degrees_north', 'longitude_degrees_east']
@@ -163,7 +164,7 @@ def build():
             experiments.append({'ship_speed_cutoff_m_s': speed['ship_speed_cutoff_m_s'],
                                 'averaging_minutes': minutes, 'runs': runs,
                                 'branches': [branch(runs, 'northern', [44, 46]), branch(runs, 'southern', [41, 43])]})
-    return {
+    return canonicalize({
         'schema': 'osw.underway-component-averaging.v1', 'current_id': 'aleutian',
         'status': 'exploratory_contiguous_run_component_boundaries',
         'input_sha256': dict(INPUTS), 'protocol_file': PROTOCOL,
@@ -180,7 +181,7 @@ def build():
                      'Paper GPS averaging estimates are context, not calibrated errors of these averages.',
                      'Run endpoints, branch-window edges and incomplete bins never substitute for missing crossings.',
                      'Southern eddy attribution and physical branch edges remain unverified.'],
-    }
+    })
 
 
 def verify():

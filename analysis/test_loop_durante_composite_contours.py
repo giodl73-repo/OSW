@@ -35,7 +35,15 @@ class CompositeContourTests(unittest.TestCase):
                 lon,lat=np.asarray(p['coordinates_lon_lat']).T
                 expected=Geod(ellps='WGS84').line_length(lon,lat)/1000
                 self.assertEqual(round(expected,1),p['geometric_path_length_km'])
-                self.assertAlmostEqual(sum(s['piece_length_m'] for s in p['midpoint_samples'])/1000,expected,places=8)
+                # Each stored piece is a millimetre readback of its geodesic length.
+                difference_m=abs(sum(s['piece_length_m'] for s in p['midpoint_samples'])-expected*1000)
+                self.assertLessEqual(difference_m,len(p['midpoint_samples'])*.0005+1e-6)
+                for sample in p['midpoint_samples']:
+                    vector=sample['velocity'];corners=np.asarray(vector['corner_eastward_northward_m_s'])
+                    reconstructed=np.asarray(vector['bilinear_weights'])@corners
+                    # Four weight readbacks plus one velocity readback bound the reconstruction.
+                    allowance=np.sum(np.abs(corners),axis=0)*.5e-8+.5e-8+1e-14
+                    np.testing.assert_array_less(np.abs(reconstructed-[vector['eastward_m_s'],vector['northward_m_s']]),allowance)
 
     def test_masks_are_strict_even_at_zero_weight_corner(self):
         x,y,u,v=self.grid()

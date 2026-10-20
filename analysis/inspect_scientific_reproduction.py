@@ -8,7 +8,11 @@ import sys
 
 ROOT=Path(__file__).resolve().parents[1]
 TARGETS=[('build_aleutian_p14n_vector_section','research/aleutian-p14n-1993-observed-vector-section.json',{},None),
+         ('build_p14n_hydrography_companion','research/aleutian-p14n-1993-hydrography-correspondence.json',{},None),
+         ('build_p14n_component_spans','research/aleutian-p14n-1993-component-spans.json',{},None),
          ('build_p14n_native_field_audit','research/aleutian-p14n-1993-native-vector-support.json',{},None),
+         ('build_p14n_underway_averages','research/aleutian-p14n-1993-underway-averages.json',{},None),
+         ('build_p14n_run_composite','research/aleutian-p14n-1993-run-composite.json',{},None),
          ('loop_durante_composite_contours','research/loop-durante-2026-composite-contour-paths.json',{},None),
          ('build_necc_paired_vector_evidence','research/pacific-necc-paired-vector-direction-evidence.json',{},1),
          ('build_norkyst_continuous_sections','research/source-data/norkyst-ingoy-months-2024/section-diagnostic-pilot.json',{'write_asset':False},None)]

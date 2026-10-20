@@ -28,43 +28,43 @@ YEAR_ROOT='research/source-data/norkyst-ingoy-months-2024/'
 FROZEN_INPUTS.update({
     'research/source-data/norkyst-ingoy-months-2024/preflight.json': '64e2513c69d554e30d2cda61ccb4c26f47711163d12dcefbe98c720c3b2ee42d',
     'research/source-data/norkyst-ingoy-months-2024/acquisition-pilot.json': 'a3b45fbd4d1bae694e23533cb6387c65d97e7f56f6c57852aab9340c9ebd0e35',
-    'research/source-data/norkyst-ingoy-months-2024/regional-monthly-means-year.json': 'a165a29e8c5f24fb88020194707d692c2f597cd3b65c55119f0a84486042bec5',
-    YEAR: '390c9457c116abadbd3c5efb79bd1899f1a98d5cae6c7a916610b909947002bf',
-    YEAR_ROOT+'figure-year.json': 'fd253485672fe34da50531046fb3145f7af738266679bc00e2bf4f9bde812d62',
+    'research/source-data/norkyst-ingoy-months-2024/regional-monthly-means-year.json': 'c3cbba3c7568e45f0bc52255050b2e421b834d4d4dd55166041a66b4b8dbaf6b',
+    YEAR: '20c1a4f0cb61b4e8c86cab81b4606d69dc713f005773bb710d3c32d68ea5d518',
+    YEAR_ROOT+'figure-year.json': 'c80e8e5aabe6e6512205ad809bda4836f285b85191b519d633e686d089ea7a99',
     YEAR_ROOT+'acquisition-year.json': '763ed97ac94fa7c220baa9333d4ab5b74d7f86fa296606a8c022c126e0fe01fc',
 })
 NECC='research/pacific-necc-paired-vector-direction-evidence.json'
 NECC_BASE='research/source-data/oscar-necc-vectors-2013/'
-FROZEN_INPUTS.update({'research/pacific-necc-paired-vector-direction-evidence.json': '14c556b982c387a199fcddafce319843451e438739ee14b09ffb0a135c0216f6', 'research/pacific-necc-paired-vector-source-inventory.json': '549e5f09d5489133e498f50b886df0cf1b2cb56610874a17d7192d155e74b580', 'research/source-data/oscar-necc-vectors-2013/preflight.json': 'b65a57a268075c1e3efc6ebc6c1c319c3b6e7462c23ad7dedbbb2731e3427294', 'research/source-data/oscar-necc-vectors-2013/metadata.json': '8c1f41c4e7a0f91492482345e7038c47e461c46c56852dbe57f217e40b9ec2ba', 'research/source-data/oscar-necc-vectors-2013/metadata-acquisition.json': 'f9261037ca1d2bfc92ed91894736f8d29a05bb3e3c0ab6d49414a97fac110203', 'research/source-data/oscar-necc-vectors-2013/acquisition.json': 'e0f5c86892b9c7a73e3efef41a456cd46672238e08dc72c6927e12e9c25b0a05', 'research/source-data/oscar-necc-vectors-2013/figure.json': '5f547d1d2e9887d9668c958e4f82a8a4903965c955412498e7416aa8773a3d09'})
+FROZEN_INPUTS.update({'research/pacific-necc-paired-vector-direction-evidence.json': '2933f1d2a0d5960eb193cdcb43da5598451ed6bccdbc29102238f295e50718dc', 'research/pacific-necc-paired-vector-source-inventory.json': 'df6ecdcd05aeef888b3362c7c6a598d4719eec4cbb14e9182c35f3c6a41d60df', 'research/source-data/oscar-necc-vectors-2013/preflight.json': 'b65a57a268075c1e3efc6ebc6c1c319c3b6e7462c23ad7dedbbb2731e3427294', 'research/source-data/oscar-necc-vectors-2013/metadata.json': '8c1f41c4e7a0f91492482345e7038c47e461c46c56852dbe57f217e40b9ec2ba', 'research/source-data/oscar-necc-vectors-2013/metadata-acquisition.json': 'f9261037ca1d2bfc92ed91894736f8d29a05bb3e3c0ab6d49414a97fac110203', 'research/source-data/oscar-necc-vectors-2013/acquisition.json': 'e0f5c86892b9c7a73e3efef41a456cd46672238e08dc72c6927e12e9c25b0a05', 'research/source-data/oscar-necc-vectors-2013/figure.json': '9d53ab9dd8aec56aa1ff01ef020b9f578b38e92402b98cab7501fc92be99bb99'})
 EOF='research/indian-secc-eof-classification-feasibility.json'
 SECTION='research/redsox-lower-nc-dated-section-diagnostic.json'
 ALEUTIAN='research/aleutian-p14n-1993-observed-vector-section.json'
 ALEUTIAN_BASE='research/source-data/jasadcp-p14n-1993/'
-ALEUTIAN_INPUTS={'research/aleutian-p14n-1993-observed-vector-section.json': 'c454ed7a8d1de2a83956d74b25dceeb88d2098b2ff339daeb46ea4c9d2415426', 'research/source-data/jasadcp-p14n-1993/acquisition.json': '1aac36510a4857b02f3adcebaf47fc0d97366b33e48943ae6fc16212ac921ae3', 'research/source-data/jasadcp-p14n-1993/figure.json': '6fcafc536355b9efbda6140624b840c3dca40c00529b2bb629b5768bdb5464ae'}
+ALEUTIAN_INPUTS={'research/aleutian-p14n-1993-observed-vector-section.json': '76808f0d0f0959669f11ae6d1ac52cb3c58d281f965f498249fd5087c4b14d9f', 'research/source-data/jasadcp-p14n-1993/acquisition.json': '1aac36510a4857b02f3adcebaf47fc0d97366b33e48943ae6fc16212ac921ae3', 'research/source-data/jasadcp-p14n-1993/figure.json': '451d91446a2ff61db59438866abdfecb0408b4b427150422afafa86b45c676f8'}
 FROZEN_INPUTS.update(ALEUTIAN_INPUTS)
 HYDRO='research/aleutian-p14n-1993-hydrography-correspondence.json'
 HYDRO_BASE='research/source-data/cchdo-p14n-1993/'
-HYDRO_INPUTS={'research/aleutian-p14n-1993-hydrography-correspondence.json': '6342f35f1a9f9affe71244eabd8e1dfe0bb7f46046bccf30eb564274cf202c04', 'research/source-data/cchdo-p14n-1993/acquisition.json': '6d9d9aad7a5e5fbe222bbdd00ca00b5d415aa0e75ed8a7def8aa19020e8d1b38', 'research/source-data/cchdo-p14n-1993/figure.json': 'eebdcea754f4b55098ce02022e183edb8db111e2f01834fd34282364e1e3cc78'}
+HYDRO_INPUTS={'research/aleutian-p14n-1993-hydrography-correspondence.json': '273392fe786c38eefb94528ea944d722d5a89480f4fe555822273f6675cfeb1f', 'research/source-data/cchdo-p14n-1993/acquisition.json': '6d9d9aad7a5e5fbe222bbdd00ca00b5d415aa0e75ed8a7def8aa19020e8d1b38', 'research/source-data/cchdo-p14n-1993/figure.json': 'a7cccb201e371ac7feadba5584d225f97172e6a7e09b42cc8f42e8ee60f42a6a'}
 FROZEN_INPUTS.update(HYDRO_INPUTS)
 SPANS='research/aleutian-p14n-1993-component-spans.json'
 SPAN_FIGURE='research/aleutian-p14n-1993-component-spans-figure.json'
-SPAN_INPUTS={'research/aleutian-p14n-1993-component-spans.json': '9355c3dbc5ee86b6e50da63305e6498fbb8e3224bc67e08c097a5767efe10ebe', 'research/aleutian-p14n-1993-component-spans-figure.json': '240bfe1705d78af82d658bc279b10856a3a80cbe6055ff3c84e46849d321e895'}
+SPAN_INPUTS={'research/aleutian-p14n-1993-component-spans.json': '2c6bd267276895525a2b24882a99c57b27509550a03cb2b3bbfc1202a9a34028', 'research/aleutian-p14n-1993-component-spans-figure.json': '5d227c5fef681f66e7c3e0bf28fc4235c5457961a5d5aae14381f999ea294e33'}
 FROZEN_INPUTS.update(SPAN_INPUTS)
 NATIVE='research/aleutian-p14n-1993-native-vector-support.json'
 NATIVE_META='research/aleutian-p14n-1993-native-product-metadata.json'
 NATIVE_FIGURE='research/aleutian-p14n-1993-native-vector-support-figure.json'
 NATIVE_BASE='research/source-data/jasadcp-p14n-1993-native/'
-NATIVE_INPUTS={'research/aleutian-p14n-1993-native-vector-support.json': 'b41d6f82bc60475de67c3bfb6e596dad0f72a726034126ae67bbed29cfd82962', 'research/aleutian-p14n-1993-native-product-metadata.json': '6b5050ba8c1aeaf08667df95ad432c1ab5faa63b563b8161f40dbb3d3906c859', 'research/aleutian-p14n-1993-native-vector-support-figure.json': 'ed75dd87a5d508c54bad75dd23ff04f0203bd349e791ef7b06dc05e9a4231df6', 'research/source-data/jasadcp-p14n-1993-native/acquisition.json': 'be53aa8de06de0355ce4fa597a0a6250873f955ed863bdc408c883364c704bc1'}
+NATIVE_INPUTS={'research/aleutian-p14n-1993-native-vector-support.json': 'd72cd5f1b01b02857029d325d32d59f84cf0559054e044290bafdcc29f11eeae', 'research/aleutian-p14n-1993-native-product-metadata.json': '6b5050ba8c1aeaf08667df95ad432c1ab5faa63b563b8161f40dbb3d3906c859', 'research/aleutian-p14n-1993-native-vector-support-figure.json': '735caa73ef432edbc392325df4f9c541e7143659b3b4134ba0a0422e93df3118', 'research/source-data/jasadcp-p14n-1993-native/acquisition.json': 'be53aa8de06de0355ce4fa597a0a6250873f955ed863bdc408c883364c704bc1'}
 FROZEN_INPUTS.update(NATIVE_INPUTS)
 AVERAGES='research/aleutian-p14n-1993-underway-averages.json'
 AVERAGE_FIGURE='research/aleutian-p14n-1993-underway-averages-figure.json'
-AVERAGE_INPUTS={AVERAGES:'92d6d3fc8717b010051b0fbbd96fe3b3955f7a86b2e0cf87cd6b5ed74783d626',
-    AVERAGE_FIGURE:'6a7aed03a752123e5eb1841c68ab5a92cac42b80b5426b81e104b03d4b470bd1'}
+AVERAGE_INPUTS={AVERAGES:'066d344cc0184b27bd9071337eb80d19527f7e1d2f6b9df54fb2ae98dab351bb',
+    AVERAGE_FIGURE:'981822a10f61ea8569402f44c4b88d193a5a90883e3a1efc0e5927851b3f8b86'}
 FROZEN_INPUTS.update(AVERAGE_INPUTS)
 COMPOSITE='research/aleutian-p14n-1993-run-composite.json'
 COMPOSITE_FIGURE='research/aleutian-p14n-1993-run-composite-figure.json'
-COMPOSITE_INPUTS={COMPOSITE:'2438e75f6714d44352422727cdd6653cd3a316210b439485702a7654497e965b',
- COMPOSITE_FIGURE:'87a42f35d1db2470b73a4a75edae3afe8acf58b4a7dc6afc864c6c73739cb4b1'}
+COMPOSITE_INPUTS={COMPOSITE:'af21e964ac30d91e0b0bc704ebb37cfb9fe172725ad04b491076bdae213654af',
+ COMPOSITE_FIGURE:'0e3bba2160a53361ea39d084bb3cfd6c35d8168b3c16c20a6f0da4b1da26ea24'}
 FROZEN_INPUTS.update(COMPOSITE_INPUTS)
 
 
@@ -78,8 +78,8 @@ FROZEN_INPUTS.update({LOOP_SOURCE:'af7ff4bc05a909aa84e5dab0125504f14affa0ecad369
     LOOP_VIEW:'c7e2625677c6125138540ecc3d21cdf26756cc899603c358254be47dd4b8a7bc',
     LOOP_FIGURE:'0023a293a59149d0098ec732a8eeff1b32af3c1f80e56f8056e287b59e6b9889',
     LOOP_ACQUISITION:'2b01220d7880461e898a16b041ec749a9e2797d3611ac6122075bb6bd7bfc698'})
-FROZEN_INPUTS.update({LOOP_CONTOURS:'9967eb3787847f02710613269cdc4a8cf5607ac8cd6a67a046a082f8c5d6180f',
-    LOOP_CONTOUR_FIGURE:'1ba825d707123d9c9019529a79b0a17d3f1d412f44d704dc5cb78c34da5f8766'})
+FROZEN_INPUTS.update({LOOP_CONTOURS:'45a63a302b4e72be813b4cd07b68886a62cf9ab379726248a4877b1b0cc16fde',
+    LOOP_CONTOUR_FIGURE:'9bc662b1e80373068578be799d5dba8733dbe0b8e7ef1ab38145a7a6f9e2ed92'})
 
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
@@ -471,6 +471,8 @@ def build():
             f"{abs(c['gates']['exit_longitude']):.3f} W",c['status'].replace('_',' '),
             'Unresolved' if c['rounded_supported_contour_path_km'] is None else f"About {c['rounded_supported_contour_path_km']:,} km"] for c in loop_contours['cases']]})
     for scene in scenes:
+        if scene['current_id'] in ['aleutian','pacific-north-equatorial-countercurrent','norwegian-coastal','loop']:
+            scene['notes'].append('Calculated readbacks use a declared precision for reproducibility. That precision is not observational uncertainty or an annual range. Original source values, masks and quality flags remain unchanged; the exact record pins the calculation rules.')
         scene.update(kind='current_research_evidence',rank_eligible=False,new_width_record_admitted=False,
             whole_current_width_km=None,annual_width_range_km=None,
             geometry_role='research_evidence_no_current_axis_or_physical_width_geometry',

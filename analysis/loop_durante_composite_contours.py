@@ -1,4 +1,5 @@
 """All declared composite contour/gateway cases, including failed components."""
+from scientific_readback import canonicalize
 from collections import Counter
 import itertools
 import json
@@ -169,7 +170,7 @@ def build():
                           'resolved_case_geometric_min_max_km':[min(values),max(values)] if values else None,
                           'envelope_is_annual_range_or_confidence_interval':False,
                           'nominal_case_id':next(c['id'] for c in group if c['nominal'])})
-    return {'schema':'osw.loop-durante-composite-contour-paths.v1','current_id':'loop',
+    return canonicalize({'schema':'osw.loop-durante-composite-contour-paths.v1','current_id':'loop',
             'source_doi':'10.5281/zenodo.22652650','source_version':'0',
             'source_kind':'author_processed_surface_phase_composites',
             'metric':'open_absolute_ADT_contour_arc_between_editorial_regional_gateways',
@@ -180,7 +181,7 @@ def build():
             'all_declared_cases':54,'cases':cases,'source_contours':contours,'phase_summaries':summaries,
             'whole_current_length_km':None,'width_km':None,'annual_length_range_km':None,
             'reference_route_admitted':False,'rank_eligible':False,'current_footprints_admitted':False,
-            'interpretation':'Contour geometry of conditional fields, not mean daily path length or a physical current width. Failed/ambiguous cases remain unresolved; editorial level/gateway sensitivity is not uncertainty.'}
+            'interpretation':'Contour geometry of conditional fields, not mean daily path length or a physical current width. Failed/ambiguous cases remain unresolved; editorial level/gateway sensitivity is not uncertainty.'})
 
 
 if __name__=='__main__':

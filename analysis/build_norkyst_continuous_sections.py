@@ -1,4 +1,5 @@
 """Complete-month raw/low-pass model profiles, preserving gaps and all original pins."""
+from scientific_readback import canonicalize
 import argparse
 from datetime import datetime, timezone
 import io
@@ -81,6 +82,7 @@ def grid_and_legacy():
     cols=np.stack([ix,ix+1,ix,ix+1],axis=1)
     weights=np.stack([(1-dx)*(1-dy),dx*(1-dy),(1-dx)*dy,dx*dy],axis=1)
     distances=np.asarray([GEOD.inv(24,71.1,24,float(lat))[2]/1000 for lat in latitudes])
+    distances=np.round(distances,6)
     return receipts,latitudes,distances,rows,cols,weights
 
 
@@ -117,7 +119,7 @@ def build(phase='pilot',write_asset=True,return_arrays=False):
     actual=[(r['date'],r['first_hour'],r['last_hour']) for r in acquisition['responses']]
     if actual!=expected_requests:raise ValueError('Missing, duplicated or reordered daily source coverage')
     legacy,latitudes,distances,rows,cols,weights=grid_and_legacy()
-    timestamps=[];profiles=[];pins={str(acquisition_path.relative_to(ROOT)):source.sha(acquisition_path.read_bytes())}
+    timestamps=[];profiles=[];pins={acquisition_path.relative_to(ROOT).as_posix():source.sha(acquisition_path.read_bytes())}
     comparisons={};archives={}
     for archive in acquisition['archives']:
         path=ROOT/archive['file']
@@ -184,6 +186,7 @@ def build(phase='pilot',write_asset=True,return_arrays=False):
             'input_sha256':pins,'generator_sha256':source.sha(Path(__file__).read_bytes()),
             'source_validator_sha256':source.sha((ROOT/'analysis/norkyst_continuous_source.py').read_bytes()),
             'new_width_record_admitted':False,'whole_current_width_km':None,'annual_width_range_km':None,'rank_eligible':False}
+    report=canonicalize(report)
     return (report,bulk) if return_arrays else report
 
 

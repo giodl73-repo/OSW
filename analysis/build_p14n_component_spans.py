@@ -1,4 +1,5 @@
 """Evaluate fixed-window component spans without promoting them to current widths."""
+from scientific_readback import canonicalize
 from pathlib import Path
 from datetime import datetime
 import hashlib,json,math
@@ -9,7 +10,7 @@ from build_p14n_hydrography_companion import verify as verify_hydrography
 ROOT=Path(__file__).resolve().parents[1]
 OUTPUT='research/aleutian-p14n-1993-component-spans.json'
 PROTOCOL='plans/aleutian-p14n-component-span-protocol-v1.md'
-FROZEN_INPUTS={'research/aleutian-p14n-1993-observed-vector-section.json': 'c454ed7a8d1de2a83956d74b25dceeb88d2098b2ff339daeb46ea4c9d2415426', 'research/aleutian-p14n-1993-hydrography-correspondence.json': '6342f35f1a9f9affe71244eabd8e1dfe0bb7f46046bccf30eb564274cf202c04', 'plans/aleutian-p14n-component-span-protocol-v1.md': '2ae348b0cb5f600478b7d571cfc27bc5e643fbf1773c86c0eeea8334f2f3e3e5', 'plans/ocean-current-width-measurement-protocol-v1.md': '1d4d577d8f3b422cf3252b973280cb7073bad7e3234bc40a2808bc16bda974bb', 'plans/basin-surface-section-width-protocol-v1.md': 'deab556d97430d06bffff25b7a6e1469855785a5b3c4cf654aa2226e66b7e9b3'}
+FROZEN_INPUTS={'research/aleutian-p14n-1993-observed-vector-section.json': '76808f0d0f0959669f11ae6d1ac52cb3c58d281f965f498249fd5087c4b14d9f', 'research/aleutian-p14n-1993-hydrography-correspondence.json': '273392fe786c38eefb94528ea944d722d5a89480f4fe555822273f6675cfeb1f', 'plans/aleutian-p14n-component-span-protocol-v1.md': '2ae348b0cb5f600478b7d571cfc27bc5e643fbf1773c86c0eeea8334f2f3e3e5', 'plans/ocean-current-width-measurement-protocol-v1.md': '1d4d577d8f3b422cf3252b973280cb7073bad7e3234bc40a2808bc16bda974bb', 'plans/basin-surface-section-width-protocol-v1.md': 'deab556d97430d06bffff25b7a6e1469855785a5b3c4cf654aa2226e66b7e9b3'}
 GEOD=Geod(ellps='WGS84')
 
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -93,7 +94,7 @@ def build():
     vectors=verify_vectors();hydro=verify_hydrography()
     if hydro['velocity_section']!=vectors:raise ValueError('Changed original observed section')
     rows=vectors['profiles']
-    return {'schema':'osw.observed-component-spans.v1','current_id':'aleutian','status':'exploratory_component_spans_pending_review',
+    return canonicalize({'schema':'osw.observed-component-spans.v1','current_id':'aleutian','status':'exploratory_component_spans_pending_review',
             'label':'P14N Subarctic branch component spans: July 1993',
             'metric':'hourly-track eastward-component relative-peak endpoint separation',
             'input_sha256':dict(FROZEN_INPUTS),'generator_file':Path(__file__).relative_to(ROOT).as_posix(),'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
@@ -106,7 +107,7 @@ def build():
             'interpretation':['Source paper places branches near 45 N and 42 N and an eddy near 41.5 N. Its same-cruise interpretation does not validate these OSW component boundaries.',
             'Acquisition order includes CTD occupations and northward steps. These means are not exclusively underway cross-track velocities.',
             'Threshold-choice and velocity-perturbation scenarios are separate finite sensitivities, not annual ranges or total measurement uncertainty.',
-            'CTD companion retains quality codes, nominal-bottom pairing ambiguity and unresolved historical temperature-correction notice. No new water-mass classification is made.']}
+            'CTD companion retains quality codes, nominal-bottom pairing ambiguity and unresolved historical temperature-correction notice. No new water-mass classification is made.']})
 
 def verify():
     expected=build()

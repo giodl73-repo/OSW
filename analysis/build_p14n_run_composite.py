@@ -1,4 +1,5 @@
 """Conditional cross-run component spans; temporal comparability is assumed."""
+from scientific_readback import canonicalize
 from datetime import datetime
 from pathlib import Path
 import hashlib,json,math
@@ -9,10 +10,10 @@ ROOT=Path(__file__).resolve().parents[1]
 OUTPUT='research/aleutian-p14n-1993-run-composite.json'
 PROTOCOL='plans/aleutian-p14n-run-composite-protocol-v1.md'
 INPUTS={PROTOCOL:'7558e6794d811f287cf9e708624abb7e89b6e16e4d3af01d528fc73f0e151edb',
- 'research/aleutian-p14n-1993-native-vector-support.json':'b41d6f82bc60475de67c3bfb6e596dad0f72a726034126ae67bbed29cfd82962',
- 'analysis/build_p14n_native_field_audit.py':'887ee7629dff09d25211f6544f8ba2558f7c89e5ee3c1c67b986289f72b6b83a',
- 'analysis/build_p14n_underway_averages.py':'90e0118a2aa11ba97ca50d961a8e3d3579c0dd4d3ab7e5ba1917f5634131a2c7',
- 'research/aleutian-p14n-1993-underway-averages.json':'92d6d3fc8717b010051b0fbbd96fe3b3955f7a86b2e0cf87cd6b5ed74783d626'}
+ 'research/aleutian-p14n-1993-native-vector-support.json':'d72cd5f1b01b02857029d325d32d59f84cf0559054e044290bafdcc29f11eeae',
+ 'analysis/build_p14n_native_field_audit.py':'4f108c28ef4319cb916896a6c6a7213e992e49f6ab6e6c96e17ca4120e33df39',
+ 'analysis/build_p14n_underway_averages.py':'0c67ce07b9e83aa0eafa03b4dec21454092a033ae6d88d16c58378e923710a4a',
+ 'research/aleutian-p14n-1993-underway-averages.json':'066d344cc0184b27bd9071337eb80d19527f7e1d2f6b9df54fb2ae98dab351bb'}
 
 def encoded(v):return (json.dumps(v,indent=2,allow_nan=False)+'\n').encode()
 def moment(v):return datetime.fromisoformat(v)
@@ -113,7 +114,7 @@ def build():
   cases=[branch(rows,gaps,name,window,cap) for cap in [3,6,12] for name,window in [('northern',[44,46]),('southern',[41,43])]]
   experiments.append({'ship_speed_cutoff_m_s':speed['ship_speed_cutoff_m_s'],'run_summaries':rows,'adjacent_gaps':gaps,'cases':cases})
  scenarios=[s for e in experiments for case in e['cases'] for s in case['scenarios']]
- return {'schema':'osw.conditional-run-component-composite.v1','current_id':'aleutian',
+ return canonicalize({'schema':'osw.conditional-run-component-composite.v1','current_id':'aleutian',
   'status':'exploratory_conditional_summary_interpolation_not_physical_width',
   'input_sha256':dict(INPUTS),'protocol_file':PROTOCOL,'generator_file':Path(__file__).relative_to(ROOT).as_posix(),
   'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'experiments':experiments,
@@ -129,7 +130,7 @@ def build():
   'cautions':['Conditional interpolation assumes temporal comparability; the complete bracket may span much longer than the permitted individual gap.',
    'Whole-run means have moving spatial footprints and different durations, not instantaneous point support.',
    'A resolved eastward-component span does not identify a physical current boundary, flow-normal width or southern branch versus eddy.',
-   'GPS-related estimates do not calibrate total uncertainty of this composite. Missing or ineligible source support remains a hard barrier.']}
+   'GPS-related estimates do not calibrate total uncertainty of this composite. Missing or ineligible source support remains a hard barrier.']})
 
 def verify():
  result=build()

@@ -26,6 +26,10 @@ def native(query, packet=None, index=None):
 
 def corrupt(packet, kind):
     bad = copy.deepcopy(packet)
+    if kind in ['readback_code','readback_protocol']:
+        path='analysis/scientific_readback.py' if kind=='readback_code' else 'plans/scientific-calculation-readback-protocol-v1.md'
+        bad['manifest']['input_sha256'][path]='0'*64
+        return bad
     rows = [r for r in bad['collections']['diagnostics'] if 'research_evidence' in r]
     if kind.startswith('native_'):
         paths={'native_original':'research/source-data/jasadcp-p14n-1993-native/00016_short.nc',
@@ -178,6 +182,7 @@ def main():
     cases += ['hydro_'+case for case in ['property','quality','depth','bottom','pair_limit','pair_offsets','interpolation','correction','units','original']]
     cases += ['span_'+case for case in ['value','bracket','sensitivity','metric','admission','envelope','protocol']]
     cases += ['native_'+case for case in ['original','protocol','report','figure','width']]
+    cases += ['readback_code','readback_protocol']
     with TemporaryDirectory(dir=output) as temporary, sync_playwright() as playwright:
         folder = Path(temporary)
         index = folder / 'index.json'

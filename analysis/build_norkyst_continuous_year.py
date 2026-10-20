@@ -1,4 +1,5 @@
 """Monthly assets and a chronological year report using the frozen section operators."""
+from scientific_readback import dependency_pins
 from contextlib import ExitStack
 from datetime import datetime, timezone
 import json
@@ -170,6 +171,7 @@ def build():
     complete=all(all(count==month['expected_month_hours'] for count in month['summary'][name][kind]['valid_hours'])
                  for month in records for name in source.VARIABLES for kind in ['raw','lowpass'])
     pins=data['input_sha256']
+    pins.update(dependency_pins())
     for file in ['analysis/build_norkyst_continuous_sections.py','analysis/norkyst_continuous_source.py',
                  'plans/norkyst-ingoy-within-month-support-2026-10-17.md','plans/norkyst-ingoy-monthly-regional-map-rules-2026-10-17.md']:
         pins[file]=source.sha((ROOT/file).read_bytes())
