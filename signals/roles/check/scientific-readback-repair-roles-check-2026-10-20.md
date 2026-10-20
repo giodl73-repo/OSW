@@ -54,3 +54,12 @@ and full reproducibility. Top remaining condition is independent Linux proof.
    against the actual regenerated artifacts.
 3. Require Linux byte reconstruction and a clean latest full suite. Keep the
    earlier job undisturbed and keep draft/no-main status while gates are open.
+
+## Verification addendum
+
+Independent Linux run39517382843/job118952707192 at ca35472 passed all nine
+byte-exact reconstructions. The open KEEL P2 is closed; openP1/P2 now0/0.
+The prior clean ece1c14 full suite passed1843tests/1164subtests3643.33s and is
+terminal. A latest repaired successor and final browser matrix remain required
+release gates. The browser's legacy NECC fallback has an explicit Loop branch
+with its own substantive assertions; no old NECC checks were removed.

@@ -68,7 +68,15 @@ their running/terminal evidence is recorded separately from focused passes.
 The read-only Linux job now also rebuilds hydrography/component/underway/run
 reports, using pinned GSW as well as the original reconstruction packages.
 
-The isolated ece1c14 full suite remains protected. It predates the contour and
-readback changes, so its result cannot certify this repair. Once terminal,
-start a clean successor at the final repaired commit. Keep PR83 draft until
+Independent Linux run39517382843/job118952707192 at ca35472 PASSED:all nine
+targeted reports rebuild byte-for-byte, matching the Windows reconstruction.
+The general browser check caught an older fallback that treated the newly
+added Loop scene as NECC. That test now has an explicit Loop branch, preserves
+every NECC assertion and fails on any future unhandled owner. This is a test
+coverage repair; the scientific source/atlas artifacts are unchanged by it.
+
+The isolated ece1c14 full suite finished with clean start/end:1843tests and
+1164subtests PASS3643.33s, terminal23:45:42UTC20October2026. It predates contour
+and readback changes, so its result cannot certify this repair. A clean
+successor must cover the final repaired commit. Keep PR83 draft until
 its required final gates are satisfied. The wider current-data gaps remain.

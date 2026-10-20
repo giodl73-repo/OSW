@@ -247,13 +247,24 @@ def main():
                 expect(panel).to_contain_text('1,585 profiles · 1,582 layer means')
                 expect(panel).to_contain_text('568 profiles · 19 runs at ≥2 m/s')
                 link=panel.get_by_role('link',name='Inspect all CTD casts and quality codes')
-            else:
+            elif owner == 'pacific-north-equatorial-countercurrent':
                 expect(panel).to_contain_text('7,992')
                 details.get_by_label('Analysis view').select_option('1')
                 expect(details.locator('img')).to_have_attribute('src','../'+scene['additional_figures'][0]['file'])
                 expect(details.locator('img')).to_have_js_property('complete',True)
                 assert details.locator('img').evaluate('(img)=>img.naturalWidth>0')
                 link=panel.get_by_role('link',name='Inspect paired source vectors')
+            elif owner == 'loop':
+                expect(panel).to_contain_text('4,111 / 4,111 / 11,902 entries')
+                expect(panel).to_contain_text('About 1,400 km positive / 600 km negative; unranked')
+                assert panel.locator('table').last.locator('tbody tr').count()==54
+                details.get_by_label('Analysis view').select_option('1')
+                expect(details.locator('img')).to_have_attribute('src','../figures/loop-durante-2026-composite-contours.svg')
+                expect(details.locator('img')).to_have_js_property('complete',True)
+                assert details.locator('img').evaluate('(img)=>img.naturalWidth>0')
+                link=panel.get_by_role('link',name='All original clocks',exact=True)
+            else:
+                raise AssertionError('Missing explicit source-view assertions for '+owner)
             source_query = json.loads(unquote(link.get_attribute('href').split('source-q=')[1]))
             link.click()
             page.wait_for_function('window.oswSourceQueryResult', timeout=90000)
