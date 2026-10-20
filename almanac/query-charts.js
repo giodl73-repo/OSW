@@ -53,6 +53,7 @@ window.oswCharts=(()=>{
       for(const s of scene.filtered_width_curve_scenes||[])window.renderKuroshioFilteredWidths(root(),s,inspect,{open:true});
       for(const s of scene.asca_component_span_scenes||[])window.renderAscaComponentSpans(root(),s,inspect,{open:true});
       for(const s of scene.eac_source_field_scenes||[])window.renderEacSourceFields(root(),s,inspect,{open:true});
+      for(const s of scene.south_australian_context_scenes||[])window.renderSouthAustralianContext(root(),s,inspect,{open:true});
       for(const s of scene.kind==='current_research_evidence_panels'?scene.scenes:scene.research_evidence_scenes)window.renderCurrentResearchEvidence(root(),s,inspect,{open:true});return;
     }
     if(scene.kind==='current_width_source_reviews'){
@@ -67,6 +68,10 @@ window.oswCharts=(()=>{
     if(scene.kind==='asca_dated_component_spans'){
       document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Dated component-span experiment';
       window.renderAscaComponentSpans(root(),scene,inspect,{open:true});return;
+    }
+    if(scene.kind==='south_australian_flow_context'){
+      document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Monthly model-grid flow context';
+      window.renderSouthAustralianContext(root(),scene,inspect,{open:true});return;
     }
     if(scene.kind==='eac_daily_source_fields'){
       document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Daily processed source fields';

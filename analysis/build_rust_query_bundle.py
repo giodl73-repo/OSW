@@ -645,6 +645,11 @@ def build():
     inputs.update(eac_core_inputs)
     collections['diagnostics'].append(eac_core_record(eac_core_document))
     next(r for r in objects if r['id']=='current:east-australian')['diagnostic_ids'].append(EAC_CORE_ID)
+    from south_australian_flow_context import verify_inputs as verify_sac_context, record as sac_context_record, ID as SAC_CONTEXT_ID
+    sac_document,sac_inputs=verify_sac_context()
+    inputs.update(sac_inputs)
+    collections['diagnostics'].append(sac_context_record(sac_document))
+    next(r for r in objects if r['id']=='current:south-australian').setdefault('diagnostic_ids',[]).append(SAC_CONTEXT_ID)
     collections['width_samples']=build_width_samples(collections['diagnostics'])
     for row in objects:
         row['width_sample_ids']=[sample['id'] for sample in collections['width_samples'] if sample['entity_id']==row['id']]

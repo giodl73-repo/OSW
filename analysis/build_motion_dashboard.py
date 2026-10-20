@@ -95,6 +95,8 @@ def build():
     saved=read('research/south-australian-132e-100m-2012-monthly-component-spans.json')
     if not basin_matches(saved,rebuild_hycom()):raise ValueError('Stale HYCOM component section')
     basin_sections['south-australian']=saved
+    from south_australian_flow_context import verify_inputs as verify_sac_context, ID as SAC_CONTEXT_ID
+    sac_context,sac_context_inputs=verify_sac_context();inputs.update(sac_context_inputs)
     from build_west_australian_oscar_spans import build as rebuild_offshore
     saved=read('research/west-australian-32s-2013-monthly-component-spans.json')
     if not basin_matches(saved,rebuild_offshore()):raise ValueError('Stale offshore northward diagnostic')
@@ -742,6 +744,13 @@ def build():
             groups['measurements'].append(sac_audit);groups['sources'].append(sac_audit)
             groups['time_evidence'].append(sac_audit)
             evidence_links.append({'label':'October 1983 southern component band breadth','url':'../figures/south-atlantic-stramma-1983-secondary-band.svg'})
+        if current_id=='south-australian':
+            sac_support={'diagnostic_id':SAC_CONTEXT_ID,'source_file':'research/south-australian-hycom-2d-flow-context-scene.json',
+                'source_sha256':sac_context_inputs['research/south-australian-hycom-2d-flow-context-scene.json'],
+                'months':12,'threshold_cases':36,'physical_width_admitted':False,'current_association_verified':False}
+            groups['measurements'].append(sac_support);groups['time_evidence'].append(sac_support)
+            groups['sources']=[groups['sources'],sac_support]
+            evidence_links.append({'label':'Explore surrounding monthly model flow','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':SAC_CONTEXT_ID}],'limit':1},separators=(',',':')))+'#query-chart-section'})
         if current_id=='south-pacific':
             groups['measurements'].append(spc_audit);groups['sources'].append(spc_audit)
             groups['time_evidence'].append(spc_audit)

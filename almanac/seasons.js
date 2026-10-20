@@ -106,6 +106,7 @@
     if(current==='kuroshio')window.renderKuroshioFilteredWidths(sourceReview,window.oswSeasonSnapshot?.kuroshio_filtered_width_scene);
     if(current==='agulhas')window.renderAscaComponentSpans(sourceReview,window.oswSeasonSnapshot?.asca_component_span_scene);
     if(current==='east-australian')window.renderEacSourceFields(sourceReview,window.oswSeasonSnapshot?.eac_source_field_scene);
+    if(current==='south-australian')window.renderSouthAustralianContext(sourceReview,window.oswSeasonSnapshot?.south_australian_context_scene);
     byId("season-title").textContent = frame || row?.phase_kind === "seasonal_summary" ? "Seasonal state" : row?.phase_kind === "survey_threshold_section" ? "Survey section observation" : row?.phase_kind === "month_dated_section" ? "Historical section observation" : row?.phase_kind === "ensemble_profile_band" ? "Composite profile observation" : "Recorded evidence";
     if(['coastal_composite_threshold_section','lagrangian_composite_zero_velocity_width'].includes(row?.phase_kind))byId('season-title').textContent=row.original_regional_context.display_title;
     const route = frame ? catalog.candidates.find(row => row.candidate_file === frame.route_candidate_file) : catalog.candidates.find(row => row.current_id === byId("season-current").value);

@@ -89,6 +89,8 @@ def main():
                   'analysis/eac_source_fields.py'])
     paths.extend(['rust/osw-query/src/eac_core_spans.rs','research/eac-csiro-100m-section-core-spans-summary.json',
                   'research/eac-csiro-100m-section-core-spans-figure.json','analysis/eac_core_spans.py'])
+    paths.extend(['rust/osw-query/src/south_australian_context.rs','analysis/south_australian_flow_context.py',
+                  'research/south-australian-hycom-2d-flow-context-scene.json'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',

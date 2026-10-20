@@ -59,6 +59,7 @@ mod seasonal;
 mod seasons_data;
 mod selected_core_widths;
 mod somali_width;
+mod south_australian_context;
 mod spatial;
 mod stream_tube_widths;
 mod svg;
@@ -314,6 +315,7 @@ impl Store {
         asca_component_spans::validate(&bundle)?;
         eac_source_fields::validate(&bundle)?;
         eac_core_spans::validate(&bundle)?;
+        south_australian_context::validate(&bundle)?;
         coastal_composite_widths::validate(&bundle)?;
         dwbc_float_composite::validate(&bundle)?;
         atlas_data::validate(&bundle)?;
@@ -685,7 +687,24 @@ impl Store {
             let filtered = kuroshio_filtered_width::query(&matches, &self.bundle);
             let asca = asca_component_spans::query(&matches, &self.bundle);
             let eac = eac_source_fields::query(&matches, &self.bundle);
-            if !eac.is_null() {
+            let sac = south_australian_context::query(&matches, &self.bundle);
+            if !sac.is_null() {
+                if research.is_null()
+                    && reviews.is_null()
+                    && filtered.is_null()
+                    && asca.is_null()
+                    && eac.is_null()
+                {
+                    sac
+                } else {
+                    json!({"kind":"current_diagnostic_evidence","scope":"Model-grid context retains unresolved identity and dimensions.",
+                    "source_review_scenes":reviews["scenes"].as_array().cloned().unwrap_or_default(),
+                    "research_evidence_scenes":research["scenes"].as_array().cloned().unwrap_or_default(),
+                    "filtered_width_curve_scenes":if filtered.is_null(){vec![]}else{vec![filtered]},
+                    "asca_component_span_scenes":if asca.is_null(){vec![]}else{vec![asca]},
+                    "eac_source_field_scenes":if eac.is_null(){vec![]}else{vec![eac]},"south_australian_context_scenes":[sac]})
+                }
+            } else if !eac.is_null() {
                 if research.is_null() && reviews.is_null() && filtered.is_null() && asca.is_null() {
                     eac
                 } else {
