@@ -115,3 +115,14 @@ analysis/eac_core_spans.py -text
 plans/eac-csiro-100m-section-core-span-protocol-v1.md -text
 research/eac-csiro-100m-section-core-spans*.json -text
 figures/eac-csiro-100m-section-core-spans.svg -text -whitespace
+# Preserve native HYCOM responses and the exact source/method contracts.
+research/source-data/hycom-south-australian-2d-2012/** -text -whitespace
+research/source-data/hycom-south-australian-2d-2012/source-vectors.npz binary
+analysis/acquire_south_australian_hycom_2d.py -text
+analysis/build_south_australian_flow_context.py -text
+analysis/build_south_australian_flow_context_figure.py -text
+analysis/build_south_australian_hycom_2d_figure.py -text
+plans/south-australian-hycom-2d-source-selection-protocol-v1.md -text
+plans/south-australian-hycom-2d-flow-context-protocol-v1.md -text
+research/south-australian-hycom-2d-*.json -text
+figures/south-australian-hycom-2d-*.svg -text -whitespace
