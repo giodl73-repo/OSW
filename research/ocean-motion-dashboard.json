@@ -349,6 +349,21 @@
     "analysis/build_asca_component_span_figure.py": "3ff5c84bbe9d6bf2cfc9259868ee7ca277c26d6b8e2f79143e971ffb667cde5a",
     "figures/agulhas-asca-100m-dated-component-spans.png": "91fb1da5c665cb682e68d288e28f2f902c13391e2cc2e516089b7e88ac7eff77",
     "figures/agulhas-asca-100m-dated-component-spans.svg": "c15f2bf2ed5b4c76c53e16b07f8d3255be0732ed345a046571e0b8cca006a147",
+    "plans/eac-csiro-v23-100m-source-selection-protocol-v1.md": "429902303d33b5520f6e431c87a943897ed1eeef3119d5167d7adc9f8f2c51ff",
+    "analysis/acquire_eac_100m_source.py": "430f1bcdd36e7f761dbdec34705948c3c3c84463cb3c63ea1d91608be10e786b",
+    "research/source-data/eac-csiro-v23-100m/acquisition.json": "08d720f2ab6fdbe2b8c28e6871e297885b43c75e806b3b907b32026cc89612c2",
+    "research/source-data/eac-csiro-v23-100m/selected-source.npz": "5b892c7fb32a1d5597961bf8eb6475aeefb522d4e2be7963ab4e6cb5554355f8",
+    "research/source-data/eac-csiro-v23-100m/source-header.json": "cff867a819bddc49e133b753a6bce0a9e7a79cb57bdbc60ecd395a98f2ea9204",
+    "research/eac-csiro-v23-100m-source-quality.json": "8e7d83e3570d741baba58cd5ea28ec552a92e53e7e9706b0187df51c35940c93",
+    "analysis/build_eac_source_profiles.py": "bbd6fdd0760ae41b2a31e01d1a4b9794751e7239f29f5c66e9cb071a548f91e7",
+    "analysis/check_eac_100m_source.py": "0aba4121e6e60fbb18ccade2acb8777b25d432d97a893ca241fa4d89fac691e1",
+    "research/eac-csiro-v23-100m-source-profiles.json": "a34fd5dbea892c8792c8ae7a025f6fede4879381e0e3d0610526bf958a934ef1",
+    "research/eac-csiro-v23-100m-source-query-contract.json": "f5c0f41deed231478d94ef456dd018b1f063f70457e0428964eb01463cf3e465",
+    "research/eac-csiro-v23-100m-source-fields-figure.json": "77428afa5037c41194b0a6992869f44057a825308fa5b13a8372c4cd4647c562",
+    "analysis/build_eac_100m_source_figure.py": "4347146bdf9238eaa3c0a0ffaf5734d5e755c605869ae54d7ad9b1b0d7e78b78",
+    "analysis/eac_source_fields.py": "61de2542f92abbf01319f6cd269eb4475c8372359a929a6b1970f10f0d7fe0cc",
+    "figures/eac-csiro-v23-100m-source-fields.png": "afe95951c420b15f1b0f0151380f0c68fe13424abf7d9abb241b05a86e825f19",
+    "figures/eac-csiro-v23-100m-source-fields.svg": "80a118158871e124957d7817475205da044005ddbe239f8812667fc0a2591def",
     "research/source-data/kuroshio-liu-gan-2012/figure6a-extraction.json": "ec9ce9bf6857aa5ec257d9ff202586dee7940c73ced3caff9720d24eaded9f2a",
     "plans/kuroshio-seasonal-width-profile-extraction-protocol-v1.md": "269b2397f87a4fe156f36b0618916d4ebb90b21308f9e5caaffae2d4a3c9694e",
     "research/florida-monthly-width-plot-extraction.json": "a19bd06ad71c508ffb9b3d2fe0bc67435de40f138aaf408e1cf930640c048e2c",
@@ -664,7 +679,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "1b262a2f4a2e873347f5fe01c5734958337c5479fc1123e7a9971fd969d50a1f",
+  "snapshot_fingerprint": "0098d0a97db3ba66a17e466ed52bf038f31e69bb5892c15889c271fdc9d976a4",
   "entries": [
     {
       "id": "current:agulhas",
@@ -3728,7 +3743,7 @@
         "reference_route": 1,
         "scoped_width": 1,
         "geometry": 0,
-        "time_samples": 0,
+        "time_samples": 3141,
         "source_connectivity": 0,
         "scope_notes": 0,
         "dated_diagnostics": 0,
@@ -3738,16 +3753,36 @@
       },
       "recorded_claims": 59,
       "nasa_links": 1,
-      "fingerprint": "792ca05623bb81f1c5b713341fa1a934bb3be7c3339ade2db847fe59c758f9d2",
-      "series": [],
+      "fingerprint": "663a97fb4b2ba83aa4b1fa29f84b15cf0f8e17c446112f2c3514bd3907229686",
+      "series": [
+        {
+          "label": "CSIRO100m daily source fields / 3141 dates with data / 629 missing dates retained",
+          "url": "query.html?q=%7B%22collection%22%3A%22diagnostics%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22diagnostic%3Aeac-csiro100m-source-fields%22%7D%5D%2C%22limit%22%3A1%7D#query-chart-section",
+          "frames": 3141,
+          "calendar_records": 3770,
+          "unavailable_calendar_records": 629,
+          "frame_count_rule": "at_least_one_finite_paired_velocity_cell_not_independent_observations",
+          "evidence_role": "SOM_filled_mapped_source_fields_and_provider_uncertainty_not_current_dimensions",
+          "source_file": "research/eac-csiro-v23-100m-source-quality.json",
+          "source_sha256": "8e7d83e3570d741baba58cd5ea28ec552a92e53e7e9706b0187df51c35940c93",
+          "source_period": [
+            "2012-04-01T12:00:00Z",
+            "2022-07-27T12:00:00Z"
+          ],
+          "source_positions": 124,
+          "source_fields": 8,
+          "depth_m": 100,
+          "source_time_is_independent_observation_time": false
+        }
+      ],
       "section_fingerprints": {
         "identity": "b27327939f3865eba5eafb208dd4b8f1d55ae3291e2af7a984a79d09018bdd9d",
-        "sources": "b6ad07abee16c9bdf97a75d465e06f056e62723400caca74cc4a2ae91818e5ca",
+        "sources": "3e4dc07a00df9bc485b5cc5675975168208b919894d75e28fb1407fb6b0b726b",
         "claims": "c8f3e63e41fa7d2fe90981a58ddb5cb10d941ded734fdeb74cc366a35bce2a41",
-        "measurements": "3e6d14529693e96a7b7c8fd0e0ece70568db25aac92ee7248e50bda6afa96720",
+        "measurements": "9e6e4a4488cd74ce1f0279b43bcadcfddea9c44741fa3b0a77b1910ef8d287a3",
         "routes_geometry": "64c2859a1f269f46d3de3be772faeac45278560da2e42c4625f5bc0648fb59ac",
         "media": "7c0712ce7022a2bc924e5dc350a13a354a75eeea537777346438b9fa74833028",
-        "time_evidence": "893190b3f25c5ac79db359b7d41628e26445e87209016d36ab0a3b7c91d537d9"
+        "time_evidence": "b32f434d6bf00a258a12596e30b957497b7e74ee419c8606864645ac2996bffe"
       },
       "latest_observation_date": null,
       "claim_review_counts": {
@@ -68419,5 +68454,5 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "built_at_utc": "2026-10-18T17:39:19.457876+00:00"
+  "built_at_utc": "2026-10-18T18:42:30.095916+00:00"
 }

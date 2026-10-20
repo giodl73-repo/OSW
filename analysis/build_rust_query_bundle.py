@@ -635,6 +635,11 @@ def build():
     inputs.update(asca_span_inputs)
     collections['diagnostics'].append(asca_span_record(asca_span_document))
     next(r for r in objects if r['id']=='current:agulhas').setdefault('diagnostic_ids',[]).append(ASCA_SPAN_ID)
+    from eac_source_fields import verify_inputs as verify_eac_fields, record as eac_fields_record, ID as EAC_FIELDS_ID
+    eac_document,_,_,eac_inputs=verify_eac_fields()
+    inputs.update(eac_inputs)
+    collections['diagnostics'].append(eac_fields_record(eac_document))
+    next(r for r in objects if r['id']=='current:east-australian').setdefault('diagnostic_ids',[]).append(EAC_FIELDS_ID)
     collections['width_samples']=build_width_samples(collections['diagnostics'])
     for row in objects:
         row['width_sample_ids']=[sample['id'] for sample in collections['width_samples'] if sample['entity_id']==row['id']]

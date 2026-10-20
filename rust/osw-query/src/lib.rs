@@ -18,6 +18,7 @@ mod dashboard;
 mod dashboard_beck;
 mod dashboard_map;
 mod dwbc_float_composite;
+mod eac_source_fields;
 mod eddy_recurrence;
 mod eddy_source_panels;
 mod guinea_width;
@@ -310,6 +311,7 @@ impl Store {
         current_research_evidence::validate(&bundle)?;
         kuroshio_filtered_width::validate(&bundle)?;
         asca_component_spans::validate(&bundle)?;
+        eac_source_fields::validate(&bundle)?;
         coastal_composite_widths::validate(&bundle)?;
         dwbc_float_composite::validate(&bundle)?;
         atlas_data::validate(&bundle)?;
@@ -680,7 +682,18 @@ impl Store {
             let research = current_research_evidence::query(&matches, &self.bundle);
             let filtered = kuroshio_filtered_width::query(&matches, &self.bundle);
             let asca = asca_component_spans::query(&matches, &self.bundle);
-            if !asca.is_null() {
+            let eac = eac_source_fields::query(&matches, &self.bundle);
+            if !eac.is_null() {
+                if research.is_null() && reviews.is_null() && filtered.is_null() && asca.is_null() {
+                    eac
+                } else {
+                    json!({"kind":"current_diagnostic_evidence","scope":"Source fields and derived evidence retain their separate processing and admission scope.",
+                    "source_review_scenes":reviews["scenes"].as_array().cloned().unwrap_or_default(),
+                    "research_evidence_scenes":research["scenes"].as_array().cloned().unwrap_or_default(),
+                    "filtered_width_curve_scenes":if filtered.is_null(){vec![]}else{vec![filtered]},
+                    "asca_component_span_scenes":if asca.is_null(){vec![]}else{vec![asca]},"eac_source_field_scenes":[eac]})
+                }
+            } else if !asca.is_null() {
                 if research.is_null() && reviews.is_null() && filtered.is_null() {
                     asca
                 } else {

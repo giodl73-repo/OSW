@@ -218,6 +218,9 @@ def build():
     from asca_component_spans import verify_inputs as verify_asca_spans, ID as ASCA_SPAN_ID
     asca_span_document,_,asca_span_inputs=verify_asca_spans()
     inputs.update(asca_span_inputs)
+    from eac_source_fields import verify_inputs as verify_eac_fields, ID as EAC_FIELDS_ID
+    eac_fields,_,_,eac_inputs=verify_eac_fields()
+    inputs.update(eac_inputs)
     if kuroshio_profiles!=build_kuroshio_profiles():raise ValueError('Kuroshio seasonal profile differs from pinned extraction')
     for key in ['source_pdf_file','config_file','protocol_file','scope_audit_file']:
         path=kuroshio_profiles[key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -596,6 +599,16 @@ def build():
                 'source_sha256':inputs['research/agulhas-asca-100m-dated-component-spans.json'],
                 'source_profiles':931,'resolved_primary_spans':330,'unresolved_primary_spans':601,
                 'source_period':['2016-04-19','2018-06-03'],'depth_m':100,'whole_current_representative':False})
+        if current_id == 'east-australian':
+            series.append({'label':'CSIRO100m daily source fields / 3141 dates with data / 629 missing dates retained',
+                'url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':EAC_FIELDS_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section',
+                'frames':3141,'calendar_records':3770,'unavailable_calendar_records':629,
+                'frame_count_rule':'at_least_one_finite_paired_velocity_cell_not_independent_observations',
+                'evidence_role':'SOM_filled_mapped_source_fields_and_provider_uncertainty_not_current_dimensions',
+                'source_file':'research/eac-csiro-v23-100m-source-quality.json',
+                'source_sha256':inputs['research/eac-csiro-v23-100m-source-quality.json'],
+                'source_period':[eac_fields['first_source_time'],eac_fields['last_source_time']],
+                'source_positions':124,'source_fields':8,'depth_m':100,'source_time_is_independent_observation_time':False})
         capabilities = {
             'observed_velocity': len(velocity['samples']) if current_id==velocity['current_id'] else 0,
             'radius_evidence': len(geography.get('published_ring_radius_evidence',geography.get('radial_scale_evidence',[]))) if geography else 0,
@@ -782,6 +795,13 @@ def build():
             groups['sources']=[groups['sources'],own_width_audits]
             groups['measurements'].append(own_width_audits)
             groups['time_evidence'].append(own_width_audits)
+        if current_id == 'east-australian':
+            eac_support={'diagnostic_id':EAC_FIELDS_ID,'source_file':'research/eac-csiro-v23-100m-source-quality.json',
+                'source_sha256':inputs['research/eac-csiro-v23-100m-source-quality.json'],
+                'calendar_records':3770,'profiles_with_data':3141,'missing_profiles':629,'physical_width_admitted':False}
+            groups['sources'].append(eac_support)
+            groups['measurements'].append(eac_support)
+            groups['time_evidence'].append(eac_support)
         if current_id in local_width_audits:
             if current_id == 'agulhas':
                 span_support={'diagnostic_id':ASCA_SPAN_ID,'source_file':'research/agulhas-asca-100m-dated-component-spans.json',
