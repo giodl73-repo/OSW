@@ -72,16 +72,20 @@ LOOP_SOURCE='research/source-data/loop-durante-2026-v0/quality.json'
 LOOP_VIEW='research/loop-durante-2026-source-view.json'
 LOOP_FIGURE='research/loop-durante-2026-source-view-figure.json'
 LOOP_ACQUISITION='research/source-data/loop-durante-2026-v0/acquisition.json'
+LOOP_CONTOURS='research/loop-durante-2026-composite-contour-paths.json'
+LOOP_CONTOUR_FIGURE='research/loop-durante-2026-composite-contour-figure.json'
 FROZEN_INPUTS.update({LOOP_SOURCE:'af7ff4bc05a909aa84e5dab0125504f14affa0ecad369bbfda27ce00fd435959',
     LOOP_VIEW:'c7e2625677c6125138540ecc3d21cdf26756cc899603c358254be47dd4b8a7bc',
     LOOP_FIGURE:'0023a293a59149d0098ec732a8eeff1b32af3c1f80e56f8056e287b59e6b9889',
     LOOP_ACQUISITION:'2b01220d7880461e898a16b041ec749a9e2797d3611ac6122075bb6bd7bfc698'})
+FROZEN_INPUTS.update({LOOP_CONTOURS:'9967eb3787847f02710613269cdc4a8cf5607ac8cd6a67a046a082f8c5d6180f',
+    LOOP_CONTOUR_FIGURE:'1ba825d707123d9c9019529a79b0a17d3f1d412f44d704dc5cb78c34da5f8766'})
 
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
 
 def build():
-    if len(FROZEN_INPUTS)!=50:raise ValueError('Missing reviewed research source registry')
+    if len(FROZEN_INPUTS)!=52:raise ValueError('Missing reviewed research source registry')
     documents={}
     for path,pin in FROZEN_INPUTS.items():
         if digest(path)!=pin:raise ValueError('Changed reviewed current research source '+path)
@@ -131,6 +135,13 @@ def build():
     if loop_quality!=documents[LOOP_SOURCE]:raise ValueError('Changed processed Loop source quality')
     if loop_quality['current_length_admitted'] or loop_quality['width_measurement_admitted']:
         raise ValueError('Promoted Loop source intake')
+    from loop_durante_composite_contours import build as rebuild_loop_contours
+    loop_contours=documents[LOOP_CONTOURS]
+    if loop_contours!=rebuild_loop_contours():raise ValueError('Changed declared Loop contour results')
+    contour_figure=documents[LOOP_CONTOUR_FIGURE]
+    if contour_figure['source_report_sha256']!=digest(LOOP_CONTOURS):raise ValueError('Changed Loop contour figure binding')
+    dependencies.update(contour_figure['figures'])
+    dependencies[contour_figure['generator_file']]=contour_figure['generator_sha256']
     for source,pin in dependencies.items():
         if digest(source)!=pin:raise ValueError('Changed current research dependency '+source)
     observed=documents[ALEUTIAN]
@@ -418,7 +429,7 @@ def build():
     scenes.append({
         'current_id':'loop','label':'Loop Current','diagnostic_id':'diagnostic:current-research:loop',
         'title':'Author surface composites and source coverage',
-        'finding':'Two processed surface-flow configurations are available. The supplied coordinate means extend through the Caribbean toward Yucatan; they are not complete Loop Current paths. No length or width is admitted.',
+        'finding':'Two processed surface-flow configurations are available. Separate gateway-connected contour paths measure about 1,400 km and 600 km. These conditional paths do not establish a ranked whole-current length or physical width; the supplied coordinate means remain incomplete.',
         'facts':[{'label':'Processed surface configurations','value':'2 conditional composites'},
                  {'label':'Source clocks','value':'4,111 / 4,111 / 11,902 entries'},
                  {'label':'Coordinate points','value':'248 per composite; unjoined'},
@@ -430,6 +441,7 @@ def build():
                  'The source API declares CC BY4.0 and version0. README retains a license-selection TODO, CITATION.cff says1.0.0, and the associated manuscript DOI is a placeholder; these documentary disagreements remain visible.'],
         'next_evidence':'Recover complete daily Loop axes or a validated gateway-connected algorithm before route/length admission; establish exact composite-member support before physical interpretation.',
         'figure_file':'figures/loop-durante-2026-source-view.svg',
+        'figure_label':'Source composites and separate clocks',
         'figure_alt':'Two native-grid geostrophic-speed composites with direction arrows and all248unjoined coordinate means each, plus three separate source-clock coverage rows. Gray means missing source data. Coordinate means end below23.2N and do not form a complete Loop Current. No dimensions are admitted.',
         'source_file':LOOP_SOURCE,'original_url':'https://zenodo.org/records/22652650',
         'source_links':[link('Exact source schema and quality',LOOP_SOURCE),link('Exact composite fields and masks',LOOP_VIEW,'/phases'),
@@ -442,6 +454,22 @@ def build():
                  'headers':['Original field','Paired finite points','Northernmost point','Full Loop path'],
                  'rows':[[name,str(axis['paired_finite_rows']),f"{axis['latitude_bounds'][1]:.2f} N",'Not supplied'] for name,axis in loop_quality['source_composite_axes'].items()]}]
     })
+    loop_scene=scenes[-1]
+    loop_scene['notes'].append('A separate fixed contour experiment measures the author-plotted absolute ADT guide between editorial gateways. All 54 level/gateway cases have one supported path; 18 disconnected closed-ring components are rejected. These conditional contour paths are not mean daily current lengths, annual extrema, confidence bounds or physical widths.')
+    loop_scene['facts'].append({'label':'Nominal composite contour paths','value':'About 1,400 km positive / 600 km negative; unranked'})
+    loop_scene['additional_figures']=[{'file':'figures/loop-durante-2026-composite-contours.svg',
+        'label':'Measured composite contour paths and all gateway shifts',
+        'alt':'Positive and negative conditional composites at absolute ADT levels 0.50, 0.55 and 0.60 m. Every panel shows nine editorial gate shifts. Nominal 0.55 m paths measure about 1,400 km and 600 km. Dashed red components are rejected rings. These are not annual extrema or ranked whole-current lengths.'}]
+    loop_scene['source_links'].extend([link('All 54 contour cases and complete velocity samples',LOOP_CONTOURS,'/cases'),
+        link('Original contours before gateway clipping',LOOP_CONTOURS,'/source_contours'),
+        link('Contour experiment phase summaries',LOOP_CONTOURS,'/phase_summaries'),
+        link('Contour figure provenance',LOOP_CONTOUR_FIGURE)])
+    loop_scene['additional_tables'].append({
+        'caption':'All 54 declared composite contour cases. Lengths rounded to 100 km measure open contour arcs between editorial gates. Gate and level shifts are sensitivity choices, not uncertainty, seasons or annual limits. No reference-route or whole-current length admission.',
+        'headers':['Composite','ADT (m)','Entry latitude','Exit longitude','Outcome','Contour path'],
+        'rows':[[c['phase'],f"{c['adt_level_m']:.2f}",f"{c['gates']['entry_latitude']:.3f} N",
+            f"{abs(c['gates']['exit_longitude']):.3f} W",c['status'].replace('_',' '),
+            'Unresolved' if c['rounded_supported_contour_path_km'] is None else f"About {c['rounded_supported_contour_path_km']:,} km"] for c in loop_contours['cases']]})
     for scene in scenes:
         scene.update(kind='current_research_evidence',rank_eligible=False,new_width_record_admitted=False,
             whole_current_width_km=None,annual_width_range_km=None,
