@@ -46,8 +46,8 @@ def main():
             month=panel.get_by_label('Recorded year and month');day=panel.get_by_label('Source date (UTC)');cell=panel.get_by_label('Source position',exact=True)
             counts=[control.locator('option').count() for control in [month,day,cell]]
             assert counts==[124,30,124],(view,counts,cell.evaluate('(n)=>n.outerHTML').replace('<option','\n<option'))
-            cell.select_option('11');expect(panel.locator('[aria-live="polite"]')).to_contain_text('source bottom 100 m')
-            expect(panel.locator('[aria-live="polite"]')).to_contain_text('Eastward velocity: 0 m/s; supplied uncertainty 0 m/s')
+            cell.select_option('11');expect(panel.locator('[data-eac-source-reading]')).to_contain_text('source bottom 100 m')
+            expect(panel.locator('[data-eac-source-reading]')).to_contain_text('Eastward velocity: 0 m/s; supplied uncertainty 0 m/s')
             expect(panel.get_by_role('button',name='Play days in this month',exact=True)).to_be_disabled()
             month.select_option('2014-05');missing=next(m for m in quality['monthly_support'] if (m['year'],m['month'])==(2014,5))
             expect(panel).to_have_attribute('data-eac-source-index',str(missing['source_time_indices'][0]),timeout=90000)

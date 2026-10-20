@@ -40,10 +40,31 @@
     const status=node('p','Source data loads when this section is opened.',details);status.setAttribute('role','status');status.dataset.eacSourceStatus='';
     node('p','On narrow screens, scroll each chart horizontally. Lines break at source missing values. Shading is plus/minus the supplied uncertainty field, not an assigned confidence interval.',details);
     const map=node('div',undefined,details),charts=node('div',undefined,details);
+    const core=scene.core_spans;let coreRows=[];
+    const corePanel=core?node('section',undefined,details):null;
+    let scenario=null,threshold=null,coreChart=null,coreText=null,coreSummary=null;
+    if(corePanel){
+      corePanel.className='eac-section-core-spans';corePanel.style.cssText='max-width:100%;min-width:0;border-top:1px solid #81949d;margin-top:1rem';
+      node('h4','Exploratory section-core spans at 100 m',corePanel);
+      node('p','2,883 dates resolve both section edges at the central half-peak rule; 887 do not. These are distances along the sampling section, not flow-normal physical current widths or annual extrema. Bottom cells are excluded from this diagnostic while remaining unchanged in the original source fields.',corePanel);
+      node('p','Green rings on the map mark approximate source-section intersections for the selected case. Their geographic positions interpolate within the source cells; they are not mapped current edges. The crossing cells and distances are also listed below.',corePanel);
+      const choices=node('div',undefined,corePanel);choices.style.cssText='display:flex;flex-wrap:wrap;gap:.5rem;max-width:100%';
+      const label=node('label','Component sensitivity ',choices);label.style.cssText='display:grid;min-width:0;max-width:100%';scenario=node('select',undefined,label);scenario.setAttribute('aria-label','Component sensitivity');
+      for(const [value,title] of [['central','Central projected component'],['minus_supplied_component_magnitudes','Minus supplied component magnitudes'],['plus_supplied_component_magnitudes','Plus supplied component magnitudes']]){const option=node('option',title,scenario);option.value=value;}
+      const fractionLabel=node('label','Peak fraction ',choices);fractionLabel.style.cssText='display:grid;min-width:0;max-width:100%';threshold=node('select',undefined,fractionLabel);threshold.setAttribute('aria-label','Peak fraction');
+      for(const value of core.fractions){const option=node('option',Math.round(value*100)+'%'+(value===.5?' / primary':''),threshold);option.value=String(value);}threshold.value='0.5';
+      for(const select of [scenario,threshold])select.style.cssText='min-height:44px;min-width:0;max-width:100%';
+      coreSummary=node('p','',corePanel);coreSummary.dataset.eacCoreSupport='';coreChart=node('div',undefined,corePanel);coreText=node('div',undefined,corePanel);coreText.setAttribute('aria-live','polite');
+      const overview=node('details',undefined,corePanel);node('summary','All-date outcomes, sensitivity and fixed source examples',overview).style.minHeight='44px';
+      const img=node('img',undefined,overview);img.src='../'+core.figure_file;img.alt=core.figure_alt;img.loading='lazy';img.style.cssText='display:block;width:100%;height:auto;background:white';
+      for(const note of core.limitations)node('p',note,overview);
+      link('Query all 3,770 section-core outcomes',sourceUrl({document:core.raw_profile_file,pointer:'/profiles',limit:100}),node('p','',overview));
+      scenario.addEventListener('change',()=>drawCore());threshold.addEventListener('change',()=>drawCore());
+    }
     const cellLabel=node('label','Source position ',details),cell=node('select',undefined,cellLabel);cell.style.cssText='min-height:44px;max-width:100%';
     cell.setAttribute('aria-label','Source position');
     for(let i=0;i<scene.geometry.longitude_latitude_points.length;i++){const option=node('option',i+' · '+fmt(scene.geometry.distance_from_first_grid_point_m[i]/1000)+' km along source array',cell);option.value=String(i);}
-    const reading=node('div',undefined,details);reading.setAttribute('aria-live','polite');const sources=node('p','',details);
+    const reading=node('div',undefined,details);reading.setAttribute('aria-live','polite');reading.dataset.eacSourceReading='';const sources=node('p','',details);
     link('Query all 3,770 daily source records',sourceUrl({document:scene.raw_source_file,pointer:'/profiles',limit:100}),node('p','',details));
     link('Inspect source quality and methods',sourceUrl({document:scene.source_file,pointer:'',limit:100}),node('p','',details));
     link('Provider dataset',scene.source_url,node('p','',details));node('p',scene.source_citation,details);
@@ -56,6 +77,51 @@
       node('p',`Position ${i}: ${fmt(point[0])}° E, ${fmt(point[1])}° N; source bottom ${fmt(bottom)} m. ${bottom<=100?'The selected 100 m level is at or below this source bottom.':'The selected level is above the source bottom.'}`,reading);
       for(const f of scene.fields)node('p',`${f.label}: ${fmt(current.fields[f.key][i])} ${f.unit}; supplied uncertainty ${fmt(current.fields[f.uncertainty_key][i])} ${f.unit}.`,reading);
       for(const circle of map.querySelectorAll('[data-eac-position]'))circle.setAttribute('stroke',Number(circle.dataset.eacPosition)===i?'#131c24':'none');
+    }
+    function drawCore(){
+      if(!corePanel||!current)return;const row=coreRows[day.selectedIndex];coreChart.replaceChildren();coreText.replaceChildren();
+      if(!row||row.source_time_index!==current.source_time_index){coreSummary.textContent='Section-core diagnostic unavailable for this date.';return;}
+      const name=scenario.value,fraction=Number(threshold.value),variant=row.scenarios[name],c=variant.cases.find(c=>c.fraction===fraction),sign=name==='central'?0:name.startsWith('minus')?-1:1;
+      corePanel.dataset.eacCoreIndex=String(row.source_time_index);window.oswEacCoreSelection={profile:row,scenario:name,fraction,case:c,source_sha256:core.raw_profile_sha256};
+      const m=core.months[month.selectedIndex],support=m.outcomes.find(o=>o.scenario===name&&o.fraction===fraction),overall=core.overall_outcomes.find(o=>o.scenario===name&&o.fraction===fraction);
+      coreSummary.textContent=`${current.source_time_utc} · selected month: ${support.resolved_dates} resolved / ${support.attempted_dates} attempted dates; whole source period: ${overall.resolved_dates} / ${overall.attempted_dates}. Missing and weak dates remain in these denominators. Sensitivity cases are not confidence limits or extra observations.`;
+      const q=row.section_normal_velocity_m_s,a=row.projected_supplied_magnitudes_m_s,values=q.map((v,i)=>v===null||sign!==0&&a[i]===null?null:v+sign*(a[i]||0));
+      const distances=core.geometry.distance_m,maxDistance=distances.at(-1),[low,high]=core.y_domain,x=d=>65+d/maxDistance*590,y=v=>220-(v-low)/(high-low)*190;
+      const scroll=node('div',undefined,coreChart);scroll.style.cssText='max-width:100%;overflow-x:auto';scroll.tabIndex=0;scroll.setAttribute('role','region');scroll.setAttribute('aria-label','Section-core component chart; scroll horizontally');
+      const svg=svgNode('svg',{viewBox:'0 0 680 280',role:'img','aria-label':'Selected section-normal component and threshold. Sampling brackets mark interpolation support, not measurement uncertainty.'},scroll);svg.style.cssText='display:block;width:100%;min-width:600px';
+      const bottom=core.geometry.bottom_depth_m.map((v,i)=>v<=100?distances[i]:null).filter(v=>v!==null);
+      svgNode('rect',{x:65,y:30,width:x(bottom.at(-1))-65,height:190,fill:'#dfae8f',opacity:.5},svg);
+      for(let i=0;i<=4;i++){const value=low+(high-low)*i/4;svgNode('line',{x1:65,x2:655,y1:y(value),y2:y(value),stroke:'#d0dce1'},svg);svgNode('text',{x:58,y:y(value)+4,'text-anchor':'end','font-size':12},svg,fmt(value));}
+      for(const km of [0,50,100,150])svgNode('text',{x:x(km*1000),y:240,'text-anchor':'middle','font-size':12},svg,String(km));
+      svgNode('text',{x:350,y:267,'text-anchor':'middle','font-size':12},svg,'Along fixed section (km); component m/s; not physical width');
+      let run=[];const flush=()=>{if(run.length)svgNode('polyline',{points:run.map(i=>`${x(distances[i])},${y(values[i])}`).join(' '),fill:'none',stroke:'#155a73','stroke-width':2},svg);run=[];};
+      values.forEach((v,i)=>{if(v===null)flush();else run.push(i);});flush();
+      if(c.threshold_m_s!==null)svgNode('line',{x1:65,x2:655,y1:y(c.threshold_m_s),y2:y(c.threshold_m_s),stroke:'#744989','stroke-dasharray':'5 3'},svg);
+      const reason=status=>({unresolved_section_domain:'source section ends before a crossing',unresolved_source_bottom_at_or_above_level:'excluded source bottom cell blocks the crossing',unresolved_missing_paired_velocity:'missing source velocity blocks the crossing',unresolved_missing_supplied_uncertainty:'missing supplied uncertainty blocks this sensitivity case'}[status]||status.replaceAll('_',' '));
+      node('p',c.section_span_km===null?'Unresolved: '+(c.status==='unresolved_no_eligible_component'?'no eligible paired component data':c.status==='unresolved_peak_below_0_3_m_s'?'positive peak is below 0.3 m/s':'both section edges are not bracketed')+'.':`Resolved section span: ${c.rounded_section_span_km} km. Sampling-cell separation support: ${c.sampling_support_interval_km.map(fmt).join('–')} km; not measurement error.`,coreText);
+      for(const [label,e] of [['Shoreward',c.shoreward_edge],['Offshore',c.offshore_edge]]){
+        if(!e)continue;
+        if(e.status==='resolved'){
+          const [start,end]=e.distance_bracket_m;svgNode('rect',{x:x(start),y:30,width:x(end)-x(start),height:190,fill:'#9aad83',opacity:.45},svg);svgNode('line',{x1:x(e.distance_m),x2:x(e.distance_m),y1:30,y2:220,stroke:'#4b633a'},svg);
+          node('p',`${label} crossing: ${fmt(e.distance_m/1000)} km along section, source cells ${e.indices_in_distance_order.join('–')}, support ${e.distance_bracket_m.map(v=>fmt(v/1000)).join('–')} km.`,coreText);
+        }else node('p',label+': '+reason(e.status)+'.',coreText);
+      }
+      const peak=variant.peak_source_components;
+      if(peak)node('p',`Peak source index ${variant.peak_index}; projected component ${fmt(variant.peak_component_m_s)} m/s; original eastward ${fmt(peak.UCUR)}, northward ${fmt(peak.VCUR)} m/s; section bearing ${fmt(peak.bearing_deg)}°. Tangent/normal ratio ${fmt(peak.tangent_to_normal_ratio_not_width_correction)} is local alignment context, not a width correction.`,coreText);
+      node('p','Orange shading: excluded source bottom cells. Green brackets: crossing interpolation cells. Curves stop at missing values. The original mapped source remains available above and through the exact-record links.',coreText);
+      link('Inspect this exact section-core outcome',sourceUrl({document:core.raw_profile_file,pointer:'/profiles',filters:[{field:'record.source_time_index',op:'eq',value:row.source_time_index}],limit:1}),node('p','',coreText));
+      const ground=map.querySelector('svg');
+      if(ground){
+        ground.querySelectorAll('[data-eac-core-crossing]').forEach(n=>n.remove());
+        const view=ground.getAttribute('viewBox').split(' ').map(Number);
+        for(const [side,e] of [['shoreward',c.shoreward_edge],['offshore',c.offshore_edge]]){
+          if(!e||e.status!=='resolved')continue;
+          const inside=core.geometry.longitude_latitude_points[e.inside_index],outside=core.geometry.longitude_latitude_points[e.outside_index],f=e.fraction_inside_to_outside;
+          const coordinate=inside.map((v,i)=>v+f*(outside[i]-v)),p=project({op:'project',coordinates:coordinate}).point;
+          const mark=svgNode('circle',{cx:p[0],cy:p[1],r:view[2]/110,fill:'none',stroke:'#4b633a','stroke-width':view[2]/350,'data-eac-core-crossing':side},ground);
+          svgNode('title',{},mark,side+' section crossing, interpolated within source cells; not a geographic current edge');
+        }
+      }
     }
     function draw(){
       current=rows[day.selectedIndex];if(!current)return;buttons();charts.replaceChildren();map.replaceChildren();sources.replaceChildren();
@@ -87,7 +153,7 @@
         for(const row of scene.source_bottom_support){const i=row.source_position_index;if(values[i]!==null)svgNode('circle',{cx:x(distances[i]),cy:y(values[i]),r:3,fill:'#be582e'},svg);}
         node('p',`${values.filter(v=>v!==null).length} of 124 values available. Orange marks show source cells at or below 100 m bottom depth.`,panel);
       }
-      link('Inspect this exact daily source record',sourceUrl({document:scene.raw_source_file,pointer:'/profiles',filters:[{field:'record.source_time_index',op:'eq',value:current.source_time_index}],limit:1}),sources);showCell();
+      link('Inspect this exact daily source record',sourceUrl({document:scene.raw_source_file,pointer:'/profiles',filters:[{field:'record.source_time_index',op:'eq',value:current.source_time_index}],limit:1}),sources);showCell();drawCore();
     }
     async function loadMonth(){
       stop();const token=++generation;busy=true;buttons();status.textContent='Loading checked daily source records…';
@@ -98,8 +164,15 @@
         if(result.source_sha256!==scene.raw_source_sha256||result.rows.length!==m.source_records||result.total!==m.source_records)throw Error('EAC source selection/hash mismatch');
         rows=result.rows.map(r=>r.record);
         if(rows.some((r,i)=>r.source_time_index!==m.source_time_indices[i]||scene.fields.some(f=>r.fields[f.key]?.length!==124||r.fields[f.uncertainty_key]?.length!==124)))throw Error('Incomplete EAC source fields/order');
+        if(core){
+          const derived=await service.request('query',{document:core.raw_profile_file,pointer:'/profiles',filters:[{field:'record.year',op:'eq',value:m.year},{field:'record.month',op:'eq',value:m.month}],sort:{field:'record.source_time_index',direction:'asc'},limit:40});
+          if(token!==generation)return;
+          if(derived.source_sha256!==core.raw_profile_sha256||derived.total!==m.source_records||derived.rows.length!==m.source_records)throw Error('EAC core source/hash mismatch');
+          coreRows=derived.rows.map(r=>r.record);
+          if(coreRows.some((r,i)=>r.source_time_index!==m.source_time_indices[i]))throw Error('Incomplete EAC core chronology');
+        }
         day.replaceChildren();for(const row of rows){const option=node('option',row.source_time_utc,day);option.value=String(row.source_time_index);}day.selectedIndex=0;busy=false;draw();
-      }catch(error){if(token!==generation)return;rows=[];current=null;busy=false;charts.replaceChildren();map.replaceChildren();reading.replaceChildren();sources.replaceChildren();buttons();status.textContent='Source fields unavailable: '+error.message;}
+      }catch(error){if(token!==generation)return;rows=[];coreRows=[];current=null;busy=false;charts.replaceChildren();map.replaceChildren();reading.replaceChildren();sources.replaceChildren();if(coreChart){coreChart.replaceChildren();coreText.replaceChildren();coreSummary.textContent='Section-core diagnostic unavailable.';}buttons();status.textContent='Source fields unavailable: '+error.message;}
     }
     month.addEventListener('change',()=>{if(loaded)loadMonth();});day.addEventListener('change',()=>{stop();draw();});cell.addEventListener('change',showCell);
     previous.onclick=()=>{stop();day.selectedIndex--;draw();};next.onclick=()=>{stop();day.selectedIndex++;draw();};

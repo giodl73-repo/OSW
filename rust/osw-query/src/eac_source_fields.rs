@@ -119,12 +119,15 @@ pub fn scene(bundle: &crate::Bundle) -> Value {
         "raw_source_sha256":c["raw_profile_sha256"],"source_url":doc["source_url"],"source_citation":doc["source_citation"],
         "figure_file":fig["figures"][".svg"]["file"],"figure_sha256":fig["figures"][".svg"]["sha256"],
         "figure_alt":"Eight daily source-field and provider-uncertainty panels at100m,2012–2022, preserve629missing dates. A fixed WGS84 processing grid and prescribed bottom zeros are shown. No physical current widths or annual extrema are admitted.",
-        "fields":fields,"months":doc["monthly_support"],"geometry":doc["fixed_source_geometry"],
+        "fields":fields,"months":doc["monthly_support"],"geometry":doc["fixed_source_geometry"],"core_spans":crate::eac_core_spans::scene(bundle),
         "method_scope":doc["method_scope"],"source_bottom_support":doc["source_bottom_support"],
         "documentary_disagreements":doc["documentary_disagreements"],"profiles":3770,"profiles_with_data":3141,"missing_profiles":629})
 }
 pub fn query(matches: &[&Value], bundle: &crate::Bundle) -> Value {
-    if matches.iter().any(|r| r["id"] == ID) {
+    if matches
+        .iter()
+        .any(|r| r["id"] == ID || r["id"] == crate::eac_core_spans::ID)
+    {
         scene(bundle)
     } else {
         Value::Null

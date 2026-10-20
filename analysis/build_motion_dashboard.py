@@ -221,6 +221,9 @@ def build():
     from eac_source_fields import verify_inputs as verify_eac_fields, ID as EAC_FIELDS_ID
     eac_fields,_,_,eac_inputs=verify_eac_fields()
     inputs.update(eac_inputs)
+    from eac_core_spans import verify_inputs as verify_eac_cores, ID as EAC_CORE_ID
+    eac_cores,eac_core_inputs=verify_eac_cores()
+    inputs.update(eac_core_inputs)
     if kuroshio_profiles!=build_kuroshio_profiles():raise ValueError('Kuroshio seasonal profile differs from pinned extraction')
     for key in ['source_pdf_file','config_file','protocol_file','scope_audit_file']:
         path=kuroshio_profiles[key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -619,7 +622,7 @@ def build():
             'time_samples': sum(s['frames'] for s in series) + len(own_phases) + len(temporal_widths),
             'source_connectivity': len(own_connections),
             'scope_notes': len(own_notes),
-            'dated_diagnostics': len(loop_documents) if current_id == 'loop' else 0,
+            'dated_diagnostics': len(loop_documents) if current_id == 'loop' else 3770 if current_id == 'east-australian' else 0,
             'flow_network': int(ident == network['entity_id']),
             'passage_transport': len(network['passage_samples']) if ident == network['entity_id'] else 0,
         }
@@ -629,6 +632,9 @@ def build():
                    'media': own_media, 'phases': own_phases, 'series': series, 'sources': own_sources,
                    'map_features': map_features, 'connections': own_connections}
         evidence_links = []
+        if current_id == 'east-australian':
+            evidence_links.append({'label':'Explore all3770 section-core outcomes / 2883 resolved / 887 unresolved',
+                'url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':EAC_CORE_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
         if current_id == 'west-spitsbergen':
             evidence_links.append({'label':'Compare WSC source widths and their separate methods',
                 'url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':current_id}],'limit':20},separators=(',',':')),safe='')+'#query-chart-section'})
@@ -802,6 +808,13 @@ def build():
             groups['sources'].append(eac_support)
             groups['measurements'].append(eac_support)
             groups['time_evidence'].append(eac_support)
+            core_support={'diagnostic_id':EAC_CORE_ID,'source_file':'research/eac-csiro-100m-section-core-spans-summary.json',
+                'source_sha256':inputs['research/eac-csiro-100m-section-core-spans-summary.json'],
+                'dated_outcomes':3770,'primary_resolved':2883,'primary_unresolved':887,'scenario_attempts':33930,
+                'physical_width_admitted':False,'new_independent_observations':0}
+            groups['sources'].append(core_support)
+            groups['measurements'].append(core_support)
+            groups['time_evidence'].append(core_support)
         if current_id in local_width_audits:
             if current_id == 'agulhas':
                 span_support={'diagnostic_id':ASCA_SPAN_ID,'source_file':'research/agulhas-asca-100m-dated-component-spans.json',

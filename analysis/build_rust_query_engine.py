@@ -87,6 +87,8 @@ def main():
     paths.extend(['rust/osw-query/src/eac_source_fields.rs','research/eac-csiro-v23-100m-source-quality.json',
                   'research/eac-csiro-v23-100m-source-query-contract.json','research/eac-csiro-v23-100m-source-fields-figure.json',
                   'analysis/eac_source_fields.py'])
+    paths.extend(['rust/osw-query/src/eac_core_spans.rs','research/eac-csiro-100m-section-core-spans-summary.json',
+                  'research/eac-csiro-100m-section-core-spans-figure.json','analysis/eac_core_spans.py'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',

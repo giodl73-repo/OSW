@@ -640,6 +640,11 @@ def build():
     inputs.update(eac_inputs)
     collections['diagnostics'].append(eac_fields_record(eac_document))
     next(r for r in objects if r['id']=='current:east-australian').setdefault('diagnostic_ids',[]).append(EAC_FIELDS_ID)
+    from eac_core_spans import verify_inputs as verify_eac_cores, record as eac_core_record, ID as EAC_CORE_ID
+    eac_core_document,eac_core_inputs=verify_eac_cores()
+    inputs.update(eac_core_inputs)
+    collections['diagnostics'].append(eac_core_record(eac_core_document))
+    next(r for r in objects if r['id']=='current:east-australian')['diagnostic_ids'].append(EAC_CORE_ID)
     collections['width_samples']=build_width_samples(collections['diagnostics'])
     for row in objects:
         row['width_sample_ids']=[sample['id'] for sample in collections['width_samples'] if sample['entity_id']==row['id']]

@@ -7,6 +7,7 @@ impl IndexStore {
     fn support_source(&self, path: &str) -> Result<&Value, String> {
         self.documents
             .get(path)
+            .map(|source| &**source)
             .ok_or_else(|| format!("Missing index support source {path}"))
     }
     pub fn support_view(&self, bytes: &[u8]) -> Result<Value, String> {

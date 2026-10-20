@@ -18,6 +18,7 @@ mod dashboard;
 mod dashboard_beck;
 mod dashboard_map;
 mod dwbc_float_composite;
+mod eac_core_spans;
 mod eac_source_fields;
 mod eddy_recurrence;
 mod eddy_source_panels;
@@ -312,6 +313,7 @@ impl Store {
         kuroshio_filtered_width::validate(&bundle)?;
         asca_component_spans::validate(&bundle)?;
         eac_source_fields::validate(&bundle)?;
+        eac_core_spans::validate(&bundle)?;
         coastal_composite_widths::validate(&bundle)?;
         dwbc_float_composite::validate(&bundle)?;
         atlas_data::validate(&bundle)?;
