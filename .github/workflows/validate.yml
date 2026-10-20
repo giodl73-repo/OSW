@@ -8,6 +8,20 @@ permissions:
   contents: read
 
 jobs:
+  scientific-reproduction:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install pinned reconstruction dependencies
+        run: >-
+          python -m pip install numpy==2.4.1 xarray==2026.7.0 netCDF4==1.7.4
+          pyproj==3.7.2 h5py==3.16.0 contourpy==1.3.3 shapely==2.1.2
+      - name: Report exact scientific rebuild differences without changing sources
+        run: python analysis/inspect_scientific_reproduction.py
+
   offline:
     runs-on: ubuntu-latest
     steps:
