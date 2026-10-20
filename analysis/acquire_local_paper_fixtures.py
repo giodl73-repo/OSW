@@ -166,6 +166,13 @@ def download(name, manifest):
             return data
         except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.IncompleteRead) as error:
             error.add_note(f'{name}: acquisition failed at {url}')
+            # Exhausting a provider's rate-limit retries is not permission to
+            # request another URL before its cooldown. Ordinary transport/403
+            # failures may still use an independently pinned institutional copy.
+            if isinstance(error, urllib.error.HTTPError) and (
+                error.code == 429 or error.code in TRANSIENT_HTTP and error.headers and error.headers.get('Retry-After')
+            ):
+                raise
             if i == len(urls) - 1:
                 raise
             print(f'{name}: transport failed at {url}: {error}; trying verified institutional mirror', flush=True)

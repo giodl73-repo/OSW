@@ -186,6 +186,11 @@ class AcquisitionTests(unittest.TestCase):
         with patch.dict(PINNED_MIRRORS,{key:('https://mirror.invalid/paper.pdf',)}),patch('urllib.request.urlopen',side_effect=error) as opener,patch('time.sleep') as sleep:
             with self.assertRaises(SourceCooldown):download('qiu-chen-nec-2010',MANIFEST)
             self.assertEqual(opener.call_count,1);sleep.assert_not_called()
+        failures=[HTTPError(MANIFEST['source_url'],429,'rate limited',{},None) for _ in range(3)]
+        with patch.dict(PINNED_MIRRORS,{key:('https://mirror.invalid/paper.pdf',)}),patch('urllib.request.urlopen',side_effect=failures) as opener,patch('time.sleep') as sleep:
+            with self.assertRaises(HTTPError):download('qiu-chen-nec-2010',MANIFEST)
+            self.assertEqual(opener.call_count,3)
+            self.assertEqual([c.args[0] for c in sleep.call_args_list],[15,45])
 
     def test_integrity_failure_never_retries_or_persists(self):
         with tempfile.TemporaryDirectory(dir=self.scratch) as folder:
