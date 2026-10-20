@@ -68,11 +68,20 @@ COMPOSITE_INPUTS={COMPOSITE:'2438e75f6714d44352422727cdd6653cd3a316210b439485702
 FROZEN_INPUTS.update(COMPOSITE_INPUTS)
 
 
+LOOP_SOURCE='research/source-data/loop-durante-2026-v0/quality.json'
+LOOP_VIEW='research/loop-durante-2026-source-view.json'
+LOOP_FIGURE='research/loop-durante-2026-source-view-figure.json'
+LOOP_ACQUISITION='research/source-data/loop-durante-2026-v0/acquisition.json'
+FROZEN_INPUTS.update({LOOP_SOURCE:'af7ff4bc05a909aa84e5dab0125504f14affa0ecad369bbfda27ce00fd435959',
+    LOOP_VIEW:'c7e2625677c6125138540ecc3d21cdf26756cc899603c358254be47dd4b8a7bc',
+    LOOP_FIGURE:'0023a293a59149d0098ec732a8eeff1b32af3c1f80e56f8056e287b59e6b9889',
+    LOOP_ACQUISITION:'2b01220d7880461e898a16b041ec749a9e2797d3611ac6122075bb6bd7bfc698'})
+
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
 
 def build():
-    if len(FROZEN_INPUTS)!=46:raise ValueError('Missing reviewed research source registry')
+    if len(FROZEN_INPUTS)!=50:raise ValueError('Missing reviewed research source registry')
     documents={}
     for path,pin in FROZEN_INPUTS.items():
         if digest(path)!=pin:raise ValueError('Changed reviewed current research source '+path)
@@ -114,6 +123,14 @@ def build():
     dependencies[figure['generator_file']]=figure['generator_sha256']
     for group in figure['figures'].values():
         for asset in group.values():dependencies[asset['file']]=asset['sha256']
+    loop_figure=documents[LOOP_FIGURE]
+    if loop_figure['source_view_sha256']!=digest(LOOP_VIEW):raise ValueError('Changed Loop source view/figure binding')
+    dependencies.update(loop_figure['figures'])
+    from acquire_loop_durante_2026 import verify as verify_loop_source
+    _,loop_quality,_=verify_loop_source()
+    if loop_quality!=documents[LOOP_SOURCE]:raise ValueError('Changed processed Loop source quality')
+    if loop_quality['current_length_admitted'] or loop_quality['width_measurement_admitted']:
+        raise ValueError('Promoted Loop source intake')
     for source,pin in dependencies.items():
         if digest(source)!=pin:raise ValueError('Changed current research dependency '+source)
     observed=documents[ALEUTIAN]
@@ -398,6 +415,33 @@ def build():
         'caption':'Conditional run composite: all northern and southern nominal 50% spans remain unresolved. The resolved-case count includes other thresholds under explicit gap assumptions; cases are not independent observations and their separations are not a physical width range.',
         'headers':['Minimum ship speed (m/s)','Maximum unobserved gap (h)','North nominal 50%','South nominal 50%','Resolved sensitivity cases'],
         'rows':composite_rows})
+    scenes.append({
+        'current_id':'loop','label':'Loop Current','diagnostic_id':'diagnostic:current-research:loop',
+        'title':'Author surface composites and source coverage',
+        'finding':'Two processed surface-flow configurations are available. The supplied coordinate means extend through the Caribbean toward Yucatan; they are not complete Loop Current paths. No length or width is admitted.',
+        'facts':[{'label':'Processed surface configurations','value':'2 conditional composites'},
+                 {'label':'Source clocks','value':'4,111 / 4,111 / 11,902 entries'},
+                 {'label':'Coordinate points','value':'248 per composite; unjoined'},
+                 {'label':'Complete Loop path','value':'Not supplied'}],
+        'notes':['These are author-processed MCA phase composites, not dated snapshots, seasons or forecasts. Original daily Canek/CMEMS observations are not supplied in this compact archive.',
+                 'The two coordinate means were formed with omitnan. Daily member coordinates and per-point support counts are unavailable; no full Loop axis or length is inferred.',
+                 'The three source clocks are distinct. One tisp entry is missing at zero-based OSW position3462 (MATLAB index3463); it is not filled from tid. Original phase/grid selection indices remain one-based MATLAB indices. Calendar timezone is unspecified, and dates are source clocks rather than new current observations.',
+                 'The area_loop and AMR_loop scalars remain unscaled under their original names. No width, length or occupied-current polygon is inferred from enclosed-area metrics.',
+                 'The source API declares CC BY4.0 and version0. README retains a license-selection TODO, CITATION.cff says1.0.0, and the associated manuscript DOI is a placeholder; these documentary disagreements remain visible.'],
+        'next_evidence':'Recover complete daily Loop axes or a validated gateway-connected algorithm before route/length admission; establish exact composite-member support before physical interpretation.',
+        'figure_file':'figures/loop-durante-2026-source-view.svg',
+        'figure_alt':'Two native-grid geostrophic-speed composites with direction arrows and all248unjoined coordinate means each, plus three separate source-clock coverage rows. Gray means missing source data. Coordinate means end below23.2N and do not form a complete Loop Current. No dimensions are admitted.',
+        'source_file':LOOP_SOURCE,'original_url':'https://zenodo.org/records/22652650',
+        'source_links':[link('Exact source schema and quality',LOOP_SOURCE),link('Exact composite fields and masks',LOOP_VIEW,'/phases'),
+                        link('All original clocks',LOOP_VIEW,'/clocks'),link('Unscaled source area scalars',LOOP_VIEW,'/source_scalar_series'),
+                        link('Source custody and release notes',LOOP_ACQUISITION)],
+        'table':{'caption':'Source clocks are not dates of complete current paths. Missing clocks remain missing; no timezone is inferred.',
+                 'headers':['Original clock','Source entries','Finite calendar support','Missing times'],
+                 'rows':[[name,str(clock['records']),clock['first_finite_calendar'][:10]+' to '+clock['last_finite_calendar'][:10],str(clock['nonfinite'])] for name,clock in loop_quality['times'].items()]},
+        'additional_tables':[{'caption':'Supplied coordinate means are incomplete for a full Loop path. Bounds describe source points, not current extent or uncertainty.',
+                 'headers':['Original field','Paired finite points','Northernmost point','Full Loop path'],
+                 'rows':[[name,str(axis['paired_finite_rows']),f"{axis['latitude_bounds'][1]:.2f} N",'Not supplied'] for name,axis in loop_quality['source_composite_axes'].items()]}]
+    })
     for scene in scenes:
         scene.update(kind='current_research_evidence',rank_eligible=False,new_width_record_admitted=False,
             whole_current_width_km=None,annual_width_range_km=None,

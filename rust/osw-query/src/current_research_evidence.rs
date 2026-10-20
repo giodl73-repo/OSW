@@ -4,7 +4,11 @@ use sha2::{Digest, Sha256};
 
 const PATH: &str = "research/current-research-evidence-registry.json";
 const RAW: &str = include_str!("../../../research/current-research-evidence-registry.json");
-const STUDIES: [(&str, &str); 7] = [
+const STUDIES: [(&str, &str); 8] = [
+    (
+        "research/source-data/loop-durante-2026-v0/quality.json",
+        include_str!("../../../research/source-data/loop-durante-2026-v0/quality.json"),
+    ),
     (
         "research/aleutian-p14n-1993-component-spans.json",
         include_str!("../../../research/aleutian-p14n-1993-component-spans.json"),
@@ -41,7 +45,8 @@ fn registry() -> Value {
     serde_json::from_str(RAW).expect("reviewed current research registry")
 }
 
-const SUPPORT_ONLY: [&str; 4] = [
+const SUPPORT_ONLY: [&str; 5] = [
+    "research/loop-durante-2026-source-view.json",
     "research/aleutian-p14n-1993-native-product-metadata.json",
     "research/aleutian-p14n-1993-native-vector-support.json",
     "research/aleutian-p14n-1993-underway-averages.json",
