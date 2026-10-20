@@ -15,11 +15,16 @@ TARGETS=[('build_aleutian_p14n_vector_section','research/aleutian-p14n-1993-obse
 
 
 def differences(expected, actual):
-    result={'exact':True,'changed_numeric_leaves':0,'changed_other_leaves':0,'maximum_absolute_numeric_difference':0.,'first_differences':[]}
+    result={'exact':True,'changed_numeric_leaves':0,'changed_other_leaves':0,'maximum_absolute_numeric_difference':0.,'numeric_fields':{},'first_differences':[]}
     def note(path,a,b,numeric=False):
         result['exact']=False
         key='changed_numeric_leaves' if numeric else 'changed_other_leaves';result[key]+=1
-        if numeric:result['maximum_absolute_numeric_difference']=max(result['maximum_absolute_numeric_difference'],abs(a-b))
+        if numeric:
+            result['maximum_absolute_numeric_difference']=max(result['maximum_absolute_numeric_difference'],abs(a-b))
+            field=next((part for part in reversed(path.split('/')) if part and not part.isdigit()),'[root]')
+            if field not in result['numeric_fields'] and len(result['numeric_fields'])>=64:field='[other fields]'
+            group=result['numeric_fields'].setdefault(field,{'changed_leaves':0,'maximum_absolute_difference':0.})
+            group['changed_leaves']+=1;group['maximum_absolute_difference']=max(group['maximum_absolute_difference'],abs(a-b))
         if len(result['first_differences'])<20:
             row={'pointer':path,'retained':a,'rebuilt':b}
             if numeric:row.update(retained_float_hex=float(a).hex(),rebuilt_float_hex=float(b).hex(),absolute_difference=abs(a-b))
