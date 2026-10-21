@@ -32,6 +32,7 @@ mod index_map;
 mod index_noaa;
 pub mod index_store;
 mod index_support;
+mod kuroshio_daily;
 mod kuroshio_filtered_width;
 mod loop_diagnostics;
 mod loop_recorded;
@@ -319,6 +320,7 @@ impl Store {
         current_width_source_reviews::validate(&bundle)?;
         current_research_evidence::validate(&bundle)?;
         kuroshio_filtered_width::validate(&bundle)?;
+        kuroshio_daily::validate(&bundle)?;
         asca_component_spans::validate(&bundle)?;
         asca_calendar::validate(&bundle)?;
         eac_source_fields::validate(&bundle)?;
@@ -689,7 +691,14 @@ impl Store {
             map_scene["state_features"] = map::scene(&[&display])["features"].clone();
             map_scene["selected_state_code"] = json!(spatial.state_code);
         }
-        let chart_scene = if query.collection == "observed_section_spans" {
+        let daily_scene = if query.collection == "diagnostics" {
+            kuroshio_daily::query(&matches, &self.bundle)
+        } else {
+            Value::Null
+        };
+        let chart_scene = if !daily_scene.is_null() {
+            daily_scene
+        } else if query.collection == "observed_section_spans" {
             observed_spans::scene(&matches)
         } else if query.collection == "proposed_widths" {
             nordic_widths::scene(&matches, records)

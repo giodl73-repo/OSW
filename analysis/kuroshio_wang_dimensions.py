@@ -210,7 +210,7 @@ def build():
             'rank_eligible': False, 'scoped_width_inventory_admitted': False,
             'whole_current_width_km': None, 'whole_current_length_km': None,
             'annual_physical_width_range_km': None, 'physical_state_passage_admitted': False,
-            'native_wasm_ui_integrated': False, 'figure': FIGURE}
+            'figure': FIGURE}
 
 
 def figure_bytes(doc):

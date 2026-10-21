@@ -36,7 +36,7 @@
     let id;
     try { id = decodeURIComponent(location.hash.slice(1)); } catch (_) { return; }
     const target = byId(id);
-    if (!target || !target.matches('.route-card, .inventory-addition-card, #route-atlas')) return;
+    if (!target || !target.matches('.route-card, .current-model-card, .inventory-addition-card, #route-atlas')) return;
     if (id === 'route-atlas') {
       if (window.restoreReferenceRouteAtlas) window.restoreReferenceRouteAtlas();
       else if (!new URL(location.href).searchParams.has('atlas-feature')) window.returnToReferenceRouteAtlas?.();
@@ -52,7 +52,7 @@
     if (!anchor) return;
     let target;
     try { target = byId(decodeURIComponent(anchor.hash.slice(1))); } catch (_) { return; }
-    if (!target?.matches('.route-card, .inventory-addition-card, #route-atlas')) return;
+    if (!target?.matches('.route-card, .current-model-card, .inventory-addition-card, #route-atlas')) return;
     event.preventDefault();
     if (target.id === 'route-atlas') window.returnToReferenceRouteAtlas?.();
     if (location.hash !== anchor.hash) history.pushState(null, '', anchor.hash);
@@ -342,6 +342,7 @@
       image.height = Math.round(800 * (report.figure_aspect_ratio||report.map_view_box[3] / report.map_view_box[2]));
       link("Open route map at full size", `../${row.figure}`, node("p", null, card));
       node("p", report.coordinate_selection, card);
+      if(row.current_id==='kuroshio')window.renderKuroshioDaily(card,window.oswAtlasSnapshot?.kuroshio_daily_scene);
       node("p", `Layer: ${report.layer} Time convention: ${report.time_convention}`, card);
       node("p", report.scenario_rule, card);
       const source = node("p", "Source: ", card); link(report.source_citation, report.source_url, source, true);
@@ -372,6 +373,14 @@
       if(row.current_id==='zeehan')window.renderQualitativeCurrentCalendar(card,await load('../research/zeehan-ridgway-2007-seasonal-scope-audit.json'));
       if(row.current_id==='atlantic-equatorial-undercurrent')window.renderAtlanticEucSectionProperties(card,await load('../research/atlantic-euc-layer-island-scope-audit.json'));
       link("Download coordinates, all scenarios and joins (JSON)", `../${row.candidate_file}`, card);
+    }
+    if(window.oswAtlasSnapshot?.kuroshio_daily_scene&&!catalog.candidates.some(r=>r.current_id==='kuroshio')){
+      const card=node('section',null,byId('route-cards'));card.id='kuroshio-2024-model-card';card.className='current-model-card';card.tabIndex=-1;
+      node('h3','Kuroshio · dated regional model map card',card);
+      node('p','Regional source geometry and measurements. This is separate from the whole-current reference-route catalogue.',card);
+      link('Link to this model map card','#'+card.id,node('p',null,card));
+      link('Back to Kuroshio on the global map','reference-routes.html?atlas-layout=map&atlas-feature=current%3Akuroshio#route-atlas',node('p',null,card)).dataset.kuroshioMapReturn='true';
+      window.renderKuroshioDaily(card,window.oswAtlasSnapshot.kuroshio_daily_scene);
     }
     const counts = catalog.counts;
     byId("route-status").textContent = `${counts.route_candidates} route candidates for ${counts.currents_with_route_candidates} of ${counts.accepted_current_names} currents; ${counts.currents_without_any_reference_card} currents have no reference card. ${counts.currents_without_route_candidates} are on the remaining-length worklist. Published length reports and geographic routes are separate evidence. Scientific review pending.`;

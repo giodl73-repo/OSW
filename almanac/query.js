@@ -54,6 +54,7 @@
   names.geometry_frames='Dated diagnostic geometry frames';
   names.seasonal_routes='Source-defined seasonal routes';
   names.width_samples='Scoped width samples';
+  names.current_dimension_samples='Regional model dimension attempts';
   names.current_velocity_samples='Observed current velocity';
   names.current_sections='Observed current sections';
   names.observed_section_spans='Observed component survey spans';
@@ -137,7 +138,7 @@
   Object.assign(fieldNames,{value_km:'Scoped sample value (km)',month:'Source month',year:'Source year',sample_family:'Sample family',longitude_degrees_east:'Section longitude'});
   names.current_section_measurements='Dated current section measurements';
   Object.assign(fieldNames,{vertical_reference:'Vertical reference',depth_low_m:'Depth below surface (m)',current_id:'Current',observation_start_utc:'Source timestamp / survey start (UTC)'});
-  Object.assign(fieldNames,{component_span_km:'Local component span (km)',observation_start_utc:'Source timestamp / survey start (UTC)',branch:'Current branch',height_low_m:'Layer lower height above bottom (m)',boundary_fraction:'Fraction of peak component'});
+  Object.assign(fieldNames,{sample_date:'Model sample date',nominal_depth_m:'Nominal source depth (m)',section_latitude:'Fixed latitude section (degrees N)',report_case_index:'Source report case',evidence_class:'Evidence class',component_span_km:'Local component span (km)',observation_start_utc:'Source timestamp / survey start (UTC)',branch:'Current branch',height_low_m:'Layer lower height above bottom (m)',boundary_fraction:'Fraction of peak component'});
   function rpc(action,value){const id=++sequence;return new Promise((resolve,reject)=>{pending.set(id,{resolve,reject});worker.postMessage({id,action,value});});}
   worker.onmessage=event=>{const item=pending.get(event.data.id);if(item){pending.delete(event.data.id);item.resolve(event.data.result);}};
   worker.onerror=()=>{for(const item of pending.values())item.reject(Error('Query worker failed'));pending.clear();failure('Rust query worker failed. Reload to retry.');};

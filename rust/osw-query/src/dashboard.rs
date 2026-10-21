@@ -121,6 +121,7 @@ impl Store {
             "source_connectivity",
             "scope_notes",
             "dated_diagnostics",
+            "model_dimension_samples",
             "flow_network",
             "passage_transport",
             "section_transport",

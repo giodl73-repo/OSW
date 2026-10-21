@@ -49,6 +49,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
     if(!restoringSelection)restoredView=null;
     sectionGround=false;
     timelineCleanup();timelineCleanup=()=>{};
+    byId('route-atlas-model-lines')?.replaceChildren();
     layer.querySelectorAll('.selected,.route-atlas-related').forEach(el=>el.classList.remove('selected','route-atlas-related'));
     byId('route-atlas-select').value='';byId('route-atlas-eddy-select').value='';
     byId('route-atlas-preview').hidden=true;
@@ -174,6 +175,16 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
     }
     const routeLayer=make('g',{}),datedLayer=make('g',{id:'route-atlas-dated-lines'}),eddyLayer=make('g',{id:'route-atlas-eddies'}),stationLayer=make('g',{});
     const sectionLayer=make('g',{id:'route-atlas-section-locators'});
+    const modelLayer=make('g',{id:'route-atlas-model-lines'});
+    document.addEventListener('osw:kuroshio-frame',event=>{
+      if(byId('route-atlas-select').value!=='current:kuroshio'||!event.detail.host.closest('#route-atlas-preview,#kuroshio-2024-model-card'))return;
+      const frame=event.detail.frame;modelLayer.replaceChildren();
+      for(const p of frame.paths){const attrs={d:p.d,transform:'translate(60 90) scale('+1480/360+')',fill:'none',stroke:{axis:'#fff8de',left:'#ff9be4',right:'#78f1d3'}[p.role],'stroke-width':1.6,'vector-effect':'non-scaling-stroke','data-model-role':p.role};if(p.role!=='axis')attrs['stroke-dasharray']=p.role==='left'?'6 3':'2 3';const line=make('path',attrs,modelLayer);make('title',{},line).textContent=`${frame.date} · ${frame.nominal_depth_m} m · modeled ${p.role}`;}
+      byId('route-atlas-status').textContent=`Kuroshio · ${frame.date} · nominal ${frame.nominal_depth_m} m · dated regional model curves; not whole-current bounds or observed width.`;
+      const peer=event.detail.host.closest('#route-atlas-preview')?byId('kuroshio-2024-model-card')?.querySelector('.kuroshio-daily'):byId('route-atlas-preview').querySelector('.kuroshio-daily');
+      const peerDate=peer?.querySelector('.kuroshio-daily-date'),peerDepth=peer?.querySelector('.kuroshio-daily-depth');
+      if(peerDate&&peerDepth&&(peerDate.value!==frame.date||peerDepth.value!==String(frame.source_level))){peerDate.value=frame.date;peerDepth.value=String(frame.source_level);peerDepth.dispatchEvent(new Event('change'));}
+    });
     const sectionRecords=(widthInventory?.measurements||[]).filter(row=>window.currentSectionLocator?.coordinates(row));
     const datedRoles={dated_partial_geostrophic_streamline:'Partial geostrophic diagnostic',dated_analyzed_surface_front:'Analyzed surface front'};
     const datedFeatures=current=>current.map_features.filter(f=>f.geometry.type==='LineString'&&datedRoles[f.role]&&f.geometry_id&&f.observation_date);
@@ -192,9 +203,11 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
       const monthlySeries=current.series.find(row=>row.evidence_role==='monthly_mean_section_width_candidate');
       sectionGround=Boolean(monthlySeries)||!paths.length&&(sectionRecords.some(row=>'current:'+row.current_id===current.id)||Boolean(observedSeries));
       const point=current.map_features.find(f=>f.geometry.type==='Point')?.geometry.coordinates;
-      fit(paths.length?paths[0].report.coordinates_lon_lat:point?[point]:[]);
+      const modelScene=current.id==='current:kuroshio'?window.oswAtlasSnapshot?.kuroshio_daily_scene:null;
+      fit(modelScene?.extent_lon_lat|| (paths.length?paths[0].report.coordinates_lon_lat:point?[point]:[]));
       const link=byId('route-atlas-card-link');link.hidden=false;link.href=paths.length?'#'+paths[0].row.id:current.object_url;
       link.textContent=paths.length?'Open current map card ↓':'Open current record — route pending';
+      if(modelScene){link.href='#kuroshio-2024-model-card';link.textContent='Open dated regional model map card ↓';}
       byId('route-atlas-status').textContent=paths.length
         ? `${current.label} · ${paths.length} reference-route card${paths.length===1?'':'s'} available beside the map.${paths.length>1?' Choose a component in the card.':''}`
         : `${current.label} · no reference-route card yet. Showing its name locator; ${current.capabilities.reported_length?'a source-reported length is available in its record.':'length and route remain unresolved.'}`;

@@ -96,6 +96,11 @@ def build():
     sources[coastal_land_source()['id']]=coastal_land_source()
     sources[working_routes['primary_source_record']['id']]=working_routes['primary_source_record']
     routes = working_routes['candidates']
+    from kuroshio_wang_query import verify_inputs as verify_kuroshio_daily, SOURCE_ID as KUROSHIO_DAILY_SOURCE
+    kuroshio_daily_contract,kuroshio_daily=verify_kuroshio_daily()
+    inputs.update(kuroshio_daily_contract['input_sha256'])
+    read('research/kuroshio-wang-2024-query-contract.json')
+    sources[KUROSHIO_DAILY_SOURCE]=kuroshio_daily_contract['source_record']
     from build_basin_surface_section_spans import build as rebuild_basin, diagnostic_matches as basin_matches
     basin_sections={}
     read('research/basin-surface-section-inventory.json')
@@ -536,6 +541,7 @@ def build():
         own_phases = [p for p in phases if current_id and p['current_id'] == current_id]
         source_ids = {row.get(key) for row in [entity, *own_measures, *own_geometry, *own_claims, *own_media] for key in ['source_id', 'source_snapshot_id', 'method_source_id'] if row.get(key)}
         source_ids.update(source for route in own_routes for source in route.get('source_ids',[]))
+        if current_id=='kuroshio':source_ids.add(KUROSHIO_DAILY_SOURCE)
         if source_ids - sources.keys():
             raise ValueError(f'Unresolved dashboard sources for {ident}')
         own_sources = [sources[key] for key in sorted(source_ids)]
@@ -766,6 +772,13 @@ def build():
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],
         }
+        if current_id=='kuroshio':
+            capabilities['model_dimension_samples']=6588
+            model_dimensions={'source_file':kuroshio_daily_contract['source_report_file'],'source_sha256':kuroshio_daily_contract['source_report_sha256'],'daily_depth_cases':1098,'section_cases':5490,'scope':kuroshio_daily_contract['scope']}
+            payload['model_dimensions']=model_dimensions
+            groups['measurements'].append(model_dimensions)
+            groups['time_evidence'].append(kuroshio_daily['summaries'])
+            evidence_links.append({'label':'Explore Kuroshio2024 dated model dimensions','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':'diagnostic:kuroshio-wang-2024-dimensions'}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
         study=next((s for s in research_evidence['scenes'] if s['current_id']==current_id),None)
         if study:
             payload['research_evidence_ids']=[study['diagnostic_id']]

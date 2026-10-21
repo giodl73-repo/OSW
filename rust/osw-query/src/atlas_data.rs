@@ -647,6 +647,9 @@ impl Store {
         }
         sources[crate::current_catalogue::CATALOGUE] =
             json!(crate::current_catalogue::CATALOGUE_RAW);
+        if crate::kuroshio_daily::active(&self.bundle) {
+            sources[crate::kuroshio_daily::FILE] = json!(crate::kuroshio_daily::RAW);
+        }
         let mut timeline_scenes = json!({});
         for path in TIMELINES {
             if receipts.contains_key(path) {
@@ -663,7 +666,7 @@ impl Store {
         }
         Ok(
             json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],
-                "sources_json":sources,"state_join_available":receipts.contains_key(JOIN),"timeline_scenes":timeline_scenes,"observed_section_views":observed_section_views,"south_australian_context_scene":seasons["south_australian_context_scene"],"eac_source_field_scene":seasons["eac_source_field_scene"],"asca_component_span_scene":seasons["asca_component_span_scene"],"kuroshio_filtered_width_scene":seasons["kuroshio_filtered_width_scene"],"coastal_composite_width_scene":seasons["coastal_composite_width_scene"],"dwbc_float_composite_scene":seasons["dwbc_float_composite_scene"],"width_source_review_scenes":seasons["width_source_review_scenes"],"research_evidence_scenes":seasons["research_evidence_scenes"],"published_transport_scenes":seasons["published_transport_scenes"],"pacific_neuc_breadth_scene":seasons["pacific_neuc_breadth_scene"],"eddy_source_panel_scenes":crate::eddy_source_panels::scenes(&self.bundle)?,"footprint_views":crate::ursa_contour::atlas_views(&self.bundle)?}),
+                "sources_json":sources,"state_join_available":receipts.contains_key(JOIN),"timeline_scenes":timeline_scenes,"observed_section_views":observed_section_views,"south_australian_context_scene":seasons["south_australian_context_scene"],"eac_source_field_scene":seasons["eac_source_field_scene"],"asca_component_span_scene":seasons["asca_component_span_scene"],"kuroshio_filtered_width_scene":seasons["kuroshio_filtered_width_scene"],"kuroshio_daily_scene":seasons["kuroshio_daily_scene"],"coastal_composite_width_scene":seasons["coastal_composite_width_scene"],"dwbc_float_composite_scene":seasons["dwbc_float_composite_scene"],"width_source_review_scenes":seasons["width_source_review_scenes"],"research_evidence_scenes":seasons["research_evidence_scenes"],"published_transport_scenes":seasons["published_transport_scenes"],"pacific_neuc_breadth_scene":seasons["pacific_neuc_breadth_scene"],"eddy_source_panel_scenes":crate::eddy_source_panels::scenes(&self.bundle)?,"footprint_views":crate::ursa_contour::atlas_views(&self.bundle)?}),
         )
     }
 }

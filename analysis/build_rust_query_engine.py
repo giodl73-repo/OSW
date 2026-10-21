@@ -10,6 +10,11 @@ ROOT=Path(__file__).resolve().parents[1]
 MANIFEST='rust/osw-query/Cargo.toml'
 
 def main():
+    if shutil.disk_usage(ROOT).free < 128*1024*1024:
+        raise SystemExit('Need at least128MiB free before formatting/building the query engine; existing sources are left untouched.')
+    # Embedded scientific reports make incremental caches large; default to a
+    # bounded build while retaining an explicit caller override.
+    os.environ.setdefault('CARGO_INCREMENTAL','0')
     for args in [['cargo','fmt','--manifest-path',MANIFEST],
                  ['cargo','test','--offline','--locked','--manifest-path',MANIFEST],
                  ['cargo','build','--offline','--locked','--manifest-path',MANIFEST],
@@ -155,6 +160,10 @@ def main():
     from madagascar_reference_curve import verify_inputs as coastal_curve_inputs
     paths.extend(coastal_curve_inputs()[2])
     paths.append('rust/osw-query/src/madagascar_coastal_curve.rs')
+    from kuroshio_wang_query import verify_inputs as verify_kuroshio_daily
+    daily_contract,_=verify_kuroshio_daily()
+    paths.extend(daily_contract['input_sha256'])
+    paths.extend(['research/kuroshio-wang-2024-query-contract.json','rust/osw-query/src/kuroshio_daily.rs','almanac/kuroshio-daily.js'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',

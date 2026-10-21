@@ -31,6 +31,7 @@ window.oswCharts=(()=>{
     stopAll();stops=[];
     document.getElementById('query-chart-section').hidden=!scene;root().replaceChildren();if(!scene)return;
     document.getElementById('query-chart-scope').textContent=scene.scope;
+    if(scene.kind==='kuroshio_daily_dimensions'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Kuroshio regional model dimensions';window.renderKuroshioDaily(root(),scene,inspect);return;}
     if(scene.kind==='published_model_axis_spread'){
       document.getElementById('query-chart-legend').hidden=true;
       document.getElementById('chart-title').textContent='Published model axis-distance scale';

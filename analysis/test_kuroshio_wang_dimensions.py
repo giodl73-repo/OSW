@@ -84,7 +84,7 @@ class OriginalTests(unittest.TestCase):
         self.assertEqual(sum(self.doc['section_status_counts'].values()), 5490)
 
     def test_model_sample_ranges_do_not_promote_inventory(self):
-        for key in ['rank_eligible', 'scoped_width_inventory_admitted', 'physical_state_passage_admitted', 'native_wasm_ui_integrated']:
+        for key in ['rank_eligible', 'scoped_width_inventory_admitted', 'physical_state_passage_admitted']:
             self.assertIs(self.doc[key], False)
         self.assertIsNone(self.doc['annual_physical_width_range_km'])
         self.assertEqual(self.doc['conventions']['fallback_occurrence'], 'not encoded; search truncation possible')

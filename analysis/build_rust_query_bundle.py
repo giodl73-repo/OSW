@@ -684,6 +684,16 @@ def build():
     coast_comparison,coast_comparison_inputs=verify_coastline_comparison();inputs.update(coast_comparison_inputs)
     collections['diagnostics'].append(coastline_comparison_record(coast_comparison))
     next(r for r in objects if r['id']=='current:southern-east-madagascar')['diagnostic_ids'].append(COASTLINE_COMPARISON_ID)
+    from kuroshio_wang_query import verify_inputs as verify_kuroshio_daily, samples as kuroshio_daily_samples, record as kuroshio_daily_record, ID as KUROSHIO_DAILY_ID, SOURCE_ID as KUROSHIO_DAILY_SOURCE
+    daily_contract,daily_document=verify_kuroshio_daily();inputs.update(daily_contract['input_sha256'])
+    read('research/kuroshio-wang-2024-query-contract.json')
+    collections['current_dimension_samples']=kuroshio_daily_samples(daily_document)
+    collections['diagnostics'].append(kuroshio_daily_record(daily_document))
+    collections['sources'].append(daily_contract['source_record'])
+    daily_owner=next(r for r in objects if r['id']=='current:kuroshio')
+    daily_owner['diagnostic_ids'].append(KUROSHIO_DAILY_ID)
+    daily_owner['source_ids']=sorted(set(daily_owner['source_ids'])|{KUROSHIO_DAILY_SOURCE})
+    daily_owner['capabilities']['model_dimension_samples']=6588
     collections['width_samples']=build_width_samples(collections['diagnostics'])
     for row in objects:
         row['width_sample_ids']=[sample['id'] for sample in collections['width_samples'] if sample['entity_id']==row['id']]
@@ -844,10 +854,10 @@ def build():
             'current_section_receipts':{asca_path:{'source_file':asca_path,'source_sha256':inputs[asca_path],'source_json':(ROOT/asca_path).read_bytes().decode('utf-8')}},
             'movies_receipts':movies_receipts,
             'loop_recorded_receipts':{path:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for path in ['research/loop-current-recorded-date-comparison.json','research/loop-current-recorded-date-sources.json']},
-            'taxonomy':taxonomy,'editorial_collections':['proposed_widths','observed_section_spans','current_section_measurements','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','current_sections','section_transports','transport_validations'],
+            'taxonomy':taxonomy,'editorial_collections':['current_dimension_samples','proposed_widths','observed_section_spans','current_section_measurements','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','current_sections','section_transports','transport_validations'],
             'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
             'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
-            'input_sha256':inputs,'current_catalogue_version':identity_document['version'],'current_measurement_admission_version':prose_dimensions['version'],'madagascar_navigation_diagnostic_version':'1','madagascar_coastal_curve_version':'1','generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},
+            'input_sha256':inputs,'current_catalogue_version':identity_document['version'],'current_measurement_admission_version':prose_dimensions['version'],'madagascar_navigation_diagnostic_version':'1','madagascar_coastal_curve_version':'1','kuroshio_daily_dimensions_version':'1','generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},
             'scope':'State joins retain relation kinds; gateways are not containment. Widths retain scope. Published lengths and editorial route lengths are separate collections.'},
             'collections':collections}
 

@@ -37,6 +37,8 @@ lengths and fixed-latitude spans; displayed source coordinates are rounded to
 six decimals. Original data bytes are unchanged. These model boundaries can
 include unflagged search-window fallbacks and do not establish observed widths.
 
-The other31 years,27 unextracted depth levels, typed native/WASM query records,
-interactive atlas linkage and playback remain integration work. The present
-scientific source artifact does not change whole-current ranking or inventories.
+The other31 years and27 unextracted depth levels remain work. Typed native/WASM
+query and atlas linkage use the separate integration contract
+`research/kuroshio-wang-2024-query-contract.json` and protocol
+`plans/kuroshio-wang-query-atlas-protocol-v1.md`. Scientific source data carry no
+live UI-status flag. Whole-current ranking and width inventories are unchanged.
