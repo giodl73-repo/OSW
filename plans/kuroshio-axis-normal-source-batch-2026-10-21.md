@@ -78,6 +78,11 @@ At9b335cb, the prior22-report scientific job and
 NetCDF job passed; offline acquisition failed on the existing Rotschi1972 PDF
 HTTP403 before tests. A fresh complete default-suite pass is not claimed.
 
+At93a854b12b4bf959ff12578bf07bb706e6274902, scientific job119438106105
+(run39662272663) passed all23 report reconstructions byte-for-byte, including
+the canonical normal-span report. NetCDF job119438106584 passed. The following
+documentation checkpoint changes no scientific input or artifact bytes.
+
 ## Reproduction commands
 
 ```

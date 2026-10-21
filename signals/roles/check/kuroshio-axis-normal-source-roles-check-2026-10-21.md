@@ -32,14 +32,14 @@ to this source increment. This is a draft source batch, not an atlas release.
 | HARBOR | Equivalent browsable data needs query integration. | P2 | Open required follow-up: report contains all records, but typed UI/table/card controls are not shipped yet. Do not claim atlas accessibility coverage. |
 | HARBOR | Colour alone cannot identify gates or source curves. | P3 | Confirmed: distinct markers/line styles, labelled depths/gates, SVG title/description and ARIA references. |
 | KEEL | New geometry needs analytic and complete retained-data checks. | P2 | Resolved:19 new tests plus22 previous checks; source custody, obliquity, independent boundary sampling, gaps, ambiguous crossings, endpoint and side/length guards, all summaries and direct normals. |
-| KEEL | Cross-platform exact reconstruction is not yet proven for this head. | P2 | Open: c4978a2 Linux differed only in27 final bearing/coordinate digits, with all spans/statuses identical. Canonical print precision corrected; raw0.001m normal gate retained. Target23 still requires exact bytes; rerun new-head job. |
+| KEEL | Cross-platform exact reconstruction must cover the new report. | P2 | Resolved: at93a854b, job119438106105 passes all23 reports byte-for-byte. c4978a2's27 final-digit differences remain in the failure record; canonical print precision fixes them without changing spans/statuses or the raw0.001m gate. |
 | KEEL | Full offline suite has an existing external acquisition failure. | P2 | Open: Rotschi1972 HTTP403 before tests at9b335cb. Last full local Python baseline774e466; no new complete-suite claim. |
 | LOGBOOK | Keep the continuing review and avoid an unrequested release. | P2 | Resolved: same branch/draft PR83; no new PR or main merge; goal remains active. |
 | LOGBOOK | Scientific source is not yet main query/atlas coverage. | P2 | Open required follow-up: typed contract, native/WASM record validation and shared map/card/seasons/dashboard delivery, with actual browser gates. |
 | LOGBOOK | Previously admitted data must remain stable. | P3 | Confirmed: main packet, historical release, old reports/inventories unchanged. First-pass normal span values/statuses survive later provenance/readback clarification. |
 
-Seven roles,21 findings:0P1,16P2 (12resolved,4open),5P3. Approved only as a
-qualified draft source increment. Remaining native/UI, Linux and full-suite
+Seven roles,21 findings:0P1,16P2 (13resolved,3open),5P3. Approved only as a
+qualified draft source increment. Remaining native/UI and full-suite
 gates prevent release/completion claims. The full core-data/info/visualization
 goal remains active.
 
