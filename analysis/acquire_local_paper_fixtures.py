@@ -52,6 +52,12 @@ def retry_pause(error, attempt):
 # 2026-10-12 (Qiu); see the corresponding verification receipts. These are
 # transport alternatives, not permission to substitute another PDF edition.
 PINNED_MIRRORS = {
+    # WHOI's case-sensitive /science/PO route serves the same3,378,622-byte
+    # original, verified2026-10-21. The retained lowercase primary returned404
+    # in CI. Keep the original acquisition receipt and checksum unchanged.
+    ('lozier-gulf-stream-1995', 'https://www.whoi.edu/science/po/people/rcurry/pdf_files/Lozier_etal.PiO1995.pdf',
+     'daadf0d96ac221ba65f9b70330dd563b26888f8aeacce57c75d23bde8ea0bcd8'):
+    ('https://www.whoi.edu/science/PO/people/rcurry/pdf_files/Lozier_etal.PiO1995.pdf',),
     # Same repository's final EPrints path, verified byte-identical2026-10-17;
     # CI can receive403 from the older percent-encoded redirect path.
     ('stramma-south-pacific-1995', 'https://oceanrep.geomar.de/32120/1/1520-0485%281995%29025_0077_tspc_2.0.co%3B2.pdf',

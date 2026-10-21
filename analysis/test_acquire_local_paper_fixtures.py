@@ -9,6 +9,27 @@ DATA=b'%PDF-1.7\ncontrolled source fixture'
 MANIFEST={'source_url':'https://example.invalid/paper.pdf','sha256':hashlib.sha256(DATA).hexdigest()}
 
 class AcquisitionTests(unittest.TestCase):
+    def test_lozier_case_sensitive_route_preserves_the_exact_original(self):
+        folder=Path(__file__).resolve().parents[1]/'research/source-data/lozier-gulf-stream-1995'
+        manifest=json.loads((folder/'acquisition.json').read_bytes());before=dict(manifest)
+        data=(folder/'journal-article.pdf').read_bytes();url=manifest['source_url']
+        alternative='https://www.whoi.edu/science/PO/people/rcurry/pdf_files/Lozier_etal.PiO1995.pdf'
+        with patch('urllib.request.urlopen',side_effect=[HTTPError(url,404,'missing',{},None),io.BytesIO(data)]) as opener,patch('time.sleep') as sleep:
+            self.assertEqual(download('lozier-gulf-stream-1995',manifest),data)
+            self.assertEqual([c.args[0].full_url for c in opener.call_args_list],[url,alternative])
+            sleep.assert_not_called()
+        self.assertEqual(manifest,before)
+
+    def test_lozier_route_rejects_changed_pin_and_corrupt_bytes(self):
+        folder=Path(__file__).resolve().parents[1]/'research/source-data/lozier-gulf-stream-1995'
+        manifest=json.loads((folder/'acquisition.json').read_bytes());url=manifest['source_url']
+        with patch('urllib.request.urlopen',side_effect=[HTTPError(url,404,'missing',{},None),io.BytesIO(DATA)]) as opener:
+            with self.assertRaisesRegex(ValueError,'checksum'):download('lozier-gulf-stream-1995',manifest)
+            self.assertEqual(opener.call_count,2)
+        with patch('urllib.request.urlopen',side_effect=HTTPError(url,404,'missing',{},None)) as opener:
+            with self.assertRaises(HTTPError):download('lozier-gulf-stream-1995',dict(manifest,sha256=MANIFEST['sha256']))
+            self.assertEqual(opener.call_count,1)
+
     def test_stramma_south_indian_fallback_preserves_the_exact_original(self):
         folder=Path(__file__).resolve().parents[1]/'research/source-data/stramma-south-indian-1992'
         manifest=json.loads((folder/'acquisition.json').read_bytes());before=dict(manifest)
