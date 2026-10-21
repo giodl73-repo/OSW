@@ -80,12 +80,16 @@ FROZEN_INPUTS.update({LOOP_SOURCE:'af7ff4bc05a909aa84e5dab0125504f14affa0ecad369
     LOOP_ACQUISITION:'2b01220d7880461e898a16b041ec749a9e2797d3611ac6122075bb6bd7bfc698'})
 FROZEN_INPUTS.update({LOOP_CONTOURS:'45a63a302b4e72be813b4cd07b68886a62cf9ab379726248a4877b1b0cc16fde',
     LOOP_CONTOUR_FIGURE:'9bc662b1e80373068578be799d5dba8733dbe0b8e7ef1ab38145a7a6f9e2ed92'})
+FROZEN_INPUTS.update({
+    'research/redsox-winter-section3-component-spans.json':'9f77b4fc986490948c4e74bc9c5c486eeec157e0d47735a0ee66758034e2e22c',
+    'research/redsox-section3-source-selection.json':'a35b60fb112fe29316ce62953e978ee98102e50fee45c039df5e6b974067c4cf',
+    'research/redsox-winter-section3-figure.json':'4cdd2dbaddd34ecfcf49bc06f401417c6ec34ae5c2d3c9f72fb01a447605271f'})
 
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
 
 def build():
-    if len(FROZEN_INPUTS)!=52:raise ValueError('Missing reviewed research source registry')
+    if len(FROZEN_INPUTS)!=55:raise ValueError('Missing reviewed research source registry')
     documents={}
     for path,pin in FROZEN_INPUTS.items():
         if digest(path)!=pin:raise ValueError('Changed reviewed current research source '+path)
@@ -244,8 +248,8 @@ def build():
         'diagnostic_id':'diagnostic:current-research:red-sea-saline-overflow',
         'title':'Observed section: a local core estimate',
         'finding':'Winter casts 7, 8 and 9 support a roughly 6 km half-peak southward-component section span in the layer 40–80 m above bottom. This local-core follow-up is separate from the unresolved primary calculation at 20–60 m. It does not establish a whole-current or flow-normal width.',
-        'facts':[{'label':'Local section span','value':f"About {local['span_km']:.0f} km · 40–80 m above bottom"},
-            {'label':'Primary 20–60 m result','value':'Unresolved'},
+        'facts':[{'label':'Earlier northern section span','value':f"About {local['span_km']:.0f} km · 40–80 m above bottom"},
+            {'label':'Earlier primary 20–60 m result','value':'Unresolved'},
             {'label':'Whole-current width','value':'Unknown'},{'label':'Annual width range','value':'Unknown'}],
         'notes':['The local span covers only 1.67 native station spacings. The core vector is about 15.7° from the section normal; no cosine correction or precise physical-boundary claim is made.',
             'The 40% threshold remains unresolved. Finite velocity, boundary and layer scenarios are not combined into a confidence interval.',
@@ -471,6 +475,45 @@ def build():
             f"{abs(c['gates']['exit_longitude']):.3f} W",c['status'].replace('_',' '),
             'Unresolved' if c['rounded_supported_contour_path_km'] is None else f"About {c['rounded_supported_contour_path_km']:,} km"] for c in loop_contours['cases']]})
     for scene in scenes:
+        if scene['current_id']=='red-sea-saline-overflow':
+            from build_redsox_section3_spans import build as rebuild_section3, encoded as encode_section3
+            section3_path='research/redsox-winter-section3-component-spans.json'
+            section3=rebuild_section3()
+            if encode_section3(section3)!=(ROOT/section3_path).read_bytes():
+                raise ValueError('Changed source-declared REDSOX Section 3')
+            dependencies.update(section3['input_sha256'])
+            dependencies[section3_path]=digest(section3_path)
+            manifest_path='research/redsox-winter-section3-figure.json'
+            manifest=json.loads((ROOT/manifest_path).read_bytes())
+            if manifest['source_sha256']!=digest(section3_path) or manifest['physical_width_admitted']:
+                raise ValueError('Changed REDSOX Section 3 figure scope')
+            dependencies[manifest_path]=digest(manifest_path)
+            dependencies[manifest['generator_file']]=manifest['generator_sha256']
+            for asset in manifest['figures'].values():
+                if digest(asset['file'])!=asset['sha256'] or (ROOT/asset['file']).stat().st_size!=asset['bytes']:
+                    raise ValueError('Changed REDSOX Section 3 figure')
+                dependencies[asset['file']]=asset['sha256']
+            if digest(manifest['generator_file'])!=manifest['generator_sha256']:
+                raise ValueError('Changed REDSOX Section 3 figure generator')
+            scene['title']='Observed sections: independent local span estimates'
+            scene['finding']+=' A separate source-declared cross-channel section on 22–23 February supports a southern local span of about 5.0 km at 20–60 m above bottom and 5.5 km at 40–80 m. Its northern branch remains unresolved.'
+            scene['facts'].extend([
+                {'label':'Independent southern section','value':'About 5.0 km · 20–60 m above bottom'},
+                {'label':'Independent northern section','value':'Unresolved'}])
+            scene['notes'].append('The new section preserves all 30 fixed cases: ten southern component spans and twenty unresolved outcomes. The deeper-layer 40% threshold extends to 12.6 km; this is finite scenario sensitivity, not an annual margin or confidence bound. The 10–50 m layer lacks complete support. Casts 61/63 remain excluded; cast 74 has no CTD companion. No tidal removal or whole-current width admission.')
+            scene['additional_figures']=[{'file':'figures/redsox-winter-section3-component-spans.svg',
+                'label':'Independent source-declared winter section',
+                'alt':'Twelve source-ordered casts on 22–23 February 2001, paired layer velocities, hydrography and all fixed southern sensitivities. Primary local span about 5.0 km, deeper-layer half-peak 5.5 km; northern and shallow-layer results unresolved. Physical whole-current width and annual range unknown.'}]
+            scene['source_links'].extend([
+                link('All 30 independent section cases',section3_path,'/layers'),
+                link('Source section selection and original hashes','research/redsox-section3-source-selection.json'),
+                link('Declared independent section rules','research/redsox-section3-source-selection.json','/protocol_file'),
+                link('Independent section figure provenance',manifest_path)])
+            scene['additional_tables']=[{'caption':'Independent Section 3, 22–23 February 2001. Local half-peak section spans; not whole-current widths.',
+                'headers':['Layer above bottom','Southern local span','Northern local span'],
+                'rows':[['–'.join(map(str,layer['height_layer_m']))+' m',
+                    'Unresolved' if layer['cases'][0]['span_km'] is None else f"About {layer['cases'][0]['span_km']:.1f} km",
+                    'Unresolved'] for layer in section3['layers']]}]
         if scene['current_id'] in ['aleutian','pacific-north-equatorial-countercurrent','norwegian-coastal','loop']:
             scene['notes'].append('Calculated readbacks use a declared precision for reproducibility. That precision is not observational uncertainty or an annual range. Original source values, masks and quality flags remain unchanged; the exact record pins the calculation rules.')
         scene.update(kind='current_research_evidence',rank_eligible=False,new_width_record_admitted=False,

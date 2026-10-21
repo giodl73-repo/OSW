@@ -46,7 +46,8 @@ fn registry() -> Value {
     serde_json::from_str(RAW).expect("reviewed current research registry")
 }
 
-const SUPPORT_ONLY: [&str; 6] = [
+const SUPPORT_ONLY: [&str; 7] = [
+    "research/redsox-winter-section3-component-spans.json",
     COMPOSITE_CONTOURS,
     "research/loop-durante-2026-source-view.json",
     "research/aleutian-p14n-1993-native-product-metadata.json",

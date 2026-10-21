@@ -116,6 +116,9 @@ def main():
                   'research/west-australian-regional-streamlines-rk4.json',
                   'research/west-australian-regional-streamline-figures.json',
                   'research/west-australian-regional-streamline-rk4-figures.json'])
+    paths.extend(['analysis/build_redsox_section3_spans.py','analysis/build_redsox_section3_figure.py',
+                  'plans/redsox-section3-width-protocol-v1.md','research/redsox-section3-source-selection.json',
+                  'research/redsox-winter-section3-component-spans.json','research/redsox-winter-section3-figure.json'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',
