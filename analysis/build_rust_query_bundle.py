@@ -238,7 +238,9 @@ def build():
     inputs.update(scope_index['input_sha256'])
     inputs[scope_index['generator_file']]=scope_index['generator_sha256']
     inputs.update({r['figure_file']:r['figure_sha256'] for r in scope_index['records']})
-    routes=read('research/ocean-current-reference-path-candidates.json')
+    from madagascar_reference_curve import verify_inputs as verify_coastal_curve, source_record as coastal_land_source, CATALOGUE as WORKING_ROUTES
+    coastal_curve,routes,coastal_inputs=verify_coastal_curve();inputs.update(coastal_inputs)
+    collections['sources'].append(coastal_land_source())
     from build_current_reference_path_catalog import validate_source_receipt
     for route in routes['candidates']:
         inputs.update(validate_source_receipt(read(route['candidate_file'])))
@@ -272,6 +274,7 @@ def build():
     from current_measurement_admissions import verify_inputs as verify_prose_dimensions, append as append_prose_dimensions
     prose_dimensions,prose_inputs=verify_prose_dimensions();inputs.update(prose_inputs)
     append_prose_dimensions(collections,prose_dimensions)
+    collections['sources']=[routes['primary_source_record'] if r['id']==routes['primary_source_record']['id'] else r for r in collections['sources']]
     collections['reference_routes']=routes['candidates']
     objects=copy.deepcopy(dashboard['entries'])
     for row in objects:row['dashboard_search']=row['label']+' '+row['basin']
@@ -290,6 +293,7 @@ def build():
         source_ids={entity_index[row['id']].get('source_id')}
         source_ids.update(m.get('source_id') for m in measures)
         source_ids.update(c.get('source_id') for c in collections['claims'] if row['id'] in [c.get('subject_id'),c.get('object_id')])
+        source_ids.update(source for route in collections['reference_routes'] if route['current_id']==current for source in route.get('source_ids',[]))
         row['source_ids']=sorted(s for s in source_ids if s in sources)
         row['state_codes']=sorted({r['state_code'] for r in row['state_evidence']})
         lengths=[m['value'] for m in measures if m.get('rank_eligible') is True and m['quantity']=='reported_length']
@@ -676,6 +680,10 @@ def build():
     inputs.update(navigation_inputs)
     collections['diagnostics'].append(madagascar_navigation_record(navigation))
     next(r for r in objects if r['id']=='current:southern-east-madagascar').setdefault('diagnostic_ids',[]).append(MADAGASCAR_NAVIGATION_ID)
+    from madagascar_coastline_comparison import verify_inputs as verify_coastline_comparison, record as coastline_comparison_record, ID as COASTLINE_COMPARISON_ID
+    coast_comparison,coast_comparison_inputs=verify_coastline_comparison();inputs.update(coast_comparison_inputs)
+    collections['diagnostics'].append(coastline_comparison_record(coast_comparison))
+    next(r for r in objects if r['id']=='current:southern-east-madagascar')['diagnostic_ids'].append(COASTLINE_COMPARISON_ID)
     collections['width_samples']=build_width_samples(collections['diagnostics'])
     for row in objects:
         row['width_sample_ids']=[sample['id'] for sample in collections['width_samples'] if sample['entity_id']==row['id']]
@@ -683,7 +691,7 @@ def build():
     # Keep the complete remaining-length worklist queryable without assigning
     # dimensions to unresolved names, families or continuity hypotheses.
     collections['route_decisions']=[]
-    admitted_plans=[prose_dimensions['route_planning_decision'] if r['entity_id']==prose_dimensions['entity_id'] else r['route_planning_decision'] for r in identity_document['entries']]
+    admitted_plans=[r['route_planning_decision'] for r in identity_document['entries'] if not any(p['current_id']==r['proposal_id'] for p in routes['remaining_current_decisions'])]
     for original in routes['remaining_current_decisions']+admitted_plans:
         entity_id='current:'+original['current_id']
         owner=next(row for row in objects if row['id']==entity_id)
@@ -702,8 +710,8 @@ def build():
                 'next_action':original['next_action'],'scope':original['existing_scope'],
                 'status':original['planning_status'],'rank_eligible':False,
                 'source_url':original['name_source_url'],'source_decision':copy.deepcopy(original),
-                'source_catalog_file':'research/southern-east-madagascar-prose-dimension-admissions.json' if original==prose_dimensions['route_planning_decision'] else 'research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json',
-                'source_catalog_sha256':inputs['research/southern-east-madagascar-prose-dimension-admissions.json' if original==prose_dimensions['route_planning_decision'] else 'research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json'],
+                'source_catalog_file':WORKING_ROUTES if original['current_id']=='southern-east-madagascar' else 'research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json',
+                'source_catalog_sha256':inputs[WORKING_ROUTES if original['current_id']=='southern-east-madagascar' else 'research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json'],
                 'scope_reviews':reviews}
         collections['route_decisions'].append(record)
         owner['route_decision_ids']=[record['id']]
@@ -839,7 +847,7 @@ def build():
             'taxonomy':taxonomy,'editorial_collections':['proposed_widths','observed_section_spans','current_section_measurements','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','current_sections','section_transports','transport_validations'],
             'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
             'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
-            'input_sha256':inputs,'current_catalogue_version':identity_document['version'],'current_measurement_admission_version':prose_dimensions['version'],'madagascar_navigation_diagnostic_version':'1','generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},
+            'input_sha256':inputs,'current_catalogue_version':identity_document['version'],'current_measurement_admission_version':prose_dimensions['version'],'madagascar_navigation_diagnostic_version':'1','madagascar_coastal_curve_version':'1','generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},
             'scope':'State joins retain relation kinds; gateways are not containment. Widths retain scope. Published lengths and editorial route lengths are separate collections.'},
             'collections':collections}
 

@@ -61,7 +61,7 @@ def route_snapshot(page, data, fixture_folder):
     for row in bundle['collections']['objects']:
         row['fingerprint']=source[row['id']]['fingerprint']
         row['section_fingerprints']=source[row['id']]['section_fingerprints']
-    raw=json.dumps(bundle,ensure_ascii=False).encode()
+    raw=json.dumps(bundle,ensure_ascii=False,separators=(',',':')).encode()
     folder=Path(fixture_folder).resolve()
     assert folder.is_relative_to(ROOT.resolve())
     target=folder/f'snapshot-{len(list(folder.glob("snapshot-*.json")))}.json'
@@ -111,8 +111,8 @@ def main():
         selection=page.evaluate('window.oswDashboardSelection')
         assert selection['result']==native_selection(selection['request'])
         scene=selection['result']['map_scene']
-        assert scene['mapped_objects']==240
-        assert scene['unmapped_objects']==1
+        assert scene['mapped_objects']==241
+        assert scene['unmapped_objects']==0
         assert not scene['omitted_features']
         grouped=[f for f in scene['features'] if f['kind']=='marker' and f['group']]
         assert len(grouped)==1
@@ -124,8 +124,8 @@ def main():
         assert {c['id'] for c in beck['connections']}=={c['id'] for c in data['connections']}
         assert sum(len(g['ids']) for g in beck['eddy_groups'])==140
         assert page.locator('#dashboard-schematic').is_visible()
-        assert page.locator('.beck-station').count() == 100
-        assert '100 / 101 current stations in view' in page.locator('#dashboard-station-count').inner_text()
+        assert page.locator('.beck-station').count() == 101
+        assert '101 / 101 current stations in view' in page.locator('#dashboard-station-count').inner_text()
         page.locator('#dashboard-search').fill('Portugal Current')
         settle(page)
         page.locator('#dashboard-covered').check()
@@ -135,10 +135,10 @@ def main():
         assert page.locator('.beck-station').count() == 1
         page.locator('#dashboard-show-all').click()
         settle(page)
-        assert page.locator('.beck-station').count() == 100
+        assert page.locator('.beck-station').count() == 101
         assert page.locator('#dashboard-region').input_value() == 'world'
         assert not page.locator('#dashboard-covered').is_checked()
-        assert page.locator('.beck-station .beck-name').count() == 100
+        assert page.locator('.beck-station .beck-name').count() == 101
         station=page.locator('.beck-station').first
         assert station.locator('.beck-name').evaluate('(el)=>getComputedStyle(el).opacity') == '0'
         station.locator('circle').hover()

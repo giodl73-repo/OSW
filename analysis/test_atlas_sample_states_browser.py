@@ -8,7 +8,7 @@ from playwright.sync_api import sync_playwright
 
 def main():
     sets={year:json.loads(Path(path).read_text(encoding='utf-8')) for year,path in [('2025','research/ocean-current-dated-timeline-2025.json'),('2026','research/ocean-current-dated-timeline.json')]}
-    states=json.loads(Path('research/ocean-current-reference-route-state-join.json').read_text(encoding='utf-8'))['states']
+    states=json.loads(Path('research/ocean-current-working-reference-route-state-join.json').read_text(encoding='utf-8'))['states']
     expected={code:[(year,frame,relation) for year,data in sets.items() for frame in data['frames'] for relation in frame['state_relations'] if relation['state_code']==code] for code in states}
     with sync_playwright() as p:
         browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))

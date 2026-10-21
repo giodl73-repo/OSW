@@ -141,14 +141,17 @@
         const q={collection:'current_measurement_admissions',filters:[{field:'entity_id',op:'eq',value:numeric.entity_id}],limit:1};
         link('Query the dimension admission and source definitions','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,card));
         const diagnostic=node('section',null,card);diagnostic.id='southern-east-madagascar-route-definition';
-        node('h4','Route definition remains unresolved',diagnostic);
-        node('p','All 27 initial coastal scenarios crossed the coarse atlas land mask. A separately declared offshore alternative clears that mask, but its approximately 900 km line has different endpoints from the published approximately 650 km branch extent. Its 800–900 km cartographic sensitivity is not a physical or seasonal range. No current route or map feature admitted.',diagnostic);
+        node('h4','Earlier route experiments · retained',diagnostic);
+        node('p','All 27 initial coastal scenarios crossed both the coarse and finer land masks. The earlier offshore alternative is approximately 900 km with different endpoints from the published approximately 650 km extent. Neither earlier experiment was admitted. A new coast-following geographic reference is available below; a measured current axis and annual geometry remain unresolved.',diagnostic);
         const image=node('img',null,diagnostic);image.src='../figures/southern-east-madagascar-route-definition-diagnostic.svg';
         image.alt='Rejected coastal experiment and unadmitted offshore navigation alternative. No verified current axis or annual geometry.';
         image.style.cssText='width:100%;max-width:1200px;height:auto';
         link('Open route comparison figure',image.src,node('p',null,diagnostic));
         const dq={collection:'diagnostics',filters:[{field:'id',op:'eq',value:'diagnostic:southern-east-madagascar-route-definition'}],limit:1};
         link('Query all route experiments and unresolved definitions','query.html?q='+encodeURIComponent(JSON.stringify(dq)),node('p',null,diagnostic));
+        link('Inspect the coastal reference map and all 27 conventions','#southern-east-madagascar-coastal-reference-curve',node('p',null,card));
+        const atlas=new URL(location.href);atlas.searchParams.set('atlas-layout','map');atlas.searchParams.set('atlas-feature',numeric.entity_id);atlas.searchParams.set('atlas-route','southern-east-madagascar-coastal-reference-curve');atlas.hash='route-atlas';
+        link('Find this current on the global atlas',atlas.href,node('p',null,card));
       }
       for (const evidence of row.evidence) {
         link(evidence.citation, evidence.url, node("p", null, card), true);
@@ -281,20 +284,8 @@
     }
     byId("queue-count").textContent = `${rows.length} of ${catalog.remaining_current_decisions.length} remaining currents`;
   }
-  load("../research/ocean-current-reference-path-candidates.json").then(async value => {
-    const identities=await load('../research/ocean-current-identity-admissions.json');
-    const dimensions=await load('../research/southern-east-madagascar-prose-dimension-admissions.json').catch(()=>null);
-    const extra=identities.entries.map(r=>r.entity_id===dimensions?.entity_id?dimensions.route_planning_decision:r.route_planning_decision);
-    const strategies=value.planning_taxonomy.strategies.map(r=>({...r}));
-    for(const row of extra){
-      let strategy=strategies.find(r=>r.id===row.route_strategy_id);
-      if(!strategy){strategy={id:row.route_strategy_id,label:row.route_strategy_label,description:row.planning_basis,current_count:0,unbuilt_count:0};strategies.push(strategy);}
-      strategy.current_count++;if(!row.candidate_ids.length)strategy.unbuilt_count++;
-    }
-    catalog = {...value,remaining_current_decisions:[...value.remaining_current_decisions,...extra],
-      planning_taxonomy:{...value.planning_taxonomy,strategies},
-      counts:{...value.counts,currents_without_published_ranked_estimate:value.counts.currents_without_published_ranked_estimate+extra.filter(r=>!r.published_length_rank_eligible).length,
-        currents_without_route_candidates:value.counts.currents_without_route_candidates+extra.filter(r=>!r.candidate_ids.length).length}};
+  load("../research/ocean-current-working-reference-routes.json").then(async value => {
+    catalog = value;
     for (const strategy of catalog.planning_taxonomy.strategies) {
       const option = node("option", `${strategy.label} (${strategy.current_count})`, byId("route-strategy")); option.value = strategy.id;
       const tr = node("tr", null, byId("strategy-rows")); node("th", strategy.label, tr).scope = "row";
@@ -328,7 +319,7 @@
       link("Link to this route card", `#${row.id}`, node("p", null, card));
       const back = link("Back to global current map ↑", '#route-atlas', node("p", null, card));
 
-      node("p", `≈ ${number(row.approximate_reference_path_km)} km · ${row.scenario_count} scenarios · ${row.scenario_range_km.map(number).join("–")} km scenario envelope`, card);
+      node("p", `≈ ${number(row.approximate_reference_path_km)} km · ${row.scenario_count} scenarios · ${row.scenario_range_km.map(number).join("–")} km ${row.comparison_group==='osw_offshore_coastal_reference_curves'?'convention sensitivity':'scenario envelope'}`, card);
       node("p", row.scope, card);
       if (report.parent_current_id) {
         const relation = node("p", report.parent_scope_note + " ", card);
@@ -336,10 +327,19 @@
         link("Inspect parent current route", parent ? `#${parent.id}` : objectHref(`current:${report.parent_current_id}`), relation);
       }
       if (row.comparison_group === "osw_studied_reach_routes") node("p", "Studied reach only. Excluded from reference-route ordering above.", card).className = "warning";
+      if(row.comparison_group==='osw_offshore_coastal_reference_curves')node('p','Coast-following geographic reference only. Kept separate from waypoint-route ordering and published current lengths. Projected offsets are not current widths; no measured axis or seasonal geometry.',card).className='warning';
+      if(row.comparison_group==='osw_offshore_coastal_reference_curves'){
+        link('Natural Earth coastline source and map scale','https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-land/',node('p',null,card),true);
+        const compare=node('details',null,card);node('summary','Compare the earlier routes against both coastlines',compare);
+        const map=node('img',null,compare);map.src='../figures/madagascar-coastline-comparison.svg';map.alt='The earlier coastal routes intersect both land products; the farther-offshore alternatives clear both. Same54 routes, no fitted vertices.';map.loading='lazy';map.style.cssText='width:100%;max-width:1400px;height:auto';
+        link('Open coastline comparison figure',map.src,node('p',null,compare));
+        const q={collection:'diagnostics',filters:[{field:'id',op:'eq',value:'diagnostic:madagascar-coastline-comparison'}],limit:1};
+        link('Query all 54 paired coastline checks','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,compare));
+      }
       const image = node("img", null, card); image.className = "route-map"; image.src = `../${row.figure}`; image.alt = `${row.name}: schematic editorial route with labeled endpoints. Approximate length and scenario limits are provided in the surrounding text.`;
       // Reserve map height so earlier image loads cannot move the linked card.
       image.width = 800;
-      image.height = Math.round(800 * report.map_view_box[3] / report.map_view_box[2]);
+      image.height = Math.round(800 * (report.figure_aspect_ratio||report.map_view_box[3] / report.map_view_box[2]));
       link("Open route map at full size", `../${row.figure}`, node("p", null, card));
       node("p", report.coordinate_selection, card);
       node("p", `Layer: ${report.layer} Time convention: ${report.time_convention}`, card);
@@ -374,7 +374,7 @@
       link("Download coordinates, all scenarios and joins (JSON)", `../${row.candidate_file}`, card);
     }
     const counts = catalog.counts;
-    byId("route-status").textContent = `${counts.route_candidates} route candidates for ${counts.currents_with_route_candidates} currents; ${counts.currents_without_route_candidates} worklist currents await routes. Published length reports and geographic routes are separate evidence. Scientific review pending.`;
+    byId("route-status").textContent = `${counts.route_candidates} route candidates for ${counts.currents_with_route_candidates} of ${counts.accepted_current_names} currents; ${counts.currents_without_any_reference_card} currents have no reference card. ${counts.currents_without_route_candidates} are on the remaining-length worklist. Published length reports and geographic routes are separate evidence. Scientific review pending.`;
     byId("route-query").addEventListener("input", renderQueue); byId("route-coverage").addEventListener("change", renderQueue); byId("route-strategy").addEventListener("change", renderQueue); renderQueue();
     requestAnimationFrame(revealInitialCard);
     window.initReferenceRouteAtlas?.(catalog, reports, await widthInventoryReady, seasonalRoutes);

@@ -91,7 +91,11 @@ def build():
     prose_dimensions,prose_inputs=verify_prose_dimensions();inputs.update(prose_inputs)
     sources[prose_dimensions['source_record']['id']]=prose_dimensions['source_record']
     measurements.append(prose_dimensions['measurement']);claims.append(prose_dimensions['claim'])
-    routes = read('research/ocean-current-reference-path-candidates.json')['candidates']
+    from madagascar_reference_curve import verify_inputs as verify_coastal_curve, source_record as coastal_land_source
+    _,working_routes,coastal_inputs=verify_coastal_curve();inputs.update(coastal_inputs)
+    sources[coastal_land_source()['id']]=coastal_land_source()
+    sources[working_routes['primary_source_record']['id']]=working_routes['primary_source_record']
+    routes = working_routes['candidates']
     from build_basin_surface_section_spans import build as rebuild_basin, diagnostic_matches as basin_matches
     basin_sections={}
     read('research/basin-surface-section-inventory.json')
@@ -492,6 +496,10 @@ def build():
             state_evidence.append({'state_code': code, 'state_name': state_names[code],
                                    'kind': kind, 'label': label, 'observation_date': date,
                                    'source_file': source_file, 'source_record_id': source_record})
+        for route in own_routes:
+            if route['comparison_group']=='osw_offshore_coastal_reference_curves':
+                for code in route['nominal_atlas_state_crossings']:
+                    state_record(code,'editorial_coastal_reference_curve','Undated geographic reference curve crosses display state; physical current passage unresolved',None,route['candidate_file'],route['id'])
         if loop:
             for code in loop['state_locator_candidates']:
                 state_record(code, 'shared_regional_gateway', 'Shared source-region gateway; individual containment unresolved', None,
@@ -527,6 +535,7 @@ def build():
         own_media = [m for m in media if m['entity_id'] == ident]
         own_phases = [p for p in phases if current_id and p['current_id'] == current_id]
         source_ids = {row.get(key) for row in [entity, *own_measures, *own_geometry, *own_claims, *own_media] for key in ['source_id', 'source_snapshot_id', 'method_source_id'] if row.get(key)}
+        source_ids.update(source for route in own_routes for source in route.get('source_ids',[]))
         if source_ids - sources.keys():
             raise ValueError(f'Unresolved dashboard sources for {ident}')
         own_sources = [sources[key] for key in sorted(source_ids)]

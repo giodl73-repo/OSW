@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright
 
 def main():
     read=lambda path:json.loads(Path(path).read_text(encoding='utf-8'))
-    catalog=read('research/ocean-current-reference-path-candidates.json')
+    catalog=read('research/ocean-current-working-reference-routes.json')
     ident='atlantic-necc-western-summer-reference-path-candidate'
     candidate=read('research/'+ident+'.json')
     assert candidate['candidate_comparison_group']=='osw_studied_reach_routes'

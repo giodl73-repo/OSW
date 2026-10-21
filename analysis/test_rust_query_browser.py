@@ -49,8 +49,8 @@ def main():
         page.goto(BASE)
         page.wait_for_function('window.oswLastQueryResult', timeout=60000)
         assert page.evaluate('window.oswLastQueryResult.total') == 101
-        assert page.evaluate('window.oswLastQueryResult.map_scene.mapped_objects') == 100
-        assert page.locator('#query-map-features').evaluate('(el)=>new Set([...el.children].map(n=>n.dataset.entity)).size') == 100
+        assert page.evaluate('window.oswLastQueryResult.map_scene.mapped_objects') == 101
+        assert page.locator('#query-map-features').evaluate('(el)=>new Set([...el.children].map(n=>n.dataset.entity)).size') == 101
         assert page.locator('#query-rows tr').count() == 50
         page.locator('#query-map-in').click()
         assert float(page.locator('#query-map').get_attribute('viewBox').split()[2]) < 360
@@ -59,7 +59,7 @@ def main():
         all_objects = browser_query(page, {'collection':'objects','limit':50})
         assert all_objects['total'] == 241
         assert all_objects['map_scene']['matching_objects'] == 241
-        assert all_objects['map_scene']['mapped_objects'] == 240
+        assert all_objects['map_scene']['mapped_objects'] == 241
         mark = page.locator('#query-map-features [data-entity="current:kuroshio"]').first
         mark.focus()
         expect(page.locator('#query-map-hover')).to_contain_text('Kuroshio Current')

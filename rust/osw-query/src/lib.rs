@@ -35,6 +35,7 @@ mod index_support;
 mod kuroshio_filtered_width;
 mod loop_diagnostics;
 mod loop_recorded;
+mod madagascar_coastal_curve;
 mod madagascar_navigation;
 mod map;
 mod measurement_scope;
@@ -324,6 +325,7 @@ impl Store {
         eac_core_spans::validate(&bundle)?;
         south_australian_context::validate(&bundle)?;
         madagascar_navigation::validate(&bundle)?;
+        madagascar_coastal_curve::validate(&bundle)?;
         coastal_composite_widths::validate(&bundle)?;
         dwbc_float_composite::validate(&bundle)?;
         atlas_data::validate(&bundle)?;

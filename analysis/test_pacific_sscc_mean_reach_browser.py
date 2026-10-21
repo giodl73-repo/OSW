@@ -11,7 +11,7 @@ def main():
         return json.loads(Path(path).read_text(encoding='utf-8'))
     candidate=read('research/pacific-sscc-mean-reach-reference-path-candidate.json')
     audit=read('research/pacific-sscc-mean-reach-branch-width-scope-audit.json')
-    catalog=read('research/ocean-current-reference-path-candidates.json')
+    catalog=read('research/ocean-current-working-reference-routes.json')
     row=next(r for r in read('research/ocean-motion-dashboard.json')['entries'] if r['id']=='current:pacific-south-subsurface-countercurrent')
     assert candidate['candidate_comparison_group']=='osw_studied_reach_routes'
     assert 'pacific-sscc-mean-reach-reference-path-candidate' not in catalog['reference_route_length_order']

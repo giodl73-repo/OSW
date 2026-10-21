@@ -27,9 +27,9 @@ def main():
         page.goto(BASE+'/almanac/reference-routes.html?atlas-feature='+quote(ENTITY)+'#route-atlas')
         page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length===102',timeout=120000)
         expect(page.locator('#route-atlas-preview > h3')).to_have_text(entry['entity']['label'])
-        assert page.locator('.route-atlas-station').count()==100
-        assert page.locator('.route-atlas-station[data-current-id="'+ENTITY+'"]').count()==0
-        expect(page.locator('#route-atlas-status')).to_contain_text('no source-supported map placement')
+        assert page.locator('.route-atlas-station').count()==101
+        assert page.locator('.route-atlas-station[data-current-id="'+ENTITY+'"]').count()==1
+        assert page.locator('#route-atlas-card-link').get_attribute('href')=='#southern-east-madagascar-coastal-reference-curve'
         assert page.locator('.inventory-addition-card').count()==28
         card=page.locator('#inventory-addition-'+ID)
         expect(card).to_contain_text('Current identity admitted')
@@ -53,12 +53,12 @@ def main():
         snapshot=page.evaluate('window.oswDashboardSnapshot.snapshot')
         assert snapshot['counts']['named_current']==101 and len(snapshot['entries'])==241
         row=next(r for r in snapshot['entries'] if r['id']==ENTITY)
-        assert row['map_features']==[] and row['latest_observation_date'] is None
+        assert len(row['map_features'])==1 and row['map_features'][0]['role']=='editorial_reference_route' and row['latest_observation_date'] is None
         assert row['capabilities']['scoped_width']==1 and row['capabilities']['reported_length']==1
         assert not errors,errors
         browser.close()
     result={'status':'PASS','accepted_currents':101,'pending_proposals':28,'dashboard_objects':241,
-        'native_wasm_admission_exact':True,'mapped_current_stations':100,'new_current_unlocated':True,
+        'native_wasm_admission_exact':True,'mapped_current_stations':101,'new_current_unlocated':False,
         'seasonal_index':101,'new_current_playback':False,'main_index_object_query_atlas_seasons_dashboard':True,
         'keyboard_navigation':True,'phone_reflow':True,'page_errors':errors}
     (out/'browser-result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

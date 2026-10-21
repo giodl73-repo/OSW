@@ -62,7 +62,11 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             }
         }
     }
-    for (collection, expected) in records() {
+    for (collection, mut expected) in records() {
+        if collection == "sources" && crate::madagascar_coastal_curve::active(bundle) {
+            expected =
+                crate::madagascar_coastal_curve::catalogue()["primary_source_record"].clone();
+        }
         let rows: Vec<_> = bundle
             .collections
             .get(collection)

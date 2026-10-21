@@ -107,7 +107,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
   }
   try {
     const sources=await window.oswAtlasSourcesReady;
-    const stateJoin=sources['research/ocean-current-reference-route-state-join.json']||null;
+    const stateJoin=sources['research/ocean-current-working-reference-route-state-join.json']||sources['research/ocean-current-reference-route-state-join.json']||null;
     const snapshot=sources['research/ocean-motion-dashboard.json'],currents=snapshot.entries.filter(r=>r.type==='named_current');
     const eddies=snapshot.entries.filter(r=>r.type==='named_eddy'||r.type==='operational_eddy_detection');
     inventorySummary=`${currents.length} named currents · ${catalog.counts.currents_with_route_candidates} with reference-route cards · ${eddies.filter(r=>r.type==='named_eddy').length} named eddies · ${eddies.filter(r=>r.type==='operational_eddy_detection').length} dated detections. Select a current, eddy or path.`;
@@ -450,8 +450,13 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
         line.dataset.atlasLabel=`${current.label} · ${window.currentSectionLocator.timeLabel(measurement)} reported section latitude span, not a current axis`;
         interactive(line,line.dataset.atlasLabel,()=>chooseCurrent(current));
       }
-      const point=current.map_features.find(f=>f.geometry.type==='Point')?.geometry.coordinates;
-      if(point){const mark=pointMarker(point,current.label,'route-atlas-station',stationLayer);mark.dataset.currentId=current.id;interactive(mark,current.label,()=>chooseCurrent(current));}
+      let point=current.map_features.find(f=>f.geometry.type==='Point')?.geometry.coordinates;
+      let placement='source_or_name_locator';
+      if(!point){
+        const guide=current.map_features.find(f=>f.role==='editorial_reference_route'&&f.geometry.type==='LineString')?.geometry.coordinates;
+        if(guide?.length){point=guide[Math.floor(guide.length/2)];placement='editorial_reference_route_vertex';}
+      }
+      if(point){const label=current.label+(placement==='editorial_reference_route_vertex'?' · geographic reference marker; no observed current position':'');const mark=pointMarker(point,current.label,'route-atlas-station',stationLayer);mark.dataset.currentId=current.id;mark.dataset.placementRole=placement;interactive(mark,label,()=>chooseCurrent(current));}
     }
     function chooseEddy(eddy) {
       clearSelection();byId('route-atlas-eddy-select').value=eddy.id;

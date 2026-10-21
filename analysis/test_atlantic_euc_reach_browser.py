@@ -18,7 +18,7 @@ def main():
         text=card.inner_text()
         for expected in ['4,500','4,300','4,600','subsurface','Excludes western North Brazil','Not full']:
             assert expected in text,expected
-        assert page.locator('#reference-route-rows tr').count()==len(json.loads(Path('research/ocean-current-reference-path-candidates.json').read_bytes())['reference_route_length_order'])
+        assert page.locator('#reference-route-rows tr').count()==len(json.loads(Path('research/ocean-current-working-reference-routes.json').read_bytes())['reference_route_length_order'])
         assert page.locator('#reference-route-rows a[href="#atlantic-euc-reach-reference-path-candidate"]').count()==0
         card.locator('.route-map').screenshot(path='figures/atlantic-euc-reach-reference-path-review.png')
         card.get_by_role('link',name='Back to global current map').click()

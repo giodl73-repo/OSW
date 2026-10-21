@@ -30,7 +30,7 @@ def main():
         assert 'not a separate additive current system' in card.inner_text()
         assert card.get_by_role('link',name='Inspect parent current route').count()==1
         assert page.locator('#reference-route-rows a[href="#ligurian-reach-reference-path-candidate"]').count()==0
-        catalog=json.loads(Path('research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))
+        catalog=json.loads(Path('research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))
         assert page.locator('#reference-route-rows tr').count()==sum(r['comparison_group']=='osw_approximate_reference_routes' for r in catalog['candidates'])
         card.locator('.route-map').screenshot(path='figures/ligurian-reach-reference-path-review.png')
         snapshot=json.loads(Path('research/ocean-motion-dashboard.json').read_text(encoding='utf-8'))

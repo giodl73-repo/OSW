@@ -12,7 +12,7 @@ def main():
     assert report['scenario_count']==9 and report['reported_approximate_reference_path_km']==2100
     assert report['reported_scenario_range_km']==[1900,2200]
     assert all(s['coordinates_lon_lat'][0]==s['coordinates_lon_lat'][-1] for s in report['scenarios'])
-    join=json.loads(Path('research/ocean-current-reference-route-state-join.json').read_text(encoding='utf-8'))
+    join=json.loads(Path('research/ocean-current-working-reference-route-state-join.json').read_text(encoding='utf-8'))
     excluded=[r for r in join['excluded_display_contacts'] if r['candidate_id']=='black-sea-rim-reference-path-candidate']
     assert {r['state_code']:r['crossing_scenario_count'] for r in excluded}=={'MEDI':9,'REDS':4}
     assert not any(r['current_id']=='black-sea-rim' for s in join['states'].values() for r in s['route_candidates'])

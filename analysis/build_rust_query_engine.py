@@ -152,6 +152,9 @@ def main():
     paths.extend(['rust/osw-query/src/madagascar_navigation.rs','analysis/madagascar_navigation_diagnostic.py',
                   'research/southern-east-madagascar-route-definition-diagnostic.json',
                   'figures/southern-east-madagascar-route-definition-diagnostic.svg'])
+    from madagascar_reference_curve import verify_inputs as coastal_curve_inputs
+    paths.extend(coastal_curve_inputs()[2])
+    paths.append('rust/osw-query/src/madagascar_coastal_curve.rs')
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',

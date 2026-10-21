@@ -675,7 +675,7 @@ def main() -> None:
                 movie_page.set_viewport_size({"width": 375, "height": 800})
                 assert movie_page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
                 movie_page.close()
-                route_catalog=json.loads((ROOT/'research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))
+                route_catalog=json.loads((ROOT/'research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))
                 route_counts=route_catalog['counts']
                 routes_page = browser.new_page()
                 routes_page.on("pageerror", lambda error: errors.append(str(error)))

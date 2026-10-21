@@ -635,6 +635,16 @@ impl Store {
         if crate::current_measurements::active(&self.bundle) {
             sources[crate::current_measurements::PATH] = json!(crate::current_measurements::RAW);
         }
+        if crate::madagascar_coastal_curve::active(&self.bundle) {
+            sources[crate::madagascar_coastal_curve::CATALOGUE] =
+                json!(crate::madagascar_coastal_curve::CATALOGUE_RAW);
+            if receipts.contains_key(JOIN) {
+                sources[crate::madagascar_coastal_curve::JOIN] =
+                    json!(crate::madagascar_coastal_curve::JOIN_RAW);
+            }
+            sources["research/madagascar-coastline-comparison.json"] =
+                json!(crate::madagascar_coastal_curve::COAST_RAW);
+        }
         sources[crate::current_catalogue::CATALOGUE] =
             json!(crate::current_catalogue::CATALOGUE_RAW);
         let mut timeline_scenes = json!({});

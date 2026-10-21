@@ -13,8 +13,8 @@ def main():
         errors = []
         page.on('pageerror', lambda error: errors.append(str(error)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas', wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll(".route-atlas-station").length === 100')
-        catalog = json.loads((Path(__file__).resolve().parents[1] / 'research/ocean-current-reference-path-candidates.json').read_bytes())
+        page.wait_for_function('document.querySelectorAll(".route-atlas-station").length === 101')
+        catalog = json.loads((Path(__file__).resolve().parents[1] / 'research/ocean-current-working-reference-routes.json').read_bytes())
         additions=json.loads((Path(__file__).resolve().parents[1] / 'research/ocean-current-inventory-expansion-candidates.json').read_bytes())
         page.wait_for_function('(counts) => document.querySelectorAll(".route-card").length === counts.routes && document.querySelectorAll(".inventory-addition-card").length === counts.additions', arg={'routes': catalog['counts']['route_candidates'], 'additions': len(additions['entries'])-1})
         assert page.locator('#route-atlas-select option').count() == 102
@@ -173,7 +173,7 @@ def main():
         assert page.url.endswith('#route-atlas')
         assert abs(page.locator('#route-atlas').bounding_box()['y']) < 30
         assert view() == [60,90,1480,740]
-        catalog=json.loads(Path('research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))
+        catalog=json.loads(Path('research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))
         grouped={}
         for row in catalog['candidates']:
             grouped.setdefault(row['current_id'],[]).append(row)
@@ -245,7 +245,7 @@ def main():
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
         assert not errors, errors
         browser.close()
-    print('OK: 101 selectable currents (100 with point placements), zoom, drag pan, keyboard reset, map-card return, pending-route record, all 140 eddy records, grouped gateways, dated footprints and mobile reflow')
+    print('OK: 101 selectable currents with geographic placements, zoom, drag pan, keyboard reset, map-card return, pending-route record, all 140 eddy records, grouped gateways, dated footprints and mobile reflow')
 
 
 if __name__ == '__main__':

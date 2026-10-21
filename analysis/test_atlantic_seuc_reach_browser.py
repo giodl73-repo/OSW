@@ -24,7 +24,7 @@ def main():
         assert card.locator('.route-map').is_visible()
         assert 'surface drift' in card.inner_text()
         card.locator('.route-map').screenshot(path='figures/atlantic-seuc-reach-reference-path-review.png')
-        catalog=json.loads(Path('research/ocean-current-reference-path-candidates.json').read_bytes())
+        catalog=json.loads(Path('research/ocean-current-working-reference-routes.json').read_bytes())
         assert page.locator('#reference-route-rows tr').count()==len(catalog['reference_route_length_order'])
         assert page.locator('#reference-route-rows a[href="#atlantic-seuc-reach-reference-path-candidate"]').count()==0
         card.get_by_role('link',name='Back to global current map').click()

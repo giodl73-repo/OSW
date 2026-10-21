@@ -6,14 +6,14 @@ from playwright.sync_api import sync_playwright
 
 
 def main():
-    catalog=json.loads(Path('research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))
+    catalog=json.loads(Path('research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))
     families=[row for row in catalog['remaining_current_decisions'] if row['known_component_currents']]
     with sync_playwright() as p:
         browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length===101')
+        page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length===102')
         total=0
         for family in families:
             ident='current:'+family['current_id']

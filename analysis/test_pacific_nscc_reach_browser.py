@@ -8,7 +8,7 @@ from playwright.sync_api import sync_playwright
 
 def main():
     candidate=json.loads(Path('research/pacific-nscc-reach-reference-path-candidate.json').read_text(encoding='utf-8'))
-    catalog=json.loads(Path('research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))
+    catalog=json.loads(Path('research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))
     snapshot=json.loads(Path('research/ocean-motion-dashboard.json').read_text(encoding='utf-8'))
     proposals=json.loads(Path('research/ocean-current-inventory-expansion-candidates.json').read_text(encoding='utf-8'))
     assert hashlib.sha256(Path('research/ocean-current-almanac.json').read_bytes()).hexdigest()==proposals['current_ledger_sha256']

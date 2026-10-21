@@ -16,13 +16,13 @@ def main():
         page.wait_for_function('window.oswLastQueryResult',timeout=120000)
         result=page.evaluate('window.oswLastQueryResult');assert result==native(query)
         assert result['total']==1 and result['rows'][0]['document']==doc
-        routes=native({'collection':'reference_routes','limit':100});assert routes['total']==76
-        assert not any(r['current_id']=='southern-east-madagascar' for r in routes['rows'])
+        routes=native({'collection':'reference_routes','limit':100});assert routes['total']==77
+        assert [r['id'] for r in routes['rows'] if r['current_id']=='southern-east-madagascar']==['southern-east-madagascar-coastal-reference-curve']
         owner=native({'collection':'objects','filters':[{'field':'id','op':'eq','value':doc['entity_id']}],'limit':1})['rows'][0]
-        assert owner['map_features']==[] and m.ID in owner['diagnostic_ids']
+        assert len(owner['map_features'])==1 and m.ID in owner['diagnostic_ids']
         page.goto(BASE+'/almanac/reference-routes.html#southern-east-madagascar-route-definition')
         card=page.locator('#southern-east-madagascar-route-definition')
-        expect(card).to_contain_text('No current route or map feature admitted.',timeout=120000)
+        expect(card).to_contain_text('Neither earlier experiment was admitted.',timeout=120000)
         image=card.locator('img');image.scroll_into_view_if_needed()
         page.wait_for_function('()=>document.querySelector("#southern-east-madagascar-route-definition img")?.naturalWidth>0')
         image.screenshot(path=str(out/'route-definition-desktop.png'))
@@ -36,7 +36,7 @@ def main():
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         card.screenshot(path=str(out/'route-definition-mobile.png'))
         assert not errors,errors;browser.close()
-    receipt={'status':'PASS','native_wasm_exact':True,'v1_rejected_retained':27,'v2_scenarios_retained':27,'new_current_routes':0,'new_map_features':0,'keyboard_link':True,'phone_reflow':True,'page_errors':errors}
+    receipt={'status':'PASS','native_wasm_exact':True,'v1_rejected_retained':27,'v2_scenarios_retained':27,'earlier_experiments_admitted':0,'later_coastal_reference_curves':1,'keyboard_link':True,'phone_reflow':True,'page_errors':errors}
     (out/'browser-result.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps(receipt))
 
 if __name__=='__main__':main()

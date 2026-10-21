@@ -16,6 +16,7 @@
           const sources=['widths','routes','frames','directions'].map(key=>JSON.parse(result.sources_json[key]));
           sources[0].current_decisions.push(...(result.admitted_current_decisions||[]));
           sources[0].measurements.push(...(result.supplemental_widths||[]));
+          if(result.working_reference_routes)sources[1]=result.working_reference_routes;
           finish(null,sources);
         } catch(error){finish(error);}
       };

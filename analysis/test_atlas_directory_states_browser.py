@@ -5,7 +5,7 @@ from playwright.sync_api import sync_playwright,expect
 ROOT=Path(__file__).resolve().parents[1]
 BASE='http://127.0.0.1:8788/almanac/reference-routes.html'
 def main():
-    joins=json.loads((ROOT/'research/ocean-current-reference-route-state-join.json').read_text(encoding='utf-8'))['states']
+    joins=json.loads((ROOT/'research/ocean-current-working-reference-route-state-join.json').read_text(encoding='utf-8'))['states']
     rows=json.loads((ROOT/'research/ocean-motion-dashboard.json').read_text(encoding='utf-8'))['entries']
     with sync_playwright() as p:
         browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'),headless=True)

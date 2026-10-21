@@ -11,7 +11,7 @@ def native(request):
 
 def main():
     snapshot=json.loads((ROOT/'research/ocean-motion-dashboard.json').read_bytes())
-    catalog=json.loads((ROOT/'research/ocean-current-reference-path-candidates.json').read_bytes())
+    catalog=json.loads((ROOT/'research/ocean-current-working-reference-routes.json').read_bytes())
     requests=[{'op':'fit','coordinates':[]}]
     for row in snapshot['entries']:
         for feature in row['map_features']:

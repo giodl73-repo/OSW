@@ -15,8 +15,8 @@ def main():
         page.emulate_media(reduced_motion='reduce')
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
-        page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=len(json.loads(Path('research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))['candidates']))
-        page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length===101')
+        page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=len(json.loads(Path('research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))['candidates']))
+        page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length===102')
         for row in reviewed:
             page.locator('#route-atlas-select').select_option(row['id'])
             review=page.locator('.route-atlas-scope-reviews')
@@ -33,7 +33,7 @@ def main():
         assert 'not annual extrema' in page.locator('.route-atlas-scope-reviews').inner_text()
         assert page.locator('#route-atlas-preview .route-map').is_visible()
         page.reload(wait_until='networkidle')
-        page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=len(json.loads(Path('research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))['candidates']))
+        page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=len(json.loads(Path('research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))['candidates']))
         assert page.locator('.route-atlas-local-dimensions tbody tr').count()==6
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         page.set_viewport_size({'width':1440,'height':1000})
@@ -52,7 +52,7 @@ def main():
         assert 'not current width estimates' in reach.inner_text()
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         page.reload(wait_until='networkidle')
-        page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=len(json.loads(Path('research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))['candidates']))
+        page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=len(json.loads(Path('research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))['candidates']))
         assert page.locator('.route-atlas-outflow-branches li').count()==3
         page.set_viewport_size({'width':1440,'height':1000})
         page.locator('.route-atlas-reported-reach').screenshot(path='figures/red-sea-reported-reach-card-review.png')

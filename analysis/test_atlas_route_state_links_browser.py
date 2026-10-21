@@ -7,8 +7,8 @@ from test_rust_atlas_snapshot_browser import without_state_join
 
 
 def main():
-    catalog=json.loads(Path('research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))
-    join=json.loads(Path('research/ocean-current-reference-route-state-join.json').read_text(encoding='utf-8'))
+    catalog=json.loads(Path('research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))
+    join=json.loads(Path('research/ocean-current-working-reference-route-state-join.json').read_text(encoding='utf-8'))
     grouped={}
     for row in catalog['candidates']:
         grouped.setdefault(row['current_id'],[]).append(row)

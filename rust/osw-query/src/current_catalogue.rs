@@ -66,6 +66,14 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         if collection == "sources" && crate::current_measurements::active(bundle) {
             expected = crate::current_measurements::document()["source_record"].clone();
         }
+        if collection == "sources"
+            && crate::madagascar_coastal_curve::active(bundle)
+            && expected["id"]
+                == crate::madagascar_coastal_curve::catalogue()["primary_source_record"]["id"]
+        {
+            expected =
+                crate::madagascar_coastal_curve::catalogue()["primary_source_record"].clone();
+        }
         let actual: Vec<_> = bundle
             .collections
             .get(collection)
@@ -105,7 +113,9 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             if object["capabilities"]["reported_length"] != count
                 || object["capabilities"]["scoped_width"] != count
                 || !object["latest_observation_date"].is_null()
-                || object["map_features"] != json!([])
+                || (!(crate::madagascar_coastal_curve::active(bundle)
+                    && object["id"] == "current:southern-east-madagascar")
+                    && object["map_features"] != json!([]))
             {
                 return Err(
                     "Identity admission promoted unadmitted measurements or geometry".into(),
@@ -116,6 +126,14 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     Ok(())
 }
 pub fn planning_source(current: &str, manifest: &Value) -> Option<(Value, &'static str)> {
+    if current == "southern-east-madagascar"
+        && crate::madagascar_coastal_curve::active_manifest(manifest)
+    {
+        return Some((
+            crate::madagascar_coastal_curve::planning_source(),
+            crate::madagascar_coastal_curve::CATALOGUE,
+        ));
+    }
     if current == "southern-east-madagascar"
         && crate::current_measurements::active_manifest(manifest)
     {

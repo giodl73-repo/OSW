@@ -187,6 +187,12 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         if key == "widths" {
             source.extend(crate::current_measurements::widths(bundle));
         }
+        if key == "routes" && crate::madagascar_coastal_curve::active(bundle) {
+            source = crate::madagascar_coastal_curve::catalogue()["candidates"]
+                .as_array()
+                .unwrap()
+                .clone();
+        }
         let actual = bundle
             .collections
             .get(collection)
@@ -402,7 +408,7 @@ fn plans(docs: &Value) -> Result<Value, String> {
                         .ok_or("Invalid reported seasonal value")
                 })
                 .collect::<Result<Vec<_>, _>>()?
-                .join("–");
+                .join("â€“");
             note = format!(
                 "{span} km: {}",
                 r["interpretation"]
@@ -460,7 +466,7 @@ impl Store {
             }
         }
         Ok(
-            json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],"sources_json":sources,"phase_plans":plans,"admitted_current_decisions":crate::current_catalogue::decisions(&self.bundle),"supplemental_widths":crate::current_measurements::widths(&self.bundle),"south_australian_context_scene":crate::south_australian_context::scene(&self.bundle),"eac_source_field_scene":crate::eac_source_fields::scene(&self.bundle),"asca_component_span_scene":crate::asca_component_spans::scene(&self.bundle),"kuroshio_filtered_width_scene":crate::kuroshio_filtered_width::scene(&self.bundle),"width_source_review_scenes":crate::current_width_source_reviews::scenes(&self.bundle),"research_evidence_scenes":crate::current_research_evidence::scenes(&self.bundle),"published_transport_scenes":crate::published_transports::by_current(&self.bundle),"pacific_neuc_breadth_scene":crate::pacific_neuc_breadths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"dwbc_float_composite_scene":crate::dwbc_float_composite::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"coastal_composite_width_scene":crate::coastal_composite_widths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[]))}),
+            json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],"sources_json":sources,"phase_plans":plans,"admitted_current_decisions":crate::current_catalogue::decisions(&self.bundle),"supplemental_widths":crate::current_measurements::widths(&self.bundle),"working_reference_routes":if crate::madagascar_coastal_curve::active(&self.bundle){crate::madagascar_coastal_curve::catalogue()}else{Value::Null},"south_australian_context_scene":crate::south_australian_context::scene(&self.bundle),"eac_source_field_scene":crate::eac_source_fields::scene(&self.bundle),"asca_component_span_scene":crate::asca_component_spans::scene(&self.bundle),"kuroshio_filtered_width_scene":crate::kuroshio_filtered_width::scene(&self.bundle),"width_source_review_scenes":crate::current_width_source_reviews::scenes(&self.bundle),"research_evidence_scenes":crate::current_research_evidence::scenes(&self.bundle),"published_transport_scenes":crate::published_transports::by_current(&self.bundle),"pacific_neuc_breadth_scene":crate::pacific_neuc_breadths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"dwbc_float_composite_scene":crate::dwbc_float_composite::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"coastal_composite_width_scene":crate::coastal_composite_widths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[]))}),
         )
     }
 }
