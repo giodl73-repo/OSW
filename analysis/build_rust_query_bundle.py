@@ -274,6 +274,10 @@ def build():
     from current_measurement_admissions import verify_inputs as verify_prose_dimensions, append as append_prose_dimensions
     prose_dimensions,prose_inputs=verify_prose_dimensions();inputs.update(prose_inputs)
     append_prose_dimensions(collections,prose_dimensions)
+    from agulhas_reported_dimensions import verify_inputs as verify_agulhas_reported, diagnostic as agulhas_reported_diagnostic, ID as AGULHAS_REPORTED_ID
+    agulhas_reported,agulhas_reported_inputs=verify_agulhas_reported();inputs.update(agulhas_reported_inputs)
+    collections['widths'].append(agulhas_reported['width_record'])
+    collections['sources']=[agulhas_reported['source_record'] if r['id']==agulhas_reported['source_record']['id'] else r for r in collections['sources']]
     collections['sources']=[routes['primary_source_record'] if r['id']==routes['primary_source_record']['id'] else r for r in collections['sources']]
     collections['reference_routes']=routes['candidates']
     objects=copy.deepcopy(dashboard['entries'])
@@ -701,6 +705,9 @@ def build():
     collections['diagnostics'].append(normal_record(normal_document))
     daily_owner['diagnostic_ids'].append(NORMAL_ID)
     daily_owner['capabilities']['axis_normal_samples']=16470
+    collections['diagnostics'].append(agulhas_reported_diagnostic(agulhas_reported))
+    agulhas_owner=next(r for r in objects if r['id']=='current:agulhas')
+    agulhas_owner['diagnostic_ids'].append(AGULHAS_REPORTED_ID)
     collections['width_samples']=build_width_samples(collections['diagnostics'])
     for row in objects:
         row['width_sample_ids']=[sample['id'] for sample in collections['width_samples'] if sample['entity_id']==row['id']]
@@ -857,6 +864,7 @@ def build():
     return {'schema':'osw.query-bundle.v1','manifest':{'status':'local_editorial_and_canonical_snapshot_not_new_scientific_admission',
             'canonical_release':'v0.1.0','canonical_collections':CANONICAL,
             'kuroshio_axis_normal_version':'1',
+            'agulhas_reported_dimensions_version':'1',
             'eddy_recurrence_receipt':{'source_file':recurrence_path,'source_sha256':inputs[recurrence_path],'source_json':(ROOT/recurrence_path).read_bytes().decode('utf-8')},
             'atlas_receipts':atlas_receipts,
             'current_section_receipts':{asca_path:{'source_file':asca_path,'source_sha256':inputs[asca_path],'source_json':(ROOT/asca_path).read_bytes().decode('utf-8')}},

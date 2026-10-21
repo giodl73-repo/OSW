@@ -125,6 +125,7 @@
     window.renderCurrentWidthSourceReview(sourceReview,window.oswSeasonSnapshot?.width_source_review_scenes?.[current]);
     if(current==='kuroshio')window.renderKuroshioFilteredWidths(sourceReview,window.oswSeasonSnapshot?.kuroshio_filtered_width_scene);
     if(current==='kuroshio')window.renderKuroshioDaily(sourceReview,window.oswSeasonSnapshot?.kuroshio_daily_scene);
+    if(current==='agulhas')window.renderAgulhasReportedDimensions(sourceReview,window.oswSeasonSnapshot?.agulhas_reported_scene);
     if(current==='agulhas')window.renderAscaComponentSpans(sourceReview,window.oswSeasonSnapshot?.asca_component_span_scene);
     if(current==='east-australian')window.renderEacSourceFields(sourceReview,window.oswSeasonSnapshot?.eac_source_field_scene);
     if(current==='south-australian')window.renderSouthAustralianContext(sourceReview,window.oswSeasonSnapshot?.south_australian_context_scene);
@@ -177,7 +178,7 @@
       byId('season-title').textContent='Local salinity-core observation';
       byId('season-value').textContent=`${row.name}: ${row.width_range_km?row.width_range_km.join('–'):'about '+row.approximate_width_km} km local water-mass core · ${row.phase_label} · ${row.time_convention}`;
     }
-    byId("season-bar").parentElement.hidden = row?.approximate_width_km == null || !!row?.original_regional_context || !!row?.modal_decay_context || row?.mean_section_context?.section_axis_kind==='oblique' || (["published_near_surface_survey_summary","selected_section_core_width_statistics","model_regional_width_summary","synoptic_stream_tube_section","survey_layer_median_threshold_width","inverse_hydrographic_section_span","survey_profile_composite","dated_band_section","climatological_core_distribution","campaign_hydrographic_core","ensemble_angular_summary","regional_scalar_summary","monthly_climatological_fit","stream_mean_threshold_summary","eulerian_mean_section_span","width_time_series_statistics"].includes(row?.phase_kind));
+    byId("season-bar").parentElement.hidden = row?.approximate_width_km == null || !!row?.original_regional_context || !!row?.modal_decay_context || row?.mean_section_context?.section_axis_kind==='oblique' || (["published_typical_core_description","published_near_surface_survey_summary","selected_section_core_width_statistics","model_regional_width_summary","synoptic_stream_tube_section","survey_layer_median_threshold_width","inverse_hydrographic_section_span","survey_profile_composite","dated_band_section","climatological_core_distribution","campaign_hydrographic_core","ensemble_angular_summary","regional_scalar_summary","monthly_climatological_fit","stream_mean_threshold_summary","eulerian_mean_section_span","width_time_series_statistics"].includes(row?.phase_kind));
     if(row?.phase_kind==='model_snapshot_width_summary'){
       byId('season-title').textContent='Local model snapshot width';
       byId('season-value').textContent=`${row.name}: approximately ${row.approximate_width_km} km · ${row.phase_label}`;

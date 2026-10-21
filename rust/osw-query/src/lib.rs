@@ -3,6 +3,7 @@ use serde_json::{Value, json};
 use std::collections::{BTreeMap, BTreeSet};
 pub const MAX_SOURCE_SNAPSHOT_BYTES: usize = 512 * 1024 * 1024;
 mod abstract_regional_widths;
+mod agulhas_reported;
 mod antilles_cruise_spans;
 mod asca_calendar;
 mod asca_component_spans;
@@ -324,6 +325,7 @@ impl Store {
         current_research_evidence::validate(&bundle)?;
         kuroshio_filtered_width::validate(&bundle)?;
         kuroshio_daily::validate(&bundle)?;
+        agulhas_reported::validate(&bundle)?;
         kuroshio_normal::validate(&bundle)?;
         asca_component_spans::validate(&bundle)?;
         asca_calendar::validate(&bundle)?;
@@ -702,6 +704,10 @@ impl Store {
         };
         let chart_scene = if !daily_scene.is_null() {
             daily_scene
+        } else if query.collection == "diagnostics"
+            && !agulhas_reported::query(&matches, &self.bundle).is_null()
+        {
+            agulhas_reported::query(&matches, &self.bundle)
         } else if query.collection == "observed_section_spans" {
             observed_spans::scene(&matches)
         } else if query.collection == "proposed_widths" {

@@ -170,6 +170,12 @@ def main():
     paths.extend(['research/kuroshio-wang-2024-axis-normal-query-contract.json','rust/osw-query/src/kuroshio_normal.rs',
                   'almanac/reference-route-atlas.js','almanac/dashboard.js'])
     from query_packet import SCHEMA, descriptors
+    from agulhas_reported_dimensions import verify_inputs as verify_agulhas_reported
+    _,agulhas_reported_inputs=verify_agulhas_reported()
+    paths.extend(agulhas_reported_inputs)
+    paths.extend(['rust/osw-query/src/agulhas_reported.rs','almanac/reported-dimensions.js','almanac/query-charts.js'])
+    paths.extend(['almanac/atlas-width-evidence.js','almanac/reference-routes.js','almanac/seasons.js',
+                  'almanac/query.html','almanac/reference-routes.html','almanac/seasons.html'])
     packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
     paths.extend(['rust/osw-query/src/packet.rs','analysis/query_packet.py','almanac/query-packet.js','almanac/query-worker.js','almanac/query-workspace.js','plans/query-packet-transport-protocol-v1.md'])
     if packet.get('schema')==SCHEMA:

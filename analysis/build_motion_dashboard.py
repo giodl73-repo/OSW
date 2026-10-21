@@ -91,6 +91,9 @@ def build():
     prose_dimensions,prose_inputs=verify_prose_dimensions();inputs.update(prose_inputs)
     sources[prose_dimensions['source_record']['id']]=prose_dimensions['source_record']
     measurements.append(prose_dimensions['measurement']);claims.append(prose_dimensions['claim'])
+    from agulhas_reported_dimensions import verify_inputs as verify_agulhas_reported, ID as AGULHAS_REPORTED_ID
+    agulhas_reported,agulhas_reported_inputs=verify_agulhas_reported();inputs.update(agulhas_reported_inputs)
+    sources[agulhas_reported['source_record']['id']]=agulhas_reported['source_record']
     from madagascar_reference_curve import verify_inputs as verify_coastal_curve, source_record as coastal_land_source
     _,working_routes,coastal_inputs=verify_coastal_curve();inputs.update(coastal_inputs)
     sources[coastal_land_source()['id']]=coastal_land_source()
@@ -209,7 +212,7 @@ def build():
         inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
     for path in [gulf_audit['protocol_file'],'analysis/check_gulf_stream_published_widths.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
-    widths = width_inventory['measurements']+[prose_dimensions['width_record']]
+    widths = width_inventory['measurements']+[prose_dimensions['width_record'],agulhas_reported['width_record']]
     width_audits={}
     for record in widths:
         audit_file=record.get('extraction_file') or (record.get('stream_mean_context') or record.get('eulerian_section_context') or record.get('width_statistics_context') or record.get('regional_range_context') or record.get('regional_scalar_context') or record.get('mean_offshore_context') or record.get('adcp_threshold_context') or {}).get('audit_file')
@@ -790,6 +793,10 @@ def build():
             groups['measurements'].append(model_dimensions)
             groups['time_evidence'].append(kuroshio_daily['summaries'])
             evidence_links.append({'label':'Explore Kuroshio2024 dated model dimensions','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':'diagnostic:kuroshio-wang-2024-dimensions'}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
+        if current_id=='agulhas':
+            payload['reported_dimension_context']=agulhas_reported
+            groups['measurements'].append(agulhas_reported)
+            evidence_links.append({'label':'Inspect Agulhas source-reported dimension context','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':AGULHAS_REPORTED_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
         study=next((s for s in research_evidence['scenes'] if s['current_id']==current_id),None)
         if study:
             payload['research_evidence_ids']=[study['diagnostic_id']]

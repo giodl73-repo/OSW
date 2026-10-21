@@ -3,6 +3,7 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
   const id=current.id.replace(/^current:/,'');
   if(id==='kuroshio')window.renderKuroshioFilteredWidths(panel,window.oswAtlasSnapshot?.kuroshio_filtered_width_scene);
   if(id==='kuroshio')window.renderKuroshioDaily(panel,window.oswAtlasSnapshot?.kuroshio_daily_scene);
+  if(id==='agulhas')window.renderAgulhasReportedDimensions(panel,window.oswAtlasSnapshot?.agulhas_reported_scene);
   if(id==='agulhas')window.renderAscaComponentSpans(panel,window.oswAtlasSnapshot?.asca_component_span_scene);
   if(id==='east-australian')window.renderEacSourceFields(panel,window.oswAtlasSnapshot?.eac_source_field_scene);
   if(id==='south-australian')window.renderSouthAustralianContext(panel,window.oswAtlasSnapshot?.south_australian_context_scene);

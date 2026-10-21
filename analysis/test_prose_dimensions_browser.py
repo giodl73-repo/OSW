@@ -25,7 +25,7 @@ def main():
         card=page.locator('#inventory-addition-southern-east-madagascar')
         expect(card).to_contain_text('working reported-length rank 12',timeout=120000)
         expect(page.locator('#width-'+m.WIDTH_ID)).to_contain_text('120')
-        assert page.locator('#width-rows tr').count()==157
+        assert page.locator('#width-rows tr').count()==158
         assert page.locator('#width-decision-rows tr').count()==101
         image=card.locator('.proposed-source-dimensions img');image.scroll_into_view_if_needed()
         page.wait_for_function('()=>document.querySelector("#inventory-addition-southern-east-madagascar img")?.naturalWidth>0')
@@ -44,7 +44,7 @@ def main():
         plan=page.evaluate('window.oswSeasonPlan');assert len(plan['phases'])==1 and not plan['can_play']
         page.locator('#regional-width-range').screenshot(path=str(out/'survey-mobile.png'))
         assert not errors,errors;browser.close()
-    receipt={'status':'PASS','ranked_lengths':12,'new_length_km':650,'new_length_rank':12,'scoped_width_records':157,
+    receipt={'status':'PASS','ranked_lengths':12,'new_length_km':650,'new_length_rank':12,'scoped_width_records':158,
         'scoped_width_km':120,'single_non_playable_survey_state':True,'width_bar_hidden':True,
         'native_wasm_admission_equal':True,'keyboard_query_link':True,'phone_reflow':True,'page_errors':errors}
     (out/'browser-result.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps(receipt))

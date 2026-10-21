@@ -211,10 +211,14 @@
     requestAnimationFrame(revealInitialCard);
   }).catch(error => { byId("inventory-addition-status").textContent = `Inventory additions unavailable: ${error.message}`; });
   const widthInventoryReady = load("../research/ocean-current-width-inventory.json").then(async base => {
-    const extra=await load('../research/southern-east-madagascar-prose-dimension-admissions.json').catch(()=>null);
-    const value=extra?{...base,measurements:[...base.measurements,extra.width_record],
-      current_decisions:[...base.current_decisions,{current_id:extra.current_id,name:extra.width_record.name,measurement_ids:[extra.width_record.id],width_decision:'scoped_width_evidence_present',whole_current_width_km:null,next_action:'Recover paired velocity edges, width-layer support and repeated observations before physical widths, annual ranges or geographic intersections.'}],
-      counts:{...base.counts,currents:101,measurements:157,currents_with_scoped_width_evidence:83}}:base;
+    const supplemental=window.oswAtlasSnapshot.supplemental_widths||[];
+    const measurements=[...base.measurements,...supplemental];
+    const admitted=(window.oswAtlasSnapshot.admitted_current_decisions||[]).filter(r=>!base.current_decisions.some(b=>b.current_id===r.current_id)).map(r=>({...r,
+      width_decision:r.measurement_ids.length?'scoped_width_evidence_present':'width_not_assessed',whole_current_width_km:null,
+      next_action:'Recover paired velocity edges, width-layer support and repeated observations before physical widths, annual ranges or geographic intersections.'}));
+    const decisions=[...base.current_decisions,...admitted].map(r=>({...r,measurement_ids:[...new Set([...(r.measurement_ids||[]),...supplemental.filter(w=>w.current_id===r.current_id).map(w=>w.id)])]}));
+    const value={...base,measurements,current_decisions:decisions,counts:{...base.counts,currents:decisions.length,
+      measurements:measurements.length,currents_with_scoped_width_evidence:new Set(measurements.map(w=>w.current_id)).size}};
     for (const row of value.measurements) {
       const tr = node("tr", null, byId("width-rows")); tr.id = `width-${row.id}`;
       link(row.name, objectHref(`current:${row.current_id}`), node("td", null, tr));
@@ -343,6 +347,7 @@
       link("Open route map at full size", `../${row.figure}`, node("p", null, card));
       node("p", report.coordinate_selection, card);
       if(row.current_id==='kuroshio')window.renderKuroshioDaily(card,window.oswAtlasSnapshot?.kuroshio_daily_scene);
+      if(row.current_id==='agulhas')window.renderAgulhasReportedDimensions(card,window.oswAtlasSnapshot?.agulhas_reported_scene);
       node("p", `Layer: ${report.layer} Time convention: ${report.time_convention}`, card);
       node("p", report.scenario_rule, card);
       const source = node("p", "Source: ", card); link(report.source_citation, report.source_url, source, true);
