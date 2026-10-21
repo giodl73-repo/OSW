@@ -85,3 +85,18 @@ The isolated ece1c14 full suite finished with clean start/end:1843tests and
 and readback changes, so its result cannot certify this repair. A clean
 successor must cover the final repaired commit. Keep PR83 draft until
 its required final gates are satisfied. The wider current-data gaps remain.
+
+Subsequent complete shared browser matrix PASSED: all six research
+card/seasons/query/source/inspector/mobile views, 53 indexed documents, mixed
+diagnostics and all 56 native/WASM corruption rejections. The dedicated Loop
+module follows in the same wrapper; its three source views have passed,
+while its remaining validation is still running. The clean repaired full
+suite at8399af0 is also still running. Neither running gate is a pass yet.
+
+Source work continues in the same PR. The Azores Countercurrent Figure 2
+inspection is recorded in
+[the readiness note](azores-countercurrent-carracedo-2014-figure-readiness-2026-10-20.md).
+The native source image was verified against its PDF, but contour identities
+and the vertical transformation do not yet support the fixed fifteen
+readings. Those widths remain unmeasured; this source audit does not inflate
+measurement coverage or replace the required source field/calibration.
