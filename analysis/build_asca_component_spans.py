@@ -15,11 +15,13 @@ RAW = 'research/agulhas-asca-100m-observed-profiles.json'
 MONTHLY = 'research/agulhas-asca-100m-monthly-sections.json'
 CONTRACT = 'research/agulhas-asca-100m-query-contract.json'
 OPERATOR = 'analysis/build_asca_component_spans.py'
+READBACK = 'plans/asca-alignment-indicator-readback-v1.md'
 INPUTS = {
     PROTOCOL: '5c4424987396103237e88f8f5fd495e75d2e1dfc734b60d345ab0abf531c7d6f',
     RAW: 'c0b9423b9f1335a6455c87d8dda0a54794ac474118fa0a3f000048ffad69fd89',
     MONTHLY: 'fd64659cb63e5f560b3da9cdc830c69d4327b83ea55df7e016a12d2e6a8d8a4a',
     CONTRACT: '21682cf3d38d244f735ca43396d495e0dad64783bed4f45bcb5c5a16eca0e2cf',
+    READBACK: '73cec459bcf139c8247e0c42a88036001046a2120031f4821149818f8a2d9d4f',
 }
 FRACTIONS = (0.4, 0.5, 0.6)
 
@@ -145,7 +147,7 @@ def build(verify_original=True):
         selected = [rows[i] for i in frame['source_time_indices']]
         summaries.append({key: frame[key] for key in ['year', 'month', 'complete_calendar_time_support', 'source_time_indices', 'first_observed_at', 'last_observed_at']})
         summaries[-1]['outcomes'] = summarize(selected)
-    return {'schema': 'osw.asca-dated-component-spans.v1',
+    document = {'schema': 'osw.asca-dated-component-spans.v1',
             'status': 'exploratory_fixed_array_component_spans_not_physical_current_width',
             'current_id': 'agulhas', 'entity_id': 'current:agulhas', 'depth_m': 100,
             'source_url': 'https://zenodo.org/records/20515068', 'source_doi': '10.5281/zenodo.20515068',
@@ -176,6 +178,19 @@ def build(verify_original=True):
             'geographic_edges': None, 'width_measurement_admitted': False,
             'width_rank_eligible': False, 'seasonal_playback_eligible': False,
             'overall_outcomes': summarize(rows), 'profiles': rows, 'monthly_summaries': summaries}
+    # Preserve source values and all full-precision measurement decisions.
+    # Only this computed, non-decision angle has a declared readback quantum.
+    for profile in document['profiles']:
+        angle = profile['peak_alignment_indicator_deg']
+        if angle is not None:
+            profile['peak_alignment_indicator_deg'] = round(angle, 6)
+    document['calculation_readback_protocol'] = READBACK
+    document['alignment_indicator_readback_decimal_places'] = 6
+    return document
+
+
+def encoded(document):
+    return (json.dumps(document, separators=(',', ':'), allow_nan=False)+'\n').encode('utf8')
 
 
 def verify(document=None):
@@ -192,5 +207,5 @@ if __name__ == '__main__':
         document = verify()
     else:
         document = build()
-        (ROOT/REPORT).write_bytes((json.dumps(document, separators=(',', ':'), allow_nan=False)+'\n').encode())
+        (ROOT/REPORT).write_bytes(encoded(document))
     print(json.dumps({'counts': document['counts'], 'outcomes': document['overall_outcomes']}))

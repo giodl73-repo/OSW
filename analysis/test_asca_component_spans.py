@@ -27,6 +27,20 @@ def test_linear_crossing_and_bracket_meaning():
     assert case['larger_distance_edge']['fraction_inside_to_outside'] == pytest.approx(.25)
 
 
+def test_readback_changes_only_computed_alignment_not_measurements():
+    report=operator.build()
+    source=json.loads((operator.ROOT/operator.RAW).read_bytes())
+    assert report['alignment_indicator_readback_decimal_places']==6
+    assert report['calculation_readback_protocol']==operator.READBACK
+    for observed,stored in zip(source['profiles'],report['profiles']):
+        full=operator.measure(source['coordinates']['distance_m'],observed['fields']['v'],observed['fields']['U'])
+        for key,value in full.items():
+            if key!='peak_alignment_indicator_deg':assert stored[key]==value
+        angle=full['peak_alignment_indicator_deg']
+        assert stored['peak_alignment_indicator_deg']==(None if angle is None else round(angle,6))
+        if angle is not None:assert abs(stored['peak_alignment_indicator_deg']-angle)<=5.000001e-7
+
+
 def test_missing_barriers_are_not_zero_or_an_edge():
     case = primary([0, None, -2, -1, 0])['cases'][1]
     assert case['status'] == 'unresolved_paired_boundaries'

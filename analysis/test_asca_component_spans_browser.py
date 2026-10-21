@@ -75,10 +75,10 @@ def main():
      assert sum(r['cases'][1]['span_km'] is not None for r in all_rows)==330
      print('PASS actual native/WASM pagination: all931outcomes,330resolved/601unresolved',flush=True)
      p.close();packet=json.loads((root/'almanac/query-data.json').read_bytes())
-     for kind in ['source_hash','figure_hash','operator_hash','false_physical_width','fake_date','missing_outcome','coherent_rebind','inventory_width']:
+     for kind in ['source_hash','figure_hash','operator_hash','readback_hash','false_physical_width','fake_date','missing_outcome','coherent_rebind','inventory_width']:
       bad=copy.deepcopy(packet);diag=next(r for r in bad['collections']['diagnostics'] if r['id']==identifier)
       if kind.endswith('_hash'):
-       path={'source_hash':report,'figure_hash':figure,'operator_hash':'plans/agulhas-asca-100m-component-span-protocol-v1.md'}[kind]
+       path={'source_hash':report,'figure_hash':figure,'operator_hash':'plans/agulhas-asca-100m-component-span-protocol-v1.md','readback_hash':'plans/asca-alignment-indicator-readback-v1.md'}[kind]
        bad['manifest']['input_sha256'][path]='0'*64
       elif kind=='false_physical_width':diag['document']['width_measurement_admitted']=True
       elif kind=='fake_date':diag['document']['profiles'][0]['observed_at']='2026-10-18T00:00:00Z'
@@ -92,7 +92,7 @@ def main():
       value=p.evaluate('''async url=>{const {instance}=await WebAssembly.instantiate(await (await fetch('/almanac/query-engine.wasm')).arrayBuffer(),{}),e=instance.exports,r=await fetch(url);if(!r.ok)throw new Error('Unserved fixture');const b=new Uint8Array(await r.arrayBuffer()),p=e.osw_alloc(b.length);try{new Uint8Array(e.memory.buffer,p,b.length).set(b);e.osw_load(p,b.length);return JSON.parse(new TextDecoder().decode(new Uint8Array(e.memory.buffer,e.osw_result_ptr(),e.osw_result_len())));}finally{e.osw_dealloc(p,b.length);}}''',base+'/'+fixture.relative_to(root).as_posix())
       assert value['ok'] is False;p.close();print('PASS native/actual WASM rejection',kind,flush=True)
      browser.close();assert not errors and not originals,(errors,originals)
-    (out/'browser-result.json').write_text(json.dumps({'status':'PASS','views':list(urls),'profiles':931,'primary_resolved':330,'primary_unresolved':601,'month_options':27,'thresholds':3,'source_queries':4,'native_wasm_parity':True,'native_wasm_corruptions':8,'mobile_width':320,'keyboard_and_horizontal_scroll':True,'reduced_motion':True,'no_automatic_originals':True},indent=2)+'\n')
+    (out/'browser-result.json').write_text(json.dumps({'status':'PASS','views':list(urls),'profiles':931,'primary_resolved':330,'primary_unresolved':601,'month_options':27,'thresholds':3,'source_queries':4,'native_wasm_parity':True,'native_wasm_corruptions':9,'mobile_width':320,'keyboard_and_horizontal_scroll':True,'reduced_motion':True,'no_automatic_originals':True},indent=2)+'\n')
 
 
 if __name__ == '__main__': main()
