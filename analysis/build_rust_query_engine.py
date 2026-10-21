@@ -129,6 +129,7 @@ def main():
     paths.append('almanac/asca-component-spans.js')
     paths.extend(['analysis/eac_core_readback.py','plans/eac-section-core-calculation-readback-v1.md'])
     paths.append('plans/eac-section-core-calculation-readback-v2.md')
+    paths.append('plans/published-local-model-snapshot-width-admission-v1.md')
     paths.extend(['analysis/check_south_australian_miller_model_width.py',
                   'research/south-australian-miller-2006-model-width-scope-audit.json',
                   'research/source-data/miller-south-australian-2006/acquisition.json',

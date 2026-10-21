@@ -146,6 +146,19 @@ fn validate_miller_model_width(
     if matches != 1 {
         return Err("Missing or duplicated Miller model-width report".into());
     }
+    let mut width = expected["measurements"][0].clone();
+    width["source_audit_file"] = json!(path);
+    width["source_audit_sha256"] = json!(format!("{:x}", Sha256::digest(raw.as_bytes())));
+    let widths = collections
+        .get("widths")
+        .ok_or("Missing Miller width inventory")?;
+    let matches: Vec<_> = widths
+        .iter()
+        .filter(|r| r["current_id"] == "south-australian" || r["id"] == width["id"])
+        .collect();
+    if matches != vec![&width] {
+        return Err("Miller width inventory record missing, duplicated or changed".into());
+    }
     Ok(())
 }
 
@@ -162,11 +175,21 @@ mod tests {
         let mut inputs = report["input_sha256"].clone();
         inputs[path] = json!(format!("{:x}", Sha256::digest(raw.as_bytes())));
         let manifest = json!({"input_sha256":inputs});
-        let rows = BTreeMap::from([(
+        let mut rows = BTreeMap::from([(
             "objects".into(),
             vec![json!({"id":"current:south-australian","scope_audits":[report]})],
         )]);
+        let mut width = rows["objects"][0]["scope_audits"][0]["measurements"][0].clone();
+        width["source_audit_file"] = json!(path);
+        width["source_audit_sha256"] = json!(format!("{:x}", Sha256::digest(raw.as_bytes())));
+        rows.insert("widths".into(), vec![width]);
         assert!(validate_miller_model_width(&rows, &manifest).is_ok());
+        let mut missing = rows.clone();
+        missing.remove("widths");
+        assert!(validate_miller_model_width(&missing, &manifest).is_err());
+        let mut promoted = rows.clone();
+        promoted.get_mut("widths").unwrap()[0]["is_annual_mean_width"] = json!(true);
+        assert!(validate_miller_model_width(&promoted, &manifest).is_err());
         for (field, value) in [
             ("approximate_width_km", json!(80)),
             ("model_elapsed_day", json!(21)),

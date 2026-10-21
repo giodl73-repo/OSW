@@ -370,6 +370,12 @@ fn plans(docs: &Value) -> Result<Value, String> {
             Vec::new()
         };
         let mut note="Annual width range and measurement uncertainty: not available. A single dated section does not establish a seasonal cycle.".to_owned();
+        if widths
+            .iter()
+            .any(|r| r["current_id"] == id && r["phase_kind"] == "model_snapshot_width_summary")
+        {
+            note = "Local model snapshot on an elapsed model day. Annual climatological forcing is not an annual mean width; observed dates, annual ranges and seasonal playback are unavailable.".to_owned();
+        }
         if let Some(r) = summary {
             let span = r["reported_seasonal_value_span_km"]
                 .as_array()

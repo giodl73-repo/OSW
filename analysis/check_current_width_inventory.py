@@ -15,6 +15,8 @@ def validate(document, ledger):
     ids = {row["id"] for row in ledger["entries"]}
     if len(decisions) != len(ids) or {row["current_id"] for row in decisions} != ids:
         raise ValueError("Incomplete or duplicated width inventory")
+    from check_south_australian_miller_model_width import validate_inventory as validate_miller_inventory
+    validate_miller_inventory(document)
     from check_ngcc_seasonal_vein_widths import validate_inventory as validate_ngcc_inventory
     validate_ngcc_inventory(document)
     from check_balearic_socib_width import validate_inventory as validate_balearic_inventory
@@ -539,6 +541,9 @@ def validate(document, ledger):
         elif row['phase_kind'] == 'dated_width_constraint':
             from check_antarctic_slope_jet_constraint import validate_row as validate_jet_row
             validate_jet_row(row)
+        elif row['phase_kind'] == 'model_snapshot_width_summary':
+            from check_south_australian_miller_model_width import validate_row as validate_miller_row
+            validate_miller_row(row)
         elif row['phase_kind'] == 'regional_summary':
             if row['width_metric']=='author_reported_velocity_contour_core_span':
                 from check_atlantic_seuc_core_width import validate_row as validate_core

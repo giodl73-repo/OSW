@@ -3,7 +3,7 @@
   "current_id": "south-australian",
   "name": "South Australian Current",
   "as_of": "2026-10-21",
-  "status": "reviewed_original_source_report_not_inventory_admission",
+  "status": "reviewed_original_source_report_editorial_inventory_admitted_not_canonical",
   "source_document_file": "research/source-data/miller-south-australian-2006/dissertation.pdf",
   "source_document_sha256": "c2a90767085d99e788ae93f6fd7422f00fd687e4c0ccb78341da0c78f600743b",
   "acquisition_file": "research/source-data/miller-south-australian-2006/acquisition.json",
@@ -43,7 +43,24 @@
       "source_citation": "Miller, H. A. (2006), Modeling studies of the coastal/littoral current system off Southern Australia, PhD dissertation, Naval Postgraduate School, December 2006.",
       "source_locator": "Printed p.48 experiment setup, p.49 width description, Figure4.20e on p.233; PDF pages79,80,264 (1-based).",
       "source_access": "Complete 431-page original acquired from NPS Library archive deposit; selected setup, quantity and section figure reviewed. Not all dissertation pages reviewed.",
-      "source_publication_year": 2006
+      "source_publication_year": 2006,
+      "name": "South Australian Current",
+      "status": "editorial_source_extraction_not_canonical",
+      "phase_kind": "model_snapshot_width_summary",
+      "phase_label": "Experiment 6 · model day 20",
+      "width_metric": "author_reported_local_model_current_scale",
+      "range_interpretation": "One approximate local model scale; no numerical uncertainty or temporal range reported.",
+      "section_orientation": "Meridional section at 130°E; displayed zonal velocity is normal to the section.",
+      "time_convention": "Elapsed model day 20 in Experiment 6 with annual climatological forcing; not an observed calendar date or an annual mean width.",
+      "time_support_kind": "elapsed_model_day",
+      "is_climatology": false,
+      "source_evidence_kind": "published_process_model_snapshot",
+      "extraction_method": "Transcribed original prose and checked its experiment setup and Figure4.20e; no edge digitization.",
+      "source_retrieved_date": "2026-10-21",
+      "source_document_sha256": "c2a90767085d99e788ae93f6fd7422f00fd687e4c0ccb78341da0c78f600743b",
+      "boundary_sides": "author_reported_model_scale_without_extracted_edges",
+      "full_width_inference_eligible": false,
+      "is_confidence_interval": false
     }
   ],
   "canonical_width_inventory_admitted": false,
@@ -54,7 +71,6 @@
     "model_experiment_and_section_association"
   ],
   "remaining_gates": [
-    "Review measurement-inventory admission as a source-defined local model scale.",
     "Acquire original numerical output and paired boundary convention for reproducible boundary extraction.",
     "Obtain compatible dated repeated current boundaries for physical widths and annual ranges."
   ],
@@ -62,6 +78,9 @@
     "research/source-data/miller-south-australian-2006/dissertation.pdf": "c2a90767085d99e788ae93f6fd7422f00fd687e4c0ccb78341da0c78f600743b",
     "research/source-data/miller-south-australian-2006/acquisition.json": "4dff6997b4e84ae111159c350060af8f0cfb621c53807429e96929054ca71bcf",
     "plans/south-australian-miller-model-width-protocol-v1.md": "75cf6c4b78da48cf7bc006239b1125a629689ed7b998529e880119362ea0c112",
-    "figures/south-australian-miller-model-width.svg": "3520f23c2d79deb5cc930f4e7997e115d566c1603195c578be541084c5e479ca"
-  }
+    "figures/south-australian-miller-model-width.svg": "3520f23c2d79deb5cc930f4e7997e115d566c1603195c578be541084c5e479ca",
+    "plans/published-local-model-snapshot-width-admission-v1.md": "67fd8d74568a03f0a0e2241c900f6257d0253b457e75e87315a873d42d4d83d6"
+  },
+  "editorial_width_inventory_admitted": true,
+  "admission_protocol_file": "plans/published-local-model-snapshot-width-admission-v1.md"
 }
