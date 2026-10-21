@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = 'research/eac-csiro-100m-section-core-spans.json'
-SOURCE_SHA = 'e29031b053b831848d210e1e409707380c4f3b552042da32fcf552b2525a4aa5'
+SOURCE_SHA = '1bbf6553d8b5d9b7eec3626622c980b7bc8ae54303be86ba58f8de21dc3f7e1d'
 PROTOCOL = 'plans/eac-section-calendar-distribution-protocol-v1.md'
 REPORT = 'research/eac-section-calendar-distributions.json'
 OPERATOR = 'analysis/build_eac_calendar_distributions.py'

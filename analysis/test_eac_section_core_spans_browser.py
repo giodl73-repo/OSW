@@ -77,7 +77,7 @@ def main():
             exact=core.get_by_role('link',name='Inspect this exact section-core outcome',exact=True);exact.focus();expect(exact).to_be_focused()
             if view=='diagnostic':
                 assert p.evaluate('oswLastQueryResult')==native(diagnostic)
-                overview=core.locator('details');overview.locator(':scope > summary').focus();p.keyboard.press('Enter')
+                overview=core.get_by_text('All-date outcomes, sensitivity and fixed source examples',exact=True).locator('..');overview.locator(':scope > summary').focus();p.keyboard.press('Enter')
                 img=overview.locator('img');img.scroll_into_view_if_needed();expect(img).to_have_js_property('complete',True);expect(img).to_have_attribute('src','../'+FIGURE);assert img.evaluate('(n)=>n.naturalWidth>0')
                 core.screenshot(path=str(out/'core-desktop.png'))
             p.set_viewport_size({'width':320,'height':900});assert p.evaluate('document.documentElement.scrollWidth<=innerWidth')
@@ -94,10 +94,11 @@ def main():
             assert value['total']==3770;all_rows.extend(row['record'] for row in value['rows']);print('PASS exact core source page',offset,flush=True)
         assert all_rows==raw['profiles'];p.close()
         packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
-        for mode in ['raw_hash','summary_hash','protocol_hash','figure_hash','invented_width','erased_failures','coherent_rebind','inventory_width']:
+        for mode in ['raw_hash','summary_hash','protocol_hash','figure_hash','readback_code_hash','readback_protocol_hash','invented_width','erased_failures','coherent_rebind','inventory_width']:
             bad=copy.deepcopy(packet);d=next(d for d in bad['collections']['diagnostics'] if d['id']==ID)
             if mode.endswith('_hash'):
-                path={'raw_hash':REPORT,'summary_hash':SUMMARY,'protocol_hash':'plans/eac-csiro-100m-section-core-span-protocol-v1.md','figure_hash':FIGURE}[mode];bad['manifest']['input_sha256'][path]='0'*64
+                path={'raw_hash':REPORT,'summary_hash':SUMMARY,'protocol_hash':'plans/eac-csiro-100m-section-core-span-protocol-v1.md','figure_hash':FIGURE,
+                    'readback_code_hash':'analysis/eac_core_readback.py','readback_protocol_hash':'plans/eac-section-core-calculation-readback-v1.md'}[mode];bad['manifest']['input_sha256'][path]='0'*64
             elif mode=='invented_width':d['document']['physical_width_admitted']=True
             elif mode=='erased_failures':d['document']['overall_outcomes'][1]['attempted_dates']=2883
             elif mode=='coherent_rebind':
@@ -114,7 +115,7 @@ def main():
             p=page();wasm_rejection(p,fixture,index=True);p.close();print('PASS native/actual-WASM core index rejection',mode,flush=True)
         browser.close();assert not errors and not originals,(errors,originals)
     result={'status':'PASS','views':list(urls),'dates':3770,'attempts':33930,'all_source_rows_exact_native_wasm':True,
-            'source_pages':8,'packet_corruptions':8,'index_corruptions':2,'keyboard_320px':True,
+            'source_pages':8,'packet_corruptions':10,'index_corruptions':2,'keyboard_320px':True,
             'all9sensitivity_cases':True,'missing_domain_weak_cases_retained':True,'section_intersections_not_current_edges':True,
             'no_automatic_originals':True}
     (out/'browser-result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

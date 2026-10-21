@@ -9,6 +9,7 @@ import statistics
 from pyproj import Geod
 from acquire_eac_100m_source import ROOT, sha
 from check_eac_100m_source import load, times, iso
+from eac_core_readback import canonicalize
 
 REPORT = 'research/eac-csiro-100m-section-core-spans.json'
 PROTOCOL = 'plans/eac-csiro-100m-section-core-span-protocol-v1.md'
@@ -171,7 +172,7 @@ def build():
         selected = [r for r in rows if (r['year'], r['month']) == (year, month)]
         months.append({'year': year, 'month': month, 'source_time_indices': [r['source_time_index'] for r in selected],
                        'outcomes': summarize(selected)})
-    return {'schema': 'osw.eac-section-core-spans.v1', 'status': 'exploratory_section_component_spans_not_physical_width',
+    document = {'schema': 'osw.eac-section-core-spans.v1', 'status': 'exploratory_section_component_spans_not_physical_width',
             'entity_id': 'current:east-australian', 'current_id': 'east-australian', 'depth_m': 100,
             'input_sha256': {**INPUTS, OPERATOR: sha(ROOT/OPERATOR)},
             'source_file': 'research/eac-csiro-v23-100m-source-profiles.json',
@@ -184,6 +185,7 @@ def build():
             'physical_width_admitted': False, 'whole_current_width_km': None, 'annual_width_range_km': None,
             'geographic_current_edges': None, 'width_rank_eligible': False,
             'overall_outcomes': summarize(rows), 'monthly_summaries': months, 'profiles': rows}
+    return canonicalize(document)
 
 
 def verify(document=None):
