@@ -98,6 +98,13 @@ def main():
                   'plans/eac-section-calendar-distribution-protocol-v1.md',
                   'research/eac-section-calendar-distributions.json',
                   'research/eac-section-calendar-distributions-figure.json'])
+    paths.extend(['analysis/acquire_west_australian_oscar_2d.py',
+                  'analysis/build_west_australian_oscar_2d_source.py',
+                  'analysis/build_west_australian_oscar_2d_source_figure.py',
+                  'plans/west-australian-oscar-2d-source-selection-protocol-v1.md',
+                  'research/west-australian-oscar-2d-monthly-source-fields.json',
+                  'research/west-australian-oscar-2d-source-figure.json',
+                  'research/source-data/oscar-west-australian-2d-2013/acquisition.json'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',

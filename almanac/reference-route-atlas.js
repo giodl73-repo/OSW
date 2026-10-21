@@ -210,6 +210,11 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
       shareSelection(panel,current.id,null,null,observedSeries||monthlySeries?requestedSection:null);
       previewLink(panel,"Widths and seasonal evidence →",current.season_url);
       window.renderAtlasWidthEvidence(panel,current,widthInventory);
+      if(current.evidence_links?.length){
+        const extra=document.createElement('details');extra.className='route-atlas-evidence-links';panel.append(extra);
+        const heading=document.createElement('summary');heading.textContent='More data and comparisons';extra.append(heading);
+        for(const evidence of current.evidence_links)previewLink(extra,evidence.label,evidence.url);
+      }
       if(current.id==='current:leeuwin'&&window.initAtlasMonthlyWidth)timelineCleanup=window.initAtlasMonthlyWidth(panel,current,requestedWidthMonth);
       if(current.id==='current:kuroshio'&&window.initAtlasSeasonalWidthProfile)timelineCleanup=window.initAtlasSeasonalWidthProfile(panel,current,requestedWidthSeason);
       if(observedSeries&&window.initAtlasObservedSections)timelineCleanup=window.initAtlasObservedSections(panel,current,{svg,layer,fit,make,ns,project,shareSelection,requestedSection,fitBounds:box=>setView(restoredView||box),refreshUpdates:renderUpdates,wasDragged:()=>dragged});

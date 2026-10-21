@@ -83,6 +83,12 @@ def build():
         calendar_doc, _ = verify_eac_calendar()
         if json.loads(documents[calendar_path]) != calendar_doc:
             raise ValueError('Changed EAC calendar source document')
+    wac_path = 'research/west-australian-oscar-2d-monthly-source-fields.json'
+    if wac_path in documents:
+        from build_west_australian_oscar_2d_source import verify as verify_wac_context
+        wac_doc, _ = verify_wac_context()
+        if json.loads(documents[wac_path]) != wac_doc:
+            raise ValueError('Changed West Australian source context')
     # Bind on-demand discovery to the complete manifest; file support stays distinct
     # from the manifest's source_product/source_subset hashes.
     seasons = json.loads(SEASONS.read_bytes())

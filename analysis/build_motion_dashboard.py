@@ -229,6 +229,9 @@ def build():
     from build_eac_calendar_distributions import verify as verify_eac_calendar, REPORT as EAC_CALENDAR
     eac_calendar,eac_calendar_inputs=verify_eac_calendar()
     inputs.update(eac_calendar_inputs)
+    from build_west_australian_oscar_2d_source import verify as verify_wac_context, REPORT as WAC_CONTEXT
+    wac_context,wac_context_inputs=verify_wac_context()
+    inputs.update(wac_context_inputs)
     if kuroshio_profiles!=build_kuroshio_profiles():raise ValueError('Kuroshio seasonal profile differs from pinned extraction')
     for key in ['source_pdf_file','config_file','protocol_file','scope_audit_file']:
         path=kuroshio_profiles[key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -644,6 +647,11 @@ def build():
                 'url':'../'+eac_calendar['comparison_figure']})
             evidence_links.append({'label':'Query all calendar-month distributions and missing-date counts',
                 'url':'query.html?source-q='+quote(json.dumps({'document':EAC_CALENDAR,'pointer':'/calendar_month_groups','limit':12,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+        if current_id == 'west-australian':
+            evidence_links.append({'label':'Compare twelve surrounding offshore source-vector maps',
+                'url':'../'+wac_context['comparison_figure']})
+            evidence_links.append({'label':'Query surrounding monthly source fields and paired support',
+                'url':'query.html?source-q='+quote(json.dumps({'document':WAC_CONTEXT,'pointer':'/months','limit':1,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
         if current_id == 'west-spitsbergen':
             evidence_links.append({'label':'Compare WSC source widths and their separate methods',
                 'url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':current_id}],'limit':20},separators=(',',':')),safe='')+'#query-chart-section'})
@@ -836,6 +844,12 @@ def build():
                 'source_dates':3770,'new_independent_observations':0,'physical_width_admitted':False}
             groups['sources'].append(calendar_support)
             groups['time_evidence'].append(calendar_support)
+        if current_id == 'west-australian':
+            context_support={'source_file':WAC_CONTEXT,'source_sha256':inputs[WAC_CONTEXT],
+                'vector_positions':304200,'source_times':72,'monthly_source_fields':12,
+                'current_geometry_admitted':False,'new_independent_observations':0}
+            groups['sources'].append(context_support)
+            groups['time_evidence'].append(context_support)
         if current_id in local_width_audits:
             if current_id == 'agulhas':
                 span_support={'diagnostic_id':ASCA_SPAN_ID,'source_file':'research/agulhas-asca-100m-dated-component-spans.json',
