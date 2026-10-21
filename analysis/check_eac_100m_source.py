@@ -9,6 +9,8 @@ from acquire_eac_100m_source import ROOT,DIRECTORY,FIELDS,verify,sha
 
 ACQUISITION_SHA='08d720f2ab6fdbe2b8c28e6871e297885b43c75e806b3b907b32026cc89612c2'
 REPORT='research/eac-csiro-v23-100m-source-quality.json'
+READBACK='plans/eac-fixed-array-distance-readback-v1.md'
+READBACK_SHA='7caf13242b17167a21d7da3553f28308f481decb2af9748c6e33ba63b1d2e3aa'
 
 
 def load(directory=DIRECTORY):
@@ -56,6 +58,7 @@ def absent_runs(mask,dates):
 
 
 def build(directory=DIRECTORY):
+    if sha(ROOT/READBACK)!=READBACK_SHA:raise ValueError('Changed EAC array distance readback protocol')
     receipt,header,arrays=load(directory);dates=times(arrays['TIME'])
     fields={}
     for name in FIELDS:
@@ -98,7 +101,8 @@ def build(directory=DIRECTORY):
         'source_citation':receipt['attribution'],'data_descriptor':receipt['data_descriptor'],
         'source_acquisition_file':'research/source-data/eac-csiro-v23-100m/acquisition.json','source_acquisition_sha256':ACQUISITION_SHA,
         'operator_file':'analysis/check_eac_100m_source.py','operator_sha256':sha(ROOT/'analysis/check_eac_100m_source.py'),
-        'input_sha256':{receipt['protocol_file']:receipt['protocol_sha256'],receipt['operator_file']:receipt['operator_sha256'],
+        'calculation_readback_protocol':READBACK,
+        'input_sha256':{READBACK:READBACK_SHA,receipt['protocol_file']:receipt['protocol_sha256'],receipt['operator_file']:receipt['operator_sha256'],
             'research/source-data/eac-csiro-v23-100m/acquisition.json':ACQUISITION_SHA,
             'research/source-data/eac-csiro-v23-100m/selected-source.npz':receipt['subset_sha256'],
             'research/source-data/eac-csiro-v23-100m/source-header.json':receipt['source_header_sha256']},
@@ -115,8 +119,9 @@ def build(directory=DIRECTORY):
         'complete_nominal_calendar_bins':sum(m['complete_nominal_calendar_schedule'] for m in months),
         'fixed_source_geometry':{'role':'fixed_processed_mooring_array_not_current_axis_or_edges','crs':'WGS84',
             'longitude_latitude_points':points,'bottom_depth_m':arrays['BOTTOM_DEPTH'].tolist(),
-            'distance_from_first_grid_point_m':distances,'grid_segment_distance_m_range':[min(segment_lengths),max(segment_lengths)],
-            'source_array_polyline_length_km':sum(segment_lengths)/1000,'array_length_is_current_length':False,
+            'distance_from_first_grid_point_m':[round(v,3) for v in distances],
+            'grid_segment_distance_m_range':[round(min(segment_lengths),3),round(max(segment_lengths),3)],
+            'source_array_polyline_length_km':round(sum(segment_lengths)/1000,6),'array_length_is_current_length':False,
             'positions_shallower_than_or_at_selected_depth':np.flatnonzero(arrays['BOTTOM_DEPTH']<=100).tolist()},
         'method_scope':{'nominal_output_interval_days':1,'source_low_pass_filter_days':5,
             'daily_records_are_independent_observations':False,'source_is_SOM_filled_and_spatially_mapped':True,

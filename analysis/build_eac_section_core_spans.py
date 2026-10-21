@@ -15,8 +15,8 @@ PROTOCOL = 'plans/eac-csiro-100m-section-core-span-protocol-v1.md'
 OPERATOR = 'analysis/build_eac_section_core_spans.py'
 INPUTS = {
     PROTOCOL: '8e808c3790c0f17b75e8d25ff529da9d153657de46e22d056b61c960799eeb7e',
-    'research/eac-csiro-v23-100m-source-query-contract.json': 'f5c0f41deed231478d94ef456dd018b1f063f70457e0428964eb01463cf3e465',
-    'research/eac-csiro-v23-100m-source-quality.json': '8e7d83e3570d741baba58cd5ea28ec552a92e53e7e9706b0187df51c35940c93',
+    'research/eac-csiro-v23-100m-source-query-contract.json': 'a6a0c7b07793c89b104d1a1ad7721f0117d69efcaf5eb9ae505d62dff80321b0',
+    'research/eac-csiro-v23-100m-source-quality.json': '2448c181c5c8552a9095672c8e7a97262b6311fafe26b24c8e273ca3149b326a',
     'research/source-data/eac-csiro-v23-100m/selected-source.npz': '5b892c7fb32a1d5597961bf8eb6475aeefb522d4e2be7963ab4e6cb5554355f8',
 }
 FRACTIONS = (0.4, 0.5, 0.6)

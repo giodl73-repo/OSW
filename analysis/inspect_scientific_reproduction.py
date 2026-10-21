@@ -23,7 +23,8 @@ TARGETS=[('build_aleutian_p14n_vector_section','research/aleutian-p14n-1993-obse
          ('build_redsox_section3_spans','research/redsox-winter-section3-component-spans.json',{},None),
          ('build_redsox_section3_repeat','research/redsox-section3-repeat-surveys.json',{},None),
          ('build_asca_component_spans','research/agulhas-asca-100m-dated-component-spans.json',{},None),
-         ('check_eac_100m_source','research/eac-csiro-v23-100m-source-quality.json',{},None)]
+         ('check_eac_100m_source','research/eac-csiro-v23-100m-source-quality.json',{},None),
+         ('build_eac_section_core_spans','research/eac-csiro-100m-section-core-spans.json',{},None)]
 
 
 def differences(expected, actual):
@@ -62,7 +63,7 @@ def main():
         try:
             producer=importlib.import_module(module);actual=producer.build(**arguments);retained=(ROOT/path).read_bytes()
             if tuple_index is not None:actual=actual[tuple_index]
-            options={'separators':(',',':')} if module in {'loop_durante_composite_contours','build_asca_component_spans','check_eac_100m_source'} else {'indent':2}
+            options={'separators':(',',':')} if module in {'loop_durante_composite_contours','build_asca_component_spans','check_eac_100m_source','build_eac_section_core_spans'} else {'indent':2}
             rebuilt=producer.encoded(actual) if hasattr(producer,'encoded') else (json.dumps(actual,allow_nan=False,**options)+'\n').encode('utf8')
             report=differences(json.loads(retained),actual)
             report.update(encoded_bytes_exact=retained==rebuilt,retained_sha256=hashlib.sha256(retained).hexdigest(),rebuilt_sha256=hashlib.sha256(rebuilt).hexdigest())
