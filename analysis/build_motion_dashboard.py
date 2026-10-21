@@ -232,6 +232,9 @@ def build():
     from build_west_australian_oscar_2d_source import verify as verify_wac_context, REPORT as WAC_CONTEXT
     wac_context,wac_context_inputs=verify_wac_context()
     inputs.update(wac_context_inputs)
+    from west_australian_streamline_evidence import verify as verify_wac_paths
+    wac_paths,wac_path_inputs=verify_wac_paths()
+    inputs.update(wac_path_inputs)
     if kuroshio_profiles!=build_kuroshio_profiles():raise ValueError('Kuroshio seasonal profile differs from pinned extraction')
     for key in ['source_pdf_file','config_file','protocol_file','scope_audit_file']:
         path=kuroshio_profiles[key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -652,6 +655,12 @@ def build():
                 'url':'../'+wac_context['comparison_figure']})
             evidence_links.append({'label':'Query surrounding monthly source fields and paired support',
                 'url':'query.html?source-q='+quote(json.dumps({'document':WAC_CONTEXT,'pointer':'/months','limit':1,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            evidence_links.append({'label':'Compare refined regional lengths with the Euler baseline',
+                'url':'../'+wac_paths['comparison_figure']})
+            evidence_links.append({'label':'See refined regional paths and retained failures',
+                'url':'../'+wac_paths['path_figure']})
+            evidence_links.append({'label':'Query all117refined regional path attempts',
+                'url':'query.html?source-q='+quote(json.dumps({'document':'research/west-australian-regional-streamlines-rk4.json','pointer':'/cases','limit':25,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
         if current_id == 'west-spitsbergen':
             evidence_links.append({'label':'Compare WSC source widths and their separate methods',
                 'url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':current_id}],'limit':20},separators=(',',':')),safe='')+'#query-chart-section'})
@@ -850,6 +859,13 @@ def build():
                 'current_geometry_admitted':False,'new_independent_observations':0}
             groups['sources'].append(context_support)
             groups['time_evidence'].append(context_support)
+            path_support={'source_file':'research/west-australian-regional-streamlines-rk4.json',
+                'source_sha256':inputs['research/west-australian-regional-streamlines-rk4.json'],
+                'refined_attempts':117,'baseline_attempts':117,'refined_matching_pairs':wac_paths['counts']['status_counts'].get('both_regional_gates_reached',0),
+                'primary_matching_fields':wac_paths['counts']['primary_resolved_fields'],'whole_current_length_admitted':False,'new_independent_observations':0}
+            groups['sources'].append(path_support)
+            groups['measurements'].append(path_support)
+            groups['time_evidence'].append(path_support)
         if current_id in local_width_audits:
             if current_id == 'agulhas':
                 span_support={'diagnostic_id':ASCA_SPAN_ID,'source_file':'research/agulhas-asca-100m-dated-component-spans.json',

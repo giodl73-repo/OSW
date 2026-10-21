@@ -17,7 +17,9 @@ TARGETS=[('build_aleutian_p14n_vector_section','research/aleutian-p14n-1993-obse
          ('build_necc_paired_vector_evidence','research/pacific-necc-paired-vector-direction-evidence.json',{},1),
          ('build_norkyst_continuous_sections','research/source-data/norkyst-ingoy-months-2024/section-diagnostic-pilot.json',{'write_asset':False},None),
          ('build_eac_calendar_distributions','research/eac-section-calendar-distributions.json',{},None),
-         ('build_west_australian_oscar_2d_source','research/west-australian-oscar-2d-monthly-source-fields.json',{},None)]
+         ('build_west_australian_oscar_2d_source','research/west-australian-oscar-2d-monthly-source-fields.json',{},None),
+         ('west_australian_regional_streamlines','research/west-australian-regional-streamlines.json',{},None),
+         ('west_australian_regional_streamlines_rk4','research/west-australian-regional-streamlines-rk4.json',{},None)]
 
 
 def differences(expected, actual):

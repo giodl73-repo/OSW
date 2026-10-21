@@ -89,6 +89,12 @@ def build():
         wac_doc, _ = verify_wac_context()
         if json.loads(documents[wac_path]) != wac_doc:
             raise ValueError('Changed West Australian source context')
+    path_study = 'research/west-australian-regional-streamlines-rk4.json'
+    if path_study in documents:
+        from west_australian_streamline_evidence import verify as verify_path_study
+        path_doc, _ = verify_path_study()
+        if json.loads(documents[path_study]) != path_doc:
+            raise ValueError('Changed regional numerical path study')
     # Bind on-demand discovery to the complete manifest; file support stays distinct
     # from the manifest's source_product/source_subset hashes.
     seasons = json.loads(SEASONS.read_bytes())

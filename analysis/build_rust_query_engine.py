@@ -105,6 +105,17 @@ def main():
                   'research/west-australian-oscar-2d-monthly-source-fields.json',
                   'research/west-australian-oscar-2d-source-figure.json',
                   'research/source-data/oscar-west-australian-2d-2013/acquisition.json'])
+    paths.extend(['analysis/west_australian_regional_streamlines.py',
+                  'analysis/west_australian_regional_streamlines_rk4.py',
+                  'analysis/build_west_australian_regional_streamline_figures.py',
+                  'analysis/build_west_australian_regional_streamline_rk4_figures.py',
+                  'analysis/west_australian_streamline_evidence.py',
+                  'plans/west-australian-regional-streamline-protocol-v1.md',
+                  'plans/west-australian-regional-streamline-rk4-protocol-v2.md',
+                  'research/west-australian-regional-streamlines.json',
+                  'research/west-australian-regional-streamlines-rk4.json',
+                  'research/west-australian-regional-streamline-figures.json',
+                  'research/west-australian-regional-streamline-rk4-figures.json'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',

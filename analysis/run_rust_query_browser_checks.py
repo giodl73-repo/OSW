@@ -39,7 +39,7 @@ CHECKS = ('test_loop_durante_source_browser.py', 'test_south_australian_context_
           'test_rust_index_release_media_browser.py', 'test_rust_index_state_memberships_browser.py',
           'test_rust_index_state_context_browser.py', 'test_rust_index_noaa_browser.py',
           'test_rust_index_support_browser.py', 'test_rust_index_map_browser.py',
-          'test_eac_calendar_browser.py', 'test_west_australian_oscar_2d_browser.py')
+          'test_eac_calendar_browser.py', 'test_west_australian_oscar_2d_browser.py', 'test_west_australian_streamline_browser.py')
 
 
 def wait_for_checkout(server=None):
@@ -94,7 +94,7 @@ def main():
             # unchanged and budget the complete matrix explicitly.
             # Shared research checks visit all owners/documents before the full corruption matrix.
             timeout = 1800 if name in {'test_current_research_evidence_browser.py', 'test_loop_durante_source_browser.py', 'test_south_australian_context_browser.py', 'test_eac_source_fields_browser.py',
-                                      'test_eac_section_core_spans_browser.py', 'test_eac_calendar_browser.py', 'test_west_australian_oscar_2d_browser.py',
+                                      'test_eac_section_core_spans_browser.py', 'test_eac_calendar_browser.py', 'test_west_australian_oscar_2d_browser.py', 'test_west_australian_streamline_browser.py',
                                       'test_rust_index_support_browser.py',
                                       'test_rust_index_noaa_browser.py'} else 600
             subprocess.run([sys.executable, str(ROOT / 'analysis' / name)],
