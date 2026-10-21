@@ -1,4 +1,5 @@
 """Actual Rust/WASM scoped sample queries, provenance binding and card navigation."""
+from query_packet import read_bundle_bytes
 import copy
 import json
 import os
@@ -12,7 +13,7 @@ from build_query_width_samples import build
 ROOT=Path(__file__).resolve().parents[1]
 
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes());samples=bundle['collections']['width_samples']
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));samples=bundle['collections']['width_samples']
     assert samples==build(bundle['collections']['diagnostics'])
     assert len([r for r in samples if r['sample_family']!='basin_monthly_component_section'])==127
     component=[r for r in samples if r['sample_family']=='basin_monthly_component_section' and not r['source_context'].get('is_climatology')]

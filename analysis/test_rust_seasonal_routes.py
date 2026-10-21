@@ -1,4 +1,5 @@
 """Source phase fidelity, month gaps, same-feature spatial queries and WASM parity."""
+from query_packet import read_bundle_bytes
 import json
 import os
 import subprocess
@@ -12,7 +13,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     document=json.loads((ROOT/'research/ocean-current-seasonal-route-frames.json').read_bytes())
     phases=bundle['collections']['seasonal_routes'];assert len(phases)==6
     objects={r['id']:r for r in bundle['collections']['objects']}

@@ -1,4 +1,5 @@
 """Source-defined core reaches atlas, inspector and both query runtimes."""
+from query_packet import read_bundle_bytes
 import copy
 import hashlib
 import json
@@ -46,7 +47,7 @@ def main():
     query = {'collection': 'widths', 'filters': [{'field': 'id', 'op': 'eq', 'value': ID}]}
     expected = native(query)
     assert expected['total'] == 1 and expected['rows'][0]['approximate_width_km'] == 120
-    bundle = json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle = json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page = browser.new_page(viewport={'width': 1280, 'height': 1000})

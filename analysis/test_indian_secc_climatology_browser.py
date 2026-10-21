@@ -1,4 +1,5 @@
 """Monthly climatology, source years, map support and frozen native/WASM joins."""
+from query_packet import read_bundle_bytes
 import copy
 import gzip
 import hashlib
@@ -71,7 +72,7 @@ def navigation():
 def main():
     navigation()
     out=ROOT/'.pytest_cache/indian-secc-climatology-review';out.mkdir(parents=True,exist_ok=True)
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     query={'collection':'width_samples','filters':[{'field':'current_id','op':'eq','value':OWNER}],'sort':{'field':'month'},'limit':100}
     expected=native(query)
     assert expected['ok'] and expected['total']==24

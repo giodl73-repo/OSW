@@ -1,4 +1,5 @@
 """Source integrity and physical boundary failures for shipboard spans."""
+from query_packet import read_bundle_bytes
 import json
 import unittest
 import copy
@@ -12,7 +13,7 @@ from compare_shipboard_reconstruction import matches as reconstruction_matches
 
 class ShipboardSpansTests(unittest.TestCase):
     def test_native_loader_rejects_rebound_or_promoted_spans(self):
-        bundle = json.loads((ROOT/'almanac/query-data.json').read_bytes())
+        bundle = json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
         cli = ROOT/'rust/osw-query/target/debug'/('osw-query-cli.exe' if os.name=='nt' else 'osw-query-cli')
         for field,value in [('current_id','gulf-stream'),('depth_m',400),
                             ('whole_current_width_km',50),('annual_width_range_km',[40,130]),

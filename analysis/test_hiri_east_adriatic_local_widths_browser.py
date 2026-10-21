@@ -1,4 +1,5 @@
 """Local descriptors stay distinct and static in atlas, inspector and WASM."""
+from query_packet import read_bundle_bytes
 import gzip
 import json
 import os
@@ -46,7 +47,7 @@ def main():
                 index=ROOT/folder/'index.json';index.write_bytes(gzip.decompress((ROOT/'almanac/index-data.json.gz').read_bytes()))
                 native=json.loads(subprocess.check_output([str(CLI),'--index',str(index),'-'],input=json.dumps(request),encoding='utf8'))
                 assert page.evaluate('oswSourceQueryResult')==native
-        packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+        packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
         page.route('**/local-width-guard.html',lambda route:route.fulfill(body='<title>Local descriptors</title>',content_type='text/html'))
         page.goto('http://127.0.0.1:8788/local-width-guard.html')
         for row in rows:

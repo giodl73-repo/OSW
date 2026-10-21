@@ -1,4 +1,5 @@
 """An occupied meander band cannot become a jet width, annual range or footprint."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_tasman_front_band import ROOT,validate_row
@@ -29,7 +30,7 @@ def test_promoted_support_rejected(index,key,value):
 
 
 def check_native_guard(directory,retain=True):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());targets=[]
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));targets=[]
     changes=[{'width_range_km':[600,700]},{'fixed_layer_bounds_m':[0,1300]},
              {'calendar_months':[9]},{'uncertainty_km':4},
              {'observed_period':{'start':'1978-09-04','end':'1978-09-11'}},

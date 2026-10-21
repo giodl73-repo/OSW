@@ -1,4 +1,5 @@
 """Source range chart, no invented midpoint/annual cycle, native/WASM parity."""
+from query_packet import read_bundle_bytes
 import copy, hashlib, json, os, subprocess
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -238,7 +239,7 @@ def main():
         assert not errors,errors
         browser.close()
     # WSC semantic scope survives coherent record and receipt rewrites.
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     for key,value in [('width_range_km',[11,61]),('fixed_layer_bounds_m',[45,475]),('seasonal_playback_eligible',True)]:
         bad=copy.deepcopy(packet);row=next(r for r in bad['collections']['widths'] if r['id']=='west-spitsbergen-kolas-2018-b-tube-1');row[key]=value
         receipt=bad['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json']);next(r for r in doc['measurements'] if r['id']==row['id'])[key]=value
@@ -247,7 +248,7 @@ def main():
         result=subprocess.run([str(CLI),str(path),'-'],input=json.dumps(request),capture_output=True,text=True,encoding='utf8')
         assert result.returncode==2 and 'WSC' in result.stderr,(key,result.stderr)
     # Coherent source/row rewrites must still fail the shared Rust scope guard.
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     i=next(i for i,r in enumerate(bundle['collections']['widths']) if r['phase_kind']=='survey_layer_median_threshold_width')
     for key,value in [('confidence_level',0.95),('projection_error_is_included_in_total',False),('depth_bin_range_is_fixed_width_layer',True)]:
         bad=copy.deepcopy(bundle);bad['collections']['widths'][i]['adcp_threshold_context'][key]=value

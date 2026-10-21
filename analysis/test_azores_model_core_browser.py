@@ -1,4 +1,5 @@
 """Published model-core widths retain quarters, sources and unadmitted scope."""
+from query_packet import read_bundle_bytes
 import copy,json,os,subprocess
 from tempfile import TemporaryDirectory
 from urllib.parse import quote
@@ -8,7 +9,7 @@ from test_rust_query_browser import ROOT,CLI,native,browser_query
 
 def main():
     out=ROOT/'.pytest_cache/azores-integration';out.mkdir(parents=True,exist_ok=True)
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     q={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'azores'}],'limit':100}
     expected=native(q);assert expected['total']==3
     with sync_playwright() as p:

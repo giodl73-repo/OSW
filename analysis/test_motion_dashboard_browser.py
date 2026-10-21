@@ -1,4 +1,5 @@
 """Check dashboard coverage, filtering and content-based update indicators."""
+from query_packet import read_bundle_bytes
 import json
 import hashlib
 import os
@@ -53,7 +54,7 @@ def check_selection_oracles(rows):
 
 
 def route_snapshot(page, data, fixture_folder):
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     receipt=json.dumps(data,ensure_ascii=False);digest=hashlib.sha256(receipt.encode()).hexdigest()
     bundle['manifest']['dashboard_receipt'].update(source_json=receipt,source_sha256=digest)
     bundle['manifest']['input_sha256']['research/ocean-motion-dashboard.json']=digest
@@ -78,7 +79,7 @@ def route_snapshot(page, data, fixture_folder):
 def main():
     data = json.loads((ROOT / 'research/ocean-motion-dashboard.json').read_text(encoding='utf-8'))
     check_selection_oracles(data['entries'])
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     result=json.loads(subprocess.check_output([str(CLI),str(ROOT/'almanac/query-data.json'),'--dashboard'],encoding='utf-8'))
     assert result['ok'] and json.loads(result['snapshot_json'])==data
     # A valid receipt cannot hide disagreement with the shared inventory.

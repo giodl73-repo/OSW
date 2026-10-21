@@ -1,4 +1,5 @@
 """Shipped WASM, exact model contexts, accessible current views and rejection."""
+from query_packet import read_bundle_bytes
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from urllib.parse import quote,parse_qs,urlparse
@@ -69,7 +70,7 @@ def main():
         p.wait_for_function('window.oswSourceQueryResult',timeout=90000)
         actual=p.evaluate('oswSourceQueryResult');assert actual==native(source,index=index)
         assert [row['record'] for row in actual['rows']]==raw['months'];p.close()
-        packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+        packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
         for mode in ['source','figure','membership','admission','join','resealed','inventory_width']:
             bad=copy.deepcopy(packet);row=next(d for d in bad['collections']['diagnostics'] if d['id']==ID)
             if mode in ['source','figure']:

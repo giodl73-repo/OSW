@@ -1,4 +1,5 @@
 """Shared model-scale views preserve source meaning through actual Rust/WASM."""
+from query_packet import read_bundle_bytes
 import copy,gzip,json,os,subprocess
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -30,7 +31,7 @@ def check_panel(panel):
 
 def main():
     output=ROOT/'.pytest_cache/necc-model-scale-browser';output.mkdir(parents=True,exist_ok=True)
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     q={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':OWNER}],'limit':100}
     expected=native(q);assert expected['total']==2 and expected['chart_scene']['kind']=='published_model_axis_spread'
     with TemporaryDirectory(dir=output) as temp,sync_playwright() as p:

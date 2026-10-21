@@ -1,4 +1,5 @@
 """Checked Loop source panels, complete source values and semantic guards."""
+from query_packet import read_bundle_bytes
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from urllib.parse import quote
@@ -71,7 +72,7 @@ def main():
             assert result['total']==54;all_cases.extend(row['record'] for row in result['rows'])
             print('PASS full composite contour case page',offset,flush=True)
         assert all_cases==contour_record['cases'];p.close()
-        packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+        packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
         for mode in ['missing_clock','invented_axis','scope','source','figure','area_width','contour_source','contour_figure','contour_width','contour_route','contour_length']:
             bad=copy.deepcopy(packet);row=next(r for r in bad['collections']['diagnostics'] if r['id']==ID)
             if mode=='missing_clock':row['document']['times']['tisp']['nonfinite']=0

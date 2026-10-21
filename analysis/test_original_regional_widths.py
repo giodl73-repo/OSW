@@ -1,4 +1,5 @@
 """Background width cannot acquire the dates/layer of a different campaign."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_original_regional_widths import ROOT,AUDIT,ALASKA_AUDIT,PACIFIC_EUC_AUDIT,validate_row
@@ -87,7 +88,7 @@ def test_pacific_euc_point_is_not_transport_box_or_cross_basin_width():
     with pytest.raises(ValueError):validate_row(row,audit)
 
 def check_compiled_original_scope(tmp_path):
-    path=ROOT/'almanac/query-data.json';packet=json.loads(path.read_bytes())
+    path=ROOT/'almanac/query-data.json';packet=json.loads(read_bundle_bytes(path))
     for key,value in [('approximate_width_km',20),('width_range_km',[20,40]),('calendar_months',[11]),('fixed_layer_bounds_m',[0,400]),('observed_period',{'start':'1996-11-07','end':'1996-11-08'}),('seasonal_playback_eligible',True),('original_regional_context',{}),('reported_width_constraint',{'kind':'strict_upper_bound','reference_scale_km':20})]:
         bad=copy.deepcopy(packet);receipt=bad['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json'])
         next(r for r in doc['measurements'] if r['current_id']=='new-guinea-coastal-undercurrent')[key]=value

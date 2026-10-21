@@ -1,4 +1,5 @@
 """Verify source-derived section table and atlas navigation on desktop and mobile."""
+from query_packet import read_bundle_bytes
 import os,json,subprocess
 from playwright.sync_api import sync_playwright,expect
 from test_rust_query_browser import ROOT,CLI
@@ -43,7 +44,7 @@ def main():
         expect(failed.locator('#section-status')).to_contain_text('HTTP 503',timeout=90000)
         assert failed.locator('#section-rows tr').count()==0
         missing=browser.new_page()
-        bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+        bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
         del bundle['manifest']['atlas_receipts']['research/pacific-necc-oscar-2013-section-diagnostic.json']
         route_atlas_bundle(missing,bundle)
         missing.goto('http://127.0.0.1:8788/almanac/necc-section.html')

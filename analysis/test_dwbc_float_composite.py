@@ -1,4 +1,5 @@
 """Nominal drifting depths, overlapping subsets and distinct error support."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_dwbc_float_composite import ROOT,validate_row
@@ -38,7 +39,7 @@ def test_context_scope_rejected(key,value):
     with pytest.raises(ValueError):validate_row(r)
 
 def check_native_guard(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());targets=[]
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));targets=[]
     for i,change in enumerate(CHANGES+[None]):
         bad=copy.deepcopy(packet);receipt=bad['manifest']['seasons_receipts']['widths'];source=json.loads(receipt['source_json'])
         for rows in [source['measurements'],bad['collections']['widths']]:

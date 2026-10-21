@@ -1,4 +1,5 @@
 """Check actual coverage and distinguish equal-year means from pooled samples."""
+from query_packet import read_bundle_bytes
 import json
 import unittest
 import subprocess
@@ -35,7 +36,7 @@ if __name__=='__main__':unittest.main()
 
 def test_native_velocity_guard_rejects_coherent_mutation(tmp_path):
     from test_rust_query_browser import CLI
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     packet['collections']['current_velocity_samples'][0]['eastward_mean_cm_s']=0
     packet['manifest']['input_sha256']['research/antarctic-slope-m6-velocity-series.json']='0'*64
     target=tmp_path/'changed-velocity.json'

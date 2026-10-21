@@ -1,6 +1,7 @@
 use serde::Deserialize;
 use serde_json::{Value, json};
 use std::collections::{BTreeMap, BTreeSet};
+pub const MAX_SOURCE_SNAPSHOT_BYTES: usize = 512 * 1024 * 1024;
 mod abstract_regional_widths;
 mod antilles_cruise_spans;
 mod asca_calendar;
@@ -54,6 +55,7 @@ mod observed_sections;
 mod observed_spans;
 mod original_regional_widths;
 mod pacific_neuc_breadths;
+pub mod packet;
 mod planning;
 mod portugal_section_span;
 mod proposed_widths;
@@ -1154,8 +1156,8 @@ mod wasm {
     #[unsafe(no_mangle)]
     pub unsafe extern "C" fn osw_rebase_source(ptr: *const u8, len: usize) {
         REBASE_SOURCE.with(|old| *old.borrow_mut() = None);
-        if len > 100_000_000 {
-            output(json!({"ok":false,"error":"Source snapshot exceeds 100 MB"}));
+        if len > MAX_SOURCE_SNAPSHOT_BYTES {
+            output(json!({"ok":false,"error":"Source snapshot exceeds 512 MiB"}));
             return;
         }
         let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };

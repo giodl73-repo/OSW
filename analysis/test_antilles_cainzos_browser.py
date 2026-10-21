@@ -1,4 +1,5 @@
 """Shared Antilles UI and actual native/WASM source-contract rejection."""
+from query_packet import read_bundle_bytes
 import copy,gzip,json,os,subprocess
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -30,7 +31,7 @@ def main():
     output=ROOT/'.pytest_cache/antilles-cainzos-browser';output.mkdir(parents=True,exist_ok=True)
     q={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'antilles'}],'limit':100}
     expected=native(q);assert expected['total']==3 and expected['chart_scene']['kind']=='antilles_cruise_section_spans'
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     with TemporaryDirectory(dir=output) as temporary,sync_playwright() as p:
         index=Path(temporary)/'index.json';index.write_bytes(gzip.decompress((ROOT/'almanac/index-data.json.gz').read_bytes()))
         browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))

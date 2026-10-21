@@ -1,4 +1,5 @@
 """Conflicted source radii and years cannot become dimensions or footprints."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from build_agulhas_ring_radius_audit import ROOT,PATH,build,validate
@@ -21,7 +22,7 @@ def test_source_slots_keep_conflicts_and_unknown_geometry():
     with pytest.raises(ValueError):validate(doc,bad)
 
 def check_compiled_scope(tmp_path):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     for key,value in [('value_km',88),('radius_range_km',[88,93]),('footprint_inference_eligible',True),('period_month','2019-01')]:
         bad=copy.deepcopy(packet);receipt=bad['manifest']['atlas_receipts'][PATH];doc=json.loads(receipt['source_json'])
         doc['entities']['eliza-2007']['measurements'][0][key]=value

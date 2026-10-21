@@ -1,4 +1,5 @@
 """Three current cards, distinct climatologies, source years and native/WASM guards."""
+from query_packet import read_bundle_bytes
 import copy
 import gzip
 import hashlib
@@ -44,7 +45,7 @@ def corrupt(bundle,mode,index):
 
 def main():
     out=ROOT/'.pytest_cache/southern-basin-climatology-review';out.mkdir(parents=True,exist_ok=True)
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     docs=saved()
     with TemporaryDirectory(dir=out) as directory, sync_playwright() as p:
         index=Path(directory)/'index.json'

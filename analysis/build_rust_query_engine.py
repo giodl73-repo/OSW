@@ -164,6 +164,11 @@ def main():
     daily_contract,_=verify_kuroshio_daily()
     paths.extend(daily_contract['input_sha256'])
     paths.extend(['research/kuroshio-wang-2024-query-contract.json','rust/osw-query/src/kuroshio_daily.rs','almanac/kuroshio-daily.js'])
+    from query_packet import SCHEMA, descriptors
+    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    paths.extend(['rust/osw-query/src/packet.rs','analysis/query_packet.py','almanac/query-packet.js','almanac/query-worker.js','almanac/query-workspace.js','plans/query-packet-transport-protocol-v1.md'])
+    if packet.get('schema')==SCHEMA:
+        paths.extend('almanac/'+part['path'] for part in descriptors(packet))
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',
@@ -171,6 +176,7 @@ def main():
     cli=ROOT/'rust/osw-query/target/debug'/('osw-query-cli.exe' if os.name=='nt' else 'osw-query-cli')
     subprocess.run([str(cli),str(ROOT/'almanac/query-data.json'),'--atlas'],cwd=ROOT,stdout=subprocess.DEVNULL,check=True)
     print('Checked native atlas snapshot against the generated bundle')
-    print('Built WASM query engine:',target.stat().st_size,'bytes; bundle:',(ROOT/'almanac/query-data.json').stat().st_size,'bytes')
+    logical_size=packet['logical_byte_length'] if packet.get('schema')==SCHEMA else (ROOT/'almanac/query-data.json').stat().st_size
+    print('Built WASM query engine:',target.stat().st_size,'bytes; logical bundle:',logical_size,'bytes; transport parts:',len(packet.get('parts',[])))
 
 if __name__=='__main__':main()

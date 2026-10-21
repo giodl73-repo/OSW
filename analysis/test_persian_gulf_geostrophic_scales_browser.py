@@ -1,4 +1,5 @@
 """Source operators, a regional map and both runtimes retain separate supports."""
+from query_packet import read_bundle_bytes
 import copy
 import hashlib
 import json
@@ -46,7 +47,7 @@ def main():
     expected = native(query)
     assert expected['ok'] and expected['total'] == 8
     assert len([r for r in expected['rows'] if r['phase_kind']=='campaign_hydrographic_core']) == 6
-    bundle = json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle = json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page = browser.new_page(viewport={'width':1280,'height':1000})

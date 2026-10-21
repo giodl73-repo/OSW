@@ -1,4 +1,5 @@
 """Distinct sites and source operators cannot become seasonal dimensions."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_jutland_satellite_widths import ROOT,AUDIT,validate_row
@@ -52,7 +53,7 @@ def coherent_packet(packet,key,value):
     return bad
 
 def check_native_guard(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());target=directory/'jutland-satellite-tampered.json'
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));target=directory/'jutland-satellite-tampered.json'
     old=next(r for r in packet['collections']['widths'] if r['id']=='jutland-skov-2019-coastal-water-mass-breadth')
     mutations=[lambda k=k,v=v:coherent_packet(packet,k,v) for k,v in [('width_range_km',[10,40]),('fixed_layer_bounds_m',[0,30]),('calendar_months',[7,8]),('original_regional_context',old['original_regional_context'])]]
     def alias_mutation():

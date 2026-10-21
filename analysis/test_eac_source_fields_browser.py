@@ -1,4 +1,5 @@
 """Real source-index/Rust/WASM daily EAC fields, gaps, maps and access checks."""
+from query_packet import read_bundle_bytes
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from urllib.parse import quote,parse_qs,urlsplit
@@ -87,7 +88,7 @@ def main():
                 assert value['total']==3770;all_rows.extend(row['record'] for row in value['rows'])
             print('PASS exact source query',request['document'],request.get('offset'),flush=True)
         assert all_rows==source['profiles'];p.close()
-        packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+        packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
         for mode in ['quality_hash','raw_source_hash','figure_hash','operator_hash','false_confidence','erased_bottom_values','coherent_rebind','inventory_width']:
             bad=copy.deepcopy(packet);diagnostic=next(d for d in bad['collections']['diagnostics'] if d['id']==ID)
             if mode.endswith('_hash'):

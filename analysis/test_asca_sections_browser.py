@@ -1,4 +1,5 @@
 """Actual query/atlas/source integration and native/WASM section admission."""
+from query_packet import read_bundle_bytes
 import gzip
 import json
 import os
@@ -16,7 +17,7 @@ from test_rust_query_browser import ROOT, BASE, CLI, native
 def main():
     output = ROOT/'.pytest_cache/agulhas-act-source-review'
     output.mkdir(exist_ok=True)
-    bundle = json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle = json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     assert len(bundle['collections']['current_sections']) == 27
     query = {'collection':'current_sections','sort':{'field':'id'},'limit':100}
     expected = native(query)

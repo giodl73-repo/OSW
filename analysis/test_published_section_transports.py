@@ -1,4 +1,5 @@
 """Preserve unequal statistical, depth, identity and sampling support."""
+from query_packet import read_bundle_bytes
 import copy,json,subprocess
 from pathlib import Path
 from published_section_transports import document,build,SOURCE
@@ -31,7 +32,7 @@ def test_native_scene_and_owner_scope():
     assert owner['capabilities']['time_samples']==0
 
 def guard_fixtures(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());targets=[]
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));targets=[]
     for case in ['mean','spread','layer','direction','months','identity','missing','dependency','capability','proof']:
         bad=copy.deepcopy(packet);m=bad['collections']['section_transports'];v=bad['collections']['transport_validations']
         h=next(r for r in m if r['current_id']=='hiri-current')

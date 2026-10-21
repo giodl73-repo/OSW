@@ -1,4 +1,5 @@
 """Dated jet constraint cards and both runtimes reject invented width support."""
+from query_packet import read_bundle_bytes
 import copy
 import json
 import os
@@ -13,7 +14,7 @@ from check_antarctic_slope_jet_constraint import ID, AUDIT
 def main():
     out = ROOT / '.pytest_cache/antarctic-slope-chavanne-review'
     out.mkdir(parents=True, exist_ok=True)
-    bundle = json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle = json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     q = {'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'antarctic-slope'}],'limit':100}
     expected = native(q)
     assert expected['ok'] and expected['total'] == 1

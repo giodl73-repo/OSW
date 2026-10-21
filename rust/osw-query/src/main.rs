@@ -107,7 +107,7 @@ fn main() {
                 index.query(&request)
             };
         }
-        let mut store = Store::load(&fs::read(path).map_err(|e| e.to_string())?)?;
+        let mut store = Store::load(&osw_query::packet::read_bundle(path)?)?;
         let mut position = 2;
         if args.get(position).map(String::as_str) == Some("--movies") {
             if args.len() != 3 {
@@ -207,7 +207,7 @@ fn main() {
             let request_path = args
                 .get(position + 2)
                 .ok_or("--rebase requires REQUEST.json")?;
-            let old = Store::load(&fs::read(old_path).map_err(|e| e.to_string())?)?;
+            let old = Store::load(&osw_query::packet::read_bundle(old_path)?)?;
             let prepare = args.get(position + 3).map(String::as_str) == Some("--prepare");
             let result = store.workspace_rebase(
                 &old,

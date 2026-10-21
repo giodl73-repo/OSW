@@ -1,4 +1,5 @@
 """Checked seasonal source parity, projection rejection and worker-only loading."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,os,subprocess,tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
@@ -27,7 +28,7 @@ def replace_source(bundle,key,doc):
 
 
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     native=json.loads(subprocess.check_output([str(CLI),str(ROOT/'almanac/query-data.json'),'--seasons'],encoding='utf-8'))
     assert native['ok']
     for key,receipt in bundle['manifest']['seasons_receipts'].items():

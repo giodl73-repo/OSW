@@ -1,4 +1,5 @@
 """Protect naming, metric and date support even after import receipts are repinned."""
+from query_packet import read_bundle_bytes
 import copy
 import hashlib
 import json
@@ -50,7 +51,7 @@ def coherent_packet(packet, ident, key, value):
     return bad
 
 def test_compiled_native_rejects_coherent_scope_changes(tmp_path):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     path=tmp_path/'local-widths.json'
     for row in records():
         for key,value in [('approximate_width_km',row['approximate_width_km']*2),

@@ -1,4 +1,5 @@
 """Shipped Rust/WASM derived evidence: source parity, UI access and admission guards."""
+from query_packet import read_bundle_bytes
 def main():
     from pathlib import Path
     from tempfile import TemporaryDirectory
@@ -75,7 +76,7 @@ def main():
       value=p.evaluate('oswSourceQueryResult');assert value==native(request,index=index)
       assert value['source_sha256']==hashlib.sha256((root/request['document']).read_bytes()).hexdigest()
       print('PASS exact source',request['document'],flush=True)
-     p.close();packet=json.loads((root/'almanac/query-data.json').read_bytes())
+     p.close();packet=json.loads(read_bundle_bytes(root/'almanac/query-data.json'))
      for kind in ['source_hash','figure_hash','operator_hash','raw_means','fake_date','missing_sample','coherent_rebind','inventory_width']:
       bad=copy.deepcopy(packet);diag=next(r for r in bad['collections']['diagnostics'] if r['id']==identifier)
       samples=[r for r in bad['collections']['width_samples'] if r['diagnostic_id']==identifier]

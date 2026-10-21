@@ -1,4 +1,5 @@
 """Shipped Rust/WASM derived evidence: source parity, UI access and admission guards."""
+from query_packet import read_bundle_bytes
 def main():
     from pathlib import Path
     from tempfile import TemporaryDirectory
@@ -74,7 +75,7 @@ def main():
      assert sorted(r['source_time_index'] for r in all_rows)==list(range(931))
      assert sum(r['cases'][1]['span_km'] is not None for r in all_rows)==330
      print('PASS actual native/WASM pagination: all931outcomes,330resolved/601unresolved',flush=True)
-     p.close();packet=json.loads((root/'almanac/query-data.json').read_bytes())
+     p.close();packet=json.loads(read_bundle_bytes(root/'almanac/query-data.json'))
      for kind in ['source_hash','figure_hash','operator_hash','readback_hash','false_physical_width','fake_date','missing_outcome','coherent_rebind','inventory_width']:
       bad=copy.deepcopy(packet);diag=next(r for r in bad['collections']['diagnostics'] if r['id']==identifier)
       if kind.endswith('_hash'):

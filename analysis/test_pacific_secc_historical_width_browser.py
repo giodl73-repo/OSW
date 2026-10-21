@@ -1,4 +1,5 @@
 """Static historical SECC range, source access and original-scope rejection."""
+from query_packet import read_bundle_bytes
 import copy
 import json
 import os
@@ -15,7 +16,7 @@ ID='pacific-secc-rotschi-1972-170e-width-range'
 
 def main():
     output=ROOT/'.pytest_cache/pacific-secc-source-review'
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     query={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':OWNER}],'limit':10}
     result=native(query)
     assert result['ok'] and result['total']==1

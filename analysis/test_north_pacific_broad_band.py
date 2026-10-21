@@ -1,4 +1,5 @@
 """Reject unsupported dimensions and definition transfers from textbook prose."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_north_pacific_broad_band import ROOT,validate_row
@@ -46,7 +47,7 @@ def coherent_packet(packet,changes):
     for rows in [doc['measurements'],bad['collections']['widths']]:next(r for r in rows if r['id']==records()[0]['id']).update(changes)
     receipt['source_json']=json.dumps(doc);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest();bad['manifest']['input_sha256'][receipt['source_file']]=receipt['source_sha256'];return bad
 def check_native_guard(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());target=directory/'north-pacific-band-tampered.json'
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));target=directory/'north-pacific-band-tampered.json'
     changesets=[{'approximate_width_km':2000},{'width_range_km':[150,200]},{'fixed_layer_bounds_m':[0,1000]},{'calendar_months':[6,7,8]},{'original_regional_context':{},'current_id':'aleutian'},{'original_regional_context':{},'current_id':'alaska'}]
     for changes in changesets:
         bad=coherent_packet(packet,changes)

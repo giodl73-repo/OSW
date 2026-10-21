@@ -1,4 +1,5 @@
 """Distinct flow/origin definitions cannot become a temporal range or footprint."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_monsoon_webber_widths import ROOT,validate_row
@@ -28,7 +29,7 @@ def test_promoted_support_rejected(index,key,value):
 
 
 def check_native_guard(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());targets=[]
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));targets=[]
     changes=[{'width_range_km':[150,300]},{'fixed_layer_bounds_m':[110,110]},
              {'calendar_months':[7]},{'uncertainty_km':4},
              {'observed_period':{'start':'2016-07-05','end':'2016-07-15'}},

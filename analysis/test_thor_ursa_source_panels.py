@@ -1,4 +1,5 @@
 """Protect dated event context against geometry and climatology promotion."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 from pathlib import Path
 import pytest
@@ -28,7 +29,7 @@ def test_source_scope_cannot_be_promoted(key,value):
     with pytest.raises(ValueError,match='Thor/Ursa'):validate(d)
 
 def fixtures(directory,retain=True):
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes());targets=[]
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));targets=[]
     for kind in ['date','owner','crop','geometry','unit','annual','missing_proof','xml','figure']:
         bad=copy.deepcopy(bundle);receipt=bad['manifest']['atlas_receipts'][PATH]
         d=json.loads(receipt['source_json'])

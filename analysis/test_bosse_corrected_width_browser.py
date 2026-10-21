@@ -1,4 +1,5 @@
 """Corrected branch width and raw records: source queries, UI and frozen rejection."""
+from query_packet import read_bundle_bytes
 import copy,gzip,hashlib,json,os,subprocess,tempfile
 from pathlib import Path
 from urllib.parse import quote
@@ -34,7 +35,7 @@ def main():
             assert page.evaluate('window.oswSourceQueryResult')==expected
             assert not errors,errors
             # Rebind a main-store proposal receipt coherently; the compiled scope must reject it.
-            bad=json.loads((ROOT/'almanac/query-data.json').read_bytes());source='research/ocean-current-inventory-expansion-candidates.json'
+            bad=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));source='research/ocean-current-inventory-expansion-candidates.json'
             receipt=bad['manifest']['atlas_receipts'][source];doc=json.loads(receipt['source_json'])
             owner=next(r for r in doc['entries'] if r['proposed_id']=='norwegian-atlantic-front')
             next(r for r in owner['width_evidence'] if r['id']=='norwegian-atlantic-front-bosse-2019-corrected-width')['author_reported_error_km']=20

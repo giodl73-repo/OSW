@@ -1,4 +1,5 @@
 """Four static source descriptors, two metrics, retained directions and rejection."""
+from query_packet import read_bundle_bytes
 import copy
 import json
 import os
@@ -13,7 +14,7 @@ PREFIX='ngcc-radenac-2016-winter-'
 
 def main():
     output=ROOT/'.pytest_cache/ngcc-seasonal-width-review';output.mkdir(exist_ok=True)
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     query={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':OWNER}],'limit':20}
     result=native(query);assert result['ok'] and result['total']==4
     rows=result['rows'];assert [r['approximate_width_km'] for r in rows]==[120,None,200,None]

@@ -1,4 +1,5 @@
 """Dated width, source limitations and compiled admission remain visible."""
+from query_packet import read_bundle_bytes
 import gzip,json,os,subprocess,tempfile
 from urllib.parse import quote
 from playwright.sync_api import sync_playwright,expect
@@ -33,7 +34,7 @@ def main():
             expected=json.loads(subprocess.check_output([str(CLI),'--index',str(index),'-'],input=json.dumps(request),encoding='utf8'))
             assert page.evaluate('oswSourceQueryResult')==expected
         # Load a coherently rewritten receipt directly into the shipped WASM.
-        packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+        packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
         page.route('**/caribbean-guard.html',lambda route:route.fulfill(body='<title>Width admission</title>',content_type='text/html'))
         page.goto('http://127.0.0.1:8788/caribbean-guard.html')
         for key,value in [('width_range_km',[200,410]),('fixed_layer_bounds_m',[0,1600])]:

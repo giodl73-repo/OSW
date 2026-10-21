@@ -1,4 +1,5 @@
 """Dated image proxy, failed cases and scientific scope must survive every view."""
+from query_packet import read_bundle_bytes
 import copy
 import hashlib
 import json
@@ -37,7 +38,7 @@ def test_source_audit_mutations_rejected(key,value):
     with pytest.raises(ValueError,match='Ursa contour'): validate(d)
 
 def fixtures(directory,retain=True):
-    source=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    source=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     targets=[]
     for kind in ['date','owner','geometry','physical','annual','unit','failures','missing_proof','missing_candidate','image','state']:
         b=copy.deepcopy(source);r=b['manifest']['atlas_receipts'][PATH]

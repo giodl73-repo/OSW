@@ -1,4 +1,5 @@
 """Local radar means retain sampling, layer and velocity/width distinctions."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_western_adriatic_mean_widths import ROOT,AUDIT,validate_row
@@ -53,7 +54,7 @@ def coherent_packet(packet,key,value):
     return bad
 
 def check_native_guard(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());target=directory/'western-adriatic-tampered.json'
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));target=directory/'western-adriatic-tampered.json'
     mutations=[lambda k=k,v=v:coherent_packet(packet,k,v) for k,v in [('approximate_width_km',20),('width_range_km',[40,50]),('fixed_layer_bounds_m',[0,1]),('calendar_months',[1,2,3]),('original_regional_context',{})]]
     mutations.append(lambda:erased_alias_packet(packet,'western-adriatic'))
     for mutate in mutations:

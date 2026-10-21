@@ -1,4 +1,5 @@
 """Keep distinct components, isopycnals and climatologies separate."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_pacific_neuc_isopycnal_breadths import document,records,validate_row,AUDIT
@@ -22,7 +23,7 @@ def test_dimension_or_identity_promotions_rejected(change):
     with pytest.raises(ValueError):validate_row(r)
 
 def fixtures(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());targets=[]
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));targets=[]
     cases=CHANGES+[{'original_regional_context':{}},{'original_regional_context':{**records()[0]['original_regional_context'],'sigma_theta_anomaly_kg_m3':26.8}},None,'proof']
     for i,change in enumerate(cases):
         bad=copy.deepcopy(packet);receipt=bad['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json'])

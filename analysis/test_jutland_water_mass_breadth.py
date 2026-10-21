@@ -1,4 +1,5 @@
 """Water-mass breadth preserves source support across Python and Rust."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_jutland_water_mass_breadth import ROOT,AUDIT,validate_row
@@ -60,7 +61,7 @@ def coherent_packet(packet,key,value):
     return bad
 
 def check_native_guard(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());target=directory/'jutland-tampered.json'
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));target=directory/'jutland-tampered.json'
     mutations=[lambda k=k,v=v:coherent_packet(packet,k,v) for k,v in [('approximate_width_km',15),('width_range_km',[40,100]),('fixed_layer_bounds_m',[15,30]),('calendar_months',[12]),('original_regional_context',{})]]
     mutations.append(lambda:erased_alias_packet(packet,'jutland'))
     for mutate in mutations:

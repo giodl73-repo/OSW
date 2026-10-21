@@ -1,4 +1,5 @@
 """Reviewed source limitations stay queryable and never turn into dimensions."""
+from query_packet import read_bundle_bytes, read_bundle_at_revision
 import copy
 import gzip
 import hashlib
@@ -52,8 +53,8 @@ def corrupt(packet,kind):
 
 def main():
     out=ROOT/'.pytest_cache/current-width-source-review';out.mkdir(parents=True,exist_ok=True)
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
-    before=json.loads(subprocess.check_output(['git','show','HEAD:almanac/query-data.json'],cwd=ROOT))['collections']
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
+    before=read_bundle_at_revision(root=ROOT)['collections']
     after=packet['collections']
     assert after['widths']==before['widths'] and after['series']==before['series']
     assert after['width_samples']==before['width_samples'] and after['reference_routes']==before['reference_routes']

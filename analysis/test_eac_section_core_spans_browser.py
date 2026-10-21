@@ -1,4 +1,5 @@
 """Actual Rust/WASM EAC span corpus, failure states and accessible atlas views."""
+from query_packet import read_bundle_bytes
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from urllib.parse import quote
@@ -93,7 +94,7 @@ def main():
             p.wait_for_function('window.oswSourceQueryResult',timeout=90000);value=p.evaluate('oswSourceQueryResult');assert value==native(query,index=index)
             assert value['total']==3770;all_rows.extend(row['record'] for row in value['rows']);print('PASS exact core source page',offset,flush=True)
         assert all_rows==raw['profiles'];p.close()
-        packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+        packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
         for mode in ['raw_hash','summary_hash','protocol_hash','figure_hash','readback_code_hash','readback_protocol_hash','invented_width','erased_failures','coherent_rebind','inventory_width']:
             bad=copy.deepcopy(packet);d=next(d for d in bad['collections']['diagnostics'] if d['id']==ID)
             if mode.endswith('_hash'):

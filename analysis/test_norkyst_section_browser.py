@@ -1,4 +1,5 @@
 """Verify the new sampled-profile playback and mobile data view."""
+from query_packet import read_bundle_bytes
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -75,7 +76,7 @@ def main():
                 other=b.new_page();other.on('pageerror',lambda e:errors.append(str(e)))
                 if kind=='load_failure':other.route('**/query-data.json',lambda r:r.fulfill(status=503,body='Unavailable'))
                 else:
-                    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+                    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
                     del bundle['manifest']['atlas_receipts']['research/norkyst-ingoy-2024-map-frames.json'];route_atlas_bundle(other,bundle)
                     # Model frame/sample collections require this receipt at store load.
                     # Its absence rejects the store before the page's optional-view guard.

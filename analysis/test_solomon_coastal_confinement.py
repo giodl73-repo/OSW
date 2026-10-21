@@ -1,4 +1,5 @@
 """Reject measured-width, temporal and source-identity promotions."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_solomon_coastal_confinement import ROOT,validate_row
@@ -57,7 +58,7 @@ def coherent_packet(packet,record_id,changes):
     return bad
 
 def check_native_guard(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());target=directory/'solomon-confinement-tampered.json';rows=records()
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));target=directory/'solomon-confinement-tampered.json';rows=records()
     mutations=[]
     for row in rows:
         other=next(r for r in rows if r['id']!=row['id'])

@@ -1,4 +1,5 @@
 """Existing WSC comparison and proposed slope records never inherit aliases."""
+from query_packet import read_bundle_bytes
 import copy
 import json
 import os
@@ -12,7 +13,7 @@ from check_nordic_section_widths import NOR, WSC, SOURCES, records
 
 def main():
     out=ROOT/'.pytest_cache/nordic-width-review';out.mkdir(parents=True,exist_ok=True)
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     assert len(bundle['collections']['widths'])==json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())['counts']['measurements']
     assert len(bundle['collections']['proposed_widths'])==5
     for alias in ['norwegian','spitsbergen-atlantic']:

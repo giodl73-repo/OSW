@@ -1,4 +1,5 @@
 """Five source-bound monthly charts/maps, playback, inspect/share and rejection."""
+from query_packet import read_bundle_bytes
 import copy
 import hashlib
 import json
@@ -14,7 +15,7 @@ from build_query_width_samples import build as project_samples
 
 def main():
     output=ROOT/'.pytest_cache/basin-current-width-review'
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     new=[r for r in bundle['collections']['width_samples'] if r['sample_family']=='basin_monthly_component_section' and not r['source_context'].get('is_climatology')]
     assert len(new)==84 and sum(r['resolution_review_required'] for r in new)==49
     snapshot=json.loads((ROOT/'research/ocean-motion-dashboard.json').read_bytes())

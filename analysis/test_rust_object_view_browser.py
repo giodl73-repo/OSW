@@ -1,4 +1,5 @@
 """Scoped object evidence, canonical imports, real WASM pages and outage behavior."""
+from query_packet import read_bundle_bytes
 import json,os,subprocess
 from playwright.sync_api import sync_playwright,expect
 from test_rust_query_browser import ROOT,CLI
@@ -9,7 +10,7 @@ def native(ident):
 
 
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes());c=bundle['collections']
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));c=bundle['collections']
     assert len(bundle['manifest']['canonical_collections'])==20
     assert set(c)==set(bundle['manifest']['canonical_collections'])|set(bundle['manifest']['editorial_collections'])
     for name in bundle['manifest']['canonical_collections']:

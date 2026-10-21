@@ -1,4 +1,5 @@
 """Actual compiled admission, source navigation and section-span presentation."""
+from query_packet import read_bundle_bytes
 import copy
 import gzip
 import hashlib
@@ -67,7 +68,7 @@ def corrupt(bundle, mode):
 def main():
     out = ROOT / '.pytest_cache/portugal-perez-2013-review'
     out.mkdir(exist_ok=True)
-    bundle = json.loads((ROOT / 'almanac/query-data.json').read_bytes())
+    bundle = json.loads(read_bundle_bytes(ROOT / 'almanac/query-data.json'))
     with TemporaryDirectory(dir=out) as folder, sync_playwright() as p:
         index = Path(folder) / 'index.json'
         index.write_bytes(gzip.decompress((ROOT / 'almanac/index-data.json.gz').read_bytes()))

@@ -1,4 +1,5 @@
 """Published core width has the same meaning in cards, seasons and WASM queries."""
+from query_packet import read_bundle_bytes
 import copy,gzip,json,os,subprocess
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -31,7 +32,7 @@ def sources_only():
 def main():
  output=ROOT/'.pytest_cache/selected-core-browser';output.mkdir(parents=True,exist_ok=True)
  row=record();query={'collection':'widths','filters':[{'field':'id','op':'eq','value':row['id']}],'limit':100}
- packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+ packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
  with TemporaryDirectory(dir=output) as temporary,sync_playwright() as playwright:
   folder=Path(temporary);index=folder/'index.json';index.write_bytes(gzip.decompress((ROOT/'almanac/index-data.json.gz').read_bytes()))
   browser=playwright.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'));page=browser.new_page(viewport={'width':1280,'height':1000});errors=[];originals=[]

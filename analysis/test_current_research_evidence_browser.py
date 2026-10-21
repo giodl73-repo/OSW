@@ -1,4 +1,5 @@
 """Research calculations survive native/WASM queries and accessible current cards."""
+from query_packet import read_bundle_bytes
 import copy
 import gzip
 import hashlib
@@ -175,7 +176,7 @@ def main():
     output = ROOT / '.pytest_cache/current-research-evidence-browser'
     output.mkdir(parents=True, exist_ok=True)
     registry = json.loads((ROOT / REGISTRY).read_bytes())
-    packet = json.loads((ROOT / 'almanac/query-data.json').read_bytes())
+    packet = json.loads(read_bundle_bytes(ROOT / 'almanac/query-data.json'))
     cases = ['rank', 'owner', 'source_json', 'missing', 'duplicate', 'owner_link', 'orphan', 'original_pin',
              'whole_width', 'annual', 'blinding', 'identity', 'scene_width', 'geometry', 'figure', 'primary', 'year_hours', 'year_figure', 'year_width','necc_flow_normal','necc_independence','necc_whole_width']
     cases += ['observed_'+case for case in ['value','mask','units','layer','annual','association','reorder','original','missing','duplicate']]

@@ -183,7 +183,8 @@ mod tests {
     fn unchanged_sources_and_rebound_forgery() {
         let path =
             std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../almanac/query-data.json");
-        let mut bundle: Bundle = serde_json::from_slice(&std::fs::read(path).unwrap()).unwrap();
+        let mut bundle: Bundle =
+            serde_json::from_slice(&crate::packet::read_bundle(path).unwrap()).unwrap();
         validate(&bundle).unwrap();
         let row = bundle
             .collections

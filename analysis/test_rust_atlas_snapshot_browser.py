@@ -1,4 +1,5 @@
 """Checked atlas sources, native/WASM parity, navigation and unavailable data."""
+from query_packet import read_bundle_bytes
 import hashlib,json,os,subprocess,tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
@@ -11,13 +12,13 @@ def route_atlas_bundle(page,bundle):
     install_bundle_fixture(page,bundle)
 
 def without_state_join(page):
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     del bundle['manifest']['atlas_receipts'][JOIN]
     route_atlas_bundle(page,bundle)
 
 def main():
     catalog_count=json.loads((ROOT/"research/ocean-current-working-reference-routes.json").read_bytes())["counts"]["route_candidates"]
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     native=json.loads(subprocess.check_output([str(CLI),str(ROOT/'almanac/query-data.json'),'--atlas'],encoding='utf-8'))
     expected_sources=set(bundle['manifest']['atlas_receipts'])
     expected_sources.update(bundle['manifest']['seasons_receipts'][key]['source_file'] for key in ['widths','routes','frames'])
@@ -107,7 +108,7 @@ def main():
         route_atlas_bundle(absent,partial);absent.goto(BASE)
         expect(absent.locator('#route-atlas-select option')).to_have_count(102,timeout=90000)
         absent.locator('#route-atlas-select').select_option('current:agulhas')
-        expect(absent.locator('.route-atlas-state-links')).to_contain_text('State crossing inventory unavailable')
+        expect(absent.locator('.route-atlas-state-links')).to_contain_text('State crossing inventory unavailable',timeout=90000)
         assert absent.locator('#route-atlas-preview .route-map').is_visible()
         absent.locator('#route-atlas-select').select_option('current:gulf-stream-system')
         absent.locator('.atlas-timeline summary').click()

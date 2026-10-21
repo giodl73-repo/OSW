@@ -1,4 +1,5 @@
 """Actual native/WASM SVG parity, complete scene inventory and portable rendering."""
+from query_packet import read_bundle_bytes
 import hashlib
 import json
 import os
@@ -16,7 +17,7 @@ def inspect(svg, query, scene):
     root=ET.fromstring(svg)
     receipt=json.loads(root.find('s:metadata',NS).text)
     assert receipt['query']==query
-    assert receipt['bundle_sha256']==hashlib.sha256((ROOT/'almanac/query-data.json').read_bytes()).hexdigest()
+    assert receipt['bundle_sha256']==hashlib.sha256(read_bundle_bytes(ROOT/'almanac/query-data.json')).hexdigest()
     marks=[node for node in root.iter() if 'mark' in node.get('class','').split()]
     assert len(marks)==len(scene['features'])
     assert {m.get('data-entity') for m in marks}=={f['entity_id'] for f in scene['features']}

@@ -1,4 +1,5 @@
 """Historical author bounds cannot become annual width or a depth envelope."""
+from query_packet import read_bundle_bytes
 import copy
 import hashlib
 import json
@@ -36,7 +37,7 @@ def coherent_packet(packet,key,value):
     return bad
 
 def test_native_scope_guard_rejects_coherent_rewrites(tmp_path):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     path=tmp_path/'caribbean.json'
     for key,value in CHANGES:
         path.write_text(json.dumps(coherent_packet(packet,key,value)),encoding='utf8')

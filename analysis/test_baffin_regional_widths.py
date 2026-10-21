@@ -1,4 +1,5 @@
 """Baffin summary spans cannot become seasonal widths or sampling envelopes."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_baffin_regional_widths import ROOT,AUDIT,validate_row
@@ -46,7 +47,7 @@ def coherent_packet(packet,key,value):
     return bad
 
 def check_native_guard(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());target=directory/'baffin-tampered.json'
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));target=directory/'baffin-tampered.json'
     mutations=[lambda k=k,v=v:coherent_packet(packet,k,v) for k,v in [('approximate_width_km',20),('width_range_km',[10,60]),('calendar_months',[7,8]),('original_regional_context',{})]]
     mutations.append(lambda:erased_alias_packet(packet,'baffin'))
     for mutate in mutations:

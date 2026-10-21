@@ -862,7 +862,8 @@ def build():
             'collections':collections}
 
 def main():
-    data=build();OUTPUT.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
+    from query_packet import write_packet
+    data=build();write_packet(OUTPUT,(json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n').encode('utf-8'))
     print('Built Rust query bundle:',{name:len(rows) for name,rows in data['collections'].items()})
 
 if __name__=='__main__':main()

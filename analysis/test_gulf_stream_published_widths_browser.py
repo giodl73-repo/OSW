@@ -1,4 +1,5 @@
 """Published campaign widths and climatology keep their source support in the UI."""
+from query_packet import read_bundle_bytes
 import copy
 import gzip
 import hashlib
@@ -59,7 +60,7 @@ def corrupt(bundle,mode):
 
 def main():
     out=ROOT/'.pytest_cache/gulf-stream-physical-width-review';out.mkdir(parents=True,exist_ok=True)
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     with TemporaryDirectory(dir=out) as directory, sync_playwright() as p:
         index=Path(directory)/'index.json';index.write_bytes(gzip.decompress((ROOT/'almanac/index-data.json.gz').read_bytes()))
         browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
