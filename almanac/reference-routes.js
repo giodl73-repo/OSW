@@ -140,6 +140,15 @@
         node('p','Source-reported approximate branch extent: 650 km (working reported-length rank 12). Scoped near-surface survey width: about 120 km in April 2001. These reports do not establish geographic edges, annual ranges or a width ranking.',card);
         const q={collection:'current_measurement_admissions',filters:[{field:'entity_id',op:'eq',value:numeric.entity_id}],limit:1};
         link('Query the dimension admission and source definitions','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,card));
+        const diagnostic=node('section',null,card);diagnostic.id='southern-east-madagascar-route-definition';
+        node('h4','Route definition remains unresolved',diagnostic);
+        node('p','All 27 initial coastal scenarios crossed the coarse atlas land mask. A separately declared offshore alternative clears that mask, but its approximately 900 km line has different endpoints from the published approximately 650 km branch extent. Its 800–900 km cartographic sensitivity is not a physical or seasonal range. No current route or map feature admitted.',diagnostic);
+        const image=node('img',null,diagnostic);image.src='../figures/southern-east-madagascar-route-definition-diagnostic.svg';
+        image.alt='Rejected coastal experiment and unadmitted offshore navigation alternative. No verified current axis or annual geometry.';
+        image.style.cssText='width:100%;max-width:1200px;height:auto';
+        link('Open route comparison figure',image.src,node('p',null,diagnostic));
+        const dq={collection:'diagnostics',filters:[{field:'id',op:'eq',value:'diagnostic:southern-east-madagascar-route-definition'}],limit:1};
+        link('Query all route experiments and unresolved definitions','query.html?q='+encodeURIComponent(JSON.stringify(dq)),node('p',null,diagnostic));
       }
       for (const evidence of row.evidence) {
         link(evidence.citation, evidence.url, node("p", null, card), true);

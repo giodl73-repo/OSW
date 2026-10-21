@@ -149,6 +149,9 @@ def main():
                   'figures/south-australian-miller-model-width.svg'])
     paths.extend(['research/norwegian-atlantic-slope-orvik-2003-dimension-candidates.json',
                   'figures/norwegian-atlantic-slope-reported-dimensions.svg'])
+    paths.extend(['rust/osw-query/src/madagascar_navigation.rs','analysis/madagascar_navigation_diagnostic.py',
+                  'research/southern-east-madagascar-route-definition-diagnostic.json',
+                  'figures/southern-east-madagascar-route-definition-diagnostic.svg'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',
