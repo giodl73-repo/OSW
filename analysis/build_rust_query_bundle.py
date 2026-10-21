@@ -694,6 +694,13 @@ def build():
     daily_owner['diagnostic_ids'].append(KUROSHIO_DAILY_ID)
     daily_owner['source_ids']=sorted(set(daily_owner['source_ids'])|{KUROSHIO_DAILY_SOURCE})
     daily_owner['capabilities']['model_dimension_samples']=6588
+    from kuroshio_axis_normal_query import verify_inputs as verify_normals, samples as normal_samples, record as normal_record, ID as NORMAL_ID
+    normal_contract,normal_document=verify_normals();inputs.update(normal_contract['input_sha256'])
+    read('research/kuroshio-wang-2024-axis-normal-query-contract.json')
+    collections['current_axis_normal_samples']=normal_samples(normal_document)
+    collections['diagnostics'].append(normal_record(normal_document))
+    daily_owner['diagnostic_ids'].append(NORMAL_ID)
+    daily_owner['capabilities']['axis_normal_samples']=16470
     collections['width_samples']=build_width_samples(collections['diagnostics'])
     for row in objects:
         row['width_sample_ids']=[sample['id'] for sample in collections['width_samples'] if sample['entity_id']==row['id']]
@@ -849,12 +856,13 @@ def build():
             if inputs[document['inventory_file']]!=document['inventory_sha256']:raise ValueError('Stale observed-section inventory')
     return {'schema':'osw.query-bundle.v1','manifest':{'status':'local_editorial_and_canonical_snapshot_not_new_scientific_admission',
             'canonical_release':'v0.1.0','canonical_collections':CANONICAL,
+            'kuroshio_axis_normal_version':'1',
             'eddy_recurrence_receipt':{'source_file':recurrence_path,'source_sha256':inputs[recurrence_path],'source_json':(ROOT/recurrence_path).read_bytes().decode('utf-8')},
             'atlas_receipts':atlas_receipts,
             'current_section_receipts':{asca_path:{'source_file':asca_path,'source_sha256':inputs[asca_path],'source_json':(ROOT/asca_path).read_bytes().decode('utf-8')}},
             'movies_receipts':movies_receipts,
             'loop_recorded_receipts':{path:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for path in ['research/loop-current-recorded-date-comparison.json','research/loop-current-recorded-date-sources.json']},
-            'taxonomy':taxonomy,'editorial_collections':['current_dimension_samples','proposed_widths','observed_section_spans','current_section_measurements','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','current_sections','section_transports','transport_validations'],
+            'taxonomy':taxonomy,'editorial_collections':['current_axis_normal_samples','current_dimension_samples','proposed_widths','observed_section_spans','current_section_measurements','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','current_sections','section_transports','transport_validations'],
             'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
             'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
             'input_sha256':inputs,'current_catalogue_version':identity_document['version'],'current_measurement_admission_version':prose_dimensions['version'],'madagascar_navigation_diagnostic_version':'1','madagascar_coastal_curve_version':'1','kuroshio_daily_dimensions_version':'1','generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},

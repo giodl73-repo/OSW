@@ -101,6 +101,10 @@ def build():
     inputs.update(kuroshio_daily_contract['input_sha256'])
     read('research/kuroshio-wang-2024-query-contract.json')
     sources[KUROSHIO_DAILY_SOURCE]=kuroshio_daily_contract['source_record']
+    from kuroshio_axis_normal_query import verify_inputs as verify_normals, ID as NORMAL_ID
+    normal_contract,normal_document=verify_normals()
+    inputs.update(normal_contract['input_sha256'])
+    read('research/kuroshio-wang-2024-axis-normal-query-contract.json')
     from build_basin_surface_section_spans import build as rebuild_basin, diagnostic_matches as basin_matches
     basin_sections={}
     read('research/basin-surface-section-inventory.json')
@@ -774,6 +778,13 @@ def build():
         }
         if current_id=='kuroshio':
             capabilities['model_dimension_samples']=6588
+            capabilities['axis_normal_samples']=16470
+            normal_dimensions={'source_file':normal_contract['source_report_file'],'source_sha256':normal_contract['source_report_sha256'],
+                'attempts':16470,'primary_resolved':4680,'primary_attempts':5490,'scope':normal_contract['scope']}
+            payload['axis_normal_dimensions']=normal_dimensions
+            groups['measurements'].append(normal_dimensions)
+            groups['time_evidence'].append(normal_document['summaries'])
+            evidence_links.append({'label':'Explore Kuroshio2024 axis-normal model spans','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':NORMAL_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
             model_dimensions={'source_file':kuroshio_daily_contract['source_report_file'],'source_sha256':kuroshio_daily_contract['source_report_sha256'],'daily_depth_cases':1098,'section_cases':5490,'scope':kuroshio_daily_contract['scope']}
             payload['model_dimensions']=model_dimensions
             groups['measurements'].append(model_dimensions)

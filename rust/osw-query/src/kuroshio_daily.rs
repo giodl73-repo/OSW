@@ -172,15 +172,23 @@ pub fn scene(b: &Bundle) -> Value {
         json!({"date":f["date"],"source_level":f["source_level"],"nominal_depth_m":f["nominal_depth_m"],
             "report_case_index":i,"paths":paths,"axis_sample_id":sample_id(&doc["daily"][i],None),"axis":doc["daily"][i]["axis"],"sections":sections})
     }).collect();
-    json!({"kind":"kuroshio_daily_dimensions","source_file":FILE,"diagnostic_id":ID,
+    let mut scene = json!({"kind":"kuroshio_daily_dimensions","source_file":FILE,"diagnostic_id":ID,
         "title":"Kuroshio2024 · dated regional model dimensions","scope":contract()["scope"],
         "counts":doc["counts"],"source":doc["source"],"frames":frames,"summaries":doc["summaries"],
         "view_box":[298,58,14,17],"extent_lon_lat":[[118,15],[132,32]],"map_projection":"equirectangular","figure_file":doc["figure"],
-        "collection":COLLECTION})
+        "collection":COLLECTION});
+    crate::kuroshio_normal::attach(&mut scene, b);
+    scene
 }
 pub fn query(records: &[&Value], b: &Bundle) -> Value {
-    if records.len() == 1 && records[0]["id"] == ID {
-        scene(b)
+    if records.len() == 1
+        && (records[0]["id"] == ID || records[0]["id"] == crate::kuroshio_normal::ID)
+    {
+        let mut result = scene(b);
+        if records[0]["id"] == crate::kuroshio_normal::ID {
+            result["default_metric"] = json!("axis_normal");
+        }
+        result
     } else {
         Value::Null
     }

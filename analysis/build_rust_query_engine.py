@@ -164,6 +164,11 @@ def main():
     daily_contract,_=verify_kuroshio_daily()
     paths.extend(daily_contract['input_sha256'])
     paths.extend(['research/kuroshio-wang-2024-query-contract.json','rust/osw-query/src/kuroshio_daily.rs','almanac/kuroshio-daily.js'])
+    from kuroshio_axis_normal_query import verify_inputs as verify_normals
+    normal_contract,_=verify_normals()
+    paths.extend(normal_contract['input_sha256'])
+    paths.extend(['research/kuroshio-wang-2024-axis-normal-query-contract.json','rust/osw-query/src/kuroshio_normal.rs',
+                  'almanac/reference-route-atlas.js','almanac/dashboard.js'])
     from query_packet import SCHEMA, descriptors
     packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
     paths.extend(['rust/osw-query/src/packet.rs','analysis/query_packet.py','almanac/query-packet.js','almanac/query-worker.js','almanac/query-workspace.js','plans/query-packet-transport-protocol-v1.md'])

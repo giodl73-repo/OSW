@@ -24,6 +24,7 @@ def main():
     expected_sources.update(bundle['manifest']['seasons_receipts'][key]['source_file'] for key in ['widths','routes','frames'])
     expected_sources.add('research/ocean-motion-dashboard.json')
     expected_sources.add('research/kuroshio-wang-2024-regional-dimensions.json')
+    expected_sources.add('research/kuroshio-wang-2024-axis-normal-spans.json')
     expected_sources.update(['research/ocean-current-identity-admissions.json','research/ocean-current-working-catalogue.json','research/southern-east-madagascar-prose-dimension-admissions.json','research/ocean-current-working-reference-routes.json','research/ocean-current-working-reference-route-state-join.json','research/madagascar-coastline-comparison.json'])
     assert native['state_join_available'] and set(native['sources_json'])==expected_sources
     for path,raw in native['sources_json'].items():assert raw==(ROOT/path).read_bytes().decode('utf-8'),path

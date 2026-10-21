@@ -179,11 +179,11 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
     document.addEventListener('osw:kuroshio-frame',event=>{
       if(byId('route-atlas-select').value!=='current:kuroshio'||!event.detail.host.closest('#route-atlas-preview,#kuroshio-2024-model-card'))return;
       const frame=event.detail.frame;modelLayer.replaceChildren();
-      for(const p of frame.paths){const attrs={d:p.d,transform:'translate(60 90) scale('+1480/360+')',fill:'none',stroke:{axis:'#fff8de',left:'#ff9be4',right:'#78f1d3'}[p.role],'stroke-width':1.6,'vector-effect':'non-scaling-stroke','data-model-role':p.role};if(p.role!=='axis')attrs['stroke-dasharray']=p.role==='left'?'6 3':'2 3';const line=make('path',attrs,modelLayer);make('title',{},line).textContent=`${frame.date} · ${frame.nominal_depth_m} m · modeled ${p.role}`;}
+      for(const p of [...frame.paths,...(event.detail.normalPaths||[])]){const attrs={d:p.d,transform:'translate(60 90) scale('+1480/360+')',fill:'none',stroke:{axis:'#fff8de',left:'#ff9be4',right:'#78f1d3',axis_normal:'#ffce5c'}[p.role],'stroke-width':1.6,'vector-effect':'non-scaling-stroke','data-model-role':p.role};if(['left','right'].includes(p.role))attrs['stroke-dasharray']=p.role==='left'?'6 3':'2 3';const line=make('path',attrs,modelLayer);make('title',{},line).textContent=`${frame.date} · ${frame.nominal_depth_m} m · modeled ${p.role}`;}
       byId('route-atlas-status').textContent=`Kuroshio · ${frame.date} · nominal ${frame.nominal_depth_m} m · dated regional model curves; not whole-current bounds or observed width.`;
       const peer=event.detail.host.closest('#route-atlas-preview')?byId('kuroshio-2024-model-card')?.querySelector('.kuroshio-daily'):byId('route-atlas-preview').querySelector('.kuroshio-daily');
-      const peerDate=peer?.querySelector('.kuroshio-daily-date'),peerDepth=peer?.querySelector('.kuroshio-daily-depth');
-      if(peerDate&&peerDepth&&(peerDate.value!==frame.date||peerDepth.value!==String(frame.source_level))){peerDate.value=frame.date;peerDepth.value=String(frame.source_level);peerDepth.dispatchEvent(new Event('change'));}
+      const selections=[['date',frame.date],['depth',String(frame.source_level)],['metric',event.detail.metric||'regional'],['tangent',String(event.detail.tangent||14)]].map(([key,value])=>[peer?.querySelector('.kuroshio-daily-'+key),value]);
+      if(selections.every(([control])=>control)&&selections.some(([control,value])=>control.value!==value)){for(const [control,value] of selections)control.value=value;selections[1][0].dispatchEvent(new Event('change'));}
     });
     const sectionRecords=(widthInventory?.measurements||[]).filter(row=>window.currentSectionLocator?.coordinates(row));
     const datedRoles={dated_partial_geostrophic_streamline:'Partial geostrophic diagnostic',dated_analyzed_surface_front:'Analyzed surface front'};

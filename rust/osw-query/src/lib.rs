@@ -35,6 +35,7 @@ pub mod index_store;
 mod index_support;
 mod kuroshio_daily;
 mod kuroshio_filtered_width;
+mod kuroshio_normal;
 mod loop_diagnostics;
 mod loop_recorded;
 mod madagascar_coastal_curve;
@@ -323,6 +324,7 @@ impl Store {
         current_research_evidence::validate(&bundle)?;
         kuroshio_filtered_width::validate(&bundle)?;
         kuroshio_daily::validate(&bundle)?;
+        kuroshio_normal::validate(&bundle)?;
         asca_component_spans::validate(&bundle)?;
         asca_calendar::validate(&bundle)?;
         eac_source_fields::validate(&bundle)?;

@@ -141,6 +141,15 @@
     "plans/kuroshio-wang-query-atlas-protocol-v1.md": "f1c27ba3963ff963eddecb486128e1d2773db9dafe272a8a7a0a60f7967db786",
     "analysis/kuroshio_wang_query.py": "d39e2f5e71a3cd0a40a7d496d7f1ffae64efd8cc098ae0efa7ff4fa5c4460146",
     "research/kuroshio-wang-2024-query-contract.json": "65f9cbec9b8afa42ae79a2188941e2589b04dfe6d4481a785f89dd3f3a42ddea",
+    "plans/kuroshio-axis-normal-width-protocol-v1.md": "ab27682cb810f08f553af0c3298243294d4922877234027d63d89e9616fd8452",
+    "analysis/kuroshio_axis_normal.py": "165626a73c61da08cbb2aa934c9d8cdcb54ff1ef40c3f4fb817ef7d760a55fa2",
+    "research/kuroshio-wang-2024-axis-normal-spans.json": "9e0c4cbbd62426c68aa29c45149106fbdbf52ed2ca159b852c912f5572a13346",
+    "analysis/build_kuroshio_axis_normal_figure.py": "7917b9806cda0fb7ca3e98ed8c562193d25a9bc82a8f08e1e33e00e2a0b803ca",
+    "figures/kuroshio-wang-2024-axis-normal-spans.svg": "86cc175b93bbf5de9db6500aed4b6692f1ac25fcb314be1d1aca301abe47edce",
+    "research/kuroshio-wang-2024-axis-normal-figure.json": "9dcb479618abcc1fee80fa2cf6d7aeaeb2570d314fc8ceaf8a70afa573c9d9c0",
+    "plans/kuroshio-axis-normal-query-atlas-protocol-v1.md": "31cb2b1cc90beb6622cd44c0e589954c66e57d3589839ab7ed0ccca4ee3f994e",
+    "analysis/kuroshio_axis_normal_query.py": "fe4d7e833ebb5f6f8cf757a3d113ab642e9cd1c3c8a37a53250db532905f89e5",
+    "research/kuroshio-wang-2024-axis-normal-query-contract.json": "bd473de62742d04a811bb43539720b6a222a82832ab96953534da192f2feaf07",
     "research/basin-surface-section-inventory.json": "01d714f3b79614019c934b3cb73724dc24f877a0d8214f442d02a558c34c7104",
     "research/portugal-40n-2013-monthly-component-spans.json": "635e77ba016c361c85ad9e49f425d3b8a90ebeff0bcc3a2bc1840b6b4a0d920c",
     "research/south-atlantic-30w-2013-monthly-component-spans.json": "c576f4444d2b551ec46043861e464f8fc9e8ee06c80cfcd3158f0c69c9bcafc1",
@@ -855,7 +864,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "cf23a945f2768c89083fa1322e20db753b91d68c092ba888a5474b087b89a88c",
+  "snapshot_fingerprint": "ae1bb9e7de36f55a6574dafacd7389b81441a924a05cc58057a45ec15241f8c2",
   "entries": [
     {
       "id": "current:agulhas",
@@ -9152,11 +9161,12 @@
         "dated_diagnostics": 0,
         "flow_network": 0,
         "passage_transport": 0,
-        "model_dimension_samples": 6588
+        "model_dimension_samples": 6588,
+        "axis_normal_samples": 16470
       },
       "recorded_claims": 61,
       "nasa_links": 1,
-      "fingerprint": "4d33031ddf76f4e39ea1d7bb9e3deccbc61af1070a97d552c2cec7336d5a8ac7",
+      "fingerprint": "72e7579acdbdecd06df54fbf13c946dff76f9e740390fb0f3f57f29fd6272860",
       "series": [
         {
           "label": "Four historical ECS seasonal width profiles (graph extraction)",
@@ -9183,10 +9193,10 @@
         "identity": "942e79d8ffacd4a867e2269dd568c54c100d282816a84590700731798d0b3a47",
         "sources": "3308c484a6a519ee7d56084f1e6e38e285e4fa8a5bb576d0fe4a828f3d9ede25",
         "claims": "1009e553de390fa500e4db79048bc65a8ec7efc9334019d7068f2f7e3b8689f7",
-        "measurements": "a462f6d5636045ebb3fb3e1e68556ed556afd6a02a2e15aeb779cdf5edc643e1",
+        "measurements": "447a50b1a0ae3bec61656f1c8c469ee5ca997da7c3d0e6da0cb60ec622653ce6",
         "routes_geometry": "fd4fa937f9ca97ed27c839d82496d54b767f00f4477c089831fe8febafb4ff69",
         "media": "ab3afd393b96ce49943b38843305efaa18715bc0b666e4408844398a0c82eaac",
-        "time_evidence": "c3863cd38126ca64d90107e067f3bca65c9fca7c984f839206c2d9709a0ed0dc"
+        "time_evidence": "dcd2f852160bc75414e861cfcf372530370eb10eba1a4a3285da7b440fbbd250"
       },
       "latest_observation_date": null,
       "claim_review_counts": {
@@ -9234,6 +9244,10 @@
       ],
       "scope_notes": [],
       "evidence_links": [
+        {
+          "label": "Explore Kuroshio2024 axis-normal model spans",
+          "url": "query.html?q=%7B%22collection%22%3A%22diagnostics%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22diagnostic%3Akuroshio-wang-2024-axis-normal-spans%22%7D%5D%2C%22limit%22%3A1%7D#query-chart-section"
+        },
         {
           "label": "Explore Kuroshio2024 dated model dimensions",
           "url": "query.html?q=%7B%22collection%22%3A%22diagnostics%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22diagnostic%3Akuroshio-wang-2024-dimensions%22%7D%5D%2C%22limit%22%3A1%7D#query-chart-section"
@@ -69154,5 +69168,5 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "built_at_utc": "2026-10-21T16:16:13.832410+00:00"
+  "built_at_utc": "2026-10-21T20:08:47.874935+00:00"
 }

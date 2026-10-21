@@ -650,6 +650,9 @@ impl Store {
         if crate::kuroshio_daily::active(&self.bundle) {
             sources[crate::kuroshio_daily::FILE] = json!(crate::kuroshio_daily::RAW);
         }
+        if crate::kuroshio_normal::active(&self.bundle) {
+            sources[crate::kuroshio_normal::FILE] = json!(crate::kuroshio_normal::RAW);
+        }
         let mut timeline_scenes = json!({});
         for path in TIMELINES {
             if receipts.contains_key(path) {
