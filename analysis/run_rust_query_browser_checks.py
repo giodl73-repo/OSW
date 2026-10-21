@@ -43,6 +43,8 @@ CHECKS = ('test_loop_durante_source_browser.py', 'test_south_australian_context_
           'test_redsox_section3_repeat_browser.py', 'test_asca_section_measurements_browser.py')
 
 
+CHECKS = ('test_asca_calendar_distributions_browser.py',) + CHECKS
+
 def wait_for_checkout(server=None):
     expected = (ROOT / 'almanac/query.html').read_bytes()
     deadline = time.monotonic() + 30

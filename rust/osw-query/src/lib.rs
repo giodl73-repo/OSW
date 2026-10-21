@@ -3,6 +3,7 @@ use serde_json::{Value, json};
 use std::collections::{BTreeMap, BTreeSet};
 mod abstract_regional_widths;
 mod antilles_cruise_spans;
+mod asca_calendar;
 mod asca_component_spans;
 mod astrid_scales;
 mod atlantic_euc_sections;
@@ -315,6 +316,7 @@ impl Store {
         current_research_evidence::validate(&bundle)?;
         kuroshio_filtered_width::validate(&bundle)?;
         asca_component_spans::validate(&bundle)?;
+        asca_calendar::validate(&bundle)?;
         eac_source_fields::validate(&bundle)?;
         eac_core_spans::validate(&bundle)?;
         south_australian_context::validate(&bundle)?;

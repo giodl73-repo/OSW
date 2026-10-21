@@ -30,23 +30,23 @@ def main():
        raise
       expect(panel).to_contain_text('330 resolved / 931 dated profiles');expect(panel).to_contain_text('601 unresolved')
       expect(panel).to_contain_text('not flow-normal current widths')
-      details=panel.locator('details')
-      if details.get_attribute('open') is None:panel.locator('summary').focus();p.keyboard.press('Enter')
-      image=panel.locator('img');image.scroll_into_view_if_needed();expect(image).to_have_attribute('src','../'+figure)
+      details=panel.locator('.asca-dated-span-details')
+      if details.get_attribute('open') is None:details.locator('summary').focus();p.keyboard.press('Enter')
+      image=details.locator('img');image.scroll_into_view_if_needed();expect(image).to_have_attribute('src','../'+figure)
       expect(image).to_have_js_property('complete',True);assert image.evaluate('(n)=>n.naturalWidth>0')
       select=panel.get_by_label('Recorded year and month');assert select.locator('option').count()==27
-      assert panel.locator('tbody').nth(0).locator('tr').count()==3
-      assert panel.locator('tbody').nth(1).locator('tr').count()==15
-      expect(panel.locator('tbody').nth(1).locator('tr').first).to_contain_text('blocked by missing data')
+      assert details.locator('tbody').nth(0).locator('tr').count()==3
+      assert details.locator('tbody').nth(1).locator('tr').count()==15
+      expect(details.locator('tbody').nth(1).locator('tr').first).to_contain_text('blocked by missing data')
       select.focus();p.keyboard.press('End');expect(select).to_have_value('2018-06')
-      rows=panel.locator('tbody').nth(1).locator('tr');assert rows.count()==3
+      rows=details.locator('tbody').nth(1).locator('tr');assert rows.count()==3
       expect(rows.last).to_contain_text('2018-06-03T00:00:00Z');expect(rows.last).to_contain_text('45')
       derived=rows.last.get_by_role('link',name='Inspect derived outcome 930',exact=True)
       derived.focus();expect(derived).to_be_focused();row_query=json.loads(parse_qs(urlsplit(derived.get_attribute('href')).query)['source-q'][0]);assert row_query['pointer']=='/profiles/930'
       if view=='diagnostic':assert p.evaluate('oswLastQueryResult')==native(query)
-      if view=='card':panel.locator('figure').screenshot(path=str(out/'figure-desktop.png'))
+      if view=='card':details.locator('figure').screenshot(path=str(out/'figure-desktop.png'))
       p.set_viewport_size({'width':320,'height':900});assert p.evaluate('document.documentElement.scrollWidth<=innerWidth')
-      scroll=panel.locator('[role="region"]').last;scroll.focus();before=scroll.evaluate('(n)=>n.scrollLeft');p.keyboard.press('ArrowRight');p.wait_for_timeout(300);assert scroll.evaluate('(n)=>n.scrollLeft')>before
+      scroll=details.locator('[role="region"]').last;scroll.focus();before=scroll.evaluate('(n)=>n.scrollLeft');p.keyboard.press('ArrowRight');p.wait_for_timeout(300);assert scroll.evaluate('(n)=>n.scrollLeft')>before
       if view=='diagnostic':scroll.screenshot(path=str(out/'table-mobile.png'))
       p.close();print('PASS',view,'all27months/complete failures/three thresholds/source links/keyboard320px',flush=True)
      p=page()

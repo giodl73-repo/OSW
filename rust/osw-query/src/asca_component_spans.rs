@@ -103,10 +103,14 @@ pub fn scene(bundle: &crate::Bundle) -> Value {
         "source_citation":doc["source_citation"],"cautions":doc["interpretation"],
         "figure_file":fig["figures"][".svg"]["file"],"figure_sha256":fig["figures"][".svg"]["sha256"],
         "figure_alt":"All931 dated ASCA100m component outcomes:330 half-peak spans resolve;601 are unresolved. Three declared threshold sensitivities and three fixed source profiles. These are section spans, not flow-normal current widths or annual physical ranges.",
-        "overall_outcomes":doc["overall_outcomes"],"profiles":doc["profiles"],"months":doc["monthly_summaries"]})
+        "overall_outcomes":doc["overall_outcomes"],"profiles":doc["profiles"],"months":doc["monthly_summaries"],
+        "calendar_distributions":crate::asca_calendar::scene(bundle)})
 }
 pub fn query(matches: &[&Value], bundle: &crate::Bundle) -> Value {
-    if matches.iter().any(|d| d["id"] == ID) {
+    if matches
+        .iter()
+        .any(|d| d["id"] == ID || d["id"] == crate::asca_calendar::ID)
+    {
         scene(bundle)
     } else {
         Value::Null

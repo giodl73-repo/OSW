@@ -220,6 +220,9 @@ def build():
     from asca_component_spans import verify_inputs as verify_asca_spans, ID as ASCA_SPAN_ID
     asca_span_document,_,asca_span_inputs=verify_asca_spans()
     inputs.update(asca_span_inputs)
+    from build_asca_calendar_distributions import verify_inputs as verify_asca_calendar, ID as ASCA_CALENDAR_ID, REPORT as ASCA_CALENDAR_REPORT
+    asca_calendar,_,asca_calendar_inputs=verify_asca_calendar()
+    inputs.update(asca_calendar_inputs)
     from eac_source_fields import verify_inputs as verify_eac_fields, ID as EAC_FIELDS_ID
     eac_fields,_,_,eac_inputs=verify_eac_fields()
     inputs.update(eac_inputs)
@@ -917,6 +920,11 @@ def build():
             groups['sources'].append({'source_url':velocity['source_url'],'source_sha256':velocity['source_sha256'],'source_file':velocity['source_file']})
         if current_id == 'agulhas':
             payload['current_sections']={'source_file':asca_path,'source_sha256':inputs[asca_path],'counts':asca_sections['counts'],'scope':asca_sections['scope']}
+            calendar_support={'diagnostic_id':ASCA_CALENDAR_ID,'source_file':ASCA_CALENDAR_REPORT,'source_sha256':inputs[ASCA_CALENDAR_REPORT],
+                'conditional_records':len(asca_calendar['records']),'unique_source_profiles':931,'physical_width_admitted':False}
+            payload['asca_calendar_support']=calendar_support
+            for group in ['sources','measurements','time_evidence']:groups[group].append(calendar_support)
+            evidence_links.append({'label':'Explore calendar sample ranges and coverage','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':ASCA_CALENDAR_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
             groups['time_evidence'].append(asca_sections)
             groups['sources'].append({'source_file':asca_path,'source_sha256':inputs[asca_path],'source_contract':asca_contract})
             evidence_links.append({'label':'Explore ASCA 100 m monthly sections','url':series[-1]['url']})

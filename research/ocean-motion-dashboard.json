@@ -420,6 +420,13 @@
     "analysis/build_asca_component_span_figure.py": "3ff5c84bbe9d6bf2cfc9259868ee7ca277c26d6b8e2f79143e971ffb667cde5a",
     "figures/agulhas-asca-100m-dated-component-spans.png": "91fb1da5c665cb682e68d288e28f2f902c13391e2cc2e516089b7e88ac7eff77",
     "figures/agulhas-asca-100m-dated-component-spans.svg": "c15f2bf2ed5b4c76c53e16b07f8d3255be0732ed345a046571e0b8cca006a147",
+    "plans/asca-component-calendar-distribution-protocol-v1.md": "0b3e6292f55baec65500f860755450a8d9da09a06eb94ae90cd9026fff12b97f",
+    "analysis/build_asca_calendar_distributions.py": "8976ac1208b70c07d5c0c1364fba74f7bdd5c1838ad401fd49a5f980d81aaf1a",
+    "research/asca-component-calendar-distributions.json": "f306b14c176d1dec76cabb2879f4e81dfd3343a078dbbf35c4583197929b7ca7",
+    "research/asca-component-calendar-distributions-figure.json": "657894c5daa30790454a4d3e638ff8c5dc141cfcb2839c224d81e6a2b0d77b88",
+    "analysis/build_asca_calendar_distribution_figure.py": "05c17ae13c69c7f0f1af14de4e0f70fc4586f93551e75623e521320ea87f178b",
+    "figures/asca-component-calendar-distributions.svg": "28c6c285546c925740cee7ba3bfc388301546291ff157260fd382be13baf2be0",
+    "figures/asca-component-calendar-distributions.png": "000f8137325fa1dc1ac7199454107f1fbb78f547d66f9bef2c1a297476e872ca",
     "plans/eac-fixed-array-distance-readback-v1.md": "7caf13242b17167a21d7da3553f28308f481decb2af9748c6e33ba63b1d2e3aa",
     "plans/eac-csiro-v23-100m-source-selection-protocol-v1.md": "429902303d33b5520f6e431c87a943897ed1eeef3119d5167d7adc9f8f2c51ff",
     "research/source-data/eac-csiro-v23-100m/acquisition.json": "08d720f2ab6fdbe2b8c28e6871e297885b43c75e806b3b907b32026cc89612c2",
@@ -804,7 +811,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "79ebcc7589ddd86f6205d4a48221590d01009c02d9ee99924706b08de6bc5741",
+  "snapshot_fingerprint": "c02674d113071b4858d27a8a258fdc3bd72644c15bf947f9371f3c867f393796",
   "entries": [
     {
       "id": "current:agulhas",
@@ -832,7 +839,7 @@
       },
       "recorded_claims": 60,
       "nasa_links": 1,
-      "fingerprint": "05860376cf417d1971e98e22668be8b97bc19e2175e248c142f5ef7895ccb173",
+      "fingerprint": "071191bbb44b8bf9fec34325f07fb24ddc73329b0770ce676322a16f7b3a78c3",
       "series": [
         {
           "label": "ASCA 100 m / 27 recorded monthly sections / 931 source profiles",
@@ -873,12 +880,12 @@
       ],
       "section_fingerprints": {
         "identity": "07307d1c027a50c56d4d328141402829b5886316ada9e4d0d53f1884014fe048",
-        "sources": "20877d7ab4f509b09462a7628cb6e00e3d8117d987dbb363619765fa9479e05f",
+        "sources": "844ac12c5b4616d2a676dce3fb1aff7c11033ef545e53f46e6baf97ea574cf5c",
         "claims": "62173133183a5bf7746d48f909001c25f7393aed97bbb8da95583ae3b754d0e4",
-        "measurements": "f7dae949f8e19df9f92b1e257d49142afec2761bfdfcdb4df41b3664cf409885",
+        "measurements": "2391810b79a463cf9bb23685d24f252ff6e75b7900c2aa740ad20a847001d10c",
         "routes_geometry": "9f1e1771341035883852d0a080521a68b136e30aadbb4396c6458d29658d5910",
         "media": "2e7a6127476f706f39fefca486ff7531cfb28b063fb7676f7463b80780cd448e",
-        "time_evidence": "fe7613c8112a7df429bfa46adfa87487ef2309d6990a8c985edff7b6769367d7"
+        "time_evidence": "bc6c434b4f2828dbdbd69b054e6917088450f33fa1ed82143a6b40bf653eb7eb"
       },
       "latest_observation_date": "2018-06-03",
       "claim_review_counts": {
@@ -935,6 +942,10 @@
       "connections": [],
       "scope_notes": [],
       "evidence_links": [
+        {
+          "label": "Explore calendar sample ranges and coverage",
+          "url": "query.html?q=%7B%22collection%22%3A%22diagnostics%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22diagnostic%3Aagulhas-asca100m-calendar-distributions%22%7D%5D%2C%22limit%22%3A1%7D#query-chart-section"
+        },
         {
           "label": "Explore ASCA 100 m monthly sections",
           "url": "query.html?q=%7B%22collection%22%3A%22diagnostics%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22diagnostic%3Aagulhas-asca100m-component-spans%22%7D%5D%2C%22limit%22%3A1%7D#query-chart-section"
@@ -68718,5 +68729,5 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "built_at_utc": "2026-10-21T08:32:41.784622+00:00"
+  "built_at_utc": "2026-10-21T09:31:12.836208+00:00"
 }

@@ -645,6 +645,11 @@ def build():
     inputs.update(asca_span_inputs)
     collections['diagnostics'].append(asca_span_record(asca_span_document))
     next(r for r in objects if r['id']=='current:agulhas').setdefault('diagnostic_ids',[]).append(ASCA_SPAN_ID)
+    from build_asca_calendar_distributions import verify_inputs as verify_asca_calendar, record as asca_calendar_record, ID as ASCA_CALENDAR_ID
+    asca_calendar,_,asca_calendar_inputs=verify_asca_calendar()
+    inputs.update(asca_calendar_inputs)
+    collections['diagnostics'].append(asca_calendar_record(asca_calendar))
+    next(r for r in objects if r['id']=='current:agulhas').setdefault('diagnostic_ids',[]).append(ASCA_CALENDAR_ID)
     from eac_source_fields import verify_inputs as verify_eac_fields, record as eac_fields_record, ID as EAC_FIELDS_ID
     eac_document,_,_,eac_inputs=verify_eac_fields()
     inputs.update(eac_inputs)

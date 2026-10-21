@@ -6,10 +6,35 @@ window.renderAscaComponentSpans=function(container,scene,inspect,options={}){
   const link=(label,href,parent=section)=>{const n=node('a',label,parent);n.href=href;n.style.cssText='display:inline-flex;align-items:center;min-height:44px';return n;};
   const sourceLink=(label,document,pointer,parent=section)=>link(label,'query.html?source-q='+encodeURIComponent(JSON.stringify({document,pointer,limit:100})),parent);
   const fmt=x=>x===null?'Unresolved':Number(x).toLocaleString('en',{maximumFractionDigits:1});
+  const rowCells=(body,values)=>{const row=node('tr',undefined,body);for(const value of values){const cell=node('td',value,row);cell.style.cssText='padding:.4rem;border-bottom:1px solid #587681';}return row;};
   node('h4',scene.title);
   node('p','330 resolved / 931 dated profiles at the primary 50% threshold; 601 unresolved. Fixed-array southwestward component spans, not flow-normal current widths.');
   if(scene.measurement_query)link('Query all dated section measurements','query.html?q='+encodeURIComponent(JSON.stringify(scene.measurement_query)),node('p',''));
-  const details=node('details',undefined);details.open=Boolean(options.open);const summary=node('summary','View dated spans, unresolved cases and source',details);summary.style.cssText='min-height:44px;padding:.35rem 0';
+  const calendar=scene.calendar_distributions;
+  if(calendar){
+    const ranges=node('details',undefined);ranges.className='asca-calendar-distributions';ranges.open=Boolean(options.open);
+    node('summary','Calendar sample ranges and measurement coverage',ranges).style.cssText='min-height:44px;padding:.35rem 0';
+    node('p','2017 has full nominal calendar support, but only 131 / 438 primary attempts resolve. 2016 and 2018 are partial years. Statistics condition on resolved spans; failed attempts remain counted.',ranges);
+    node('p','The figure and table use the source-declared 50% peak convention. All three thresholds remain queryable. Pooled months are not a climatology; sample ranges and percentiles are not physical annual extrema or confidence intervals.',ranges);
+    const figure=node('figure',undefined,ranges);figure.style.margin='1rem 0';
+    const chart=node('img',undefined,figure);chart.src='../'+calendar.figure_file;chart.alt=calendar.figure_alt;chart.loading='lazy';chart.style.cssText='display:block;width:100%;height:auto;background:white';
+    node('figcaption',calendar.figure_alt,figure);link('Open calendar distribution figure at full size','../'+calendar.figure_file,figure);
+    const body=table(ranges,'Primary 50% conditional component-span statistics. Values rounded for display; exact records linked.',['Cohort / source support','Resolved / attempted','Min km','25th km','Median km','75th km','Max km','Exact record'],930);
+    const names=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    calendar.records.filter(r=>r.primary_convention).forEach(r=>{
+      const label=r.cohort_kind==='source_period'?'All retained source dates':r.cohort_kind==='calendar_year'?`${r.year} · ${r.complete_nominal_calendar_year_support?'full nominal support':'partial year'}`:`${names[r.month-1]} pooled · ${r.source_month_bins.length} year bins`;
+      const s=r.statistics,tr=rowCells(body,[label,`${r.resolved_samples} / ${r.attempted_samples}`,fmt(s.minimum_km),fmt(s.q25_km),fmt(s.median_km),fmt(s.q75_km),fmt(s.maximum_km)]);
+      tr.dataset.cohort=r.id;
+      const q={document:calendar.source_file,pointer:'/records',filters:[{field:'record.id',op:'eq',value:r.id}],limit:1};
+      link('Inspect cohort','query.html?source-q='+encodeURIComponent(JSON.stringify(q)),node('td',undefined,tr));
+    });
+    for(const caution of calendar.limitations)node('p',caution,ranges);
+    link(calendar.source_citation,calendar.source_url,node('p','',ranges));node('p',calendar.source_license,ranges);
+    node('p','40-hour filtering and nominal 20-hour sampling do not give independent observations. Original source timestamps are retained without snapping them onto a new clock.',ranges);
+    if(!calendar.source_method.complete_file_checksum_verified||!calendar.source_method.full_2022_corrigenda_reviewed)node('p','The retained source still lacks a verified complete-file checksum and full 2022 corrigendum review; these summaries do not resolve those limits.',ranges);
+    sourceLink('Query all 48 calendar and threshold records',calendar.source_file,'/records',node('p','',ranges));
+  }
+  const details=node('details',undefined);details.className='asca-dated-span-details';details.open=Boolean(options.open);const summary=node('summary','View dated spans, unresolved cases and source',details);summary.style.cssText='min-height:44px;padding:.35rem 0';
   const figure=node('figure',undefined,details);figure.style.margin='1rem 0';const image=node('img',undefined,figure);image.src='../'+scene.figure_file;image.alt=scene.figure_alt;image.loading='lazy';image.style.cssText='display:block;width:100%;height:auto;background:white';
   node('figcaption',scene.figure_alt,figure);link('Open component-span figure at full size','../'+scene.figure_file,figure);
   for(const caution of scene.cautions)node('p',caution,details);
@@ -24,7 +49,6 @@ window.renderAscaComponentSpans=function(container,scene,inspect,options={}){
     const header=node('tr',undefined,node('thead',undefined,t));for(const title of columns){const th=node('th',title,header);th.scope='col';th.style.cssText='padding:.4rem;text-align:left';}
     return node('tbody',undefined,t);
   }
-  const rowCells=(body,values)=>{const row=node('tr',undefined,body);for(const value of values){const cell=node('td',value,row);cell.style.cssText='padding:.4rem;border-bottom:1px solid #587681';}return row;};
   function draw(){
     const month=scene.months[select.selectedIndex];const selected=scene.profiles.filter(p=>p.year===month.year&&p.month===month.month);
     status.textContent=`${selected.length} original profiles; ${month.outcomes[1].resolved_profiles} primary spans resolve. ${month.complete_calendar_time_support?'Full nominal calendar schedule':'Partial calendar month'}; missing boundaries remain unresolved.`;
