@@ -74,6 +74,11 @@ The general browser check caught an older fallback that treated the newly
 added Loop scene as NECC. That test now has an explicit Loop branch, preserves
 every NECC assertion and fails on any future unhandled owner. This is a test
 coverage repair; the scientific source/atlas artifacts are unchanged by it.
+The corrected shared browser then passed all six owners and27corruption cases
+before its600second aggregate execution deadline terminated it. This is an
+actual completed timeout failure, not an observation timeout of a live job.
+Its complete matrix now receives1800seconds, matching the other large-corpus
+checks. All owner/document/corruption assertions remain in place.
 
 The isolated ece1c14 full suite finished with clean start/end:1843tests and
 1164subtests PASS3643.33s, terminal23:45:42UTC20October2026. It predates contour

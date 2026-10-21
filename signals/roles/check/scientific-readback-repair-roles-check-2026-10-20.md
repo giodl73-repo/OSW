@@ -63,3 +63,7 @@ The prior clean ece1c14 full suite passed1843tests/1164subtests3643.33s and is
 terminal. A latest repaired successor and final browser matrix remain required
 release gates. The browser's legacy NECC fallback has an explicit Loop branch
 with its own substantive assertions; no old NECC checks were removed.
+The shared browser passed all six owners and27corruptions before its600second
+aggregate execution deadline. That terminated process is retained in the log;
+the full matrix is rerun with the same1800second budget as other large-corpus
+checks. No interaction, document or corruption check is omitted.

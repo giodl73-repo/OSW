@@ -91,7 +91,8 @@ def main():
             # The source gate already exceeded the old aggregate ten-minute
             # allowance with the smaller corpus. Keep interaction assertions
             # unchanged and budget the complete matrix explicitly.
-            timeout = 1800 if name in {'test_loop_durante_source_browser.py', 'test_south_australian_context_browser.py', 'test_eac_source_fields_browser.py',
+            # Shared research checks visit all owners/documents before the full corruption matrix.
+            timeout = 1800 if name in {'test_current_research_evidence_browser.py', 'test_loop_durante_source_browser.py', 'test_south_australian_context_browser.py', 'test_eac_source_fields_browser.py',
                                       'test_eac_section_core_spans_browser.py',
                                       'test_rust_index_support_browser.py',
                                       'test_rust_index_noaa_browser.py'} else 600
