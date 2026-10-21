@@ -604,6 +604,11 @@ def build():
     for path in [SHIPBOARD,SHIPBOARD_INPUT,SHIPBOARD_SUBSET,'research/source-data/noaa-wbts-ab0505-sadcp/acquisition.json','analysis/build_antilles_sadcp_layer_spans.py','analysis/compare_shipboard_reconstruction.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     collections['observed_section_spans']=copy.deepcopy(shipboard['rows'])
+    from current_section_measurements import build as build_section_measurements
+    section_rows,section_pins=build_section_measurements()
+    collections['current_section_measurements']=section_rows
+    inputs.update(section_pins)
+    next(r for r in objects if r['id']=='current:red-sea-saline-overflow')['current_section_measurement_ids']=[r['id'] for r in section_rows]
     collections['diagnostics'].append({'id':'diagnostic:antilles-shipboard-layer-spans','label':'Antilles-region shipboard component spans','entity_id':'current:antilles','current_id':'antilles','status':shipboard['status'],'rank_eligible':False,'source_file':SHIPBOARD,'source_file_sha256':inputs[SHIPBOARD],'source_json':(ROOT/SHIPBOARD).read_bytes().decode('utf8'),'document':shipboard})
     next(r for r in objects if r['id']=='current:antilles')['observed_section_span_ids']=[r['id'] for r in shipboard['rows']]
     from build_leeuwin_monthly_plot import build as rebuild_leeuwin
@@ -809,7 +814,7 @@ def build():
             'current_section_receipts':{asca_path:{'source_file':asca_path,'source_sha256':inputs[asca_path],'source_json':(ROOT/asca_path).read_bytes().decode('utf-8')}},
             'movies_receipts':movies_receipts,
             'loop_recorded_receipts':{path:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for path in ['research/loop-current-recorded-date-comparison.json','research/loop-current-recorded-date-sources.json']},
-            'taxonomy':taxonomy,'editorial_collections':['proposed_widths','observed_section_spans','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','current_sections','section_transports','transport_validations'],
+            'taxonomy':taxonomy,'editorial_collections':['proposed_widths','observed_section_spans','current_section_measurements','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','current_sections','section_transports','transport_validations'],
             'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
             'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
             'input_sha256':inputs,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},

@@ -20,7 +20,8 @@ TARGETS=[('build_aleutian_p14n_vector_section','research/aleutian-p14n-1993-obse
          ('build_west_australian_oscar_2d_source','research/west-australian-oscar-2d-monthly-source-fields.json',{},None),
          ('west_australian_regional_streamlines','research/west-australian-regional-streamlines.json',{},None),
          ('west_australian_regional_streamlines_rk4','research/west-australian-regional-streamlines-rk4.json',{},None),
-         ('build_redsox_section3_spans','research/redsox-winter-section3-component-spans.json',{},None)]
+         ('build_redsox_section3_spans','research/redsox-winter-section3-component-spans.json',{},None),
+         ('build_redsox_section3_repeat','research/redsox-section3-repeat-surveys.json',{},None)]
 
 
 def differences(expected, actual):

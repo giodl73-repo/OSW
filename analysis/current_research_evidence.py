@@ -84,12 +84,16 @@ FROZEN_INPUTS.update({
     'research/redsox-winter-section3-component-spans.json':'9f77b4fc986490948c4e74bc9c5c486eeec157e0d47735a0ee66758034e2e22c',
     'research/redsox-section3-source-selection.json':'a35b60fb112fe29316ce62953e978ee98102e50fee45c039df5e6b974067c4cf',
     'research/redsox-winter-section3-figure.json':'4cdd2dbaddd34ecfcf49bc06f401417c6ec34ae5c2d3c9f72fb01a447605271f'})
+FROZEN_INPUTS.update({
+    'research/redsox-section3-repeat-surveys.json':'2d866d6d2b98961f86a30891671d4900f6a497df92d413f868d1e458c50985c9',
+    'research/redsox-section3-repeat-source-selection.json':'92389bcaccfa2618044765c050cf6464298acccef32c1fd689b674a8963968be',
+    'research/redsox-section3-repeat-figure.json':'47bb6b3b8faf9f2c28dc90c4c53394c13c5c7ef8379ea0edd95bbeb53bd73fc6'})
 
 def digest(path):return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
 
 
 def build():
-    if len(FROZEN_INPUTS)!=55:raise ValueError('Missing reviewed research source registry')
+    if len(FROZEN_INPUTS)!=58:raise ValueError('Missing reviewed research source registry')
     documents={}
     for path,pin in FROZEN_INPUTS.items():
         if digest(path)!=pin:raise ValueError('Changed reviewed current research source '+path)
@@ -514,6 +518,59 @@ def build():
                 'rows':[['–'.join(map(str,layer['height_layer_m']))+' m',
                     'Unresolved' if layer['cases'][0]['span_km'] is None else f"About {layer['cases'][0]['span_km']:.1f} km",
                     'Unresolved'] for layer in section3['layers']]}]
+        if scene['current_id']=='red-sea-saline-overflow':
+            from build_redsox_section3_repeat import build as rebuild_repeat, encoded as encode_repeat
+            repeat_path='research/redsox-section3-repeat-surveys.json'
+            repeat=rebuild_repeat()
+            if encode_repeat(repeat)!=(ROOT/repeat_path).read_bytes():
+                raise ValueError('Changed REDSOX repeat-survey report')
+            dependencies.update(repeat['input_sha256'])
+            dependencies[repeat_path]=digest(repeat_path)
+            manifest_path='research/redsox-section3-repeat-figure.json'
+            manifest=documents[manifest_path]
+            if (manifest['source_sha256']!=digest(repeat_path) or manifest['physical_width_admitted']
+                or manifest['seasonal_climatology'] or manifest['winter_file']!=section3_path
+                or manifest['winter_sha256']!=digest(section3_path)):
+                raise ValueError('Changed REDSOX repeat-survey figure scope')
+            dependencies[manifest['generator_file']]=manifest['generator_sha256']
+            if digest(manifest['generator_file'])!=manifest['generator_sha256']:
+                raise ValueError('Changed repeat-survey figure generator')
+            for asset in manifest['figures'].values():
+                if digest(asset['file'])!=asset['sha256'] or (ROOT/asset['file']).stat().st_size!=asset['bytes']:
+                    raise ValueError('Changed repeat-survey figure')
+                dependencies[asset['file']]=asset['sha256']
+            scene['finding']+=' The 23 August repeat gives a northern component candidate near 3.1 km, but it fails the unchanged saline-water screen. No same-branch winter–summer width difference is supported.'
+            scene['facts'].append({'label':'Summer northern component candidate','value':'About 3.1 km · saline screen fails'})
+            scene['query_links']=[{'label':'Query all dated section measurements','query':{
+                'collection':'current_section_measurements','filters':[{
+                    'field':'current_id','op':'eq','value':'red-sea-saline-overflow'}],'limit':100}}]
+            scene['notes'].append('The summer peak has about 37.41 source psu, below the unchanged 38 psu screen; the −0.04 m/s offset also puts it below the speed floor. This does not prove the named outflow is absent. Cast22 remains excluded for unverified bad-upcast treatment. All30 summer cases and all6 same-branch comparisons are retained. Two dates cannot establish an annual range or seasonal climatology; different branches are never combined to fill missing comparisons.')
+            scene['next_evidence']='Resolve rejected-component treatment and water-mass/flow association; obtain paired usable boundaries and repeated observations before physical-width or seasonal-range admission.'
+            scene['additional_figures'].append({'file':'figures/redsox-section3-repeat-surveys.svg',
+                'label':'Two dated surveys: velocity and salinity comparison',
+                'alt':'February and August 2001 paired layer components and salinity from twelve repeated station neighborhoods. Winter southern spans are about5.0/5.5km; summer northern candidate3.1km fails the unchanged saline screen and is not a verified width. Southern summer is quality-blocked; northern winter is incomplete. No same-branch width difference or annual range is supported.'})
+            scene['source_links'].extend([
+                link('Summer section: all 30 declared cases',repeat_path,'/summer_layers'),
+                link('Six same-branch dated comparisons',repeat_path,'/comparisons'),
+                link('Matched source station positions',repeat_path,'/station_correspondence'),
+                link('Summer section selection and rules','research/redsox-section3-repeat-source-selection.json'),
+                link('Repeat-survey figure provenance',manifest_path)])
+            def span_text(value,screen):
+                return 'Unresolved' if value is None else f"About {value:.1f} km"+(' · saline screen fails' if screen is False else '')
+            rows=[]
+            for index in range(0,6,2):
+                south,north=repeat['comparisons'][index:index+2]
+                differences=[label+f": {case['summer_minus_winter_dated_component_span_km']:+.1f} km"
+                    for label,case in [('South',south),('North',north)] if case['comparison_supported']]
+                rows.append(['–'.join(map(str,south['height_layer_m']))+' m',
+                    span_text(south['winter_span_km'],south['winter_saline_screen']),
+                    span_text(south['summer_span_km'],south['summer_saline_screen']),
+                    span_text(north['winter_span_km'],north['winter_saline_screen']),
+                    span_text(north['summer_span_km'],north['summer_saline_screen']),
+                    ' / '.join(differences) if differences else 'Unresolved'])
+            scene['additional_tables'].append({'caption':'22–23 February versus23 August2001, Section3. Different branches are separate; component candidates are not physical widths. All six same-branch dated differences remain unresolved.',
+                'headers':['Layer above bottom','Winter south','Summer south','Winter north','Summer north','Same-branch difference'],
+                'rows':rows})
         if scene['current_id'] in ['aleutian','pacific-north-equatorial-countercurrent','norwegian-coastal','loop']:
             scene['notes'].append('Calculated readbacks use a declared precision for reproducibility. That precision is not observational uncertainty or an annual range. Original source values, masks and quality flags remain unchanged; the exact record pins the calculation rules.')
         scene.update(kind='current_research_evidence',rank_eligible=False,new_width_record_admitted=False,

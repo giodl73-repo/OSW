@@ -35,6 +35,7 @@ window.renderCurrentResearchEvidence=function(container,scene,inspect,options={}
   }
   add('p','Next evidence needed: '+scene.next_evidence,details);
   const links=add('ul','',details);
+  for(const query of scene.query_links||[]){const link=add('a',query.label,add('li','',links));link.href='query.html?q='+encodeURIComponent(JSON.stringify(query.query));link.style.cssText='display:inline-flex;align-items:center;min-height:44px';}
   for(const source of scene.source_links){const link=add('a',source.label,add('li','',links));link.href='query.html?source-q='+encodeURIComponent(JSON.stringify({document:source.document,pointer:source.pointer,limit:100}));link.style.cssText='display:inline-flex;align-items:center;min-height:44px';}
   const original=add('a','Open primary source',details);original.href=scene.original_url;original.style.cssText='display:inline-flex;align-items:center;min-height:44px';
   if(inspect){const button=add('button','Inspect research evidence record');button.type='button';button.style.minHeight='44px';button.onclick=()=>inspect('diagnostics',scene.diagnostic_id);}

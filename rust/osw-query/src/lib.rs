@@ -12,6 +12,7 @@ pub mod cartography;
 mod charts;
 mod coastal_composite_widths;
 mod current_research_evidence;
+mod current_section_measurements;
 mod current_sections;
 mod current_width_source_reviews;
 mod dashboard;
@@ -218,6 +219,7 @@ impl Store {
         original_regional_widths::validate_loop_core_inventory(&bundle)?;
         original_regional_widths::validate_antarctic_jet_inventory(&bundle)?;
         observed_spans::validate(&bundle)?;
+        current_section_measurements::validate(&bundle)?;
         nordic_widths::validate(&bundle)?;
         selected_core_widths::validate(&bundle)?;
         antilles_cruise_spans::validate(&bundle)?;
