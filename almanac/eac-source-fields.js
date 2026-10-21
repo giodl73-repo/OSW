@@ -59,6 +59,14 @@
       const img=node('img',undefined,overview);img.src='../'+core.figure_file;img.alt=core.figure_alt;img.loading='lazy';img.style.cssText='display:block;width:100%;height:auto;background:white';
       for(const note of core.limitations)node('p',note,overview);
       link('Query all 3,770 section-core outcomes',sourceUrl({document:core.raw_profile_file,pointer:'/profiles',limit:100}),node('p','',overview));
+      const calendar=node('details',undefined,corePanel);calendar.className='eac-calendar-comparison';
+      node('summary','Compare calendar months and years',calendar).style.minHeight='44px';
+      node('p','The primary 50% case is pooled by calendar month and shown separately by year. Counts include unresolved dates. Thin segments show resolved min/max, thick segments show the 10th–90th percentiles, and points show medians. These are conditional distributions of mapped dates, not physical widths or confidence intervals.',calendar);
+      const calendarImage=node('img',undefined,calendar);calendarImage.src='../figures/eac-section-calendar-distributions.svg';calendarImage.loading='lazy';
+      calendarImage.alt='EAC 100 m section-span distributions for twelve calendar months and eleven years, with resolved and attempted date counts. 2014 has no resolved dates; 2012 and 2022 are partial calendar years.';
+      calendarImage.style.cssText='display:block;width:100%;height:auto;background:white';
+      link('Open full-size calendar comparison',calendarImage.src,node('p','',calendar));
+      for(const [label,pointer] of [['Query calendar-month distributions','/calendar_month_groups'],['Query year distributions and missing-date counts','/calendar_year_groups']])link(label,sourceUrl({document:'research/eac-section-calendar-distributions.json',pointer,limit:25}),node('p','',calendar));
       scenario.addEventListener('change',()=>drawCore());threshold.addEventListener('change',()=>drawCore());
     }
     const cellLabel=node('label','Source position ',details),cell=node('select',undefined,cellLabel);cell.style.cssText='min-height:44px;max-width:100%';

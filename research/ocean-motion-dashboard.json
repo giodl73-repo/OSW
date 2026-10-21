@@ -426,6 +426,13 @@
     "figures/eac-csiro-100m-section-core-spans.svg": "01184d2f86387dc0e8d89e429e5f878f66437175ba7b7ba037236b6fe5fe86e6",
     "figures/eac-csiro-100m-section-core-spans.png": "81e9b946775ec123434dd9da1b393cd9281b6f37276857706b5f10eb5ef052c7",
     "research/eac-csiro-100m-section-core-spans-summary.json": "5c2e80d1a73ca723a4e41a143ed246c5a88691e137a220a1ded2208932c6ae79",
+    "plans/eac-section-calendar-distribution-protocol-v1.md": "ecc2e0eee8ee5019f2ef22c04637f5344b0a74ae137f174e8bd914daa1e6f3ce",
+    "analysis/build_eac_calendar_distributions.py": "474123d4e8bd6c327ca5a821b00fc3fe780a0508b72dba41a114cdc9c4967b62",
+    "research/eac-section-calendar-distributions.json": "2d99a40a7ad9d30822c449ef0141fc24f895b58bf96f31bbc88e2f6307bfc94b",
+    "research/eac-section-calendar-distributions-figure.json": "cb0dd30c230784810afa0eb6af32d975e056b4ca47d92a2e173fcae3b3a8943d",
+    "analysis/build_eac_calendar_distribution_figure.py": "b0555f69749e4b91bd37870782579d3b4484c5d9c50b46b02293bbd221d412f5",
+    "figures/eac-section-calendar-distributions.svg": "578a44d8b174abefc0aa7c07b55b7880e5df8879d8909e83f8d3d18b6a6a55c9",
+    "figures/eac-section-calendar-distributions.png": "55a978c8814da58412c7a807e4e094dc056ef3fdc500427dbde78a8457225873",
     "research/source-data/kuroshio-liu-gan-2012/figure6a-extraction.json": "ec9ce9bf6857aa5ec257d9ff202586dee7940c73ced3caff9720d24eaded9f2a",
     "plans/kuroshio-seasonal-width-profile-extraction-protocol-v1.md": "269b2397f87a4fe156f36b0618916d4ebb90b21308f9e5caaffae2d4a3c9694e",
     "research/florida-monthly-width-plot-extraction.json": "a19bd06ad71c508ffb9b3d2fe0bc67435de40f138aaf408e1cf930640c048e2c",
@@ -741,7 +748,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "91fd60d12a6ddf9f4bb9abe7dc924478e43830fb65591b3c9660e751a6054fca",
+  "snapshot_fingerprint": "97305c64656e488248ef5114cc40b814c26cdae02487213238a5fe3fe73bd6f9",
   "entries": [
     {
       "id": "current:agulhas",
@@ -3839,12 +3846,12 @@
       ],
       "section_fingerprints": {
         "identity": "b27327939f3865eba5eafb208dd4b8f1d55ae3291e2af7a984a79d09018bdd9d",
-        "sources": "95024416ccc99f5307f18a432df6b6b52c7cd79b0187394f1cd785af155c6179",
+        "sources": "01b860bf33b406fce697c94bd415b2e3d301bb714ea5d207849f82e8d69e1048",
         "claims": "c8f3e63e41fa7d2fe90981a58ddb5cb10d941ded734fdeb74cc366a35bce2a41",
         "measurements": "fbcdf8ae893a5c34478b75a2d472d71185def975b4bc49c39f8c266322f8eca8",
         "routes_geometry": "64c2859a1f269f46d3de3be772faeac45278560da2e42c4625f5bc0648fb59ac",
         "media": "7c0712ce7022a2bc924e5dc350a13a354a75eeea537777346438b9fa74833028",
-        "time_evidence": "563f25c91c97aa5b08c39459a8256c39f2796694a34e00eb429ebd1fb6027b1b"
+        "time_evidence": "1fd912b21129637bfe16809c7aa10fb66a8bb1b4229ad25028da2c1a9c8476c4"
       },
       "latest_observation_date": null,
       "claim_review_counts": {
@@ -3908,6 +3915,14 @@
         {
           "label": "Explore all3770 section-core outcomes / 2883 resolved / 887 unresolved",
           "url": "query.html?q=%7B%22collection%22%3A%22diagnostics%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22diagnostic%3Aeac-csiro100m-section-core-spans%22%7D%5D%2C%22limit%22%3A1%7D#query-chart-section"
+        },
+        {
+          "label": "Compare calendar-month and year section-span distributions",
+          "url": "../figures/eac-section-calendar-distributions.svg"
+        },
+        {
+          "label": "Query all calendar-month distributions and missing-date counts",
+          "url": "query.html?source-q=%7B%22document%22%3A%22research%2Feac-section-calendar-distributions.json%22%2C%22pointer%22%3A%22%2Fcalendar_month_groups%22%2C%22limit%22%3A12%2C%22offset%22%3A0%7D#source-query-title"
         }
       ],
       "object_url": "object.html?id=current%3Aeast-australian",
@@ -68529,5 +68544,5 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "built_at_utc": "2026-10-20T23:36:34.473953+00:00"
+  "built_at_utc": "2026-10-21T00:22:23.763381+00:00"
 }

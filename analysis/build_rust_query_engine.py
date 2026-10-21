@@ -93,6 +93,11 @@ def main():
                   'research/south-australian-hycom-2d-flow-context-scene.json'])
     paths.append('research/source-data/loop-durante-2026-v0/quality.json')
     paths.extend(['analysis/scientific_readback.py','plans/scientific-calculation-readback-protocol-v1.md'])
+    paths.extend(['analysis/build_eac_calendar_distributions.py',
+                  'analysis/build_eac_calendar_distribution_figure.py',
+                  'plans/eac-section-calendar-distribution-protocol-v1.md',
+                  'research/eac-section-calendar-distributions.json',
+                  'research/eac-section-calendar-distributions-figure.json'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',

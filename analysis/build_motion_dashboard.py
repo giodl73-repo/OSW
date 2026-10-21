@@ -226,6 +226,9 @@ def build():
     from eac_core_spans import verify_inputs as verify_eac_cores, ID as EAC_CORE_ID
     eac_cores,eac_core_inputs=verify_eac_cores()
     inputs.update(eac_core_inputs)
+    from build_eac_calendar_distributions import verify as verify_eac_calendar, REPORT as EAC_CALENDAR
+    eac_calendar,eac_calendar_inputs=verify_eac_calendar()
+    inputs.update(eac_calendar_inputs)
     if kuroshio_profiles!=build_kuroshio_profiles():raise ValueError('Kuroshio seasonal profile differs from pinned extraction')
     for key in ['source_pdf_file','config_file','protocol_file','scope_audit_file']:
         path=kuroshio_profiles[key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -637,6 +640,10 @@ def build():
         if current_id == 'east-australian':
             evidence_links.append({'label':'Explore all3770 section-core outcomes / 2883 resolved / 887 unresolved',
                 'url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':EAC_CORE_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
+            evidence_links.append({'label':'Compare calendar-month and year section-span distributions',
+                'url':'../'+eac_calendar['comparison_figure']})
+            evidence_links.append({'label':'Query all calendar-month distributions and missing-date counts',
+                'url':'query.html?source-q='+quote(json.dumps({'document':EAC_CALENDAR,'pointer':'/calendar_month_groups','limit':12,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
         if current_id == 'west-spitsbergen':
             evidence_links.append({'label':'Compare WSC source widths and their separate methods',
                 'url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':current_id}],'limit':20},separators=(',',':')),safe='')+'#query-chart-section'})
@@ -824,6 +831,11 @@ def build():
             groups['sources'].append(core_support)
             groups['measurements'].append(core_support)
             groups['time_evidence'].append(core_support)
+            calendar_support={'source_file':EAC_CALENDAR,'source_sha256':inputs[EAC_CALENDAR],
+                'calendar_month_groups':12,'calendar_year_groups':11,'cases_per_group':9,
+                'source_dates':3770,'new_independent_observations':0,'physical_width_admitted':False}
+            groups['sources'].append(calendar_support)
+            groups['time_evidence'].append(calendar_support)
         if current_id in local_width_audits:
             if current_id == 'agulhas':
                 span_support={'diagnostic_id':ASCA_SPAN_ID,'source_file':'research/agulhas-asca-100m-dated-component-spans.json',

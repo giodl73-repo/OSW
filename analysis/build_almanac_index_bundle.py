@@ -77,6 +77,12 @@ def build():
         from build_pelagia_date_reconciliation import build as build_date_reconciliation, OUTPUT as date_path
         if date_path not in documents or json.loads(documents[date_path]) != build_date_reconciliation():
             raise ValueError('Missing or stale corrected station-date source')
+    calendar_path = 'research/eac-section-calendar-distributions.json'
+    if calendar_path in documents:
+        from build_eac_calendar_distributions import verify as verify_eac_calendar
+        calendar_doc, _ = verify_eac_calendar()
+        if json.loads(documents[calendar_path]) != calendar_doc:
+            raise ValueError('Changed EAC calendar source document')
     # Bind on-demand discovery to the complete manifest; file support stays distinct
     # from the manifest's source_product/source_subset hashes.
     seasons = json.loads(SEASONS.read_bytes())
