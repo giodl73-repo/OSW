@@ -89,3 +89,22 @@ Implementation clarification: the initial-azimuth and nominal-subdivision
 wording was made explicit during code review after the first exploratory
 extraction. Neither calculation nor acceptance thresholds were changed. A
 retained first-pass comparison checks that all span values/statuses survive.
+
+## Canonical numerical exports
+
+Linux reconstruction of the first published implementation at c4978a2 found
+27 last-digit coordinate/bearing differences, about1e-9 degrees, with every
+span value and status identical. Canonical exports therefore use7 decimal
+places for longitude/latitude,6 for bearings,9 for source positions/fractions,
+6 for km quantities and6 for numerical residuals in metres. This is an export
+precision rule, not a different intersection or eligibility operator. Every
+decision still uses unrounded values and the original0.001m normal-residual
+acceptance gate. Source originals are preserved.
+
+Checks using the printed geometry allow0.03m to accommodate propagated
+coordinate/bearing/distance rounding (bounded local edge distance200km).
+Checks reconstructed from the original source/fraction pointers retain the
+strict0.001m normal test. Neither tolerance expresses physical uncertainty.
+The scientific CI gate continues to require exact report bytes; no tolerance
+is substituted for that gate. Preserve all IDs, span values, statuses and
+summary values from the first extraction.

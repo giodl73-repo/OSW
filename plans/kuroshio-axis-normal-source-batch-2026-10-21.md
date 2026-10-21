@@ -49,12 +49,13 @@ was clarified during implementation review without changing calculations or
 thresholds. All first-pass span values, statuses and IDs survive exactly.
 
 The complete report rebuilds byte-for-byte from the pinned original:
-22,464,919 bytes, SHA256
-263ea04856cb82c22e9381dc77360a5ab1ac42a03942b8da2c6cac16fc08427e.
+22,088,514 bytes, SHA256
+9e0c4cbbd62426c68aa29c45149106fbdbf52ed2ca159b852c912f5572a13346.
 The provider original, compressed archive, license and metadata are unchanged.
 Independent source-coordinate readbacks, forward-geodesic checks and a
-spherical-distance comparison cover every14,034 resolved result. Sub-mm
-numerical consistency is a serialization/geometry check, not physical accuracy.
+spherical-distance comparison cover every14,034 resolved result. Original-source
+normal reconstruction retains the strict0.001m numerical check. Printed-geometry
+checks account separately for coordinate/bearing rounding; neither is physical accuracy.
 
 The standalone SVG shows monthly available-sample ranges and dated July1
 maps at all three depths. Actual geodesic normals and old latitude cuts have
@@ -68,7 +69,12 @@ Figure bytes reproduce, and its input/figure hashes are in a separate receipt.
 Actual browser rendering was inspected; serif fallback and footer overlap were
 corrected, and gate colours have >=4.5 contrast against white and ocean fill.
 Scientific reconstruction is registered as target23. Linux execution for this
-new head is a separate gate. At9b335cb, the prior22-report scientific job and
+new head is a separate gate. The first Linux run at c4978a2 reproduced every
+span and status but found27 last-digit bearing/coordinate differences around
+1e-9 degrees. Canonical exports now use7 coordinate decimals and6 bearing
+decimals; source fractions retain9. Unrounded intersections/acceptance and all
+span values/statuses/IDs remain unchanged. The exact-byte gate is retained.
+At9b335cb, the prior22-report scientific job and
 NetCDF job passed; offline acquisition failed on the existing Rotschi1972 PDF
 HTTP403 before tests. A fresh complete default-suite pass is not claimed.
 

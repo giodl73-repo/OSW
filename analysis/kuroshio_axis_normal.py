@@ -163,7 +163,9 @@ def measure(curves,latitude,window,prepared=None):
 def readback(value,key=''):
     if isinstance(value,dict):return {k:readback(v,k) for k,v in value.items()}
     if isinstance(value,(list,tuple)):return [readback(v,key) for v in value]
-    if isinstance(value,float):return round(value,9 if key in {'point','position','source_position','fraction_from_segment_start','axis_tangent_azimuth_degrees','right_normal_azimuth_degrees'} else 6) or 0.0
+    if isinstance(value,float):
+        digits=7 if key=='point' else 9 if key in {'position','source_position','fraction_from_segment_start'} else 6
+        return round(value,digits) or 0.0
     return value
 
 
@@ -222,6 +224,10 @@ def build():
         'geometry_conventions':{'axis_heading':'WGS84 inverse initial azimuth between tangent endpoints, applied at gate',
             'boundary_interpolation':'linear longitude/latitude, nominal 1km subdivision then40 root bisections',
             'tangent_interpolation':'WGS84 leg distance, linear longitude/latitude within source segment'},
+        'numerical_readback':{'longitude_latitude_decimal_places':7,'azimuth_degrees_decimal_places':6,
+            'source_position_fraction_decimal_places':9,'distance_km_decimal_places':6,
+            'normal_residual_m_decimal_places':6,'serialized_geometry_check_tolerance_m':.03,
+            'unrounded_normal_residual_acceptance_m':.001,'physical_accuracy_claim':False},
         'input_sha256':{**previous['input_sha256'],**{p:base.digest(p) for p in files}},
         'counts':{'source_days':366,'source_depth_levels':30,'extracted_depth_levels':3,'attempts':len(rows)},
         'status_counts':dict(Counter(r['status'] for r in rows)),

@@ -111,6 +111,9 @@ class RetainedReportTests(unittest.TestCase):
         self.assertEqual(dict(Counter(r['status'] for r in rows)),doc['status_counts'])
         self.assertFalse(doc['velocity_normal_verified']);self.assertFalse(doc['ocean_connectivity_verified'])
         self.assertFalse(doc['physical_width_inventory_admitted'])
+        self.assertEqual(doc['numerical_readback']['longitude_latitude_decimal_places'],7)
+        self.assertEqual(doc['numerical_readback']['azimuth_degrees_decimal_places'],6)
+        self.assertEqual(doc['numerical_readback']['unrounded_normal_residual_acceptance_m'],.001)
         for row in rows:
             for key in ['physical_uncertainty_km','boundary_fallback_occurred','threshold_attained']:
                 self.assertIsNone(row[key])
@@ -122,13 +125,14 @@ class RetainedReportTests(unittest.TestCase):
             for kind,edge in row['edges'].items():
                 bearing=row['right_normal_azimuth_degrees']+(180 if kind=='left' else 0)
                 lon,lat,_=k.base.GEOD.fwd(*row['gate']['point'],bearing,abs(edge['signed_normal_offset_km'])*1000)
-                self.assertLess(k.base.distance([lon,lat],edge['point'])*1000,.002)
+                self.assertLess(k.base.distance([lon,lat],edge['point'])*1000,.03)
+                self.assertLessEqual(edge['normal_residual_m'],.001)
             left,right=[row['edges'][kind]['point'] for kind in ('left','right')]
             a,b,c,d=map(math.radians,[*left,*right])
             hav=math.sin((d-b)/2)**2+math.cos(b)*math.cos(d)*math.sin((c-a)/2)**2
             spherical=6371.0088*2*math.asin(math.sqrt(hav))
             self.assertLess(abs(spherical-row['span_km'])/row['span_km'],.006)
-            self.assertLess(abs(k.base.distance(left,right)-row['span_km'])*1000,.002)
+            self.assertLess(abs(k.base.distance(left,right)-row['span_km'])*1000,.03)
 
     def test_all_monthly_and_annual_summaries_from_retained_attempts(self):
         groups=defaultdict(list)
