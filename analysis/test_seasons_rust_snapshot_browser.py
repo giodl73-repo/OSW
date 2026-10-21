@@ -57,7 +57,7 @@ def main():
         url='http://127.0.0.1:8788/almanac/seasons.html?current=florida'
         page.goto(url)
         page.wait_for_function('window.oswSeasonSnapshot',timeout=90000)
-        expect(page.locator('#season-current option')).to_have_count(100,timeout=90000)
+        expect(page.locator('#season-current option')).to_have_count(101,timeout=90000)
         assert page.evaluate('window.oswSeasonSnapshot')==native
         assert page.locator('#season-loading').get_attribute('data-engine')=='rust-osw-query-v1'
         assert not raw_requests,raw_requests
@@ -70,7 +70,7 @@ def main():
         expect(rejected.locator('#season-loading')).to_contain_text('Invalid local direction scope',timeout=90000)
         assert rejected.locator('#season-current option').count()==0
         browser.close()
-    print('PASS: four exact source documents, eight loader rejections, native/WASM parity, 100 current phase plans/controls, no direct JSON reads, unavailable and invalid first loads')
+    print('PASS: four exact source documents, eight loader rejections, native/WASM parity, 101 current phase plans/controls, no direct JSON reads, unavailable and invalid first loads')
 
 
 if __name__=='__main__':main()

@@ -110,19 +110,20 @@ def main():
         assert selection['result']==native_selection(selection['request'])
         scene=selection['result']['map_scene']
         assert scene['mapped_objects']==240
+        assert scene['unmapped_objects']==1
         assert not scene['omitted_features']
         grouped=[f for f in scene['features'] if f['kind']=='marker' and f['group']]
         assert len(grouped)==1
         assert set(grouped[0]['entity_ids'])=={r['id'] for r in data['entries'] if any(f.get('group')=='Gulf of Mexico regional gateway' for f in r['map_features'])}
         beck=selection['result']['beck_scene']
         currents=[r for r in data['entries'] if r['type']=='named_current']
-        assert [r['id'] for r in beck['stations']]==[r['id'] for r in currents]
+        assert [r['id'] for r in beck['stations']]==[r['id'] for r in currents if r['map_features']]
         assert {r['id'] for panel in beck['panels'] for r in panel['rows']}=={r['id'] for r in currents}
         assert {c['id'] for c in beck['connections']}=={c['id'] for c in data['connections']}
         assert sum(len(g['ids']) for g in beck['eddy_groups'])==140
         assert page.locator('#dashboard-schematic').is_visible()
         assert page.locator('.beck-station').count() == 100
-        assert '100 / 100 current stations in view' in page.locator('#dashboard-station-count').inner_text()
+        assert '100 / 101 current stations in view' in page.locator('#dashboard-station-count').inner_text()
         page.locator('#dashboard-search').fill('Portugal Current')
         settle(page)
         page.locator('#dashboard-covered').check()
@@ -145,7 +146,7 @@ def main():
         station.focus()
         assert station.locator('.beck-name').evaluate('(el)=>getComputedStyle(el).opacity') == '1'
         stations=page.locator('.beck-station').evaluate_all('(els)=>els.map(e=>({n:Number(e.dataset.stationNumber),x:Number(e.dataset.worldX),y:Number(e.dataset.worldY)}))')
-        assert sorted(s['n'] for s in stations) == list(range(1,101))
+        assert sorted(s['n'] for s in stations) == [i+1 for i,r in enumerate(currents) if r['map_features']]
         assert all(74<=s['x']<=1526 and 104<=s['y']<=816 for s in stations)
         assert all(((a['x']-b['x'])**2+(a['y']-b['y'])**2)**.5>=30 for i,a in enumerate(stations) for b in stations[i+1:])
         assert page.locator('.beck-eddy-gateway').count() > 10
@@ -153,8 +154,8 @@ def main():
         page.locator('.beck-connection').first.focus()
         page.keyboard.press('Enter')
         assert 'Read the source' in page.locator('#dashboard-schematic-detail').inner_text()
-        assert page.locator('.schematic-station').count() == 100
-        assert page.locator('.schematic-station text').count() == 100
+        assert page.locator('.schematic-station').count() == 101
+        assert page.locator('.schematic-station text').count() == 101
         page.locator('.schematic-station').first.focus()
         page.keyboard.press('Enter')
         assert page.locator('#dashboard-schematic-detail').is_visible()
@@ -202,7 +203,7 @@ def main():
         page.locator('#dashboard-atlas').screenshot(path=str(ROOT / 'figures/motion-dashboard-atlas-review.png'))
         page.locator('#dashboard-card-view').click()
         settle(page)
-        assert page.locator('.motion-card').count() == 240
+        assert page.locator('.motion-card').count() == 241
         assert page.locator('.motion-card.updated').count() == 0
         gulf=page.locator('[data-id="current:gulf-stream-system"]')
         gulf.locator('summary').click()
@@ -271,7 +272,7 @@ def main():
         page.route('**/query-data.json',lambda route:route.fulfill(status=503,body='unavailable'))
         page.locator('#dashboard-refresh').click()
         page.wait_for_function("document.getElementById('dashboard-status').textContent.includes('previously loaded')")
-        assert page.locator('.motion-card').count() == 240
+        assert page.locator('.motion-card').count() == 241
         page.emulate_media(reduced_motion='reduce')
         page.set_viewport_size({'width':320,'height':900})
         page.locator('#dashboard-map-view').click()
@@ -287,7 +288,7 @@ def main():
         assert blocked.locator('.beck-station').count()==0
         assert blocked.evaluate('window.oswDashboardSnapshot===undefined')
         browser.close()
-    print('OK: native/WASM dashboard parity, four receipt/projection rejections, atlas routes, keyboard selection, 240 records, coverage lights, updates, outage retention and mobile layout')
+    print('OK: native/WASM dashboard parity, four receipt/projection rejections, atlas routes, keyboard selection, 241 records, coverage lights, updates, outage retention and mobile layout')
 
 
 if __name__ == '__main__': main()

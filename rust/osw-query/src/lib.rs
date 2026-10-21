@@ -12,6 +12,7 @@ mod basin_spans;
 pub mod cartography;
 mod charts;
 mod coastal_composite_widths;
+mod current_catalogue;
 mod current_research_evidence;
 mod current_section_measurements;
 mod current_sections;
@@ -328,6 +329,7 @@ impl Store {
         model_sections::validate(&bundle)?;
         mooring_velocity::validate(&bundle)?;
         current_sections::validate(&bundle)?;
+        current_catalogue::validate(&bundle)?;
         movies::validate(&bundle)?;
         measurement_scope::validate(&bundle.collections, &bundle.manifest)?;
         let spatial = spatial::Index::build(&bundle.collections)?;

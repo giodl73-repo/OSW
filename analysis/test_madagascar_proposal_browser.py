@@ -22,7 +22,8 @@ def main():
             page.goto(BASE+'/almanac/reference-routes.html#inventory-addition-'+ID)
             card=page.locator('#inventory-addition-'+ID)
             expect(card).to_contain_text('Reported dimensions',timeout=120000)
-            assert page.locator('.inventory-addition-card').count()==29
+            expect(card).to_contain_text('Current identity admitted')
+            assert page.locator('.inventory-addition-card').count()==28
             assert page.locator('.route-atlas-station').count()==100
             expect(card).to_contain_text('not include the northward branch')
             image=card.locator('.proposed-source-dimensions img');image.scroll_into_view_if_needed()
@@ -49,7 +50,7 @@ def main():
             assert not errors,errors
             browser.close()
     finally:index.unlink(missing_ok=True)
-    receipt={'status':'PASS','proposed_currents':29,'canonical_stations_unchanged':100,
+    receipt={'status':'PASS','proposed_currents':28,'admitted_currents':101,'canonical_stations_unchanged':100,
         'source_dimensions_exact':2,'native_wasm_source_equal':True,'keyboard_details_and_link':True,
         'phone_reflow':True,'page_errors':errors}
     (out/'browser-result.json').write_text(json.dumps(receipt,indent=2)+'\n')

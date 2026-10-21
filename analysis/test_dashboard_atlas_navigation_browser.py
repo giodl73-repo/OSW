@@ -20,7 +20,7 @@ def main():
         page.goto(BASE + 'dashboard.html', wait_until='networkidle')
         page.wait_for_function('window.oswDashboardSnapshot',timeout=90000)
         settle(page)
-        page.wait_for_function('document.querySelectorAll(".motion-card").length===240')
+        page.wait_for_function('document.querySelectorAll(".motion-card").length===241')
         links = page.locator('.motion-card').evaluate_all('''cards => cards.map(card => ({
             id:card.dataset.id, href:card.querySelector('h3 a').getAttribute('href'),
             record:card.querySelector('details > a').getAttribute('href')
@@ -44,7 +44,7 @@ def main():
                 assert parse_qs(urlparse(heading.get_attribute('href')).query)['atlas-feature'] == [feature_id]
             page.locator('#dashboard-card-view').click()
             page.locator(f'.motion-card[data-id="{feature_id}"] h3 a').click()
-            page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length===240')
+            page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length===241')
             selector = '#route-atlas-select' if entry['type']=='named_current' else '#route-atlas-eddy-select'
             page.wait_for_function('(args)=>document.querySelector(args[0]).value===args[1]', arg=[selector,feature_id])
             assert entry['label'] in page.locator('#route-atlas-preview > h3').inner_text()

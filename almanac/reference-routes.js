@@ -117,16 +117,23 @@
     if(row.proposed_id==='norwegian-atlantic-front')node('p','The 2010 study discusses a broader time-mean frontal flow but gives no new numeric width. Its mean width remains unknown. The corrected 2019 glider result belongs to the Mohn Ridge and does not fill that 2010 Svinoy mean.',card);
   }
   let catalog;
-  load("../research/ocean-current-inventory-expansion-candidates.json").then(value => {
+  load("../research/ocean-current-inventory-expansion-candidates.json").then(async value => {
+    const admissions=await load('../research/ocean-current-identity-admissions.json');
     for (const row of value.entries) {
-      const card = node("section", null, byId("inventory-addition-cards")); card.id = `inventory-addition-${row.proposed_id}`; card.className = "inventory-addition-card"; card.tabIndex = -1;
+      const admitted=admissions.entries.find(r=>r.proposal_id===row.proposed_id);
+      const card = node("section", null, byId("inventory-addition-cards")); card.id = `inventory-addition-${row.proposed_id}`; card.className = admitted?'current-admission-card':'inventory-addition-card'; card.tabIndex = -1;
       node("h3", row.name, card);
       const navigation = node("p", null, card);
-      link("Link to this proposed current", `#${card.id}`, navigation);
+      link(admitted?'Link to this current':'Link to this proposed current', `#${card.id}`, navigation);
       navigation.append(document.createTextNode(" · "));
       link("Back to current atlas", "#route-atlas", navigation);
-      node("p", `Proposed classification: ${row.proposed_kind}. ${row.identity_scope}`, card);
-      node("p", "Inventory addition pending review; no whole-current length or rank admitted.", card);
+      node("p", `${admitted?'Source-supported':'Proposed'} classification: ${row.proposed_kind}. ${row.identity_scope}`, card);
+      node("p", admitted?'Current identity admitted to the working catalogue. Quantitative measurements, routes and annual ranges retain their separate review gates.':'Inventory addition pending review; no whole-current length or rank admitted.', card);
+      if(admitted){
+        link('Open accepted current record',objectHref(admitted.entity_id),node('p',null,card));
+        const q={collection:'current_identity_admissions',filters:[{field:'id',op:'eq',value:admitted.id}],limit:1};
+        link('Query the identity admission','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,card));
+      }
       for (const evidence of row.evidence) {
         link(evidence.citation, evidence.url, node("p", null, card), true);
         node("p", `${evidence.locator} ${evidence.supports}`, card);
@@ -137,8 +144,8 @@
         const d=row.source_dimensions,section=node('section',null,card);section.className='proposed-source-dimensions';
         node('h4','Reported dimensions · separate measurement scopes',section);
         const figure=node('figure',null,section);figure.style.margin='0';
-        const image=node('img',null,figure);image.src='../'+d.figure_file;
-        image.alt='Southern East Madagascar Current: about 650 km contextual branch extent; about 120 km near-surface width from April 2001. Separate supports, not a footprint or annual range.';
+        const image=node('img',null,figure);image.src='../'+(admitted?.identity_figure_file||d.figure_file);
+        image.alt=`${row.name}: ${d.records.map(r=>`about ${r.value_km} km reported ${r.dimension}`).join('; ')}. Separate supports, not a footprint or annual range.`;
         image.style.cssText='width:100%;max-width:960px;height:auto';
         node('figcaption',d.interpretation,figure);
         for(const r of d.records){
@@ -174,9 +181,9 @@
           link('Query the two provisional source reports','query.html?source-q='+encodeURIComponent(JSON.stringify(q)),node('p',null,evidence));
         }).catch(error=>node('p','Additional reported dimensions unavailable: '+error.message,evidence));
       }
-      const list = node("ul", null, card); for (const gate of row.remaining_gates) node("li", gate, list);
+      const list = node("ul", null, card); for (const gate of admitted?.remaining_measurement_gates||row.remaining_gates) node("li", gate, list);
     }
-    byId("inventory-addition-status").textContent = `${value.entries.length} proposed inventory additions beyond the current 100-name ledger. Coverage is incomplete.`;
+    byId("inventory-addition-status").textContent = `${value.entries.length-admissions.entries.length} pending inventory additions; ${admissions.entries.length} identity admitted beyond the historical 100-name package. Coverage is incomplete.`;
     requestAnimationFrame(revealInitialCard);
   }).catch(error => { byId("inventory-addition-status").textContent = `Inventory additions unavailable: ${error.message}`; });
   const widthInventoryReady = load("../research/ocean-current-width-inventory.json").then(value => {
@@ -250,7 +257,18 @@
     byId("queue-count").textContent = `${rows.length} of ${catalog.remaining_current_decisions.length} remaining currents`;
   }
   load("../research/ocean-current-reference-path-candidates.json").then(async value => {
-    catalog = value;
+    const identities=await load('../research/ocean-current-identity-admissions.json');
+    const extra=identities.entries.map(r=>r.route_planning_decision);
+    const strategies=value.planning_taxonomy.strategies.map(r=>({...r}));
+    for(const row of extra){
+      let strategy=strategies.find(r=>r.id===row.route_strategy_id);
+      if(!strategy){strategy={id:row.route_strategy_id,label:row.route_strategy_label,description:row.planning_basis,current_count:0,unbuilt_count:0};strategies.push(strategy);}
+      strategy.current_count++;if(!row.candidate_ids.length)strategy.unbuilt_count++;
+    }
+    catalog = {...value,remaining_current_decisions:[...value.remaining_current_decisions,...extra],
+      planning_taxonomy:{...value.planning_taxonomy,strategies},
+      counts:{...value.counts,currents_without_published_ranked_estimate:value.counts.currents_without_published_ranked_estimate+extra.length,
+        currents_without_route_candidates:value.counts.currents_without_route_candidates+extra.filter(r=>!r.candidate_ids.length).length}};
     for (const strategy of catalog.planning_taxonomy.strategies) {
       const option = node("option", `${strategy.label} (${strategy.current_count})`, byId("route-strategy")); option.value = strategy.id;
       const tr = node("tr", null, byId("strategy-rows")); node("th", strategy.label, tr).scope = "row";

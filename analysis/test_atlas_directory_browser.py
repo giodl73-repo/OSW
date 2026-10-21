@@ -9,13 +9,13 @@ def main():
         page=browser.new_page(viewport={'width':1200,'height':950});errors=[]
         page.on('pageerror',lambda error:errors.append(str(error)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length===240')
+        page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length===241')
         page.wait_for_timeout(150)
         root=page.locator('#atlas-directory');search=root.locator('input');filter=root.locator('select').first
         def visible():return root.locator('.atlas-directory-item:not([hidden])')
-        assert visible().count()==240
-        filter.select_option('currents');assert visible().count()==100
-        assert len(set(visible().evaluate_all('(items)=>items.map(item=>item.dataset.featureId)')))==100
+        assert visible().count()==241
+        filter.select_option('currents');assert visible().count()==101
+        assert len(set(visible().evaluate_all('(items)=>items.map(item=>item.dataset.featureId)')))==101
         search.fill('agulhas return');assert visible().count()==1
         visible().click()
         assert page.locator('#route-atlas-select').input_value()=='current:agulhas-return'
@@ -32,12 +32,12 @@ def main():
         assert 'Shared regional gateway' in page.locator('#route-atlas-preview').inner_text()
         assert visible().first.get_attribute('aria-pressed')=='true'
         page.evaluate('''()=>{const key='osw-motion-dashboard-seen-v2';const baseline=JSON.parse(localStorage.getItem(key));baseline['current:agulhas'].fingerprint='older-value';localStorage.setItem(key,JSON.stringify(baseline));}''')
-        page.reload(wait_until='networkidle');page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length===240',timeout=90000)
+        page.reload(wait_until='networkidle');page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length===241',timeout=90000)
         search.fill('');filter.select_option('updated');assert visible().count()==1
         assert visible().get_attribute('data-feature-id')=='current:agulhas'
         assert 'updated' in visible().get_attribute('class')
         page.locator('#route-atlas-seen').click();assert visible().count()==0
-        filter.select_option('all');search.fill('');assert visible().count()==240
+        filter.select_option('all');search.fill('');assert visible().count()==241
         root.screenshot(path=str(ROOT/'figures/atlas-directory-review.png'))
         page.set_viewport_size({'width':320,'height':800})
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
@@ -45,5 +45,5 @@ def main():
         assert page.locator('#route-atlas-preview').is_visible()
         assert not errors,errors
         browser.close()
-    print('OK: all 100 currents and 140 eddies/detections indexed; search, map card selection, keyboard, shared gateways, updates, empty results and mobile')
+    print('OK: all 101 currents and 140 eddies/detections indexed; search, map card selection, keyboard, shared gateways, updates, empty results and mobile')
 if __name__=='__main__':main()

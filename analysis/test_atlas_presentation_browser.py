@@ -13,7 +13,7 @@ def main():
         errors=[]
         page.on('pageerror', lambda error: errors.append(str(error)))
         page.goto(BASE+'?atlas-layout=map#route-atlas', wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length===240')
+        page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length===241')
         assert page.locator('body').evaluate('(el)=>el.classList.contains("atlas-presentation")')
         assert page.locator('#atlas-directory').is_hidden()
         assert page.locator('#comparison-title').is_hidden()
@@ -24,11 +24,11 @@ def main():
         share=page.locator('[data-atlas-share]').get_attribute('href')
         assert 'atlas-layout=map' in share
         page.goto(share, wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length===240')
+        page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length===241')
         assert page.locator('#route-atlas-map').get_attribute('viewBox')==view
         page.locator('#atlas-index-toggle').click()
         assert page.locator('#atlas-directory input').evaluate('(el)=>el===document.activeElement')
-        assert page.locator('.atlas-directory-item').count()==240
+        assert page.locator('.atlas-directory-item').count()==241
         page.locator('#atlas-index-toggle').click()
         assert page.locator('#atlas-directory').is_hidden()
         page.locator('#route-atlas-card-link').click()

@@ -13,7 +13,9 @@
         try {
           window.oswSeasonSnapshot=result;
           byId('season-loading').dataset.engine=result.engine;
-          finish(null,['widths','routes','frames','directions'].map(key=>JSON.parse(result.sources_json[key])));
+          const sources=['widths','routes','frames','directions'].map(key=>JSON.parse(result.sources_json[key]));
+          sources[0].current_decisions.push(...(result.admitted_current_decisions||[]));
+          finish(null,sources);
         } catch(error){finish(error);}
       };
       worker.postMessage({id:1,action:'load'});
@@ -290,7 +292,7 @@
     byId("season-phase").addEventListener("change", () => { stop(); renderPhase(); });
     byId("season-play").addEventListener("click", () => { if (timer !== null) { stop(); return; } byId("season-play").textContent = "Pause"; timer = setInterval(() => { const eligible = playbackIndices; const current = eligible.indexOf(Number(byId("season-phase").value)); byId("season-phase").value = eligible[(current + 1) % eligible.length]; renderPhase(); }, 2200); });
     document.addEventListener("visibilitychange", () => { if (document.hidden) stop(); });
-    byId("season-loading").textContent = "100 currents indexed; Northern Current width states, Somali components and Sri Lanka Monsoon Current editorial seasonal routes can play. Azores sections, Mediterranean Undercurrent observations and the historical Davidson winter summary can be inspected. New Guinea local direction composites can play, with El Niño exceptions selectable separately. Scientific review pending.";
+    byId("season-loading").textContent = `${inventory.current_decisions.length} currents indexed; Northern Current width states, Somali components and Sri Lanka Monsoon Current editorial seasonal routes can play. Azores sections, Mediterranean Undercurrent observations and the historical Davidson winter summary can be inspected. New Guinea local direction composites can play, with El Niño exceptions selectable separately. Scientific review pending.`;
     renderCurrent(new URL(location.href).searchParams.get("phase"));
   }).catch(error => { byId("season-loading").textContent = error.message; });
 })();

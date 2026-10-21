@@ -234,6 +234,12 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             return Err("Invalid seasonal current index".into());
         }
     }
+    for row in crate::current_catalogue::decisions(bundle) {
+        let id = format!("current:{}", row["current_id"].as_str().unwrap());
+        if !actual.contains(id.as_str()) || !ids.insert(id) {
+            return Err("Invalid admitted seasonal current".into());
+        }
+    }
     if ids.len() != actual.len() {
         return Err("Incomplete seasonal current index".into());
     }
@@ -424,7 +430,8 @@ fn plans(docs: &Value) -> Result<Value, String> {
 
 impl Store {
     pub fn seasons_snapshot(&self) -> Result<Value, String> {
-        let plans = plans(&documents(&self.bundle)?)?;
+        let mut plans = plans(&documents(&self.bundle)?)?;
+        crate::current_catalogue::add_plans(&self.bundle, &mut plans);
         let mut sources = json!({});
         for (key, _, _) in SOURCES {
             sources[key] = self.bundle.manifest["seasons_receipts"][key]["source_json"].clone();
@@ -433,7 +440,7 @@ impl Store {
             }
         }
         Ok(
-            json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],"sources_json":sources,"phase_plans":plans,"south_australian_context_scene":crate::south_australian_context::scene(&self.bundle),"eac_source_field_scene":crate::eac_source_fields::scene(&self.bundle),"asca_component_span_scene":crate::asca_component_spans::scene(&self.bundle),"kuroshio_filtered_width_scene":crate::kuroshio_filtered_width::scene(&self.bundle),"width_source_review_scenes":crate::current_width_source_reviews::scenes(&self.bundle),"research_evidence_scenes":crate::current_research_evidence::scenes(&self.bundle),"published_transport_scenes":crate::published_transports::by_current(&self.bundle),"pacific_neuc_breadth_scene":crate::pacific_neuc_breadths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"dwbc_float_composite_scene":crate::dwbc_float_composite::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"coastal_composite_width_scene":crate::coastal_composite_widths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[]))}),
+            json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],"sources_json":sources,"phase_plans":plans,"admitted_current_decisions":crate::current_catalogue::decisions(&self.bundle),"south_australian_context_scene":crate::south_australian_context::scene(&self.bundle),"eac_source_field_scene":crate::eac_source_fields::scene(&self.bundle),"asca_component_span_scene":crate::asca_component_spans::scene(&self.bundle),"kuroshio_filtered_width_scene":crate::kuroshio_filtered_width::scene(&self.bundle),"width_source_review_scenes":crate::current_width_source_reviews::scenes(&self.bundle),"research_evidence_scenes":crate::current_research_evidence::scenes(&self.bundle),"published_transport_scenes":crate::published_transports::by_current(&self.bundle),"pacific_neuc_breadth_scene":crate::pacific_neuc_breadths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"dwbc_float_composite_scene":crate::dwbc_float_composite::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"coastal_composite_width_scene":crate::coastal_composite_widths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[]))}),
         )
     }
 }

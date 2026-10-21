@@ -700,7 +700,7 @@ def main() -> None:
                 seasons_page = browser.new_page()
                 seasons_page.on("pageerror", lambda error: errors.append(str(error)))
                 seasons_page.goto(f"http://127.0.0.1:{server.server_port}/almanac/seasons.html", wait_until="networkidle")
-                assert seasons_page.locator('#season-current option').count() == 100
+                assert seasons_page.locator('#season-current option').count() == 101
                 assert 'about 25 km' in seasons_page.locator('#season-value').inner_text()
                 assert 'Seasonal length: unknown' in seasons_page.locator('#season-length').inner_text()
                 seasons_page.locator('#season-play').click()

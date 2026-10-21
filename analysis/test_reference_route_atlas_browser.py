@@ -16,8 +16,8 @@ def main():
         page.wait_for_function('document.querySelectorAll(".route-atlas-station").length === 100')
         catalog = json.loads((Path(__file__).resolve().parents[1] / 'research/ocean-current-reference-path-candidates.json').read_bytes())
         additions=json.loads((Path(__file__).resolve().parents[1] / 'research/ocean-current-inventory-expansion-candidates.json').read_bytes())
-        page.wait_for_function('(counts) => document.querySelectorAll(".route-card").length === counts.routes && document.querySelectorAll(".inventory-addition-card").length === counts.additions', arg={'routes': catalog['counts']['route_candidates'], 'additions': len(additions['entries'])})
-        assert page.locator('#route-atlas-select option').count() == 101
+        page.wait_for_function('(counts) => document.querySelectorAll(".route-card").length === counts.routes && document.querySelectorAll(".inventory-addition-card").length === counts.additions', arg={'routes': catalog['counts']['route_candidates'], 'additions': len(additions['entries'])-1})
+        assert page.locator('#route-atlas-select option').count() == 102
         for ident,label in [('atlantic-north-equatorial','Atlantic North Equatorial Current'),('pacific-north-equatorial','Pacific North Equatorial Current'),('atlantic-south-equatorial','Atlantic South Equatorial Current'),('pacific-south-equatorial','Pacific South Equatorial Current'),('indian-south-equatorial','Indian South Equatorial Current')]:
             card=page.locator('#inventory-addition-'+ident)
             assert card.locator('h3').inner_text()==label
@@ -245,7 +245,7 @@ def main():
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
         assert not errors, errors
         browser.close()
-    print('OK: 100 selectable currents, zoom, drag pan, keyboard reset, map-card return, pending-route record, all 140 eddy records, grouped gateways, dated footprints and mobile reflow')
+    print('OK: 101 selectable currents (100 with point placements), zoom, drag pan, keyboard reset, map-card return, pending-route record, all 140 eddy records, grouped gateways, dated footprints and mobile reflow')
 
 
 if __name__ == '__main__':

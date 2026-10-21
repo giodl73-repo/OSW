@@ -42,11 +42,18 @@ pub fn validate(
                 return Err(format!("Planning projection differs in {key}"));
             }
         }
+        let source_path = if let Some(expected) = crate::current_catalogue::planning_source(current)
+        {
+            if source != &expected {
+                return Err("Changed admitted-current route planning source".into());
+            }
+            crate::current_catalogue::PATH
+        } else {
+            "research/ocean-current-reference-path-candidates.json"
+        };
         if record["status"] != "editorial_planning_crosswalk_not_scientific_classification_approval"
-            || record["source_catalog_file"]
-                != "research/ocean-current-reference-path-candidates.json"
-            || record["source_catalog_sha256"]
-                != manifest["input_sha256"]["research/ocean-current-reference-path-candidates.json"]
+            || record["source_catalog_file"] != source_path
+            || record["source_catalog_sha256"] != manifest["input_sha256"][source_path]
             || record["source_catalog_sha256"]
                 .as_str()
                 .is_none_or(|h| h.len() != 64)

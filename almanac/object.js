@@ -120,6 +120,13 @@ loadObjectView().then(data => {
     if (item.motion_form) element("p", `OSW motion form: ${item.motion_form.replaceAll("_", " ")}`, identity);
     if (item.identity_limit) element("p", item.identity_limit, identity);
     if (item.identity_scope_note) element("p", item.identity_scope_note, identity);
+    if(item.identity_admission_id){
+      const admitted=element('section',undefined,identity);admitted.id='current-identity-admission';
+      element('h3','Working catalogue identity admission',admitted);
+      element('p',`${item.source_kind}. Identity admitted in ${item.catalogue_version}; original-source, measurement, route and seasonal evidence gates remain separate.`,admitted);
+      const q={collection:'current_identity_admissions',filters:[{field:'id',op:'eq',value:item.identity_admission_id}],limit:1};
+      link('Inspect the identity admission and source scope','query.html?q='+encodeURIComponent(JSON.stringify(q)),admitted);
+    }
     if (item.type === "operational_eddy_detection") {
       element("p", `Observation date: ${item.observation_date}. Provider labels: ${item.provider_type}, ${item.provider_rotation}. Source reuse decision: ${sources[item.source_id].rights_status.replaceAll("_", " ")}. Internal research candidate.`, identity);
     }

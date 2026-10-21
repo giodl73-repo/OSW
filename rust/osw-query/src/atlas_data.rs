@@ -631,6 +631,9 @@ impl Store {
         }
         sources["research/ocean-motion-dashboard.json"] =
             self.dashboard_snapshot()?["snapshot_json"].clone();
+        sources[crate::current_catalogue::PATH] = json!(crate::current_catalogue::RAW);
+        sources[crate::current_catalogue::CATALOGUE] =
+            json!(crate::current_catalogue::CATALOGUE_RAW);
         let mut timeline_scenes = json!({});
         for path in TIMELINES {
             if receipts.contains_key(path) {

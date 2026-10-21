@@ -48,7 +48,7 @@ def main():
         page.on('pageerror', lambda e: errors.append(str(e)))
         page.goto(BASE)
         page.wait_for_function('window.oswLastQueryResult', timeout=60000)
-        assert page.evaluate('window.oswLastQueryResult.total') == 100
+        assert page.evaluate('window.oswLastQueryResult.total') == 101
         assert page.evaluate('window.oswLastQueryResult.map_scene.mapped_objects') == 100
         assert page.locator('#query-map-features').evaluate('(el)=>new Set([...el.children].map(n=>n.dataset.entity)).size') == 100
         assert page.locator('#query-rows tr').count() == 50
@@ -57,8 +57,8 @@ def main():
         page.locator('#query-map-world').click()
         assert page.locator('#query-map').get_attribute('viewBox') == '0 0 360 180'
         all_objects = browser_query(page, {'collection':'objects','limit':50})
-        assert all_objects['total'] == 240
-        assert all_objects['map_scene']['matching_objects'] == 240
+        assert all_objects['total'] == 241
+        assert all_objects['map_scene']['matching_objects'] == 241
         assert all_objects['map_scene']['mapped_objects'] == 240
         mark = page.locator('#query-map-features [data-entity="current:kuroshio"]').first
         mark.focus()
@@ -100,7 +100,7 @@ def main():
         page.locator('#query-run').click()
         page.wait_for_function('window.oswLastQueryResult.total===2')
         missing = browser_query(page, {'collection':'objects','filters':[{'field':'published_length_km','op':'exists','value':False}],'limit':500})
-        assert missing['total'] == 229
+        assert missing['total'] == 230
         assert all(r['published_length_km'] is None for r in missing['rows'])
         # Canonical source fields and scoped values remain available together.
         browser_query(page, {'collection':'objects','text':'current:kuroshio','record_type':'named_current','limit':50})

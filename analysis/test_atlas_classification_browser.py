@@ -7,6 +7,8 @@ from playwright.sync_api import sync_playwright
 
 def main():
     entities={r['id']:r for r in json.loads(Path('almanac/release/v0.1.0/entities.json').read_text(encoding='utf-8'))}
+    admissions=json.loads(Path('research/ocean-current-identity-admissions.json').read_text(encoding='utf-8'))
+    entities.update({r['entity_id']:r['entity'] for r in admissions['entries']})
     snapshot=json.loads(Path('research/ocean-motion-dashboard.json').read_text(encoding='utf-8'))
     fields=['identity_level','source_kind','setting','time_behavior']
     for row in snapshot['entries']:
@@ -19,7 +21,7 @@ def main():
         errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length===101')
+        page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length===102')
         for row in currents:
             page.locator('#route-atlas-select').select_option(row['id'])
             disclosure=page.locator('.route-atlas-classification')
@@ -40,7 +42,7 @@ def main():
         assert page.locator('#route-atlas-preview').is_hidden()
         assert not errors,errors
         browser.close()
-    print('OK: 240 released classification records; all 100 current disclosures, keyboard, mobile reflow, pending and mapped routes')
+    print('OK: 241 working classification records; all 101 current disclosures, keyboard, mobile reflow, pending and mapped routes')
 
 
 if __name__=='__main__':

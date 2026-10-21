@@ -82,6 +82,11 @@ def build():
     claims = read(base + 'claims.json')
     media = read(base + 'media.json')
     sources = {source['id']: source for source in read(base + 'sources.json')}
+    from current_identity_admissions import verify_inputs as verify_identities, additions as identity_additions
+    identity_document,identity_inputs=verify_identities();inputs.update(identity_inputs)
+    identity_rows=identity_additions(identity_document)
+    entities.extend(identity_rows['entities'])
+    sources.update({r['id']:r for r in identity_rows['sources']})
     routes = read('research/ocean-current-reference-path-candidates.json')['candidates']
     from build_basin_surface_section_spans import build as rebuild_basin, diagnostic_matches as basin_matches
     basin_sections={}
@@ -650,6 +655,9 @@ def build():
                    'media': own_media, 'phases': own_phases, 'series': series, 'sources': own_sources,
                    'map_features': map_features, 'connections': own_connections}
         evidence_links = []
+        if entity.get('identity_admission_id'):
+            evidence_links.append({'label':'Current identity and separately scoped dimension evidence','url':entity['almanac_url']})
+            evidence_links.append({'label':'Query the identity admission','url':'query.html?q='+quote(json.dumps({'collection':'current_identity_admissions','filters':[{'field':'id','op':'eq','value':entity['identity_admission_id']}],'limit':1}),safe='')})
         if current_id == 'east-australian':
             evidence_links.append({'label':'Explore all3770 section-core outcomes / 2883 resolved / 887 unresolved',
                 'url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':EAC_CORE_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
@@ -968,10 +976,10 @@ def build():
     order = {'named_current': 0, 'named_eddy': 1, 'operational_eddy_detection': 2}
     rows.sort(key=lambda row: (order[row['type']], row['label'].casefold(), row['id']))
     counts = {kind: sum(r['type'] == kind for r in rows) for kind in ['named_current', 'named_eddy', 'operational_eddy_detection']}
-    if counts != {'named_current': 100, 'named_eddy': 136, 'operational_eddy_detection': 4} or len({r['id'] for r in rows}) != len(rows):
+    if counts != {'named_current': 100+len(identity_document['entries']), 'named_eddy': 136, 'operational_eddy_detection': 4} or len({r['id'] for r in rows}) != len(rows):
         raise ValueError('Dashboard inventory must reconcile with the release ledger')
     return {'schema': 'osw.motion-dashboard.v1', 'status': 'local_research_coverage_not_scientific_approval',
-            'counts': counts, 'proposed_current_additions': len(proposals), 'input_sha256': inputs,
+            'counts': counts, 'proposed_current_additions': len(proposals)-len(identity_document['entries']), 'input_sha256': inputs,
             'snapshot_fingerprint': fingerprint(rows), 'entries': rows,
             'connections': connections,
             'fingerprint_version': 2,

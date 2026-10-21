@@ -111,6 +111,8 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
     const snapshot=sources['research/ocean-motion-dashboard.json'],currents=snapshot.entries.filter(r=>r.type==='named_current');
     const eddies=snapshot.entries.filter(r=>r.type==='named_eddy'||r.type==='operational_eddy_detection');
     inventorySummary=`${currents.length} named currents · ${catalog.counts.currents_with_route_candidates} with reference-route cards · ${eddies.filter(r=>r.type==='named_eddy').length} named eddies · ${eddies.filter(r=>r.type==='operational_eddy_detection').length} dated detections. Select a current, eddy or path.`;
+    const unlocated=currents.filter(r=>!r.map_features.some(f=>f.geometry.type==='Point'||f.geometry.type==='LineString'));
+    if(unlocated.length)inventorySummary+=` ${unlocated.length} current identity has no source-supported map placement; use the selector or directory.`;
     if(snapshot.schema!=='osw.motion-dashboard.v1'||snapshot.fingerprint_version!==2||new Set(snapshot.entries.map(r=>r.id)).size!==snapshot.entries.length||snapshot.entries.some(r=>typeof r.id!=='string'||typeof r.fingerprint!=='string'||!r.section_fingerprints||!Array.isArray(r.map_features)))throw Error('Invalid atlas inventory snapshot');
     const seenKey='osw-motion-dashboard-seen-v2';
     const sectionLabels={identity:'Identity',sources:'Sources',claims:'Claims / reviews',measurements:'Measurements',routes_geometry:'Routes / geometry',media:'Media links',time_evidence:'Time evidence'};
@@ -197,6 +199,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
         ? `${current.label} · ${paths.length} reference-route card${paths.length===1?'':'s'} available beside the map.${paths.length>1?' Choose a component in the card.':''}`
         : `${current.label} · no reference-route card yet. Showing its name locator; ${current.capabilities.reported_length?'a source-reported length is available in its record.':'length and route remain unresolved.'}`;
       if(changed(current))byId('route-atlas-status').textContent+=' '+changeDescription(current);
+      if(!paths.length&&!point)byId('route-atlas-status').textContent=`${current.label} · no source-supported map placement or reference route. Use its current record for identity and separately scoped source evidence.`;
       const panel=preview(current.label);
       const dated=datedFeatures(current);
       let showDated;

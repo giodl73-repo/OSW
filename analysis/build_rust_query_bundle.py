@@ -19,6 +19,9 @@ def build():
     inputs['analysis/check_south_australian_miller_model_width.py']=hashlib.sha256((ROOT/'analysis/check_south_australian_miller_model_width.py').read_bytes()).hexdigest()
     base='almanac/release/v0.1.0/'
     collections={name:read(base+name+'.json') for name in CANONICAL}
+    from current_identity_admissions import verify_inputs as verify_identities, append as append_identities
+    identity_document,identity_inputs=verify_identities();inputs.update(identity_inputs)
+    append_identities(collections,identity_document)
     read(base+'manifest.json')
     preview='almanac/release/v0.1.0-rights-screened-preview/'
     preview_manifest=read(preview+'manifest.json')
@@ -672,7 +675,8 @@ def build():
     # Keep the complete remaining-length worklist queryable without assigning
     # dimensions to unresolved names, families or continuity hypotheses.
     collections['route_decisions']=[]
-    for original in routes['remaining_current_decisions']:
+    admitted_plans=[r['route_planning_decision'] for r in identity_document['entries']]
+    for original in routes['remaining_current_decisions']+admitted_plans:
         entity_id='current:'+original['current_id']
         owner=next(row for row in objects if row['id']==entity_id)
         if sorted(original['candidate_ids'])!=sorted(owner['route_ids']):
@@ -690,8 +694,8 @@ def build():
                 'next_action':original['next_action'],'scope':original['existing_scope'],
                 'status':original['planning_status'],'rank_eligible':False,
                 'source_url':original['name_source_url'],'source_decision':copy.deepcopy(original),
-                'source_catalog_file':'research/ocean-current-reference-path-candidates.json',
-                'source_catalog_sha256':inputs['research/ocean-current-reference-path-candidates.json'],
+                'source_catalog_file':'research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json',
+                'source_catalog_sha256':inputs['research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json'],
                 'scope_reviews':reviews}
         collections['route_decisions'].append(record)
         owner['route_decision_ids']=[record['id']]
@@ -827,7 +831,7 @@ def build():
             'taxonomy':taxonomy,'editorial_collections':['proposed_widths','observed_section_spans','current_section_measurements','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','current_sections','section_transports','transport_validations'],
             'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
             'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
-            'input_sha256':inputs,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},
+            'input_sha256':inputs,'current_catalogue_version':identity_document['version'],'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},
             'scope':'State joins retain relation kinds; gateways are not containment. Widths retain scope. Published lengths and editorial route lengths are separate collections.'},
             'collections':collections}
 

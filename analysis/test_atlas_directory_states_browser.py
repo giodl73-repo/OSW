@@ -21,7 +21,7 @@ def main():
             state.select_option(code)
             actual=set(visible.evaluate_all('(items)=>items.map(item=>item.dataset.featureId)'))
             assert actual==expected,(code,actual^expected)
-            assert root.locator('[role=status]').inner_text().startswith(f'{len(expected)} of 240 entries')
+            assert root.locator('[role=status]').inner_text().startswith(f'{len(expected)} of {len(rows)} entries')
             assert code in root.locator('.atlas-directory-state-note').inner_text()
         state.select_option('PSAW');filter.select_option('currents')
         assert visible.count()==3
