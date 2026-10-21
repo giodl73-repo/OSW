@@ -13,11 +13,15 @@
     if(id===2){status.textContent=`${result.total} accepted named currents in the working catalogue. The v0.1 package below retains its historical 100-name scope.`;worker.postMessage({id:3,action:'query',value:{collection:'current_identity_admissions',limit:100}});return;}
     if(id===3){
       const list=document.createElement('ul');section.append(list);
-      for(const row of result.rows){const li=document.createElement('li'),a=document.createElement('a');a.textContent=row.entity.label;a.href='object.html?id='+encodeURIComponent(row.entity_id);li.append(a,document.createTextNode(' · identity admitted; measurement and seasonal gaps remain'));list.append(li);}
+      for(const row of result.rows){const li=document.createElement('li'),a=document.createElement('a');a.textContent=row.entity.label;a.href='object.html?id='+encodeURIComponent(row.entity_id);li.append(a,document.createTextNode(' · identity admitted; inspect scoped dimensions and remaining gaps'));list.append(li);}
       const p=document.createElement('p'),a=document.createElement('a');a.href='../research/ocean-current-working-catalogue.json';a.textContent='Download the effective working catalogue (draft 0.2)';p.append(a);section.append(p);
       const query=document.createElement('p'),all=document.createElement('a');
       all.href='query.html?q='+encodeURIComponent(JSON.stringify({collection:'entities',filters:[{field:'type',op:'eq',value:'named_current'}],limit:200}));
       all.textContent='Query all accepted current identities';query.append(all);section.append(query);
+      const dimensions=document.createElement('p'),ranked=document.createElement('a'),download=document.createElement('a');
+      ranked.href='query.html?q='+encodeURIComponent(JSON.stringify({collection:'length_assessments',filters:[{field:'rank_eligible',op:'eq',value:true}],sort:{field:'published_length_km',direction:'desc'},limit:100}));ranked.textContent='Ranked source-reported length estimates';
+      download.href='../research/ocean-current-working-measurements.json';download.textContent='Download working measurement records';
+      dimensions.append(ranked,document.createTextNode(' · '),download);section.append(dimensions);
       section.dataset.engine='rust-osw-query-v1';window.oswCurrentIdentityAdmissions=result;clearTimeout(timer);stop();
     }
   };

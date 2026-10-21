@@ -681,10 +681,10 @@ def main() -> None:
                 routes_page.on("pageerror", lambda error: errors.append(str(error)))
                 routes_page.goto(f"http://127.0.0.1:{server.server_port}/almanac/reference-routes.html", wait_until="networkidle")
                 width_inventory=json.loads((ROOT/'research/ocean-current-width-inventory.json').read_text(encoding='utf-8'))
-                width_count=width_inventory['counts']['measurements']
+                width_count=width_inventory['counts']['measurements']+1
                 routes_page.wait_for_function("count=>document.querySelector('#width-status').textContent.startsWith(count+' scoped')",arg=width_count)
                 assert routes_page.locator('#width-rows tr').count() == width_count
-                assert routes_page.locator('#width-decision-rows tr').count() == 100
+                assert routes_page.locator('#width-decision-rows tr').count() == 101
                 assert '25–40 km reported seasonal span' in routes_page.locator('#width-seasonal-northern-mediterranean').inner_text()
                 assert 'not absolute annual extrema' in routes_page.locator('#width-seasonal-northern-mediterranean').inner_text()
                 assert '25 km' in routes_page.locator('#width-northern-mediterranean-winter-width').inner_text()

@@ -35,7 +35,9 @@ def check_selection_oracles(rows):
             and (not query.get('changed_only') or r['id'] in query['changed_ids'])}
         assert set(result['ids'])==expected,query
         assert result['map_scene']['matching_objects']==len(expected)
-        assert result['map_scene']['mapped_objects']==len(expected)
+        mapped=sum(bool(r['map_features']) for r in rows if r['id'] in expected)
+        assert result['map_scene']['mapped_objects']==mapped
+        assert result['map_scene']['unmapped_objects']==len(expected)-mapped
     for query in [{'metric':'invented'},{'metric':'geometry','record_type':'invented'},
                   {'metric':'geometry','changed_ids':['missing']},
                   {'metric':'geometry','changed_ids':[rows[0]['id']]*2},

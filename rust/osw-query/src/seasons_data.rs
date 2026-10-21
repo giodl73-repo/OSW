@@ -180,9 +180,13 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         ("routes", "candidates", "reference_routes"),
         ("frames", "frames", "seasonal_routes"),
     ] {
-        let source = docs[key][field]
+        let mut source = docs[key][field]
             .as_array()
-            .ok_or("Missing seasonal source records")?;
+            .ok_or("Missing seasonal source records")?
+            .clone();
+        if key == "widths" {
+            source.extend(crate::current_measurements::widths(bundle));
+        }
         let actual = bundle
             .collections
             .get(collection)
@@ -191,7 +195,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         if source.len() != actual.len() {
             return Err("Incomplete seasonal source projection".into());
         }
-        for row in source {
+        for row in &source {
             if key == "widths" {
                 adcp_width_scope(row)?;
                 crate::stream_tube_widths::validate(row)?;
@@ -376,6 +380,11 @@ fn plans(docs: &Value) -> Result<Value, String> {
             Vec::new()
         };
         let mut note="Annual width range and measurement uncertainty: not available. A single dated section does not establish a seasonal cycle.".to_owned();
+        if widths.iter().any(|r| {
+            r["current_id"] == id && r["phase_kind"] == "published_near_surface_survey_summary"
+        }) {
+            note="One April 2001 near-surface survey summary. Physical whole-current width, uncertainty and annual ranges remain unknown; this is not April climatology or a seasonal cycle.".to_owned();
+        }
         if widths
             .iter()
             .any(|r| r["current_id"] == id && r["phase_kind"] == "model_snapshot_width_summary")
@@ -430,7 +439,18 @@ fn plans(docs: &Value) -> Result<Value, String> {
 
 impl Store {
     pub fn seasons_snapshot(&self) -> Result<Value, String> {
-        let mut plans = plans(&documents(&self.bundle)?)?;
+        let mut docs = documents(&self.bundle)?;
+        if crate::current_measurements::active(&self.bundle) {
+            docs["widths"]["measurements"]
+                .as_array_mut()
+                .unwrap()
+                .extend(crate::current_measurements::widths(&self.bundle));
+            docs["widths"]["current_decisions"]
+                .as_array_mut()
+                .unwrap()
+                .extend(crate::current_catalogue::decisions(&self.bundle));
+        }
+        let mut plans = plans(&docs)?;
         crate::current_catalogue::add_plans(&self.bundle, &mut plans);
         let mut sources = json!({});
         for (key, _, _) in SOURCES {
@@ -440,7 +460,7 @@ impl Store {
             }
         }
         Ok(
-            json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],"sources_json":sources,"phase_plans":plans,"admitted_current_decisions":crate::current_catalogue::decisions(&self.bundle),"south_australian_context_scene":crate::south_australian_context::scene(&self.bundle),"eac_source_field_scene":crate::eac_source_fields::scene(&self.bundle),"asca_component_span_scene":crate::asca_component_spans::scene(&self.bundle),"kuroshio_filtered_width_scene":crate::kuroshio_filtered_width::scene(&self.bundle),"width_source_review_scenes":crate::current_width_source_reviews::scenes(&self.bundle),"research_evidence_scenes":crate::current_research_evidence::scenes(&self.bundle),"published_transport_scenes":crate::published_transports::by_current(&self.bundle),"pacific_neuc_breadth_scene":crate::pacific_neuc_breadths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"dwbc_float_composite_scene":crate::dwbc_float_composite::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"coastal_composite_width_scene":crate::coastal_composite_widths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[]))}),
+            json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],"sources_json":sources,"phase_plans":plans,"admitted_current_decisions":crate::current_catalogue::decisions(&self.bundle),"supplemental_widths":crate::current_measurements::widths(&self.bundle),"south_australian_context_scene":crate::south_australian_context::scene(&self.bundle),"eac_source_field_scene":crate::eac_source_fields::scene(&self.bundle),"asca_component_span_scene":crate::asca_component_spans::scene(&self.bundle),"kuroshio_filtered_width_scene":crate::kuroshio_filtered_width::scene(&self.bundle),"width_source_review_scenes":crate::current_width_source_reviews::scenes(&self.bundle),"research_evidence_scenes":crate::current_research_evidence::scenes(&self.bundle),"published_transport_scenes":crate::published_transports::by_current(&self.bundle),"pacific_neuc_breadth_scene":crate::pacific_neuc_breadths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"dwbc_float_composite_scene":crate::dwbc_float_composite::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"coastal_composite_width_scene":crate::coastal_composite_widths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[]))}),
         )
     }
 }

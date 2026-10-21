@@ -15,6 +15,7 @@
           byId('season-loading').dataset.engine=result.engine;
           const sources=['widths','routes','frames','directions'].map(key=>JSON.parse(result.sources_json[key]));
           sources[0].current_decisions.push(...(result.admitted_current_decisions||[]));
+          sources[0].measurements.push(...(result.supplemental_widths||[]));
           finish(null,sources);
         } catch(error){finish(error);}
       };
@@ -47,6 +48,14 @@
   }
   function renderRegionalRange(row) {
     const container=byId('regional-width-range');container.replaceChildren();container.hidden=true;
+    if(row?.phase_kind==='published_near_surface_survey_summary'){
+      container.hidden=false;
+      const image=document.createElement('img');image.src='../figures/southern-east-madagascar-admitted-dimensions.svg';
+      image.alt='Southern East Madagascar Current: about 120 km near-surface survey width in April 2001 and a separate contextual 650 km branch extent. No annual range or current footprint.';
+      image.style.cssText='width:100%;max-width:960px;height:auto';container.append(image);
+      const p=document.createElement('p');p.textContent='Single survey summary. Width boundaries, fixed width layer and uncertainty remain unspecified; no source-figure digitization or geographic envelope.';container.append(p);
+      return;
+    }
     if(row?.phase_kind==='model_snapshot_width_summary'){
       container.hidden=false;
       const description=document.createElement('p');description.textContent=`Local model snapshot: about ${row.approximate_width_km} km. ${row.phase_label}. ${row.time_convention}`;container.append(description);
@@ -166,7 +175,7 @@
       byId('season-title').textContent='Local salinity-core observation';
       byId('season-value').textContent=`${row.name}: ${row.width_range_km?row.width_range_km.join('–'):'about '+row.approximate_width_km} km local water-mass core · ${row.phase_label} · ${row.time_convention}`;
     }
-    byId("season-bar").parentElement.hidden = row?.approximate_width_km == null || !!row?.original_regional_context || !!row?.modal_decay_context || row?.mean_section_context?.section_axis_kind==='oblique' || (["selected_section_core_width_statistics","model_regional_width_summary","synoptic_stream_tube_section","survey_layer_median_threshold_width","inverse_hydrographic_section_span","survey_profile_composite","dated_band_section","climatological_core_distribution","campaign_hydrographic_core","ensemble_angular_summary","regional_scalar_summary","monthly_climatological_fit","stream_mean_threshold_summary","eulerian_mean_section_span","width_time_series_statistics"].includes(row?.phase_kind));
+    byId("season-bar").parentElement.hidden = row?.approximate_width_km == null || !!row?.original_regional_context || !!row?.modal_decay_context || row?.mean_section_context?.section_axis_kind==='oblique' || (["published_near_surface_survey_summary","selected_section_core_width_statistics","model_regional_width_summary","synoptic_stream_tube_section","survey_layer_median_threshold_width","inverse_hydrographic_section_span","survey_profile_composite","dated_band_section","climatological_core_distribution","campaign_hydrographic_core","ensemble_angular_summary","regional_scalar_summary","monthly_climatological_fit","stream_mean_threshold_summary","eulerian_mean_section_span","width_time_series_statistics"].includes(row?.phase_kind));
     if(row?.phase_kind==='model_snapshot_width_summary'){
       byId('season-title').textContent='Local model snapshot width';
       byId('season-value').textContent=`${row.name}: approximately ${row.approximate_width_km} km · ${row.phase_label}`;

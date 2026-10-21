@@ -43,16 +43,18 @@ def main():
         expect(page.locator('#season-current')).to_have_value(ID)
         assert page.locator('#season-current option').count()==101
         expect(page.locator('#season-play')).to_be_disabled()
-        expect(page.locator('#season-range')).to_contain_text('identity admitted')
+        expect(page.locator('#season-range')).to_contain_text('One April 2001')
         plan=page.evaluate('window.oswSeasonSnapshot.phase_plans["southern-east-madagascar"]')
-        assert plan['phases']==[] and not plan['can_play']
+        assert len(plan['phases'])==1 and not plan['can_play']
+        expect(page.locator('#season-value')).to_contain_text('120')
+        assert page.locator('#season-bar').evaluate('(n)=>n.parentElement.hidden')
         page.goto(BASE+'/almanac/dashboard.html')
         page.wait_for_function('window.oswDashboardSnapshot',timeout=120000)
         snapshot=page.evaluate('window.oswDashboardSnapshot.snapshot')
         assert snapshot['counts']['named_current']==101 and len(snapshot['entries'])==241
         row=next(r for r in snapshot['entries'] if r['id']==ENTITY)
         assert row['map_features']==[] and row['latest_observation_date'] is None
-        assert row['capabilities']['scoped_width']==0 and row['capabilities']['reported_length']==0
+        assert row['capabilities']['scoped_width']==1 and row['capabilities']['reported_length']==1
         assert not errors,errors
         browser.close()
     result={'status':'PASS','accepted_currents':101,'pending_proposals':28,'dashboard_objects':241,

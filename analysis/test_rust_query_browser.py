@@ -75,6 +75,7 @@ def main():
         # Inventory widths and separately reviewed derived candidates are queryable.
         inventory = json.loads((ROOT/'research/ocean-current-width-inventory.json').read_text(encoding='utf-8'))
         expected_width_ids = {'current:' + row['current_id'] for row in inventory['measurements']}
+        expected_width_ids.add('current:southern-east-madagascar')
         expected_width_ids.update({'current:gulf-stream-system', 'current:loop',
                                    'current:pacific-north-equatorial-countercurrent'})
         assert width_currents['total'] == len(expected_width_ids)
@@ -83,7 +84,7 @@ def main():
                 'gulf-stream', 'north-atlantic', 'irminger', 'east-greenland', 'west-greenland', 'black-sea-rim']}.issubset(
                     {row['id'] for row in width_currents['rows']})
         lengths = native(queries[1])
-        assert lengths['total'] == 11
+        assert lengths['total'] == 12
         assert lengths['rows'][0]['published_length_km'] == 25000
         assert native(queries[5])['total'] == 3
         browser_query(page, queries[8])
@@ -100,7 +101,7 @@ def main():
         page.locator('#query-run').click()
         page.wait_for_function('window.oswLastQueryResult.total===2')
         missing = browser_query(page, {'collection':'objects','filters':[{'field':'published_length_km','op':'exists','value':False}],'limit':500})
-        assert missing['total'] == 230
+        assert missing['total'] == 229
         assert all(r['published_length_km'] is None for r in missing['rows'])
         # Canonical source fields and scoped values remain available together.
         browser_query(page, {'collection':'objects','text':'current:kuroshio','record_type':'named_current','limit':50})

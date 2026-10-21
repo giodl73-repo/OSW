@@ -87,6 +87,10 @@ def build():
     identity_rows=identity_additions(identity_document)
     entities.extend(identity_rows['entities'])
     sources.update({r['id']:r for r in identity_rows['sources']})
+    from current_measurement_admissions import verify_inputs as verify_prose_dimensions
+    prose_dimensions,prose_inputs=verify_prose_dimensions();inputs.update(prose_inputs)
+    sources[prose_dimensions['source_record']['id']]=prose_dimensions['source_record']
+    measurements.append(prose_dimensions['measurement']);claims.append(prose_dimensions['claim'])
     routes = read('research/ocean-current-reference-path-candidates.json')['candidates']
     from build_basin_surface_section_spans import build as rebuild_basin, diagnostic_matches as basin_matches
     basin_sections={}
@@ -192,7 +196,7 @@ def build():
         inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
     for path in [gulf_audit['protocol_file'],'analysis/check_gulf_stream_published_widths.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
-    widths = width_inventory['measurements']
+    widths = width_inventory['measurements']+[prose_dimensions['width_record']]
     width_audits={}
     for record in widths:
         audit_file=record.get('extraction_file') or (record.get('stream_mean_context') or record.get('eulerian_section_context') or record.get('width_statistics_context') or record.get('regional_range_context') or record.get('regional_scalar_context') or record.get('mean_offshore_context') or record.get('adcp_threshold_context') or {}).get('audit_file')

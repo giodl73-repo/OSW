@@ -20,8 +20,7 @@ pub fn validate(
             || record["candidate_count"].as_u64()
                 != source["candidate_ids"].as_array().map(|r| r.len() as u64)
             || record["rank_eligible"] != false
-            || source["published_length_rank_eligible"] != false
-            || !owner["published_length_km"].is_null()
+            || source["published_length_rank_eligible"] != !owner["published_length_km"].is_null()
             || owner["route_decision_ids"] != serde_json::json!([record["id"]])
         {
             return Err("Planning identity, coverage or admission mismatch".into());
@@ -42,12 +41,13 @@ pub fn validate(
                 return Err(format!("Planning projection differs in {key}"));
             }
         }
-        let source_path = if let Some(expected) = crate::current_catalogue::planning_source(current)
+        let source_path = if let Some((expected, path)) =
+            crate::current_catalogue::planning_source(current, manifest)
         {
             if source != &expected {
                 return Err("Changed admitted-current route planning source".into());
             }
-            crate::current_catalogue::PATH
+            path
         } else {
             "research/ocean-current-reference-path-candidates.json"
         };

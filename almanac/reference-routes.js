@@ -119,8 +119,10 @@
   let catalog;
   load("../research/ocean-current-inventory-expansion-candidates.json").then(async value => {
     const admissions=await load('../research/ocean-current-identity-admissions.json');
+    const measured=await load('../research/southern-east-madagascar-prose-dimension-admissions.json').catch(()=>null);
     for (const row of value.entries) {
       const admitted=admissions.entries.find(r=>r.proposal_id===row.proposed_id);
+      const numeric=measured?.current_id===row.proposed_id?measured:null;
       const card = node("section", null, byId("inventory-addition-cards")); card.id = `inventory-addition-${row.proposed_id}`; card.className = admitted?'current-admission-card':'inventory-addition-card'; card.tabIndex = -1;
       node("h3", row.name, card);
       const navigation = node("p", null, card);
@@ -134,6 +136,11 @@
         const q={collection:'current_identity_admissions',filters:[{field:'id',op:'eq',value:admitted.id}],limit:1};
         link('Query the identity admission','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,card));
       }
+      if(numeric){
+        node('p','Source-reported approximate branch extent: 650 km (working reported-length rank 12). Scoped near-surface survey width: about 120 km in April 2001. These reports do not establish geographic edges, annual ranges or a width ranking.',card);
+        const q={collection:'current_measurement_admissions',filters:[{field:'entity_id',op:'eq',value:numeric.entity_id}],limit:1};
+        link('Query the dimension admission and source definitions','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,card));
+      }
       for (const evidence of row.evidence) {
         link(evidence.citation, evidence.url, node("p", null, card), true);
         node("p", `${evidence.locator} ${evidence.supports}`, card);
@@ -144,7 +151,7 @@
         const d=row.source_dimensions,section=node('section',null,card);section.className='proposed-source-dimensions';
         node('h4','Reported dimensions · separate measurement scopes',section);
         const figure=node('figure',null,section);figure.style.margin='0';
-        const image=node('img',null,figure);image.src='../'+(admitted?.identity_figure_file||d.figure_file);
+        const image=node('img',null,figure);image.src='../'+(numeric?.figure_file||admitted?.identity_figure_file||d.figure_file);
         image.alt=`${row.name}: ${d.records.map(r=>`about ${r.value_km} km reported ${r.dimension}`).join('; ')}. Separate supports, not a footprint or annual range.`;
         image.style.cssText='width:100%;max-width:960px;height:auto';
         node('figcaption',d.interpretation,figure);
@@ -181,12 +188,21 @@
           link('Query the two provisional source reports','query.html?source-q='+encodeURIComponent(JSON.stringify(q)),node('p',null,evidence));
         }).catch(error=>node('p','Additional reported dimensions unavailable: '+error.message,evidence));
       }
-      const list = node("ul", null, card); for (const gate of admitted?.remaining_measurement_gates||row.remaining_gates) node("li", gate, list);
+      const gates=numeric?[
+        'Recover paired velocity boundaries, fixed width-layer support and quantitative uncertainty before physical current-width admission.',
+        'Acquire and review original figures before figure-dependent measurement, digitization or route reconstruction.',
+        'Obtain repeated dated evidence before annual ranges, seasonal geometry or physical state intersections.'
+      ]:admitted?.remaining_measurement_gates||row.remaining_gates;
+      const list = node("ul", null, card); for (const gate of gates) node("li", gate, list);
     }
     byId("inventory-addition-status").textContent = `${value.entries.length-admissions.entries.length} pending inventory additions; ${admissions.entries.length} identity admitted beyond the historical 100-name package. Coverage is incomplete.`;
     requestAnimationFrame(revealInitialCard);
   }).catch(error => { byId("inventory-addition-status").textContent = `Inventory additions unavailable: ${error.message}`; });
-  const widthInventoryReady = load("../research/ocean-current-width-inventory.json").then(value => {
+  const widthInventoryReady = load("../research/ocean-current-width-inventory.json").then(async base => {
+    const extra=await load('../research/southern-east-madagascar-prose-dimension-admissions.json').catch(()=>null);
+    const value=extra?{...base,measurements:[...base.measurements,extra.width_record],
+      current_decisions:[...base.current_decisions,{current_id:extra.current_id,name:extra.width_record.name,measurement_ids:[extra.width_record.id],width_decision:'scoped_width_evidence_present',whole_current_width_km:null,next_action:'Recover paired velocity edges, width-layer support and repeated observations before physical widths, annual ranges or geographic intersections.'}],
+      counts:{...base.counts,currents:101,measurements:157,currents_with_scoped_width_evidence:83}}:base;
     for (const row of value.measurements) {
       const tr = node("tr", null, byId("width-rows")); tr.id = `width-${row.id}`;
       link(row.name, objectHref(`current:${row.current_id}`), node("td", null, tr));
@@ -258,7 +274,8 @@
   }
   load("../research/ocean-current-reference-path-candidates.json").then(async value => {
     const identities=await load('../research/ocean-current-identity-admissions.json');
-    const extra=identities.entries.map(r=>r.route_planning_decision);
+    const dimensions=await load('../research/southern-east-madagascar-prose-dimension-admissions.json').catch(()=>null);
+    const extra=identities.entries.map(r=>r.entity_id===dimensions?.entity_id?dimensions.route_planning_decision:r.route_planning_decision);
     const strategies=value.planning_taxonomy.strategies.map(r=>({...r}));
     for(const row of extra){
       let strategy=strategies.find(r=>r.id===row.route_strategy_id);
@@ -267,7 +284,7 @@
     }
     catalog = {...value,remaining_current_decisions:[...value.remaining_current_decisions,...extra],
       planning_taxonomy:{...value.planning_taxonomy,strategies},
-      counts:{...value.counts,currents_without_published_ranked_estimate:value.counts.currents_without_published_ranked_estimate+extra.length,
+      counts:{...value.counts,currents_without_published_ranked_estimate:value.counts.currents_without_published_ranked_estimate+extra.filter(r=>!r.published_length_rank_eligible).length,
         currents_without_route_candidates:value.counts.currents_without_route_candidates+extra.filter(r=>!r.candidate_ids.length).length}};
     for (const strategy of catalog.planning_taxonomy.strategies) {
       const option = node("option", `${strategy.label} (${strategy.current_count})`, byId("route-strategy")); option.value = strategy.id;
@@ -348,7 +365,7 @@
       link("Download coordinates, all scenarios and joins (JSON)", `../${row.candidate_file}`, card);
     }
     const counts = catalog.counts;
-    byId("route-status").textContent = `${counts.route_candidates} route candidates for ${counts.currents_with_route_candidates} of ${counts.currents_without_published_ranked_estimate} currents; ${counts.currents_without_route_candidates} currents await routes. Scientific review pending.`;
+    byId("route-status").textContent = `${counts.route_candidates} route candidates for ${counts.currents_with_route_candidates} currents; ${counts.currents_without_route_candidates} worklist currents await routes. Published length reports and geographic routes are separate evidence. Scientific review pending.`;
     byId("route-query").addEventListener("input", renderQueue); byId("route-coverage").addEventListener("change", renderQueue); byId("route-strategy").addEventListener("change", renderQueue); renderQueue();
     requestAnimationFrame(revealInitialCard);
     window.initReferenceRouteAtlas?.(catalog, reports, await widthInventoryReady, seasonalRoutes);

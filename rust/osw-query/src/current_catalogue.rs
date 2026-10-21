@@ -59,7 +59,13 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             }
         }
     }
-    for (collection, expected) in records() {
+    for (collection, mut expected) in records() {
+        if collection == "length_assessments" && crate::current_measurements::active(bundle) {
+            expected = crate::current_measurements::document()["length_assessment"].clone();
+        }
+        if collection == "sources" && crate::current_measurements::active(bundle) {
+            expected = crate::current_measurements::document()["source_record"].clone();
+        }
         let actual: Vec<_> = bundle
             .collections
             .get(collection)
@@ -91,8 +97,13 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             .flatten()
             .find(|r| r["id"] == *entity)
         {
-            if object["capabilities"]["reported_length"] != 0
-                || object["capabilities"]["scoped_width"] != 0
+            let count = if crate::current_measurements::active(bundle) {
+                1
+            } else {
+                0
+            };
+            if object["capabilities"]["reported_length"] != count
+                || object["capabilities"]["scoped_width"] != count
                 || !object["latest_observation_date"].is_null()
                 || object["map_features"] != json!([])
             {
@@ -104,22 +115,36 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     }
     Ok(())
 }
-pub fn planning_source(current: &str) -> Option<Value> {
+pub fn planning_source(current: &str, manifest: &Value) -> Option<(Value, &'static str)> {
+    if current == "southern-east-madagascar"
+        && crate::current_measurements::active_manifest(manifest)
+    {
+        return Some((
+            crate::current_measurements::document()["route_planning_decision"].clone(),
+            crate::current_measurements::PATH,
+        ));
+    }
     document()["entries"]
         .as_array()
         .unwrap()
         .iter()
         .find(|r| r["proposal_id"] == current)
-        .map(|r| r["route_planning_decision"].clone())
+        .map(|r| (r["route_planning_decision"].clone(), PATH))
 }
 pub fn decisions(bundle: &Bundle) -> Vec<Value> {
-    bundle.collections.get("current_identity_admissions").into_iter().flatten().map(|r|json!({
-        "current_id":r["proposal_id"],"name":r["entity"]["label"],"measurement_ids":[],
-        "status":"identity_admitted_width_not_admitted","whole_current_width_km":null,"annual_width_range_km":null,"admission_id":r["id"]})).collect()
+    bundle.collections.get("current_identity_admissions").into_iter().flatten().map(|r|{
+        let measured=crate::current_measurements::active(bundle);
+        json!({"current_id":r["proposal_id"],"name":r["entity"]["label"],
+        "measurement_ids":if measured{json!([crate::current_measurements::document()["width_record"]["id"]])}else{json!([])},
+        "status":if measured{"scoped_survey_width_admitted"}else{"identity_admitted_width_not_admitted"},
+        "whole_current_width_km":null,"annual_width_range_km":null,"admission_id":r["id"]})}).collect()
 }
 pub fn add_plans(bundle: &Bundle, plans: &mut Value) {
     for row in decisions(bundle) {
         let id = row["current_id"].as_str().unwrap();
+        if !plans[id].is_null() {
+            continue;
+        }
         plans[id] = json!({"current_id":id,"phases":[],"can_play":false,"eligible_indices":[],
             "range_note":"Current identity admitted. Physical width, annual ranges and seasonal geometry remain unmeasured; the reported survey width has a separate admission gate.",
             "playback_scope":"No seasonal animation without comparable recorded states."});
