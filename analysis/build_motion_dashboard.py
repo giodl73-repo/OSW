@@ -359,6 +359,10 @@ def build():
     inputs.update({r['figure_file']:r['figure_sha256'] for r in scope_index['records']})
     scope_notes = read('research/ocean-current-scope-notes.json')['entries']
     scope_audits = {note['audit_file']: read(note['audit_file']) for note in scope_notes}
+    from check_south_australian_miller_model_width import verify as verify_miller_width
+    miller=verify_miller_width()
+    inputs.update(miller['input_sha256'])
+    inputs['analysis/check_south_australian_miller_model_width.py']=hashlib.sha256((ROOT/'analysis/check_south_australian_miller_model_width.py').read_bytes()).hexdigest()
     for audit in scope_audits.values():
         if audit.get('current_id')=='persian-gulf-saline-overflow':validate_persian_gulf_scope(audit)
         if audit.get('current_id')=='red-sea-saline-overflow':validate_red_sea_scope(audit)
@@ -949,7 +953,7 @@ def build():
                      'object_url': 'object.html?id=' + quote(ident, safe=''),
                      'route_url': 'reference-routes.html#' + own_routes[0]['id'] if own_routes else None,
                      'season_url': 'seasons.html?current=' + current_id if current_id else None})
-        if current_id in {'persian-gulf-saline-overflow','red-sea-saline-overflow'} or any(n.get('measurement_scope_assessment') for n in own_notes):
+        if current_id in {'persian-gulf-saline-overflow','red-sea-saline-overflow'} or any(n.get('measurement_scope_assessment') for n in own_notes) or any(a.get('schema')=='osw.published-model-width-scope.v1' for a in own_audits):
             rows[-1]['scope_audits']=own_audits
         if ident in recurrence:
             rows[-1]['eddy_recurrence_ids']=[recurrence[ident]['id']]

@@ -129,6 +129,12 @@ def main():
     paths.append('almanac/asca-component-spans.js')
     paths.extend(['analysis/eac_core_readback.py','plans/eac-section-core-calculation-readback-v1.md'])
     paths.append('plans/eac-section-core-calculation-readback-v2.md')
+    paths.extend(['analysis/check_south_australian_miller_model_width.py',
+                  'research/south-australian-miller-2006-model-width-scope-audit.json',
+                  'research/source-data/miller-south-australian-2006/acquisition.json',
+                  'research/source-data/miller-south-australian-2006/dissertation.pdf',
+                  'plans/south-australian-miller-model-width-protocol-v1.md',
+                  'figures/south-australian-miller-model-width.svg'])
     paths.extend(['research/norwegian-atlantic-slope-orvik-2003-dimension-candidates.json',
                   'figures/norwegian-atlantic-slope-reported-dimensions.svg'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}

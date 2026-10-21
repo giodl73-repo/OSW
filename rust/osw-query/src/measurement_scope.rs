@@ -22,6 +22,11 @@ pub fn validate(
     if !present {
         return Ok(());
     }
+    if manifest["input_sha256"]["research/south-australian-miller-2006-model-width-scope-audit.json"].is_string()
+        || objects.is_some_and(|rows| rows.iter().any(|r| r["id"] == "current:south-australian"))
+    {
+        validate_miller_model_width(collections, manifest)?;
+    }
     let expected: Value =
         serde_json::from_str(RAW).map_err(|_| "Invalid compiled measurement scope")?;
     let hash = format!("{:x}", Sha256::digest(RAW.as_bytes()));
@@ -102,9 +107,86 @@ pub fn validate(
     Ok(())
 }
 
+fn validate_miller_model_width(
+    collections: &BTreeMap<String, Vec<Value>>,
+    manifest: &Value,
+) -> Result<(), String> {
+    let path = "research/south-australian-miller-2006-model-width-scope-audit.json";
+    let raw =
+        include_str!("../../../research/south-australian-miller-2006-model-width-scope-audit.json");
+    let expected: Value =
+        serde_json::from_str(raw).map_err(|_| "Invalid compiled Miller model width")?;
+    if manifest["input_sha256"][path] != format!("{:x}", Sha256::digest(raw.as_bytes())) {
+        return Err("Miller model-width source binding changed".into());
+    }
+    for (dependency, pin) in expected["input_sha256"]
+        .as_object()
+        .ok_or("Missing Miller source inputs")?
+    {
+        if manifest["input_sha256"][dependency] != *pin {
+            return Err("Miller model-width original or support changed".into());
+        }
+    }
+    let rows = collections
+        .get("objects")
+        .ok_or("Missing Miller current owner")?;
+    let mut matches = 0;
+    for owner in rows {
+        for audit in owner["scope_audits"].as_array().into_iter().flatten() {
+            if audit["schema"] == "osw.published-model-width-scope.v1" {
+                if owner["id"] != "current:south-australian" || *audit != expected {
+                    return Err(
+                        "Miller model-width quantity, owner or temporal scope changed".into(),
+                    );
+                }
+                matches += 1;
+            }
+        }
+    }
+    if matches != 1 {
+        return Err("Missing or duplicated Miller model-width report".into());
+    }
+    Ok(())
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn reported_model_width_rejects_temporal_and_owner_promotion() {
+        let path = "research/south-australian-miller-2006-model-width-scope-audit.json";
+        let raw = include_str!(
+            "../../../research/south-australian-miller-2006-model-width-scope-audit.json"
+        );
+        let report: Value = serde_json::from_str(raw).unwrap();
+        let mut inputs = report["input_sha256"].clone();
+        inputs[path] = json!(format!("{:x}", Sha256::digest(raw.as_bytes())));
+        let manifest = json!({"input_sha256":inputs});
+        let rows = BTreeMap::from([(
+            "objects".into(),
+            vec![json!({"id":"current:south-australian","scope_audits":[report]})],
+        )]);
+        assert!(validate_miller_model_width(&rows, &manifest).is_ok());
+        for (field, value) in [
+            ("approximate_width_km", json!(80)),
+            ("model_elapsed_day", json!(21)),
+            ("is_annual_mean_width", json!(true)),
+            ("observed_period", json!({"start":"2006-01-01"})),
+            ("annual_width_range_km", json!([40, 80])),
+        ] {
+            let mut bad = rows.clone();
+            bad.get_mut("objects").unwrap()[0]["scope_audits"][0]["measurements"][0][field] = value;
+            assert!(
+                validate_miller_model_width(&bad, &manifest).is_err(),
+                "{field}"
+            );
+        }
+        let mut bad = rows.clone();
+        bad.get_mut("objects").unwrap()[0]["id"] = json!("current:leeuwin");
+        assert!(validate_miller_model_width(&bad, &manifest).is_err());
+        bad.get_mut("objects").unwrap()[0]["scope_audits"] = json!([]);
+        assert!(validate_miller_model_width(&bad, &manifest).is_err());
+    }
     #[test]
     fn scope_source_projection_and_borrowed_widths_reject() {
         let index: Value = serde_json::from_str(RAW).unwrap();

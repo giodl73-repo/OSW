@@ -13,6 +13,10 @@ def build():
     def read(path):
         raw=(ROOT/path).read_bytes();inputs[path]=hashlib.sha256(raw).hexdigest()
         return json.loads(raw)
+    from check_south_australian_miller_model_width import verify as verify_miller_width, AUDIT as MILLER_AUDIT
+    miller=verify_miller_width();read(MILLER_AUDIT);read(miller['acquisition_file'])
+    inputs.update(miller['input_sha256'])
+    inputs['analysis/check_south_australian_miller_model_width.py']=hashlib.sha256((ROOT/'analysis/check_south_australian_miller_model_width.py').read_bytes()).hexdigest()
     base='almanac/release/v0.1.0/'
     collections={name:read(base+name+'.json') for name in CANONICAL}
     read(base+'manifest.json')

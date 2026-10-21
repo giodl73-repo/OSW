@@ -351,6 +351,16 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
         const heading=document.createElement('h4');heading.textContent='Source scope review';reviews.append(heading);
         for(const note of current.scope_notes) {
           paragraph(reviews,note.summary);
+          const modelWidth=current.scope_audits?.find(a=>a.schema==='osw.published-model-width-scope.v1'&&a.current_id===note.current_id&&note.audit_file==='research/south-australian-miller-2006-model-width-scope-audit.json');
+          if(modelWidth){
+            const section=document.createElement('section');section.id='south-australian-reported-model-width';reviews.append(section);
+            paragraph(section,'About 60 km · local model width at 130°E. Experiment 6, model day 20; annual climatological forcing is not an annual mean width.');
+            const image=document.createElement('img');image.src='../'+modelWidth.figure_file;image.alt=modelWidth.figure_alt;
+            image.style.cssText='width:100%;max-width:680px;height:auto';section.append(image);
+            const row=modelWidth.measurements[0];paragraph(section,row.layer+' '+row.boundary_rule);
+            previewLink(section,'Query the reported model width','query.html?source-q='+encodeURIComponent(JSON.stringify({document:note.audit_file,pointer:'/measurements',limit:10})));
+            previewLink(section,'Original dissertation (NPS Library archive)',row.source_url);
+          }
           if(note.measurement_scope_assessment) {
             const audit=current.scope_audits?.find(row=>row.current_id===note.current_id&&row.schema==='osw.current-measurement-object-scope.v1');
             if(audit) {
