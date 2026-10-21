@@ -59,7 +59,7 @@ def main():
         page.wait_for_function('window.oswLastQueryResult',timeout=90000)
         main_result=page.evaluate('oswLastQueryResult')
         assert main_result==native(main_query)
-        assert main_result['rows']==sorted(typed_measurements()[0],key=lambda row:row['id'])
+        assert main_result['rows']==sorted([r for r in typed_measurements()[0] if r['current_id']=='red-sea-saline-overflow'],key=lambda row:row['id'])
         assert main_result['total']==60
         assert page.locator('#query-rows tr').count()==60
         expect(page.locator('#query-rows')).to_contain_text('local component span')

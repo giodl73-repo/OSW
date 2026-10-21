@@ -39,7 +39,8 @@ CHECKS = ('test_loop_durante_source_browser.py', 'test_south_australian_context_
           'test_rust_index_release_media_browser.py', 'test_rust_index_state_memberships_browser.py',
           'test_rust_index_state_context_browser.py', 'test_rust_index_noaa_browser.py',
           'test_rust_index_support_browser.py', 'test_rust_index_map_browser.py',
-          'test_eac_calendar_browser.py', 'test_west_australian_oscar_2d_browser.py', 'test_west_australian_streamline_browser.py')
+          'test_eac_calendar_browser.py', 'test_west_australian_oscar_2d_browser.py', 'test_west_australian_streamline_browser.py',
+          'test_redsox_section3_repeat_browser.py', 'test_asca_section_measurements_browser.py')
 
 
 def wait_for_checkout(server=None):

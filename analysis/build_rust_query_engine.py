@@ -126,6 +126,7 @@ def main():
                   'plans/current-section-measurement-records-v1.md','almanac/current-research-evidence.js','almanac/query.js'])
     paths.extend(['analysis/build_asca_component_spans.py','plans/asca-alignment-indicator-readback-v1.md'])
     paths.extend(['analysis/check_eac_100m_source.py','plans/eac-fixed-array-distance-readback-v1.md'])
+    paths.append('almanac/asca-component-spans.js')
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',

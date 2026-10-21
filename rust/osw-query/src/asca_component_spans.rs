@@ -97,6 +97,7 @@ pub fn scene(bundle: &crate::Bundle) -> Value {
     let doc = document();
     let fig = figure();
     json!({"kind":"asca_dated_component_spans","diagnostic_id":ID,
+        "measurement_query":{"collection":"current_section_measurements","filters":[{"field":"current_id","op":"eq","value":"agulhas"}],"limit":100},
         "title":"Agulhas: dated ASCA100m component spans", "source_file":FILE,"source_sha256":pin(RAW),
         "raw_source_file":"research/agulhas-asca-100m-observed-profiles.json", "source_url":doc["source_url"],
         "source_citation":doc["source_citation"],"cautions":doc["interpretation"],

@@ -125,7 +125,7 @@
   for(const event of ['pointerup','pointercancel','lostpointercapture'])$('query-map').addEventListener(event,()=>{mapDrag=null;});
   const sortFields={objects:['label','published_length_km','capabilities.scoped_width','capabilities.reference_route','capabilities.time_samples'],widths:['name','current_id','approximate_width_km','phase_label'],reference_routes:['name','approximate_reference_path_km'],measurements:['entity_id','value','quantity'],states:['label','code'],state_links:['entity_label','state_code','kind'],sources:['label','title'],claims:['id','predicate','review_status'],relations:['id','predicate','subject_id'],entities:['label','type'],geometries:['id','entity_id'],series:['entity_id','frames'],diagnostics:['id']};
   sortFields.model_frames=['date','sample_count','available_sample_count'];
-  sortFields.current_section_measurements=['observation_start_utc','branch','height_low_m','boundary_fraction','component_span_km','status'];
+  sortFields.current_section_measurements=['observation_start_utc','current_id','vertical_reference','depth_low_m','height_low_m','boundary_fraction','component_span_km','status'];
   sortFields.model_samples=['date','sample_index','distance_from_section_start_km','salinity','u_eastward','v_northward'];
   const fieldNames={label:'Name',name:'Name',published_length_km:'Published ranked length (km)',approximate_width_km:'Scoped width value (km)',approximate_reference_path_km:'Reference route estimate (km)','capabilities.scoped_width':'Width record count','capabilities.reference_route':'Route record count','capabilities.time_samples':'Time record count'};
   Object.assign(fieldNames,{date:'Source date',sample_count:'Sampling sites',available_sample_count:'Sites with all fields',sample_index:'Section sample index',distance_from_section_start_km:'Distance from section start (km)',salinity:'Salinity (dimensionless)',u_eastward:'Eastward component (m/s)',v_northward:'Northward component (m/s)'});
@@ -136,7 +136,8 @@
   Object.assign(fieldNames,{strategy_label:'Construction strategy',construction_status:'Route construction status',candidate_count:'Editorial route count'});
   Object.assign(fieldNames,{value_km:'Scoped sample value (km)',month:'Source month',year:'Source year',sample_family:'Sample family',longitude_degrees_east:'Section longitude'});
   names.current_section_measurements='Dated current section measurements';
-  Object.assign(fieldNames,{component_span_km:'Local component span (km)',observation_start_utc:'Survey start (UTC)',branch:'Current branch',height_low_m:'Layer lower height above bottom (m)',boundary_fraction:'Fraction of peak component'});
+  Object.assign(fieldNames,{vertical_reference:'Vertical reference',depth_low_m:'Depth below surface (m)',current_id:'Current',observation_start_utc:'Source timestamp / survey start (UTC)'});
+  Object.assign(fieldNames,{component_span_km:'Local component span (km)',observation_start_utc:'Source timestamp / survey start (UTC)',branch:'Current branch',height_low_m:'Layer lower height above bottom (m)',boundary_fraction:'Fraction of peak component'});
   function rpc(action,value){const id=++sequence;return new Promise((resolve,reject)=>{pending.set(id,{resolve,reject});worker.postMessage({id,action,value});});}
   worker.onmessage=event=>{const item=pending.get(event.data.id);if(item){pending.delete(event.data.id);item.resolve(event.data.result);}};
   worker.onerror=()=>{for(const item of pending.values())item.reject(Error('Query worker failed'));pending.clear();failure('Rust query worker failed. Reload to retry.');};
@@ -147,6 +148,7 @@
   function rejectResult(message){failure(message);renderMap(null);window.oswCharts.render(null,inspect);$('query-detail').hidden=true;detailSequence++;$('query-share').hidden=true;$('query-export').disabled=true;$('query-previous').disabled=true;$('query-next').disabled=true;lastQuery=null;lastResult=null;window.oswLastQueryResult=null;$('query-rows').replaceChildren();$('query-page').textContent='';}
   function label(row){if(row.id?.startsWith('taxonomy-link:'))return row.child_label+' → '+row.parent_label;return row.label||row.name||row.title||row.entity_label||row.id;}
   function value(row){
+    if(row.metric==='fixed_array_southwestward_v_component_span')return row.component_span_km===null?'Unresolved':`≈ ${row.component_span_km.toFixed(1)} km · fixed-array component span`;
     if(row.metric==='local_section_normal_component_span')return (row.component_span_km===null?'Unresolved':`≈ ${row.component_span_km.toFixed(1)} km · local component span`)+(row.saline_outflow_screen===false?' · saline screen fails':'');
     if(row.eastward_mean_cm_s!==undefined)return `${row.eastward_mean_cm_s.toFixed(2)} eastward / ${row.northward_mean_cm_s.toFixed(2)} northward cm/s · ${(100*row.hourly_coverage_fraction).toFixed(1)}% hourly coverage`;
     if(row.reported_occurrence_days_per_year_approx!==undefined)return `≈ ${row.reported_occurrence_days_per_year_approx} presence days/year · event lifetime ${row.reported_event_lifetime_approx===null?"unknown":"≈ "+row.reported_event_lifetime_approx+" "+row.event_lifetime_unit+" ("+row.event_lifetime_statistic+")"}`;
@@ -164,7 +166,11 @@
     if(row.published_length_km!==undefined&&row.published_length_km!==null)return `${row.published_length_km.toLocaleString()} km · published estimate`;
     return (row.type||row.kind||row.quantity||row.predicate||row.role||row.geometry_role||'record').replaceAll('_',' ');
   }
-  function scope(row){if(row.metric==='local_section_normal_component_span')return `${row.observation_start_utc.slice(0,10)} to ${row.observation_end_utc.slice(0,10)} · ${row.branch} · ${row.height_low_m}–${row.height_high_m} m above bottom · ${Math.round(row.boundary_fraction*100)}% of peak · ${row.normal_component_velocity_offset_m_s.toFixed(2)} m/s offset · ${row.status.replaceAll('_',' ')}. Whole-current width and annual range unknown.`;const model=window.oswModelSectionCard?.scope(row);if(model)return model;return row.summary||row.scope||row.geographic_scope||row.note||row.limitations||(row.state_code?`${row.state_code} · ${row.state_name} · ${row.label}`:row.basin)||row.source_locator||row.source_citation||'';}
+  function scope(row){
+    if(row.metric==='fixed_array_southwestward_v_component_span')return `${row.observation_start_utc} · ${row.depth_low_m} m below surface · source fixed-array −v · ${Math.round(row.boundary_fraction*100)}% of peak · ${row.status.replaceAll('_',' ')}. Filtered, mapped source timestamp; grid cells and dates are not independent observations. Whole-current width and annual range unknown.`;
+    if(row.metric==='local_section_normal_component_span')return `${row.observation_start_utc.slice(0,10)} to ${row.observation_end_utc.slice(0,10)} · ${row.branch} · ${row.height_low_m}–${row.height_high_m} m above bottom · ${Math.round(row.boundary_fraction*100)}% of peak · ${row.normal_component_velocity_offset_m_s.toFixed(2)} m/s offset · ${row.status.replaceAll('_',' ')}. Whole-current width and annual range unknown.`;
+    const model=window.oswModelSectionCard?.scope(row);if(model)return model;return row.summary||row.scope||row.geographic_scope||row.note||row.limitations||(row.state_code?`${row.state_code} · ${row.state_name} · ${row.label}`:row.basin)||row.source_locator||row.source_citation||'';
+  }
   function sampleFilters(filters){
     const represented={},extra=[],controls={current_id:'query-sample-current',sample_family:'query-sample-family',month:'query-sample-month',year:'query-sample-year',observation_date:'query-sample-day',value_km:'query-sample-availability'};
     for(const filter of filters||[]){
@@ -395,7 +401,7 @@
     if(entity && (/^(current:|eddy:|operational-eddy:)/.test(entity)||row.type==='operational_eddy_detection')){link('Open atlas card',`reference-routes.html?atlas-layout=map&atlas-feature=${encodeURIComponent(entity)}#route-atlas`,links);link('Object record','object.html?id='+encodeURIComponent(entity),links);}
     if(row.source_url)link('Published source',row.source_url,links);else if(row.url)link('Source',row.url,links);
     if(row.proposed_current_id&&row.source_file&&row.source_pointer)link('Inspect exact source width record','query.html?source-q='+encodeURIComponent(JSON.stringify({document:row.source_file,pointer:row.source_pointer,limit:100})),links);
-    if(row.metric==='local_section_normal_component_span'&&row.source_file&&row.source_pointer)link('Inspect exact section measurement source','query.html?source-q='+encodeURIComponent(JSON.stringify({document:row.source_file,pointer:row.source_pointer,limit:100})),links);
+    if(['local_section_normal_component_span','fixed_array_southwestward_v_component_span'].includes(row.metric)&&row.source_file&&row.source_pointer)link('Inspect exact section measurement source','query.html?source-q='+encodeURIComponent(JSON.stringify({document:row.source_file,pointer:row.source_pointer,limit:100})),links);
     if(row.current_id&&row.phase_kind)link('Inspect width',`seasons.html?current=${encodeURIComponent(row.current_id)}&phase=${encodeURIComponent(row.id)}`,links);
     if(row.type==='named_current'&&row.state_codes?.length)element('p','Recorded state links: '+row.state_codes.join(', ')+'. Relation kinds are available in the state-links collection.',parent);
   }

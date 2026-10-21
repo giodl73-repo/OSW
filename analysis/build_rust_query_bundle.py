@@ -608,7 +608,8 @@ def build():
     section_rows,section_pins=build_section_measurements()
     collections['current_section_measurements']=section_rows
     inputs.update(section_pins)
-    next(r for r in objects if r['id']=='current:red-sea-saline-overflow')['current_section_measurement_ids']=[r['id'] for r in section_rows]
+    for entity_id in sorted({r['entity_id'] for r in section_rows}):
+        next(r for r in objects if r['id']==entity_id)['current_section_measurement_ids']=[r['id'] for r in section_rows if r['entity_id']==entity_id]
     collections['diagnostics'].append({'id':'diagnostic:antilles-shipboard-layer-spans','label':'Antilles-region shipboard component spans','entity_id':'current:antilles','current_id':'antilles','status':shipboard['status'],'rank_eligible':False,'source_file':SHIPBOARD,'source_file_sha256':inputs[SHIPBOARD],'source_json':(ROOT/SHIPBOARD).read_bytes().decode('utf8'),'document':shipboard})
     next(r for r in objects if r['id']=='current:antilles')['observed_section_span_ids']=[r['id'] for r in shipboard['rows']]
     from build_leeuwin_monthly_plot import build as rebuild_leeuwin

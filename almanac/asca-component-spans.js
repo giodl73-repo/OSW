@@ -8,6 +8,7 @@ window.renderAscaComponentSpans=function(container,scene,inspect,options={}){
   const fmt=x=>x===null?'Unresolved':Number(x).toLocaleString('en',{maximumFractionDigits:1});
   node('h4',scene.title);
   node('p','330 resolved / 931 dated profiles at the primary 50% threshold; 601 unresolved. Fixed-array southwestward component spans, not flow-normal current widths.');
+  if(scene.measurement_query)link('Query all dated section measurements','query.html?q='+encodeURIComponent(JSON.stringify(scene.measurement_query)),node('p',''));
   const details=node('details',undefined);details.open=Boolean(options.open);const summary=node('summary','View dated spans, unresolved cases and source',details);summary.style.cssText='min-height:44px;padding:.35rem 0';
   const figure=node('figure',undefined,details);figure.style.margin='1rem 0';const image=node('img',undefined,figure);image.src='../'+scene.figure_file;image.alt=scene.figure_alt;image.loading='lazy';image.style.cssText='display:block;width:100%;height:auto;background:white';
   node('figcaption',scene.figure_alt,figure);link('Open component-span figure at full size','../'+scene.figure_file,figure);
