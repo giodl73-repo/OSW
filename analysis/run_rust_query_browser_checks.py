@@ -44,6 +44,7 @@ CHECKS = ('test_loop_durante_source_browser.py', 'test_south_australian_context_
 
 
 CHECKS = ('test_asca_calendar_distributions_browser.py',) + CHECKS
+CHECKS = ('test_madagascar_proposal_browser.py',) + CHECKS
 
 def wait_for_checkout(server=None):
     expected = (ROOT / 'almanac/query.html').read_bytes()

@@ -134,6 +134,7 @@ def main():
                   'research/asca-component-calendar-distributions.json','research/asca-component-calendar-distributions-figure.json',
                   'figures/asca-component-calendar-distributions.svg','figures/asca-component-calendar-distributions.png'])
     paths.append('plans/published-local-model-snapshot-width-admission-v1.md')
+    paths.append('figures/southern-east-madagascar-reported-dimensions.svg')
     paths.extend(['analysis/check_south_australian_miller_model_width.py',
                   'research/south-australian-miller-2006-model-width-scope-audit.json',
                   'research/source-data/miller-south-australian-2006/acquisition.json',

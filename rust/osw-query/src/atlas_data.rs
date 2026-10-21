@@ -7,6 +7,34 @@ const ADDITIONS: &str = "research/ocean-current-inventory-expansion-candidates.j
 const JOIN: &str = "research/ocean-current-reference-route-state-join.json";
 const GULF_WIDTHS: &str = "research/gulf-stream-section-width-series.json";
 
+fn madagascar_proposal(doc: &Value, required: bool) -> Result<(), String> {
+    let rows: Vec<_> = doc["entries"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .filter(|r| r["proposed_id"] == "southern-east-madagascar")
+        .collect();
+    if rows.is_empty() && !required {
+        return Ok(());
+    }
+    let compiled: Value = serde_json::from_str(include_str!(
+        "../../../research/ocean-current-inventory-expansion-candidates.json"
+    ))
+    .unwrap();
+    let expected = compiled["entries"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|r| r["proposed_id"] == "southern-east-madagascar")
+        .unwrap();
+    if rows != vec![expected] {
+        return Err(
+            "Southern East Madagascar identity, dimensions or admission scope changed".into(),
+        );
+    }
+    Ok(())
+}
+
 fn gulf_width_scope(doc: &Value) -> Result<(), String> {
     if doc["current_id"] != "gulf-stream-system"
         || doc["status"] != "derived_width_candidate_requires_scientific_review"
@@ -363,6 +391,11 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         "osw.current-inventory-expansion-candidates.v1",
     )?;
     crate::proposed_widths::validate_proposals(&additions)?;
+    madagascar_proposal(
+        &additions,
+        bundle.manifest["input_sha256"]["research/current-measurement-object-scope-index.json"]
+            .is_string(),
+    )?;
     if additions["current_ledger_sha256"]
         != bundle.manifest["input_sha256"]["research/ocean-current-almanac.json"]
     {
@@ -681,6 +714,39 @@ mod tests {
                 .remove("whole_current_width_km");
             assert!(width_scope(&bad, owner).is_err());
         }
+    }
+    #[test]
+    fn madagascar_reported_dimensions_reject_promotion_and_erasure() {
+        let doc: Value = serde_json::from_str(include_str!(
+            "../../../research/ocean-current-inventory-expansion-candidates.json"
+        ))
+        .unwrap();
+        assert!(madagascar_proposal(&doc, true).is_ok());
+        let index = doc["entries"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .position(|r| r["proposed_id"] == "southern-east-madagascar")
+            .unwrap();
+        for (key, value) in [
+            ("rank_eligible", json!(true)),
+            ("whole_current_length_km", json!(650)),
+        ] {
+            let mut bad = doc.clone();
+            bad["entries"][index][key] = value;
+            assert!(madagascar_proposal(&bad, true).is_err());
+        }
+        let mut bad = doc.clone();
+        bad["entries"][index]["source_dimensions"]["records"][1]["observed_period"] =
+            json!("annual_mean");
+        assert!(madagascar_proposal(&bad, true).is_err());
+        let mut bad = doc.clone();
+        bad["entries"][index]["source_dimensions"]["records"][0]["value_km"] = json!(120);
+        assert!(madagascar_proposal(&bad, true).is_err());
+        let mut bad = doc.clone();
+        bad["entries"].as_array_mut().unwrap().remove(index);
+        assert!(madagascar_proposal(&bad, true).is_err());
+        assert!(madagascar_proposal(&json!({}), false).is_ok());
     }
     fn receipt(doc: &Value) -> Value {
         let raw = doc.to_string();

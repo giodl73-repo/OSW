@@ -133,6 +133,26 @@
         if (evidence.source_access) node("p", `Source access: ${evidence.source_access}`, card);
       }
       renderProposedWidths(row,card);
+      if(row.source_dimensions){
+        const d=row.source_dimensions,section=node('section',null,card);section.className='proposed-source-dimensions';
+        node('h4','Reported dimensions · separate measurement scopes',section);
+        const figure=node('figure',null,section);figure.style.margin='0';
+        const image=node('img',null,figure);image.src='../'+d.figure_file;
+        image.alt='Southern East Madagascar Current: about 650 km contextual branch extent; about 120 km near-surface width from April 2001. Separate supports, not a footprint or annual range.';
+        image.style.cssText='width:100%;max-width:960px;height:auto';
+        node('figcaption',d.interpretation,figure);
+        for(const r of d.records){
+          const detail=node('details',null,section);detail.dataset.measurement=r.id;
+          node('summary',`About ${number(r.value_km)} km reported ${r.dimension}`,detail);
+          node('p',`${r.support} Source: ${r.source_locator}.`,detail);
+          node('p',r.observed_period?`Survey period: ${r.observed_period}.`:'No observation period assigned to this contextual length.',detail);
+          node('p','Uncertainty and geographic edge coordinates are not supplied. No annual mean or annual extrema admitted.',detail);
+        }
+        node('p',d.source_license,section);
+        link(d.source_citation,d.source_url,node('p',null,section),true);
+        const q={document:'research/ocean-current-inventory-expansion-candidates.json',pointer:'/entries',filters:[{field:'record.proposed_id',op:'eq',value:row.proposed_id}],limit:1};
+        link('Query this current and its reported dimensions','query.html?source-q='+encodeURIComponent(JSON.stringify(q)),node('p',null,section));
+      }
       if(row.proposed_id==='norwegian-atlantic-slope'){
         const evidence=node('section',null,card);evidence.id='norwegian-slope-reported-dimensions';
         node('h4','Additional reported dimensions · provisional',evidence);

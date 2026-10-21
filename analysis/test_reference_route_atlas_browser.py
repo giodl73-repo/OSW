@@ -15,7 +15,8 @@ def main():
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas', wait_until='networkidle')
         page.wait_for_function('document.querySelectorAll(".route-atlas-station").length === 100')
         catalog = json.loads((Path(__file__).resolve().parents[1] / 'research/ocean-current-reference-path-candidates.json').read_bytes())
-        page.wait_for_function('(counts) => document.querySelectorAll(".route-card").length === counts.routes && document.querySelectorAll(".inventory-addition-card").length === counts.additions', arg={'routes': catalog['counts']['route_candidates'], 'additions': 28})
+        additions=json.loads((Path(__file__).resolve().parents[1] / 'research/ocean-current-inventory-expansion-candidates.json').read_bytes())
+        page.wait_for_function('(counts) => document.querySelectorAll(".route-card").length === counts.routes && document.querySelectorAll(".inventory-addition-card").length === counts.additions', arg={'routes': catalog['counts']['route_candidates'], 'additions': len(additions['entries'])})
         assert page.locator('#route-atlas-select option').count() == 101
         for ident,label in [('atlantic-north-equatorial','Atlantic North Equatorial Current'),('pacific-north-equatorial','Pacific North Equatorial Current'),('atlantic-south-equatorial','Atlantic South Equatorial Current'),('pacific-south-equatorial','Pacific South Equatorial Current'),('indian-south-equatorial','Indian South Equatorial Current')]:
             card=page.locator('#inventory-addition-'+ident)
