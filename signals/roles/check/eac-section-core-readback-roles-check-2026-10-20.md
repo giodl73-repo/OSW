@@ -36,3 +36,16 @@ Five roles; no P1; one remaining P2 independent integration condition. Verdict:
 APPROVED-WITH-CONDITIONS for continued draft work. Amendments implemented:
 declare narrow final-field precision, audit full-precision/source/decision
 preservation, and regenerate plots plus every dependent checksum in order.
+
+## 2026-10-21 v2 addendum, against3701397
+
+The same five role lenses apply to the narrowly versioned fraction revision.
+Linux job119079679024 reduced the failure to one rounding-boundary fraction;
+all other fields matched. CURRENT confirms spans and decision functions stay
+unchanged. SOUNDER requires direct regeneration from original arrays rather
+than double-rounding v1 JSON. CHART confirms fraction readback does not move
+the already calculated stored crossings. KEEL adds a regression spanning the
+observed v1 boundary and updates the mutation guard to the v2 protocol pin.
+LOGBOOK preserves v1 and its failed Linux result. The v2 runtime gate passes;
+its independent Linux gate remains pending until inspected. All previous findings remain
+applicable; no new physical admission, tolerance or rank is introduced.

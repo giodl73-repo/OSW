@@ -98,7 +98,7 @@ def main():
             bad=copy.deepcopy(packet);d=next(d for d in bad['collections']['diagnostics'] if d['id']==ID)
             if mode.endswith('_hash'):
                 path={'raw_hash':REPORT,'summary_hash':SUMMARY,'protocol_hash':'plans/eac-csiro-100m-section-core-span-protocol-v1.md','figure_hash':FIGURE,
-                    'readback_code_hash':'analysis/eac_core_readback.py','readback_protocol_hash':'plans/eac-section-core-calculation-readback-v1.md'}[mode];bad['manifest']['input_sha256'][path]='0'*64
+                    'readback_code_hash':'analysis/eac_core_readback.py','readback_protocol_hash':'plans/eac-section-core-calculation-readback-v2.md'}[mode];bad['manifest']['input_sha256'][path]='0'*64
             elif mode=='invented_width':d['document']['physical_width_admitted']=True
             elif mode=='erased_failures':d['document']['overall_outcomes'][1]['attempted_dates']=2883
             elif mode=='coherent_rebind':

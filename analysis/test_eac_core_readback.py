@@ -59,5 +59,18 @@ class EacCoreReadbackTests(unittest.TestCase):
                 source=fixture();source['geometry']['distance_m'][1]=value
                 with self.assertRaisesRegex(ValueError,'Invalid EAC'):readback.canonicalize(source)
 
+    def test_v1_halfway_fraction_has_stable_v2_readback(self):
+        low=math.nextafter(.245473105,0.);high=math.nextafter(.245473105,math.inf)
+        self.assertNotEqual(round(low,8),round(high,8))
+        actual=[]
+        for value in [low,high]:
+            source=fixture();case=source['profiles'][0]['scenarios']['central']['cases'][0]
+            case['offshore_edge']['fraction_inside_to_outside']=value
+            result=readback.canonicalize(source)['profiles'][0]['scenarios']['central']['cases'][0]
+            actual.append(result['offshore_edge']['fraction_inside_to_outside'])
+            self.assertEqual(result['section_span_km'],round(case['section_span_km'],6))
+            self.assertEqual(result['status'],case['status'])
+        self.assertEqual(actual,[.2454731,.2454731])
+
 
 if __name__=='__main__':unittest.main()

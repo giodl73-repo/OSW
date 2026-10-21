@@ -5,8 +5,8 @@ import math
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
-PROTOCOL='plans/eac-section-core-calculation-readback-v1.md'
-PROTOCOL_SHA='90d5371a651a58fe611608f2ae50c8e76cc56254827edd908ef5e4e25265cb67'
+PROTOCOL='plans/eac-section-core-calculation-readback-v2.md'
+PROTOCOL_SHA='73b0b1701969fdc414df6d57f640c713d115496fa131b39f15bf5e12739706b7'
 
 
 def dependency_pins():
@@ -51,7 +51,7 @@ def canonicalize(document):
                 for key in ['shoreward_edge','offshore_edge']:
                     side=case.get(key)
                     if side is not None:
-                        fields(side,[('distance_m',3),('fraction_inside_to_outside',8)],
+                        fields(side,[('distance_m',3),('fraction_inside_to_outside',7)],
                             arrays=[('distance_bracket_m',3),('component_bracket_m_s',8)])
     summaries(result['overall_outcomes'])
     for month in result['monthly_summaries']:summaries(month['outcomes'])
