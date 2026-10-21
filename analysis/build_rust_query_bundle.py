@@ -785,7 +785,7 @@ def build():
     for stem in ['source_document','source_image','source_panel_audit','acquisition','state_geometry','protocol']:
         dependency=contour[stem+'_file']
         inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
-    atlas_paths=[contour_path,panel_path,calendar_path,atlantic_path,'research/agulhas-guerra-2022-ring-radius-scope-audit.json','research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
+    atlas_paths=['research/norwegian-atlantic-slope-orvik-2003-dimension-candidates.json',contour_path,panel_path,calendar_path,atlantic_path,'research/agulhas-guerra-2022-ring-radius-scope-audit.json','research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
                  'research/ocean-current-reference-route-state-join.json',
                  'research/ocean-current-dated-timeline-2025.json',
                  'research/ocean-current-dated-timeline.json',

@@ -133,6 +133,27 @@
         if (evidence.source_access) node("p", `Source access: ${evidence.source_access}`, card);
       }
       renderProposedWidths(row,card);
+      if(row.proposed_id==='norwegian-atlantic-slope'){
+        const evidence=node('section',null,card);evidence.id='norwegian-slope-reported-dimensions';
+        node('h4','Additional reported dimensions · provisional',evidence);
+        load('../research/norwegian-atlantic-slope-orvik-2003-dimension-candidates.json').then(report=>{
+          const figure=node('figure',null,evidence);figure.style.margin='0';
+          const image=node('img',null,figure);image.src='../'+report.figure_file;
+          image.alt='About 3,500 km reported branch length; about 40 km local annual mean flow width at Svinøy. Original source acquisition and identity admission pending.';
+          image.style.cssText='width:100%;max-width:680px;height:auto';
+          node('figcaption','Separate geographic supports. These provisional reports establish no seasonal range, occupied route, current area or ranking.',figure);
+          for(const r of report.measurements){
+            const detail=node('details',null,evidence);
+            node('summary',`About ${number(r.value_km)} km reported ${r.dimension}`,detail);
+            node('p',`${r.support} ${r.locator}`,detail);
+            for(const exclusion of r.context_exclusions||[])node('p',exclusion,detail);
+          }
+          node('p',report.source.access,evidence);
+          link(report.source.citation,report.source.url,node('p',null,evidence),true);
+          const q={document:'research/norwegian-atlantic-slope-orvik-2003-dimension-candidates.json',pointer:'/measurements',limit:10};
+          link('Query the two provisional source reports','query.html?source-q='+encodeURIComponent(JSON.stringify(q)),node('p',null,evidence));
+        }).catch(error=>node('p','Additional reported dimensions unavailable: '+error.message,evidence));
+      }
       const list = node("ul", null, card); for (const gate of row.remaining_gates) node("li", gate, list);
     }
     byId("inventory-addition-status").textContent = `${value.entries.length} proposed inventory additions beyond the current 100-name ledger. Coverage is incomplete.`;

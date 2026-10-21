@@ -129,6 +129,8 @@ def main():
     paths.append('almanac/asca-component-spans.js')
     paths.extend(['analysis/eac_core_readback.py','plans/eac-section-core-calculation-readback-v1.md'])
     paths.append('plans/eac-section-core-calculation-readback-v2.md')
+    paths.extend(['research/norwegian-atlantic-slope-orvik-2003-dimension-candidates.json',
+                  'figures/norwegian-atlantic-slope-reported-dimensions.svg'])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',

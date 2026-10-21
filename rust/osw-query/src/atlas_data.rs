@@ -551,6 +551,22 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     ) {
         crate::norkyst_data::synchronized(timeline, maps)?;
     }
+    let candidate_path = "research/norwegian-atlantic-slope-orvik-2003-dimension-candidates.json";
+    if receipts.contains_key(candidate_path) {
+        paths.insert(candidate_path);
+        let candidate = document(
+            bundle,
+            candidate_path,
+            "osw.source-reported-dimension-candidates.v1",
+        )?;
+        let expected: Value = serde_json::from_str(include_str!(
+            "../../../research/norwegian-atlantic-slope-orvik-2003-dimension-candidates.json"
+        ))
+        .map_err(|_| "Invalid compiled Norwegian dimension candidates")?;
+        if candidate != expected {
+            return Err("Norwegian provisional dimension source or admission scope changed".into());
+        }
+    }
     if receipts.keys().map(String::as_str).collect::<BTreeSet<_>>() != paths {
         return Err("Unexpected or missing atlas source receipt".into());
     }
