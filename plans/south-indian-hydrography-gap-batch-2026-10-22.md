@@ -70,3 +70,26 @@ establish a vertical mean or a historical deep geostrophic reference.
 Next: finish exact source reconstruction, inspect all monthly paired profiles,
 then declare a separate feature-association/edge protocol before estimating
 a named-current width. Preserve negative and unresolved outcomes.
+
+## Paired-profile diagnostic declaration
+
+While acquisition remains live, a second frozen protocol now defines all
+native adjacent gradients and positive salinity-gradient/eastward-component
+peak candidates. It was declared before new field values or profiles were
+interpreted. It uses actual WGS84 cell separation, keeps full plateau supports,
+missing/domain-end censoring, every candidate and all nearest-support ties.
+The 1000 m diagnostics remain deep context. A nearest gradient is not a named
+current association or width, and gradients of monthly means are not means
+of daily gradients when cell valid-date sets differ.
+
+The combined focused suite passes **22 tests**. Run the new diagnostic after
+complete source reconstruction:
+
+```powershell
+python analysis/south_indian_paired_profiles.py
+python -m pytest analysis/test_south_indian_paired_profiles.py -q
+```
+
+All 72 selections must remain in the eventual report. Source acquisition,
+report generation, actual profile rendering and atlas integration are still
+pending; no new measurement or gap-count reduction is claimed by this declaration.

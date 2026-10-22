@@ -58,3 +58,37 @@ identity. CURRENT/CHART/BEACON agree the view must preserve that distinction.
    all products from the pinned original archive without a network request.
 3. Keep year, layer and unresolved identity beside the plots, with fixed scales,
    missing-data breaks, native table, keyboard controls and a narrow-screen gate.
+
+## Addendum: paired-profile diagnostic declaration
+
+Reviewed before applying the diagnostic to the new source values. The same
+seven relevant roles were applied to the new protocol/operator/tests and
+preflight. The original foundation verdict remains conditional; this addendum
+does not clear pending data, browser, integration or whole-project gates.
+
+| Role | Finding | Severity | Resolution / required action |
+|---|---|---|---|
+| CURRENT | A nearest salinity gradient does not prove SIOC identity. | P1 resolved | Every event and the report retain current-association and width-admission false. |
+| CURRENT | A 1000 m gradient is not a near-surface front. | P1 resolved | Each case records its exact depth and near-surface boolean; both supports remain separate. |
+| CURRENT | Monthly gradients can combine different valid-date sets across latitude. | P2 resolved in protocol | Explicitly state gradient-of-monthly-means, not mean daily gradient or synoptic front. |
+| SOUNDER | Native latitude spacing varies. | P1 resolved | Divide differences by actual WGS84 geodesic separation; unequal-spacing test passes. |
+| SOUNDER | Missing values could create a false continuous gradient. | P1 resolved | Adjacent differences retain missing values; no gap bridging or smoothing. |
+| SOUNDER | Runtime and methods must be recoverable before interpreting results. | P2 resolved | Preflight pins operator, protocol, review, source selection, requirements and numeric library versions. |
+| CHART | A two-node gradient bracket could be mistaken for an observed front point. | P1 resolved | Retain latitude bracket, not an interpolated or drawn point. |
+| CHART | A plateau midpoint could invent a geographic core. | P2 resolved | Preserve the entire native peak support and both flank states. |
+| CHART | Domain-edge or missing-neighbor peaks could look resolved. | P1 resolved | Explicit censored flank states; no physical edges or width derived. |
+| BEACON | All positive local candidates differ from reproducing the paper's selected front. | P2 resolved | Protocol labels exploration, explains source motivation and admits no paper reproduction. |
+| BEACON | Diagnostic proximity could become a misleading identity score. | P1 resolved | Distance labeled support association aid; every candidate is retained and identity remains unresolved. |
+| BEACON | An implemented diagnostic is not a completed result. | P2 resolved | Batch plan says generation awaits complete source; no decreased gap counts claimed. |
+| HARBOR | Diagnostic values need a machine-readable alternative. | P2 conditional | Full JSON report planned with stable case/candidate IDs; not yet generated. |
+| HARBOR | Sign and censoring must remain textual. | P2 resolved in schema | Positive-gradient/velocity names, flank strings, exact units and admission booleans are explicit. |
+| HARBOR | Eventual presentation must not rely on identifying peaks by color. | P2 open for integration | Native table/source links remain available; inspect any future diagnostic overlays before publication. |
+| KEEL | Ties and missing neighbors must not depend on accidental array iteration. | P1 resolved | Whole plateaus retained; all nearest ties within 1e-9 km retained; targeted tie/censor tests pass. |
+| KEEL | Cell-difference arithmetic must not silently assume a uniform grid. | P1 resolved | Separate spacing array and finite/increasing-coordinate guards; tests cover reversed, repeated, missing and short coordinates. |
+| KEEL | No complete data-backed reproduction exists yet. | P2 open | Combined 22 unit tests pass; actual 72-case report and source-original reconstruction remain required. |
+| LOGBOOK | New diagnosis must not alter historical operators or measurements. | P1 resolved | New files only, except batch documentation/attributes/review; previous scientific operators unchanged. |
+| LOGBOOK | Source acquisition progress must not be presented as an admitted measurement. | P1 resolved | No width, axis, length or annual range added; foundation remains labeled incomplete. |
+| LOGBOOK | Branch/PR scope must stay consistent. | P1 resolved | Existing branch and draft PR83; no new PR or main merge. |
+
+Addendum: 21 findings, no unresolved P1 for publishing the frozen declaration;
+P2 conditions remain for data-backed reproduction, presentation and integration.
