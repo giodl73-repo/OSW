@@ -263,6 +263,8 @@ def build():
     from build_indian_secc_oscar_2d_source import verify as verify_secc_context, REPORT as SECC_CONTEXT
     secc_context,secc_context_inputs=verify_secc_context()
     inputs.update(secc_context_inputs)
+    from indian_secc_positive_bands import verify as verify_secc_bands, REPORT as SECC_BANDS
+    secc_bands,secc_band_inputs=verify_secc_bands();inputs.update(secc_band_inputs)
     from west_australian_streamline_evidence import verify as verify_wac_paths
     wac_paths,wac_path_inputs=verify_wac_paths()
     inputs.update(wac_path_inputs)
@@ -703,6 +705,15 @@ def build():
                 'url':'query.html?source-q='+quote(json.dumps({'document':SECC_CONTEXT,'pointer':'/monthly_summary','limit':12,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
             evidence_links.append({'label':'Download retained source vectors and metadata (ZIP)',
                 'url':'../research/source-data/oscar-indian-secc-2d-2013/source-responses.zip'})
+            evidence_links.append({'label':'Inspect connected eastward bands and section spans',
+                'url':'../'+secc_bands['comparison_figure']})
+            evidence_links.append({'label':'Query monthly band connectivity and unresolved current geometry',
+                'url':'query.html?source-q='+quote(json.dumps({'document':SECC_BANDS,'pointer':'/monthly_summary','limit':12,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            evidence_links.append({'label':'Compare all 72 historical and extended-domain threshold cases',
+                'url':'query.html?source-q='+quote(json.dumps({'document':SECC_BANDS,'pointer':'/historical_section_comparisons','limit':72,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            payload['positive_band_evidence']={'source_file':SECC_BANDS,'source_sha256':inputs[SECC_BANDS],
+                'monthly_columns':1452,'current_geometry_admitted':False}
+            groups['sources'].append(payload['positive_band_evidence'])
             payload['surrounding_source_context']={'source_file':SECC_CONTEXT,'source_sha256':inputs[SECC_CONTEXT],
                 'source_vector_positions':secc_context['quality']['vector_positions'],'historical_overlap_vectors':4464,
                 'current_association_verified':False,'current_geometry_admitted':False}

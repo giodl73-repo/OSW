@@ -83,6 +83,12 @@ def build():
         calendar_doc, _ = verify_eac_calendar()
         if json.loads(documents[calendar_path]) != calendar_doc:
             raise ValueError('Changed EAC calendar source document')
+    bands_path = 'research/indian-secc-positive-band-connectivity.json'
+    if bands_path in documents:
+        from indian_secc_positive_bands import verify as verify_secc_bands
+        band_doc, _ = verify_secc_bands()
+        if json.loads(documents[bands_path]) != band_doc:
+            raise ValueError('Changed Indian SECC band-connectivity evidence')
     wac_path = 'research/west-australian-oscar-2d-monthly-source-fields.json'
     secc_path = 'research/indian-secc-oscar-2d-monthly-source-fields.json'
     if secc_path in documents:

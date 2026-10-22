@@ -51,7 +51,7 @@ CHECKS = ('test_kuroshio_wang_query_browser.py',) + CHECKS
 CHECKS = ('test_kuroshio_axis_normal_browser.py',) + CHECKS
 CHECKS = ('test_agulhas_reported_dimensions_browser.py',) + CHECKS
 CHECKS = ('test_nwasc_mean_core_widths_browser.py',) + CHECKS
-CHECKS = ('test_indian_secc_oscar_2d_browser.py',) + CHECKS
+CHECKS = ('test_indian_secc_positive_bands_browser.py', 'test_indian_secc_oscar_2d_browser.py') + CHECKS
 CHECKS = ('test_query_packet_browser.py',) + CHECKS
 
 def wait_for_checkout(server=None):
