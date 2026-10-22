@@ -75,3 +75,30 @@ The local/source-scoped findings are resolved. The complete default suite and
 132-browser matrix remain open release gates; no overall green, independent
 scientific approval or completed-program claim. Fresh Linux29-report status
 remains separately attributed to the source commit and job receipt.
+
+
+### Fresh Linux reconstruction and remaining gates
+
+Source commit83fe6f552008b6b6e84b759209062e7e85f72271,run39737835628,
+scientific-reproduction job119687622952:SUCCESS. All29retained reports rebuild
+byte exactly; every retained/rebuilt SHA256 equals the corresponding local
+report hash. The new source-report target is factual transcription, not an
+independent reproduction of the satellite analysis. NetCDF job119687623177
+also passes. Offline job119687623171 fails during paper-fixture acquisition:
+Stramma1992 primary and verified institutional mirror return HTTP403 before
+tests. This current failure supersedes the earlier Rotschi-source failure
+as the latest CI acquisition blocker. No complete-suite/overall green claim.
+
+All436previous index-source descriptors remain exact; all439current source
+hashes verify. All422raw staged engine input hashes match the manifest;
+no private source PDF or original figure is staged. This receipt-only follow-up
+changes no producer,report,data,generated artifact or engine dependency from
+the Linux-tested source commit. The132-browser matrix and complete local
+suite remain unrun; the local4GiB free-space guard remains unmet.
+
+GitHub accepted the source push with a size recommendation warning for the
+54,853,269-byte WASM artifact(52.31MiB). Existing whole-snapshot memory and
+artifact-packaging limits remain open engineering concerns; passing320px
+layout checks is not a device memory/performance benchmark. No LFS migration
+or deployment is implied. Continue core current gaps in the same draft PR83:
+89unranked lengths,18width-owner gaps and the remaining route/seasonal gaps.
