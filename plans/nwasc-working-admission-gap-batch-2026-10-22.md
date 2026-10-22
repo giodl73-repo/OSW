@@ -93,8 +93,17 @@ and140eddy/detection entries, exact99shared-gateway source-role IDs, current
 selection and map zoom, keyboard access, updated-record indication, empty
 search and320px reflow. A current with no geometry now says Unlocated rather
 than Locator only. Source screenshots were retained in the private review
-cache; no provider figures were redistributed. Fresh28-report Linux
-reconstruction remains pending publication.
+cache; no provider figures were redistributed. All **28 scientific/admission reports reconstruct byte exactly on Linux** at
+source commit `e8023a1371b7a15e670a4bb578e7d83d2250aff2`, run **39731439984**,
+scientific job **119667156639**. Every retained/rebuilt SHA matches the
+corresponding local report. NetCDF job **119667156843** also passed. Offline job
+**119667156818** stopped before tests on `rotschi-secc-1972` HTTP403. This is not
+a numerical reconstruction failure or an overall green CI result.
+
+The follow-up receipt/review commit changes documentation only: all415engine
+inputs, generated artifacts, sources and28report/producer files remain
+identical to Linux-tested `e8023a1`. Internal seven-role review resolves20of21
+scoped findings,zeroP1; the complete-suite release gate remains open.
 
 All165 preservation file hashes pass, covering the frozen release and all27
 previous scientific reports/producers. Main packet preservation verifies exact

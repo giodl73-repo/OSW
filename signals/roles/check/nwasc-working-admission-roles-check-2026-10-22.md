@@ -37,11 +37,11 @@ roles apply; ORBIT has no planetary comparison to assess.
 | KEEL | Rank and inventory tests must preserve frozen data while allowing declared changes. | P2 |30focused Python tests/4subtests pass; actual canonical-import check repeated after rebuilding. Seven old rank fields are the only assessment changes. Browser counts derive from verified working exports and distinguish unmapped records from catalogue omissions. |
 | KEEL | Scoped verification cannot close the complete release gate. | P2 | Open: full local suite4GiB guard unmet; full131-browser matrix not run. The preceding remote offline job failed during source acquisition before tests. No overall green claim. |
 | LOGBOOK | All prior numerical evidence must survive the admission. | P2 | All165 file hashes pass, including frozen release and27previous scientific reports/producers. All previous source widths, historical proposed rows, samples and observation dates remain exact. Only declared ranks and Norwegian card links change. |
-| LOGBOOK | The new producer needs fresh cross-platform reconstruction. | P2 | Added as scientific target28; fresh Linux receipt pending publication. Earlier27 reports remain unchanged; no new Linux success claimed yet. |
+| LOGBOOK | The new producer needs fresh cross-platform reconstruction. | P2 | All28 reports reconstruct byte exactly on Linux at e8023a1/run39731439984/job119667156639; every retained/rebuilt SHA matches local. NetCDF also passes; offline119667156818 stops before tests on Rotschi1972 HTTP403. |
 | LOGBOOK | User cannot manage a PR per measurement gap. | P2 | This entire admission continues branch `codex/current-measurement-gaps` and draft PR83. No new PR or main merge. |
 
-21 scoped findings:19 resolved,zeroP1; fresh28-report Linux reconstruction and
-the complete-suite release gate remain open. Draft-only approval with those
+21 scoped findings:20 resolved,zeroP1; the complete-suite release gate remains
+open. All28 scientific/admission reports reconstruct byte exactly on Linux. Draft-only approval with those
 conditions. Amendments from review: distinguish the branch and broad extent;
 preserve six different operators and historical source records; recognize only
 exact admitted regional copies; explain manual source descriptions without
@@ -53,3 +53,8 @@ entries, including exact99shared-gateway source-role IDs, current selection,
 map zoom, keyboard, updated-record indication, empty search and320px reflow.
 The earlier fixed100gateway expectation was replaced with exact source-role
 IDs; no source eddy record changed. Complete131-check matrix remains unrun.
+
+The receipt-only follow-up changes no numerical input, report, producer or
+generated artifact from Linux-tested e8023a1. All415engine dependencies remain
+identical. The full131-browser matrix and complete default suite remain open
+release requirements; no overall green claim is made.
