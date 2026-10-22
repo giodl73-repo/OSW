@@ -17,12 +17,12 @@ def main():
         card.get_by_role('link',name='Compare proposed branch section widths',exact=True).click()
         page.wait_for_function('window.oswLastQueryResult',timeout=90000)
         result=page.evaluate('window.oswLastQueryResult')
-        assert result['collection']=='proposed_widths' and result['total']==3
+        assert result['collection']=='proposed_widths' and result['total']==5
         assert all(r['proposed_current_id']=='norwegian-atlantic-slope' and 'current_id' not in r for r in result['rows'])
         assert result['map_scene'] is None
-        expect(page.locator('.nordic-section-width')).to_contain_text('Proposed identity only')
+        expect(page.locator('.nordic-section-width').first).to_contain_text('Proposed identity only')
         assert not errors,errors
         browser.close()
-    print('PASS: proposed slope card, 320 px layout, query navigation, three qualified records and no canonical dimensions')
+    print('PASS: proposed slope card, 320 px layout, query navigation, five qualified records and no canonical dimensions')
 
 if __name__=='__main__':main()

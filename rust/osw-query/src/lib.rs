@@ -51,6 +51,7 @@ mod movies;
 mod network;
 mod nordic_widths;
 mod norkyst_data;
+mod nwasc_mean_core;
 mod object_plot;
 mod object_view;
 mod observed_sections;
@@ -231,6 +232,7 @@ impl Store {
         observed_spans::validate(&bundle)?;
         current_section_measurements::validate(&bundle)?;
         nordic_widths::validate(&bundle)?;
+        nwasc_mean_core::validate(&bundle)?;
         selected_core_widths::validate(&bundle)?;
         antilles_cruise_spans::validate(&bundle)?;
         model_axis_spread::validate(&bundle)?;

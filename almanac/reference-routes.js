@@ -180,6 +180,29 @@
         link('Query this current and its reported dimensions','query.html?source-q='+encodeURIComponent(JSON.stringify(q)),node('p',null,section));
       }
       if(row.proposed_id==='norwegian-atlantic-slope'){
+        const meanCoreFile='research/norwegian-baumann-2026-mean-core-widths.json';
+        if(window.oswAtlasSnapshot.sources_json[meanCoreFile]){
+          const mean=node('section',null,card);mean.className='nwasc-mean-core';
+          node('h4','Published section support · static mean-core extents',mean);
+          load('../'+meanCoreFile).then(report=>{
+            const image=node('img',null,mean);image.src='../'+report.figure_file;image.style.cssText='display:block;width:100%;max-width:900px;height:auto';
+            image.alt='Svinøy: about50km at50m depth. Gimsøy: about50km horizontal extent of a variable-depth core. Static1993–2022 mean fields; no seasonal range.';
+            for(const r of report.measurements){
+              const detail=node('details',null,mean);detail.dataset.measurement=r.id;
+              node('summary',r.phase_label+' · about '+r.approximate_width_km+' km',detail);
+              node('p',r.layer,detail);node('p',r.boundary_rule,detail);node('p',r.temporal_interpretation,detail);
+              node('p','Salinity ≥35.16g/kg; core starts at50m. The '+r.scope_isobath_m+'m isobath constrains section scope, not measurement depth. Uncertainty and paired geographic edges are unspecified.',detail);
+              node('p',r.source_locator,detail);
+            }
+            node('p','Proposed slope branch only; no dimensions assigned to Norwegian Current or Norwegian Coastal Current. The separate50km heat-budget box is a model assumption. No seasonal playback, geographic envelope or width trend.',mean);
+            const q={collection:'proposed_widths',filters:[{field:'proposed_current_id',op:'eq',value:row.proposed_id},{field:'measurement_type',op:'eq',value:'published_mean_field_transport_core_extent'}],limit:10};
+            link('Query both static mean-core spans','query.html?q='+encodeURIComponent(JSON.stringify(q))+'#query-chart-section',node('p',null,mean));
+            const sq={document:meanCoreFile,pointer:'',limit:100};
+            link('Inspect exact core-definition report','query.html?source-q='+encodeURIComponent(JSON.stringify(sq)),node('p',null,mean));
+            link('Original publication · CC BY4.0','../'+report.original_pdf,node('p',null,mean));
+            node('p',report.raw_data_availability,mean);
+          }).catch(error=>node('p','Mean-core source unavailable: '+error.message,mean));
+        }
         const evidence=node('section',null,card);evidence.id='norwegian-slope-reported-dimensions';
         node('h4','Additional reported dimensions · provisional',evidence);
         load('../research/norwegian-atlantic-slope-orvik-2003-dimension-candidates.json').then(report=>{

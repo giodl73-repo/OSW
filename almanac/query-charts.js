@@ -13,7 +13,7 @@ window.oswCharts=(()=>{
       html('h3',panel.title,section);const figure=html('figure',undefined,section);figure.style.margin='0';
       figure.innerHTML=panel.svg;figure.querySelector('svg').style.cssText='display:block;width:100%;max-width:900px';
       html('p',scene.scope,section);
-      html('p',panel.collection==='proposed_widths'?'Proposed identity only. Vertical support: depth-integrated relative geostrophic current; exact width integration limits unspecified. Surface pressure is the reference.':'Vertical support: variable Atlantic Water layer or seabed, not fixed 45–475 m. The 100 dbar geostrophic reference is not a fixed 100 m layer.',section);
+      html('p',panel.support_note||(panel.collection==='proposed_widths'?'Proposed identity only. Vertical support: depth-integrated relative geostrophic current; exact width integration limits unspecified. Surface pressure is the reference.':'Vertical support: variable Atlantic Water layer or seabed, not fixed 45–475 m. The 100 dbar geostrophic reference is not a fixed 100 m layer.'),section);
       for(const row of panel.rows){
         const line=html('p',undefined,section);line.style.margin='.35rem 0';
         const button=html('button',row.label+(row.matching?' · matching query':''),line);button.onclick=()=>inspect(panel.collection,row.id);
@@ -21,6 +21,7 @@ window.oswCharts=(()=>{
         link.href='query.html?source-q='+encodeURIComponent(JSON.stringify({document:panel.source_file,pointer:row.source_pointer,limit:100}));
       }
       const original=html('a','Original paper · CC BY 4.0',section);original.href=panel.source_url;
+      if(panel.original_pdf){const p=html('p',undefined,section),a=html('a','Retained original PDF · CC BY 4.0',p);a.href='../'+panel.original_pdf;}
     }
   }
   function antillesCruise(scene,inspect){

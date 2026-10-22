@@ -145,6 +145,9 @@ def build():
     validate_nordic_inventory(widths)
     validate_proposal(read('research/ocean-current-inventory-expansion-candidates.json'))
     collections['proposed_widths']=proposed_records()
+    from nwasc_mean_core_widths import verify_inputs as verify_mean_core, records as mean_core_records
+    mean_core,mean_core_inputs=verify_mean_core();inputs.update(mean_core_inputs)
+    collections['proposed_widths'].extend(mean_core_records())
     read('research/guinea-djakoure-2017-model-width-source-review.json');read('research/source-data/djakoure-guinea-2017/acquisition.json')
     for path in ['research/source-data/djakoure-guinea-2017/journal-article.pdf','plans/guinea-model-regional-width-protocol-v1.md','analysis/check_guinea_model_width.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -865,6 +868,7 @@ def build():
             'canonical_release':'v0.1.0','canonical_collections':CANONICAL,
             'kuroshio_axis_normal_version':'1',
             'agulhas_reported_dimensions_version':'1',
+            'nwasc_mean_core_widths_version':'1',
             'eddy_recurrence_receipt':{'source_file':recurrence_path,'source_sha256':inputs[recurrence_path],'source_json':(ROOT/recurrence_path).read_bytes().decode('utf-8')},
             'atlas_receipts':atlas_receipts,
             'current_section_receipts':{asca_path:{'source_file':asca_path,'source_sha256':inputs[asca_path],'source_json':(ROOT/asca_path).read_bytes().decode('utf-8')}},

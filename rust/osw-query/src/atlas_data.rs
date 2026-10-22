@@ -656,6 +656,9 @@ impl Store {
         if crate::agulhas_reported::active(&self.bundle) {
             sources[crate::agulhas_reported::FILE] = json!(crate::agulhas_reported::RAW);
         }
+        if crate::nwasc_mean_core::active(&self.bundle) {
+            sources[crate::nwasc_mean_core::FILE] = json!(crate::nwasc_mean_core::RAW);
+        }
         let mut timeline_scenes = json!({});
         for path in TIMELINES {
             if receipts.contains_key(path) {

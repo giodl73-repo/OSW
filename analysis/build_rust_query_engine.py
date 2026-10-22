@@ -174,6 +174,9 @@ def main():
     _,agulhas_reported_inputs=verify_agulhas_reported()
     paths.extend(agulhas_reported_inputs)
     paths.extend(['rust/osw-query/src/agulhas_reported.rs','almanac/reported-dimensions.js','almanac/query-charts.js'])
+    from nwasc_mean_core_widths import verify_inputs as verify_mean_core
+    _,mean_core_inputs=verify_mean_core();paths.extend(mean_core_inputs)
+    paths.extend(['rust/osw-query/src/nwasc_mean_core.rs','almanac/reference-routes.js'])
     paths.extend(['almanac/atlas-width-evidence.js','almanac/reference-routes.js','almanac/seasons.js',
                   'almanac/query.html','almanac/reference-routes.html','almanac/seasons.html'])
     packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())

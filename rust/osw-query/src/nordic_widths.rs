@@ -80,7 +80,11 @@ pub fn validate(bundle: &crate::Bundle) -> Result<(), String> {
         .collections
         .get("proposed_widths")
         .ok_or("Missing proposed branch widths")?;
-    if json!(rows) != json!(wanted) {
+    let previous: Vec<_> = rows
+        .iter()
+        .filter(|r| !crate::nwasc_mean_core::owns(r))
+        .collect();
+    if json!(previous) != json!(wanted) {
         return Err("Proposed branch width records changed".into());
     }
     let receipt = &bundle.manifest["atlas_receipts"]["research/ocean-current-inventory-expansion-candidates.json"];
@@ -256,11 +260,12 @@ pub fn scene(matches: &[&Value], corpus: &[Value]) -> Value {
                 "source_pointer":format!("/measurements/{}",source.iter().position(|s|s["id"]==r["id"]).unwrap()),
                 "matching":matches.iter().any(|s|s["id"]==r["id"])})).collect::<Vec<_>>() }));
     }
+    panels.extend(crate::nwasc_mean_core::panels(matches, corpus));
     if panels.is_empty() {
         return Value::Null;
     }
     json!({"kind":"nordic_section_widths","title":"Source-defined Nordic section widths","panels":panels,
-        "scope":"WSC comparisons reuse the six existing source records. Norwegian slope widths belong to a proposed identity; no dimensions transfer to ambiguous Norwegian Current, Norwegian Coastal Current or historical Spitsbergen Atlantic Current. Three WSC sections use two alternate operators, not six independent occupations. No geographic edge coordinates, fixed depth layer, numerical width uncertainty or annual extrema inferred. Faded rows preserve source-method context outside the filter."})
+        "scope":"WSC comparisons reuse the six existing source records. Norwegian slope widths belong to a proposed identity; no dimensions transfer to ambiguous Norwegian Current, Norwegian Coastal Current or historical Spitsbergen Atlantic Current. Three WSC sections use two alternate operators, not six independent occupations. Each panel preserves its own vertical and temporal support. No geographic edges, numerical width uncertainty or annual extrema inferred. Faded rows preserve source-method context outside the filter."})
 }
 
 #[cfg(test)]

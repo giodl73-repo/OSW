@@ -50,6 +50,7 @@ CHECKS = ('test_prose_dimensions_browser.py', 'test_madagascar_navigation_browse
 CHECKS = ('test_kuroshio_wang_query_browser.py',) + CHECKS
 CHECKS = ('test_kuroshio_axis_normal_browser.py',) + CHECKS
 CHECKS = ('test_agulhas_reported_dimensions_browser.py',) + CHECKS
+CHECKS = ('test_nwasc_mean_core_widths_browser.py',) + CHECKS
 CHECKS = ('test_query_packet_browser.py',) + CHECKS
 
 def wait_for_checkout(server=None):

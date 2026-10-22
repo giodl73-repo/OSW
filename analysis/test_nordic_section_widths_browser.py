@@ -14,8 +14,8 @@ from check_nordic_section_widths import NOR, WSC, SOURCES, records
 def main():
     out=ROOT/'.pytest_cache/nordic-width-review';out.mkdir(parents=True,exist_ok=True)
     bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
-    assert len(bundle['collections']['widths'])==json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())['counts']['measurements']
-    assert len(bundle['collections']['proposed_widths'])==5
+    assert len(bundle['collections']['widths'])==len(json.loads((ROOT/'research/ocean-current-effective-measurements.json').read_bytes())['widths'])
+    assert len(bundle['collections']['proposed_widths'])==7
     for alias in ['norwegian','spitsbergen-atlantic']:
         assert native({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':alias}]})['total']==0
     with sync_playwright() as p:
@@ -59,7 +59,7 @@ def main():
             assert page.evaluate('window.oswSourceQueryResult.document')==SOURCES[owner][0]
         page.goto(BASE+'?q='+quote(json.dumps({'collection':'proposed_widths','limit':20})))
         page.wait_for_function('window.oswLastQueryResult',timeout=90000)
-        assert page.evaluate('window.oswLastQueryResult.total')==5
+        assert page.evaluate('window.oswLastQueryResult.total')==7
         assert 'undefined' not in page.locator('#query-rows').inner_text()
         page.locator('#query-rows tr button').first.click()
         expect(page.locator('#query-detail h3')).to_be_visible()
