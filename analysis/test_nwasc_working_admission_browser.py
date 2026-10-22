@@ -1,11 +1,71 @@
 """The admitted slope branch reaches the same data through native, WASM and atlas UI."""
 import json
 import os
+import argparse
 from urllib.parse import quote
 
 from playwright.sync_api import sync_playwright, expect
 import nwasc_working_admission as n
 from test_current_research_evidence_browser import BASE, native
+
+
+def check_admitted_card_navigation(page):
+    """Initial hashes, in-page links and history must reveal admitted cards."""
+    for current, width in [('norwegian-atlantic-slope', 1280),
+                           ('southern-east-madagascar', 320)]:
+        page.set_viewport_size({'width': width, 'height': 900})
+        card_id = 'inventory-addition-' + current
+        page.goto(BASE + '/almanac/reference-routes.html#' + card_id)
+        card = page.locator('#' + card_id)
+        expect(card).to_have_class('current-admission-card', timeout=120000)
+        expect(card).to_be_focused(timeout=120000)
+        page.wait_for_function('id => Math.abs(document.getElementById(id).getBoundingClientRect().top) < 100', arg=card_id)
+        assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
+        card.get_by_role('link', name='Back to current atlas', exact=True).focus()
+        page.keyboard.press('Enter')
+        expect(page.locator('#route-atlas')).to_be_focused()
+        # A real hashchange returns keyboard focus, not just native anchor scroll.
+        page.evaluate('(id) => { location.hash = id; }', card_id)
+        expect(card).to_be_focused()
+        page.wait_for_function('id => Math.abs(document.getElementById(id).getBoundingClientRect().top) < 100', arg=card_id)
+        # A same-hash self-link still restores focus and position.
+        page.evaluate('window.scrollTo(0, 0)')
+        card.get_by_role('link', name='Link to this current', exact=True).evaluate('(e) => e.click()')
+        expect(card).to_be_focused()
+        page.wait_for_function('id => Math.abs(document.getElementById(id).getBoundingClientRect().top) < 100', arg=card_id)
+        page.go_back()
+        expect(page.locator('#route-atlas')).to_be_focused()
+        print('PASS accepted-card deep link, hashchange, self-link and history', current, width, flush=True)
+    for selector, name in [('.inventory-addition-card', 'Link to this proposed current'),
+                           ('.route-card', None)]:
+        target = page.locator(selector).first
+        target_id = target.get_attribute('id')
+        page.evaluate('(id) => { location.hash = id; }', target_id)
+        expect(target).to_be_focused()
+        if name:
+            target.get_by_role('link', name=name, exact=True).evaluate('(e) => e.click()')
+            expect(target).to_be_focused()
+    expect(page.locator('.nwasc-admitted-dimensions img')).to_have_attribute(
+        'alt', 'Norwegian Atlantic Slope Current: broad historical reported extent and six separately scoped width records. No whole-current width or annual range.')
+
+
+def navigation_main():
+    """Focused UI check; the unchanged numerical engine has a separate receipt."""
+    out = n.ROOT / '.pytest_cache/nwasc-card-navigation'
+    out.mkdir(exist_ok=True)
+    errors = []
+    with sync_playwright() as pw:
+        browser = pw.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
+        page = browser.new_page()
+        page.on('pageerror', lambda error: errors.append(str(error)))
+        check_admitted_card_navigation(page)
+        assert not errors, errors
+        browser.close()
+    receipt = {'status': 'PASS', 'accepted_current_cards': 2, 'viewport_widths': [1280, 320],
+               'direct_hash_focus_scroll': True, 'hashchange_self_link_history': True,
+               'pending_and_route_card_navigation': True, 'width_count_alt_text': 6, 'page_errors': errors}
+    (out / 'result.json').write_text(json.dumps(receipt, indent=2) + '\n', encoding='utf8')
+    print(json.dumps(receipt), flush=True)
 
 
 def main():
@@ -93,16 +153,22 @@ def main():
         assert {p['width_id'] for p in plan['phases']} == {r['id'] for r in doc['width_records']}
         assert all(p['playback_step_eligible'] is False and p['frame_id'] is None for p in plan['phases'])
         expect(page.locator('#season-range')).to_contain_text('not a seasonal sequence')
+        check_admitted_card_navigation(page)
         assert not errors and not originals, (errors, originals)
         browser.close()
     receipt = {'status': 'PASS', 'native_actual_wasm_queries': 6, 'current_identities': 102,
                'ranked_lengths': 13, 'admitted_local_widths': 6, 'current_rank': 6, 'madagascar_rank': 13,
                'accepted_index_and_object_navigation': True, 'atlas_sources_exact': True,
                'proposal_links_resolve_accepted_identity': True, 'mobile_320px': True,
-               'keyboard_scalar_figure': True, 'seasonal_animation_disabled': True, 'automatic_original_requests': 0}
+               'keyboard_scalar_figure': True, 'seasonal_animation_disabled': True, 'automatic_original_requests': 0,
+               'accepted_card_direct_hash_focus_scroll': ['norwegian-atlantic-slope', 'southern-east-madagascar'],
+               'accepted_card_hashchange_self_link_history': True}
     (out / 'result.json').write_text(json.dumps(receipt, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(receipt), flush=True)
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--navigation-only', action='store_true')
+    args = parser.parse_args()
+    navigation_main() if args.navigation_only else main()

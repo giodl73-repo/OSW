@@ -58,3 +58,21 @@ The receipt-only follow-up changes no numerical input, report, producer or
 generated artifact from Linux-tested e8023a1. All415engine dependencies remain
 identical. The full131-browser matrix and complete default suite remain open
 release requirements; no overall green claim is made.
+
+
+## Navigation follow-up verification
+
+This focused verification follows the existing seven-role review; it is not
+a new complete role review or a numerical-data admission.
+
+- CHART: accepted-card deep links were excluded from both reveal handlers.
+  Resolved: both admitted cards now receive focus and scroll into view;
+  desktop/mobile, hash changes, self-links and history checked in Chrome.
+- BEACON: NwASC image alt text still said five widths. Resolved: it now says
+  six, retaining the distinction from a whole-current width or annual range.
+- LOGBOOK: a UI edit must not inherit a docs-only verification claim. Resolved:
+  the engine manifest updates exactly one JS asset pin;415hashes verify,
+  and the WASM, packet,28reports and producers remain byte identical. The
+  focused Chrome check passes; no fresh numerical reconstruction or complete
+  browser-suite pass is claimed. Pending-card and route-card navigation also
+  pass. The earlier numerical CI and its source403 limitation remain explicit.

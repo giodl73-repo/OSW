@@ -36,7 +36,7 @@
     let id;
     try { id = decodeURIComponent(location.hash.slice(1)); } catch (_) { return; }
     const target = byId(id);
-    if (!target || !target.matches('.route-card, .current-model-card, .inventory-addition-card, #route-atlas')) return;
+    if (!target || !target.matches('.route-card, .current-model-card, .inventory-addition-card, .current-admission-card, #route-atlas')) return;
     if (id === 'route-atlas') {
       if (window.restoreReferenceRouteAtlas) window.restoreReferenceRouteAtlas();
       else if (!new URL(location.href).searchParams.has('atlas-feature')) window.returnToReferenceRouteAtlas?.();
@@ -52,7 +52,7 @@
     if (!anchor) return;
     let target;
     try { target = byId(decodeURIComponent(anchor.hash.slice(1))); } catch (_) { return; }
-    if (!target?.matches('.route-card, .current-model-card, .inventory-addition-card, #route-atlas')) return;
+    if (!target?.matches('.route-card, .current-model-card, .inventory-addition-card, .current-admission-card, #route-atlas')) return;
     event.preventDefault();
     if (target.id === 'route-atlas') window.returnToReferenceRouteAtlas?.();
     if (location.hash !== anchor.hash) history.pushState(null, '', anchor.hash);
@@ -140,7 +140,7 @@
         const evidence=node('section',null,card);evidence.className='nwasc-admitted-dimensions';
         node('h4','Admitted source reports · separately scoped',evidence);
         node('p',`Approximate 3,500 km broad historical eastern-branch extent, working reported-length rank ${admissions.working_published_ranks[admitted.entity_id]}. Six local width records retain different source definitions. These are not six independent new observations, a mapped axis or a seasonal range.`,evidence);
-        const image=node('img',null,evidence);image.src='../'+admissions.figure_file;image.alt='Norwegian Atlantic Slope Current: broad historical reported extent and five separately scoped width records. No whole-current width or annual range.';image.style.cssText='width:100%;max-width:1040px;height:auto';
+        const image=node('img',null,evidence);image.src='../'+admissions.figure_file;image.alt='Norwegian Atlantic Slope Current: broad historical reported extent and six separately scoped width records. No whole-current width or annual range.';image.style.cssText='width:100%;max-width:1040px;height:auto';
         link('Open reported-dimension summary',image.src,node('p',null,evidence));
         const q={collection:'widths',filters:[{field:'current_id',op:'eq',value:row.proposed_id}],limit:10};
         link('Query the six admitted local widths','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,evidence));

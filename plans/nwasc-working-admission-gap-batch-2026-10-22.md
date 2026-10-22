@@ -136,3 +136,35 @@ python analysis/inspect_scientific_reproduction.py
 Next: continue the remaining current data gaps on this same PR. A source-defined
 branch, a broad historical extent, local width descriptions and an actual
 dated current axis remain distinct deliverables.
+
+
+## Accepted-card navigation follow-up
+
+Direct links to the two admitted current cards previously left the dynamically
+created card below the viewport without keyboard focus. The actual Chrome
+reproduction for NwASC found its top approximately289,579px below the viewport.
+Both hash-reveal and same-page-link handlers now accept current-admission-card
+sections. The NwASC image description also correctly says six scoped widths.
+
+Focused Chrome checks pass for NwASC at1280px and southern East Madagascar at
+320px: direct hashes, keyboard return to the atlas, hash changes, same-hash
+self-links, browser history, focus and scroll position. Existing pending-card
+and route-card navigation also pass, with no page errors or mobile overflow.
+
+Reproduce the focused UI check:
+
+```powershell
+$env:OSW_TEST_BROWSER='C:/Program Files/Google/Chrome/Application/chrome.exe'
+python analysis/test_nwasc_working_admission_browser.py --navigation-only
+```
+
+All415engine dependency hashes verify. Only the reference-routes.js asset pin
+changes; the WASM binary, query packet,28scientific reports and their producers
+are byte identical to545a5ea. Numerical reconstruction evidence remains the
+Linux-tested e8023a1 receipt above; it is not a fresh CI claim for this UI edit.
+The complete131-browser matrix and default suite were not rerun. An initial
+full browser-script attempt was intentionally stopped after its first passing
+query to correct a test API call and run the focused navigation scope. The
+final focused check completed successfully. Measurement counts remain102
+accepted currents,13qualified reported extents and164scoped widths;89lengths
+and18width-owner gaps remain. Continue those gaps in draft PR83.
