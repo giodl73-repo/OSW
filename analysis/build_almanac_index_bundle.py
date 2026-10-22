@@ -89,6 +89,12 @@ def build():
         normal_doc, _ = verify_secc_normals()
         if json.loads(documents[normal_path]) != normal_doc:
             raise ValueError('Changed SECC local normal diagnostics')
+    hycom_path = 'research/indian-secc-hycom-2013-local-normal-spans.json'
+    if hycom_path in documents:
+        from indian_secc_hycom_local_normals import verify as verify_secc_hycom
+        hycom_doc, _ = verify_secc_hycom()
+        if json.loads(documents[hycom_path]) != hycom_doc:
+            raise ValueError('Changed HYCOM local normal diagnostics')
     bands_path = 'research/indian-secc-positive-band-connectivity.json'
     if bands_path in documents:
         from indian_secc_positive_bands import verify as verify_secc_bands

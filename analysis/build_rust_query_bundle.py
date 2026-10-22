@@ -154,6 +154,8 @@ def build():
     _,secc_band_inputs=verify_secc_bands();inputs.update(secc_band_inputs)
     from indian_secc_local_normals import verify as verify_secc_normals
     _,secc_normal_inputs=verify_secc_normals();inputs.update(secc_normal_inputs)
+    from indian_secc_hycom_local_normals import verify as verify_secc_hycom
+    _,secc_hycom_inputs=verify_secc_hycom();inputs.update(secc_hycom_inputs)
     read('research/guinea-djakoure-2017-model-width-source-review.json');read('research/source-data/djakoure-guinea-2017/acquisition.json')
     for path in ['research/source-data/djakoure-guinea-2017/journal-article.pdf','plans/guinea-model-regional-width-protocol-v1.md','analysis/check_guinea_model_width.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()

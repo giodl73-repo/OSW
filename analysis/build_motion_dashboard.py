@@ -289,6 +289,8 @@ def build():
     secc_bands,secc_band_inputs=verify_secc_bands();inputs.update(secc_band_inputs)
     from indian_secc_local_normals import verify as verify_secc_normals, REPORT as SECC_NORMALS
     secc_normals,secc_normal_inputs=verify_secc_normals();inputs.update(secc_normal_inputs)
+    from indian_secc_hycom_local_normals import verify as verify_secc_hycom, REPORT as SECC_HYCOM
+    secc_hycom,secc_hycom_inputs=verify_secc_hycom();inputs.update(secc_hycom_inputs)
     from west_australian_streamline_evidence import verify as verify_wac_paths
     wac_paths,wac_path_inputs=verify_wac_paths()
     inputs.update(wac_path_inputs)
@@ -757,6 +759,18 @@ def build():
             payload['local_normal_evidence']={'source_file':SECC_NORMALS,'source_sha256':inputs[SECC_NORMALS],
                 'attempts':secc_normals['counts']['attempts'],'current_geometry_admitted':False}
             groups['sources'].append(payload['local_normal_evidence'])
+            evidence_links.append({'label':'Explore finer-grid HYCOM monthly source and candidate tests',
+                'url':'../'+secc_hycom['comparison_figure']})
+            for label,pointer,limit in [('Query HYCOM monthly candidate outcomes','/monthly_summary',12),
+                ('Query every HYCOM normal-section attempt','/cases',1),
+                ('Compare HYCOM sampling-step and resolution gates','/step_comparisons',72)]:
+                evidence_links.append({'label':label,'url':'query.html?source-q='+quote(json.dumps({'document':SECC_HYCOM,'pointer':pointer,'limit':limit,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            evidence_links.append({'label':'Query unrounded HYCOM native-grid monthly vectors',
+                'url':'query.html?source-q='+quote(json.dumps({'document':'research/source-data/hycom-indian-secc-2013/monthly-fields.json','pointer':'/months','limit':1,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            payload['hycom_local_normal_evidence']={'source_file':SECC_HYCOM,'source_sha256':inputs[SECC_HYCOM],
+                'attempts':secc_hycom['counts']['attempts'],'current_geometry_admitted':False,
+                'source_model_year':2013,'source_provider_depth_m':15}
+            groups['sources'].append(payload['hycom_local_normal_evidence'])
             payload['positive_band_evidence']={'source_file':SECC_BANDS,'source_sha256':inputs[SECC_BANDS],
                 'monthly_columns':1452,'current_geometry_admitted':False}
             groups['sources'].append(payload['positive_band_evidence'])

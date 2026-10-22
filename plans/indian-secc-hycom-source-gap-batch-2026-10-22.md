@@ -68,21 +68,56 @@ spacings and southern-hemisphere edges. It still does not verify current identit
 
 ## Verification and publication status
 
-- Fourteen focused offline unit tests pass. Syntax compilation passes.
+- Sixteen focused offline tests pass, including exact original-source reconstruction
+  of NPZ, lossless JSON and quality outputs with network access forbidden.
 - A Windows ZIP fixture initially expected the wrong rejection message after
   separator normalization; it now accepts either valid rejection stage.
-- Source acquisition is in progress. There is no completed retained archive,
-  reconstructed source, HYCOM candidate report or rendered monthly view yet.
-- The map generator and browser gate are prepared, **not yet executed**.
+- All 82 responses validated after six timeout retries; 363 daily fields contain
+  6,851,625 paired native vector positions. Original responses/receipts occupy
+  a 22,715,226-byte retained ZIP. Twelve monthly means contain 226,500 paired
+  native vectors, with full Float64 JSON/NPZ agreement and explicit date gaps.
+- All 144 declared candidate tests calculated. Two individual attempts (the
+  same May primary seed at 5/10km sampling) pass five-station axis checks.
+  One seed therefore passes both steps, compared with zero in OSCAR. Zero
+  pass the stronger all-station edge/resolution/hemisphere gate: two upstream
+  sections encounter the equatorial source limit without resolving their
+  northern half-peak edges. This discrete result does not rule out a crossing
+  in the last unsampled boundary interval. Do not turn it into a current width
+  or assume a larger viewport establishes a south-of-equator edge. Product
+  differences remain.
+- All twelve monthly maps render. Actual Chrome passes exact image checksums,
+  keyboard selection, 320px reflow, local links and zero automatic original
+  downloads. Visual inspection found/fixed an overlapping arrow legend,
+  widened the phone image and added a full-size map link. The repaired view
+  and all standalone browser checks pass. A separate real Chrome gate passes
+  exact native/WASM readback of all 144 attempts, twelve monthly outcomes,
+  72 step comparisons and complete native-grid frames for January, August
+  and December. Keyboard current-card-to-map navigation and 320px reflow
+  pass, with zero automatic original downloads.
 - All previously published lengths, widths, routes, data packets, WASM and
   source descriptors are unchanged. Existing counts remain 13 ranked lengths,
   89 unranked lengths and 170 scoped widths across 85 of 102 current owners.
-- This source foundation does not rerun or supersede the prior Rust/browser
-  gates. The prior full Linux offline gate remains blocked by the recorded
-  Rotschi primary-PDF HTTP 403; no new overall green gate is claimed.
+- Current native/WASM builds, 132 Rust tests and complete native atlas
+  ingestion pass. All 479 engine pins verify. The main packet remains nine
+  parts, 140,086,549 bytes; WASM is 56,105,321 bytes. The separate source index
+  contains 458 documents, 338,513,697 original bytes and 53,511,888 compressed
+  bytes. All 450 preceding source descriptors, 32 prior reports/producers,
+  170 width rows, 78 reference rows and every object geometry remain exact.
+  Only the Indian SECC object changes, adding source-evidence navigation.
+  All806 unique staged source/engine blobs verify against479 engine pins
+  and458 lossless source descriptors. The initial staged-byte check caught
+  the repository-wide PNG ignore rule; all twelve required generated maps
+  were then explicitly staged and the complete check passed.
+- Fresh Linux scientific reproduction now includes this 33rd report and a
+  separate reconstruction of monthly products from retained originals. That
+  remote gate is pending publication/execution. The full 137-check browser
+  matrix/default local suite are unrun under the existing 4GiB guard. Prior
+  Linux offline failure at the Rotschi primary-PDF HTTP403 remains separate;
+  no new overall green gate or external scientific approval is claimed.
 
-Next: finish/resume all 82 requests, reconstruct source bytes offline, calculate
-all declared cases, inspect the rendered view, then integrate validated evidence
-into the existing Rust/WASM query and current-card surfaces in this same PR.
+Next: publish this verified source/query/view batch in the same PR, collect the
+fresh Linux scientific/source reconstruction gates, then continue the remaining
+current measurement gaps. The May boundary failure warrants an explicit source
+edge audit before any expanded-domain experiment, not an automatic width claim.
 Keep scalar width, axis, annual ranges, state joins and seasonal playback closed
 until their distinct evidence requirements are met.

@@ -17,6 +17,8 @@ ROOT = Path(__file__).resolve().parents[1]
 PROTOCOL = 'plans/indian-secc-hycom-local-normal-protocol-v1.md'
 ANCHORS = 'research/indian-secc-positive-band-connectivity.json'
 PREFLIGHT = 'research/indian-secc-hycom-2013-diagnostic-preflight.json'
+DIRECTORY = ROOT/'research/source-data/hycom-indian-secc-2013'
+REPORT = 'research/indian-secc-hycom-2013-local-normal-spans.json'
 
 
 def stronger_candidate(cases):
@@ -35,8 +37,8 @@ def stronger_candidate(cases):
     return True
 
 
-def build(directory):
-    directory = Path(directory)
+def build(directory=None):
+    directory = Path(directory) if directory is not None else DIRECTORY
     declared = json.loads((ROOT/PREFLIGHT).read_bytes())
     for path, expected in declared['dependencies'].items():
         if pin(ROOT/path) != expected:
@@ -89,6 +91,7 @@ def build(directory):
                        'stronger_candidates': sum(m['stronger_candidates'] for m in monthly),
                        'paired_half_peak_sections': sum(m['paired_half_peak_sections'] for m in monthly)},
             'packing_scale': plan['packing_scale_float32_as_float64'],
+            'comparison_figure': 'figures/indian-secc-hycom-2013/index.html',
             'source_model_year': 2013, 'source_depth_m': 15,
             'current_association_verified': False, 'physical_current_axis_admitted': False,
             'whole_current_width_km': None, 'whole_current_length_km': None,
@@ -100,9 +103,50 @@ def build(directory):
                             'Short mean-field streamlines and local threshold spans do not establish named-current identity or annual physical extents.']}
 
 
+def verify():
+    """Verify public source custody and reconstruct every diagnostic case offline."""
+    acquisition = json.loads((DIRECTORY/'acquisition.json').read_bytes())
+    inputs = {}
+    for name, expected in acquisition['files'].items():
+        path = DIRECTORY/name
+        if pin(path) != expected:
+            raise ValueError('Changed retained HYCOM source product: '+name)
+        inputs[path.relative_to(ROOT).as_posix()] = expected['sha256']
+    for name, expected in acquisition['dependencies'].items():
+        if pin(ROOT/name) != expected:
+            raise ValueError('Changed HYCOM source dependency: '+name)
+        inputs[name] = expected['sha256']
+    raw = (ROOT/REPORT).read_bytes()
+    document = json.loads(raw)
+    rebuilt = build()
+    if raw != (json.dumps(rebuilt, indent=2, ensure_ascii=True, allow_nan=False)+'\n').encode():
+        raise ValueError('HYCOM local-normal report differs from exact offline rebuild')
+    inputs.update({p: v['sha256'] for p, v in rebuilt['dependencies'].items()})
+    inputs[REPORT] = pin(ROOT/REPORT)['sha256']
+    inputs[(DIRECTORY/'acquisition.json').relative_to(ROOT).as_posix()] = pin(DIRECTORY/'acquisition.json')['sha256']
+    view_directory = ROOT/'figures/indian-secc-hycom-2013'
+    view = json.loads((view_directory/'view.json').read_bytes())
+    generator = ROOT/'analysis/build_indian_secc_hycom_view.py'
+    if (view['diagnostic_report'] != pin(ROOT/REPORT) or view['source_quality'] != pin(DIRECTORY/'quality.json')
+            or view['generator'] != pin(generator) or view['current_geometry_admitted'] is not False
+            or view['html'] != pin(view_directory/'index.html')):
+        raise ValueError('HYCOM map/report binding changed')
+    inputs[generator.relative_to(ROOT).as_posix()] = pin(generator)['sha256']
+    for path in ['index.html', 'view.json']:
+        inputs[(view_directory/path).relative_to(ROOT).as_posix()] = pin(view_directory/path)['sha256']
+    if len(view['months']) != 12 or [m['month'] for m in view['months']] != list(range(1, 13)):
+        raise ValueError('Changed HYCOM map month coverage')
+    for month in view['months']:
+        path = view_directory/month['image']
+        if path.parent != view_directory or pin(path) != month['image_pin']:
+            raise ValueError('Changed HYCOM source map image')
+        inputs[path.relative_to(ROOT).as_posix()] = month['image_pin']['sha256']
+    return document, inputs
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--directory', type=Path, default=ROOT/'.pytest_cache/indian-secc-hycom-2013')
+    parser.add_argument('--directory', type=Path, default=DIRECTORY)
     parser.add_argument('--output', type=Path, default=ROOT/'research/indian-secc-hycom-2013-local-normal-spans.json')
     args = parser.parse_args()
     report = build(args.directory)

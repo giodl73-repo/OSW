@@ -9,6 +9,9 @@ from indian_secc_hycom_local_normals import stronger_candidate
 from package_indian_secc_hycom_2013 import unpack_checked
 import hashlib
 import zipfile
+import json
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 
 @pytest.mark.parametrize('indices', [[], [7], [0, 8, 16, 23, 31, 39], [0, 8, 15, 23, 30], [1, 4]])
@@ -109,3 +112,44 @@ def test_retained_archive_rejects_extra_or_changed_bytes(tmp_path):
         unpack_checked(archive, {'source.ascii': {'bytes': 7, 'sha256': '0'*64}}, tmp_path)
     with pytest.raises(ValueError, match='member set'):
         unpack_checked(archive, {}, tmp_path)
+
+
+def test_published_native_json_preserves_float64_vectors_masks_and_exact_dates():
+    directory = Path(__file__).resolve().parents[1]/'research/source-data/hycom-indian-secc-2013'
+    fields = json.loads((directory/'monthly-fields.json').read_bytes())
+    origin = datetime(2000, 1, 1, tzinfo=timezone.utc)
+    dates = []
+    with np.load(directory/'monthly.npz', allow_pickle=False) as arrays:
+        assert arrays['u_m_s'].shape == (12, 151, 125)
+        assert arrays['depth'].tolist() == [15]
+        assert fields['longitude_degrees_east'] == arrays['lon'].tolist()
+        assert fields['latitude_degrees_north'] == arrays['lat'].tolist()
+        for index, month in enumerate(fields['months']):
+            assert month['month'] == index+1
+            for key, name in [('eastward_m_s', 'u_m_s'), ('northward_m_s', 'v_m_s')]:
+                decoded = np.array(month[key], dtype='<f8')
+                assert np.array_equal(decoded, arrays[name][index], equal_nan=True)
+                finite = np.isfinite(decoded)
+                assert decoded[finite].tobytes() == arrays[name][index][finite].tobytes()
+                assert np.array_equal(finite, arrays['pair_count'][index] >= month['minimum_pairs'])
+            assert month['paired_samples'] == arrays['pair_count'][index].tolist()
+            clock = [origin+timedelta(hours=t) for t in month['source_time_hours_since_2000_01_01']]
+            assert len(clock) == month['sample_days']
+            assert all(t.year == 2013 and t.month == index+1 and t.hour == t.minute == t.second == 0 for t in clock)
+            dates.extend(clock)
+    expected = [datetime(2013, 1, 1, tzinfo=timezone.utc)+timedelta(days=i) for i in range(365)]
+    expected = [t for t in expected if (t.month, t.day) not in [(8, 14), (12, 25)]]
+    assert dates == expected
+    assert fields['physical_current_axis_admitted'] is fields['physical_current_width_admitted'] is False
+
+
+def test_retained_originals_reconstruct_all_monthly_product_bytes_offline(monkeypatch):
+    from package_indian_secc_hycom_2013 import reproduce
+    def forbidden(*args, **kwargs):
+        raise AssertionError('Retained-source reconstruction attempted network access')
+    monkeypatch.setattr('acquire_indian_secc_hycom_2013.urlopen', forbidden)
+    result = reproduce()
+    assert result['status'] == 'PASS' and result['network_requests'] == 0
+    assert result['velocity_responses'] == 82
+    assert result['archive_members_verified'] == 173
+    assert result['products'] == ['quality.json', 'monthly.npz', 'monthly-fields.json']

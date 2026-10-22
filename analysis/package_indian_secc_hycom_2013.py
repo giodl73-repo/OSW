@@ -30,13 +30,15 @@ def package(directory, destination=DESTINATION):
             info.create_system = 3
             info.external_attr = 0o600 << 16
             archive.writestr(info, (directory/name).read_bytes(), compress_type=zipfile.ZIP_DEFLATED, compresslevel=6)
-    for name in ['selection.json', 'quality.json', 'monthly.npz']:
+    products = ['selection.json', 'quality.json', 'monthly.npz', 'monthly-fields.json', 'metadata.das', 'metadata.dds', 'coordinates.ascii']
+    for name in products:
         shutil.copyfile(directory/name, destination/name)
-    paths = ['analysis/acquire_indian_secc_hycom_2013.py', 'analysis/acquire_south_australian_hycom_2d.py',
+    paths = ['analysis/acquire_indian_secc_hycom_2013.py', 'analysis/package_indian_secc_hycom_2013.py',
+             'analysis/acquire_south_australian_hycom_2d.py',
              'analysis/acquire_eac_100m_source.py', 'plans/indian-secc-hycom-2013-source-protocol-v1.md',
              'research/indian-secc-hycom-2013-source-preflight.json']
     manifest = {'schema': 'osw.indian-secc-hycom-retained-source.v1',
-                'files': {n: pin(destination/n) for n in ['source-responses.zip', 'selection.json', 'quality.json', 'monthly.npz']},
+                'files': {n: pin(destination/n) for n in ['source-responses.zip', *products]},
                 'dependencies': {p: pin(ROOT/p) for p in paths},
                 'archive_members': {n: pin(directory/n) for n in sorted(names)},
                 'rights': 'Approved for public release. Distribution unlimited. Original NAVO metadata retained.',
@@ -74,11 +76,12 @@ def reproduce(destination=DESTINATION):
     with tempfile.TemporaryDirectory(prefix='osw-secc-hycom-') as work:
         unpack_checked(destination/'source-responses.zip', manifest['archive_members'], work)
         compile_source(work)
-        for name in ['quality.json', 'monthly.npz']:
+        for name in ['quality.json', 'monthly.npz', 'monthly-fields.json']:
             if pin(Path(work)/name) != manifest['files'][name]:
                 raise ValueError('Reconstructed product bytes differ: '+name)
-    return {'status': 'PASS', 'original_responses': len(manifest['archive_members']),
-            'products': ['quality.json', 'monthly.npz'], 'network_requests': 0}
+    return {'status': 'PASS', 'archive_members_verified': len(manifest['archive_members']),
+            'velocity_responses': len(json.loads((destination/'selection.json').read_bytes())['requests']),
+            'products': ['quality.json', 'monthly.npz', 'monthly-fields.json'], 'network_requests': 0}
 
 
 if __name__ == '__main__':

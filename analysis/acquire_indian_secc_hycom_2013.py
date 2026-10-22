@@ -216,8 +216,28 @@ def compile_source(directory):
     for name in ['pair_count', 'u_m_s', 'v_m_s']:
         arrays[name] = np.stack([monthly[m][name] for m in range(1, 13)])
     write_npz(directory/'monthly.npz', arrays)
+    def nullable(array):
+        values = array.astype(object)
+        values[~np.isfinite(array)] = None
+        return values.tolist()
+    fields = {'schema': 'osw.indian-secc-hycom-monthly-fields.v1',
+              'selection': pin(directory/'selection.json'), 'dataset_url': BASE,
+              'source_model_year': 2013, 'provider_depth_m': 15,
+              'longitude_degrees_east': arrays['lon'].tolist(),
+              'latitude_degrees_north': arrays['lat'].tolist(),
+              'velocity_units': 'm/s', 'missing_mean_value': None,
+              'interpretation': 'Unrounded Float64 paired daily-00Z model-vector sample means; not current boundaries or observations.',
+              'months': [{'month': m, 'minimum_pairs': plan['minimum_pairs'][m-1],
+                          'sample_days': monthly[m]['sample_days'],
+                          'source_time_hours_since_2000_01_01': [float(coordinates_['time'][i]) for request in plan['requests'] if request['month'] == m for i in request['time_indices']],
+                          'paired_samples': monthly[m]['pair_count'].tolist(),
+                          'eastward_m_s': nullable(monthly[m]['u_m_s']),
+                          'northward_m_s': nullable(monthly[m]['v_m_s'])} for m in range(1, 13)],
+              'physical_current_axis_admitted': False, 'physical_current_width_admitted': False}
+    (directory/'monthly-fields.json').write_bytes((json.dumps(fields, separators=(',', ':'), allow_nan=False)+'\n').encode())
     report = {'schema': 'osw.indian-secc-hycom-source-quality.v1', 'selection': pin(directory/'selection.json'),
               'original_responses': receipts, 'monthly_arrays': pin(directory/'monthly.npz'),
+              'monthly_fields': pin(directory/'monthly-fields.json'),
               'native_grid_shape': [len(arrays['lat']), len(arrays['lon'])],
               'missing_daily_00z': plan['missing_daily_00z'],
               'months': [{'month': m, 'sample_days': monthly[m]['sample_days'],

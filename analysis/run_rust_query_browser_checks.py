@@ -52,6 +52,7 @@ CHECKS = ('test_kuroshio_axis_normal_browser.py',) + CHECKS
 CHECKS = ('test_agulhas_reported_dimensions_browser.py',) + CHECKS
 CHECKS = ('test_nwasc_mean_core_widths_browser.py',) + CHECKS
 CHECKS = ('test_aleutian_onishi_width_browser.py', 'test_neuc_glider_widths_browser.py', 'test_nwasc_reference_route_browser.py', 'test_hansen_asar_widths_browser.py', 'test_nwasc_working_admission_browser.py', 'test_north_atlantic_gate_bound_browser.py', 'test_indian_secc_local_normals_browser.py', 'test_indian_secc_positive_bands_browser.py', 'test_indian_secc_oscar_2d_browser.py') + CHECKS
+CHECKS = ('test_indian_secc_hycom_view_browser.py', 'test_indian_secc_hycom_query_browser.py') + CHECKS
 CHECKS = ('test_query_packet_browser.py',) + CHECKS
 
 def wait_for_checkout(server=None):
