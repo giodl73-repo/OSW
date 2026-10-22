@@ -11,8 +11,9 @@ verdict: APPROVED-WITH-CONDITIONS
 
 Baseline25bbdbb; source method, geometry, maps and query integration reviewed
 through the seven applicable installed lenses. ORBIT has no planetary analogy.
-This is internal review, not external scientific approval. Local integration/preservation gates pass; fresh Linux26-report
-verification remains required before declaring cross-platform delivery verified.
+This is internal review, not external scientific approval. Local integration/preservation gates pass. Linux5070eec/run39720938432/
+scientific119633957327 reconstructs all26 report bytes exactly, with every SHA
+matching its local report; NetCDF119633956968 also passes.
 
 | Role | Finding | Severity | Resolution / evidence |
 | --- | --- | --- | --- |
@@ -32,14 +33,15 @@ verification remains required before declaring cross-platform delivery verified.
 | HARBOR | Card navigation must work by keyboard. | P2 | Actual Chrome keyboard disclosure/figure navigation pass. |
 | HARBOR | Large query records must preserve phone reflow and data export. | P2 |320px/all144 outcomes/full passing and failed cases/export checks pass; semantic data equivalent retained. |
 | KEEL | Positive control is needed so the method cannot merely reject everything. | P2 | Analytical straight jet passes five checks and matches independent geodesic half-peak width. |
-| KEEL | Source calculations need independent and cross-platform evidence. | P2 |18 tests pass,including independent interpolation; fresh Linux target26 gate pending. |
-| KEEL | Scoped tests cannot close the entire release gate. | P2 | IRD403/local4GiB complete-suite gate remains separate and open. |
+| KEEL | Source calculations need independent and cross-platform evidence. | P2 |18 tests pass,including independent interpolation; all26 Linux report bytes/hashes match at5070eec/run39720938432. |
+| KEEL | Scoped tests cannot close the entire release gate. | P2 | Current Stramma primary/mirror403 stops before tests; prior IRD403 is not reached; local4GiB guard remains unmet. |
 | LOGBOOK | Current capabilities, dates and prior scientific rows must remain stable. | P2 | All59,828 rows exact except intended SECC fingerprint/links; capabilities/dates preserved. |
 | LOGBOOK | Workspace cleanup must preserve original bytes. | P2 | Exact gzip/ZIP reconstruction hashes verified; original archives retained. |
 | LOGBOOK | All batches belong in the continuing PR. | P2 | Same draft PR83; no new PR/main merge. |
 
-21 P2 findings:19 resolved,two pending gates (new Linux reconstruction and
-complete-suite release);zero currentP1. Local build/browser/preservation and
-all403 staged input hashes pass. Whole-project complete-suite gate remains open. Amendments: explicit two-step nonrobustness,
+21 P2 findings:20 resolved,one complete-suite release gate open;zeroP1.
+Local build/browser/preservation,all403 staged hashes and26-report Linux
+reconstruction pass. Offline119633957201 fails before tests on Stramma1992
+HTTP403,not on a numerical reconstruction. No overall green CI claim. Amendments: explicit two-step nonrobustness,
 analytical positive control plus independent vectors, and accessible SVG with
 all failures/partial support retained in the semantic data.

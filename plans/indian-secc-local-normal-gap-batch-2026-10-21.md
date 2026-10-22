@@ -81,12 +81,15 @@ change. Nine superseded generated packet parts retired after exact length/SHA
 and workspace containment checks; originals retained.
 
 Packet139,755,756 bytes/nine parts; WASM49,477,159 bytes. Source corpus
-315,176,178 original bytes/48,297,867 compressed bytes. Fresh Linux26-report
-verification remains pending. Main50 collections/59,828 rows,165 sources and
+315,176,178 original bytes/48,297,867 compressed bytes. Fresh Linux reconstruction passes at5070eec/run39720938432/scientific
+job119633957327: all26 reports encode byte exactly; every retained/rebuilt SHA
+matches its local report. NetCDF119633956968 also passes. Main50 collections/59,828 rows,165 sources and
 55 diagnostics remain unchanged; source index430 documents. Accepted101 names/28 proposals,
 12 ranked lengths/89 unranked and158 scoped widths/83 owners with18 uncovered
 owners remain. Only the SECC source fingerprint/evidence links should change.
-The separate IRD403/full-suite4GiB disk gate remains open; no overall green claim.
+Offline119633957201 fails before tests on Stramma1992 primary and institutional
+mirror HTTP403. This run does not reach or resolve the earlier IRD Rotschi403.
+The complete-suite/local4GiB disk gate remains open; no overall green claim.
 
 ## Workspace source retention
 
@@ -114,3 +117,7 @@ python analysis/test_indian_secc_local_normals_browser.py
 Next: inspect the failed ridge-alignment/contrast and sampling-step evidence
 before any axis-method revision; seek independent current-association support.
 Do not tune gates to force admission. Continue other current gaps on PR83.
+
+All20 scoped review findings are resolved; one complete-suite P2 gate remains
+open,zeroP1. This receipt/review update changes documentation only: every
+numerical input and generated artifact remains identical to Linux-tested5070eec.
