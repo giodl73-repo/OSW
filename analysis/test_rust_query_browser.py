@@ -1,4 +1,6 @@
 """Native/WASM parity, scientific joins, query navigation and failure handling."""
+from browser_inventory_expectations import CURRENT_COUNT, MOTION_COUNT
+
 import json
 import os
 import subprocess
@@ -48,7 +50,7 @@ def main():
         page.on('pageerror', lambda e: errors.append(str(e)))
         page.goto(BASE)
         page.wait_for_function('window.oswLastQueryResult', timeout=60000)
-        assert page.evaluate('window.oswLastQueryResult.total') == 101
+        assert page.evaluate('window.oswLastQueryResult.total') == CURRENT_COUNT
         assert page.evaluate('window.oswLastQueryResult.map_scene.mapped_objects') == 101
         assert page.locator('#query-map-features').evaluate('(el)=>new Set([...el.children].map(n=>n.dataset.entity)).size') == 101
         assert page.locator('#query-rows tr').count() == 50
@@ -57,7 +59,7 @@ def main():
         page.locator('#query-map-world').click()
         assert page.locator('#query-map').get_attribute('viewBox') == '0 0 360 180'
         all_objects = browser_query(page, {'collection':'objects','limit':50})
-        assert all_objects['total'] == 241
+        assert all_objects['total'] == MOTION_COUNT
         assert all_objects['map_scene']['matching_objects'] == 241
         assert all_objects['map_scene']['mapped_objects'] == 241
         mark = page.locator('#query-map-features [data-entity="current:kuroshio"]').first

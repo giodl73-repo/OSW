@@ -1,4 +1,6 @@
 """Released classifications remain exact and do not imply route availability."""
+from browser_inventory_expectations import CURRENT_SELECT_OPTIONS
+
 import json
 import os
 from pathlib import Path
@@ -21,7 +23,7 @@ def main():
         errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length===102')
+        page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length==='+str(CURRENT_SELECT_OPTIONS))
         for row in currents:
             page.locator('#route-atlas-select').select_option(row['id'])
             disclosure=page.locator('.route-atlas-classification')

@@ -1,4 +1,6 @@
 """Shared atlas URLs preserve bounded display framing and selected evidence."""
+from browser_inventory_expectations import MOTION_COUNT
+
 import os
 from urllib.parse import parse_qs,urlparse
 from playwright.sync_api import sync_playwright
@@ -11,7 +13,7 @@ def main():
         browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'),headless=True)
         page=browser.new_page(viewport={'width':1200,'height':950});page.emulate_media(reduced_motion='reduce')
         errors=[];page.on('pageerror',lambda error:errors.append(str(error)))
-        def ready():page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length===241')
+        def ready():page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length==='+str(MOTION_COUNT))
         def view():return list(map(float,page.locator('#route-atlas-map').get_attribute('viewBox').split()))
         def same(expected):assert all(abs(a-b)<.000002 for a,b in zip(expected,view())),(expected,view())
         page.goto(BASE+'#route-atlas',wait_until='networkidle');ready()

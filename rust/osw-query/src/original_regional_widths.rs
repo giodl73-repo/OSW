@@ -515,6 +515,11 @@ pub(crate) fn validate_gogp_inventory(bundle: &crate::Bundle) -> Result<(), Stri
 }
 
 pub(crate) fn validate(row: &Value) -> Result<(), String> {
+    // This versioned branch admission owns its exact migrated source records.
+    // Partial matches, edited copies and unrelated owner transfers still fail.
+    if crate::nwasc_admission::recognizes_width(row) {
+        return Ok(());
+    }
     let owner = row["current_id"].as_str().unwrap_or("");
     let id = row["id"].as_str().unwrap_or("");
     // Find the reviewed identity independently of editable owner/context fields.

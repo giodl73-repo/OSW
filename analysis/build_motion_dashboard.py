@@ -95,6 +95,11 @@ def build():
     nac_bound,nac_bound_inputs=verify_nac_bound();inputs.update(nac_bound_inputs)
     measurements.append(nac_bound['measurement']);claims.append(nac_bound['claim'])
     sources[nac_bound['method_source']['id']]=nac_bound['method_source']
+    from nwasc_working_admission import verify_inputs as verify_nwasc_admission
+    nwasc_admission,nwasc_inputs=verify_nwasc_admission();inputs.update(nwasc_inputs)
+    entities.append(nwasc_admission['entity'])
+    measurements.append(nwasc_admission['measurement']);claims.append(nwasc_admission['claim'])
+    sources.update({r['id']:r for r in nwasc_admission['source_records']})
     from agulhas_reported_dimensions import verify_inputs as verify_agulhas_reported, ID as AGULHAS_REPORTED_ID
     agulhas_reported,agulhas_reported_inputs=verify_agulhas_reported();inputs.update(agulhas_reported_inputs)
     sources[agulhas_reported['source_record']['id']]=agulhas_reported['source_record']
@@ -216,7 +221,7 @@ def build():
         inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
     for path in [gulf_audit['protocol_file'],'analysis/check_gulf_stream_published_widths.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
-    widths = width_inventory['measurements']+[prose_dimensions['width_record'],agulhas_reported['width_record']]
+    widths = width_inventory['measurements']+[prose_dimensions['width_record'],agulhas_reported['width_record']]+nwasc_admission['width_records']
     width_audits={}
     for record in widths:
         audit_file=record.get('extraction_file') or (record.get('stream_mean_context') or record.get('eulerian_section_context') or record.get('width_statistics_context') or record.get('regional_range_context') or record.get('regional_scalar_context') or record.get('mean_offshore_context') or record.get('adcp_threshold_context') or {}).get('audit_file')
@@ -559,6 +564,7 @@ def build():
         own_phases = [p for p in phases if current_id and p['current_id'] == current_id]
         source_ids = {row.get(key) for row in [entity, *own_measures, *own_geometry, *own_claims, *own_media] for key in ['source_id', 'source_snapshot_id', 'method_source_id'] if row.get(key)}
         source_ids.update(source for route in own_routes for source in route.get('source_ids',[]))
+        if current_id=='norwegian-atlantic-slope':source_ids.update(r['id'] for r in nwasc_admission['source_records'])
         if current_id=='kuroshio':source_ids.add(KUROSHIO_DAILY_SOURCE)
         if source_ids - sources.keys():
             raise ValueError(f'Unresolved dashboard sources for {ident}')
@@ -695,6 +701,10 @@ def build():
         if entity.get('identity_admission_id'):
             evidence_links.append({'label':'Current identity and separately scoped dimension evidence','url':entity['almanac_url']})
             evidence_links.append({'label':'Query the identity admission','url':'query.html?q='+quote(json.dumps({'collection':'current_identity_admissions','filters':[{'field':'id','op':'eq','value':entity['identity_admission_id']}],'limit':1}),safe='')})
+        if current_id == 'norwegian-atlantic-slope':
+            evidence_links.append({'label':'Compare separately scoped reported dimensions','url':'../'+nwasc_admission['figure_file']})
+            evidence_links.append({'label':'Query the six admitted local width records','url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':current_id}],'limit':10}),safe='')})
+            evidence_links.append({'label':'Audit the working branch admission and rank changes','url':'query.html?q='+quote(json.dumps({'collection':'current_measurement_admissions','filters':[{'field':'entity_id','op':'eq','value':'current:'+current_id}],'limit':1}),safe='')})
         if current_id == 'north-atlantic':
             evidence_links.append({'label':'Inspect the nominal-section geographic bound','url':'../'+nac_bound['figure_file']})
             evidence_links.append({'label':'Query the working North Atlantic length assessment','url':'query.html?q='+quote(json.dumps({'collection':'length_assessments','filters':[{'field':'entity_id','op':'eq','value':'current:north-atlantic'}],'limit':1}),safe='')})
@@ -753,8 +763,8 @@ def build():
             evidence_links.append({'label':'Compare WSC source widths and their separate methods',
                 'url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':current_id}],'limit':20},separators=(',',':')),safe='')+'#query-chart-section'})
         if current_id == 'norwegian':
-            evidence_links.append({'label':'Proposed Atlantic slope branch widths · separate identity',
-                'url':'query.html?q='+quote(json.dumps({'collection':'proposed_widths','filters':[{'field':'proposed_current_id','op':'eq','value':'norwegian-atlantic-slope'}],'limit':20},separators=(',',':')),safe='')+'#query-chart-section'})
+            evidence_links.append({'label':'Norwegian Atlantic Slope Current widths · separate identity',
+                'url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':'norwegian-atlantic-slope'}],'limit':20},separators=(',',':')),safe='')+'#query-chart-section'})
         def query_link(label, collection, record_id=None, filters=None):
             query = {'collection': collection, 'limit': 50}
             if record_id: query['filters'] = [{'field':'id','op':'eq','value':record_id}]
@@ -1067,10 +1077,10 @@ def build():
     order = {'named_current': 0, 'named_eddy': 1, 'operational_eddy_detection': 2}
     rows.sort(key=lambda row: (order[row['type']], row['label'].casefold(), row['id']))
     counts = {kind: sum(r['type'] == kind for r in rows) for kind in ['named_current', 'named_eddy', 'operational_eddy_detection']}
-    if counts != {'named_current': 100+len(identity_document['entries']), 'named_eddy': 136, 'operational_eddy_detection': 4} or len({r['id'] for r in rows}) != len(rows):
+    if counts != {'named_current': 101+len(identity_document['entries']), 'named_eddy': 136, 'operational_eddy_detection': 4} or len({r['id'] for r in rows}) != len(rows):
         raise ValueError('Dashboard inventory must reconcile with the release ledger')
     return {'schema': 'osw.motion-dashboard.v1', 'status': 'local_research_coverage_not_scientific_approval',
-            'counts': counts, 'proposed_current_additions': len(proposals)-len(identity_document['entries']), 'input_sha256': inputs,
+            'counts': counts, 'proposed_current_additions': len(proposals)-len(identity_document['entries'])-1, 'input_sha256': inputs,
             'snapshot_fingerprint': fingerprint(rows), 'entries': rows,
             'connections': connections,
             'fingerprint_version': 2,

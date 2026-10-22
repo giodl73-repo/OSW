@@ -51,7 +51,7 @@ CHECKS = ('test_kuroshio_wang_query_browser.py',) + CHECKS
 CHECKS = ('test_kuroshio_axis_normal_browser.py',) + CHECKS
 CHECKS = ('test_agulhas_reported_dimensions_browser.py',) + CHECKS
 CHECKS = ('test_nwasc_mean_core_widths_browser.py',) + CHECKS
-CHECKS = ('test_north_atlantic_gate_bound_browser.py', 'test_indian_secc_local_normals_browser.py', 'test_indian_secc_positive_bands_browser.py', 'test_indian_secc_oscar_2d_browser.py') + CHECKS
+CHECKS = ('test_nwasc_working_admission_browser.py', 'test_north_atlantic_gate_bound_browser.py', 'test_indian_secc_local_normals_browser.py', 'test_indian_secc_positive_bands_browser.py', 'test_indian_secc_oscar_2d_browser.py') + CHECKS
 CHECKS = ('test_query_packet_browser.py',) + CHECKS
 
 def wait_for_checkout(server=None):
@@ -108,7 +108,7 @@ def main():
             timeout = 1800 if name in {'test_current_research_evidence_browser.py', 'test_loop_durante_source_browser.py', 'test_south_australian_context_browser.py', 'test_eac_source_fields_browser.py',
                                       'test_eac_section_core_spans_browser.py', 'test_eac_calendar_browser.py', 'test_west_australian_oscar_2d_browser.py', 'test_west_australian_streamline_browser.py',
                                       'test_rust_index_support_browser.py',
-                                      'test_rust_index_noaa_browser.py'} else 600
+                                      'test_rust_index_noaa_browser.py', 'test_nwasc_working_admission_browser.py'} else 600
             subprocess.run([sys.executable, str(ROOT / 'analysis' / name)],
                            cwd=ROOT, env=environment, check=True, timeout=timeout)
     finally:

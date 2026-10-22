@@ -1,4 +1,6 @@
 """One scoped source description across native/WASM query, atlas, card and seasons."""
+from browser_inventory_expectations import SCOPED_WIDTH_COUNT
+
 import hashlib,json,os
 from urllib.parse import quote
 from playwright.sync_api import sync_playwright,expect
@@ -32,7 +34,7 @@ def main():
         assert json.loads(page.evaluate('(path)=>window.oswAtlasSnapshot.sources_json[path]',a.FILE))==doc
         assert page.evaluate('window.oswAtlasSnapshot.agulhas_reported_scene')==expected['chart_scene']
         expect(page.locator('#width-'+a.WIDTH_ID)).to_contain_text('200')
-        assert page.locator('#width-rows tr').count()==158
+        assert page.locator('#width-rows tr').count()==SCOPED_WIDTH_COUNT
         page.locator('#route-atlas-card-link').focus();page.keyboard.press('Enter')
         card=page.locator('#agulhas-reference-path-candidate .agulhas-reported-dimensions');expect(card).to_be_visible(timeout=120000)
         page.set_viewport_size({'width':320,'height':1000});card.screenshot(path=str(out/'card-mobile.png'))

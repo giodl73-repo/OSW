@@ -1,4 +1,6 @@
 """Separate Bering-side proposal from canonical Aleutian geometry and dimensions."""
+from browser_inventory_expectations import CURRENT_SELECT_OPTIONS, PENDING_PROPOSALS
+
 import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -17,7 +19,7 @@ def main():
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Aaleutian#route-atlas',wait_until='networkidle')
         page.wait_for_function('document.querySelector("#route-atlas-select").value==="current:aleutian"')
-        assert page.locator('#route-atlas-select option').count()==101
+        assert page.locator('#route-atlas-select option').count()==CURRENT_SELECT_OPTIONS
         assert page.locator('#route-atlas-preview .route-map').count()==0
         assert row['scope_notes'][0]['summary'] in page.locator('.route-atlas-scope-reviews').inner_text()
         card=page.locator('#inventory-addition-aleutian-north-slope')
@@ -25,7 +27,7 @@ def main():
         assert 'not Aleutian' in card.inner_text()
         assert 'full article not acquired' in card.inner_text()
         assert 'no whole-current length or rank admitted' in card.inner_text()
-        assert '28 proposed inventory additions' in page.locator('#inventory-addition-status').inner_text()
+        assert f'{PENDING_PROPOSALS} pending inventory additions' in page.locator('#inventory-addition-status').inner_text()
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         page.set_viewport_size({'width':1440,'height':1100})
         card.screenshot(path=str(root/'figures/aleutian-north-slope-proposal-review.png'))

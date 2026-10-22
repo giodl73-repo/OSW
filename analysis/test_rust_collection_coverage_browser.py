@@ -37,9 +37,13 @@ def main():
         result = browser_query(page, {'collection':'objects','limit':7})
         object_count=len(bundle['collections']['objects'])
         assert result['total'] == object_count
-        assert result['map_scene']['mapped_objects'] == object_count
-        # Map marks include contextual gateways; they are not physical footprints.
-        assert page.locator('#query-map-features').evaluate('(el)=>new Set([...el.children].map(n=>n.dataset.entity)).size') == object_count
+        mapped_ids={row['id'] for row in bundle['collections']['objects'] if row['map_features']}
+        assert result['map_scene']['matching_objects'] == object_count
+        assert result['map_scene']['mapped_objects'] == len(mapped_ids)
+        assert result['map_scene']['unmapped_objects'] == object_count-len(mapped_ids)
+        # All source-located records have marks; unlocated names remain queryable.
+        actual_ids=set(page.locator('#query-map-features').evaluate('(el)=>[...new Set([...el.children].map(n=>n.dataset.entity))]'))
+        assert actual_ids == mapped_ids
         assert not errors, errors
         browser.close()
     print(f"PASS: all {len(bundle['collections'])} shipped collections in native/WASM UI, first/last pages, record inspection, complete canonical imports and {object_count} object map marks")

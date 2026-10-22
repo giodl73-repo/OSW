@@ -1,4 +1,6 @@
 """Scope reviews stay visible without inheriting routes from similar names."""
+from browser_inventory_expectations import CURRENT_SELECT_OPTIONS
+
 import json,hashlib,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -16,7 +18,7 @@ def main():
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
         page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=len(json.loads(Path('research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))['candidates']))
-        page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length===102')
+        page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length==='+str(CURRENT_SELECT_OPTIONS))
         for row in reviewed:
             page.locator('#route-atlas-select').select_option(row['id'])
             review=page.locator('.route-atlas-scope-reviews')

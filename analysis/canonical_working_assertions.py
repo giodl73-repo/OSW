@@ -19,12 +19,22 @@ def assert_canonical_imports(bundle):
         assert hashlib.sha256(raw).hexdigest() == pin, path
         row = json.loads(raw)[key]
         overrides.setdefault(collection, {})[row['id']] = row
+    rank_updates = {}
+    path = 'research/norwegian-atlantic-slope-working-admission.json'
+    if path in bundle['manifest']['input_sha256']:
+        raw = (ROOT / path).read_bytes()
+        assert hashlib.sha256(raw).hexdigest() == bundle['manifest']['input_sha256'][path], path
+        rank_updates = {r['id']: r['working_rank'] for r in json.loads(raw)['rank_updates']}
     for name in bundle['manifest']['canonical_collections']:
         original = json.loads((ROOT / 'almanac/release/v0.1.0' / (name + '.json')).read_bytes())
         current = bundle['collections'][name]
         ids = {r['id'] for r in original}
         assert len(ids) == len(original), name
         assert len({r['id'] for r in current}) == len(current), name
-        expected = [overrides.get(name, {}).get(r['id'], r) for r in original]
+        expected = [dict(overrides.get(name, {}).get(r['id'], r)) for r in original]
+        if name == 'length_assessments':
+            for row in expected:
+                if row['id'] in rank_updates:
+                    row['published_rank'] = rank_updates[row['id']]
         assert [r for r in current if r['id'] in ids] == expected, name
         assert set(overrides.get(name, {})) <= ids, name

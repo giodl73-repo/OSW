@@ -187,6 +187,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         if key == "widths" {
             source.extend(crate::current_measurements::widths(bundle));
             source.extend(crate::agulhas_reported::widths(bundle));
+            source.extend(crate::nwasc_admission::widths(bundle));
         }
         if key == "routes" && crate::madagascar_coastal_curve::active(bundle) {
             source = crate::madagascar_coastal_curve::catalogue()["candidates"]
@@ -461,8 +462,13 @@ impl Store {
             .as_array_mut()
             .unwrap()
             .extend(crate::agulhas_reported::widths(&self.bundle));
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(crate::nwasc_admission::widths(&self.bundle));
         let mut supplemental = crate::current_measurements::widths(&self.bundle);
         supplemental.extend(crate::agulhas_reported::widths(&self.bundle));
+        supplemental.extend(crate::nwasc_admission::widths(&self.bundle));
         let mut plans = plans(&docs)?;
         crate::current_catalogue::add_plans(&self.bundle, &mut plans);
         let mut sources = json!({});

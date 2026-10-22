@@ -1,4 +1,6 @@
 """Atlas/season round trips retain current and recorded-phase identity."""
+from browser_inventory_expectations import CURRENT_SELECT_OPTIONS
+
 import json,os
 from pathlib import Path
 from urllib.parse import urlparse,parse_qs
@@ -18,7 +20,7 @@ def main():
   page=browser.new_page(viewport={'width':1440,'height':1100});errors=[]
   page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
-  page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length===102')
+  page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length==='+str(CURRENT_SELECT_OPTIONS))
   for row in read('research/ocean-motion-dashboard.json')['entries']:
    if row['type']!='named_current':continue
    page.locator('#route-atlas-select').select_option(row['id'])

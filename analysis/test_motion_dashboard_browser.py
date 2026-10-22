@@ -1,4 +1,6 @@
 """Check dashboard coverage, filtering and content-based update indicators."""
+from browser_inventory_expectations import CURRENT_COUNT
+
 from query_packet import read_bundle_bytes
 import json
 import hashlib
@@ -125,8 +127,8 @@ def main():
         assert {c['id'] for c in beck['connections']}=={c['id'] for c in data['connections']}
         assert sum(len(g['ids']) for g in beck['eddy_groups'])==140
         assert page.locator('#dashboard-schematic').is_visible()
-        assert page.locator('.beck-station').count() == 101
-        assert '101 / 101 current stations in view' in page.locator('#dashboard-station-count').inner_text()
+        assert page.locator('.beck-station').count() == CURRENT_COUNT
+        assert f'{CURRENT_COUNT} / {CURRENT_COUNT} current stations in view' in page.locator('#dashboard-station-count').inner_text()
         page.locator('#dashboard-search').fill('Portugal Current')
         settle(page)
         page.locator('#dashboard-covered').check()
@@ -136,10 +138,10 @@ def main():
         assert page.locator('.beck-station').count() == 1
         page.locator('#dashboard-show-all').click()
         settle(page)
-        assert page.locator('.beck-station').count() == 101
+        assert page.locator('.beck-station').count() == CURRENT_COUNT
         assert page.locator('#dashboard-region').input_value() == 'world'
         assert not page.locator('#dashboard-covered').is_checked()
-        assert page.locator('.beck-station .beck-name').count() == 101
+        assert page.locator('.beck-station .beck-name').count() == CURRENT_COUNT
         station=page.locator('.beck-station').first
         assert station.locator('.beck-name').evaluate('(el)=>getComputedStyle(el).opacity') == '0'
         station.locator('circle').hover()
@@ -157,8 +159,8 @@ def main():
         page.locator('.beck-connection').first.focus()
         page.keyboard.press('Enter')
         assert 'Read the source' in page.locator('#dashboard-schematic-detail').inner_text()
-        assert page.locator('.schematic-station').count() == 101
-        assert page.locator('.schematic-station text').count() == 101
+        assert page.locator('.schematic-station').count() == CURRENT_COUNT
+        assert page.locator('.schematic-station text').count() == CURRENT_COUNT
         page.locator('.schematic-station').first.focus()
         page.keyboard.press('Enter')
         assert page.locator('#dashboard-schematic-detail').is_visible()

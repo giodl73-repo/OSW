@@ -1,4 +1,6 @@
 """Actual browser touch input zooms the atlas without dismissing its card."""
+from browser_inventory_expectations import MOTION_COUNT
+
 import os
 from playwright.sync_api import sync_playwright
 
@@ -10,7 +12,7 @@ def main():
         errors=[]
         page.on('pageerror',lambda error:errors.append(str(error)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length===241')
+        page.wait_for_function('document.querySelectorAll(".atlas-directory-item").length==='+str(MOTION_COUNT))
         page.locator('#route-atlas-select').select_option('current:agulhas')
         atlas=page.locator('#route-atlas-map');atlas.scroll_into_view_if_needed()
         box=atlas.bounding_box();cx=box['x']+box['width']/2;cy=box['y']+box['height']/2

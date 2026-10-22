@@ -67,6 +67,9 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             expected =
                 crate::madagascar_coastal_curve::catalogue()["primary_source_record"].clone();
         }
+        if collection == "length_assessments" {
+            expected = crate::nwasc_admission::rank_override(expected, bundle);
+        }
         let rows: Vec<_> = bundle
             .collections
             .get(collection)

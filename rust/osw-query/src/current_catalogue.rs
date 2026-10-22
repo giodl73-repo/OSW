@@ -74,6 +74,9 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             expected =
                 crate::madagascar_coastal_curve::catalogue()["primary_source_record"].clone();
         }
+        if collection == "length_assessments" {
+            expected = crate::nwasc_admission::rank_override(expected, bundle);
+        }
         let actual: Vec<_> = bundle
             .collections
             .get(collection)
@@ -92,7 +95,10 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         .flatten()
         .filter(|r| r["type"] == "named_current")
         .collect();
-    let expected = catalogue["entries"].as_array().unwrap();
+    let mut expected = catalogue["entries"].as_array().unwrap().clone();
+    if crate::nwasc_admission::active(bundle) {
+        expected.push(crate::nwasc_admission::document()["entity"].clone());
+    }
     if currents.len() != expected.len() || expected.iter().any(|r| !currents.contains(&r)) {
         return Err("Incomplete effective current identity inventory".into());
     }
@@ -126,6 +132,12 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     Ok(())
 }
 pub fn planning_source(current: &str, manifest: &Value) -> Option<(Value, &'static str)> {
+    if current == "norwegian-atlantic-slope" && manifest["nwasc_working_admission_version"] == "1" {
+        return Some((
+            crate::nwasc_admission::document()["identity_entry"]["route_planning_decision"].clone(),
+            crate::nwasc_admission::FILE,
+        ));
+    }
     if current == "southern-east-madagascar"
         && crate::madagascar_coastal_curve::active_manifest(manifest)
     {
@@ -151,6 +163,7 @@ pub fn planning_source(current: &str, manifest: &Value) -> Option<(Value, &'stat
 }
 pub fn decisions(bundle: &Bundle) -> Vec<Value> {
     bundle.collections.get("current_identity_admissions").into_iter().flatten().map(|r|{
+        if r["proposal_id"] == "norwegian-atlantic-slope" && crate::nwasc_admission::active(bundle) { return crate::nwasc_admission::identity_decision(); }
         let measured=crate::current_measurements::active(bundle);
         json!({"current_id":r["proposal_id"],"name":r["entity"]["label"],
         "measurement_ids":if measured{json!([crate::current_measurements::document()["width_record"]["id"]])}else{json!([])},
@@ -161,10 +174,18 @@ pub fn add_plans(bundle: &Bundle, plans: &mut Value) {
     for row in decisions(bundle) {
         let id = row["current_id"].as_str().unwrap();
         if !plans[id].is_null() {
+            if id == "norwegian-atlantic-slope" {
+                plans[id]["range_note"] = json!(
+                    "Six separately scoped source descriptions, not a seasonal sequence. Static mean cores and an undated mean-flow width do not establish annual extrema or comparable dated boundaries."
+                );
+                plans[id]["playback_scope"] = json!(
+                    "No animation: these source descriptions are not comparable dated states."
+                );
+            }
             continue;
         }
         plans[id] = json!({"current_id":id,"phases":[],"can_play":false,"eligible_indices":[],
-            "range_note":"Current identity admitted. Physical width, annual ranges and seasonal geometry remain unmeasured; the reported survey width has a separate admission gate.",
+            "range_note":if id=="norwegian-atlantic-slope" {"Six separately scoped reported widths; no comparable dated sequence, whole-current width or annual range. Static mean cores cannot show monthly states."}else{"Current identity admitted. Physical width, annual ranges and seasonal geometry remain unmeasured; the reported survey width has a separate admission gate."},
             "playback_scope":"No seasonal animation without comparable recorded states."});
     }
 }

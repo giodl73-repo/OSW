@@ -286,9 +286,12 @@ def build():
     from north_atlantic_gate_bound import verify_inputs as verify_nac_bound, append as append_nac_bound
     nac_bound,nac_bound_inputs=verify_nac_bound();inputs.update(nac_bound_inputs)
     append_nac_bound(collections,nac_bound)
+    from nwasc_working_admission import verify_inputs as verify_nwasc_admission, append as append_nwasc_admission
+    nwasc_admission,nwasc_inputs=verify_nwasc_admission();inputs.update(nwasc_inputs)
     from agulhas_reported_dimensions import verify_inputs as verify_agulhas_reported, diagnostic as agulhas_reported_diagnostic, ID as AGULHAS_REPORTED_ID
     agulhas_reported,agulhas_reported_inputs=verify_agulhas_reported();inputs.update(agulhas_reported_inputs)
     collections['widths'].append(agulhas_reported['width_record'])
+    append_nwasc_admission(collections,nwasc_admission)
     collections['sources']=[agulhas_reported['source_record'] if r['id']==agulhas_reported['source_record']['id'] else r for r in collections['sources']]
     collections['sources']=[routes['primary_source_record'] if r['id']==routes['primary_source_record']['id'] else r for r in collections['sources']]
     collections['reference_routes']=routes['candidates']
@@ -727,7 +730,7 @@ def build():
     # Keep the complete remaining-length worklist queryable without assigning
     # dimensions to unresolved names, families or continuity hypotheses.
     collections['route_decisions']=[]
-    admitted_plans=[r['route_planning_decision'] for r in identity_document['entries'] if not any(p['current_id']==r['proposal_id'] for p in routes['remaining_current_decisions'])]
+    admitted_plans=[r['route_planning_decision'] for r in identity_document['entries']+[nwasc_admission['identity_entry']] if not any(p['current_id']==r['proposal_id'] for p in routes['remaining_current_decisions'])]
     for original in routes['remaining_current_decisions']+admitted_plans:
         entity_id='current:'+original['current_id']
         owner=next(row for row in objects if row['id']==entity_id)
@@ -746,8 +749,8 @@ def build():
                 'next_action':original['next_action'],'scope':original['existing_scope'],
                 'status':original['planning_status'],'rank_eligible':False,
                 'source_url':original['name_source_url'],'source_decision':copy.deepcopy(original),
-                'source_catalog_file':WORKING_ROUTES if original['current_id']=='southern-east-madagascar' else 'research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json',
-                'source_catalog_sha256':inputs[WORKING_ROUTES if original['current_id']=='southern-east-madagascar' else 'research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json'],
+                'source_catalog_file':WORKING_ROUTES if original['current_id']=='southern-east-madagascar' else 'research/norwegian-atlantic-slope-working-admission.json' if original['current_id']=='norwegian-atlantic-slope' else 'research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json',
+                'source_catalog_sha256':inputs[WORKING_ROUTES if original['current_id']=='southern-east-madagascar' else 'research/norwegian-atlantic-slope-working-admission.json' if original['current_id']=='norwegian-atlantic-slope' else 'research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json'],
                 'scope_reviews':reviews}
         collections['route_decisions'].append(record)
         owner['route_decision_ids']=[record['id']]
@@ -877,6 +880,7 @@ def build():
             'canonical_release':'v0.1.0','canonical_collections':CANONICAL,
             'kuroshio_axis_normal_version':'1',
             'north_atlantic_gate_bound_version':'1',
+            'nwasc_working_admission_version':'1',
             'agulhas_reported_dimensions_version':'1',
             'nwasc_mean_core_widths_version':'1',
             'eddy_recurrence_receipt':{'source_file':recurrence_path,'source_sha256':inputs[recurrence_path],'source_json':(ROOT/recurrence_path).read_bytes().decode('utf-8')},

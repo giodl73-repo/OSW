@@ -14,7 +14,7 @@ from check_nordic_section_widths import NOR, WSC, SOURCES, records
 def main():
     out=ROOT/'.pytest_cache/nordic-width-review';out.mkdir(parents=True,exist_ok=True)
     bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
-    assert len(bundle['collections']['widths'])==len(json.loads((ROOT/'research/ocean-current-effective-measurements.json').read_bytes())['widths'])
+    assert len(bundle['collections']['widths'])==len(json.loads((ROOT/'research/ocean-current-live-measurements.json').read_bytes())['widths'])
     assert len(bundle['collections']['proposed_widths'])==7
     for alias in ['norwegian','spitsbergen-atlantic']:
         assert native({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':alias}]})['total']==0

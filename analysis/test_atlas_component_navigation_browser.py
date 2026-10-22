@@ -1,4 +1,6 @@
 """Browse ledger components without inventing aggregate route measurements."""
+from browser_inventory_expectations import CURRENT_SELECT_OPTIONS
+
 import os
 import json
 from pathlib import Path
@@ -13,7 +15,7 @@ def main():
         page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length===102')
+        page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length==='+str(CURRENT_SELECT_OPTIONS))
         total=0
         for family in families:
             ident='current:'+family['current_id']

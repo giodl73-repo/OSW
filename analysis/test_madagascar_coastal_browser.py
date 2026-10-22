@@ -1,4 +1,6 @@
 """The new geographic reference connects atlas, card, state, query and survey UI."""
+from browser_inventory_expectations import CURRENT_COUNT
+
 import json,os
 from urllib.parse import quote
 from playwright.sync_api import sync_playwright,expect
@@ -30,7 +32,7 @@ def main():
         url=BASE+'/almanac/reference-routes.html?atlas-layout=map&atlas-feature='+quote(ENTITY)+'&atlas-route='+curve.ROUTE_ID+'#route-atlas'
         page.goto(url)
         page.wait_for_function('window.oswAtlasSnapshot',timeout=120000)
-        page.wait_for_function('document.querySelectorAll(".route-atlas-station").length===101',timeout=120000)
+        page.wait_for_function('document.querySelectorAll(".route-atlas-station").length==='+str(CURRENT_COUNT),timeout=120000)
         assert page.locator('.route-card').count()==77
         assert page.locator('.route-atlas-station[data-current-id="'+ENTITY+'"]').count()==1
         assert page.locator('.route-atlas-station[data-current-id="'+ENTITY+'"]').get_attribute('data-placement-role')=='editorial_reference_route_vertex'
@@ -62,7 +64,7 @@ def main():
         assert page.locator('#season-bar').evaluate('(n)=>n.parentElement.hidden')
         assert not errors,errors;browser.close()
     receipt={'status':'PASS','native_wasm_route_exact':True,'all_27_curves_retained':True,'route_candidates':77,
-        'mapped_currents':101,'navigation_state':'EAFR','state_scenarios':27,'no_dated_axis':True,
+        'mapped_currents':CURRENT_COUNT,'navigation_state':'EAFR','state_scenarios':27,'no_dated_axis':True,
         'published_length_km_unchanged':650,'survey_width_km_unchanged':120,'no_seasonal_playback':True,
         'keyboard_map_card_return':True,'phone_reflow':True,'page_errors':errors}
     (out/'browser-result.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps(receipt))

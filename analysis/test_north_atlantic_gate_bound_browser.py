@@ -1,4 +1,6 @@
 """Working nominal bound is queryable in native/WASM and from the atlas card."""
+from browser_inventory_expectations import RANKED_LENGTH_COUNT
+
 import json
 import os
 from urllib.parse import quote
@@ -29,7 +31,7 @@ def main():
             page.wait_for_function('window.oswLastQueryResult', timeout=120000)
             result = page.evaluate('oswLastQueryResult')
             assert result == native(query)
-            assert result['total'] == (12 if query is queries[-1] else 1)
+            assert result['total'] == (RANKED_LENGTH_COUNT if query is queries[-1] else 1)
             if query is queries[0]:
                 assert result['rows'] == [doc['length_assessment']]
             if query is queries[1]:
@@ -58,7 +60,7 @@ def main():
         page.screenshot(path=str(out / 'figure.png'))
         assert not errors and not original_requests, (errors, original_requests)
         browser.close()
-    receipt = {'status': 'PASS', 'native_actual_wasm_queries': 4, 'qualified_ranked_lengths': 12,
+    receipt = {'status': 'PASS', 'native_actual_wasm_queries': 4, 'qualified_ranked_lengths': RANKED_LENGTH_COUNT,
                'conditional_floor_km': 1200, 'keyboard_mapped_card_figure': True,
                'mobile_320px': True, 'accessible_scalar_svg': True, 'automatic_original_requests': 0}
     (out / 'result.json').write_text(json.dumps(receipt, indent=2) + '\n', encoding='utf-8')

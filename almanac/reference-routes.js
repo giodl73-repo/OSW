@@ -118,7 +118,7 @@
   }
   let catalog;
   load("../research/ocean-current-inventory-expansion-candidates.json").then(async value => {
-    const admissions=await load('../research/ocean-current-identity-admissions.json');
+    const admissions=await load('../research/norwegian-atlantic-slope-working-admission.json');
     const measured=await load('../research/southern-east-madagascar-prose-dimension-admissions.json').catch(()=>null);
     for (const row of value.entries) {
       const admitted=admissions.entries.find(r=>r.proposal_id===row.proposed_id);
@@ -136,8 +136,19 @@
         const q={collection:'current_identity_admissions',filters:[{field:'id',op:'eq',value:admitted.id}],limit:1};
         link('Query the identity admission','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,card));
       }
+      if(admitted && row.proposed_id==='norwegian-atlantic-slope'){
+        const evidence=node('section',null,card);evidence.className='nwasc-admitted-dimensions';
+        node('h4','Admitted source reports · separately scoped',evidence);
+        node('p',`Approximate 3,500 km broad historical eastern-branch extent, working reported-length rank ${admissions.working_published_ranks[admitted.entity_id]}. Six local width records retain different source definitions. These are not six independent new observations, a mapped axis or a seasonal range.`,evidence);
+        const image=node('img',null,evidence);image.src='../'+admissions.figure_file;image.alt='Norwegian Atlantic Slope Current: broad historical reported extent and five separately scoped width records. No whole-current width or annual range.';image.style.cssText='width:100%;max-width:1040px;height:auto';
+        link('Open reported-dimension summary',image.src,node('p',null,evidence));
+        const q={collection:'widths',filters:[{field:'current_id',op:'eq',value:row.proposed_id}],limit:10};
+        link('Query the six admitted local widths','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,evidence));
+        link('Download the effective measurement records','../'+admissions.measurement_export_file,node('p',null,evidence));
+        node('p','Earlier proposal-stage source records below are retained for traceability; the admission above gives their current status. The approximately3,500km broad historical extent may overlap downstream West Spitsbergen naming; lengths are not additive.',evidence);
+      }
       if(numeric){
-        node('p','Source-reported approximate branch extent: 650 km (working reported-length rank 12). Scoped near-surface survey width: about 120 km in April 2001. These reports do not establish geographic edges, annual ranges or a width ranking.',card);
+        node('p',`Source-reported approximate branch extent: 650 km (working reported-length rank ${admissions.working_published_ranks['current:southern-east-madagascar']}). Scoped near-surface survey width: about 120 km in April 2001. These reports do not establish geographic edges, annual ranges or a width ranking.`,card);
         const q={collection:'current_measurement_admissions',filters:[{field:'entity_id',op:'eq',value:numeric.entity_id}],limit:1};
         link('Query the dimension admission and source definitions','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,card));
         const diagnostic=node('section',null,card);diagnostic.id='southern-east-madagascar-route-definition';

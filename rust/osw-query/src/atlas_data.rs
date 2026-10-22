@@ -659,6 +659,12 @@ impl Store {
         if crate::nwasc_mean_core::active(&self.bundle) {
             sources[crate::nwasc_mean_core::FILE] = json!(crate::nwasc_mean_core::RAW);
         }
+        if crate::nwasc_admission::active(&self.bundle) {
+            sources[crate::nwasc_admission::FILE] = json!(crate::nwasc_admission::RAW);
+            sources[crate::nwasc_admission::CATALOGUE] =
+                json!(crate::nwasc_admission::CATALOGUE_RAW);
+            sources[crate::nwasc_admission::EXPORT] = json!(crate::nwasc_admission::EXPORT_RAW);
+        }
         let mut timeline_scenes = json!({});
         for path in TIMELINES {
             if receipts.contains_key(path) {

@@ -1,4 +1,6 @@
 """Checked seasonal source parity, projection rejection and worker-only loading."""
+from browser_inventory_expectations import CURRENT_COUNT
+
 from query_packet import read_bundle_bytes
 import copy,hashlib,json,os,subprocess,tempfile
 from pathlib import Path
@@ -58,7 +60,7 @@ def main():
         url='http://127.0.0.1:8788/almanac/seasons.html?current=florida'
         page.goto(url)
         page.wait_for_function('window.oswSeasonSnapshot',timeout=90000)
-        expect(page.locator('#season-current option')).to_have_count(101,timeout=90000)
+        expect(page.locator('#season-current option')).to_have_count(CURRENT_COUNT,timeout=90000)
         assert page.evaluate('window.oswSeasonSnapshot')==native
         assert page.locator('#season-loading').get_attribute('data-engine')=='rust-osw-query-v1'
         assert not raw_requests,raw_requests

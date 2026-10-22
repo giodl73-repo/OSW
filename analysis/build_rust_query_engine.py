@@ -46,6 +46,7 @@ def main():
                   'research/west-spitsbergen-dundas-2026-selected-core-width-scope-audit.json',
                   'research/source-data/dundas-fer-wsc-2026/figure.json'])
     paths.extend(['rust/osw-query/src/current_length_bounds.rs','analysis/north_atlantic_gate_bound.py','research/north-atlantic-nominal-gate-bound.json','figures/north-atlantic-nominal-gate-bound.svg'])
+    paths.extend(['rust/osw-query/src/nwasc_admission.rs','analysis/nwasc_working_admission.py','research/norwegian-atlantic-slope-working-admission.json','research/ocean-current-effective-catalogue.json','research/ocean-current-live-measurements.json','plans/nwasc-working-admission-protocol-v1.md','research/source-data/orvik-niiler-ices-2001/acquisition.json','figures/norwegian-atlantic-slope-admitted-dimensions.svg'])
     paths.append('rust/osw-query/src/abstract_regional_widths.rs')
     paths.append('rust/osw-query/src/astrid_scales.rs')
     paths.append('rust/osw-query/src/eddy_source_panels.rs')
