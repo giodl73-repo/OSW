@@ -98,3 +98,30 @@ Next data work prioritizes the six currents while retaining component scope for
 families/systems. Fresh31-report Linux evidence must be attributed to the actual
 source commit before the receipt-only follow-up. Draft PR83 continues unchanged
 as the publication destination; no new PR or main merge.
+
+### Fresh Linux and receipt-only follow-up
+
+Scientific source commitbd0d8f2928dbccbb6a821d1a987607ad93939b77,
+run39750661645, scientific-reproduction job119730127380:SUCCESS.
+All31 retained/rebuilt report SHA256 values equal local exactly. New target31
+reconstructs the factual transcription; it does not reproduce raw glider fields
+or independently prove an archived publisher original. NetCDF119730127755:SUCCESS.
+Offline119730127994 stops before tests at Rotschi1972 paper-fixture acquisition:
+https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers20-05/010028590.pdf
+returns HTTP403. No full-suite or overall-green claim.
+
+Source push accepted in existing draft PR83, with a size recommendation warning
+for the57,255,917-byte WASM(54.60MiB). All436 raw staged engine pins and445 source
+hashes verified. The following commit changes only these two receipt documents;
+all scientific inputs, generated data, engine and UI artifacts remain identical
+to the tested source. No new PR or main merge. Internal roles review has zero
+unresolved P1; original archiving, full-suite coverage and packaging/memory remain
+open P2 conditions. The full134-browser matrix and complete local suite are unrun;
+local4GiB guard remains unmet. The complete five-query final Chrome check passes.
+
+Next individual-current width priorities:Aleutian,RedSea salineoverflow,Norwegian,
+SpitsbergenAtlantic,IndianSECC,SouthIndian. Source identity checks precede every
+measurement assignment. AMS defines Aleutian as eastward subarctic-gyre flow;
+NOAA's Norwegian and Spitsbergen Atlantic definitions supply no numeric widths.
+Keep their modern component correspondence explicit before using another branch's
+measurements. Families/systems retain component coverage and their own unknowns.
