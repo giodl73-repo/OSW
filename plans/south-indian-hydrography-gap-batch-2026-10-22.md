@@ -255,3 +255,29 @@ milestone, **not atlas integration or a physical measurement**. Main native/WASM
 collection wiring, full row readback, current-card/index integration and fresh
 Linux reconstruction for these new products remain pending. Current width,
 length, reference-geometry and canonical identity counts remain unchanged.
+
+## Canonical diagnostic v2 portability correction
+
+Fresh Linux run39791437671 exposed platform-dependent PROJ meridian rounding
+in the new v1 diagnostic: 74,168 distance-derived leaves differed, maximum
+about1.8e-12km. All33 older scientific reports remained byte exact. The job
+stopped at that34th report, before the new source-replay step; its full result
+must not be called green.
+
+The original v1 operator, preflight and report remain unchanged. A separate
+v2 declaration and operator compute the same WGS84 meridian metric with pinned
+70-digit Decimal arithmetic, fixed sine/cosine and eccentricity-series terms,
+then one final conversion to binary64. No published numeric value is rounded
+to make a test pass; the exact encoded-report byte gate remains mandatory.
+Independent curvature quadrature and PROJ accuracy comparisons pass. Those
+test tolerances are computational checks, not replay tolerances or physical
+measurement uncertainty.
+
+All72 cases retain the same candidate counts, latitude supports, censoring,
+native source values, nearest-gradient IDs and false admission flags. Only
+distance-derived numbers and version/provenance metadata change. The source
+archive, monthly JSON/NPZ, time cohort and earlier scientific artifacts are
+unchanged. The focused suite passes **67 tests**. The v2 report is
+`research/south-indian-hycom-2013-paired-profile-candidates-v2.json` and replaces
+v1 as the canonical34th reconstruction target. Linux exact replay remains
+required; no alternative success condition is substituted.

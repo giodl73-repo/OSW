@@ -267,3 +267,36 @@ publication remains separate from named-current measurement admission.
 Results addendum: 21 findings, no unresolved P1 for complete source/context
 publication. Native/WASM/index/card integration, fresh Linux replay and broader
 project gates remain P2 conditions. No physical measurement approval implied.
+
+## Addendum: canonical v2 meridian arithmetic
+
+Review addresses a real Linux exact-byte failure, not a hypothetical precision
+issue. The original33 report gates and source arithmetic remain unchanged.
+
+| Role | Finding | Severity | Resolution / required action |
+|---|---|---|---|
+| CURRENT | Reproducible arithmetic must preserve the WGS84 metric. | P1 resolved in method/tests | Same ellipsoid and meridian-curvature integral; independent quadrature/PROJ comparisons pass. |
+| CURRENT | Numerical nanometre-scale differences are not physical uncertainty. | P1 resolved | Protocol separates computational validation from model/measurement uncertainty. |
+| CURRENT | The correction must not promote current identity or dimensions. | P1 resolved | All cases retain false association/width/axis/length/annual-extrema admission. |
+| SOUNDER | Replacing v1 in place would erase provenance. | P1 resolved | Keep v1 code/preflight/report byte unchanged; versioned operator/protocol/preflight/report supersedes it explicitly. |
+| SOUNDER | Canonical arithmetic must pin constants and evaluation order. | P1 resolved |70-digit Decimal context, fixed π,16 eccentricity-series order,70 trig terms and exact binary64 input conversion. |
+| SOUNDER | Source arrays and common-time support must remain exact. | P1 resolved | No source producer or source product changed; original manifests retained. |
+| CHART | Plotted source values must not change with the gradient-distance fix. | P1 resolved | Raw monthly profile values unchanged; only unassigned derived distance/gradient numbers revised. |
+| CHART | Event support could shift under tiny changes. | P2 resolved locally | All72 case counts, native supports, flank states and nearest-gradient IDs compared equal. |
+| CHART | Updated diagnostic links need actual browser readback. | P2 open | Native/WASM/card/index integration gate remains required. |
+| BEACON | A green older job cannot stand in for new-product Linux success. | P1 resolved | Record actual failure and skipped new-source replay; no overall green claim. |
+| BEACON | A numerical implementation revision must be distinguished from a new dataset. | P2 resolved | Same source/cohort; versioned canonical diagnostic only. |
+| BEACON | Canonical status must not hide the superseded result. | P2 resolved | v2 metadata links the old report/checksum and failing run. |
+| HARBOR | Revised metadata must remain accessible through source queries. | P2 conditional | Both historical and canonical documents retained in the index registry. |
+| HARBOR | Full source tables remain the visual alternative. | P1 resolved in scope |23,472 unrounded cells unchanged; no masking/rounding introduced. |
+| HARBOR | New canonical navigation needs keyboard/phone verification. | P2 open | Actual integrated browser gate pending. |
+| KEEL | Loosening replay tolerance would conceal the failure. | P1 resolved | Exact encoded byte gate retained for the v2 target; no rounding or approximate replay. |
+| KEEL | Correctness needs an independent geometric check. | P1 resolved locally | Gauss-Legendre curvature integration, PROJ and symmetry/additivity/domain tests pass; combined67 focused tests. |
+| KEEL | Cross-platform equivalence is still unproven until CI runs. | P2 open | Fresh Linux34-target replay and source reconstruction required after publication. |
+| LOGBOOK | Frozen older source artifacts must remain inspectable. | P1 resolved | v1 operator/preflight/report and all33 earlier reports/producers unchanged. |
+| LOGBOOK | Public status must record the actual platform failure. | P2 resolved | Batch plan includes run/job context, numeric magnitude, correction and remaining gates. |
+| LOGBOOK | Continue existing PR without main merge. | P1 resolved | Same branch/draft PR83. |
+
+Numerical addendum: 21 findings, no unresolved P1 for publishing the versioned
+correction. Fresh exact Linux replay and integrated UI/native/WASM verification
+remain P2 conditions; no new physical-measurement approval is implied.
