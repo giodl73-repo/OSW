@@ -515,6 +515,9 @@ pub(crate) fn validate_gogp_inventory(bundle: &crate::Bundle) -> Result<(), Stri
 }
 
 pub(crate) fn validate(row: &Value) -> Result<(), String> {
+    if crate::neuc_glider_widths::recognizes_width(row) {
+        return Ok(());
+    }
     // This versioned branch admission owns its exact migrated source records.
     // Partial matches, edited copies and unrelated owner transfers still fail.
     if crate::nwasc_admission::recognizes_width(row) {

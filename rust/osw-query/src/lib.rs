@@ -51,6 +51,7 @@ mod model_sections;
 mod mooring_velocity;
 mod movies;
 mod network;
+mod neuc_glider_widths;
 mod nordic_widths;
 mod norkyst_data;
 mod nwasc_admission;
@@ -353,6 +354,7 @@ impl Store {
         nwasc_admission::validate(&bundle)?;
         nwasc_reference_route::validate(&bundle)?;
         hansen_asar_widths::validate(&bundle)?;
+        neuc_glider_widths::validate(&bundle)?;
         current_length_bounds::validate(&bundle)?;
         movies::validate(&bundle)?;
         measurement_scope::validate(&bundle.collections, &bundle.manifest)?;
@@ -724,6 +726,10 @@ impl Store {
             && !hansen_asar_widths::query(&matches, &self.bundle).is_null()
         {
             hansen_asar_widths::query(&matches, &self.bundle)
+        } else if query.collection == "diagnostics"
+            && !neuc_glider_widths::query(&matches, &self.bundle).is_null()
+        {
+            neuc_glider_widths::query(&matches, &self.bundle)
         } else if query.collection == "observed_section_spans" {
             observed_spans::scene(&matches)
         } else if query.collection == "proposed_widths" {
@@ -796,6 +802,7 @@ impl Store {
                 coastal_composite_widths::scene(&matches, records),
                 dwbc_float_composite::scene(&matches, records),
                 pacific_neuc_breadths::scene(&matches, records),
+                neuc_glider_widths::width_scene(&matches, &self.bundle),
                 portugal_section_span::scene(&matches),
                 antilles_cruise_spans::scene(&matches),
                 model_axis_spread::scene(&matches),

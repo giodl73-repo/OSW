@@ -4,6 +4,7 @@ from pathlib import Path
 from urllib.parse import quote
 from playwright.sync_api import sync_playwright,expect
 from test_rust_query_browser import ROOT,native
+from browser_inventory_expectations import SCOPED_WIDTH_COUNT
 from test_pacific_neuc_isopycnal_breadths import fixtures,records
 from antarctic_slope_guard_fixtures import wasm_rejections
 
@@ -32,13 +33,13 @@ def main():
         page.screenshot(path=str(ROOT/'.pytest_cache/neuc-isopycnal-mobile.png'),full_page=True)
         page.goto(BASE+'reference-routes.html?atlas-feature=current%3A'+OWNER+'#route-atlas');panel(page)
         assert page.evaluate('oswAtlasSnapshot.pacific_neuc_breadth_scene')==snapshot
-        q={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':OWNER}]}
+        q={'collection':'widths','filters':[{'field':'current_id','op':'eq','value':OWNER},{'field':'phase_kind','op':'eq','value':'isopycnal_jet_breadth_summary'}]}
         page.goto(BASE+'query.html?q='+quote(json.dumps(q)));page.wait_for_function('window.oswLastQueryResult?.total===2',timeout=90000);s=panel(page)
         assert page.evaluate('oswLastQueryResult')==native(q)
         assert page.evaluate('oswLastQueryResult.chart_scene')==snapshot
         s.get_by_role('button',name='Inspect width record',exact=True).first.focus();page.keyboard.press('Enter');expect(page.locator('#query-detail')).to_contain_text(records()[0]['id'])
         s.get_by_role('link',name='Inspect source row',exact=True).last.click();page.wait_for_function('window.oswSourceQueryResult?.ok',timeout=90000)
-        page.goto(BASE+'query.html?q='+quote(json.dumps({'collection':'widths','limit':1})));page.wait_for_function('window.oswLastQueryResult?.total===127',timeout=90000);panel(page)
+        page.goto(BASE+'query.html?q='+quote(json.dumps({'collection':'widths','limit':1})));page.wait_for_function('window.oswLastQueryResult?.total==='+str(SCOPED_WIDTH_COUNT),timeout=90000);panel(page)
         assert page.locator('.coastal-composite-widths').count()==1 and page.locator('.dwbc-float-composite').count()==1
         results=wasm_rejections(page,fixtures(Path(tmp)));assert all(not r['ok'] and 'Pacific NEUC breadth' in r['error'] for r in results),results
         assert not errors,errors;browser.close()

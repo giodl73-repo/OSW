@@ -670,6 +670,11 @@ impl Store {
             sources[crate::hansen_asar_widths::EXPORT] =
                 json!(crate::hansen_asar_widths::EXPORT_RAW);
         }
+        if crate::neuc_glider_widths::active(&self.bundle) {
+            sources[crate::neuc_glider_widths::FILE] = json!(crate::neuc_glider_widths::RAW);
+            sources[crate::neuc_glider_widths::EXPORT] =
+                json!(crate::neuc_glider_widths::EXPORT_RAW);
+        }
         let mut timeline_scenes = json!({});
         for path in TIMELINES {
             if receipts.contains_key(path) {

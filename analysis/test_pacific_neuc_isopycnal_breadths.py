@@ -51,5 +51,5 @@ def test_native_complete_context_for_filtered_component():
     assert scene['geometry_role']=='abstract_component_comparison_no_edges_or_footprint'
     for owner in ['north-equatorial-undercurrent','pacific-north-equatorial-undercurrent']:
         r=native({'collection':'objects','filters':[{'field':'id','op':'eq','value':'current:'+owner}]})['rows'][0]
-        assert r['capabilities']['scoped_width']==(2 if owner.startswith('pacific-') else 0)
+        assert r['capabilities']['scoped_width']==(4 if owner.startswith('pacific-') else 0)
         assert r['capabilities']['time_samples']==0 and r['capabilities']['observed_velocity']==0

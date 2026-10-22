@@ -97,7 +97,9 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
         }
     }
     let actual = b.collections.get("widths").ok_or("Missing scoped widths")?;
-    if actual != e["widths"].as_array().unwrap() {
+    let mut expected_widths = e["widths"].as_array().unwrap().clone();
+    expected_widths.extend(crate::neuc_glider_widths::widths(b));
+    if actual != &expected_widths {
         return Err("Changed ASAR effective width inventory/order".into());
     }
     if b.collections.get("length_assessments") != e["length_assessments"].as_array() {
@@ -135,7 +137,7 @@ pub fn query(rows: &[&Value], b: &Bundle) -> Value {
     }
     let d = document();
     json!({"kind":"hansen_asar_surface_widths","source_file":FILE,"source_url":d["source_url"],
-        "figure_file":d["figure_file"],"effective_measurements_file":EXPORT,
+        "figure_file":d["figure_file"],"effective_measurements_file":if crate::neuc_glider_widths::active(b){crate::neuc_glider_widths::EXPORT}else{EXPORT},
         "width_records":d["width_records"],"mixed_contexts":d["mixed_contexts"],
         "scope":"August2007-July2010 weighted mean surface field. Local source reports with different operators; no annual width range, physical edges or source-field reconstruction."})
 }

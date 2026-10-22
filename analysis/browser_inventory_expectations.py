@@ -4,7 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 catalogue = json.loads((ROOT / 'research/ocean-current-effective-catalogue.json').read_bytes())
-measurements = json.loads((ROOT / 'research/ocean-current-measurements-asar-edition.json').read_bytes())
+measurements = json.loads((ROOT / 'research/ocean-current-measurements-neuc-edition.json').read_bytes())
 admission = json.loads((ROOT / 'research/norwegian-atlantic-slope-working-admission.json').read_bytes())
 base = json.loads((ROOT / 'almanac/release/v0.1.0/entities.json').read_bytes())
 CURRENT_IDS = {r['id'] for r in catalogue['entries']}

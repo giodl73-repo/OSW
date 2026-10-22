@@ -69,6 +69,13 @@
     "figures/hansen-2011-asar-surface-widths.svg": "b6ded1936957a9968399d08f51c2ec4c9dcb0fb3172acb5071b50b9e94064427",
     "research/hansen-2011-asar-surface-width-admissions.json": "cef13daa2ec66cc97cf5214fd0a75f5e48f6a965d493f24df958a2ec0ac791ae",
     "research/ocean-current-measurements-asar-edition.json": "26dba583a34412de0c88d64a71db76e4add74f036634b40e37f8fe23b0b77105",
+    "research/neuc-glider-2015-width-source-input.json": "9b33ad364846642c1925d4962e399fc61fbdcbfa475643aba907d2de5752d7ad",
+    "research/neuc-glider-2015-source-review.json": "6cac9f86e1cb7c9c0991012d580c542a33c17c7a823bc2653bca9a0e8fa25963",
+    "plans/neuc-glider-width-admission-protocol-v1.md": "21a86aae9aafaf80fac7f174242b808f2802c375da61edc143a5fa3803862eef",
+    "analysis/neuc_glider_widths.py": "8b06d591b71e1883f245498047ff2eac278593e9db6ade9333f3bb0578ac1516",
+    "figures/neuc-glider-2015-width-ranges.svg": "dd8eedf1cbb4269b528304a567ad82c5b1a72f4809be939f1fa9946e98a0bb5d",
+    "research/neuc-glider-2015-width-admissions.json": "0906460fea586c27fea92090d23fb1c84fc2948af4cd458794ba17c85ef1bc62",
+    "research/ocean-current-measurements-neuc-edition.json": "7aeffd3fa5c44f322f38600fddbd94949a707a409a893c6a831ccb6594178146",
     "research/source-data/vinayachandran-indian-upwelling-2021/article.pdf": "9ca5a0854eff936d32d5fd597cd94007ea3704ddba1ebeb1aeedede09967472d",
     "research/source-data/vinayachandran-indian-upwelling-2021/article.xml": "b0b6aaa4932ce5fcce1576c0cb389f106c96f56e983fc3773803a8ac53ed3f45",
     "research/source-data/vinayachandran-indian-upwelling-2021/acquisition.json": "6bbf99453f92f7d8682ff20cb88f4c49fec255be9e848bc044768c4771d74b6b",
@@ -936,7 +943,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "d39b736f52e73fffb840acbea882c234962a417ac1d44f339488c97e2444ba4a",
+  "snapshot_fingerprint": "680073011e11eaa5eac6c9811c81a6aee6cbf3f4a68131910d3702ff995dd1e9",
   "entries": [
     {
       "id": "current:agulhas",
@@ -12423,7 +12430,7 @@
         "radius_evidence": 0,
         "reported_length": 0,
         "reference_route": 3,
-        "scoped_width": 2,
+        "scoped_width": 4,
         "geometry": 0,
         "time_samples": 0,
         "source_connectivity": 0,
@@ -12434,13 +12441,13 @@
       },
       "recorded_claims": 56,
       "nasa_links": 1,
-      "fingerprint": "77989e910b4e22fb840cae001f925dde9ad8abe0560202f29790af5e6ddc5389",
+      "fingerprint": "c1b61479030c762c79aad40108eca762e3f231350019563ff1b238d497bfe1d9",
       "series": [],
       "section_fingerprints": {
         "identity": "4900f868706220622245c7552b5820f76ebd2f5ece872d5589a5f01520e526a1",
-        "sources": "eb5a793ea1f91645973c9fb681853bba5a19a1053722ce22312b3ef22fd754a7",
+        "sources": "e338e5778436c84acc67b9b30cf310288c6f69f3c67bcf6b4d270bcefde2ca55",
         "claims": "9e5d7adf0730be3a7e384cfd2942a6be57ca4090c39e7a7bc331cce29117d174",
-        "measurements": "b4cf182a965f45f80b113c40227f8aad28252f62dca847b7f22b22d754b755cb",
+        "measurements": "2cba76f72100c7668f86c47df4b2d522222a2c7069608bbf63f9dacc81e9ed8e",
         "routes_geometry": "d0df9e18359a9ce2471c7804c6894b74c4314f6234f35182c3bfc90d646c9b89",
         "media": "7e4f694d5f5de0eeabb5ad1d6f17de76c9ce9665de701cbcc0063bbf45076461",
         "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd"
@@ -12449,7 +12456,7 @@
       "claim_review_counts": {
         "not_individually_reviewed": 56
       },
-      "linked_source_count": 3,
+      "linked_source_count": 4,
       "map_features": [
         {
           "geometry": {
@@ -12563,7 +12570,16 @@
           "observed_period": null
         }
       ],
-      "evidence_links": [],
+      "evidence_links": [
+        {
+          "label": "Compare NEUC multi-year glider width ranges",
+          "url": "../figures/neuc-glider-2015-width-ranges.svg"
+        },
+        {
+          "label": "Query NEUC glider range methods and mean-breadth comparison",
+          "url": "query.html?q=%7B%22collection%22%3A%22diagnostics%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22diagnostic%3Aneuc-glider-2015-width-ranges%22%7D%5D%2C%22limit%22%3A1%7D#query-chart-section"
+        }
+      ],
       "object_url": "object.html?id=current%3Apacific-north-equatorial-undercurrent",
       "route_url": "reference-routes.html#pacific-neuc-southern-reach-reference-path-candidate",
       "season_url": "seasons.html?current=pacific-north-equatorial-undercurrent"
@@ -69414,5 +69430,5 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "built_at_utc": "2026-10-22T07:44:22.418388+00:00"
+  "built_at_utc": "2026-10-22T08:41:40.306796+00:00"
 }

@@ -57,6 +57,11 @@
       const p=document.createElement('p');p.textContent='Single survey summary. Width boundaries, fixed width layer and uncertainty remain unspecified; no source-figure digitization or geographic envelope.';container.append(p);
       return;
     }
+    if(row?.phase_kind==='multi_year_jet_width_range'){
+      container.hidden=false;
+      const image=document.createElement('img');image.src='../figures/neuc-glider-2015-width-ranges.svg';image.alt='Pacific NEUC southern jet100–350km; northern jet0–200km. Local multi-year ranges with different jet identities, not annual envelopes.';image.style.cssText='width:100%;max-width:1000px;height:auto';container.append(image);
+      const p=document.createElement('p');p.textContent=row.merging_context+' Primary HTML reviewed; original file not retained. No dated samples, width error or geographic edges.';container.append(p);return;
+    }
     if(row?.phase_kind==='model_snapshot_width_summary'){
       container.hidden=false;
       const description=document.createElement('p');description.textContent=`Local model snapshot: about ${row.approximate_width_km} km. ${row.phase_label}. ${row.time_convention}`;container.append(description);
@@ -178,6 +183,7 @@
       byId('season-title').textContent='Local salinity-core observation';
       byId('season-value').textContent=`${row.name}: ${row.width_range_km?row.width_range_km.join('–'):'about '+row.approximate_width_km} km local water-mass core · ${row.phase_label} · ${row.time_convention}`;
     }
+    if(row?.phase_kind==='multi_year_jet_width_range'){byId('season-title').textContent='Local multi-year jet width range';byId('season-value').textContent=`${row.jet} Pacific NEUC jet: ${row.width_range_km.join('–')} km reported range`;byId('season-definition').textContent=`${row.geographic_scope}. ${row.definition} ${row.time_convention} ${row.merging_context}`;}
     byId("season-bar").parentElement.hidden = row?.approximate_width_km == null || !!row?.original_regional_context || !!row?.modal_decay_context || row?.mean_section_context?.section_axis_kind==='oblique' || (["published_typical_core_description","published_near_surface_survey_summary","selected_section_core_width_statistics","model_regional_width_summary","synoptic_stream_tube_section","survey_layer_median_threshold_width","inverse_hydrographic_section_span","survey_profile_composite","dated_band_section","climatological_core_distribution","campaign_hydrographic_core","ensemble_angular_summary","regional_scalar_summary","monthly_climatological_fit","stream_mean_threshold_summary","eulerian_mean_section_span","width_time_series_statistics"].includes(row?.phase_kind));
     if(row?.phase_kind==='model_snapshot_width_summary'){
       byId('season-title').textContent='Local model snapshot width';

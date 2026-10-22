@@ -28,10 +28,24 @@ window.oswCharts=(()=>{
     const section=html('section',undefined,root());section.className='antilles-cruise-evidence';section.style.minWidth='0';
     window.renderAtlanticCruiseWidths(section,'antilles',{measurements:scene.records},{headingTag:'h3',recordBase:'seasons.html',inspect});
   }
+  function neucGlider(scene,inspect){
+      document.getElementById('query-chart-legend').hidden=true;
+      const panel=html('section',undefined,root());panel.className='neuc-glider-width-query';panel.style.cssText='min-width:0;overflow-wrap:anywhere';
+      const image=html('img',undefined,panel);image.src='../'+scene.figure_file;image.alt='Southern jet100–350km; northern jet0–200km. Multi-year ranges, not annual envelopes or width error.';image.style.cssText='width:100%;max-width:1000px;height:auto';
+      const list=html('ul',undefined,panel);
+      for(const row of scene.width_records){const li=html('li',`${row.jet} jet: ${row.width_range_km.join('–')}km. ${row.geographic_scope}. ${row.merging_context}`,list);const button=html('button','Inspect this width record',li);button.type='button';button.addEventListener('click',()=>inspect('widths',row.id));}
+      html('p','Jet labels are local to each study. The glider cores are near9.6N and13.1N; cross-study component matching remains unresolved. Compare core latitude, density support and dates.',panel);
+      html('p','The northern zero is a reported lower endpoint, not missing data or a dated disappearance. Core excursions are separate from width. No mean, annual extrema or width uncertainty inferred.',panel);
+      html('p','Primary publisher HTML inspected; an original file was not retained. Factual transcription is pinned; native glider fields were not reproduced.',panel);
+      const source=html('a','Publisher and width definition',html('p',undefined,panel));source.href=scene.source_url;
+      const download=html('a','Download effective measurement records',html('p',undefined,panel));download.href='../'+scene.effective_measurements_file;
+      if(scene.mean_breadth_comparison?.records?.length){html('h3','Separate mean isopycnal breadth evidence',panel);window.renderPacificNeucBreadths(panel,scene.mean_breadth_comparison,null,inspect);}
+  }
   function render(scene,inspect){
     stopAll();stops=[];
     document.getElementById('query-chart-section').hidden=!scene;root().replaceChildren();if(!scene)return;
     document.getElementById('query-chart-scope').textContent=scene.scope;
+    if(scene.kind==='neuc_glider_width_ranges'){document.getElementById('chart-title').textContent='Pacific NEUC: local multi-year width ranges';neucGlider(scene,inspect);return;}
     if(scene.kind==='hansen_asar_surface_widths'){
       document.getElementById('query-chart-legend').hidden=true;
       document.getElementById('chart-title').textContent='ASAR local surface-width reports';
@@ -114,7 +128,7 @@ window.oswCharts=(()=>{
     }
     document.getElementById('query-chart-legend').hidden=scene.kind==='mooring_velocity';
     document.getElementById('chart-title').textContent=scene.kind==='mooring_velocity'?'Observed current velocity':scene.panels?.length&&scene.panels.every(p=>p.source_context?.current_association_verified===false)?'Local component section spans':'Width profiles';
-    if(scene.kind==='dwbc_float_composite'||scene.kind==='scoped_width_comparisons'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Scoped source comparisons';for(const s of scene.scenes||[scene]){if(s.kind==='published_model_axis_spread')window.renderModelAxisSpread(root(),s.records,inspect,{open:true,headingTag:'h3',matchingIds:s.matching_ids});else if(s.kind==='antilles_cruise_section_spans')antillesCruise(s,inspect);else if(s.kind==='selected_core_width_statistic')window.renderSelectedCoreWidth(root(),s.record,inspect);else if(s.kind==='published_coordinate_section_span')window.renderPublishedCoordinateSpan(root(),s.record,inspect);else if(s.kind==='coastal_composite_widths')window.renderCoastalCompositeWidths(root(),s,null,inspect);else if(s.kind==='nordic_section_widths')nordic(s,inspect);else if(s.kind==='pacific_neuc_isopycnal_breadths')window.renderPacificNeucBreadths(root(),s,null,inspect);else window.renderDwbcFloatComposite(root(),s,inspect);}return;}
+    if(scene.kind==='dwbc_float_composite'||scene.kind==='scoped_width_comparisons'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Scoped source comparisons';for(const s of scene.scenes||[scene]){if(s.kind==='published_model_axis_spread')window.renderModelAxisSpread(root(),s.records,inspect,{open:true,headingTag:'h3',matchingIds:s.matching_ids});else if(s.kind==='antilles_cruise_section_spans')antillesCruise(s,inspect);else if(s.kind==='selected_core_width_statistic')window.renderSelectedCoreWidth(root(),s.record,inspect);else if(s.kind==='published_coordinate_section_span')window.renderPublishedCoordinateSpan(root(),s.record,inspect);else if(s.kind==='coastal_composite_widths')window.renderCoastalCompositeWidths(root(),s,null,inspect);else if(s.kind==='nordic_section_widths')nordic(s,inspect);else if(s.kind==='neuc_glider_width_ranges')neucGlider(s,inspect);else if(s.kind==='pacific_neuc_isopycnal_breadths')window.renderPacificNeucBreadths(root(),s,null,inspect);else window.renderDwbcFloatComposite(root(),s,inspect);}return;}
     if(scene.kind==='pacific_neuc_isopycnal_breadths'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Isopycnal jet breadths';window.renderPacificNeucBreadths(root(),scene,null,inspect);return;}
     if(scene.kind==='coastal_composite_widths'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Composite section widths';window.renderCoastalCompositeWidths(root(),scene,null,inspect);return;}
     if(scene.kind==='published_section_transports'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Published section transport';window.renderPublishedSectionTransports(root(),scene,inspect);return;}
