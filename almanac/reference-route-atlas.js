@@ -290,6 +290,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
           }
           paragraph(content,`Layer: ${report.layer} Time: ${report.time_convention}`);
           paragraph(content,'Editorial reference route; scenario limits are selected assumptions, not measured seasonal variation.');
+          if(row.comparison_group==='osw_source_anchor_connections')paragraph(content,'Source-reference regional connection through P1, P2 and S1. Connecting legs and bend probes are editorial geometry, with no observed current axis,500m contour or annual route range.');
           if(row.comparison_group==='osw_studied_reach_routes')paragraph(content,'Studied reach only; this is not a whole-current length.');
           const states=document.createElement('section');states.className='route-atlas-state-links';content.append(states);
           const heading=document.createElement('h4');heading.textContent='OSW states intersected by this reference route';states.append(heading);

@@ -249,6 +249,10 @@ def build():
     inputs.update({r['figure_file']:r['figure_sha256'] for r in scope_index['records']})
     from madagascar_reference_curve import verify_inputs as verify_coastal_curve, source_record as coastal_land_source, CATALOGUE as WORKING_ROUTES
     coastal_curve,routes,coastal_inputs=verify_coastal_curve();inputs.update(coastal_inputs)
+    from nwasc_source_anchor_route import verify_inputs as verify_nwasc_route, extend_catalogue as extend_nwasc_routes, FILE as NWASC_ROUTE_FILE, ROUTE as NWASC_ROUTE_ID
+    nwasc_route,nwasc_route_inputs=verify_nwasc_route();inputs.update(nwasc_route_inputs)
+    routes=extend_nwasc_routes(routes,nwasc_route)
+    collections['sources'].append(nwasc_route['method_source'])
     collections['sources'].append(coastal_land_source())
     from build_current_reference_path_catalog import validate_source_receipt
     for route in routes['candidates']:
@@ -372,6 +376,10 @@ def build():
                 points=display_coordinates(candidate['coordinates_lon_lat'],allow_seam=candidate.get('longitude_seam_policy')=='shortest_geodesic_periodic_display')
                 feature['spatial_geometry']={'type':'LineString','coordinates':[[((x-60)*360/1480)%360-180,90-(y-90)*180/740] for x,y in points]}
                 feature['spatial_geometry_method']='WGS84 geodesic legs densified at <=10 km as in the existing reference-route state join; planar relation to coarse masked OSW display polygons.'
+                if route['id']==NWASC_ROUTE_ID:
+                    feature['spatial_geometry']=copy.deepcopy(nwasc_route['canonical_spatial_geometry'])
+                    feature['physical_state_join_eligible']=False
+                    feature['physical_current_axis_admitted']=False
     collections['series']=[{'id':f"query-series:{row['id']}:{i}",'entity_id':row['id'],**series} for row in objects for i,series in enumerate(row['series'])]
     # Seasonal source conventions are distinct from exact observation dates.
     seasonal_path='research/ocean-current-seasonal-route-frames.json'
@@ -758,8 +766,8 @@ def build():
                 'next_action':original['next_action'],'scope':original['existing_scope'],
                 'status':original['planning_status'],'rank_eligible':False,
                 'source_url':original['name_source_url'],'source_decision':copy.deepcopy(original),
-                'source_catalog_file':WORKING_ROUTES if original['current_id']=='southern-east-madagascar' else 'research/norwegian-atlantic-slope-working-admission.json' if original['current_id']=='norwegian-atlantic-slope' else 'research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json',
-                'source_catalog_sha256':inputs[WORKING_ROUTES if original['current_id']=='southern-east-madagascar' else 'research/norwegian-atlantic-slope-working-admission.json' if original['current_id']=='norwegian-atlantic-slope' else 'research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json'],
+                'source_catalog_file':WORKING_ROUTES if original['current_id']=='southern-east-madagascar' else NWASC_ROUTE_FILE if original['current_id']=='norwegian-atlantic-slope' else 'research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json',
+                'source_catalog_sha256':inputs[WORKING_ROUTES if original['current_id']=='southern-east-madagascar' else NWASC_ROUTE_FILE if original['current_id']=='norwegian-atlantic-slope' else 'research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json'],
                 'scope_reviews':reviews}
         collections['route_decisions'].append(record)
         owner['route_decision_ids']=[record['id']]
@@ -890,6 +898,7 @@ def build():
             'kuroshio_axis_normal_version':'1',
             'north_atlantic_gate_bound_version':'1',
             'nwasc_working_admission_version':'1',
+            'nwasc_reference_route_version':'1',
             'hansen_asar_widths_version':'1',
             'agulhas_reported_dimensions_version':'1',
             'nwasc_mean_core_widths_version':'1',

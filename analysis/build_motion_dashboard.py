@@ -110,6 +110,10 @@ def build():
     _,working_routes,coastal_inputs=verify_coastal_curve();inputs.update(coastal_inputs)
     sources[coastal_land_source()['id']]=coastal_land_source()
     sources[working_routes['primary_source_record']['id']]=working_routes['primary_source_record']
+    from nwasc_source_anchor_route import verify_inputs as verify_nwasc_route, extend_catalogue as extend_nwasc_routes
+    nwasc_route,nwasc_route_inputs=verify_nwasc_route();inputs.update(nwasc_route_inputs)
+    working_routes=extend_nwasc_routes(working_routes,nwasc_route)
+    sources[nwasc_route['method_source']['id']]=nwasc_route['method_source']
     routes = working_routes['candidates']
     from kuroshio_wang_query import verify_inputs as verify_kuroshio_daily, SOURCE_ID as KUROSHIO_DAILY_SOURCE
     kuroshio_daily_contract,kuroshio_daily=verify_kuroshio_daily()

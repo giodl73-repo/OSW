@@ -1,5 +1,5 @@
 """Check dashboard coverage, filtering and content-based update indicators."""
-from browser_inventory_expectations import CURRENT_COUNT
+from browser_inventory_expectations import CURRENT_COUNT, MOTION_COUNT, MAPPED_MOTION_COUNT
 
 from query_packet import read_bundle_bytes
 import json
@@ -114,8 +114,8 @@ def main():
         selection=page.evaluate('window.oswDashboardSelection')
         assert selection['result']==native_selection(selection['request'])
         scene=selection['result']['map_scene']
-        assert scene['mapped_objects']==241
-        assert scene['unmapped_objects']==0
+        assert scene['mapped_objects']==MAPPED_MOTION_COUNT
+        assert scene['unmapped_objects']==MOTION_COUNT-MAPPED_MOTION_COUNT
         assert not scene['omitted_features']
         grouped=[f for f in scene['features'] if f['kind']=='marker' and f['group']]
         assert len(grouped)==1
@@ -208,7 +208,7 @@ def main():
         page.locator('#dashboard-atlas').screenshot(path=str(ROOT / 'figures/motion-dashboard-atlas-review.png'))
         page.locator('#dashboard-card-view').click()
         settle(page)
-        assert page.locator('.motion-card').count() == 241
+        assert page.locator('.motion-card').count() == MOTION_COUNT
         assert page.locator('.motion-card.updated').count() == 0
         gulf=page.locator('[data-id="current:gulf-stream-system"]')
         gulf.locator('summary').click()
@@ -277,7 +277,7 @@ def main():
         page.route('**/query-data.json',lambda route:route.fulfill(status=503,body='unavailable'))
         page.locator('#dashboard-refresh').click()
         page.wait_for_function("document.getElementById('dashboard-status').textContent.includes('previously loaded')")
-        assert page.locator('.motion-card').count() == 241
+        assert page.locator('.motion-card').count() == MOTION_COUNT
         page.emulate_media(reduced_motion='reduce')
         page.set_viewport_size({'width':320,'height':900})
         page.locator('#dashboard-map-view').click()

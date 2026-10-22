@@ -132,6 +132,14 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     Ok(())
 }
 pub fn planning_source(current: &str, manifest: &Value) -> Option<(Value, &'static str)> {
+    if current == "norwegian-atlantic-slope"
+        && crate::nwasc_reference_route::active_manifest(manifest)
+    {
+        return Some((
+            crate::nwasc_reference_route::document()["planning_decision"].clone(),
+            crate::nwasc_reference_route::FILE,
+        ));
+    }
     if current == "norwegian-atlantic-slope" && manifest["nwasc_working_admission_version"] == "1" {
         return Some((
             crate::nwasc_admission::document()["identity_entry"]["route_planning_decision"].clone(),

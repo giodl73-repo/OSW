@@ -145,11 +145,11 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
                 } else {
                     6
                 }
-            || rows[0]["map_features"] != json!([])
+            || (!crate::nwasc_reference_route::active(b) && rows[0]["map_features"] != json!([]))
             || rows[0]["published_length_km"] != 3500
             || !rows[0]["latest_observation_date"].is_null()
         {
-            return Err("Changed slope-current object dimensions or unlocated geometry".into());
+            return Err("Changed slope-current object dimensions or geometry admission".into());
         }
     }
     Ok(())

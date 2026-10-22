@@ -20,3 +20,11 @@ RANKED_LENGTH_COUNT = sum(r['rank_eligible'] for r in measurements['length_asses
 dashboard = json.loads((ROOT / 'research/ocean-motion-dashboard.json').read_bytes())
 SHARED_GATEWAY_EDDY_IDS = {r['id'] for r in dashboard['entries'] if r['type'] != 'named_current'
                            and any(f['role'] == 'shared_regional_gateway' for f in r['map_features'])}
+
+# Expected geographic marks derive from the checked source inventory.
+MAPPED_MOTION_IDS={r['id'] for r in dashboard['entries'] if r['map_features']}
+MAPPED_CURRENT_IDS=MAPPED_MOTION_IDS & CURRENT_IDS
+MAPPED_MOTION_COUNT=len(MAPPED_MOTION_IDS)
+MAPPED_CURRENT_COUNT=len(MAPPED_CURRENT_IDS)
+REFERENCE_ROUTE_COUNT=sum(r['capabilities']['reference_route'] for r in dashboard['entries'])
+REFERENCE_ROUTE_OWNERS=sum(r['capabilities']['reference_route']>0 for r in dashboard['entries'])

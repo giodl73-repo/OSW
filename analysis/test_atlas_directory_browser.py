@@ -19,7 +19,7 @@ def main():
         filter.select_option('currents');assert visible().count()==CURRENT_COUNT
         assert len(set(visible().evaluate_all('(items)=>items.map(item=>item.dataset.featureId)')))==CURRENT_COUNT
         search.fill('norwegian atlantic slope');assert visible().count()==1
-        assert 'Unlocated' in visible().inner_text()
+        assert 'Reference route' in visible().inner_text()
         visible().click()
         assert 'Norwegian Atlantic Slope Current' in page.locator('#route-atlas-preview > h3').inner_text()
         page.locator('#route-atlas-world').click()

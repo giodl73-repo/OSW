@@ -52,6 +52,24 @@ pub(crate) fn path_formatted(
 pub fn scene(records: &[&Value]) -> Value {
     scene_selected(records, None, None)
 }
+/// Use only the owner's admitted editorial feature for this specific route.
+pub fn reference_routes_scene(records: &[&Value], objects: &[Value]) -> Value {
+    let projected: Vec<Value> = records.iter().map(|row| {
+        let features: Vec<Value> = objects.iter()
+            .filter(|owner| owner["id"].as_str() == row["current_id"].as_str().map(|id| format!("current:{id}")).as_deref())
+            .flat_map(|owner| owner["map_features"].as_array().into_iter().flatten())
+            .filter(|feature| feature["role"] == "editorial_reference_route" && feature["candidate_id"] == row["id"])
+            .cloned().collect();
+        json!({"id":row["id"],"label":row["name"],"type":"reference_route","map_features":features})
+    }).collect();
+    let refs: Vec<&Value> = projected.iter().collect();
+    let mut result = scene(&refs);
+    result["inspection_collection"] = json!("reference_routes");
+    result["scope"] = json!(
+        "Editorial reference geometries only. These are not observed current axes, whole-current lengths, physical edges or annual ranges."
+    );
+    result
+}
 /// Derive only the local nominal section from source-bound sample coordinates.
 /// No route, width buffer, polygon or state containment is inferred.
 pub fn sample_scene(records: &[&Value]) -> Value {
@@ -248,6 +266,27 @@ pub fn scene_selected(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn reference_routes_select_only_the_matching_editorial_feature() {
+        let a = json!({"id":"route:a","current_id":"a","name":"Route A"});
+        let b = json!({"id":"route:missing","current_id":"a","name":"Missing"});
+        let owners = vec![json!({"id":"current:a","map_features":[
+            {"candidate_id":"route:other","role":"editorial_reference_route","geometry":{"type":"LineString","coordinates":[[10,10],[11,11]]}},
+            {"candidate_id":"route:a","role":"editorial_reference_route","geometry":{"type":"LineString","coordinates":[[1,2],[3,4]]}},
+            {"candidate_id":"route:a","role":"observed_axis","geometry":{"type":"LineString","coordinates":[[20,20],[21,21]]}}
+        ]})];
+        let result = reference_routes_scene(&[&a, &b], &owners);
+        assert_eq!(result["mapped_objects"], 1);
+        assert_eq!(result["unmapped_objects"], 1);
+        assert_eq!(result["features"].as_array().unwrap().len(), 1);
+        assert_eq!(result["features"][0]["entity_id"], "route:a");
+        assert_eq!(result["features"][0]["role"], "editorial_reference_route");
+        assert_eq!(result["inspection_collection"], "reference_routes");
+        assert_eq!(
+            result["features"][0]["primitive"]["d"],
+            "M 181.00000 88.00000 L 183.00000 86.00000 "
+        );
+    }
     #[test]
     fn section_samples_require_resolved_ordered_source_boundaries() {
         let original = json!({"id":"width-sample:one","entity_id":"current:gulf-stream-system","label":"Section","sample_family":"gulf_stream_dated_half_peak_section","status":"paired_boundaries","value_km":90,"longitude_degrees_east":-70,"source_sample":{"nominal":{"south_boundary":{"latitude":37},"north_boundary":{"latitude":38}}}});

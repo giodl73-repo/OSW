@@ -331,7 +331,7 @@
     byId("queue-count").textContent = `${rows.length} of ${catalog.remaining_current_decisions.length} remaining currents`;
   }
   load("../research/ocean-current-working-reference-routes.json").then(async value => {
-    catalog = value;
+    catalog = window.oswAtlasSnapshot?.working_reference_routes || value;
     for (const strategy of catalog.planning_taxonomy.strategies) {
       const option = node("option", `${strategy.label} (${strategy.current_count})`, byId("route-strategy")); option.value = strategy.id;
       const tr = node("tr", null, byId("strategy-rows")); node("th", strategy.label, tr).scope = "row";
@@ -365,13 +365,14 @@
       link("Link to this route card", `#${row.id}`, node("p", null, card));
       const back = link("Back to global current map ↑", '#route-atlas', node("p", null, card));
 
-      node("p", `≈ ${number(row.approximate_reference_path_km)} km · ${row.scenario_count} scenarios · ${row.scenario_range_km.map(number).join("–")} km ${row.comparison_group==='osw_offshore_coastal_reference_curves'?'convention sensitivity':'scenario envelope'}`, card);
+      node("p", `≈ ${number(row.approximate_reference_path_km)} km · ${row.scenario_count} scenarios · ${row.scenario_range_km.map(number).join("–")} km ${row.comparison_group==='osw_offshore_coastal_reference_curves'?'convention sensitivity':row.comparison_group==='osw_source_anchor_connections'?'bend-probe span':'scenario envelope'}`, card);
       node("p", row.scope, card);
       if (report.parent_current_id) {
         const relation = node("p", report.parent_scope_note + " ", card);
         const parent = catalog.candidates.find(item => item.current_id === report.parent_current_id);
         link("Inspect parent current route", parent ? `#${parent.id}` : objectHref(`current:${report.parent_current_id}`), relation);
       }
+      if(row.comparison_group==='osw_source_anchor_connections')node('p','Source-reference connection only. Bend probes are geometry sensitivity, with no uncertainty or seasonal interpretation. This connection is excluded from whole-current and reference-route length ordering.',card).className='warning';
       if (row.comparison_group === "osw_studied_reach_routes") node("p", "Studied reach only. Excluded from reference-route ordering above.", card).className = "warning";
       if(row.comparison_group==='osw_offshore_coastal_reference_curves')node('p','Coast-following geographic reference only. Kept separate from waypoint-route ordering and published current lengths. Projected offsets are not current widths; no measured axis or seasonal geometry.',card).className='warning';
       if(row.comparison_group==='osw_offshore_coastal_reference_curves'){
@@ -388,6 +389,7 @@
       image.height = Math.round(800 * (report.figure_aspect_ratio||report.map_view_box[3] / report.map_view_box[2]));
       link("Open route map at full size", `../${row.figure}`, node("p", null, card));
       node("p", report.coordinate_selection, card);
+      if(report.source_reference_anchors){const list=node('ul',null,card);for(const anchor of report.source_reference_anchors)node('li',`${anchor.id}: ${anchor.source_notation}; nominal source reference coordinate.`,list);}
       if(row.current_id==='kuroshio')window.renderKuroshioDaily(card,window.oswAtlasSnapshot?.kuroshio_daily_scene);
       if(row.current_id==='agulhas')window.renderAgulhasReportedDimensions(card,window.oswAtlasSnapshot?.agulhas_reported_scene);
       node("p", `Layer: ${report.layer} Time convention: ${report.time_convention}`, card);

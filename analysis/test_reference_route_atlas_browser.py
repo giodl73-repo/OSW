@@ -1,4 +1,5 @@
 """Exercise global atlas zoom, pan, current selection and map-card navigation."""
+from browser_inventory_expectations import CURRENT_COUNT, CURRENT_SELECT_OPTIONS, SCOPED_WIDTH_COUNT, REFERENCE_ROUTE_COUNT, PENDING_PROPOSALS
 import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -13,11 +14,11 @@ def main():
         errors = []
         page.on('pageerror', lambda error: errors.append(str(error)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas', wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll(".route-atlas-station").length === 101')
+        page.wait_for_function('document.querySelectorAll(".route-atlas-station").length === '+str(CURRENT_COUNT))
         catalog = json.loads((Path(__file__).resolve().parents[1] / 'research/ocean-current-working-reference-routes.json').read_bytes())
         additions=json.loads((Path(__file__).resolve().parents[1] / 'research/ocean-current-inventory-expansion-candidates.json').read_bytes())
-        page.wait_for_function('(counts) => document.querySelectorAll(".route-card").length === counts.routes && document.querySelectorAll(".inventory-addition-card").length === counts.additions', arg={'routes': catalog['counts']['route_candidates'], 'additions': len(additions['entries'])-1})
-        assert page.locator('#route-atlas-select option').count() == 102
+        page.wait_for_function('(counts) => document.querySelectorAll(".route-card").length === counts.routes && document.querySelectorAll(".inventory-addition-card").length === counts.additions', arg={'routes': REFERENCE_ROUTE_COUNT, 'additions': PENDING_PROPOSALS})
+        assert page.locator('#route-atlas-select option').count() == CURRENT_SELECT_OPTIONS
         for ident,label in [('atlantic-north-equatorial','Atlantic North Equatorial Current'),('pacific-north-equatorial','Pacific North Equatorial Current'),('atlantic-south-equatorial','Atlantic South Equatorial Current'),('pacific-south-equatorial','Pacific South Equatorial Current'),('indian-south-equatorial','Indian South Equatorial Current')]:
             card=page.locator('#inventory-addition-'+ident)
             assert card.locator('h3').inner_text()==label

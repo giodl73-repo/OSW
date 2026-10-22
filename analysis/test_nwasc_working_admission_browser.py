@@ -104,8 +104,8 @@ def main():
             if i == 4:
                 assert result['rows'] == [doc]
             if i == 5:
-                assert result['map_scene']['mapped_objects'] == 0 and result['map_scene']['unmapped_objects'] == 1
-                assert result['rows'][0]['map_features'] == []
+                assert result['map_scene']['mapped_objects'] == 1 and result['map_scene']['unmapped_objects'] == 0
+                assert result['rows'][0]['map_features'][0]['role'] == 'editorial_reference_route'
             assert page.locator('#query-export').is_enabled()
             page.set_viewport_size({'width': 320, 'height': 1000})
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')

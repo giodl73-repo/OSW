@@ -1,4 +1,5 @@
 """Working ranking, local width, source qualification and unavailable geography agree."""
+from browser_inventory_expectations import CURRENT_COUNT, CURRENT_SELECT_OPTIONS, SCOPED_WIDTH_COUNT, REFERENCE_ROUTE_COUNT, PENDING_PROPOSALS
 import json,os
 from urllib.parse import quote
 from playwright.sync_api import sync_playwright,expect
@@ -26,7 +27,7 @@ def main():
         expect(card).to_contain_text('working reported-length rank 12',timeout=120000)
         expect(page.locator('#width-'+m.WIDTH_ID)).to_contain_text('120')
         assert page.locator('#width-rows tr').count()==158
-        assert page.locator('#width-decision-rows tr').count()==101
+        assert page.locator('#width-decision-rows tr').count()==CURRENT_COUNT
         image=card.locator('.proposed-source-dimensions img');image.scroll_into_view_if_needed()
         page.wait_for_function('()=>document.querySelector("#inventory-addition-southern-east-madagascar img")?.naturalWidth>0')
         image.screenshot(path=str(out/'dimensions-desktop.png'))

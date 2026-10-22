@@ -1,4 +1,5 @@
 """State map navigation reuses masked OSW geometry and the inventory filter."""
+from browser_inventory_expectations import CURRENT_COUNT, CURRENT_SELECT_OPTIONS, SCOPED_WIDTH_COUNT, REFERENCE_ROUTE_COUNT, PENDING_PROPOSALS
 import os,xml.etree.ElementTree as ET
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
@@ -46,7 +47,7 @@ def main():
         page.route('**/ocean-motion-dashboard-ground.svg',hold_shape)
         page.goto(BASE+'#route-atlas',wait_until='domcontentloaded')
         page.wait_for_function('typeof window.restoreReferenceRouteAtlas === "function"')
-        expect(page.locator('#route-atlas-select option')).to_have_count(101,timeout=90000)
+        expect(page.locator('#route-atlas-select option')).to_have_count(CURRENT_SELECT_OPTIONS,timeout=90000)
         assert held
         world=page.locator('#route-atlas-map').get_attribute('viewBox')
         page.locator('#route-atlas-in').click();assert page.locator('#route-atlas-map').get_attribute('viewBox')!=world
@@ -61,7 +62,7 @@ def main():
         page.route('**/ocean-motion-dashboard-ground.svg',lambda route:route.fulfill(status=200,content_type='image/svg+xml',body=broken))
         page.reload(wait_until='networkidle')
         expect(page.locator('#atlas-state-map-note')).to_contain_text('Clickable state shapes are unavailable',timeout=90000)
-        expect(page.locator('#route-atlas-select option')).to_have_count(101,timeout=90000)
+        expect(page.locator('#route-atlas-select option')).to_have_count(CURRENT_SELECT_OPTIONS,timeout=90000)
         assert not errors,errors
         browser.close()
     print('OK: all 56 exact saved shapes, keyboard filters, pointer activation, selected state/reload, current marker navigation and missing geometry fallback')

@@ -55,6 +55,7 @@ mod nordic_widths;
 mod norkyst_data;
 mod nwasc_admission;
 mod nwasc_mean_core;
+mod nwasc_reference_route;
 mod object_plot;
 mod object_view;
 mod observed_sections;
@@ -350,6 +351,7 @@ impl Store {
         current_catalogue::validate(&bundle)?;
         current_measurements::validate(&bundle)?;
         nwasc_admission::validate(&bundle)?;
+        nwasc_reference_route::validate(&bundle)?;
         hansen_asar_widths::validate(&bundle)?;
         current_length_bounds::validate(&bundle)?;
         movies::validate(&bundle)?;
@@ -655,6 +657,8 @@ impl Store {
                 query.geometry_time.as_ref(),
                 query.seasonal.as_ref(),
             )
+        } else if query.collection == "reference_routes" {
+            map::reference_routes_scene(&matches, &self.bundle.collections["objects"])
         } else if query.collection == "passage_samples" {
             let mut scene = map::scene(&matches);
             scene["inspection_collection"] = json!("passage_samples");

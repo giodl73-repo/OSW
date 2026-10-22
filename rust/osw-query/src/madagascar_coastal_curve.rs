@@ -93,7 +93,10 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         }
     }
     if bundle.collections.get("reference_routes").map(|r| json!(r))
-        != Some(cat["candidates"].clone())
+        != Some(json!(crate::nwasc_reference_route::extend_routes(
+            cat["candidates"].as_array().unwrap().clone(),
+            bundle
+        )))
     {
         return Err("Changed working route catalogue projection".into());
     }

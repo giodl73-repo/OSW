@@ -85,7 +85,7 @@
     $('query-map-hover').textContent='Hover or focus a mark for its name; select it to inspect its record.';
     $('query-map-time').textContent=scene.geometry_time?`Observation window ${scene.geometry_time.from} through ${scene.geometry_time.to}. ${scene.features.filter(f=>f.undated_context).length} undated marks shown as context. Exact recorded days; gaps are not interpolated.`:'All recorded dates shown together. Undated routes and locators do not describe a particular day.';
     if(scene.seasonal)$('query-map-time').textContent=(scene.seasonal.month?`Source phases covering month ${scene.seasonal.month}. `:`Selected source phase: ${metadata.seasonal_phases.find(p=>p.id===scene.seasonal.phase_id)?.label||scene.seasonal.phase_id}. `)+scene.seasonal.scope;
-    if(scene.inspection_collection==='passage_samples'||models)$('query-map-time').textContent=scene.scope;
+    if(['passage_samples','reference_routes'].includes(scene.inspection_collection)||models)$('query-map-time').textContent=scene.scope;
     if(samples)$('query-map-time').textContent=(scene.recorded_days?.length===1?'Recorded section day: '+scene.recorded_days[0]+' · '+[...new Set(scene.features.map(f=>f.source_algorithm).filter(Boolean))].join(', ')+'. ':'')+scene.scope;
     $('query-map-day').value=scene.geometry_time?.from===scene.geometry_time?.to?scene.geometry_time?.from||'':'';
     for(const feature of scene.state_features||[]){const node=document.createElementNS(ns,'path');node.setAttribute('d',feature.primitive.d);node.setAttribute('fill-rule','evenodd');$('query-map-state').append(node);}
