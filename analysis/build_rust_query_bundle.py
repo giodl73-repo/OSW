@@ -148,6 +148,8 @@ def build():
     from nwasc_mean_core_widths import verify_inputs as verify_mean_core, records as mean_core_records
     mean_core,mean_core_inputs=verify_mean_core();inputs.update(mean_core_inputs)
     collections['proposed_widths'].extend(mean_core_records())
+    from build_indian_secc_oscar_2d_source import verify as verify_secc_context
+    _,secc_context_inputs=verify_secc_context();inputs.update(secc_context_inputs)
     read('research/guinea-djakoure-2017-model-width-source-review.json');read('research/source-data/djakoure-guinea-2017/acquisition.json')
     for path in ['research/source-data/djakoure-guinea-2017/journal-article.pdf','plans/guinea-model-regional-width-protocol-v1.md','analysis/check_guinea_model_width.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()

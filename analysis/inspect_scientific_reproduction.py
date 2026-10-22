@@ -29,7 +29,8 @@ TARGETS=[('build_aleutian_p14n_vector_section','research/aleutian-p14n-1993-obse
          ('madagascar_coastline_comparison','research/madagascar-coastline-comparison.json',{},None),
          ('madagascar_reference_curve','research/southern-east-madagascar-coastal-reference-curve.json',{},None),
          ('kuroshio_wang_dimensions','research/kuroshio-wang-2024-regional-dimensions.json',{},None),
-         ('kuroshio_axis_normal','research/kuroshio-wang-2024-axis-normal-spans.json',{},None)]
+         ('kuroshio_axis_normal','research/kuroshio-wang-2024-axis-normal-spans.json',{},None),
+         ('build_indian_secc_oscar_2d_source','research/indian-secc-oscar-2d-monthly-source-fields.json',{},None)]
 
 
 def differences(expected, actual):

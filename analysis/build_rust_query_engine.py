@@ -177,6 +177,8 @@ def main():
     from nwasc_mean_core_widths import verify_inputs as verify_mean_core
     _,mean_core_inputs=verify_mean_core();paths.extend(mean_core_inputs)
     paths.extend(['rust/osw-query/src/nwasc_mean_core.rs','almanac/reference-routes.js'])
+    from build_indian_secc_oscar_2d_source import verify as verify_secc_context
+    _,secc_context_inputs=verify_secc_context();paths.extend(secc_context_inputs)
     paths.extend(['almanac/atlas-width-evidence.js','almanac/reference-routes.js','almanac/seasons.js',
                   'almanac/query.html','almanac/reference-routes.html','almanac/seasons.html'])
     packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())

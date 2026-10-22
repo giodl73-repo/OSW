@@ -260,6 +260,9 @@ def build():
     from build_west_australian_oscar_2d_source import verify as verify_wac_context, REPORT as WAC_CONTEXT
     wac_context,wac_context_inputs=verify_wac_context()
     inputs.update(wac_context_inputs)
+    from build_indian_secc_oscar_2d_source import verify as verify_secc_context, REPORT as SECC_CONTEXT
+    secc_context,secc_context_inputs=verify_secc_context()
+    inputs.update(secc_context_inputs)
     from west_australian_streamline_evidence import verify as verify_wac_paths
     wac_paths,wac_path_inputs=verify_wac_paths()
     inputs.update(wac_path_inputs)
@@ -691,6 +694,19 @@ def build():
                 'url':'../'+eac_calendar['comparison_figure']})
             evidence_links.append({'label':'Query all calendar-month distributions and missing-date counts',
                 'url':'query.html?source-q='+quote(json.dumps({'document':EAC_CALENDAR,'pointer':'/calendar_month_groups','limit':12,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+        if current_id == 'indian-south-equatorial-countercurrent':
+            evidence_links.append({'label':'Compare twelve surrounding Indian Ocean source-vector maps',
+                'url':'../'+secc_context['comparison_figure']})
+            evidence_links.append({'label':'Query surrounding Indian Ocean monthly fields and paired support',
+                'url':'query.html?source-q='+quote(json.dumps({'document':SECC_CONTEXT,'pointer':'/months','limit':1,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            evidence_links.append({'label':'Query monthly source coverage and component ranges',
+                'url':'query.html?source-q='+quote(json.dumps({'document':SECC_CONTEXT,'pointer':'/monthly_summary','limit':12,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            evidence_links.append({'label':'Download retained source vectors and metadata (ZIP)',
+                'url':'../research/source-data/oscar-indian-secc-2d-2013/source-responses.zip'})
+            payload['surrounding_source_context']={'source_file':SECC_CONTEXT,'source_sha256':inputs[SECC_CONTEXT],
+                'source_vector_positions':secc_context['quality']['vector_positions'],'historical_overlap_vectors':4464,
+                'current_association_verified':False,'current_geometry_admitted':False}
+            groups['sources'].append(payload['surrounding_source_context'])
         if current_id == 'west-australian':
             evidence_links.append({'label':'Compare twelve surrounding offshore source-vector maps',
                 'url':'../'+wac_context['comparison_figure']})

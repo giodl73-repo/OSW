@@ -610,6 +610,16 @@
     "analysis/build_west_australian_oscar_2d_source_figure.py": "08e796b432f56de8a668e55fb82574090abf165954f977b0779e7cfc39ab32a6",
     "figures/west-australian-oscar-2d-source.svg": "af348a79d7e013bc233cf77f383a51ec2679424f3bd0fd9d8cd40cc743f079cb",
     "figures/west-australian-oscar-2d-source.png": "d9a68818c9cbc363653bf3daa3fee4c63c58c6dbdfb0d1e509c331c0e97dd863",
+    "plans/indian-secc-oscar-2d-source-protocol-v1.md": "cb9a6c770e21322fd437a904822ebda78a11becf9a3f4220aeca48a300fc559b",
+    "analysis/acquire_indian_secc_oscar_2d.py": "847467bd2918124afdaac71d09a53acbf3ab42d9109b0378dfee33f690f9eed0",
+    "analysis/build_indian_secc_oscar_2d_source.py": "90499ea6c5cd76935a2e5de85bcb744b8496a9f32716cded5f9e5948789dab08",
+    "research/source-data/oscar-indian-secc-2d-2013/source-responses.zip": "924a8c0616cb32556184d652bb91a333db9602a554a3adcad3b1af73f93e6352",
+    "research/source-data/oscar-indian-secc-2d-2013/acquisition.json": "4264b2d4f24a71b61c5c1b0475a5443b08199f44c6e754bed1f0561c4e4c99fb",
+    "research/indian-secc-oscar-2d-monthly-source-fields.json": "8e7d4d12fcc194f45fb608ae73174c795c3b8ba83a69f466aeb8e83cb6af6d52",
+    "research/indian-secc-oscar-2d-source-figure.json": "ab6e7fd6ce6708412f19fc7e1e8a7b5e3312855e68dd271ca5e478a4db1a795b",
+    "analysis/build_indian_secc_oscar_2d_source_figure.py": "90843c19f1c162be7e11000063b065257aa0204e75ffa0c91fd3b0394d9197cd",
+    "figures/indian-secc-oscar-2d-source.svg": "6d89f851114e685747b0c305daf11eb62a7430695173c2c1c089edf196acf028",
+    "figures/indian-secc-oscar-2d-source.png": "d00c37053c11dfb37378329dc50c3ba54ae0666484a777c2ddbc78f57b4e53ba",
     "plans/west-australian-regional-streamline-protocol-v1.md": "22477c4f28260bda26947b2708b40f56d661e800358ca3550478d3b467a32983",
     "analysis/west_australian_regional_streamlines.py": "073c50200d566e5cd0bb83d70a5d75e4f3539b9fe49e0db7c2a4fdca81ea582d",
     "research/west-australian-regional-streamlines.json": "a43161b2efc4098069ab957f70412e07340dfbefb7446d3220bc349db1bcdc22",
@@ -873,7 +883,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "24f7bddc6d24dea86fb94d235eed66c24e256b16069a6350821594e8e31bdc64",
+  "snapshot_fingerprint": "2f8ecc03a99bef23eb0b302ae5865b5418c545547aa127a8c3632f4f7563de65",
   "entries": [
     {
       "id": "current:agulhas",
@@ -8574,7 +8584,7 @@
       },
       "recorded_claims": 56,
       "nasa_links": 1,
-      "fingerprint": "7600c6c20149080efec1cdb0ae1a13900fa626d96b9d23c8b24fb60c6602aa8e",
+      "fingerprint": "9d5646c6c431d2c2fa41ca2f6b25f240b5372c9c0a6e683fe2af84d6448c5115",
       "series": [
         {
           "label": "1995–2016 calendar-month climatology at 80.333 E (current width unresolved)",
@@ -8674,6 +8684,22 @@
         }
       ],
       "evidence_links": [
+        {
+          "label": "Compare twelve surrounding Indian Ocean source-vector maps",
+          "url": "../figures/indian-secc-oscar-2d-source.svg"
+        },
+        {
+          "label": "Query surrounding Indian Ocean monthly fields and paired support",
+          "url": "query.html?source-q=%7B%22document%22%3A%22research%2Findian-secc-oscar-2d-monthly-source-fields.json%22%2C%22pointer%22%3A%22%2Fmonths%22%2C%22limit%22%3A1%2C%22offset%22%3A0%7D#source-query-title"
+        },
+        {
+          "label": "Query monthly source coverage and component ranges",
+          "url": "query.html?source-q=%7B%22document%22%3A%22research%2Findian-secc-oscar-2d-monthly-source-fields.json%22%2C%22pointer%22%3A%22%2Fmonthly_summary%22%2C%22limit%22%3A12%2C%22offset%22%3A0%7D#source-query-title"
+        },
+        {
+          "label": "Download retained source vectors and metadata (ZIP)",
+          "url": "../research/source-data/oscar-indian-secc-2d-2013/source-responses.zip"
+        },
         {
           "label": "View current research evidence",
           "url": "query.html?q=%7B%22collection%22%3A%22diagnostics%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22diagnostic%3Acurrent-research%3Aindian-south-equatorial-countercurrent%22%7D%5D%2C%22limit%22%3A100%7D#query-chart-section"
@@ -69181,5 +69207,5 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "built_at_utc": "2026-10-21T21:32:54.989580+00:00"
+  "built_at_utc": "2026-10-22T02:43:29.248268+00:00"
 }
