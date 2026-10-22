@@ -46,10 +46,12 @@ Rounding cannot create a domain extension or hide a changed boundary/status.
 Actual Chrome passes all12 monthly graphs,12 summary rows and72 comparisons
 exactly against native queries, plus keyboard card/figure navigation,320px
 reflow and zero automatic original requests. All396 staged engine dependency
-hashes match. Fresh Linux reconstruction is pending. The repair must
-not be called cross-platform verified until the new Linux reconstruction
-actually passes. The separate complete-suite IRD403/local4GiB disk guard stays
-open. Retire only verified superseded generated parts; source originals stay.
+hashes match. Fresh Linux reconstruction passed at5bad057/run39717576696, scientific
+job119623281799: all25 reports encoded byte exactly, with each retained and
+rebuilt SHA matching the current local file. NetCDF also passed. This proves
+the scoped cross-platform repair; the prior scientific failure is resolved.
+Offline job119623281786 failed before tests on the retained IRD Rotschi1972
+HTTP403. The separate complete-suite/local4GiB disk guard remains open. Retire only verified superseded generated parts; source originals stay.
 
 ## Continuing measurement work
 
@@ -57,6 +59,12 @@ The local candidate-axis/normal-section protocol was declared before any such
 calculation. No new normal measurements have been produced in this repair.
 It specifies local velocity normals, five flow-following stations, explicit
 flat/tied/unsupported failures and separate threshold/step/seed sensitivities.
-Proceed after the corrected band report passes Linux reconstruction. The
+The corrected band report now passes Linux reconstruction; proceed under that
+predeclared method. The
 101-name catalogue,12 ranked/89 unranked lengths and158 scoped widths/83 owners
 with18 uncovered owners remain unchanged; the full goal remains incomplete.
+
+The seven-role internal review resolves20 of21 findings, with zero currentP1
+findings and one complete-suite P2 gate open. The final receipt/review update
+changes documentation only; numerical producer, protocol, report, source-index,
+packet and WASM bytes are identical to the Linux-tested source fix5bad057.
