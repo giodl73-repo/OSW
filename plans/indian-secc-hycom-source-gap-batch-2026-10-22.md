@@ -149,3 +149,26 @@ consumer now defaults to one job and a512MiB disk preflight, retaining every
 test gate. Canonical actual-Chrome source-query/browser verification passes:144cases,
 12monthly outcomes,72comparisons, three complete native frames and keyboard
 320px current-card-to-map navigation, with zero automatic originals.
+
+## Fresh Linux receipt: canonical source commit c2318a3
+
+Run39769117064, scientific job119791896565 SUCCESS:
+https://github.com/giodl73-repo/OSW/actions/runs/39769117064/job/119791896565
+All33 reports rebuild byte exactly. Read-only source inspection and strict
+original-response reconstruction both PASS: all7array/NPY member bytes,
+quality.json, monthly-fields.json and the complete4,080,818-byte stored NPZ
+match the retained Windows artifacts. Canonical NPZ SHAdcd18afbc1b25ab4a0ca4fd5f09bf9d6c45126949b0289a3921758f21869a5af
+is identical on LinuxPython3.13.16/NumPy2.4.1/zlib1.3 and WindowsPython3.14.7.
+There are173verified archive members,82velocity responses and0network
+requests during reconstruction. The portability failure is resolved without
+changing a scientific value or weakening the byte-exact gate.
+
+NetCDF job119791897217 SUCCESS. Offline job119791897073 FAILS before tests
+at Stramma1992 primary/institutional PDF HTTP403:
+https://oceanrep.geomar.de/id/eprint/32119/1/1520-0485%281992%29022_0421_tsioc_2.0.co%3B2.pdf
+The verified institutional URL spelling also fails. Earlier source6ade3c4
+failed later at the separately logged Rotschi1972 IRD PDF HTTP403; do not
+report that historical failure as the first blocker in this current run.
+The full default suite/137-browser matrix remain unverified on this head.
+This receipt changes only batch/review prose; the data/code test source is
+c2318a3991bba0aaa54fe3470126c37691222c5c. The full gap-filling goal remains open.

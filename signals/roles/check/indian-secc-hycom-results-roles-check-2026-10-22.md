@@ -105,3 +105,15 @@ MSVCPDB space failure was resolved by retiring only checked superseded
 packets and selected rebuildable compiler outputs; no originals removed.
 The builder keeps all gates and defaults to one job/512MiB preflight.
 Fresh Linux canonical-byte verification remains required after publication.
+
+## Fresh Linux condition closed
+
+Sourcec2318a3, run39769117064/job119791896565 SUCCESS:33report bytes and
+all original-response monthly products (quality/JSON/NPZ) match exactly.
+All7array/NPY members and the entire canonical ZIP_STORED NPZ match across
+Windows3.14 and Linux3.13, with no network during reconstruction. The
+additional serialization execution condition is closed. Remaining broader
+P2: full suite/browser matrix blocked before tests by paper retrieval403
+(currentrunStramma1992; earlierrunRotschi1972); source-index/asset packaging
+memory risk remains open. No new physical width/current-identity admission
+or external review is implied.
