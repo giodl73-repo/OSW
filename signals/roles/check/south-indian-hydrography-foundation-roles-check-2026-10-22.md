@@ -92,3 +92,11 @@ does not clear pending data, browser, integration or whole-project gates.
 
 Addendum: 21 findings, no unresolved P1 for publishing the frozen declaration;
 P2 conditions remain for data-backed reproduction, presentation and integration.
+
+Navigation/resource follow-up: CHART/HARBOR/LOGBOOK reviewed the month/depth/
+native-meridian URL state, explicit invalid-selection fallback and browser
+history coverage. No scientific field, classification or width is changed.
+Actual data-backed browser execution remains pending. KEEL/SOUNDER reviewed
+the lossless compression receipts: affected derived-file content hashes remain
+identical, provider originals were not touched, and no files were removed.
+Existing whole-project gates remain unresolved; disk recovery does not clear them.

@@ -14,6 +14,8 @@
 <label for="depth">Native depth<select id="depth" disabled></select></label>
 <label for="longitude">Native meridian<select id="longitude" disabled></select></label>
 </div>
+<p><a id="permalink" href="./">Link to this profile selection</a></p>
+<p id="route-note" role="status"></p>
 <p id="status" role="status" aria-live="polite">Loading retained monthly source…</p>
 <p>Latitude increases from south to north. Positive eastward velocity points east; positive northward velocity points north. Each field and depth uses a fixed vertical scale across all twelve months and three meridians. Gaps have no connecting line; the dotted line marks zero velocity. These are profiles along a section, not a current boundary map.</p>
 <section class="profiles" aria-label="Four paired source profiles"></section>
@@ -29,7 +31,20 @@ const fields=[['water_u','Eastward velocity','m/s'],['water_v','Northward veloci
 const $=s=>document.querySelector(s), ns='http://www.w3.org/2000/svg';let data;
 function node(tag,attrs={},text){const e=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));if(text!==undefined)e.textContent=text;return e;}
 function options(id,values){$(id).replaceChildren(...values.map(([v,t])=>{const o=document.createElement('option');o.value=v;o.textContent=t;return o;}));}
-function draw(){
+function readRoute(){
+ const q=new URL(location.href).searchParams,ignored=[];let mi=0,zi=0,xi=1;
+ if(q.has('month')){const v=Number(q.get('month'));if(Number.isInteger(v)&&v>=1&&v<=12)mi=v-1;else ignored.push('month');}
+ if(q.has('depth')){const i=data.depth_m.indexOf(Number(q.get('depth')));if(i>=0)zi=i;else ignored.push('depth');}
+ if(q.has('lon')){const i=data.longitude_degrees_east.indexOf(Number(q.get('lon')));if(i>=0)xi=i;else ignored.push('meridian');}
+ $('#month').value=String(mi);$('#depth').value=String(zi);$('#longitude').value=String(xi);
+ $('#route-note').textContent=ignored.length?`Unavailable URL selections (${ignored.join(', ')}); showing the defaults for those controls.`:'';
+}
+function writeRoute(mode){
+ const url=new URL(location.href);url.searchParams.set('month',String(Number($('#month').value)+1));url.searchParams.set('depth',String(data.depth_m[Number($('#depth').value)]));url.searchParams.set('lon',String(data.longitude_degrees_east[Number($('#longitude').value)]));
+ if(mode==='push')history.pushState(null,'',url);else history.replaceState(null,'',url);
+ $('#permalink').href=url.href;
+}
+function draw(mode='push'){
  const mi=Number($('#month').value),zi=Number($('#depth').value),xi=Number($('#longitude').value),m=data.months[mi],lat=data.latitude_degrees_north;
  const valid=m.common_samples[zi].filter((row,y)=>fields.every(([f])=>m.fields[f][zi][y][xi]!==null)).length;
  $('#status').textContent=`${new Date(Date.UTC(2013,mi,1)).toLocaleString('en',{month:'long',timeZone:'UTC'})} 2013 · ${data.depth_m[zi]} m · ${data.longitude_degrees_east[xi].toFixed(5)}°E · ${m.sample_days} daily 00Z samples · minimum ${m.minimum_common_samples} common days per cell · ${valid}/${lat.length} eligible latitude nodes.`;
@@ -49,9 +64,10 @@ function draw(){
   svg.append(node('path',{d:path,fill:'none',stroke:'#08668a','stroke-width':2}));fig.append(svg);$('.profiles').append(fig);
  }
  const body=$('tbody');body.replaceChildren();lat.forEach((v,y)=>{const tr=document.createElement('tr');const values=[v,...fields.map(([f])=>m.fields[f][zi][y][xi]),m.common_samples[zi][y][xi]];values.forEach((value,i)=>{const td=document.createElement(i===0?'th':'td');if(i===0)td.scope='row';td.textContent=value===null?'Missing':i===5?String(value):value.toFixed(6);tr.append(td);});body.append(tr);});
+ writeRoute(mode);
 }
 async function start(){try{const response=await fetch($('#json-link').getAttribute('href'));if(!response.ok)throw Error(`HTTP ${response.status}`);data=await response.json();
- options('#month',data.months.map((m,i)=>[i,new Date(Date.UTC(2013,i,1)).toLocaleString('en',{month:'long',timeZone:'UTC'})]));options('#depth',data.depth_m.map((d,i)=>[i,`${d} m`]));options('#longitude',data.longitude_degrees_east.map((x,i)=>[i,`${x.toFixed(5)}°E${i===1?' (central)':''}`]));$('#longitude').value='1';for(const id of ['#month','#depth','#longitude']){$(id).disabled=false;$(id).addEventListener('change',draw);}draw();
+ options('#month',data.months.map((m,i)=>[i,new Date(Date.UTC(2013,i,1)).toLocaleString('en',{month:'long',timeZone:'UTC'})]));options('#depth',data.depth_m.map((d,i)=>[i,`${d} m`]));options('#longitude',data.longitude_degrees_east.map((x,i)=>[i,`${x.toFixed(5)}°E${i===1?' (central)':''}`]));for(const id of ['#month','#depth','#longitude']){$(id).disabled=false;$(id).addEventListener('change',()=>{$('#route-note').textContent='';draw('push');});}readRoute();draw('replace');window.addEventListener('popstate',()=>{readRoute();draw('replace');});
  }catch(error){$('#status').textContent=`Source profiles could not load (${error.message}). Use the source links below.`;}}
 start();
 </script></html>

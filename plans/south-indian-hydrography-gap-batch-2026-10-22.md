@@ -52,6 +52,18 @@ checks all 72 selections against retained native arrays/JSON, every table row,
 fixed scales, missing-data path breaks, keyboard controls, links and 320 px
 reflow. That gate is implemented but awaits the complete retained dataset.
 
+Profile URLs now retain the calendar month, native depth and exact native
+longitude. The same gate covers reloadable permalinks, Back/Forward and an
+explanation when unsupported URL selections fall back to defaults. Node
+syntax checking passes for the updated viewer; actual browser checks remain
+pending the complete source. The view is not linked as a finished atlas result.
+
+Local disk headroom was recovered through lossless NTFS compression of derived
+Rust outputs, current generated query parts and generated scientific reports.
+All affected content hashes were checked before and after and remain exact.
+No file was deleted and no provider original was changed. The disk preflight
+and all source/scientific checks remain in force; this is not a full-suite pass.
+
 The previous batch's 33 scientific report/operator pairs, 170 scoped width
 rows and 78 reference routes are not changed by this source foundation.
 The unresolved whole-project offline bootstrap currently encounters the

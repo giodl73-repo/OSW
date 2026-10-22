@@ -2,6 +2,7 @@
 import json
 import os
 from pathlib import Path
+from urllib.parse import urlparse, parse_qs
 
 import numpy as np
 from playwright.sync_api import sync_playwright, expect
@@ -41,6 +42,10 @@ def main():
                 page.locator('#longitude').select_option(str(x))
                 for mi, month in enumerate(doc['months']):
                     page.locator('#month').select_option(str(mi))
+                    query=parse_qs(urlparse(page.url).query)
+                    assert query['month']==[str(mi+1)]
+                    assert float(query['depth'][0])==doc['depth_m'][z]
+                    assert float(query['lon'][0])==doc['longitude_degrees_east'][x]
                     expect(page.locator('#status')).to_contain_text(f"{month['sample_days']} daily 00Z samples")
                     result = page.evaluate('''() => ({
                       cells:[...document.querySelectorAll('tbody tr')].map(r=>[...r.children].map(c=>c.textContent)),
@@ -65,6 +70,21 @@ def main():
                         valid = [v is not None for v in values]
                         assert path.count('M') == sum(v and (i == 0 or not valid[i-1]) for i,v in enumerate(valid))
                         assert path.count('M')+path.count('L') == sum(valid)
+        permalink=page.locator('#permalink').get_attribute('href')
+        page.goto(permalink)
+        expect(page.locator('#month')).to_have_value('11')
+        expect(page.locator('#depth')).to_have_value('1')
+        expect(page.locator('#longitude')).to_have_value('2')
+        page.locator('#month').select_option('5')
+        page.go_back()
+        expect(page.locator('#month')).to_have_value('11')
+        page.go_forward()
+        expect(page.locator('#month')).to_have_value('5')
+        page.goto(BASE+'/figures/south-indian-hydrography-2013/?month=99&depth=999&lon=0')
+        expect(page.locator('#route-note')).to_contain_text('Unavailable URL selections')
+        expect(page.locator('#month')).to_have_value('0')
+        expect(page.locator('#depth')).to_have_value('0')
+        expect(page.locator('#longitude')).to_have_value('1')
         page.locator('#month').select_option('0')
         page.locator('#month').focus()
         page.keyboard.press('ArrowDown')
@@ -86,6 +106,7 @@ def main():
     result = {'status': 'PASS', 'selections': 72, 'profiles': 288,
               'native_table_rows_checked': 72*326, 'json_npz_values_exact': True,
               'fixed_scales_and_missing_breaks': True, 'keyboard': True,
+              'permalinks_reload_and_history': True, 'invalid_url_defaults_explained': True,
               'phone_320px': True, 'automatic_original_downloads': 0,
               'physical_width_admitted': False}
     (output/'result.json').write_bytes((json.dumps(result, indent=2)+'\n').encode())
