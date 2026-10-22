@@ -37,13 +37,22 @@ review in this batch. Role definitions: `.roles/ROLE.md` and individual files.
 | KEEL | Admission must reject edited values and stripped receipts. | P2 | Native validator and corruption tests cover rank, value, owner, source, annual range, missing rows and duplicates; all 112 Rust tests and native/WASM builds pass. |
 | KEEL | Complete-suite release gate remains separate from scoped gates. | P2 | Open: local 4 GiB free-space guard unmet; prior remote offline acquisition failed before tests. No overall green claim. |
 | LOGBOOK | Historical release and earlier scientific calculations must survive. | P2 | Before-batch fingerprints retained for frozen release and 26 existing reports/producers; all 163 preservation fingerprints pass. |
-| LOGBOOK | Fresh cross-platform reconstruction is required for the added producer. | P2 | Added as target 27 in scientific reproduction CI; fresh Linux receipt pending. |
+| LOGBOOK | Fresh cross-platform reconstruction is required for the added producer. | P2 | All 27 report bytes and SHA values match on Linux at a0a4481/run39724491896/job119645191448. |
 | LOGBOOK | User cannot manage a PR per gap. | P2 | This batch continues branch `codex/current-measurement-gaps` and draft PR83; no new PR/main merge. |
 
-No current P1; 19 of 21 scoped findings resolved. Fresh Linux reconstruction
-and the complete-suite release gate remain open. Draft-only approval with
-verification conditions. Local native/WASM, browser and preservation checks pass. Fresh target-27
-Linux reconstruction remains pending publication. The complete-suite release gate remains open even after scoped
+No current P1; 20 of 21 scoped findings resolved. The complete-suite release gate remains
+open. Draft-only approval with
+verification conditions. Local native/WASM, browser and preservation checks pass. All 27 scientific reports reconstruct byte exactly on Linux at a0a4481;
+NetCDF passes. Offline119645191501 stops before tests on Rotschi1972 HTTP403. The complete-suite release gate remains open even after scoped
 verification. Amendments: make the nominal-position warning explicit; separate
 finite gate scenarios from physical uncertainty; expose data and scalar
 presentation directly from the existing current card.
+
+
+The new browser script is registered in the standard 130-check driver. Two
+legacy canonical-import assertions now permit only the two pinned working
+overrides while preserving all other frozen rows in order. Seven new
+regression checks pass, including actual shipped imports and six corruption
+cases; 15 focused Python checks in total. The complete older browser matrices
+were not rerun. Follow-up test/receipt edits preserve every numerical source,
+producer, report and generated artifact from Linux-tested a0a4481.

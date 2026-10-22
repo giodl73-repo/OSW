@@ -8,15 +8,8 @@ from test_rust_query_browser import ROOT, BASE, native, browser_query
 
 def main():
     bundle = json.loads(read_bundle_bytes(ROOT / 'almanac/query-data.json'))
-    for name in bundle['manifest']['canonical_collections']:
-        original = json.loads((ROOT / 'almanac/release/v0.1.0' / (name + '.json')).read_bytes())
-        # Working admissions append rows to the frozen release. Every frozen
-        # row must survive exactly and in order; admission validators separately
-        # constrain additions before either native or WASM queries can run.
-        current=bundle['collections'][name]
-        original_ids={r['id'] for r in original}
-        assert len({r['id'] for r in current})==len(current),name
-        assert [r for r in current if r['id'] in original_ids]==original,name
+    from canonical_working_assertions import assert_canonical_imports
+    assert_canonical_imports(bundle)
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page = browser.new_page(viewport={'width':1280,'height':1000})

@@ -78,8 +78,27 @@ diagnostics. Native atlas still has 109 sources. New packet: 139,772,306 bytes
 in nine checked parts; WASM: 49,505,272 bytes. Nine verified superseded generated
 parts were retired; all original research sources remain.
 
-Fresh target-27 Linux reconstruction is pending publication. No complete-suite
-or overall green CI claim is made here.
+All **27 scientific reports reconstruct byte exactly on Linux** at source
+commit `a0a44815656cc607348644d3032b213e32531833`, run **39724491896**, scientific
+job **119645191448**. Every retained/rebuilt SHA matches the corresponding local
+file. NetCDF job **119645191160** also passed. Offline job **119645191501** stops
+before tests on `rotschi-secc-1972` HTTP403. The preceding Stramma HTTP403 was
+not repeated in this run; no acquisition-code fix is claimed.
+
+The new browser check is registered once in the regular 130-check runner.
+Two older coverage checks now compare frozen rows in order while allowing
+only the exactly pinned Agulhas source and North Atlantic length-assessment
+overrides. Seven regression checks verify the shipped canonical imports and
+reject edits to other frozen rows, promoted ranks, removed rows, duplicates,
+reordering and stripped override receipts. **15 focused Python tests pass**
+(eight measurement checks plus seven canonical-import checks). The two entire
+older browser matrices and full 130-check runner were not rerun; the new
+four-query actual-browser check passed independently.
+
+Follow-up test/receipt files change no scientific producer, report, original
+source or generated numerical artifact from Linux-tested `a0a4481`. All 407
+engine dependency hashes remain identical. No complete-suite or overall green
+CI claim is made here.
 
 The full local suite requires at least 4 GiB free and that guard remains unmet.
 The preceding remote offline job stopped during acquisition before tests;
