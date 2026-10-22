@@ -105,3 +105,27 @@ python -m pytest analysis/test_south_indian_paired_profiles.py -q
 All 72 selections must remain in the eventual report. Source acquisition,
 report generation, actual profile rendering and atlas integration are still
 pending; no new measurement or gap-count reduction is claimed by this declaration.
+
+## Native-cell query adapter prepared
+
+`analysis/south_indian_hydrography_query.py` prepares the future
+`hydrography_samples` collection: **23,472 rows**, covering all 12 months,
+two depths, 326 latitude nodes and three meridians. Every row retains its
+native source indices, full-precision U/V/in-situ-temperature/salinity means,
+common sample count, eligibility and missing means. Its owner field is
+`investigation_current_id`, with current association and width admission false;
+these are model source cells, not a named-current footprint or width sample.
+
+The adapter rejects changed source units/year/grid, repeated months, invalid
+counts, missingness inconsistent with the common-calendar threshold and false
+association. Its retained-source entry point checks manifest/dependency pins
+and exact source JSON/NPZ correspondence. A synthetic full-grid test checks
+every coordinate axis and every numeric bit, including negative zero; that
+is adapter verification, not validation of the still-incomplete actual source.
+The combined focused suite passes **34 tests**.
+
+This module is **not wired into the current atlas bundle**. Main collection
+counts remain unchanged. After complete acquisition/reconstruction, generate
+the actual rows, add source/query/card links and run exact native/WASM readback
+against all 23,472 retained cells. The source-profile browser gate remains
+pending. No physical measurement is admitted by preparing the adapter.

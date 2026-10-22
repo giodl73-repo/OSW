@@ -100,3 +100,37 @@ Actual data-backed browser execution remains pending. KEEL/SOUNDER reviewed
 the lossless compression receipts: affected derived-file content hashes remain
 identical, provider originals were not touched, and no files were removed.
 Existing whole-project gates remain unresolved; disk recovery does not clear them.
+
+## Addendum: native-cell query adapter preparation
+
+Same seven role lenses; review covers the adapter and its synthetic full-grid
+tests, not an actual published collection. It is not yet called by the atlas
+builder. All original source, integration and whole-project conditions persist.
+
+| Role | Finding | Severity | Resolution / required action |
+|---|---|---|---|
+| CURRENT | A cell at 80 E is not an identified named-current sample. | P1 resolved | Use investigation_current_id and explicit false association/admission, not a current footprint. |
+| CURRENT | Total model velocity must retain its reference and units. | P1 resolved | Source record explains total velocity; scalar field names retain m/s and native depth. |
+| CURRENT | Exact levels must not imply a layer mean or climatology. | P1 resolved | Every row carries model year/month/depth and source record states the limits. |
+| SOUNDER | Flattening could transpose latitude, depth or longitude. | P1 resolved in tests | Every synthetic row's native indices and coordinates are checked across all axes. |
+| SOUNDER | Rounded JSON or null dropping could lose source evidence. | P1 resolved | Full numeric bits and negative zero retained; all 23,472 cells include ineligible null rows. |
+| SOUNDER | Counts must match the four-field common support. | P1 resolved in adapter | Reject invalid counts, changed calendar threshold, wrong sample days and inconsistent nulls. |
+| CHART | These points cannot be rendered as a current outline. | P1 resolved | No geometry/current boundary is produced by the adapter. |
+| CHART | Source indices are provenance rather than physical distance. | P2 resolved | Indices and degree coordinates have distinct explicit names. |
+| CHART | Eventual plot/query linking needs actual browser verification. | P2 open | Link and test only after source reconstruction and bundle integration. |
+| BEACON | Source rows could inflate reported measurement coverage. | P1 resolved | Plan says current collection counts and physical measurement gaps remain unchanged. |
+| BEACON | In-situ temperature must not become a density or heat field. | P1 resolved | Named in_situ_temperature_c; no derived density/heat field. |
+| BEACON | Preparation must not be described as finished atlas integration. | P2 resolved | Plan and module explicitly state that builder wiring is pending. |
+| HARBOR | A filterable value table supplies a data-oriented alternative. | P2 conditional | Planned native rows retain scalar values and missingness; actual UI readback pending. |
+| HARBOR | Missing values and selection must remain textual. | P2 resolved in schema | Null means, eligibility flag, source fields and counts are separate; no color-only meaning. |
+| HARBOR | Native query navigation requires keyboard and phone checks. | P2 open | Existing explicit browser gate remains required after integration. |
+| KEEL | Numeric corruption must fail before query publication. | P1 resolved in adapter | Manifest/dependency pins and JSON/NPZ equality checked at retained-source entry point. Actual source execution pending. |
+| KEEL | A few sample values would not prove full-axis preservation. | P1 resolved in tests | Every synthetic axis/value bit checked, plus source/schema/mask corruption cases; combined 34 tests pass. |
+| KEEL | Native/WASM equivalence has not been established for new rows. | P2 open | Compare all actual rows after acquisition and bundle rebuild. |
+| LOGBOOK | Source rights and model origin must travel with the collection. | P1 resolved in code | Source record retains provider URL, acquisition file, variables, units and NAVO distribution statement. |
+| LOGBOOK | Pending integration must stay visible. | P2 resolved | Adapter is unused by the existing builder; source and browser conditions are explicit. |
+| LOGBOOK | No per-gap PR or main merge is authorized. | P1 resolved | Continue existing branch and draft PR83. |
+
+Adapter addendum: 21 findings, no unresolved P1 for publishing preparation;
+actual retained-source execution, native/WASM row verification and UI integration
+remain P2 conditions. No physical-width or whole-project approval is implied.
