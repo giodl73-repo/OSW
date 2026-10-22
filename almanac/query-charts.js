@@ -32,6 +32,19 @@ window.oswCharts=(()=>{
     stopAll();stops=[];
     document.getElementById('query-chart-section').hidden=!scene;root().replaceChildren();if(!scene)return;
     document.getElementById('query-chart-scope').textContent=scene.scope;
+    if(scene.kind==='hansen_asar_surface_widths'){
+      document.getElementById('query-chart-legend').hidden=true;
+      document.getElementById('chart-title').textContent='ASAR local surface-width reports';
+      const panel=html('section',undefined,root());panel.className='asar-width-query';panel.style.cssText='min-width:0;overflow-wrap:anywhere';
+      const image=html('img',undefined,panel);image.src='../'+scene.figure_file;image.alt='Separate mean-field reports: NwASC60km FWHM at P1;36km conditional partition at Svinoy; NCC about30km. No annual range.';image.style.cssText='display:block;width:100%;max-width:1000px;height:auto';
+      const list=html('ul',undefined,panel);
+      for(const row of scene.width_records){html('li',`${row.name}: ${row.approximate_width_km}km at ${row.geographic_scope}. ${row.boundary_rule}`,list);}
+      html('p','Mixed profiles excluded from separate-current widths: P2,45km; S1,60km. Do not subtract36from60 to infer a coastal-current width.',panel);
+      html('p','Widths of the August2007-July2010 mean surface field, not a seasonal sequence or average of instantaneous widths. No width error, annual envelope or measured geographic edges supplied.',panel);
+      const source=html('a','Publisher and source methods',html('p',undefined,panel));source.href=scene.source_url;
+      const download=html('a','Download effective measurement records',html('p',undefined,panel));download.href='../'+scene.effective_measurements_file;
+      return;
+    }
     if(scene.kind==='agulhas_reported_dimensions'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Agulhas reported dimension context';window.renderAgulhasReportedDimensions(root(),scene);return;}
     if(scene.kind==='kuroshio_daily_dimensions'){document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent='Kuroshio regional model dimensions';window.renderKuroshioDaily(root(),scene,inspect);return;}
     if(scene.kind==='published_model_axis_spread'){

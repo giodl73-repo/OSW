@@ -119,6 +119,7 @@
   let catalog;
   load("../research/ocean-current-inventory-expansion-candidates.json").then(async value => {
     const admissions=await load('../research/norwegian-atlantic-slope-working-admission.json');
+    const asar=await load('../research/hansen-2011-asar-surface-width-admissions.json');
     const measured=await load('../research/southern-east-madagascar-prose-dimension-admissions.json').catch(()=>null);
     for (const row of value.entries) {
       const admitted=admissions.entries.find(r=>r.proposal_id===row.proposed_id);
@@ -143,8 +144,15 @@
         const image=node('img',null,evidence);image.src='../'+admissions.figure_file;image.alt='Norwegian Atlantic Slope Current: broad historical reported extent and six separately scoped width records. No whole-current width or annual range.';image.style.cssText='width:100%;max-width:1040px;height:auto';
         link('Open reported-dimension summary',image.src,node('p',null,evidence));
         const q={collection:'widths',filters:[{field:'current_id',op:'eq',value:row.proposed_id}],limit:10};
-        link('Query the six admitted local widths','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,evidence));
-        link('Download the effective measurement records','../'+admissions.measurement_export_file,node('p',null,evidence));
+        link('Query all admitted local widths','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,evidence));
+        link('Download the effective measurement records','../research/ocean-current-measurements-asar-edition.json',node('p',null,evidence));
+        const asarSection=node('section',null,card);asarSection.className='asar-width-admissions';
+        node('h4','Additional ASAR surface-width reports',asarSection);
+        node('p','August2007-July2010 weighted mean surface field:60km FWHM at P1;36km at Svinoy conditional on partition at the200m isobath. These two records supplement the six earlier scoped reports above. Mixed45km P2 and60km S1 profiles are excluded from separate-current widths. No annual range or width error is supplied.',asarSection);
+        const asarImage=node('img',null,asarSection);asarImage.src='../'+asar.figure_file;asarImage.alt='Local mean-field reports: NwASC60km FWHM and36km conditional partition; NCC about30km. Mixed profiles excluded. No seasonal range.';asarImage.style.cssText='width:100%;max-width:1040px;height:auto';
+        link('Open ASAR local-width comparison',asarImage.src,node('p',null,asarSection));
+        const asarQuery={collection:'diagnostics',filters:[{field:'id',op:'eq',value:asar.id}],limit:1};
+        link('Query ASAR width source report','query.html?q='+encodeURIComponent(JSON.stringify(asarQuery)),node('p',null,asarSection));
         node('p','Earlier proposal-stage source records below are retained for traceability; the admission above gives their current status. The approximately3,500km broad historical extent may overlap downstream West Spitsbergen naming; lengths are not additive.',evidence);
       }
       if(numeric){

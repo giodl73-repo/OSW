@@ -122,7 +122,12 @@ fn adcp_width_scope(row: &Value) -> Result<(), String> {
     }
     Ok(())
 }
-fn norwegian_coastal_width_scope(row: &Value) -> Result<(), String> {
+pub(crate) fn norwegian_coastal_width_scope(row: &Value) -> Result<(), String> {
+    // A different publication has its own exact compiled admission. Edited
+    // copies still fall through to the original regional-scope guard.
+    if crate::hansen_asar_widths::recognizes_width(row) {
+        return Ok(());
+    }
     let id = "norwegian-coastal-saetre-1999-halten-regional-width";
     if row["id"] != id && row["current_id"] != "norwegian-coastal" {
         return Ok(());
@@ -188,6 +193,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             source.extend(crate::current_measurements::widths(bundle));
             source.extend(crate::agulhas_reported::widths(bundle));
             source.extend(crate::nwasc_admission::widths(bundle));
+            source.extend(crate::hansen_asar_widths::widths(bundle));
         }
         if key == "routes" && crate::madagascar_coastal_curve::active(bundle) {
             source = crate::madagascar_coastal_curve::catalogue()["candidates"]
@@ -466,9 +472,14 @@ impl Store {
             .as_array_mut()
             .unwrap()
             .extend(crate::nwasc_admission::widths(&self.bundle));
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(crate::hansen_asar_widths::widths(&self.bundle));
         let mut supplemental = crate::current_measurements::widths(&self.bundle);
         supplemental.extend(crate::agulhas_reported::widths(&self.bundle));
         supplemental.extend(crate::nwasc_admission::widths(&self.bundle));
+        supplemental.extend(crate::hansen_asar_widths::widths(&self.bundle));
         let mut plans = plans(&docs)?;
         crate::current_catalogue::add_plans(&self.bundle, &mut plans);
         let mut sources = json!({});

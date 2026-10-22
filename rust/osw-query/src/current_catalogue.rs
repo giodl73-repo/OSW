@@ -163,7 +163,7 @@ pub fn planning_source(current: &str, manifest: &Value) -> Option<(Value, &'stat
 }
 pub fn decisions(bundle: &Bundle) -> Vec<Value> {
     bundle.collections.get("current_identity_admissions").into_iter().flatten().map(|r|{
-        if r["proposal_id"] == "norwegian-atlantic-slope" && crate::nwasc_admission::active(bundle) { return crate::nwasc_admission::identity_decision(); }
+        if r["proposal_id"] == "norwegian-atlantic-slope" && crate::nwasc_admission::active(bundle) { return crate::nwasc_admission::identity_decision(bundle); }
         let measured=crate::current_measurements::active(bundle);
         json!({"current_id":r["proposal_id"],"name":r["entity"]["label"],
         "measurement_ids":if measured{json!([crate::current_measurements::document()["width_record"]["id"]])}else{json!([])},
@@ -176,7 +176,7 @@ pub fn add_plans(bundle: &Bundle, plans: &mut Value) {
         if !plans[id].is_null() {
             if id == "norwegian-atlantic-slope" {
                 plans[id]["range_note"] = json!(
-                    "Six separately scoped source descriptions, not a seasonal sequence. Static mean cores and an undated mean-flow width do not establish annual extrema or comparable dated boundaries."
+                    "Separately scoped source descriptions, not a seasonal sequence. Mean-field widths and an undated mean-flow width do not establish annual extrema or comparable dated boundaries."
                 );
                 plans[id]["playback_scope"] = json!(
                     "No animation: these source descriptions are not comparable dated states."
@@ -185,7 +185,7 @@ pub fn add_plans(bundle: &Bundle, plans: &mut Value) {
             continue;
         }
         plans[id] = json!({"current_id":id,"phases":[],"can_play":false,"eligible_indices":[],
-            "range_note":if id=="norwegian-atlantic-slope" {"Six separately scoped reported widths; no comparable dated sequence, whole-current width or annual range. Static mean cores cannot show monthly states."}else{"Current identity admitted. Physical width, annual ranges and seasonal geometry remain unmeasured; the reported survey width has a separate admission gate."},
+            "range_note":if id=="norwegian-atlantic-slope" {"Separately scoped reported widths; no comparable dated sequence, whole-current width or annual range. Static mean fields cannot show monthly states."}else{"Current identity admitted. Physical width, annual ranges and seasonal geometry remain unmeasured; the reported survey width has a separate admission gate."},
             "playback_scope":"No seasonal animation without comparable recorded states."});
     }
 }

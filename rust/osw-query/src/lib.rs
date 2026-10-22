@@ -30,6 +30,7 @@ mod eac_source_fields;
 mod eddy_recurrence;
 mod eddy_source_panels;
 mod guinea_width;
+mod hansen_asar_widths;
 mod index_bifurcation;
 mod index_map;
 mod index_noaa;
@@ -349,6 +350,7 @@ impl Store {
         current_catalogue::validate(&bundle)?;
         current_measurements::validate(&bundle)?;
         nwasc_admission::validate(&bundle)?;
+        hansen_asar_widths::validate(&bundle)?;
         current_length_bounds::validate(&bundle)?;
         movies::validate(&bundle)?;
         measurement_scope::validate(&bundle.collections, &bundle.manifest)?;
@@ -714,6 +716,10 @@ impl Store {
             && !agulhas_reported::query(&matches, &self.bundle).is_null()
         {
             agulhas_reported::query(&matches, &self.bundle)
+        } else if query.collection == "diagnostics"
+            && !hansen_asar_widths::query(&matches, &self.bundle).is_null()
+        {
+            hansen_asar_widths::query(&matches, &self.bundle)
         } else if query.collection == "observed_section_spans" {
             observed_spans::scene(&matches)
         } else if query.collection == "proposed_widths" {

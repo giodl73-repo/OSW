@@ -55,11 +55,17 @@ pub fn widths(b: &Bundle) -> Vec<Value> {
         vec![]
     }
 }
-pub fn identity_decision() -> Value {
+pub fn identity_decision(b: &Bundle) -> Value {
     let doc = document();
+    let mut reported = doc["width_records"].as_array().unwrap().clone();
+    reported.extend(
+        crate::hansen_asar_widths::widths(b)
+            .into_iter()
+            .filter(|r| r["current_id"] == "norwegian-atlantic-slope"),
+    );
     json!({"current_id":"norwegian-atlantic-slope","name":doc["entity"]["label"],
-        "measurement_ids":doc["width_records"].as_array().unwrap().iter().map(|r|r["id"].clone()).collect::<Vec<_>>(),
-        "status":"six_scoped_source_reports_admitted","whole_current_width_km":null,"annual_width_range_km":null,
+        "measurement_ids":reported.iter().map(|r|r["id"].clone()).collect::<Vec<_>>(),
+        "status":"separately_scoped_source_reports_admitted","whole_current_width_km":null,"annual_width_range_km":null,
         "admission_id":doc["identity_entry"]["id"]})
 }
 fn records() -> Vec<(&'static str, Value)> {
@@ -133,7 +139,12 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
         let rows: Vec<_> = objects.iter().filter(|r| r["id"] == ENTITY).collect();
         if rows.len() != 1
             || rows[0]["capabilities"]["reported_length"] != 1
-            || rows[0]["capabilities"]["scoped_width"] != 6
+            || rows[0]["capabilities"]["scoped_width"]
+                != if crate::hansen_asar_widths::active(b) {
+                    8
+                } else {
+                    6
+                }
             || rows[0]["map_features"] != json!([])
             || rows[0]["published_length_km"] != 3500
             || !rows[0]["latest_observation_date"].is_null()

@@ -63,6 +63,12 @@
     "research/norwegian-atlantic-slope-working-admission.json": "a07fbdc1d7cc7b43bf5f89d5e275282bce68fd922edfcf3bfe4d371032aad4ea",
     "research/ocean-current-effective-catalogue.json": "1c3a2059665b71d12f1a4ebae616393006193e58ac528ce7bd7392b5b414a52f",
     "research/ocean-current-live-measurements.json": "c6a63921048ff0d414b22ac4c45f9bd13cdb799b09c8bd6fc187836eca11c26a",
+    "plans/hansen-asar-width-admission-protocol-v1.md": "ba430d5d792cc42a828a6cfb61d00b25c62c5c687d33ec67793beeeeef37ad49",
+    "analysis/hansen_asar_widths.py": "d99378fbfcf8c848ed874d1d7e5e33a9e32ce31a7acc42f4be537e421d88911d",
+    "research/source-data/hansen-asar-2011/acquisition.json": "748d29a8b20b2683a08b2d4b9cd42ba04f0416f85361cc2e100d8f56e43fdcd9",
+    "figures/hansen-2011-asar-surface-widths.svg": "b6ded1936957a9968399d08f51c2ec4c9dcb0fb3172acb5071b50b9e94064427",
+    "research/hansen-2011-asar-surface-width-admissions.json": "cef13daa2ec66cc97cf5214fd0a75f5e48f6a965d493f24df958a2ec0ac791ae",
+    "research/ocean-current-measurements-asar-edition.json": "26dba583a34412de0c88d64a71db76e4add74f036634b40e37f8fe23b0b77105",
     "research/source-data/vinayachandran-indian-upwelling-2021/article.pdf": "9ca5a0854eff936d32d5fd597cd94007ea3704ddba1ebeb1aeedede09967472d",
     "research/source-data/vinayachandran-indian-upwelling-2021/article.xml": "b0b6aaa4932ce5fcce1576c0cb389f106c96f56e983fc3773803a8ac53ed3f45",
     "research/source-data/vinayachandran-indian-upwelling-2021/acquisition.json": "6bbf99453f92f7d8682ff20cb88f4c49fec255be9e848bc044768c4771d74b6b",
@@ -925,7 +931,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "503ce9c921032774b859754e56bb602f71f9a4298803c9082c2fc5774bf10bc3",
+  "snapshot_fingerprint": "bed5749236cd4ac6e7dcfc7e1eaa81b02fd5e19d724b9694f74d0ba3cf46023e",
   "entries": [
     {
       "id": "current:agulhas",
@@ -11670,7 +11676,7 @@
         "radius_evidence": 0,
         "reported_length": 1,
         "reference_route": 0,
-        "scoped_width": 6,
+        "scoped_width": 8,
         "geometry": 0,
         "time_samples": 0,
         "source_connectivity": 0,
@@ -11681,13 +11687,13 @@
       },
       "recorded_claims": 1,
       "nasa_links": 0,
-      "fingerprint": "0065f805fab7c20df808cd34d06478289fced4c9250270c37723bace4bd5d5b7",
+      "fingerprint": "08877f85f45e32d8260fb9d810be25252960a531a195c6c42bccf4a44664be80",
       "series": [],
       "section_fingerprints": {
         "identity": "2c2da499113c8a9c375712b883ff9423b7dd16671a65e14599e152ff36295c4c",
-        "sources": "38c81243c01941018eacfaaaf5c65020e9444053d7ffa7c7637ccfb0173a3667",
+        "sources": "d0d70ca9af48f590825616355258027904b3a1e7fa48794a0f3ec499a95fe296",
         "claims": "e1153a7d8da11eed8941c520c6a84b673c27969480e1d8fc7377efb4cd7b49eb",
-        "measurements": "35d22a9bd3d6ad4b7e3752ad321dd33a599574baa9755f87290801ae1bcdf18c",
+        "measurements": "fc1a4ce819f212891dfd41f20381c1e023438f4518c443167482351540ca1766",
         "routes_geometry": "210e130878aabaf46f1fe72749a263f9eb71c6a262b80f13882ed08d472c0ecd",
         "media": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd"
@@ -11696,7 +11702,7 @@
       "claim_review_counts": {
         "not_individually_reviewed": 1
       },
-      "linked_source_count": 3,
+      "linked_source_count": 4,
       "map_features": [],
       "state_evidence": [],
       "connections": [],
@@ -11715,12 +11721,20 @@
           "url": "../figures/norwegian-atlantic-slope-admitted-dimensions.svg"
         },
         {
-          "label": "Query the six admitted local width records",
+          "label": "Query all admitted local width records",
           "url": "query.html?q=%7B%22collection%22%3A%20%22widths%22%2C%20%22filters%22%3A%20%5B%7B%22field%22%3A%20%22current_id%22%2C%20%22op%22%3A%20%22eq%22%2C%20%22value%22%3A%20%22norwegian-atlantic-slope%22%7D%5D%2C%20%22limit%22%3A%2010%7D"
         },
         {
           "label": "Audit the working branch admission and rank changes",
           "url": "query.html?q=%7B%22collection%22%3A%20%22current_measurement_admissions%22%2C%20%22filters%22%3A%20%5B%7B%22field%22%3A%20%22entity_id%22%2C%20%22op%22%3A%20%22eq%22%2C%20%22value%22%3A%20%22current%3Anorwegian-atlantic-slope%22%7D%5D%2C%20%22limit%22%3A%201%7D"
+        },
+        {
+          "label": "Compare ASAR separate and mixed surface-width reports",
+          "url": "../figures/hansen-2011-asar-surface-widths.svg"
+        },
+        {
+          "label": "Query ASAR local surface-width source report",
+          "url": "query.html?q=%7B%22collection%22%3A%22diagnostics%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22diagnostic%3Ahansen-asar-2011-surface-widths%22%7D%5D%2C%22limit%22%3A1%7D"
         }
       ],
       "object_url": "object.html?id=current%3Anorwegian-atlantic-slope",
@@ -11741,7 +11755,7 @@
         "radius_evidence": 0,
         "reported_length": 0,
         "reference_route": 1,
-        "scoped_width": 1,
+        "scoped_width": 2,
         "geometry": 0,
         "time_samples": 12,
         "source_connectivity": 0,
@@ -11752,7 +11766,7 @@
       },
       "recorded_claims": 56,
       "nasa_links": 1,
-      "fingerprint": "6c779eac72f9c88250f3dc5b49830e289800f81a4b48d47af03911729af9e8b9",
+      "fingerprint": "423a134a88af69e0179e78f9854101a621d43dc68093816e444b37751d0935e2",
       "series": [
         {
           "label": "Regional model samples (not current footprint)",
@@ -11762,9 +11776,9 @@
       ],
       "section_fingerprints": {
         "identity": "8718f93e74a1fb8ad6ccfbd2c4bf63ed5d8588bb83b80a318ada57e0f268cbf4",
-        "sources": "ed2eedd8b796f10273ab384867da7dcb2e8fa14c9f7102835c9e1780ffcfdb86",
+        "sources": "048aae54dd74d5001c0ef1ee47e0ab2498152353557b9344005c42c8754b0ff2",
         "claims": "71ec1aa725ca1ea74f6c1b31d16b1157692585424293e51967e0445ae43c2393",
-        "measurements": "4a033d68a5a2e173fa059f592e711e76199a9e2b0a7c051f8720cbaa1d57112a",
+        "measurements": "0f51cc514b6b82b13e7ef521c2ffd9a4f4b7b99f9970796ec475d79d66f695ca",
         "routes_geometry": "7e588fb6c82cda459a61e594e0057950146843bb292b954da38b6a67854afb20",
         "media": "ca5c17fd6f67de141dbe5e8453ebf63be7168f8729809a1827a30d1925c300e4",
         "time_evidence": "3a2e23af48aeb440e55f3b2e14107c9bcc2345c2d923094f1313475873f2d8dc"
@@ -11773,7 +11787,7 @@
       "claim_review_counts": {
         "not_individually_reviewed": 56
       },
-      "linked_source_count": 4,
+      "linked_source_count": 5,
       "map_features": [
         {
           "geometry": {
@@ -11872,6 +11886,14 @@
       "connections": [],
       "scope_notes": [],
       "evidence_links": [
+        {
+          "label": "Compare ASAR separate and mixed surface-width reports",
+          "url": "../figures/hansen-2011-asar-surface-widths.svg"
+        },
+        {
+          "label": "Query ASAR local surface-width source report",
+          "url": "query.html?q=%7B%22collection%22%3A%22diagnostics%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22diagnostic%3Ahansen-asar-2011-surface-widths%3Acoastal%22%7D%5D%2C%22limit%22%3A1%7D"
+        },
         {
           "label": "View current research evidence",
           "url": "query.html?q=%7B%22collection%22%3A%22diagnostics%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22diagnostic%3Acurrent-research%3Anorwegian-coastal%22%7D%5D%2C%22limit%22%3A100%7D#query-chart-section"
@@ -69365,5 +69387,5 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "built_at_utc": "2026-10-22T05:21:28.429235+00:00"
+  "built_at_utc": "2026-10-22T06:44:12.942509+00:00"
 }

@@ -6,6 +6,7 @@ from urllib.parse import quote
 
 from playwright.sync_api import sync_playwright, expect
 import nwasc_working_admission as n
+import hansen_asar_widths as asar
 from test_current_research_evidence_browser import BASE, native
 
 
@@ -91,11 +92,11 @@ def main():
             page.wait_for_function('window.oswLastQueryResult', timeout=120000)
             result = page.evaluate('oswLastQueryResult')
             assert result == native(q)
-            assert result['total'] == [102, 1, 6, 13, 1, 1][i]
+            assert result['total'] == [102, 1, 8, 13, 1, 1][i]
             if i == 1:
                 assert result['rows'] == [doc['identity_entry']]
             if i == 2:
-                assert result['rows'] == sorted(doc['width_records'], key=lambda r: r['id'])
+                assert result['rows'] == sorted(doc['width_records'] + [r for r in asar.verify_inputs()[0]['width_records'] if r['current_id']==n.ID], key=lambda r: r['id'])
             if i == 3:
                 values = {r['entity_id']: (r['published_length_km'], r['published_rank']) for r in result['rows']}
                 assert values[n.ENTITY] == (3500, 6)
@@ -125,7 +126,7 @@ def main():
         page.keyboard.press('Enter')
         figure = links.get_by_role('link', name='Compare separately scoped reported dimensions', exact=True)
         expect(figure).to_have_attribute('href', '../' + n.FIGURE)
-        assert links.get_by_role('link', name='Query the six admitted local width records', exact=True).count() == 1
+        assert links.get_by_role('link', name='Query all admitted local width records', exact=True).count() == 1
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
         links.screenshot(path=str(out / 'atlas-links-mobile.png'))
         card = page.locator('#inventory-addition-' + n.ID)
@@ -150,14 +151,14 @@ def main():
         expect(page.locator('#season-play')).to_be_disabled()
         plan = page.evaluate('window.oswSeasonSnapshot.phase_plans["norwegian-atlantic-slope"]')
         assert not plan['can_play'] and plan['eligible_indices'] == []
-        assert {p['width_id'] for p in plan['phases']} == {r['id'] for r in doc['width_records']}
+        assert {p['width_id'] for p in plan['phases']} == {r['id'] for r in doc['width_records'] + [w for w in asar.verify_inputs()[0]['width_records'] if w['current_id']==n.ID]}
         assert all(p['playback_step_eligible'] is False and p['frame_id'] is None for p in plan['phases'])
         expect(page.locator('#season-range')).to_contain_text('not a seasonal sequence')
         check_admitted_card_navigation(page)
         assert not errors and not originals, (errors, originals)
         browser.close()
     receipt = {'status': 'PASS', 'native_actual_wasm_queries': 6, 'current_identities': 102,
-               'ranked_lengths': 13, 'admitted_local_widths': 6, 'current_rank': 6, 'madagascar_rank': 13,
+               'ranked_lengths': 13, 'admitted_local_widths': 8, 'current_rank': 6, 'madagascar_rank': 13,
                'accepted_index_and_object_navigation': True, 'atlas_sources_exact': True,
                'proposal_links_resolve_accepted_identity': True, 'mobile_320px': True,
                'keyboard_scalar_figure': True, 'seasonal_animation_disabled': True, 'automatic_original_requests': 0,

@@ -292,6 +292,10 @@ def build():
     agulhas_reported,agulhas_reported_inputs=verify_agulhas_reported();inputs.update(agulhas_reported_inputs)
     collections['widths'].append(agulhas_reported['width_record'])
     append_nwasc_admission(collections,nwasc_admission)
+    from hansen_asar_widths import verify_inputs as verify_asar_widths, diagnostic as asar_diagnostic, ID as ASAR_ID
+    asar_widths,asar_inputs=verify_asar_widths();inputs.update(asar_inputs)
+    collections['widths'].extend(asar_widths['width_records'])
+    collections['sources'].append(asar_widths['source_record'])
     collections['sources']=[agulhas_reported['source_record'] if r['id']==agulhas_reported['source_record']['id'] else r for r in collections['sources']]
     collections['sources']=[routes['primary_source_record'] if r['id']==routes['primary_source_record']['id'] else r for r in collections['sources']]
     collections['reference_routes']=routes['candidates']
@@ -723,6 +727,11 @@ def build():
     collections['diagnostics'].append(agulhas_reported_diagnostic(agulhas_reported))
     agulhas_owner=next(r for r in objects if r['id']=='current:agulhas')
     agulhas_owner['diagnostic_ids'].append(AGULHAS_REPORTED_ID)
+    collections['diagnostics'].extend(asar_diagnostic(asar_widths,c) for c in ['norwegian-atlantic-slope','norwegian-coastal'])
+    for owner in objects:
+        if owner['id'] in ['current:norwegian-atlantic-slope','current:norwegian-coastal']:
+            owner.setdefault('diagnostic_ids',[]).append(ASAR_ID if owner['id']=='current:norwegian-atlantic-slope' else ASAR_ID+':coastal')
+            owner['source_ids']=sorted(set(owner['source_ids'])|{asar_widths['source_record']['id']})
     collections['width_samples']=build_width_samples(collections['diagnostics'])
     for row in objects:
         row['width_sample_ids']=[sample['id'] for sample in collections['width_samples'] if sample['entity_id']==row['id']]
@@ -881,6 +890,7 @@ def build():
             'kuroshio_axis_normal_version':'1',
             'north_atlantic_gate_bound_version':'1',
             'nwasc_working_admission_version':'1',
+            'hansen_asar_widths_version':'1',
             'agulhas_reported_dimensions_version':'1',
             'nwasc_mean_core_widths_version':'1',
             'eddy_recurrence_receipt':{'source_file':recurrence_path,'source_sha256':inputs[recurrence_path],'source_json':(ROOT/recurrence_path).read_bytes().decode('utf-8')},

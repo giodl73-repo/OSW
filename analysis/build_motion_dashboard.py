@@ -97,6 +97,9 @@ def build():
     sources[nac_bound['method_source']['id']]=nac_bound['method_source']
     from nwasc_working_admission import verify_inputs as verify_nwasc_admission
     nwasc_admission,nwasc_inputs=verify_nwasc_admission();inputs.update(nwasc_inputs)
+    from hansen_asar_widths import verify_inputs as verify_asar_widths
+    asar_widths,asar_inputs=verify_asar_widths();inputs.update(asar_inputs)
+    sources[asar_widths['source_record']['id']]=asar_widths['source_record']
     entities.append(nwasc_admission['entity'])
     measurements.append(nwasc_admission['measurement']);claims.append(nwasc_admission['claim'])
     sources.update({r['id']:r for r in nwasc_admission['source_records']})
@@ -221,7 +224,7 @@ def build():
         inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
     for path in [gulf_audit['protocol_file'],'analysis/check_gulf_stream_published_widths.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
-    widths = width_inventory['measurements']+[prose_dimensions['width_record'],agulhas_reported['width_record']]+nwasc_admission['width_records']
+    widths = width_inventory['measurements']+[prose_dimensions['width_record'],agulhas_reported['width_record']]+nwasc_admission['width_records']+asar_widths['width_records']
     width_audits={}
     for record in widths:
         audit_file=record.get('extraction_file') or (record.get('stream_mean_context') or record.get('eulerian_section_context') or record.get('width_statistics_context') or record.get('regional_range_context') or record.get('regional_scalar_context') or record.get('mean_offshore_context') or record.get('adcp_threshold_context') or {}).get('audit_file')
@@ -568,6 +571,7 @@ def build():
         if current_id=='kuroshio':source_ids.add(KUROSHIO_DAILY_SOURCE)
         if source_ids - sources.keys():
             raise ValueError(f'Unresolved dashboard sources for {ident}')
+        if current_id in {'norwegian-atlantic-slope','norwegian-coastal'}:source_ids.add(asar_widths['source_record']['id'])
         own_sources = [sources[key] for key in sorted(source_ids)]
         linked_widths = {ident for phase in own_phases for ident in phase['width_measurement_ids']}
         temporal_widths = [w for w in own_widths if w['id'] not in linked_widths and w.get('phase_kind') in {'seasonal_summary', 'dated_section', 'survey_summary', 'ensemble_summary', 'survey_profile_composite', 'monthly_climatological_fit'}]
@@ -703,7 +707,7 @@ def build():
             evidence_links.append({'label':'Query the identity admission','url':'query.html?q='+quote(json.dumps({'collection':'current_identity_admissions','filters':[{'field':'id','op':'eq','value':entity['identity_admission_id']}],'limit':1}),safe='')})
         if current_id == 'norwegian-atlantic-slope':
             evidence_links.append({'label':'Compare separately scoped reported dimensions','url':'../'+nwasc_admission['figure_file']})
-            evidence_links.append({'label':'Query the six admitted local width records','url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':current_id}],'limit':10}),safe='')})
+            evidence_links.append({'label':'Query all admitted local width records','url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':current_id}],'limit':10}),safe='')})
             evidence_links.append({'label':'Audit the working branch admission and rank changes','url':'query.html?q='+quote(json.dumps({'collection':'current_measurement_admissions','filters':[{'field':'entity_id','op':'eq','value':'current:'+current_id}],'limit':1}),safe='')})
         if current_id == 'north-atlantic':
             evidence_links.append({'label':'Inspect the nominal-section geographic bound','url':'../'+nac_bound['figure_file']})
@@ -850,6 +854,10 @@ def build():
             groups['measurements'].append(model_dimensions)
             groups['time_evidence'].append(kuroshio_daily['summaries'])
             evidence_links.append({'label':'Explore Kuroshio2024 dated model dimensions','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':'diagnostic:kuroshio-wang-2024-dimensions'}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
+        if current_id in {'norwegian-atlantic-slope','norwegian-coastal'}:
+            groups['measurements'].append(asar_widths)
+            evidence_links.append({'label':'Compare ASAR separate and mixed surface-width reports','url':'../'+asar_widths['figure_file']})
+            evidence_links.append({'label':'Query ASAR local surface-width source report','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':asar_widths['id'] if current_id=='norwegian-atlantic-slope' else asar_widths['id']+':coastal'}],'limit':1},separators=(',',':')),safe='')})
         if current_id=='agulhas':
             payload['reported_dimension_context']=agulhas_reported
             groups['measurements'].append(agulhas_reported)

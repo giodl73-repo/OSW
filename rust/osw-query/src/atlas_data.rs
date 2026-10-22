@@ -665,6 +665,11 @@ impl Store {
                 json!(crate::nwasc_admission::CATALOGUE_RAW);
             sources[crate::nwasc_admission::EXPORT] = json!(crate::nwasc_admission::EXPORT_RAW);
         }
+        if crate::hansen_asar_widths::active(&self.bundle) {
+            sources[crate::hansen_asar_widths::FILE] = json!(crate::hansen_asar_widths::RAW);
+            sources[crate::hansen_asar_widths::EXPORT] =
+                json!(crate::hansen_asar_widths::EXPORT_RAW);
+        }
         let mut timeline_scenes = json!({});
         for path in TIMELINES {
             if receipts.contains_key(path) {
