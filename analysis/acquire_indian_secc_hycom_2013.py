@@ -8,20 +8,23 @@ import calendar
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 import hashlib
+import io
 import json
 from pathlib import Path
 import re
 from urllib.parse import quote
 from urllib.request import urlopen
+import zipfile
 
 import numpy as np
-from acquire_eac_100m_source import write_json, write_npz
+from acquire_eac_100m_source import write_json
 from acquire_south_australian_hycom_2d import check_metadata, parse_ascii
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'https://tds.hycom.org/thredds/dodsC/GLBv0.08/expt_53.X/data/2013'
 PROTOCOL = 'plans/indian-secc-hycom-2013-source-protocol-v1.md'
 PREFLIGHT = 'research/indian-secc-hycom-2013-source-preflight.json'
+SERIALIZATION_PROTOCOL = 'plans/indian-secc-hycom-array-serialization-protocol-v1.md'
 LIMIT = 20_000_000
 
 
@@ -187,6 +190,20 @@ def paired_mean(u, v, minimum, scale):
     return counts, *outputs
 
 
+def write_stored_npz(path, arrays):
+    """Canonical NPY/ZIP bytes independent of the runtime's deflate engine."""
+    with zipfile.ZipFile(path, 'w', compression=zipfile.ZIP_STORED) as archive:
+        for name in sorted(arrays):
+            buffer = io.BytesIO()
+            np.lib.format.write_array(buffer, arrays[name], version=(1, 0), allow_pickle=False)
+            info = zipfile.ZipInfo(name+'.npy', date_time=(1980, 1, 1, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_STORED
+            info.create_system = 3
+            info.create_version = info.extract_version = 20
+            info.external_attr = 0o600 << 16
+            archive.writestr(info, buffer.getvalue(), compress_type=zipfile.ZIP_STORED)
+
+
 def compile_source(directory):
     directory = Path(directory)
     plan = validate_plan(directory)
@@ -215,7 +232,7 @@ def compile_source(directory):
     arrays['month'] = np.arange(1, 13, dtype='<i2')
     for name in ['pair_count', 'u_m_s', 'v_m_s']:
         arrays[name] = np.stack([monthly[m][name] for m in range(1, 13)])
-    write_npz(directory/'monthly.npz', arrays)
+    write_stored_npz(directory/'monthly.npz', arrays)
     def nullable(array):
         values = array.astype(object)
         values[~np.isfinite(array)] = None
@@ -238,6 +255,9 @@ def compile_source(directory):
     report = {'schema': 'osw.indian-secc-hycom-source-quality.v1', 'selection': pin(directory/'selection.json'),
               'original_responses': receipts, 'monthly_arrays': pin(directory/'monthly.npz'),
               'monthly_fields': pin(directory/'monthly-fields.json'),
+              'array_serialization': {'format': 'ZIP_STORED with fixed NPY1.0 members',
+                                      'protocol': SERIALIZATION_PROTOCOL,
+                                      'protocol_pin': pin(ROOT/SERIALIZATION_PROTOCOL)},
               'native_grid_shape': [len(arrays['lat']), len(arrays['lon'])],
               'missing_daily_00z': plan['missing_daily_00z'],
               'months': [{'month': m, 'sample_days': monthly[m]['sample_days'],

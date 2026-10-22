@@ -8,7 +8,7 @@ import tempfile
 import zipfile
 
 from acquire_eac_100m_source import write_json
-from acquire_indian_secc_hycom_2013 import compile_source, pin, validate_plan
+from acquire_indian_secc_hycom_2013 import compile_source, pin, validate_plan, SERIALIZATION_PROTOCOL
 
 ROOT = Path(__file__).resolve().parents[1]
 DESTINATION = ROOT/'research/source-data/hycom-indian-secc-2013'
@@ -36,7 +36,7 @@ def package(directory, destination=DESTINATION):
     paths = ['analysis/acquire_indian_secc_hycom_2013.py', 'analysis/package_indian_secc_hycom_2013.py',
              'analysis/acquire_south_australian_hycom_2d.py',
              'analysis/acquire_eac_100m_source.py', 'plans/indian-secc-hycom-2013-source-protocol-v1.md',
-             'research/indian-secc-hycom-2013-source-preflight.json']
+             'research/indian-secc-hycom-2013-source-preflight.json', SERIALIZATION_PROTOCOL]
     manifest = {'schema': 'osw.indian-secc-hycom-retained-source.v1',
                 'files': {n: pin(destination/n) for n in ['source-responses.zip', *products]},
                 'dependencies': {p: pin(ROOT/p) for p in paths},

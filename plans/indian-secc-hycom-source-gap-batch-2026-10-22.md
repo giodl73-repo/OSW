@@ -68,7 +68,7 @@ spacings and southern-hemisphere edges. It still does not verify current identit
 
 ## Verification and publication status
 
-- Sixteen focused offline tests pass, including exact original-source reconstruction
+- Seventeen focused offline tests pass, including exact original-source reconstruction
   of NPZ, lossless JSON and quality outputs with network access forbidden.
 - A Windows ZIP fixture initially expected the wrong rejection message after
   separator normalization; it now accepts either valid rejection stage.
@@ -98,13 +98,13 @@ spacings and southern-hemisphere edges. It still does not verify current identit
   source descriptors are unchanged. Existing counts remain 13 ranked lengths,
   89 unranked lengths and 170 scoped widths across 85 of 102 current owners.
 - Current native/WASM builds, 132 Rust tests and complete native atlas
-  ingestion pass. All 479 engine pins verify. The main packet remains nine
-  parts, 140,086,549 bytes; WASM is 56,105,321 bytes. The separate source index
-  contains 458 documents, 338,513,697 original bytes and 53,511,888 compressed
+  ingestion pass. All 480 engine pins verify. The main packet remains nine
+  parts, 140,086,818 bytes; WASM is 56,105,321 bytes. The separate source index
+  contains 458 documents, 338,514,172 original bytes and 53,512,094 compressed
   bytes. All 450 preceding source descriptors, 32 prior reports/producers,
   170 width rows, 78 reference rows and every object geometry remain exact.
   Only the Indian SECC object changes, adding source-evidence navigation.
-  All806 unique staged source/engine blobs verify against479 engine pins
+  All807 unique staged source/engine blobs verify against479 engine pins
   and458 lossless source descriptors. The initial staged-byte check caught
   the repository-wide PNG ignore rule; all twelve required generated maps
   were then explicitly staged and the complete check passed.
@@ -121,3 +121,31 @@ current measurement gaps. The May boundary failure warrants an explicit source
 edge audit before any expanded-domain experiment, not an automatic width claim.
 Keep scalar width, axis, annual ranges, state joins and seasonal playback closed
 until their distinct evidence requirements are met.
+
+## Cross-platform serialization repair
+
+The6ade3c4 Linux job119777987969 passed all33 report-byte rebuilds but failed
+original-response reconstruction at quality.json. Read-only diagnostic
+commit9e537b9/job119781185013 proved all seven decoded arrays, every NPY
+member and the full native-grid JSON exact; only deflated NPZ bytes and its
+quality-record size/hash differed. Linuxzlib1.3 and Windowszlib-ng1.3.1
+produce2,000,063 versus2,025,722-byte containers for identical member bytes.
+
+The new array-serialization protocol uses fixed ZIP_STORED/NPY1.0 metadata.
+Canonical NPZ is4,080,818 bytes, SHAdcd18afbc1b25ab4a0ca4fd5f09bf9d6c45126949b0289a3921758f21869a5af.
+Independent Python3.13 and3.14 local writers reproduce those complete bytes.
+All source arrays/NPY members, provider-response ZIP, selection, full-field
+JSON and all144case/72comparison/12monthly scientific values remain exact.
+Only the report source-quality binding changes. Seventeen focused tests pass.
+Fresh canonical Linux and refreshed native/WASM provenance gates remain
+pending while regenerated assets are built. The byte-exact gate is retained.
+
+The first canonical engine build stopped at MSVCLNK1201 with243MB free.
+After the consumer was terminal, nine superseded hash/length-checked packet
+parts and four explicitly selected rebuildable compiler artifacts were
+retired; no provider originals were removed. The engine then passes132Rust
+tests, native/WASM builds and full native ingestion with one build job. The
+consumer now defaults to one job and a512MiB disk preflight, retaining every
+test gate. Canonical actual-Chrome source-query/browser verification passes:144cases,
+12monthly outcomes,72comparisons, three complete native frames and keyboard
+320px current-card-to-map navigation, with zero automatic originals.

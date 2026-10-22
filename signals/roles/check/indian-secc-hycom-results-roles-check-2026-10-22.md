@@ -58,7 +58,7 @@ and current-card evidence navigation. ORBIT is unrelated to this data batch.
 
 | # | Finding | Severity | Section | Resolution |
 |---|---|---|---|---|
-| 1 | Live data availability must not become a hidden default-test dependency. | P2 | Acquisition | Resolved: explicit bounded/resumable network action;16 focused tests pass with retained-source reconstruction network-forbidden. |
+| 1 | Live data availability must not become a hidden default-test dependency. | P2 | Acquisition | Resolved: explicit bounded/resumable network action;17 focused tests pass with retained-source reconstruction network-forbidden. |
 | 2 | Unsafe archives, map/source divergence and loss of numeric precision need executable guards. | P2 | Verification | Resolved: flat bounded checksummed members; typed maps/frame identity; exact JSON/NPZ bits, dates, masks, report rebuilds and map pins. |
 | 3 | Narrow gates cannot establish the entire broad test matrix. | P2 | Release gates | Open broader scope: fresh Linux33-report/original-source gate pending;137-check browser matrix/full local suite unrun under existing4GiB guard. No overall green claim. |
 
@@ -85,3 +85,23 @@ axis/edge/resolution/identity gates with all failures retained; accessible maps
 and lossless native/WASM query access. The previous foundation review's three
 local execution gates (source reconstruction, rendered QA and browser access)
 have been exercised; broader gates retain their explicit scope and status.
+
+## Subsequent serialization audit
+
+Fresh Linux verified all33 scientific report bytes, then exposed a monthly
+NPZ container mismatch. The separate read-only diagnostic verified every
+array bit, NPY member and full-grid JSON byte; only compression and its
+quality-record binding differed. A declared ZIP_STORED/NPY1.0 serialization
+protocol replaces environment-dependent deflate for monthly array products.
+Original provider ZIP and all scientific values remain exact. Local17-test
+and independent Python3.13/3.14 container checks pass. Require fresh Linux
+canonical-product reproduction and refreshed UI/engine bindings before
+closing this additional execution condition; do not weaken the exact gate.
+
+Canonical local rebuild now passes132Rust tests, native/WASM/full native
+atlas ingestion and the refreshed actual-Chrome readback/card-navigation gate.
+All807 staged blobs match480engine pins and458source documents. A terminal
+MSVCPDB space failure was resolved by retiring only checked superseded
+packets and selected rebuildable compiler outputs; no originals removed.
+The builder keeps all gates and defaults to one job/512MiB preflight.
+Fresh Linux canonical-byte verification remains required after publication.

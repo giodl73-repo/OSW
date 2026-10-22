@@ -10,11 +10,12 @@ ROOT=Path(__file__).resolve().parents[1]
 MANIFEST='rust/osw-query/Cargo.toml'
 
 def main():
-    if shutil.disk_usage(ROOT).free < 128*1024*1024:
-        raise SystemExit('Need at least128MiB free before formatting/building the query engine; existing sources are left untouched.')
+    if shutil.disk_usage(ROOT).free < 512*1024*1024:
+        raise SystemExit('Need at least512MiB free before formatting/building the query engine; existing sources are left untouched.')
     # Embedded scientific reports make incremental caches large; default to a
     # bounded build while retaining an explicit caller override.
     os.environ.setdefault('CARGO_INCREMENTAL','0')
+    os.environ.setdefault('CARGO_BUILD_JOBS','1')
     for args in [['cargo','fmt','--manifest-path',MANIFEST],
                  ['cargo','test','--offline','--locked','--manifest-path',MANIFEST],
                  ['cargo','build','--offline','--locked','--manifest-path',MANIFEST],

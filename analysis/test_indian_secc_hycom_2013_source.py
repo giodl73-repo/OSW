@@ -143,6 +143,19 @@ def test_published_native_json_preserves_float64_vectors_masks_and_exact_dates()
     assert fields['physical_current_axis_admitted'] is fields['physical_current_width_admitted'] is False
 
 
+def test_monthly_array_container_uses_fixed_uncompressed_npy_members():
+    path = Path(__file__).resolve().parents[1]/'research/source-data/hycom-indian-secc-2013/monthly.npz'
+    with zipfile.ZipFile(path) as archive:
+        assert archive.namelist() == sorted(archive.namelist())
+        for item in archive.infolist():
+            assert item.compress_type == zipfile.ZIP_STORED
+            assert item.date_time == (1980, 1, 1, 0, 0, 0)
+            assert item.create_system == 3 and item.create_version == item.extract_version == 20
+            assert item.external_attr == 0o600 << 16
+            assert not item.extra and not item.comment
+            assert archive.read(item)[:8] == b'\x93NUMPY\x01\x00'
+
+
 def test_retained_originals_reconstruct_all_monthly_product_bytes_offline(monkeypatch):
     from package_indian_secc_hycom_2013 import reproduce
     def forbidden(*args, **kwargs):
