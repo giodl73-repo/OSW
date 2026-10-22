@@ -29,6 +29,7 @@ python analysis/package_south_indian_hycom_hydrography.py package
 python analysis/package_south_indian_hycom_hydrography.py reproduce
 python analysis/build_south_indian_hydrography_view.py
 python -m pytest analysis/test_south_indian_hycom_hydrography.py -q
+python analysis/test_south_indian_hydrography_browser.py
 ```
 
 The plan is idempotent only for the exact declared selection/operator bytes.
@@ -45,6 +46,11 @@ acquisition is in progress, with timeout failures recorded. Packaging,
 full-original reconstruction, generated-view browser checks and query/index
 integration remain pending until all source responses validate. Viewer code
 is not a claim of a published or browser-verified result.
+
+The profile JavaScript passes Node syntax checking. The explicit browser gate
+checks all 72 selections against retained native arrays/JSON, every table row,
+fixed scales, missing-data path breaks, keyboard controls, links and 320 px
+reflow. That gate is implemented but awaits the complete retained dataset.
 
 The previous batch's 33 scientific report/operator pairs, 170 scoped width
 rows and 78 reference routes are not changed by this source foundation.
