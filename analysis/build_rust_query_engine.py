@@ -181,6 +181,8 @@ def main():
     _,secc_context_inputs=verify_secc_context();paths.extend(secc_context_inputs)
     from indian_secc_positive_bands import verify as verify_secc_bands
     _,secc_band_inputs=verify_secc_bands();paths.extend(secc_band_inputs)
+    from indian_secc_local_normals import verify as verify_secc_normals
+    _,secc_normal_inputs=verify_secc_normals();paths.extend(secc_normal_inputs)
     paths.extend(['almanac/atlas-width-evidence.js','almanac/reference-routes.js','almanac/seasons.js',
                   'almanac/query.html','almanac/reference-routes.html','almanac/seasons.html'])
     packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())

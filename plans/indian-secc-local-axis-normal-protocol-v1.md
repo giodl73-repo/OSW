@@ -22,14 +22,17 @@ side at its first unsupported sample/rectangle or viewport exit; retain that
 failed sample. Do not bridge missing cells or close edges at the profile limit.
 
 Refine the initial seed once to the strongest projected-velocity sample within
-±40km. Keep equal maxima; do not choose a tied peak. Require the peak to be
+±40km. Keep maxima within1e-10m/s of the maximum as numerical ties; do not
+choose a tied peak. This pre-calculation clarification concerns arithmetic,
+not a physical uncertainty bound. Require the peak to be
 interior and at least1% stronger than both search endpoints; otherwise retain
 flat/ambiguous/search-edge status. Recompute local velocity orientation at the
 refined point. Refinement is not an independently diagnosed physical axis.
 
 For the central native seed, trace the monthly static vector field both ways
 to arc-parameter stations−100,−50,0,+50,+100km. Reuse the existing adaptive RK4
-stage/trial operator with maximum10km step, minimum0.1km, local step-doubling
+stage/trial operator with maximum10km step, minimum0.1km adaptive trial
+(a shorter final station remainder is allowed), local step-doubling
 tolerance0.01km and stage speed guard0.005m/s. Retain actual geodesic chord sums,
 partial paths, stage errors and every failure; this is a short mean-field
 streamline, not a particle trajectory, named-current length or global error

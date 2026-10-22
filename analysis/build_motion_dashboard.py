@@ -265,6 +265,8 @@ def build():
     inputs.update(secc_context_inputs)
     from indian_secc_positive_bands import verify as verify_secc_bands, REPORT as SECC_BANDS
     secc_bands,secc_band_inputs=verify_secc_bands();inputs.update(secc_band_inputs)
+    from indian_secc_local_normals import verify as verify_secc_normals, REPORT as SECC_NORMALS
+    secc_normals,secc_normal_inputs=verify_secc_normals();inputs.update(secc_normal_inputs)
     from west_australian_streamline_evidence import verify as verify_wac_paths
     wac_paths,wac_path_inputs=verify_wac_paths()
     inputs.update(wac_path_inputs)
@@ -711,6 +713,16 @@ def build():
                 'url':'query.html?source-q='+quote(json.dumps({'document':SECC_BANDS,'pointer':'/monthly_summary','limit':12,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
             evidence_links.append({'label':'Compare all 72 historical and extended-domain threshold cases',
                 'url':'query.html?source-q='+quote(json.dumps({'document':SECC_BANDS,'pointer':'/historical_section_comparisons','limit':72,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            evidence_links.append({'label':'Inspect velocity-normal sections and candidate-axis checks',
+                'url':'../'+secc_normals['comparison_figure']})
+            for label,pointer,limit in [('Query all 144 local-axis outcomes','/case_summaries',100),
+                ('Query monthly normal-section support','/monthly_summary',12),
+                ('Compare 72 sampling-step scenarios','/step_comparisons',72),
+                ('Inspect complete normal sections and source-cell support','/cases',1)]:
+                evidence_links.append({'label':label,'url':'query.html?source-q='+quote(json.dumps({'document':SECC_NORMALS,'pointer':pointer,'limit':limit,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+            payload['local_normal_evidence']={'source_file':SECC_NORMALS,'source_sha256':inputs[SECC_NORMALS],
+                'attempts':secc_normals['counts']['attempts'],'current_geometry_admitted':False}
+            groups['sources'].append(payload['local_normal_evidence'])
             payload['positive_band_evidence']={'source_file':SECC_BANDS,'source_sha256':inputs[SECC_BANDS],
                 'monthly_columns':1452,'current_geometry_admitted':False}
             groups['sources'].append(payload['positive_band_evidence'])

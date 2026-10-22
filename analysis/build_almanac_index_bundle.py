@@ -83,6 +83,12 @@ def build():
         calendar_doc, _ = verify_eac_calendar()
         if json.loads(documents[calendar_path]) != calendar_doc:
             raise ValueError('Changed EAC calendar source document')
+    normal_path = 'research/indian-secc-local-axis-normal-spans.json'
+    if normal_path in documents:
+        from indian_secc_local_normals import verify as verify_secc_normals
+        normal_doc, _ = verify_secc_normals()
+        if json.loads(documents[normal_path]) != normal_doc:
+            raise ValueError('Changed SECC local normal diagnostics')
     bands_path = 'research/indian-secc-positive-band-connectivity.json'
     if bands_path in documents:
         from indian_secc_positive_bands import verify as verify_secc_bands
