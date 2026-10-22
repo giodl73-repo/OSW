@@ -15,6 +15,7 @@ pub mod cartography;
 mod charts;
 mod coastal_composite_widths;
 mod current_catalogue;
+mod current_length_bounds;
 mod current_measurements;
 mod current_research_evidence;
 mod current_section_measurements;
@@ -346,6 +347,7 @@ impl Store {
         current_sections::validate(&bundle)?;
         current_catalogue::validate(&bundle)?;
         current_measurements::validate(&bundle)?;
+        current_length_bounds::validate(&bundle)?;
         movies::validate(&bundle)?;
         measurement_scope::validate(&bundle.collections, &bundle.manifest)?;
         let spatial = spatial::Index::build(&bundle.collections)?;

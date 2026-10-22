@@ -91,6 +91,10 @@ def build():
     prose_dimensions,prose_inputs=verify_prose_dimensions();inputs.update(prose_inputs)
     sources[prose_dimensions['source_record']['id']]=prose_dimensions['source_record']
     measurements.append(prose_dimensions['measurement']);claims.append(prose_dimensions['claim'])
+    from north_atlantic_gate_bound import verify_inputs as verify_nac_bound
+    nac_bound,nac_bound_inputs=verify_nac_bound();inputs.update(nac_bound_inputs)
+    measurements.append(nac_bound['measurement']);claims.append(nac_bound['claim'])
+    sources[nac_bound['method_source']['id']]=nac_bound['method_source']
     from agulhas_reported_dimensions import verify_inputs as verify_agulhas_reported, ID as AGULHAS_REPORTED_ID
     agulhas_reported,agulhas_reported_inputs=verify_agulhas_reported();inputs.update(agulhas_reported_inputs)
     sources[agulhas_reported['source_record']['id']]=agulhas_reported['source_record']
@@ -691,6 +695,10 @@ def build():
         if entity.get('identity_admission_id'):
             evidence_links.append({'label':'Current identity and separately scoped dimension evidence','url':entity['almanac_url']})
             evidence_links.append({'label':'Query the identity admission','url':'query.html?q='+quote(json.dumps({'collection':'current_identity_admissions','filters':[{'field':'id','op':'eq','value':entity['identity_admission_id']}],'limit':1}),safe='')})
+        if current_id == 'north-atlantic':
+            evidence_links.append({'label':'Inspect the nominal-section geographic bound','url':'../'+nac_bound['figure_file']})
+            evidence_links.append({'label':'Query the working North Atlantic length assessment','url':'query.html?q='+quote(json.dumps({'collection':'length_assessments','filters':[{'field':'entity_id','op':'eq','value':'current:north-atlantic'}],'limit':1}),safe='')})
+            evidence_links.append({'label':'Audit all nine geographic gate scenarios','url':'query.html?q='+quote(json.dumps({'collection':'current_length_bound_admissions','limit':1}),safe='')})
         if current_id == 'east-australian':
             evidence_links.append({'label':'Explore all3770 section-core outcomes / 2883 resolved / 887 unresolved',
                 'url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':EAC_CORE_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})

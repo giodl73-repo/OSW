@@ -32,7 +32,8 @@ TARGETS=[('build_aleutian_p14n_vector_section','research/aleutian-p14n-1993-obse
          ('kuroshio_axis_normal','research/kuroshio-wang-2024-axis-normal-spans.json',{},None),
          ('build_indian_secc_oscar_2d_source','research/indian-secc-oscar-2d-monthly-source-fields.json',{},None),
          ('indian_secc_positive_bands','research/indian-secc-positive-band-connectivity.json',{},None),
-         ('indian_secc_local_normals','research/indian-secc-local-axis-normal-spans.json',{},None)]
+         ('indian_secc_local_normals','research/indian-secc-local-axis-normal-spans.json',{},None),
+         ('north_atlantic_gate_bound','research/north-atlantic-nominal-gate-bound.json',{},None)]
 
 
 def differences(expected, actual):

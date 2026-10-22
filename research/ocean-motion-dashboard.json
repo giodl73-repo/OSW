@@ -30,6 +30,12 @@
     "analysis/build_ocean_motion_claims.py": "7c20984880d77ed449ba29e74bef624ab2c15e46fa4ac326065ac9b192e3e13c",
     "research/southern-east-madagascar-prose-dimension-admissions.json": "c939b93d3cac439cff5b814df203822158d2eec3dad2f6e80985c42a1142b435",
     "research/ocean-current-working-measurements.json": "84c0db561f9bb708148d244ab33bd13bdeb641f6b6c8ccf0a5272a14d60529ba",
+    "plans/north-atlantic-nominal-gate-bound-protocol-v1.md": "324f49d3dcce7a2ff5bf32bea25bdd764911c248a7c632a42b57698e78372a0a",
+    "analysis/north_atlantic_gate_bound.py": "46c2c710a6f6f3f93c5503b1e6e1aed92e65f0f0b7bd1ee1fb535951ad0f57b4",
+    "research/source-data/cainzos-atlantic-2023/article.xml": "f7f69c1238c4186b6203f56d4cd4a681ca3bb550dadac15119044ccb91aef0c3",
+    "research/source-data/cainzos-atlantic-2023/article-acquisition.json": "c964ea686e59d093546d34101e245a78a98f5c0c5bc90433a5f1fcb8879c7dc7",
+    "figures/north-atlantic-nominal-gate-bound.svg": "47b641f6b40e7ee0fe9b13bb582b08fa4896329341116b326fefc5f57adbaf7c",
+    "research/north-atlantic-nominal-gate-bound.json": "13122cf45e4ad1a97279cae56d0ae7aed71ef61d94b0656e8b457401a1e1b6ab",
     "research/source-data/vinayachandran-indian-upwelling-2021/article.pdf": "9ca5a0854eff936d32d5fd597cd94007ea3704ddba1ebeb1aeedede09967472d",
     "research/source-data/vinayachandran-indian-upwelling-2021/article.xml": "b0b6aaa4932ce5fcce1576c0cb389f106c96f56e983fc3773803a8ac53ed3f45",
     "research/source-data/vinayachandran-indian-upwelling-2021/acquisition.json": "6bbf99453f92f7d8682ff20cb88f4c49fec255be9e848bc044768c4771d74b6b",
@@ -898,7 +904,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "20e3720827c269cbf721424ae2c139e7b6b543f634b53560f7e7d063c26aaa20",
+  "snapshot_fingerprint": "2d2de7e88f76158ce2c173a20f98e815ae552db0630b1c46ca04a50ba43afef4",
   "entries": [
     {
       "id": "current:agulhas",
@@ -10675,24 +10681,24 @@
         "flow_network": 0,
         "passage_transport": 0
       },
-      "recorded_claims": 56,
+      "recorded_claims": 57,
       "nasa_links": 1,
-      "fingerprint": "9ac4cd43cba163dd6491f65eb2f7a4d8941888b526445443d3af7875892a74f9",
+      "fingerprint": "bf18d4d6a2eab616c5c13c281d9cd3214a064a9870f798e1d8e1db0437c5e8b4",
       "series": [],
       "section_fingerprints": {
         "identity": "bed86d594f63947489baf3ac6056cc72af6a2198ec60cfafbe7bcce92f4b3c12",
-        "sources": "549909817490bc8de229f270104fcb145898422279bf8f3cb9c55fed1c2fbf6a",
-        "claims": "9ecd74c0d04a5dab2d80bfbe4af6ad7f8cc021c4fc99a1fb769b780deb3d5024",
-        "measurements": "28cbcb721d16ad00014d18005d5347d936436d0b5edd02e526a286d02ef9c179",
+        "sources": "489a1ccd7f4f4e46839c19a79a574248f557f1919772cd938e4b480fe1407b41",
+        "claims": "ac55be925e161474a86b12d831ae662f96d09d769850aaa01502155f74f413da",
+        "measurements": "eeee808e741e956b2b19d850aa0eaa6b7fa954eb3f0af51b4c40924df198b98e",
         "routes_geometry": "19b7c8b21859d47d8240b44ecd32581549b42024989569fed1ba632cc9b2bb76",
         "media": "a6646f600a84a3815045f3172b66d42ac0dd0982082dc86c8c41f77c4e6d4ca4",
         "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd"
       },
       "latest_observation_date": null,
       "claim_review_counts": {
-        "not_individually_reviewed": 56
+        "not_individually_reviewed": 57
       },
-      "linked_source_count": 3,
+      "linked_source_count": 5,
       "map_features": [
         {
           "geometry": {
@@ -10742,7 +10748,20 @@
       "state_evidence": [],
       "connections": [],
       "scope_notes": [],
-      "evidence_links": [],
+      "evidence_links": [
+        {
+          "label": "Inspect the nominal-section geographic bound",
+          "url": "../figures/north-atlantic-nominal-gate-bound.svg"
+        },
+        {
+          "label": "Query the working North Atlantic length assessment",
+          "url": "query.html?q=%7B%22collection%22%3A%20%22length_assessments%22%2C%20%22filters%22%3A%20%5B%7B%22field%22%3A%20%22entity_id%22%2C%20%22op%22%3A%20%22eq%22%2C%20%22value%22%3A%20%22current%3Anorth-atlantic%22%7D%5D%2C%20%22limit%22%3A%201%7D"
+        },
+        {
+          "label": "Audit all nine geographic gate scenarios",
+          "url": "query.html?q=%7B%22collection%22%3A%20%22current_length_bound_admissions%22%2C%20%22limit%22%3A%201%7D"
+        }
+      ],
       "object_url": "object.html?id=current%3Anorth-atlantic",
       "route_url": "reference-routes.html#north-atlantic-reference-path-candidate",
       "season_url": "seasons.html?current=north-atlantic"
@@ -69254,5 +69273,5 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "built_at_utc": "2026-10-22T04:01:42.070857+00:00"
+  "built_at_utc": "2026-10-22T04:39:40.375587+00:00"
 }
