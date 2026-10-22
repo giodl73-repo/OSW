@@ -182,3 +182,76 @@ After the longer-timeout pass, collect its terminal result and verify preservati
 before packaging. Then generate the three products, reproduce them from retained
 originals, build the 72-selection view and diagnostic, wire query/card/index
 integration, and exercise all actual native cells in native/WASM readback.
+
+## Same-cohort single-date recovery
+
+The longer-timeout pass recovered four more requests, bringing the retained
+set to **81 original responses**. The one April query still timed out on a
+subsequent isolated attempt. Both processes were collected terminal before the
+next transport change. The new single-date declaration freezes all81 raw and
+receipt hashes and mechanically expands only that query's six original native
+time indices into six single-date requests. Every field, depth and spatial
+node is unchanged. The full **363 timestamps** remain in the same order with
+no omission or duplicate; the focused suite passes **44 tests**.
+
+The original 82-request selection, unavailable six-date URL and its failures
+remain intact. The actual response inventory will be **87 physical originals
+covering 82 logical request groups**, if all six new requests succeed. No
+concatenated text or invented response is presented as a provider original.
+The new pinned compiler checks complete monthly timestamp vectors and reuses
+the unchanged common mask/arithmetic/portable-array writer. Its transport
+declaration and all original inputs must survive exact offline reconstruction.
+
+```powershell
+python analysis/south_indian_hycom_single_date_resume.py declare
+python analysis/south_indian_hycom_single_date_resume.py acquire
+python analysis/package_south_indian_hycom_hydrography.py package
+python analysis/package_south_indian_hycom_hydrography.py reproduce
+```
+
+Declaration is one-time and must not be overwritten. Acquisition resumes genuine
+missing single-date responses while preserving existing originals. The packager
+selects the explicitly declared compiler when this declaration exists. This is
+an unchanged-cohort transport recovery, not a smaller source selection or relaxed
+numeric gate. Full products, source-profile browser checks and query integration
+remain pending. Existing 33 scientific reports and their producers are unchanged.
+
+## Source/results verification milestone
+
+The single-date retry completed successfully. The source now contains **87
+genuine physical responses**, covering all82 logical request groups and the
+original **363 daily00Z timestamps**. The original larger April URL remains
+documented as a failed transport attempt; it has not been synthesized or relabeled
+successful. All81 earlier raw/receipt checksums remain unchanged.
+
+- **710,028** common-valid four-field daily samples at the two native levels.
+- **23,472** monthly native cells, all meeting the frozen calendar threshold.
+- Full source archive: **183 checked members**, including both operational
+  declarations, the original selection, acquisition receipts and failure log.
+- Exact offline reconstruction passes with **zero network requests** for
+  `quality.json`, `monthly.npz` and `monthly-fields.json`.
+- Canonical stored NPZ: 802,774 bytes, SHA256
+  `7cf2a12b30561d1534737c23e92c672a9a28ed0f4877859fef7dd85fb00db343`.
+- Full-precision JSON: 1,978,281 bytes, SHA256
+  `161fa7c6db5539d74087af09aae290fa16d7d3041ac9235ad6523cde9e8bb4ef`.
+- Original-response ZIP: 9,039,377 bytes, SHA256
+  `74ca943139da5885b6654f150f5e06558d72d62c6483857aed39270f74f28677`.
+- Actual source JSON/NPZ correspondence and all23,472 query-adapter rows pass.
+- All72 diagnostic cases generated under the frozen preflight: 1,230 positive
+  eastward-component peak candidates and 3,894 positive salinity-gradient
+  maxima. These are unassigned diagnostic events, not named currents/fronts,
+  independent observations or admitted widths. All candidates remain available.
+
+The standalone view is available at
+`figures/south-indian-hydrography-2013/index.html`. Actual Chrome checks all72
+selections, 288 profiles and 23,472 native table rows, plus fixed scales,
+missing-path behavior, keyboard controls, permalinks, history, invalid URL
+fallback, local links and320px reflow. No automatic raw ZIP/NPZ download occurs.
+Desktop/phone renders were inspected. Small phone-axis labels were enlarged;
+the repeated final gate requires at least10 CSS pixels for axis text and passes.
+
+This completes source retention/reconstruction and the standalone profile
+milestone, **not atlas integration or a physical measurement**. Main native/WASM
+collection wiring, full row readback, current-card/index integration and fresh
+Linux reconstruction for these new products remain pending. Current width,
+length, reference-geometry and canonical identity counts remain unchanged.

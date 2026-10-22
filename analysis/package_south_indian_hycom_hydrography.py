@@ -18,7 +18,15 @@ DESTINATION = ROOT/'research/source-data/hycom-south-indian-hydrography-2013'
 def package(directory, destination=DESTINATION):
     directory, destination = Path(directory), Path(destination)
     plan = validate_plan(directory)
-    compile_source(directory)
+    requests=plan['requests']
+    subdivision_dependencies={}
+    if (directory/'single-date-resume.json').exists():
+        from south_indian_hycom_single_date_resume import checked,compile_source as compile_subdivided,DECLARATION
+        _,subdivision,requests=checked(directory)
+        compile_subdivided(directory)
+        subdivision_dependencies={**subdivision['dependencies'],DECLARATION:pin(ROOT/DECLARATION)}
+    else:
+        compile_source(directory)
     # These global coordinate/metadata originals were acquired for the previous
     # section; retain their actual receipts, without assigning a new acquisition.
     original_manifest = json.loads((METADATA/'acquisition.json').read_bytes())
@@ -32,15 +40,17 @@ def package(directory, destination=DESTINATION):
             (directory/name).write_bytes(raw)
     names = ['metadata.das', 'metadata.dds', 'metadata-acquisition.json',
              'coordinates.ascii', 'coordinates-acquisition.json', 'selection.json']
-    names += [name for r in plan['requests'] for name in [r['file'], Path(r['file']).with_suffix('.receipt.json').name]]
-    operational_dependencies={}
+    names += [name for r in requests for name in [r['file'], Path(r['file']).with_suffix('.receipt.json').name]]
+    if subdivision_dependencies:
+        names.append('single-date-resume.json')
+    operational_dependencies=subdivision_dependencies
     operational_path=ROOT/'research/south-indian-hycom-longer-timeout-resume.json'
     if operational_path.exists():
         from resume_south_indian_hycom_transport import checked_declaration
         _,operational=checked_declaration(directory,operational_path)
         shutil.copyfile(operational_path,directory/'operational-resume.json')
         names.append('operational-resume.json')
-        operational_dependencies={**operational['dependencies'],
+        operational_dependencies={**operational_dependencies,**operational['dependencies'],
                                   operational_path.relative_to(ROOT).as_posix():pin(operational_path)}
     if (directory/'failures.jsonl').exists():
         names.append('failures.jsonl')
@@ -55,6 +65,8 @@ def package(directory, destination=DESTINATION):
             archive.writestr(info, (directory/name).read_bytes(), compress_type=zipfile.ZIP_DEFLATED, compresslevel=6)
     products = ['selection.json', 'quality.json', 'monthly.npz', 'monthly-fields.json',
                 'metadata.das', 'metadata.dds', 'coordinates.ascii']
+    if subdivision_dependencies:
+        products.append('single-date-resume.json')
     for name in products:
         shutil.copyfile(directory/name, destination/name)
     dependencies = [*plan['operators'], *plan['rules'],
@@ -87,13 +99,19 @@ def reproduce(destination=DESTINATION):
                 raise ValueError('Changed retained product/operator: '+name)
     with tempfile.TemporaryDirectory(prefix='osw-south-indian-hydrography-') as work:
         unpack_checked(destination/'source-responses.zip', manifest['archive_members'], work)
-        compile_source(work)
+        if (Path(work)/'single-date-resume.json').exists():
+            from south_indian_hycom_single_date_resume import compile_source as compile_subdivided
+            compile_subdivided(work)
+        else:
+            compile_source(work)
         for name in ['quality.json', 'monthly.npz', 'monthly-fields.json']:
             if pin(Path(work)/name) != manifest['files'][name]:
                 raise ValueError('Reconstructed product bytes differ: '+name)
+    quality=json.loads((destination/'quality.json').read_bytes())
     return {'status': 'PASS', 'network_requests': 0,
             'archive_members_verified': len(manifest['archive_members']),
-            'four_field_responses': len(json.loads((destination/'selection.json').read_bytes())['requests']),
+            'logical_requests':len(json.loads((destination/'selection.json').read_bytes())['requests']),
+            'four_field_responses':len(quality['original_responses']),
             'products': ['quality.json', 'monthly.npz', 'monthly-fields.json']}
 
 

@@ -94,6 +94,7 @@ def main():
         page.screenshot(path=str(output/'desktop.png'), full_page=True)
         page.set_viewport_size({'width': 320, 'height': 900})
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        assert page.locator('svg text').first.evaluate('e=>parseFloat(getComputedStyle(e).fontSize)*e.ownerSVGElement.getBoundingClientRect().width/e.ownerSVGElement.viewBox.baseVal.width')>=10
         page.locator('summary').click()
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         expect(page.locator('.table-scroll')).to_have_attribute('tabindex', '0')
@@ -108,6 +109,7 @@ def main():
               'fixed_scales_and_missing_breaks': True, 'keyboard': True,
               'permalinks_reload_and_history': True, 'invalid_url_defaults_explained': True,
               'phone_320px': True, 'automatic_original_downloads': 0,
+              'phone_axis_text_at_least_10_css_pixels': True,
               'physical_width_admitted': False}
     (output/'result.json').write_bytes((json.dumps(result, indent=2)+'\n').encode())
     print(json.dumps(result))

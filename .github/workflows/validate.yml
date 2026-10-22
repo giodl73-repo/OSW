@@ -25,6 +25,8 @@ jobs:
         run: python analysis/inspect_hycom_source_reproduction.py
       - name: Reconstruct Indian SECC HYCOM monthly products from retained originals
         run: python analysis/package_indian_secc_hycom_2013.py reproduce
+      - name: Reconstruct South Indian paired hydrography from retained originals
+        run: python analysis/package_south_indian_hycom_hydrography.py reproduce
 
   offline:
     runs-on: ubuntu-latest
