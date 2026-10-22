@@ -74,3 +74,24 @@ Atlas-directory regression passes:102 currents/140 eddies or detections, search,
 map selection, keyboard, updates, shared gateways, empty results and320px reflow.
 Nine superseded generated parts were individually hash/length/containment checked
 and retired after all consumers finished; current parts and research originals remain.
+
+### Fresh Linux and publication receipt
+
+Scientific source commit31b9cd45575b07f0fee6cf0ba3a4e72e86b5c639,
+run39745580870, scientific-reproduction job119713070243:SUCCESS.
+All30 retained/rebuilt report SHA256 values match local exactly. This proves
+reconstruction of the admitted source references, not independent reconstruction
+of the original satellite observations. NetCDF job119713069984:SUCCESS.
+Offline job119713070276 stops at Rotschi1972 paper-fixture acquisition:
+https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers20-05/010028590.pdf
+returns HTTP403 before tests. This supersedes the preceding Stramma1992 failure
+as the latest acquisition blocker. No overall green/full-suite claim.
+
+All428 raw staged engine pins and441 index-source hashes verify. GitHub accepted
+the source push with a >50MB recommendation warning for the54,834,640-byte WASM.
+The following receipt-only commit changes these two review documents, preserving
+all source/data/engine/artifact bytes from the Linux-tested source head. Source
+and receipts continue in existing draft PR83; no new PR and no main merge.
+Full133-browser matrix and complete local suite remain unrun;4GiB guard unmet.
+The internal seven-role review has no unresolved P1; broader suite coverage and
+snapshot packaging/memory remain open P2 conditions, not external peer approval.
