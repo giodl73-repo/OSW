@@ -8,6 +8,7 @@ from build_indian_secc_oscar_2d_source import ROOT, REPORT as SOURCE, verify as 
 from build_basin_surface_section_spans import measure
 
 PROTOCOL = 'plans/indian-secc-positive-band-connectivity-protocol-v1.md'
+READBACK_PROTOCOL = 'plans/indian-secc-band-calculation-readback-protocol-v1.md'
 OPERATOR = 'analysis/indian_secc_positive_bands.py'
 REPORT = 'research/indian-secc-positive-band-connectivity.json'
 HISTORICAL = 'research/indian-secc-oscar-1995-2016-monthly-sections.json'
@@ -18,6 +19,18 @@ FRACTIONS = (.4, .5, .6)
 
 def digest(path):
     return hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+
+
+def distance_readback(case):
+    """Round new geodesic distances only; original source and brackets stay exact."""
+    def number(value):
+        if value is None: return None
+        if not math.isfinite(value): raise ValueError('Nonfinite geodesic readback')
+        value = round(value, 6)
+        return 0.0 if value == 0 else value
+    return {**case, 'span_km': number(case['span_km']),
+            'grid_bracket_span_km': None if case['grid_bracket_span_km'] is None else
+                [number(v) for v in case['grid_bracket_span_km']]}
 
 
 def positive_runs(values):
@@ -64,7 +77,7 @@ def column_nodes(profile, longitude, column):
         peak = max(values[low:high+1]); ties = [i for i in range(low, high+1) if values[i] == peak]
         section = {'fixed_axis': 'longitude', 'fixed_coordinate': longitude, 'varying_axis': 'latitude',
                    'peak_search': [profile[low]['latitude'], profile[high]['latitude']]}
-        spans = [measure(profile, section, fraction) for fraction in FRACTIONS]
+        spans = [distance_readback(measure(profile, section, fraction)) for fraction in FRACTIONS]
         for case in spans:
             for edge in case['boundaries'].values():
                 if edge.get('coordinate') is not None:
@@ -138,6 +151,24 @@ def compact_case(case):
             'boundaries': {k: {'status': v['status'], 'latitude': v.get('coordinate')} for k, v in case['boundaries'].items()}}
 
 
+def compare_cases(previous, current):
+    """Keep support changes independent of platform-dependent geodesic floats."""
+    a, b = compact_case(previous), compact_case(distance_readback(current))
+    boundaries_exact = {k:v for k,v in a.items() if k != 'span_km'} == {k:v for k,v in b.items() if k != 'span_km'}
+    old_span, new_span = a['span_km'], b['span_km']
+    span_matches = old_span is None and new_span is None or old_span is not None and new_span is not None and round(old_span,6) == new_span
+    old_north = a['boundaries'].get('high_coordinate', {})
+    new_north = b['boundaries'].get('high_coordinate', {})
+    recovered_north = old_north.get('status') == 'domain_edge_without_crossing' and new_north.get('status') == 'resolved'
+    return {'historical': a, 'surrounding_domain': b,
+            'boundary_coordinates_and_status_exact': boundaries_exact,
+            'span_readback_matches': span_matches,
+            'comparison_kind': 'same_boundaries_and_status' if boundaries_exact else
+                'northern_domain_extension' if recovered_north else 'other_boundary_or_support_difference',
+            'northern_crossing_recovered': recovered_north,
+            'span_readback_difference_km': None if old_span is None or new_span is None else round(new_span-round(old_span,6),6)}
+
+
 def build():
     source, pins = verify_source(); historical = json.loads((ROOT/HISTORICAL).read_bytes())
     months = []; summaries = []; comparisons = []
@@ -149,7 +180,7 @@ def build():
             lon = old['longitude_degrees_east']; xi = min(range(len(cols)), key=lambda i: abs(source['longitude_degrees_east'][i]-lon))
             assert abs(source['longitude_degrees_east'][xi]-lon) < 1e-8
             section = {'fixed_axis': 'longitude', 'fixed_coordinate': lon, 'varying_axis': 'latitude', 'peak_search': [-6, -2.5]}
-            cases = [measure(cols[xi], section, f) for f in FRACTIONS]; nominal = cases[1]
+            cases = [distance_readback(measure(cols[xi], section, f)) for f in FRACTIONS]; nominal = cases[1]
             anchor = {'section_id': old['section_id'], 'longitude': lon, 'status': nominal['status'],
                       'search_latitude_domain': [-6, -2.5], 'selected_peak_latitude': nominal.get('peak_coordinate'),
                       'selected_peak_eastward_m_s': nominal.get('peak_component_m_s'), 'band_id': None, 'component_id': None}
@@ -160,9 +191,8 @@ def build():
                               selected_peak_is_band_global_peak=nominal['peak_component_m_s'] == band['peak_eastward_m_s'])
             old_cases = old['yearly']['2013']['months'][frame['month']-1]['threshold_scenarios']
             for previous, current in zip(old_cases, cases):
-                a, b = compact_case(previous), compact_case(current)
                 comparisons.append({'month': frame['month'], 'section_id': old['section_id'], 'fraction': current['fraction'],
-                                    'historical': a, 'surrounding_domain': b, 'numeric_and_status_exact': a == b,
+                                    **compare_cases(previous, current),
                                     'domain_comparison': 'historical_12S_to_equator_vs_surrounding_10S_to_2N'})
             anchor['anchor_search_threshold_cases'] = cases; anchors.append(anchor)
         selected_ids = sorted({a['component_id'] for a in anchors if a['component_id'] is not None})
@@ -180,7 +210,7 @@ def build():
                    'anchor_component_equator_or_north_reach': any(c['equator_or_north_native_cells'] for c in selected_components) if selected_components else None,
                    'anchor_component_source_truncation': any(c['source_boundary_contacts'] for c in selected_components) if selected_components else None,
                    'anchor_component_split_merge_nodes': sum(c['eastward_splits']+c['eastward_merges'] for c in selected_components),
-                   'recovered_threshold_cases_from_northern_extension': sum(not c['numeric_and_status_exact'] for c in comparisons if c['month'] == frame['month']),
+                   'recovered_threshold_cases_from_northern_extension': sum(c['northern_crossing_recovered'] for c in comparisons if c['month'] == frame['month']),
                    'physical_axis_or_width_admitted': False}
         for anchor in anchors:
             section_key = anchor['section_id'].removeprefix('indian-secc-').replace('-', '_')
@@ -191,8 +221,8 @@ def build():
         summaries.append(summary)
         months.append({'month': frame['month'], 'source_times': frame['source_times'], 'bands': nodes,
                        'components': components, 'anchors': anchors})
-    inputs = [PROTOCOL, OPERATOR, HISTORICAL, 'analysis/build_basin_surface_section_spans.py']
-    return {'schema': 'osw.indian-secc-positive-band-connectivity.v1', 'status': 'exploratory_grid_connectivity_not_current_axis',
+    inputs = [PROTOCOL, READBACK_PROTOCOL, OPERATOR, HISTORICAL, 'analysis/build_basin_surface_section_spans.py']
+    return {'schema': 'osw.indian-secc-positive-band-connectivity.v2', 'status': 'exploratory_grid_connectivity_not_current_axis',
             'current_id': source['current_id'], 'entity_id': source['entity_id'], 'source_file': SOURCE,
             'nominal_depth_m': 15, 'source_first_time': source['source_first_time'], 'source_last_time': source['source_last_time'],
             'longitude_degrees_east': source['longitude_degrees_east'], 'latitude_order': 'south_to_north',
@@ -202,8 +232,12 @@ def build():
             'counts': {'monthly_columns': sum(s['native_longitude_columns'] for s in summaries),
                        'positive_bands': sum(s['positive_bands'] for s in summaries),
                        'historical_threshold_cases': len(comparisons),
-                       'historical_numeric_status_exact': sum(c['numeric_and_status_exact'] for c in comparisons),
-                       'historical_domain_differences': sum(not c['numeric_and_status_exact'] for c in comparisons)},
+                       'historical_boundary_status_exact': sum(c['boundary_coordinates_and_status_exact'] for c in comparisons),
+                       'historical_span_readback_matches': sum(c['span_readback_matches'] for c in comparisons),
+                       'historical_domain_differences': sum(not c['boundary_coordinates_and_status_exact'] for c in comparisons)},
+            'derived_distance_readback_decimal_km': 6,
+            'distance_readback_is_physical_uncertainty': False,
+            'historical_values_rounded_or_rewritten': False,
             'current_association_verified': False, 'physical_current_axis_admitted': False,
             'whole_current_length_km': None, 'whole_current_width_km': None, 'annual_physical_width_range_km': None,
             'length_rank_eligible': False, 'width_rank_eligible': False, 'physical_state_join_eligible': False,

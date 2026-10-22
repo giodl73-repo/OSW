@@ -99,3 +99,13 @@ Next dimensional task: distinguish velocity-consistent SECC ridge/axis and
 paired transverse support from the connected competing flow, retaining ties,
 source truncation and seasonal ambiguity. A positive-u region or its outer
 perimeter is not a named-current width. Continue other current gaps on PR83.
+
+## Later calculation correction
+
+The numerical equality statements above describe the original Windows result.
+Linux run39715841797 subsequently exposed sub-readback geodesic drift that
+incorrectly inflated the old raw-float comparison count. See
+`indian-secc-band-readback-repair-2026-10-21.md` and the separately pinned
+distance-readback protocol. Version2 separates exact boundary/status support
+from distance-readback agreement; the nine actual northern extensions, original
+historical values, topology and maps are preserved.

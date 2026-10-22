@@ -1,9 +1,11 @@
 """Independent grid flood fill and historical-domain checks protect interpretation."""
+import copy
 import json
 from collections import deque
 import pytest
 from indian_secc_positive_bands import (ROOT, SOURCE, REPORT, positive_runs, maxima,
-                                        column_nodes, connect, verify, encoded)
+                                        column_nodes, connect, verify, encoded,
+                                        distance_readback, compare_cases)
 
 
 def profile(values, column=0):
@@ -65,6 +67,48 @@ def test_split_merge_retains_both_branches():
     assert components[0]['eastward_splits'] == components[0]['eastward_merges'] == 1
 
 
+def test_distance_readback_never_changes_original_brackets():
+    original = nodes([-1,1,2,3,2,1,-1])[0]['threshold_cases'][1]
+    case = copy.deepcopy(original);case['span_km'] = 123.456789123456
+    case['grid_bracket_span_km'] = [-0.0,234.567890123456]
+    before = copy.deepcopy(case);rounded = distance_readback(case)
+    assert case == before
+    assert rounded['span_km'] == 123.456789
+    assert rounded['grid_bracket_span_km'] == [0.0,234.56789]
+    assert rounded['boundaries'] == case['boundaries']
+
+
+def test_platform_distance_drift_does_not_create_a_domain_extension():
+    previous = nodes([-1,1,2,3,2,1,-1])[0]['threshold_cases'][1]
+    previous['span_km'] = 273.7451967643802
+    current = copy.deepcopy(previous);current['span_km'] += 5.684341886080802e-14
+    result = compare_cases(previous,current)
+    assert result['historical']['span_km'] == previous['span_km']
+    assert result['boundary_coordinates_and_status_exact'] and result['span_readback_matches']
+    assert result['comparison_kind'] == 'same_boundaries_and_status'
+    assert not result['northern_crossing_recovered'] and result['span_readback_difference_km'] == 0
+
+
+def test_real_distance_difference_is_retained_without_inventing_boundary_change():
+    previous = nodes([-1,1,2,3,2,1,-1])[0]['threshold_cases'][1]
+    current = copy.deepcopy(previous);current['span_km'] += .001
+    result = compare_cases(previous,current)
+    assert result['boundary_coordinates_and_status_exact'] and not result['span_readback_matches']
+    assert abs(result['span_readback_difference_km']-.001)<1e-12
+    assert not result['northern_crossing_recovered']
+
+
+def test_changed_boundary_and_status_cannot_hide_behind_distance_readback():
+    previous = nodes([-1,1,2,3,2,1,-1])[0]['threshold_cases'][1]
+    current = copy.deepcopy(previous)
+    current['boundaries']['high_coordinate']['coordinate'] += 1e-12
+    result = compare_cases(previous,current)
+    assert not result['boundary_coordinates_and_status_exact']
+    assert result['comparison_kind'] == 'other_boundary_or_support_difference'
+    current = copy.deepcopy(previous);current['boundaries']['high_coordinate']['status'] = 'domain_edge_without_crossing'
+    assert not compare_cases(previous,current)['boundary_coordinates_and_status_exact']
+
+
 @pytest.fixture(scope='module')
 def retained():
     d, _ = verify()
@@ -100,7 +144,7 @@ def test_independent_native_cell_flood_fill(retained):
 def test_historical_domain_extensions_do_not_rewrite_old_results(retained):
     d, _ = retained; rows = d['historical_section_comparisons']
     assert len(rows) == 72
-    gained = [r for r in rows if not r['numeric_and_status_exact']]
+    gained = [r for r in rows if not r['boundary_coordinates_and_status_exact']]
     assert len(gained) == 9
     for r in gained:
         a,b = r['historical'],r['surrounding_domain']
@@ -108,6 +152,10 @@ def test_historical_domain_extensions_do_not_rewrite_old_results(retained):
         assert a['boundaries']['low_coordinate'] == b['boundaries']['low_coordinate']
         assert a['boundaries']['high_coordinate']['status'] == 'domain_edge_without_crossing'
         assert b['boundaries']['high_coordinate']['latitude'] > 0
+        assert r['northern_crossing_recovered'] and r['comparison_kind'] == 'northern_domain_extension'
+    same = [r for r in rows if r['boundary_coordinates_and_status_exact']]
+    assert len(same) == 63 and all(r['span_readback_matches'] for r in same)
+    assert sum(r['northern_crossing_recovered'] for r in rows) == 9
 
 
 def test_connected_anchor_flow_is_not_promoted_to_current_geometry(retained):
