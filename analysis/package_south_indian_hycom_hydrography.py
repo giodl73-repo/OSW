@@ -5,6 +5,7 @@ from pathlib import Path
 import shutil
 import tempfile
 import zipfile
+import hashlib
 
 from acquire_eac_100m_source import write_json
 from acquire_indian_secc_hycom_2013 import pin
@@ -26,13 +27,21 @@ def package(directory, destination=DESTINATION):
     with zipfile.ZipFile(METADATA/'source-responses.zip') as archive:
         for name in ['metadata-acquisition.json', 'coordinates-acquisition.json']:
             raw = archive.read(name)
-            import hashlib
             if {'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()} != original_manifest['archive_members'][name]:
                 raise ValueError('Changed original metadata receipt')
             (directory/name).write_bytes(raw)
     names = ['metadata.das', 'metadata.dds', 'metadata-acquisition.json',
              'coordinates.ascii', 'coordinates-acquisition.json', 'selection.json']
     names += [name for r in plan['requests'] for name in [r['file'], Path(r['file']).with_suffix('.receipt.json').name]]
+    operational_dependencies={}
+    operational_path=ROOT/'research/south-indian-hycom-longer-timeout-resume.json'
+    if operational_path.exists():
+        from resume_south_indian_hycom_transport import checked_declaration
+        _,operational=checked_declaration(directory,operational_path)
+        shutil.copyfile(operational_path,directory/'operational-resume.json')
+        names.append('operational-resume.json')
+        operational_dependencies={**operational['dependencies'],
+                                  operational_path.relative_to(ROOT).as_posix():pin(operational_path)}
     if (directory/'failures.jsonl').exists():
         names.append('failures.jsonl')
     destination.mkdir(parents=True, exist_ok=True)
@@ -52,6 +61,7 @@ def package(directory, destination=DESTINATION):
                     'analysis/package_south_indian_hycom_hydrography.py',
                     'analysis/package_indian_secc_hycom_2013.py',
                     'research/south-indian-hycom-hydrography-source-preflight.json']
+    dependencies=list(dict.fromkeys([*dependencies,*operational_dependencies]))
     manifest = {
         'schema': 'osw.south-indian-hycom-hydrography-retained-source.v1',
         'files': {name: pin(destination/name) for name in ['source-responses.zip', *products]},

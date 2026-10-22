@@ -167,3 +167,37 @@ the source investigation. This does not change any frozen scientific protocol.
 Review addendum: 21 findings, no unresolved P1 for publishing this bounded
 source review. Actual source reconstruction, browser/native readback and CI
 bootstrap conditions remain open; no physical measurement is approved.
+
+## Addendum: unchanged-source transport resume
+
+Review covers the explicit operational declaration, longer-timeout helper and
+packager retention, while the declared retry is running. No completion verdict
+is issued for the still-pending new source products.
+
+| Role | Finding | Severity | Resolution / required action |
+|---|---|---|---|
+| CURRENT | A transport failure must not remove a sampled date. | P1 resolved | Exact original request set retained; no source dimension or averaging change. |
+| CURRENT | Operational success does not prove current identity. | P1 resolved | Association/width admission remain false throughout the declaration and products. |
+| CURRENT | Existing vertical-support limitations remain. | P2 resolved in scope | No change to the 15/1000 m interpretation or earlier front-definition review. |
+| SOUNDER | Successful originals must not be replaced by later responses. | P1 resolved in helper | Freeze all77 raw/receipt hashes; retain existing pairs and verify preservation again afterward. |
+| SOUNDER | A longer wait needs visible acquisition provenance. | P2 resolved in code | New successes record declaration hash, timeout, UTC, final URL and headers. |
+| SOUNDER | Operational dependencies must travel with originals. | P1 resolved in packager | Retain declaration in the archive and pin helper/protocol/declaration in manifest. Actual package gate pending. |
+| CHART | No fresh source map or footprint is justified by a successful download. | P1 resolved | No geometry produced by the retry; current view remains source context. |
+| CHART | Timeout handling must not create absent-mean zeros. | P1 resolved | No mean product generated until complete; original mask/arithmetic code unchanged. |
+| CHART | New visual outcomes still require actual source rendering. | P2 open | Existing 72-selection view gate remains required. |
+| BEACON | A successful second pass could be overstated as complete. | P2 resolved | Plan states 77/82 with five pending, not complete. |
+| BEACON | Transport changes could be confused with measurement-rule tuning. | P1 resolved | State socket timeout only; scientific selection and gates remain fixed. |
+| BEACON | Passing scientific jobs do not make the full workflow green. | P2 resolved | Explicit offline-bootstrap HTTP403 and skipped tests/browser checks remain visible. |
+| HARBOR | Incomplete products must not be linked as finished results. | P1 resolved | No new live card/query integration until reconstruction and browser checks. |
+| HARBOR | Failure status must have a textual record. | P2 resolved | Retained JSONL failures and declared exact pending filenames. |
+| HARBOR | Actual query/table accessibility remains unverified for the new source. | P2 open | Keep full-source browser gate pending. |
+| KEEL | Restarting an unobserved process could duplicate downloads. | P1 resolved | Both earlier sessions collected terminal, PIDs absent, then new resume started. |
+| KEEL | Retry must retain parser, coordinates and response-size bounds. | P1 resolved in code | Reuse unchanged validators/LIMIT, exact frozen URLs, two workers; no successful-response overwrite. |
+| KEEL | New helper/storage provenance has not yet passed complete-source replay. | P2 open | Run full archive reconstruction after all82 requests, retaining exact product byte checks. |
+| LOGBOOK | Declaration must precede the operational change. | P1 resolved | Record UTC, old selection, existing originals and new helper/protocol hashes before longer-timeout requests. |
+| LOGBOOK | Copyright-paper and provider-original boundaries remain distinct. | P1 resolved | Model originals remain under NAVO distribution statement; paper PDFs/renders stay ignored. |
+| LOGBOOK | Existing PR continuity remains required. | P1 resolved | Same draft PR83, no new PR or main merge. |
+
+Transport addendum: 21 findings, no unresolved P1 for publishing this declared
+operational step. Actual successful completion, source replay and integration
+remain P2 conditions. Previous numeric/byte gates are retained in full.

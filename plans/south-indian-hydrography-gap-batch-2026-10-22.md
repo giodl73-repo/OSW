@@ -150,3 +150,35 @@ Existing frozen acquisition/diagnostic protocols and their checksums are
 unchanged. Finish their complete results first. Any subsequent depth extension
 or thermodynamic conversion requires its own declared support and method.
 No compatible published SIOC width was admitted from this paper review.
+
+## Transport retry and regression status
+
+The first pass retained **70/82** responses with 12 socket timeouts. The
+second pass retained **77/82**, leaving five repeated timeout failures. Both
+processes were collected as terminal before starting the next pass. An
+explicit operational declaration now freezes the 77 successful original and
+receipt checksums, unchanged source selection, missing five filenames and
+helper/protocol hashes before a **180-second** socket-timeout retry. The
+original two-worker/20 MB bounds, exact URLs, sampled dates, variable/depth
+support, parsers and every scientific check remain unchanged. No original is
+replaced, and failures remain in the source record. The packager now retains
+this declaration and its dependencies alongside the original source archive.
+The longer-timeout process is in progress; full source reconstruction is pending.
+
+Fresh Linux verification at source commit
+`4a3a151272853ab986b778007b8b1728180fd181`, run **39779202007**:
+
+- All **33 existing encoded scientific report bytes** reproduce exactly.
+  The Kuroshio in-memory diagnostic sees JSON string-key/list versus Python
+  integer-key/tuple representation differences; its encoded report and all
+  numeric leaves are exact. No producer or gate was changed for that diagnostic.
+- The previous Indian SECC source reconstruction passes with 173 checked archive
+  members, 82 responses and zero network requests. The NetCDF fixture job passes.
+- The offline job fails before tests while acquiring the Stramma1992 original:
+  both recorded institutional URLs return HTTP 403. Full tests/browser gates
+  have not passed for this source foundation; no overall green status claimed.
+
+After the longer-timeout pass, collect its terminal result and verify preservation
+before packaging. Then generate the three products, reproduce them from retained
+originals, build the 72-selection view and diagnostic, wire query/card/index
+integration, and exercise all actual native cells in native/WASM readback.
