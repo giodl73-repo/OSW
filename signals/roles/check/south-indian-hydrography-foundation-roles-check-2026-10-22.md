@@ -134,3 +134,36 @@ builder. All original source, integration and whole-project conditions persist.
 Adapter addendum: 21 findings, no unresolved P1 for publishing preparation;
 actual retained-source execution, native/WASM row verification and UI integration
 remain P2 conditions. No physical-width or whole-project approval is implied.
+
+## Addendum: Sparrow primary-source classification review
+
+Seven role lenses applied to the additional 15-page review and its impact on
+the source investigation. This does not change any frozen scientific protocol.
+
+| Role | Finding | Severity | Resolution / required action |
+|---|---|---|---|
+| CURRENT | Some front criteria require 100/200 m properties. | P1 resolved for present claims | State that the current two-depth source cannot test those criteria; no front classification admitted. |
+| CURRENT | In-situ and potential temperature are not interchangeable. | P1 resolved | No substitution/conversion performed; future conversion needs declared support and method. |
+| CURRENT | A stronger neighboring jet may belong to ACC rather than SIOC. | P1 resolved | Source review supports the existing no-association gate; strongest peak is not a classifier. |
+| SOUNDER | Repository and printed article titles differ. | P2 resolved | Verify original title page, authors, DOI and page range; retain both titles in provenance. |
+| SOUNDER | Historical atlas and model averages differ from 2013 sampling. | P1 resolved | Record support mismatch; do not call the new HYCOM section a reproduction of HASO/FRAM. |
+| SOUNDER | Original rights do not imply redistribution permission. | P1 resolved | Retain only acquisition metadata and our review publicly; raw PDF/renders remain ignored. |
+| CHART | Schematic fronts do not supply current-width geometry. | P1 resolved | No figure digitization, drawn axis, polygon or width produced. |
+| CHART | Property brackets cannot become velocity edges. | P1 resolved | Explicit false property-bracket/width equivalence in assessment. |
+| CHART | The same latitude need not carry the same named front in both products. | P2 resolved | Preserve source disagreement; no fixed identity assigned by latitude. |
+| BEACON | A new source could be advertised as filling a width gap. | P1 resolved | No compatible SIOC width admitted; plan explains classification support only. |
+| BEACON | Front names could become automatic current aliases. | P1 resolved | Explicitly reject automatic aliases and preserve naming ambiguity. |
+| BEACON | Additional source access is not a fix for the blocked paper fixture. | P2 resolved | Stramma fixture remains a separate unresolved CI bootstrap condition. |
+| HARBOR | The new limitation must be visible near the profiles. | P2 resolved in code | Plain text paragraph plus descriptive review link before controls. |
+| HARBOR | Meaning must not depend on colors or hover. | P2 resolved | Source limitation is textual; no new color encoding or hover dependency introduced. |
+| HARBOR | New link and page reflow need actual-data browser execution. | P2 open | Existing source-profile gate will check every local link and 320 px layout after acquisition. |
+| KEEL | Scanned pages yielded no extractable text. | P2 resolved | All fifteen rendered pages visually reviewed; no nonexistent OCR support claimed. |
+| KEEL | New findings could tempt a post-acquisition protocol change. | P1 resolved | Source/diagnostic protocols and their pinned operators unchanged; later support extension requires separate declaration. |
+| KEEL | Local paper reading does not establish overall CI success. | P2 open | Preserve current fixture failure and pending source/native/browser gates. |
+| LOGBOOK | The additional original must not leak through staging. | P1 resolved | Git ignore checks confirm PDF and private renders excluded; stage exact metadata/review paths only. |
+| LOGBOOK | Source review is an incremental record, not rewritten history. | P2 resolved | New acquisition/review files; previous Stramma access records unchanged. |
+| LOGBOOK | PR workflow must stay continuous. | P1 resolved | Same branch/draft PR83; no new PR or main merge. |
+
+Review addendum: 21 findings, no unresolved P1 for publishing this bounded
+source review. Actual source reconstruction, browser/native readback and CI
+bootstrap conditions remain open; no physical measurement is approved.

@@ -129,3 +129,24 @@ counts remain unchanged. After complete acquisition/reconstruction, generate
 the actual rows, add source/query/card links and run exact native/WASM readback
 against all 23,472 retained cells. The source-profile browser gate remains
 pending. No physical measurement is admitted by preparing the adapter.
+
+## Additional primary-source review: classification support
+
+Acquired the author-deposited Sparrow et al. (1996) original from the UEA
+repository and visually read all 15 scanned pages. The printed title, authors,
+DOI and pages identify the article despite a different repository title.
+Acquisition and paraphrased review are versioned; the copyrighted PDF and
+private renders remain ignored. This is an additional source, not a replacement
+for the blocked Stramma institutional fixture; that CI bootstrap remains open.
+
+The new review identifies support missing from our present source: criteria
+at 100/200 m and subsurface salinity-minimum structure. Neither a raw in-situ
+temperature substitution nor interpolation between 15 m and 1000 m can establish
+that support. The viewer now states this limit. The new evidence strengthens
+the requirement to distinguish nearby flow bands before measuring a named
+current; it does not invalidate the retained source as exploratory context.
+
+Existing frozen acquisition/diagnostic protocols and their checksums are
+unchanged. Finish their complete results first. Any subsequent depth extension
+or thermodynamic conversion requires its own declared support and method.
+No compatible published SIOC width was admitted from this paper review.
