@@ -57,6 +57,7 @@
       const p=document.createElement('p');p.textContent='Single survey summary. Width boundaries, fixed width layer and uncertainty remain unspecified; no source-figure digitization or geographic envelope.';container.append(p);
       return;
     }
+    if(row?.phase_kind==='source_reported_current_width_constraint'){container.hidden=false;const image=document.createElement('img');image.src='../figures/aleutian-onishi-2001-width-constraint.svg';image.alt='Published Aleutian regional width greater than400km; upper extent, epoch and layer unspecified.';image.style.cssText='width:100%;max-width:1000px;height:auto';container.append(image);const p=document.createElement('p');p.textContent='This is a strict published regional lower constraint. No finite mean, width error, annual extrema, occupied polygon or seasonal playback.';container.append(p);return;}
     if(row?.phase_kind==='multi_year_jet_width_range'){
       container.hidden=false;
       const image=document.createElement('img');image.src='../figures/neuc-glider-2015-width-ranges.svg';image.alt='Pacific NEUC southern jet100–350km; northern jet0–200km. Local multi-year ranges with different jet identities, not annual envelopes.';image.style.cssText='width:100%;max-width:1000px;height:auto';container.append(image);
@@ -201,6 +202,7 @@
     if(row?.phase_kind==='ensemble_angular_summary')byId('season-definition').textContent=`${row.geographic_scope} ${row.layer} ${row.boundary_rule} Equator used only for unit conversion, not an observed location. Shared source claim, not independent jet measurements. Core displacement and PV-front scale are separate metrics. Bar omitted; annual variation unresolved.`;
     if(row?.phase_kind==='mean_offshore_extent_range')byId('season-definition').textContent+=` ${row.time_convention} ${row.mean_offshore_context.source_date_discrepancy} No edge locator or route buffer inferred; annual variation unresolved.`;
     if(row?.phase_kind==='regional_scalar_summary')byId('season-definition').textContent=`${row.geographic_scope} ${row.layer} ${row.boundary_rule} No edge locator or full-width bar inferred from this regional scalar. Annual variation unresolved.`;
+    if(row?.phase_kind==='source_reported_current_width_constraint'){byId('season-title').textContent='Published regional width constraint';byId('season-value').textContent='Aleutian / Subarctic Current: >400 km; finite width unknown';byId('season-definition').textContent=`${row.geographic_scope} ${row.layer} ${row.boundary_rule} ${row.time_convention}`;}
     if(row?.phase_kind==='width_time_series_statistics') {
       const statistics=row.width_statistics_context.reported_statistics;
       byId('season-title').textContent='Local surface jet width statistics';

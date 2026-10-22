@@ -11,7 +11,7 @@ from test_current_research_evidence_browser import BASE, native
 def main():
     doc, _ = n.verify_inputs()
     out = n.ROOT / '.pytest_cache/neuc-glider-widths/browser'
-    out.mkdir(exist_ok=True)
+    out.mkdir(parents=True, exist_ok=True)
     queries = [
         {'collection': 'widths', 'filters': [{'field': 'source_id', 'op': 'eq', 'value': n.SOURCE}], 'limit': 10},
         {'collection': 'widths', 'filters': [{'field': 'current_id', 'op': 'eq', 'value': n.CURRENT}], 'limit': 10},

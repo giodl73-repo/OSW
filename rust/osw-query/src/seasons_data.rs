@@ -195,6 +195,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             source.extend(crate::nwasc_admission::widths(bundle));
             source.extend(crate::hansen_asar_widths::widths(bundle));
             source.extend(crate::neuc_glider_widths::widths(bundle));
+            source.extend(crate::aleutian_onishi_width::widths(bundle));
         }
         if key == "routes" && crate::madagascar_coastal_curve::active(bundle) {
             source = crate::nwasc_reference_route::catalogue(bundle)["candidates"]
@@ -412,6 +413,11 @@ fn plans(docs: &Value) -> Result<Value, String> {
         {
             note="Two local repeat-section jet ranges from the2009-2014 study, separate from mean isopycnal breadths. No dated width series, annual extrema or width uncertainty; no seasonal playback inferred.".to_owned();
         }
+        if widths.iter().any(|r| {
+            r["current_id"] == id && r["phase_kind"] == "source_reported_current_width_constraint"
+        }) {
+            note="Published regional width>400km, with unspecified width layer and epoch. The source does not give a finite width, annual range or width error; seasonal playback remains unavailable.".to_owned();
+        }
         if let Some(r) = summary {
             let span = r["reported_seasonal_value_span_km"]
                 .as_array()
@@ -487,11 +493,16 @@ impl Store {
             .as_array_mut()
             .unwrap()
             .extend(crate::neuc_glider_widths::widths(&self.bundle));
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(crate::aleutian_onishi_width::widths(&self.bundle));
         let mut supplemental = crate::current_measurements::widths(&self.bundle);
         supplemental.extend(crate::agulhas_reported::widths(&self.bundle));
         supplemental.extend(crate::nwasc_admission::widths(&self.bundle));
         supplemental.extend(crate::hansen_asar_widths::widths(&self.bundle));
         supplemental.extend(crate::neuc_glider_widths::widths(&self.bundle));
+        supplemental.extend(crate::aleutian_onishi_width::widths(&self.bundle));
         let mut plans = plans(&docs)?;
         crate::current_catalogue::add_plans(&self.bundle, &mut plans);
         let mut sources = json!({});

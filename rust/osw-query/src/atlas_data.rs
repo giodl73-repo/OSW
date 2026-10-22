@@ -675,6 +675,9 @@ impl Store {
             sources[crate::neuc_glider_widths::EXPORT] =
                 json!(crate::neuc_glider_widths::EXPORT_RAW);
         }
+        if crate::aleutian_onishi_width::active(&self.bundle) {
+            sources[crate::aleutian_onishi_width::FILE] = json!(crate::aleutian_onishi_width::RAW);
+        }
         let mut timeline_scenes = json!({});
         for path in TIMELINES {
             if receipts.contains_key(path) {

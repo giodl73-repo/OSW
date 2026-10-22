@@ -101,6 +101,9 @@ def build():
     asar_widths,asar_inputs=verify_asar_widths();inputs.update(asar_inputs)
     from neuc_glider_widths import verify_inputs as verify_neuc_glider
     neuc_glider,neuc_glider_inputs=verify_neuc_glider();inputs.update(neuc_glider_inputs)
+    from aleutian_onishi_width import verify_inputs as verify_aleutian_width
+    aleutian_width,aleutian_width_inputs=verify_aleutian_width();inputs.update(aleutian_width_inputs)
+    sources[aleutian_width['source_record']['id']]=aleutian_width['source_record']
     sources[neuc_glider['source_record']['id']]=neuc_glider['source_record']
     sources[asar_widths['source_record']['id']]=asar_widths['source_record']
     entities.append(nwasc_admission['entity'])
@@ -231,7 +234,7 @@ def build():
         inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
     for path in [gulf_audit['protocol_file'],'analysis/check_gulf_stream_published_widths.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
-    widths = width_inventory['measurements']+[prose_dimensions['width_record'],agulhas_reported['width_record']]+nwasc_admission['width_records']+asar_widths['width_records']+neuc_glider['width_records']
+    widths = width_inventory['measurements']+[prose_dimensions['width_record'],agulhas_reported['width_record']]+nwasc_admission['width_records']+asar_widths['width_records']+neuc_glider['width_records']+aleutian_width['width_records']
     width_audits={}
     for record in widths:
         audit_file=record.get('extraction_file') or (record.get('stream_mean_context') or record.get('eulerian_section_context') or record.get('width_statistics_context') or record.get('regional_range_context') or record.get('regional_scalar_context') or record.get('mean_offshore_context') or record.get('adcp_threshold_context') or {}).get('audit_file')
@@ -580,6 +583,7 @@ def build():
             raise ValueError(f'Unresolved dashboard sources for {ident}')
         if current_id in {'norwegian-atlantic-slope','norwegian-coastal'}:source_ids.add(asar_widths['source_record']['id'])
         if current_id=='pacific-north-equatorial-undercurrent':source_ids.add(neuc_glider['source_record']['id'])
+        if current_id=='aleutian':source_ids.add(aleutian_width['source_record']['id'])
         own_sources = [sources[key] for key in sorted(source_ids)]
         linked_widths = {ident for phase in own_phases for ident in phase['width_measurement_ids']}
         temporal_widths = [w for w in own_widths if w['id'] not in linked_widths and w.get('phase_kind') in {'seasonal_summary', 'dated_section', 'survey_summary', 'ensemble_summary', 'survey_profile_composite', 'monthly_climatological_fit'}]
@@ -870,6 +874,10 @@ def build():
             groups['measurements'].append(neuc_glider)
             evidence_links.append({'label':'Compare NEUC multi-year glider width ranges','url':'../'+neuc_glider['figure_file']})
             evidence_links.append({'label':'Query NEUC glider range methods and mean-breadth comparison','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':neuc_glider['id']}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
+        if current_id=='aleutian':
+            groups['measurements'].append(aleutian_width)
+            evidence_links.append({'label':'Inspect Aleutian published width greater than400km','url':'../'+aleutian_width['figure_file']})
+            evidence_links.append({'label':'Query Aleutian source width constraint','url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':aleutian_width['id']}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})
         if current_id=='agulhas':
             payload['reported_dimension_context']=agulhas_reported
             groups['measurements'].append(agulhas_reported)

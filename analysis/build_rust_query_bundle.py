@@ -304,6 +304,10 @@ def build():
     neuc_glider,neuc_glider_inputs=verify_neuc_glider();inputs.update(neuc_glider_inputs)
     collections['widths'].extend(neuc_glider['width_records'])
     collections['sources'].append(neuc_glider['source_record'])
+    from aleutian_onishi_width import verify_inputs as verify_aleutian_width, diagnostic as aleutian_width_diagnostic, ID as ALEUTIAN_WIDTH_ID
+    aleutian_width,aleutian_width_inputs=verify_aleutian_width();inputs.update(aleutian_width_inputs)
+    collections['widths'].extend(aleutian_width['width_records'])
+    collections['sources'].append(aleutian_width['source_record'])
     collections['sources']=[agulhas_reported['source_record'] if r['id']==agulhas_reported['source_record']['id'] else r for r in collections['sources']]
     collections['sources']=[routes['primary_source_record'] if r['id']==routes['primary_source_record']['id'] else r for r in collections['sources']]
     collections['reference_routes']=routes['candidates']
@@ -739,6 +743,11 @@ def build():
     collections['diagnostics'].append(agulhas_reported_diagnostic(agulhas_reported))
     agulhas_owner=next(r for r in objects if r['id']=='current:agulhas')
     agulhas_owner['diagnostic_ids'].append(AGULHAS_REPORTED_ID)
+    collections['diagnostics'].append(aleutian_width_diagnostic(aleutian_width))
+    for owner in objects:
+        if owner['id']=='current:aleutian':
+            owner.setdefault('diagnostic_ids',[]).append(ALEUTIAN_WIDTH_ID)
+            owner['source_ids']=sorted(set(owner['source_ids'])|{aleutian_width['source_record']['id']})
     collections['diagnostics'].append(neuc_glider_diagnostic(neuc_glider))
     for owner in objects:
         if owner['id']=='current:pacific-north-equatorial-undercurrent':
@@ -910,6 +919,7 @@ def build():
             'nwasc_reference_route_version':'1',
             'hansen_asar_widths_version':'1',
             'neuc_glider_widths_version':'1',
+            'aleutian_onishi_width_version':'1',
             'agulhas_reported_dimensions_version':'1',
             'nwasc_mean_core_widths_version':'1',
             'eddy_recurrence_receipt':{'source_file':recurrence_path,'source_sha256':inputs[recurrence_path],'source_json':(ROOT/recurrence_path).read_bytes().decode('utf-8')},

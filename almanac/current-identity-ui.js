@@ -20,7 +20,7 @@
       all.textContent='Query all accepted current identities';query.append(all);section.append(query);
       const dimensions=document.createElement('p'),ranked=document.createElement('a'),download=document.createElement('a');
       ranked.href='query.html?q='+encodeURIComponent(JSON.stringify({collection:'length_assessments',filters:[{field:'rank_eligible',op:'eq',value:true}],sort:{field:'published_length_km',direction:'desc'},limit:100}));ranked.textContent='Ranked source-reported length estimates';
-      download.href='../research/ocean-current-measurements-neuc-edition.json';download.textContent='Download working measurement records';
+      download.href='../research/ocean-current-measurements-aleutian-edition.json';download.textContent='Download working measurement records';
       dimensions.append(ranked,document.createTextNode(' · '),download);section.append(dimensions);
       section.dataset.engine='rust-osw-query-v1';window.oswCurrentIdentityAdmissions=result;clearTimeout(timer);stop();
     }

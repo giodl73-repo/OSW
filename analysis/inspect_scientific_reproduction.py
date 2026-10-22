@@ -37,7 +37,8 @@ TARGETS=[('build_aleutian_p14n_vector_section','research/aleutian-p14n-1993-obse
          ('nwasc_working_admission','research/norwegian-atlantic-slope-working-admission.json',{},None),
          ('hansen_asar_widths','research/hansen-2011-asar-surface-width-admissions.json',{},None),
          ('nwasc_source_anchor_route','research/nwasc-source-anchor-reference-route.json',{},None),
-         ('neuc_glider_widths','research/neuc-glider-2015-width-admissions.json',{},None)]
+         ('neuc_glider_widths','research/neuc-glider-2015-width-admissions.json',{},None),
+         ('aleutian_onishi_width','research/aleutian-onishi-2001-width-admission.json',{},None)]
 
 
 def differences(expected, actual):

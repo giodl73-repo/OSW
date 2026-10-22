@@ -5,7 +5,7 @@ use sha2::{Digest, Sha256};
 pub const FILE: &str = "research/neuc-glider-2015-width-admissions.json";
 pub const EXPORT: &str = "research/ocean-current-measurements-neuc-edition.json";
 pub const RAW: &str = include_str!("../../../research/neuc-glider-2015-width-admissions.json");
-pub const EXPORT_RAW: &str =
+pub static EXPORT_RAW: &str =
     include_str!("../../../research/ocean-current-measurements-neuc-edition.json");
 const OWNER: &str = "current:pacific-north-equatorial-undercurrent";
 const ID: &str = "diagnostic:neuc-glider-2015-width-ranges";
@@ -89,7 +89,9 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
             return Err(format!("Changed NEUC scoped {collection}"));
         }
     }
-    if b.collections.get("widths") != e["widths"].as_array()
+    let mut expected_widths = e["widths"].as_array().unwrap().clone();
+    expected_widths.extend(crate::aleutian_onishi_width::widths(b));
+    if b.collections.get("widths") != Some(&expected_widths)
         || b.collections.get("length_assessments") != e["length_assessments"].as_array()
     {
         return Err("NEUC ranges changed preceding width inventory or length evidence".into());
@@ -123,7 +125,7 @@ pub fn query(rows: &[&Value], b: &Bundle) -> Value {
     }
     let d = document();
     json!({"kind":"neuc_glider_width_ranges","source_file":FILE,"source_url":d["source_url"],"figure_file":d["figure_file"],
-        "effective_measurements_file":EXPORT,"width_records":d["width_records"],
+        "effective_measurements_file":if crate::aleutian_onishi_width::active(b){crate::aleutian_onishi_width::EXPORT}else{EXPORT},"width_records":d["width_records"],
         "mean_breadth_comparison":crate::pacific_neuc_breadths::full(b.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),
         "scope":"Two local Pacific NEUC jet ranges at134.3E across the June2009-January2014 study. Meridional eastward geostrophic-flow extents in source density context26.7-27.3kg/m3; southern broad cases may combine jets. Neither annual envelopes nor width error; no dated samples, new physical edges or source-field reproduction. Primary HTML reviewed, original file not retained."})
 }

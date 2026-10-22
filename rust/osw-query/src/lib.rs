@@ -4,6 +4,7 @@ use std::collections::{BTreeMap, BTreeSet};
 pub const MAX_SOURCE_SNAPSHOT_BYTES: usize = 512 * 1024 * 1024;
 mod abstract_regional_widths;
 mod agulhas_reported;
+mod aleutian_onishi_width;
 mod antilles_cruise_spans;
 mod asca_calendar;
 mod asca_component_spans;
@@ -355,6 +356,7 @@ impl Store {
         nwasc_reference_route::validate(&bundle)?;
         hansen_asar_widths::validate(&bundle)?;
         neuc_glider_widths::validate(&bundle)?;
+        aleutian_onishi_width::validate(&bundle)?;
         current_length_bounds::validate(&bundle)?;
         movies::validate(&bundle)?;
         measurement_scope::validate(&bundle.collections, &bundle.manifest)?;
@@ -730,6 +732,10 @@ impl Store {
             && !neuc_glider_widths::query(&matches, &self.bundle).is_null()
         {
             neuc_glider_widths::query(&matches, &self.bundle)
+        } else if query.collection == "diagnostics"
+            && !aleutian_onishi_width::query(&matches, &self.bundle).is_null()
+        {
+            aleutian_onishi_width::query(&matches, &self.bundle)
         } else if query.collection == "observed_section_spans" {
             observed_spans::scene(&matches)
         } else if query.collection == "proposed_widths" {
@@ -803,6 +809,7 @@ impl Store {
                 dwbc_float_composite::scene(&matches, records),
                 pacific_neuc_breadths::scene(&matches, records),
                 neuc_glider_widths::width_scene(&matches, &self.bundle),
+                aleutian_onishi_width::query(&matches, &self.bundle),
                 portugal_section_span::scene(&matches),
                 antilles_cruise_spans::scene(&matches),
                 model_axis_spread::scene(&matches),

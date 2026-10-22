@@ -145,7 +145,7 @@
         link('Open reported-dimension summary',image.src,node('p',null,evidence));
         const q={collection:'widths',filters:[{field:'current_id',op:'eq',value:row.proposed_id}],limit:10};
         link('Query all admitted local widths','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,evidence));
-        link('Download the effective measurement records','../research/ocean-current-measurements-neuc-edition.json',node('p',null,evidence));
+        link('Download the effective measurement records','../research/ocean-current-measurements-aleutian-edition.json',node('p',null,evidence));
         const asarSection=node('section',null,card);asarSection.className='asar-width-admissions';
         node('h4','Additional ASAR surface-width reports',asarSection);
         node('p','August2007-July2010 weighted mean surface field:60km FWHM at P1;36km at Svinoy conditional on partition at the200m isobath. These two records supplement the six earlier scoped reports above. Mixed45km P2 and60km S1 profiles are excluded from separate-current widths. No annual range or width error is supplied.',asarSection);
