@@ -87,3 +87,31 @@ Full135-browser matrix/default local suite remain unrun;4GiB guard unmet.
 
 Nine superseded published transport parts were hash/length/containment checked
 and retired after all consumers completed;current parts/research originals preserved.
+
+### Fresh Linux and receipt-only publication
+
+Scientific source commit45f268fd671da51950dcb12f81df6ab54ac58248,
+run39755270148,scientific-reproduction job119745569887:SUCCESS.
+All32 retained/rebuilt report SHA256 values equal local exactly. This rebuilds
+the curated source extraction,not an independent hydrographic width estimate.
+NetCDF119745569912:SUCCESS. Offline119745570105 fails before tests while fetching
+Rotschi1972 primary paper fixture,HTTP403 at
+https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers20-05/010028590.pdf.
+No overall-green/full-suite claim. Local62 focused tests/2 subtests,132 Rust
+tests,complete native atlas ingestion and all5 actual Chrome/native-WASM queries
+plus the regional-identity browser regression pass. Original/own SVG reviewed.
+
+All445 raw staged engine pins and450 source hashes verify. GitHub accepted
+the source push with its >50MB recommendation warning for56,102,657-byte WASM
+(53.50MiB). The following follow-up changes only these two receipt documents;
+all scientific inputs/data/engine/UI artifacts remain identical to the tested
+source head. Same draft PR83;no new PR and no main merge. Broader full-suite
+coverage and whole-snapshot packaging/memory remain open P2 conditions;no
+external peer or release approval. Full135-browser matrix/default local suite
+unrun;4GiB guard unmet. Archived-original Aleutian provenance is now recorded;
+NEUC original-file archiving remains a separate unresolved historical gap.
+
+Remaining individual current width-owner gaps:RedSea salineoverflow,Norwegian,
+SpitsbergenAtlantic,IndianSECC,SouthIndian. Preserve the8 family/4system scopes,
+89 unranked lengths and30 reference-card-owner gaps. Continue core data work
+here without replacing unknown finite widths or annual extrema with this bound.
