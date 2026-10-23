@@ -81,3 +81,26 @@ before creating a publication, and reject an out-of-tree destination. The focuse
 suite is now **16 passed**. Actual full-source replay, derived portability and
 new-layer query/visual integration remain pending; passing guard tests does not
 establish those results.
+
+
+## Early cross-platform thermodynamic conformance
+
+While the actual source acquisition remains active, a separate numerical probe
+uses synthetic packed fields on the retained coordinate grid. It contains five
+synthetic days, all326 latitudes/two depths/three meridians, explicit four-field
+missingness, calendar-like eligibility and six exact output arrays. These are
+not actual model-field values, observations or admitted current measurements.
+
+`python analysis/check_south_indian_front_temperature_portability.py` checks
+all finite numeric bits and the whole portable stored NPZ against a Windows
+reference. Only missing NaN payloads use an explicit canonical NumPy sentinel;
+no finite value is rounded or approximately accepted. Pressure, Absolute
+Salinity, potential temperature, common masks/counts and monthly potential
+means must reproduce exactly. The local gate passes. The independent Linux CI
+job installs pinned NumPy/GSW/h5py and runs this check without a paper download.
+Actual-source conversion/replay still requires its own complete-source gate.
+
+The probe is a separate synthetic conformance artifact and does not modify any
+frozen acquisition input, conversion method or previous scientific report.
+Linux evidence is pending. A portability failure requires a recorded versioned
+correction; it must not be hidden by relaxing the exact gate.

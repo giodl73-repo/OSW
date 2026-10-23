@@ -8,6 +8,17 @@ permissions:
   contents: read
 
 jobs:
+  front-temperature-conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install pinned thermodynamic dependencies
+        run: python -m pip install numpy==2.4.1 gsw==3.6.23 h5py==3.16.0
+      - name: Check exact synthetic pressure salinity and temperature conversion
+        run: python analysis/check_south_indian_front_temperature_portability.py
   scientific-reproduction:
     runs-on: ubuntu-latest
     steps:
