@@ -139,3 +139,14 @@ The independent Linux conformance job now also runs these focused tests. Viewer
 JavaScript syntax passes. Actual complete-source packaging/replay, full derived
 report portability, rendering and native/WASM atlas integration remain pending.
 The current atlas and all existing scientific measurements are unchanged.
+
+
+### Independent focused Linux result
+
+At consumer-preparation commit11e54ed, run39881273814/job120178967847 passes
+both the complete exact synthetic NPZ check and **40 focused tests in2.82s**.
+The job log was read directly after the completed job; the surrounding workflow
+was still active at that observation. This establishes the focused method/query
+scope on Linux, not actual new-source replay, rendering or broader offline CI.
+No approximation was added to the exact conformance gate. The raw acquisition
+remains the original active process; no duplicate process was launched.

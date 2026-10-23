@@ -190,4 +190,3 @@ def card_links():
         q = {'document': path, 'pointer': '/months', 'limit': 1, 'offset': 0}
         links.append({'label': label, 'url': 'query.html?source-q='+quote(json.dumps(q, separators=(',', ':')), safe='')+'#source-query-title'})
     return links
-

@@ -85,3 +85,9 @@ Twenty-one additional findings. No unresolved P1 for publishing the prepared
 consumer code. Verdict: **APPROVED-WITH-CONDITIONS** for source/context tooling.
 Actual full-source/derived replay, generated views, accessibility and atlas
 native/WASM checks remain required before those milestones can be called done.
+
+KEEL follow-up:job120178967847/run39881273814 at11e54ed passes the exact
+synthetic stored NPZ and all40 focused tests on Linux (2.82s). This resolves
+focused cross-platform method/query conditions only. Actual new-source and
+derived report replay, all72 rendered selections and main native/WASM atlas
+integration remain required; the acquisition is still active.
