@@ -40,7 +40,8 @@ TARGETS=[('build_aleutian_p14n_vector_section','research/aleutian-p14n-1993-obse
          ('nwasc_source_anchor_route','research/nwasc-source-anchor-reference-route.json',{},None),
          ('neuc_glider_widths','research/neuc-glider-2015-width-admissions.json',{},None),
          ('aleutian_onishi_width','research/aleutian-onishi-2001-width-admission.json',{},None),
-         ('south_indian_paired_profiles_v2','research/south-indian-hycom-2013-paired-profile-candidates-v2.json',{},None)]
+         ('south_indian_paired_profiles_v2','research/south-indian-hycom-2013-paired-profile-candidates-v2.json',{},None),
+         ('south_indian_front_property_windows_v2','research/south-indian-2013-front-property-windows-v2.json',{},None)]
 
 
 def differences(expected, actual):

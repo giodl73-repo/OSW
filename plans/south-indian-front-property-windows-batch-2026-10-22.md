@@ -66,3 +66,28 @@ source-document and phone-navigation stages. No assertion, page, field or
 comparison is removed. All other browser budgets and default coverage remain.
 Fresh runs already in progress are observed as their own immutable snapshots;
 no failed observation is treated as an acquisition restart.
+
+
+## Corrected actual assessment and local replay
+
+V2 declaration04ddc0d was pushed before corrected calculation. All36 actual
+cases now retain all four criterion groups. The4,168,756-byte report reproduces
+exactly locally, SHA256
+5c0b0ab1ad2756b61aed8ac9cce959ce1abf560e11567bb33377855e8a9d3a72.
+It preserves606 surface positive maxima and4,258 pairwise comparisons. Every
+comparison has complete, provably identical available daily support; there are
+no unsupported property nodes in this retained sample.
+
+Temperature100m produces49 runs and11 cases with multiple runs; salinity100m
+produces53 runs and10 multiple cases. Their joint criterion produces60 runs,
+with multiple disjoint supports in18/36 cases. Temperature200m produces94 runs,
+with multiple supports in27/36 cases. Every criterion has qualifying native
+nodes in all36 cases. The joint criterion has75 overlapping peak/run pairs;
+that is not75 identified currents or independent observations. No preferred
+front, current peak or physical width is selected.
+
+The new report joins the exact scientific registry as target35; all34 preceding
+targets remain in order and unchanged. The independent source conformance job
+also replays this complete report and runs the29 new method/construction tests
+alongside its40 prior focused checks. Actual Linux results, new interactive
+presentation and main query integration remain pending.

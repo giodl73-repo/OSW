@@ -24,10 +24,14 @@ jobs:
           python -m pytest -q analysis/test_south_indian_front_levels.py
           analysis/test_south_indian_front_level_query.py
           analysis/test_south_indian_front_temperature.py
+          analysis/test_south_indian_front_property_windows.py
+          analysis/test_south_indian_front_property_windows_v2.py
       - name: Reconstruct supplementary native source products from retained originals
         run: python analysis/package_south_indian_front_levels.py reproduce
       - name: Reproduce complete actual-source potential temperature report exactly
         run: python analysis/check_south_indian_front_temperature_reproduction.py
+      - name: Reproduce complete conditional native property-window report exactly
+        run: python analysis/south_indian_front_property_windows_v2.py check
   front-level-atlas:
     runs-on: ubuntu-latest
     env:
