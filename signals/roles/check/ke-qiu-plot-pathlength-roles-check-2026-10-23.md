@@ -103,3 +103,23 @@ pass across v1/v2/v3; v3 adds true-stroke retention. LOGBOOK: retain both
 failures and label the new version; no completed-delivery claim follows.
 The earlier21 findings and their3 remaining delivery conditions still apply;
 verdict APPROVED-WITH-CONDITIONS for freeze/extraction only, P1:0/P2:3/P3:18.
+
+## Prospective v4 run-boundary precision amendment
+
+V3 at5da1cae rejected two graphics-coordinate overlaps before calibration.
+The retained raw diagnostic establishes16 internally ordered runs with boundary
+overlaps0.001572 and0.001007point; no target km/year series was inspected.
+V4 preserves those coordinates, original ownership and run breaks exactly,
+permits only the existing0.02-point coordinate tolerance between runs, and
+reports permitted overlaps rather than silently repairing them. Larger
+overlaps and every internal reversal still reject. Original knot counts
+explicitly include retained shared endpoint instances, not observed samples.
+
+CURRENT/SOUNDER: no physical or time-cadence claim changes. CHART: no hidden
+joining or coordinate adjustment. BEACON: describe graph readings and knot
+records precisely. HARBOR: table/keyboard/phone gates stay open. KEEL:86
+prospective synthetic checks across four versions pass, including exact small
+overlap retention and large overlap rejection. LOGBOOK: all three failed
+frozen versions, diagnostics and logs remain retained; v4 is a new version.
+The same21 findings/3 pending delivery conditions apply. Verdict remains
+APPROVED-WITH-CONDITIONS for freeze/extraction, P1:0/P2:3/P3:18.
