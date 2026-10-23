@@ -104,3 +104,53 @@ workers stay one. No build/data/browser/regression overlap. Close a validation
 browser before starting another phase. Native/WASM builds require a disk
 preflight and at least2 GiB free under the current local resource policy.
 The source-stage checks above use no browser and create only small products.
+
+## Query preparation and systematic source-link finding
+
+Prepared, not yet wired into the live builders:
+
+- `analysis/brazil_regional_reach_query.py` and its exact
+  `research/brazil-regional-reach-query-contract-v1.json` preserve the frozen
+  report/SVG, prepare four records and three card links, and reject partial,
+  duplicate, orphaned or count-inconsistent joins before mutation.
+- The source is a scoped textbook excerpt, not another independent document.
+  Its full-book SHA identifies the shared compilation. No redistribution,
+  completeness, date or observation-class upgrade is made. The proposed host
+  explanation distinguishes this source's limits from independent width data.
+- `analysis/object_source_links.py` prepares a pure projection of registered
+  owner/evidence references, including media, method and snapshot sources.
+  Counts derive from those references, not supporting metadata dictionaries.
+  Unregistered references and evidence for a different owner reject. All other
+  object fields remain exact; input objects are not mutated.
+
+The existing native store was queried read-only at repository commitb742a1c,
+logical packet SHA256
+`5ea582e44f8fd88d736d9ddf9c46fb52fad8e9c4cdca74f6130da10d979a2345`.
+All242 object rows were returned;117 declared counts differed from their
+source-ID lists. The captured audit is
+`research/object-source-link-count-audit-2026-10-23.json`.
+These are metadata mismatches, not117 missing physical currents or measurements.
+The comparison alone does not establish complete source associations or
+independent-observation counts.
+
+For Brazil specifically, the native row declares5 linked sources but lists3.
+The already registered `media:0016` reference to
+`source:4f7441b953be4651` is absent from its query projection. That source is
+the OSW-authored `ocean-current-nasa-crosswalk.json` media ledger; restoring its
+reference does not turn it into an upstream NASA dataset. The focused actual
+owner rehearsal gives4 registered references, not3 or5, and leaves every other
+owner field exact. No canonical bundle is changed by that rehearsal.
+
+All28 query/projection checks passed, alongside exact contract build/check.
+The first inventory-audit request used limit1000, exceeding the existing
+native API's documented-in-code maximum500; it failed and admitted no result.
+The corrected limit500 request returned the complete242-row inventory. No
+browser or compiler was launched for these checks.
+
+Before canonical integration, fix the dashboard's source-list aliasing and
+preserve all registered owned evidence references in query projection. Apply
+the projection consistently to the entire object inventory, then perform the
+Brazil four-record admission. Merely replacing5 with3 would conceal the missing
+media reference. Rebuild dashboard/query/native/WASM together once disk
+headroom permits; rerun the full count audit and the single batched browser
+gate. The existing live counts remain incorrect until that delivery succeeds.
