@@ -756,6 +756,10 @@ def build():
     agulhas_owner=next(r for r in objects if r['id']=='current:agulhas')
     agulhas_owner['diagnostic_ids'].append(AGULHAS_REPORTED_ID)
     collections['diagnostics'].append(aleutian_width_diagnostic(aleutian_width))
+    from south_indian_front_property_query import view_evidence as property_evidence
+    _,property_diagnostic,property_inputs=property_evidence()
+    inputs.update(property_inputs)
+    collections['diagnostics'].append(property_diagnostic)
     for owner in objects:
         if owner['id']=='current:aleutian':
             owner.setdefault('diagnostic_ids',[]).append(ALEUTIAN_WIDTH_ID)

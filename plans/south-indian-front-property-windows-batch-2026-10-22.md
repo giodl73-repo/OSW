@@ -30,13 +30,16 @@ pending. No physical gap closure or independent role approval is asserted.
 
 ## Reproduction sequence
 
-The declaration is created once with
-`python analysis/south_indian_front_property_windows.py declare`.
-After the declaration/code are committed, calculate with
-`python analysis/south_indian_front_property_windows.py build` and reproduce
-with `python analysis/south_indian_front_property_windows.py check`.
-Focused tests: `python -m pytest analysis/test_south_indian_front_property_windows.py -q`.
-Continue exact cross-platform checks and all existing validation gates.
+The current calculation is v2. Its retained declaration is already frozen;
+do not recreate it. Reproduce with
+`python analysis/south_indian_front_property_windows_v2.py check`.
+For an absent output, use
+`python analysis/south_indian_front_property_windows_v2.py build`.
+Focused tests:
+`python -m pytest analysis/test_south_indian_front_property_windows.py analysis/test_south_indian_front_property_windows_v2.py -q`.
+V1 is preserved as a failed historical generator, described in the scope audit
+below; it is not the current calculation. Continue all exact cross-platform
+checks and existing validation gates.
 
 
 ## Actual construction failure and explicit v2 correction
@@ -91,3 +94,58 @@ targets remain in order and unchanged. The independent source conformance job
 also replays this complete report and runs the29 new method/construction tests
 alongside its40 prior focused checks. Actual Linux results, new interactive
 presentation and main query integration remain pending.
+
+
+## Independent Linux result and actual interactive view
+
+At6a10bd4, run39893463551/job120218340153 passes all35 exact scientific
+reports. The new report has zero changed numeric or other leaves and identical
+retained/rebuilt SHA2565c0b0ab1ad2756b61aed8ac9cce959ce1abf560e11567bb33377855e8a9d3a72.
+Job120218340276 passes69 focused tests (3.26s), the earlier actual raw/derived
+replays and complete new property report replay. This resolves corrected numeric
+portability without rounding or relaxed comparison. The unrelated offline job
+still fails at its paper fixture; no full-suite green claim is made.
+
+The new interactive section view is generated. Its actual browser gate passes
+all36 cases and144 criterion selections,11,736 native table rows, every run,
+all peak/run relations and full plateau-node markers. Complete surface-maximum
+support/value/flank tables accompany the chart. Keyboard, permalink/history,
+invalid-query explanations and320px reflow/axis text all pass. No original
+archives or papers download automatically. Desktop and phone charts were
+visually inspected. Main-card/full native/WASM query integration remains pending.
+
+
+## Integrated local delivery and preservation
+
+The complete main query browser gate is terminal PASS: all36 cases/144 masks/
+4,258 pairwise relations match native and WASM results through both the diagnostic
+record and full lossless source query. At320px, keyboard current-card -> new
+view -> selected August/eastern-meridian case query returns the exact expected
+complete case. No page errors or automatic original downloads occur.
+
+The main corpus now has490 source documents and52 query collections/106,812
+rows, including one new diagnostic. All106,811 older rows remain exact except
+the South Indian object's source fingerprints and two additive evidence links.
+Its linked-provider-source count stays4. All133 protected scientific/source
+files and all485 prior source descriptors plus actual original-file bytes remain
+exact. All170 scoped widths,78 reference routes,46,944 hydrography rows and175
+source records remain unchanged. No new physical measurement or named flow is
+admitted. All36 original v1 ARF groups,606 surface maxima and1,620 ARF pairwise
+results also remain exactly unchanged in v2; the correction restores the three
+omitted groups without numerical retuning.
+
+All133 Rust tests, native atlas validation and the fresh47,983,282-byte WASM
+build pass. Its SHA256 is
+a8d224130558a73403cdab54a110ee7b55a9e2d041f872699b80878e39f54c85;
+all548 engine dependency pins match. Packet transport is183,463,309 bytes in11
+verified parts. Only exact superseded generated parts were retired after the
+replacement preservation gate; originals remain and old parts stay in Git
+history. New generated parts were losslessly compressed with byte hashes checked.
+
+Both new view/query checks are included in default browser coverage and the
+independent focused CI job. Numeric Linux proof at6a10bd4 remains valid because
+all scientific inputs/operators/reports are unchanged by presentation integration.
+The updated full UI CI result remains pending; older1800-second deadline failures
+remain recorded, and40-minute budgets retain every source comparison. Broader
+full-suite/offline status is still separate from these passing focused gates.
+Continue the physical measurement and classification gaps in this same PR83.

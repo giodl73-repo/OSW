@@ -63,3 +63,38 @@ criterion or numerical tolerance changes. V2 preflight pins59 inputs and will be
 published before corrected calculation. Method-declaration verdict:
 APPROVED-WITH-CONDITIONS. Actual v2 numeric reconstruction, accessible presentation
 and full query integration remain required; no v2 delivery approval is claimed.
+
+
+## Corrected calculation and view conditions update
+
+CURRENT/SOUNDER/KEEL: corrected actual36-by-four matrix and4,258 complete-cohort
+comparisons reproduce byte exactly on Windows/Linux. All35 scientific reports
+pass;69 focused tests pass on Linux. The v1 omission remains documented with
+its frozen method and failed-result hash. No physical identity or width admitted.
+CHART/HARBOR: actual144 selections and11,736 native table rows pass, with all
+plateau nodes marked and equivalent surface-maximum/run/relation tables.
+Keyboard, shared state, invalid URI and320px/10px-axis conditions pass. Desktop
+and phone charts visually inspected. BEACON/LOGBOOK: source/conditional limits
+remain beside the view. Main-card navigation and complete native/WASM record
+readback remain pending; no integrated delivery or complete-suite green claim.
+
+
+## Final local integration review
+
+SOUNDER/KEEL: all36 cases,144 masks and4,258 comparisons pass full native/WASM
+readback, as a diagnostic and complete lossless source records. The133 protected
+files and485 old source documents remain byte exact;106,811 prior rows are
+unchanged except the intended source metadata/link update. V2 also preserves all
+36 v1 ARF groups/606 peaks/1,620 prior comparisons exactly. CURRENT: no scientific
+threshold or source value changed and no physical width or identity admitted.
+CHART/HARBOR: complete chart/table144-selection gate passes; current-card/view/
+selected-case query passes via keyboard at320px. BEACON/LOGBOOK: same draft PR83;
+local delivery complete, new Linux UI result and broader offline release gate
+remain distinct open checks. Existing170 widths/78 routes and provider counts
+are unchanged. All548 engine pins,133 Rust tests and native atlas pass.
+
+Latest verdict: APPROVED-WITH-CONDITIONS for this local exploratory data/view
+increment. No unresolved P1 within that delivery scope. The historical v1 P1 is
+preserved and superseded, not concealed. Full-project measurement completeness,
+external scientific admission, final remote UI and broader release gates are
+not asserted complete. All seven role conditions remain explicit above.

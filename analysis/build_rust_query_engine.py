@@ -196,6 +196,8 @@ def main():
                   'almanac/query.html','almanac/reference-routes.html','almanac/seasons.html'])
     from south_indian_front_level_query import view_evidence as front_level_evidence
     _,_,_,front_level_inputs=front_level_evidence();paths.extend(front_level_inputs)
+    from south_indian_front_property_query import view_evidence as property_evidence
+    _,_,property_inputs=property_evidence();paths.extend(property_inputs)
     packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
     paths.extend(['rust/osw-query/src/packet.rs','analysis/query_packet.py','almanac/query-packet.js','almanac/query-worker.js','almanac/query-workspace.js','plans/query-packet-transport-protocol-v1.md'])
     if packet.get('schema')==SCHEMA:

@@ -105,6 +105,11 @@ def build():
     path='research/south-indian-2013-front-level-potential-temperature.json'
     if path not in documents or json.loads(documents[path])!=front_level_report:
         raise ValueError('Missing or changed supplementary native-depth evidence')
+    from south_indian_front_property_query import view_evidence as property_evidence
+    property_report,_,_=property_evidence()
+    path='research/south-indian-2013-front-property-windows-v2.json'
+    if path not in documents or json.loads(documents[path])!=property_report:
+        raise ValueError('Missing or changed complete property-support assessment')
     bands_path = 'research/indian-secc-positive-band-connectivity.json'
     if bands_path in documents:
         from indian_secc_positive_bands import verify as verify_secc_bands

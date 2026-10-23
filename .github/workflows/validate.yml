@@ -64,6 +64,7 @@ jobs:
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
           test_south_indian_front_level_browser.py test_south_indian_front_level_query_browser.py
+          test_south_indian_front_property_browser.py test_south_indian_front_property_query_browser.py
       - name: Retain actual browser receipts
         if: always()
         uses: actions/upload-artifact@v4
@@ -74,6 +75,9 @@ jobs:
             .pytest_cache/south-indian-front-levels-2013/browser/result.json
             .pytest_cache/south-indian-front-levels-2013/query-browser/result.json
             .pytest_cache/south-indian-front-levels-2013/query-browser/current-card-profile-query-phone.png
+            .pytest_cache/south-indian-front-properties-2013/browser/result.json
+            .pytest_cache/south-indian-front-properties-2013/query-browser/result.json
+            .pytest_cache/south-indian-front-properties-2013/query-browser/phone.png
   scientific-reproduction:
     runs-on: ubuntu-latest
     steps:

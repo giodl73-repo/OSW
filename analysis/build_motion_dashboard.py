@@ -297,6 +297,9 @@ def build():
     from south_indian_front_level_query import view_evidence as front_level_evidence
     front_level_cells,_,front_level_report,front_level_inputs=front_level_evidence()
     inputs.update(front_level_inputs)
+    from south_indian_front_property_query import view_evidence as property_evidence
+    property_report,_,property_inputs=property_evidence()
+    inputs.update(property_inputs)
     from west_australian_streamline_evidence import verify as verify_wac_paths
     wac_paths,wac_path_inputs=verify_wac_paths()
     inputs.update(wac_path_inputs)
@@ -805,6 +808,14 @@ def build():
                 'current_association_verified':False,'physical_width_admitted':False,
                 'current_geometry_admitted':False}
             own_sources.append(payload['supplementary_hydrography_source'])
+            from south_indian_front_property_query import card_links as property_links
+            evidence_links.extend(property_links())
+            source_file='research/south-indian-2013-front-property-windows-v2.json'
+            payload['front_property_assessment']={
+                'source_file':source_file,'source_sha256':inputs[source_file],
+                'model_year':2013,'cases':len(property_report['cases']),'criteria_per_case':4,
+                'temperature_scale_verified':False,'front_identification_verified':False,
+                'current_association_verified':False,'physical_width_admitted':False}
         if current_id == 'west-australian':
             evidence_links.append({'label':'Compare twelve surrounding offshore source-vector maps',
                 'url':'../'+wac_context['comparison_figure']})
@@ -893,6 +904,8 @@ def build():
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],
         }
+        if current_id=='south-indian':
+            groups['sources'].append(payload['front_property_assessment'])
         if current_id=='kuroshio':
             capabilities['model_dimension_samples']=6588
             capabilities['axis_normal_samples']=16470
