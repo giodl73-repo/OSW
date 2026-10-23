@@ -16,7 +16,11 @@ jobs:
         with:
           python-version: "3.13"
       - name: Install pinned thermodynamic dependencies
-        run: python -m pip install numpy==2.4.1 gsw==3.6.23 h5py==3.16.0 netCDF4==1.7.4 pyproj==3.7.2 pytest==8.4.2
+        run: python -m pip install numpy==2.4.1 gsw==3.6.23 h5py==3.16.0 netCDF4==1.7.4 pyproj==3.7.2 pytest==8.4.2 PyMuPDF==1.28.2
+      - name: Verify dated regional reaches against retained primary originals
+        run: |
+          python -m pytest -q analysis/test_published_current_regional_reaches_v1.py analysis/test_published_current_regional_reaches_admission.py
+          python analysis/published_current_regional_reaches_v1.py check
       - name: Verify complete Caribbean RU29 source arrays and page payload
         run: |
           python -m pytest -q analysis/test_caribbean_ru29_source_fields_v1.py analysis/test_caribbean_ru29_source_fields_v2.py analysis/test_caribbean_ru29_source_fields_admission.py analysis/test_caribbean_ru29_query.py
@@ -143,7 +147,7 @@ jobs:
       - name: Install pinned reconstruction dependencies
         run: >-
           python -m pip install numpy==2.4.1 xarray==2026.7.0 netCDF4==1.7.4
-          pyproj==3.7.2 h5py==3.16.0 contourpy==1.3.3 shapely==2.1.2 gsw==3.6.23 pyshp==2.3.1
+          pyproj==3.7.2 h5py==3.16.0 contourpy==1.3.3 shapely==2.1.2 gsw==3.6.23 pyshp==2.3.1 PyMuPDF==1.28.2
       - name: Report exact scientific rebuild differences without changing sources
         run: python analysis/inspect_scientific_reproduction.py
       - name: Diagnose Angola compressed transport versus complete decoded observations
