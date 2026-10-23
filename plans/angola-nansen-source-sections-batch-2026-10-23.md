@@ -63,3 +63,7 @@ Define and freeze a separate, consistent cross-current width extraction using th
 ## Fresh CI dependency correction
 
 At9e95a3b the conformance job failed during collection because its smaller dependency environment omitted netCDF4. All three new Angola test modules were affected. Add the same netCDF4==1.7.4 pin already used by scientific reconstruction and label the15 Angola checks separately from REDSOX. This changes CI setup only; frozen methods, tests, source arrays, numerical reports and all engine/source pins remain unchanged. The separate offline job again fails during checksum-pinned original-paper acquisition with HTTP403 before its tests. Fresh successful conformance is still required.
+
+## Cross-platform compressed-field replay investigation
+
+Linux replay at9e95a3b rejects the first frozen gzip field before comparing the report. The engine build rejects the same bytes. All36 previous report replays remain exact. A read-only diagnostic now compares every complete decoded field, compressed headers/hashes/sizes, and the full report after isolating only compressed SHA256/byte-length fields. It preserves the strict failing replay gate, v1 compiler/protocol/preflight and all retained products. Local Windows replay is exact in both compressed and decoded bytes; the Linux classification is pending. No compressed-only or numerical-difference conclusion is admitted before that evidence. Any transport correction requires a separate version, retained v1 products and equivalent complete array checks.
