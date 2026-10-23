@@ -32,6 +32,9 @@ jobs:
       - name: Replay compatible source contracts and atomic batch after original acquisition
         if: always()
         run: python analysis/check_current_gap_batch_delivery.py
+      - name: Replay scoped T24 width admission after source contracts
+        if: always()
+        run: python analysis/check_eicc_t24_width_delivery.py
       - name: Retain source replay result and logs without the original book
         if: always()
         uses: actions/upload-artifact@v4
@@ -52,6 +55,13 @@ jobs:
         with:
           name: current-gap-batch-source-replay
           path: .pytest_cache/current-gap-batch-replay/
+          include-hidden-files: true
+      - name: Retain T24 scoped-width receipt and logs without original papers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eicc-t24-scoped-width-replay
+          path: .pytest_cache/eicc-t24-width-replay/
           include-hidden-files: true
   front-temperature-conformance:
     runs-on: ubuntu-latest

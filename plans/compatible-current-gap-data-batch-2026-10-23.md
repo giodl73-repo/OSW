@@ -79,8 +79,8 @@ python analysis/check_current_gap_batch_delivery.py
 The read-only delivery driver requires the exact local originals and never
 downloads them implicitly. The existing advisory source CI job runs it after
 the explicit Brazil/EICC acquisitions and retains receipts/logs only. Missing
-originals still fail; no guard is skipped. A new Linux batch pass is not yet
-verified. These preparation checks are not a full-runtime or full-regression
+originals still fail; no guard is skipped. The Linux batch pass is recorded
+below. These preparation checks are not a full-runtime or full-regression
 pass.
 
 The local read-only replay driver passed: both prepared contract checks and
@@ -88,6 +88,15 @@ all19 batch checks completed without skips or acquisition. Receipt:
 `.pytest_cache/current-gap-batch-replay/result.json`. The active722-input
 engine publication remains unchanged; these are source/admission preparation
 results, not a new canonical runtime snapshot.
+
+At commit`df56453003d701024d883d6bdcbe2a5c96ec1f53`, the actual log from
+[source job120711354997](https://github.com/giodl73-repo/OSW/actions/runs/40040860222/job/120711354997)
+was retrieved and inspected. Its batch receipt reports both contract checks
+and all19 batch tests passing. The same job had explicitly acquired the
+originals earlier; the batch driver did not download them implicitly.
+Canonical delivery and the complete runtime audit remain false in that receipt.
+Private proof:
+`.pytest_cache/current-gap-priority-20261023/current-gap-batch-execution/linux-source-batch-proof.json`.
 
 ## Remaining coordinated delivery
 
