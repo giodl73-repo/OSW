@@ -50,3 +50,38 @@ provider-response rejection before publication and public-path containment. The
 first actual supplementary response passes validation; complete acquisition is
 live. KEEL/SOUNDER actual original-based full replay and CHART/HARBOR new-layer
 presentation conditions remain open. No full-cohort or physical claim added.
+
+
+## Derived consumer and prepared query/view review
+
+Same seven installed lenses; review concerns source context, not physical
+measurement admission. The actual source acquisition is still active.
+
+| Role | Finding | Severity | Resolution / condition |
+|---|---|---|---|
+| CURRENT | A monthly mean conversion can differ from mean daily conversion. | P1 resolved in method/tests | Frozen daily operator runs before averaging on the unchanged four-field cohort. |
+| CURRENT | Pressure and input temperature-scale assumptions survive into derived values. | P1 resolved | Report, row keys, source metadata and viewer explicitly retain0dbar reference and unverified ITS-90 assumption. |
+| CURRENT | New layers do not automatically identify fronts or physical edges. | P2 retained limit | No criterion application or identity/width/axis/length/annual footprint admission. |
+| SOUNDER | Raw monthly products must match genuine daily originals. | P1 resolved in consumer contract/tests | Check raw pins, NPZ/JSON/coordinates, exact monthly times and all four independently reconstructed means/counts before conversion. |
+| SOUNDER | Supplementary IDs could overwrite existing native levels. | P1 resolved in tests | Separate source/profile/row prefixes;46,944 combined rows have distinct IDs at all four depths. |
+| SOUNDER | Synthetic conformance is not actual-source replay. | P2 condition | Linux exact synthetic pass recorded separately; full original-based source/derived replay remains mandatory. |
+| CHART | Different temperature axes could exaggerate a small pressure correction. | P2 resolved in template | Raw and derived temperature panels share one depth-specific scale across months/meridians. |
+| CHART | Conditional derived values must remain visually distinct. | P1 resolved in labels | Separate fifth panel and table column name potential temperature,0dbar reference and ITS-90 assumption; in-situ retained. |
+| CHART | Real rendering cannot be established by syntax/tests alone. | P2 condition | Actual72-selection/360-profile browser and visual check prepared; not run or claimed. |
+| BEACON | Derivation could be mistaken for an independent measurement. | P1 resolved | Viewer explicitly describes a pressure-reference conversion and source context, not a new observation or current boundary. |
+| BEACON | Evidence should remain reachable from the current card and selected section. | P2 condition | Link factory and exact source-specific query route prepared; actual atlas link/native/WASM navigation pending. |
+| BEACON | A partial download must not be labeled full-year success. | P1 resolved in status | Acquisition remains live; publication gated on complete originals and replay. |
+| HARBOR | A fifth chart needs equivalent complete textual values. | P1 resolved in template | Seven-column table retains raw fields, derived temperature and counts, with complete JSON alternatives. |
+| HARBOR | New controls and captions need actual keyboard/phone testing. | P2 condition | Existing semantic controls/focus/history pattern retained; new source browser gate remains required. |
+| HARBOR | Missing samples must not become interpolated chart segments. | P1 resolved in contract | Nullable means and line breaks retained; derived/raw support must match before display. |
+| KEEL | Thermodynamic backend portability was uncertain. | P1 resolved for the synthetic probe only | Linux job120173481020 passes all six exact arrays and whole stored NPZ; actual-source derived byte gate still required. |
+| KEEL | UI link edits should not change scientific producer provenance. | P2 resolved in dependency design | Derived producer independently verifies source products; it does not depend on the presentation/query adapter code. |
+| KEEL | Corrupt support or raw means must fail closed. | P1 resolved in focused tests | Empty, missing, duplicate/reordered, wrong-count and changed-mean cases reject;40 focused tests pass locally. |
+| LOGBOOK | Prepared pages are not delivered atlas features. | P1 resolved in status | No generated page, index, packet or existing atlas change; actual complete-source integration remains pending. |
+| LOGBOOK | The active acquisition graph must stay frozen. | P1 resolved in checks | Only independent consumers/UI/tests/CI changed; declared producer/protocol/conversion and older dependencies still check exactly. |
+| LOGBOOK | Batch and CI status must match remote evidence. | P1 resolved | Same PR83; exact Linux conformance and34-report/old-source success separated from offline paper403 and pending new-source gates. |
+
+Twenty-one additional findings. No unresolved P1 for publishing the prepared
+consumer code. Verdict: **APPROVED-WITH-CONDITIONS** for source/context tooling.
+Actual full-source/derived replay, generated views, accessibility and atlas
+native/WASM checks remain required before those milestones can be called done.

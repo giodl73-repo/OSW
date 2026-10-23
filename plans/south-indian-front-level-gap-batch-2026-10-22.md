@@ -104,3 +104,38 @@ The probe is a separate synthetic conformance artifact and does not modify any
 frozen acquisition input, conversion method or previous scientific report.
 Linux evidence is pending. A portability failure requires a recorded versioned
 correction; it must not be hidden by relaxing the exact gate.
+
+
+## Portable conversion evidence and prepared consumers
+
+Independent Linux run39879591177/job120173481020 at4140609 passes the complete
+synthetic conformance artifact byte for byte: all six arrays and the complete
+stored NPZ match, with zero changed finite values and zero maximum numeric
+difference. The same run passes the existing34 scientific reports, both old
+HYCOM source replays and NetCDF fixtures. Its separate offline job still fails
+at the pinned paper fixture; this is not a full-suite green claim.
+
+The supplementary monthly conversion consumer is now implemented. It verifies
+retained source/dependency pins, raw NPZ/JSON/coordinate agreement, month order,
+calendar quota, genuine daily response/receipt pairs and exact time vectors. It
+recomputes and checks all four raw monthly means/counts before deriving anything.
+Daily GSW conversion preserves those counts. Original in-situ temperature stays
+separate from conditional0dbar potential temperature and Absolute Salinity.
+There is no named-front classification, physical edge or new width measurement.
+
+The query adapter uses distinct supplementary source/profile/row IDs, preserving
+all four native levels without replacing existing rows. A synthetic collision
+regression checks46,944 distinct combined rows at15/100/200/1000m. The future
+viewer keeps all four raw profiles and adds conditional potential temperature
+as a fifth panel with shared temperature scales, explicit assumptions and full
+source/derived links. It requires verified complete sources/report before
+building. Its72-selection/360-profile actual browser gate is prepared, not yet
+run or registered in the main runner while its source is absent.
+
+Forty focused tests pass locally, including nonlinear daily conversion, missing
+and duplicate/reordered time rejection, changed source means/counts, retained
+missingness, exact native query axes, Float64 preservation and ID separation.
+The independent Linux conformance job now also runs these focused tests. Viewer
+JavaScript syntax passes. Actual complete-source packaging/replay, full derived
+report portability, rendering and native/WASM atlas integration remain pending.
+The current atlas and all existing scientific measurements are unchanged.
