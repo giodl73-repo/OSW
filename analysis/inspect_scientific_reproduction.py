@@ -8,6 +8,7 @@ import sys
 
 ROOT=Path(__file__).resolve().parents[1]
 TARGETS=[
+    ('reported_current_direction_calendars_v1','research/indian-current-reported-direction-calendars-v1.json',{},None),
     ('published_current_regional_reaches_v1','research/algerian-arnone-1990-reported-reach-v1.json',{},None),
     ('ke_qiu_plot_pathlength_v4','research/ke-qiu-regional-plot-pathlength-v4.json',{},None),
     ('angola_nansen_portable_sections_v2','research/angola-nansen-native-sections-v2.json',{},None),('build_aleutian_p14n_vector_section','research/aleutian-p14n-1993-observed-vector-section.json',{},None),

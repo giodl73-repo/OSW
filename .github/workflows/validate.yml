@@ -49,6 +49,10 @@ jobs:
           python analysis/published_regional_reaches_query.py check
       - name: Check prospective undated regional-reach semantics offline
         run: python -m pytest -q analysis/test_published_current_regional_reaches_v2.py
+      - name: Verify source-qualified direction calendars and prepared current identities
+        run: |
+          python -m pytest -q analysis/test_reported_current_direction_calendars_v1.py analysis/test_indian_direction_calendar_admission.py
+          python analysis/reported_current_direction_calendars_v1.py check
       - name: Verify complete Caribbean RU29 source arrays and page payload
         run: |
           python -m pytest -q analysis/test_caribbean_ru29_source_fields_v1.py analysis/test_caribbean_ru29_source_fields_v2.py analysis/test_caribbean_ru29_source_fields_admission.py analysis/test_caribbean_ru29_query.py
