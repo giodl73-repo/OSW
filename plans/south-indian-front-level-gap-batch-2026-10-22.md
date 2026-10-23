@@ -150,3 +150,26 @@ was still active at that observation. This establishes the focused method/query
 scope on Linux, not actual new-source replay, rendering or broader offline CI.
 No approximation was added to the exact conformance gate. The raw acquisition
 remains the original active process; no duplicate process was launched.
+
+
+## Complete retained source and actual profile delivery
+
+The original acquisition is terminal PASS:135 genuine responses cover all363
+frozen daily timestamps. The retained archive has277 verified members. Strict
+offline reconstruction reproduces quality.json, monthly.npz and the complete
+monthly-fields.json byte for byte, with zero network requests. All23,472 native
+monthly cells meet the unchanged common-calendar quota.
+
+The complete actual-source conditional thermodynamic report reproduces exactly
+on Windows: SHA256 90b122ddfa9da60d2c3d02437f50b2ae7045b420f8672029d3611ad8f74198f8.
+A separate CI step now checks both actual raw reconstruction and this complete
+derived report; actual-source Linux results remain pending. Synthetic Linux
+conformance remains a distinct earlier result.
+
+The generated supplementary profile view passes all72 selections/360 charts
+and23,472 native table rows. Keyboard, permalink/history/reload, invalid URL
+defaults and320px phone reflow pass; no originals download automatically.
+Desktop and phone screenshots were visually inspected. Raw and derived
+temperature retain shared scales and distinct labels. Main atlas card/index/
+native/WASM integration remains pending. No current/front identity, physical
+width, axis, length, seasonal footprint or annual extrema are admitted.

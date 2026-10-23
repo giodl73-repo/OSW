@@ -91,3 +91,17 @@ synthetic stored NPZ and all40 focused tests on Linux (2.82s). This resolves
 focused cross-platform method/query conditions only. Actual new-source and
 derived report replay, all72 rendered selections and main native/WASM atlas
 integration remain required; the acquisition is still active.
+
+
+## Actual source and profile conditions update
+
+SOUNDER/KEEL: all135 actual responses and277 retained archive members pass
+strict offline replay of all three raw products. Complete actual-source daily
+GSW report is byte-exact locally; the separate actual-source Linux gate remains
+pending. CURRENT: unverified ITS-90, pressure approximation and all physical
+admission limits remain explicit. CHART/HARBOR: actual72-selection/360-chart
+browser gate passes, including23,472 native rows, shared temperature scales,
+keyboard/history and320px reflow; desktop/phone screenshots visually inspected.
+BEACON/LOGBOOK: this is complete source/profile delivery in the same PR83, not
+a physical measurement or delivered main-atlas query integration. Main-card
+links, lossless indexing and full native/WASM readback remain required.
