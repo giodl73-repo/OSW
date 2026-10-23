@@ -347,7 +347,7 @@ def build():
         source_ids.update(m.get('source_id') for m in measures)
         source_ids.update(c.get('source_id') for c in collections['claims'] if row['id'] in [c.get('subject_id'),c.get('object_id')])
         source_ids.update(source for route in collections['reference_routes'] if route['current_id']==current for source in route.get('source_ids',[]))
-        if current=='caribbean':source_ids.update(row.get('source_ids',[]))
+        if current in {'caribbean','algerian'}:source_ids.update(row.get('source_ids',[]))
         row['source_ids']=sorted(s for s in source_ids if s in sources)
         row['state_codes']=sorted({r['state_code'] for r in row['state_evidence']})
         lengths=[m['value'] for m in measures if m.get('rank_eligible') is True and m['quantity']=='reported_length']
@@ -721,6 +721,11 @@ def build():
     from caribbean_ru29_query import evidence as caribbean_source_evidence, append as append_caribbean_source
     caribbean_source,caribbean_inputs=caribbean_source_evidence();inputs.update(caribbean_inputs)
     append_caribbean_source(collections,caribbean_source)
+    from published_regional_reaches_query import evidence as regional_reach_evidence, append as append_regional_reach
+    regional_reach,regional_reach_inputs=regional_reach_evidence();inputs.update(regional_reach_inputs)
+    reach_owner=next(row for row in objects if row['id']==regional_reach['entity_id'])
+    if reach_owner.pop('regional_reach_ids',None)!=[regional_reach['id']]:raise ValueError('Changed dashboard regional-reach join')
+    append_regional_reach(collections,regional_reach)
     from eac_source_fields import verify_inputs as verify_eac_fields, record as eac_fields_record, ID as EAC_FIELDS_ID
     eac_document,_,_,eac_inputs=verify_eac_fields()
     inputs.update(eac_inputs)
@@ -970,7 +975,7 @@ def build():
             'current_section_receipts':{asca_path:{'source_file':asca_path,'source_sha256':inputs[asca_path],'source_json':(ROOT/asca_path).read_bytes().decode('utf-8')}},
             'movies_receipts':movies_receipts,
             'loop_recorded_receipts':{path:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for path in ['research/loop-current-recorded-date-comparison.json','research/loop-current-recorded-date-sources.json']},
-            'taxonomy':taxonomy,'editorial_collections':['current_length_series','current_length_readings','current_length_bound_admissions','current_identity_admissions','current_measurement_admissions','current_axis_normal_samples','current_dimension_samples','proposed_widths','observed_section_spans','current_section_measurements','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','current_sections','section_transports','transport_validations'],
+            'taxonomy':taxonomy,'editorial_collections':['current_regional_reaches','current_length_series','current_length_readings','current_length_bound_admissions','current_identity_admissions','current_measurement_admissions','current_axis_normal_samples','current_dimension_samples','proposed_widths','observed_section_spans','current_section_measurements','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','current_sections','section_transports','transport_validations'],
             'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
             'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
             'input_sha256':inputs,'current_catalogue_version':identity_document['version'],'current_measurement_admission_version':prose_dimensions['version'],'madagascar_navigation_diagnostic_version':'1','madagascar_coastal_curve_version':'1','kuroshio_daily_dimensions_version':'1','generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},

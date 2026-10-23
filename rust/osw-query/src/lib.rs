@@ -72,6 +72,7 @@ pub mod packet;
 mod planning;
 mod portugal_section_span;
 mod proposed_widths;
+mod published_regional_reaches;
 mod published_transports;
 mod qualitative_calendar;
 mod rebase;
@@ -369,6 +370,7 @@ impl Store {
         asca_calendar::validate(&bundle)?;
         eac_source_fields::validate(&bundle)?;
         caribbean_source_fields::validate(&bundle)?;
+        published_regional_reaches::validate(&bundle)?;
         eac_core_spans::validate(&bundle)?;
         south_australian_context::validate(&bundle)?;
         madagascar_navigation::validate(&bundle)?;

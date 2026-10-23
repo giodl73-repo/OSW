@@ -106,6 +106,11 @@ def build():
     caribbean_source,caribbean_inputs=caribbean_source_evidence();inputs.update(caribbean_inputs)
     sources[caribbean_source['source_record']['id']]=caribbean_source['source_record']
     sources[caribbean_source['method_source']['id']]=caribbean_source['method_source']
+    from published_regional_reaches_query import evidence as regional_reach_evidence
+    regional_reach,regional_reach_inputs=regional_reach_evidence();inputs.update(regional_reach_inputs)
+    sources[regional_reach['source_record']['id']]=regional_reach['source_record']
+    sources[regional_reach['method_source']['id']]=regional_reach['method_source']
+    claims.append(regional_reach['claim'])
     measurements.append(ke_length['measurement']);claims.append(ke_length['claim'])
     sources[ke_length['source_record']['id']]=ke_length['source_record']
     sources[ke_length['method_source']['id']]=ke_length['method_source']
@@ -947,6 +952,10 @@ def build():
                 context.update(source_original_sha256=redsea_width_review['source_identity']['sha256'],channel_values_are_current_dimensions=False)
                 payload['channel_width_source_review']=context
             groups['sources'].append(context)
+        if ident==regional_reach['entity_id']:
+            evidence_links.extend(regional_reach['card_links'])
+            payload['regional_reach']=regional_reach['record']
+            groups['measurements']=[groups['measurements'],regional_reach['record']]
         if current_id=='caribbean':
             evidence_links.extend(caribbean_source['card_links'])
             payload['provider_velocity_source']=caribbean_source['card_context']
@@ -1212,6 +1221,10 @@ def build():
             rows[-1]['scope_audits']=own_audits
         if current_id=='caribbean':
             rows[-1]['provider_velocity_source']=caribbean_source['card_context']
+            rows[-1]['source_ids']=sorted(source_ids)
+        if ident==regional_reach['entity_id']:
+            rows[-1]['regional_reach_ids']=[regional_reach['id']]
+            rows[-1]['linked_source_count']=len(source_ids)
             rows[-1]['source_ids']=sorted(source_ids)
         if ident in recurrence:
             rows[-1]['eddy_recurrence_ids']=[recurrence[ident]['id']]

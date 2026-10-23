@@ -54,6 +54,7 @@
   names.geometry_frames='Dated diagnostic geometry frames';
   names.seasonal_routes='Source-defined seasonal routes';
   names.width_samples='Scoped width samples';
+  names.current_regional_reaches='Published regional reaches';
   names.current_dimension_samples='Regional model dimension attempts';
   names.current_axis_normal_samples='Axis-normal model span attempts';
   names.current_velocity_samples='Observed current velocity';
@@ -148,8 +149,9 @@
   function option(parent,text,value){const node=element('option',text,parent);node.value=value;}
   function failure(message){$('query-status').className='error';$('query-status').textContent=message;}
   function rejectResult(message){failure(message);renderMap(null);window.oswCharts.render(null,inspect);$('query-detail').hidden=true;detailSequence++;$('query-share').hidden=true;$('query-export').disabled=true;$('query-previous').disabled=true;$('query-next').disabled=true;lastQuery=null;lastResult=null;window.oswLastQueryResult=null;$('query-rows').replaceChildren();$('query-page').textContent='';}
-  function label(row){if(row.id?.startsWith('taxonomy-link:'))return row.child_label+' → '+row.parent_label;return row.label||row.name||row.title||row.entity_label||row.id;}
+  function label(row){if(row.constraint?.quantity==='reported_nearshore_regional_extent')return row.constraint.regional_support.join('–')+' coastal reach ('+row.constraint.study_window[0].slice(0,4)+')';if(row.id?.startsWith('taxonomy-link:'))return row.child_label+' → '+row.parent_label;return row.label||row.name||row.title||row.entity_label||row.id;}
   function value(row){
+    if(row.constraint?.quantity==='reported_nearshore_regional_extent')return row.constraint.display+' · reported coastal reach';
     if(row.metric==='fixed_array_southwestward_v_component_span')return row.component_span_km===null?'Unresolved':`≈ ${row.component_span_km.toFixed(1)} km · fixed-array component span`;
     if(row.metric==='local_section_normal_component_span')return (row.component_span_km===null?'Unresolved':`≈ ${row.component_span_km.toFixed(1)} km · local component span`)+(row.saline_outflow_screen===false?' · saline screen fails':'');
     if(row.eastward_mean_cm_s!==undefined)return `${row.eastward_mean_cm_s.toFixed(2)} eastward / ${row.northward_mean_cm_s.toFixed(2)} northward cm/s · ${(100*row.hourly_coverage_fraction).toFixed(1)}% hourly coverage`;
@@ -263,7 +265,7 @@
       $('query-status').textContent=`${result.total.toLocaleString()} matching ${names[result.collection]?.toLowerCase()||result.collection}. Query executed in Rust / WebAssembly.`;
       if(result.taxonomy_scope)element('p',result.taxonomy_scope,$('query-status'));
       if(result.network_paths){const details=element('details',undefined,$('query-status'));element('summary',`${result.network_paths.paths.length} conceptual connections · no metric length`,details);element('p',result.network_paths.scope,details);const list=element('ol',undefined,details);for(const path of result.network_paths.paths)element('li',path.map(id=>result.network_paths.node_labels[id]||id).join(' → '),list);if(result.network_paths.truncated||result.network_paths.hop_limit_reached)element('p','Search limits were reached; these results may be incomplete.',details);}
-      $('query-caption').textContent=names[result.collection]+' · '+result.total.toLocaleString()+' matches';
+      $('query-caption').textContent=(names[result.collection]||result.collection.replaceAll('_',' '))+' · '+result.total.toLocaleString()+' matches';
       renderMap(result.map_scene);
       window.oswCharts.render(result.chart_scene,inspect);
       $('query-rows').replaceChildren();
@@ -319,6 +321,15 @@
     if(row.moorings){const details=element('details',undefined,parent);element('summary',`Published mooring sites (${row.moorings.length})`,details);for(const site of row.moorings)element('p',`${site.label}: ${site.coordinates_lon_lat.join(', ')} (lon, lat); ${site.deployment_start} to ${site.deployment_end}; first-deployment location, not a current edge.`,details);}
     if(row.network_id&&row.document?.schema!=='osw.flow-network.v1')link('Back to passage network','query.html?q='+encodeURIComponent(JSON.stringify({collection:'flow_networks',filters:[{field:'id',op:'eq',value:row.network_id}]})),parent);
     element('h3',label(row),parent);element('p',value(row),parent);
+    if(row.constraint?.quantity==='reported_nearshore_regional_extent'){
+      const c=row.constraint;
+      element('p',c.regional_support.join('–')+' · combined ship/satellite study '+c.study_window.join(' to ')+'. The window does not date every sample.',parent);
+      element('p','Strict source-reported regional constraint. No finite upper bound or numerical uncertainty was reported. Whole-current length, physical width and seasonal ranges remain unknown.',parent);
+      const figure=element('figure',undefined,parent);figure.className='query-regional-reach-figure';
+      const image=element('img',undefined,figure);image.className='query-regional-reach-image';image.src='../'+row.figure_file;
+      image.alt='Regional coastal reach '+c.display+'; upper endpoint and numerical uncertainty unreported. Not a geographic route or whole-current length.';
+      element('figcaption','Schematic source constraint; the arrow is not a mapped route.',figure);
+    }
     if(row.source_decision){
       element('p','Editorial worklist for names without a published ranked length. Existing candidates remain pending scientific review; no new length is assigned by this decision.',parent);
       element('h4','Next evidence needed',parent);element('p',row.next_action,parent);

@@ -121,8 +121,8 @@ def append(collections, document):
         collections.setdefault(collection, []).append(copy.deepcopy(row))
     owner.setdefault('regional_reach_ids', []).append(ID)
     owner['source_ids'] = sorted(set(owner.get('source_ids', [])) | {SOURCE_ID, METHOD_ID})
-    if 'source_count' in owner:
-        owner['source_count'] = len(owner['source_ids'])
+    if 'linked_source_count' in owner:
+        owner['linked_source_count'] = len(owner['source_ids'])
 
 
 def main():

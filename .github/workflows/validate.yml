@@ -98,6 +98,7 @@ jobs:
       - name: Read every supplementary cell through native and shipped WASM UI
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_published_regional_reaches_browser.py
           test_caribbean_ru29_query_browser.py test_caribbean_ru29_source_browser.py
           test_ke_length_series_browser.py test_labrador_gate_bound_browser.py
           test_angola_nansen_sections_browser.py test_angola_nansen_query_browser.py

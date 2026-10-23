@@ -14,7 +14,7 @@ def contract():
 
 
 def fixture():
-    return {'objects': [{'id': admission.ENTITY, 'source_ids': ['source:existing'], 'source_count': 1}],
+    return {'objects': [{'id': admission.ENTITY, 'source_ids': ['source:existing'], 'linked_source_count': 1}],
             'claims': [], 'sources': [], 'measurements': [{'id': 'old', 'value': 17}],
             'widths': [{'id': 'old-width', 'value': [30, 50]}],
             'length_assessments': [{'id': 'length:algerian', 'length_km': None}],
@@ -36,7 +36,7 @@ def test_preserves_constraint_and_adds_only_four_scoped_records(contract):
     assert row['physical_width_admitted'] is False
     assert data['objects'][0]['regional_reach_ids'] == [admission.ID]
     assert data['objects'][0]['source_ids'] == sorted(['source:existing', admission.SOURCE_ID, admission.METHOD_ID])
-    assert data['objects'][0]['source_count'] == 3
+    assert data['objects'][0]['linked_source_count'] == 3
     assert data['claims'][0]['target_collection'] == admission.COLLECTION
     assert data['claims'][0]['value'] == c
 

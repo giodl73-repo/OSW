@@ -64,6 +64,9 @@ CHECKS = ('test_current_gap_source_query_browser.py',) + CHECKS
 
 CHECKS = ('test_redsox_station_support_browser.py', 'test_redsox_station_support_query_browser.py') + CHECKS
 
+CHECKS = ('test_published_regional_reaches_browser.py',) + CHECKS
+
+
 def wait_for_checkout(server=None):
     expected = (ROOT / 'almanac/query.html').read_bytes()
     deadline = time.monotonic() + 30

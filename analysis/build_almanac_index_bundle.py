@@ -40,6 +40,10 @@ def inventory():
 
 def build():
     documents, descriptors = {}, []
+    from published_regional_reaches_query import evidence as regional_reach_evidence
+    regional_reach,_=regional_reach_evidence()
+    if not set(regional_reach['source_documents'])<=set(inventory()):
+        raise ValueError('Missing regional-reach source documents')
     for path in inventory():
         raw = (ROOT / path).read_bytes()
         doc = json.loads(raw)
