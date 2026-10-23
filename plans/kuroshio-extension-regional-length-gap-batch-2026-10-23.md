@@ -90,3 +90,68 @@ Local work stays sequential at below-normal priority, one logical CPU and
 one numerical/Cargo worker. No build/browser overlap. Full local regression
 remains intentionally stopped until an exclusive final batch gate. Core
 length, physical width, seasonal and identity/geometry gaps remain open.
+
+
+## Query delivery prepared
+
+The draft query contract exposes regional_plot_series as a partial length
+evidence class. Whole-current evidence remains unmeasured, published length
+and lower-bound fields stay null, and rank eligibility stays false. One
+complete provenance header and1612 ordered graph-reading rows join the
+working collections, alongside one scoped measurement/claim and two sources.
+The mapped KE card offers chart, header, all-reading, source and assessment
+links; no graph position is added to observed-date or seasonal capabilities.
+
+The shared historical-table composition now accepts the exact KE assessment
+only after complete native series/readings/dependency validation. Every other
+current and all prior widths/ranks/routes remain bound. Sixteen focused
+source/readback and atomic-admission checks pass. The planned serial build
+is dashboard,535-document index,54-collection packet and native/WASM engine.
+Expected working rows:108438, preserving106819 old rows exactly and changing
+only KE assessment/card;1617 rows are added. Existing widths170, routes78
+and qualified length ranks13 remain unchanged. Complete browser proof checks
+all1612 readings over four pages after native CLI checks terminate.
+
+The contract is a delivery mapping over frozen v4 products; it does not alter
+the scientific calculation. Its explicit refresh happens only before any
+consuming build. Native/engine/browser/preservation and fresh39-report CI
+remain pending. No completed atlas-delivery or full-goal claim is made.
+
+
+## Terminal local delivery (2026-10-23)
+
+The complete serial dashboard/index/packet/engine pipeline passes. All143
+Rust unit tests pass, complete native atlas validation passes before WASM
+compilation, and the49108081-byte WASM engine is built. The logical packet
+is186941950 bytes in12 current parts. The535-document source index preserves
+all524 prior descriptors and source bytes exactly.
+
+Preservation proves106819 old rows exact, only KE assessment/card changed,
+1617 rows added and108438 total rows in54 collections. All627 prior protected
+source/method inputs remain byte-identical. Two explicit native delivery files
+(lib.rs and shared assessment-overlay registry) change, four generated runtime
+assets are replaced, and12 superseded generated transport parts are verified
+and retired. All671 current engine pins verify. Widths170, routes78 and
+qualified whole-current length ranks13 are unchanged. The card changes only
+its claim/source/measurement counts, IDs, fingerprints and five evidence links;
+no date, geometry, route, width or seasonal capability changes.
+
+All102 focused synthetic/source/admission checks pass. The isolated browser
+proves complete native/WASM header and all1612 readings over four pages,
+four individual core/source records, unchanged ranks, keyboard navigation
+and320px reflow. The actual Chromium card and chart screenshots were visually
+inspected. No original PDF/NetCDF/ZIP/XML download occurs. Native CLI checks
+finish before Chromium starts; query and atlas workspaces are reused.
+The resource monitor reapplies one-CPU/below-normal limits when a Chromium
+helper resets its process settings. No heavy local job remains.
+
+Private terminal receipts are under .pytest_cache/ke-qiu-delivery: serial-build
+and serial-checks state files, preservation-result.json and browser/result.json.
+The generic evidence-class rules are recorded in
+plans/regional-current-length-series-admission-rules-v1.md. Staged-byte proof
+and same-PR publication follow. Fresh39-report and source/UI CI remain pending
+for the new delivery head; the full exclusive regression remains open.
+
+Staged-byte proof: PASS for992 unique Git index blobs covering671 engine
+pins and535 source documents. All overlapping descriptors agree; no frozen
+scientific bytes differ. Same-PR publication and fresh remote CI follow.

@@ -209,6 +209,9 @@ def main():
     _,labrador_bound_inputs=labrador_bound_evidence();paths.extend(labrador_bound_inputs)
     paths.append('rust/osw-query/src/labrador_latitude_bound.rs')
     paths.append('rust/osw-query/src/length_assessment_overlays.rs')
+    from ke_length_series_query import evidence as ke_length_evidence
+    _,ke_length_inputs=ke_length_evidence();paths.extend(ke_length_inputs)
+    paths.append('rust/osw-query/src/ke_regional_length.rs')
     from angola_nansen_source_query import evidence as angola_native_evidence
     _,_,angola_native_inputs=angola_native_evidence();paths.extend(angola_native_inputs)
     packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())

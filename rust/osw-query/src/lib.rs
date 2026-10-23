@@ -37,6 +37,7 @@ mod index_map;
 mod index_noaa;
 pub mod index_store;
 mod index_support;
+mod ke_regional_length;
 mod kuroshio_daily;
 mod kuroshio_filtered_width;
 mod kuroshio_normal;
@@ -387,6 +388,7 @@ impl Store {
         aleutian_onishi_width::validate(&bundle)?;
         current_length_bounds::validate(&bundle)?;
         labrador_latitude_bound::validate(&bundle)?;
+        ke_regional_length::validate(&bundle)?;
         movies::validate(&bundle)?;
         measurement_scope::validate(&bundle.collections, &bundle.manifest)?;
         let spatial = spatial::Index::build(&bundle.collections)?;

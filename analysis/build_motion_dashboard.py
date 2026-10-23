@@ -100,6 +100,11 @@ def build():
     measurements.append(labrador_bound['measurement']);claims.append(labrador_bound['claim'])
     sources[labrador_bound['source_record']['id']]=labrador_bound['source_record']
     sources[labrador_bound['method_source']['id']]=labrador_bound['method_source']
+    from ke_length_series_query import evidence as ke_length_evidence, links as ke_length_links
+    ke_length,ke_length_inputs=ke_length_evidence();inputs.update(ke_length_inputs)
+    measurements.append(ke_length['measurement']);claims.append(ke_length['claim'])
+    sources[ke_length['source_record']['id']]=ke_length['source_record']
+    sources[ke_length['method_source']['id']]=ke_length['method_source']
     from nwasc_working_admission import verify_inputs as verify_nwasc_admission
     nwasc_admission,nwasc_inputs=verify_nwasc_admission();inputs.update(nwasc_inputs)
     from hansen_asar_widths import verify_inputs as verify_asar_widths
@@ -745,6 +750,8 @@ def build():
             evidence_links.append({'label':'Compare separately scoped reported dimensions','url':'../'+nwasc_admission['figure_file']})
             evidence_links.append({'label':'Query all admitted local width records','url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':current_id}],'limit':10}),safe='')})
             evidence_links.append({'label':'Audit the working branch admission and rank changes','url':'query.html?q='+quote(json.dumps({'collection':'current_measurement_admissions','filters':[{'field':'entity_id','op':'eq','value':'current:'+current_id}],'limit':1}),safe='')})
+        if current_id == 'kuroshio-extension':
+            evidence_links.extend(ke_length_links(ke_length))
         if current_id == 'labrador':
             evidence_links.extend(labrador_bound_links(labrador_bound))
         if current_id == 'north-atlantic':

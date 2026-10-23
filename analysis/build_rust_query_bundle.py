@@ -323,6 +323,9 @@ def build():
     from labrador_gate_bound_query import evidence as labrador_bound_evidence, append as append_labrador_bound
     labrador_bound,labrador_bound_inputs=labrador_bound_evidence();inputs.update(labrador_bound_inputs)
     append_labrador_bound(collections,labrador_bound)
+    from ke_length_series_query import evidence as ke_length_evidence, append as append_ke_length
+    ke_length,ke_length_inputs=ke_length_evidence();inputs.update(ke_length_inputs)
+    append_ke_length(collections,ke_length)
     collections['sources']=[agulhas_reported['source_record'] if r['id']==agulhas_reported['source_record']['id'] else r for r in collections['sources']]
     collections['sources']=[routes['primary_source_record'] if r['id']==routes['primary_source_record']['id'] else r for r in collections['sources']]
     collections['reference_routes']=routes['candidates']
@@ -950,6 +953,7 @@ def build():
             'kuroshio_axis_normal_version':'1',
             'north_atlantic_gate_bound_version':'1',
             'labrador_latitude_gate_bound_version':'1',
+            'ke_regional_plot_length_version':'4',
             'nwasc_working_admission_version':'1',
             'nwasc_reference_route_version':'1',
             'hansen_asar_widths_version':'1',
@@ -962,7 +966,7 @@ def build():
             'current_section_receipts':{asca_path:{'source_file':asca_path,'source_sha256':inputs[asca_path],'source_json':(ROOT/asca_path).read_bytes().decode('utf-8')}},
             'movies_receipts':movies_receipts,
             'loop_recorded_receipts':{path:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for path in ['research/loop-current-recorded-date-comparison.json','research/loop-current-recorded-date-sources.json']},
-            'taxonomy':taxonomy,'editorial_collections':['current_length_bound_admissions','current_identity_admissions','current_measurement_admissions','current_axis_normal_samples','current_dimension_samples','proposed_widths','observed_section_spans','current_section_measurements','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','current_sections','section_transports','transport_validations'],
+            'taxonomy':taxonomy,'editorial_collections':['current_length_series','current_length_readings','current_length_bound_admissions','current_identity_admissions','current_measurement_admissions','current_axis_normal_samples','current_dimension_samples','proposed_widths','observed_section_spans','current_section_measurements','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','current_sections','section_transports','transport_validations'],
             'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
             'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
             'input_sha256':inputs,'current_catalogue_version':identity_document['version'],'current_measurement_admission_version':prose_dimensions['version'],'madagascar_navigation_diagnostic_version':'1','madagascar_coastal_curve_version':'1','kuroshio_daily_dimensions_version':'1','generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},

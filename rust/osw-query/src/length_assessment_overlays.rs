@@ -4,9 +4,10 @@ use serde_json::Value;
 
 pub(crate) fn expected(bundle: &Bundle, previous: &Value) -> Result<Value, String> {
     let mut result = previous.clone();
-    for overlay in [crate::labrador_latitude_bound::verified_assessment_overlay(
-        bundle,
-    )?]
+    for overlay in [
+        crate::labrador_latitude_bound::verified_assessment_overlay(bundle)?,
+        crate::ke_regional_length::verified_assessment_overlay(bundle)?,
+    ]
     .into_iter()
     .flatten()
     {

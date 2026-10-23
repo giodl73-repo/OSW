@@ -169,3 +169,17 @@ physical width, seasonal or identity/geometry gaps.
 Staged-byte proof: PASS for966 unique Git index blobs comprising645 engine
 pins and524 source documents, with overlapping descriptors consistent.
 Publication and fresh remote CI remain pending.
+
+
+## Published Labrador remote evidence
+
+Head2abc1cb8e245bc03a3aef585d9b73a8c9dec1a1a is confirmed on draftPR83.
+Run39988219898 scientific job120532864855 passes all38 active reports with
+encoded bytes exact and zero changed numeric leaves;37 pre-encoding structures
+are exact and the retained Kuroshio container-type distinction is unchanged.
+Source/UI job120532864465 succeeds, including139 Rust tests and complete
+Labrador native/WASM/card/keyboard/phone checks. Conformance and fixture jobs
+also succeed. These results cover the Labrador head, not the subsequent KE
+length-series delivery. The offline job still stops on the Rotschi1972
+original-paper acquisition HTTP403 before tests; no broad full-suite pass is
+claimed. Original logs and extracted terminal receipts are retained privately.

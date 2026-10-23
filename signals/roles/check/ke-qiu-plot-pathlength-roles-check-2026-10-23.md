@@ -140,3 +140,47 @@ readback condition is satisfied. Numeric query/table/card integration,
 native/WASM equality, actual browser/phone/keyboard access, source catalog
 admission and fresh39-report remote replay remain open. The verdict remains
 conditional for atlas delivery; the full objective is not complete.
+
+
+## Query-admission delivery review
+
+The continuing draft adds an explicit regional_plot_series evidence class:
+the KE whole-current status remains unmeasured, no published length/lower
+bound/rank or physical annual range is populated. The header preserves
+source-facts phase; every graph reading retains type, source, original
+identity and reading allowances. No observed-date capability is inferred.
+The five mapped-card links lead to chart, complete header, ordered readings,
+source custody and the qualified assessment.
+
+The native gate binds all header/measurement/claim/source/assessment rows
+and every one of1612 readings to the frozen scientific report and pinned
+delivery contract. The historical-table overlay requires the full gate;
+other assessments remain exact. Atomic Python admission and independent
+readback tests pass16 checks. The existing21 findings remain applicable;
+HARBOR browser/phone access and KEEL full native/WASM/preservation/fresh
+remote CI conditions await terminal receipts. No frozen numeric producer,
+protocol, synthetic test or scientific product was changed.
+
+
+## Terminal local delivery conditions
+
+All143 Rust tests, complete native atlas validation, WASM build and102
+focused source/admission checks pass. Complete native/WASM equality covers
+the header and every1612 graph reading across four pages. Keyboard card-to-
+chart navigation, full record access and320px reflow pass; actual Chromium
+card/chart screenshots were inspected. All524 previous source documents and
+106819 previous rows remain exact. Only the two declared KE rows change;
+widths170, routes78 and whole-current ranks13 remain unchanged. All627 prior
+protected source/method inputs and671 current engine pins verify; two native
+delivery registry/module declarations are explicitly updated.
+
+The three local P2 conditions in the original21-finding review are satisfied.
+Staged-byte proof, publication and fresh39-report/source-UI remote gates remain
+open. The broad full regression is not claimed passed. APPROVED-WITH-CONDITIONS
+for the continuing draft; no external scientific review or complete objective
+is claimed. The new generic regional-length admission rules preserve the
+same source, time, geometry, uncertainty and whole-current-rank distinctions.
+
+Staged-byte proof: PASS for992 unique Git index blobs covering671 engine
+pins and535 source documents. All overlapping descriptors agree; no frozen
+scientific bytes differ. Same-PR publication and fresh remote CI follow.
