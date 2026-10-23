@@ -781,6 +781,11 @@ def build():
         if owner['id'] in ['current:norwegian-atlantic-slope','current:norwegian-coastal']:
             owner.setdefault('diagnostic_ids',[]).append(ASAR_ID if owner['id']=='current:norwegian-atlantic-slope' else ASAR_ID+':coastal')
             owner['source_ids']=sorted(set(owner['source_ids'])|{asar_widths['source_record']['id']})
+    from redsox_station_support_query import evidence as station_support_evidence
+    _,station_diagnostic,station_inputs=station_support_evidence()
+    inputs.update(station_inputs)
+    collections['diagnostics'].append(station_diagnostic)
+    next(r for r in objects if r['id']=='current:red-sea-saline-overflow').setdefault('diagnostic_ids',[]).append(station_diagnostic['id'])
     collections['width_samples']=build_width_samples(collections['diagnostics'])
     for row in objects:
         row['width_sample_ids']=[sample['id'] for sample in collections['width_samples'] if sample['entity_id']==row['id']]

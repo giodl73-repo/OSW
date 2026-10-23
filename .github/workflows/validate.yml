@@ -34,6 +34,10 @@ jobs:
         run: >-
           python -m pytest -q analysis/test_indian_secc_source_boundary_audit.py
           analysis/test_indian_secc_source_boundary_report.py
+      - name: Check all REDSOX station metadata and original-source coverage
+        run: >-
+          python -m pytest -q analysis/test_redsox_provider_station_support.py
+          analysis/test_redsox_provider_station_report.py
       - name: Reconstruct complete Indian SECC source boundary audit exactly
         run: python analysis/indian_secc_source_boundary_audit.py check
       - name: Reproduce complete conditional native property-window report exactly
@@ -69,6 +73,7 @@ jobs:
       - name: Read every supplementary cell through native and shipped WASM UI
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_redsox_station_support_browser.py test_redsox_station_support_query_browser.py
           test_current_gap_source_query_browser.py
           test_south_indian_front_level_browser.py test_south_indian_front_level_query_browser.py
           test_south_indian_front_property_browser.py test_south_indian_front_property_query_browser.py
@@ -91,6 +96,10 @@ jobs:
             .pytest_cache/current-gap-source-integration/browser/result.json
             .pytest_cache/current-gap-source-integration/browser/secc-phone.png
             .pytest_cache/current-gap-source-integration/browser/redsea-phone.png
+            .pytest_cache/redsox-station-support/browser/result.json
+            .pytest_cache/redsox-station-support/browser/phone.png
+            .pytest_cache/redsox-station-support/query-browser/result.json
+            .pytest_cache/redsox-station-support/query-browser/phone.png
   scientific-reproduction:
     runs-on: ubuntu-latest
     steps:

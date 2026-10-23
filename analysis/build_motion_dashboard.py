@@ -303,6 +303,9 @@ def build():
     from current_gap_source_evidence import evidence as gap_source_evidence
     boundary_audit,redsea_width_review,_,gap_source_inputs=gap_source_evidence()
     inputs.update(gap_source_inputs)
+    from redsox_station_support_query import evidence as station_support_evidence
+    station_support,_,station_support_inputs=station_support_evidence()
+    inputs.update(station_support_inputs)
     from west_australian_streamline_evidence import verify as verify_wac_paths
     wac_paths,wac_path_inputs=verify_wac_paths()
     inputs.update(wac_path_inputs)
@@ -923,6 +926,17 @@ def build():
                 context.update(source_original_sha256=redsea_width_review['source_identity']['sha256'],channel_values_are_current_dimensions=False)
                 payload['channel_width_source_review']=context
             groups['sources'].append(context)
+        if current_id=='red-sea-saline-overflow':
+            from redsox_station_support_query import card_links as station_support_links, REPORT as STATION_SUPPORT_REPORT
+            evidence_links.extend(station_support_links())
+            support={'source_file':STATION_SUPPORT_REPORT,'source_sha256':inputs[STATION_SUPPORT_REPORT],
+                     'velocity_records':station_support['counts']['velocity_records'],
+                     'ctd_records':station_support['counts']['ctd_records'],
+                     'metadata_status_counts':station_support['counts']['status_counts'],
+                     'physical_cast_identity_verified':False,'sample_level_synchronization_verified':False,
+                     'physical_width_admitted':False,'current_geometry_admitted':False}
+            payload['provider_station_support']=support
+            groups['sources'].append(support)
         if current_id=='kuroshio':
             capabilities['model_dimension_samples']=6588
             capabilities['axis_normal_samples']=16470

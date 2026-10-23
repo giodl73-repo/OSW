@@ -149,8 +149,8 @@ fn escaped(key: &str) -> String {
 fn filtered(row: &Value, filter: &crate::Filter) -> Result<bool, String> {
     let value = crate::field(row, &filter.field);
     Ok(match filter.op.as_str() {
-        "eq" => value == Some(&filter.value),
-        "ne" => value != Some(&filter.value),
+        "eq" => value.is_some_and(|actual| crate::filter_equal(actual, &filter.value)),
+        "ne" => value.is_none_or(|actual| !crate::filter_equal(actual, &filter.value)),
         "is_null" => value.is_none_or(Value::is_null),
         "not_null" => value.is_some_and(|v| !v.is_null()),
         "contains" => value.is_some_and(|v| {
@@ -1262,5 +1262,57 @@ mod tests {
         assert!(run("contains", "record.name", json!("SÃO")));
         assert!(!run("gt", "record.value", json!(0)));
         assert_eq!(escaped("a/b~c"), "a~1b~0c");
+    }
+    #[test]
+    fn source_field_numeric_equality_preserves_exact_values_and_missingness() {
+        for (actual, requested, equal) in [
+            ("-919.0", "-919", true),
+            ("73", "73.0", true),
+            ("0.0", "0", true),
+            ("3.5", "3", false),
+            ("9007199254740993", "9007199254740992.0", false),
+            ("9223372036854775807", "9223372036854775808.0", false),
+            ("9223372036854775808", "9223372036854775808.0", true),
+            ("18446744073709551615", "18446744073709551616.0", false),
+            ("\"73\"", "73", false),
+            ("true", "1", false),
+            ("null", "0", false),
+            ("null", "null", true),
+        ] {
+            let actual: Value = serde_json::from_str(actual).unwrap();
+            let requested: Value = serde_json::from_str(requested).unwrap();
+            for (a, b) in [(&actual, &requested), (&requested, &actual)] {
+                let row = json!({"record":{"value":a}});
+                for (op, expected) in [("eq", equal), ("ne", !equal)] {
+                    assert_eq!(
+                        filtered(
+                            &row,
+                            &crate::Filter {
+                                op: op.into(),
+                                field: "record.value".into(),
+                                value: b.clone()
+                            }
+                        )
+                        .unwrap(),
+                        expected,
+                        "{a} {op} {b}"
+                    );
+                }
+            }
+        }
+        for (op, expected) in [("eq", false), ("ne", true)] {
+            assert_eq!(
+                filtered(
+                    &json!({"record":{}}),
+                    &crate::Filter {
+                        op: op.into(),
+                        field: "record.missing".into(),
+                        value: Value::Null
+                    }
+                )
+                .unwrap(),
+                expected
+            );
+        }
     }
 }

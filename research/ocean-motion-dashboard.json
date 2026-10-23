@@ -811,6 +811,20 @@
     "research/indian-secc-hycom-source-boundary-preflight-v1.json": "d9a5715705094855d0bc96d76fe5f3cd20ea9769111c1d829a011398b3eab710",
     "research/ozgokmen-2003-red-sea-width-scope-review.json": "356a8a833d957c171bd7ca2ebeee92d40adbbfae99cba063bf8e7e7734c1d9c9",
     "research/source-data/ozgokmen-redsea-2003/acquisition.json": "34a1e11aaa3c05094cf2a5b6a7bf45029d627a0cd783fc3cb0500337eba4c6d7",
+    "analysis/build_redsox_station_support_view.py": "fdc2cc91bc224cbf4bb97261de787f641f9f4f94241f28c6e533e79b835af449",
+    "analysis/redsox_provider_station_support.py": "05d84d977dbd5f39f3c6a8c8e833205200da58f96e6a3de61112588bc0e88e24",
+    "analysis/redsox_station_support_query.py": "4d8275a9f9c633971b515f0c0801720c92e8b5a865fece3dc342f3185038c447",
+    "analysis/redsox_station_support_view.html": "075e14379e0d93a5f8faa4204b507335d38d2ec846753ef7b0301ef27c2cf121",
+    "analysis/test_redsox_provider_station_support.py": "eed077c86852163a6c59320572f79307446418c10183ed2324c7f9ed5eae5ee1",
+    "figures/redsox-station-support-2001/index.html": "d26a23dc9c52dcf5005a942958107369214b847b2da4b9abc210c19f044beb89",
+    "figures/redsox-station-support-2001/view.json": "65b0de5d129427ff05b6dedfe4761cbeeab77390bf7457d642e62a572f0c4915",
+    "plans/redsox-provider-station-support-protocol-v1.md": "d79f2a17538415a3813ed4272b826656dca7e92d243798537284a377a0cff529",
+    "research/redsox-instrument-and-clock-source-review.json": "28d249641a343882984e8f91c6e68a5625d2ad36b720424441a05e131d29390b",
+    "research/redsox-missing-cast74-archive-check.json": "89f5cfaa9f3e67396535e220c29e3bc52808ea1fda7aac0d070e4dc9f2309b10",
+    "research/redsox-provider-station-support-preflight-v1.json": "8a8379520a821968ebc9418667ea3948516fc3cd58276b1cd42b58ae443ae485",
+    "research/redsox-provider-station-support.json": "db06ac15973b4a05d4c3e1c40102ca00a2b27f305b332c81d52eca85dea20045",
+    "research/source-data/ncei-redsox-2001/methods-custody-followup.json": "8ac3892316b2ccfe0798f38e573f2ebbb8d3e714e85bb29d80b24037340b6d14",
+    "research/source-data/peters-redsox-2005/acquisition.json": "49600848cb70be896a1ca163d4c916bc4c511a2d6862a4d08279d07f54b54db1",
     "plans/west-australian-regional-streamline-protocol-v1.md": "22477c4f28260bda26947b2708b40f56d661e800358ca3550478d3b467a32983",
     "research/west-australian-regional-streamlines.json": "a43161b2efc4098069ab957f70412e07340dfbefb7446d3220bc349db1bcdc22",
     "plans/west-australian-regional-streamline-rk4-protocol-v2.md": "e1f2da1ee00130b9a22a8aa65b20dae59b7bf88562e9a18f74a9fdbae33d2eb9",
@@ -968,7 +982,6 @@
     "research/source-data/pous-hormuz-2004/acquisition.json": "a32b496322a8ded76f9c74cdfedd9f16186fbaedb54104df7e43d03c3a203507",
     "research/redsox-northern-plume-reach-scope-audit.json": "5313d062bc3cf67a8aac1550d998f8fc7a6014bec4a5f3d7f144d271994440ca",
     "research/source-data/peters-redsox-2005/journal-article.pdf": "dd85cd4a85fc8842b3819a5d30a2c645b0c74942f4cffa07b450afea372ef61c",
-    "research/source-data/peters-redsox-2005/acquisition.json": "49600848cb70be896a1ca163d4c916bc4c511a2d6862a4d08279d07f54b54db1",
     "research/redsox-southern-plume-reach-scope-audit.json": "d3da4a8d5b8d9b8010b473861177e7f9c3e90c21a70d7975570a437fe646967c",
     "research/ocean-current-connectivity-candidates.json": "00169c69b2b3fe5ab815751415dd1d08aba60139df1cbc77af7258c331e9d9be",
     "research/current-measurement-object-scope-index.json": "c8f5498a67557480d81cbbc9242325d99f7681d44effd34f4c5f6fb633c1bde8",
@@ -1071,7 +1084,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "703349eb247c9b5868a35fb4d01c0559888f1bcb91dce0ef9499f55b56857b22",
+  "snapshot_fingerprint": "00b5df3869b4ee84f63ac319ab6d8630efa934f34b494f89aa869d90cf7f128f",
   "entries": [
     {
       "id": "current:agulhas",
@@ -13511,11 +13524,11 @@
       },
       "recorded_claims": 58,
       "nasa_links": 1,
-      "fingerprint": "380aee96dfe367ffcddd80e567e81c39a054d446f7d0f335013dbc6d6e256bca",
+      "fingerprint": "fdbbf108493d1274cda6b6ee5762d0359201273e0960709c991fb4dc9323e1ce",
       "series": [],
       "section_fingerprints": {
         "identity": "8efd62364981cd297cfb9a2b6472cfefb83637504e259248a5338769312edf78",
-        "sources": "7282bef4a9624a89fcd0618cd719d5778ea7b2c460ce1438c3044fce373d9221",
+        "sources": "5de5fd22247adbcc0ff3cb03a398630caef7ae5e43c1d206d30a7c56d8130765",
         "claims": "334637939b399bc30106de4e4bdce955d076986606ab1b1fa0c6f355919392f0",
         "measurements": "15c3552e1e91fe59730f30e986ed063d0d03207d363575360ca9d7ce269597f2",
         "routes_geometry": "e5cf0e707c0d81ad16d42893a91c3285fbb4f197910bb2fed77851dfdec69fa9",
@@ -13631,6 +13644,18 @@
         {
           "label": "Inspect the original-study acquisition receipt",
           "url": "query.html?source-q=%7B%22document%22%3A%22research%2Fsource-data%2Fozgokmen-redsea-2003%2Facquisition.json%22%2C%22pointer%22%3A%22%22%2C%22limit%22%3A50%2C%22offset%22%3A0%7D#source-query-title"
+        },
+        {
+          "label": "Inspect REDSOX velocity and CTD station metadata",
+          "url": "../figures/redsox-station-support-2001/"
+        },
+        {
+          "label": "Query all 445 provider station comparisons",
+          "url": "query.html?source-q=%7B%22document%22%3A%22research%2Fredsox-provider-station-support.json%22%2C%22pointer%22%3A%22%2Fprofiles%22%2C%22limit%22%3A445%2C%22offset%22%3A0%7D#source-query-title"
+        },
+        {
+          "label": "Query station records needing metadata review",
+          "url": "query.html?source-q=%7B%22document%22%3A%22research%2Fredsox-provider-station-support.json%22%2C%22pointer%22%3A%22%2Fprofiles%22%2C%22limit%22%3A445%2C%22offset%22%3A0%2C%22text%22%3A%22provider_metadata_review_required%22%7D#source-query-title"
         },
         {
           "label": "View current research evidence",
@@ -69646,5 +69671,5 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "built_at_utc": "2026-10-23T04:31:32.338239+00:00"
+  "built_at_utc": "2026-10-23T05:48:00.889443+00:00"
 }
