@@ -112,6 +112,31 @@ physical animation, mobile/browser delivery or a complete offline-suite pass.
 
 ## Remaining batch gates
 
+### Winter width evidence queued separately
+
+`research/wicc-winter-1987-1988-width-source-candidates-v1.json` retains two
+numeric candidates from the Shetye et al.1991 publisher-indexed abstract:
+approximately400km near10N and a100km jet near22N, from December1987 and
+January1988 hydrography. Direct publisher access and full primary text remain
+unavailable. These are two regional statements, with no exact sample days,
+width edge criterion or known uncertainty. The200m/400m vertical current
+extents are not width measurement layers. Neither value is admitted to the
+canonical width collection from an abstract under the full-text prose rule.
+
+The retained Tomczak/Godfrey compilation's printed page186 / PDF page196 was
+text-checked and visually reviewed. Chapter11 is version1.0, December2001.
+It describes a width of some400km at10N for northwestward winter flow and
+narrowing/deepening northward. It does not give the northern100km value in
+that passage. This dependent textbook context neither verifies the complete
+primary paper nor adds another independent sample. Its later400km upwelling
+forcing strip must not become a second current width.
+
+The candidates leave annual minima/maxima, monthly widths, route buffers,
+area and width-ranking eligibility unknown or false. A future source visual
+should show discrete regional evidence and access status. It must not connect
+the two numbers into a geographic or seasonal envelope. Canonical identity,
+primary full-text review and the existing batch delivery gates remain open.
+
 1. Integrate the four identities as an extension, preserving old IDs, existing
    measurements and links; retain EGC as unresolved. Carry the explicit
    seasonal/intraseasonal naming caveat for EICC into taxonomy controls.
