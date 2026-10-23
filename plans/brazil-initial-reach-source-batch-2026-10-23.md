@@ -72,15 +72,16 @@ requires no book download. The new actual-original checks also participate in
 normal full pytest collection once the existing paper fixtures are present.
 The40-target scientific replay driver has not yet been extended for this
 ignored-original-dependent product. Do not call its existing CI result proof
-of this v2 report. Source-stage local verification is complete; Linux actual
-reproduction and canonical atlas delivery remain pending batch gates.
+of this v2 report. Source-stage local verification is complete; a separate
+actual-original Linux replay subsequently passed as recorded below.
+Canonical atlas delivery remains a pending batch gate.
 
 ## Remaining delivery and measurement gaps
 
 - Add this separate regional-reach record and provenance links to the existing
   query/card collection without changing existing whole-current measurements.
-- Include the frozen product in explicit source-original reproduction coverage;
-  do not silently skip an unavailable original or claim an unrun check passed.
+- Preserve the separate verified source-original replay coverage below; do not
+  silently skip an unavailable original or claim an unrun check passed.
 - Validate native/WASM admission and mobile/keyboard/plain-text diagram access
   once for the compatible batch. Explain in the host UI that this source alone
   supplies no dimensions; independent section-width evidence remains separate.
@@ -160,8 +161,20 @@ checksum-pinned book first. The isolated `regional-reach-source-replay` CI job
 uses that flag and retains a result receipt and logs, never the full book.
 It is an advisory source-availability/reproduction job; failure remains visible
 in its receipt. It does not replace the required full offline suite or certify
-canonical atlas admission. Linux proof remains unverified until the actual job
-passes; the separate40-target scientific driver still excludes this product.
+canonical atlas admission. The separate40-target scientific driver still
+excludes this product; its Linux coverage is provided by this isolated job.
+
+### Verified Linux source replay
+
+At commitc06271a12dc95254acf497e1ed5c6b96af8a449a,
+[run40031761851, job120681459161](https://github.com/giodl73-repo/OSW/actions/runs/40031761851/job/120681459161)
+passed. The retained artifact12534792648 was downloaded and its receipt/logs
+inspected: Linux/Python3.13, explicit acquisition of the exact36625246-byte
+original with the pinned SHA256, exact report/SVG hashes matching the table
+above, exact prepared query-contract replay, and all63 focused checks passed.
+The receipt explicitly leaves canonical admission unverified. This closes the
+source-stage Linux reproduction condition, not the full offline suite, live
+source-count correction, native/WASM admission or mobile/browser delivery.
 
 Before canonical integration, fix the dashboard's source-list aliasing and
 preserve all registered owned evidence references in query projection. Apply

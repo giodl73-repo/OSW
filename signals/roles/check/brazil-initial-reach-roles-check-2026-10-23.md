@@ -5,6 +5,7 @@ date: 2026-10-23
 roles_used: 7
 p1_count: 0
 p2_count: 3
+p2_open_count: 2
 verdict: APPROVED-WITH-CONDITIONS
 ---
 
@@ -15,7 +16,8 @@ method/tests/preflight, independent actual-product checks, prepared query
 contract/source projection and the complete native source-count audit. This review uses
 installed functional lenses; it is not external scientific peer review.
 The verdict permits source-stage draft delivery on PR83. Canonical atlas
-delivery is unfinished and must satisfy the three P2 conditions below.
+delivery is unfinished. Three P2 conditions were identified; source replay is
+now resolved, leaving the source-link correction and accessible delivery open.
 
 Select CURRENT for physical quantity/support, SOUNDER for original custody,
 CHART for diagram meaning, BEACON for public wording, HARBOR for equivalent
@@ -69,7 +71,7 @@ irrelevant: no planetary comparison is introduced.
 |---|---|---|---|---|
 | K1 | Commit fee4925 froze source, method, tests, protocol and preflight before actual execution; first build and read-only replay matched exactly. | P3 | Freeze and execution | Preserve all executed inputs/products; use a new version for corrections. |
 | K2 | All35 source/product checks passed, followed by28 query/projection checks and exact contract replay. The actual Brazil owner rehearsal preserved every non-reference field. Checks used one CPU with BelowNormal priority. | P3 | Focused suites and prepared admission | Keep the documented commands; avoid repeating full regression for each source. |
-| K3 | The existing40-target Linux replay result does not cover this new original-dependent report. A dedicated advisory source-replay job and local read-only driver are prepared; the driver passed all63 focused checks locally, but Linux proof is pending. | P2 | Pending reproduction coverage | Observe the actual original-dependent cloud result before claiming Linux reproduction; retain source failures explicitly. Required full offline validation remains separate. |
+| K3 | Resolved: the existing40-target driver excludes this product, but isolated Linux job120681459161 at commitc06271a acquired the exact pinned original, replayed both frozen products and the prepared contract, and passed63 checks. Its retained artifact was inspected. | P2, resolved | Separate source replay coverage | Preserve this explicit original-dependent check and failure receipts. It establishes no canonical admission or full offline-suite pass. |
 
 ## LOGBOOK
 
@@ -81,7 +83,8 @@ irrelevant: no planetary comparison is introduced.
 
 ## Synthesis and amendments
 
-Roles reviewed:7. P1 blockers:0; P2 pending delivery issues:3; P3 notes:19.
+Roles reviewed:7. P1 blockers:0; P2 issues found:3, resolved:1, open:2;
+P3 notes:19.
 Verdict: **APPROVED-WITH-CONDITIONS for source-stage draft delivery**.
 Canonical atlas delivery remains unfinished. CURRENT, SOUNDER and BEACON agree
 that1500 km must never become an exact whole-current measurement or a dated
@@ -91,7 +94,8 @@ surface and source-original reproduction path before that scope is claimed.
 1. Correct source projection across the inventory, then add the separate
    regional record/provenance and readable host explanation during batched
    query/card integration; preserve independent width evidence.
-2. Extend actual-source reproduction coverage without representing a missing
-   ignored original or an unrun Linux replay as a passing check.
+2. Completed: separate actual-source Linux reproduction verified the original,
+   report/SVG, contract and63 checks. Continue retaining explicit missing-source
+   failures without treating this job as proof of canonical or full-suite delivery.
 3. Run one serialized native/WASM/browser validation cycle for the compatible
    batch after the disk preflight; retain full regression as the final gate.
