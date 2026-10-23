@@ -119,3 +119,53 @@ Both source and derived checks use zero network requests. This resolves the
 actual-source portability condition without a tolerance or changed report.
 The separate offline job fails upstream at the paper fixture; no full-suite
 green claim is made. Main-atlas integration/readback remains pending.
+
+
+## Main atlas integration review
+
+Internal application of the same seven project roles; no independent reviewer
+approval is implied. Twenty-one findings concern source/query delivery.
+
+| Role | Finding | Resolution / remaining condition |
+|---|---|---|
+| CURRENT | More depth samples must not imply a current width. | All physical admission flags stay false;170 width records and78 reference routes unchanged. |
+| CURRENT | Front-property support does not establish current membership. | Investigation/source IDs stay separate from verified current association; no front labels assigned. |
+| CURRENT | Temperature pressure/scale assumptions must survive querying. | Original in-situ values retained; separate conditional theta, Absolute Salinity, pressure and unverified ITS-90 flag joined per cell. |
+| SOUNDER | Supplementary rows could replace original depths. | Distinct source/profile/row IDs;46,944 total hydrography rows retain all four native levels. |
+| SOUNDER | New source documents could alter prior custody. | All474 previous source descriptors and actual file bytes exact;485 total documents. |
+| SOUNDER | Main joins could alter scientific products. |105 protected scientific/source files exact; no changed values or thresholds. |
+| CHART | A complete profile needs reachable current-card navigation. | Four supplementary card links added; actual full card/profile/query navigation remains required. |
+| CHART | Different axes could overstate the thermodynamic correction. | Same depth-specific temperature scale across raw/derived panels and all months/meridians; actual72-selection gate passes. |
+| CHART | New source context could change atlas geometry. | Preservation gate retains all current physical fields, widths, routes and map features. |
+| BEACON | Source updates must affect the dashboard indicator. | Correct own-source group registration adds one linked source and changes only the source-section fingerprint. |
+| BEACON | New data could look like complete physical measurement coverage. | Counts distinguish supplementary source cells from physical measurements; no length/width/seasonal gap closure claimed. |
+| BEACON | Readers need complete data beyond plotted values. | Full raw and derived monthly documents are losslessly indexed and linked; full source query readback remains required. |
+| HARBOR | Profile controls must work at320px with a keyboard. | Actual72-selection profile gate and desktop/phone visual inspection pass. |
+| HARBOR | Main navigation might lose selected month/depth/location. | Actual keyboard current-card to selected326-row native query remains required. |
+| HARBOR | Originals should require deliberate download. | Profile gate records zero automatic original downloads; same assertion remains in the main query gate. |
+| KEEL | Build success is distinct from source reproducibility. | Actual raw and complete derived JSON replay pass exactly on Windows/Linux, zero network;133 native Rust tests and native atlas snapshot pass locally. |
+| KEEL | Independent builds use different Rust compilers. | All534 source pins match; Windows1.99.1 and Linux1.95.0 binaries differ and are recorded separately. Both require actual native/WASM readback. |
+| KEEL | Local resource failure must not weaken checks. | Initial linker failure retained; later fresh local build passes with unchanged guards. Independent CI build also passes. |
+| LOGBOOK | Existing query records must survive integration. |83,338 old rows exact except one object's source metadata and links;23,472 supplemental rows plus one source added. |
+| LOGBOOK | Focused CI must not silently replace full coverage. | Existing default browser suite,34 scientific targets, old source replays and offline gates retained; explicit focused selector is mutually exclusive with resume. |
+| LOGBOOK | User requested a continuing review batch. | Same draft PR83; no new PR or main merge. Complete query browser delivery remains pending at this review. |
+
+Verdict at this checkpoint: source/profile and engine build conditions satisfied;
+complete main native/WASM data and navigation checks still required. Physical
+identity, dimensions, seasonal envelopes and broader remaining gaps stay open.
+
+
+### Local delivery conditions resolved
+
+The complete actual atlas browser gate is now terminal PASS: all23,472 native/
+WASM cell rows,12 derived months,2 pressure sections and12 raw source months
+match exactly. Keyboard current-card/profile/selected326-row query navigation
+passes at320px, with zero page errors or automatic original downloads. This
+resolves the CHART/BEACON/HARBOR full-query/navigation delivery conditions.
+All535 local engine manifest pins and the native atlas snapshot pass. Independent
+Linux engine build passes with the identical534 source pins but a different,
+recorded Rust compiler; its full browser gate is still running at this checkpoint.
+
+Verdict: APPROVED-WITH-CONDITIONS for the completed local supplementary source/
+query delivery. Remaining physical admission and broader measurement gaps stay
+open. No independent role approval or full-suite green status is asserted.

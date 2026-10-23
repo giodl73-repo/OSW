@@ -213,3 +213,34 @@ retains the resulting binary/manifest, then runs both complete supplementary
 profile and native/WASM query browser gates. Default full browser coverage and
 all source/scientific gates remain intact. Generated atlas data is prepared;
 updated engine delivery and full native/WASM readback remain pending.
+
+
+## Completed local atlas delivery
+
+After free disk recovered, a fresh local engine build is terminal PASS with all
+original resource guards intact.133 Rust tests and native --atlas pass. The
+47,981,578-byte WASM has SHA256
+1cbe5154f756a9fdc61a031d1b3e6bdfeabf130070895d5f39841c5969f4d94f;
+all535 dependency hashes check exactly.
+
+The actual main query browser is terminal PASS:48 paginated native/WASM queries
+match all23,472 supplementary cells, all12 complete derived monthly records,
+both full pressure sections and all12 complete raw monthly records. At320px,
+keyboard navigation current-card -> profile -> August200m80E query returns the
+expected326 native rows with derived values and explicit temperature assumptions.
+No page errors or automatic original downloads occur. The separate profile gate
+already passes72 selections/360 profiles and23,472 native table rows.
+
+Independent CI run39888959858/job120203813906 has also completed the engine
+build and native atlas validation; its complete profile/query checks remain
+running at this checkpoint. Its pinned Rust1.95.0 differs from local Rust1.99.1.
+All534 non-binary dependency pins match exactly; WASM binary equality is not
+claimed between different compilers. Same-run source conformance,34 scientific
+rebuilds/old raw replays and NetCDF fixtures pass. The broader offline job still
+fails on its external paper fixture; this is not a full-suite green claim.
+
+This completes supplementary source, derivation, profile and local atlas query
+delivery in the existing PR83. No physical width, along-current length, current/
+front identity, geographic edges, annual extrema or seasonal footprint is added.
+The remaining five named-current width-owner gaps, broader families/systems and
+89 source-length gaps remain open for continued measurement work.
