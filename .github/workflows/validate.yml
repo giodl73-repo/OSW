@@ -19,8 +19,9 @@ jobs:
         run: python -m pip install numpy==2.4.1 gsw==3.6.23 h5py==3.16.0 netCDF4==1.7.4 pyproj==3.7.2 pytest==8.4.2 PyMuPDF==1.28.2
       - name: Verify dated regional reaches against retained primary originals
         run: |
-          python -m pytest -q analysis/test_published_current_regional_reaches_v1.py analysis/test_published_current_regional_reaches_admission.py
+          python -m pytest -q analysis/test_published_current_regional_reaches_v1.py analysis/test_published_current_regional_reaches_admission.py analysis/test_published_regional_reaches_query.py
           python analysis/published_current_regional_reaches_v1.py check
+          python analysis/published_regional_reaches_query.py check
       - name: Verify complete Caribbean RU29 source arrays and page payload
         run: |
           python -m pytest -q analysis/test_caribbean_ru29_source_fields_v1.py analysis/test_caribbean_ru29_source_fields_v2.py analysis/test_caribbean_ru29_source_fields_admission.py analysis/test_caribbean_ru29_query.py

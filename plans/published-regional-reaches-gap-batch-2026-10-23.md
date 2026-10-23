@@ -53,3 +53,21 @@ Antilles520 nautical miles refers to an offshore survey section; Mindanao80km
 is an objective-mapping scale; Baffin1000km describes the bay; Guinea7600km
 is regional coastline. Keep these exclusions when extending source coverage.
 Other measurement, seasonal, eddy inventory and state-intersection gaps remain.
+
+## Query preparation, pending the batch build
+
+`analysis/published_regional_reaches_query.py` now builds an exact delivery
+contract over the frozen source report and diagram. It prepares a distinct
+`current_regional_reaches` record, its source-reported constraint claim, and
+two provenance records. The owner join carries the reach ID and actual source
+references. All source, report, method and figure bytes are pinned. Three
+card links target the diagram, exact query row and original-source custody.
+
+Thirteen focused adapter checks verify strict comparator/unknown bounds,
+atomic rejection of partial or duplicate joins, source-count consistency,
+the existing length/width/ranking rows remaining exact and query links resolving
+to the planned records. Forty checks now cover the source, report and adapter.
+The delivery adapter is not yet called by the canonical builders: native
+binding, builder registration, source catalogue admission, the rebuilt WASM,
+and actual atlas navigation remain pending. Passing these focused checks does
+not establish runtime or whole-atlas coverage.
