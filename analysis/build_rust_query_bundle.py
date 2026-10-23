@@ -785,6 +785,9 @@ def build():
     _,station_diagnostic,station_inputs=station_support_evidence()
     inputs.update(station_inputs)
     collections['diagnostics'].append(station_diagnostic)
+    from angola_nansen_source_query import evidence as angola_native_evidence
+    _,angola_native_diagnostic,angola_native_inputs=angola_native_evidence()
+    inputs.update(angola_native_inputs);collections['diagnostics'].append(angola_native_diagnostic)
     next(r for r in objects if r['id']=='current:red-sea-saline-overflow').setdefault('diagnostic_ids',[]).append(station_diagnostic['id'])
     collections['width_samples']=build_width_samples(collections['diagnostics'])
     for row in objects:

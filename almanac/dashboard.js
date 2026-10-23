@@ -161,6 +161,9 @@
       const first=!baseline;if(first)markSeen();
       const totals=$('dashboard-totals');totals.replaceChildren();for(const [kind,count] of Object.entries(data.counts)){const tile=element('div',null,totals);tile.className='dashboard-total';element('strong',count,tile);element('span',kind==='named_current'?'Currents':kind==='named_eddy'?'Named eddies':'Dated detections',tile);}
       $('dashboard-update-note').textContent=`Coverage snapshot built ${data.built_at_utc}. ${first?'First visit establishes your comparison snapshot. ':''}Update indicators compare record contents with your last marked snapshot. Checking reloads available data; it does not acquire new provider observations.`;
+      const sourceViews=$('dashboard-source-views');sourceViews.replaceChildren();
+      for(const source of data.proposed_source_views||[]){const li=document.createElement('li');link(source.label,source.url,li);li.append(document.createTextNode(' · '+source.status+' '));link('Query source inventory',source.query_url,li);sourceViews.append(li)}
+      $('dashboard-source-section').hidden=!sourceViews.children.length;
       const proposals=$('dashboard-proposals');proposals.replaceChildren();link(`${data.proposed_current_additions} additional current names await inventory review`,'reference-routes.html#inventory-addition-cards',proposals);
       await render();
     } catch(error) { $('dashboard-status').textContent=`Update check failed: ${error.message}.${data?' Showing the previously loaded snapshot.':''}`; }

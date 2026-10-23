@@ -306,6 +306,8 @@ def build():
     from redsox_station_support_query import evidence as station_support_evidence
     station_support,_,station_support_inputs=station_support_evidence()
     inputs.update(station_support_inputs)
+    from angola_nansen_source_query import evidence as angola_native_evidence, dashboard_link as angola_native_link
+    _,_,angola_native_inputs=angola_native_evidence();inputs.update(angola_native_inputs)
     from west_australian_streamline_evidence import verify as verify_wac_paths
     wac_paths,wac_path_inputs=verify_wac_paths()
     inputs.update(wac_path_inputs)
@@ -1196,6 +1198,7 @@ def build():
             'counts': counts, 'proposed_current_additions': len(proposals)-len(identity_document['entries'])-1, 'input_sha256': inputs,
             'snapshot_fingerprint': fingerprint(rows), 'entries': rows,
             'connections': connections,
+            'proposed_source_views': [angola_native_link()],
             'fingerprint_version': 2,
             'coverage_meaning': 'Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.'}
 

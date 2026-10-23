@@ -144,6 +144,11 @@ def build():
             raise ValueError('Seasonal snapshot source/date mismatch: ' + path)
         if len(doc['entries']) != row['detection_count']:
             raise ValueError('Seasonal snapshot inventory mismatch: ' + path)
+    from prepare_angola_query_sources import verify as verify_angola_query_sources, MANIFEST as ANGOLA_QUERY_MANIFEST
+    angola_query_sources=verify_angola_query_sources()
+    for path in [ANGOLA_QUERY_MANIFEST]+[row['source_file'] for row in angola_query_sources['documents']]:
+        if path not in documents or documents[path]!=(ROOT/path).read_text(encoding='utf8'):
+            raise ValueError('Missing or changed complete native Angola query source: '+path)
     raw = (json.dumps({'schema': 'osw.almanac-index-bundle.v1', 'documents': documents},
                       ensure_ascii=False, separators=(',', ':')) + '\n').encode('utf-8')
     compressed = gzip.compress(raw, compresslevel=9, mtime=0)

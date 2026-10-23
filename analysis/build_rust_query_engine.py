@@ -202,6 +202,8 @@ def main():
     _,_,_,gap_inputs=gap_source_evidence();paths.extend(gap_inputs)
     from redsox_station_support_query import evidence as station_support_evidence
     _,_,station_inputs=station_support_evidence();paths.extend(station_inputs)
+    from angola_nansen_source_query import evidence as angola_native_evidence
+    _,_,angola_native_inputs=angola_native_evidence();paths.extend(angola_native_inputs)
     packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
     paths.extend(['rust/osw-query/src/packet.rs','analysis/query_packet.py','almanac/query-packet.js','almanac/query-worker.js','almanac/query-workspace.js','plans/query-packet-transport-protocol-v1.md'])
     if packet.get('schema')==SCHEMA:

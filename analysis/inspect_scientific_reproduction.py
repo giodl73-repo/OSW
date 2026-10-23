@@ -7,7 +7,8 @@ import platform
 import sys
 
 ROOT=Path(__file__).resolve().parents[1]
-TARGETS=[('build_aleutian_p14n_vector_section','research/aleutian-p14n-1993-observed-vector-section.json',{},None),
+TARGETS=[
+    ('angola_nansen_reproduction','research/angola-nansen-native-sections-v1.json',{},None),('build_aleutian_p14n_vector_section','research/aleutian-p14n-1993-observed-vector-section.json',{},None),
          ('build_p14n_hydrography_companion','research/aleutian-p14n-1993-hydrography-correspondence.json',{},None),
          ('build_p14n_component_spans','research/aleutian-p14n-1993-component-spans.json',{},None),
          ('build_p14n_native_field_audit','research/aleutian-p14n-1993-native-vector-support.json',{},None),
