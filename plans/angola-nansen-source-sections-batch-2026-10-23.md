@@ -59,3 +59,7 @@ Run one heavy local job at a time. The delivery order is dashboard, source index
 ## Next measurement work
 
 Define and freeze a separate, consistent cross-current width extraction using the observed coordinates, depth/time support and missing-data coverage. Preserve unresolved shoreward/offshore edges. Do not infer a width from the transport box, model-filled reconstruction or the finite sample extent. Review Angola identity separately before attaching its observations or widths to an accepted catalogue object.
+
+## Fresh CI dependency correction
+
+At9e95a3b the conformance job failed during collection because its smaller dependency environment omitted netCDF4. All three new Angola test modules were affected. Add the same netCDF4==1.7.4 pin already used by scientific reconstruction and label the15 Angola checks separately from REDSOX. This changes CI setup only; frozen methods, tests, source arrays, numerical reports and all engine/source pins remain unchanged. The separate offline job again fails during checksum-pinned original-paper acquisition with HTTP403 before its tests. Fresh successful conformance is still required.
