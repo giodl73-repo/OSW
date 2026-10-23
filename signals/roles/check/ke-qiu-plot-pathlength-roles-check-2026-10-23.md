@@ -84,3 +84,22 @@ Verdict remains APPROVED-WITH-CONDITIONS for prospective freeze/extraction;
 P1:0, P2:3, P3:18. Actual calibration, UI integration and fresh39-report
 scientific replay remain pending. The previous38-report Labrador replay passes
 on Linux but cannot establish the new extraction's correctness.
+
+## Prospective v3 source-stroke amendment
+
+V2 rejected the original0.600000024-point strokes before calibrating target
+year/km readings. Its frozen method, protocol, tests and preflight remain
+unchanged atc82442e, and its failed log is retained. V3 admits positive source
+strokes up to0.75point without clamping or rewriting the actual width.
+The independently inspected axis scale gives under31km and0.067year half-stroke
+allowances; rounding, curve error and calibration precision remain inside the
+unchanged50km/0.1year editorial allowances. No calibrated target outcome was
+inspected to choose this correction. Raw stroke diagnostics are pinned.
+
+CURRENT/SOUNDER: scope and error type stay explicit. CHART/BEACON: graph
+knots, derived readings and original stroke width stay distinct. HARBOR:
+numeric/UI access conditions stay open. KEEL:66 prospective synthetic checks
+pass across v1/v2/v3; v3 adds true-stroke retention. LOGBOOK: retain both
+failures and label the new version; no completed-delivery claim follows.
+The earlier21 findings and their3 remaining delivery conditions still apply;
+verdict APPROVED-WITH-CONDITIONS for freeze/extraction only, P1:0/P2:3/P3:18.
