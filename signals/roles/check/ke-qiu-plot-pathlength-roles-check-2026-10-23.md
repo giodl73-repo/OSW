@@ -123,3 +123,20 @@ overlap retention and large overlap rejection. LOGBOOK: all three failed
 frozen versions, diagnostics and logs remain retained; v4 is a new version.
 The same21 findings/3 pending delivery conditions apply. Verdict remains
 APPROVED-WITH-CONDITIONS for freeze/extraction, P1:0/P2:3/P3:18.
+
+## Terminal scientific extraction update
+
+V4 frozen atef2b3b8 passes extraction, build, exact JSON/SVG replay and
+exact-original replay. Complete1532 line/4 cubic commands,16 runs,1552
+graph-knot records and60 added cubic readings are retained. The rounded
+regional graphic range is1120–4660km with declared50km/0.1year editorial
+reading allowances. The standalone SVG was rendered and visually inspected.
+
+Seven independent actual checks pass, including Decimal length/year/rounding
+for every reading, exact source-knot accounting, cubic reconstruction,
+unchanged run boundaries/overlaps and complete SVG point accounting. No frozen
+scientific code or output was changed after calculation. The local source
+readback condition is satisfied. Numeric query/table/card integration,
+native/WASM equality, actual browser/phone/keyboard access, source catalog
+admission and fresh39-report remote replay remain open. The verdict remains
+conditional for atlas delivery; the full objective is not complete.
