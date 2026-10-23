@@ -42,6 +42,7 @@ jobs:
         run: >-
           python -m pytest -q analysis/test_angola_nansen_native_sections.py
           analysis/test_angola_nansen_native_report.py analysis/test_angola_nansen_query_mirrors.py
+          analysis/test_angola_nansen_portable_sections_v2.py analysis/test_angola_nansen_portable_report.py
       - name: Reconstruct complete Indian SECC source boundary audit exactly
         run: python analysis/indian_secc_source_boundary_audit.py check
       - name: Reproduce complete conditional native property-window report exactly

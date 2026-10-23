@@ -5,7 +5,8 @@ import os
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 from playwright.sync_api import sync_playwright, expect
-from angola_nansen_native_sections import ROOT, REPORT
+from angola_nansen_native_sections import ROOT, REPORT as LEGACY_REPORT
+from angola_nansen_portable_sections_v2 import REPORT
 
 
 def main():
@@ -21,12 +22,18 @@ def main():
         page.goto(url);page.wait_for_function('window.oswAngolaReady || window.oswAngolaError')
         assert not page.evaluate('window.oswAngolaError || null')
         assert page.evaluate('window.oswAngolaReport')==report
+        assert report['field_encoding']=='identity-json'
+        assert page.locator('a').filter(has_text='Complete source inventory and checksums').get_attribute('href')=='../../'+REPORT
         for section in report['sections']:
-            expected=json.loads(gzip.decompress((ROOT/section['field_file']).read_bytes()))
+            raw=(ROOT/section['field_file']).read_bytes()
+            legacy=next(s for s in json.loads((ROOT/LEGACY_REPORT).read_bytes())['sections'] if s['id']==section['id'])
+            assert raw==gzip.decompress((ROOT/legacy['field_file']).read_bytes())
+            expected=json.loads(raw)
             page.locator('#section').select_option(section['id'])
             page.wait_for_function('(member)=>window.oswAngolaField?.source_member===member',arg=section['source_member'])
             # Complete matrices, coordinates, masks and metadata, not sampled cells.
             assert page.evaluate('window.oswAngolaField')==expected
+            assert page.locator('#field-download').get_attribute('href')=='../../'+section['field_file']
             for variable in ['U_CUR','V_CUR']:
                 page.locator('#variable').select_option(variable)
                 rendered=page.evaluate('window.oswAngolaRender')
@@ -62,7 +69,7 @@ def main():
         assert page.evaluate('window.oswAngolaSelectedCell.profile_index_1based')==1
         assert page.evaluate('window.oswAngolaSelectedCell.depth_bin_index_1based')==120
         # A corrupt payload never leaves another section's stale data visible.
-        page.route('**/'+report['sections'][1]['field_file'],lambda route:route.fulfill(body=b'not the source',content_type='application/gzip'))
+        page.route('**/'+report['sections'][1]['field_file'],lambda route:route.fulfill(body=b'not the source',content_type='application/json'))
         page.locator('#section').select_option(report['sections'][1]['id'])
         expect(page.locator('#status')).to_contain_text('checksum mismatch')
         assert page.evaluate('window.oswAngolaField') is None

@@ -2,8 +2,8 @@
 import hashlib
 import json
 from urllib.parse import quote
-from angola_nansen_native_sections import ROOT, REPORT
-from angola_nansen_reproduction import build, encoded
+from angola_nansen_native_sections import ROOT
+from angola_nansen_portable_sections_v2 import REPORT, verify as build, encoded
 from build_angola_nansen_sections_view import DIRECTORY, TEMPLATE, OPERATOR as VIEW_BUILDER
 from prepare_angola_query_sources import verify as query_sources, MANIFEST as QUERY_MANIFEST, OPERATOR as QUERY_BUILDER
 

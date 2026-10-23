@@ -3,7 +3,8 @@ import hashlib
 import json
 from pathlib import Path
 from urllib.parse import quote
-from angola_nansen_native_sections import ROOT, REPORT, calculate, encoded
+from angola_nansen_native_sections import ROOT
+from angola_nansen_portable_sections_v2 import REPORT, verify, encoded
 from prepare_angola_query_sources import verify as query_sources, MANIFEST as QUERY_MANIFEST, OPERATOR as QUERY_BUILDER
 
 TEMPLATE='analysis/angola_nansen_sections_view.html'
@@ -13,9 +14,9 @@ DIRECTORY='figures/angola-nansen-sections-2007-2014/'
 
 def build():
     mirrors=query_sources()
-    report, fields=calculate()
+    report=verify()
     raw=(ROOT/REPORT).read_bytes()
-    if raw!=encoded(report) or any((ROOT/path).read_bytes()!=value for path,value in fields.items()):
+    if raw!=encoded(report):
         raise ValueError('Native source compilation is stale')
     proposals='research/ocean-current-inventory-expansion-candidates.json'
     document=json.loads((ROOT/proposals).read_bytes())
@@ -27,7 +28,7 @@ def build():
             'naming_url':'../../almanac/query.html?source-q='+quote(json.dumps(query,separators=(',',':')),safe='')}
     text=(ROOT/TEMPLATE).read_text(encoding='utf8').replace('__CONFIG__',json.dumps(config).replace('<','\\u003c'))
     paths=[TEMPLATE,OPERATOR,REPORT,proposals,QUERY_MANIFEST,QUERY_BUILDER]
-    manifest={'schema':'osw.angola-nansen-native-view.v1','report':REPORT,'section_count':11,
+    manifest={'schema':'osw.angola-nansen-native-view.v2','report':REPORT,'section_count':11,
         'native_array_inventory_complete':True,'physical_width_admitted':False,
         'html_sha256':hashlib.sha256(text.encode('utf8')).hexdigest(),
         'input_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths},

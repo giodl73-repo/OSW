@@ -20,7 +20,7 @@ No alongshore rotation, time filtering, vertical or horizontal interpolation, cu
 
 The standalone source view selects all11 sections and both native velocity variables. It uses a fixed range across sections for each variable, patterned missing cells, native profile/bin axes and exact cell tables, with keyboard controls and shareable cell URLs. Profile index is not offshore distance. Derived files load on demand; provider originals are only downloaded on explicit navigation.
 
-The main source catalogue, diagnostic query and dashboard pending-current source list are being integrated. Eleven lossless JSON transport mirrors preserve the exact decoded bytes of the frozen field products, allowing the Rust/WASM source store to query every native variable and cell. A separate mirror manifest binds their hashes; no scientific transformation is introduced. The diagnostic has a proposed_current_id and null current/entity IDs; it must not invent an accepted current object or measurement capability. All prior rows, original sources and frozen scientific inputs must remain unchanged. Local main integration is verified:518 source documents,106816 query rows across52 collections,64 diagnostics, and627 engine pins. All106815 previous rows,501 previous source descriptors/bytes and570 protected inputs remain exact. Widths170, reference routes78 and hydrography samples46944 are unchanged. The generated WASM is47,992,257 bytes. Publication and fresh remote verification remain pending.
+The main source catalogue, diagnostic query and dashboard pending-current source list are being integrated. Eleven lossless JSON transport mirrors preserve the exact decoded bytes of the frozen field products, allowing the Rust/WASM source store to query every native variable and cell. A separate mirror manifest binds their hashes; no scientific transformation is introduced. The diagnostic has a proposed_current_id and null current/entity IDs; it must not invent an accepted current object or measurement capability. All prior rows, original sources and frozen scientific inputs must remain unchanged. Local v2 data integration is verified: 522 source documents, 106816 query rows across 52 collections, 64 diagnostics, and 633 engine pins. All106815 previous rows,501 previous source descriptors/bytes and570 protected inputs remain exact. Widths170, reference routes78 and hydrography samples46944 are unchanged. The v2 generated WASM is 47,993,601 bytes. Publication and fresh remote verification remain pending.
 
 ## Checks and retained failures
 
@@ -33,8 +33,8 @@ The clean full offline run at f49cf4d was intentionally stopped at approximately
 ## Reproduce
 
 ```
-python analysis/angola_nansen_native_sections.py check
-python -m pytest analysis/test_angola_nansen_native_sections.py analysis/test_angola_nansen_native_report.py analysis/test_angola_nansen_query_mirrors.py -q
+python analysis/angola_nansen_portable_sections_v2.py check
+python -m pytest analysis/test_angola_nansen_native_sections.py analysis/test_angola_nansen_native_report.py analysis/test_angola_nansen_query_mirrors.py analysis/test_angola_nansen_portable_sections_v2.py analysis/test_angola_nansen_portable_report.py -q
 python analysis/prepare_angola_query_sources.py
 python analysis/build_angola_nansen_sections_view.py
 python analysis/build_motion_dashboard.py
@@ -67,3 +67,21 @@ At9e95a3b the conformance job failed during collection because its smaller depen
 ## Cross-platform compressed-field replay investigation
 
 Linux replay at9e95a3b rejects the first frozen gzip field before comparing the report. The engine build rejects the same bytes. All36 previous report replays remain exact. A read-only diagnostic now compares every complete decoded field, compressed headers/hashes/sizes, and the full report after isolating only compressed SHA256/byte-length fields. It preserves the strict failing replay gate, v1 compiler/protocol/preflight and all retained products. Local Windows replay is exact in both compressed and decoded bytes; the Linux classification is pending. No compressed-only or numerical-difference conclusion is admitted before that evidence. Any transport correction requires a separate version, retained v1 products and equivalent complete array checks.
+
+## Verified classification and prospective v2 correction
+
+Linux job120484726051 atbe89af8 confirms all11 complete decoded fields exact and all report metadata exact except compressed hashes/sizes. Headers are equal; the first payload difference is offset38. Windows uses zlib-ng1.3.1 and Linux zlib1.3. The complete diagnostic is retained publicly. The original strict v1 replay failure remains reproducible and the frozen v1 producer/protocol/preflight/report/fields remain unchanged.
+
+Freeze commit8ea807a declares an identity-JSON transport v2 before compilation. It compares every native decoded byte, all report metadata, all retained gzip hashes and the existing query mirrors, then points the new report directly at the existing exact JSON files. No new full-size field copies, numeric transformations or dimension admissions. Fourteen prospective synthetic checks and one independent actual-report chain check pass locally, alongside the15 previous source checks. V2 report build/check pass locally. Active-edition reconstruction now targets v2 explicitly; v1 history and its strict-failure diagnostic remain available. Main view/source/query integration is being rebuilt and is not yet verified or published.
+
+The original Thompson2009 Labrador article was separately recovered from its institutional repository and selected pages6-7 visually inspected. A new custody follow-up records its exact hash and retains the earlier source-scope audit unchanged. No Labrador length calculation or new width is admitted in this increment.
+
+Historical strict v1 check: `python analysis/angola_nansen_native_sections.py check`. It remains compression-library dependent and is intentionally not claimed as a portable success. Use the explicit v2 command above for the active source inventory.
+
+V2 preservation is anchored to f49cf4d: all106815 pre-Angola query rows,501 original source descriptors/bytes and570 protected inputs remain exact. Additionally32 v1 source/method/report/gzip/JSON paths match Git9e95a3b exactly. The sole Angola diagnostic now explicitly references the v2 edition; v1 numerical records are retained. The active coverage remains13 rank-eligible published lengths among102 assessments, with70 having no numeric length and89 unranked overall. This transport correction does not reduce those measurement gaps.
+
+## Terminal v2 local delivery
+
+The corrected serial pipeline and all subsequent serial checks passed. Native Rust:134 tests. Source checks:30 tests. Standalone browser: all11 complete fields,22 variable cases, current v2 inventory/download links, retained-v1 decoded-byte equality, keyboard/permalink, corruption clearing and320px reflow. Main browser: every native field through the shipped WASM source store,2044320 velocity cells including missing values, both120/240-bin native/WASM parity cases, and keyboard dashboard-to-view-to-cell-query navigation. No automatic provider originals downloaded. Final phone rendering visually inspected. All source and engine pins match the working files. Fresh Linux v2 byte-exact report/UI evidence and the broad offline gate remain open; no overall-green or program-complete claim.
+
+Staged-byte proof: all956 unique engine/source Git index blobs match the633 engine pins and522 source descriptors. Diff whitespace checks pass. Publication proceeds only to the continuing draft PR83; fresh remote v2 results remain pending.
