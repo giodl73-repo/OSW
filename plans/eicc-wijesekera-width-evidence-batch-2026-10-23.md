@@ -74,6 +74,23 @@ the pinned digest, exact report/SVG and31passed checks, no skips. Receipt:
 `.pytest_cache/eicc-width-source-replay/result.json`. This local pass does not
 establish that the NRL download is reachable from Linux CI.
 
+### Verified Linux source replay
+
+At commit`06bdd399e7e32b610a1a576376db5f395a6d703e`,
+[source replay job120703573468](https://github.com/giodl73-repo/OSW/actions/runs/40038451904/job/120703573468)
+succeeded. Its actual job log and
+[artifact12538440965](https://github.com/giodl73-repo/OSW/actions/runs/40038451904/artifacts/12538440965)
+were retrieved and inspected: the NRL original was acquired at the exact
+14987904bytes and pinned digest, both product hashes matched the table,
+and all31 focused checks passed. The three inspected archive members were
+the result receipt, product-check log and focused-check log. The archive
+contains no original paper. Private proof:
+`.pytest_cache/current-gap-priority-20261023/eicc-width-source-execution-v1/linux-source-replay-proof.json`.
+
+This verifies source-stage reconstruction and original availability from
+that Linux runner. It does not establish canonical query/card/native/WASM
+admission, mobile/browser delivery or the full regression result.
+
 ## Required delivery gates
 
 1. Admit the separately reviewed EICC identity without silently changing the
