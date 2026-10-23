@@ -67,7 +67,7 @@ installed lenses, not agents or external scientific peer review.
 
 | # | Finding | Severity | Section | Recommendation |
 |---|---|---|---|---|
-| K1 | Resolved: review metadata could fail after append. Preparation now computes replacements/fingerprints before mutation; a regression case rejects invalid claim metadata without partial state. | P2, resolved | Atomic admission | Keep the pre-mutation ordering and negative test. |
+| K1 | Resolved: review metadata could fail after append, and the linked source-context fingerprint needed refresh. Preparation now computes replacements/fingerprints before mutation, rejects invalid review metadata including false/empty containers and hashes the final indexed context. | P2, resolved | Atomic admission and changed-record indication | Keep the pre-mutation ordering, final-context hash and negative cases. |
 | K2 | Exact contract replay and all16 local checks pass without implicit network; old physical rows and scientific source products stay exact. | P3 | Replay driver and wrapper | Preserve strict originals and explicit source acquisition in CI. |
 | K3 | Linux scoped-width replay and the final typed runtime/whole-suite gates are not yet proven. | P2, open | CI and canonical delivery | Inspect actual job receipts; do not infer a full pass from local checks or an advisory job. |
 
@@ -93,8 +93,9 @@ range or geographic current envelope. CURRENT/SOUNDER/CHART concur.
 
 Amendments:
 
-1. Completed: move all replacement, review-count and fingerprint preparation
-   ahead of mutation and add the malformed-metadata rollback case.
+1. Completed: move replacement, review-count and fingerprint preparation ahead
+   of mutation, hash the final indexed context, and retain malformed-metadata
+   rollback cases including false/empty containers.
 2. Completed locally, cloud pending: add a strict read-only16-check replay in
    the existing sequential source job; inspect its actual Linux result.
 3. Pending: implement and verify typed/accessible canonical delivery while

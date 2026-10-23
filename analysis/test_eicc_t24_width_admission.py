@@ -40,6 +40,8 @@ def test_scoped_width_commits_after_identity_and_preserves_all_old_dimensions(do
     assert owner['width_sample_ids'] == [] and owner['map_features'] == []
     assert owner['latest_observation_date'] is None
     assert owner['linked_source_count'] == len(owner['source_ids'])
+    assert owner['section_fingerprints']['source_context'] == a.identity.fingerprint([
+        row for row in stage['current_reported_width_evidence'] if row['entity_id'] == a.ENTITY])
     claim = next(row for row in stage['claims'] if row['id'] == a.CLAIM_ID)
     assert claim['target_collection'] == 'widths' and claim['target_id'] == a.WIDTH_ID
     assert claim['observation_time'] is None and claim['source_publication_year'] == 2015
@@ -105,12 +107,13 @@ def test_commit_is_atomic_and_duplicate_retry_adds_nothing(documents):
 
 def test_invalid_existing_claim_metadata_cannot_partially_append_width(documents):
     import current_gap_admission_batch as source_batch
-    stage, _ = source_batch.prepare(baseline(), *documents[:3])
-    stage['claims'].append({'id': 'claim:bad-metadata', 'subject_id': a.ENTITY, 'review_status': {'bad': 'type'}})
-    before = copy.deepcopy(stage)
-    with pytest.raises(ValueError, match='review metadata'):
-        a.append(stage, documents[3])
-    assert stage == before
+    for status in ({'bad': 'type'}, [], False):
+        stage, _ = source_batch.prepare(baseline(), *documents[:3])
+        stage['claims'].append({'id': 'claim:bad-metadata', 'subject_id': a.ENTITY, 'review_status': status})
+        before = copy.deepcopy(stage)
+        with pytest.raises(ValueError, match='review metadata'):
+            a.append(stage, documents[3])
+        assert stage == before
 
 
 @pytest.mark.parametrize('mutation', ['erase_locator', 'reassign_source'])

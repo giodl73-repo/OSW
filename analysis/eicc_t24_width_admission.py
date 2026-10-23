@@ -158,19 +158,28 @@ def append(collections, document):
     owner['recorded_claims'] = len(claims)
     owner['claim_review_counts'] = {}
     for row in claims:
-        status = row.get('review_status') or 'unspecified'
+        status = row.get('review_status')
+        if status is None:
+            status = 'unspecified'
         if not isinstance(status, str):
             raise ValueError('Invalid claim review metadata')
+        if not status:
+            status = 'unspecified'
         owner['claim_review_counts'][status] = owner['claim_review_counts'].get(status, 0) + 1
     owner['section_fingerprints']['claims'] = identity.fingerprint(claims)
     own_widths = [r for r in replacements['widths'] if r.get('current_id') == 'east-india-coastal']
     own_measures = [r for r in collections.get('measurements', []) if r.get('entity_id') == ENTITY]
     owner['section_fingerprints']['measurements'] = identity.fingerprint([own_measures, own_widths, None])
+    indexed_rows = [indexed if row['id'] == indexed['id'] else row for row in collections['current_reported_width_evidence']]
+    contexts = [row for name in context.OWNER_FIELDS
+                for row in (indexed_rows if name == 'current_reported_width_evidence' else collections.get(name, []))
+                if row['entity_id'] == ENTITY]
+    owner['section_fingerprints']['source_context'] = identity.fingerprint(contexts)
     owner['fingerprint'] = identity.fingerprint({k: v for k, v in owner.items() if k != 'fingerprint'})
     # All validation and fingerprint preparation precede every mutation.
     collections.update(replacements)
     collections['objects'] = [owner if row['id'] == ENTITY else row for row in collections['objects']]
-    collections['current_reported_width_evidence'] = [indexed if row['id'] == indexed['id'] else row for row in collections['current_reported_width_evidence']]
+    collections['current_reported_width_evidence'] = indexed_rows
 
 
 def main():
