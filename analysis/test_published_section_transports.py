@@ -31,7 +31,7 @@ def test_native_scene_and_owner_scope():
     assert all(row['id']!=s['points'][0]['record']['id'] for row in widths)
     assert owner['capabilities']['time_samples']==0
 
-def guard_fixtures(directory):
+def guard_fixtures(directory,retain=True):
     packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));targets=[]
     for case in ['mean','spread','layer','direction','months','identity','missing','dependency','capability','proof']:
         bad=copy.deepcopy(packet);m=bad['collections']['section_transports'];v=bad['collections']['transport_validations']
@@ -53,6 +53,7 @@ def guard_fixtures(directory):
         p=subprocess.run([str(CLI),str(target),'--seasons'],capture_output=True,text=True,encoding='utf8')
         assert p.returncode==2 and 'Published section transport' in p.stderr,(case,p.stderr)
         targets.append(target)
+        if not retain:target.unlink()
     return targets
 
-def test_native_scope_guards(tmp_path):guard_fixtures(tmp_path)
+def test_native_scope_guards(tmp_path):guard_fixtures(tmp_path,retain=False)

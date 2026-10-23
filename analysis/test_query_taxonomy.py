@@ -16,7 +16,10 @@ class TaxonomyProjectionTests(unittest.TestCase):
         entities=self.bundle['collections']['entities']
         expected={r['id'] for r in entities if r['type'] in ['named_current','named_eddy','operational_eddy_detection']}
         self.assertEqual(meta['node_count'],len(expected));self.assertEqual(meta['link_count'],20)
-        catalogue=json.loads((ROOT/'research/ocean-current-working-catalogue.json').read_bytes())
+        catalogue=json.loads((ROOT/'research/ocean-current-effective-catalogue.json').read_bytes())
+        previous=json.loads((ROOT/'research/ocean-current-working-catalogue.json').read_bytes())
+        self.assertEqual(catalogue['entries'][:-1],previous['entries'])
+        self.assertEqual(catalogue['entries'][-1]['id'],'current:norwegian-atlantic-slope')
         self.assertEqual({r['id'] for r in entities if r['type']=='named_current'},
                          {r['id'] for r in catalogue['entries']})
         self.assertTrue(all(e['measurement_inheritance_eligible'] is False and e['physical_connectivity_eligible'] is False and e['naming_source_is_parent_relation_evidence'] is False for e in edges))

@@ -49,3 +49,5 @@ physical/sample proof; readable mobile roles with complete raw evidence;
 precise source-query scalar equality with a demonstrated failing regression,
 boundary tests and complete actual browser/native comparisons. Cross-role
 consensus CURRENT/SOUNDER/BEACON: do not turn agreement into physical proof.
+
+Follow-up2026-10-23: af7e317 published on the same PR83. Run39962292935 scientific job120443051226 passes all36 byte-exact report replays, and conformance job120443051274 passes69+4+8 tests. Full browser CI and repaired full local coverage remain pending; offline CI original-paper acquisition still returns HTTP403 before tests. The P2 overall-coverage condition remains open.

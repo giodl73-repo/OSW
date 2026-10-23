@@ -140,3 +140,7 @@ The check/build/view operations use retained local originals; no automatic
 acquisition. Existing frozen producers/protocols/preflights/reports remain
 unchanged. Future physical measurements need their own layer, current-feature,
 sampling, boundary and timing support; field agreement alone does not supply it.
+
+## Published verification follow-up (2026-10-23)
+
+Delivered in af7e317 on the same draft PR83. Linux run39962292935 scientific job120443051226 is terminal SUCCESS: all36 reports rebuild byte for byte, including the new REDSOX report with SHA256 db06ac15973b4a05d4c3e1c40102ca00a2b27f305b332c81d52eca85dea20045. Conformance job120443051274 is terminal SUCCESS with69 existing thermodynamic tests,4 boundary-audit tests and8 station-support tests. Full browser CI is still running at this checkpoint. Offline CI job120443051575 fails during original-paper acquisition with HTTP403 before its tests; no overall-green claim. Broader local regression repairs are documented separately in current-gap-regression-repair-2026-10-23.md.

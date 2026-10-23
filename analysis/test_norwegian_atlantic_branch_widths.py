@@ -11,7 +11,11 @@ class NorwegianBranchWidths(unittest.TestCase):
         self.assertEqual(validate(self.proposals),{'records':4,'proposed_branch_owners':2})
         widths=json.loads((ROOT/'research/ocean-current-width-inventory.json').read_bytes())
         self.assertFalse(any(r['current_id']=='norwegian' for r in widths['measurements']))
-        self.assertEqual(len(self.proposals['entries']),28)
+        self.assertEqual(len(self.proposals['entries']),29)
+        southern = [r for r in self.proposals['entries'] if r['proposed_id']=='southern-east-madagascar']
+        self.assertEqual(len(southern),1)
+        self.assertEqual(southern[0]['name'],'Southern East Madagascar Current')
+        self.assertEqual(southern[0]['inventory_decision'],'missing_from_current_name_ledger')
 
     def test_corrected_width_error_and_scope_are_bound(self):
         index=next(i for i,r in enumerate(self.audit['measurements']) if r['id']=='norwegian-atlantic-front-bosse-2019-corrected-width')

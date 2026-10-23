@@ -135,7 +135,12 @@ class DashboardEvidenceTests(unittest.TestCase):
             {'id':'alaskan-stream','name':'Alaskan Stream'},
             {'id':'aleutian-north-slope','name':'Aleutian North Slope Current'}])
         self.assertEqual(aleutian['capabilities']['reference_route'],1)
-        self.assertEqual(aleutian['capabilities']['scoped_width'],0)
+        self.assertEqual(aleutian['capabilities']['scoped_width'],1)
+        from aleutian_onishi_width import verify_inputs
+        constraint,_=verify_inputs()
+        self.assertEqual(len(constraint['width_records']),1)
+        self.assertFalse(constraint['width_records'][0]['physical_edges_admitted'])
+        self.assertFalse(constraint['width_records'][0]['annual_extrema_eligible'])
         self.assertNotIn('current:aleutian-north-slope',rows)
         notes_path=ROOT/'research/ocean-current-scope-notes.json'
         notes=json.loads(notes_path.read_bytes())
@@ -311,10 +316,17 @@ class DashboardEvidenceTests(unittest.TestCase):
         entity=json.loads((ROOT/'almanac/release/v0.1.0/entities.json').read_bytes())[0]
         target=next(s for s in sources if s['id']==entity['source_id'])
         target['rights_review_date']='2099-01-01'  # Synthetic metadata, never written.
-        original=Path.read_bytes
-        def altered(path):
-            return json.dumps(sources).encode() if path==sources_path else original(path)
-        with patch.object(Path,'read_bytes',altered):
+        # Mutate the provenance value at the hashing boundary. Changing source
+        # bytes would correctly invalidate the frozen admission/export receipts.
+        from build_motion_dashboard import fingerprint
+        def changed_review(value):
+            if isinstance(value,list):return [changed_review(v) for v in value]
+            if isinstance(value,dict):
+                updated={k:changed_review(v) for k,v in value.items()}
+                if value.get('id')==target['id']:updated['rights_review_date']=target['rights_review_date']
+                return updated
+            return value
+        with patch('build_motion_dashboard.fingerprint',lambda value:fingerprint(changed_review(value))):
             after=build()
         old={r['id']:r for r in before['entries']}
         changed=[r for r in after['entries'] if r['fingerprint']!=old[r['id']]['fingerprint']]

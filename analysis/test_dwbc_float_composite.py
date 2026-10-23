@@ -81,7 +81,7 @@ def test_native_source_scene_and_combined_comparisons():
     all_widths=native({'collection':'widths','limit':1})
     assert all_widths['chart_scene']['kind']=='scoped_width_comparisons'
     scenes=all_widths['chart_scene']['scenes']
-    assert [s['kind'] for s in scenes]==['selected_core_width_statistic','nordic_section_widths','coastal_composite_widths','dwbc_float_composite','pacific_neuc_isopycnal_breadths','published_coordinate_section_span','antilles_cruise_section_spans','published_model_axis_spread']
+    assert [s['kind'] for s in scenes]==['selected_core_width_statistic','nordic_section_widths','coastal_composite_widths','dwbc_float_composite','pacific_neuc_isopycnal_breadths','neuc_glider_width_ranges','aleutian_published_width_constraint','published_coordinate_section_span','antilles_cruise_section_spans','published_model_axis_spread']
     by_kind={scene['kind']:scene for scene in scenes}
     assert [r['approximate_width_km'] for r in by_kind['published_model_axis_spread']['records']]==[100,130]
     assert all(r['width_range_km'] is None for r in by_kind['published_model_axis_spread']['records'])
