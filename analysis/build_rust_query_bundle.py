@@ -347,6 +347,7 @@ def build():
         source_ids.update(m.get('source_id') for m in measures)
         source_ids.update(c.get('source_id') for c in collections['claims'] if row['id'] in [c.get('subject_id'),c.get('object_id')])
         source_ids.update(source for route in collections['reference_routes'] if route['current_id']==current for source in route.get('source_ids',[]))
+        if current=='caribbean':source_ids.update(row.get('source_ids',[]))
         row['source_ids']=sorted(s for s in source_ids if s in sources)
         row['state_codes']=sorted({r['state_code'] for r in row['state_evidence']})
         lengths=[m['value'] for m in measures if m.get('rank_eligible') is True and m['quantity']=='reported_length']
@@ -717,6 +718,9 @@ def build():
     inputs.update(asca_calendar_inputs)
     collections['diagnostics'].append(asca_calendar_record(asca_calendar))
     next(r for r in objects if r['id']=='current:agulhas').setdefault('diagnostic_ids',[]).append(ASCA_CALENDAR_ID)
+    from caribbean_ru29_query import evidence as caribbean_source_evidence, append as append_caribbean_source
+    caribbean_source,caribbean_inputs=caribbean_source_evidence();inputs.update(caribbean_inputs)
+    append_caribbean_source(collections,caribbean_source)
     from eac_source_fields import verify_inputs as verify_eac_fields, record as eac_fields_record, ID as EAC_FIELDS_ID
     eac_document,_,_,eac_inputs=verify_eac_fields()
     inputs.update(eac_inputs)

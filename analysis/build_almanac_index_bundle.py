@@ -149,6 +149,11 @@ def build():
     for path in [ANGOLA_QUERY_MANIFEST]+[row['source_file'] for row in angola_query_sources['documents']]:
         if path not in documents or documents[path]!=(ROOT/path).read_text(encoding='utf8'):
             raise ValueError('Missing or changed complete native Angola query source: '+path)
+    from caribbean_ru29_query import evidence as caribbean_source_evidence
+    caribbean_source,_=caribbean_source_evidence()
+    for path in caribbean_source['source_documents']:
+        if path not in documents or documents[path]!=(ROOT/path).read_bytes().decode('utf8'):
+            raise ValueError('Missing or changed complete Caribbean query source: '+path)
     raw = (json.dumps({'schema': 'osw.almanac-index-bundle.v1', 'documents': documents},
                       ensure_ascii=False, separators=(',', ':')) + '\n').encode('utf-8')
     compressed = gzip.compress(raw, compresslevel=9, mtime=0)

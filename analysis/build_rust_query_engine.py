@@ -212,6 +212,9 @@ def main():
     from ke_length_series_query import evidence as ke_length_evidence
     _,ke_length_inputs=ke_length_evidence();paths.extend(ke_length_inputs)
     paths.append('rust/osw-query/src/ke_regional_length.rs')
+    from caribbean_ru29_query import evidence as caribbean_source_evidence
+    _,caribbean_source_inputs=caribbean_source_evidence();paths.extend(caribbean_source_inputs)
+    paths.append('rust/osw-query/src/caribbean_source_fields.rs')
     from angola_nansen_source_query import evidence as angola_native_evidence
     _,_,angola_native_inputs=angola_native_evidence();paths.extend(angola_native_inputs)
     packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())

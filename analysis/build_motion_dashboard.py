@@ -102,6 +102,10 @@ def build():
     sources[labrador_bound['method_source']['id']]=labrador_bound['method_source']
     from ke_length_series_query import evidence as ke_length_evidence, links as ke_length_links
     ke_length,ke_length_inputs=ke_length_evidence();inputs.update(ke_length_inputs)
+    from caribbean_ru29_query import evidence as caribbean_source_evidence
+    caribbean_source,caribbean_inputs=caribbean_source_evidence();inputs.update(caribbean_inputs)
+    sources[caribbean_source['source_record']['id']]=caribbean_source['source_record']
+    sources[caribbean_source['method_source']['id']]=caribbean_source['method_source']
     measurements.append(ke_length['measurement']);claims.append(ke_length['claim'])
     sources[ke_length['source_record']['id']]=ke_length['source_record']
     sources[ke_length['method_source']['id']]=ke_length['method_source']
@@ -608,6 +612,7 @@ def build():
         source_ids.update(source for route in own_routes for source in route.get('source_ids',[]))
         if current_id=='norwegian-atlantic-slope':source_ids.update(r['id'] for r in nwasc_admission['source_records'])
         if current_id=='kuroshio':source_ids.add(KUROSHIO_DAILY_SOURCE)
+        if current_id=='caribbean':source_ids.update([caribbean_source['source_record']['id'],caribbean_source['method_source']['id']])
         if source_ids - sources.keys():
             raise ValueError(f'Unresolved dashboard sources for {ident}')
         if current_id in {'norwegian-atlantic-slope','norwegian-coastal'}:source_ids.add(asar_widths['source_record']['id'])
@@ -942,6 +947,10 @@ def build():
                 context.update(source_original_sha256=redsea_width_review['source_identity']['sha256'],channel_values_are_current_dimensions=False)
                 payload['channel_width_source_review']=context
             groups['sources'].append(context)
+        if current_id=='caribbean':
+            evidence_links.extend(caribbean_source['card_links'])
+            payload['provider_velocity_source']=caribbean_source['card_context']
+            groups['sources']=[groups['sources'],caribbean_source['card_context']]
         if current_id=='red-sea-saline-overflow':
             from redsox_station_support_query import card_links as station_support_links, REPORT as STATION_SUPPORT_REPORT
             evidence_links.extend(station_support_links())
@@ -1201,6 +1210,9 @@ def build():
                      'season_url': 'seasons.html?current=' + current_id if current_id else None})
         if current_id in {'persian-gulf-saline-overflow','red-sea-saline-overflow'} or any(n.get('measurement_scope_assessment') for n in own_notes) or any(a.get('schema')=='osw.published-model-width-scope.v1' for a in own_audits):
             rows[-1]['scope_audits']=own_audits
+        if current_id=='caribbean':
+            rows[-1]['provider_velocity_source']=caribbean_source['card_context']
+            rows[-1]['source_ids']=sorted(source_ids)
         if ident in recurrence:
             rows[-1]['eddy_recurrence_ids']=[recurrence[ident]['id']]
     order = {'named_current': 0, 'named_eddy': 1, 'operational_eddy_detection': 2}

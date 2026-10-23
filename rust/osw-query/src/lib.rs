@@ -12,6 +12,7 @@ mod astrid_scales;
 mod atlantic_euc_sections;
 mod atlas_data;
 mod basin_spans;
+mod caribbean_source_fields;
 pub mod cartography;
 mod charts;
 mod coastal_composite_widths;
@@ -367,6 +368,7 @@ impl Store {
         asca_component_spans::validate(&bundle)?;
         asca_calendar::validate(&bundle)?;
         eac_source_fields::validate(&bundle)?;
+        caribbean_source_fields::validate(&bundle)?;
         eac_core_spans::validate(&bundle)?;
         south_australian_context::validate(&bundle)?;
         madagascar_navigation::validate(&bundle)?;

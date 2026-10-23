@@ -94,12 +94,83 @@ values has been performed here. Source RMS O(0.05) m/s is not per-cell CI.
 - Standalone source page has its own coverage class; it is not labelled a
   WASM measurement admission. Focused checks and source replay assigned in CI.
 
-## Still to land in the ongoing batch
+## Canonical query and atlas admission follow-up
 
-Bind the retained current source layer into the canonical Rust query/source
-catalogue and current card, with complete scoped records and source fidelity
-guards. Then regenerate the combined runtime bundle once, native first, WASM
-second, browser last. Verify preservation of all prior source and measurement
-records. The standalone source page is locally usable before this integration.
-New fresh-head CI and full regression status must be reported from actual
-terminal receipts, never inferred from these local checks or an older run.
+The complete readback is now available through the existing Rust source-query
+store. Thirteen pinned JSON sources are registered; source catalogue count is
+548. The main query bundle adds one scoped diagnostic and two source records,
+without embedding the 44 MB readback in that main bundle. The Caribbean card
+links directly to the visual page, diagnostic, original field inventories,
+both occupations' velocity cells and retained virtual tracking state.
+
+`analysis/caribbean_ru29_query.py` verifies the frozen scientific products and
+the complete occupation payload before building the delivery contract.
+`rust/osw-query/src/caribbean_source_fields.rs` binds exact records, dependencies,
+catalogue descriptors, owner references, card scope and links. It rejects
+promotion of these source records into dimensions or reconstructed observations.
+The source mirror retains every field; source-query records use file-scoped
+JSON pointers, not official eddy names or verified geographic memberships.
+
+### Local gates
+
+- Nine admission tests pass, including complete navigation pointers and atomic
+  rejection of duplicate records or missing owners.
+- All 147 Rust tests pass, including four new source-admission tests.
+- Native full atlas validation passed before WASM compilation.
+- WASM: 49,279,603 bytes. Separate compressed source corpus: 71,040,814 bytes.
+- Preservation: 108,437 of 108,438 prior rows exact. The sole changed prior
+  row is the Caribbean card; only source references, source accounting,
+  fingerprints, evidence links and the scoped source context changed.
+- Exactly three records added; 108,441 total rows in the same 54 collections.
+- All 535 prior source descriptors and source bytes remain exact. All 13
+  ranked lengths, 170 widths and 78 reference routes remain exact.
+- Native source query matched all eleven original-readback members and all
+  3,609,111 retained values against the frozen mirror before Chromium opened.
+- WASM matched all three complete current variable groups and all four terminal
+  virtual-state groups. Both tracked-observation flag first pages were checked;
+  complete flag arrays are covered by the native full-mirror comparison.
+- Browser query workspace closed before atlas workspace creation. Keyboard
+  disclosure and card-to-visual navigation pass at 320px. Actual source-query
+  and phone screenshots visually reviewed. No original PDF/ZIP/NetCDF fetched.
+
+### Corrections retained during delivery
+
+The initial adapter omitted the two new owner source references; admission
+tests caught this and the adapter now adds them atomically. Preservation then
+caught source-group list aliasing: supporting metadata was being counted as
+source records. The Caribbean source group is now separated from its source
+record list. The typed query card also restores its existing NASA-crosswalk
+media-ledger reference, `source:4f7441b953be4651`, which was previously omitted.
+The final five registered source references match the displayed count. No new
+scientific dataset is claimed for that restored ledger reference.
+
+The first browser run completed source comparisons but failed to find a link
+inside the collapsed evidence section. The corrected test opens that existing
+section with the keyboard; the complete second run passes. Initial failure
+state, source screenshot and test snapshot are retained privately.
+
+After the full native/WASM build, the source-count and reference corrections
+required runtime-data regeneration. All 696 compiled/static engine inputs
+were verified unchanged; the corrected bundle passed native atlas validation.
+Only the runtime packet references in the engine manifest were refreshed.
+WASM bytes, source catalogue and scientific source products remained exact;
+the compiler and 147-test suite were not repeated for this metadata correction.
+
+All heavy local stages ran separately, BelowNormal on one CPU. A browser GPU
+helper reset its limits; the owned-descendant monitor reapplied them. Private
+receipts: `.pytest_cache/caribbean-ru29-delivery/`, including corrected-build,
+final-runtime-v2, preservation-result.json and browser/result.json.
+
+### Remote and remaining work
+
+The preceding pushed source-layer head `9ebc91e840cff02ad2dbcfa971b8109806247678`
+has terminal Linux conformance success, job 120584011886. Its log verifies all
+17 focused source checks and exact hashes for mirror, inventory, figure and
+page payload. This is prior-head evidence, not fresh CI for the canonical
+admission. Fresh-head CI must be observed after publication. The older offline
+acquisition failure and the separate full regression gate remain open.
+
+No whole-current length, physical width, seasonal envelope, official eddy name,
+geometry or state membership is added. The wider current measurement and
+required visualization objective remains active; this source admission does
+not complete the core gap campaign.
