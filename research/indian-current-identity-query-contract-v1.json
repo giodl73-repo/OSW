@@ -1,0 +1,713 @@
+{
+  "schema": "osw.indian-current-identity.query-contract.v1",
+  "status": "prepared_extension_not_yet_in_canonical_bundle",
+  "canonical_delivery_verified": false,
+  "proposed_entity_ids": [
+    "current:west-india-coastal",
+    "current:east-india-coastal",
+    "current:east-african-coastal",
+    "current:south-java"
+  ],
+  "unresolved_candidate": {
+    "proposed_entity_id": "current:east-gyral",
+    "preferred_name": "East Gyral Current",
+    "supported_spelling_variant": "Eastern Gyral Current",
+    "abbreviation": "EGC",
+    "variant_evidence": {
+      "original_file": "research/source-data/wijeratne-australia-2018/journal-article.pdf",
+      "original_sha256": "1880c05374a7fb1cfed56910059a32c0884599d97ba040f532c07d28daecf0d9",
+      "doi": "10.1029/2017JC013221",
+      "locator": "Abstract/PDF1 uses Eastern Gyral Current; Figure1 caption/PDF2 uses East Gyral Current and EGC; abstract distinguishes it from SICC.",
+      "access_mode": "retained_full_original_text; original remains ignored under existing acquisition terms"
+    },
+    "identity_decision": "pending_scope_comparison_with_existing_current:south-indian",
+    "reason": "The 2018 paper distinguishes EGC from South Indian Counter Current. That alone does not establish whether EGC overlaps the existing South Indian Current (SIC) identity, whose Grand2015 source lists SIC and SICC separately. Direct source-scope comparison remains necessary.",
+    "existing_identity_source_doi": "10.1002/2014GB004898",
+    "full_existing_identity_source_reviewed_now": false,
+    "canonical_admitted": false
+  },
+  "input_sha256": {
+    "analysis/indian_current_identity_query.py": "7ad8fc2df1fdd2067d79cd6466b49f85c69f18ee3640011e4f06dddfe41cc4da",
+    "plans/current-identity-admission-protocol-v1.md": "259a30f54e4e975ad9d7f85794e14a3d46e70eb6b9060c18093ae72670f6f25a",
+    "research/indian-coastal-current-identity-review-v1.json": "809b77e2328106d7504e4b251530e74dff5c8d62929a6277c4938356400503ff",
+    "research/indian-current-naming-candidates-v1.json": "097485e13540c1be102a261e612f431289f6ba51e8ae79b570e77b4c749ad2c9",
+    "research/source-data/vinayachandran-indian-upwelling-2021/acquisition.json": "6bbf99453f92f7d8682ff20cb88f4c49fec255be9e848bc044768c4771d74b6b",
+    "research/source-data/vinayachandran-indian-upwelling-2021/article.pdf": "9ca5a0854eff936d32d5fd597cd94007ea3704ddba1ebeb1aeedede09967472d"
+  },
+  "additions": {
+    "entities": [
+      {
+        "id": "current:west-india-coastal",
+        "label": "West India Coastal Current",
+        "type": "named_current",
+        "basin": "Arabian Sea, northern Indian Ocean",
+        "setting": "eastern_boundary",
+        "time_behavior": "seasonally_reversing",
+        "vertical_setting": "unspecified",
+        "identity_level": "current",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021",
+        "source_record_id": "west-india-coastal",
+        "source_kind": "original_published_review_for_naming_and_qualitative_scope_not_new_observations",
+        "identity_scope_note": "West coast of India. Typical equatorward summer and poleward winter flow; strong intraseasonal variability can produce either direction at a particular time.",
+        "source_locator": "Sections2.7.1 and2.7.3; printed5989 and5992 / PDF23 and26",
+        "identity_admission_id": "current_admission:west-india-coastal",
+        "catalogue_version": "0.2.0-draft-indian-coastal",
+        "almanac_url": "object.html?id=current%3Awest-india-coastal"
+      },
+      {
+        "id": "current:east-india-coastal",
+        "label": "East India Coastal Current",
+        "type": "named_current",
+        "basin": "Bay of Bengal, northern Indian Ocean",
+        "setting": "western_boundary",
+        "time_behavior": "seasonal_intraseasonal_variable",
+        "vertical_setting": "unspecified",
+        "identity_level": "current",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021",
+        "source_record_id": "east-india-coastal",
+        "source_kind": "original_published_review_for_naming_and_qualitative_scope_not_new_observations",
+        "identity_scope_note": "East coast of India, western Bay of Bengal. Variable coastal flow. Some sources distinguish a pre-summer poleward Western Boundary Current from the equatorward EICC; no uniform continuous annual reversal is imposed here.",
+        "source_locator": "Section2.9.1; printed5996 / PDF30",
+        "identity_admission_id": "current_admission:east-india-coastal",
+        "catalogue_version": "0.2.0-draft-indian-coastal",
+        "almanac_url": "object.html?id=current%3Aeast-india-coastal"
+      },
+      {
+        "id": "current:east-african-coastal",
+        "label": "East African Coastal Current",
+        "type": "named_current",
+        "basin": "Southwestern Indian Ocean",
+        "setting": "western_boundary",
+        "time_behavior": "persistent_variable",
+        "vertical_setting": "unspecified",
+        "identity_level": "current",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021",
+        "source_record_id": "east-african-coastal",
+        "source_kind": "original_published_review_for_naming_and_qualitative_scope_not_new_observations",
+        "identity_scope_note": "Coasts of Tanzania and Kenya. Source describes a northward prevailing orientation throughout the year, contrasting with the reversing Somali Current. This is not an every-sample direction guarantee.",
+        "source_locator": "Section2.4.1; printed5983 / PDF17",
+        "identity_admission_id": "current_admission:east-african-coastal",
+        "catalogue_version": "0.2.0-draft-indian-coastal",
+        "almanac_url": "object.html?id=current%3Aeast-african-coastal"
+      },
+      {
+        "id": "current:south-java",
+        "label": "South Java Current",
+        "type": "named_current",
+        "basin": "Eastern Indian Ocean",
+        "setting": "eastern_boundary",
+        "time_behavior": "seasonally_reversing",
+        "vertical_setting": "unspecified",
+        "identity_level": "current",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021",
+        "source_record_id": "south-java",
+        "source_kind": "original_published_review_for_naming_and_qualitative_scope_not_new_observations",
+        "identity_scope_note": "Coastal waters south of Java. Source explicitly describes a reversing South Java Current associated with seasonal upwelling. Exact monthly phase limits are not assigned.",
+        "source_locator": "Section2.10.3; printed6000 / PDF34",
+        "identity_admission_id": "current_admission:south-java",
+        "catalogue_version": "0.2.0-draft-indian-coastal",
+        "almanac_url": "object.html?id=current%3Asouth-java"
+      }
+    ],
+    "names": [
+      {
+        "id": "name:current:west-india-coastal:preferred",
+        "entity_id": "current:west-india-coastal",
+        "label": "West India Coastal Current",
+        "preferred": true,
+        "name_role": "preferred",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021"
+      },
+      {
+        "id": "name:current:west-india-coastal:abbreviation",
+        "entity_id": "current:west-india-coastal",
+        "label": "WICC",
+        "preferred": false,
+        "name_role": "abbreviation",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021"
+      },
+      {
+        "id": "name:current:west-india-coastal:spelling",
+        "entity_id": "current:west-india-coastal",
+        "label": "West Indian Coastal Current",
+        "preferred": false,
+        "name_role": "spelling",
+        "source_id": "source:indian-coastal-spellings-madkaiker-2024"
+      },
+      {
+        "id": "name:current:east-india-coastal:preferred",
+        "entity_id": "current:east-india-coastal",
+        "label": "East India Coastal Current",
+        "preferred": true,
+        "name_role": "preferred",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021"
+      },
+      {
+        "id": "name:current:east-india-coastal:abbreviation",
+        "entity_id": "current:east-india-coastal",
+        "label": "EICC",
+        "preferred": false,
+        "name_role": "abbreviation",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021"
+      },
+      {
+        "id": "name:current:east-india-coastal:spelling",
+        "entity_id": "current:east-india-coastal",
+        "label": "East Indian Coastal Current",
+        "preferred": false,
+        "name_role": "spelling",
+        "source_id": "source:indian-coastal-spellings-madkaiker-2024"
+      },
+      {
+        "id": "name:current:east-african-coastal:preferred",
+        "entity_id": "current:east-african-coastal",
+        "label": "East African Coastal Current",
+        "preferred": true,
+        "name_role": "preferred",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021"
+      },
+      {
+        "id": "name:current:east-african-coastal:abbreviation",
+        "entity_id": "current:east-african-coastal",
+        "label": "EACC",
+        "preferred": false,
+        "name_role": "abbreviation",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021"
+      },
+      {
+        "id": "name:current:south-java:preferred",
+        "entity_id": "current:south-java",
+        "label": "South Java Current",
+        "preferred": true,
+        "name_role": "preferred",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021"
+      },
+      {
+        "id": "name:current:south-java:abbreviation",
+        "entity_id": "current:south-java",
+        "label": "SJC",
+        "preferred": false,
+        "name_role": "abbreviation",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021"
+      }
+    ],
+    "sources": [
+      {
+        "id": "source:indian-coastal-identities-vinayachandran-2021",
+        "kind": "external",
+        "label": "Reviews and syntheses: Physical and biogeochemical processes associated with upwelling in the Indian Ocean",
+        "title": "Reviews and syntheses: Physical and biogeochemical processes associated with upwelling in the Indian Ocean",
+        "doi": "10.5194/bg-18-5967-2021",
+        "url": "https://bg.copernicus.org/articles/18/5967/2021/",
+        "source_kind": "original_published_review_for_naming_and_qualitative_scope_not_new_observations",
+        "access_scope": "retained_full_original_text; naming caption on PDF4 visually reviewed; current-specific body sections reviewed as text",
+        "original_file": "research/source-data/vinayachandran-indian-upwelling-2021/article.pdf",
+        "original_sha256": "9ca5a0854eff936d32d5fd597cd94007ea3704ddba1ebeb1aeedede09967472d",
+        "document_identity_sha256": "9ca5a0854eff936d32d5fd597cd94007ea3704ddba1ebeb1aeedede09967472d",
+        "original_bytes": 12585782,
+        "provider_asset_redistributed": true,
+        "license": "CC-BY-4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "rights_policy_url": "plans/current-identity-admission-protocol-v1.md",
+        "metadata_note": "Scoped identity reference to a retained published review, not a new independent document or observation."
+      },
+      {
+        "id": "source:indian-coastal-spellings-madkaiker-2024",
+        "kind": "external",
+        "label": "High-resolution numerical modelling of seasonal volume, freshwater, and heat transport along the Indian coast",
+        "title": "High-resolution numerical modelling of seasonal volume, freshwater, and heat transport along the Indian coast",
+        "doi": "10.5194/os-20-1167-2024",
+        "url": "https://os.copernicus.org/articles/20/1167/2024/",
+        "access_scope": "publisher_full_html_reviewed",
+        "source_locator": "Introduction and section4.1",
+        "provider_asset_redistributed": false,
+        "original_sha256": null,
+        "rights_policy_url": "plans/current-identity-admission-protocol-v1.md",
+        "metadata_note": "Linked, attributed spelling and identity context from publisher HTML; its transport integration domain is not a current width."
+      }
+    ],
+    "length_assessments": [
+      {
+        "id": "length_assessment:west-india-coastal",
+        "entity_id": "current:west-india-coastal",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021",
+        "source_locator": "Sections2.7.1 and2.7.3; printed5989 and5992 / PDF23 and26",
+        "evidence_status": "identity_only_dimensions_not_admitted",
+        "rank_eligible": false,
+        "published_length_km": null,
+        "published_rank": null,
+        "lower_bound_km": null,
+        "proposed_system_length_km": null,
+        "scope": "Separately named current; identity admission supplies no length, width, observed axis or annual envelope."
+      },
+      {
+        "id": "length_assessment:east-india-coastal",
+        "entity_id": "current:east-india-coastal",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021",
+        "source_locator": "Section2.9.1; printed5996 / PDF30",
+        "evidence_status": "identity_only_dimensions_not_admitted",
+        "rank_eligible": false,
+        "published_length_km": null,
+        "published_rank": null,
+        "lower_bound_km": null,
+        "proposed_system_length_km": null,
+        "scope": "Separately named current; identity admission supplies no length, width, observed axis or annual envelope."
+      },
+      {
+        "id": "length_assessment:east-african-coastal",
+        "entity_id": "current:east-african-coastal",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021",
+        "source_locator": "Section2.4.1; printed5983 / PDF17",
+        "evidence_status": "identity_only_dimensions_not_admitted",
+        "rank_eligible": false,
+        "published_length_km": null,
+        "published_rank": null,
+        "lower_bound_km": null,
+        "proposed_system_length_km": null,
+        "scope": "Separately named current; identity admission supplies no length, width, observed axis or annual envelope."
+      },
+      {
+        "id": "length_assessment:south-java",
+        "entity_id": "current:south-java",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021",
+        "source_locator": "Section2.10.3; printed6000 / PDF34",
+        "evidence_status": "identity_only_dimensions_not_admitted",
+        "rank_eligible": false,
+        "published_length_km": null,
+        "published_rank": null,
+        "lower_bound_km": null,
+        "proposed_system_length_km": null,
+        "scope": "Separately named current; identity admission supplies no length, width, observed axis or annual envelope."
+      }
+    ],
+    "current_identity_admissions": [
+      {
+        "id": "current_admission:west-india-coastal",
+        "entity_id": "current:west-india-coastal",
+        "proposal_id": "west-india-coastal",
+        "status": "editorial_identity_admitted_measurements_separately_gated",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021",
+        "source_ids": [
+          "source:indian-coastal-identities-vinayachandran-2021",
+          "source:indian-coastal-spellings-madkaiker-2024"
+        ],
+        "source_review_file": "research/indian-coastal-current-identity-review-v1.json",
+        "source_review_sha256": "809b77e2328106d7504e4b251530e74dff5c8d62929a6277c4938356400503ff",
+        "source_locator": "Sections2.7.1 and2.7.3; printed5989 and5992 / PDF23 and26",
+        "distinguished_from": [
+          {
+            "entity_id": "current:monsoon",
+            "basis": "Separately named coastal flow on India west coast; the inter-basin monsoon currents are not aliases merely because the flows connect.",
+            "automatic_alias": false,
+            "automatic_parent_or_continuity_relation": false
+          }
+        ],
+        "classification_basis": "OSW editorial classification from the cited geographic and qualitative flow support; not a new empirical measurement or a calibrated phase model.",
+        "source_qualitative_flow_support": "Typical equatorward summer and poleward winter flow; strong intraseasonal variability can produce either direction at a particular time.",
+        "canonical_measurements_admitted": false,
+        "external_scientific_review_claimed": false,
+        "rank_eligible": false,
+        "physical_edges_admitted": false,
+        "seasonal_playback_eligible": false,
+        "geometry": null,
+        "annual_width_range_km": null,
+        "annual_length_range_km": null
+      },
+      {
+        "id": "current_admission:east-india-coastal",
+        "entity_id": "current:east-india-coastal",
+        "proposal_id": "east-india-coastal",
+        "status": "editorial_identity_admitted_measurements_separately_gated",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021",
+        "source_ids": [
+          "source:indian-coastal-identities-vinayachandran-2021",
+          "source:indian-coastal-spellings-madkaiker-2024"
+        ],
+        "source_review_file": "research/indian-coastal-current-identity-review-v1.json",
+        "source_review_sha256": "809b77e2328106d7504e4b251530e74dff5c8d62929a6277c4938356400503ff",
+        "source_locator": "Section2.9.1; printed5996 / PDF30",
+        "distinguished_from": [
+          {
+            "entity_id": "current:monsoon",
+            "basis": "Separately named coastal flow on India east coast; connection to the northeastern monsoon current is not semantic equivalence.",
+            "automatic_alias": false,
+            "automatic_parent_or_continuity_relation": false
+          }
+        ],
+        "classification_basis": "OSW editorial classification from the cited geographic and qualitative flow support; not a new empirical measurement or a calibrated phase model.",
+        "source_qualitative_flow_support": "Variable coastal flow. Some sources distinguish a pre-summer poleward Western Boundary Current from the equatorward EICC; no uniform continuous annual reversal is imposed here.",
+        "canonical_measurements_admitted": false,
+        "external_scientific_review_claimed": false,
+        "rank_eligible": false,
+        "physical_edges_admitted": false,
+        "seasonal_playback_eligible": false,
+        "geometry": null,
+        "annual_width_range_km": null,
+        "annual_length_range_km": null
+      },
+      {
+        "id": "current_admission:east-african-coastal",
+        "entity_id": "current:east-african-coastal",
+        "proposal_id": "east-african-coastal",
+        "status": "editorial_identity_admitted_measurements_separately_gated",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021",
+        "source_ids": [
+          "source:indian-coastal-identities-vinayachandran-2021"
+        ],
+        "source_review_file": "research/indian-coastal-current-identity-review-v1.json",
+        "source_review_sha256": "809b77e2328106d7504e4b251530e74dff5c8d62929a6277c4938356400503ff",
+        "source_locator": "Section2.4.1; printed5983 / PDF17",
+        "distinguished_from": [
+          {
+            "entity_id": "current:somali",
+            "basis": "The source explicitly contrasts the EACC with the downstream Somali Current and its reversal; connected flows retain separate names.",
+            "automatic_alias": false,
+            "automatic_parent_or_continuity_relation": false
+          }
+        ],
+        "classification_basis": "OSW editorial classification from the cited geographic and qualitative flow support; not a new empirical measurement or a calibrated phase model.",
+        "source_qualitative_flow_support": "Source describes a northward prevailing orientation throughout the year, contrasting with the reversing Somali Current. This is not an every-sample direction guarantee.",
+        "canonical_measurements_admitted": false,
+        "external_scientific_review_claimed": false,
+        "rank_eligible": false,
+        "physical_edges_admitted": false,
+        "seasonal_playback_eligible": false,
+        "geometry": null,
+        "annual_width_range_km": null,
+        "annual_length_range_km": null
+      },
+      {
+        "id": "current_admission:south-java",
+        "entity_id": "current:south-java",
+        "proposal_id": "south-java",
+        "status": "editorial_identity_admitted_measurements_separately_gated",
+        "source_id": "source:indian-coastal-identities-vinayachandran-2021",
+        "source_ids": [
+          "source:indian-coastal-identities-vinayachandran-2021"
+        ],
+        "source_review_file": "research/indian-coastal-current-identity-review-v1.json",
+        "source_review_sha256": "809b77e2328106d7504e4b251530e74dff5c8d62929a6277c4938356400503ff",
+        "source_locator": "Section2.10.3; printed6000 / PDF34",
+        "distinguished_from": [
+          {
+            "entity_id": "current:indonesian-throughflow",
+            "basis": "A separately named coastal current, not the inter-ocean throughflow or a synonym of every Indonesian coastal flow.",
+            "automatic_alias": false,
+            "automatic_parent_or_continuity_relation": false
+          }
+        ],
+        "classification_basis": "OSW editorial classification from the cited geographic and qualitative flow support; not a new empirical measurement or a calibrated phase model.",
+        "source_qualitative_flow_support": "Source explicitly describes a reversing South Java Current associated with seasonal upwelling. Exact monthly phase limits are not assigned.",
+        "canonical_measurements_admitted": false,
+        "external_scientific_review_claimed": false,
+        "rank_eligible": false,
+        "physical_edges_admitted": false,
+        "seasonal_playback_eligible": false,
+        "geometry": null,
+        "annual_width_range_km": null,
+        "annual_length_range_km": null
+      }
+    ],
+    "objects": [
+      {
+        "id": "current:west-india-coastal",
+        "label": "West India Coastal Current",
+        "type": "named_current",
+        "basin": "Arabian Sea, northern Indian Ocean",
+        "setting": "eastern_boundary",
+        "time_behavior": "seasonally_reversing",
+        "identity_level": "current",
+        "source_kind": "original_published_review_for_naming_and_qualitative_scope_not_new_observations",
+        "identity_scope_note": "West coast of India. Typical equatorward summer and poleward winter flow; strong intraseasonal variability can produce either direction at a particular time.",
+        "vertical_setting": "unspecified",
+        "source_ids": [
+          "source:indian-coastal-identities-vinayachandran-2021",
+          "source:indian-coastal-spellings-madkaiker-2024"
+        ],
+        "linked_source_count": 2,
+        "capabilities": {
+          "dated_diagnostics": 0,
+          "flow_network": 0,
+          "geometry": 0,
+          "observed_velocity": 0,
+          "passage_transport": 0,
+          "radius_evidence": 0,
+          "reference_route": 0,
+          "reported_length": 0,
+          "scope_notes": 0,
+          "scoped_width": 0,
+          "source_connectivity": 0,
+          "time_samples": 0,
+          "width_samples": 0
+        },
+        "dashboard_search": "West India Coastal Current Arabian Sea, northern Indian Ocean WICC",
+        "object_url": "object.html?id=current%3Awest-india-coastal",
+        "route_url": null,
+        "season_url": "seasons.html?current=west-india-coastal",
+        "published_length_km": null,
+        "latest_observation_date": null,
+        "recorded_claims": 0,
+        "nasa_links": 0,
+        "claim_review_counts": {},
+        "evidence_links": [
+          {
+            "label": "Query the separate identity and scope",
+            "url": "query.html?q=%7B%22collection%22%3A%22current_identity_admissions%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22current_admission%3Awest-india-coastal%22%7D%5D%2C%22limit%22%3A1%7D"
+          },
+          {
+            "label": "Read the naming source",
+            "url": "query.html?q=%7B%22collection%22%3A%22sources%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22source%3Aindian-coastal-identities-vinayachandran-2021%22%7D%5D%2C%22limit%22%3A1%7D"
+          }
+        ],
+        "connections": [],
+        "current_section_ids": [],
+        "diagnostic_ids": [],
+        "map_features": [],
+        "measurement_ids": [],
+        "route_decision_ids": [],
+        "route_ids": [],
+        "scope_notes": [],
+        "series": [],
+        "state_codes": [],
+        "state_evidence": [],
+        "velocity_sample_ids": [],
+        "width_ids": [],
+        "width_sample_ids": [],
+        "section_fingerprints": {
+          "identity": "d989757be24271f40a477daf22186ab8353be27b70bee735ab55e2724640b238",
+          "sources": "50633023675c2392bbaea278bf633916cf890e81d4ad57cb3cb471778d1e8b69",
+          "claims": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "measurements": "15c3552e1e91fe59730f30e986ed063d0d03207d363575360ca9d7ce269597f2",
+          "routes_geometry": "210e130878aabaf46f1fe72749a263f9eb71c6a262b80f13882ed08d472c0ecd",
+          "media": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd"
+        },
+        "fingerprint": "247450d9de1a17f69fba9a7bdf80f681748ff73a2ae39a7a18e7733507a7a52f"
+      },
+      {
+        "id": "current:east-india-coastal",
+        "label": "East India Coastal Current",
+        "type": "named_current",
+        "basin": "Bay of Bengal, northern Indian Ocean",
+        "setting": "western_boundary",
+        "time_behavior": "seasonal_intraseasonal_variable",
+        "identity_level": "current",
+        "source_kind": "original_published_review_for_naming_and_qualitative_scope_not_new_observations",
+        "identity_scope_note": "East coast of India, western Bay of Bengal. Variable coastal flow. Some sources distinguish a pre-summer poleward Western Boundary Current from the equatorward EICC; no uniform continuous annual reversal is imposed here.",
+        "vertical_setting": "unspecified",
+        "source_ids": [
+          "source:indian-coastal-identities-vinayachandran-2021",
+          "source:indian-coastal-spellings-madkaiker-2024"
+        ],
+        "linked_source_count": 2,
+        "capabilities": {
+          "dated_diagnostics": 0,
+          "flow_network": 0,
+          "geometry": 0,
+          "observed_velocity": 0,
+          "passage_transport": 0,
+          "radius_evidence": 0,
+          "reference_route": 0,
+          "reported_length": 0,
+          "scope_notes": 0,
+          "scoped_width": 0,
+          "source_connectivity": 0,
+          "time_samples": 0,
+          "width_samples": 0
+        },
+        "dashboard_search": "East India Coastal Current Bay of Bengal, northern Indian Ocean EICC",
+        "object_url": "object.html?id=current%3Aeast-india-coastal",
+        "route_url": null,
+        "season_url": "seasons.html?current=east-india-coastal",
+        "published_length_km": null,
+        "latest_observation_date": null,
+        "recorded_claims": 0,
+        "nasa_links": 0,
+        "claim_review_counts": {},
+        "evidence_links": [
+          {
+            "label": "Query the separate identity and scope",
+            "url": "query.html?q=%7B%22collection%22%3A%22current_identity_admissions%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22current_admission%3Aeast-india-coastal%22%7D%5D%2C%22limit%22%3A1%7D"
+          },
+          {
+            "label": "Read the naming source",
+            "url": "query.html?q=%7B%22collection%22%3A%22sources%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22source%3Aindian-coastal-identities-vinayachandran-2021%22%7D%5D%2C%22limit%22%3A1%7D"
+          }
+        ],
+        "connections": [],
+        "current_section_ids": [],
+        "diagnostic_ids": [],
+        "map_features": [],
+        "measurement_ids": [],
+        "route_decision_ids": [],
+        "route_ids": [],
+        "scope_notes": [],
+        "series": [],
+        "state_codes": [],
+        "state_evidence": [],
+        "velocity_sample_ids": [],
+        "width_ids": [],
+        "width_sample_ids": [],
+        "section_fingerprints": {
+          "identity": "80cf7ed087f10fa141725917b3253dcf4f718c696e570477f5320bf2f388c09f",
+          "sources": "50633023675c2392bbaea278bf633916cf890e81d4ad57cb3cb471778d1e8b69",
+          "claims": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "measurements": "15c3552e1e91fe59730f30e986ed063d0d03207d363575360ca9d7ce269597f2",
+          "routes_geometry": "210e130878aabaf46f1fe72749a263f9eb71c6a262b80f13882ed08d472c0ecd",
+          "media": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd"
+        },
+        "fingerprint": "06eeecaecba775799ee823fe7c8c0e66de7abd398f04ffc6da1cb55b1b5eb561"
+      },
+      {
+        "id": "current:east-african-coastal",
+        "label": "East African Coastal Current",
+        "type": "named_current",
+        "basin": "Southwestern Indian Ocean",
+        "setting": "western_boundary",
+        "time_behavior": "persistent_variable",
+        "identity_level": "current",
+        "source_kind": "original_published_review_for_naming_and_qualitative_scope_not_new_observations",
+        "identity_scope_note": "Coasts of Tanzania and Kenya. Source describes a northward prevailing orientation throughout the year, contrasting with the reversing Somali Current. This is not an every-sample direction guarantee.",
+        "vertical_setting": "unspecified",
+        "source_ids": [
+          "source:indian-coastal-identities-vinayachandran-2021"
+        ],
+        "linked_source_count": 1,
+        "capabilities": {
+          "dated_diagnostics": 0,
+          "flow_network": 0,
+          "geometry": 0,
+          "observed_velocity": 0,
+          "passage_transport": 0,
+          "radius_evidence": 0,
+          "reference_route": 0,
+          "reported_length": 0,
+          "scope_notes": 0,
+          "scoped_width": 0,
+          "source_connectivity": 0,
+          "time_samples": 0,
+          "width_samples": 0
+        },
+        "dashboard_search": "East African Coastal Current Southwestern Indian Ocean EACC",
+        "object_url": "object.html?id=current%3Aeast-african-coastal",
+        "route_url": null,
+        "season_url": "seasons.html?current=east-african-coastal",
+        "published_length_km": null,
+        "latest_observation_date": null,
+        "recorded_claims": 0,
+        "nasa_links": 0,
+        "claim_review_counts": {},
+        "evidence_links": [
+          {
+            "label": "Query the separate identity and scope",
+            "url": "query.html?q=%7B%22collection%22%3A%22current_identity_admissions%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22current_admission%3Aeast-african-coastal%22%7D%5D%2C%22limit%22%3A1%7D"
+          },
+          {
+            "label": "Read the naming source",
+            "url": "query.html?q=%7B%22collection%22%3A%22sources%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22source%3Aindian-coastal-identities-vinayachandran-2021%22%7D%5D%2C%22limit%22%3A1%7D"
+          }
+        ],
+        "connections": [],
+        "current_section_ids": [],
+        "diagnostic_ids": [],
+        "map_features": [],
+        "measurement_ids": [],
+        "route_decision_ids": [],
+        "route_ids": [],
+        "scope_notes": [],
+        "series": [],
+        "state_codes": [],
+        "state_evidence": [],
+        "velocity_sample_ids": [],
+        "width_ids": [],
+        "width_sample_ids": [],
+        "section_fingerprints": {
+          "identity": "0a21a4a9adc7990ee6f168d5473130302a55994b09907dbf7306795a49c9093d",
+          "sources": "c820a217270341787c210c4388bbb1edf9f05eba8c4a364c3bacb2a90c2565db",
+          "claims": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "measurements": "15c3552e1e91fe59730f30e986ed063d0d03207d363575360ca9d7ce269597f2",
+          "routes_geometry": "210e130878aabaf46f1fe72749a263f9eb71c6a262b80f13882ed08d472c0ecd",
+          "media": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd"
+        },
+        "fingerprint": "642206eeb4ecf615687c71a184f2b2d5d593545c66fb10a42b1e1c6e04978d4d"
+      },
+      {
+        "id": "current:south-java",
+        "label": "South Java Current",
+        "type": "named_current",
+        "basin": "Eastern Indian Ocean",
+        "setting": "eastern_boundary",
+        "time_behavior": "seasonally_reversing",
+        "identity_level": "current",
+        "source_kind": "original_published_review_for_naming_and_qualitative_scope_not_new_observations",
+        "identity_scope_note": "Coastal waters south of Java. Source explicitly describes a reversing South Java Current associated with seasonal upwelling. Exact monthly phase limits are not assigned.",
+        "vertical_setting": "unspecified",
+        "source_ids": [
+          "source:indian-coastal-identities-vinayachandran-2021"
+        ],
+        "linked_source_count": 1,
+        "capabilities": {
+          "dated_diagnostics": 0,
+          "flow_network": 0,
+          "geometry": 0,
+          "observed_velocity": 0,
+          "passage_transport": 0,
+          "radius_evidence": 0,
+          "reference_route": 0,
+          "reported_length": 0,
+          "scope_notes": 0,
+          "scoped_width": 0,
+          "source_connectivity": 0,
+          "time_samples": 0,
+          "width_samples": 0
+        },
+        "dashboard_search": "South Java Current Eastern Indian Ocean SJC",
+        "object_url": "object.html?id=current%3Asouth-java",
+        "route_url": null,
+        "season_url": "seasons.html?current=south-java",
+        "published_length_km": null,
+        "latest_observation_date": null,
+        "recorded_claims": 0,
+        "nasa_links": 0,
+        "claim_review_counts": {},
+        "evidence_links": [
+          {
+            "label": "Query the separate identity and scope",
+            "url": "query.html?q=%7B%22collection%22%3A%22current_identity_admissions%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22current_admission%3Asouth-java%22%7D%5D%2C%22limit%22%3A1%7D"
+          },
+          {
+            "label": "Read the naming source",
+            "url": "query.html?q=%7B%22collection%22%3A%22sources%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22source%3Aindian-coastal-identities-vinayachandran-2021%22%7D%5D%2C%22limit%22%3A1%7D"
+          }
+        ],
+        "connections": [],
+        "current_section_ids": [],
+        "diagnostic_ids": [],
+        "map_features": [],
+        "measurement_ids": [],
+        "route_decision_ids": [],
+        "route_ids": [],
+        "scope_notes": [],
+        "series": [],
+        "state_codes": [],
+        "state_evidence": [],
+        "velocity_sample_ids": [],
+        "width_ids": [],
+        "width_sample_ids": [],
+        "section_fingerprints": {
+          "identity": "5dc8aac70c4ddc856970f510fcccdd33c1a75be47f5ebedf2104bf0c35bedff8",
+          "sources": "c820a217270341787c210c4388bbb1edf9f05eba8c4a364c3bacb2a90c2565db",
+          "claims": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "measurements": "15c3552e1e91fe59730f30e986ed063d0d03207d363575360ca9d7ce269597f2",
+          "routes_geometry": "210e130878aabaf46f1fe72749a263f9eb71c6a262b80f13882ed08d472c0ecd",
+          "media": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd"
+        },
+        "fingerprint": "f246799809edf5e7098f1a25079520826fd70b423a981c3c1abcc88d81678739"
+      }
+    ]
+  },
+  "next_gate": "Integrate entities before taxonomy/dashboard/seasonal inventory, then project the qualified evidence and complete native/WASM/UI parity in one coherent build."
+}

@@ -63,6 +63,10 @@ jobs:
         run: |
           python -m pytest -q analysis/test_reported_current_direction_calendars_v1.py analysis/test_indian_direction_calendar_admission.py
           python analysis/reported_current_direction_calendars_v1.py check
+      - name: Check prepared Indian identities and complete owner-source projection
+        run: |
+          python analysis/indian_current_identity_query.py check
+          python -m pytest -q analysis/test_indian_current_identity_query.py analysis/test_inventory_source_links.py analysis/test_object_source_links.py
       - name: Verify complete Caribbean RU29 source arrays and page payload
         run: |
           python -m pytest -q analysis/test_caribbean_ru29_source_fields_v1.py analysis/test_caribbean_ru29_source_fields_v2.py analysis/test_caribbean_ru29_source_fields_admission.py analysis/test_caribbean_ru29_query.py
