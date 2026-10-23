@@ -60,3 +60,24 @@ or browser check is claimed for new source data. The working atlas at655f6ba is
 unchanged. Native100/200m fields still cannot establish the SAF vertical salinity
 minimum, a verified named-current association, current width/length/axis, annual
 extrema or a seasonal footprint. Those gaps remain open.
+
+
+## First actual source and live acquisition
+
+Declaration/code commitb2a83c7 was pushed to the existing PR before requesting
+new field data. The first genuine supplementary response passed the full packed
+four-field/map validator:262,312 bytes for the first frozen three dates, native
+100m/200m levels and original section grid. It is retained with the original URL,
+headers, acquisition time and content checksum. The initial one-request process
+is terminalPASS; the separate complete acquisition reuses that validated pair.
+The remaining frozen135-request batch is now running with two workers. No
+partial source is published or presented as a full-year result.
+
+A source packager now prepares the genuine raw/receipt archive and independently
+reconstructs all three raw products before publication. It refuses to overwrite
+an existing public source and checks the public destination boundary. Two added
+regressions reject a genuine earlier15m/1000m response as the wrong selection
+before creating a publication, and reject an out-of-tree destination. The focused
+suite is now **16 passed**. Actual full-source replay, derived portability and
+new-layer query/visual integration remain pending; passing guard tests does not
+establish those results.

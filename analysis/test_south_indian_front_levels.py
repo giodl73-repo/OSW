@@ -5,6 +5,7 @@ import inspect
 import json
 from pathlib import Path
 import shutil
+import zipfile
 from urllib.parse import unquote
 
 import gsw
@@ -139,3 +140,26 @@ def test_negative_valid_salinity_rejected_instead_of_gsw_clamping():
 def test_unpinned_thermodynamics_rejected(monkeypatch):
     monkeypatch.setattr(gsw, '__version__', 'other')
     with pytest.raises(ValueError, match='version'): convert(packed())
+
+
+def test_packaging_rejects_old_depth_source_before_publishing(selection, tmp_path, monkeypatch):
+    from package_south_indian_front_levels import populate
+    directory, _ = selection
+    monkeypatch.setattr(preflight, 'DECLARATION', str(tmp_path/'declaration.json'))
+    preflight.declare(directory)
+    # A genuine earlier provider response is nevertheless the wrong selection.
+    with zipfile.ZipFile(source.METADATA/'source-responses.zip') as archive:
+        for name in ['m01-r00.ascii', 'm01-r00.receipt.json']:
+            (directory/name).write_bytes(archive.read(name))
+    destination = tmp_path/'publication'
+    with pytest.raises(ValueError, match='original source response'):
+        populate(directory, destination)
+    assert not destination.exists()
+
+
+def test_public_package_rejects_destination_outside_source_tree(tmp_path):
+    from package_south_indian_front_levels import package
+    target = tmp_path/'not-a-public-source'
+    with pytest.raises(ValueError, match='inside research/source-data'):
+        package(tmp_path, target)
+    assert not target.exists()

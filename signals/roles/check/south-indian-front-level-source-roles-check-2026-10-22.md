@@ -44,3 +44,9 @@ Verdict: **APPROVED-WITH-CONDITIONS** for acquisition and source-method work.
 Actual source completion, offline reconstruction, derived portability and
 accessible presentation remain required before those milestones can be claimed.
 Physical measurement limits remain open across all roles.
+
+Source-packaging follow-up:16 focused tests now pass, including wrong-selection
+provider-response rejection before publication and public-path containment. The
+first actual supplementary response passes validation; complete acquisition is
+live. KEEL/SOUNDER actual original-based full replay and CHART/HARBOR new-layer
+presentation conditions remain open. No full-cohort or physical claim added.
