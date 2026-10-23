@@ -54,3 +54,33 @@ CURRENT, SOUNDER and CHART agree on regional plotted support and approximate tim
 3. Freeze all scientific inputs first, retain failures and use a new version
    for corrections. Local jobs remain sequential, below-normal priority, one
    logical CPU; full regression is an exclusive eventual batch gate.
+
+## Prospective v2 operator-support amendment
+
+V1 failed closed on a cubic command, before calibrated target readings. Keep
+the frozen v1 method/protocol/tests/preflight and first extraction failure.
+The raw operator diagnostic (1532 lines,4 cubics) justifies the explicit v2
+correction; it contains no calibrated km/year series. V2 source commit before
+freeze:f323484. The same seven lenses and21 findings apply, with these
+specific dispositions:
+
+- CURRENT: derived cubic graphic readings are never called observed samples;
+  all regional, width, seasonal and physical-extrema exclusions are retained.
+- SOUNDER: retain all original commands and control points as source evidence;
+  exact-original replay and public offline command-mirror replay are separate.
+- CHART: preserve cubic shape with a declared0.01-point interpolation bound,
+  all y-stationary points and explicit run breaks.
+- BEACON: count original graph knots and derived readings separately; say
+  graphic range rather than implying original samples or physical extrema.
+- HARBOR: visible scope, numeric table and phone/keyboard proof remain required.
+- KEEL:47 combined prospective synthetic tests pass. Three initial synthetic
+  count assertions incorrectly expected16 intervals where the declared error
+  bound requires32; expectations corrected before v2 freeze, not the algorithm.
+- LOGBOOK: this is an explicit new version, not an edit to the failed frozen
+  method. No target calibrated range has been inspected. Delivery conditions
+  and the continuing PR workflow remain unchanged.
+
+Verdict remains APPROVED-WITH-CONDITIONS for prospective freeze/extraction;
+P1:0, P2:3, P3:18. Actual calibration, UI integration and fresh39-report
+scientific replay remain pending. The previous38-report Labrador replay passes
+on Linux but cannot establish the new extraction's correctness.
