@@ -46,3 +46,20 @@ accessible rendering and complete query checks remain conditions for delivery.
 Highest-priority amendments incorporated: require provably identical full daily
 support; preserve all native runs/peaks/pairings; explicitly retain conditional
 temperature, missingness and non-identification throughout future presentation.
+
+
+## Actual v1 failure and correction review
+
+Actual v1 delivery verdict: NEEDS-WORK, P1 complete-case structure. The summary
+check found one group in each of36 cases instead of four. The original method
+and exact failed output are preserved; no v1 result reached the atlas. This
+condition was not established by the earlier synthetic kernel tests or exact
+byte replay. The source-scoped failure audit records that gap explicitly.
+
+V2 declaration review retains all21 preceding role findings/conditions and adds
+an explicit directly-tested complete-case construction path plus an actual
+36-by-four structure check before writing.29 focused v1/v2 tests pass. No source,
+criterion or numerical tolerance changes. V2 preflight pins59 inputs and will be
+published before corrected calculation. Method-declaration verdict:
+APPROVED-WITH-CONDITIONS. Actual v2 numeric reconstruction, accessible presentation
+and full query integration remain required; no v2 delivery approval is claimed.

@@ -1,0 +1,26 @@
+{
+  "schema": "osw.property-window-generator-scope-audit.v1",
+  "reviewed_on": "2026-10-22",
+  "declaration_commit": "749830c",
+  "failed_operator": "analysis/south_indian_front_property_windows.py",
+  "failed_preflight": "research/south-indian-front-property-windows-preflight-v1.json",
+  "failed_result": {
+    "sha256": "6e148cec8b423c28a9c6b47bcc40b4772cde4ccc348cfda29d26ac6ed65f3094",
+    "bytes": 1910505,
+    "cases": 36,
+    "expected_criterion_ids": [
+      "stf_theta100",
+      "stf_sp100",
+      "stf_joint100",
+      "arf_theta200"
+    ],
+    "actual_criterion_ids_each_case": [
+      "arf_theta200"
+    ],
+    "same_omission_all_cases": true
+  },
+  "failure": "The actual construction appended a window after rather than inside the criterion loop. All36 cases retained only the final ARF group. Synthetic kernel tests and byte replay did not cover complete case structure.",
+  "disposition": "Original operator/protocol/preflight unchanged. Exact failed result retained privately, reconstructible through frozen v1 build(). No v1 result indexed, added to the atlas or admitted as a measurement.",
+  "correction": "Separate v2 generator evaluates all four windows through a directly tested shared case function and rejects incomplete criterion groups before writing. Same source cohort, numerical kernels, criteria and physical limits.",
+  "physical_measurement_admitted": false
+}

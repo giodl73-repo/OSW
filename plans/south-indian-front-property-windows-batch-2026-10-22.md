@@ -37,3 +37,32 @@ After the declaration/code are committed, calculate with
 with `python analysis/south_indian_front_property_windows.py check`.
 Focused tests: `python -m pytest analysis/test_south_indian_front_property_windows.py -q`.
 Continue exact cross-platform checks and all existing validation gates.
+
+
+## Actual construction failure and explicit v2 correction
+
+The first v1 calculation produced36 cases but retained only the final ARF
+criterion in each. The immediate actual-summary structural check failed; no v1
+result was indexed, rendered or admitted. The original v1 operator, protocol and
+preflight remain byte unchanged. The exact failed result is retained privately
+and reconstructible from frozen v1 build(); its size/hash and omission are in
+`research/south-indian-front-property-windows-v1-scope-audit.json`.
+
+V2 moves construction into a directly tested evaluate_windows function and
+rejects any actual case missing or reordering the four groups. Criteria, source
+cohorts, numerical kernels and non-identification limits are unchanged.29 focused
+tests pass across v1/v2, including the actual case-construction regression.
+A new v2 preflight pins59 inputs before any corrected actual calculation.
+This is an explicit observed failure/correction, not a silent replacement or
+blind confirmation. Actual v2 report and cross-platform/UI delivery remain pending.
+
+The previous independent Linux source UI job120203813906 at169faf6 is now
+terminal FAIL solely at its1800-second subprocess deadline. All48 paginated
+queries/all23,472 source rows passed in28m16s; the job reached one complete
+derived source query before its deadline. The72-selection profile check also
+passed. Native source queries reparse the expanded181MB corpus. The two complete
+source-cell browser gates now have2400 seconds to finish the existing full
+source-document and phone-navigation stages. No assertion, page, field or
+comparison is removed. All other browser budgets and default coverage remain.
+Fresh runs already in progress are observed as their own immutable snapshots;
+no failed observation is treated as an acquisition restart.
