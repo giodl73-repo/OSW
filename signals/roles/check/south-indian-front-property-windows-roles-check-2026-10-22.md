@@ -98,3 +98,9 @@ increment. No unresolved P1 within that delivery scope. The historical v1 P1 is
 preserved and superseded, not concealed. Full-project measurement completeness,
 external scientific admission, final remote UI and broader release gates are
 not asserted complete. All seven role conditions remain explicit above.
+
+
+Independent source UI follow-up:job120217432663/run39893181610 at04ddc0d
+passes all prior source profile/cell/full-document/phone checks with the40-minute
+allowance. The earlier deadline failure remains recorded. New property-interface
+CI at1f4e017 and the complete isolated offline snapshot gate remain pending.

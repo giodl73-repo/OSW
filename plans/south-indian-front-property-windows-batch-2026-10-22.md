@@ -149,3 +149,20 @@ The updated full UI CI result remains pending; older1800-second deadline failure
 remain recorded, and40-minute budgets retain every source comparison. Broader
 full-suite/offline status is still separate from these passing focused gates.
 Continue the physical measurement and classification gaps in this same PR83.
+
+
+## Earlier full source UI condition closed; broad snapshot gate started
+
+Independent Linux full source UI run39893181610/job120217432663 at04ddc0d
+is terminal PASS:72 selections/360 charts and all23,472 native/WASM cells,
+12 raw and12 derived source months,2 pressure sections and320px keyboard
+navigation. It completes with the40-minute allowance and every assertion intact.
+This resolves the older source UI deadline issue; the new integrated property
+view/query snapshot1f4e017 has its own fresh independent CI still running.
+
+The complete offline Python suite is now being prepared from a fresh isolated,
+clean worktree at1f4e017. All analysis tests/assertions and the4GiB validation
+reserve remain.53 ignored original PDF/NC fixtures were copied locally with
+root/copy hashes checked; they remain outside Git and are not published. Native
+CLI prebuild is live at this checkpoint. No full-suite outcome is claimed.
+This snapshot is independent of later documentation receipts in the root tree.

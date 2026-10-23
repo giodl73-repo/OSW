@@ -244,3 +244,16 @@ delivery in the existing PR83. No physical width, along-current length, current/
 front identity, geographic edges, annual extrema or seasonal footprint is added.
 The remaining five named-current width-owner gaps, broader families/systems and
 89 source-length gaps remain open for continued measurement work.
+
+
+## Complete independent Linux atlas UI result
+
+At04ddc0d, run39893181610/job120217432663 is terminal PASS with the unchanged
+full comparison matrix and2400-second allowance. The72-selection/360-profile
+view passes. All23,472 source cells,12 complete derived months,2 pressure
+sections and12 complete raw months match native/WASM, followed by the320px
+keyboard card/profile/selected-query path. No automatic original downloads.
+The query stage finished at03:42:58 UTC on23October; no values, assertions or
+cases were relaxed to resolve the earlier deadline failure. This closes the
+previously pending independent full source UI condition for that snapshot.
+Later property-view integration preserves these source rows and source products.
