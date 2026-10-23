@@ -50,6 +50,16 @@ geographic masks, state intersections or physical seasonal playback are added.
 Highlighting a description for a selected calendar month is a separate potential
 UI capability. It does not license animated physical flows or changing widths.
 
+Separately, `research/wicc-march-1994-regime-source-facts-v1.json` retains
+Vijith et al.2022's accessible abstract assessment for the6–21March1994
+hydrographic survey. The authors describe eddy-dominated circulation without
+organized northward/southward hydrographic flow. Their archived daily
+altimeter data are described as1994 data; an identical subset window is not
+inferred. This dated episode supplies neither zero motion, a width failure
+measurement, named eddies nor the regime of every March. It does not modify
+the frozen direction calendar. Full-paper access and canonical admission
+remain unclaimed for this abstract-only context.
+
 Products:
 
 | Product | SHA256 |
@@ -83,7 +93,22 @@ python analysis/reported_current_direction_calendars_v1.py check
 The30 checks and exact report/SVG replay are added to conformance. The central
 scientific replay driver now includes this report as its41st registered target;
 Brazil's ignored-original-dependent report retains separate verified replay
-coverage. New Linux results remain unverified until their actual jobs finish.
+coverage.
+
+### Verified Linux replay
+
+At commit04e3bc6204898f9ce2bdcf31f5b766ff5d98c96d,
+[conformance job120691904420](https://github.com/giodl73-repo/OSW/actions/runs/40034916929/job/120691904420)
+passed all30 focused calendar/identity checks and replayed the report/SVG
+with exactly the two hashes above. Its actual log was inspected.
+[Scientific job120691904262](https://github.com/giodl73-repo/OSW/actions/runs/40034916929/job/120691904262)
+also passed: all41 distinct registered reports reproduced byte for byte,
+including this report. The log's individual report results were inspected.
+
+This verifies reconstruction from the declared retained support. WICC still
+has abstract-excerpt support, not independent validation of a retained full
+original. These jobs do not verify canonical identity/calendar admission,
+physical animation, mobile/browser delivery or a complete offline-suite pass.
 
 ## Remaining batch gates
 

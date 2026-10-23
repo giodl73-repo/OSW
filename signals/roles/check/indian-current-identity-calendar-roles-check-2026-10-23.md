@@ -5,6 +5,7 @@ date: 2026-10-23
 roles_used: 7
 p1_count: 0
 p2_count: 2
+p2_open_count: 1
 verdict: APPROVED-WITH-CONDITIONS
 ---
 
@@ -26,7 +27,7 @@ catalogue/release status. ORBIT is irrelevant to this Earth-only artifact.
 | # | Finding | Severity | Section | Recommendation |
 |---|---|---|---|---|
 | C1 | The24 cells describe two published annual-direction summaries, not measured monthly vectors or independent observations. | P3 | Report quantity and month rows | Preserve the qualitative collection and false observation/physical-geometry flags. |
-| C2 | WICC's shorter-term reversals qualify its broad seasonal description; EACC's prevailing northward orientation is contrasted with Somali reversal in the review. | P3 | Sources and visible calendar qualification | Keep the regime/current distinctions and avoid instantaneous direction guarantees. |
+| C2 | WICC's shorter-term reversals qualify its broad seasonal description; EACC's prevailing northward orientation is contrasted with Somali reversal. The separate2022 abstract describes an eddy-dominated March1994 survey, not the regime of every March. | P3 | Sources, calendar qualification and separately dated context | Keep the regime/current and episode/climatology distinctions; infer neither instantaneous guarantees nor zero motion. |
 | C3 | East/Eastern Gyral spelling is corroborated, but EGC versus existing SIC remains unresolved. EGC differing from SICC does not logically prove it differs from SIC. | P3 | Identity review | Keep EGC pending; do not auto-alias or admit it based on acronym, shared water or that non-transitive distinction. |
 
 ## SOUNDER
@@ -67,7 +68,7 @@ catalogue/release status. ORBIT is irrelevant to this Earth-only artifact.
 |---|---|---|---|---|
 | K1 | Freeze commit9500981 precedes actual report/SVG execution. First generation and read-only replay matched exactly. | P3 | Preflight and preserved products | Keep all executed scientific files unchanged; use a new version for corrections. |
 | K2 | All30 focused checks passed, covering synthetic period semantics and independent actual values/access flags, source pins and both product hashes. | P3 | Focused suite | Retain these checks and the distinction between excerpt-supported and original-checked profiles. |
-| K3 | The report is added as the41st central replay target and to conformance, but no new Linux result has been observed yet. Earlier Brazil replay does not cover this artifact. | P2 | Pending cloud evidence | Inspect actual conformance and replay results before claiming cross-platform reproduction. Full offline regression remains separate. |
+| K3 | Resolved: at commit04e3bc6, Linux conformance job120691904420 passed the30 checks and exact report/SVG replay. Scientific job120691904262 reproduced all41 registered reports byte for byte, including this one. Individual log results were inspected. | P2, resolved | Verified cloud evidence | Preserve the declared source-access limits and keep full offline/canonical/mobile gates separate; this does not validate an unavailable full WICC original. |
 
 ## LOGBOOK
 
@@ -79,7 +80,8 @@ catalogue/release status. ORBIT is irrelevant to this Earth-only artifact.
 
 ## Synthesis
 
-Roles reviewed:7. P1 blockers:0; P2 pending delivery issues:2; P3 notes:19.
+Roles reviewed:7. P1 blockers:0; P2 issues found:2, resolved:1, open:1;
+P3 notes:19.
 **APPROVED-WITH-CONDITIONS for source-stage draft delivery.** CURRENT, SOUNDER
 and BEACON agree that source direction regimes must never be counted as
 monthly observed velocities or dimension envelopes. CHART and HARBOR agree
@@ -89,8 +91,8 @@ Amendments/gates:
 
 1. Preserve source access limits, null/unspecified months and intraseasonal
    qualifications throughout prepared query/card admission and month highlighting.
-2. Inspect new Linux results, retaining explicit failure history. Do not
-   substitute an older passing source job for this newly registered artifact.
+2. Completed: new Linux conformance and scientific replay verified this artifact
+   directly. Preserve explicit failure history and the abstract-only WICC scope.
 3. Perform one compatible identity/provenance/query/native/WASM/browser batch
    after the disk preflight; retain EGC as unresolved and full regression as
    the separate final gate.
