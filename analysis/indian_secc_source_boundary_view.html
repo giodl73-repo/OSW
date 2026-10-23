@@ -9,7 +9,7 @@ svg text{font-size:22px}
 <p class="notice">These marks show where diagnostic sampling stops. They are <strong>not current edges</strong>. Named-current identity and physical width remain unverified. A month with no retained stations reflects failed seed checks, not an absent current.</p>
 <p>Indian South Equatorial Countercurrent (SECC) investigation. 2013 HYCOM paired daily-00Z monthly means at 15 m. All 144 attempts are retained. Native source window: 75.040039°–84.959961° E, 12° S–equator.</p>
 <label for="month">Month </label><select id="month"></select> <a id="permalink">Link to selection</a>
-<p id="summary" aria-live="polite"></p>
+<p id="summary" aria-live="polite"></p><p><a id="attempt-query">Query this month's attempts</a> · <a id="terminal-query">Query this month's terminal records</a></p>
 <div class="grid"><section><h2>Last sampling intervals</h2>
 <svg id="plot" viewBox="0 0 640 720" role="img" aria-labelledby="plot-title plot-description"><title id="plot-title">Source support and last retained sampling intervals</title><desc id="plot-description">The outlined rectangle is the source window. Orange intervals end outside source support before a half-peak crossing. Blue intervals show other stops. No current outline is drawn.</desc></svg>
 <p class="muted">Orange: source stop before a half-peak crossing (50% of local peak projected velocity). Blue: other terminal intervals. Circle: immediate inward sample; square: terminal sample. Hover a mark for its case. Overlapping cases remain in the table. The grey rectangle is data coverage. This is a linear longitude/latitude support diagram, not a distance-preserving map.</p></section>
@@ -30,6 +30,9 @@ const px=lon=>72+(lon-74.5)/11*530,py=lat=>40+(.5-lat)/13*600;
 function render(month,push=false){
  $('month').value=String(month);const m=data.monthly_summary[month-1],rows=data.terminal_rows.filter(r=>r.month===month),attempts=data.attempt_inventory.filter(r=>r.month===month);
  window.oswBoundarySelection={month,summary:m,rows,attempts};
+ const sourceQuery=(pointer,limit,offset)=>'/almanac/query.html?source-q='+encodeURIComponent(JSON.stringify({document:'research/indian-secc-hycom-source-boundary-audit.json',pointer,limit,offset}))+'#source-query-title';
+ $('attempt-query').href=sourceQuery('/attempt_inventory',12,(month-1)*12);
+ if(rows.length){$('terminal-query').hidden=false;$('terminal-query').href=sourceQuery('/terminal_rows',rows.length,data.terminal_rows.findIndex(r=>r.month===month))}else{$('terminal-query').hidden=true;$('terminal-query').removeAttribute('href')}
  $('summary').textContent=`${names[month-1]}: ${m.attempts} attempts, ${m.terminal_rows} retained terminal records; ${m.outside_source_terminals} outside-source stops, ${m.half_peak_source_censored_edges} unresolved half-peak edges at source stops. ${m.axis_passing_half_peak_source_censored_edges} of those belong to attempts passing all five axis checks.`;
  $('empty').textContent=rows.length?'All available intervals appear in the plot and table.':'No retained station profiles this month. The attempt table records each failed seed check.';
  $('attempts').replaceChildren();attempts.forEach(c=>tr($('attempts'),[c.case_id,c.status,c.available_stations]));$('terminals').replaceChildren();

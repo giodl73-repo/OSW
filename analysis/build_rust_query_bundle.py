@@ -760,6 +760,13 @@ def build():
     _,property_diagnostic,property_inputs=property_evidence()
     inputs.update(property_inputs)
     collections['diagnostics'].append(property_diagnostic)
+    from current_gap_source_evidence import evidence as gap_source_evidence
+    _,_,gap_diagnostics,gap_inputs=gap_source_evidence()
+    inputs.update(gap_inputs)
+    collections['diagnostics'].extend(gap_diagnostics)
+    for diagnostic in gap_diagnostics:
+        owner=next(r for r in objects if r['id']==diagnostic['entity_id'])
+        owner.setdefault('diagnostic_ids',[]).append(diagnostic['id'])
     for owner in objects:
         if owner['id']=='current:aleutian':
             owner.setdefault('diagnostic_ids',[]).append(ALEUTIAN_WIDTH_ID)

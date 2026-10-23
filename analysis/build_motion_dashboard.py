@@ -300,6 +300,9 @@ def build():
     from south_indian_front_property_query import view_evidence as property_evidence
     property_report,_,property_inputs=property_evidence()
     inputs.update(property_inputs)
+    from current_gap_source_evidence import evidence as gap_source_evidence
+    boundary_audit,redsea_width_review,_,gap_source_inputs=gap_source_evidence()
+    inputs.update(gap_source_inputs)
     from west_australian_streamline_evidence import verify as verify_wac_paths
     wac_paths,wac_path_inputs=verify_wac_paths()
     inputs.update(wac_path_inputs)
@@ -906,6 +909,20 @@ def build():
         }
         if current_id=='south-indian':
             groups['sources'].append(payload['front_property_assessment'])
+        if current_id in ['indian-south-equatorial-countercurrent','red-sea-saline-overflow']:
+            from current_gap_source_evidence import card_links as gap_source_links, REPORT as BOUNDARY_REPORT, REDSEA as REDSEA_REVIEW
+            evidence_links.extend(gap_source_links(current_id))
+            source_file=BOUNDARY_REPORT if current_id=='indian-south-equatorial-countercurrent' else REDSEA_REVIEW
+            context={'source_file':source_file,'source_sha256':inputs[source_file],
+                     'physical_width_admitted':False,'current_geometry_admitted':False}
+            if current_id=='indian-south-equatorial-countercurrent':
+                context.update(attempts=len(boundary_audit['attempt_inventory']),terminal_records=len(boundary_audit['terminal_rows']),
+                    unresolved_half_peak_source_edges=sum(m['half_peak_source_censored_edges'] for m in boundary_audit['monthly_summary']))
+                payload['source_boundary_audit']=context
+            else:
+                context.update(source_original_sha256=redsea_width_review['source_identity']['sha256'],channel_values_are_current_dimensions=False)
+                payload['channel_width_source_review']=context
+            groups['sources'].append(context)
         if current_id=='kuroshio':
             capabilities['model_dimension_samples']=6588
             capabilities['axis_normal_samples']=16470

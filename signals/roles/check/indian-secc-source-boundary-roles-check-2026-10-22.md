@@ -49,3 +49,52 @@ Three amendments applied: state the unsampled-interval limitation beside the
 table; label projection and half-peak semantics beside the plot; retain all
 early-failed attempts and verify them independently of byte replay. No frozen
 scientific producer, protocol or preflight was edited after calculation.
+
+## Main-atlas integration follow-up
+
+Source baseline53cfc3c; same7 installed role lenses, extended to the Red Sea
+source review and the main card/index/query delivery. Scientific source,
+operator and report bytes remain unchanged. No external review is implied.
+
+| Role | Finding | Severity | Evidence and action |
+|---|---|---|---|
+| CURRENT | Typed source diagnostics must not become width measurements. | P3 | Two complete diagnostics added;170 widths and all physical-admission flags unchanged. |
+| CURRENT | Reported3km Red Sea channel scope must survive indexing. | P3 | Complete review and original-source identity retained, not a flattened current-width scalar. |
+| CURRENT | Capability/state changes would overstate the new evidence. | P3 | Every previous capability, map feature, date and state relation preserved by full row comparison. |
+| SOUNDER | New view and diagnostic must bind the same complete report. | P3 | Adapter verifies exact audit reconstruction, view pins and both scientific/metadata source identities. |
+| SOUNDER | Prior source descriptors must not be silently rewritten. | P3 | All490 old descriptors and actual source bytes exact; exactly5 lossless documents added. |
+| SOUNDER | Independent numeric replay should precede delivery claims. | P3 | Linux39900218249/job120239839548 passes4 audit tests and complete byte replay at53cfc3c; numeric files unchanged here. |
+| CHART | Updated cards must retain older route/map interpretation. | P3 | Full106,812-row baseline check permits only two source metadata objects and diagnostic ownership changes. |
+| CHART | Empty-month query controls could invent nonexistent terminal profiles. | P3 | View hides terminal query for zero-row months and still exposes all12 attempts. |
+| CHART | Source-support points must keep their evidentiary class when linked from a current map. | P3 | Existing view notice/legend and complete typed report remain unchanged in scope; no geometry added. |
+| BEACON | Source-stop links should name the actual investigative result. | P3 | Card says source stops/unresolved edges; Red Sea link explicitly distinguishes channel and current width. |
+| BEACON | Acquisition queries could show only the first metadata field. | P3 | Root acquisition query limit50 exposes the entire receipt, replacing the inadequate planned limit1 before integration. |
+| BEACON | Readers need evidence beyond a summary count. | P3 | Cards link all144 attempts,156 terminals,4 source findings and complete acquisition metadata. |
+| HARBOR | New source links need actual keyboard card navigation. | P2 | Complete two-current mobile browser check is live; await terminal result before closing. |
+| HARBOR | Month selection must preserve exact query scope. | P3 | Selected-month attempts/terminal links use explicit source pointer, offset and count; checked for all12 months in new gate. |
+| HARBOR | Context must remain readable on a narrow diagram. | P3 | Regenerated standalone view passes320px reflow and≥10CSSpx labels; equivalent tables retained. |
+| KEEL | Main delivery needs complete native/WASM verification. | P2 | Fresh engine/native ingestion passes133 Rust tests and560 pins; new full query/browser check remains live. |
+| KEEL | Focused gates do not close the broad regression condition. | P2 | Isolated1f4e017 suite remains live with emitted failures; preserve it for terminal diagnosis. |
+| KEEL | Previously pending South Indian full UI proof now exists. | P3 |1f4 job120230060425 terminal SUCCESS, all4 complete source/property checks; separate from this new snapshot. |
+| LOGBOOK | Old standalone-only status requires a dated follow-up. | P3 | Integration batch distinguishes completed builders/preservation from still-live browser and fresh CI gates. |
+| LOGBOOK | No new provider observation should inflate source counts. | P3 | Registered source rows175 and linked-source counts3/5 unchanged; new derived evidence is in the source-document index. |
+| LOGBOOK | Publication must stay in the continuing draft. | P3 | Same branch/PR83; no main merge, original-publication upload or independent approval claimed. |
+
+Integration checkpoint:0P1;3 openP2 for new browser/native-WASM completion
+and broad regression diagnosis. Original standalone remote numeric condition
+is closed by the Linux receipt. Integration verdict remains
+APPROVED-WITH-CONDITIONS pending terminal evidence; this is not a release.
+
+### Terminal local integration evidence
+
+Both complete browser checks are terminal PASS. All2 diagnostics,144 attempts,
+156 terminal records,12 month summaries,4 Red Sea findings and the entire
+acquisition receipt match native/WASM exactly. All12 month-specific query links
+pass. Keyboard navigation from both current cards, selected May records and
+320px reflow pass with no errors/original downloads. Red Sea phone query
+visually inspected. HARBOR and the new KEEL query/browser P2 conditions close.
+
+Integration follow-up:0P1,1 remaining P2 for broad regression diagnosis;
+fresh integrated CI is separately pending publication. Verdict remains
+APPROVED-WITH-CONDITIONS for local exploratory atlas delivery. It does not
+approve physical measurement admission, overall regression success or release.

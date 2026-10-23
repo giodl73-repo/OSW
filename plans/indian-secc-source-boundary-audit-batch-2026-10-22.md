@@ -73,3 +73,14 @@ keep the hemisphere gate. Censoring bookkeeping does not close the named
 current's physical width gap. Integrate the new source evidence/view into the
 main query atlas in the same continuing PR, then address the full-suite failures
 when their terminal diagnostics are available.
+
+## Main-atlas delivery follow-up
+
+The initially pending integration is now locally complete. See
+`plans/current-source-audits-atlas-integration-2026-10-22.md` for the full
+preservation, engine and actual browser receipts. The495-document index
+contains this complete report/preflight/view; the current card, two-way
+month/query links and complete typed diagnostic work through native and WASM.
+No width gap is declared closed. Linux at53cfc3c independently passes the
+four audit tests and complete report byte replay; these numeric files remain
+unchanged. Fresh integrated CI and broad regression diagnosis remain separate.

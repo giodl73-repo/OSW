@@ -48,3 +48,14 @@ acquisition of the Rotschi1972 IRD paper with HTTP403, before the test suite;
 this is not an overall-green CI result. Its original remains available
 locally to the separate isolated offline validation run. No outcome for
 that complete local suite is claimed while its process is still running.
+
+## Main-atlas delivery follow-up
+
+The source-only pending status above is superseded by the completed local
+integration recorded in
+`plans/current-source-audits-atlas-integration-2026-10-22.md`.
+The original acquisition receipt and complete selected-page review are now
+in the main lossless index, with a typed diagnostic and current-card links.
+Actual320px keyboard card-to-source navigation and complete native/WASM
+review/receipt queries pass. No channel dimension was promoted to a current
+measurement, annual range or ranking. Original PDF remains private.
