@@ -30,6 +30,12 @@ jobs:
         run: python analysis/package_south_indian_front_levels.py reproduce
       - name: Reproduce complete actual-source potential temperature report exactly
         run: python analysis/check_south_indian_front_temperature_reproduction.py
+      - name: Check every Indian SECC source boundary and retained attempt
+        run: >-
+          python -m pytest -q analysis/test_indian_secc_source_boundary_audit.py
+          analysis/test_indian_secc_source_boundary_report.py
+      - name: Reconstruct complete Indian SECC source boundary audit exactly
+        run: python analysis/indian_secc_source_boundary_audit.py check
       - name: Reproduce complete conditional native property-window report exactly
         run: python analysis/south_indian_front_property_windows_v2.py check
   front-level-atlas:
@@ -65,6 +71,7 @@ jobs:
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
           test_south_indian_front_level_browser.py test_south_indian_front_level_query_browser.py
           test_south_indian_front_property_browser.py test_south_indian_front_property_query_browser.py
+          test_indian_secc_source_boundary_browser.py
       - name: Retain actual browser receipts
         if: always()
         uses: actions/upload-artifact@v4
@@ -78,6 +85,8 @@ jobs:
             .pytest_cache/south-indian-front-properties-2013/browser/result.json
             .pytest_cache/south-indian-front-properties-2013/query-browser/result.json
             .pytest_cache/south-indian-front-properties-2013/query-browser/phone.png
+            .pytest_cache/indian-secc-source-boundaries-2013/browser/result.json
+            .pytest_cache/indian-secc-source-boundaries-2013/browser/phone.png
   scientific-reproduction:
     runs-on: ubuntu-latest
     steps:

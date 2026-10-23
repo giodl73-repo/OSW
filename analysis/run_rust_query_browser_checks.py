@@ -58,6 +58,8 @@ CHECKS = ('test_south_indian_hydrography_browser.py', 'test_south_indian_hydrogr
 CHECKS = ('test_south_indian_front_level_browser.py', 'test_south_indian_front_level_query_browser.py') + CHECKS
 CHECKS = ('test_south_indian_front_property_browser.py', 'test_south_indian_front_property_query_browser.py') + CHECKS
 
+CHECKS = ('test_indian_secc_source_boundary_browser.py',) + CHECKS
+
 def wait_for_checkout(server=None):
     expected = (ROOT / 'almanac/query.html').read_bytes()
     deadline = time.monotonic() + 30
