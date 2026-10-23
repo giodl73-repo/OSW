@@ -161,6 +161,11 @@ def build():
     inputs.update(south_indian_inputs)
     collections[HYDROGRAPHY_COLLECTION]=south_indian_cells
     collections['sources'].append(south_indian_source)
+    from south_indian_front_level_query import view_evidence as front_level_evidence
+    front_level_cells,front_level_source,_,front_level_inputs=front_level_evidence()
+    inputs.update(front_level_inputs)
+    collections[HYDROGRAPHY_COLLECTION].extend(front_level_cells)
+    collections['sources'].append(front_level_source)
     read('research/guinea-djakoure-2017-model-width-source-review.json');read('research/source-data/djakoure-guinea-2017/acquisition.json')
     for path in ['research/source-data/djakoure-guinea-2017/journal-article.pdf','plans/guinea-model-regional-width-protocol-v1.md','analysis/check_guinea_model_width.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()

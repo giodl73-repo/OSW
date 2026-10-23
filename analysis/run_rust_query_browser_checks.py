@@ -55,6 +55,7 @@ CHECKS = ('test_aleutian_onishi_width_browser.py', 'test_neuc_glider_widths_brow
 CHECKS = ('test_indian_secc_hycom_view_browser.py', 'test_indian_secc_hycom_query_browser.py') + CHECKS
 CHECKS = ('test_query_packet_browser.py',) + CHECKS
 CHECKS = ('test_south_indian_hydrography_browser.py', 'test_south_indian_hydrography_query_browser.py') + CHECKS
+CHECKS = ('test_south_indian_front_level_browser.py', 'test_south_indian_front_level_query_browser.py') + CHECKS
 
 def wait_for_checkout(server=None):
     expected = (ROOT / 'almanac/query.html').read_bytes()
@@ -78,7 +79,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--start-server', action='store_true',
                         help='Start and stop a dedicated server; omit to reuse the existing local server')
-    parser.add_argument('--from-check', choices=CHECKS,
+    selection = parser.add_mutually_exclusive_group()
+    selection.add_argument('--only-check', choices=CHECKS, nargs='+',
+                           help='Run only the named complete checks; default still runs every check')
+    selection.add_argument('--from-check', choices=CHECKS,
                         help='Resume at this check; earlier checks are not rerun')
     args = parser.parse_args()
     environment = os.environ.copy()
@@ -98,7 +102,7 @@ def main():
                                        '--bind', '127.0.0.1', '--directory', str(ROOT)],
                                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         wait_for_checkout(server)
-        checks = CHECKS[CHECKS.index(args.from_check):] if args.from_check else CHECKS
+        checks = args.only_check or (CHECKS[CHECKS.index(args.from_check):] if args.from_check else CHECKS)
         for name in checks:
             print(f'Running {name}', flush=True)
             # These gates compare every daily record through paginated native
@@ -107,7 +111,7 @@ def main():
             # allowance with the smaller corpus. Keep interaction assertions
             # unchanged and budget the complete matrix explicitly.
             # Shared research checks visit all owners/documents before the full corruption matrix.
-            timeout = 1800 if name in {'test_south_indian_hydrography_query_browser.py', 'test_current_research_evidence_browser.py', 'test_loop_durante_source_browser.py', 'test_south_australian_context_browser.py', 'test_eac_source_fields_browser.py',
+            timeout = 1800 if name in {'test_south_indian_front_level_query_browser.py', 'test_south_indian_hydrography_query_browser.py', 'test_current_research_evidence_browser.py', 'test_loop_durante_source_browser.py', 'test_south_australian_context_browser.py', 'test_eac_source_fields_browser.py',
                                       'test_eac_section_core_spans_browser.py', 'test_eac_calendar_browser.py', 'test_west_australian_oscar_2d_browser.py', 'test_west_australian_streamline_browser.py',
                                       'test_rust_index_support_browser.py',
                                       'test_rust_index_noaa_browser.py', 'test_nwasc_working_admission_browser.py', 'test_hansen_asar_widths_browser.py', 'test_aleutian_onishi_width_browser.py', 'test_neuc_glider_widths_browser.py', 'test_nwasc_reference_route_browser.py'} else 600

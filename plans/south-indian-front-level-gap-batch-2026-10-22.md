@@ -173,3 +173,43 @@ Desktop and phone screenshots were visually inspected. Raw and derived
 temperature retain shared scales and distinct labels. Main atlas card/index/
 native/WASM integration remains pending. No current/front identity, physical
 width, axis, length, seasonal footprint or annual extrema are admitted.
+
+
+### Complete actual-source Linux result
+
+At4d0bf3247a596fd0d79173df73917ddf2deac0c1, independent run39886838991/
+job120196871730 is terminal PASS. It checks the synthetic probe,40 focused
+tests (2.88s), all277 archive members/135 genuine responses and all three raw
+products, then the complete actual-source derived JSON byte for byte. Both
+retained/rebuilt report SHA256 values are
+90b122ddfa9da60d2c3d02437f50b2ae7045b420f8672029d3611ad8f74198f8.
+Both source and derived checks use zero network requests. This resolves the
+actual-source portability condition without a tolerance or changed report.
+The separate offline job fails upstream at the paper fixture; no full-suite
+green claim is made. Main-atlas integration/readback remains pending.
+
+
+## Main atlas integration prepared; independent engine build pending
+
+The main dashboard now links the supplementary profile and full source queries,
+counts one additional source and changes only its source-section fingerprint.
+The485-document lossless index preserves all474 prior descriptors and original
+bytes. The52-collection query packet contains106,811 rows, including46,944
+hydrography rows. Strict preservation checks all83,338 old rows,105 protected
+scientific files and474 old source documents: PASS. Only the South Indian
+object source fingerprints/count/links change; all170 widths and78 reference
+routes remain unchanged. Packet transport is181,124,462 bytes in11 verified
+parts; exact superseded generated parts are retired from the working checkout
+only after replacement verification and remain in Git history.
+
+Local native Rust133 tests pass. Local WASM linking failed with0xC0000006
+while free disk fell below100MB; this is not a successful engine build.
+Twenty-five old generated JSON fixtures and23 copied derived/ledger files
+were losslessly NTFS-compressed with before/after byte hashes checked; no
+original was deleted. A reuse check rejects the old WASM because its compiled
+index catalog changed. The existing shipped binary/manifest remain untouched
+until a fresh build is available. A separate CI job builds/tests both engines,
+retains the resulting binary/manifest, then runs both complete supplementary
+profile and native/WASM query browser gates. Default full browser coverage and
+all source/scientific gates remain intact. Generated atlas data is prepared;
+updated engine delivery and full native/WASM readback remain pending.

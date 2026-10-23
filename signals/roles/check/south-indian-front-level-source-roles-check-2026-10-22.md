@@ -105,3 +105,17 @@ keyboard/history and320px reflow; desktop/phone screenshots visually inspected.
 BEACON/LOGBOOK: this is complete source/profile delivery in the same PR83, not
 a physical measurement or delivered main-atlas query integration. Main-card
 links, lossless indexing and full native/WASM readback remain required.
+
+
+### Complete actual-source Linux result
+
+At4d0bf3247a596fd0d79173df73917ddf2deac0c1, independent run39886838991/
+job120196871730 is terminal PASS. It checks the synthetic probe,40 focused
+tests (2.88s), all277 archive members/135 genuine responses and all three raw
+products, then the complete actual-source derived JSON byte for byte. Both
+retained/rebuilt report SHA256 values are
+90b122ddfa9da60d2c3d02437f50b2ae7045b420f8672029d3611ad8f74198f8.
+Both source and derived checks use zero network requests. This resolves the
+actual-source portability condition without a tolerance or changed report.
+The separate offline job fails upstream at the paper fixture; no full-suite
+green claim is made. Main-atlas integration/readback remains pending.

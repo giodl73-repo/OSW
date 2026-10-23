@@ -294,6 +294,9 @@ def build():
     from south_indian_hydrography_query import evidence as south_indian_evidence
     south_indian_cells,_,south_indian_profiles,south_indian_inputs=south_indian_evidence()
     inputs.update(south_indian_inputs)
+    from south_indian_front_level_query import view_evidence as front_level_evidence
+    front_level_cells,_,front_level_report,front_level_inputs=front_level_evidence()
+    inputs.update(front_level_inputs)
     from west_australian_streamline_evidence import verify as verify_wac_paths
     wac_paths,wac_path_inputs=verify_wac_paths()
     inputs.update(wac_path_inputs)
@@ -790,6 +793,18 @@ def build():
                 'diagnostic_cases':len(south_indian_profiles['cases']),'current_association_verified':False,
                 'physical_width_admitted':False,'current_geometry_admitted':False}
             groups['sources'].append(payload['paired_hydrography_source'])
+            from south_indian_front_level_query import card_links as front_level_links
+            evidence_links.extend(front_level_links())
+            source_file='research/source-data/hycom-south-indian-front-levels-2013/monthly-fields.json'
+            payload['supplementary_hydrography_source']={
+                'source_file':source_file,'source_sha256':inputs[source_file],
+                'source_model_year':2013,'native_depths_m':[100,200],
+                'native_monthly_cells':len(front_level_cells),
+                'derived_temperature_file':'research/south-indian-2013-front-level-potential-temperature.json',
+                'temperature_scale_verified':False,'temperature_scale_assumption':'ITS-90',
+                'current_association_verified':False,'physical_width_admitted':False,
+                'current_geometry_admitted':False}
+            own_sources.append(payload['supplementary_hydrography_source'])
         if current_id == 'west-australian':
             evidence_links.append({'label':'Compare twelve surrounding offshore source-vector maps',
                 'url':'../'+wac_context['comparison_figure']})

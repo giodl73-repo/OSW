@@ -28,6 +28,48 @@ jobs:
         run: python analysis/package_south_indian_front_levels.py reproduce
       - name: Reproduce complete actual-source potential temperature report exactly
         run: python analysis/check_south_indian_front_temperature_reproduction.py
+  front-level-atlas:
+    runs-on: ubuntu-latest
+    env:
+      RUSTUP_TOOLCHAIN: 1.95.0
+      CARGO_INCREMENTAL: "0"
+      CARGO_BUILD_JOBS: "1"
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install pinned atlas dependencies
+        run: python -m pip install -r requirements-test.txt
+      - name: Install pinned native and WASM Rust toolchain
+        run: rustup toolchain install 1.95.0 --profile minimal --component rustfmt --target wasm32-unknown-unknown
+      - name: Fetch locked Rust dependencies
+        run: cargo fetch --locked --manifest-path rust/osw-query/Cargo.toml
+      - name: Build and test native and WASM engines against the complete atlas
+        run: python analysis/build_rust_query_engine.py
+      - name: Retain rebuilt engine and complete dependency manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: front-level-query-engine
+          path: |
+            almanac/query-engine.wasm
+            almanac/query-engine.manifest.json
+      - name: Install browser for actual supplementary atlas checks
+        run: python -m playwright install --with-deps chromium
+      - name: Read every supplementary cell through native and shipped WASM UI
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_south_indian_front_level_browser.py test_south_indian_front_level_query_browser.py
+      - name: Retain actual browser receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: front-level-browser-receipts
+          if-no-files-found: ignore
+          path: |
+            .pytest_cache/south-indian-front-levels-2013/browser/result.json
+            .pytest_cache/south-indian-front-levels-2013/query-browser/result.json
+            .pytest_cache/south-indian-front-levels-2013/query-browser/current-card-profile-query-phone.png
   scientific-reproduction:
     runs-on: ubuntu-latest
     steps:

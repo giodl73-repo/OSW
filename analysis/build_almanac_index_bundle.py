@@ -100,6 +100,11 @@ def build():
     path='research/south-indian-hycom-2013-paired-profile-candidates-v2.json'
     if path not in documents or json.loads(documents[path])!=south_indian_report:
         raise ValueError('Missing or changed South Indian paired-profile evidence')
+    from south_indian_front_level_query import view_evidence as front_level_evidence
+    _,_,front_level_report,_=front_level_evidence()
+    path='research/south-indian-2013-front-level-potential-temperature.json'
+    if path not in documents or json.loads(documents[path])!=front_level_report:
+        raise ValueError('Missing or changed supplementary native-depth evidence')
     bands_path = 'research/indian-secc-positive-band-connectivity.json'
     if bands_path in documents:
         from indian_secc_positive_bands import verify as verify_secc_bands
