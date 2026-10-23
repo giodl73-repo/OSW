@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: "3.13"
       - name: Install pinned thermodynamic dependencies
-        run: python -m pip install numpy==2.4.1 gsw==3.6.23 h5py==3.16.0 netCDF4==1.7.4 pytest==8.4.2
+        run: python -m pip install numpy==2.4.1 gsw==3.6.23 h5py==3.16.0 netCDF4==1.7.4 pyproj==3.7.2 pytest==8.4.2
       - name: Check exact synthetic pressure salinity and temperature conversion
         run: python analysis/check_south_indian_front_temperature_portability.py
       - name: Check supplementary source methods and query adapters
@@ -43,6 +43,10 @@ jobs:
           python -m pytest -q analysis/test_angola_nansen_native_sections.py
           analysis/test_angola_nansen_native_report.py analysis/test_angola_nansen_query_mirrors.py
           analysis/test_angola_nansen_portable_sections_v2.py analysis/test_angola_nansen_portable_report.py
+      - name: Check Labrador geographic floor and source-bound working admission
+        run: >-
+          python -m pytest -q analysis/test_labrador_latitude_gate_bound_v1.py
+          analysis/test_labrador_gate_bound_admission.py
       - name: Reconstruct complete Indian SECC source boundary audit exactly
         run: python analysis/indian_secc_source_boundary_audit.py check
       - name: Reproduce complete conditional native property-window report exactly
@@ -78,6 +82,7 @@ jobs:
       - name: Read every supplementary cell through native and shipped WASM UI
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_labrador_gate_bound_browser.py
           test_angola_nansen_sections_browser.py test_angola_nansen_query_browser.py
           test_redsox_station_support_browser.py test_redsox_station_support_query_browser.py
           test_current_gap_source_query_browser.py
@@ -102,6 +107,9 @@ jobs:
             .pytest_cache/current-gap-source-integration/browser/result.json
             .pytest_cache/current-gap-source-integration/browser/secc-phone.png
             .pytest_cache/current-gap-source-integration/browser/redsea-phone.png
+            .pytest_cache/labrador-bound-v1/browser/result.json
+            .pytest_cache/labrador-bound-v1/browser/card-phone.png
+            .pytest_cache/labrador-bound-v1/browser/figure.png
             .pytest_cache/angola-nansen-sections/browser/result.json
             .pytest_cache/angola-nansen-sections/browser/phone.png
             .pytest_cache/angola-nansen-sections/query-browser/result.json

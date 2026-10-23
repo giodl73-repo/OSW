@@ -103,7 +103,9 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     if actual != &expected_widths {
         return Err("Changed ASAR effective width inventory/order".into());
     }
-    if b.collections.get("length_assessments") != e["length_assessments"].as_array() {
+    let expected_lengths =
+        crate::length_assessment_overlays::expected(b, &e["length_assessments"])?;
+    if b.collections.get("length_assessments") != expected_lengths.as_array() {
         return Err("ASAR surface width promoted into length evidence".into());
     }
     for (owner, count) in [

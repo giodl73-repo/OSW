@@ -91,8 +91,10 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     }
     let mut expected_widths = e["widths"].as_array().unwrap().clone();
     expected_widths.extend(crate::aleutian_onishi_width::widths(b));
+    let expected_lengths =
+        crate::length_assessment_overlays::expected(b, &e["length_assessments"])?;
     if b.collections.get("widths") != Some(&expected_widths)
-        || b.collections.get("length_assessments") != e["length_assessments"].as_array()
+        || b.collections.get("length_assessments") != expected_lengths.as_array()
     {
         return Err("NEUC ranges changed preceding width inventory or length evidence".into());
     }

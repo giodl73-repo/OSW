@@ -95,6 +95,11 @@ def build():
     nac_bound,nac_bound_inputs=verify_nac_bound();inputs.update(nac_bound_inputs)
     measurements.append(nac_bound['measurement']);claims.append(nac_bound['claim'])
     sources[nac_bound['method_source']['id']]=nac_bound['method_source']
+    from labrador_gate_bound_query import evidence as labrador_bound_evidence, links as labrador_bound_links
+    labrador_bound,labrador_bound_inputs=labrador_bound_evidence();inputs.update(labrador_bound_inputs)
+    measurements.append(labrador_bound['measurement']);claims.append(labrador_bound['claim'])
+    sources[labrador_bound['source_record']['id']]=labrador_bound['source_record']
+    sources[labrador_bound['method_source']['id']]=labrador_bound['method_source']
     from nwasc_working_admission import verify_inputs as verify_nwasc_admission
     nwasc_admission,nwasc_inputs=verify_nwasc_admission();inputs.update(nwasc_inputs)
     from hansen_asar_widths import verify_inputs as verify_asar_widths
@@ -740,10 +745,12 @@ def build():
             evidence_links.append({'label':'Compare separately scoped reported dimensions','url':'../'+nwasc_admission['figure_file']})
             evidence_links.append({'label':'Query all admitted local width records','url':'query.html?q='+quote(json.dumps({'collection':'widths','filters':[{'field':'current_id','op':'eq','value':current_id}],'limit':10}),safe='')})
             evidence_links.append({'label':'Audit the working branch admission and rank changes','url':'query.html?q='+quote(json.dumps({'collection':'current_measurement_admissions','filters':[{'field':'entity_id','op':'eq','value':'current:'+current_id}],'limit':1}),safe='')})
+        if current_id == 'labrador':
+            evidence_links.extend(labrador_bound_links(labrador_bound))
         if current_id == 'north-atlantic':
             evidence_links.append({'label':'Inspect the nominal-section geographic bound','url':'../'+nac_bound['figure_file']})
             evidence_links.append({'label':'Query the working North Atlantic length assessment','url':'query.html?q='+quote(json.dumps({'collection':'length_assessments','filters':[{'field':'entity_id','op':'eq','value':'current:north-atlantic'}],'limit':1}),safe='')})
-            evidence_links.append({'label':'Audit all nine geographic gate scenarios','url':'query.html?q='+quote(json.dumps({'collection':'current_length_bound_admissions','limit':1}),safe='')})
+            evidence_links.append({'label':'Audit all nine geographic gate scenarios','url':'query.html?q='+quote(json.dumps({'collection':'current_length_bound_admissions','filters':[{'field':'entity_id','op':'eq','value':'current:north-atlantic'}],'limit':1}),safe='')})
         if current_id == 'east-australian':
             evidence_links.append({'label':'Explore all3770 section-core outcomes / 2883 resolved / 887 unresolved',
                 'url':'query.html?q='+quote(json.dumps({'collection':'diagnostics','filters':[{'field':'id','op':'eq','value':EAC_CORE_ID}],'limit':1},separators=(',',':')),safe='')+'#query-chart-section'})

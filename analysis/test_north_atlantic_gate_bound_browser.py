@@ -23,7 +23,7 @@ def main():
         queries = [
             {'collection': 'length_assessments', 'filters': [{'field': 'entity_id', 'op': 'eq', 'value': ENTITY}], 'limit': 1},
             {'collection': 'measurements', 'filters': [{'field': 'id', 'op': 'eq', 'value': doc['measurement']['id']}], 'limit': 1},
-            {'collection': 'current_length_bound_admissions', 'limit': 1},
+            {'collection': 'current_length_bound_admissions', 'filters': [{'field': 'entity_id', 'op': 'eq', 'value': ENTITY}], 'limit': 1},
             {'collection': 'length_assessments', 'filters': [{'field': 'rank_eligible', 'op': 'eq', 'value': True}], 'limit': 100},
         ]
         for query in queries:

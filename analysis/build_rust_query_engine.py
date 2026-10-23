@@ -18,9 +18,12 @@ def main():
     os.environ.setdefault('CARGO_BUILD_JOBS','1')
     for args in [['cargo','fmt','--manifest-path',MANIFEST],
                  ['cargo','test','--offline','--locked','--manifest-path',MANIFEST],
-                 ['cargo','build','--offline','--locked','--manifest-path',MANIFEST],
-                 ['cargo','rustc','--offline','--locked','--release','--target','wasm32-unknown-unknown','--lib','--crate-type','cdylib','--manifest-path',MANIFEST]]:
+                 ['cargo','build','--offline','--locked','--manifest-path',MANIFEST]]:
         subprocess.run(args,cwd=ROOT,check=True)
+    cli=ROOT/'rust/osw-query/target/debug'/('osw-query-cli.exe' if os.name=='nt' else 'osw-query-cli')
+    subprocess.run([str(cli),str(ROOT/'almanac/query-data.json'),'--atlas'],cwd=ROOT,stdout=subprocess.DEVNULL,check=True)
+    print('Checked native atlas snapshot against the generated bundle')
+    subprocess.run(['cargo','rustc','--offline','--locked','--release','--target','wasm32-unknown-unknown','--lib','--crate-type','cdylib','--manifest-path',MANIFEST],cwd=ROOT,check=True)
     target=ROOT/'almanac/query-engine.wasm'
     shutil.copyfile(ROOT/'rust/osw-query/target/wasm32-unknown-unknown/release/osw_query.wasm',target)
     paths=['rust/osw-query/Cargo.toml','rust/osw-query/Cargo.lock','rust/osw-query/src/lib.rs','rust/osw-query/src/map.rs','rust/osw-query/src/spatial.rs','rust/osw-query/src/workspace.rs','rust/osw-query/src/rebase.rs','rust/osw-query/src/main.rs',
@@ -202,6 +205,10 @@ def main():
     _,_,_,gap_inputs=gap_source_evidence();paths.extend(gap_inputs)
     from redsox_station_support_query import evidence as station_support_evidence
     _,_,station_inputs=station_support_evidence();paths.extend(station_inputs)
+    from labrador_gate_bound_query import evidence as labrador_bound_evidence
+    _,labrador_bound_inputs=labrador_bound_evidence();paths.extend(labrador_bound_inputs)
+    paths.append('rust/osw-query/src/labrador_latitude_bound.rs')
+    paths.append('rust/osw-query/src/length_assessment_overlays.rs')
     from angola_nansen_source_query import evidence as angola_native_evidence
     _,_,angola_native_inputs=angola_native_evidence();paths.extend(angola_native_inputs)
     packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
@@ -212,9 +219,6 @@ def main():
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',
         'abi_version':1,'rustc':rust,'sha256':hashes},indent=2)+'\n',encoding='utf-8')
-    cli=ROOT/'rust/osw-query/target/debug'/('osw-query-cli.exe' if os.name=='nt' else 'osw-query-cli')
-    subprocess.run([str(cli),str(ROOT/'almanac/query-data.json'),'--atlas'],cwd=ROOT,stdout=subprocess.DEVNULL,check=True)
-    print('Checked native atlas snapshot against the generated bundle')
     logical_size=packet['logical_byte_length'] if packet.get('schema')==SCHEMA else (ROOT/'almanac/query-data.json').stat().st_size
     print('Built WASM query engine:',target.stat().st_size,'bytes; logical bundle:',logical_size,'bytes; transport parts:',len(packet.get('parts',[])))
 

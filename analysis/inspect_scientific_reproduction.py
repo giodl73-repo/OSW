@@ -36,6 +36,7 @@ TARGETS=[
          ('indian_secc_local_normals','research/indian-secc-local-axis-normal-spans.json',{},None),
          ('indian_secc_hycom_local_normals','research/indian-secc-hycom-2013-local-normal-spans.json',{},None),
          ('north_atlantic_gate_bound','research/north-atlantic-nominal-gate-bound.json',{},None),
+         ('labrador_latitude_gate_bound_v1','research/labrador-latitude-gate-bound-v1.json',{},None),
          ('nwasc_working_admission','research/norwegian-atlantic-slope-working-admission.json',{},None),
          ('hansen_asar_widths','research/hansen-2011-asar-surface-width-admissions.json',{},None),
          ('nwasc_source_anchor_route','research/nwasc-source-anchor-reference-route.json',{},None),

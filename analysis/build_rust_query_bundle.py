@@ -320,6 +320,9 @@ def build():
     aleutian_width,aleutian_width_inputs=verify_aleutian_width();inputs.update(aleutian_width_inputs)
     collections['widths'].extend(aleutian_width['width_records'])
     collections['sources'].append(aleutian_width['source_record'])
+    from labrador_gate_bound_query import evidence as labrador_bound_evidence, append as append_labrador_bound
+    labrador_bound,labrador_bound_inputs=labrador_bound_evidence();inputs.update(labrador_bound_inputs)
+    append_labrador_bound(collections,labrador_bound)
     collections['sources']=[agulhas_reported['source_record'] if r['id']==agulhas_reported['source_record']['id'] else r for r in collections['sources']]
     collections['sources']=[routes['primary_source_record'] if r['id']==routes['primary_source_record']['id'] else r for r in collections['sources']]
     collections['reference_routes']=routes['candidates']
@@ -946,6 +949,7 @@ def build():
             'canonical_release':'v0.1.0','canonical_collections':CANONICAL,
             'kuroshio_axis_normal_version':'1',
             'north_atlantic_gate_bound_version':'1',
+            'labrador_latitude_gate_bound_version':'1',
             'nwasc_working_admission_version':'1',
             'nwasc_reference_route_version':'1',
             'hansen_asar_widths_version':'1',

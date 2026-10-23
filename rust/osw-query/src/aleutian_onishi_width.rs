@@ -71,8 +71,10 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     let previous: Value = serde_json::from_str(crate::neuc_glider_widths::EXPORT_RAW).unwrap();
     let mut expected = previous["widths"].as_array().unwrap().clone();
     expected.extend(widths(b));
+    let expected_lengths =
+        crate::length_assessment_overlays::expected(b, &previous["length_assessments"])?;
     if b.collections.get("widths") != Some(&expected)
-        || b.collections.get("length_assessments") != previous["length_assessments"].as_array()
+        || b.collections.get("length_assessments") != expected_lengths.as_array()
     {
         return Err("Aleutian constraint changed prior widths or length evidence".into());
     }

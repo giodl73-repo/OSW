@@ -130,9 +130,9 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
             return Err(format!("Changed admitted slope-current {collection}"));
         }
     }
-    if b.collections.get("length_assessments").map(|r| json!(r))
-        != Some(doc["working_length_assessments"].clone())
-    {
+    let expected_assessments =
+        crate::length_assessment_overlays::expected(b, &doc["working_length_assessments"])?;
+    if b.collections.get("length_assessments").map(|r| json!(r)) != Some(expected_assessments) {
         return Err("Changed working length assessment or reported-length ranks".into());
     }
     if let Some(objects) = b.collections.get("objects") {
@@ -192,6 +192,46 @@ mod tests {
             manifest: json!({"input_sha256":inputs,"nwasc_working_admission_version":"1"}),
             collections,
         }
+    }
+    #[test]
+    fn exact_labrador_overlay_preserves_every_other_assessment_and_rank() {
+        let raw = include_str!("../../../research/labrador-latitude-gate-bound-v1.json");
+        let lab: Value = serde_json::from_str(raw).unwrap();
+        let mut b = fixture();
+        b.manifest["labrador_latitude_gate_bound_version"] = json!("1");
+        for (path, hash) in lab["input_sha256"].as_object().unwrap() {
+            b.manifest["input_sha256"][path] = hash.clone();
+        }
+        b.manifest["input_sha256"]["research/labrador-latitude-gate-bound-v1.json"] =
+            json!(pin(raw));
+        for (name, row) in [
+            ("current_length_bound_admissions", lab.clone()),
+            ("measurements", lab["measurement"].clone()),
+            ("claims", lab["claim"].clone()),
+            ("sources", lab["source_record"].clone()),
+            ("sources", lab["method_source"].clone()),
+        ] {
+            b.collections.entry(name.into()).or_default().push(row);
+        }
+        let index = b.collections["length_assessments"]
+            .iter()
+            .position(|r| r["entity_id"] == "current:labrador")
+            .unwrap();
+        b.collections.get_mut("length_assessments").unwrap()[index] =
+            lab["length_assessment"].clone();
+        validate(&b).unwrap();
+        // Mutate then restore the verified overlay before checking another row.
+        b.collections.get_mut("length_assessments").unwrap()[index]["rank_eligible"] = json!(true);
+        assert!(validate(&b).is_err());
+        b.collections.get_mut("length_assessments").unwrap()[index]["rank_eligible"] =
+            lab["length_assessment"]["rank_eligible"].clone();
+        let other = b.collections["length_assessments"]
+            .iter()
+            .position(|r| r["entity_id"] != "current:labrador")
+            .unwrap();
+        b.collections.get_mut("length_assessments").unwrap()[other]["lower_bound_km"] =
+            json!(999999);
+        assert!(validate(&b).is_err());
     }
     #[test]
     fn migrated_regional_context_requires_an_exact_admitted_row() {

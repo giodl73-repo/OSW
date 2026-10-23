@@ -40,6 +40,8 @@ mod index_support;
 mod kuroshio_daily;
 mod kuroshio_filtered_width;
 mod kuroshio_normal;
+mod labrador_latitude_bound;
+mod length_assessment_overlays;
 mod loop_diagnostics;
 mod loop_recorded;
 mod madagascar_coastal_curve;
@@ -384,6 +386,7 @@ impl Store {
         neuc_glider_widths::validate(&bundle)?;
         aleutian_onishi_width::validate(&bundle)?;
         current_length_bounds::validate(&bundle)?;
+        labrador_latitude_bound::validate(&bundle)?;
         movies::validate(&bundle)?;
         measurement_scope::validate(&bundle.collections, &bundle.manifest)?;
         let spatial = spatial::Index::build(&bundle.collections)?;
