@@ -8,6 +8,31 @@ permissions:
   contents: read
 
 jobs:
+  regional-reach-source-replay:
+    # Advisory source-availability probe; original-dependent offline tests remain
+    # in full pytest collection. This job supplies separate exact Linux evidence.
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install pinned source-replay dependencies
+        run: python -m pip install pytest==8.4.2 PyMuPDF==1.28.2
+      - name: Explicitly acquire pinned original and replay Brazil source-stage products
+        run: python analysis/check_brazil_regional_reach_delivery.py --acquire-original
+      - name: Retain source replay result and logs without the original book
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: brazil-regional-reach-source-replay
+          path: .pytest_cache/brazil-regional-reach-replay/
+          include-hidden-files: true
   front-temperature-conformance:
     runs-on: ubuntu-latest
     steps:

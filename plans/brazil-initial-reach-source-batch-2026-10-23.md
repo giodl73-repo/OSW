@@ -147,6 +147,22 @@ native API's documented-in-code maximum500; it failed and admitted no result.
 The corrected limit500 request returned the complete242-row inventory. No
 browser or compiler was launched for these checks.
 
+The read-only delivery driver now combines frozen report/SVG replay, prepared
+query-contract replay and all63 focused checks:
+
+```powershell
+python analysis/check_brazil_regional_reach_delivery.py
+```
+
+That command passed locally using the retained original, without a network
+request. The optional `--acquire-original` flag explicitly hydrates the same
+checksum-pinned book first. The isolated `regional-reach-source-replay` CI job
+uses that flag and retains a result receipt and logs, never the full book.
+It is an advisory source-availability/reproduction job; failure remains visible
+in its receipt. It does not replace the required full offline suite or certify
+canonical atlas admission. Linux proof remains unverified until the actual job
+passes; the separate40-target scientific driver still excludes this product.
+
 Before canonical integration, fix the dashboard's source-list aliasing and
 preserve all registered owned evidence references in query projection. Apply
 the projection consistently to the entire object inventory, then perform the

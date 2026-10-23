@@ -69,7 +69,7 @@ irrelevant: no planetary comparison is introduced.
 |---|---|---|---|---|
 | K1 | Commit fee4925 froze source, method, tests, protocol and preflight before actual execution; first build and read-only replay matched exactly. | P3 | Freeze and execution | Preserve all executed inputs/products; use a new version for corrections. |
 | K2 | All35 source/product checks passed, followed by28 query/projection checks and exact contract replay. The actual Brazil owner rehearsal preserved every non-reference field. Checks used one CPU with BelowNormal priority. | P3 | Focused suites and prepared admission | Keep the documented commands; avoid repeating full regression for each source. |
-| K3 | The existing40-target Linux replay result does not cover this new original-dependent report. Only its synthetic suite is added to conformance now. | P2 | Pending reproduction coverage | Add explicit actual-original/report reproduction coverage for the compatible batch; record unavailable sources as failures or missing evidence, never silent passes. |
+| K3 | The existing40-target Linux replay result does not cover this new original-dependent report. A dedicated advisory source-replay job and local read-only driver are prepared; the driver passed all63 focused checks locally, but Linux proof is pending. | P2 | Pending reproduction coverage | Observe the actual original-dependent cloud result before claiming Linux reproduction; retain source failures explicitly. Required full offline validation remains separate. |
 
 ## LOGBOOK
 
