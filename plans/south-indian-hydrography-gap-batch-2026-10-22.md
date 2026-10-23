@@ -323,3 +323,35 @@ resource recovery; only verified superseded generated query parts and derived
 compiler artifacts were retired. Final native/WASM browser readback is pending
 below; no physical width, length, axis or seasonal-footprint admission follows
 from this integration.
+
+
+### Final integrated result
+
+Published integration commit41f18a5 in the existing draft PR83. The complete
+actual browser gate now passes:
+
+- All23,472 scalar source-cell records exactly equal the retained source and
+  native Rust results, across all48 paginated month/depth queries.
+- All72 canonical v2 diagnostic cases and all12 full-precision monthly source
+  records exactly match through the lossless native/WASM source-query path.
+- Keyboard navigation from the South Indian current card to the profile view,
+  then its selected August/1000m/80E326-cell query succeeds at320px.
+- No page errors or automatic original ZIP/NPZ/PDF/NetCDF downloads.
+- Final profile gate:72 selections,288 profiles,23,472 table rows, fixed scales,
+  missing breaks, keyboard/share/history/invalid-route handling and phone axis
+  readability pass. Focused Python suite:67 passed. Rust suite:133 passed.
+- Native atlas check and locked WASM build pass; engine47,977,770 bytes, logical
+  query packet156,440,038 bytes in10 parts; all481 engine dependency pins match.
+- Fresh integration Linux run39876905658 at41f18a5 passes the34 exact scientific
+  report rebuilds, both zero-network HYCOM original-based source reconstructions,
+  and NetCDF fixtures. The separate offline job still stops on the pinned Stramma
+  paper HTTP403, before its full-suite/browser steps. No overall CI success or
+  fresh full-suite result is claimed.
+
+Reproduce the integrated checks with Chrome supplied through `OSW_TEST_BROWSER`:
+`python analysis/test_south_indian_hydrography_browser.py` and
+`python analysis/test_south_indian_hydrography_query_browser.py`, against this
+checkout served at127.0.0.1:8788. Both are registered in the existing browser
+runner. This completes the source/query/atlas integration milestone. The physical
+measurement and identity limits stated above remain open, as do the wider
+current length, width, seasonal-support and reference-geometry gaps.

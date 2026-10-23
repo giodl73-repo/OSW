@@ -336,3 +336,27 @@ Integration addendum:21 findings. No unresolved P1 in the implementation reviewe
 The three conditional integration areas remain required before this milestone is
 reported complete. Broader offline/full-suite conditions and physical measurement
 limits remain visible; this is an internal source/context review.
+
+
+### Integration conditions resolved
+
+Actual final browser evidence resolves the three conditional integration areas:
+BEACON's direct card/evidence path, HARBOR's keyboard320px cross-page path, and
+KEEL's complete native/WASM value readback. All23,472 source cells,72 diagnostic
+cases and12 complete monthly source records match exactly. The current-card to
+profile to selected326-cell query path passes without page errors or automatic
+original downloads. Both new browser checks are registered in the standard
+runner. The final profile72-selection gate,67 focused Python tests,133 Rust
+tests, native atlas check and all481 engine pins pass.
+
+Integration commit41f18a5 is pushed to the same draft PR83. Fresh Linux
+run39876905658 passes all34 strict scientific rebuilds, both zero-network HYCOM
+source replays and NetCDF fixtures for that integration. The separate offline
+job still fails at the Stramma fixture HTTP403; its later tests are skipped.
+No mainline merge or overall CI/full-suite green is claimed.
+
+Verdict: **APPROVED-WITH-CONDITIONS for source/context publication**. The
+integrated UI/readback conditions are satisfied. Physical width/axis/length,
+front association and annual variability remain unadmitted, and the broader
+fixture/full-suite condition remains open. This is an internal review through
+seven installed role lenses, not independent scientific approval.
