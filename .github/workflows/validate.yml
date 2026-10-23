@@ -29,6 +29,9 @@ jobs:
       - name: Sequentially acquire pinned EICC original and replay width source evidence
         if: always()
         run: python analysis/check_eicc_width_evidence_delivery.py --acquire-original
+      - name: Replay compatible source contracts and atomic batch after original acquisition
+        if: always()
+        run: python analysis/check_current_gap_batch_delivery.py
       - name: Retain source replay result and logs without the original book
         if: always()
         uses: actions/upload-artifact@v4
@@ -42,6 +45,13 @@ jobs:
         with:
           name: eicc-width-source-replay
           path: .pytest_cache/eicc-width-source-replay/
+          include-hidden-files: true
+      - name: Retain batch replay receipt and logs without original papers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-gap-batch-source-replay
+          path: .pytest_cache/current-gap-batch-replay/
           include-hidden-files: true
   front-temperature-conformance:
     runs-on: ubuntu-latest

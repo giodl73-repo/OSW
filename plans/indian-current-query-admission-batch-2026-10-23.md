@@ -91,3 +91,10 @@ Remaining integration order:
 Local preparation and checks used one logical CPU BelowNormal, worker1.
 The existing native/WASM free-space preflight remains in force; no active
 engine input was modified to leave a partly rebuilt publication.
+
+At commit`4d9f5347d234b173b6cade9d8296bb097592751e`, the actual log of
+[conformance job120707825042](https://github.com/giodl73-repo/OSW/actions/runs/40039766625/job/120707825042)
+was retrieved and inspected: the prepared identity contract check passed and
+all36 identity/provenance checks passed. This is not canonical-delivery proof.
+The same run's offline job120707825255 failed during original acquisition:
+Rotschi1972 still returned HTTP403 before the full suite. No guard was skipped.
