@@ -15,7 +15,7 @@
 <label for="depth">Native depth<select id="depth" disabled></select></label>
 <label for="longitude">Native meridian<select id="longitude" disabled></select></label>
 </div>
-<p><a id="permalink" href="./">Link to this profile selection</a></p>
+<p><a id="permalink" href="./">Link to this profile selection</a> · <a id="cell-query" href="../../almanac/query.html">Query this native section</a></p>
 <p id="route-note" role="status"></p>
 <p id="status" role="status" aria-live="polite">Loading retained monthly source…</p>
 <p>Latitude increases from south to north. Positive eastward velocity points east; positive northward velocity points north. Each field and depth uses a fixed vertical scale across all twelve months and three meridians. Gaps have no connecting line; the dotted line marks zero velocity. These are profiles along a section, not a current boundary map.</p>
@@ -44,6 +44,8 @@ function writeRoute(mode){
  const url=new URL(location.href);url.searchParams.set('month',String(Number($('#month').value)+1));url.searchParams.set('depth',String(data.depth_m[Number($('#depth').value)]));url.searchParams.set('lon',String(data.longitude_degrees_east[Number($('#longitude').value)]));
  if(mode==='push')history.pushState(null,'',url);else history.replaceState(null,'',url);
  $('#permalink').href=url.href;
+ const query={collection:'hydrography_samples',filters:[{field:'investigation_current_id',op:'eq',value:'south-indian'},{field:'month',op:'eq',value:Number($('#month').value)+1},{field:'depth_m',op:'eq',value:data.depth_m[Number($('#depth').value)]},{field:'longitude_degrees_east',op:'eq',value:data.longitude_degrees_east[Number($('#longitude').value)]}],sort:{field:'latitude_degrees_north',direction:'asc'},limit:400};
+ $('#cell-query').href='../../almanac/query.html?q='+encodeURIComponent(JSON.stringify(query));
 }
 function draw(mode='push'){
  const mi=Number($('#month').value),zi=Number($('#depth').value),xi=Number($('#longitude').value),m=data.months[mi],lat=data.latitude_degrees_north;

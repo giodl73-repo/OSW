@@ -281,3 +281,45 @@ unchanged. The focused suite passes **67 tests**. The v2 report is
 `research/south-indian-hycom-2013-paired-profile-candidates-v2.json` and replaces
 v1 as the canonical34th reconstruction target. Linux exact replay remains
 required; no alternative success condition is substituted.
+
+
+## Native/WASM and atlas integration verification
+
+Integration continues on the same branch and draft PR83. The source collection
+`hydrography_samples` contains all23,472 native monthly cells, with provider
+coordinates, exact15/1000m depth, four unrounded means, common-day counts and
+explicit false current-association/physical-width flags. It is source context,
+not a newly admitted current measurement. The South Indian card links directly
+to the profile view, cell queries, canonical v2 candidate report and full monthly
+source. The selected profile links back to its exact326-cell query section.
+
+The rebuilt dashboard has242 records. The source index has474 documents and
+preserves all458 earlier descriptors exactly. The query packet has52 collections
+and83,338 rows. A preservation check compared every one of59,865 earlier rows:
+only `objects/current:south-indian` changed, adding context metadata and links.
+One source record and the23,472-cell collection were added. All69 protected
+scientific files remain byte exact;170 widths and78 reference routes remain.
+
+Fresh Linux run39874701387, scientific job120157339543, at commit3dc355c passes
+all34 strict scientific report rebuilds and both HYCOM source reconstructions.
+The South Indian reconstruction verifies183 retained archive members and all
+three product byte hashes with zero network requests. NetCDF fixtures pass.
+The separate offline job still fails while acquiring the checksum-pinned Stramma
+paper (HTTP403), before its native/browser/full-suite steps. This is not a green
+whole-project CI result.
+
+The integrated browser check exposed a real numeric query issue: JSON `15.0`
+did not equal filter `15`. Scalar `eq`/`ne` now compare equal integral numeric
+values across those representations. Mixed integer/float comparison converts
+only an integral, in-range float to an integer; large integers are never rounded
+to binary64 for equality. Regression tests include signed/unsigned boundaries,
+values above2^53, nulls, booleans, strings and the actual depth query pattern.
+Source rows and scientific numbers are unchanged.
+
+The browser build now emits only the WASM `cdylib`; native builds retain their
+library artifacts. The512MiB preflight, full Rust tests and native atlas check
+remain required. Source inputs and provider originals were preserved during
+resource recovery; only verified superseded generated query parts and derived
+compiler artifacts were retired. Final native/WASM browser readback is pending
+below; no physical width, length, axis or seasonal-footprint admission follows
+from this integration.

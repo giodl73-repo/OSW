@@ -54,6 +54,7 @@ CHECKS = ('test_nwasc_mean_core_widths_browser.py',) + CHECKS
 CHECKS = ('test_aleutian_onishi_width_browser.py', 'test_neuc_glider_widths_browser.py', 'test_nwasc_reference_route_browser.py', 'test_hansen_asar_widths_browser.py', 'test_nwasc_working_admission_browser.py', 'test_north_atlantic_gate_bound_browser.py', 'test_indian_secc_local_normals_browser.py', 'test_indian_secc_positive_bands_browser.py', 'test_indian_secc_oscar_2d_browser.py') + CHECKS
 CHECKS = ('test_indian_secc_hycom_view_browser.py', 'test_indian_secc_hycom_query_browser.py') + CHECKS
 CHECKS = ('test_query_packet_browser.py',) + CHECKS
+CHECKS = ('test_south_indian_hydrography_browser.py', 'test_south_indian_hydrography_query_browser.py') + CHECKS
 
 def wait_for_checkout(server=None):
     expected = (ROOT / 'almanac/query.html').read_bytes()
@@ -106,7 +107,7 @@ def main():
             # allowance with the smaller corpus. Keep interaction assertions
             # unchanged and budget the complete matrix explicitly.
             # Shared research checks visit all owners/documents before the full corruption matrix.
-            timeout = 1800 if name in {'test_current_research_evidence_browser.py', 'test_loop_durante_source_browser.py', 'test_south_australian_context_browser.py', 'test_eac_source_fields_browser.py',
+            timeout = 1800 if name in {'test_south_indian_hydrography_query_browser.py', 'test_current_research_evidence_browser.py', 'test_loop_durante_source_browser.py', 'test_south_australian_context_browser.py', 'test_eac_source_fields_browser.py',
                                       'test_eac_section_core_spans_browser.py', 'test_eac_calendar_browser.py', 'test_west_australian_oscar_2d_browser.py', 'test_west_australian_streamline_browser.py',
                                       'test_rust_index_support_browser.py',
                                       'test_rust_index_noaa_browser.py', 'test_nwasc_working_admission_browser.py', 'test_hansen_asar_widths_browser.py', 'test_aleutian_onishi_width_browser.py', 'test_neuc_glider_widths_browser.py', 'test_nwasc_reference_route_browser.py'} else 600

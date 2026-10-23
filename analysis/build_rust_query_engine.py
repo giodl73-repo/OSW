@@ -19,7 +19,7 @@ def main():
     for args in [['cargo','fmt','--manifest-path',MANIFEST],
                  ['cargo','test','--offline','--locked','--manifest-path',MANIFEST],
                  ['cargo','build','--offline','--locked','--manifest-path',MANIFEST],
-                 ['cargo','build','--offline','--locked','--release','--target','wasm32-unknown-unknown','--lib','--manifest-path',MANIFEST]]:
+                 ['cargo','rustc','--offline','--locked','--release','--target','wasm32-unknown-unknown','--lib','--crate-type','cdylib','--manifest-path',MANIFEST]]:
         subprocess.run(args,cwd=ROOT,check=True)
     target=ROOT/'almanac/query-engine.wasm'
     shutil.copyfile(ROOT/'rust/osw-query/target/wasm32-unknown-unknown/release/osw_query.wasm',target)

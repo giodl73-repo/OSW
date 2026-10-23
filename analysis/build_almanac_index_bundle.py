@@ -95,6 +95,11 @@ def build():
         hycom_doc, _ = verify_secc_hycom()
         if json.loads(documents[hycom_path]) != hycom_doc:
             raise ValueError('Changed HYCOM local normal diagnostics')
+    from south_indian_hydrography_query import evidence as south_indian_evidence
+    _,_,south_indian_report,_=south_indian_evidence()
+    path='research/south-indian-hycom-2013-paired-profile-candidates-v2.json'
+    if path not in documents or json.loads(documents[path])!=south_indian_report:
+        raise ValueError('Missing or changed South Indian paired-profile evidence')
     bands_path = 'research/indian-secc-positive-band-connectivity.json'
     if bands_path in documents:
         from indian_secc_positive_bands import verify as verify_secc_bands

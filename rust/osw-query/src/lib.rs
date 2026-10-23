@@ -180,6 +180,32 @@ fn collect_fields(value: &Value, prefix: &str, fields: &mut BTreeSet<String>) {
 fn present(value: Option<&Value>) -> bool {
     value.is_some_and(|v| !v.is_null())
 }
+// Scalar numeric equality follows value, while avoiding integer-to-f64 rounding.
+fn filter_equal(a: &Value, b: &Value) -> bool {
+    if a == b {
+        return true;
+    }
+    let (Some(a), Some(b)) = (a.as_number(), b.as_number()) else {
+        return false;
+    };
+    let (integer, float) = match (a.is_f64(), b.is_f64()) {
+        (false, true) => (a, b.as_f64().unwrap()),
+        (true, false) => (b, a.as_f64().unwrap()),
+        _ => return false,
+    };
+    if float.fract() != 0.0 {
+        return false;
+    }
+    if let Some(value) = integer.as_i64() {
+        // The upper bound is exclusive: i64::MAX rounds up in binary64.
+        float >= -9223372036854775808.0 && float < 9223372036854775808.0 && float as i64 == value
+    } else if let Some(value) = integer.as_u64() {
+        float >= 0.0 && float < 18446744073709551616.0 && float as u64 == value
+    } else {
+        false
+    }
+}
+
 fn compare(a: &Value, b: &Value) -> std::cmp::Ordering {
     match (a.as_f64(), b.as_f64()) {
         (Some(a), Some(b)) => a.total_cmp(&b),
@@ -606,8 +632,8 @@ impl Store {
                 query.filters.iter().all(|filter| {
                     let actual = field(r, &filter.field).unwrap_or(&Value::Null);
                     match filter.op.as_str() {
-                        "eq" => actual == &filter.value,
-                        "ne" => actual != &filter.value,
+                        "eq" => filter_equal(actual, &filter.value),
+                        "ne" => !filter_equal(actual, &filter.value),
                         "exists" => {
                             present(field(r, &filter.field)) == filter.value.as_bool().unwrap()
                         }
@@ -1341,6 +1367,37 @@ mod tests {
             r#"{"sql":"drop table"}"#,
         ] {
             assert_eq!(s.execute(q.as_bytes())["ok"], false, "{q}");
+        }
+    }
+    #[test]
+    fn numeric_filter_equality_keeps_exact_integers_and_scalar_types() {
+        let s = Store::load(br#"{"schema":"osw.query-bundle.v1","manifest":{},"collections":{"objects":[{"id":"a","depth_m":15.0},{"id":"b","depth_m":15},{"id":"c","depth_m":1000.0}]}}"#).unwrap();
+        for value in ["15", "15.0"] {
+            for (op, total) in [("eq", 2), ("ne", 1)] {
+                let query =
+                    format!(r#"{{"filters":[{{"field":"depth_m","op":"{op}","value":{value}}}]}}"#);
+                assert_eq!(s.execute(query.as_bytes())["total"], total);
+            }
+        }
+        for (a, b, equal) in [
+            ("15", "15.0", true),
+            ("1000.0", "1000", true),
+            ("-15", "-15.0", true),
+            ("0", "-0.0", true),
+            ("15", "15.25", false),
+            ("null", "0", false),
+            ("true", "1", false),
+            ("\"15\"", "15", false),
+            ("9007199254740993", "9007199254740992.0", false),
+            ("9223372036854775807", "9223372036854775808.0", false),
+            ("18446744073709551615", "18446744073709551616.0", false),
+            ("-9223372036854775808", "-9223372036854775808.0", true),
+            ("9223372036854775808", "9223372036854775808.0", true),
+        ] {
+            let a: Value = serde_json::from_str(a).unwrap();
+            let b: Value = serde_json::from_str(b).unwrap();
+            assert_eq!(filter_equal(&a, &b), equal, "{a} vs {b}");
+            assert_eq!(filter_equal(&b, &a), equal, "{b} vs {a}");
         }
     }
     #[test]

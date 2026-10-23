@@ -291,6 +291,9 @@ def build():
     secc_normals,secc_normal_inputs=verify_secc_normals();inputs.update(secc_normal_inputs)
     from indian_secc_hycom_local_normals import verify as verify_secc_hycom, REPORT as SECC_HYCOM
     secc_hycom,secc_hycom_inputs=verify_secc_hycom();inputs.update(secc_hycom_inputs)
+    from south_indian_hydrography_query import evidence as south_indian_evidence
+    south_indian_cells,_,south_indian_profiles,south_indian_inputs=south_indian_evidence()
+    inputs.update(south_indian_inputs)
     from west_australian_streamline_evidence import verify as verify_wac_paths
     wac_paths,wac_path_inputs=verify_wac_paths()
     inputs.update(wac_path_inputs)
@@ -778,6 +781,15 @@ def build():
                 'source_vector_positions':secc_context['quality']['vector_positions'],'historical_overlap_vectors':4464,
                 'current_association_verified':False,'current_geometry_admitted':False}
             groups['sources'].append(payload['surrounding_source_context'])
+        if current_id == 'south-indian':
+            from south_indian_hydrography_query import card_links as south_indian_links
+            evidence_links.extend(south_indian_links())
+            source_file='research/source-data/hycom-south-indian-hydrography-2013/monthly-fields.json'
+            payload['paired_hydrography_source']={'source_file':source_file,'source_sha256':inputs[source_file],
+                'source_model_year':2013,'native_depths_m':[15,1000],'native_monthly_cells':len(south_indian_cells),
+                'diagnostic_cases':len(south_indian_profiles['cases']),'current_association_verified':False,
+                'physical_width_admitted':False,'current_geometry_admitted':False}
+            groups['sources'].append(payload['paired_hydrography_source'])
         if current_id == 'west-australian':
             evidence_links.append({'label':'Compare twelve surrounding offshore source-vector maps',
                 'url':'../'+wac_context['comparison_figure']})

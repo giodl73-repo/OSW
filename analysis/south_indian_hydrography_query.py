@@ -1,7 +1,6 @@
 """Lossless, filterable native-cell source rows; no current-dimension admission.
 
-Prepared during acquisition. Wire into the atlas only after full-source
-reconstruction and browser checks; this module alone does not publish rows.
+The source reconstruction and profile browser gate precede atlas integration.
 """
 import calendar
 import json
@@ -117,3 +116,41 @@ def verify(directory=DESTINATION):
             'rights':'Approved for public release. Distribution unlimited. Original NAVO metadata retained.',
             'current_association_verified':False,'physical_width_admitted':False}
     return rows,source,inputs
+
+
+def evidence():
+    """Bind full source cells, candidate report, view and source-scope reviews."""
+    rows,source,inputs=verify()
+    from south_indian_paired_profiles_v2 import build,REPORT
+    report=build()
+    if (ROOT/REPORT).read_bytes()!=(json.dumps(report,indent=2,allow_nan=False)+'\n').encode():
+        raise ValueError('Changed paired-profile diagnostic report')
+    paths=[REPORT,*report['dependencies'],
+           'figures/south-indian-hydrography-2013/index.html',
+           'figures/south-indian-hydrography-2013/view.json',
+           'analysis/south_indian_hydrography_view.html',
+           'analysis/build_south_indian_hydrography_view.py',
+           'research/stramma-1992-south-indian-full-paper-review.json',
+           'research/sparrow-1996-south-indian-front-definition-review.json',
+           'research/source-data/sparrow-south-indian-1996/acquisition.json']
+    for path in paths:inputs[path]=pin(ROOT/path)['sha256']
+    view=json.loads((ROOT/'figures/south-indian-hydrography-2013/view.json').read_bytes())
+    for key,path in [('html','figures/south-indian-hydrography-2013/index.html'),
+                     ('template','analysis/south_indian_hydrography_view.html'),
+                     ('source_manifest',(DESTINATION/'acquisition.json').relative_to(ROOT).as_posix())]:
+        if view[key]!=pin(ROOT/path):raise ValueError('Changed source profile view binding: '+key)
+    return rows,source,report,inputs
+
+
+def card_links():
+    from urllib.parse import quote
+    query={'collection':COLLECTION,'filters':[{'field':'investigation_current_id','op':'eq','value':'south-indian'}],'limit':100}
+    links=[{'label':'Explore paired velocity, temperature and salinity profiles (2013)',
+            'url':'../figures/south-indian-hydrography-2013/'},
+           {'label':'Query all South Indian native hydrography cells',
+            'url':'query.html?q='+quote(json.dumps(query,separators=(',',':')),safe='')}]
+    for label,path,pointer in [
+        ('Inspect all 72 paired gradient and velocity candidate profiles','research/south-indian-hycom-2013-paired-profile-candidates-v2.json','/cases'),
+        ('Query unrounded paired monthly source fields','research/source-data/hycom-south-indian-hydrography-2013/monthly-fields.json','/months')]:
+        links.append({'label':label,'url':'query.html?source-q='+quote(json.dumps({'document':path,'pointer':pointer,'limit':1,'offset':0},separators=(',',':')),safe='')+'#source-query-title'})
+    return links

@@ -300,3 +300,39 @@ issue. The original33 report gates and source arithmetic remain unchanged.
 Numerical addendum: 21 findings, no unresolved P1 for publishing the versioned
 correction. Fresh exact Linux replay and integrated UI/native/WASM verification
 remain P2 conditions; no new physical-measurement approval is implied.
+
+
+## Addendum: source collection, atlas navigation and query equality
+
+Internal review of the integrated source/context artifact through the same seven
+installed roles. ORBIT is inapplicable: no space or planetary comparison is made.
+This review does not independently establish current boundaries or dimensions.
+
+| Role | Finding | Severity | Resolution / required action |
+|---|---|---|---|
+| CURRENT | Available model cells must not become identified current occupancy. | P1 resolved | Every source row retains false association/width flags; card labels this as paired source context. |
+| CURRENT | Depth, year and thermal variable require explicit support. | P1 resolved | Exact15/1000m,2013 common-day monthly samples and in-situ temperature retained in rows, units and profile text. |
+| CURRENT | Current width and annual extrema remain physically unresolved. | P2 retained limit | No new width/length/axis/footprint or annual range admitted; source only samples three nearby meridians. |
+| SOUNDER | Query flattening could alter means, masks or counts. | P1 resolved in adapter/source gates | All23,472 rows retain native coordinates, unrounded values, counts and explicit eligibility;67 focused tests pass. |
+| SOUNDER | Canonical and superseded diagnostics must stay distinguishable. | P1 resolved | Both v1 and v2 documents indexed; current links select v2; protected v1 artifacts remain byte exact. |
+| SOUNDER | Provenance must follow the source row into the query UI. | P2 resolved | Source ID resolves to the model record with acquisition and full source paths, fields, units, sampling and rights. |
+| CHART | Repeated selections need consistent plotting scales and sign. | P2 resolved | Final actual browser checks72 selections/288 profiles, fixed scales, zero line, missing breaks and units. |
+| CHART | Source section geography cannot imply a mapped current boundary. | P1 resolved | Profile explicitly identifies a section; no new geographic flow outline or physical state intersection. |
+| CHART | Phone text needs measured readability. | P2 resolved | Final320px profile gate checks minimum10 CSS-pixel axis text and reflow; table is an equivalent textual view. |
+| BEACON | Source completion could be mistaken for measurement completion. | P1 resolved | Plan and nearby profile notices keep named-current dimensions unresolved. |
+| BEACON | Evidence navigation should start from the current card. | P2 conditional | Four direct profile/query links added; integrated keyboard card/profile/query gate required. |
+| BEACON | Partial CI success must not become an overall green claim. | P1 resolved |34 exact Linux reports and both source replays pass at3dc355c; separate offline fixture403 and skipped later steps recorded. |
+| HARBOR | Chart access must include the complete values and controls. | P1 resolved | Native selects, full326-row section table, source JSON and structured query alternative retained. |
+| HARBOR | Selection/share/history should remain keyboard operable. | P2 resolved for profile | Final72-selection browser gate passes keyboard, reload/history, invalid-input explanation and phone reflow. |
+| HARBOR | Cross-page selection must survive without pointer input. | P2 conditional | Integrated320px card-to-profile-to-exact-section query gate required; no automatic originals permitted. |
+| KEEL | Numeric equality incorrectly distinguished15 from15.0. | P1 resolved in regression/build | Scalar eq/ne compare exact equal integral values;133 Rust tests include query regression, type separation and large signed/unsigned boundaries. |
+| KEEL | Full source values must agree through actual native and WASM engines. | P2 conditional | Paginated48-query complete-cell readback plus full72-case/12-month source checks running; no sampled success substituted. |
+| KEEL | Versioned arithmetic needs exact cross-platform evidence. | P1 resolved | Fresh Linux job120157339543 passes all34 encoded reports and both zero-network HYCOM source reconstructions. |
+| LOGBOOK | Existing measurements and source history must survive integration. | P1 resolved |59,865 old rows checked, only South Indian object metadata/links changed;69 protected files and458 old source descriptors exact;170 widths/78 routes retained. |
+| LOGBOOK | Build recovery must not damage originals or weaken gates. | P1 resolved | Source originals preserved; only verified superseded generated parts/derived compiler artifacts retired;512MiB engine guard and all133 Rust tests retained. |
+| LOGBOOK | Publication must follow the agreed continuing batch. | P1 resolved in scope | Same open draft PR83, no new PR or main merge; integration assets remain pending final browser evidence and commit. |
+
+Integration addendum:21 findings. No unresolved P1 in the implementation reviewed.
+The three conditional integration areas remain required before this milestone is
+reported complete. Broader offline/full-suite conditions and physical measurement
+limits remain visible; this is an internal source/context review.
