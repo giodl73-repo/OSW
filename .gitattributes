@@ -1,5 +1,12 @@
 # Preserve original paper bytes and avoid applying text whitespace checks to PDFs.
 *.pdf binary
+# Frozen RU29 methods and selected provider products retain exact source bytes.
+research/source-data/caribbean-ru29-2024-v1/** -text -whitespace
+research/caribbean-ru29-* -text
+analysis/caribbean_ru29_source_fields_v*.py -text
+analysis/test_caribbean_ru29_source_fields_v*.py -text
+plans/caribbean-ru29-source-fields-protocol-v*.md -text
+figures/caribbean-ru29-velocity-sections-v*.svg -text
 # Exact provider custody, source plotting example and compressed NetCDF original.
 research/source-data/kuroshio-wang-2026-v1/** -text -whitespace
 # Preserve archived JATS bytes, including whitespace in the author's math markup.

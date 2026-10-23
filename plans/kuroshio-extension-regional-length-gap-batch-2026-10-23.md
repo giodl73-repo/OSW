@@ -155,3 +155,14 @@ for the new delivery head; the full exclusive regression remains open.
 Staged-byte proof: PASS for992 unique Git index blobs covering671 engine
 pins and535 source documents. All overlapping descriptors agree; no frozen
 scientific bytes differ. Same-PR publication and fresh remote CI follow.
+
+## Verified remote follow-up for f83557e
+
+The subsequent pushed delivery head f83557e93386f781ccfefc69ceba7d54ac58532c
+has a terminal successful scientific-reproduction job 120560188175 on run
+39996182669. Its downloaded log contains all 39 scientific report records,
+each with exact encoded bytes. This is verified previous-head evidence, not
+CI for later Caribbean source commits. Conformance and NetCDF fixture jobs
+also succeeded. Offline stopped during acquisition of the original Stramma
+1992 South Indian paper with HTTP 403 before tests. Front-level-atlas remained
+authoritatively in progress when polled on 23 October; do not infer its result.

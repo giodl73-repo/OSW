@@ -17,6 +17,11 @@ jobs:
           python-version: "3.13"
       - name: Install pinned thermodynamic dependencies
         run: python -m pip install numpy==2.4.1 gsw==3.6.23 h5py==3.16.0 netCDF4==1.7.4 pyproj==3.7.2 pytest==8.4.2
+      - name: Verify complete Caribbean RU29 source arrays and page payload
+        run: |
+          python -m pytest -q analysis/test_caribbean_ru29_source_fields_v1.py analysis/test_caribbean_ru29_source_fields_v2.py analysis/test_caribbean_ru29_source_fields_admission.py
+          python analysis/caribbean_ru29_source_fields_v2.py check
+          python analysis/build_caribbean_ru29_source_page.py check
       - name: Check exact synthetic pressure salinity and temperature conversion
         run: python analysis/check_south_indian_front_temperature_portability.py
       - name: Check supplementary source methods and query adapters
@@ -88,6 +93,7 @@ jobs:
       - name: Read every supplementary cell through native and shipped WASM UI
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_caribbean_ru29_source_browser.py
           test_ke_length_series_browser.py test_labrador_gate_bound_browser.py
           test_angola_nansen_sections_browser.py test_angola_nansen_query_browser.py
           test_redsox_station_support_browser.py test_redsox_station_support_query_browser.py
