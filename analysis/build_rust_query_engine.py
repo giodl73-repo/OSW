@@ -19,7 +19,7 @@ def main():
     # bounded build while retaining an explicit caller override.
     os.environ.setdefault('CARGO_INCREMENTAL','0')
     os.environ.setdefault('CARGO_BUILD_JOBS','1')
-    for args in [['cargo','fmt','--manifest-path',MANIFEST],
+    for args in [['cargo','fmt','--manifest-path',MANIFEST,'--','--check'],
                  ['cargo','test','--offline','--locked','--manifest-path',MANIFEST],
                  ['cargo','build','--offline','--locked','--manifest-path',MANIFEST]]:
         subprocess.run(args,cwd=ROOT,check=True)
