@@ -164,6 +164,13 @@ def main():
                   'research/brazil-regional-reach-query-contract-v1.json',
                   'research/eicc-t24-published-width-admission-v1.json',
                   'research/indian-current-reference-route-planning-v1.json'])
+    from davidson_wallace_width_admission import build_contract as davidson_contract, encoded as davidson_encoded, FILE as davidson_file
+    davidson = davidson_contract()
+    if (ROOT / davidson_file).read_bytes() != davidson_encoded(davidson):
+        raise ValueError('Stale Davidson prepared admission contract')
+    paths.extend(['rust/osw-query/src/davidson_reported_width.rs',
+                  'analysis/test_davidson_reported_width_browser.py', davidson_file,
+                  *davidson['input_sha256']])
     paths.extend(['rust/osw-query/src/current_catalogue.rs','analysis/current_identity_admissions.py','almanac/current-identity-ui.js',
                   'plans/current-identity-admission-protocol-v1.md','research/ocean-current-identity-admissions.json',
                   'research/ocean-current-working-catalogue.json','figures/southern-east-madagascar-admitted-identity.svg'])

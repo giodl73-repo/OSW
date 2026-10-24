@@ -124,5 +124,25 @@ class DeliveryChecks(unittest.TestCase):
             with self.subTest(path=path),patch.object(a,'read',side_effect=changed),self.assertRaises(ValueError):
                 a.build_contract()
 
+    def test_manifest_and_rows_prepare_together_without_erasing_prior_receipts(self):
+        parent=baseline(self.document)
+        manifest={'input_sha256':{'prior/science.json':'keep'},'prior_source_receipt':{'keep':True}}
+        before=copy.deepcopy((manifest,parent))
+        metadata,staged,_=a.prepare_candidate(manifest,parent,self.document)
+        self.assertEqual((manifest,parent),before)
+        self.assertEqual(metadata[a.VERSION_KEY],a.VERSION)
+        self.assertEqual(metadata['input_sha256']['prior/science.json'],'keep')
+        self.assertEqual(metadata['prior_source_receipt'],{'keep':True})
+        self.assertEqual(staged['widths'][-1]['id'],a.WIDTH)
+        self.assertEqual(metadata['input_sha256'][a.FILE],a.pin(a.FILE))
+
+    def test_incompatible_parent_pin_or_existing_cohort_rejects_atomically(self):
+        path=next(iter(self.document['input_sha256']))
+        for manifest in [{'input_sha256':{path:'0'*64}},
+                         {'input_sha256':{},a.VERSION_KEY:a.VERSION}]:
+            parent=baseline(self.document);before=copy.deepcopy((manifest,parent))
+            with self.assertRaises(ValueError):a.prepare_candidate(manifest,parent,self.document)
+            self.assertEqual((manifest,parent),before)
+
 
 if __name__=='__main__':unittest.main()

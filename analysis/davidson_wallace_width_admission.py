@@ -10,6 +10,8 @@ from build_ocean_motion_claims import review_fingerprint
 from object_source_links import project
 
 ROOT = Path(__file__).resolve().parents[1]
+VERSION_KEY = 'davidson_reported_width_version'
+VERSION = 'wallace-line67-v1'
 FILE = 'research/davidson-wallace-2008-width-admission-v1.json'
 ADAPTER = 'analysis/davidson_wallace_width_admission.py'
 ENTITY = 'current:davidson'
@@ -170,6 +172,7 @@ def build_contract():
     paths={ADAPTER,'analysis/test_davidson_wallace_width_admission.py',REPORT,FIGURE,PROOF,PREFLIGHT,RELEASE_ENTITIES,'analysis/object_source_links.py',
            'analysis/build_ocean_motion_claims.py',*[entry['path'] for entry in preflight['dependencies'].values()]}
     return {'schema':'osw.davidson-reported-width-admission.v1','status':'prepared_working_admission_not_published',
+            'manifest_fields':{VERSION_KEY:VERSION},
             'entity_id':ENTITY,'accepted_entity':entities[0],'source_records':sources,
             'width_record':width,'claim':claim,'admission':admission,
             'input_sha256':{path:pin(path) for path in sorted(paths)},
@@ -188,7 +191,8 @@ def records(document):
 
 def prepare(collections,document):
     """Prepare an atomic append; no supplied object, list or record is mutated."""
-    if encoded(document)!=encoded(build_contract()):raise ValueError('Changed or unverified Davidson contract')
+    if encoded(document)!=read(FILE) or encoded(document)!=encoded(build_contract()):
+        raise ValueError('Changed or unverified Davidson contract')
     required={'objects','entities','sources','claims','widths','measurements','geometries','media','reference_routes'}
     if required-set(collections):raise ValueError('Incomplete parent collections')
     if any(not isinstance(rows,list) or any(not isinstance(row,dict) for row in rows) for rows in collections.values()):
@@ -236,6 +240,23 @@ def prepare(collections,document):
                    'prior_nonobject_rows_preserved':True,'other_owners_unchanged':True,
                    'raw_samples_added':0,'annual_ranges_added':0,'geometry_or_state_joins_added':0,
                    'canonical_delivery_verified':False,'complete_parent_packet_verified':False}
+
+
+def prepare_candidate(manifest,collections,document):
+    """Return collections and manifest together; fail without changing either input."""
+    if not isinstance(manifest,dict) or not isinstance(manifest.get('input_sha256'),dict):
+        raise ValueError('Complete parent input manifest required')
+    if VERSION_KEY in manifest:
+        raise ValueError('Davidson feature already declared; do not replay over a newer cohort')
+    staged,receipt=prepare(collections,document)
+    metadata=copy.deepcopy(manifest)
+    for path,sha in {**document['input_sha256'],FILE:pin(FILE)}.items():
+        previous=metadata['input_sha256'].get(path)
+        if previous is not None and previous!=sha:
+            raise ValueError('Changed parent dependency requires a separate reviewed transition: '+path)
+        metadata['input_sha256'][path]=sha
+    metadata.update(copy.deepcopy(document['manifest_fields']))
+    return metadata,staged,receipt
 
 
 def main():

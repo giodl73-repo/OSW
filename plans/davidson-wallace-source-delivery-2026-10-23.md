@@ -1,7 +1,11 @@
 # Davidson January 2008 regional width source
 
 Prepared on the existing current-gap branch and PR83. No new PR or main merge.
-The active 106-current cloud delivery remains on its tested remote source head.
+The 106-current working dataset was published by recovery run 40060082703,
+retaining the tested runtime/source inputs from commit 6866981. Its receipt is
+`research/current-gap-installed-delivery-v1.json` on the remote working branch.
+The full offline regression remains blocked by the Rotschi original's HTTP 403;
+this is not a scientific release or a main merge.
 The Davidson method was frozen locally at
 `76de56cd5bea3b27e56fb287c5b0fb887b643aac` before real-source production.
 
@@ -63,14 +67,45 @@ counts. The width retains 35 NM and exact normalization 64.82 km while its publi
 approximate value is 65 km. Publication date/year and exact occupation date stay
 unknown; the campaign window does not become an exact width date.
 
-Seven small checks cover atomicity, unchanged old rows/physical fields,
+Nine small checks cover atomicity, unchanged old rows/physical fields,
 source-grade/date/layer scope, source and contract mutations, missing/duplicate
 identity, collisions, shared-standard reuse and registered source ownership.
 No source product is edited by these checks. The contract is preparation only:
 the complete 106-current parent packet has not yet been applied or verified,
-and native guards, WASM, actual card rendering and the next coherent cloud
-export remain outstanding. The live packet and counts are unchanged.
+and native compilation, WASM, actual card rendering and the next coherent cloud
+export remain outstanding. Davidson is not yet in the live packet.
 
 Preserve the local freeze commit when reconciling a future generated remote
 delivery commit. Use an ordinary merge into this working branch rather than
 rebasing the freeze: its commit ID is part of the source-execution proof.
+
+## Sequential delivery preparation
+
+Native guard code is prepared for the exact six admission records and their
+frozen source pins. It rejects raw samples, annual ranges, changed historical
+width ownership and unsupported changes to the Davidson object's physical
+capabilities. Rust formatting parsed the code; no native compilation has run.
+Object views now select legacy width records by their current ID as well as
+new records by entity ID, so both Davidson source records can be inspected.
+
+The current-card renderer now prepares a regional transect section when the
+width has a matching measurement admission. It shows the source approximation,
+depth average, campaign-only dates, unknown exact occupation and uncertainty,
+course-report grade, scalar diagram and keyboard-accessible evidence links.
+The old 1978 summary is not pooled with the new record. No new animation or
+geographic current boundaries are inferred.
+
+`analysis/test_davidson_reported_width_browser.py` is a prepared cloud-only gate
+for native/WASM equality, preservation of the old width, the current card,
+keyboard query, phone layout and actual SVG source-caption rendering. It has
+passed syntax checking only and has not been executed. The engine build input
+manifest includes this gate. JavaScript syntax checking passed; no browser was
+opened. Source producers, their pinned inputs and source products are unchanged.
+
+Next, prepare a versioned exporter from the verified 106-current parent that
+preserves its installed records and appends the Davidson admission. The older
+79-row exporter must not overwrite this newer cohort. Reconcile remote data
+with an ordinary merge, preserving the original source-freeze commit, before
+pushing the next batched source update. Then run candidate checks, native,
+WASM and browser validation sequentially in the cloud. Local builds, browser
+tests and bulk downloads remain held under the user's resource constraint.
