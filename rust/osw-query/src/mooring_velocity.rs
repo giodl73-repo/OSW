@@ -60,13 +60,11 @@ pub(crate) fn validate(bundle: &Bundle) -> Result<(), String> {
             .iter()
             .filter(|r| r["current_id"] == "antarctic-slope")
             .collect();
-        if reviews != vec![&audit["width_review"]]
-            || bundle.collections["widths"]
-                .iter()
-                .any(|r| r["current_id"] == "antarctic-slope")
-        {
+        let jet: Value = serde_json::from_str(include_str!("../../../research/antarctic-slope-chavanne-2010-dated-width-constraint-scope-audit.json")).map_err(|e| e.to_string())?;
+        if !reviews.is_empty() || jet["previous_source_review_record"] != audit["width_review"] {
             return Err("M6 velocity or mooring scales promoted to width".into());
         }
+        crate::original_regional_widths::validate_antarctic_jet_inventory(bundle)?;
         for object in &bundle.collections["objects"] {
             let count = if object["id"] == "current:antarctic-slope" {
                 61

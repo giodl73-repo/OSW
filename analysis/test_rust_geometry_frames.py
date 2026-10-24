@@ -1,4 +1,5 @@
 """Verified timeline ingestion, frame provenance, working joins and discrete playback."""
+from query_packet import read_bundle_bytes
 import json
 import os
 from pathlib import Path
@@ -8,7 +9,7 @@ from test_rust_query_browser import native, browser_query
 ROOT=Path(__file__).resolve().parents[1]
 
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_text(encoding='utf-8'))
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     all_frames=bundle['collections']['geometry_frames'];assert len(all_frames)==24
     frames=[f for f in all_frames if f['entity_id']=='current:gulf-stream-system'];assert len(frames)==17
     assert sum(f['entity_id']=='current:loop' for f in all_frames)==7

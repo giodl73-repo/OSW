@@ -1,4 +1,5 @@
 """Keep distinct components, isopycnals and climatologies separate."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_pacific_neuc_isopycnal_breadths import document,records,validate_row,AUDIT
@@ -21,8 +22,8 @@ def test_dimension_or_identity_promotions_rejected(change):
     r=records()[0];r.update(change)
     with pytest.raises(ValueError):validate_row(r)
 
-def fixtures(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());targets=[]
+def fixtures(directory,retain=True):
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));targets=[]
     cases=CHANGES+[{'original_regional_context':{}},{'original_regional_context':{**records()[0]['original_regional_context'],'sigma_theta_anomaly_kg_m3':26.8}},None,'proof']
     for i,change in enumerate(cases):
         bad=copy.deepcopy(packet);receipt=bad['manifest']['seasons_receipts']['widths'];doc=json.loads(receipt['source_json'])
@@ -38,9 +39,10 @@ def fixtures(directory):
         result=subprocess.run([str(CLI),str(target),'--seasons'],capture_output=True,text=True,encoding='utf8')
         assert result.returncode==2 and 'Pacific NEUC breadth' in result.stderr,result.stderr
         targets.append(target)
+        if not retain:target.unlink()
     return targets
 
-def test_native_scope_rejections(tmp_path):fixtures(tmp_path)
+def test_native_scope_rejections(tmp_path):fixtures(tmp_path,retain=False)
 
 def test_native_complete_context_for_filtered_component():
     result=native({'collection':'widths','filters':[{'field':'id','op':'eq','value':records()[1]['id']}]})
@@ -50,5 +52,5 @@ def test_native_complete_context_for_filtered_component():
     assert scene['geometry_role']=='abstract_component_comparison_no_edges_or_footprint'
     for owner in ['north-equatorial-undercurrent','pacific-north-equatorial-undercurrent']:
         r=native({'collection':'objects','filters':[{'field':'id','op':'eq','value':'current:'+owner}]})['rows'][0]
-        assert r['capabilities']['scoped_width']==(2 if owner.startswith('pacific-') else 0)
+        assert r['capabilities']['scoped_width']==(4 if owner.startswith('pacific-') else 0)
         assert r['capabilities']['time_samples']==0 and r['capabilities']['observed_velocity']==0

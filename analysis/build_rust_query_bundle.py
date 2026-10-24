@@ -13,8 +13,15 @@ def build():
     def read(path):
         raw=(ROOT/path).read_bytes();inputs[path]=hashlib.sha256(raw).hexdigest()
         return json.loads(raw)
+    from check_south_australian_miller_model_width import verify as verify_miller_width, AUDIT as MILLER_AUDIT
+    miller=verify_miller_width();read(MILLER_AUDIT);read(miller['acquisition_file'])
+    inputs.update(miller['input_sha256'])
+    inputs['analysis/check_south_australian_miller_model_width.py']=hashlib.sha256((ROOT/'analysis/check_south_australian_miller_model_width.py').read_bytes()).hexdigest()
     base='almanac/release/v0.1.0/'
     collections={name:read(base+name+'.json') for name in CANONICAL}
+    from current_identity_admissions import verify_inputs as verify_identities, append as append_identities
+    identity_document,identity_inputs=verify_identities();inputs.update(identity_inputs)
+    append_identities(collections,identity_document)
     read(base+'manifest.json')
     preview='almanac/release/v0.1.0-rights-screened-preview/'
     preview_manifest=read(preview+'manifest.json')
@@ -28,6 +35,55 @@ def build():
         movies_receipts[name]={'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')}
     dashboard=read('research/ocean-motion-dashboard.json')
     widths=read('research/ocean-current-width-inventory.json')
+    from build_necc_chen_spread_scale import validate_inventory as validate_model_scale, OUTPUT as MODEL_SCALE
+    validate_model_scale(widths)
+    model_scale=read(MODEL_SCALE);read(model_scale['acquisition_file'])
+    for path,pin in model_scale['input_sha256'].items():
+        actual=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if actual!=pin:raise ValueError('Changed model axis-distance dependency: '+path)
+        inputs[path]=actual
+    inputs[model_scale['generator_file']]=hashlib.sha256((ROOT/model_scale['generator_file']).read_bytes()).hexdigest()
+    gogp=read('research/persian-gulf-gogp99-geostrophic-scales-scope-audit.json')
+    for source in [gogp,*gogp['supporting_originals']]:
+        read(source['acquisition_file'])
+        inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
+    for path in [gogp['protocol_file'],'analysis/check_persian_gulf_geostrophic_scales.py','figures/persian-gulf-gogp99-geostrophic-scales.svg']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+
+    from check_loop_uhlhorn_core_width import validate_inventory as validate_loop_core, AUDIT as LOOP_CORE_AUDIT
+    validate_loop_core(widths)
+    loop_core_audit=read(LOOP_CORE_AUDIT)
+    read(loop_core_audit['acquisition_file']);read(loop_core_audit['integrity_contract_file'])
+    for path in [loop_core_audit['protocol_file'],'analysis/check_loop_uhlhorn_core_width.py','analysis/uhlhorn_thesis_source.py','analysis/melet_hal_source.py','figures/loop-uhlhorn-2008-core-width.svg']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_gulf_stream_published_widths import validate_inventory as validate_gulf, AUDIT as GULF_AUDIT
+    validate_gulf(widths)
+    gulf_audit=read(GULF_AUDIT)
+    for source in gulf_audit['sources']:
+        read(source['acquisition_file'])
+        inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
+    for path in [gulf_audit['protocol_file'],'analysis/check_gulf_stream_published_widths.py','figures/gulf-stream-published-width-definitions.svg']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    core=read('research/atlantic-seuc-molinari-1981-core-width-scope-audit.json');read(core['acquisition_file'])
+    for path in [core['source_document_file'],core['protocol_file'],'analysis/check_atlantic_seuc_core_width.py','figures/atlantic-seuc-molinari-1981-core-width.svg']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    jet_audit = read('research/antarctic-slope-chavanne-2010-dated-width-constraint-scope-audit.json')
+    for path in [jet_audit['protocol_file'], 'analysis/check_antarctic_slope_jet_constraint.py']:
+        inputs[path] = hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    socib_audit = read('research/balearic-socib-2023-regional-width-scope-audit.json')
+    read(socib_audit['acquisition_file'])
+    for path in [socib_audit['source_document_file'], socib_audit['protocol_file'], 'analysis/check_balearic_socib_width.py']:
+        inputs[path] = hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    coordinate_audit=read('research/azores-countercurrent-posaf-coordinate-meaning-audit.json')
+    from build_azcc_coordinate_meaning_figure import validate as validate_coordinate_meaning
+    validate_coordinate_meaning(coordinate_audit)
+    read('research/source-data/carracedo-caibox-2012/acquisition.json')
+    path='analysis/build_azcc_coordinate_meaning_figure.py'
+    inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for path in ['research/azores-carracedo-2014-model-core-width-scope-audit.json','research/azores-carracedo-2014-climatological-core-width-record.json','research/source-data/carracedo-azores-2014/acquisition.json','research/source-data/woa09-season-definition/acquisition.json']:
+        read(path)
+    for path in ['analysis/check_azores_model_core_widths.py','analysis/build_azores_climatological_core_width_figure.py','plans/azores-model-core-width-protocol-v1.md']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/somali-schott-2001-premonsoon-width-scope-audit.json');read('research/source-data/schott-mccreary-2001/acquisition.json')
     for path in ['research/source-data/schott-mccreary-2001/journal-article.pdf','plans/somali-seasonal-width-protocol-v1.md','analysis/check_somali_seasonal_width.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
@@ -38,10 +94,91 @@ def build():
         read(path)
     for path in ['research/source-data/kolas-fer-wsc-2018/journal-article.pdf','plans/west-spitsbergen-stream-tube-width-protocol-v1.md','analysis/check_west_spitsbergen_stream_tubes.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_west_spitsbergen_selected_core import AUDIT as SELECTED_CORE_AUDIT, validate as validate_selected_core
+    selected_core=validate_selected_core();read(SELECTED_CORE_AUDIT)
+    for path in ['research/source-data/dundas-fer-wsc-2026/acquisition.json','research/source-data/dundas-fer-wsc-2026/figure.json','research/source-data/dundas-fer-wsc-2026/dataset-acquisition.json']:
+        read(path)
+    inputs.update(selected_core['input_sha256'])
+    inputs[selected_core['protocol_file']]=selected_core['protocol_sha256']
+    for path in ['analysis/check_west_spitsbergen_selected_core.py','analysis/build_west_spitsbergen_selected_core_figure.py','figures/west-spitsbergen-selected-core-width.svg','figures/west-spitsbergen-selected-core-width.png']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/ngcc-radenac-2016-seasonal-vein-width-scope-audit.json');read('research/source-data/radenac-ngcc-2016/acquisition.json')
+    from check_southern_current_width_source_limits import AUDIT as SOURCE_LIMITS_AUDIT, verify as verify_source_limits
+    source_limits=verify_source_limits();read(SOURCE_LIMITS_AUDIT)
+    from current_research_evidence import PATH as RESEARCH_EVIDENCE_PATH, verify as verify_research_evidence
+    research_evidence=verify_research_evidence();read(RESEARCH_EVIDENCE_PATH)
+    for path in research_evidence['documents']:read(path)
+    inputs.update(research_evidence['input_sha256'])
+    inputs['analysis/current_research_evidence.py']=hashlib.sha256((ROOT/'analysis/current_research_evidence.py').read_bytes()).hexdigest()
+    for source in source_limits['sources']:
+        read(source['acquisition_file'])
+        inputs[source['source_document_file']]=hashlib.sha256((ROOT/source['source_document_file']).read_bytes()).hexdigest()
+    inputs['analysis/check_southern_current_width_source_limits.py']=hashlib.sha256((ROOT/'analysis/check_southern_current_width_source_limits.py').read_bytes()).hexdigest()
+    from check_portugal_orca_section_span import AUDIT as PORTUGAL_AUDIT
+    portugal_audit=read(PORTUGAL_AUDIT)
+    read(portugal_audit['source_event_file'])
+    for path in [portugal_audit['protocol_file'],portugal_audit['figure_file'],'analysis/check_portugal_orca_section_span.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_south_atlantic_secondary_band import AUDIT as SAC_AUDIT
+    sac_audit=read(SAC_AUDIT);read(sac_audit['acquisition_file'])
+    for path in [sac_audit['source_document_file'],sac_audit['protocol_file'],sac_audit['figure_file'],'analysis/check_south_atlantic_secondary_band.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_south_pacific_band_constraint import AUDIT as SPC_AUDIT
+    spc_audit=read(SPC_AUDIT);read(spc_audit['acquisition_file'])
+    for path in [spc_audit['source_document_file'],spc_audit['protocol_file'],spc_audit['figure_file'],'analysis/check_south_pacific_band_constraint.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from radenac_hal_source import integrity_inputs as radenac_inputs
+    for path in radenac_inputs()+['plans/ngcc-seasonal-vein-width-protocol-v1.md','analysis/check_ngcc_seasonal_vein_widths.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/pacific-secc-rotschi-1972-width-range-scope-audit.json');read('research/source-data/rotschi-secc-1972/acquisition.json')
+    for path in ['research/source-data/rotschi-secc-1972/journal-article.pdf','plans/pacific-secc-historical-width-protocol-v1.md','analysis/check_pacific_secc_historical_width.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from check_current_width_inventory import validate
+    from check_nordic_section_widths import SOURCES as NORDIC_SOURCES, NOR, WSC, proposed_records, validate_proposal, validate_inventory as validate_nordic_inventory
+    for owner,(path,pin) in NORDIC_SOURCES.items():
+        audit=read(path);read(audit['acquisition_file'])
+        for dependency in [audit['source_document_file'],audit['protocol_file'],'analysis/check_nordic_section_widths.py',
+                           'analysis/build_nordic_section_width_figures.py',
+                           'figures/norwegian-fer-2020-section-width.svg' if owner==NOR else 'figures/spitsbergen-kolas-2018-section-widths.svg']:
+            inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
     validate(widths,read('research/ocean-current-almanac.json'))
+    validate_nordic_inventory(widths)
+    validate_proposal(read('research/ocean-current-inventory-expansion-candidates.json'))
+    collections['proposed_widths']=proposed_records()
+    from nwasc_mean_core_widths import verify_inputs as verify_mean_core, records as mean_core_records
+    mean_core,mean_core_inputs=verify_mean_core();inputs.update(mean_core_inputs)
+    collections['proposed_widths'].extend(mean_core_records())
+    from build_indian_secc_oscar_2d_source import verify as verify_secc_context
+    _,secc_context_inputs=verify_secc_context();inputs.update(secc_context_inputs)
+    from indian_secc_positive_bands import verify as verify_secc_bands
+    _,secc_band_inputs=verify_secc_bands();inputs.update(secc_band_inputs)
+    from indian_secc_local_normals import verify as verify_secc_normals
+    _,secc_normal_inputs=verify_secc_normals();inputs.update(secc_normal_inputs)
+    from indian_secc_hycom_local_normals import verify as verify_secc_hycom
+    _,secc_hycom_inputs=verify_secc_hycom();inputs.update(secc_hycom_inputs)
+    from south_indian_hydrography_query import evidence as south_indian_evidence, COLLECTION as HYDROGRAPHY_COLLECTION
+    south_indian_cells,south_indian_source,_,south_indian_inputs=south_indian_evidence()
+    inputs.update(south_indian_inputs)
+    collections[HYDROGRAPHY_COLLECTION]=south_indian_cells
+    collections['sources'].append(south_indian_source)
+    from south_indian_front_level_query import view_evidence as front_level_evidence
+    front_level_cells,front_level_source,_,front_level_inputs=front_level_evidence()
+    inputs.update(front_level_inputs)
+    collections[HYDROGRAPHY_COLLECTION].extend(front_level_cells)
+    collections['sources'].append(front_level_source)
     read('research/guinea-djakoure-2017-model-width-source-review.json');read('research/source-data/djakoure-guinea-2017/acquisition.json')
     for path in ['research/source-data/djakoure-guinea-2017/journal-article.pdf','plans/guinea-model-regional-width-protocol-v1.md','analysis/check_guinea_model_width.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_hiri_east_adriatic_local_widths import AUDITS as LOCAL_AUDITS
+    for audit_file, _ in LOCAL_AUDITS.values():
+        audit = read(audit_file)
+        read(audit['acquisition_file'])
+        for kind in ['source_document', 'protocol']:
+            path = audit[kind+'_file']; inputs[path] = hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for path in ['analysis/check_hiri_east_adriatic_local_widths.py','analysis/build_hiri_east_adriatic_local_widths.py']:
+        inputs[path] = hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    read('research/caribbean-duncan-1982-dated-width-scope-audit.json');read('research/source-data/duncan-caribbean-1982/acquisition.json')
+    for path in ['research/source-data/duncan-caribbean-1982/journal-article.pdf','plans/caribbean-dated-width-protocol-v1.md','analysis/check_caribbean_dated_width.py','analysis/build_caribbean_dated_width.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/algerian-cotroneo-2019-regional-width-scope-audit.json');read('research/source-data/cotroneo-algerian-2019/acquisition.json')
     for path in ['research/source-data/cotroneo-algerian-2019/journal-article.pdf','plans/algerian-regional-width-protocol-v1.md','analysis/check_original_regional_widths.py']:
@@ -87,7 +224,8 @@ def build():
     for path in ['research/source-data/tomczak-regional-2005/journal-article.pdf','plans/north-pacific-broad-band-protocol-v1.md','analysis/check_north_pacific_broad_band.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/solomon-melet-2010-coastal-confinement-scope-audit.json');read('research/source-data/melet-solomon-2010/acquisition.json')
-    for path in ['research/source-data/melet-solomon-2010/journal-article.pdf','plans/solomon-coastal-confinement-protocol-v1.md','analysis/check_solomon_coastal_confinement.py']:
+    from melet_hal_source import integrity_inputs as melet_inputs
+    for path in melet_inputs()+['plans/solomon-coastal-confinement-protocol-v1.md','analysis/check_solomon_coastal_confinement.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     read('research/jutland-nielsen-2000-cited-satellite-width-scope-audit.json');read('research/source-data/nielsen-jutland-2000/acquisition.json')
     for path in ['research/source-data/nielsen-jutland-2000/journal-article.pdf','plans/jutland-satellite-width-support-protocol-v1.md','analysis/check_jutland_satellite_widths.py']:
@@ -113,13 +251,31 @@ def build():
     read('research/ngcu-zenk-1999-width-constraint-scope-audit.json');read('research/source-data/zenk-ngcu-1999/acquisition.json');read('research/source-data/siedler-sonne-1997/acquisition.json')
     for path in ['research/source-data/zenk-ngcu-1999/journal-article.pdf','research/source-data/siedler-sonne-1997/journal-article.pdf','plans/ngcu-reported-width-constraint-protocol-v1.md']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
-    routes=read('research/ocean-current-reference-path-candidates.json')
+    from build_current_measurement_scopes import verify as verify_measurement_scopes
+    scope_index=verify_measurement_scopes()
+    read('research/current-measurement-object-scope-index.json')
+    read('research/ocean-current-scope-notes.json')
+    for record in scope_index['records']:read(record['source_file'])
+    inputs.update(scope_index['input_sha256'])
+    inputs[scope_index['generator_file']]=scope_index['generator_sha256']
+    inputs.update({r['figure_file']:r['figure_sha256'] for r in scope_index['records']})
+    from madagascar_reference_curve import verify_inputs as verify_coastal_curve, source_record as coastal_land_source, CATALOGUE as WORKING_ROUTES
+    coastal_curve,routes,coastal_inputs=verify_coastal_curve();inputs.update(coastal_inputs)
+    from nwasc_source_anchor_route import verify_inputs as verify_nwasc_route, extend_catalogue as extend_nwasc_routes, FILE as NWASC_ROUTE_FILE, ROUTE as NWASC_ROUTE_ID
+    nwasc_route,nwasc_route_inputs=verify_nwasc_route();inputs.update(nwasc_route_inputs)
+    routes=extend_nwasc_routes(routes,nwasc_route)
+    collections['sources'].append(nwasc_route['method_source'])
+    collections['sources'].append(coastal_land_source())
     from build_current_reference_path_catalog import validate_source_receipt
     for route in routes['candidates']:
         inputs.update(validate_source_receipt(read(route['candidate_file'])))
     for record in widths['measurements']:
         if record.get('extraction_file'):
             extraction = read(record['extraction_file'])
+            for dependency,pin in extraction.get('input_sha256',{}).items():
+                actual=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
+                if actual!=pin:raise ValueError('Changed cruise extraction dependency: '+dependency)
+                inputs[dependency]=actual
             read(extraction['acquisition_file'])
             for dependency in [extraction['protocol_file'], extraction['generator_file'], *[s['file'] for s in json.loads((ROOT / extraction['acquisition_file']).read_bytes())['files']]]:
                 inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
@@ -139,7 +295,39 @@ def build():
     for path in [transports['source_document_file'],transports['protocol_file'],'analysis/published_section_transports.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     collections.update(transport_records(transports))
-    collections['widths']=widths['measurements']
+    collections['widths']=copy.deepcopy(widths['measurements'])
+    from current_measurement_admissions import verify_inputs as verify_prose_dimensions, append as append_prose_dimensions
+    prose_dimensions,prose_inputs=verify_prose_dimensions();inputs.update(prose_inputs)
+    append_prose_dimensions(collections,prose_dimensions)
+    from north_atlantic_gate_bound import verify_inputs as verify_nac_bound, append as append_nac_bound
+    nac_bound,nac_bound_inputs=verify_nac_bound();inputs.update(nac_bound_inputs)
+    append_nac_bound(collections,nac_bound)
+    from nwasc_working_admission import verify_inputs as verify_nwasc_admission, append as append_nwasc_admission
+    nwasc_admission,nwasc_inputs=verify_nwasc_admission();inputs.update(nwasc_inputs)
+    from agulhas_reported_dimensions import verify_inputs as verify_agulhas_reported, diagnostic as agulhas_reported_diagnostic, ID as AGULHAS_REPORTED_ID
+    agulhas_reported,agulhas_reported_inputs=verify_agulhas_reported();inputs.update(agulhas_reported_inputs)
+    collections['widths'].append(agulhas_reported['width_record'])
+    append_nwasc_admission(collections,nwasc_admission)
+    from hansen_asar_widths import verify_inputs as verify_asar_widths, diagnostic as asar_diagnostic, ID as ASAR_ID
+    asar_widths,asar_inputs=verify_asar_widths();inputs.update(asar_inputs)
+    collections['widths'].extend(asar_widths['width_records'])
+    collections['sources'].append(asar_widths['source_record'])
+    from neuc_glider_widths import verify_inputs as verify_neuc_glider, diagnostic as neuc_glider_diagnostic, ID as NEUC_GLIDER_ID
+    neuc_glider,neuc_glider_inputs=verify_neuc_glider();inputs.update(neuc_glider_inputs)
+    collections['widths'].extend(neuc_glider['width_records'])
+    collections['sources'].append(neuc_glider['source_record'])
+    from aleutian_onishi_width import verify_inputs as verify_aleutian_width, diagnostic as aleutian_width_diagnostic, ID as ALEUTIAN_WIDTH_ID
+    aleutian_width,aleutian_width_inputs=verify_aleutian_width();inputs.update(aleutian_width_inputs)
+    collections['widths'].extend(aleutian_width['width_records'])
+    collections['sources'].append(aleutian_width['source_record'])
+    from labrador_gate_bound_query import evidence as labrador_bound_evidence, append as append_labrador_bound
+    labrador_bound,labrador_bound_inputs=labrador_bound_evidence();inputs.update(labrador_bound_inputs)
+    append_labrador_bound(collections,labrador_bound)
+    from ke_length_series_query import evidence as ke_length_evidence, append as append_ke_length
+    ke_length,ke_length_inputs=ke_length_evidence();inputs.update(ke_length_inputs)
+    append_ke_length(collections,ke_length)
+    collections['sources']=[agulhas_reported['source_record'] if r['id']==agulhas_reported['source_record']['id'] else r for r in collections['sources']]
+    collections['sources']=[routes['primary_source_record'] if r['id']==routes['primary_source_record']['id'] else r for r in collections['sources']]
     collections['reference_routes']=routes['candidates']
     objects=copy.deepcopy(dashboard['entries'])
     for row in objects:row['dashboard_search']=row['label']+' '+row['basin']
@@ -158,6 +346,8 @@ def build():
         source_ids={entity_index[row['id']].get('source_id')}
         source_ids.update(m.get('source_id') for m in measures)
         source_ids.update(c.get('source_id') for c in collections['claims'] if row['id'] in [c.get('subject_id'),c.get('object_id')])
+        source_ids.update(source for route in collections['reference_routes'] if route['current_id']==current for source in route.get('source_ids',[]))
+        if current in {'caribbean','algerian'}:source_ids.update(row.get('source_ids',[]))
         row['source_ids']=sorted(s for s in source_ids if s in sources)
         row['state_codes']=sorted({r['state_code'] for r in row['state_evidence']})
         lengths=[m['value'] for m in measures if m.get('rank_eligible') is True and m['quantity']=='reported_length']
@@ -213,6 +403,10 @@ def build():
                 points=display_coordinates(candidate['coordinates_lon_lat'],allow_seam=candidate.get('longitude_seam_policy')=='shortest_geodesic_periodic_display')
                 feature['spatial_geometry']={'type':'LineString','coordinates':[[((x-60)*360/1480)%360-180,90-(y-90)*180/740] for x,y in points]}
                 feature['spatial_geometry_method']='WGS84 geodesic legs densified at <=10 km as in the existing reference-route state join; planar relation to coarse masked OSW display polygons.'
+                if route['id']==NWASC_ROUTE_ID:
+                    feature['spatial_geometry']=copy.deepcopy(nwasc_route['canonical_spatial_geometry'])
+                    feature['physical_state_join_eligible']=False
+                    feature['physical_current_axis_admitted']=False
     collections['series']=[{'id':f"query-series:{row['id']}:{i}",'entity_id':row['id'],**series} for row in objects for i,series in enumerate(row['series'])]
     # Seasonal source conventions are distinct from exact observation dates.
     seasonal_path='research/ocean-current-seasonal-route-frames.json'
@@ -283,6 +477,42 @@ def build():
         ('diagnostic:necc-monthly-section','research/pacific-necc-oscar-2013-section-diagnostic.json'),
         ('diagnostic:antilles-observed-sections','research/antilles-ab0505-400m-section-diagnostic.json'),
         ('diagnostic:gulf-stream-widths','research/gulf-stream-section-width-series.json')]]
+    collections['diagnostics'].append({'id':'diagnostic:gulf-stream-published-width-definitions',
+        'label':'Gulf Stream transport-float occupations and historical isopycnal width',
+        'entity_id':'current:gulf-stream','current_id':'gulf-stream','status':gulf_audit['status'],'rank_eligible':False,
+        'source_file':GULF_AUDIT,'source_file_sha256':inputs[GULF_AUDIT],
+        'source_json':(ROOT/GULF_AUDIT).read_bytes().decode('utf8'),'document':gulf_audit})
+    collections['diagnostics'].append({'id':'diagnostic:uhlhorn-loop-core-width','label':'Loop Current prestorm fixed-speed geostrophic core',
+        'entity_id':'current:loop','current_id':'loop','status':loop_core_audit['status'],'rank_eligible':False,
+        'source_file':LOOP_CORE_AUDIT,'source_file_sha256':inputs[LOOP_CORE_AUDIT],
+        'source_json':(ROOT/LOOP_CORE_AUDIT).read_bytes().decode('utf8'),'document':loop_core_audit})
+    collections['diagnostics'].append({'id':'diagnostic:south-pacific-dated-band-constraint',
+        'label':'South Pacific March 1990 relative-geostrophic band constraint',
+        'entity_id':'current:south-pacific','current_id':'south-pacific','status':spc_audit['status'],'rank_eligible':False,
+        'source_file':SPC_AUDIT,'source_file_sha256':inputs[SPC_AUDIT],
+        'source_json':(ROOT/SPC_AUDIT).read_bytes().decode('utf8'),'document':spc_audit})
+    collections['diagnostics'].append({'id':'diagnostic:south-atlantic-secondary-band',
+        'label':'South Atlantic October 1983 southern component breadth',
+        'entity_id':'current:south-atlantic','current_id':'south-atlantic','status':sac_audit['status'],'rank_eligible':False,
+        'source_file':SAC_AUDIT,'source_file_sha256':inputs[SAC_AUDIT],
+        'source_json':(ROOT/SAC_AUDIT).read_bytes().decode('utf8'),'document':sac_audit})
+    collections['diagnostics'].append({'id':'diagnostic:portugal-orca-section-span',
+        'label':'Portugal ORCA 2009 published-coordinate section span',
+        'entity_id':'current:portugal','current_id':'portugal','status':portugal_audit['status'],'rank_eligible':False,
+        'source_file':PORTUGAL_AUDIT,'source_file_sha256':inputs[PORTUGAL_AUDIT],
+        'source_json':(ROOT/PORTUGAL_AUDIT).read_bytes().decode('utf8'),'document':portugal_audit})
+    for review in source_limits['reviews']:
+        owner=review['current_id']
+        collections['diagnostics'].append({'id':'diagnostic:current-width-source-limits:'+owner,
+            'label':owner+' current width source limitations','entity_id':'current:'+owner,'current_id':owner,
+            'status':source_limits['status'],'rank_eligible':False,'source_file':SOURCE_LIMITS_AUDIT,
+            'source_file_sha256':inputs[SOURCE_LIMITS_AUDIT],
+            'source_json':(ROOT/SOURCE_LIMITS_AUDIT).read_bytes().decode('utf8'),'document':source_limits})
+    from current_research_evidence import record as research_evidence_record
+    for scene in research_evidence['scenes']:
+        collections['diagnostics'].append(research_evidence_record(scene,research_evidence))
+        owner=next(r for r in objects if r['id']=='current:'+scene['current_id'])
+        owner['research_evidence_ids']=[scene['diagnostic_id']]
     florida_diagnostic=next(d for d in collections['diagnostics'] if d['id']=='diagnostic:florida-monthly-width')
     florida_path='research/florida-monthly-width-plot-extraction.json'
     florida_diagnostic.update(source_file=florida_path,source_file_sha256=inputs[florida_path],source_json=(ROOT/florida_path).read_bytes().decode('utf-8'))
@@ -355,7 +585,105 @@ def build():
             'source_file':path,'source_file_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8'),'document':document})
         for dependency in ['analysis/build_loop_current_section_spans.py',document['protocol_file']]:
             inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
+    from build_basin_surface_section_spans import build as rebuild_basin, diagnostic_matches as basin_matches
+    basin_inventory=read('research/basin-surface-section-inventory.json')
+    for document in rebuild_basin():
+        path='research/'+document['section_id']+'-2013-monthly-component-spans.json'
+        original=read(path)
+        if not basin_matches(original,document):raise ValueError('Stale basin section diagnostic')
+        collections['diagnostics'].append({'id':'diagnostic:basin-'+document['section_id'],
+            'label':document['current_id'].replace('-',' ').title()+' local monthly component spans (width unresolved)',
+            'entity_id':'current:'+document['current_id'],'current_id':document['current_id'],'status':document['status'],'rank_eligible':False,
+            'source_file':path,'source_file_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8'),'document':original})
+        for key,value in original.items():
+            if key.endswith('_file') and key.removesuffix('_file')+'_sha256' in original:
+                inputs[value]=hashlib.sha256((ROOT/value).read_bytes()).hexdigest()
+                if inputs[value]!=original[key.removesuffix('_file')+'_sha256']:raise ValueError('Stale basin source dependency')
+    for path in ['analysis/build_basin_surface_section_spans.py','analysis/acquire_basin_surface_sections.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for name,receipt in basin_inventory['source_files'].items():
+        path='research/source-data/oscar-basin-sections-2013/'+name
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=receipt['sha256']:raise ValueError('Changed basin original bytes')
+    from build_south_australian_hycom_spans import build as rebuild_hycom
+    path='research/south-australian-132e-100m-2012-monthly-component-spans.json'
+    original=read(path);calculated=rebuild_hycom()
+    if not basin_matches(original,calculated):raise ValueError('Stale HYCOM section diagnostic')
+    collections['diagnostics'].append({'id':'diagnostic:basin-'+original['section_id'],
+        'label':'South Australian local monthly component spans (width unresolved)',
+        'entity_id':'current:south-australian','current_id':'south-australian','status':original['status'],'rank_eligible':False,
+        'source_file':path,'source_file_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8'),'document':original})
+    for key,value in original.items():
+        if key.endswith('_file') and key.removesuffix('_file')+'_sha256' in original:
+            inputs[value]=hashlib.sha256((ROOT/value).read_bytes()).hexdigest()
+            if inputs[value]!=original[key.removesuffix('_file')+'_sha256']:raise ValueError('Stale HYCOM source dependency')
+    for key,path in {'generator':'analysis/build_south_australian_hycom_spans.py','acquirer':'analysis/acquire_south_australian_hycom_section.py','operator':'analysis/build_basin_surface_section_spans.py'}.items():
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=original[key+'_sha256']:raise ValueError('Changed HYCOM operator')
+    hycom_inventory=read(original['source_inventory_file']);read(hycom_inventory['acquisition_file'])
+    for name,receipt in hycom_inventory['source_files'].items():
+        path='research/source-data/hycom-south-australian-2012/'+name
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=receipt['sha256']:raise ValueError('Changed HYCOM original bytes')
+    from build_west_australian_oscar_spans import build as rebuild_offshore
+    path='research/west-australian-32s-2013-monthly-component-spans.json'
+    original=read(path)
+    if not basin_matches(original,rebuild_offshore()):raise ValueError('Stale offshore northward diagnostic')
+    collections['diagnostics'].append({'id':'diagnostic:basin-'+original['section_id'],
+        'label':'West Australian offshore monthly component spans (width unresolved)',
+        'entity_id':'current:west-australian','current_id':'west-australian','status':original['status'],'rank_eligible':False,
+        'source_file':path,'source_file_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8'),'document':original})
+    for path,pin in original['input_sha256'].items():
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=pin:raise ValueError('Changed offshore source dependency')
+    from check_indian_secc_oscar_climatology import saved as indian_saved, DOCUMENTS as INDIAN_DOCS, DATA as INDIAN_DATA
+    from build_indian_secc_oscar_climatology import build as rebuild_indian
+    indian_sections=indian_saved()
+    if not basin_matches(read(INDIAN_DATA),rebuild_indian()):raise ValueError('Changed Indian SECC yearly/climatology reconstruction')
+    for file,doc in zip(INDIAN_DOCS,indian_sections):
+        original=read(file)
+        collections['diagnostics'].append({'id':'diagnostic:basin-'+doc['section_id'],
+            'label':doc['period_label']+' (current width unresolved)',
+            'entity_id':'current:'+doc['current_id'],'current_id':doc['current_id'],'status':doc['status'],'rank_eligible':False,
+            'source_file':file,'source_file_sha256':inputs[file],'source_json':(ROOT/file).read_bytes().decode('utf8'),'document':original})
+        for path,pin in doc['input_sha256'].items():
+            inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+            if inputs[path]!=pin:raise ValueError('Changed Indian SECC source dependency')
+        for path in [doc['profile_figure'],doc['interannual_figure']]:inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for path in ['analysis/check_indian_secc_oscar_climatology.py','analysis/build_indian_secc_climatology_figures.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    from check_southern_basin_oscar_climatology import saved as southern_saved, DOCUMENTS as SOUTHERN_DOCS, DATA as SOUTHERN_DATA
+    from build_southern_basin_oscar_climatology import build as rebuild_southern
+    southern_sections=southern_saved()
+    if not basin_matches(read(SOUTHERN_DATA),rebuild_southern()):raise ValueError('Changed southern-basin yearly/climatology reconstruction')
+    for file,doc in zip(SOUTHERN_DOCS,southern_sections):
+        original=read(file)
+        collections['diagnostics'].append({'id':doc['diagnostic_id'],
+            'label':doc['period_label']+' (current width unresolved)',
+            'entity_id':'current:'+doc['current_id'],'current_id':doc['current_id'],'status':doc['status'],'rank_eligible':False,
+            'source_file':file,'source_file_sha256':inputs[file],'source_json':(ROOT/file).read_bytes().decode('utf8'),'document':original})
+        for path,pin in doc['input_sha256'].items():
+            inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+            if inputs[path]!=pin:raise ValueError('Changed southern-basin source dependency')
+        for path in [doc['profile_figure'],doc['interannual_figure']]:inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    for path in ['analysis/check_southern_basin_oscar_climatology.py','analysis/build_southern_basin_climatology_figures.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     from build_query_width_samples import build as build_width_samples
+    from build_antilles_sadcp_layer_spans import build as rebuild_shipboard, OUTPUT as SHIPBOARD, INPUT as SHIPBOARD_INPUT, SUBSET as SHIPBOARD_SUBSET
+    shipboard=read(SHIPBOARD)
+    from compare_shipboard_reconstruction import matches as shipboard_matches
+    if not shipboard_matches(shipboard,rebuild_shipboard()):raise ValueError('Changed shipboard component-span reconstruction')
+    for path in [SHIPBOARD,SHIPBOARD_INPUT,SHIPBOARD_SUBSET,'research/source-data/noaa-wbts-ab0505-sadcp/acquisition.json','analysis/build_antilles_sadcp_layer_spans.py','analysis/compare_shipboard_reconstruction.py']:
+        inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+    collections['observed_section_spans']=copy.deepcopy(shipboard['rows'])
+    from current_section_measurements import build as build_section_measurements
+    section_rows,section_pins=build_section_measurements()
+    collections['current_section_measurements']=section_rows
+    inputs.update(section_pins)
+    for entity_id in sorted({r['entity_id'] for r in section_rows}):
+        next(r for r in objects if r['id']==entity_id)['current_section_measurement_ids']=[r['id'] for r in section_rows if r['entity_id']==entity_id]
+    collections['diagnostics'].append({'id':'diagnostic:antilles-shipboard-layer-spans','label':'Antilles-region shipboard component spans','entity_id':'current:antilles','current_id':'antilles','status':shipboard['status'],'rank_eligible':False,'source_file':SHIPBOARD,'source_file_sha256':inputs[SHIPBOARD],'source_json':(ROOT/SHIPBOARD).read_bytes().decode('utf8'),'document':shipboard})
+    next(r for r in objects if r['id']=='current:antilles')['observed_section_span_ids']=[r['id'] for r in shipboard['rows']]
     from build_leeuwin_monthly_plot import build as rebuild_leeuwin
     from build_kuroshio_seasonal_width_profiles import build as rebuild_kuroshio
     from build_pacific_necc_oscar_section_diagnostic import build as rebuild_necc, diagnostic_matches
@@ -374,6 +702,108 @@ def build():
     for path in ['analysis/build_florida_monthly_plot.py','analysis/build_leeuwin_monthly_plot.py','analysis/build_kuroshio_seasonal_width_profiles.py','analysis/build_pacific_necc_oscar_section_diagnostic.py','analysis/acquire_pacific_necc_oscar_section.py']:
         inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
     inputs['analysis/build_query_width_samples.py']=hashlib.sha256((ROOT/'analysis/build_query_width_samples.py').read_bytes()).hexdigest()
+    from kuroshio_filtered_width import verify_inputs as verify_filtered_width, record as filtered_width_record, ID as FILTERED_WIDTH_ID
+    filtered_document,filtered_figure,filtered_inputs=verify_filtered_width()
+    inputs.update(filtered_inputs)
+    collections['diagnostics'].append(filtered_width_record(filtered_document))
+    filtered_owner=next(r for r in objects if r['id']=='current:kuroshio')
+    filtered_owner.setdefault('diagnostic_ids',[]).append(FILTERED_WIDTH_ID)
+    from asca_component_spans import verify_inputs as verify_asca_spans, record as asca_span_record, ID as ASCA_SPAN_ID
+    asca_span_document,_,asca_span_inputs=verify_asca_spans()
+    inputs.update(asca_span_inputs)
+    collections['diagnostics'].append(asca_span_record(asca_span_document))
+    next(r for r in objects if r['id']=='current:agulhas').setdefault('diagnostic_ids',[]).append(ASCA_SPAN_ID)
+    from build_asca_calendar_distributions import verify_inputs as verify_asca_calendar, record as asca_calendar_record, ID as ASCA_CALENDAR_ID
+    asca_calendar,_,asca_calendar_inputs=verify_asca_calendar()
+    inputs.update(asca_calendar_inputs)
+    collections['diagnostics'].append(asca_calendar_record(asca_calendar))
+    next(r for r in objects if r['id']=='current:agulhas').setdefault('diagnostic_ids',[]).append(ASCA_CALENDAR_ID)
+    from caribbean_ru29_query import evidence as caribbean_source_evidence, append as append_caribbean_source
+    caribbean_source,caribbean_inputs=caribbean_source_evidence();inputs.update(caribbean_inputs)
+    append_caribbean_source(collections,caribbean_source)
+    from published_regional_reaches_query import evidence as regional_reach_evidence, append as append_regional_reach
+    regional_reach,regional_reach_inputs=regional_reach_evidence();inputs.update(regional_reach_inputs)
+    reach_owner=next(row for row in objects if row['id']==regional_reach['entity_id'])
+    if reach_owner.pop('regional_reach_ids',None)!=[regional_reach['id']]:raise ValueError('Changed dashboard regional-reach join')
+    append_regional_reach(collections,regional_reach)
+    from eac_source_fields import verify_inputs as verify_eac_fields, record as eac_fields_record, ID as EAC_FIELDS_ID
+    eac_document,_,_,eac_inputs=verify_eac_fields()
+    inputs.update(eac_inputs)
+    collections['diagnostics'].append(eac_fields_record(eac_document))
+    next(r for r in objects if r['id']=='current:east-australian').setdefault('diagnostic_ids',[]).append(EAC_FIELDS_ID)
+    from eac_core_spans import verify_inputs as verify_eac_cores, record as eac_core_record, ID as EAC_CORE_ID
+    eac_core_document,eac_core_inputs=verify_eac_cores()
+    inputs.update(eac_core_inputs)
+    collections['diagnostics'].append(eac_core_record(eac_core_document))
+    next(r for r in objects if r['id']=='current:east-australian')['diagnostic_ids'].append(EAC_CORE_ID)
+    from south_australian_flow_context import verify_inputs as verify_sac_context, record as sac_context_record, ID as SAC_CONTEXT_ID
+    sac_document,sac_inputs=verify_sac_context()
+    inputs.update(sac_inputs)
+    collections['diagnostics'].append(sac_context_record(sac_document))
+    next(r for r in objects if r['id']=='current:south-australian').setdefault('diagnostic_ids',[]).append(SAC_CONTEXT_ID)
+    from madagascar_navigation_diagnostic import verify_inputs as verify_madagascar_navigation, record as madagascar_navigation_record, ID as MADAGASCAR_NAVIGATION_ID
+    navigation,navigation_inputs=verify_madagascar_navigation()
+    inputs.update(navigation_inputs)
+    collections['diagnostics'].append(madagascar_navigation_record(navigation))
+    next(r for r in objects if r['id']=='current:southern-east-madagascar').setdefault('diagnostic_ids',[]).append(MADAGASCAR_NAVIGATION_ID)
+    from madagascar_coastline_comparison import verify_inputs as verify_coastline_comparison, record as coastline_comparison_record, ID as COASTLINE_COMPARISON_ID
+    coast_comparison,coast_comparison_inputs=verify_coastline_comparison();inputs.update(coast_comparison_inputs)
+    collections['diagnostics'].append(coastline_comparison_record(coast_comparison))
+    next(r for r in objects if r['id']=='current:southern-east-madagascar')['diagnostic_ids'].append(COASTLINE_COMPARISON_ID)
+    from kuroshio_wang_query import verify_inputs as verify_kuroshio_daily, samples as kuroshio_daily_samples, record as kuroshio_daily_record, ID as KUROSHIO_DAILY_ID, SOURCE_ID as KUROSHIO_DAILY_SOURCE
+    daily_contract,daily_document=verify_kuroshio_daily();inputs.update(daily_contract['input_sha256'])
+    read('research/kuroshio-wang-2024-query-contract.json')
+    collections['current_dimension_samples']=kuroshio_daily_samples(daily_document)
+    collections['diagnostics'].append(kuroshio_daily_record(daily_document))
+    collections['sources'].append(daily_contract['source_record'])
+    daily_owner=next(r for r in objects if r['id']=='current:kuroshio')
+    daily_owner['diagnostic_ids'].append(KUROSHIO_DAILY_ID)
+    daily_owner['source_ids']=sorted(set(daily_owner['source_ids'])|{KUROSHIO_DAILY_SOURCE})
+    daily_owner['capabilities']['model_dimension_samples']=6588
+    from kuroshio_axis_normal_query import verify_inputs as verify_normals, samples as normal_samples, record as normal_record, ID as NORMAL_ID
+    normal_contract,normal_document=verify_normals();inputs.update(normal_contract['input_sha256'])
+    read('research/kuroshio-wang-2024-axis-normal-query-contract.json')
+    collections['current_axis_normal_samples']=normal_samples(normal_document)
+    collections['diagnostics'].append(normal_record(normal_document))
+    daily_owner['diagnostic_ids'].append(NORMAL_ID)
+    daily_owner['capabilities']['axis_normal_samples']=16470
+    collections['diagnostics'].append(agulhas_reported_diagnostic(agulhas_reported))
+    agulhas_owner=next(r for r in objects if r['id']=='current:agulhas')
+    agulhas_owner['diagnostic_ids'].append(AGULHAS_REPORTED_ID)
+    collections['diagnostics'].append(aleutian_width_diagnostic(aleutian_width))
+    from south_indian_front_property_query import view_evidence as property_evidence
+    _,property_diagnostic,property_inputs=property_evidence()
+    inputs.update(property_inputs)
+    collections['diagnostics'].append(property_diagnostic)
+    from current_gap_source_evidence import evidence as gap_source_evidence
+    _,_,gap_diagnostics,gap_inputs=gap_source_evidence()
+    inputs.update(gap_inputs)
+    collections['diagnostics'].extend(gap_diagnostics)
+    for diagnostic in gap_diagnostics:
+        owner=next(r for r in objects if r['id']==diagnostic['entity_id'])
+        owner.setdefault('diagnostic_ids',[]).append(diagnostic['id'])
+    for owner in objects:
+        if owner['id']=='current:aleutian':
+            owner.setdefault('diagnostic_ids',[]).append(ALEUTIAN_WIDTH_ID)
+            owner['source_ids']=sorted(set(owner['source_ids'])|{aleutian_width['source_record']['id']})
+    collections['diagnostics'].append(neuc_glider_diagnostic(neuc_glider))
+    for owner in objects:
+        if owner['id']=='current:pacific-north-equatorial-undercurrent':
+            owner.setdefault('diagnostic_ids',[]).append(NEUC_GLIDER_ID)
+            owner['source_ids']=sorted(set(owner['source_ids'])|{neuc_glider['source_record']['id']})
+    collections['diagnostics'].extend(asar_diagnostic(asar_widths,c) for c in ['norwegian-atlantic-slope','norwegian-coastal'])
+    for owner in objects:
+        if owner['id'] in ['current:norwegian-atlantic-slope','current:norwegian-coastal']:
+            owner.setdefault('diagnostic_ids',[]).append(ASAR_ID if owner['id']=='current:norwegian-atlantic-slope' else ASAR_ID+':coastal')
+            owner['source_ids']=sorted(set(owner['source_ids'])|{asar_widths['source_record']['id']})
+    from redsox_station_support_query import evidence as station_support_evidence
+    _,station_diagnostic,station_inputs=station_support_evidence()
+    inputs.update(station_inputs)
+    collections['diagnostics'].append(station_diagnostic)
+    from angola_nansen_source_query import evidence as angola_native_evidence
+    _,angola_native_diagnostic,angola_native_inputs=angola_native_evidence()
+    inputs.update(angola_native_inputs);collections['diagnostics'].append(angola_native_diagnostic)
+    next(r for r in objects if r['id']=='current:red-sea-saline-overflow').setdefault('diagnostic_ids',[]).append(station_diagnostic['id'])
     collections['width_samples']=build_width_samples(collections['diagnostics'])
     for row in objects:
         row['width_sample_ids']=[sample['id'] for sample in collections['width_samples'] if sample['entity_id']==row['id']]
@@ -381,7 +811,8 @@ def build():
     # Keep the complete remaining-length worklist queryable without assigning
     # dimensions to unresolved names, families or continuity hypotheses.
     collections['route_decisions']=[]
-    for original in routes['remaining_current_decisions']:
+    admitted_plans=[r['route_planning_decision'] for r in identity_document['entries']+[nwasc_admission['identity_entry']] if not any(p['current_id']==r['proposal_id'] for p in routes['remaining_current_decisions'])]
+    for original in routes['remaining_current_decisions']+admitted_plans:
         entity_id='current:'+original['current_id']
         owner=next(row for row in objects if row['id']==entity_id)
         if sorted(original['candidate_ids'])!=sorted(owner['route_ids']):
@@ -399,8 +830,8 @@ def build():
                 'next_action':original['next_action'],'scope':original['existing_scope'],
                 'status':original['planning_status'],'rank_eligible':False,
                 'source_url':original['name_source_url'],'source_decision':copy.deepcopy(original),
-                'source_catalog_file':'research/ocean-current-reference-path-candidates.json',
-                'source_catalog_sha256':inputs['research/ocean-current-reference-path-candidates.json'],
+                'source_catalog_file':WORKING_ROUTES if original['current_id']=='southern-east-madagascar' else NWASC_ROUTE_FILE if original['current_id']=='norwegian-atlantic-slope' else 'research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json',
+                'source_catalog_sha256':inputs[WORKING_ROUTES if original['current_id']=='southern-east-madagascar' else NWASC_ROUTE_FILE if original['current_id']=='norwegian-atlantic-slope' else 'research/ocean-current-identity-admissions.json' if original in admitted_plans else 'research/ocean-current-reference-path-candidates.json'],
                 'scope_reviews':reviews}
         collections['route_decisions'].append(record)
         owner['route_decision_ids']=[record['id']]
@@ -449,6 +880,17 @@ def build():
     for key in ['source','protocol','generator']:
         path=velocity[key+'_file'];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
         if inputs[path]!=velocity[key+'_sha256']:raise ValueError('Changed M6 dependency: '+path)
+    from build_asca_100m_sections import checked_packets as checked_asca
+    _, asca_sections, asca_contract = checked_asca()
+    del _
+    asca_path=asca_contract['monthly_section_file']
+    read('research/agulhas-asca-100m-query-contract.json')
+    for file_key,hash_key in [('raw_profile_file','raw_profile_sha256'),('monthly_section_file','monthly_section_sha256'),('source_acquisition_file','source_acquisition_sha256'),('protocol_file','protocol_sha256'),('builder_file','builder_sha256')]:
+        path=asca_contract[file_key];inputs[path]=hashlib.sha256((ROOT/path).read_bytes()).hexdigest()
+        if inputs[path]!=asca_contract[hash_key]:raise ValueError('Changed ASCA section dependency: '+path)
+    collections['current_sections']=asca_sections['frames']
+    for row in objects:
+        row['current_section_ids']=[r['id'] for r in asca_sections['frames'] if r['entity_id']==row['id']]
     collections['current_velocity_samples']=velocity['samples']
     for row in objects:
         row['velocity_sample_ids']=[r['id'] for r in velocity['samples'] if r['entity_id']==row['id']]
@@ -492,7 +934,7 @@ def build():
     for stem in ['source_document','source_image','source_panel_audit','acquisition','state_geometry','protocol']:
         dependency=contour[stem+'_file']
         inputs[dependency]=hashlib.sha256((ROOT/dependency).read_bytes()).hexdigest()
-    atlas_paths=[contour_path,panel_path,calendar_path,atlantic_path,'research/agulhas-guerra-2022-ring-radius-scope-audit.json','research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
+    atlas_paths=['research/norwegian-atlantic-slope-orvik-2003-dimension-candidates.json',contour_path,panel_path,calendar_path,atlantic_path,'research/agulhas-guerra-2022-ring-radius-scope-audit.json','research/astrid-2000-radial-scale-scope-audit.json','research/ocean-current-inventory-expansion-candidates.json',
                  'research/ocean-current-reference-route-state-join.json',
                  'research/ocean-current-dated-timeline-2025.json',
                  'research/ocean-current-dated-timeline.json',
@@ -517,19 +959,32 @@ def build():
             if inputs[document['inventory_file']]!=document['inventory_sha256']:raise ValueError('Stale observed-section inventory')
     return {'schema':'osw.query-bundle.v1','manifest':{'status':'local_editorial_and_canonical_snapshot_not_new_scientific_admission',
             'canonical_release':'v0.1.0','canonical_collections':CANONICAL,
+            'kuroshio_axis_normal_version':'1',
+            'north_atlantic_gate_bound_version':'1',
+            'labrador_latitude_gate_bound_version':'1',
+            'ke_regional_plot_length_version':'4',
+            'nwasc_working_admission_version':'1',
+            'nwasc_reference_route_version':'1',
+            'hansen_asar_widths_version':'1',
+            'neuc_glider_widths_version':'1',
+            'aleutian_onishi_width_version':'1',
+            'agulhas_reported_dimensions_version':'1',
+            'nwasc_mean_core_widths_version':'1',
             'eddy_recurrence_receipt':{'source_file':recurrence_path,'source_sha256':inputs[recurrence_path],'source_json':(ROOT/recurrence_path).read_bytes().decode('utf-8')},
             'atlas_receipts':atlas_receipts,
+            'current_section_receipts':{asca_path:{'source_file':asca_path,'source_sha256':inputs[asca_path],'source_json':(ROOT/asca_path).read_bytes().decode('utf-8')}},
             'movies_receipts':movies_receipts,
             'loop_recorded_receipts':{path:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for path in ['research/loop-current-recorded-date-comparison.json','research/loop-current-recorded-date-sources.json']},
-            'taxonomy':taxonomy,'editorial_collections':['eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','section_transports','transport_validations'],
+            'taxonomy':taxonomy,'editorial_collections':['current_regional_reaches','current_length_series','current_length_readings','current_length_bound_admissions','current_identity_admissions','current_measurement_admissions','current_axis_normal_samples','current_dimension_samples','proposed_widths','observed_section_spans','current_section_measurements','eddy_recurrence','taxonomy_links','objects','widths','reference_routes','state_links','states','series','geometry_frames','seasonal_routes','diagnostics','width_samples','route_decisions','flow_networks','flow_network_nodes','flow_network_edges','passage_samples','model_frames','model_samples','current_velocity_samples','current_sections','section_transports','transport_validations'],
             'seasons_receipts':{key:{'source_file':path,'source_sha256':inputs[path],'source_json':(ROOT/path).read_bytes().decode('utf-8')} for key,path in [('widths','research/ocean-current-width-inventory.json'),('routes','research/ocean-current-reference-path-candidates.json'),('frames','research/ocean-current-seasonal-route-frames.json'),('directions','research/new-guinea-coastal-current-seasonal-direction-scope-audit.json')]},
             'dashboard_receipt':{'source_file':'research/ocean-motion-dashboard.json','source_sha256':inputs['research/ocean-motion-dashboard.json'],'source_json':(ROOT/'research/ocean-motion-dashboard.json').read_bytes().decode('utf-8')},
-            'input_sha256':inputs,'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},
+            'input_sha256':inputs,'current_catalogue_version':identity_document['version'],'current_measurement_admission_version':prose_dimensions['version'],'madagascar_navigation_diagnostic_version':'1','madagascar_coastal_curve_version':'1','kuroshio_daily_dimensions_version':'1','generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'state_geometry_runtime':{'shapely':shapely.__version__,'pyproj':__import__('pyproj').__version__},
             'scope':'State joins retain relation kinds; gateways are not containment. Widths retain scope. Published lengths and editorial route lengths are separate collections.'},
             'collections':collections}
 
 def main():
-    data=build();OUTPUT.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
+    from query_packet import write_packet
+    data=build();write_packet(OUTPUT,(json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n').encode('utf-8'))
     print('Built Rust query bundle:',{name:len(rows) for name,rows in data['collections'].items()})
 
 if __name__=='__main__':main()

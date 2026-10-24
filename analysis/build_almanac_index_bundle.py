@@ -40,6 +40,10 @@ def inventory():
 
 def build():
     documents, descriptors = {}, []
+    from published_regional_reaches_query import evidence as regional_reach_evidence
+    regional_reach,_=regional_reach_evidence()
+    if not set(regional_reach['source_documents'])<=set(inventory()):
+        raise ValueError('Missing regional-reach source documents')
     for path in inventory():
         raw = (ROOT / path).read_bytes()
         doc = json.loads(raw)
@@ -77,6 +81,63 @@ def build():
         from build_pelagia_date_reconciliation import build as build_date_reconciliation, OUTPUT as date_path
         if date_path not in documents or json.loads(documents[date_path]) != build_date_reconciliation():
             raise ValueError('Missing or stale corrected station-date source')
+    calendar_path = 'research/eac-section-calendar-distributions.json'
+    if calendar_path in documents:
+        from build_eac_calendar_distributions import verify as verify_eac_calendar
+        calendar_doc, _ = verify_eac_calendar()
+        if json.loads(documents[calendar_path]) != calendar_doc:
+            raise ValueError('Changed EAC calendar source document')
+    normal_path = 'research/indian-secc-local-axis-normal-spans.json'
+    if normal_path in documents:
+        from indian_secc_local_normals import verify as verify_secc_normals
+        normal_doc, _ = verify_secc_normals()
+        if json.loads(documents[normal_path]) != normal_doc:
+            raise ValueError('Changed SECC local normal diagnostics')
+    hycom_path = 'research/indian-secc-hycom-2013-local-normal-spans.json'
+    if hycom_path in documents:
+        from indian_secc_hycom_local_normals import verify as verify_secc_hycom
+        hycom_doc, _ = verify_secc_hycom()
+        if json.loads(documents[hycom_path]) != hycom_doc:
+            raise ValueError('Changed HYCOM local normal diagnostics')
+    from south_indian_hydrography_query import evidence as south_indian_evidence
+    _,_,south_indian_report,_=south_indian_evidence()
+    path='research/south-indian-hycom-2013-paired-profile-candidates-v2.json'
+    if path not in documents or json.loads(documents[path])!=south_indian_report:
+        raise ValueError('Missing or changed South Indian paired-profile evidence')
+    from south_indian_front_level_query import view_evidence as front_level_evidence
+    _,_,front_level_report,_=front_level_evidence()
+    path='research/south-indian-2013-front-level-potential-temperature.json'
+    if path not in documents or json.loads(documents[path])!=front_level_report:
+        raise ValueError('Missing or changed supplementary native-depth evidence')
+    from south_indian_front_property_query import view_evidence as property_evidence
+    property_report,_,_=property_evidence()
+    path='research/south-indian-2013-front-property-windows-v2.json'
+    if path not in documents or json.loads(documents[path])!=property_report:
+        raise ValueError('Missing or changed complete property-support assessment')
+    bands_path = 'research/indian-secc-positive-band-connectivity.json'
+    if bands_path in documents:
+        from indian_secc_positive_bands import verify as verify_secc_bands
+        band_doc, _ = verify_secc_bands()
+        if json.loads(documents[bands_path]) != band_doc:
+            raise ValueError('Changed Indian SECC band-connectivity evidence')
+    wac_path = 'research/west-australian-oscar-2d-monthly-source-fields.json'
+    secc_path = 'research/indian-secc-oscar-2d-monthly-source-fields.json'
+    if secc_path in documents:
+        from build_indian_secc_oscar_2d_source import verify as verify_secc_context
+        secc_doc, _ = verify_secc_context()
+        if json.loads(documents[secc_path]) != secc_doc:
+            raise ValueError('Changed Indian SECC source context')
+    if wac_path in documents:
+        from build_west_australian_oscar_2d_source import verify as verify_wac_context
+        wac_doc, _ = verify_wac_context()
+        if json.loads(documents[wac_path]) != wac_doc:
+            raise ValueError('Changed West Australian source context')
+    path_study = 'research/west-australian-regional-streamlines-rk4.json'
+    if path_study in documents:
+        from west_australian_streamline_evidence import verify as verify_path_study
+        path_doc, _ = verify_path_study()
+        if json.loads(documents[path_study]) != path_doc:
+            raise ValueError('Changed regional numerical path study')
     # Bind on-demand discovery to the complete manifest; file support stays distinct
     # from the manifest's source_product/source_subset hashes.
     seasons = json.loads(SEASONS.read_bytes())
@@ -87,6 +148,16 @@ def build():
             raise ValueError('Seasonal snapshot source/date mismatch: ' + path)
         if len(doc['entries']) != row['detection_count']:
             raise ValueError('Seasonal snapshot inventory mismatch: ' + path)
+    from prepare_angola_query_sources import verify as verify_angola_query_sources, MANIFEST as ANGOLA_QUERY_MANIFEST
+    angola_query_sources=verify_angola_query_sources()
+    for path in [ANGOLA_QUERY_MANIFEST]+[row['source_file'] for row in angola_query_sources['documents']]:
+        if path not in documents or documents[path]!=(ROOT/path).read_text(encoding='utf8'):
+            raise ValueError('Missing or changed complete native Angola query source: '+path)
+    from caribbean_ru29_query import evidence as caribbean_source_evidence
+    caribbean_source,_=caribbean_source_evidence()
+    for path in caribbean_source['source_documents']:
+        if path not in documents or documents[path]!=(ROOT/path).read_bytes().decode('utf8'):
+            raise ValueError('Missing or changed complete Caribbean query source: '+path)
     raw = (json.dumps({'schema': 'osw.almanac-index-bundle.v1', 'documents': documents},
                       ensure_ascii=False, separators=(',', ':')) + '\n').encode('utf-8')
     compressed = gzip.compress(raw, compresslevel=9, mtime=0)

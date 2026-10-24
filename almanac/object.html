@@ -5,10 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ocean motion object — OSW</title>
   <link rel="stylesheet" href="styles.css">
-  <style>main { overflow-wrap:anywhere; }</style>
+  <style>
+    main { overflow-wrap:anywhere; }
+    #current-geographic-length-bound table { min-width:0; table-layout:fixed; }
+    @media (max-width:650px) {
+      #current-geographic-length-bound th,
+      #current-geographic-length-bound td { padding:.6rem .2rem; font-size:.75rem; }
+    }
+  </style>
   <script src="eddy-source-panels.js?v=source-panels-1" defer></script>
   <script src="footprint-card.js?v=rust-candidate-1" defer></script>
-  <script src="object.js?v=rust-candidate-6" defer></script>
+  <script src="current-source-evidence-ui.js?v=source-evidence-2" defer></script>
+  <script src="object.js?v=rust-candidate-7" defer></script>
 </head>
 <body>
   <header><a class="mark" href="../">OSW</a><nav aria-label="Project"><a href="./">Motion almanac</a><a href="movies.html">NASA movie crops</a><a href="../atlas/?lens=flows">Atlas flows</a></nav></header>

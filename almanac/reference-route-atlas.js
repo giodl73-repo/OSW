@@ -49,6 +49,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
     if(!restoringSelection)restoredView=null;
     sectionGround=false;
     timelineCleanup();timelineCleanup=()=>{};
+    byId('route-atlas-model-lines')?.replaceChildren();
     layer.querySelectorAll('.selected,.route-atlas-related').forEach(el=>el.classList.remove('selected','route-atlas-related'));
     byId('route-atlas-select').value='';byId('route-atlas-eddy-select').value='';
     byId('route-atlas-preview').hidden=true;
@@ -107,10 +108,12 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
   }
   try {
     const sources=await window.oswAtlasSourcesReady;
-    const stateJoin=sources['research/ocean-current-reference-route-state-join.json']||null;
+    const stateJoin=sources['research/ocean-current-working-reference-route-state-join.json']||sources['research/ocean-current-reference-route-state-join.json']||null;
     const snapshot=sources['research/ocean-motion-dashboard.json'],currents=snapshot.entries.filter(r=>r.type==='named_current');
     const eddies=snapshot.entries.filter(r=>r.type==='named_eddy'||r.type==='operational_eddy_detection');
     inventorySummary=`${currents.length} named currents · ${catalog.counts.currents_with_route_candidates} with reference-route cards · ${eddies.filter(r=>r.type==='named_eddy').length} named eddies · ${eddies.filter(r=>r.type==='operational_eddy_detection').length} dated detections. Select a current, eddy or path.`;
+    const unlocated=currents.filter(r=>!r.map_features.some(f=>f.geometry.type==='Point'||f.geometry.type==='LineString'));
+    if(unlocated.length)inventorySummary+=` ${unlocated.length} current identity has no source-supported map placement; use the selector or directory.`;
     if(snapshot.schema!=='osw.motion-dashboard.v1'||snapshot.fingerprint_version!==2||new Set(snapshot.entries.map(r=>r.id)).size!==snapshot.entries.length||snapshot.entries.some(r=>typeof r.id!=='string'||typeof r.fingerprint!=='string'||!r.section_fingerprints||!Array.isArray(r.map_features)))throw Error('Invalid atlas inventory snapshot');
     const seenKey='osw-motion-dashboard-seen-v2';
     const sectionLabels={identity:'Identity',sources:'Sources',claims:'Claims / reviews',measurements:'Measurements',routes_geometry:'Routes / geometry',media:'Media links',time_evidence:'Time evidence'};
@@ -172,6 +175,16 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
     }
     const routeLayer=make('g',{}),datedLayer=make('g',{id:'route-atlas-dated-lines'}),eddyLayer=make('g',{id:'route-atlas-eddies'}),stationLayer=make('g',{});
     const sectionLayer=make('g',{id:'route-atlas-section-locators'});
+    const modelLayer=make('g',{id:'route-atlas-model-lines'});
+    document.addEventListener('osw:kuroshio-frame',event=>{
+      if(byId('route-atlas-select').value!=='current:kuroshio'||!event.detail.host.closest('#route-atlas-preview,#kuroshio-2024-model-card'))return;
+      const frame=event.detail.frame;modelLayer.replaceChildren();
+      for(const p of [...frame.paths,...(event.detail.normalPaths||[])]){const attrs={d:p.d,transform:'translate(60 90) scale('+1480/360+')',fill:'none',stroke:{axis:'#fff8de',left:'#ff9be4',right:'#78f1d3',axis_normal:'#ffce5c'}[p.role],'stroke-width':1.6,'vector-effect':'non-scaling-stroke','data-model-role':p.role};if(['left','right'].includes(p.role))attrs['stroke-dasharray']=p.role==='left'?'6 3':'2 3';const line=make('path',attrs,modelLayer);make('title',{},line).textContent=`${frame.date} · ${frame.nominal_depth_m} m · modeled ${p.role}`;}
+      byId('route-atlas-status').textContent=`Kuroshio · ${frame.date} · nominal ${frame.nominal_depth_m} m · dated regional model curves; not whole-current bounds or observed width.`;
+      const peer=event.detail.host.closest('#route-atlas-preview')?byId('kuroshio-2024-model-card')?.querySelector('.kuroshio-daily'):byId('route-atlas-preview').querySelector('.kuroshio-daily');
+      const selections=[['date',frame.date],['depth',String(frame.source_level)],['metric',event.detail.metric||'regional'],['tangent',String(event.detail.tangent||14)]].map(([key,value])=>[peer?.querySelector('.kuroshio-daily-'+key),value]);
+      if(selections.every(([control])=>control)&&selections.some(([control,value])=>control.value!==value)){for(const [control,value] of selections)control.value=value;selections[1][0].dispatchEvent(new Event('change'));}
+    });
     const sectionRecords=(widthInventory?.measurements||[]).filter(row=>window.currentSectionLocator?.coordinates(row));
     const datedRoles={dated_partial_geostrophic_streamline:'Partial geostrophic diagnostic',dated_analyzed_surface_front:'Analyzed surface front'};
     const datedFeatures=current=>current.map_features.filter(f=>f.geometry.type==='LineString'&&datedRoles[f.role]&&f.geometry_id&&f.observation_date);
@@ -190,13 +203,16 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
       const monthlySeries=current.series.find(row=>row.evidence_role==='monthly_mean_section_width_candidate');
       sectionGround=Boolean(monthlySeries)||!paths.length&&(sectionRecords.some(row=>'current:'+row.current_id===current.id)||Boolean(observedSeries));
       const point=current.map_features.find(f=>f.geometry.type==='Point')?.geometry.coordinates;
-      fit(paths.length?paths[0].report.coordinates_lon_lat:point?[point]:[]);
+      const modelScene=current.id==='current:kuroshio'?window.oswAtlasSnapshot?.kuroshio_daily_scene:null;
+      fit(modelScene?.extent_lon_lat|| (paths.length?paths[0].report.coordinates_lon_lat:point?[point]:[]));
       const link=byId('route-atlas-card-link');link.hidden=false;link.href=paths.length?'#'+paths[0].row.id:current.object_url;
       link.textContent=paths.length?'Open current map card ↓':'Open current record — route pending';
+      if(modelScene){link.href='#kuroshio-2024-model-card';link.textContent='Open dated regional model map card ↓';}
       byId('route-atlas-status').textContent=paths.length
         ? `${current.label} · ${paths.length} reference-route card${paths.length===1?'':'s'} available beside the map.${paths.length>1?' Choose a component in the card.':''}`
         : `${current.label} · no reference-route card yet. Showing its name locator; ${current.capabilities.reported_length?'a source-reported length is available in its record.':'length and route remain unresolved.'}`;
       if(changed(current))byId('route-atlas-status').textContent+=' '+changeDescription(current);
+      if(!paths.length&&!point)byId('route-atlas-status').textContent=`${current.label} · no source-supported map placement or reference route. Use its current record for identity and separately scoped source evidence.`;
       const panel=preview(current.label);
       const dated=datedFeatures(current);
       let showDated;
@@ -210,6 +226,11 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
       shareSelection(panel,current.id,null,null,observedSeries||monthlySeries?requestedSection:null);
       previewLink(panel,"Widths and seasonal evidence →",current.season_url);
       window.renderAtlasWidthEvidence(panel,current,widthInventory);
+      if(current.evidence_links?.length){
+        const extra=document.createElement('details');extra.className='route-atlas-evidence-links';panel.append(extra);
+        const heading=document.createElement('summary');heading.textContent='More data and comparisons';extra.append(heading);
+        for(const evidence of current.evidence_links)previewLink(extra,evidence.label,evidence.url);
+      }
       if(current.id==='current:leeuwin'&&window.initAtlasMonthlyWidth)timelineCleanup=window.initAtlasMonthlyWidth(panel,current,requestedWidthMonth);
       if(current.id==='current:kuroshio'&&window.initAtlasSeasonalWidthProfile)timelineCleanup=window.initAtlasSeasonalWidthProfile(panel,current,requestedWidthSeason);
       if(observedSeries&&window.initAtlasObservedSections)timelineCleanup=window.initAtlasObservedSections(panel,current,{svg,layer,fit,make,ns,project,shareSelection,requestedSection,fitBounds:box=>setView(restoredView||box),refreshUpdates:renderUpdates,wasDragged:()=>dragged});
@@ -269,6 +290,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
           }
           paragraph(content,`Layer: ${report.layer} Time: ${report.time_convention}`);
           paragraph(content,'Editorial reference route; scenario limits are selected assumptions, not measured seasonal variation.');
+          if(row.comparison_group==='osw_source_anchor_connections')paragraph(content,'Source-reference regional connection through P1, P2 and S1. Connecting legs and bend probes are editorial geometry, with no observed current axis,500m contour or annual route range.');
           if(row.comparison_group==='osw_studied_reach_routes')paragraph(content,'Studied reach only; this is not a whole-current length.');
           const states=document.createElement('section');states.className='route-atlas-state-links';content.append(states);
           const heading=document.createElement('h4');heading.textContent='OSW states intersected by this reference route';states.append(heading);
@@ -315,6 +337,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
         } else if(!dated.length&&!sectionRecords.some(row=>'current:'+row.current_id===current.id))paragraph(panel,current.capabilities.reported_length?'Reference-route card pending. A source-reported length is available in the current record; the name locator does not show the measured path.':'Reference route pending. The atlas shows a name locator; its route and length remain unresolved.');
         previewLink(panel,'Open current record →',current.object_url);
       }
+      if(current.id==='current:agulhas')previewLink(panel,'Observed ASCA 100 m monthly sections / source profiles →','query.html?q='+encodeURIComponent(JSON.stringify({collection:'current_sections',filters:[{field:'current_id',op:'eq',value:'agulhas'}],limit:100}))+'#query-chart-section');
       if(current.id==='current:antarctic-slope')previewLink(panel,'Observed M6 velocity · monthly and seasonal charts →','query.html?q='+encodeURIComponent(JSON.stringify({collection:'current_velocity_samples',limit:100}))+'#query-chart-section');
       if(showDated) {
         showDated(dated.find(feature=>feature.geometry_id===requestedGeometry)||dated[0]);
@@ -345,6 +368,34 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
         const heading=document.createElement('h4');heading.textContent='Source scope review';reviews.append(heading);
         for(const note of current.scope_notes) {
           paragraph(reviews,note.summary);
+          const modelWidth=current.scope_audits?.find(a=>a.schema==='osw.published-model-width-scope.v1'&&a.current_id===note.current_id&&note.audit_file==='research/south-australian-miller-2006-model-width-scope-audit.json');
+          if(modelWidth){
+            const section=document.createElement('section');section.id='south-australian-reported-model-width';reviews.append(section);
+            paragraph(section,'About 60 km · local model width at 130°E. Experiment 6, model day 20; annual climatological forcing is not an annual mean width.');
+            const image=document.createElement('img');image.src='../'+modelWidth.figure_file;image.alt=modelWidth.figure_alt;
+            image.style.cssText='width:100%;max-width:680px;height:auto';section.append(image);
+            const row=modelWidth.measurements[0];paragraph(section,row.layer+' '+row.boundary_rule);
+            previewLink(section,'Query the reported model width','query.html?source-q='+encodeURIComponent(JSON.stringify({document:note.audit_file,pointer:'/measurements',limit:10})));
+            previewLink(section,'Original dissertation (NPS Library archive)',row.source_url);
+          }
+          if(note.measurement_scope_assessment) {
+            const audit=current.scope_audits?.find(row=>row.current_id===note.current_id&&row.schema==='osw.current-measurement-object-scope.v1');
+            if(audit) {
+              const figure=document.createElement('figure');figure.className='measurement-object-scope';figure.style.margin='1rem 0';reviews.append(figure);
+              const image=document.createElement('img');image.src='../'+audit.figure;image.alt=audit.figure_alt;image.style.width='100%';image.style.height='auto';figure.append(image);
+              const caption=document.createElement('figcaption');caption.textContent='Measurement relationships only. Member values stay with their owners; proposals and related names are not confirmed aliases.';figure.append(caption);
+              if(audit.members.length) {
+                const list=document.createElement('ul');figure.append(list);
+                for(const member of audit.members) {
+                  const item=document.createElement('li');
+                  item.textContent=`${member.label} · ${member.record_status==='proposed'?'proposed basin member; not admitted':(member.relationship==='related_name_not_equated'?'related name; equivalence unresolved':'declared component')} · ${member.scoped_width_record_count===null?'no admitted member record':member.scoped_width_record_count+' scoped width records owned by this record'}`;
+                  list.append(item);
+                }
+              }
+              previewLink(reviews,'Inspect measurement scope data',`query.html?source-q=${encodeURIComponent(JSON.stringify({document:note.audit_file,pointer:'',limit:100}))}`);
+              previewLink(reviews,'Open relationship diagram at full size','../'+audit.figure);
+            }
+          }
           if(current.id==='current:red-sea-saline-overflow') {
             const audit=current.scope_audits?.find(row=>row.current_id==='red-sea-saline-overflow');
             if(audit?.reported_reach&&audit.whole_current_length_km===null) {
@@ -413,8 +464,13 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
         line.dataset.atlasLabel=`${current.label} · ${window.currentSectionLocator.timeLabel(measurement)} reported section latitude span, not a current axis`;
         interactive(line,line.dataset.atlasLabel,()=>chooseCurrent(current));
       }
-      const point=current.map_features.find(f=>f.geometry.type==='Point')?.geometry.coordinates;
-      if(point){const mark=pointMarker(point,current.label,'route-atlas-station',stationLayer);mark.dataset.currentId=current.id;interactive(mark,current.label,()=>chooseCurrent(current));}
+      let point=current.map_features.find(f=>f.geometry.type==='Point')?.geometry.coordinates;
+      let placement='source_or_name_locator';
+      if(!point){
+        const guide=current.map_features.find(f=>f.role==='editorial_reference_route'&&f.geometry.type==='LineString')?.geometry.coordinates;
+        if(guide?.length){point=guide[Math.floor(guide.length/2)];placement='editorial_reference_route_vertex';}
+      }
+      if(point){const label=current.label+(placement==='editorial_reference_route_vertex'?' · geographic reference marker; no observed current position':'');const mark=pointMarker(point,current.label,'route-atlas-station',stationLayer);mark.dataset.currentId=current.id;mark.dataset.placementRole=placement;interactive(mark,label,()=>chooseCurrent(current));}
     }
     function chooseEddy(eddy) {
       clearSelection();byId('route-atlas-eddy-select').value=eddy.id;

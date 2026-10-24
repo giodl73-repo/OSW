@@ -1,11 +1,12 @@
 """Check Atlantic EUC reach scope, visual atlas navigation and ordering exclusion."""
+import os
 import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 def main():
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page();errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
@@ -17,7 +18,7 @@ def main():
         text=card.inner_text()
         for expected in ['4,500','4,300','4,600','subsurface','Excludes western North Brazil','Not full']:
             assert expected in text,expected
-        assert page.locator('#reference-route-rows tr').count()==37
+        assert page.locator('#reference-route-rows tr').count()==len(json.loads(Path('research/ocean-current-working-reference-routes.json').read_bytes())['reference_route_length_order'])
         assert page.locator('#reference-route-rows a[href="#atlantic-euc-reach-reference-path-candidate"]').count()==0
         card.locator('.route-map').screenshot(path='figures/atlantic-euc-reach-reference-path-review.png')
         card.get_by_role('link',name='Back to global current map').click()
@@ -30,6 +31,6 @@ def main():
         assert row['latest_observation_date'] is None
         assert not errors,errors
         browser.close()
-    print('OK: Atlantic EUC subsurface reach map, partial extent, 37-row comparison exclusion, global return and background width with unresolved campaign dimensions/dates')
+    print('OK: Atlantic EUC subsurface reach map, partial extent, catalog-derived comparison exclusion, global return and background width with unresolved campaign dimensions/dates')
 
 if __name__=='__main__':main()

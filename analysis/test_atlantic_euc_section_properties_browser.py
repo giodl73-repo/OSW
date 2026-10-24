@@ -1,4 +1,5 @@
 """Verify original section values, date conflicts, mobile charts and Rust source parity."""
+from query_packet import read_bundle_bytes
 import copy,gzip,hashlib,json,os,subprocess,tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -35,7 +36,7 @@ def main():
             browser.close()
         query={'collection':'route_decisions','filters':[{'field':'current_id','op':'eq','value':'atlantic-equatorial-undercurrent'}],'limit':10}
         result=native(query);assert result['total']==1 and result['rows'][0]['scope_reviews'][0]['document']==audit
-        packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+        packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
         for key,value in [('whole_current_width_km',200),('seasonal_playback_eligible',True),('date_conflict_count',0)]:
             bad=copy.deepcopy(packet);doc=copy.deepcopy(audit);doc['section_properties'][key]=value
             receipt=bad['manifest']['atlas_receipts'][PATH];receipt['source_json']=json.dumps(doc);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest();bad['manifest']['input_sha256'][PATH]=receipt['source_sha256']

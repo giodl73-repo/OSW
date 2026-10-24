@@ -1,4 +1,5 @@
 """Nominal drifting depths, overlapping subsets and distinct error support."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_dwbc_float_composite import ROOT,validate_row
@@ -38,7 +39,7 @@ def test_context_scope_rejected(key,value):
     with pytest.raises(ValueError):validate_row(r)
 
 def check_native_guard(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());targets=[]
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));targets=[]
     for i,change in enumerate(CHANGES+[None]):
         bad=copy.deepcopy(packet);receipt=bad['manifest']['seasons_receipts']['widths'];source=json.loads(receipt['source_json'])
         for rows in [source['measurements'],bad['collections']['widths']]:
@@ -79,4 +80,19 @@ def test_native_source_scene_and_combined_comparisons():
     assert scene['panels'][0]['points'][1]['standard_error']==5
     all_widths=native({'collection':'widths','limit':1})
     assert all_widths['chart_scene']['kind']=='scoped_width_comparisons'
-    assert [s['kind'] for s in all_widths['chart_scene']['scenes']]==['coastal_composite_widths','dwbc_float_composite','pacific_neuc_isopycnal_breadths']
+    scenes=all_widths['chart_scene']['scenes']
+    assert [s['kind'] for s in scenes]==['selected_core_width_statistic','nordic_section_widths','coastal_composite_widths','dwbc_float_composite','pacific_neuc_isopycnal_breadths','neuc_glider_width_ranges','aleutian_published_width_constraint','published_coordinate_section_span','antilles_cruise_section_spans','published_model_axis_spread']
+    by_kind={scene['kind']:scene for scene in scenes}
+    assert [r['approximate_width_km'] for r in by_kind['published_model_axis_spread']['records']]==[100,130]
+    assert all(r['width_range_km'] is None for r in by_kind['published_model_axis_spread']['records'])
+    assert [r['approximate_width_km'] for r in by_kind['antilles_cruise_section_spans']['records']]==[125,38,39]
+    core=by_kind['selected_core_width_statistic']
+    assert core['record']['approximate_width_km']==28
+    assert core['record']['width_standard_deviation_km']==7
+    assert core['record']['width_range_km'] is None
+    section=by_kind['published_coordinate_section_span']
+    assert section['record']['id']=='portugal-perez-2009-orca-source-section-span'
+    assert section['geometry_role']=='local_source_section_limits_not_axis_or_physical_edges'
+    nordic=by_kind['nordic_section_widths']
+    assert len(nordic['panels'])==1
+    assert [len(p['rows']) for p in nordic['panels']]==[6]

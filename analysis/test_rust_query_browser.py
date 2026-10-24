@@ -1,4 +1,6 @@
 """Native/WASM parity, scientific joins, query navigation and failure handling."""
+from browser_inventory_expectations import CURRENT_COUNT, MOTION_COUNT, MAPPED_CURRENT_COUNT, MAPPED_MOTION_COUNT
+
 import json
 import os
 import subprocess
@@ -48,18 +50,18 @@ def main():
         page.on('pageerror', lambda e: errors.append(str(e)))
         page.goto(BASE)
         page.wait_for_function('window.oswLastQueryResult', timeout=60000)
-        assert page.evaluate('window.oswLastQueryResult.total') == 100
-        assert page.evaluate('window.oswLastQueryResult.map_scene.mapped_objects') == 100
-        assert page.locator('#query-map-features').evaluate('(el)=>new Set([...el.children].map(n=>n.dataset.entity)).size') == 100
+        assert page.evaluate('window.oswLastQueryResult.total') == CURRENT_COUNT
+        assert page.evaluate('window.oswLastQueryResult.map_scene.mapped_objects') == MAPPED_CURRENT_COUNT
+        assert page.locator('#query-map-features').evaluate('(el)=>new Set([...el.children].map(n=>n.dataset.entity)).size') == MAPPED_CURRENT_COUNT
         assert page.locator('#query-rows tr').count() == 50
         page.locator('#query-map-in').click()
         assert float(page.locator('#query-map').get_attribute('viewBox').split()[2]) < 360
         page.locator('#query-map-world').click()
         assert page.locator('#query-map').get_attribute('viewBox') == '0 0 360 180'
         all_objects = browser_query(page, {'collection':'objects','limit':50})
-        assert all_objects['total'] == 240
-        assert all_objects['map_scene']['matching_objects'] == 240
-        assert all_objects['map_scene']['mapped_objects'] == 240
+        assert all_objects['total'] == MOTION_COUNT
+        assert all_objects['map_scene']['matching_objects'] == MOTION_COUNT
+        assert all_objects['map_scene']['mapped_objects'] == MAPPED_MOTION_COUNT
         mark = page.locator('#query-map-features [data-entity="current:kuroshio"]').first
         mark.focus()
         expect(page.locator('#query-map-hover')).to_contain_text('Kuroshio Current')
@@ -75,6 +77,7 @@ def main():
         # Inventory widths and separately reviewed derived candidates are queryable.
         inventory = json.loads((ROOT/'research/ocean-current-width-inventory.json').read_text(encoding='utf-8'))
         expected_width_ids = {'current:' + row['current_id'] for row in inventory['measurements']}
+        expected_width_ids.add('current:southern-east-madagascar')
         expected_width_ids.update({'current:gulf-stream-system', 'current:loop',
                                    'current:pacific-north-equatorial-countercurrent'})
         assert width_currents['total'] == len(expected_width_ids)
@@ -83,7 +86,7 @@ def main():
                 'gulf-stream', 'north-atlantic', 'irminger', 'east-greenland', 'west-greenland', 'black-sea-rim']}.issubset(
                     {row['id'] for row in width_currents['rows']})
         lengths = native(queries[1])
-        assert lengths['total'] == 11
+        assert lengths['total'] == 12
         assert lengths['rows'][0]['published_length_km'] == 25000
         assert native(queries[5])['total'] == 3
         browser_query(page, queries[8])

@@ -11,7 +11,7 @@ def main():
         return json.loads(Path(path).read_text(encoding='utf-8'))
     candidate=read('research/pacific-sscc-mean-reach-reference-path-candidate.json')
     audit=read('research/pacific-sscc-mean-reach-branch-width-scope-audit.json')
-    catalog=read('research/ocean-current-reference-path-candidates.json')
+    catalog=read('research/ocean-current-working-reference-routes.json')
     row=next(r for r in read('research/ocean-motion-dashboard.json')['entries'] if r['id']=='current:pacific-south-subsurface-countercurrent')
     assert candidate['candidate_comparison_group']=='osw_studied_reach_routes'
     assert 'pacific-sscc-mean-reach-reference-path-candidate' not in catalog['reference_route_length_order']
@@ -21,7 +21,7 @@ def main():
     assert row['capabilities']['scoped_width']==0 and row['latest_observation_date'] is None
     assert hashlib.sha256(Path('research/ocean-current-almanac.json').read_bytes()).hexdigest()==read('research/ocean-current-inventory-expansion-candidates.json')['current_ledger_sha256']
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER',r'C:\Program Files\Google\Chrome\Application\chrome.exe'))
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html?atlas-feature=current%3Apacific-south-subsurface-countercurrent#route-atlas',wait_until='networkidle')

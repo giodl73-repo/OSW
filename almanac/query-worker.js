@@ -1,4 +1,5 @@
 "use strict";
+importScripts('query-packet.js');
 // All record selection and joins run in Rust WASM, off the rendering thread.
 let engine=null;
 let engineBinary=null;
@@ -35,10 +36,11 @@ async function load(){
   const fetchFile=async path=>{const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw Error(`${path}: HTTP ${r.status}`);return r;};
   const manifest=await (await fetchFile('query-engine.manifest.json')).json();
   if(manifest.schema!=='osw.query-engine-manifest.v1'||manifest.abi_version!==1)throw Error('Unsupported query engine manifest');
-  const [wasm,bundle]=await Promise.all(['query-engine.wasm','query-data.json'].map(async p=>(await fetchFile(p)).arrayBuffer()));
-  for(const [path,bytes] of [['almanac/query-engine.wasm',wasm],['almanac/query-data.json',bundle]]){
+  const [wasm,entry]=await Promise.all(['query-engine.wasm','query-data.json'].map(async p=>(await fetchFile(p)).arrayBuffer()));
+  for(const [path,bytes] of [['almanac/query-engine.wasm',wasm],['almanac/query-data.json',entry]]){
     if(await digest(bytes)!==manifest.sha256[path])throw Error(`Changed ${path}; rebuild the query snapshot and engine manifest`);
   }
+  const bundle=await assembleQueryPacket(entry,async path=>(await fetchFile(path)).arrayBuffer(),digest,manifest.sha256);
   const result=await WebAssembly.instantiate(wasm,{});engine=result.instance.exports;engineBinary=wasm;
   let metadata=invoke('osw_load',new Uint8Array(bundle));
   if(!metadata.ok)throw Error(metadata.error);
@@ -84,7 +86,7 @@ self.onmessage=async event=>{
       if(!database)throw Error(workspaceError||'Workspace storage unavailable');
       const journal=await readStored(value.bundle_sha256);if(!journal)throw Error('Saved journal not found');
       const snapshot=value.old_bundle?{bytes:value.old_bundle}:await readStored('~snapshot:'+value.bundle_sha256);
-      if(!snapshot?.bytes)throw Error('Matching old source snapshot is unavailable. Attach its query-data.json to preview a rebase.');
+      if(!snapshot?.bytes)throw Error('Matching old source snapshot is unavailable. Attach its exported complete source snapshot to preview a rebase.');
       const loaded=invoke('osw_rebase_source',new Uint8Array(snapshot.bytes));if(!loaded.ok)throw Error(loaded.error);
       if(loaded.bundle_sha256!==journal.bundle_sha256)throw Error('Attached source snapshot does not match the saved journal');
       rebaseRequest={journal,base_revision:exported().revision,transaction_id:crypto.randomUUID(),created_at:new Date().toISOString(),resolutions:{}};

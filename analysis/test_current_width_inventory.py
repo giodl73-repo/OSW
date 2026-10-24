@@ -6,23 +6,25 @@ from check_current_width_inventory import validate
 ROOT = Path(__file__).resolve().parents[1]
 
 class WidthInventoryTests(unittest.TestCase):
-    def test_loop_component_spans_do_not_close_width_gap(self):
-        diagnostic = self.document['section_span_diagnostics'][0]
+    def test_loop_component_spans_stay_unadmitted_beside_published_core(self):
+        index = next(i for i,r in enumerate(self.document['section_span_diagnostics']) if r['current_id']=='loop')
+        diagnostic = self.document['section_span_diagnostics'][index]
         decision = next(row for row in self.document['current_decisions'] if row['current_id'] == 'loop')
-        self.assertEqual(decision['width_decision'], 'section_span_diagnostic_present_width_unresolved')
-        self.assertEqual(decision['measurement_ids'], [])
+        self.assertEqual(decision['width_decision'], 'scoped_width_evidence_present')
+        self.assertEqual(decision['measurement_ids'], ['loop-uhlhorn-2008-prelili-geostrophic-core'])
+        self.assertEqual(diagnostic['metric'], 'zonal_half_peak_northward_velocity_section_span')
         for key, value in [('whole_current_width_km', 100), ('annual_width_range_km', [70, 120]), ('width_rank_eligible', True), ('annual_extrema_eligible', True), ('metric', 'flow_normal_width')]:
             invalid = copy.deepcopy(self.document)
-            invalid['section_span_diagnostics'][0][key] = value
+            invalid['section_span_diagnostics'][index][key] = value
             with self.subTest(key=key), self.assertRaises(ValueError):
                 validate(invalid, self.ledger)
         invalid = copy.deepcopy(self.document)
-        invalid['section_span_diagnostics'][0]['sources'][0]['sha256'] = '0' * 64
+        invalid['section_span_diagnostics'][index]['sources'][0]['sha256'] = '0' * 64
         with self.assertRaisesRegex(ValueError, 'Changed component'):
             validate(invalid, self.ledger)
         invalid = copy.deepcopy(self.document)
         next(row for row in invalid['current_decisions'] if row['current_id'] == 'loop')['width_decision'] = 'width_not_assessed'
-        with self.assertRaisesRegex(ValueError, 'Section-span decision'):
+        with self.assertRaisesRegex(ValueError, 'Width decision'):
             validate(invalid, self.ledger)
 
     def test_norwegian_coastal_range_preserves_branch_and_unresolved_sampling(self):

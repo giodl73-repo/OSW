@@ -7,6 +7,34 @@ const ADDITIONS: &str = "research/ocean-current-inventory-expansion-candidates.j
 const JOIN: &str = "research/ocean-current-reference-route-state-join.json";
 const GULF_WIDTHS: &str = "research/gulf-stream-section-width-series.json";
 
+fn madagascar_proposal(doc: &Value, required: bool) -> Result<(), String> {
+    let rows: Vec<_> = doc["entries"]
+        .as_array()
+        .into_iter()
+        .flatten()
+        .filter(|r| r["proposed_id"] == "southern-east-madagascar")
+        .collect();
+    if rows.is_empty() && !required {
+        return Ok(());
+    }
+    let compiled: Value = serde_json::from_str(include_str!(
+        "../../../research/ocean-current-inventory-expansion-candidates.json"
+    ))
+    .unwrap();
+    let expected = compiled["entries"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|r| r["proposed_id"] == "southern-east-madagascar")
+        .unwrap();
+    if rows != vec![expected] {
+        return Err(
+            "Southern East Madagascar identity, dimensions or admission scope changed".into(),
+        );
+    }
+    Ok(())
+}
+
 fn gulf_width_scope(doc: &Value) -> Result<(), String> {
     if doc["current_id"] != "gulf-stream-system"
         || doc["status"] != "derived_width_candidate_requires_scientific_review"
@@ -363,6 +391,11 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         "osw.current-inventory-expansion-candidates.v1",
     )?;
     crate::proposed_widths::validate_proposals(&additions)?;
+    madagascar_proposal(
+        &additions,
+        bundle.manifest["input_sha256"]["research/current-measurement-object-scope-index.json"]
+            .is_string(),
+    )?;
     if additions["current_ledger_sha256"]
         != bundle.manifest["input_sha256"]["research/ocean-current-almanac.json"]
     {
@@ -551,6 +584,22 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     ) {
         crate::norkyst_data::synchronized(timeline, maps)?;
     }
+    let candidate_path = "research/norwegian-atlantic-slope-orvik-2003-dimension-candidates.json";
+    if receipts.contains_key(candidate_path) {
+        paths.insert(candidate_path);
+        let candidate = document(
+            bundle,
+            candidate_path,
+            "osw.source-reported-dimension-candidates.v1",
+        )?;
+        let expected: Value = serde_json::from_str(include_str!(
+            "../../../research/norwegian-atlantic-slope-orvik-2003-dimension-candidates.json"
+        ))
+        .map_err(|_| "Invalid compiled Norwegian dimension candidates")?;
+        if candidate != expected {
+            return Err("Norwegian provisional dimension source or admission scope changed".into());
+        }
+    }
     if receipts.keys().map(String::as_str).collect::<BTreeSet<_>>() != paths {
         return Err("Unexpected or missing atlas source receipt".into());
     }
@@ -582,6 +631,56 @@ impl Store {
         }
         sources["research/ocean-motion-dashboard.json"] =
             self.dashboard_snapshot()?["snapshot_json"].clone();
+        sources[crate::current_catalogue::PATH] = json!(crate::current_catalogue::RAW);
+        if crate::current_measurements::active(&self.bundle) {
+            sources[crate::current_measurements::PATH] = json!(crate::current_measurements::RAW);
+        }
+        if crate::madagascar_coastal_curve::active(&self.bundle) {
+            sources[crate::madagascar_coastal_curve::CATALOGUE] =
+                json!(crate::madagascar_coastal_curve::CATALOGUE_RAW);
+            if receipts.contains_key(JOIN) {
+                sources[crate::madagascar_coastal_curve::JOIN] =
+                    json!(crate::madagascar_coastal_curve::JOIN_RAW);
+            }
+            sources["research/madagascar-coastline-comparison.json"] =
+                json!(crate::madagascar_coastal_curve::COAST_RAW);
+        }
+        sources[crate::current_catalogue::CATALOGUE] =
+            json!(crate::current_catalogue::CATALOGUE_RAW);
+        if crate::kuroshio_daily::active(&self.bundle) {
+            sources[crate::kuroshio_daily::FILE] = json!(crate::kuroshio_daily::RAW);
+        }
+        if crate::kuroshio_normal::active(&self.bundle) {
+            sources[crate::kuroshio_normal::FILE] = json!(crate::kuroshio_normal::RAW);
+        }
+        if crate::agulhas_reported::active(&self.bundle) {
+            sources[crate::agulhas_reported::FILE] = json!(crate::agulhas_reported::RAW);
+        }
+        if crate::nwasc_mean_core::active(&self.bundle) {
+            sources[crate::nwasc_mean_core::FILE] = json!(crate::nwasc_mean_core::RAW);
+        }
+        if crate::nwasc_admission::active(&self.bundle) {
+            sources[crate::nwasc_admission::FILE] = json!(crate::nwasc_admission::RAW);
+            sources[crate::nwasc_admission::CATALOGUE] =
+                json!(crate::nwasc_admission::CATALOGUE_RAW);
+            sources[crate::nwasc_admission::EXPORT] = json!(crate::nwasc_admission::EXPORT_RAW);
+        }
+        if crate::hansen_asar_widths::active(&self.bundle) {
+            sources[crate::hansen_asar_widths::FILE] = json!(crate::hansen_asar_widths::RAW);
+            sources[crate::hansen_asar_widths::EXPORT] =
+                json!(crate::hansen_asar_widths::EXPORT_RAW);
+        }
+        if crate::neuc_glider_widths::active(&self.bundle) {
+            sources[crate::neuc_glider_widths::FILE] = json!(crate::neuc_glider_widths::RAW);
+            sources[crate::neuc_glider_widths::EXPORT] =
+                json!(crate::neuc_glider_widths::EXPORT_RAW);
+        }
+        if crate::aleutian_onishi_width::active(&self.bundle) {
+            sources[crate::aleutian_onishi_width::FILE] = json!(crate::aleutian_onishi_width::RAW);
+        }
+        for (path, raw) in crate::current_gap_admissions::atlas_sources(&self.bundle) {
+            sources[path] = json!(raw);
+        }
         let mut timeline_scenes = json!({});
         for path in TIMELINES {
             if receipts.contains_key(path) {
@@ -598,7 +697,7 @@ impl Store {
         }
         Ok(
             json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],
-                "sources_json":sources,"state_join_available":receipts.contains_key(JOIN),"timeline_scenes":timeline_scenes,"observed_section_views":observed_section_views,"coastal_composite_width_scene":seasons["coastal_composite_width_scene"],"dwbc_float_composite_scene":seasons["dwbc_float_composite_scene"],"published_transport_scenes":seasons["published_transport_scenes"],"pacific_neuc_breadth_scene":seasons["pacific_neuc_breadth_scene"],"eddy_source_panel_scenes":crate::eddy_source_panels::scenes(&self.bundle)?,"footprint_views":crate::ursa_contour::atlas_views(&self.bundle)?}),
+                "working_reference_routes":seasons["working_reference_routes"],"supplemental_widths":seasons["supplemental_widths"],"admitted_current_decisions":seasons["admitted_current_decisions"],"sources_json":sources,"state_join_available":receipts.contains_key(JOIN),"timeline_scenes":timeline_scenes,"observed_section_views":observed_section_views,"south_australian_context_scene":seasons["south_australian_context_scene"],"eac_source_field_scene":seasons["eac_source_field_scene"],"asca_component_span_scene":seasons["asca_component_span_scene"],"kuroshio_filtered_width_scene":seasons["kuroshio_filtered_width_scene"],"agulhas_reported_scene":crate::agulhas_reported::scene(&self.bundle),"kuroshio_daily_scene":seasons["kuroshio_daily_scene"],"coastal_composite_width_scene":seasons["coastal_composite_width_scene"],"dwbc_float_composite_scene":seasons["dwbc_float_composite_scene"],"width_source_review_scenes":seasons["width_source_review_scenes"],"research_evidence_scenes":seasons["research_evidence_scenes"],"published_transport_scenes":seasons["published_transport_scenes"],"pacific_neuc_breadth_scene":seasons["pacific_neuc_breadth_scene"],"eddy_source_panel_scenes":crate::eddy_source_panels::scenes(&self.bundle)?,"footprint_views":crate::ursa_contour::atlas_views(&self.bundle)?}),
         )
     }
 }
@@ -665,6 +764,39 @@ mod tests {
                 .remove("whole_current_width_km");
             assert!(width_scope(&bad, owner).is_err());
         }
+    }
+    #[test]
+    fn madagascar_reported_dimensions_reject_promotion_and_erasure() {
+        let doc: Value = serde_json::from_str(include_str!(
+            "../../../research/ocean-current-inventory-expansion-candidates.json"
+        ))
+        .unwrap();
+        assert!(madagascar_proposal(&doc, true).is_ok());
+        let index = doc["entries"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .position(|r| r["proposed_id"] == "southern-east-madagascar")
+            .unwrap();
+        for (key, value) in [
+            ("rank_eligible", json!(true)),
+            ("whole_current_length_km", json!(650)),
+        ] {
+            let mut bad = doc.clone();
+            bad["entries"][index][key] = value;
+            assert!(madagascar_proposal(&bad, true).is_err());
+        }
+        let mut bad = doc.clone();
+        bad["entries"][index]["source_dimensions"]["records"][1]["observed_period"] =
+            json!("annual_mean");
+        assert!(madagascar_proposal(&bad, true).is_err());
+        let mut bad = doc.clone();
+        bad["entries"][index]["source_dimensions"]["records"][0]["value_km"] = json!(120);
+        assert!(madagascar_proposal(&bad, true).is_err());
+        let mut bad = doc.clone();
+        bad["entries"].as_array_mut().unwrap().remove(index);
+        assert!(madagascar_proposal(&bad, true).is_err());
+        assert!(madagascar_proposal(&json!({}), false).is_ok());
     }
     fn receipt(doc: &Value) -> Value {
         let raw = doc.to_string();

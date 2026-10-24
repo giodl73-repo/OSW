@@ -1,0 +1,30 @@
+{
+  "schema": "osw.redsox-ctd-companion-acquisition-preflight.v1",
+  "status": "declared_before_companion_CTD_acquisition",
+  "current_id": "red-sea-saline-overflow",
+  "archive_accession": "0146147",
+  "archive_version": "1.2",
+  "source_root": "https://www.ncei.noaa.gov/data/oceans/archive/arc0113/0146147/1.2/data/0-data/REDSOX/",
+  "campaigns": [
+    "RSX1",
+    "RSX2"
+  ],
+  "acquisition_rule": "Acquire every ASCII CTD profile from both frozen listings, without selecting by water properties. Preserve all original bytes.",
+  "original_reference_rule": "Filename nav denotes navigation reference; hr denotes bottom tracking. Preserve stated header/reference differences; do not combine alternatives as independent occupations.",
+  "inventory_rule": "Validate the eight source columns and their units; pressure in dbar remains distinct from depth in metres. Preserve missing values and header conflicts.",
+  "source_quality_rule": "Retain both complete author quality notes, including cruise-specific caveats. Typical +/-0.03m/s is not a per-cast confidence interval or a width error.",
+  "source_association_rule": "Archive contains far-field observations too. Membership in this archive does not imply a descending Red Sea plume at every station.",
+  "source_support_visual": "Show actual cast locations and cruise dates with separate campaigns and reference alternatives; no inferred channel envelope or current footprint.",
+  "width_calculation_predeclared": false,
+  "new_width_record_admitted": false,
+  "current_association_verified": false,
+  "whole_current_width_km": null,
+  "annual_width_range_km": null,
+  "whole_current_length_km": null,
+  "seasonal_geometry_inferred": false,
+  "next_gate": "Use source methods and station geometry to specify independent cross-plume sections, layer/reference/tidal treatment and paired boundary rule before measuring. Winter and summer cruises are non-synoptic survey support, not a complete annual cycle.",
+  "source_reference_rule": "CTD profiles are distinct from LADCP profiles. Join only by cruise and cast identifier, reporting source position and time differences; do not silently assume coincident measurement support.",
+  "companion_use": "Characterize water-property support before proposed plume identity or width analysis. No salinity band is automatically a velocity-defined current width.",
+  "source_layer_note": "Use distributed depth z in metres when comparing depth support; retain pressure p in dbar separately. Do not equate pressure with geometric depth.",
+  "ctd_ladcp_join_rule": "Report source identifier matches and coordinate/time offsets without interpolating either profile or admitting a current association."
+}

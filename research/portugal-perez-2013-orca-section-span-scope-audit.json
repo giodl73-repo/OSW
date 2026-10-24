@@ -1,0 +1,134 @@
+{
+  "schema": "osw.portugal-orca-section-span-scope-audit.v1",
+  "status": "source_reviewed_coordinate_derived_local_section_not_whole_width",
+  "current_id": "portugal",
+  "source_event_file": "research/named-current-published-observations.json",
+  "source_event_file_sha256": "67ca74fa0a6acbe6d450e8f76f6e4b160a0ffc9ac31e48d158865f7a8c4936c0",
+  "protocol_file": "plans/portugal-orca-section-span-protocol-v1.md",
+  "protocol_sha256": "3bea64469224047731e0ebcf08ed228a5ac2e696334104530deed522c8344a43",
+  "figure_file": "figures/portugal-orca-2009-section-span.svg",
+  "figure_sha256": "b36d9ba1bab10f47558528eddef4407b5ec8cdcd3524e28b779a845f019efa88",
+  "reviewed_primary_urls": [
+    "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/jgrc.20227",
+    "https://accedacris.ulpgc.es/bitstream/10553/50053/1/Source_Canary_current.pdf"
+  ],
+  "measurement": {
+    "id": "portugal-perez-2009-orca-source-section-span",
+    "current_id": "portugal",
+    "name": "Portugal Current",
+    "status": "editorial_source_extraction_not_canonical",
+    "measurement_type": "published_coordinate_derived_local_section_span",
+    "width_metric": "nominal_geodesic_span_of_published_current_section_limits",
+    "width_metric_label": "Published local section span; flow-normal and whole-current widths unknown",
+    "approximate_width_km": 116,
+    "width_range_km": null,
+    "range_kind": null,
+    "range_interpretation": "Nominal span calculated from source coordinates, not a source-reported kilometre width or physical uncertainty interval.",
+    "geographic_scope": "ORCA northern section at 37 N, Portugal band between 14.8 and 13.5 W, stations 19-23.",
+    "section_geometry": {
+      "type": "LineString",
+      "coordinates": [
+        [
+          -14.8,
+          37
+        ],
+        [
+          -13.5,
+          37
+        ]
+      ]
+    },
+    "section_orientation": "Nominal zonal source section; local flow obliquity and ship track not reconstructed.",
+    "layer": "Surface and thermocline flow in neutral density layers 1-4 (gamma_n < 27.3800 kg/m3). Fixed depth bounds are not supplied.",
+    "time_convention": "Fall 2009. The 15 October-11 November dates bound the cruise; exact section occupation days remain unknown.",
+    "boundary_rule": "Published current-band coordinate limits; no independently digitized velocity cutoff or physical edge.",
+    "source_url": "https://doi.org/10.1002/jgrc.20227",
+    "source_citation": "Perez-Hernandez et al. (2013), The source of the Canary current in fall 2009, JGR Oceans 118, 2874-2891.",
+    "source_locator": "Abstract; section6 paragraph32 and Figure14a; Table1; section7 paragraph40; section2 paragraph7.",
+    "source_retrieved_date": "2026-10-17",
+    "source_evidence_kind": "primary_fulltext_review_plus_frozen_local_source_coordinates_no_raw_pdf",
+    "extraction_method": "WGS84 inverse geodesic between previously curated source limits; display rounded to nearest kilometre. No figure digitization.",
+    "whole_current_representative": false,
+    "width_rank_eligible": false,
+    "full_width_inference_eligible": false,
+    "annual_extrema_eligible": false,
+    "seasonal_playback_eligible": false,
+    "is_confidence_interval": false,
+    "phase_label": "ORCA local section / fall 2009",
+    "phase_kind": "campaign_coordinate_derived_section_span",
+    "observed_period": null,
+    "calendar_months": null,
+    "fixed_layer_bounds_m": null,
+    "uncertainty_km": null,
+    "source_quality_note": "Source coordinate precision, datum, exact section dates, physical edges and obliquity remain unresolved. Cruise envelope is context only.",
+    "remaining_gates": [
+      "Recover original PDF bytes and review page images.",
+      "Recover exact section dates, station coordinates, layer-specific physical boundary criterion and uncertainty.",
+      "Obtain compatible repeat sections before seasonal or annual comparison."
+    ],
+    "published_section_context": {
+      "source_event_id": "orca-2009-portugal-north-section",
+      "source_event": {
+        "current_id": "portugal",
+        "observation_event_id": "orca-2009-portugal-north-section",
+        "name": "Portugal Current",
+        "state_code": "NAST E",
+        "reported_locality": "ORCA 37°N section, 14.8–13.5°W",
+        "observation_start": "2009-10-15",
+        "observation_end": "2009-11-11",
+        "observation_type": "hydrographic_section_and_inverse_box_model",
+        "time_detail": "The dates bound the entire ORCA cruise; the exact occupation dates of this current band are not separately assigned here.",
+        "source_url": "https://doi.org/10.1002/jgrc.20227",
+        "source_locator": "Portugal Current discussion; 37°N ORCA section",
+        "spatial_basis": "The paper reports the Portugal Current between 14.8°W and 13.5°W along its 37°N section. This is a cross-stream band, not an along-current trace.",
+        "reported_section_endpoints_lon_lat": [
+          [
+            -14.8,
+            37
+          ],
+          [
+            -13.5,
+            37
+          ]
+        ],
+        "state_assignment_method": "source_reported_section_intersects_approximate_osw_state_polygon",
+        "state_boundary_limit": "The reported cross-stream band intersects the approximate NAST E polygon; the state boundary and observed current extent are not surveyed together.",
+        "physical_relation": "observed_local_cross_stream_section_only_whole_current_passage_unresolved",
+        "geometry_status": "source_reported_section_bounds_not_current_axis"
+      },
+      "unrounded_geodesic_distance_km": 115.71427424571638,
+      "calculation_ellipsoid": "WGS84",
+      "ellipsoid_is_osw_assumption": true,
+      "calculation_method": "pyproj.Geod(ellps=WGS84).inv; metres divided by1000",
+      "display_rounding_km": 1,
+      "distance_is_author_reported_km": false,
+      "source_coordinate_datum": null,
+      "source_coordinate_uncertainty_degrees": null,
+      "cruise_context": {
+        "start": "2009-10-15",
+        "end": "2009-11-11",
+        "is_exact_section_occupation": false
+      },
+      "neutral_density_context": {
+        "layers": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "upper_bound_gamma_n_kg_m3": 27.38,
+        "is_fixed_depth_slab": false
+      },
+      "transport_uncertainty_is_width_uncertainty": false,
+      "flow_normal_width_km": null,
+      "whole_current_width_km": null,
+      "source_review": {
+        "publisher_html_reviewed": true,
+        "institutional_pdf_parsed_text_reviewed": true,
+        "raw_pdf_acquired": false,
+        "raw_pdf_sha256": null,
+        "page_images_reviewed": false
+      }
+    }
+  }
+}

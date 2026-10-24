@@ -53,6 +53,14 @@ def main():
                 raise ValueError('WASM page has no registered entrypoint/check: '+address)
             if not (ROOT/'analysis'/row['browser_check']).is_file():
                 raise ValueError('Missing browser check: '+address)
+        elif kind == 'source_inventory':
+            if row['entrypoint'] not in scripts or row['browser_check'] not in CHECKS:
+                raise ValueError('Source inventory has no registered entrypoint/check: '+address)
+            if not (ROOT/'analysis'/row['browser_check']).is_file():
+                raise ValueError('Missing source inventory browser check: '+address)
+            for field in ['source_builder', 'source_test']:
+                if not (ROOT/row[field]).is_file():
+                    raise ValueError('Missing source inventory validation: '+address)
         elif kind == 'static_diagnostic':
             if parser.script_count:
                 raise ValueError('Static diagnostic unexpectedly became interactive: '+address)

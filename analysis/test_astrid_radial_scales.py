@@ -1,4 +1,5 @@
 """Distinct diagnostic scales cannot become physical disks or annual ranges."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_astrid_radial_scales import ROOT,PATH,validate
@@ -10,7 +11,7 @@ def test_original_radius_definitions_and_scope():
         with pytest.raises(ValueError):validate(bad,geo)
 
 def check_compiled_loader_rejects_coherent_scope_rewrites(tmp_path):
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     cli=CLI
     for key,value in [('metric','outer_footprint_radius'),('footprint_inference_eligible',True),('value_km',240)]:
         bad=copy.deepcopy(bundle);receipt=bad['manifest']['atlas_receipts'][PATH];doc=json.loads(receipt['source_json'])

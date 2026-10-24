@@ -122,7 +122,12 @@ fn adcp_width_scope(row: &Value) -> Result<(), String> {
     }
     Ok(())
 }
-fn norwegian_coastal_width_scope(row: &Value) -> Result<(), String> {
+pub(crate) fn norwegian_coastal_width_scope(row: &Value) -> Result<(), String> {
+    // A different publication has its own exact compiled admission. Edited
+    // copies still fall through to the original regional-scope guard.
+    if crate::hansen_asar_widths::recognizes_width(row) {
+        return Ok(());
+    }
     let id = "norwegian-coastal-saetre-1999-halten-regional-width";
     if row["id"] != id && row["current_id"] != "norwegian-coastal" {
         return Ok(());
@@ -180,9 +185,25 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         ("routes", "candidates", "reference_routes"),
         ("frames", "frames", "seasonal_routes"),
     ] {
-        let source = docs[key][field]
+        let mut source = docs[key][field]
             .as_array()
-            .ok_or("Missing seasonal source records")?;
+            .ok_or("Missing seasonal source records")?
+            .clone();
+        if key == "widths" {
+            source.extend(crate::current_measurements::widths(bundle));
+            source.extend(crate::current_gap_admissions::widths(bundle));
+            source.extend(crate::agulhas_reported::widths(bundle));
+            source.extend(crate::nwasc_admission::widths(bundle));
+            source.extend(crate::hansen_asar_widths::widths(bundle));
+            source.extend(crate::neuc_glider_widths::widths(bundle));
+            source.extend(crate::aleutian_onishi_width::widths(bundle));
+        }
+        if key == "routes" && crate::madagascar_coastal_curve::active(bundle) {
+            source = crate::nwasc_reference_route::catalogue(bundle)["candidates"]
+                .as_array()
+                .unwrap()
+                .clone();
+        }
         let actual = bundle
             .collections
             .get(collection)
@@ -191,13 +212,14 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         if source.len() != actual.len() {
             return Err("Incomplete seasonal source projection".into());
         }
-        for row in source {
+        for row in &source {
             if key == "widths" {
                 adcp_width_scope(row)?;
                 crate::stream_tube_widths::validate(row)?;
                 crate::somali_width::validate(row)?;
                 crate::guinea_width::validate(row)?;
                 crate::original_regional_widths::validate(row)?;
+                crate::portugal_section_span::validate_row(row)?;
                 crate::modal_decay_widths::validate(row)?;
                 crate::abstract_regional_widths::validate(row)?;
                 norwegian_coastal_width_scope(row)?;
@@ -231,6 +253,12 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         );
         if !ids.insert(id.clone()) || !actual.contains(id.as_str()) {
             return Err("Invalid seasonal current index".into());
+        }
+    }
+    for row in crate::current_catalogue::decisions(bundle) {
+        let id = format!("current:{}", row["current_id"].as_str().unwrap());
+        if !actual.contains(id.as_str()) || !ids.insert(id) {
+            return Err("Invalid admitted seasonal current".into());
         }
     }
     if ids.len() != actual.len() {
@@ -369,6 +397,28 @@ fn plans(docs: &Value) -> Result<Value, String> {
             Vec::new()
         };
         let mut note="Annual width range and measurement uncertainty: not available. A single dated section does not establish a seasonal cycle.".to_owned();
+        if widths.iter().any(|r| {
+            r["current_id"] == id && r["phase_kind"] == "published_near_surface_survey_summary"
+        }) {
+            note="One April 2001 near-surface survey summary. Physical whole-current width, uncertainty and annual ranges remain unknown; this is not April climatology or a seasonal cycle.".to_owned();
+        }
+        if widths
+            .iter()
+            .any(|r| r["current_id"] == id && r["phase_kind"] == "model_snapshot_width_summary")
+        {
+            note = "Local model snapshot on an elapsed model day. Annual climatological forcing is not an annual mean width; observed dates, annual ranges and seasonal playback are unavailable.".to_owned();
+        }
+        if widths
+            .iter()
+            .any(|r| r["current_id"] == id && r["phase_kind"] == "multi_year_jet_width_range")
+        {
+            note="Two local repeat-section jet ranges from the2009-2014 study, separate from mean isopycnal breadths. No dated width series, annual extrema or width uncertainty; no seasonal playback inferred.".to_owned();
+        }
+        if widths.iter().any(|r| {
+            r["current_id"] == id && r["phase_kind"] == "source_reported_current_width_constraint"
+        }) {
+            note="Published regional width>400km, with unspecified width layer and epoch. The source does not give a finite width, annual range or width error; seasonal playback remains unavailable.".to_owned();
+        }
         if let Some(r) = summary {
             let span = r["reported_seasonal_value_span_km"]
                 .as_array()
@@ -380,7 +430,7 @@ fn plans(docs: &Value) -> Result<Value, String> {
                         .ok_or("Invalid reported seasonal value")
                 })
                 .collect::<Result<Vec<_>, _>>()?
-                .join("–");
+                .join("â€“");
             note = format!(
                 "{span} km: {}",
                 r["interpretation"]
@@ -417,7 +467,51 @@ fn plans(docs: &Value) -> Result<Value, String> {
 
 impl Store {
     pub fn seasons_snapshot(&self) -> Result<Value, String> {
-        let plans = plans(&documents(&self.bundle)?)?;
+        let mut docs = documents(&self.bundle)?;
+        if crate::current_measurements::active(&self.bundle) {
+            docs["widths"]["measurements"]
+                .as_array_mut()
+                .unwrap()
+                .extend(crate::current_measurements::widths(&self.bundle));
+            docs["widths"]["current_decisions"]
+                .as_array_mut()
+                .unwrap()
+                .extend(crate::current_catalogue::decisions(&self.bundle));
+        }
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(crate::agulhas_reported::widths(&self.bundle));
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(crate::nwasc_admission::widths(&self.bundle));
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(crate::hansen_asar_widths::widths(&self.bundle));
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(crate::neuc_glider_widths::widths(&self.bundle));
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(crate::aleutian_onishi_width::widths(&self.bundle));
+        let mut supplemental = crate::current_measurements::widths(&self.bundle);
+        let gap_widths = crate::current_gap_admissions::widths(&self.bundle);
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(gap_widths.clone());
+        supplemental.extend(gap_widths);
+        supplemental.extend(crate::agulhas_reported::widths(&self.bundle));
+        supplemental.extend(crate::nwasc_admission::widths(&self.bundle));
+        supplemental.extend(crate::hansen_asar_widths::widths(&self.bundle));
+        supplemental.extend(crate::neuc_glider_widths::widths(&self.bundle));
+        supplemental.extend(crate::aleutian_onishi_width::widths(&self.bundle));
+        let mut plans = plans(&docs)?;
+        crate::current_catalogue::add_plans(&self.bundle, &mut plans);
         let mut sources = json!({});
         for (key, _, _) in SOURCES {
             sources[key] = self.bundle.manifest["seasons_receipts"][key]["source_json"].clone();
@@ -425,8 +519,16 @@ impl Store {
                 return Err("Missing seasonal source bytes".into());
             }
         }
+        let reference_catalogue = if crate::madagascar_coastal_curve::active(&self.bundle) {
+            crate::current_gap_admissions::route_catalogue(
+                crate::nwasc_reference_route::catalogue(&self.bundle),
+                &self.bundle,
+            )?
+        } else {
+            Value::Null
+        };
         Ok(
-            json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],"sources_json":sources,"phase_plans":plans,"published_transport_scenes":crate::published_transports::by_current(&self.bundle),"pacific_neuc_breadth_scene":crate::pacific_neuc_breadths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"dwbc_float_composite_scene":crate::dwbc_float_composite::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"coastal_composite_width_scene":crate::coastal_composite_widths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[]))}),
+            json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],"sources_json":sources,"phase_plans":plans,"admitted_current_decisions":crate::current_catalogue::decisions(&self.bundle),"supplemental_widths":supplemental,"working_reference_routes":reference_catalogue,"south_australian_context_scene":crate::south_australian_context::scene(&self.bundle),"eac_source_field_scene":crate::eac_source_fields::scene(&self.bundle),"asca_component_span_scene":crate::asca_component_spans::scene(&self.bundle),"kuroshio_filtered_width_scene":crate::kuroshio_filtered_width::scene(&self.bundle),"agulhas_reported_scene":crate::agulhas_reported::scene(&self.bundle),"kuroshio_daily_scene":crate::kuroshio_daily::scene(&self.bundle),"width_source_review_scenes":crate::current_width_source_reviews::scenes(&self.bundle),"research_evidence_scenes":crate::current_research_evidence::scenes(&self.bundle),"published_transport_scenes":crate::published_transports::by_current(&self.bundle),"pacific_neuc_breadth_scene":crate::pacific_neuc_breadths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"dwbc_float_composite_scene":crate::dwbc_float_composite::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"coastal_composite_width_scene":crate::coastal_composite_widths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[]))}),
         )
     }
 }

@@ -1,4 +1,5 @@
 """Dated image proxy, failed cases and scientific scope must survive every view."""
+from query_packet import read_bundle_bytes
 import copy
 import hashlib
 import json
@@ -36,8 +37,8 @@ def test_source_audit_mutations_rejected(key,value):
     d=document();d[key]=value
     with pytest.raises(ValueError,match='Ursa contour'): validate(d)
 
-def fixtures(directory):
-    source=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+def fixtures(directory,retain=True):
+    source=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     targets=[]
     for kind in ['date','owner','geometry','physical','annual','unit','failures','missing_proof','missing_candidate','image','state']:
         b=copy.deepcopy(source);r=b['manifest']['atlas_receipts'][PATH]
@@ -61,10 +62,11 @@ def fixtures(directory):
         result=subprocess.run([str(CLI),str(path)],capture_output=True,text=True,encoding='utf8')
         assert result.returncode==2 and ('Thor/Ursa panels: changed original figure dependency' if kind=='image' else 'Ursa contour') in result.stderr,(kind,result.stderr)
         targets.append(path)
+        if not retain:path.unlink()
     return targets
 
 def test_native_proof_and_atlas_object_parity(tmp_path):
-    fixtures(tmp_path)
+    fixtures(tmp_path,retain=False)
     atlas=json.loads(subprocess.check_output([str(CLI),str(ROOT/'almanac/query-data.json'),'--atlas'],encoding='utf8'))
     obj=json.loads(subprocess.check_output([str(CLI),str(ROOT/'almanac/query-data.json'),'--object-view',OWNER],encoding='utf8'))
     assert obj['footprint_plots'][ID]==atlas['footprint_views'][OWNER]['plot_scene']

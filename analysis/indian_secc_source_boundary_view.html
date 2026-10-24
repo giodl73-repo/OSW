@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Indian SECC: source boundary audit</title>
+<style>
+:root{font:16px/1.5 system-ui;color:#dfedf2;background:#0e1d29}*{box-sizing:border-box}body{margin:0}main{max-width:1100px;margin:auto;padding:24px}h1{line-height:1.15}a{color:#8fdbff}select{font:inherit;padding:7px;background:#203747;color:inherit;border:1px solid #688795;border-radius:4px}.notice{padding:16px;border-left:4px solid #ffa960;background:#24333d}.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.scroll{max-width:100%;overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:8px;border-bottom:1px solid #38505d;vertical-align:top}th{color:#a5c5d2}caption{text-align:left;font-weight:600;margin:12px 0}svg{width:100%;height:auto}svg text{fill:#d6e5ec;font:20px system-ui}.dot{fill:#70bafa}.censored{fill:#ffa960}.muted{color:#aac0cc}code{overflow-wrap:anywhere}details{margin-top:20px}summary{cursor:pointer}#summary{min-height:4.5em}#attempts td:first-child{min-width:190px}#terminals td{min-width:100px}#terminals td:first-child{min-width:230px}@media(max-width:700px){main{padding:12px}.grid{display:block}h1{font-size:28px}}
+svg text{font-size:22px}
+</style><main>
+<nav><a href="/figures/indian-secc-hycom-2013/">Monthly source investigation</a> · <a href="/almanac/dashboard.html">Dashboard</a></nav>
+<h1>Indian SECC: source boundary audit</h1>
+<p class="notice">These marks show where diagnostic sampling stops. They are <strong>not current edges</strong>. Named-current identity and physical width remain unverified. A month with no retained stations reflects failed seed checks, not an absent current.</p>
+<p>Indian South Equatorial Countercurrent (SECC) investigation. 2013 HYCOM paired daily-00Z monthly means at 15 m. All 144 attempts are retained. Native source window: 75.040039°–84.959961° E, 12° S–equator.</p>
+<label for="month">Month </label><select id="month"></select> <a id="permalink">Link to selection</a>
+<p id="summary" aria-live="polite"></p><p><a id="attempt-query">Query this month's attempts</a> · <a id="terminal-query">Query this month's terminal records</a></p>
+<div class="grid"><section><h2>Last sampling intervals</h2>
+<svg id="plot" viewBox="0 0 640 720" role="img" aria-labelledby="plot-title plot-description"><title id="plot-title">Source support and last retained sampling intervals</title><desc id="plot-description">The outlined rectangle is the source window. Orange intervals end outside source support before a half-peak crossing. Blue intervals show other stops. No current outline is drawn.</desc></svg>
+<p class="muted">Orange: source stop before a half-peak crossing (50% of local peak projected velocity). Blue: other terminal intervals. Circle: immediate inward sample; square: terminal sample. Hover a mark for its case. Overlapping cases remain in the table. The grey rectangle is data coverage. This is a linear longitude/latitude support diagram, not a distance-preserving map.</p></section>
+<section><h2>All months</h2><div class="scroll"><table><caption>Sampling outcomes, not seasonal current dimensions</caption><thead><tr><th>Month</th><th>Attempts</th><th>Source stops</th><th>Unresolved half-peak edges</th></tr></thead><tbody id="months"></tbody></table></div><p id="empty"></p><p>Source stops can occur beyond an already resolved threshold edge. The two stop counts measure different things.</p></section></div>
+<h2>Every selected-month attempt</h2><div class="scroll"><table><thead><tr><th>Case</th><th>Status</th><th>Retained stations</th></tr></thead><tbody id="attempts"></tbody></table></div>
+<h2>Every selected-month terminal</h2><p>Projected velocities and threshold comparisons use previously serialized values. A high last-sample velocity does not rule out an intervening crossing and return. No new velocities or crossings are calculated.</p>
+<div class="scroll"><table><thead><tr><th>Case / station / direction</th><th>Terminal status / side</th><th>Last interval offsets (km)</th><th>Inward projected velocity (m/s)</th><th>Half-peak comparison</th><th>40 / 50 / 60% edge statuses</th></tr></thead><tbody id="terminals"></tbody></table></div>
+<details><summary>Original audit data and method</summary><p><a href="/research/indian-secc-hycom-source-boundary-audit.json">Complete audit JSON</a> · <a href="/research/indian-secc-hycom-2013-local-normal-spans.json">Unchanged original diagnostic</a> · <a href="/plans/indian-secc-hycom-source-boundary-protocol-v1.md">Frozen audit protocol</a></p><p id="digest"></p></details>
+</main><script id="audit-data" type="application/json">__AUDIT_DATA__</script><script>
+'use strict';const data=JSON.parse(document.getElementById('audit-data').textContent), $=id=>document.getElementById(id),ns='http://www.w3.org/2000/svg';
+const names=['January','February','March','April','May','June','July','August','September','October','November','December'];
+names.forEach((n,i)=>$('month').add(new Option(n,String(i+1))));
+function cell(row,value){const td=document.createElement('td');td.textContent=value??'Unavailable';row.append(td)}
+function tr(parent,values){const row=document.createElement('tr');values.forEach(v=>cell(row,v));parent.append(row)}
+data.monthly_summary.forEach(m=>tr($('months'),[names[m.month-1],m.attempts,m.outside_source_terminals,m.half_peak_source_censored_edges]));
+function svg(tag,attrs,text){const node=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([k,v])=>node.setAttribute(k,v));if(text!==undefined)node.textContent=text;$('plot').append(node);return node}
+const px=lon=>72+(lon-74.5)/11*530,py=lat=>40+(.5-lat)/13*600;
+function render(month,push=false){
+ $('month').value=String(month);const m=data.monthly_summary[month-1],rows=data.terminal_rows.filter(r=>r.month===month),attempts=data.attempt_inventory.filter(r=>r.month===month);
+ window.oswBoundarySelection={month,summary:m,rows,attempts};
+ const sourceQuery=(pointer,limit,offset)=>'/almanac/query.html?source-q='+encodeURIComponent(JSON.stringify({document:'research/indian-secc-hycom-source-boundary-audit.json',pointer,limit,offset}))+'#source-query-title';
+ $('attempt-query').href=sourceQuery('/attempt_inventory',12,(month-1)*12);
+ if(rows.length){$('terminal-query').hidden=false;$('terminal-query').href=sourceQuery('/terminal_rows',rows.length,data.terminal_rows.findIndex(r=>r.month===month))}else{$('terminal-query').hidden=true;$('terminal-query').removeAttribute('href')}
+ $('summary').textContent=`${names[month-1]}: ${m.attempts} attempts, ${m.terminal_rows} retained terminal records; ${m.outside_source_terminals} outside-source stops, ${m.half_peak_source_censored_edges} unresolved half-peak edges at source stops. ${m.axis_passing_half_peak_source_censored_edges} of those belong to attempts passing all five axis checks.`;
+ $('empty').textContent=rows.length?'All available intervals appear in the plot and table.':'No retained station profiles this month. The attempt table records each failed seed check.';
+ $('attempts').replaceChildren();attempts.forEach(c=>tr($('attempts'),[c.case_id,c.status,c.available_stations]));$('terminals').replaceChildren();
+ $('plot').querySelectorAll(':scope > :not(title):not(desc)').forEach(n=>n.remove());const b=data.native_bounds;
+ svg('rect',{x:px(b.west),y:py(b.north),width:px(b.east)-px(b.west),height:py(b.south)-py(b.north),fill:'#142b3b',stroke:'#9bb0bd','stroke-width':2});
+ for(const lat of [0,-4,-8,-12]){svg('line',{x1:px(b.west),x2:px(b.east),y1:py(lat),y2:py(lat),stroke:'#3c5363'});svg('text',{x:62,y:py(lat)+6,'text-anchor':'end'},lat===0?'0°':`${-lat}° S`)}
+ for(const lon of [75.04,80,84.96])svg('text',{x:px(lon),y:675,'text-anchor':'middle'},`${lon}° E`);
+ rows.forEach((r,index)=>{const a=r.immediate_inward_sample,z=r.terminal_sample,t=r.thresholds[1],color=t.source_censored_before_crossing?'#ffa960':'#70bafa',label=`${r.case_id}; station ${r.station_arc_parameter_km} km; ${r.direction}; ${z?z[8]:'missing profile'}`;
+  if(a&&z){const line=svg('line',{x1:px(a[1]),y1:py(a[2]),x2:px(z[1]),y2:py(z[2]),stroke:color,'stroke-width':3,'data-terminal':index});const title=document.createElementNS(ns,'title');title.textContent=label;line.append(title);svg('circle',{cx:px(a[1]),cy:py(a[2]),r:3,fill:color});const square=svg('rect',{x:px(z[1])-3,y:py(z[2])-3,width:6,height:6,fill:color});const tip=document.createElementNS(ns,'title');tip.textContent=label;square.append(tip)}
+  tr($('terminals'),[`${r.case_id} / ${r.station_arc_parameter_km} km / ${r.direction}`,`${z?z[8]:'missing profile'} / ${r.outside_sides.join(', ')||'within source'}`,a&&z?`${a[0]} → ${z[0]}`:null,a?a[5]:null,`${t.inward_sample_relation_to_serialized_threshold} ${t.serialized_peak_threshold_m_s??'unavailable'}`,r.thresholds.map(t=>t.direction_edge?t.direction_edge.status:t.pair_status).join(' / ')]);
+ });
+ const url=new URL(location.href);url.searchParams.set('month',String(month));$('permalink').href=url.href;if(push)history.pushState({},'',url);window.oswBoundaryReady=true;
+}
+function fromUrl(){const s=new URL(location.href).searchParams.get('month');const n=Number(s);return Number.isInteger(n)&&n>=1&&n<=12?n:5}
+$('month').addEventListener('change',()=>render(Number($('month').value),true));addEventListener('popstate',()=>render(fromUrl()));$('digest').textContent='Audit SHA256: __AUDIT_SHA256__';render(fromUrl());
+</script></html>

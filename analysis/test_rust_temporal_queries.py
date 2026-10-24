@@ -1,4 +1,5 @@
 """Recorded-day selection and time/state feature correspondence against source records."""
+from query_packet import read_bundle_bytes
 import json
 import os
 from pathlib import Path
@@ -12,7 +13,7 @@ def allowed(feature,time):
     return time.get('include_undated',False) if date is None else time['from']<=date<=time['to']
 
 def main():
-    source=json.loads((ROOT/'almanac/query-data.json').read_text(encoding='utf-8'))
+    source=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     objects={r['id']:r for r in source['collections']['objects']}
     imported={r['id']:r for r in native({'collection':'objects','limit':500})['rows']}
     days=sorted({f['observation_date'] for r in objects.values() for f in r.get('map_features',[]) if f.get('observation_date')})

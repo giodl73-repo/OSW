@@ -1,4 +1,5 @@
 """Calendar interaction, scope, mobile access and native/WASM source parity."""
+from query_packet import read_bundle_bytes
 import copy,gzip,hashlib,json,os,subprocess,tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -41,7 +42,7 @@ def main():
         query={'collection':'route_decisions','filters':[{'field':'current_id','op':'eq','value':'zeehan'}],'limit':10}
         result=native(query);assert result['total']==1
         assert any(r['document']==audit for r in result['rows'][0]['scope_reviews'])
-        packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+        packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
         for key,value in [('width_values',[20]*12),('seasonal_geometry_playback_eligible',True),('observation_dates',['2007-06-01'])]:
             bad=copy.deepcopy(packet);doc=copy.deepcopy(audit);doc['seasonal_calendar'][key]=value
             receipt=bad['manifest']['atlas_receipts'][PATH];receipt['source_json']=json.dumps(doc);receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest();bad['manifest']['input_sha256'][PATH]=receipt['source_sha256']

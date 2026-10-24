@@ -1,0 +1,13 @@
+{
+  "schema": "osw.redsox-section-implementation-clarifications.v1",
+  "status": "recorded_after_initial_feasibility_execution",
+  "original_preflight_preserved": true,
+  "strict_primary_outputs_preserved": true,
+  "local_core_followup": "The initial implementation rejected a section if any profile was unavailable, even when a paired crossing used only other observed profiles. Separately evaluate the established OSW largest-supported-peak and missing-before-crossing operator. Keep missing-profile and incomplete-global-search flags. This local diagnostic is explicitly a follow-up to the first execution, not a replacement primary outcome or proof of a global section maximum.",
+  "existing_project_operator": "analysis/build_basin_surface_section_spans.py::measure",
+  "walk_rule": "Select the largest supported positive component; stop at the nearest crossing on each side. Missing profiles encountered before a crossing make that edge unknown. Missing profiles beyond already bracketed crossings do not become interpolated data.",
+  "scope": "Supported local component core, not whole section maximum, full current width, flow-normal width, uncertainty interval or annual extrema.",
+  "summer_vertical_support": "Report raw height range and monotonicity separately. Cast34 has no20-80m-above-bottom samples and a nonmonotonic source height axis. Do not sort, extrapolate, repair the bottom reference or replace its data with the alternate MATLAB product.",
+  "alternate_format_review": "Two MATLAB counterparts were acquired. They are not equivalent byte/numerical representations: winter10 has116 versus58 samples and different values; summer34 has different values and retains reference=m. The MATLAB product cannot silently repair or replace the pinned ASCII inputs. The winter full12-column MATLAB schema explains the retained nquan12 context for this inspected cast only; no claim is made for all310 cases.",
+  "new_width_record_admitted": false
+}

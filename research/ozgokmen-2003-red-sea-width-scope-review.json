@@ -1,0 +1,67 @@
+{
+  "schema": "osw.current-primary-source-review.v1",
+  "current_id": "red-sea-saline-overflow",
+  "reviewed_on": "2026-10-22",
+  "citation": "Özgökmen, T. M., W. E. Johns, H. Peters and S. Matt (2003), Turbulent Mixing in the Red Sea Outflow Plume from a High-Resolution Nonhydrostatic Model, Journal of Physical Oceanography 33, 1846–1869",
+  "doi": "10.1175/2401.1",
+  "source_identity": {
+    "source_url": "http://www.tamayozgokmen.org/ftp-pub/jpo03.pdf",
+    "discovery_url": "http://www.tamayozgokmen.org/index2.html",
+    "acquisition_receipt": "research/source-data/ozgokmen-redsea-2003/acquisition.json",
+    "bytes": 1482243,
+    "sha256": "888d26defac366e3992ef93894883d17a0f7ae7346d87e18bbeaefd961c30aa3",
+    "pdf_pages": 24,
+    "printed_pages": "1846–1869",
+    "original_redistributed": false,
+    "rights": "American Meteorological Society, 2003. No redistribution permission inferred; original and page renders remain private."
+  },
+  "review_scope": {
+    "kind": "selected_primary_pages_not_full_paper_review",
+    "visually_verified_pdf_pages_1_based": [1, 3, 4, 5],
+    "printed_pages": [1846, 1848, 1849, 1850],
+    "text_search_scope": "All 24 pages searched for width and lateral confinement; search hits alone are not measurement admissions.",
+    "figure_digitized": false
+  },
+  "findings": [
+    {
+      "locator": "p. 1848, section 2; p. 1849, Figure 1",
+      "finding": "Approximately 100 km length and 3 km width at overflow depth describe the Northern Channel.",
+      "consequence": "Retain bathymetric context, not a whole-current dimension or paired velocity-edge measurement."
+    },
+    {
+      "locator": "p. 1846, abstract; p. 1848, section 2",
+      "finding": "The winter investigation concerns one confined branch after the overflow splits.",
+      "consequence": "Neither dimension represents all Red Sea outflow branches or downstream spreading."
+    },
+    {
+      "locator": "p. 1850, section 3a–b",
+      "finding": "The model resolves along-channel and vertical dynamics; lateral edge effects and canyon-wall intrusions are omitted.",
+      "consequence": "Its two-dimensional solution does not recover lateral velocity boundaries."
+    },
+    {
+      "locator": "p. 1849, Figure 1 and caption",
+      "finding": "The highlighted paths are schematic branch and station context.",
+      "consequence": "No observed current axis, footprint or length digitized from this figure."
+    }
+  ],
+  "reported_channel_context": {
+    "branch_id": "redsox-northern-channel-plume",
+    "approximate_channel_length_km": 100,
+    "channel_width_at_overflow_depth_km": 3,
+    "exact_section_location": null,
+    "exact_width_sampling_date": null,
+    "velocity_edge_definition": null,
+    "geometry": null,
+    "rank_eligible": false
+  },
+  "cross_source_rule": {
+    "related_review": "research/red-sea-redsox-branch-reach-scope-audit.json",
+    "rule": "Do not combine the 3 km and prior 5 km channel descriptions into a current-width uncertainty or seasonal envelope. Matching sections, depth definitions, measurement methods and dates have not been established.",
+    "prior_records_rewritten": false
+  },
+  "physical_width_admitted": false,
+  "physical_axis_admitted": false,
+  "physical_length_admitted": false,
+  "annual_width_range_admitted": false,
+  "next_measurement_gate": "Recover dated cross-flow velocity sections with both lateral plume boundaries and depth/layer support; admit branch scope before attributing any result to the parent current."
+}

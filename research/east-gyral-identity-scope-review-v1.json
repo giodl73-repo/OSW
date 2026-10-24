@@ -1,0 +1,96 @@
+{
+  "schema": "osw.current-identity-scope-followup.v1",
+  "proposed_entity_id": "current:east-gyral",
+  "preferred_name": "East Gyral Current",
+  "supported_name_variant": "Eastern Gyral Current",
+  "abbreviation": "EGC",
+  "status": "source_scope_supported_pending_versioned_query_admission",
+  "protocol_file": "plans/current-identity-admission-protocol-v1.md",
+  "protocol_sha256": "259a30f54e4e975ad9d7f85794e14a3d46e70eb6b9060c18093ae72670f6f25a",
+  "supersedes_pending_question_only": {
+    "file": "research/indian-coastal-current-identity-review-v1.json",
+    "sha256": "809b77e2328106d7504e4b251530e74dff5c8d62929a6277c4938356400503ff",
+    "old_file_modified": false,
+    "question": "Whether the proposed EGC can be distinguished from existing current:south-indian, rather than merely from SICC."
+  },
+  "source_bindings": [
+    {
+      "doi": "10.1002/2014GB004898",
+      "file": "research/source-data/grand-south-indian-2015/journal-article.pdf",
+      "sha256": "a7dab54a32ed7d683d2da39471249efe0220928f56adcbb39551fca6f1cd6e4a",
+      "bytes": 791029,
+      "access": "retained_original_version_of_record_selected_pages_reviewed",
+      "text_pages": [
+        1,
+        3,
+        6
+      ],
+      "visual_pages": [
+        3,
+        6
+      ],
+      "full_paper_reviewed": false,
+      "redistribution_permitted": false
+    },
+    {
+      "doi": "10.1029/2017JC013221",
+      "file": "research/source-data/wijeratne-australia-2018/journal-article.pdf",
+      "sha256": "1880c05374a7fb1cfed56910059a32c0884599d97ba040f532c07d28daecf0d9",
+      "access": "previously_retained_original_selected_identity_passages_reviewed",
+      "text_pages": [
+        1,
+        2,
+        15,
+        18,
+        19,
+        20,
+        21
+      ],
+      "visual_pages": [
+        2,
+        19
+      ],
+      "full_paper_reviewed": false,
+      "redistribution_permitted": false
+    }
+  ],
+  "existing_identity_comparison": {
+    "entity_id": "current:south-indian",
+    "source_doi": "10.1002/2014GB004898",
+    "locator": "Section3.2, printed362/PDF6; Figure1 caption and SIC label, printed359/PDF3.",
+    "finding": "SIC is the eastward southern subtropical-gyre flow near40S. EGC in the2018 study has a tropical setting and a different named scope.",
+    "source_geographic_context_is_whole_current_length": false,
+    "separate_named_scope_supported": true,
+    "decision_basis": "Editorial inference from the two primary-source scope descriptions; neither paper is claimed to perform a direct EGC-versus-SIC alias test."
+  },
+  "proposed_identity_basis": {
+    "source_doi": "10.1029/2017JC013221",
+    "locators": [
+      "Abstract/introduction, printed3444/PDF1; Figure1 caption, printed3445/PDF2.",
+      "Sections4.1-4.2, printed3462/PDF19."
+    ],
+    "finding": "The study identifies tropical EGC separately and treats it as a northern SICC continuation feeding HLC.",
+    "classification": "Separately named current scope; no inferred alias or automatic parent link."
+  },
+  "historical_scope_warning": {
+    "locator": "Wijeratne2018 Sections4.1-4.2, printed3462/PDF19.",
+    "finding": "The paper notes conflicting EGC usage and reassigns some older northern Leeuwin inflow descriptions to central SICC.",
+    "uniform_cross_source_geometry_established": false,
+    "all_historical_egc_uses_assigned_to_this_entity": false
+  },
+  "prohibited_dimension_promotions": [
+    "Grand2015 describes gyre latitude limits; these are not SIC path endpoints.",
+    "The2800km separation of Grand2015 cruise tracks is not a current length.",
+    "Wijeratne2018 model-section latitude/depth context is not a paired current width or whole-current footprint."
+  ],
+  "canonical_identity_admitted": false,
+  "independent_observations_admitted": 0,
+  "length_km": null,
+  "width_km": null,
+  "geometry": null,
+  "annual_dimension_ranges": null,
+  "physical_continuity_or_state_joins_admitted": false,
+  "parent_relationship_admitted": false,
+  "external_scientific_review_claimed": false,
+  "next_gate": "Versioned identity/name/source/unmeasured-assessment extension, source-specific scope note, native/WASM inventory integration and accessible unlocated current card; preserve the106-current batch and every old measurement."
+}

@@ -1,0 +1,113 @@
+{
+  "schema": "osw.eacc-hycom.completed-source-execution-review.v1",
+  "reviewed_utc": "2026-10-24T18:32:06.581402+00:00",
+  "status": "SOURCE_COMPLETE_REGIONAL_WIDTH_GATE_UNSUPPORTED_NO_MEASUREMENT_ADMISSION",
+  "run_id": 40117999392,
+  "run_attempt": 2,
+  "job_id": 120943453102,
+  "source_commit": "69cddec0412ca5b1a57c8416067a3e2fd10720af",
+  "run_conclusion": "success",
+  "artifact": {
+    "id": 12570726941,
+    "name": "eacc-source-resume-v2",
+    "size_in_bytes": 55080405,
+    "digest": "sha256:9e8e05ae43876e17f4e76d143eea3272b94c74ce3d0193e4a4ecdcf7ab638e58",
+    "expires_at": "2027-01-22T17:51:49Z"
+  },
+  "cloud_focused_checks": {
+    "passed": 226,
+    "elapsed_seconds": 1.88,
+    "evidence": "Actual completed job log"
+  },
+  "original_scientific_inputs_unchanged": 40,
+  "continuation_frozen_inputs_verified": 52,
+  "original_preflight_sha256": "c596a4da53ac2082339a5ca8f415816ea24e0be49948d618056a2205d3695409",
+  "continuation_preflight_sha256": "fab1c625a2a5b40b26e64ec15c105248d28d77f6002e645356225a5428667460",
+  "source_inventory": {
+    "requests": 82,
+    "reused_original_requests": 3,
+    "new_requests": 79,
+    "months": 12,
+    "daily_00Z_model_sample_slots": 363,
+    "provider_missing_dates": [
+      "2013-08-14",
+      "2013-12-25"
+    ],
+    "year": 2013,
+    "provider_standard_output_depth_m": 15,
+    "output_grid_rows_columns": [
+      100,
+      76
+    ],
+    "eligible_paired_cells_each_month": 5213,
+    "whole_year_means_or_climatology": false,
+    "observations": false
+  },
+  "diagnostic": {
+    "cases": 72,
+    "case_identity_set_verified": true,
+    "status_counts": {
+      "seed_sensitivity_section_only": 4,
+      "candidate_diagnostic_unresolved": 2,
+      "seed_refinement_missing_search_endpoint": 66
+    },
+    "normal_step_comparisons": 84,
+    "native_seed_comparisons": 48,
+    "months_with_both_primary_five_station_half_peak_diagnostics_supported": 0,
+    "january_primary_central_half_peak_spans_km": [
+      227.5470799033984,
+      227.4816623356442
+    ],
+    "january_primary_central_span_interpretation": "Resolved station diagnostics only; neither primary case satisfies the full five-station regional gate. These values are not admitted current widths, annual extrema or uncertainty.",
+    "failure_interpretation": "A missing seed-refinement endpoint is unsupported method coverage, not zero flow or current absence."
+  },
+  "figure_inventory": {
+    "monthly_maps_png": 12,
+    "monthly_profiles_png": 12,
+    "monthly_maps_svg": 12,
+    "monthly_profiles_svg": 12,
+    "monthly_semantic_html_pages": 12,
+    "index_html": true,
+    "inventory_source": "Manifest from successful frozen render_case; all files remain in cloud artifact.",
+    "actually_inspected_pngs": [
+      "m01-map.png",
+      "m01-profiles.png",
+      "m07-map.png",
+      "m07-profiles.png"
+    ],
+    "all_months_geographic_association_reviewed": false,
+    "january_inspection": "Northward regional jet and retained central profiles visible; surrounding primary stations show contrast/displacement/edge failures. Do not promote the central spans to whole-current or five-station widths.",
+    "july_inspection": "Northward near-coastal flow is visible, but all six profiles are unsupported at seed refinement. No zero-width inference.",
+    "cause_hypothesis": "A coastal-mask interaction is suggested by July geography, but the exact endpoint side, coordinates and reason have not been independently extracted. Confirm before any new numerical method."
+  },
+  "persistent_compact_evidence": {
+    "research/eacc-hycom-2013-model-core-result-v1.json": "27fcc92e0f7744880f4785e160a7c801ac43b87b6286adf6fd93a7a31fac2f21",
+    "research/eacc-hycom-2013-model-core-figures-manifest-v1.json": "9b78c72cb715984ce088335864aacc3bbd00430c44b22bbbb67551dd9fcd0a75"
+  },
+  "cloud_output_fingerprints": {
+    "monthly_fields_sha256": "a786835a4b11e8f6b3dce924227b70afbcf665fab3a3a2b94b374a9e19e7e7c2",
+    "diagnostic_sha256": "acc14e75d4cbfb6287d2db99e3eb71b01736e7d2693ad45c7a5a91d609e3d9e7",
+    "review_summary_sha256": "27fcc92e0f7744880f4785e160a7c801ac43b87b6286adf6fd93a7a31fac2f21"
+  },
+  "local_readback": {
+    "metadata_range_bytes": 183947,
+    "four_png_range_bytes": 698467,
+    "full_zip_bytes_not_downloaded": 55080405,
+    "original_velocity_arrays_downloaded": false,
+    "original_arrays_processed_locally": false,
+    "figure_manifest_hashes_verified": true,
+    "full_offline_native_wasm_browser_checks_run": false
+  },
+  "new_current_widths_admitted": 0,
+  "new_current_lengths_admitted": 0,
+  "physical_annual_ranges_admitted": false,
+  "current_association_verified": false,
+  "measurement_gap_closed": false,
+  "source_acquisition_gap_closed": true,
+  "installed_working_data_changed": false,
+  "local_preview_changed": false,
+  "main_merged": false,
+  "release_approved": false,
+  "next_action": "Use a separate prospective cloud support inspection of the saved completed diagnostic/fields to report original seed and search endpoints and January station failures. No provider refetch, rerun of the completed producer, weakened gate, parameter tuning or native/WASM/browser stage. Preserve all52 executed continuation inputs and the original40 science inputs.",
+  "durability_limit": "Full source/diagnostic and figures are in a90-day GitHub artifact. Compact result and manifest are retained in source control; permanent large evidence archival remains outstanding."
+}

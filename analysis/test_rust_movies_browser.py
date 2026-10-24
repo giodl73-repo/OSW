@@ -1,4 +1,5 @@
 """Rights-screened movie joins, independent selection oracle and real WASM UI."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,os,subprocess,tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
@@ -35,7 +36,7 @@ def main():
         assert view['total']==70 and view['matched']==len(view['rows'])
         assert view['source_scope']=='rights_screened_preview_not_published'
     for invalid in [{'zoom':3},{'zoom':-1},{'state_id':'state:missing'},{'query':False},{'unexpected':True}]:assert not native(invalid)['ok']
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     with tempfile.TemporaryDirectory() as tmp:
         for kind in ['hash','export_hash','canonical_projection','missing','scope']:
             bad=copy.deepcopy(bundle);receipts=bad['manifest']['movies_receipts']

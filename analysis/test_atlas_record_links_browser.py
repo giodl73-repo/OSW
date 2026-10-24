@@ -1,4 +1,5 @@
 """Check dashboard and record links preserve atlas feature identity."""
+import os
 import json
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -8,7 +9,7 @@ from playwright.sync_api import sync_playwright
 def main():
     snapshot = json.loads(Path('research/ocean-motion-dashboard.json').read_text(encoding='utf-8'))
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, executable_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+        browser = p.chromium.launch(headless=True, executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page = browser.new_page(viewport={'width':1280,'height':900})
         page.goto('http://127.0.0.1:8788/almanac/dashboard.html',wait_until='networkidle')
         cards = page.locator('.motion-card')

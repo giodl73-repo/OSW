@@ -1,4 +1,5 @@
 """Regional source descriptions cannot become ranges or seasonal samples."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_humboldt_width_descriptions import ROOT,AUDIT,validate_row
@@ -46,7 +47,7 @@ def erased_alias_packet(packet,owner='peru-humboldt'):
 
 @pytest.mark.parametrize('owner',['jutland','western-adriatic','baffin','peru-humboldt','west-australian','zeehan','kuroshio-extension','new-guinea-coastal-undercurrent','algerian','alaska','atlantic-equatorial-undercurrent','pacific-equatorial-undercurrent'])
 def test_context_deletion_and_alias_transfer_rejected(tmp_path,owner):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());bad=erased_alias_packet(packet,owner)
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));bad=erased_alias_packet(packet,owner)
     ledger=json.loads((ROOT/'research/ocean-current-almanac.json').read_bytes())
     with pytest.raises(ValueError):validate(json.loads(bad['manifest']['seasons_receipts']['widths']['source_json']),ledger)
     target=tmp_path/'alias.json';target.write_text(json.dumps(bad),encoding='utf8')
@@ -54,7 +55,7 @@ def test_context_deletion_and_alias_transfer_rejected(tmp_path,owner):
     assert result.returncode==2 and 'Original regional width' in result.stderr,result.stderr
 
 def check_native_guard(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());target=directory/'humboldt-tampered.json'
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));target=directory/'humboldt-tampered.json'
     for key,value in [('approximate_width_km',300),('width_range_km',[250,350]),('calendar_months',[1,2,3]),('original_regional_context',{})]:
         target.write_text(json.dumps(coherent_packet(packet,key,value)),encoding='utf8')
         result=subprocess.run([str(CLI),str(target),'--seasons'],capture_output=True,text=True,encoding='utf8')

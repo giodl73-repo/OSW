@@ -1,4 +1,5 @@
 """Smoke-test the motion atlas data join in a local Chromium browser."""
+from browser_inventory_expectations import CURRENT_COUNT, CURRENT_SELECT_OPTIONS, SCOPED_WIDTH_COUNT, REFERENCE_ROUTE_COUNT, PENDING_PROPOSALS
 
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -11,7 +12,7 @@ from playwright.sync_api import sync_playwright
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CHROME = Path(r"C:\Program Files\Google\Chrome\Application\chrome.exe")
+CHROME = Path(os.environ.get('OSW_TEST_BROWSER', r"C:\Program Files\Google\Chrome\Application\chrome.exe"))
 
 
 class QuietHandler(SimpleHTTPRequestHandler):
@@ -675,16 +676,16 @@ def main() -> None:
                 movie_page.set_viewport_size({"width": 375, "height": 800})
                 assert movie_page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
                 movie_page.close()
-                route_catalog=json.loads((ROOT/'research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))
+                route_catalog=json.loads((ROOT/'research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))
                 route_counts=route_catalog['counts']
                 routes_page = browser.new_page()
                 routes_page.on("pageerror", lambda error: errors.append(str(error)))
                 routes_page.goto(f"http://127.0.0.1:{server.server_port}/almanac/reference-routes.html", wait_until="networkidle")
                 width_inventory=json.loads((ROOT/'research/ocean-current-width-inventory.json').read_text(encoding='utf-8'))
-                width_count=width_inventory['counts']['measurements']
+                width_count=SCOPED_WIDTH_COUNT
                 routes_page.wait_for_function("count=>document.querySelector('#width-status').textContent.startsWith(count+' scoped')",arg=width_count)
                 assert routes_page.locator('#width-rows tr').count() == width_count
-                assert routes_page.locator('#width-decision-rows tr').count() == 100
+                assert routes_page.locator('#width-decision-rows tr').count() == CURRENT_COUNT
                 assert '25–40 km reported seasonal span' in routes_page.locator('#width-seasonal-northern-mediterranean').inner_text()
                 assert 'not absolute annual extrema' in routes_page.locator('#width-seasonal-northern-mediterranean').inner_text()
                 assert '25 km' in routes_page.locator('#width-northern-mediterranean-winter-width').inner_text()
@@ -700,7 +701,7 @@ def main() -> None:
                 seasons_page = browser.new_page()
                 seasons_page.on("pageerror", lambda error: errors.append(str(error)))
                 seasons_page.goto(f"http://127.0.0.1:{server.server_port}/almanac/seasons.html", wait_until="networkidle")
-                assert seasons_page.locator('#season-current option').count() == 100
+                assert seasons_page.locator('#season-current option').count() == CURRENT_COUNT
                 assert 'about 25 km' in seasons_page.locator('#season-value').inner_text()
                 assert 'Seasonal length: unknown' in seasons_page.locator('#season-length').inner_text()
                 seasons_page.locator('#season-play').click()

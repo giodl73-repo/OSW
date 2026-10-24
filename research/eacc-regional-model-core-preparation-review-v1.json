@@ -1,0 +1,69 @@
+{
+  "schema": "osw.eacc-regional-model-core.preparation-review.v1",
+  "status": "SYNTHETIC_PREPARATION_ONLY_ORIGINAL_CASE_NOT_READY",
+  "reviewed_utc": "2026-10-24T15:39:18.841114+00:00",
+  "base_source_commit": "6d7ae25",
+  "entity_id": "current:east-african-coastal",
+  "input_sha256": {
+    "analysis/eacc_model_core_seed_v1.py": "4c8dac48fa7e242b2fadbfc4c8d6b4ec1a0ed312fc1777e958d75da5e0ecba3b",
+    "analysis/test_eacc_model_core_seed_v1.py": "83db1a05ea7a62d1d05ddcfd8114728a9c517ce8827abf68103c291905165e2c",
+    "analysis/eacc_model_core_diagnostic_v1.py": "ad0e2683b2f918421826e83d32b8aac16e2b177287528b8456425b0cb021fefd",
+    "analysis/test_eacc_model_core_diagnostic_v1.py": "b7723cdc45e87507f1710bb360540c3d32f7aea864c6af0cde20d649e61650f2",
+    "plans/eacc-regional-model-core-width-protocol-v1.md": "36158461fdcb829662db9bce1f8d02da2e39875d516440a204e58419fb7f04ad",
+    "research/eacc-hycom-metadata-review-v1.json": "28b52674527edefa1bb728b9c36f74af03c5bd9e0bbcb0fb80e7b0887bb71493",
+    "signals/roles/check/eacc-regional-model-core-preparation-v1-roles-check-2026-10-24.md": "139be2031886d9af51b2bf04620a88fcb52266a87c998f2a9fecedc5a3f5da01"
+  },
+  "synthetic_validation": {
+    "command": "python -m pytest -q analysis/test_eacc_model_core_seed_v1.py analysis/test_eacc_model_core_diagnostic_v1.py",
+    "passed": 53,
+    "failed": 0,
+    "pytest_elapsed_seconds": 0.91,
+    "logical_cpus": 1,
+    "priority": "BelowNormal",
+    "numerical_workers": 1,
+    "network_used": false,
+    "original_arrays_used": false,
+    "rendering_used": false
+  },
+  "prior_input_hashes_preserved": {
+    "research/west-greenland-core-width-preflight-v1.json": 31,
+    "research/indian-coastal-dimension-context-query-contract-v1.json": 10
+  },
+  "numeric_output_contract": {
+    "cases": 72,
+    "months": 12,
+    "station_step_comparisons": 84,
+    "native_seed_comparisons": 48,
+    "missing_months_retained": true,
+    "sensitivity_is_measurement_uncertainty": false
+  },
+  "internal_roles": {
+    "verdict": "APPROVED-WITH-CONDITIONS for prospective preparation only",
+    "p1": 0,
+    "p2_prerequisites": 12,
+    "p3_notes": 9,
+    "independent_scientific_review": false
+  },
+  "original_case_executed": false,
+  "scientific_preflight_frozen": false,
+  "velocity_acquisition_allowed": false,
+  "heavy_work_permitted": false,
+  "source_coordinate_values_verified": false,
+  "source_velocity_requested": false,
+  "new_paired_widths": 0,
+  "new_ranked_lengths": 0,
+  "new_annual_ranges": 0,
+  "new_geometry_or_state_joins": 0,
+  "working_packet_updated": false,
+  "local_preview_updated": false,
+  "main_merged": false,
+  "scientific_release_published": false,
+  "remaining": [
+    "Verify exact source coordinate/depth/time/region selection and citation",
+    "Implement and test new bounded source acquisition and monthly pairing/packing",
+    "Freeze complete scientific dependency graph and exact source requests before first original case",
+    "Retain and inspect actual source-neighborhood maps and all failed outcomes in one later cloud job",
+    "Build semantic query/card/atlas presentation and sequential native/WASM/browser validation for the reviewed evidence class"
+  ],
+  "objective_scope": "All core data/info/viz gaps remain the objective; this preparation alone closes no physical current dimension."
+}

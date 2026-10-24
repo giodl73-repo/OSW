@@ -1,0 +1,1528 @@
+{
+  "schema": "osw.native-product-metadata.v1",
+  "current_id": "aleutian",
+  "status": "source_metadata_only_pending_underway_operator",
+  "input_sha256": {
+    "research/source-data/jasadcp-p14n-1993-native/00016_short.nc": "5b81d211bbb7aadc60c065f7c66ace16572f79569d7642bc96436923785bc6f8",
+    "research/source-data/jasadcp-p14n-1993-native/00016_long.nc": "bbd76e9d7322c54d8476f6ef545bcc10ebb0678c5e145c897554cbe13c82f746",
+    "research/source-data/jasadcp-p14n-1993-native/acquisition.json": "be53aa8de06de0355ce4fa597a0a6250873f955ed863bdc408c883364c704bc1",
+    "analysis/acquire_p14n_native_products.py": "da4018dc0d9dc7af1b7f55f74360f92516f1f4c00d063843109509976ec8948c",
+    "plans/aleutian-p14n-native-source-preflight-v1.md": "a5c49bc002ccbf72dee754dcc3ff12dea24e8328e9e2b2daf38601613355fb3e",
+    "research/source-data/jasadcp-p14n-1993/gateway.html": "e2ada40a24ef2674d7c3c243936648f0b8cc7fad56682fb95afdbe6367b89f2b"
+  },
+  "generator_file": "analysis/build_p14n_native_metadata.py",
+  "generator_sha256": "6687b4f0a175b5a989969a950a548f9f99f74b3b7ff9cbf4843eb48f27bf71ab",
+  "products": [
+    {
+      "source_file": "research/source-data/jasadcp-p14n-1993-native/00016_short.nc",
+      "source_sha256": "5b81d211bbb7aadc60c065f7c66ace16572f79569d7642bc96436923785bc6f8",
+      "dimensions": {
+        "time": 11455,
+        "depth_cell": 120
+      },
+      "attributes": {
+        "featureType": "trajectoryProfile",
+        "history": "Created: 2020-04-03 19:07:00 UTC",
+        "Conventions": "COARDS",
+        "software": "pycurrents",
+        "hg_changeset": "2993:bc42f2027bfe",
+        "title": "Shipboard ADCP velocity profiles",
+        "description": "Shipboard ADCP velocity profiles from ship_tag=tt9306 woce_tag=P14N EXPOCODE= 325023_1 using instrument look in global attribute \"cruise_sonar_summary\" for sonar - Short Version.",
+        "cruise_id": "ship_tag=tt9306 woce_tag=P14N EXPOCODE= 325023_1",
+        "yearbase": 1993,
+        "SACID": "00016",
+        "project": "WOCE (One-time line)",
+        "platform": "Thompson,Thomas G. (KTDQ AS OF 1992)",
+        "contributor_name": "Gunnar Roden",
+        "contributor_institute": "University of Washington",
+        "contributor_role": "SADCP PI, originator",
+        "QC_Manual": "Common Oceanographic Data Access System (CODAS) http://currents.soest.hawaii.edu/docs/adcp_doc/index.html",
+        "QC_indicator": "Editing_flags (pflag), Percent good pings (pg) ",
+        "QC_software": "CODAS"
+      },
+      "variables": {
+        "trajectory": {
+          "dimensions": [],
+          "shape": [],
+          "dtype": "int32",
+          "attributes": {
+            "standard_name": "trajectory_id"
+          }
+        },
+        "lon": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float64",
+          "attributes": {
+            "missing_value": 1e+38,
+            "long_name": "Longitude",
+            "units": "degrees_east",
+            "C_format": "%9.4f",
+            "standard_name": "longitude",
+            "data_min": -186.81711388888888,
+            "data_max": -135.3138138888889
+          }
+        },
+        "lat": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float64",
+          "attributes": {
+            "missing_value": 1e+38,
+            "long_name": "Latitude",
+            "units": "degrees_north",
+            "C_format": "%9.4f",
+            "standard_name": "latitude",
+            "data_min": 1.2200222222222221,
+            "data_max": 59.001694444444446
+          }
+        },
+        "depth": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "Depth",
+            "units": "meter",
+            "C_format": "%8.2f",
+            "positive": "down",
+            "data_min": 19.0,
+            "data_max": 495.0
+          }
+        },
+        "u": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "Zonal velocity component",
+            "units": "meter second-1",
+            "C_format": "%7.2f",
+            "data_min": -2.9679999351501465,
+            "data_max": 2.0260000228881836
+          }
+        },
+        "v": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "Meridional velocity component",
+            "units": "meter second-1",
+            "C_format": "%7.2f",
+            "data_min": -1.886000633239746,
+            "data_max": 1.8450000286102295
+          }
+        },
+        "amp": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "Received signal strength",
+            "C_format": "%d",
+            "data_min": 23,
+            "data_max": 254
+          }
+        },
+        "pg": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "int8",
+          "attributes": {
+            "missing_value": -1,
+            "long_name": "Percent good pings",
+            "C_format": "%d",
+            "data_min": 0,
+            "data_max": 100
+          }
+        },
+        "pflag": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "int8",
+          "attributes": {
+            "long_name": "Editing flags",
+            "C_format": "%d",
+            "data_min": 0,
+            "data_max": 1
+          }
+        },
+        "heading": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "Ship heading",
+            "units": "degrees",
+            "C_format": "%6.1f",
+            "data_min": 1.3376283645629883,
+            "data_max": 359.73687744140625
+          }
+        },
+        "tr_temp": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ADCP transducer temperature",
+            "units": "Celsius",
+            "C_format": "%4.1f",
+            "data_min": 5.095200061798096,
+            "data_max": 30.473400115966797
+          }
+        },
+        "num_pings": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "long_name": "Number of pings averaged per ensemble",
+            "units": "None",
+            "C_format": "%d",
+            "data_min": 86,
+            "data_max": 237
+          }
+        },
+        "uship": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "Ship zonal velocity component",
+            "units": "meter second-1",
+            "C_format": "%9.4f",
+            "data_min": -6.9029998779296875,
+            "data_max": 4.914999961853027
+          }
+        },
+        "vship": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "Ship meridional velocity component",
+            "units": "meter second-1",
+            "C_format": "%9.4f",
+            "data_min": -6.986000061035156,
+            "data_max": 6.849999904632568
+          }
+        },
+        "time": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float64",
+          "attributes": {
+            "long_name": "Decimal day",
+            "units": "days since 1993-01-01 00:00:00",
+            "C_format": "%12.5f",
+            "standard_name": "time",
+            "data_min": 179.58287037037036,
+            "data_max": 221.69736111111112
+          }
+        }
+      },
+      "provider_variable_definitions": "\nVariables in this CODAS short-form Netcdf file are intended for most end-user\nscientific analysis and display purposes. For additional information see\nthe CODAS_processing_note global attribute and the attributes of each\nof the variables.\n\n\n============= =================================================================\ntime          Time at the end of the ensemble, days from start of year.\nlon, lat      Longitude, Latitude from GPS at the end of the ensemble.\nu,v           Ocean zonal and meridional velocity component profiles.\nuship, vship  Zonal and meridional velocity components of the ship.\nheading       Mean ship heading during the ensemble.\ndepth         Bin centers in nominal meters (no sound speed profile correction).\ntr_temp       ADCP transducer temperature.\npg            Percent Good pings for u, v averaging after editing.\npflag         Profile Flags based on editing, used to mask u, v.\namp           Received signal strength in ADCP-specific units; no correction\n              for spreading or attenuation.\n============= =================================================================\n\n",
+      "provider_processing_note_sha256": "affa015953422d43b796faaf29e596a973f1e3bd8651a01ca4ccde0e9c4bd596"
+    },
+    {
+      "source_file": "research/source-data/jasadcp-p14n-1993-native/00016_long.nc",
+      "source_sha256": "bbd76e9d7322c54d8476f6ef545bcc10ebb0678c5e145c897554cbe13c82f746",
+      "dimensions": {
+        "time": 11455,
+        "depth_cell": 120
+      },
+      "attributes": {
+        "featureType": "trajectoryProfile",
+        "history": "Created: 2020-04-03 19:07:03 UTC",
+        "Conventions": "COARDS",
+        "software": "pycurrents",
+        "hg_changeset": "2993:bc42f2027bfe",
+        "title": "Shipboard ADCP velocity profiles",
+        "description": "Shipboard ADCP velocity profiles from ship_tag=tt9306 woce_tag=P14N EXPOCODE= 325023_1 using instrument look in global attribute \"cruise_sonar_summary\" for sonar - Long Version.",
+        "cruise_id": "ship_tag=tt9306 woce_tag=P14N EXPOCODE= 325023_1",
+        "yearbase": 1993,
+        "SACID": "00016",
+        "project": "WOCE (One-time line)",
+        "platform": "Thompson,Thomas G. (KTDQ AS OF 1992)",
+        "contributor_name": "Gunnar Roden",
+        "contributor_institute": "University of Washington",
+        "contributor_role": "SADCP PI, originator",
+        "QC_Manual": "Common Oceanographic Data Access System (CODAS) http://currents.soest.hawaii.edu/docs/adcp_doc/index.html",
+        "QC_indicator": "Editing_flags (pflag), Percent good pings (pg) ",
+        "QC_software": "CODAS"
+      },
+      "variables": {
+        "trajectory": {
+          "dimensions": [],
+          "shape": [],
+          "dtype": "int32",
+          "attributes": {
+            "standard_name": "trajectory_id"
+          }
+        },
+        "lon": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float64",
+          "attributes": {
+            "missing_value": 1e+38,
+            "long_name": "Longitude",
+            "units": "degrees_east",
+            "C_format": "%9.4f",
+            "standard_name": "longitude",
+            "data_min": -186.81711388888888,
+            "data_max": -135.3138138888889
+          }
+        },
+        "lat": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float64",
+          "attributes": {
+            "missing_value": 1e+38,
+            "long_name": "Latitude",
+            "units": "degrees_north",
+            "C_format": "%9.4f",
+            "standard_name": "latitude",
+            "data_min": 1.2200222222222221,
+            "data_max": 59.001694444444446
+          }
+        },
+        "depth": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "DEPTH",
+            "units": "m",
+            "C_format": "%d",
+            "positive": "down",
+            "data_min": 19,
+            "data_max": 495
+          }
+        },
+        "u": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "U",
+            "units": "m/s",
+            "C_format": "%9.4f",
+            "data_min": -4.930000305175781,
+            "data_max": 7.549000263214111
+          }
+        },
+        "v": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "V",
+            "units": "m/s",
+            "C_format": "%9.4f",
+            "data_min": -7.651000499725342,
+            "data_max": 7.074000358581543
+          }
+        },
+        "w": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "W",
+            "units": "m/s",
+            "C_format": "%9.4f",
+            "data_min": -1.061000108718872,
+            "data_max": 0.6910000443458557
+          }
+        },
+        "error_vel": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ERROR_VEL",
+            "units": "m/s",
+            "C_format": "%9.4f",
+            "data_min": -2.140000104904175,
+            "data_max": 2.248000144958496
+          }
+        },
+        "profile_flags": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "int8",
+          "attributes": {
+            "missing_value": -1,
+            "long_name": "PROFILE_FLAGS",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": 0,
+            "data_max": 1
+          }
+        },
+        "amp_sound_scat": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "AMP_SOUND_SCAT",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": 23,
+            "data_max": 254
+          }
+        },
+        "percent_good": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "int8",
+          "attributes": {
+            "missing_value": -1,
+            "long_name": "PERCENT_GOOD",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": 0,
+            "data_max": 100
+          }
+        },
+        "percent_3_beam": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "int8",
+          "attributes": {
+            "missing_value": -1,
+            "long_name": "PERCENT_3_BEAM",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": -1,
+            "data_max": -1
+          }
+        },
+        "spectral_width": {
+          "dimensions": [
+            "time",
+            "depth_cell"
+          ],
+          "shape": [
+            11455,
+            120
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "SPECTRAL_WIDTH",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": 20,
+            "data_max": 254
+          }
+        },
+        "ACCESS_first_good_bin": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "ACCESS_VARIABLES__first_good_bin",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": 1,
+            "data_max": 1
+          }
+        },
+        "ACCESS_last_good_bin": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "ACCESS_VARIABLES__last_good_bin",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": -1,
+            "data_max": 120
+          }
+        },
+        "ACCESS_U_ship_absolute": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ACCESS_VARIABLES__U_ship_absolute",
+            "units": "m/s",
+            "C_format": "%9.4f",
+            "data_min": -6.9029998779296875,
+            "data_max": 4.914999961853027
+          }
+        },
+        "ACCESS_V_ship_absolute": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ACCESS_VARIABLES__V_ship_absolute",
+            "units": "m/s",
+            "C_format": "%9.4f",
+            "data_min": -6.986000061035156,
+            "data_max": 6.849999904632568
+          }
+        },
+        "NAV_latitude": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float64",
+          "attributes": {
+            "missing_value": 1e+38,
+            "long_name": "NAVIGATION__latitude",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": 1.2198016665875913,
+            "data_max": 59.00175666672488
+          }
+        },
+        "NAV_longitude": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float64",
+          "attributes": {
+            "missing_value": 1e+38,
+            "long_name": "NAVIGATION__longitude",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": -179.99821333289145,
+            "data_max": 179.99761666655542
+          }
+        },
+        "NAV_speed": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float64",
+          "attributes": {
+            "missing_value": 1e+38,
+            "long_name": "NAVIGATION__speed",
+            "units": "knots",
+            "C_format": "%9.4f",
+            "data_min": 0.0048579243707737325,
+            "data_max": 21.854041507911965
+          }
+        },
+        "NAV_direction": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float64",
+          "attributes": {
+            "missing_value": 1e+38,
+            "long_name": "NAVIGATION__direction",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": 2.669413551315003e-08,
+            "data_max": 359.76711072454077
+          }
+        },
+        "ANCIL1_tr_temp": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_1__tr_temp",
+            "units": "C",
+            "C_format": "%9.4f",
+            "data_min": 5.095200061798096,
+            "data_max": 30.473400115966797
+          }
+        },
+        "ANCIL1_snd_spd_used": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_1__snd_spd_used",
+            "units": "m/s",
+            "C_format": "%9.4f",
+            "data_min": 1468.807373046875,
+            "data_max": 1545.41650390625
+          }
+        },
+        "ANCIL1_best_snd_spd": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_1__best_snd_spd",
+            "units": "m/s",
+            "C_format": "%9.4f",
+            "data_min": 9.999999680285692e+37,
+            "data_max": 9.999999680285692e+37
+          }
+        },
+        "ANCIL1_mn_heading": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_1__mn_heading",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": 1.3376283645629883,
+            "data_max": 359.73687744140625
+          }
+        },
+        "ANCIL1_pgs_sample": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "ANCILLARY_1__pgs_sample",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": 86,
+            "data_max": 237
+          }
+        },
+        "ANCIL2_watrk_hd_misalign": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__watrk_hd_misalign",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": -0.5290665030479431,
+            "data_max": 5.2405314445495605
+          }
+        },
+        "ANCIL2_watrk_scale_factor": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__watrk_scale_factor",
+            "units": "none",
+            "C_format": "%9.4f",
+            "data_min": 0.9929999709129333,
+            "data_max": 0.9929999709129333
+          }
+        },
+        "ANCIL2_botrk_hd_misalign": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__botrk_hd_misalign",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": -0.5290665030479431,
+            "data_max": 5.2405314445495605
+          }
+        },
+        "ANCIL2_botrk_scale_factor": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__botrk_scale_factor",
+            "units": "none",
+            "C_format": "%9.4f",
+            "data_min": 0.9929999709129333,
+            "data_max": 0.9929999709129333
+          }
+        },
+        "ANCIL2_pit_misalign": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__pit_misalign",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": 0.0,
+            "data_max": 0.0
+          }
+        },
+        "ANCIL2_rol_misalign": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__rol_misalign",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": 0.0,
+            "data_max": 0.0
+          }
+        },
+        "ANCIL2_last_temp": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__last_temp",
+            "units": "C",
+            "C_format": "%9.4f",
+            "data_min": 5.09521484375,
+            "data_max": 30.693359375
+          }
+        },
+        "ANCIL2_last_heading": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__last_heading",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": 0.076904296875,
+            "data_max": 359.4451904296875
+          }
+        },
+        "ANCIL2_last_pitch": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__last_pitch",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": 0.0,
+            "data_max": 0.4669189453125
+          }
+        },
+        "ANCIL2_last_roll": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__last_roll",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": -0.3076171875,
+            "data_max": 0.1593017578125
+          }
+        },
+        "ANCIL2_mn_pitch": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__mn_pitch",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": 0.028887908905744553,
+            "data_max": 0.20535527169704437
+          }
+        },
+        "ANCIL2_mn_roll": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__mn_roll",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": -0.15458540618419647,
+            "data_max": -0.021944629028439522
+          }
+        },
+        "ANCIL2_std_temp": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__std_temp",
+            "units": "C",
+            "C_format": "%9.4f",
+            "data_min": 0.0,
+            "data_max": 0.36571356654167175
+          }
+        },
+        "ANCIL2_std_heading": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__std_heading",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": 0.03755739703774452,
+            "data_max": 150.53399658203125
+          }
+        },
+        "ANCIL2_std_pitch": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__std_pitch",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": 0.05553281307220459,
+            "data_max": 0.13720566034317017
+          }
+        },
+        "ANCIL2_std_roll": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "ANCILLARY_2__std_roll",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": 0.03770727664232254,
+            "data_max": 0.10776551812887192
+          }
+        },
+        "ANCIL2_ocean_depth": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "ANCILLARY_2__ocean_depth",
+            "units": "m",
+            "C_format": "%d",
+            "data_min": 32767,
+            "data_max": 32767
+          }
+        },
+        "ANCIL2_max_amp_bin": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "ANCILLARY_2__max_amp_bin",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": 4,
+            "data_max": 120
+          }
+        },
+        "ANCIL2_last_good_bin": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "ANCILLARY_2__last_good_bin",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": 2,
+            "data_max": 120
+          }
+        },
+        "CONFIG1_avg_interval": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "CONFIGURATION_1__avg_interval",
+            "units": "s",
+            "C_format": "%9.4f",
+            "data_min": 300.0,
+            "data_max": 300.0
+          }
+        },
+        "CONFIG1_compensation": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "CONFIGURATION_1__compensation",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": 1,
+            "data_max": 1
+          }
+        },
+        "CONFIG1_num_bins": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "CONFIGURATION_1__num_bins",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": 120,
+            "data_max": 120
+          }
+        },
+        "CONFIG1_tr_depth": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "CONFIGURATION_1__tr_depth",
+            "units": "m",
+            "C_format": "%9.4f",
+            "data_min": 5.0,
+            "data_max": 5.0
+          }
+        },
+        "CONFIG1_bin_length": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "CONFIGURATION_1__bin_length",
+            "units": "m",
+            "C_format": "%9.4f",
+            "data_min": 4.0,
+            "data_max": 4.0
+          }
+        },
+        "CONFIG1_pls_length": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "CONFIGURATION_1__pls_length",
+            "units": "m",
+            "C_format": "%9.4f",
+            "data_min": 16.0,
+            "data_max": 16.0
+          }
+        },
+        "CONFIG1_blank_length": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "CONFIGURATION_1__blank_length",
+            "units": "m",
+            "C_format": "%9.4f",
+            "data_min": 4.0,
+            "data_max": 4.0
+          }
+        },
+        "CONFIG1_ping_interval": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "CONFIGURATION_1__ping_interval",
+            "units": "s",
+            "C_format": "%9.4f",
+            "data_min": 9.999999680285692e+37,
+            "data_max": 9.999999680285692e+37
+          }
+        },
+        "CONFIG1_bot_track": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "CONFIGURATION_1__bot_track",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": 0,
+            "data_max": 255
+          }
+        },
+        "CONFIG1_pgs_ensemble": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "CONFIGURATION_1__pgs_ensemble",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": 1,
+            "data_max": 1
+          }
+        },
+        "CONFIG1_ens_threshold": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "CONFIGURATION_1__ens_threshold",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": 25,
+            "data_max": 25
+          }
+        },
+        "CONFIG1_ev_threshold": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "CONFIGURATION_1__ev_threshold",
+            "units": "mm/s",
+            "C_format": "%d",
+            "data_min": 32767,
+            "data_max": 32767
+          }
+        },
+        "CONFIG1_hd_offset": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "CONFIGURATION_1__hd_offset",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": 45.0,
+            "data_max": 45.0
+          }
+        },
+        "CONFIG1_pit_offset": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "CONFIGURATION_1__pit_offset",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": 0.0,
+            "data_max": 0.0
+          }
+        },
+        "CONFIG1_rol_offset": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "CONFIGURATION_1__rol_offset",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": 0.0,
+            "data_max": 0.0
+          }
+        },
+        "CONFIG1_freq_transmit": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "CONFIGURATION_1__freq_transmit",
+            "units": "Hz",
+            "C_format": "%9.4f",
+            "data_min": 65535.0,
+            "data_max": 65535.0
+          }
+        },
+        "CONFIG1_top_ref_bin": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "CONFIGURATION_1__top_ref_bin",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": 4,
+            "data_max": 4
+          }
+        },
+        "CONFIG1_bot_ref_bin": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "int16",
+          "attributes": {
+            "missing_value": 32767,
+            "long_name": "CONFIGURATION_1__bot_ref_bin",
+            "units": "none",
+            "C_format": "%d",
+            "data_min": 15,
+            "data_max": 15
+          }
+        },
+        "CONFIG1_heading_bias": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "CONFIGURATION_1__heading_bias",
+            "units": "deg",
+            "C_format": "%9.4f",
+            "data_min": 0.0,
+            "data_max": 0.0
+          }
+        },
+        "BT_u": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "BOTTOM_TRACK__u",
+            "units": "m/s",
+            "C_format": "%9.4f",
+            "data_min": -1.8314181566238403,
+            "data_max": 6.963015079498291
+          }
+        },
+        "BT_v": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "BOTTOM_TRACK__v",
+            "units": "m/s",
+            "C_format": "%9.4f",
+            "data_min": -6.643126964569092,
+            "data_max": 7.017287731170654
+          }
+        },
+        "BT_depth": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float32",
+          "attributes": {
+            "missing_value": 9.999999680285692e+37,
+            "long_name": "BOTTOM_TRACK__depth",
+            "units": "m",
+            "C_format": "%9.4f",
+            "data_min": -1.0,
+            "data_max": 715.0
+          }
+        },
+        "time": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            11455
+          ],
+          "dtype": "float64",
+          "attributes": {
+            "long_name": "Decimal day",
+            "units": "days since 1993-01-01 00:00:00",
+            "C_format": "%12.5f",
+            "standard_name": "time",
+            "data_min": 179.58287037037036,
+            "data_max": 221.69736111111112
+          }
+        }
+      },
+      "provider_variable_definitions": "\nVariables in this CODAS long-form netcdf file are taken directly from the\noriginal CODAS database used in processing.  For additional information see\nthe CODAS_processing_note global attribute and the attributes of each\nof the variables.\n\nThe term \"bin\" refers to the depth cell index, starting from 1\nnearest the transducer.  Bin depths correspond to the centers of\nthe depth cells.\n\nshort_name                  description\n---------                   --------------\ntime                      : Time at the end of the ensemble, days from start\n                            of year.\nlon, lat                  : Longitude, Latitude at the end of the ensemble.\nu,v                       : Zonal and meridional velocity component profiles\n                            relative to the moving ship, not to the earth.\nw                         : Vertical velocity -- Caution: usually dominated by\n                            ship motion and other artifacts.\nerror_vel                 : Error velocity -- diagnostic, scaled difference\n                            between 2 estimates of vertical velocity (w).\namp_sound_scat            : Received signal strength (ADCP units; not corrected\n                            for spreading or attenuation).\nprofile_flags             : Editing flags for averaged data.\npercent_good              : Percentage of pings used for averaging u, v after\n                            editing.\nspectral_width            : Spectral width for NB instruments; correlation for\n                            WH, BB, OS instruments.\n\nCONFIG1_tr_depth          : Transducer depth, meters.\nCONFIG1_top_ref_bin       : Reference layer averaging: top bin.\nCONFIG1_bot_ref_bin       : Reference layer averaging: bottom bin.\nCONFIG1_pls_length        : Pulse length projected on vertical (meters).\nCONFIG1_blank_length      : Blank length (vertical; meters).\nCONFIG1_bin_length        : Bin length (vertical; meters).\nCONFIG1_num_bins          : Number of bins.\nCONFIG1_ping_interval     : Approximate mean time between pings or ping groups.\nCONFIG1_hd_offset         : Transducer azimuth approximation prior to\n                            data processing, clockwise rotation of beam 3 from\n                            forward.\nCONFIG1_freq_transmit     : Nominal (round number) instrument frequency.\nCONFIG1_ev_threshold      : Error velocity editing threshold (if known).\nCONFIG1_bot_track         : Flag: does any bottom track data exist?\nCONFIG1_avg_interval      : Ensemble-averaging interval (seconds).\n\nBT_u                      : Eastward ship velocity from bottom tracking.\nBT_v                      : Northward ship velocity from bottom tracking.\nBT_depth                  : Depth from bottom tracking.\n\nANCIL2_watrk_scale_factor : Scale factor; multiplier applied to measured\n                            velocity.\nANCIL2_watrk_hd_misalign  : Azimuth correction used to rotate measured\n                            velocity.\nANCIL2_botrk_scale_factor : Scale factor for bottom tracking.\nANCIL2_botrk_hd_misalign  : Azimuth correction for bottom tracking.\nANCIL2_mn_roll            : Ensemble-mean roll.\nANCIL2_mn_pitch           : Ensemble-mean pitch.\nANCIL1_mn_heading         : Ensemble-mean heading.\nANCIL1_tr_temp            : Ensemble-mean transducer temperature.\nANCIL2_std_roll           : Standard deviation of roll.\nANCIL2_std_pitch          : Standard deviation of pitch.\nANCIL2_std_heading        : Standard deviation of heading.\nANCIL2_std_temp           : Standard deviation of transducer temperature.\nANCIL2_last_roll          : Last measurement of roll in the ensemble.\nANCIL2_last_pitch         : Last measurement of pitch.\nANCIL2_last_heading       : Last measurement of heading.\nANCIL2_last_temp          : Last measurement of transducer temperature.\nANCIL2_last_good_bin      : Deepest bin with good velocities.\nANCIL2_max_amp_bin        : Bin with maximum amplitude based on bottom-\n                            detection, if the bottom is within range.\nANCIL1_snd_spd_used       : Sound speed used for velocity calculations.\nANCIL1_pgs_sample         : Number of pings averaged in the ensemble.\n\nACCESS_last_good_bin      : Last bin with good data. (-1 if the entire profile\n                            is bad.)\nACCESS_first_good_bin     : First bin with good data.\nACCESS_U_ship_absolute    : Ship's mean eastward velocity component.\nACCESS_V_ship_absolute    : Ship's mean northward velocity component.\n\nThe following historical variables are not currently used.\n----------------------------------------------------------\nNAV_speed                 :\nNAV_longitude             :\nNAV_latitude              :\nNAV_direction             :\n\nCONFIG1_rol_offset        :\nCONFIG1_pit_offset        :\nCONFIG1_compensation      :\nCONFIG1_pgs_ensemble      :  Number of pings averaged in the instrument;\n                             always 1 for SADCP.\nCONFIG1_heading_bias      :  Only relevant for narrowband ADCP data\n                             collected with DAS2.48 or earlier (MS-DOS).\nCONFIG1_ens_threshold     :\n\nANCIL2_rol_misalign       :\nANCIL2_pit_misalign       :\nANCIL2_ocean_depth        :\nANCIL1_best_snd_spd       :\n\npercent_3_beam            : This may have different meanings depending on\n                            the data acquisition system, processing method,\n                            and software versions; it is not useful without\n                            this context.\n\n.............................................................................\n\n",
+      "provider_processing_note_sha256": "affa015953422d43b796faaf29e596a973f1e3bd8651a01ca4ccde0e9c4bd596"
+    }
+  ],
+  "ocean_and_ship_velocity_arrays_inspected": false,
+  "selected_local_profile_count": null,
+  "actual_sample_intervals_determined": false,
+  "profile_flag_bit_meanings": {
+    "1": "bad bin",
+    "2": "bad percent good",
+    "4": "below bottom"
+  },
+  "profile_flags_are_woce_ctd_quality_codes": false,
+  "interpretation": [
+    "Both files expose 11,455 time records and 120 depth cells for the entire cruise, not a local branch count.",
+    "The short product already contains Earth-coordinate ocean u/v and ship uship/vship. Do not add ship motion again.",
+    "Short-product time and GPS coordinates refer to ensemble end. Bin centers are nominal metres without sound-speed-profile correction; depth is a time-by-cell array.",
+    "Profile editing flags are CODAS bits, not WOCE CTD quality codes. A CODAS bit4 below-bottom flag has a different meaning from a CTD quality number.",
+    "Native time spacing, velocity support, short/long numerical correspondence and underway segmentation require a separately declared field audit."
+  ],
+  "new_width_record_admitted": false,
+  "current_association_verified": false,
+  "whole_current_width_km": null,
+  "annual_width_range_km": null,
+  "physical_edge_geometry_admitted": false
+}

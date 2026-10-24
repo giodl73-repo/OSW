@@ -1,4 +1,6 @@
 """Scope reviews stay visible without inheriting routes from similar names."""
+from browser_inventory_expectations import CURRENT_SELECT_OPTIONS
+
 import json,hashlib,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -10,11 +12,13 @@ def main():
     proposals=json.loads(Path('research/ocean-current-inventory-expansion-candidates.json').read_text(encoding='utf-8'))
     assert hashlib.sha256(Path('research/ocean-current-almanac.json').read_bytes()).hexdigest()==proposals['current_ledger_sha256']
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER',r'C:\Program Files\Google\Chrome\Application\chrome.exe'))
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':320,'height':800});errors=[]
+        page.emulate_media(reduced_motion='reduce')
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length===101')
+        page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=len(json.loads(Path('research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))['candidates']))
+        page.wait_for_function('document.querySelectorAll("#route-atlas-select option").length==='+str(CURRENT_SELECT_OPTIONS))
         for row in reviewed:
             page.locator('#route-atlas-select').select_option(row['id'])
             review=page.locator('.route-atlas-scope-reviews')
@@ -29,8 +33,9 @@ def main():
         assert '30–35' in page.locator('.route-atlas-local-dimensions').inner_text()
         assert 'R17: 230' in page.locator('.route-atlas-local-dimensions').inner_text()
         assert 'not annual extrema' in page.locator('.route-atlas-scope-reviews').inner_text()
-        assert page.locator('#route-atlas-preview .route-map').count()==0
+        assert page.locator('#route-atlas-preview .route-map').is_visible()
         page.reload(wait_until='networkidle')
+        page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=len(json.loads(Path('research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))['candidates']))
         assert page.locator('.route-atlas-local-dimensions tbody tr').count()==6
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         page.set_viewport_size({'width':1440,'height':1000})
@@ -42,12 +47,14 @@ def main():
         assert 'not a fixed depth interval' in reach.inner_text()
         assert 'not a whole-current length' in reach.inner_text()
         assert reach.locator('.route-atlas-outflow-branches li').count()==3
-        assert page.locator('#route-atlas-preview .route-map').count()==0
+        assert page.locator('#route-atlas-preview .route-map').is_visible()
+        assert 'Studied reach only' in page.locator('#route-atlas-preview').inner_text()
         reach.locator('summary').click()
         assert 'about 115 km long' in reach.inner_text() and 'about 120 km long' in reach.inner_text()
         assert 'not current width estimates' in reach.inner_text()
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         page.reload(wait_until='networkidle')
+        page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=len(json.loads(Path('research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))['candidates']))
         assert page.locator('.route-atlas-outflow-branches li').count()==3
         page.set_viewport_size({'width':1440,'height':1000})
         page.locator('.route-atlas-reported-reach').screenshot(path='figures/red-sea-reported-reach-card-review.png')

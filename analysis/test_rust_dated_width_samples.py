@@ -1,4 +1,5 @@
 """Dated section spans, elapsed calendar spacing and distinct sensitivity ranges."""
+from query_packet import read_bundle_bytes
 import copy
 from datetime import date
 import json
@@ -26,7 +27,7 @@ def source_readback_matches(saved,readback,path=()):
         if len(path)>1 and path[-1]=='latitude' and path[-2] in ('south_boundary','north_boundary'):return math.isclose(saved,readback,rel_tol=0,abs_tol=1e-14)
     return saved==readback
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     original=json.loads((ROOT/'research/gulf-stream-section-width-series.json').read_bytes())
     rows=[r for r in bundle['collections']['width_samples'] if r['sample_family']=='gulf_stream_dated_half_peak_section']
     assert len(rows)==17 and all(r['current_id']=='gulf-stream-system' for r in rows)

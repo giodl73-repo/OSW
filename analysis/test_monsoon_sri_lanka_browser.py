@@ -15,7 +15,7 @@ def main():
     assert row['latest_observation_date'] is None
     assert hashlib.sha256((root/'research/ocean-current-almanac.json').read_bytes()).hexdigest() == '6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e'
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, executable_path=os.environ.get('OSW_TEST_BROWSER', r'C:\Program Files\Google\Chrome\Application\chrome.exe'))
+        browser = p.chromium.launch(headless=True, executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page = browser.new_page(viewport={'width':1440,'height':1000})
         errors = []
         page.on('pageerror', lambda e: errors.append(str(e)))
