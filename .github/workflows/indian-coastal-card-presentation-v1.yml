@@ -1,0 +1,147 @@
+name: Saved Indian coastal card presentation
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/current-gap-delivery-phase.json
+      - .github/workflows/indian-coastal-card-presentation-v1.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  select-phase:
+    runs-on: ubuntu-latest
+    outputs:
+      phase: ${{ steps.phase.outputs.phase }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/current-gap-delivery-phase.json
+      - id: phase
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          phase = json.loads(pathlib.Path('research/current-gap-delivery-phase.json').read_bytes())['phase']
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
+              stream.write('phase=' + phase + '\n')
+          PY
+  saved-card-presentation:
+    needs: select-phase
+    if: needs.select-phase.outputs.phase == 'indian-coastal-card-presentation-v1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          path: control
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/indian_coastal_card_presentation_v1.py
+            analysis/check_indian_coastal_card_presentation_v1.py
+            analysis/test_indian_coastal_card_presentation_v1.py
+            analysis/indian_coastal_delivery_receipts_v1.py
+            almanac/current-source-evidence-ui.js
+            research/current-gap-delivery-phase.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify the original full validation before restoring any data
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p control/.pytest_cache/coastal-presentation-input
+          gh api repos/$GITHUB_REPOSITORY/actions/runs/40100017734 > control/.pytest_cache/coastal-presentation-input/run.json
+          gh api 'repos/'$GITHUB_REPOSITORY'/actions/runs/40100017734/jobs?per_page=100' > control/.pytest_cache/coastal-presentation-input/jobs.json
+          python - <<'PY'
+          import json, pathlib, sys
+          sys.path.insert(0, 'control/analysis')
+          from indian_coastal_delivery_receipts_v1 import verify_run
+          folder = pathlib.Path('control/.pytest_cache/coastal-presentation-input')
+          phase = json.loads(pathlib.Path('control/research/current-gap-delivery-phase.json').read_bytes())
+          assert phase['phase'] == 'indian-coastal-card-presentation-v1' and phase['heavy_work_permitted'] is True
+          assert phase['max_heavy_local_jobs'] == 0
+          verify_run(json.loads((folder/'run.json').read_bytes()), json.loads((folder/'jobs.json').read_bytes()))
+          PY
+      - name: Install only the pinned display checker dependencies
+        run: python -m pip install playwright==1.58.0 pytest==8.4.2
+      - name: Check display-only scope and local resource refusal
+        run: python -m pytest -q control/analysis/test_indian_coastal_card_presentation_v1.py
+      - uses: actions/checkout@v6
+        with:
+          ref: 0c2f0dc67a9ba25cbf488f634702b05f30401f2f
+          path: site
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 40100017734
+          github-token: ${{ github.token }}
+          name: indian-coastal-derived-candidate
+          path: site
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 40100017734
+          github-token: ${{ github.token }}
+          name: indian-coastal-query-engine
+          path: site/almanac
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 40100017734
+          github-token: ${{ github.token }}
+          name: indian-coastal-formatted-runtime
+          path: site/rust/osw-query/src
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 40100017734
+          github-token: ${{ github.token }}
+          name: indian-coastal-candidate-audit
+          path: control/.pytest_cache/coastal-presentation-input/source
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 40100017734
+          github-token: ${{ github.token }}
+          name: indian-coastal-browser-receipts
+          path: control/.pytest_cache/coastal-presentation-input/browser
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 40100017734
+          github-token: ${{ github.token }}
+          name: indian-coastal-prior-card-receipts
+          path: control/.pytest_cache/coastal-presentation-prior-cards
+      - name: Select the exact preceding five-card receipt
+        run: |
+          python - <<'PY'
+          import pathlib, shutil
+          folder = pathlib.Path('control/.pytest_cache/coastal-presentation-prior-cards')
+          found = list(folder.rglob('current-gap-admission/browser/result.json'))
+          assert len(found) == 1, [str(path) for path in found]
+          target = pathlib.Path('control/.pytest_cache/coastal-presentation-input/prior-cards/result.json')
+          target.parent.mkdir(parents=True, exist_ok=True)
+          shutil.copyfile(found[0], target)
+          PY
+      - name: Install one Chromium instance after data restoration
+        run: python -m playwright install --with-deps chromium
+      - name: Check saved data and WASM, revised cards, links and phone screenshots
+        run: >-
+          python control/analysis/check_indian_coastal_card_presentation_v1.py
+          --site site --audit control/.pytest_cache/coastal-presentation-input
+      - name: Retain only presentation evidence and its explicit display overlay
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: indian-coastal-card-presentation-v1
+          path: control/.pytest_cache/indian-coastal-card-presentation-v1/
+          include-hidden-files: true
+          if-no-files-found: ignore

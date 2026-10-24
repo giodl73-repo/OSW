@@ -22,9 +22,17 @@
   function windowLabel(window) {
     return Array.isArray(window) && window.length === 2 ? window.join(' to ') : 'Observation dates unspecified';
   }
+  function contextText(row, text) {
+    if (row.schema !== 'osw.source-reported-regional-connection.v1'
+        && row.quantity !== 'sst_associated_coastal_confinement_scale') return text;
+    return String(text)
+      .replace(/\bnear(\d+(?:\.\d+)?)degrees([NS])\b/g, 'near $1°$2')
+      .replace(/\bdescribes(\d+)years\b/g, 'describes $1 years')
+      .replace(/\b(page|section|Section|printed|PDF|Figure)(\d+)\b/g, '$1 $2');
+  }
   function source(row, parent, sourceLink) {
     sourceLink(row.source_id, node('p', null, parent));
-    if (row.source_locator || row.locator) node('p', row.source_locator || row.locator, parent);
+    if (row.source_locator || row.locator) node('p', contextText(row, row.source_locator || row.locator), parent);
   }
   window.renderCurrentSourceEvidence = function(parent, data, id, sourceLink) {
     const lengthBounds = own(data, 'current_length_bound_admissions', id).filter(row =>
@@ -172,7 +180,7 @@
         if (row.geographic_scope) node('p', row.geographic_scope, description);
         node('p', `${row.source_precision}. Reference: ${row.reference}.`, description);
         if (row.range_meaning || row.criterion_context) node('p', row.range_meaning || row.criterion_context, description);
-        if (row.time_support_note) node('p', row.time_support_note, description);
+        if (row.time_support_note) node('p', contextText(row, row.time_support_note), description);
         if (row.proxy_note) node('p', row.proxy_note, description);
         source(row, description, sourceLink);
         recordLink(description, 'current_cross_shore_context', row.id);
@@ -191,9 +199,9 @@
     for (const row of own(data, 'current_regional_reaches', id)) {
       const section = heading(parent, 'current-regional-reach', 'Reported regional reach');
       node('p', row.constraint.display, section);
-      node('p', row.scope_note || row.constraint.numeric_precision, section);
+      node('p', contextText(row, row.scope_note || row.constraint.numeric_precision), section);
       node('p', 'This regional reach is unranked. A whole-current length, physical length lower bound and annual range have not been established.', section);
-      if (row.source?.source_title) node('p', [row.source.source_title,
+      if (row.source?.source_title) node('p', [row.schema === 'osw.source-reported-regional-connection.v1' ? null : row.source.source_title,
         (row.source.authors || []).join(', '), row.source.chapter].filter(Boolean).join(' · '), section);
       source(row, section, sourceLink);
       recordLink(section, 'current_regional_reaches', row.id);

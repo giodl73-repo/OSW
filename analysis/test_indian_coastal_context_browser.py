@@ -59,14 +59,20 @@ def main():
                 section = page.locator(section_id)
                 expect(section).to_contain_text(value)
                 expect(section).to_contain_text('not' if entity == context.SJC else 'unranked')
-                expect(section).to_contain_text(row['source_locator'])
                 if entity == context.EACC:
                     expect(section).to_contain_text('theoretical-transit')
+                    expect(section).to_contain_text('near 11°S')
+                    expect(section).to_contain_text('near 3°S')
+                    expect(section).to_contain_text('Printed/PDF page 27, left column, final paragraph before section 9')
                 else:
-                    for text in [row['geographic_scope'], row['time_support_note'], row['proxy_note'], 'SST-associated coastal confinement']:
+                    for text in [row['geographic_scope'], row['proxy_note'], 'SST-associated coastal confinement',
+                                 '2004, 2005, 2006', 'describes 22 years',
+                                 'Abstract, printed 140/PDF 2', 'Section 4, printed 150/PDF 12',
+                                 'Figure 10 and discussion, printed 152/PDF 14']:
                         expect(section).to_contain_text(text)
                 source = next(r for r in document['additions']['sources'] if r['id'] == row['source_id'])
                 expect(section.locator('a').filter(has_text=source['title'])).to_have_attribute('href', source['url'])
+                assert section.inner_text().count(source['title']) == 1
                 for width in [320, 390]:
                     phase = entity + '-phone-' + str(width)
                     page.set_viewport_size({'width': width, 'height': 844})
