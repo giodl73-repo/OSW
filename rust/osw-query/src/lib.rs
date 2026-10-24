@@ -17,6 +17,7 @@ pub mod cartography;
 mod charts;
 mod coastal_composite_widths;
 mod current_catalogue;
+mod current_gap_admissions;
 mod current_length_bounds;
 mod current_measurements;
 mod current_research_evidence;
@@ -383,6 +384,7 @@ impl Store {
         model_sections::validate(&bundle)?;
         mooring_velocity::validate(&bundle)?;
         current_sections::validate(&bundle)?;
+        current_gap_admissions::validate(&bundle)?;
         current_catalogue::validate(&bundle)?;
         current_measurements::validate(&bundle)?;
         nwasc_admission::validate(&bundle)?;

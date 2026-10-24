@@ -143,6 +143,9 @@ jobs:
       - name: Reproduce complete conditional native property-window report exactly
         run: python analysis/south_indian_front_property_windows_v2.py check
   front-level-atlas:
+    # Keep the new source admission and its complete-parent audit ahead of
+    # native/WASM compilation. Each job still runs on a separate cloud host.
+    needs: regional-reach-source-replay
     runs-on: ubuntu-latest
     env:
       RUSTUP_TOOLCHAIN: 1.95.0

@@ -99,6 +99,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     if crate::nwasc_admission::active(bundle) {
         expected.push(crate::nwasc_admission::document()["entity"].clone());
     }
+    expected.extend(crate::current_gap_admissions::entities(bundle));
     if currents.len() != expected.len() || expected.iter().any(|r| !currents.contains(&r)) {
         return Err("Incomplete effective current identity inventory".into());
     }
@@ -132,6 +133,9 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     Ok(())
 }
 pub fn planning_source(current: &str, manifest: &Value) -> Option<(Value, &'static str)> {
+    if let Some(source) = crate::current_gap_admissions::planning_source(current, manifest) {
+        return Some(source);
+    }
     if current == "norwegian-atlantic-slope"
         && crate::nwasc_reference_route::active_manifest(manifest)
     {
@@ -172,7 +176,8 @@ pub fn planning_source(current: &str, manifest: &Value) -> Option<(Value, &'stat
 pub fn decisions(bundle: &Bundle) -> Vec<Value> {
     bundle.collections.get("current_identity_admissions").into_iter().flatten().map(|r|{
         if r["proposal_id"] == "norwegian-atlantic-slope" && crate::nwasc_admission::active(bundle) { return crate::nwasc_admission::identity_decision(bundle); }
-        let measured=crate::current_measurements::active(bundle);
+        if let Some(decision) = crate::current_gap_admissions::decision(bundle, r) { return decision; }
+        let measured=r["proposal_id"] == "southern-east-madagascar" && crate::current_measurements::active(bundle);
         json!({"current_id":r["proposal_id"],"name":r["entity"]["label"],
         "measurement_ids":if measured{json!([crate::current_measurements::document()["width_record"]["id"]])}else{json!([])},
         "status":if measured{"scoped_survey_width_admitted"}else{"identity_admitted_width_not_admitted"},
@@ -193,7 +198,7 @@ pub fn add_plans(bundle: &Bundle, plans: &mut Value) {
             continue;
         }
         plans[id] = json!({"current_id":id,"phases":[],"can_play":false,"eligible_indices":[],
-            "range_note":if id=="norwegian-atlantic-slope" {"Separately scoped reported widths; no comparable dated sequence, whole-current width or annual range. Static mean fields cannot show monthly states."}else{"Current identity admitted. Physical width, annual ranges and seasonal geometry remain unmeasured; the reported survey width has a separate admission gate."},
+            "range_note":if id=="norwegian-atlantic-slope" {"Separately scoped reported widths; no comparable dated sequence, whole-current width or annual range. Static mean fields cannot show monthly states."}else if id=="east-india-coastal" {"About100km reported at21m for T24 on23-24December2013 south of Sri Lanka. No paired edges, annual width range or comparable seasonal geometry admitted."}else{"Current identity admitted. Whole-current width, annual ranges and seasonal geometry remain unmeasured; separately admitted scoped widths do not establish annual extrema."},
             "playback_scope":"No seasonal animation without comparable recorded states."});
     }
 }
@@ -270,5 +275,28 @@ mod tests {
         let p = &plans["southern-east-madagascar"];
         assert_eq!(p["phases"], json!([]));
         assert_eq!(p["can_play"], false);
+    }
+    #[test]
+    fn madagascar_admission_cannot_supply_an_unrelated_identity_width() {
+        let mut b = fixture();
+        b.manifest["current_measurement_admission_version"] = json!("0.2.0-draft-prose-1");
+        b.collections
+            .get_mut("current_identity_admissions")
+            .unwrap()
+            .push(json!({
+            "id":"current_admission:unrelated", "proposal_id":"unrelated",
+            "entity_id":"current:unrelated", "entity":{"label":"Unrelated Current"}}));
+        let rows = decisions(&b);
+        let unrelated = rows
+            .iter()
+            .find(|row| row["current_id"] == "unrelated")
+            .unwrap();
+        assert_eq!(unrelated["measurement_ids"], json!([]));
+        assert_eq!(unrelated["status"], "identity_admitted_width_not_admitted");
+        let madagascar = rows
+            .iter()
+            .find(|row| row["current_id"] == "southern-east-madagascar")
+            .unwrap();
+        assert_eq!(madagascar["measurement_ids"].as_array().unwrap().len(), 1);
     }
 }

@@ -191,6 +191,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             .clone();
         if key == "widths" {
             source.extend(crate::current_measurements::widths(bundle));
+            source.extend(crate::current_gap_admissions::widths(bundle));
             source.extend(crate::agulhas_reported::widths(bundle));
             source.extend(crate::nwasc_admission::widths(bundle));
             source.extend(crate::hansen_asar_widths::widths(bundle));
@@ -498,6 +499,12 @@ impl Store {
             .unwrap()
             .extend(crate::aleutian_onishi_width::widths(&self.bundle));
         let mut supplemental = crate::current_measurements::widths(&self.bundle);
+        let gap_widths = crate::current_gap_admissions::widths(&self.bundle);
+        docs["widths"]["measurements"]
+            .as_array_mut()
+            .unwrap()
+            .extend(gap_widths.clone());
+        supplemental.extend(gap_widths);
         supplemental.extend(crate::agulhas_reported::widths(&self.bundle));
         supplemental.extend(crate::nwasc_admission::widths(&self.bundle));
         supplemental.extend(crate::hansen_asar_widths::widths(&self.bundle));
