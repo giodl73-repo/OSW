@@ -266,3 +266,39 @@ and the discovered dropdown regression. Together with the previously verified
 28 rehearsal/metadata/index fixtures, the source job now runs42 small checks.
 The main publication test and the complete browser matrix still need an actual
 successful cloud run before any generated working-data commit can occur.
+
+## Verified current-card and dashboard browser pass
+
+At `be99717f86bf36a4897d334c58f100c041d641a5`,
+[job120742146966](https://github.com/giodl73-repo/OSW/actions/runs/40050398048/job/120742146966)
+passed the regional-reach check and the complete new admission-browser check.
+Its actual result and both screenshots were downloaded and inspected. The
+browser and source-audit packet digests match. Verified coverage includes all
+five native/WASM cards, the24 qualitative month descriptions, separately scoped
+EICC statements/T24 admission, source offshore/regime context, all106 current
+cards, WICC alias native/WASM parity, four source-context light modes, keyboard
+evidence navigation and narrow-screen layout. No original assets were requested
+and no JavaScript errors were reported. Proof:
+`research/current-gap-browser-proof-v1.json`. The156 Rust tests also passed.
+
+The subsequent broader step stopped before its checks with `Errno98 Address
+already in use` at the server-availability probe. The first successful runner
+had already terminated its owned server; a plain POSIX bind can still reject
+that address while connections remain in TIME_WAIT. The probe now uses
+SO_REUSEADDR on POSIX, matching the HTTP server, while still rejecting a real
+listener. Windows policy is unchanged. This behavior is described in the
+[Python socket documentation](https://docs.python.org/3/library/socket.html#socket.create_server).
+The local existing-listener check passed; the POSIX closed-connection regression
+is skipped on Windows and must execute in Linux CI before the next source export.
+No user preview server was stopped.
+
+The core PASS does not waive the broader matrix. Working-data delivery was
+skipped because that job failed. The next cloud run retains every matrix case.
+The dashboard screenshot is now full-page so its selected lit card is included.
+
+An additional lightweight audit downloaded only the6MB engine ZIP into memory
+and extracted its small manifest. All257 code-file hashes match the exact Git
+blobs of the tested source commit, with zero missing/mismatched files. The
+WASM itself was not decompressed or written, and the large query/index artifact
+was not downloaded. This resolves the source-formatting consistency risk before
+the publication step's complete, streamed source/data binding checks.

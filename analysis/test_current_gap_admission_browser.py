@@ -106,7 +106,7 @@ def main():
             page.locator('#dashboard-card-view').click()
             expect(page.locator('#dashboard-grid .motion-card.lit')).to_have_count(1)
             expect(page.locator('#dashboard-grid')).to_contain_text('12 records')
-            page.screenshot(path=str(output / 'dashboard-source-lights.png'))
+            page.screenshot(path=str(output / 'dashboard-source-lights.png'),full_page=True)
             page.locator('#dashboard-search').fill('')
             page.locator('#dashboard-covered').check()
             for metric, ids in [

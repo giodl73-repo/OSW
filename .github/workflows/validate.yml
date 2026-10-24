@@ -44,6 +44,7 @@ jobs:
           python -m pytest -q analysis/test_current_gap_candidate_metadata.py
           analysis/test_current_gap_index_extension.py analysis/test_current_gap_parent_rehearsal.py
           analysis/test_current_gap_cloud_delivery.py
+          analysis/test_rust_query_browser_server.py
       - name: Export complete candidate dashboard packet and exact-source index sequentially
         if: success()
         run: python analysis/export_current_gap_cloud_candidate.py --cloud-candidate

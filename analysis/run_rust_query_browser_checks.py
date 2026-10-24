@@ -1,6 +1,7 @@
 """Run shipped-WASM UI checks against a verified local checkout server."""
 import argparse
 import os
+import socket
 from pathlib import Path
 import subprocess
 import sys
@@ -68,6 +69,16 @@ CHECKS = ('test_published_regional_reaches_browser.py',) + CHECKS
 CHECKS = ('test_current_gap_admission_browser.py',) + CHECKS
 
 
+def check_port_available(address=('127.0.0.1', 8788)):
+    with socket.socket() as probe:
+        # Match HTTPServer's POSIX reuse policy: a closed previous server may
+        # leave TIME_WAIT connections. An actual listener still blocks bind.
+        # Preserve the stricter existing Windows behavior.
+        if os.name != 'nt':
+            probe.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        probe.bind(address)
+
+
 def wait_for_checkout(server=None):
     expected = (ROOT / 'almanac/query.html').read_bytes()
     deadline = time.monotonic() + 30
@@ -106,9 +117,7 @@ def main():
     try:
         if args.start_server:
             # Reject a occupied port before starting; never terminate a user's server.
-            import socket
-            with socket.socket() as probe:
-                probe.bind(('127.0.0.1', 8788))
+            check_port_available()
             server = subprocess.Popen([sys.executable, '-m', 'http.server', '8788',
                                        '--bind', '127.0.0.1', '--directory', str(ROOT)],
                                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
