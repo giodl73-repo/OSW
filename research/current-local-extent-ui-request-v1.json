@@ -1,6 +1,6 @@
 {
   "schema": "osw.current-local-extent-ui-request.v1",
-  "execution_permitted": true,
+  "execution_permitted": false,
   "ui_verification_only": true,
   "max_heavy_local_jobs": 0,
   "max_cloud_jobs": 1,
@@ -11,7 +11,7 @@
   "preflight": "research/current-local-extent-ui-preflight-v1.json",
   "preflight_sha256": "95a64c4da853e92e234be98939e37dd47db40a6ba0ec350fdbd8b0cad18040a2",
   "workflow": ".github/workflows/current-local-extent-ui-v1.yml",
-  "reason": "One sequential cloud browser verification of the dedicated immutable local extent view, source-case navigation, chart, missing values, failure recovery and mobile layout. No local browser, source processing or physical measurement admission.",
+  "reason": "Corrected cloud browser check succeeded. Disable execution and review its exact result and desktop/mobile screenshots before claiming delivered UI. Scientific inputs unchanged.",
   "prior_failed_cases": [
     {
       "run_id": 40139826692,
@@ -41,5 +41,13 @@
     "local_script_syntax_checks_passed": 2,
     "local_browser_runs": 0,
     "browser_ui_verified": false
+  },
+  "completed_case": {
+    "run_id": 40140429254,
+    "run_attempt": 1,
+    "job_id": 121010827738,
+    "source_commit": "7c69a2b07600005359a361f5abae79f266ab0735",
+    "conclusion": "success",
+    "installed_assets_updated": false
   }
 }
