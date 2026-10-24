@@ -82,3 +82,16 @@ review are retained in research; all62 executed input paths remain unchanged.
 Next prepare the separate coastal-extent design in
 `plans/coastal-current-extent-measurement-design-v1.md`, with synthetic tests and
 a new protocol/review/freeze before any further original-data calculation.
+
+The new scalar-profile prototype and numerical protocol are now prepared under
+`analysis/coastal_reference_extent_v1.py` and
+`plans/coastal-reference-extent-protocol-v1.md`. All48 synthetic checks passed on
+one low-priority CPU, including analytic/quantized crossings, missing segments,
+shore-position gaps, native-scale changes and WGS84 normals across a longitude
+seam. A small synthetic SVG and its raster were inspected. These are method
+development examples; no original ocean field or new width has been processed.
+
+Next implement and verify the separate source-bound cloud adapter, native-cell
+scale footprints and actual-data evidence output. The new prototype preparation
+does not permit original-data execution or measurement admission. Keep all62
+executed inputs and the completed failed two-sided case unchanged.

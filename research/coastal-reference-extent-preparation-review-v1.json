@@ -1,0 +1,91 @@
+{
+  "schema": "osw.coastal-reference-extent.preparation-review.v1",
+  "reviewed_utc": "2026-10-24T19:22:01.244573+00:00",
+  "status": "SYNTHETIC_METHOD_PREPARATION_ONLY_NOT_ORIGINAL_DATA_EXECUTION",
+  "operator": "analysis/coastal_reference_extent_v1.py",
+  "protocol": "plans/coastal-reference-extent-protocol-v1.md",
+  "source_sha256": {
+    "analysis/coastal_reference_extent_v1.py": "cf4b9b5ba2fa59d74e1fa541199788c3a40955b9a5ddd4e50348e9d98e044b0d",
+    "analysis/test_coastal_reference_extent_v1.py": "3bc9bd054bde5623448c865ed45b27a55321e01a434e79d198910854c6c10d73",
+    "analysis/render_coastal_reference_extent_synthetic_v1.py": "1e2fbf29dadf2692bee5e41ad944817da3b4e51cedaf108a9839f9c08c584c63",
+    "plans/coastal-reference-extent-protocol-v1.md": "ad015c0e9e95afbf1167e4c88ee957132e93109732993b3a6b3e26b05a1aca5e",
+    "figures/coastal-reference-extent-v1-synthetic.svg": "97a09165560fb80f1f40be8237dd33f6b72d18fcd77fd4aa5273ebcc67c83ac9",
+    "research/coastal-reference-extent-v1-synthetic-figure.json": "a906cf1b569809dd25a8db2232f759174dbf0185606640365cf7eb4c5333ab05",
+    "signals/roles/check/coastal-reference-extent-preparation-v1-roles-check-2026-10-24.md": "3a198b2f58cfd2849b94b0ae6e9450b154b216a0ddbc1d3e5a2caacb6c33eee5"
+  },
+  "local_focused_checks": {
+    "passed": 48,
+    "elapsed_seconds": 0.37,
+    "cpu_limit": 1,
+    "priority": "BelowNormal",
+    "numerical_worker_limit": 1,
+    "original_ocean_data_used": false,
+    "python": "3.14.7",
+    "pytest": "9.0.2",
+    "pyproj": "3.7.2",
+    "coverage": [
+      "known exponential/gaussian crossings",
+      "boundary peak and detached core",
+      "shore-position intervals and conditional inshore strip",
+      "missing samples and finite-endpoint gaps",
+      "source crop and competing rise censoring",
+      "quantized crossings at5/10km spacing",
+      "both-bracket/whole-path native scale",
+      "rotated unequal Earth components",
+      "curved WGS84 normals and longitude seam",
+      "all72 cases/3 fractions/4 attempted quantities",
+      "unchanged legacy gate and non-admission flags"
+    ]
+  },
+  "synthetic_figure": {
+    "file": "figures/coastal-reference-extent-v1-synthetic.svg",
+    "sha256": "97a09165560fb80f1f40be8237dd33f6b72d18fcd77fd4aa5273ebcc67c83ac9",
+    "bytes": 20912,
+    "manifest": "research/coastal-reference-extent-v1-synthetic-figure.json",
+    "small_raster_actually_inspected": true,
+    "raster_scope": "Two constructed profiles; no ocean map or original source array.",
+    "qa_corrections": [
+      "Explicit missing-data hatching replaces unsupported raster pattern fill",
+      "Synthetic profile lines stop at displayed axis range"
+    ],
+    "semantic_title_description_and_textual_outcomes": true
+  },
+  "method_scope": {
+    "quantities": [
+      "local_two_sided_threshold_span",
+      "core_to_positive_normal_threshold_extent",
+      "finite_paired_support_to_positive_threshold_extent",
+      "shore_reference_to_positive_threshold_extent"
+    ],
+    "fraction_levels": [
+      0.4,
+      0.5,
+      0.6
+    ],
+    "one_sided_extent_doubling_permitted": false,
+    "missing_velocity_zero_fill_permitted": false,
+    "original_regional_gate_changed": false,
+    "physical_uncertainty_or_annual_range_inferred": false,
+    "current_association_verified": false
+  },
+  "executed_old_input_paths_verified_unchanged": 62,
+  "original_scientific_inputs_unchanged": 40,
+  "original_velocity_execution_permitted": false,
+  "original_data_case_permitted": false,
+  "new_measurement_admission_permitted": false,
+  "new_current_widths_admitted": 0,
+  "installed_working_data_changed": false,
+  "local_preview_changed": false,
+  "main_merged": false,
+  "release_approved": false,
+  "required_next": [
+    "Separate source-bound adapter and tests for the actual saved diagnostic/fields",
+    "Exact Earth-frame/geodesic mapping and all-touched-cell scale verification",
+    "Retain all72 old statuses/gates and unsupported new outcomes",
+    "Actual-data figure/text generation with source fingerprints",
+    "Complete adapter/operator/source/protocol/review dependency freeze and explicit cloud request",
+    "One cloud case on saved data; no provider refetch or completed-producer restart",
+    "Independent source/geographic/definition validation before physical admission/generalization"
+  ],
+  "limitations": "Scalar/geodesic fixtures do not verify a future original-data adapter or establish current identity. This method design uses knowledge of the failed2013 diagnostic and must not be labeled blind validation."
+}
