@@ -1,0 +1,49 @@
+{
+  "schema": "osw.osnap-source-inventory-readiness.v1",
+  "status": "PREPARED_CONDITIONAL_SOURCE_HEADERS_ONLY",
+  "freeze_commit": "57fcde2a798665b8e4e4053c4a27f17e23ce393f",
+  "preflight": "research/osnap-wg-2016-2018-source-inspection-preflight-v1.json",
+  "preflight_sha256": "604d07b14c247a29965dfafcf5afa9c93645cb1117df95e5ea2d889a41d71b13",
+  "prior_review": "signals/roles/check/osnap-wg-source-inspection-v1-roles-check-2026-10-24.md",
+  "prior_review_sha256": "5efef737987139b79635f377114dfc3e100275bee8b9b85b08fe5d6aabe2797f",
+  "closed_findings": [
+    {
+      "id": 16,
+      "lens": "KEEL",
+      "evidence": "Committed reusable workflow; shared serialized controller; installed Baffin proof guard; bounded cloud-only source stage."
+    },
+    {
+      "id": 19,
+      "lens": "LOGBOOK",
+      "evidence": "Committed eight-input prospective preflight; verify_preflight passed against exact committed bytes."
+    }
+  ],
+  "open_findings": [
+    2,
+    6,
+    9,
+    12,
+    14,
+    18,
+    21
+  ],
+  "checks": {
+    "committed_freeze_verified": true,
+    "controller_yaml_and_embedded_python_parsed": true,
+    "shared_concurrency_verified": true,
+    "reusable_workflow_has_no_competing_lock": true,
+    "selected_phase": "baffin-bound-v1"
+  },
+  "original_execution_performed": false,
+  "cloud_job_dispatched": false,
+  "measurements_admitted": 0,
+  "working_dataset_changed": false,
+  "scientific_release_published": false,
+  "conditions": [
+    "Finish and verify Davidson delivery, then Baffin delivery before switching the source phase.",
+    "Run the pinned synthetic fixtures in cloud before original archive access.",
+    "Inspect actual custody and instrument headers; unsupported source structure requires a new producer version after original execution.",
+    "Separate sample-support, dimensions, geometry and accessible-view reviews remain required."
+  ],
+  "review_scope": "One assistant closing two concrete preparation findings through repository functional lenses; no independent scientific review or measurement approval."
+}
