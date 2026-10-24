@@ -305,3 +305,28 @@ whole-current length: the 13-current ranking remains unchanged. Existing Baffin
 regional widths, editorial paths, all original provider assets and prior
 scientific products are untouched. The general offline Rotschi1972 original
 HTTP403 gate remains open separately; no bypass or source substitution.
+
+### Sequenced delivery checkpoint: early navigation verified
+
+The mobile navigation failure in terminal run 40070679739 was diagnosed as a
+late layout shift after the current card received focus. The working UI now
+realigns the linked card after layout changes and releases that alignment on
+user input or a focus change. Navigation assertions retain their original
+position tolerance and add controlled layout-shift and cancellation checks.
+
+Working-branch merge `926b874bc1c75abb0481fd6552b5e37ed8d810cd` contains only
+the isolated operational correction; the parent packet is preserved and the
+prepared Baffin stack is excluded. Run 40072941024, job 120810109590, passed
+the early saved-candidate navigation diagnostic. Artifact 12552122013 records
+desktop 1280 and mobile 320 navigation, late layout shifts, user cancellation,
+and zero page errors. This diagnostic does not establish fresh source/native
+parity or authorize publication. Fresh export subsequently passed; native/WASM
+validation was verified running at this checkpoint. Poll this same run before
+any new dispatch; do not infer terminal state from this note.
+
+Resource sequencing remains mandatory: no local heavy jobs, bulk asset sync,
+or browser automation; at most one heavy cloud job, with export, native build,
+WASM build, browser checks, and final validation performed sequentially. Keep
+Baffin queued until the complete Davidson installed-delivery proof is verified.
+Its prospective floor and nine editorial scenarios remain unranked; no seasonal
+range, current axis, or width band has been established by that calculation.
