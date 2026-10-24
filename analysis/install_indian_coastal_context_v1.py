@@ -74,6 +74,8 @@ def verify_request(request):
              'scientific_source_recomputation': False, 'main_merged': False, 'scientific_release_published': False}
     hashes = ['presentation_receipt_sha256', 'visual_review_sha256']
     if (any(request.get(key) != value for key, value in fixed.items())
+            or any(request.get(key) is not False for key in ['native_rebuild', 'wasm_rebuild',
+                   'scientific_source_recomputation', 'main_merged', 'scientific_release_published'])
             or type(request.get('presentation_run_id')) is not int or request['presentation_run_id'] <= 0
             or not isinstance(request.get('presentation_control_commit'), str)
             or len(request['presentation_control_commit']) != 40
@@ -107,7 +109,7 @@ def main():
         parser.error('Explicit working-branch cloud installation required; no data or Git mutation attempted')
     if hasattr(os, 'sched_getaffinity'):
         os.sched_setaffinity(0, {min(os.sched_getaffinity(0))});os.nice(5)
-    if shutil.disk_usage(ROOT).free < 3 * 1024**3:raise ValueError('Need3GiB free for saved-cohort installation')
+    if shutil.disk_usage(ROOT).free < 3 * 1024**3:raise ValueError('Need 3 GiB free for saved-cohort installation')
     def git(*commands, root=ROOT):
         return subprocess.check_output([*GIT, *commands], cwd=root).decode().strip()
     control = os.environ['GITHUB_SHA']
@@ -183,6 +185,7 @@ def main():
              'cohort_version': context.VERSION, 'source_run_id': delivery.SOURCE_RUN,
              'source_commit': delivery.SOURCE_COMMIT, 'presentation_run_id': request['presentation_run_id'],
              'presentation_control_commit': request['presentation_control_commit'], 'publication_control_commit': control,
+             'installation_run_id': int(os.environ['GITHUB_RUN_ID']), 'installation_workflow': WORKFLOW,
              'packet_logical_sha256': delivery.PACKET, 'parent_logical_sha256': delivery.PARENT,
              'contract_sha256': contract_sha, 'candidate': source['candidate'],
              'preservation': inherited['preservation'], 'index_extension': source['index_extension'],

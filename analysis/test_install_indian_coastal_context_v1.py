@@ -51,12 +51,13 @@ def request_fixture():
         'presentation_receipt_sha256': 'a' * 64, 'visual_review_sha256': 'b' * 64}
 
 
-@pytest.mark.parametrize('change', ['none', 'source', 'packet', 'rebuild', 'review_missing', 'run_missing'])
+@pytest.mark.parametrize('change', ['none', 'source', 'packet', 'rebuild', 'boolean_type', 'review_missing', 'run_missing'])
 def test_installation_request_cannot_change_review_or_science_scope(change):
     r = request_fixture()
     if change == 'source':r['source_run_id'] += 1
     if change == 'packet':r['packet_logical_sha256'] = '0' * 64
     if change == 'rebuild':r['native_rebuild'] = True
+    if change == 'boolean_type':r['native_rebuild'] = 0
     if change == 'review_missing':r.pop('visual_review_sha256')
     if change == 'run_missing':r.pop('presentation_run_id')
     if change == 'none':install.verify_request(r)
