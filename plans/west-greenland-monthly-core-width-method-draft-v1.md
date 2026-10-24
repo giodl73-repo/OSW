@@ -21,10 +21,15 @@ axis-normal width merely through a coordinate rotation.
 
 ## Decisions to fix before computation
 
-1. **Identity and peak selection.** Review the paper's actual upper-slope core
-   discussion/section figures before naming eligible core moorings. A coastal
-   or offshore secondary maximum must not be substituted to force a width.
-   Preserve missing, merged and ambiguous-core outcomes.
+1. **Identity and peak selection.** The selected mean-section text and Figure 4
+   have now been visually reviewed; see
+   `research/west-greenland-pacini-2020-core-identity-visual-review-v1.json`.
+   Use LS4/LS5 as the eligible upper-slope peak anchors in a prospective
+   diagnostic, rejecting a peak outside those anchors rather than substituting
+   a coastal or offshore maximum. The four-year mean does not guarantee a
+   separate monthly core. Preserve missing, merged and ambiguous outcomes.
+   The paper explicitly says the array does not bracket the coastal current;
+   no full coastal-current width is supported by this source footprint.
 2. **Physical layer.** Assess a candidate 50–100 m layer from supplied ADCP
    time-varying depths, with no surface/vertical extrapolation. This is an OSW
    candidate, not a source-prescribed layer. Require observed bracketing of

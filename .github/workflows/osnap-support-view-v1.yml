@@ -19,6 +19,20 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/check_osnap_support_browser.py
+            almanac/osnap-support.html
+            almanac/osnap-support.css
+            almanac/osnap-support.js
+            almanac/styles.css
+            research/current-gap-delivery-phase.json
+            research/osnap-wg-2016-2018-source-header-execution-review-v1.json
+            research/osnap-wg-2016-2018-source-headers-v1.json
+            research/osnap-wg-2016-2018-original-custody-v1.json
+            research/osnap-wg-2016-2018-sample-support-execution-review-v1.json
+            research/osnap-wg-2016-2018-sample-support-v1.json
       - uses: actions/setup-python@v6
         with:
           python-version: "3.13"

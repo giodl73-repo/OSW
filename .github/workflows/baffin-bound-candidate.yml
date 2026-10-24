@@ -39,6 +39,9 @@ jobs:
       phase: ${{ steps.phase.outputs.phase }}
     steps:
       - uses: actions/checkout@v6
+        with:
+          sparse-checkout: research/current-gap-delivery-phase.json
+          sparse-checkout-cone-mode: false
       - id: phase
         run: |
           python - <<'PY'
