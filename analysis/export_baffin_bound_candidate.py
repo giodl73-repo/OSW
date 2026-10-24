@@ -26,7 +26,7 @@ OPERATORS = [
     'analysis/build_rust_query_engine.py',
     'rust/osw-query/src/baffin_latitude_bound.rs', 'rust/osw-query/src/lib.rs',
     'rust/osw-query/src/length_assessment_overlays.rs', 'rust/osw-query/src/object_view.rs',
-    'almanac/current-source-evidence-ui.js', metadata.PARENT_PROOF,
+    'almanac/current-source-evidence-ui.js', 'almanac/object.html', metadata.PARENT_PROOF,
     'analysis/run_rust_query_browser_checks.py', 'analysis/test_baffin_bound_browser.py',
     'analysis/test_baffin_bound_browser_policy.py', 'analysis/test_labrador_gate_bound_browser.py',
     'analysis/prepare_baffin_bound_delivery.py', 'analysis/test_baffin_bound_delivery.py',

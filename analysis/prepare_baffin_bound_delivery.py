@@ -25,7 +25,7 @@ REQUIRED_INPUTS = {
     admission.FILE,owner.FILE,owner.PARENT,admission.REPORT,admission.FIGURE,admission.PROOF,
     metadata.PARENT_PROOF,WORKFLOW,PHASE,
     'rust/osw-query/src/baffin_latitude_bound.rs','rust/osw-query/src/object_view.rs',
-    'rust/osw-query/src/length_assessment_overlays.rs','almanac/current-source-evidence-ui.js',
+    'rust/osw-query/src/length_assessment_overlays.rs','almanac/current-source-evidence-ui.js','almanac/object.html',
     'analysis/test_baffin_bound_browser.py','analysis/test_baffin_bound_browser_policy.py',
     'analysis/baffin_bound_admission.py','analysis/baffin_bound_owner_projection.py',
     'analysis/baffin_bound_candidate_metadata.py','analysis/export_baffin_bound_candidate.py',
