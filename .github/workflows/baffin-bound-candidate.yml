@@ -52,6 +52,9 @@ jobs:
   baffin-candidate-and-views:
     needs: select-delivery-phase
     if: needs.select-delivery-phase.outputs.phase == 'baffin-bound-v1'
+    permissions:
+      contents: read
+      actions: read
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
@@ -74,6 +77,42 @@ jobs:
           analysis/test_baffin_bound_delivery.py
           analysis/test_current_gap_index_extension.py
           analysis/test_browser_current_catalogue_fixture.py
+      - name: Retrieve saved data for the early phone layout check
+        uses: actions/download-artifact@v4
+        with:
+          name: baffin-derived-candidate
+          run-id: 40083318018
+          github-token: ${{ github.token }}
+          path: .pytest_cache/baffin-phone-layout/site
+      - name: Retrieve its matching saved engine
+        uses: actions/download-artifact@v4
+        with:
+          name: baffin-query-engine
+          run-id: 40083318018
+          github-token: ${{ github.token }}
+          path: .pytest_cache/baffin-phone-layout/site/almanac
+      - name: Retrieve its preservation receipt
+        uses: actions/download-artifact@v4
+        with:
+          name: baffin-candidate-audit
+          run-id: 40083318018
+          github-token: ${{ github.token }}
+          path: .pytest_cache/baffin-phone-layout/source
+      - name: Install Chromium for the early layout diagnostic
+        run: python -m playwright install --with-deps chromium
+      - name: Check compact phone columns before rebuilding
+        run: python analysis/check_baffin_bound_phone_layout.py
+      - name: Retain the early compact phone diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: baffin-compact-phone-layout
+          path: |
+            .pytest_cache/baffin-phone-layout/result.json
+            .pytest_cache/baffin-phone-layout/card-320px.png
+            .pytest_cache/baffin-phone-layout/card-390px.png
+          include-hidden-files: true
+          if-no-files-found: ignore
       - name: Export complete candidate and preserve the installed parent
         run: python analysis/export_baffin_bound_candidate.py --cloud-candidate
       - name: Retain candidate audit before compilation
