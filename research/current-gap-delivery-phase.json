@@ -1,10 +1,13 @@
 {
-  "completed_presentation_run_id": 40104915408,
-  "completed_source_run_id": 40100017734,
-  "heavy_work_permitted": false,
-  "installed_proof": "research/indian-coastal-context-installed-delivery-v1.json",
+  "schema": "osw.current-gap-delivery-phase.v1",
+  "phase": "eacc-regional-model-core-v2",
+  "reason": "First original regional EACC source/core diagnostic under37 frozen inputs; one cloud job/CPU/request at a time; no local originals or measurement admission.",
+  "heavy_work_permitted": true,
+  "max_heavy_cloud_jobs": 1,
   "max_heavy_local_jobs": 0,
-  "phase": "source-review-only-v1",
-  "reason": "Coastal context working packet installed; no new measured dimensions.",
-  "schema": "osw.current-gap-delivery-phase.v1"
+  "execution_workflow": ".github/workflows/eacc-regional-model-core-v2.yml",
+  "controller_workflow": ".github/workflows/davidson-width-candidate.yml",
+  "preflight": "research/eacc-regional-model-core-preflight-v2.json",
+  "preflight_sha256": "d04c8db6a0d77e30fe65c5ba1cb4b4cf226db3e6f355e393abe1ed79763401fa",
+  "source_freeze_remote_commit": "70869dd978b90fbcfb2a585038b001d3d261c61f"
 }
