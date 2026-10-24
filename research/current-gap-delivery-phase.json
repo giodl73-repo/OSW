@@ -1,13 +1,9 @@
 {
   "schema": "osw.current-gap-delivery-phase.v1",
-  "phase": "eacc-regional-model-core-v2",
-  "reason": "First original regional EACC source/core diagnostic under37 frozen inputs; one cloud job/CPU/request at a time; no local originals or measurement admission.",
-  "heavy_work_permitted": true,
-  "max_heavy_cloud_jobs": 1,
+  "phase": "source-review-only-v1",
+  "reason": "EACC launch40112514918 rejected before jobs: YAML plain-scalar colon in pip option. No original velocity request. Correct orchestration and version the execution freeze before restarting.",
+  "heavy_work_permitted": false,
   "max_heavy_local_jobs": 0,
-  "execution_workflow": ".github/workflows/eacc-regional-model-core-v2.yml",
-  "controller_workflow": ".github/workflows/davidson-width-candidate.yml",
-  "preflight": "research/eacc-regional-model-core-preflight-v2.json",
-  "preflight_sha256": "d04c8db6a0d77e30fe65c5ba1cb4b4cf226db3e6f355e393abe1ed79763401fa",
-  "source_freeze_remote_commit": "70869dd978b90fbcfb2a585038b001d3d261c61f"
+  "max_heavy_cloud_jobs": 1,
+  "rejected_eacc_run_id": 40112514918
 }
