@@ -1,6 +1,6 @@
 {
   "schema": "osw.current-local-extent-query-check-request.v2",
-  "execution_permitted": true,
+  "execution_permitted": false,
   "build_verification_only": true,
   "provider_requests_permitted": false,
   "original_source_processing_permitted": false,
@@ -11,7 +11,7 @@
   "workflow": ".github/workflows/current-local-extent-query-check-v2.yml",
   "preflight": "research/current-local-extent-query-check-preflight-v2.json",
   "preflight_sha256": "aa04db820fcab375a1ae59586798e190edd9f36282ff309822b163aadf723e7f",
-  "reason": "One sequential cloud native/WASM compilation and scoped query parity case. No complete atlas runtime load, provider acquisition, scientific source processing, physical measurement admission or installed-asset update.",
+  "reason": "Revision4 cloud native tests, CLI builds, dedicated WASM and parity succeeded. Disable execution and review compact results before any installation. Scientific inputs and installed assets unchanged.",
   "prior_failed_cases": [
     {
       "run_id": 40135768056,
@@ -68,5 +68,13 @@
     "rust_source_formatting_version": "1.95.0",
     "node_parity_script_syntax_verified": true,
     "native_and_wasm_runtime_checks_complete": false
+  },
+  "completed_case": {
+    "run_id": 40138158745,
+    "run_attempt": 2,
+    "job_id": 121004198936,
+    "source_commit": "3700e9d1bb57cae00515de49a623d607f0c7b196",
+    "conclusion": "success",
+    "installed_assets_updated": false
   }
 }
