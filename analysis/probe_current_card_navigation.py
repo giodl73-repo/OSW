@@ -32,8 +32,10 @@ def checked_site(path):
     return site
 
 
-def verify_artifacts(site, source):
-    if source.get('schema')!='osw.davidson-width-candidate.v1' or source.get('status')!='PASS' or source.get('published') is not False:
+def verify_artifacts(site, source, expected_schema='osw.davidson-width-candidate.v1'):
+    if expected_schema not in {'osw.davidson-width-candidate.v1', 'osw.baffin-bound-candidate.v1'}:
+        raise ValueError('Unsupported saved candidate schema')
+    if source.get('schema')!=expected_schema or source.get('status')!='PASS' or source.get('published') is not False:
         raise ValueError('Saved candidate source audit must pass')
     engine=json.loads((site/'almanac/query-engine.manifest.json').read_bytes())
     if engine.get('engine')!='rust-osw-query-v1' or engine.get('abi_version')!=1:
