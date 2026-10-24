@@ -16,6 +16,10 @@ def main():
     source, diagnostic, _ = evidence()
     output = ROOT / '.pytest_cache/redsox-station-support/query-browser'
     output.mkdir(parents=True, exist_ok=True)
+    def checkpoint(stage, status='RUNNING'):
+        (output / 'progress.json').write_text(json.dumps({'status':status,'stage':stage})+'\n',encoding='utf8')
+        print('REDSOX '+stage,flush=True)
+    checkpoint('prepare checked source index')
     errors, originals = [], []
     with sync_playwright() as pw, TemporaryDirectory(dir=output) as tmp:
         index = Path(tmp) / 'index.json'
@@ -25,23 +29,29 @@ def main():
         page.on('pageerror', lambda e: errors.append(str(e)))
         page.on('request', lambda r: originals.append(r.url) if r.url.split('?')[0].endswith(('.zip', '.nc', '.npz', '.pdf')) else None)
         q = dict(collection='diagnostics', filters=[dict(field='id', op='eq', value=ID)], limit=1)
+        checkpoint('load diagnostic in WASM')
         page.goto(BASE + '/almanac/query.html?q=' + quote(json.dumps(q)))
         page.wait_for_function('window.oswLastQueryResult', timeout=180000)
         result = page.evaluate('window.oswLastQueryResult')
+        checkpoint('compare diagnostic with native')
         assert result == native(q) and result['rows'] == [diagnostic]
+        checkpoint('PASS diagnostic parity')
         cases = [('/profiles', None, source['profiles']),
                  ('/profiles', 'provider_metadata_review_required', [r for r in source['profiles'] if r['assessment']['status'] == 'provider_metadata_review_required']),
                  ('/profiles', 'missing_ctd_record', [r for r in source['profiles'] if r['assessment']['status'] == 'missing_ctd_record']),
                  ('/ctd_records_without_ladcp', None, source['ctd_records_without_ladcp'])]
         for pointer, text, expected in cases:
+            checkpoint('load source case '+pointer+' text='+str(text))
             q = dict(document=REPORT, pointer=pointer, limit=445, offset=0)
             if text is not None:
                 q['text'] = text
             page.goto(BASE + '/almanac/query.html?source-q=' + quote(json.dumps(q)))
             page.wait_for_function('window.oswSourceQueryResult', timeout=180000)
             result = page.evaluate('window.oswSourceQueryResult')
+            checkpoint('compare source case with native '+pointer+' text='+str(text))
             assert result == native(q, index=index)
             assert [r['record'] for r in result['rows']] == expected
+            checkpoint('PASS complete source case '+pointer+' text='+str(text))
         numeric_cases = [
             ('record.assessment.original_filename_join.ctd_start_minus_ladcp_header_time_seconds', 'eq', -919,
              [r for r in source['profiles'] if r['assessment']['original_filename_join'] is not None and r['assessment']['original_filename_join']['ctd_start_minus_ladcp_header_time_seconds'] == -919]),
@@ -50,19 +60,25 @@ def main():
             ('record.station', 'eq', 73.0, [r for r in source['profiles'] if r['station'] == 73]),
         ]
         for field, op, value, expected in numeric_cases:
+            checkpoint('load numeric case '+field+' '+op)
             q = dict(document=REPORT, pointer='/profiles', filters=[dict(field=field, op=op, value=value)], limit=445, offset=0)
             page.goto(BASE + '/almanac/query.html?source-q=' + quote(json.dumps(q)))
             page.wait_for_function('window.oswSourceQueryResult', timeout=180000)
             result = page.evaluate('window.oswSourceQueryResult')
+            checkpoint('compare numeric case with native '+field+' '+op)
             assert result == native(q, index=index)
             assert [r['record'] for r in result['rows']] == expected
+            checkpoint('PASS numeric case '+field+' '+op)
         expected = json.loads((ROOT / AVAILABILITY).read_bytes())['directory_checks']
         q = dict(document=AVAILABILITY, pointer='/directory_checks', limit=4, offset=0)
+        checkpoint('load complete archive directory checks')
         page.goto(BASE + '/almanac/query.html?source-q=' + quote(json.dumps(q)))
         page.wait_for_function('window.oswSourceQueryResult', timeout=180000)
         result = page.evaluate('window.oswSourceQueryResult')
+        checkpoint('compare archive directory checks with native')
         assert result == native(q, index=index)
         assert [r['record'] for r in result['rows']] == expected
+        checkpoint('PASS archive directory checks; begin mobile keyboard navigation')
         page.set_viewport_size({'width': 320, 'height': 1000})
         page.goto(BASE + '/almanac/reference-routes.html?atlas-feature=current%3Ared-sea-saline-overflow#route-atlas')
         links = page.locator('.route-atlas-evidence-links'); links.wait_for(state='attached', timeout=180000)
@@ -79,6 +95,7 @@ def main():
         page.screenshot(path=str(output / 'phone.png'))
         assert not errors and not originals, (errors, originals)
         browser.close()
+    checkpoint('PASS all comparisons and mobile navigation',status='PASS')
     result = dict(status='PASS', complete_diagnostic_native_wasm_exact=True,
                   complete_velocity_profiles_exact=445, complete_ctd_records_exact=461,
                   review_records_exact=13, missing_companion_records_exact=1,
