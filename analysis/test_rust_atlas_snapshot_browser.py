@@ -4,7 +4,7 @@ import hashlib,json,os,subprocess,tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
 from test_rust_query_browser import ROOT,CLI
-from browser_current_catalogue_fixture import expected_current_ids
+from browser_current_catalogue_fixture import expected_current_ids,expected_reference_route_ids
 JOIN='research/ocean-current-reference-route-state-join.json'
 BASE='http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas'
 
@@ -19,7 +19,8 @@ def without_state_join(page):
 
 def main():
     current_ids=expected_current_ids(ROOT)
-    catalog_count=json.loads((ROOT/"research/ocean-current-working-reference-routes.json").read_bytes())["counts"]["route_candidates"]
+    expected_route_ids=expected_reference_route_ids(ROOT)
+    catalog_count=len(expected_route_ids)
     bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     native=json.loads(subprocess.check_output([str(CLI),str(ROOT/'almanac/query-data.json'),'--atlas'],encoding='utf-8'))
     expected_sources=set(bundle['manifest']['atlas_receipts'])
@@ -109,10 +110,6 @@ def main():
             'options => options.map(option => option.value).filter(Boolean)')) == current_ids
         expect(page.locator('#route-atlas-eddy-select option')).to_have_count(141)
         assert page.evaluate('window.oswAtlasSnapshot')==native
-        route_catalog=json.loads((ROOT/'research/ocean-current-working-reference-routes.json').read_bytes())
-        expected_route_ids=sorted(row['id'] for row in route_catalog['candidates'])
-        assert len(expected_route_ids)==route_catalog['counts']['route_candidates']
-        assert len(set(expected_route_ids))==len(expected_route_ids)
         # The selectors and route-card list finish in separate async handlers.
         # Wait for the complete list, retaining exact count and identity checks.
         try:

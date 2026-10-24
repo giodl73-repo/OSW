@@ -25,3 +25,19 @@ def expected_proposal_ids(root):
     if len(set(ids)) != len(ids):raise ValueError('Duplicate proposed current identity')
     accepted = {value.removeprefix('current:') for value in expected_current_ids(root)}
     return sorted(set(ids) - accepted)
+
+
+def expected_reference_route_ids(root):
+    """Historical cards plus the separately admitted NWASC source connection."""
+    base=json.loads((root/'research/ocean-current-working-reference-routes.json').read_bytes())
+    addition=json.loads((root/'research/nwasc-source-anchor-reference-route.json').read_bytes())
+    old=[row['id'] for row in base['candidates']]
+    route=addition['route_record']
+    if (len(old)!=77 or base['counts']['route_candidates']!=77
+            or len(set(old))!=len(old)
+            or addition['current_id']!='norwegian-atlantic-slope'
+            or route['id']!='norwegian-atlantic-slope-asar-regional-reference-route'
+            or route['comparison_group']!='osw_source_anchor_connections'
+            or route['id'] in old):
+        raise ValueError('Changed or duplicate historical/admitted route inventory')
+    return sorted([*old,route['id']])
