@@ -47,18 +47,49 @@ Figure SHA256:
 
 ## Remaining work, in sequence
 
+### Prepared integration code, not yet compiled or delivered
+
+`analysis/baffin_bound_admission.py` binds the immutable report, first-execution
+proof, source dependencies, accepted identity and exact prior assessment. Its
+14 appended records comprise one measurement, one claim, one admission, two
+source references and nine individually queryable editorial scenarios. It
+replaces only the Baffin length assessment and returns an explicitly incomplete
+owner-projection receipt. All other records, widths and physical metadata remain
+unchanged in the focused fixture. All 22 focused admission tests pass.
+
+The separate `research/baffin-latitude-bound-admission-v1.json` is prepared;
+neither its name nor its candidate status proves installed working delivery.
+No live packet or dashboard has been regenerated.
+
+New Rust guards and the historical length-assessment overlay are wired, with
+exact records, dependency pins, missing/changed row rejection and nine-case
+ownership checks. These tests have **not yet been compiled or executed**;
+rustfmt parsed the new module. Merely indexing the pending contract does not
+activate its measurement edition.
+
+The object view and current-source card code can present the scalar evidence,
+equivalent scope text and a semantic nine-row scenario table. JavaScript syntax
+passes. Actual browser behavior and mobile rendering remain unverified.
+
+### Next gates
+
 1. Finish Davidson run40065785176 on its pinned source head. It has passed
    native/WASM, Davidson card, five preceding cards/dashboard and regional
-   reach checks; catalogue navigation is active at this checkpoint. Keep its
+   reach and catalogue navigation checks. The separate downloaded navigation
+   receipt is PASS: 106 exact accepted IDs, 27 exact remaining proposals, six
+   native/WASM query parities, 13 preserved ranks, direct-hash focus/scroll,
+   self-link/history and 320px use. Complete atlas/source checks are active at
+   this checkpoint. Keep its
    remote source head unchanged until terminal state.
-2. Derive a separate, reviewed working-admission contract from the immutable
-   Baffin report. Preserve all prior rows/objects except the scoped Baffin
+2. Finish the prepared contract's dashboard owner projection against the exact
+   verified parent. Preserve all prior rows/objects except the scoped Baffin
    assessment and its precise provenance projection. Keep old width records,
    observation dates, route geometry, capabilities and qualified ranks intact.
-3. Add exact native admission/source/owner/value/null guards and a checked
-   Rust/WASM query projection for the measurement, admission and all scenarios.
-4. Link the scalar evidence and source/method/scenario queries from Baffin's
-   current card. Keep the historical naming extension and study support visible.
+3. Complete exact owner guards, exporter/build/index/manifest pin integration
+   and cloud candidate generation. Compile and execute the new native tests;
+   verify the Rust/WASM query projection for measurement/admission/scenarios.
+4. Verify the prepared scalar/source/method/scenario card UI with actual native
+   and WASM data. Keep the historical naming extension and study support visible.
    No geographic axis, width band, state join or seasonal animation is supported.
 5. Run one cloud job at a time: source preservation, focused checks, native,
    WASM, actual phone/keyboard/query/browser checks and prior-feature regressions.

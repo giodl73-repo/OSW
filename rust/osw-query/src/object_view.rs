@@ -88,6 +88,8 @@ impl Store {
             "widths",
             "current_identity_admissions",
             "current_measurement_admissions",
+            "current_length_bound_admissions",
+            "current_length_bound_scenarios",
             "current_regional_reaches",
             "route_decisions",
             "current_direction_calendars",

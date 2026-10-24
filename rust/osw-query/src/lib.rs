@@ -45,6 +45,7 @@ mod kuroshio_daily;
 mod kuroshio_filtered_width;
 mod kuroshio_normal;
 mod labrador_latitude_bound;
+mod baffin_latitude_bound;
 mod length_assessment_overlays;
 mod loop_diagnostics;
 mod loop_recorded;
@@ -396,6 +397,7 @@ impl Store {
         aleutian_onishi_width::validate(&bundle)?;
         current_length_bounds::validate(&bundle)?;
         labrador_latitude_bound::validate(&bundle)?;
+        baffin_latitude_bound::validate(&bundle)?;
         ke_regional_length::validate(&bundle)?;
         movies::validate(&bundle)?;
         measurement_scope::validate(&bundle.collections, &bundle.manifest)?;
