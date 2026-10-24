@@ -1,6 +1,6 @@
 {
   "schema": "osw.current-local-extent-query-check-request.v2",
-  "execution_permitted": false,
+  "execution_permitted": true,
   "build_verification_only": true,
   "provider_requests_permitted": false,
   "original_source_processing_permitted": false,
@@ -11,7 +11,7 @@
   "workflow": ".github/workflows/current-local-extent-query-check-v2.yml",
   "preflight": "research/current-local-extent-query-check-preflight-v2.json",
   "preflight_sha256": "aa04db820fcab375a1ae59586798e190edd9f36282ff309822b163aadf723e7f",
-  "reason": "Held revision4 increases bounded checkout depth to retain the reviewed ancestor. All source gates remain required; compilation and parity on corrected runtime still outstanding.",
+  "reason": "One sequential cloud native/WASM compilation and scoped query parity case. No complete atlas runtime load, provider acquisition, scientific source processing, physical measurement admission or installed-asset update.",
   "prior_failed_cases": [
     {
       "run_id": 40135768056,
@@ -53,5 +53,20 @@
       "failure": "Checkout depth8 excluded reviewed parent8 commits behind source; increase depth to32 while retaining ancestry gate."
     }
   ],
-  "operational_revision": 4
+  "operational_revision": 4,
+  "readiness": {
+    "frozen_source_commit": "ef55c6b4c03ab2979ff557b9d282a1dd504c7841",
+    "held_run_id": 40137932305,
+    "held_run_attempt": 2,
+    "held_job_id": 121003460679,
+    "held_run_conclusion": "success",
+    "all_compilation_steps_skipped": true,
+    "frozen_query_inputs_verified": 23,
+    "executed_scientific_inputs_unchanged": 83,
+    "all_remote_source_blobs_verified": 117,
+    "fictional_gate_tests_passed": 7,
+    "rust_source_formatting_version": "1.95.0",
+    "node_parity_script_syntax_verified": true,
+    "native_and_wasm_runtime_checks_complete": false
+  }
 }
