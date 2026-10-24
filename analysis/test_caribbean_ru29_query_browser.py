@@ -18,6 +18,15 @@ from test_rust_query_browser import browser_query
 ROOT = method.ROOT
 BASE = 'http://127.0.0.1:8788'
 CLI = ROOT/'rust/osw-query/target/debug'/('osw-query-cli.exe' if os.name == 'nt' else 'osw-query-cli')
+# Complete registered provenance includes the existing geometry and length
+# assessment ledgers. These are internal references, not two new observations.
+OWNER_SOURCE_IDS = sorted([
+    'source:4dc5fc618c26565f', 'source:4f7441b953be4651',
+    'source:803229fe82eb2360', 'source:a6d248678fda6cec',
+    'source:b038491b0e5a3967',
+    'source:caribbean-ru29-2024-selected-products',
+    'source:caribbean-ru29-source-readback-v2',
+])
 
 
 def main():
@@ -59,6 +68,13 @@ def main():
             selected[f'/members/{member}/variables/observation_flag/raw_values'] = native_members[member]['variables']['observation_flag']['raw_values']
         del native_members, native_source, mirror, result
     gc.collect()
+    owner_query = {'collection': 'objects', 'filters': [{'field': 'id', 'op': 'eq', 'value': ENTITY}], 'limit': 1}
+    result = subprocess.run([str(CLI), 'almanac/query-data.json', '-'], cwd=ROOT,
+                            input=json.dumps(owner_query).encode(), capture_output=True, check=True)
+    native_owner = json.loads(result.stdout)['rows'][0]
+    assert native_owner['source_ids'] == OWNER_SOURCE_IDS
+    assert native_owner['linked_source_count'] == len(OWNER_SOURCE_IDS)
+    del result
     errors, originals = [], []
     with sync_playwright() as pw:
         browser = pw.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
@@ -74,9 +90,10 @@ def main():
                 record = contract[name]
                 request = {'collection': 'sources', 'filters': [{'field': 'id', 'op': 'eq', 'value': record['id']}], 'limit': 1}
                 assert browser_query(page, request)['rows'] == [record]
-            owner_query = {'collection': 'objects', 'filters': [{'field': 'id', 'op': 'eq', 'value': ENTITY}], 'limit': 1}
             owner = browser_query(page, owner_query)['rows'][0]
-            assert owner['linked_source_count'] == len(owner['source_ids']) == 5
+            assert owner == native_owner
+            assert owner['source_ids'] == OWNER_SOURCE_IDS
+            assert owner['linked_source_count'] == len(owner['source_ids']) == 7
             assert owner['provider_velocity_source'] == contract['card_context']
             panel = page.locator('#source-query-panel')
             panel.locator(':scope > summary').focus()
@@ -128,6 +145,7 @@ def main():
             browser.close()
     receipt = {'status': 'PASS', 'native_complete_original_mirror_values': 3609111,
                'native_original_source_members': 11, 'complete_current_variable_groups_in_wasm': 3,
+               'native_wasm_owner_exact': True, 'registered_owner_source_ids': OWNER_SOURCE_IDS,
                'complete_virtual_state_groups_in_wasm': 4, 'retained_observation_flags_first_pages': 2,
                'flag_page_limit': 25,
                'native_closed_before_browser': True, 'query_closed_before_atlas': True,

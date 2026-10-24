@@ -302,3 +302,33 @@ blobs of the tested source commit, with zero missing/mismatched files. The
 WASM itself was not decompressed or written, and the large query/index artifact
 was not downloaded. This resolves the source-formatting consistency risk before
 the publication step's complete, streamed source/data binding checks.
+
+## Complete provenance and the broader delivery test
+
+Cloud run `40052635622`, source commit
+`d6d538e8cca39856a0d8b418436a9de24f71aa40`, passed all44 small
+Linux checks, source replay/export, native/WASM compilation and both core
+browser checks. The downloaded core receipt, artifact `12544496657`, binds
+packet SHA256 `53340fa3a8c126620034bd20d12cbbbf3454fa68cd65fa398a2ef2253632c241`
+to the matching source audit. Both screenshots were visually inspected,
+including the selected lit WICC card. All106 current cards, five exact
+native/WASM card comparisons, four source-context coverage modes, keyboard
+navigation and phone layout passed. The server restart succeeded.
+
+The broader matrix then stopped at Caribbean's old five-source-count
+assertion, before completing its source-query/card checks. The actual batch
+audit inspected121 owned Caribbean evidence rows and retained the five old
+references while adding two previously omitted, already registered internal
+ledger references: `source:4dc5fc618c26565f` for geometry and
+`source:803229fe82eb2360` for length assessments. These are not new external
+observations or dimensions. The delivery browser test now verifies the exact
+seven source IDs and full native/WASM owner equality, with its native process
+closed before browser launch. Every source-value comparison remains required.
+No executed scientific producer, protocol, test or source product was changed.
+
+Working-data publication was skipped. The full offline job failed during
+original acquisition: Stramma1992's canonical and pinned alternate URLs
+returned HTTP403. Its remaining tests did not run. This failure is separate
+from the passing advisory scientific-reproduction job, whose compressed-byte
+differences remain disclosed. The next run must complete the broader browser
+matrix before the working-data publication job can execute.
