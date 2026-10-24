@@ -1,0 +1,43 @@
+{
+  "schema": "osw.eacc-original-startup-yaml-rejection-review.v1",
+  "reviewed_utc": "2026-10-24T16:46:12.463230+00:00",
+  "status": "PRE_JOB_FAILURE_NO_ORIGINAL_SOURCE_EXECUTION",
+  "rejected_runs": [
+    {
+      "run_id": 40112514918,
+      "path": ".github/workflows/davidson-width-candidate.yml",
+      "head_sha": "9bb8d949aa4caa97d21a4fc12eb48accc3595883",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "jobs": 0
+    },
+    {
+      "run_id": 40112514093,
+      "path": ".github/workflows/eacc-regional-model-core-v2.yml",
+      "head_sha": "9bb8d949aa4caa97d21a4fc12eb48accc3595883",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "jobs": 0
+    }
+  ],
+  "original_preflight": "research/eacc-regional-model-core-preflight-v2.json",
+  "original_preflight_sha256": "d04c8db6a0d77e30fe65c5ba1cb4b4cf226db3e6f355e393abe1ed79763401fa",
+  "original_workflow_source_commit": "52b91369ba4d5a793e61fbb4d6441912e929b12f",
+  "original_workflow_sha256": "56fb2eddc9210c6164f9b624c197ada6254681eab2e56a128385c961acbd3e5a",
+  "local_parser_diagnosis": {
+    "parser": "PyYAML 6.0.3",
+    "problem": "mapping values are not allowed here",
+    "line": 58,
+    "column": 54
+  },
+  "interpretation": "GitHub exposed terminal failures with zero jobs, not a direct annotation. The exact committed callee independently reproduces a YAML plain-scalar colon error in the pip --only-binary=:all: command. No job could request provider velocities.",
+  "correction": "Use a block scalar for pip; retain rejected preflight/runner/requirements and all physical method files; use execution-revision2 guard, requirements and a new preflight.",
+  "current_phase": "source-review-only-v1",
+  "heavy_work_permitted": false,
+  "remote_hold_commit": "b4b707330f2158145d43545402d277d2e6c7ebe9",
+  "original_velocity_requested_by_failed_runs": false,
+  "physical_method_changed": false,
+  "new_current_measurements": 0
+}
