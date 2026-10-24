@@ -60,10 +60,25 @@ both primary five-station width diagnostics. Sixty-six cases stop at missing
 seed-refinement endpoint support; the two January primary cases retain resolved
 central spans but fail regional axis gates. This is unsupported method coverage,
 not zero flow or current absence. A coastal-mask interaction is a hypothesis
-pending a separate support inspection of the already saved diagnostic.
+pending a separate support inspection at this checkpoint; the completed audit
+below now identifies the exact computational failure.
 
 The compact original result and figure manifest are preserved under research;
 see `research/eacc-hycom-source-resume-execution-review-v1.json`. No new current
 measurements have been admitted. The source-review hold is restored, with zero
 local heavy jobs. Native/WASM builds and browser checks remain deferred until
 the ordered delivery stage.
+
+The separate support inspection40122083877, attempt1, completed with35 cloud
+checks. Its255635-byte audit retains all72 cases. For all66 missing-endpoint
+cases, the negative40km endpoint is unsupported and the positive40km endpoint
+is supported. Sixty profiles stop before the negative endpoint; six reach an
+unsupported sample. Each first negative failure is missing paired-corner support
+west of the seed. Physical land attribution remains distinct from that exact
+computational cause. The full two-sided regional width gate remains unsupported.
+
+The inspection request is disabled again. The bounded audit and execution
+review are retained in research; all62 executed input paths remain unchanged.
+Next prepare the separate coastal-extent design in
+`plans/coastal-current-extent-measurement-design-v1.md`, with synthetic tests and
+a new protocol/review/freeze before any further original-data calculation.
