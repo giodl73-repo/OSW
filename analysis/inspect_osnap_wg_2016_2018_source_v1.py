@@ -147,6 +147,8 @@ def header_metadata(raw):
     with Dataset('source-header.nc', mode='r', memory=raw) as dataset:
         if dataset.groups:
             raise ValueError('Nested NetCDF groups require an explicitly reviewed inspection version')
+        if any(getattr(dataset, name) for name in ('enumtypes', 'cmptypes', 'vltypes')):
+            raise ValueError('User-defined NetCDF types require an explicitly reviewed inspection version')
         attributes = lambda obj: {key: attribute_value(obj.getncattr(key)) for key in obj.ncattrs()}
         result = {'data_model': dataset.data_model, 'attributes': attributes(dataset),
                   'dimensions': {name: {'length': len(dim), 'unlimited': dim.isunlimited()}

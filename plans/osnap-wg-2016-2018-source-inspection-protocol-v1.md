@@ -40,8 +40,9 @@ Never extract archive paths onto the filesystem.
 Inspect file signatures, NetCDF dimensions, variable names, data types, shapes
 and attributes. Retain units, fill values, quality flags, accuracy and processing
 notes as attributes, including explicit nonfinite representations. Do not read
-observation variable arrays. Reject nested groups rather than omit their contents;
-supporting them requires an explicitly reviewed version. Cap each header at 256 KiB and the report at 8 MiB;
+observation variable arrays. Reject nested groups and user-defined enum, compound
+or variable-length types rather than omit their structure; supporting them
+requires an explicitly reviewed version. Cap each header at 256 KiB and the report at 8 MiB;
 fail rather than silently truncate. Existing custody/report bytes may only be
 reused when exactly identical. Raw originals remain in the cloud artifact store.
 

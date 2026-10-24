@@ -95,3 +95,15 @@ def test_nested_header_groups_cannot_be_silently_omitted(monkeypatch):
     monkeypatch.setitem(__import__('sys').modules, 'netCDF4', types.SimpleNamespace(Dataset=lambda *a, **k: Header()))
     with pytest.raises(ValueError, match='Nested NetCDF groups'):
         source.header_metadata(b'CDF\x01synthetic-header-only')
+
+
+@pytest.mark.parametrize('kind', ['enumtypes', 'cmptypes', 'vltypes'])
+def test_user_defined_type_details_cannot_be_silently_lost(monkeypatch, kind):
+    class Header:
+        groups = {}; enumtypes = {}; cmptypes = {}; vltypes = {}
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
+    header = Header();setattr(header, kind, {'unreviewed-type': object()})
+    monkeypatch.setitem(__import__('sys').modules, 'netCDF4', types.SimpleNamespace(Dataset=lambda *a, **k: header))
+    with pytest.raises(ValueError, match='User-defined NetCDF types'):
+        source.header_metadata(b'CDF\x01synthetic-header-only')
