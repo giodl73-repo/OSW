@@ -95,6 +95,19 @@ compilation or native/WASM execution occurred. The dedicated cloud workflow is
 prepared for native tests, native CLI build, WASM build and parity in that order;
 complete its freeze and disabled-request backup before activating one check.
 
+The14-input query freeze and disabled workflow were backed up. The held workflow
+completed after a zero-job queue cancellation/requeue. Request-only activation
+then ran40131603572, attempt2, job120984471547 to success, after its initial
+attempt was terminally cancelled with zero jobs. Six cloud-control checks,
+seven native checks and ten native/WASM parity queries passed. The request is
+disabled again; all83 scientific inputs are unchanged.
+
+Only compact metadata was retrieved. The general compiled engine is59201757bytes
+and remains remote. Prepare a dedicated smaller WASM target before worker/UI
+delivery; retain this exact artifact as the parity baseline. Do not install the
+general binary or load the complete atlas locally. Physical dimensions/annual
+ranges/state joins remain unadmitted. See the scoped query outcome document.
+
 ## Ordered queue
 
 1. **Prepare EACC continuation.** Finish the adapter's internal review, dependency
