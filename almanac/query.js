@@ -63,6 +63,8 @@
   names.route_decisions='Remaining current-length decisions';
   names.model_frames='Hourly model section frames';
   names.model_samples='Model section field samples';
+  names.current_model_analysis_layers='Model study analysis-layer definitions';
+  names.current_model_depth_context='Model mean-flow depth context';
   const widthFamilies={leeuwin_monthly_fitted_plot:'Monthly fitted-width plot readings at Leeuwin track a101',kuroshio_seasonal_profile_plot:'Seasonal axis-normal threshold-profile plot readings',necc_monthly_connected_component:'Monthly-mean positive-zonal connected-component diagnostics',basin_monthly_component_section:'Monthly local component spans; current width unresolved'};
   widthFamilies.loop_dated_half_peak_section='Recorded-day Yucatan gate half-peak northward-component spans';
   widthFamilies.gulf_stream_dated_half_peak_section='Recorded-day half-peak eastward-component section spans at 70 W';

@@ -32,3 +32,9 @@ query records after the source-specific role review. Keep the83 scientific
 inputs and the verified local-extent UI's20
 inputs unchanged. No local native/WASM build, full index load, original velocity
 processing or browser automation is needed for this stage.
+
+The subsequent typed query contract is now prepared: two analysis-layer rows,
+three depth-context rows and two provenance entries. Fifteen small offline
+checks passed. See `plans/south-java-model-layer-query-v1.md` and the separate
+query preparation review for its current status; packet/Rust/browser delivery
+remains pending. The original facts and reviewed diagram remain unchanged.

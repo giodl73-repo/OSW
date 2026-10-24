@@ -29,7 +29,10 @@ The current source item is South Java layer/depth context from Iskandar2006
 publisher prose: separate model analysis bands, approximate mean-core depths
 and a threshold-depth cap. A small derived diagram was rendered on one
 BelowNormal CPU and actually inspected. No width or physical thickness was
-admitted. Next prepare separate typed working query records for these facts;
+admitted. Five typed working context records and two provenance entries are
+now prepared, with15 tiny offline checks passing. Next stage the append in one
+compatible cloud data batch and verify actual Rust queries before claiming
+the records installed;
 keep the83 scientific,23 runtime and20 verified UI inputs unchanged. Do not
 load a full atlas packet or start local builds/browser automation.
 
