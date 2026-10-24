@@ -10,7 +10,7 @@ from browser_inventory_expectations import CURRENT_COUNT, MOTION_COUNT
 
 def main():
     doc,_=n.verify_inputs()
-    out=n.ROOT/'.pytest_cache/nwasc-anchor-route/browser';out.mkdir(exist_ok=True)
+    out=n.ROOT/'.pytest_cache/nwasc-anchor-route/browser';out.mkdir(parents=True,exist_ok=True)
     queries=[
         {'collection':'objects','filters':[{'field':'id','op':'eq','value':'current:'+n.CURRENT}],'limit':1},
         {'collection':'reference_routes','filters':[{'field':'current_id','op':'eq','value':n.CURRENT}],'limit':1},

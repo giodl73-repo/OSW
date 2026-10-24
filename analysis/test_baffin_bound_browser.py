@@ -69,6 +69,10 @@ def main():
                 phase = 'phone-'+str(width)
                 page.set_viewport_size({'width':width,'height':844})
                 assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
+                assert section.locator('.table-wrap').evaluate('node => node.scrollWidth <= node.clientWidth + 1')
+                assert section.locator('th,td').evaluate_all(
+                    'nodes => nodes.every(n => n.getBoundingClientRect().left >= 0 && '
+                    'n.getBoundingClientRect().right <= innerWidth + 1 && n.scrollWidth <= n.clientWidth + 1)')
                 section.screenshot(path=str(output/f'card-{width}px.png'))
             image.screenshot(path=str(output/'scalar-phone.png'))
             phase = 'keyboard-scenario-query'
