@@ -1,0 +1,76 @@
+name: Frozen EACC source and regional core diagnostic v2
+
+"on":
+  workflow_call:
+
+# The designated caller holds osw-current-gap-delivery for the entire case.
+permissions:
+  contents: read
+  actions: read
+
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  acquire-and-diagnose-eacc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            research/current-gap-delivery-phase.json
+            research/eacc-regional-model-core-preflight-v2.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+      - name: Restore only committed scientific pins under the declared phase
+        run: |
+          python - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          root = pathlib.Path.cwd()
+          assert os.environ['GITHUB_REPOSITORY'] == 'giodl73-repo/OSW'
+          assert os.environ['GITHUB_REF'] == 'refs/heads/codex/current-measurement-gaps'
+          phase_path = 'research/current-gap-delivery-phase.json'
+          raw_phase = (root / phase_path).read_bytes()
+          phase = json.loads(raw_phase)
+          assert phase['phase'] == 'eacc-regional-model-core-v2'
+          assert phase['heavy_work_permitted'] is True
+          assert phase['max_heavy_cloud_jobs'] == 1 and phase['max_heavy_local_jobs'] == 0
+          path = 'research/eacc-regional-model-core-preflight-v2.json'
+          raw = (root / path).read_bytes()
+          assert hashlib.sha256(raw).hexdigest() == phase['preflight_sha256']
+          assert subprocess.check_output(['git','show','HEAD:'+path]) == raw
+          assert subprocess.check_output(['git','show','HEAD:'+phase_path]) == raw_phase
+          pins = json.loads(raw)['input_sha256']
+          assert 20 <= len(pins) <= 120
+          for name in pins:
+              assert name and not name.startswith('-') and (root / name).resolve().is_relative_to(root)
+          subprocess.run(['git','sparse-checkout','set','--no-cone',path,phase_path,*sorted(pins)],check=True)
+          for name, sha in pins.items():
+              assert hashlib.sha256((root / name).read_bytes()).hexdigest() == sha, name
+          PY
+      - name: Install pinned readers from binary wheels only
+        run: python -m pip install --only-binary=:all: -r requirements-eacc-core-v2.txt
+      - name: Check synthetic source, geometry, figures and cloud refusal
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pytest -q analysis/test_eacc_hycom_source_selection_v1.py analysis/test_eacc_hycom_source_compilation_v1.py analysis/test_eacc_model_core_seed_v2.py analysis/test_eacc_model_core_diagnostic_v2.py analysis/test_eacc_hycom_cloud_acquisition_v1.py analysis/test_eacc_model_core_figures_v1.py
+      - name: Acquire sequential responses and retain all declared outcomes
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/eacc_hycom_cloud_acquisition_v1.py --cloud-original-case
+      - name: Retain sources, failures, all cases and geographic evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eacc-regional-model-core-v2
+          path: .pytest_cache/eacc-regional-model-core-v2/
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90
+          compression-level: 0
