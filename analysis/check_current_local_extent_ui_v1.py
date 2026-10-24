@@ -70,12 +70,15 @@ def main():
             page.goto(base)
             expect(page.locator('#page-status')).to_have_text('1–12 of 12')
             assert page.locator('#result-body tr').count() == 12
+            expect(page.locator('#result-body tr').first.locator('td').nth(3)).to_have_text('145 – 150')
             expect(page.locator('#engine-status')).to_contain_text('72 source cases · 864 attempted extents')
             page.wait_for_function('document.querySelector("#evidence-chart").naturalWidth > 0')
             checked.append('default_primary_12_rows_and_chart')
             page.locator('#result-body button').first.click()
             expect(page.locator('#record-panel')).to_be_visible()
             record = json.loads(page.locator('#record-json').inner_text())
+            assert json.loads(page.locator('#result-body tr').first.locator('td').nth(3).get_attribute('title')) == record['extent_bracket_km']
+            checked.append('readable_display_bounds_preserve_exact_record_values')
             page.locator('#case-context > summary').click()
             expect(page.locator('#case-json')).to_be_visible()
             case = json.loads(page.locator('#case-json').inner_text())

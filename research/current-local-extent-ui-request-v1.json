@@ -9,9 +9,9 @@
   "measurement_admission_permitted": false,
   "main_merge_permitted": false,
   "preflight": "research/current-local-extent-ui-preflight-v1.json",
-  "preflight_sha256": "95a64c4da853e92e234be98939e37dd47db40a6ba0ec350fdbd8b0cad18040a2",
+  "preflight_sha256": "8276369f7ba3633428dd9933c4bbc61894f24c6962991f5c58e49ed1027bebfe",
   "workflow": ".github/workflows/current-local-extent-ui-v1.yml",
-  "reason": "Corrected cloud browser check succeeded. Disable execution and review its exact result and desktop/mobile screenshots before claiming delivered UI. Scientific inputs unchanged.",
+  "reason": "Held presentation correction after successful behavior checks and screenshot inspection. Table bounds use declared display-only rounding with unchanged exact raw values; full-size chart link added. Repeat one cloud UI case before completion claim.",
   "prior_failed_cases": [
     {
       "run_id": 40139826692,
@@ -26,28 +26,20 @@
       "remaining_browser_checks_verified": false
     }
   ],
-  "operational_revision": 2,
-  "readiness": {
-    "frozen_source_commit": "9c793f209f8af4e40cd2fbe1f301fdb60cf30054",
-    "held_run_id": 40140237391,
-    "held_run_attempt": 2,
-    "held_job_id": 121010421041,
-    "held_conclusion": "success",
-    "all_browser_steps_skipped": true,
-    "all_remote_source_pins_verified": 132,
-    "ui_source_inputs_verified": 20,
-    "scientific_inputs_unchanged": 83,
-    "runtime_inputs_unchanged": 23,
-    "local_script_syntax_checks_passed": 2,
-    "local_browser_runs": 0,
-    "browser_ui_verified": false
-  },
-  "completed_case": {
-    "run_id": 40140429254,
-    "run_attempt": 1,
-    "job_id": 121010827738,
-    "source_commit": "7c69a2b07600005359a361f5abae79f266ab0735",
-    "conclusion": "success",
-    "installed_assets_updated": false
-  }
+  "operational_revision": 3,
+  "prior_successful_cases": [
+    {
+      "run_id": 40140429254,
+      "run_attempt": 1,
+      "job_id": 121010827738,
+      "source_commit": "7c69a2b07600005359a361f5abae79f266ab0735",
+      "conclusion": "success",
+      "installed_assets_updated": false,
+      "preflight_sha256": "95a64c4da853e92e234be98939e37dd47db40a6ba0ec350fdbd8b0cad18040a2",
+      "browser_checks_passed": 10,
+      "screenshots_actually_inspected": true,
+      "execution_review": "research/current-local-extent-ui-execution-review-v1.json",
+      "presentation_correction_required": true
+    }
+  ]
 }

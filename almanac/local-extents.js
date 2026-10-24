@@ -21,6 +21,7 @@
   let query = {...presets.primary, sort:{field:'month',direction:'asc'}, limit:100, offset:0};
   let result = null;
   const pending = new Map();
+  const distanceFormat = new Intl.NumberFormat('en', {maximumFractionDigits:2, useGrouping:false});
   const human = value => String(value).replaceAll('_', ' ');
   const json = value => JSON.stringify(value, null, 2);
   function message(id, text, error = false) {
@@ -76,7 +77,9 @@
       if (isCase) cell(row, `${record.normal_sample_step_km} km / ${record.native_latitude_offset}`);
       else {
         cell(row, `${human(record.quantity)} / ${record.threshold_fraction}`);
-        cell(row, record.extent_bracket_km == null ? null : record.extent_bracket_km.join(' – '));
+        const bounds = cell(row, record.extent_bracket_km == null ? null
+          : record.extent_bracket_km.map(value => distanceFormat.format(value)).join(' – '));
+        if (record.extent_bracket_km != null) bounds.title = JSON.stringify(record.extent_bracket_km);
       }
       cell(row, human(record.status));
       const td = document.createElement('td'), button = document.createElement('button');

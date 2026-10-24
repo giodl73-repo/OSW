@@ -26,14 +26,14 @@ analogy is used. This approves preparation of one cloud check, not UI release.
 | 6 | SOUNDER | Derived bounds need an original case trail. | P2 | Record panel | Rust lookup retains case_context; revision2 checker opens its disclosure before reading. Full source-case/shared-link checks remain pending. |
 | 7 | CHART | Interval bars could imply physical uncertainty. | P2 | Chart caption | Describe source-scale support bounds and retained missing markers explicitly. |
 | 8 | CHART | Local directions could imply a geographic current boundary. | P2 | Scope text | Positive normal is not verified as offshore; no new map outline or width polygon added. |
-| 9 | CHART | A desktop-only chart could obscure evidence on phones. | P2 | Layout | Responsive SVG plus tabular values;390px screenshot/reflow check pending. |
+| 9 | CHART | A desktop-only chart could obscure evidence on phones. | P2 | Layout | Revision2 screenshot/reflow passed; inspected phone view led to explicit full-size chart link and scroll guidance in revision3. |
 | 10 | BEACON | Technical names can conceal what the page measures. | P3 | Headings | Plain local-extent heading, reference selector labels and visible model scope. |
 | 11 | BEACON | Source navigation could require the full packet to load first. | P2 | Navigation | Direct links from dashboard/query headers bypass the full query view. |
-| 12 | BEACON | Raw source details could overwhelm first reading. | P3 | Record/provenance | Keep primary scope visible; put full retained JSON in named details. |
+| 12 | BEACON | Raw source details could overwhelm first reading. | P3 | Record/provenance | Inspected screenshots exposed floating-point tails. Revision3 formats table bounds to two decimals with explicit rule; full raw values remain in record/title. |
 | 13 | HARBOR | Color-only categories would hide missing outcomes. | P2 | Results | Text status, null labels, table caption, chart alternative and exact data links. |
 | 14 | HARBOR | Old rows could be selected while a new query is pending. | P2 | Query flow | Result body made inert during queries; errors clear stale rows and selected record. |
 | 15 | HARBOR | Browser resource use could freeze the user's computer. | P2 | Delivery | Dedicated278KB engine, worker,100-row pages; local browser automation deferred by user constraint. |
-| 16 | KEEL | Source syntax does not prove actual worker ABI behavior. | P2 | Cloud case | First cloud run loaded12 rows/chart and a record, then checker read closed disclosure text. Revision2 opens the disclosure; full browser rerun still required. |
+| 16 | KEEL | Source syntax does not prove actual worker ABI behavior. | P2 | Cloud case | Revision2 passed all10 actual browser checks. Revision3 adds a display-versus-raw assertion and requires a new cloud case for changed presentation. |
 | 17 | KEEL | Corrupt data or absent engine could trigger silent fallback. | P2 | Worker/failure tests | No fallback exists; cloud checks require refusal and clean retry recovery. |
 | 18 | KEEL | Scoped checks do not prove full-atlas regression. | P2 | Protocol | Full suite is deferred under resource constraint; no broad regression/merge/release claim. |
 | 19 | LOGBOOK | Installing the separate engine changes the earlier runtime-only status. | P2 | Manifest/outcome | New UI manifest records separate installed binary and pending browser verification; historical review remains unchanged. |

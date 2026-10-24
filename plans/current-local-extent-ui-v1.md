@@ -77,3 +77,20 @@ Operational revision2 opens the source-case disclosure and waits for its text
 to be visible before parsing. This changes the checker, not the UI or scientific
 data. Preserve the executed preflight/run and bind the corrected checker before
 another serial cloud case. Do not represent the first attempt as UI success.
+
+## Passed behavior and visual correction
+
+Revision2 run40140429254, attempt1, source7c69a2b07600005359a361f5abae79f266ab0735
+passed all10 browser checks without page errors or full-atlas requests. Desktop
+and390px phone screenshots were retrieved and actually inspected. Controls,
+record context and layout were usable; the table exposed long binary
+floating-point tails in otherwise near-integer distance bounds.
+
+Revision3 formats table distances with at most two decimal places, with the
+rule explained beside the table. This is display formatting, not declared
+measurement precision. The original source bracket remains unchanged in the
+Rust store, record JSON and cell title. It also adds an explicit full-size SVG
+link and horizontal-table guidance for phones. The cloud checker verifies the
+first January display as145–150km and compares its raw title values to the
+record bracket. Reverify the changed presentation before marking UI delivery
+complete. No scientific measurements, classifications or uncertainty changed.
