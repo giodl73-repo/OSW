@@ -1,7 +1,18 @@
 (() => {
   const initialAddress=location.href;
   let userInteracted=false;
-  for(const type of ['pointerdown','keydown'])document.addEventListener(type,()=>{userInteracted=true;},{once:true,capture:true});
+  let linkedCardObserver=null,linkedCardFrame=null,linkedCardTarget=null;
+  function releaseLinkedCard() {
+    linkedCardObserver?.disconnect();linkedCardObserver=null;
+    if(linkedCardFrame!==null)cancelAnimationFrame(linkedCardFrame);
+    linkedCardFrame=null;linkedCardTarget=null;
+  }
+  for(const type of ['pointerdown','keydown','wheel','touchstart'])document.addEventListener(type,()=>{
+    userInteracted=true;releaseLinkedCard();
+  },{capture:true,passive:true});
+  document.addEventListener('focusin',event=>{
+    if(linkedCardTarget&&event.target!==linkedCardTarget)releaseLinkedCard();
+  },true);
   const revealInitialCard=()=>{if(!userInteracted&&location.href===initialAddress)revealLinkedCard();};
   const node = (tag, text, parent) => { const el = document.createElement(tag); if (text != null) el.textContent = text; if (parent) parent.append(el); return el; };
   const number = value => Number(value).toLocaleString("en-US");
@@ -37,6 +48,7 @@
     try { id = decodeURIComponent(location.hash.slice(1)); } catch (_) { return; }
     const target = byId(id);
     if (!target || !target.matches('.route-card, .current-model-card, .inventory-addition-card, .current-admission-card, #route-atlas')) return;
+    releaseLinkedCard();
     if (id === 'route-atlas') {
       if (window.restoreReferenceRouteAtlas) window.restoreReferenceRouteAtlas();
       else if (!new URL(location.href).searchParams.has('atlas-feature')) window.returnToReferenceRouteAtlas?.();
@@ -44,6 +56,21 @@
     }
     target.focus({ preventScroll: true });
     target.scrollIntoView({ block: 'start', behavior: 'instant' });
+    linkedCardTarget=target;
+    const address=location.href;
+    const align=()=>{
+      linkedCardFrame=null;
+      if(linkedCardTarget!==target||location.href!==address||!target.isConnected){releaseLinkedCard();return;}
+      target.scrollIntoView({block:'start',behavior:'instant'});
+    };
+    const schedule=()=>{
+      if(linkedCardFrame===null)linkedCardFrame=requestAnimationFrame(align);
+    };
+    // Atlas previews and late image sizing can move a distant card after the
+    // hash handler. Keep that heading aligned until the next user gesture.
+    linkedCardObserver=new ResizeObserver(schedule);
+    linkedCardObserver.observe(document.body);
+    schedule();
   }
   window.addEventListener('hashchange', revealLinkedCard);
   document.addEventListener('click', event => {
