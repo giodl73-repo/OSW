@@ -153,3 +153,24 @@ and four source-context lighting modes, and captures the actual dashboard.
 Its all-current query uses the API's supported limit500, correcting the earlier
 test's invalid limit1000. Syntax checks passed locally; native/browser execution
 of these latest changes remains a cloud gate.
+
+## Verified candidate store and WASM build
+
+At commit `b409d9144cbb15ebb9686d5b6ed63dfc1ebd8365`, source job120730167649
+exported the complete candidate successfully. Native job120730658188 then
+passed all155 Rust tests, accepted the actual candidate through `--atlas`, and
+built a49521453-byte WASM engine against the189850355-byte logical packet.
+The actual terminal job log, successful build/upload steps and downloaded
+source audit were inspected. Proof:
+`research/current-gap-native-candidate-proof-v1.json`.
+
+The job failed in browser-runner argument parsing because the new browser
+script had not been registered in `CHECKS`. No browser check ran and no visual
+pass is claimed. The runner now registers the script; `--help` confirms it is
+an allowed choice without launching a browser locally. This correction and
+the latest dashboard alias/coverage changes still require the next cloud run.
+
+The superseded run40047234657 was asked to cancel because its checkout has the
+same known runner registration failure. It must be observed terminal before
+calling it stopped. No local heavy job was started and no candidate artifact
+was installed in the live atlas.
