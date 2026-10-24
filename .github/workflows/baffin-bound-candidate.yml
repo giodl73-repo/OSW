@@ -146,6 +146,18 @@ jobs:
           compression-level: 1
       - name: Install the browser after compilation finishes
         run: python -m playwright install --with-deps chromium
+      - name: Check complete current identities and unlocated names before broader regressions
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_nwasc_reference_route_browser.py
+      - name: Retain current identity and route coverage evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nwasc-reference-route-receipts
+          path: .pytest_cache/nwasc-anchor-route/browser/
+          include-hidden-files: true
+          if-no-files-found: ignore
       - name: Check the Baffin card scenarios and exact source scope
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
@@ -215,7 +227,7 @@ jobs:
       - name: Check complete atlas selectors sources and corruption rejection
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
-          test_nwasc_reference_route_browser.py test_rust_atlas_snapshot_browser.py
+          test_rust_atlas_snapshot_browser.py
       - name: Retain complete atlas diagnostics
         if: always()
         uses: actions/upload-artifact@v4

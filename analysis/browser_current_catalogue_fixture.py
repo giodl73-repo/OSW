@@ -27,6 +27,25 @@ def expected_proposal_ids(root):
     return sorted(set(ids) - accepted)
 
 
+def expected_current_map_ids(root):
+    """Declared historical marks and four explicitly unlocated additions."""
+    accepted = set(expected_current_ids(root))
+    base = json.loads((root / 'research/ocean-current-effective-catalogue.json').read_bytes())
+    historical = {row['id'] for row in base['entries']}
+    coastal = json.loads((root / 'research/indian-current-identity-query-contract-v1.json').read_bytes())
+    objects = coastal['additions']['objects']
+    unlocated = accepted - historical
+    if (len(objects) != 4 or {row['id'] for row in objects} != unlocated
+            or any(row['type'] != 'named_current' or row['map_features'] != []
+                   or row['capabilities']['geometry'] != 0 for row in objects)):
+        raise ValueError('Changed unlocated coastal object inventory')
+    dashboard = json.loads((root / 'research/ocean-motion-dashboard.json').read_bytes())
+    rows = [row for row in dashboard['entries'] if row['id'] in historical]
+    if len(rows) != len(historical) or {row['id'] for row in rows if row['map_features']} != historical:
+        raise ValueError('Missing declared historical current map marks')
+    return sorted(historical), sorted(unlocated)
+
+
 def expected_reference_route_ids(root):
     """Historical cards plus the separately admitted NWASC source connection."""
     base=json.loads((root/'research/ocean-current-working-reference-routes.json').read_bytes())

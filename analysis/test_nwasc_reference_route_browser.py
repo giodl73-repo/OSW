@@ -5,11 +5,15 @@ from urllib.parse import quote
 from playwright.sync_api import sync_playwright, expect
 import nwasc_source_anchor_route as n
 from test_current_research_evidence_browser import BASE, native
-from browser_inventory_expectations import CURRENT_COUNT, MOTION_COUNT
+from browser_inventory_expectations import CURRENT_COUNT as HISTORICAL_CURRENT_COUNT, MOTION_COUNT as HISTORICAL_MOTION_COUNT
+from browser_current_catalogue_fixture import expected_current_ids, expected_current_map_ids
 
 
 def main():
     doc,_=n.verify_inputs()
+    current_ids=set(expected_current_ids(n.ROOT));current_count=len(current_ids)
+    mapped_ids,unlocated_ids=map(set,expected_current_map_ids(n.ROOT))
+    motion_count=HISTORICAL_MOTION_COUNT-HISTORICAL_CURRENT_COUNT+current_count
     out=n.ROOT/'.pytest_cache/nwasc-anchor-route/browser';out.mkdir(parents=True,exist_ok=True)
     queries=[
         {'collection':'objects','filters':[{'field':'id','op':'eq','value':'current:'+n.CURRENT}],'limit':1},
@@ -31,7 +35,8 @@ def main():
                 page.locator('#query-json').fill(json.dumps(q));page.evaluate('window.oswLastQueryResult=null')
                 page.locator('#query-run-json').click();page.wait_for_function('window.oswLastQueryResult',timeout=120000)
             result=page.evaluate('window.oswLastQueryResult');assert result==native(q)
-            assert result['total']==(78 if i==4 else CURRENT_COUNT if i==3 else 1)
+            expected_total=78 if i==4 else current_count if i==3 else 1
+            assert result['total']==expected_total,(i,result['total'],expected_total)
             if i==0:
                 row=result['rows'][0];assert row['route_ids']==[n.ROUTE]
                 assert row['published_length_km']==3500 and row['capabilities']['scoped_width']==8
@@ -45,9 +50,12 @@ def main():
                 assert result['rows'][0]['source_decision']==doc['planning_decision']
                 assert result['rows'][0]['source_catalog_file']==n.FILE
             if i==3:
-                assert result['map_scene']['mapped_objects']==CURRENT_COUNT and result['map_scene']['unmapped_objects']==0
+                assert {row['id'] for row in result['rows']}==current_ids
+                assert result['map_scene']['mapped_objects']==len(mapped_ids)
+                assert result['map_scene']['unmapped_objects']==len(unlocated_ids)
+                assert {row['id'] for row in result['rows'] if not row['map_features']}==unlocated_ids
                 actual=set(page.locator('#query-map-features').evaluate('(e)=>[...e.children].map(n=>n.dataset.entity)'))
-                assert actual=={r['id'] for r in result['rows']}
+                assert actual==mapped_ids
             if i==4:
                 scene=result['map_scene']
                 assert scene['inspection_collection']=='reference_routes'
@@ -61,7 +69,7 @@ def main():
         page.goto(BASE+'/almanac/reference-routes.html?atlas-feature=current%3Anorwegian-atlantic-slope#route-atlas')
         page.wait_for_function('window.oswAtlasSnapshot',timeout=180000)
         expect(page.locator('#route-atlas-preview > h3')).to_have_text('Norwegian Atlantic Slope Current',timeout=120000)
-        assert page.locator('.route-atlas-station').count()==CURRENT_COUNT
+        assert page.locator('.route-atlas-station').count()==current_count
         snap=page.evaluate('window.oswAtlasSnapshot')
         frozen=json.loads((n.ROOT/n.BASE).read_bytes())
         historical=n.extend_catalogue(frozen,doc)
@@ -92,8 +100,9 @@ def main():
         assert not plan['can_play'] and plan['eligible_indices']==[]
         assert not errors,errors
         browser.close()
-    receipt={'status':'PASS','actual_native_wasm_queries':5,'mapped_named_currents':CURRENT_COUNT,
-        'dashboard_objects':MOTION_COUNT,'reference_routes':78,'route_owners':72,'frozen_catalogue_addresses_exact':True,
+    receipt={'status':'PASS','actual_native_wasm_queries':5,'named_currents':current_count,
+        'mapped_named_currents':len(mapped_ids),'unlocated_named_currents':len(unlocated_ids),
+        'dashboard_objects':motion_count,'reference_routes':78,'route_owners':72,'frozen_catalogue_addresses_exact':True,
         'keyboard_current_to_route_card_to_map':True,'mobile_320px':True,'seasonal_playback_disabled':True}
     (out/'result.json').write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf8');print(json.dumps(receipt),flush=True)
 
