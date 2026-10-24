@@ -1211,7 +1211,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "4c12825f2e8f9b0a3cb3c79449dd6fc114340e8b5686b3a8cf4d19f82549cfd4",
+  "snapshot_fingerprint": "c2690088b516e9d1917d6a03bca4b02408a5ea2511b001b09812c774f0c30735",
   "entries": [
     {
       "id": "current:agulhas",
@@ -25405,7 +25405,7 @@
         "radius_evidence": 0,
         "reported_length": 0,
         "reference_route": 1,
-        "scoped_width": 1,
+        "scoped_width": 2,
         "geometry": 0,
         "time_samples": 1,
         "source_connectivity": 0,
@@ -25415,24 +25415,25 @@
         "passage_transport": 0,
         "width_samples": 0
       },
-      "recorded_claims": 56,
+      "recorded_claims": 57,
       "nasa_links": 1,
-      "fingerprint": "7cd0dc1e40e4b8819e3c62700fc33fc21ea1c073a565d3d32018a4ce6eb65cfd",
+      "fingerprint": "f94595be206a18e6939fb3af9d1af24e5952dccbedcac20aec1e9ded0386028d",
       "series": [],
       "section_fingerprints": {
         "identity": "c4a9889d32931921aa5d0df6aaaf06fdcc33736671af0f720ace03d8c9865d0f",
         "sources": "59eb696fedbff6a6c73a3f4cee66e3d3261f73a9d798c3b26d5777accd43df43",
-        "claims": "d8afb4e3e0e71e8076293c7466ffc75285db6746b99d28998156e55d406c0436",
-        "measurements": "8bfdf20fb7326a4fec4a34ce527b46c78d3340ec8a41f9bf305766a6ad1608a4",
+        "claims": "dcffc490dc63446e608f5ccae3b3262d193ee746afd1f679e0fb46e8279cf0f1",
+        "measurements": "020d7adc0707d5c1a346b3a6d1d45ef8bdb9b8f24ee8764ae14fa6f4f83552f3",
         "routes_geometry": "40a9444a82f267e15767543ab425925ec1731c79a33d564ac0942d89b48b62ed",
         "media": "35b712de336ecbb7a0b29b9985870853cf0e23ffa949f00a9b44e1429a7438ba",
-        "time_evidence": "5cb46860d85166e84a1e509cacaa42cd7a3cad48b1b2e95ee8aee0fbee6f3709"
+        "time_evidence": "5cb46860d85166e84a1e509cacaa42cd7a3cad48b1b2e95ee8aee0fbee6f3709",
+        "source_ownership": "946dd9f38987e9b79435f7fd0596c293b31c8a0f98867e0a5afd810e10449429"
       },
       "latest_observation_date": null,
       "claim_review_counts": {
-        "not_individually_reviewed": 56
+        "not_individually_reviewed": 57
       },
-      "linked_source_count": 5,
+      "linked_source_count": 8,
       "map_features": [
         {
           "geometry": {
@@ -26646,13 +26647,27 @@
       "state_evidence": [],
       "connections": [],
       "scope_notes": [],
-      "evidence_links": [],
+      "evidence_links": [
+        {
+          "label": "Compare the January 2008 reported transect span",
+          "url": "../figures/davidson-wallace-2008-reported-width-v1.svg"
+        },
+        {
+          "label": "Query the January 2008 span: about 65 km",
+          "url": "query.html?q=%7B%22collection%22%3A%22widths%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22davidson-wallace-2008-line67-27-59m-reported-span%22%7D%5D%2C%22limit%22%3A1%7D"
+        },
+        {
+          "label": "Read the width admission and limitations",
+          "url": "query.html?q=%7B%22collection%22%3A%22current_measurement_admissions%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22current_measurement_admission%3Adavidson%3Awallace-2008-line67%22%7D%5D%2C%22limit%22%3A1%7D"
+        }
+      ],
       "object_url": "object.html?id=current%3Adavidson",
       "route_url": "reference-routes.html#davidson-winter-reference-path-candidate",
       "season_url": "seasons.html?current=davidson",
       "dashboard_search": "Davidson Current North Pacific",
       "width_ids": [
-        "davidson-historical-winter-width"
+        "davidson-historical-winter-width",
+        "davidson-wallace-2008-line67-27-59m-reported-span"
       ],
       "measurement_ids": [],
       "route_ids": [
@@ -26663,7 +26678,10 @@
         "source:4dc5fc618c26565f",
         "source:4f7441b953be4651",
         "source:803229fe82eb2360",
-        "source:b038491b0e5a3967"
+        "source:b038491b0e5a3967",
+        "source:nist-sp811-international-nautical-mile",
+        "source:osw-davidson-wallace-reported-width-v1",
+        "source:wallace-davidson-2008-course-report"
       ],
       "state_codes": [],
       "published_length_km": null,
@@ -167095,9 +167113,15 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "parent_built_at_utc": "2026-10-23T20:19:55.174009+00:00",
-  "built_at_utc": "2026-10-24T02:23:01.954421Z",
+  "parent_built_at_utc": "2026-10-24T02:23:01.954421Z",
+  "built_at_utc": "2026-10-24T08:16:11.754840Z",
   "candidate_delivery": {
+    "version": "davidson-wallace-line67-v1",
+    "published": false,
+    "parent_logical_sha256": "31a0bf88a5fe40e5929c9cd6fa5f5d4cc5db92a03574354e1f8554003bf802e3",
+    "scope": "One source-reported regional campaign span; no raw samples, annual range or geometry."
+  },
+  "parent_candidate_delivery": {
     "version": "indian-coastal-brazil-t24-v1",
     "published": false,
     "scope": "Verified source batch projected into candidate owners; no new physical geometry or annual extrema."
