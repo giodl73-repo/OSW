@@ -27,6 +27,7 @@ mod current_width_source_reviews;
 mod dashboard;
 mod dashboard_beck;
 mod dashboard_map;
+mod davidson_reported_width;
 mod dwbc_float_composite;
 mod eac_core_spans;
 mod eac_source_fields;
@@ -385,6 +386,7 @@ impl Store {
         mooring_velocity::validate(&bundle)?;
         current_sections::validate(&bundle)?;
         current_gap_admissions::validate(&bundle)?;
+        davidson_reported_width::validate(&bundle)?;
         current_catalogue::validate(&bundle)?;
         current_measurements::validate(&bundle)?;
         nwasc_admission::validate(&bundle)?;

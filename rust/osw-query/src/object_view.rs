@@ -8,6 +8,13 @@ use std::collections::BTreeSet;
 struct Request {
     id: String,
 }
+fn owns_source_row(row: &Value, id: &str) -> bool {
+    row["entity_id"] == id
+        || id
+            .strip_prefix("current:")
+            .filter(|current| !current.is_empty())
+            .is_some_and(|current| row["current_id"] == current)
+}
 impl Store {
     pub fn object_view(&self, bytes: &[u8]) -> Result<Value, String> {
         let request: Request = serde_json::from_slice(bytes).map_err(|e| e.to_string())?;
@@ -77,26 +84,22 @@ impl Store {
                 .collect();
             data[name] = json!(selected);
         }
-        if crate::current_gap_admissions::active(&self.bundle) {
-            for name in [
-                "widths",
-                "current_identity_admissions",
-                "current_measurement_admissions",
-                "current_regional_reaches",
-                "route_decisions",
-                "current_direction_calendars",
-                "current_direction_descriptions",
-                "current_reported_width_evidence",
-                "current_cross_shore_context",
-                "current_regime_context",
-            ] {
+        for name in [
+            "widths",
+            "current_identity_admissions",
+            "current_measurement_admissions",
+            "current_regional_reaches",
+            "route_decisions",
+            "current_direction_calendars",
+            "current_direction_descriptions",
+            "current_reported_width_evidence",
+            "current_cross_shore_context",
+            "current_regime_context",
+        ] {
+            if let Some(rows) = self.bundle.collections.get(name) {
                 data[name] = json!(
-                    self.bundle
-                        .collections
-                        .get(name)
-                        .into_iter()
-                        .flatten()
-                        .filter(|row| row["entity_id"] == id)
+                    rows.iter()
+                        .filter(|row| owns_source_row(row, id))
                         .collect::<Vec<_>>()
                 );
             }
@@ -220,5 +223,31 @@ impl Store {
         Ok(
             json!({"ok":true,"engine":"rust-osw-query-v1","id":id,"bundle_sha256":self.metadata()["bundle_sha256"],"collections":data,"detection_plot":detection_plot,"footprint_plots":footprint_plots,"source_panel_scene":crate::eddy_source_panels::for_owner(&self.bundle,id)?}),
         )
+    }
+}
+
+#[cfg(test)]
+mod source_ownership_tests {
+    use super::*;
+    #[test]
+    fn joins_legacy_current_keys_and_new_entity_keys_without_neighbor_transfer() {
+        assert!(owns_source_row(
+            &json!({"current_id":"davidson"}),
+            "current:davidson"
+        ));
+        assert!(owns_source_row(
+            &json!({"entity_id":"current:davidson"}),
+            "current:davidson"
+        ));
+        assert!(!owns_source_row(
+            &json!({"current_id":"california"}),
+            "current:davidson"
+        ));
+        assert!(!owns_source_row(
+            &json!({"current_id":"davidson"}),
+            "eddy:davidson"
+        ));
+        assert!(!owns_source_row(&json!({}), "eddy:any"));
+        assert!(!owns_source_row(&json!({"current_id":""}), "current:"));
     }
 }

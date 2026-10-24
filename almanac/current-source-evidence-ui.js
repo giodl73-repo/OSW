@@ -27,6 +27,39 @@
     if (row.source_locator || row.locator) node('p', row.source_locator || row.locator, parent);
   }
   window.renderCurrentSourceEvidence = function(parent, data, id, sourceLink) {
+    const campaignSpans = own(data, 'widths', id).filter(row =>
+      row.measurement_type === 'source_reported_regional_transect_summary' &&
+      row.source_evidence_kind === 'primary_course_cruise_report' &&
+      own(data, 'current_measurement_admissions', id).some(admission =>
+        admission.id === row.width_admission_id && admission.width_id === row.id));
+    if (campaignSpans.length) {
+      const section = heading(parent, 'current-campaign-widths', 'Reported regional transect spans');
+      node('p', 'Each record keeps its own region, depth and campaign. Separate historical summaries do not establish a trend or seasonal range.', section);
+      for (const row of campaignSpans) {
+        const article = node('article', null, section); article.dataset.recordId = row.id;
+        node('h4', `About ${row.approximate_width_km} km · ${row.phase_label}`, article);
+        node('p', row.geographic_scope, article);
+        node('p', row.layer, article);
+        node('p', `Campaign: ${windowLabel(row.observation_window)}. Exact occupation date unknown.`, article);
+        node('p', `Source reports about ${row.source_reported_value} ${row.source_unit_label}. Unit conversion: ${row.normalized_width_km_decimal} km; the source remains approximate.`, article);
+        node('p', 'Primary course cruise report. Peer review and publication date unverified. Paired current edges, numerical velocity cutoff and uncertainty are unspecified. Flow-normal orientation is unverified.', article);
+        node('p', 'No whole-current width, annual range or seasonal animation is established.', article);
+        const figure = node('figure', null, article);
+        const image = node('img', null, figure);
+        image.src = '../' + row.figure_file;
+        image.alt = `About ${row.approximate_width_km} km, one reported regional transect span. ${row.layer}. ${row.phase_label}. Numerical marker only, with unknown edges and uncertainty.`;
+        image.loading = 'lazy'; image.style.cssText = 'width:100%;max-width:600px;height:auto';
+        node('figcaption', 'One source-reported scalar. The diagram does not locate current boundaries on a map.', figure);
+        const open = node('a', 'Open the source-scope diagram', article);
+        open.href = image.getAttribute('src');
+        source(row, article, sourceLink);
+        const widthLink = node('p', null, article);
+        recordLink(widthLink, 'widths', row.id);
+        const admissionLink = node('p', null, article);
+        recordLink(admissionLink, 'current_measurement_admissions', row.width_admission_id);
+        admissionLink.firstChild.textContent = 'Admission and limitations';
+      }
+    }
     const calendars = own(data, 'current_direction_calendars', id);
     for (const calendar of calendars) {
       const section = heading(parent, 'current-direction-calendar', 'Typical direction through the year');

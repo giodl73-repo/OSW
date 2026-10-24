@@ -67,6 +67,7 @@ CHECKS = ('test_redsox_station_support_browser.py', 'test_redsox_station_support
 
 CHECKS = ('test_published_regional_reaches_browser.py',) + CHECKS
 CHECKS = ('test_current_gap_admission_browser.py',) + CHECKS
+CHECKS = ('test_davidson_reported_width_browser.py',) + CHECKS
 
 
 def check_port_available(address=('127.0.0.1', 8788)):
@@ -98,6 +99,9 @@ def wait_for_checkout(server=None):
 
 
 def main():
+    if os.environ.get('GITHUB_ACTIONS') == 'true' and hasattr(os, 'sched_getaffinity'):
+        os.sched_setaffinity(0, {min(os.sched_getaffinity(0))})
+        os.nice(5)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--start-server', action='store_true',
                         help='Start and stop a dedicated server; omit to reuse the existing local server')

@@ -65,11 +65,15 @@ pub fn entities(bundle: &Bundle) -> Vec<Value> {
     }
 }
 pub fn widths(bundle: &Bundle) -> Vec<Value> {
-    if active(bundle) {
+    let mut widths = if active(bundle) {
         vec![doc(WIDTH.1)["width_record"].clone()]
     } else {
         vec![]
-    }
+    };
+    // Later source admissions remain independently gated while sharing the
+    // complete-width-table checks and seasonal snapshot projection.
+    widths.extend(crate::davidson_reported_width::widths(bundle));
+    widths
 }
 pub fn verified_length_assessments(bundle: &Bundle) -> Result<Vec<Value>, String> {
     if !active(bundle) {
