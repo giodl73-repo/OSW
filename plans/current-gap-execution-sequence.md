@@ -20,6 +20,12 @@ time. Never overlap acquisition, numerical processing, builds or browser checks.
 
 ### Latest checkpoint: resource scheduling takes priority
 
+Revision2 run40136912099 is terminal failure and execution is disabled. It passed
+all18 selected native tests, then production CLI compilation found a test-only
+`filter_equal` import. Revision3 fixes the import after auditing every extracted
+helper reference. Rebind and checkpoint source before another cloud case;
+no local compilation or data processing is permitted during this correction.
+
 The active queue below supersedes the older stage list and historical notes.
 The dedicated runtime's first cloud check passed11 native tests, then failed
 atlas compilation on a missing comparator alias. That source correction is

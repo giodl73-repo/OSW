@@ -10,8 +10,8 @@
   "max_cloud_jobs": 1,
   "workflow": ".github/workflows/current-local-extent-query-check-v2.yml",
   "preflight": "research/current-local-extent-query-check-preflight-v2.json",
-  "preflight_sha256": "4cdcf5807154f259efd8f54dd38ac383284b554ff4da6ed8f8e1962e2928d50c",
-  "reason": "Dedicated and shared atlas native tests passed; native CLI build failed. Preserve this exact failed source/run and disable execution before inspecting the failure. Scientific inputs unchanged.",
+  "preflight_sha256": "f72ee1783e9c22d9477cfc620b13605e19be61242c13018156748a9943f22928",
+  "reason": "Held revision3 corrects the production equality alias after18 passing native tests. Source-wide extracted-helper references audited; normal native and WASM builds and parity remain required.",
   "prior_failed_cases": [
     {
       "run_id": 40135768056,
@@ -25,30 +25,21 @@
       "artifact_id": 12576838755,
       "artifact_digest": "sha256:24ebe1a0d04d412080dd143e8339c385ac2e46e8026cd15b9443b0acf2691e12",
       "failure": "Atlas index_store still references crate::compare; restore the root alias."
+    },
+    {
+      "run_id": 40136912099,
+      "run_attempt": 1,
+      "job_id": 121000255227,
+      "source_commit": "fb6e30c4fd2b505f6f2dd2fe2cc37c2cc1035486",
+      "conclusion": "failure",
+      "installed_assets_updated": false,
+      "preflight_sha256": "4cdcf5807154f259efd8f54dd38ac383284b554ff4da6ed8f8e1962e2928d50c",
+      "dedicated_native_tests_passed": 11,
+      "atlas_native_tests_passed": 7,
+      "artifact_id": 12577955903,
+      "artifact_digest": "sha256:aed9776b1cd25f0ddf58d34abe2d0ee219117ea1b223b4fea631867746fe41ba",
+      "failure": "Production index_store needs filter_equal; remove the cfg(test) gate from its root alias."
     }
   ],
-  "operational_revision": 2,
-  "readiness": {
-    "frozen_source_commit": "3fc3cd8bd0488774ee9aee56a6ab8d962a3558fa",
-    "held_run_id": 40136679167,
-    "held_run_attempt": 2,
-    "held_job_id": 120999720601,
-    "held_run_conclusion": "success",
-    "all_compilation_steps_skipped": true,
-    "frozen_query_inputs_verified": 23,
-    "executed_scientific_inputs_unchanged": 83,
-    "all_remote_source_blobs_verified": 117,
-    "fictional_gate_tests_passed": 7,
-    "rust_source_formatting_version": "1.95.0",
-    "node_parity_script_syntax_verified": true,
-    "native_and_wasm_runtime_checks_complete": false
-  },
-  "completed_case": {
-    "run_id": 40136912099,
-    "run_attempt": 1,
-    "job_id": 121000255227,
-    "source_commit": "fb6e30c4fd2b505f6f2dd2fe2cc37c2cc1035486",
-    "conclusion": "failure",
-    "installed_assets_updated": false
-  }
+  "operational_revision": 3
 }

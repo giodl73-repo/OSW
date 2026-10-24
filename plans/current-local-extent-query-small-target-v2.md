@@ -94,3 +94,12 @@ Operational revision2 restores that comparator alias without changing its
 implementation, the scalar dataset or any83-input scientific file. Native,
 WASM, size/memory and baseline parity verification must be rerun on the newly
 bound source. The failed case is not represented as a passing build.
+
+Revision2 run40136912099, attempt1, sourcefb6e30c4fd2b505f6f2dd2fe2cc37c2cc1035486
+passed11 dedicated tests,6 shared atlas scalar tests and1 null-versus-zero test.
+The normal native CLI build then found `filter_equal` gated by `cfg(test)` even
+though index_store uses it in production. Revision3 makes the shared import
+unconditional. A source-wide audit of root references to the extracted helpers
+found index_store uses `field`, `compare` and `filter_equal`; all three are now
+unconditional aliases. No helper implementation or scientific data changes.
+Normal native and WASM builds, budgets and reference parity remain unverified.
