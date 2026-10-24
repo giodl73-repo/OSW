@@ -20,8 +20,16 @@ def main():
     # assessment and source. One native load verifies both documents; the
     # shipped WASM also checks each new record through its own collection.
     expected=native(complete)
-    assert expected['total']==2
-    assert {r['id']:r for r in expected['rows']}=={document['id']:document,nac['id']:nac}
+    expected_admissions={document['id']:document,nac['id']:nac}
+    # A separately validated later cohort may append Baffin; it cannot alter
+    # either complete prior admission or introduce any other admission here.
+    baffin_id='current_length_bound_admission:baffin:described-latitudes-v1'
+    if any(row['id']==baffin_id for row in expected['rows']):
+        from baffin_bound_admission import FILE as baffin_file
+        baffin=json.loads((ROOT/baffin_file).read_bytes())['admission']
+        expected_admissions[baffin_id]=baffin
+    assert expected['total']==len(expected_admissions)
+    assert {r['id']:r for r in expected['rows']}==expected_admissions
     individual=[('length_assessments','entity_id',ENTITY,document['length_assessment']),
                 ('measurements','id',document['measurement']['id'],document['measurement']),
                 ('claims','id',document['claim']['id'],document['claim']),

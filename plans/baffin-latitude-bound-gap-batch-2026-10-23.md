@@ -108,6 +108,42 @@ their exact source IDs, retaining existing selector/source/corruption gates;
 failure diagnostics will capture IDs, status and page errors. This fix requires
 a new sequential cloud run; do not claim complete atlas success yet.
 
+### Browser gate and build provenance prepared
+
+`analysis/test_baffin_bound_browser.py` is registered with the sequential
+browser runner. The script refuses local execution before reading the contract
+or starting a process. Its actual cloud assertions cover complete native/WASM
+object equality, all nine visible scenario rows and values, preserved old width
+IDs, exact measurement/claim/assessment/admission/source/owner query records,
+all 13 qualified ranked rows, keyboard scenario navigation, export availability,
+320px/390px reflow, source SVG byte integrity and zero automatic original-file
+requests. It will save phone card/scalar images and phase-specific failure JSON.
+**This actual browser gate has not run yet.**
+
+One local browser-policy test and six exporter refusal/resource tests pass;
+Python syntax checks pass. The engine builder now pins the Baffin contract,
+owner transition, their full scientific dependency set, operational modules,
+new browser checks and the prior Labrador regression. No native or WASM build
+was started locally.
+
+The Labrador regression still requires both complete original admissions. When
+the Baffin admission is present, it additionally requires the exact separately
+validated Baffin admission; unknown admissions still fail. This keeps the older
+cohort test usable while preserving the later cohort's complete row comparison.
+
+Focused retry run **40067999078**, source
+`1bc1708ea9329b56233168667ac61a4e6d46e588`, contains only the atlas readiness
+and diagnostic changes over the previous remote source. Local unfinished
+Baffin code was excluded via a bounded seven-object source transfer. The
+remote parent packet was verified unchanged. The retry is live at native/WASM
+build stage at this checkpoint; retain its remote source head until terminal.
+
+Before pushing the Baffin batch, finish a Baffin-specific sequential workflow
+and publication verifier, with fixtures for source/engine/data/browser/source
+commit agreement and strict generated-only changed paths. Route the preceding
+Davidson workflow away from this next phase to avoid redundant heavy rebuilds.
+Require the actually installed Davidson proof before the Baffin export can run.
+
 1. Finish Davidson run40065785176 on its pinned source head. It has passed
    native/WASM, Davidson card, five preceding cards/dashboard and regional
    reach and catalogue navigation checks. The separate downloaded navigation
