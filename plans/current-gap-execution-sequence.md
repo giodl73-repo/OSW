@@ -5,6 +5,8 @@ time. Never overlap acquisition, numerical processing, builds or browser checks.
 
 ## Resource limits
 
+- Use a single active work item, including small checks and figure rendering.
+  Do not run local checks or rendering while a cloud case is running.
 - Local heavy jobs: zero during source acquisition and review.
 - Cloud heavy jobs: at most one, under `osw-current-gap-delivery`.
 - Small local checks: one CPU, BelowNormal priority, one numerical worker.
@@ -13,6 +15,40 @@ time. Never overlap acquisition, numerical processing, builds or browser checks.
   metadata and selected small figures only.
 - Keep the exact active run identity. Poll it; an observation timeout does not
   authorize a replacement or restart.
+
+## Current serial queue after renewed resource concern
+
+The user reiterated the computer resource constraint on2026-10-24. Preserve
+unfinished source edits without starting tests, rendering, downloads or builds
+in response to this scheduling change. A process inventory found no local
+Python measurement, pytest, Rust or WASM build job running; preview servers and
+browser automation runtimes were left alone.
+
+Complete these stages in order, with no overlapping work:
+
+1. Finish the new coastal-extent runner tests, execution protocol and review as
+   source edits only. The adapter, evidence renderer and prospective workflow
+   exist; the new cloud case is not ready for execution.
+2. Run one focused synthetic test command on one BelowNormal CPU with one
+   numerical worker. Finish it before any rendering.
+3. Render and inspect one small synthetic example, then finish the input freeze
+   and source backup. Keep original ocean arrays off this computer.
+4. Run at most one explicitly gated cloud case. During that case, only inspect
+   its status; do not start local tests, rendering or another case.
+5. After the cloud case is terminal, retrieve compact results, then selected
+   small figures, separately. Review before choosing the next current gap.
+
+Native/WASM builds, browser automation and bulk synchronization remain deferred.
+
+The new saved-profile runner's source preparation now has an executed focused
+gate:132 synthetic checks passed in16.57s on one BelowNormal CPU with one
+numerical worker, including the actual sparse bootstrap on tiny offline Git
+files. That process finished before a one-month synthetic map/profile render.
+Both rasters were inspected. Visible profile axis units were then added and a
+second small profile raster was rendered and inspected separately. No original
+ocean arrays, provider requests, local builds or browser automation were used.
+The execution protocol and internal role review are now written. Complete
+freeze and committed held source backup still precede any new cloud case.
 
 ## Ordered queue
 
