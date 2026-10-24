@@ -65,6 +65,27 @@ physical range is admitted. Preserve this distinct dimensional evidence before
 reviewing the remaining monthly geography or integrating a new typed collection.
 See `plans/eacc-coastal-reference-extent-outcome-v1.md` for the full checkpoint.
 
+The remaining ten monthly maps were subsequently retrieved in three bounded,
+sequential PNG batches and inspected. March/August profile sheets were also
+inspected; all12 maps and four profile sheets now have a separate geographic
+review record. The original publisher abstract supports regional latitude/flow
+context only; physical edges and current-wide attribution remain unverified.
+
+A new scalar-only adapter passed29 tiny synthetic checks in0.28s. It copies
+all72 cases and864 outcomes into separate research collections, preserving seed
+positions, failed gates and null physical-width/rank/state-join admission. After
+the test process finished, the scalar bundle was prepared, then a small
+Matplotlib primary-month chart was rendered and inspected. No source velocities,
+native/WASM build, browser automation or full query/index load was used. Next
+register these explicitly typed research collections in the query layer without
+incrementing whole-current width coverage, then continue the current gap queue.
+
+The chart's final SVG round-trip check found an encoding-label issue. Corrected
+to UTF-8 and added an actual synthetic export check; the final focused suite
+passed30 checks in1.66s on one BelowNormal CPU. The corrected PNG is byte
+identical to the inspected version, and the SVG parses with accessible labels
+and its JSON alternative link. Dataset values and geometry did not change.
+
 ## Ordered queue
 
 1. **Prepare EACC continuation.** Finish the adapter's internal review, dependency
