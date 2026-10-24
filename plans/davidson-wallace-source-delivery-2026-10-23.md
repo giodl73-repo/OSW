@@ -102,10 +102,47 @@ passed syntax checking only and has not been executed. The engine build input
 manifest includes this gate. JavaScript syntax checking passed; no browser was
 opened. Source producers, their pinned inputs and source products are unchanged.
 
-Next, prepare a versioned exporter from the verified 106-current parent that
-preserves its installed records and appends the Davidson admission. The older
-79-row exporter must not overwrite this newer cohort. Reconcile remote data
+The versioned exporter is now prepared from the verified 106-current parent.
+It has not run against complete data. The older 79-row exporter must not
+overwrite this newer cohort. Reconcile remote data
 with an ordinary merge, preserving the original source-freeze commit, before
 pushing the next batched source update. Then run candidate checks, native,
 WASM and browser validation sequentially in the cloud. Local builds, browser
 tests and bulk downloads remain held under the user's resource constraint.
+
+## Prepared candidate append and presentation receipts
+
+`research/davidson-width-parent-query-packet-v1.json` is the exact 3,284-byte
+transport manifest read from remote commit
+`7943b6233a620f5aa99e5d3d7114151b5c253d90`. Its byte SHA is pinned separately
+from the full logical packet hash. No part, index corpus or WASM binary was
+downloaded. The cloud exporter checks that this is the installed, native/browser
+verified 106-current parent before assembling any historical parts.
+
+`analysis/davidson_width_candidate_metadata.py` prepares the admission, dashboard
+projection and receipt together. It preserves every prior non-object row,
+every unrelated current/eddy object, and Davidson's physical fields. Only the
+scoped-width count increases; the old width reference remains in order. The
+dashboard keeps its object inventory and earlier delivery context while adding
+the new preparation time separately from observation time.
+
+`analysis/export_davidson_width_candidate.py --cloud-candidate` requires GitHub
+Actions, explicit opt-in, 3 GiB free disk and 6 GiB available memory. It selects
+one CPU, appends the prepared records, extends the full source index using the
+existing preservation verifier, binds the new operators and writes an isolated
+candidate artifact. It expects 106 currents and 172 scoped width records, with
+five or six appended rows depending on shared NIST-reference reuse. It does not
+run source producers, builds, browsers or publication. Unknown or newer parent
+packets are rejected; repeatability after a future Davidson installation needs
+an explicit installed-delivery receipt transition before publication.
+
+Seven small tests passed for parent receipts, projections, immutability, rejected
+physical/annual/time changes, insufficient resources and local invocation. The
+cloud export and full-parent/index preservation remain unexecuted. The browser
+gate is registered with the existing sequential runner but has not run.
+
+Before pushing: reconcile remote data without rebasing; wire the new exporter
+and browser gate into a sequential cloud workflow; update candidate publication
+verification for this separate cohort; retain the offline regression as its
+own unresolved final gate. The existing workflow still selects the older batch
+exporter and must not be used to publish the new source stack as-is.

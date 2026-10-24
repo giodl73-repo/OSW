@@ -169,7 +169,12 @@ def main():
     if (ROOT / davidson_file).read_bytes() != davidson_encoded(davidson):
         raise ValueError('Stale Davidson prepared admission contract')
     paths.extend(['rust/osw-query/src/davidson_reported_width.rs',
-                  'analysis/test_davidson_reported_width_browser.py', davidson_file,
+                  'analysis/test_davidson_reported_width_browser.py',
+                  'analysis/davidson_width_candidate_metadata.py',
+                  'analysis/test_davidson_width_candidate_metadata.py',
+                  'analysis/export_davidson_width_candidate.py',
+                  'analysis/test_davidson_width_candidate_export.py',
+                  'research/davidson-width-parent-query-packet-v1.json', davidson_file,
                   *davidson['input_sha256']])
     paths.extend(['rust/osw-query/src/current_catalogue.rs','analysis/current_identity_admissions.py','almanac/current-identity-ui.js',
                   'plans/current-identity-admission-protocol-v1.md','research/ocean-current-identity-admissions.json',
