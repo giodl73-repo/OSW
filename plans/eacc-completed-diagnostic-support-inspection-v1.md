@@ -50,3 +50,32 @@ Inspect the projected support before proposing any separately justified method
 revision. A revised method would require its own prospective protocol, synthetic
 validation and complete comparison to the retained failed case. It cannot turn
 this completed case into an admitted seasonal current-width series.
+
+## Implemented prospective entry point
+
+`analysis/eacc_diagnostic_support_inspection_v1.py` uses only the standard library
+for the projection. Its workflow is
+`.github/workflows/eacc-diagnostic-support-inspection-v1.yml`. A committed request
+and its own preflight bind the projection code/test, workflow, protocol, internal
+review, two small pinned test/parser dependencies and retained scientific basis
+metadata. The request stays disabled during preparation; source-review-only-v1
+continues to prohibit heavy work. An explicit metadata-only request can enable
+this separate one-CPU cloud review without altering either executed parent.
+
+The workflow verifies the complete source/method gate before downloading an
+artifact. It binds the exact successful run/attempt/source commit and artifact
+id/name/size/digest/expiry, then verifies five retained file fingerprints in cloud
+before projecting the diagnostic. It never reads the original response files or
+monthly velocity grids. No numerical producer is imported or called.
+
+The two CLI verification actions are `--verify-cloud-gate` and
+`--verify-source-identity`. The sole projection action is `--cloud-project --basis
+<restored-run-directory>`. Synthetic tests run with
+`python -m pytest -q analysis/test_eacc_diagnostic_support_inspection_v1.py` under
+one actual CPU and one worker. The same limits apply to the cloud projection.
+
+The output includes every case, copied endpoint rows/statuses, first unsupported
+rows, original station failures and source diagnostic fingerprints. It excludes
+full normal-profile arrays, streamlines and original grids. JSON is capped at
+512KiB. Bounded local readback of this small audit does not run any ocean-data
+operator, native/WASM build or browser. It admits no current dimensions.
