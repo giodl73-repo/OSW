@@ -267,3 +267,44 @@ comparisons, exact106 current IDs, the empty selector prompt and the27 remaining
 proposal IDs. No local builds, browser tests or complete packet/index loads have
 run. The previous run is terminal; this is a new source correction, not a blind
 retry of its old revision.
+
+## Actual Davidson visual pass and remaining navigation gate
+
+Run40063139017/source378ab0ea8bd935381f9791cf98d77ab5636a8671 passed
+Davidson's full card/browser gate, including native/WASM equality, both widths,
+keyboard evidence query, immutable SVG hash, visible/focusable source caption
+and phone overflow checks. Its source audit and both browser receipts bind the
+same candidate packet2f3ad190041773751bc87d9bc325a3ee58e5af26f3617b7a2f25a237010d27aa.
+The five preceding current cards/dashboard and the regional-reach browser test
+also passed. The partial NWASC run logged all six native/WASM query comparisons,
+including106 current identities,8 local widths and13 qualified length ranks.
+The entire NWASC check did not pass; no publication or broader matrix ran.
+
+The failure was its same-hash navigation position assertion after a programmatic
+scroll-to-top reset. The page enables CSS smooth scrolling, so the setup began
+an animation immediately before activation. The prepared correction explicitly
+resets instantly and waits at the top before activating the self-link. The same
+focus, less-than100px position and browser-history assertions remain required;
+timeouts and numerical/data assertions are not relaxed. A failure now records
+phase, URL, focus, viewport, target bounds and scrolling state for diagnosis.
+The correction still needs actual browser verification.
+
+Both latest phone images were visually inspected. A separate byte-bound receipt,
+`research/davidson-wallace-card-visual-review-v1.json`, addresses frozen-review
+HARBOR finding13 for the reviewed candidate. It retains LOGBOOK finding19's
+complete-delivery gate and all no-release flags. The frozen source review and
+scientific products were not edited. The receipt contains artifact-relative
+image names and cloud provenance, with no private machine paths or original PDF.
+
+The workflow now exposes each core browser check as its own sequential step and
+retains its available evidence immediately. Candidate data and the matching engine
+are archived before browser checks, supporting diagnosis of later failures.
+Publication still requires the complete validation job to succeed. No extra
+parallel jobs or local builds/browsers are introduced.
+
+The previous complete source-matrix step in job120752752590 ran from02:37:40
+to03:32:55UTC (55m15s), before the expanded catalogue/atlas checks were added.
+The latest core group alone ran nearly20minutes before its navigation failure.
+The sequential job budget is therefore120minutes rather than90, retaining one
+CPU and every existing per-check assertion/timeout. This avoids aborting the
+long matrix because of the deliberately sequenced workload.
