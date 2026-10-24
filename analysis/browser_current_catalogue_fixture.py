@@ -41,3 +41,29 @@ def expected_reference_route_ids(root):
             or route['id'] in old):
         raise ValueError('Changed or duplicate historical/admitted route inventory')
     return sorted([*old,route['id']])
+
+
+def assert_route_planning_projection(root, actual, historical):
+    """Check the complete declared identity extension without changing routes."""
+    plans=json.loads((root/'research/indian-current-reference-route-planning-v1.json').read_bytes())['entries']
+    revised={'counts','effective_accepted_current_count','remaining_current_decisions','planning_taxonomy'}
+    assert set(actual)==set(historical)|{'planning_extension_version'}
+    assert {k:v for k,v in actual.items() if k not in revised|{'planning_extension_version'}}=={
+        k:v for k,v in historical.items() if k not in revised}
+    assert actual['remaining_current_decisions']==historical['remaining_current_decisions']+plans
+    assert {k:v for k,v in actual['planning_taxonomy'].items() if k!='strategies'}=={
+        k:v for k,v in historical['planning_taxonomy'].items() if k!='strategies'}
+    strategies=actual['planning_taxonomy']['strategies'];old=historical['planning_taxonomy']['strategies']
+    assert strategies[:len(old)]==old
+    assert strategies[len(old):]==[{'id':'source_axis_definition_required','label':plans[0]['route_strategy_label'],
+                                   'description':plans[0]['planning_basis'],'current_count':4,'unbuilt_count':4}]
+    assert actual['effective_accepted_current_count']==len(expected_current_ids(root))==106
+    changed_counts={'accepted_current_names','currents_without_any_reference_card','currents_without_route_candidates',
+                    'currents_without_published_ranked_estimate','route_decision_records'}
+    assert {k:v for k,v in actual['counts'].items() if k not in changed_counts}=={
+        k:v for k,v in historical['counts'].items() if k not in changed_counts}
+    for key,value in {'accepted_current_names':106,'currents_without_any_reference_card':34,
+                      'currents_without_route_candidates':23,'currents_without_published_ranked_estimate':93,
+                      'route_decision_records':95}.items():
+        assert actual['counts'][key]==value,key
+    assert actual['planning_extension_version']=='indian-coastal-brazil-t24-v1'

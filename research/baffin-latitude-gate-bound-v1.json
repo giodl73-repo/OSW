@@ -1,0 +1,146 @@
+{
+  "schema": "osw.baffin-latitude-bound-report.v1",
+  "status": "source_stage_calculation_not_working_dataset_admission",
+  "current_id": "baffin",
+  "entity_id": "current:baffin",
+  "freeze_commit": "32b7ae9fab6842261bc298a2553121460b57f643",
+  "source_review_file": "research/baffin-fissel-1982-length-source-review-v1.json",
+  "source_url": "https://waves-vagues.dfo-mpo.gc.ca/library-bibliotheque/63268.pdf",
+  "source_doi": "10.14430/arctic2318",
+  "original_sha256": "23347326454aa485a98444d98ccd141fe73bc75bbcf9c6b6943f66e2d4e8e266",
+  "original_redistributed": false,
+  "source_locator": "Abstract, printed page 180 / PDF page 1; Results opening paragraph spans the two columns of printed page 183 / PDF page 4.",
+  "naming_scope": "The Results paragraph explicitly extends the name Baffin Current north of its previous eastern-Baffin-Island usage to Lady Ann Strait. This historical author convention must remain visible.",
+  "study_years": [
+    1978,
+    1979
+  ],
+  "study_season": "summer",
+  "calculation": {
+    "nominal_latitudes_degrees_north": [
+      67,
+      76
+    ],
+    "direct_gate_distance_km": 1004.206947,
+    "rounded_conditional_geographic_floor_km": 1000,
+    "scenario_min_km": 892.631487,
+    "scenario_max_km": 1115.781183,
+    "scenario_count": 9,
+    "scenarios": [
+      {
+        "start_shift_degrees": -0.5,
+        "end_shift_degrees": -0.5,
+        "nominal_latitudes_degrees_north": [
+          66.5,
+          75.5
+        ],
+        "geographic_separation_km": 1004.153281
+      },
+      {
+        "start_shift_degrees": -0.5,
+        "end_shift_degrees": 0.0,
+        "nominal_latitudes_degrees_north": [
+          66.5,
+          76.0
+        ],
+        "geographic_separation_km": 1059.966077
+      },
+      {
+        "start_shift_degrees": -0.5,
+        "end_shift_degrees": 0.5,
+        "nominal_latitudes_degrees_north": [
+          66.5,
+          76.5
+        ],
+        "geographic_separation_km": 1115.781183
+      },
+      {
+        "start_shift_degrees": 0.0,
+        "end_shift_degrees": -0.5,
+        "nominal_latitudes_degrees_north": [
+          67.0,
+          75.5
+        ],
+        "geographic_separation_km": 948.394151
+      },
+      {
+        "start_shift_degrees": 0.0,
+        "end_shift_degrees": 0.0,
+        "nominal_latitudes_degrees_north": [
+          67.0,
+          76.0
+        ],
+        "geographic_separation_km": 1004.206947
+      },
+      {
+        "start_shift_degrees": 0.0,
+        "end_shift_degrees": 0.5,
+        "nominal_latitudes_degrees_north": [
+          67.0,
+          76.5
+        ],
+        "geographic_separation_km": 1060.022054
+      },
+      {
+        "start_shift_degrees": 0.5,
+        "end_shift_degrees": -0.5,
+        "nominal_latitudes_degrees_north": [
+          67.5,
+          75.5
+        ],
+        "geographic_separation_km": 892.631487
+      },
+      {
+        "start_shift_degrees": 0.5,
+        "end_shift_degrees": 0.0,
+        "nominal_latitudes_degrees_north": [
+          67.5,
+          76.0
+        ],
+        "geographic_separation_km": 948.444283
+      },
+      {
+        "start_shift_degrees": 0.5,
+        "end_shift_degrees": 0.5,
+        "nominal_latitudes_degrees_north": [
+          67.5,
+          76.5
+        ],
+        "geographic_separation_km": 1004.259389
+      }
+    ]
+  },
+  "independent_wgs84_integration_verified": true,
+  "arithmetic_tolerance_km": 1e-06,
+  "arithmetic_tolerance_is_physical_uncertainty": false,
+  "sensitivity_interpretation": "Nine editorial gate scenarios, not source position errors, physical uncertainty, confidence intervals or seasonal variability.",
+  "conditional_on_nominal_gates": true,
+  "guaranteed_physical_minimum": false,
+  "whole_current_length_km": null,
+  "source_reported_length_km": null,
+  "annual_length_range_km": null,
+  "uncertainty_km": null,
+  "fixed_layer_bounds_m": null,
+  "exact_gate_occupation_dates": null,
+  "endpoint_coordinates_lon_lat": null,
+  "geometry_id": null,
+  "rank_eligible": false,
+  "physical_state_join_eligible": false,
+  "seasonal_playback_eligible": false,
+  "working_dataset_admitted": false,
+  "independent_scientific_review_completed": false,
+  "figure_file": "figures/baffin-latitude-gate-bound-v1.svg",
+  "input_sha256": {
+    "analysis/baffin_latitude_gate_bound_v1.py": "7e2403d3491048e78452d85b1d8909349fc4384240f18da768a467910eafdaf2",
+    "analysis/test_baffin_latitude_gate_bound_v1.py": "a388fb23118e1185f2b973885343923bd79e8d25c6c94b3a107be9c80ef62b23",
+    "research/baffin-fissel-1982-length-source-review-v1.json": "39309599c85dbbe54646af4786e48209fd0d98d8a87fb03681dc5f5f87e8b33a",
+    "plans/baffin-latitude-gate-bound-protocol-v1.md": "b7599351c794dc60b952c44febc5b036e0a9bba0fc473893fc6771de028679cb",
+    "analysis/north_atlantic_gate_bound.py": "46c2c710a6f6f3f93c5503b1e6e1aed92e65f0f0b7bd1ee1fb535951ad0f57b4",
+    "analysis/build_ocean_motion_claims.py": "7c20984880d77ed449ba29e74bef624ab2c15e46fa4ac326065ac9b192e3e13c",
+    "requirements-test.txt": "78c44043345533a400e3f1c9ddbedf1f2471b913e3e2eec99cdb6434640dcb04",
+    "research/source-data/fissel-baffin-1982/acquisition.json": "3ad63612e11ff0d17d1edf09c9d6668fa38cd50356a7f45650b33505cff60bf4",
+    "signals/roles/check/baffin-latitude-gate-bound-v1-roles-check-2026-10-23.md": "c0314b5ce5b9ebc6430f43d1737f151c7ff415f37cda997054c95ad3e47470ba",
+    "research/baffin-latitude-gate-bound-preflight-v1.json": "9817b0097c8ece1fd46a235fed64a25adc15bf8bdb9a0123892695a33b85b8e8"
+  },
+  "figure_sha256": "e53513daa3fa8ba62dc4af3547c2dbfab087f6188459dc241ce234365ee9b671"
+}

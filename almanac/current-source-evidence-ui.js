@@ -27,6 +27,48 @@
     if (row.source_locator || row.locator) node('p', row.source_locator || row.locator, parent);
   }
   window.renderCurrentSourceEvidence = function(parent, data, id, sourceLink) {
+    const lengthBounds = own(data, 'current_length_bound_admissions', id).filter(row =>
+      row.schema === 'osw.baffin-latitude-bound-working-admission.v1');
+    for (const bound of lengthBounds) {
+      const measurement = own(data, 'measurements', id).find(row =>
+        row.id === bound.measurement_id && row.length_bound_admission_id === bound.id);
+      if (!measurement) continue;
+      const section = heading(parent, 'current-geographic-length-bound', 'Regional geographic length evidence');
+      node('h4', `${measurement.value.toLocaleString()} km · conditional geographic floor · unranked`, section);
+      node('p', bound.scope, section);
+      node('p', bound.naming_scope, section);
+      node('p', `Study context: summer ${bound.study_years.join(' and ')}. Exact gate dates and a common fixed layer are unknown.`, section);
+      node('p', 'The nominal floor is rounded down to 100 km. It is not below every editorial scenario and does not establish a guaranteed physical minimum for a connected current.', section);
+      const figure = node('figure', null, section);
+      const image = node('img', null, figure);
+      image.src = '../' + bound.figure_file;
+      image.alt = `${measurement.value.toLocaleString()} km conditional geographic floor from nominal 67°N and 76°N source gates. Summer-study geographic support, unranked; no measured centerline or seasonal length range.`;
+      image.loading = 'lazy'; image.style.cssText = 'width:100%;max-width:960px;height:auto';
+      node('figcaption', 'Scalar latitude separation. The calculation longitude is abstract; no current route or physical endpoints are mapped by this diagram.', figure);
+      const scenarios = own(data, 'current_length_bound_scenarios', id)
+        .filter(row => row.admission_id === bound.id).sort((a,b) => a.scenario_index-b.scenario_index);
+      node('p', 'Nine ±0.5° editorial gate scenarios test the chosen latitude support. They are not observations, source position errors, confidence intervals or seasonal variability.', section);
+      const wrap = node('div', null, section); wrap.className = 'table-wrap';
+      const table = node('table', null, wrap);
+      node('caption', 'Editorial latitude sensitivity · WGS84 meridional separation', table);
+      const head = node('tr', null, node('thead', null, table));
+      for (const label of ['Case', 'South °N', 'North °N', 'Separation km']) node('th', label, head).scope = 'col';
+      const body = node('tbody', null, table);
+      for (const row of scenarios) {
+        const tr = node('tr', null, body); tr.dataset.scenarioIndex = row.scenario_index;
+        node('th', row.scenario_index, tr).scope = 'row';
+        for (const value of row.nominal_latitudes_degrees_north) node('td', value.toFixed(1), tr);
+        node('td', row.geographic_separation_km.toFixed(1), tr);
+      }
+      if (scenarios.length !== 9) node('p', 'The complete nine-case scenario table is unavailable in this view; inspect the admission query before using this evidence.', section);
+      source(bound, section, sourceLink);
+      const method = node('p', null, section); sourceLink(bound.method_source_id, method);
+      recordLink(section, 'measurements', measurement.id);
+      const admission = node('p', null, section); recordLink(admission, 'current_length_bound_admissions', bound.id);
+      admission.firstChild.textContent = 'Admission, source support and limitations';
+      const link = node('a', 'Query all nine editorial scenarios', section);
+      link.href = 'query.html?q=' + encodeURIComponent(JSON.stringify({collection:'current_length_bound_scenarios',filters:[{field:'entity_id',op:'eq',value:id}],sort:{field:'scenario_index',direction:'asc'},limit:9}));
+    }
     const campaignSpans = own(data, 'widths', id).filter(row =>
       row.measurement_type === 'source_reported_regional_transect_summary' &&
       row.source_evidence_kind === 'primary_course_cruise_report' &&

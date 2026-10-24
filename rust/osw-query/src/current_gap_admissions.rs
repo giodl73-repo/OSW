@@ -3,6 +3,7 @@
 use crate::Bundle;
 use serde_json::{Value, json};
 use sha2::{Digest, Sha256};
+use std::collections::BTreeSet;
 
 const IDENTITY: (&str, &str) = (
     "research/indian-current-identity-query-contract-v1.json",
@@ -102,6 +103,81 @@ pub fn planning_source(current: &str, manifest: &Value) -> Option<(Value, &'stat
         .iter()
         .find(|row| row["current_id"] == current)
         .map(|row| (row.clone(), PLANNING.0))
+}
+
+pub fn route_catalogue(mut catalogue: Value, bundle: &Bundle) -> Result<Value, String> {
+    if !active(bundle) {
+        return Ok(catalogue);
+    }
+    validate(bundle)?;
+    let identities = entities_from_contract();
+    let plans = doc(PLANNING.1)["entries"].as_array().unwrap().clone();
+    let ids: BTreeSet<_> = identities
+        .iter()
+        .map(|r| r["id"].as_str().unwrap().to_owned())
+        .collect();
+    let planned_ids: BTreeSet<_> = plans
+        .iter()
+        .map(|r| format!("current:{}", r["current_id"].as_str().unwrap()))
+        .collect();
+    if plans.is_empty()
+        || ids.len() != plans.len()
+        || ids != planned_ids
+        || plans.iter().any(|r| {
+            !r["geometry"].is_null()
+                || !r["candidate_ids"]
+                    .as_array()
+                    .is_some_and(|rows| rows.is_empty())
+                || r["rank_eligible"] != false
+                || r["route_strategy_id"] != "source_axis_definition_required"
+        })
+    {
+        return Err("Changed identity-only current route-planning scope".into());
+    }
+    let previous_counts = catalogue["counts"].clone();
+    let total_decisions = {
+        let decisions = catalogue["remaining_current_decisions"]
+            .as_array_mut()
+            .ok_or("Missing route worklist")?;
+        if plans.iter().any(|plan| {
+            decisions
+                .iter()
+                .any(|row| row["current_id"] == plan["current_id"])
+        }) {
+            return Err("Duplicate admitted-current route plan".into());
+        }
+        decisions.extend(plans.clone());
+        decisions.len()
+    };
+    let strategies = catalogue["planning_taxonomy"]["strategies"]
+        .as_array_mut()
+        .ok_or("Missing route strategies")?;
+    if strategies
+        .iter()
+        .any(|row| row["id"] == "source_axis_definition_required")
+    {
+        return Err("Duplicate source-axis planning strategy".into());
+    }
+    strategies.push(json!({
+        "id":"source_axis_definition_required", "label":plans[0]["route_strategy_label"],
+        "description":plans[0]["planning_basis"], "current_count":plans.len(), "unbuilt_count":plans.len()
+    }));
+    for key in [
+        "accepted_current_names",
+        "currents_without_any_reference_card",
+        "currents_without_route_candidates",
+        "currents_without_published_ranked_estimate",
+    ] {
+        let previous = previous_counts[key]
+            .as_u64()
+            .ok_or("Invalid historical route count")?;
+        catalogue["counts"][key] = json!(previous + plans.len() as u64);
+    }
+    catalogue["counts"]["route_decision_records"] = json!(total_decisions);
+    catalogue["effective_accepted_current_count"] =
+        catalogue["counts"]["accepted_current_names"].clone();
+    catalogue["planning_extension_version"] = json!(VERSION);
+    Ok(catalogue)
 }
 pub fn decision(bundle: &Bundle, admission: &Value) -> Option<Value> {
     if !active(bundle) {
@@ -457,5 +533,44 @@ mod tests {
         let mut bad = fixture();
         bad.collections.get_mut("length_assessments").unwrap()[0]["published_rank"] = json!(1);
         assert!(crate::length_assessment_overlays::expected(&bad, &prior).is_err());
+    }
+    #[test]
+    fn route_coverage_includes_all_four_unlocated_identities_without_new_routes() {
+        let mut b = fixture();
+        b.manifest["nwasc_reference_route_version"] = json!("1");
+        let previous = crate::nwasc_reference_route::catalogue(&b);
+        let actual = route_catalogue(previous.clone(), &b).unwrap();
+        assert_eq!(actual["candidates"], previous["candidates"]);
+        assert_eq!(actual["counts"]["route_candidates"], 78);
+        assert_eq!(actual["counts"]["currents_with_route_candidates"], 72);
+        assert_eq!(actual["counts"]["accepted_current_names"], 106);
+        assert_eq!(actual["counts"]["currents_without_any_reference_card"], 34);
+        assert_eq!(actual["counts"]["currents_without_route_candidates"], 23);
+        assert_eq!(
+            actual["counts"]["currents_without_published_ranked_estimate"],
+            93
+        );
+        assert_eq!(actual["counts"]["route_decision_records"], 95);
+        let old = previous["remaining_current_decisions"].as_array().unwrap();
+        let rows = actual["remaining_current_decisions"].as_array().unwrap();
+        assert_eq!(&rows[..old.len()], old.as_slice());
+        assert_eq!(
+            rows[old.len()..],
+            doc(PLANNING.1)["entries"].as_array().unwrap()[..]
+        );
+        assert!(route_catalogue(actual, &b).is_err());
+    }
+    #[test]
+    fn route_coverage_preserves_legacy_catalogue_and_rejects_unverified_cohort() {
+        let mut b = fixture();
+        let previous = crate::madagascar_coastal_curve::catalogue();
+        b.manifest["input_sha256"][PLANNING.0] = json!("changed");
+        assert!(route_catalogue(previous.clone(), &b).is_err());
+        let old = Bundle {
+            schema: "osw.query-bundle.v1".into(),
+            manifest: json!({}),
+            collections: std::collections::BTreeMap::new(),
+        };
+        assert_eq!(route_catalogue(previous.clone(), &old).unwrap(), previous);
     }
 }

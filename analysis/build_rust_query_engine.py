@@ -177,6 +177,7 @@ def main():
                   'analysis/test_browser_current_catalogue_fixture.py',
                   'analysis/probe_current_card_navigation.py',
                   'analysis/test_current_card_navigation_probe.py',
+                  'analysis/test_nwasc_reference_route_browser.py',
                   'analysis/run_rust_query_browser_checks.py',
                   'analysis/test_redsox_station_support_query_browser.py',
                   'analysis/test_nwasc_working_admission_browser.py',
@@ -191,6 +192,23 @@ def main():
                   'research/davidson-width-parent-query-packet-v1.json', davidson_file,
                   'research/davidson-width-parent-owner-v1.json',
                   *davidson['input_sha256']])
+    from baffin_bound_admission import build_contract as baffin_contract, encoded as baffin_encoded, FILE as baffin_file
+    from baffin_bound_owner_projection import build_transition as baffin_owner, FILE as baffin_owner_file, PARENT as baffin_parent
+    baffin = baffin_contract()
+    if (ROOT / baffin_file).read_bytes() != baffin_encoded(baffin):
+        raise ValueError('Stale Baffin prepared admission contract')
+    if (ROOT / baffin_owner_file).read_bytes() != baffin_encoded(baffin_owner()):
+        raise ValueError('Stale Baffin exact owner transition')
+    paths.extend(['rust/osw-query/src/baffin_latitude_bound.rs',baffin_file,baffin_owner_file,baffin_parent,
+                  'analysis/baffin_bound_admission.py','analysis/test_baffin_bound_admission.py',
+                  'analysis/baffin_bound_owner_projection.py','analysis/test_baffin_bound_owner_projection.py',
+                  'analysis/baffin_bound_candidate_metadata.py','analysis/test_baffin_bound_candidate_metadata.py',
+                  'analysis/export_baffin_bound_candidate.py','analysis/test_baffin_bound_candidate_export.py',
+                  'analysis/test_baffin_bound_browser.py','analysis/test_baffin_bound_browser_policy.py',
+                  'analysis/test_labrador_gate_bound_browser.py',*baffin['input_sha256']])
+    paths.extend(['analysis/prepare_baffin_bound_delivery.py','analysis/test_baffin_bound_delivery.py',
+                  '.github/workflows/baffin-bound-candidate.yml','research/current-gap-delivery-phase.json',
+                  'research/davidson-width-installed-delivery-v1.json'])
     paths.extend(['rust/osw-query/src/current_catalogue.rs','analysis/current_identity_admissions.py','almanac/current-identity-ui.js',
                   'plans/current-identity-admission-protocol-v1.md','research/ocean-current-identity-admissions.json',
                   'research/ocean-current-working-catalogue.json','figures/southern-east-madagascar-admitted-identity.svg'])
