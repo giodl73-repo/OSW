@@ -20,6 +20,19 @@ time. Never overlap acquisition, numerical processing, builds or browser checks.
 
 ### Latest checkpoint: resource scheduling takes priority
 
+Current source work has resumed after dedicated evidence UI run40141119528,
+attempt2, passed11 cloud browser checks and both screenshots were inspected.
+That UI is verified and its request is disabled. Earlier runtime/UI notes below
+are historical checkpoints, not instructions to repeat completed cases.
+
+The current source item is South Java layer/depth context from Iskandar2006
+publisher prose: separate model analysis bands, approximate mean-core depths
+and a threshold-depth cap. A small derived diagram was rendered on one
+BelowNormal CPU and actually inspected. No width or physical thickness was
+admitted. Next prepare separate typed working query records for these facts;
+keep the83 scientific,23 runtime and20 verified UI inputs unchanged. Do not
+load a full atlas packet or start local builds/browser automation.
+
 Revision3 run40137555025/attempt2 stopped at the ancestry gate before compilation:
 depth8 omitted the reviewed parent, exactly8 commits behind that run. Revision4
 increases checkout depth to32, preserving every source gate. Execution is
