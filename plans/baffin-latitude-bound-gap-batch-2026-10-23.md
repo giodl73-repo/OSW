@@ -1,0 +1,75 @@
+# Baffin conditional geographic bound: working delivery batch
+
+This batch continues existing draft PR83 on `codex/current-measurement-gaps`.
+No new PR, main merge or scientific release. Local preview data remains older
+than the remote 106-current working parent; do not bulk-sync under disk pressure.
+
+## Completed source-stage work
+
+- Source review commit `029bab1` records exact original custody and visual
+  inspection of PDF pages 1 and 4, printed pages 180 and 183.
+- Pre-execution freeze commit
+  `32b7ae9fab6842261bc298a2553121460b57f643` contains the new producer,
+  prospective tests, protocol, source review, preflight and seven-role review.
+- All 36 focused tests passed before that freeze, using synthetic latitude
+  pairs. The actual source-gate pair was not evaluated in those tests.
+- First actual execution: 2026-10-24T05:36:57.449410Z, at the freeze commit.
+  Exact replay: 05:36:58.052257Z. Original PDF checksum verification passed.
+  Python 3.14.7, pyproj 3.7.2, PROJ 9.5.1; one logical CPU, BelowNormal.
+- Nominal 67-to-76-degree WGS84 meridional separation: **1,004.206947 km**.
+  Conditional nominal floor after 100 km downward rounding: **1,000 km**.
+  All nine independent +/-0.5-degree editorial scenarios were reproduced by
+  independent meridional-curvature integration within 0.000001 km.
+- Scenario span **892.631487-1,115.781183 km** is editorial sensitivity, not
+  measured source error, a confidence interval, annual extrema or seasonality.
+  The nominal floor is not below every scenario and is not a guaranteed physical
+  minimum for a simultaneous connected current.
+- Scalar source figure rendered and visually inspected at 960x490: text is
+  readable, no clipping observed, qualifications visible. No phone/browser or
+  equivalent HTML-card claim is made.
+
+## Immutable products
+
+Preserve the frozen operator, scientific tests, protocol, source review,
+preflight, seven-role review and all pinned dependencies. Preserve these
+executed products and their first-execution proof; corrections require a new
+version:
+
+- `research/baffin-latitude-gate-bound-v1.json`
+- `figures/baffin-latitude-gate-bound-v1.svg`
+- `research/baffin-latitude-gate-bound-execution-proof-v1.json`
+- `research/baffin-latitude-gate-bound-source-visual-review-v1.json`
+
+Report SHA256:
+`d893388cea395d9f19017a5cbd77794d26cad963c7d3ef3b13e4f87e293235e5`.
+Figure SHA256:
+`e53513daa3fa8ba62dc4af3547c2dbfab087f6188459dc241ce234365ee9b671`.
+
+## Remaining work, in sequence
+
+1. Finish Davidson run40065785176 on its pinned source head. It has passed
+   native/WASM, Davidson card, five preceding cards/dashboard and regional
+   reach checks; catalogue navigation is active at this checkpoint. Keep its
+   remote source head unchanged until terminal state.
+2. Derive a separate, reviewed working-admission contract from the immutable
+   Baffin report. Preserve all prior rows/objects except the scoped Baffin
+   assessment and its precise provenance projection. Keep old width records,
+   observation dates, route geometry, capabilities and qualified ranks intact.
+3. Add exact native admission/source/owner/value/null guards and a checked
+   Rust/WASM query projection for the measurement, admission and all scenarios.
+4. Link the scalar evidence and source/method/scenario queries from Baffin's
+   current card. Keep the historical naming extension and study support visible.
+   No geographic axis, width band, state join or seasonal animation is supported.
+5. Run one cloud job at a time: source preservation, focused checks, native,
+   WASM, actual phone/keyboard/query/browser checks and prior-feature regressions.
+   Inspect actual rendered artifacts and bind all delivery evidence to one
+   source/data/engine cohort before publishing to the working branch.
+
+## Completion boundary
+
+The source-stage calculation is complete. **Working Baffin admission and UI
+delivery are incomplete.** Do not count this as another qualified published
+whole-current length: the 13-current ranking remains unchanged. Existing Baffin
+regional widths, editorial paths, all original provider assets and prior
+scientific products are untouched. The general offline Rotschi1972 original
+HTTP403 gate remains open separately; no bypass or source substitution.
