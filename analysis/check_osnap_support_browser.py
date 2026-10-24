@@ -80,11 +80,21 @@ def main():
             assert summary.evaluate('element => element === document.activeElement')
             for width in [320, 390]:
                 page.set_viewport_size({'width': width, 'height': 844})
+                page.locator('#timeline-title').scroll_into_view_if_needed()
+                page.screenshot(path=str(output / f'timeline-{width}px.png'))
+                overflow = page.evaluate('''() => [...document.querySelectorAll('*')].map(node => {
+                    const r = node.getBoundingClientRect(), css = getComputedStyle(node);
+                    return {tag: node.tagName, id: node.id, class: node.className,
+                            left: r.left, right: r.right, width: r.width,
+                            scrollWidth: node.scrollWidth, clientWidth: node.clientWidth,
+                            minWidth: css.minWidth, whiteSpace: css.whiteSpace,
+                            overflowWrap: css.overflowWrap, text: node.textContent.slice(0, 100)};
+                }).filter(row => row.width > 0 && (row.right > innerWidth + 1 || row.left < -1
+                    || row.scrollWidth > row.clientWidth + 1)).slice(0, 40)''')
+                (output / f'overflow-{width}px.json').write_text(json.dumps(overflow, indent=2) + '\n')
                 assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
                 assert page.locator('#support-moorings button').evaluate_all(
                     'nodes => nodes.every(n => n.getBoundingClientRect().width >= 44 && n.getBoundingClientRect().height >= 44)')
-                page.locator('#timeline-title').scroll_into_view_if_needed()
-                page.screenshot(path=str(output / f'timeline-{width}px.png'))
             page.set_viewport_size({'width': 1280, 'height': 900})
             page.screenshot(path=str(output / 'overview.png'), full_page=True)
 
