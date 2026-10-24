@@ -4,6 +4,7 @@ This validates admission and old-row preservation. It publishes no packet and
 does not claim the old native engine accepts the new collections/identities.
 """
 import argparse
+import copy
 import hashlib
 import json
 import os
@@ -38,6 +39,9 @@ def capture_prior(collections):
 def capture_objects(rows):
     return [{'id': row['id'],
              'physical_fields_sha256': hash_rows([{k: v for k, v in row.items() if k not in OWNER_METADATA}]),
+             'content_sha256': hash_rows([{k: v for k, v in row.items() if k not in ('fingerprint', 'section_fingerprints')}]),
+             'fingerprint': row.get('fingerprint'),
+             'section_fingerprints': copy.deepcopy(row.get('section_fingerprints')),
              'capabilities': dict(row.get('capabilities', {}))} for row in rows]
 
 
@@ -47,6 +51,7 @@ def verify_preservation(prior, old_objects, candidate):
         if len(rows) < expected['rows'] or hash_rows(rows[:expected['rows']]) != expected['canonical_rows_sha256']:
             raise ValueError('Prior rows changed or erased: ' + name)
     index = {row['id']: row for row in candidate['objects']}
+    unchanged_fingerprints = 0
     for old in old_objects:
         new = index.get(old['id'])
         if new is None:
@@ -56,8 +61,14 @@ def verify_preservation(prior, old_objects, candidate):
         for key, value in old.get('capabilities', {}).items():
             if new.get('capabilities', {}).get(key) != value:
                 raise ValueError('Prior physical capability changed: ' + old['id'] + '/' + key)
+        content = {k: v for k, v in new.items() if k not in ('fingerprint', 'section_fingerprints')}
+        if hash_rows([content]) == old['content_sha256']:
+            if new.get('fingerprint') != old['fingerprint'] or new.get('section_fingerprints') != old['section_fingerprints']:
+                raise ValueError('Unchanged object spuriously marked updated: ' + old['id'])
+            unchanged_fingerprints += 1
     return {'prior_collections_verified': len(prior), 'prior_rows_verified': sum(item['rows'] for item in prior.values()),
             'prior_objects_verified': len(old_objects), 'all_prior_nonobject_rows_exact': True,
+            'unchanged_object_fingerprints_verified': unchanged_fingerprints,
             'prior_physical_object_fields_and_capabilities_exact': True}
 
 

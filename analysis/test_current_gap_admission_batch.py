@@ -58,6 +58,11 @@ def test_all_76_rows_are_staged_without_copying_or_changing_physical_payload(doc
     assert brazil['capabilities']['reported_regional_reaches'] == 1
     assert all(link in brazil['evidence_links'] for link in documents[2]['card_links'])
     assert brazil['regional_reach_scope_note'] == documents[2]['host_explanation']
+    for old in before['objects'][1:]:
+        unchanged = next(row for row in stage['objects'] if row['id'] == old['id'])
+        assert unchanged['fingerprint'] == old['fingerprint']
+        assert unchanged['section_fingerprints'] == old['section_fingerprints']
+    assert receipt['unchanged_prior_object_fingerprints_preserved'] == 3
     registry = {r['id'] for r in stage['sources']}
     for owner in stage['objects']:
         assert owner['linked_source_count'] == len(owner['source_ids']) == len(set(owner['source_ids']))

@@ -54,13 +54,49 @@ the existing source job after every prerequisite check passes, on one logical
 CPU at reduced priority. Source originals remain outside the artifact. The
 rehearsal is not an alternative to typed guards, canonical builds or UI checks.
 
-Eight small fixture tests passed locally, covering preservation of row order,
+Nine small fixture tests passed locally, covering preservation of row order,
 values, physical object fields/capabilities and pre-load resource rejection.
-The full parent has not been loaded locally. Full cloud execution and its
-result must be inspected before claiming that actual79-row integration passed.
+The full parent has not been loaded locally. The first actual cloud execution
+is verified below; it did not attempt native/WASM or browser validation.
 
 Current local focused checks:37 identity/provenance,19 compatible-source and16
-scoped-width checks, plus8 rehearsal fixtures:80total. The identity/evidence/
+scoped-width checks, plus9 rehearsal fixtures:81total. The identity/evidence/
 width contracts were regenerated after the metadata compatibility corrections.
 The prior Linux36/19/16 results, where verified, belong to their exact earlier
 source commits; they are not silently reused as proof of this revision.
+
+## Verified actual parent application
+
+At commit`dc42d372101fc82674e663325e7874bcb1aadbf6`,
+[job120719542984](https://github.com/giodl73-repo/OSW/actions/runs/40043432722/job/120719542984)
+completed the full-parent rehearsal successfully. Both its actual log and
+[artifact12540720397](https://github.com/giodl73-repo/OSW/actions/runs/40043432722/artifacts/12540720397)
+were retrieved and inspected. Public proof:
+`research/current-gap-parent-rehearsal-proof-v1.json`.
+
+| Inventory | Parent | Prepared candidate |
+|---|---:|---:|
+| Collections |55 |60 |
+| Records |108445 |108524 |
+| Objects |242 |246 |
+| Named currents |102 |106 |
+| Width-evidence records |170 |171 |
+
+All108203 prior non-object rows across54 collections matched canonical row
+hashes in the original order; all242 old physical object fields and original
+capabilities were preserved. Canonical hashes verify row content/order, not
+identity of outer JSON whitespace. Registered source projection corrected119
+existing owner records, and the candidate has zero count/reference mismatches.
+The one scoped width remains a published T24 summary, not a raw sample or
+annual envelope. Peak process RSS was1117360KiB on the cloud runner.
+
+No packet, engine, index or source asset was published. Native validation was
+not attempted. The next native/dashboard/seasonal/planning gates above remain
+required. This proves actual data compatibility/preservation, not live atlas
+coverage, browser behavior or a complete offline-suite pass.
+
+Follow-up correction: unchanged object content now retains its prior overall
+and section fingerprints. This prevents a recomputed hash from lighting an
+otherwise unchanged record. A ninth fixture and the full-parent verifier
+check this explicitly. The first proof above predates that metadata correction;
+a fresh cloud receipt is required for its actual full-inventory behavior.

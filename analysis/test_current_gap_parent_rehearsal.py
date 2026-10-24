@@ -37,3 +37,13 @@ def test_insufficient_resources_block_before_packet_loading(disk, memory):
 
 def test_resource_preflight_accepts_declared_minimums():
     a.resources(2*1024**3, 3*1024**3)
+
+
+def test_unchanged_record_cannot_be_spuriously_marked_updated():
+    old = [{'id': 'current:x', 'published_length_km': 10, 'capabilities': {},
+            'fingerprint': 'original', 'section_fingerprints': {'sources': 'unchanged'}}]
+    snapshot = a.capture_objects(old)
+    changed = copy.deepcopy(old)
+    changed[0]['fingerprint'] = 'unnecessary-new-fingerprint'
+    with pytest.raises(ValueError, match='spuriously'):
+        a.verify_preservation({}, snapshot, {'objects': changed})

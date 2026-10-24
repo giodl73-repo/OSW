@@ -1,5 +1,6 @@
 """Stage the compatible source batch without copying the full atlas payload."""
 import hashlib
+import copy
 from collections import Counter
 
 import brazil_regional_reach_query as brazil
@@ -46,7 +47,16 @@ def prepare(collections, identity_document, evidence_document, brazil_document):
     brazil_owner['claim_review_counts'] = dict(Counter(row.get('review_status') or 'unspecified' for row in brazil_claims))
     brazil_owner.setdefault('section_fingerprints', {})['claims'] = identity.fingerprint(brazil_claims)
     source_index = {row['id']: row for row in stage['sources']}
+    prior_objects = {row['id']: row for row in collections['objects']}
+    unchanged_prior_objects = 0
     for owner in stage['objects']:
+        prior = prior_objects.get(owner['id'])
+        content = lambda row: {key: value for key, value in row.items() if key not in ('fingerprint', 'section_fingerprints')}
+        if prior is not None and content(prior) == content(owner):
+            owner['fingerprint'] = prior['fingerprint']
+            owner['section_fingerprints'] = copy.deepcopy(prior['section_fingerprints'])
+            unchanged_prior_objects += 1
+            continue
         group = [source_index[ref] for ref in owner['source_ids']]
         owner.setdefault('section_fingerprints', {})['sources'] = identity.fingerprint(group)
         owner['fingerprint'] = identity.fingerprint({key: value for key, value in owner.items() if key != 'fingerprint'})
@@ -57,6 +67,7 @@ def prepare(collections, identity_document, evidence_document, brazil_document):
         'schema': 'osw.current-gap-admission-batch-receipt.v1',
         'status': 'prepared_batch_applied_to_supplied_collections_not_published',
         'canonical_delivery_verified': False,
+        'unchanged_prior_object_fingerprints_preserved': unchanged_prior_objects,
         'operator_sha256': {path: identity.pin(path) for path in (
             'analysis/current_gap_admission_batch.py', 'analysis/inventory_source_links.py', 'analysis/object_source_links.py')},
         'contract_sha256': {path: hashlib.sha256(identity.encoded(doc)).hexdigest()
