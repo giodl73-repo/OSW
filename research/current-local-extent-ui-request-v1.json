@@ -1,6 +1,6 @@
 {
   "schema": "osw.current-local-extent-ui-request.v1",
-  "execution_permitted": false,
+  "execution_permitted": true,
   "ui_verification_only": true,
   "max_heavy_local_jobs": 0,
   "max_cloud_jobs": 1,
@@ -11,7 +11,7 @@
   "preflight": "research/current-local-extent-ui-preflight-v1.json",
   "preflight_sha256": "95a64c4da853e92e234be98939e37dd47db40a6ba0ec350fdbd8b0cad18040a2",
   "workflow": ".github/workflows/current-local-extent-ui-v1.yml",
-  "reason": "Held checker correction opens and waits for the source-case disclosure before reading its text. UI assets and scientific inputs unchanged; full cloud UI verification still required.",
+  "reason": "One sequential cloud browser verification of the dedicated immutable local extent view, source-case navigation, chart, missing values, failure recovery and mobile layout. No local browser, source processing or physical measurement admission.",
   "prior_failed_cases": [
     {
       "run_id": 40139826692,
@@ -26,5 +26,20 @@
       "remaining_browser_checks_verified": false
     }
   ],
-  "operational_revision": 2
+  "operational_revision": 2,
+  "readiness": {
+    "frozen_source_commit": "9c793f209f8af4e40cd2fbe1f301fdb60cf30054",
+    "held_run_id": 40140237391,
+    "held_run_attempt": 2,
+    "held_job_id": 121010421041,
+    "held_conclusion": "success",
+    "all_browser_steps_skipped": true,
+    "all_remote_source_pins_verified": 132,
+    "ui_source_inputs_verified": 20,
+    "scientific_inputs_unchanged": 83,
+    "runtime_inputs_unchanged": 23,
+    "local_script_syntax_checks_passed": 2,
+    "local_browser_runs": 0,
+    "browser_ui_verified": false
+  }
 }
