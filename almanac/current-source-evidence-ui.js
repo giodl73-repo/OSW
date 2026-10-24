@@ -1,0 +1,122 @@
+/* Source descriptions keep their own dates, regions and measurement scope. */
+(() => {
+  const own = (data, name, id) => (data[name] || []).filter(row => row.entity_id === id);
+  function node(tag, text, parent) {
+    const result = document.createElement(tag);
+    if (text != null) result.textContent = text;
+    parent.append(result);
+    return result;
+  }
+  function recordLink(parent, collection, id) {
+    const query = {collection, filters:[{field:'id',op:'eq',value:id}],limit:1};
+    const a = node('a', 'Evidence and source details', parent);
+    a.href = 'query.html?q=' + encodeURIComponent(JSON.stringify(query));
+  }
+  function heading(parent, id, text) {
+    const section = node('section', null, parent);
+    section.id = id;
+    section.setAttribute('aria-labelledby', id + '-title');
+    node('h3', text, section).id = id + '-title';
+    return section;
+  }
+  function windowLabel(window) {
+    return Array.isArray(window) && window.length === 2 ? window.join(' to ') : 'Observation dates unspecified';
+  }
+  function source(row, parent, sourceLink) {
+    sourceLink(row.source_id, node('p', null, parent));
+    if (row.source_locator || row.locator) node('p', row.source_locator || row.locator, parent);
+  }
+  window.renderCurrentSourceEvidence = function(parent, data, id, sourceLink) {
+    const calendars = own(data, 'current_direction_calendars', id);
+    for (const calendar of calendars) {
+      const section = heading(parent, 'current-direction-calendar', 'Typical direction through the year');
+      node('p', 'A source-described annual pattern. These months are qualitative descriptions, not monthly observations or a moving current boundary.', section);
+      const wrap = node('div', null, section); wrap.className = 'table-wrap';
+      const table = node('table', null, wrap);
+      node('caption', calendar.display_name + ' · ' + calendar.figure_source_label, table);
+      const head = node('tr', null, node('thead', null, table));
+      for (const label of ['Month', 'Source-described direction']) node('th', label, head).scope = 'col';
+      const body = node('tbody', null, table);
+      const months = own(data, 'current_direction_descriptions', id)
+        .filter(row => row.calendar_id === calendar.id).sort((a,b) => a.month-b.month);
+      for (const month of months) {
+        const tr = node('tr', null, body); tr.dataset.month = month.month;
+        node('th', month.month_label, tr).scope = 'row';
+        const label = month.direction === 'northward' ? '↑ Northward'
+          : month.direction === 'southward' ? '↓ Southward' : 'Not specified by this source';
+        node('td', label, tr);
+      }
+      if (id === 'current:west-india-coastal') node('p', 'Strong intraseasonal variability can produce either direction at a particular time. Unspecified months do not mean zero flow or a measured transition.', section);
+      if (id === 'current:east-african-coastal') node('p', 'Northward prevailing orientation throughout the year does not guarantee the direction of every observation.', section);
+      source(calendar, section, sourceLink);
+      recordLink(section, 'current_direction_calendars', calendar.id);
+    }
+
+    const statements = own(data, 'current_reported_width_evidence', id);
+    if (statements.length) {
+      const section = heading(parent, 'current-reported-widths', 'Published widths and their scope');
+      node('p', 'Keep these three source statements separate. Their different regions and support do not establish an annual minimum, maximum or uncertainty range.', section);
+      for (const row of statements) {
+        const admitted = row.canonical_width_admitted === true && own(data,'widths',id)
+          .some(width => width.id === row.width_id && width.width_admission_id === row.width_admission_id);
+        const article = node('article', null, section); article.dataset.recordId = row.id;
+        node('h4', `About ${row.reported_width_km} km · ${row.label}`, article);
+        node('p', admitted ? 'Admitted as a scoped published width summary.' : 'Reported source context; no separate canonical width admitted.', article);
+        node('p', row.geographic_scope, article);
+        node('p', windowLabel(row.reported_time_window), article);
+        if (row.vertical_support) node('p', row.vertical_support, article);
+        if (admitted) node('p', 'Source-associated 21 m level. Paired edges, a finite depth interval, numerical boundary cutoff and error bounds are unspecified. No whole-current width or annual range is established.', article);
+        source(row, article, sourceLink);
+        recordLink(article, 'current_reported_width_evidence', row.id);
+      }
+      const figure = node('figure', null, section);
+      const image = node('img', null, figure);
+      image.src = '../figures/eicc-wijesekera-2015-width-evidence-v1.svg';
+      image.alt = 'Three separately scoped EICC source statements: about 100, 200 and 250 kilometres.';
+      image.loading = 'lazy'; image.style.cssText = 'width:100%;height:auto';
+      node('figcaption', 'The source-evidence diagram preserves the earlier extraction status. The T24 summary has a separate later scoped admission shown above.', figure);
+    }
+
+    const crossShore = own(data, 'current_cross_shore_context', id);
+    if (crossShore.length) {
+      const section = heading(parent, 'current-cross-shore-context', 'Offshore position and extent');
+      node('p', 'Distances from the coast describe different features. They do not define a width between two current edges.', section);
+      node('p', 'Observation dates and paired inner boundaries are unspecified for these review descriptions. The ranges are not annual extrema or error bounds.', section);
+      const labels = {
+        reported_recognisable_current_offshore_extent:'Recognisable offshore extent',
+        reported_current_core_offshore_position:'Position of the fastest core',
+        reported_eastern_boundary_offshore_distance:'Outer-boundary distance',
+        reported_typical_transport_concentration_offshore_extent:'Typical transport concentration',
+      };
+      const list = node('dl', null, section);
+      for (const row of crossShore) {
+        const value = Array.isArray(row.reported_range_km) ? row.reported_range_km.join('–') : row.reported_value_km;
+        node('dt', `${labels[row.quantity] || row.quantity.replaceAll('_',' ')} · ${value} km`, list);
+        const description = node('dd', null, list);
+        node('p', `${row.source_precision}. Reference: ${row.reference}.`, description);
+        if (row.range_meaning || row.criterion_context) node('p', row.range_meaning || row.criterion_context, description);
+        source(row, description, sourceLink);
+        recordLink(description, 'current_cross_shore_context', row.id);
+      }
+    }
+
+    for (const row of own(data, 'current_regime_context', id)) {
+      const section = heading(parent, 'current-survey-regime', 'A dated survey in context');
+      node('p', windowLabel(row.reported_hydrographic_survey_window), section);
+      node('p', row.source_reported_regime, section);
+      node('p', row.relation_to_direction_calendar, section);
+      node('p', 'This does not establish zero current or identify individual named eddies.', section);
+      source(row, section, sourceLink);
+      recordLink(section, 'current_regime_context', row.id);
+    }
+    for (const row of own(data, 'current_regional_reaches', id)) {
+      const section = heading(parent, 'current-regional-reach', 'Reported regional reach');
+      node('p', row.constraint.display, section);
+      node('p', row.scope_note || row.constraint.numeric_precision, section);
+      node('p', 'This regional reach is unranked. A whole-current length, physical length lower bound and annual range have not been established.', section);
+      if (row.source?.source_title) node('p', [row.source.source_title,
+        (row.source.authors || []).join(', '), row.source.chapter].filter(Boolean).join(' · '), section);
+      recordLink(section, 'current_regional_reaches', row.id);
+    }
+  };
+})();

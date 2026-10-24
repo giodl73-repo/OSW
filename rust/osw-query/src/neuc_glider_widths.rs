@@ -91,6 +91,7 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     }
     let mut expected_widths = e["widths"].as_array().unwrap().clone();
     expected_widths.extend(crate::aleutian_onishi_width::widths(b));
+    expected_widths.extend(crate::current_gap_admissions::widths(b));
     let expected_lengths =
         crate::length_assessment_overlays::expected(b, &e["length_assessments"])?;
     if b.collections.get("widths") != Some(&expected_widths)

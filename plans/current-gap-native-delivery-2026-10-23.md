@@ -95,3 +95,38 @@ views now include owned identity/measurement admissions, scoped widths/reaches,
 route decisions and the five source-context collections for an active cohort.
 Their human-readable card presentation and complete index navigation remain
 separate UI checks; extra JSON response fields alone do not prove those views.
+
+## First actual candidate result
+
+The exporter at `03f3730932f22816c3245c8ecb630868f0d9fc29` succeeded in
+[source job 120728214855](https://github.com/giodl73-repo/OSW/actions/runs/40046148224/job/120728214855).
+Both its actual job log and downloaded audit were inspected. The candidate
+contains 106 currents, 246 objects and 108524 rows; its index has 572 documents.
+All 553 original indexed source strings survived exactly. Nineteen JSON source
+documents were added; the dashboard was not previously in that index, so this
+execution replaced zero old documents. The packet logical digest is recorded
+in `research/current-gap-cloud-candidate-proof-v1.json`. The large candidate
+artifact has not been downloaded or parsed locally.
+
+In [native job 120728689531](https://github.com/giodl73-repo/OSW/actions/runs/40046148224/job/120728689531),
+all 154 Rust tests passed. The actual candidate store then rejected the packet
+with `Changed working length assessment or reported-length ranks`. The native
+job failed before WASM/browser validation; this is not a passing candidate.
+
+The existing complete-length-table guards compose through
+`length_assessment_overlays.rs`. That adapter now appends exactly the four
+compiled, verified, unranked identity assessments after all existing overlays;
+it rejects duplicate owners and does not recompute any historical rank. A new
+test checks preservation of an old rank, absent new ranks/dimensions, duplicate
+rejection and tampered-new-rank rejection. Inspection also found the ASAR,
+NEUC and Aleutian full-width-table guards require the separately admitted T24
+width appended last; their historical prefixes remain exact. These corrections
+are pending the next actual candidate run.
+
+Human-readable current cards now show the 24 qualitative month descriptions,
+the three separately scoped EICC source statements and later T24 admission,
+the four EACC offshore descriptors, WICC's dated survey context and Brazil's
+reported regional reach. They do not draw unsourced current geometry or turn
+source statements into annual envelopes. A new cloud browser check exercises
+five native/WASM object views, mobile layout and keyboard evidence navigation.
+Its syntax checks passed locally; the actual browser check is pending.

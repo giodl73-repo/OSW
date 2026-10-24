@@ -71,6 +71,16 @@ pub fn widths(bundle: &Bundle) -> Vec<Value> {
         vec![]
     }
 }
+pub fn verified_length_assessments(bundle: &Bundle) -> Result<Vec<Value>, String> {
+    if !active(bundle) {
+        return Ok(vec![]);
+    }
+    validate(bundle)?;
+    Ok(doc(IDENTITY.1)["additions"]["length_assessments"]
+        .as_array()
+        .unwrap()
+        .clone())
+}
 pub fn planning_source(current: &str, manifest: &Value) -> Option<(Value, &'static str)> {
     if !active_manifest(manifest) {
         return None;
@@ -404,5 +414,23 @@ mod tests {
             );
             assert!(row["annual_width_range_km"].is_null());
         }
+    }
+    #[test]
+    fn historical_length_guards_append_only_verified_unranked_identities() {
+        let b = fixture();
+        let prior = json!([{"id":"old","entity_id":"current:old","published_rank":7}]);
+        let expected = crate::length_assessment_overlays::expected(&b, &prior).unwrap();
+        assert_eq!(expected.as_array().unwrap().len(), 5);
+        assert_eq!(expected[0], prior[0]);
+        for row in expected.as_array().unwrap().iter().skip(1) {
+            assert_eq!(row["rank_eligible"], false);
+            assert!(row["published_rank"].is_null());
+            assert!(row["published_length_km"].is_null());
+        }
+        let collision = json!([verified_length_assessments(&b).unwrap()[0]]);
+        assert!(crate::length_assessment_overlays::expected(&b, &collision).is_err());
+        let mut bad = fixture();
+        bad.collections.get_mut("length_assessments").unwrap()[0]["published_rank"] = json!(1);
+        assert!(crate::length_assessment_overlays::expected(&bad, &prior).is_err());
     }
 }

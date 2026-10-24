@@ -71,6 +71,7 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     let previous: Value = serde_json::from_str(crate::neuc_glider_widths::EXPORT_RAW).unwrap();
     let mut expected = previous["widths"].as_array().unwrap().clone();
     expected.extend(widths(b));
+    expected.extend(crate::current_gap_admissions::widths(b));
     let expected_lengths =
         crate::length_assessment_overlays::expected(b, &previous["length_assessments"])?;
     if b.collections.get("widths") != Some(&expected)

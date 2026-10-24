@@ -25,5 +25,19 @@ pub(crate) fn expected(bundle: &Bundle, previous: &Value) -> Result<Value, Strin
         }
         rows[indices[0]] = overlay;
     }
+    // New identities have their own explicitly unmeasured assessments. Keep
+    // the historical table byte-for-value and in order; never recompute ranks.
+    for addition in crate::current_gap_admissions::verified_length_assessments(bundle)? {
+        let rows = result
+            .as_array_mut()
+            .ok_or("Invalid historical length table")?;
+        if rows
+            .iter()
+            .any(|row| row["id"] == addition["id"] || row["entity_id"] == addition["entity_id"])
+        {
+            return Err("Duplicate current-gap length assessment owner".into());
+        }
+        rows.push(addition);
+    }
     Ok(result)
 }

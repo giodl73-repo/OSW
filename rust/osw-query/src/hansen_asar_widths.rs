@@ -100,6 +100,7 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     let mut expected_widths = e["widths"].as_array().unwrap().clone();
     expected_widths.extend(crate::neuc_glider_widths::widths(b));
     expected_widths.extend(crate::aleutian_onishi_width::widths(b));
+    expected_widths.extend(crate::current_gap_admissions::widths(b));
     if actual != &expected_widths {
         return Err("Changed ASAR effective width inventory/order".into());
     }

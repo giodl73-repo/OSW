@@ -222,6 +222,7 @@ loadObjectView().then(data => {
       if (row.source_locator) element("span", `Source locator: ${row.source_locator}. `, li);
       sourceLink(row.source_id, li);
     }, "No comparable whole-object measurement has been admitted.");
+    window.renderCurrentSourceEvidence(measurement, data, id, sourceLink);
 
     const relationArea = document.querySelector("#relations");
     relationArea.replaceChildren();
