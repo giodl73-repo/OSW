@@ -160,6 +160,24 @@ def main():
         assert failed.locator('.route-card').count()==0
         assert failed.locator('#route-atlas-select option').count()==1
         browser.close()
+    output=ROOT/'.pytest_cache/rust-atlas-snapshot-browser';output.mkdir(parents=True,exist_ok=True)
+    (output/'result.json').write_text(json.dumps({
+        'status':'PASS','scope':'complete_atlas_delivery_not_scientific_release',
+        'bundle_sha256':json.loads((ROOT/'almanac/query-data.json').read_bytes())['logical_sha256'],
+        'source_document_count':len(native['sources_json']),
+        'exact_source_sha256':{path:hashlib.sha256(raw.encode('utf-8')).hexdigest()
+                               for path,raw in native['sources_json'].items()},
+        'native_wasm_snapshot_equal':True,'loader_corruptions_rejected':18,
+        'accepted_current_ids':current_ids,'eddy_record_selector_count':140,
+        'exact_reference_route_ids':expected_route_ids,
+        'mobile_viewport_width':320,'mobile_horizontal_overflow':False,
+        'optional_state_join_unavailable_verified':True,
+        'optional_timeline_unavailable_verified':True,
+        'optional_monthly_width_unavailable_verified':True,
+        'unavailable_packet_fails_closed':True,
+        'main_page_errors':errors,'main_page_direct_source_requests':direct,
+        'scientific_release_published':False,
+    },indent=2)+'\n',encoding='utf-8')
     print(f'PASS: {len(native["sources_json"])} exact atlas source documents, eighteen loader rejections, native/WASM parity, {len(current_ids)} current/140 eddy-record selectors, {catalog_count} cards, no direct source reads, mobile and optional/unavailable data')
 
 if __name__=='__main__':main()

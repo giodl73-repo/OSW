@@ -177,6 +177,8 @@ def main():
                   'analysis/test_browser_current_catalogue_fixture.py',
                   'analysis/probe_current_card_navigation.py',
                   'analysis/test_current_card_navigation_probe.py',
+                  'analysis/run_rust_query_browser_checks.py',
+                  'analysis/test_redsox_station_support_query_browser.py',
                   'analysis/test_nwasc_working_admission_browser.py',
                   'analysis/test_rust_atlas_snapshot_browser.py',
                   'analysis/davidson_width_candidate_metadata.py',
