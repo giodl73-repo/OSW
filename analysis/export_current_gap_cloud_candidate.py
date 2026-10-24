@@ -93,13 +93,10 @@ def main():
         (OUTPUT / 'result.json').write_bytes(metadata.encoded(result))
     save()
     try:
-        from query_packet import load_bundle, write_packet
+        from query_packet import write_packet
         from current_gap_width_admission_batch import documents, prepare
         packet_path = ROOT / 'almanac/query-data.json'
-        packet = json.loads(packet_path.read_bytes())
-        if packet['logical_sha256'] != rehearsal.PARENT_SHA:
-            raise ValueError('Unexpected candidate parent')
-        parent = load_bundle(packet_path)
+        packet, parent = rehearsal.load_pinned_parent()
         prior = rehearsal.capture_prior(parent['collections'])
         owners = rehearsal.capture_objects(parent['collections']['objects'])
         stage, receipt = prepare(parent['collections'], *documents())
@@ -107,12 +104,13 @@ def main():
         result['batch_receipt'] = receipt
         contracts = {path: (ROOT / path).read_bytes() for path in metadata.CONTRACTS}
         manifest, dashboard_raw = metadata.prepare(parent['manifest'], stage,
-            (ROOT / metadata.DASHBOARD).read_bytes(), contracts,
+            parent['manifest']['dashboard_receipt']['source_json'].encode('utf-8'), contracts,
             prepared_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00', 'Z'))
         result['index_extension'] = extend_index(dashboard_raw, contracts)
         # Keep historical input receipts intact; record the separate delivery
         # operator and the candidate's actually rebuilt presentation artifacts.
         paths = ['analysis/current_gap_candidate_metadata.py', 'analysis/current_gap_index_extension.py',
+                 'analysis/check_current_gap_parent_rehearsal.py', rehearsal.PARENT_PACKET,
                  'analysis/export_current_gap_cloud_candidate.py', 'almanac/index-catalog.json',
                  'almanac/index-sources.json', 'almanac/index-data.json.gz']
         for path in paths:

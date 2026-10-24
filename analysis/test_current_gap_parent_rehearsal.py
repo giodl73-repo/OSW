@@ -6,6 +6,33 @@ import pytest
 import check_current_gap_parent_rehearsal as a
 
 
+def test_replay_accepts_only_baseline_or_the_verified_installed_cohort():
+    current = {'schema':'osw.query-packet.v1','logical_sha256':a.PARENT_SHA}
+    a.verify_current_packet(current, {})
+    current['logical_sha256'] = 'installed-candidate'
+    proof = {'status':'verified_cloud_delivery','cohort_version':'indian-coastal-brazil-t24-v1',
+             'parent_logical_sha256':a.PARENT_SHA,'packet_logical_sha256':'installed-candidate',
+             'native_verified':True,'browser_verified':True}
+    a.verify_current_packet(current, proof)
+    for field, value in [('cohort_version','future-cohort'), ('packet_logical_sha256','different'),
+                         ('parent_logical_sha256','other-parent'), ('browser_verified',False),
+                         ('native_verified',False), ('status','prepared')]:
+        bad = {**proof,field:value}
+        with pytest.raises(ValueError): a.verify_current_packet(current,bad)
+    with pytest.raises(ValueError): a.verify_current_packet(current,{})
+
+
+def test_parent_transport_snapshot_is_pinned_without_loading_any_parts():
+    import hashlib
+    import json
+    raw = (a.ROOT / a.PARENT_PACKET).read_bytes()
+    assert hashlib.sha256(raw).hexdigest() == a.PARENT_PACKET_SHA
+    packet = json.loads(raw)
+    assert packet['logical_sha256'] == a.PARENT_SHA
+    assert packet['logical_byte_length'] == 187116909
+    assert len(packet['parts']) == 12
+
+
 def test_original_row_content_and_order_are_verified():
     old = {'objects': [{'id': 'current:x', 'published_length_km': 10, 'capabilities': {'scoped_width': 1}}],
            'measurements': [{'id': 'one', 'value': 1}, {'id': 'two', 'value': 2}]}

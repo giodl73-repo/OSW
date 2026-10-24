@@ -156,6 +156,8 @@ def main():
                   'analysis/current_gap_candidate_metadata.py',
                   'analysis/current_gap_index_extension.py',
                   'analysis/export_current_gap_cloud_candidate.py',
+                  'analysis/check_current_gap_parent_rehearsal.py',
+                  'research/current-gap-parent-query-packet-v1.json',
                   'research/indian-current-identity-query-contract-v1.json',
                   'research/indian-current-evidence-query-contract-v1.json',
                   'research/brazil-regional-reach-query-contract-v1.json',

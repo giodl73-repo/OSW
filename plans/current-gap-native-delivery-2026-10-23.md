@@ -174,3 +174,49 @@ The superseded run40047234657 was asked to cancel because its checkout has the
 same known runner registration failure. It must be observed terminal before
 calling it stopped. No local heavy job was started and no candidate artifact
 was installed in the live atlas.
+
+## Replaying after installation
+
+The original 12-part transport manifest is retained separately as
+`research/current-gap-parent-query-packet-v1.json`, byte-pinned by the rehearsal
+operator. Rehearsal and export load that immutable baseline and its retained
+content-addressed parts, rather than appending the same identities to an
+already installed candidate. No historical Git fetch or local full-data load
+is needed. Candidate dashboard generation reads the baseline's embedded source
+receipt; it does not mistake an installed 246-object dashboard for the old
+242-object parent. The index continues to preserve its source strings, with
+only an explicitly refreshed dashboard permitted to change.
+
+Before reading the baseline, both operators check the current published packet.
+They accept the original packet, or the exact installed packet recorded in
+`research/current-gap-installed-delivery-v1.json`. That future installation
+receipt must have `status: verified_cloud_delivery`, the cohort version,
+`parent_logical_sha256`, `packet_logical_sha256`, and true `native_verified` /
+`browser_verified` flags. Unknown packets, another cohort or incomplete proofs
+are rejected, preventing silent downgrade of later admissions. The installation
+receipt has not been created: browser validation and local installation are
+still pending. The baseline manifest/operator are included in candidate and
+engine input hashes.
+
+Twenty-eight small rehearsal/metadata/index checks passed locally at one CPU
+and reduced priority. This includes the original preservation cases, the
+transport pin and rejection of unknown or unverified installed packets. The
+new complete-data replay remains a cloud gate.
+
+The next workflow runs the current-card/regional-reach checks first and uploads
+their small receipts/screenshots before continuing the same broader source
+matrix. No matrix case is removed or repeated. The currently active run uses
+the older single browser step and is allowed to finish; these workflow changes
+are held locally to avoid a duplicate cloud run.
+
+## Next identity source comparison
+
+The full Grand2015 original for the existing South Indian Current has now been
+retained privately (791029bytes; acquisition receipt tracked). Selected pages3
+and6 were checked visually. Their SIC scope near40S can be compared with the
+retained Wijeratne2018 EGC discussion and figures, including its historical
+EGC/cSICC naming warning. The separate follow-up review is
+`research/east-gyral-identity-scope-review-v1.json`. It supports a distinct named
+scope and preserves unresolved parent/old-name mapping. It admits no identity,
+length, width, geometry or annual range to the current packet. The old frozen
+identity review remains unchanged. Original PDFs remain ignored.

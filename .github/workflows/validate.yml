@@ -198,11 +198,25 @@ jobs:
             almanac/query-engine.manifest.json
       - name: Install browser for actual supplementary atlas checks
         run: python -m playwright install --with-deps chromium
+      - name: Check the admitted current cards dashboard and regional reach first
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_published_regional_reaches_browser.py test_current_gap_admission_browser.py
+      - name: Retain current-card results before the broader source matrix
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-gap-admission-browser-receipts
+          if-no-files-found: ignore
+          path: |
+            .pytest_cache/current-gap-admission/browser/result.json
+            .pytest_cache/current-gap-admission/browser/failure.json
+            .pytest_cache/current-gap-admission/browser/failure.png
+            .pytest_cache/current-gap-admission/browser/eicc-scoped-width-phone.png
+            .pytest_cache/current-gap-admission/browser/dashboard-source-lights.png
       - name: Read every supplementary cell through native and shipped WASM UI
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
-          test_published_regional_reaches_browser.py
-          test_current_gap_admission_browser.py
           test_caribbean_ru29_query_browser.py test_caribbean_ru29_source_browser.py
           test_ke_length_series_browser.py test_labrador_gate_bound_browser.py
           test_angola_nansen_sections_browser.py test_angola_nansen_query_browser.py

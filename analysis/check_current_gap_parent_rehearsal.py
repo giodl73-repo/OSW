@@ -13,12 +13,57 @@ import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
 PARENT_SHA = '5ea582e44f8fd88d736d9ddf9c46fb52fad8e9c4cdca74f6130da10d979a2345'
+PARENT_PACKET = 'research/current-gap-parent-query-packet-v1.json'
+PARENT_PACKET_SHA = '9ed192756bef93ea1c8697fa85f4cabada84311811bc7a3f89d0692bd06b3413'
+INSTALLED_PROOF = 'research/current-gap-installed-delivery-v1.json'
 OUTPUT = ROOT / '.pytest_cache/current-gap-parent-rehearsal'
 OWNER_METADATA = {
     'source_ids', 'linked_source_count', 'fingerprint', 'section_fingerprints',
     'regional_reach_ids', 'evidence_links', 'regional_reach_scope_note',
     'recorded_claims', 'claim_review_counts', 'capabilities',
 }
+
+
+def verify_current_packet(current, installed):
+    """Do not overwrite an unknown/future published dataset with this batch."""
+    if current.get('schema') != 'osw.query-packet.v1':
+        raise ValueError('Unsupported current packet')
+    if current.get('logical_sha256') == PARENT_SHA:
+        return
+    if (installed.get('status') != 'verified_cloud_delivery'
+            or installed.get('cohort_version') != 'indian-coastal-brazil-t24-v1'
+            or installed.get('parent_logical_sha256') != PARENT_SHA
+            or installed.get('packet_logical_sha256') != current.get('logical_sha256')
+            or installed.get('native_verified') is not True
+            or installed.get('browser_verified') is not True):
+        raise ValueError('Unknown current packet; refuse batch replay or downgrade')
+
+
+def load_pinned_parent():
+    """Cloud/resource-gated callers replay immutable parts, not installed rows.
+
+    Keeping the small original manifest avoids a historical Git fetch and
+    preserves shallow-checkout support. Old content-addressed parts stay in
+    the repository. This function must never be called in a small fixture.
+    """
+    current = json.loads((ROOT / 'almanac/query-data.json').read_bytes())
+    installed_path = ROOT / INSTALLED_PROOF
+    installed = json.loads(installed_path.read_bytes()) if installed_path.exists() else {}
+    verify_current_packet(current, installed)
+    raw = (ROOT / PARENT_PACKET).read_bytes()
+    if hashlib.sha256(raw).hexdigest() != PARENT_PACKET_SHA:
+        raise ValueError('Changed immutable current-gap parent manifest')
+    packet = json.loads(raw)
+    if packet['logical_sha256'] != PARENT_SHA:
+        raise ValueError('Changed immutable current-gap parent logical digest')
+    from query_packet import assemble
+    folder = (ROOT / 'almanac').resolve()
+    def read_part(relative):
+        path = (folder / relative).resolve()
+        if not path.is_relative_to(folder):
+            raise ValueError('Historical query part leaves atlas directory')
+        return path.read_bytes()
+    return packet, json.loads(assemble(raw, read_part))
 
 
 def hash_rows(rows):
@@ -109,13 +154,8 @@ def main():
         if hasattr(os, 'sched_getaffinity'):
             os.sched_setaffinity(0, {min(os.sched_getaffinity(0))})
             os.nice(5)
-        packet_path = ROOT / 'almanac/query-data.json'
-        packet = json.loads(packet_path.read_bytes())
-        if packet.get('logical_sha256') != PARENT_SHA:
-            raise ValueError('Unexpected parent packet; source review required')
-        from query_packet import load_bundle
         from current_gap_width_admission_batch import documents, prepare
-        parent = load_bundle(packet_path)
+        packet, parent = load_pinned_parent()
         collections = parent['collections']
         result['parent'] = {'logical_sha256': PARENT_SHA, 'logical_bytes': packet['logical_byte_length'],
             'collections': len(collections), 'rows': sum(map(len, collections.values())), 'objects': len(collections['objects'])}
