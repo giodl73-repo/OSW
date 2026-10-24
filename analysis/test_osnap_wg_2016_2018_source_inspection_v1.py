@@ -1,4 +1,4 @@
-"""Tiny synthetic ZIP/resource checks; no originals, NetCDF imports or network."""
+"""Tiny synthetic ZIP/header checks; no originals, observation rows or network."""
 import io
 import hashlib
 import types
@@ -120,3 +120,21 @@ def test_replay_preserves_first_acquisition_time_and_source_commit():
 def test_missing_acquisition_provenance_cannot_be_invented():
     with pytest.raises(ValueError): source.custody_record({'sha256': 'original'}, None, 'commit')
     with pytest.raises(ValueError): source.custody_record({'sha256': 'original'}, None, 'commit', {'sha256': 'original'})
+
+
+@pytest.mark.parametrize('format', ['NETCDF3_CLASSIC', 'NETCDF4'])
+def test_actual_header_api_preserves_units_fill_values_and_empty_shapes(tmp_path, format):
+    from netCDF4 import Dataset
+    path = tmp_path / 'synthetic-no-observations.nc'
+    with Dataset(path, 'w', format=format) as dataset:
+        dataset.createDimension('time', None)
+        dataset.createDimension('depth', 2)
+        variable = dataset.createVariable('velocity', 'f4', ('time', 'depth'), fill_value=-9999)
+        variable.units = 'm s-1'
+        dataset.description = 'Synthetic header; zero observation rows'
+    assert path.stat().st_size < 65536
+    result = source.header_metadata(path.read_bytes())
+    assert result['dimensions'] == {'time': {'length': 0, 'unlimited': True},
+                                    'depth': {'length': 2, 'unlimited': False}}
+    assert result['variables']['velocity'] == {'dtype': 'float32', 'dimensions': ['time', 'depth'],
+        'shape': [0, 2], 'attributes': {'_FillValue': -9999.0, 'units': 'm s-1'}}
