@@ -1,4 +1,4 @@
-"""Extend the unchanged72-row source batch with one gated published width."""
+"""Extend the source/route-gap batch with one gated published width."""
 import current_gap_admission_batch as source_batch
 import eicc_t24_width_admission as width
 

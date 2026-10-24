@@ -18,8 +18,8 @@ protocols, scientific producers, tests and traces remain unchanged.
 | `current_regime_context` |1 | Abstract-qualified6-21March1994 WICC episode, not March climatology or named eddies. |
 | `sources` |6 | Four scoped publication references and two internal methods; not six independent datasets. |
 
-The previously prepared identity extension adds28 rows and the Brazil initial
-reach adds4. The compatible batch therefore stages72 new records, including
+The identity extension with four explicit route gaps adds32 rows and the Brazil initial
+reach adds4. The compatible source batch therefore stages76 new records, including
 four unlocated current identities. No new whole-current length, measured
 width sample, annual range, footprint, state intersection or physical seasonal
 animation is inferred. Existing independently admitted dimensions stay exact.
@@ -63,11 +63,11 @@ physical capabilities are preserved.
 ## Verification
 
 The evidence contract built and reproduced exactly. All19 focused batch tests
-passed. They cover72-row staging, original physical/source-array object sharing,
+passed. They cover76-row staging, original physical/source-array object sharing,
 old-row preservation, dated/qualitative distinctions, scope and rights retention,
 all six evidence-collection collision cases, late Brazil failure, unresolved
 provider references, duplicate commits, changed frozen source rejection and
-five prohibited promotions. The previously prepared36 identity/provenance
+five prohibited promotions. The37 identity/provenance
 checks remain separate coverage.
 
 ```powershell
@@ -94,7 +94,9 @@ At commit`df56453003d701024d883d6bdcbe2a5c96ec1f53`, the actual log from
 was retrieved and inspected. Its batch receipt reports both contract checks
 and all19 batch tests passing. The same job had explicitly acquired the
 originals earlier; the batch driver did not download them implicitly.
-Canonical delivery and the complete runtime audit remain false in that receipt.
+This prior commit predates the four added route-gap decisions and exercised
+the then72-row preparation. Canonical delivery and the complete runtime audit
+remain false in that receipt.
 Private proof:
 `.pytest_cache/current-gap-priority-20261023/current-gap-batch-execution/linux-source-batch-proof.json`.
 

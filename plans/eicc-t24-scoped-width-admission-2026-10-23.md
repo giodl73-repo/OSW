@@ -35,8 +35,8 @@ selected by this admission. Original redistribution rights are not upgraded.
 
 ## Compatible atomic batch
 
-`analysis/current_gap_width_admission_batch.py` wraps the unchanged72-row
-source preparation and adds these three records, staging75 rows total. It
+`analysis/current_gap_width_admission_batch.py` wraps the76-row source/route-gap
+preparation and adds these three records, staging79 rows total. It
 detaches only affected collection lists before the width addition. All older
 width rows, source arrays and other physical collections remain exact;
 older measurement-admission records are appended to, never overwritten.
@@ -50,7 +50,7 @@ Claim counts and fingerprints reflect the new scoped evidence.
 ## Verification and review
 
 Contract build and exact check passed. All16 focused checks passed, covering
-75-row staging, old physical/source-array preservation, source snapshots,
+79-row staging, old physical/source-array preservation, source snapshots,
 source/identity gates, all three late collisions, duplicate retry, invalid
 existing claim metadata and six prohibited width/date/layer/geometry/seasonal
 promotions. All checks operate with retained originals and no implicit network.
@@ -77,7 +77,7 @@ native/WASM/card/mobile/keyboard delivery remain required.
 
 ## Remaining delivery
 
-Use the75-row wrapper for the coordinated data revision. Integrate identities
+Use the79-row wrapper for the coordinated data revision. Integrate identities
 into dashboard/taxonomy/seasonal inventories, remove the dashboard source-list
 alias, implement typed guards for the source contexts and this linked width,
 and rebuild the packet/index/native/WASM once with enough resources. Verify

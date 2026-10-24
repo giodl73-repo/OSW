@@ -12,7 +12,8 @@ builds/checks `research/indian-current-identity-query-contract-v1.json`.
 
 The contract prepares four entities, ten preferred/abbreviated/spelling names,
 two source references, four unmeasured length assessments, four separately
-gated identity admissions and four unlocated object records:28 rows total.
+gated identity admissions, four unlocated object records and four explicit
+unresolved route decisions:32 rows total.
 It adds WICC, EICC, EACC and South Java as separate identities; EGC remains
 unresolved. The two source references do not imply two new independent
 datasets or observation campaigns.
@@ -56,11 +57,11 @@ coherent build; merely replacing its inflated count would hide lost refs.
 
 ## Checks and integration order
 
-Contract build and read-only check passed. All36 focused tests passed:
-15 identity-extension checks,13 inventory-projection checks and8 underlying
+Contract build and read-only check passed. All37 focused tests passed:
+16 identity-extension checks,13 inventory-projection checks and8 underlying
 reference-projection checks. The identity tests include the actual historical
 base plus its existing Southern East Madagascar extension, old-row preservation,
-all six collision locations, normalized name collisions, missing distinguished
+all seven collision locations, normalized name collisions, missing distinguished
 identities, immutable review/original failures and dimension/geometry promotion.
 
 ```powershell

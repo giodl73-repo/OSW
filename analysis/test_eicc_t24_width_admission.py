@@ -20,7 +20,7 @@ def test_scoped_width_commits_after_identity_and_preserves_all_old_dimensions(do
     before = copy.deepcopy(collections)
     stage, receipt = batch.prepare(collections, *documents)
     assert collections == before
-    assert sum(receipt['added_rows'].values()) == 75
+    assert sum(receipt['added_rows'].values()) == 79
     assert receipt['scoped_published_width_records_added'] == 1
     assert stage['widths'][:-1] == before['widths']
     assert stage['widths'][0] is collections['widths'][0]
@@ -98,7 +98,7 @@ def test_identity_and_source_statement_are_separate_admission_gates(documents):
 def test_commit_is_atomic_and_duplicate_retry_adds_nothing(documents):
     collections = baseline()
     receipt = batch.append(collections, *documents)
-    assert sum(receipt['added_rows'].values()) == 75
+    assert sum(receipt['added_rows'].values()) == 79
     before = copy.deepcopy(collections)
     with pytest.raises(ValueError):
         batch.append(collections, *documents)

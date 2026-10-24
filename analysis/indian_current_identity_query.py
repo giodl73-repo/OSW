@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REVIEW = 'research/indian-coastal-current-identity-review-v1.json'
 REVIEW_SHA = '809b77e2328106d7504e4b251530e74dff5c8d62929a6277c4938356400503ff'
 FILE = 'research/indian-current-identity-query-contract-v1.json'
+PLANNING = 'research/indian-current-reference-route-planning-v1.json'
 PRIMARY = 'source:indian-coastal-identities-vinayachandran-2021'
 VARIANTS = 'source:indian-coastal-spellings-madkaiker-2024'
 EXPECTED = (
@@ -58,12 +59,18 @@ def build_contract():
         raise ValueError('Named-current original size differs')
     if tuple(row['proposed_entity_id'] for row in review['decisions']) != EXPECTED:
         raise ValueError('Prepared identity scope changed')
+    planning = json.loads((ROOT / PLANNING).read_bytes())
+    if planning['source_review_file'] != REVIEW or planning['source_review_sha256'] != REVIEW_SHA:
+        raise ValueError('Route gap worklist review differs')
+    plans = {row['current_id']: row for row in planning['entries']}
+    if len(plans) != 4 or set(plans) != {value.removeprefix('current:') for value in EXPECTED}:
+        raise ValueError('Incomplete prepared route-gap inventory')
     paths = {
-        REVIEW, review['candidate_file'], review['protocol_file'],
+        REVIEW, PLANNING, review['candidate_file'], review['protocol_file'],
         review['source_original_file'], 'analysis/indian_current_identity_query.py',
         'research/source-data/vinayachandran-indian-upwelling-2021/acquisition.json',
     }
-    additions = {key: [] for key in ('entities', 'names', 'sources', 'length_assessments', 'current_identity_admissions', 'objects')}
+    additions = {key: [] for key in ('entities', 'names', 'sources', 'length_assessments', 'current_identity_admissions', 'objects', 'route_decisions')}
     additions['sources'] = [
         {'id': PRIMARY, 'kind': 'external', 'label': review['source_title'],
          'title': review['source_title'], 'doi': review['source_doi'],
@@ -99,6 +106,13 @@ def build_contract():
             'almanac_url': 'object.html?id=' + quote(identity, safe=''),
         }
         additions['entities'].append(entity)
+        plan = plans[slug]
+        if (plan['name'] != entity['label'] or plan['existing_scope'] != entity['identity_scope_note']
+                or plan['candidate_ids'] != [] or plan['geometry'] is not None
+                or plan['published_length_rank_eligible'] is not False or plan['rank_eligible'] is not False
+                or plan['naming_source_is_route_geometry_evidence'] is not False
+                or plan['reference_path_decision'] != 'not_constructed_source_axis_and_endpoints_unresolved'):
+            raise ValueError('Route gap worklist promoted geography or dimensions')
         names = [(decision['preferred_name'], 'preferred', PRIMARY, True),
                  (decision['abbreviation'], 'abbreviation', PRIMARY, False)]
         names.extend((row['label'], 'spelling', VARIANTS, False) for row in decision['name_variants'])
@@ -114,6 +128,7 @@ def build_contract():
         })
         additions['current_identity_admissions'].append({
             'id': admission_id, 'entity_id': identity, 'proposal_id': slug,
+            'entity': copy.deepcopy(entity), 'route_planning_decision': copy.deepcopy(plan),
             'status': 'editorial_identity_admitted_measurements_separately_gated',
             'source_id': PRIMARY, 'source_ids': refs, 'source_review_file': REVIEW,
             'source_review_sha256': REVIEW_SHA, 'source_locator': decision['source_definition_locator'],
@@ -129,7 +144,8 @@ def build_contract():
             identity_scope_note=entity['identity_scope_note'], vertical_setting=entity['vertical_setting'],
             source_ids=sorted(refs), linked_source_count=len(refs),
             capabilities={key: 0 for key in EMPTY_CAPABILITIES},
-            dashboard_search=' '.join([entity['label'], entity['basin'], decision['abbreviation']]),
+            dashboard_search=entity['label'] + ' ' + entity['basin'],
+            search_aliases=[label for label, _, _, _ in names if label != entity['label']],
             object_url=entity['almanac_url'], route_url=None,
             season_url='seasons.html?current=' + quote(slug, safe=''),
             published_length_km=None, latest_observation_date=None, recorded_claims=0,
@@ -141,6 +157,18 @@ def build_contract():
                       'route_decision_ids', 'route_ids', 'scope_notes', 'series', 'state_codes', 'state_evidence',
                       'velocity_sample_ids', 'width_ids', 'width_sample_ids'):
             owner[field] = []
+        route_id = 'route-decision:' + slug
+        owner['route_decision_ids'] = [route_id]
+        owner['evidence_links'].append({'label': 'Query the unresolved reference-route work', 'url': query_url('route_decisions', route_id)})
+        additions['route_decisions'].append({
+            'id': route_id, 'entity_id': identity, 'current_id': slug, 'label': plan['name'],
+            'strategy_id': plan['route_strategy_id'], 'strategy_label': plan['route_strategy_label'],
+            'construction_status': plan['reference_path_decision'], 'candidate_count': 0, 'route_ids': [],
+            'next_action': plan['next_action'], 'scope': plan['existing_scope'], 'status': plan['planning_status'],
+            'rank_eligible': False, 'source_url': plan['name_source_url'], 'source_id': PRIMARY,
+            'source_decision': copy.deepcopy(plan), 'source_catalog_file': PLANNING,
+            'source_catalog_sha256': pin(PLANNING), 'scope_reviews': [],
+        })
         groups = {
             'identity': entity,
             'sources': [row for row in additions['sources'] if row['id'] in refs],

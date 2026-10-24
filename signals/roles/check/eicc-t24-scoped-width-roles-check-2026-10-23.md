@@ -12,7 +12,7 @@ verdict: APPROVED-WITH-CONDITIONS
 # Scoped EICC T24 width: internal preparation review
 
 Source base commit:df56453003d701024d883d6bdcbe2a5c96ec1f53. Artifact:
-the new T24 width/claim/admission contract, atomic75-row wrapper,16 focused
+the new T24 width/claim/admission contract, atomic79-row wrapper,16 focused
 checks and read-only replay driver. The unchanged frozen2015 source report
 and SVG retain their prior pins. Review covers the new working-tree
 preparation against that base, not canonical delivery or a release.
@@ -75,7 +75,7 @@ installed lenses, not agents or external scientific peer review.
 
 | # | Finding | Severity | Section | Recommendation |
 |---|---|---|---|---|
-| L1 | The prior72-row source batch remains intact; a separate wrapper stages75 records and one qualified width addition. | P3 | Batch lineage | Keep count definitions and source-stage history explicit. |
+| L1 | Four explicit route gaps extend the source batch to76 records; the width wrapper stages79 records and one qualified width addition. Prior scientific source products remain intact. | P3 | Batch lineage | Keep count definitions and source-stage history explicit. |
 | L2 | Existing PR83 remains the destination; main and live catalogue counts are unchanged. | P3 | Delivery status | Retain prepared/verified flags and no release/merge claim. |
 | L3 | Builds are held under disk pressure, while low-resource checks are sequential; full offline CI previously stops at the Rotschi403. | P3 | Operations and unresolved gates | Preserve the resource policy and report source availability separately from data validity. |
 
@@ -100,3 +100,10 @@ Amendments:
    the existing sequential source job; inspect its actual Linux result.
 3. Pending: implement and verify typed/accessible canonical delivery while
    preserving the survey/width/geometry distinctions and source attribution.
+
+Integration follow-up: the four added route-gap decisions do not add routes or
+measurements. Dashboard search projection is corrected, and nested identity
+metadata is available. The native catalogue's generic Madagascar-width
+inheritance must be removed for the new identities before publication; the
+seasonal/planning/native/index gates remain open. This review does not approve
+loading the new data through that unmodified native logic.

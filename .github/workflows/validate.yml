@@ -35,6 +35,9 @@ jobs:
       - name: Replay scoped T24 width admission after source contracts
         if: always()
         run: python analysis/check_eicc_t24_width_delivery.py
+      - name: Rehearse complete pinned parent admission on the cloud runner
+        if: success()
+        run: python analysis/check_current_gap_parent_rehearsal.py --full-parent
       - name: Retain source replay result and logs without the original book
         if: always()
         uses: actions/upload-artifact@v4
@@ -62,6 +65,13 @@ jobs:
         with:
           name: eicc-t24-scoped-width-replay
           path: .pytest_cache/eicc-t24-width-replay/
+          include-hidden-files: true
+      - name: Retain complete-parent preservation audit without packet or source assets
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-gap-parent-preservation-rehearsal
+          path: .pytest_cache/current-gap-parent-rehearsal/
           include-hidden-files: true
   front-temperature-conformance:
     runs-on: ubuntu-latest

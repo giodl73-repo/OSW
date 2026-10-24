@@ -34,12 +34,12 @@ def baseline():
     }
 
 
-def test_all_72_rows_are_staged_without_copying_or_changing_physical_payload(documents):
+def test_all_76_rows_are_staged_without_copying_or_changing_physical_payload(documents):
     collections = baseline()
     before = copy.deepcopy(collections)
     stage, receipt = batch.prepare(collections, *documents)
     assert collections == before
-    assert sum(receipt['added_rows'].values()) == 72
+    assert sum(receipt['added_rows'].values()) == 76
     assert receipt['physical_collections_unchanged'] is True
     assert receipt['canonical_delivery_verified'] is False
     for name in ('measurements', 'widths', 'geometries', 'source_arrays', 'width_samples', 'length_ranks'):
@@ -155,7 +155,7 @@ def test_promoted_context_cannot_replace_the_reviewed_contract(documents, collec
 def test_complete_commit_and_duplicate_rejection(documents):
     collections = baseline()
     receipt = batch.append(collections, *documents)
-    assert sum(receipt['added_rows'].values()) == 72
+    assert sum(receipt['added_rows'].values()) == 76
     before = copy.deepcopy(collections)
     with pytest.raises(ValueError):
         batch.append(collections, *documents)

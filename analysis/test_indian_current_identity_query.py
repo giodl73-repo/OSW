@@ -36,6 +36,10 @@ def test_four_identities_and_ten_names_without_egc(document):
     eicc = next(r for r in rows['entities'] if r['id'] == 'current:east-india-coastal')
     assert eicc['time_behavior'] == 'seasonal_intraseasonal_variable'
     assert 'Some sources distinguish' in eicc['identity_scope_note']
+    for owner in rows['objects']:
+        assert owner['dashboard_search'] == owner['label'] + ' ' + owner['basin']
+        assert owner['search_aliases']
+        assert len(owner['route_decision_ids']) == 1 and owner['route_ids'] == []
 
 
 def test_append_preserves_every_old_row_and_unrelated_collection(document):
@@ -55,7 +59,7 @@ def test_append_preserves_every_old_row_and_unrelated_collection(document):
         a.append(collections, document)
 
 
-@pytest.mark.parametrize('collection', ['entities', 'names', 'sources', 'length_assessments', 'current_identity_admissions', 'objects'])
+@pytest.mark.parametrize('collection', ['entities', 'names', 'sources', 'length_assessments', 'current_identity_admissions', 'objects', 'route_decisions'])
 def test_collision_in_any_collection_rejects_before_any_mutation(document, collection):
     collections = baseline(document)
     collections.setdefault(collection, []).append(copy.deepcopy(document['additions'][collection][-1]))
