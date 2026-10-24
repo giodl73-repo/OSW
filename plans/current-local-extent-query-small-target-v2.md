@@ -103,3 +103,11 @@ unconditional. A source-wide audit of root references to the extracted helpers
 found index_store uses `field`, `compare` and `filter_equal`; all three are now
 unconditional aliases. No helper implementation or scientific data changes.
 Normal native and WASM builds, budgets and reference parity remain unverified.
+
+Revision3 run40137555025, attempt2, source31769db0d862432cde14c8aa01a941451bd0e955
+stopped before compilation because checkout depth8 excluded the reviewed parent.
+GitHub comparison confirms that source is8 commits ahead of the parent, so the
+parent requires a ninth history entry. Revision4 changes checkout depth to32;
+the existing ancestry, source hash and allowed-change gates remain intact.
+No code compilation result is claimed for revision3. Execution is disabled
+while this workflow-only correction is frozen and backed up.

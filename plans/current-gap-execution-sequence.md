@@ -20,6 +20,11 @@ time. Never overlap acquisition, numerical processing, builds or browser checks.
 
 ### Latest checkpoint: resource scheduling takes priority
 
+Revision3 run40137555025/attempt2 stopped at the ancestry gate before compilation:
+depth8 omitted the reviewed parent, exactly8 commits behind that run. Revision4
+increases checkout depth to32, preserving every source gate. Execution is
+disabled while this workflow correction is rebound and backed up.
+
 Revision2 run40136912099 is terminal failure and execution is disabled. It passed
 all18 selected native tests, then production CLI compilation found a test-only
 `filter_equal` import. Revision3 fixes the import after auditing every extracted

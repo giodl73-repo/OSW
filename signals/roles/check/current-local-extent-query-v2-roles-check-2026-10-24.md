@@ -36,6 +36,7 @@ delivery remain unverified. ORBIT is excluded because no analogy is used.
 | KEEL | Native usize and wasm32 counts differ on overflow. | P2 | Scalar-only counts use u32; both new runtimes must reject overflow consistently while the baseline also rejects it. |
 | KEEL | Shared modules must actually compile in both crates. | P2 | Revision2 passed11 dedicated and7 atlas tests; normal CLI build found a test-only equality alias. Revision3 makes all three index helper aliases unconditional; production compilation and parity still required. |
 | LOGBOOK | Runtime source may evolve while scientific evidence remains fixed. | P2 | Preserve83 scientific paths and v1 history; bind changed runtime source in a separate v2 freeze. |
+| LOGBOOK | Shallow checkout may omit the reviewed ancestor after correction commits. | P2 | Revision3 stopped at that gate; revision4 increases bounded depth8 to32, retaining ancestry and allowed-change verification. |
 | LOGBOOK | Artifact output could accidentally include the59MB reference. | P2 | Separate baseline/build directories from reports; upload only dedicated WASM and compact evidence. |
 | LOGBOOK | A build check must not update installed assets or current coverage. | P2 | Separate default-disabled request, unchanged acquisition hold, installation/admission flags false. |
 
