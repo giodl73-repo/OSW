@@ -20,6 +20,7 @@ concurrency:
 
 permissions:
   contents: read
+  actions: read
 
 env:
   OMP_NUM_THREADS: "1"
@@ -49,6 +50,46 @@ jobs:
           analysis/test_davidson_width_delivery.py
           analysis/test_current_gap_index_extension.py
           analysis/test_browser_current_catalogue_fixture.py
+          analysis/test_current_card_navigation_probe.py
+      - name: Retrieve saved candidate data for the early navigation diagnostic
+        uses: actions/download-artifact@v4
+        with:
+          name: davidson-derived-candidate
+          run-id: 40070679739
+          github-token: ${{ github.token }}
+          path: .pytest_cache/navigation-probe/site
+      - name: Retrieve the matching saved engine
+        uses: actions/download-artifact@v4
+        with:
+          name: davidson-query-engine
+          run-id: 40070679739
+          github-token: ${{ github.token }}
+          path: .pytest_cache/navigation-probe/site/almanac
+      - name: Retrieve the saved source audit
+        uses: actions/download-artifact@v4
+        with:
+          name: davidson-candidate-audit
+          run-id: 40070679739
+          github-token: ${{ github.token }}
+          path: .pytest_cache/navigation-probe/source
+      - name: Install Chromium for the early diagnostic
+        run: python -m playwright install --with-deps chromium
+      - name: Check navigation before rebuilding data and WASM
+        run: >-
+          python analysis/probe_current_card_navigation.py
+          --site .pytest_cache/navigation-probe/site
+          --source-audit .pytest_cache/navigation-probe/source/result.json
+          --source-run 40070679739
+      - name: Retain the early navigation diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: early-current-card-navigation
+          path: |
+            .pytest_cache/navigation-probe/result.json
+            .pytest_cache/nwasc-card-navigation/
+          include-hidden-files: true
+          if-no-files-found: ignore
       - name: Export complete candidate and preserve the installed parent
         run: python analysis/export_davidson_width_candidate.py --cloud-candidate
       - name: Retain candidate audit before compilation

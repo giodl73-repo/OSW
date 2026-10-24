@@ -50,12 +50,36 @@ def check_admitted_card_navigation(page):
         page.evaluate('(id) => { location.hash = id; }', card_id)
         expect(card).to_be_focused()
         expect_card_position(page, card_id, 'hashchange')
+        # Reproduce a late layout shift above the selected heading. Disable
+        # native scroll anchoring only for this controlled browser fixture.
+        page.evaluate('''id => {
+          document.body.dataset.previousOverflowAnchor=document.body.style.overflowAnchor;
+          document.body.style.overflowAnchor='none';
+          const shift=document.createElement('div');shift.id='navigation-layout-shift';
+          shift.style.height='240px';shift.setAttribute('aria-hidden','true');
+          document.getElementById(id).before(shift);
+        }''',card_id)
+        expect_card_position(page, card_id, 'late-layout-shift')
+        page.evaluate("document.getElementById('navigation-layout-shift').remove()")
+        expect_card_position(page, card_id, 'layout-shift-removed')
         # A same-hash self-link still restores focus and position.
         # CSS enables smooth scrolling. Settle the setup at the top before
         # testing activation; an outstanding setup animation can move the
         # viewport after the navigation handler has already scrolled the card.
+        page.keyboard.press('Control+Home')
         page.evaluate('window.scrollTo({left:0, top:0, behavior:"instant"})')
         page.wait_for_function('window.scrollX === 0 && window.scrollY === 0')
+        page.evaluate('''id => {
+          const shift=document.createElement('div');shift.id='navigation-layout-shift';
+          shift.style.height='240px';document.getElementById(id).before(shift);
+        }''',card_id)
+        page.evaluate('() => new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))')
+        assert page.evaluate('window.scrollY===0'), 'Navigation correction fought later user input'
+        page.evaluate('''() => {
+          document.getElementById('navigation-layout-shift').remove();
+          document.body.style.overflowAnchor=document.body.dataset.previousOverflowAnchor;
+          delete document.body.dataset.previousOverflowAnchor;
+        }''')
         card.get_by_role('link', name='Link to this current', exact=True).evaluate('(e) => e.click()')
         expect(card).to_be_focused()
         expect_card_position(page, card_id, 'same-hash-self-link')
@@ -89,6 +113,7 @@ def navigation_main():
         browser.close()
     receipt = {'status': 'PASS', 'accepted_current_cards': 2, 'viewport_widths': [1280, 320],
                'direct_hash_focus_scroll': True, 'hashchange_self_link_history': True,
+               'late_layout_shift_alignment': True, 'user_input_cancels_alignment': True,
                'pending_and_route_card_navigation': True, 'width_count_alt_text': 6, 'page_errors': errors}
     (out / 'result.json').write_text(json.dumps(receipt, indent=2) + '\n', encoding='utf8')
     print(json.dumps(receipt), flush=True)
