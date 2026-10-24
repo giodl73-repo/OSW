@@ -243,6 +243,30 @@ reach checks at the latest direct observation. Remote source remains held.
 
 ## Completion boundary
 
+### Second atlas diagnostic: stale expected route inventory
+
+Run40067999078 is terminal failure; publication was skipped. Its diagnostic
+artifact12551440223 records 78 actual cards, all 77 expected historical IDs,
+and exactly one extra ID:
+`norwegian-atlantic-slope-asar-regional-reference-route`. No cards are missing,
+no page errors occurred and no direct source requests occurred. All 18 source
+corruption checks completed before the card-count assertion failed.
+
+This rules out the earlier readiness-only explanation for this failure. The
+runtime deliberately adds the independently admitted NWASC source-anchor
+connection to the 77 historical cards; the test had read only the historical
+catalogue. The independent fixture now derives all 78 IDs from those two
+committed source documents, preserves the source-anchor evidence class and
+rejects changed/missing/duplicate counts, owner, identity, scope or collisions.
+Eight small fixture tests pass. The browser still requires the exact complete
+ID set, the existing 90-second readiness wait, all 18 corruption rejections,
+106-current/140-eddy-record selectors, native/WASM equality and optional /
+unavailable-data checks.
+
+The next source-only retry will carry this operational fixture correction and
+its early pytest gate. Local unfinished Baffin source/data code remains outside
+that retry. A full atlas pass and broader-source matrix are still unverified.
+
 The source-stage calculation is complete. **Working Baffin admission and UI
 delivery are incomplete.** Do not count this as another qualified published
 whole-current length: the 13-current ranking remains unchanged. Existing Baffin
