@@ -678,6 +678,9 @@ impl Store {
         if crate::aleutian_onishi_width::active(&self.bundle) {
             sources[crate::aleutian_onishi_width::FILE] = json!(crate::aleutian_onishi_width::RAW);
         }
+        for (path, raw) in crate::current_gap_admissions::atlas_sources(&self.bundle) {
+            sources[path] = json!(raw);
+        }
         let mut timeline_scenes = json!({});
         for path in TIMELINES {
             if receipts.contains_key(path) {

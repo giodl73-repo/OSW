@@ -173,6 +173,9 @@ def main():
         raise ValueError('Stale Davidson prepared admission contract')
     paths.extend(['rust/osw-query/src/davidson_reported_width.rs',
                   'analysis/test_davidson_reported_width_browser.py',
+                  'analysis/browser_current_catalogue_fixture.py',
+                  'analysis/test_nwasc_working_admission_browser.py',
+                  'analysis/test_rust_atlas_snapshot_browser.py',
                   'analysis/davidson_width_candidate_metadata.py',
                   'analysis/test_davidson_width_candidate_metadata.py',
                   'analysis/export_davidson_width_candidate.py',
