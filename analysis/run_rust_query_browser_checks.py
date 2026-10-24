@@ -140,7 +140,7 @@ def main():
             # reached the old30m budget during complete source-document queries.
             # Both source gates read the expanded181MB packet. Preserve every
             # comparison and give their full source/navigation stages40minutes.
-            timeout = 2400 if name in {'test_south_indian_front_level_query_browser.py', 'test_south_indian_hydrography_query_browser.py'} else 1800 if name in { 'test_current_research_evidence_browser.py', 'test_loop_durante_source_browser.py', 'test_south_australian_context_browser.py', 'test_eac_source_fields_browser.py',
+            timeout = 2400 if name in {'test_south_indian_front_level_query_browser.py', 'test_south_indian_hydrography_query_browser.py'} else 1800 if name in { 'test_redsox_station_support_query_browser.py', 'test_current_research_evidence_browser.py', 'test_loop_durante_source_browser.py', 'test_south_australian_context_browser.py', 'test_eac_source_fields_browser.py',
                                       'test_eac_section_core_spans_browser.py', 'test_eac_calendar_browser.py', 'test_west_australian_oscar_2d_browser.py', 'test_west_australian_streamline_browser.py',
                                       'test_rust_index_support_browser.py',
                                       'test_rust_index_noaa_browser.py', 'test_nwasc_working_admission_browser.py', 'test_hansen_asar_widths_browser.py', 'test_aleutian_onishi_width_browser.py', 'test_neuc_glider_widths_browser.py', 'test_nwasc_reference_route_browser.py'} else 600

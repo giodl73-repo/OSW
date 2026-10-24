@@ -100,6 +100,18 @@ jobs:
           path: .pytest_cache/baffin-bound-browser/
           include-hidden-files: true
           if-no-files-found: ignore
+      - name: "Source matrix 01/14: complete REDSOX station queries (early)"
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_redsox_station_support_query_browser.py
+      - name: Retain REDSOX query progress and browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: redsox-query-browser-receipts
+          path: .pytest_cache/redsox-station-support/query-browser/
+          include-hidden-files: true
+          if-no-files-found: ignore
       - name: Check the Davidson card and scalar caption
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
@@ -154,38 +166,34 @@ jobs:
           path: .pytest_cache/rust-atlas-snapshot-browser/
           include-hidden-files: true
           if-no-files-found: ignore
-      - name: "Source matrix 01/14: Caribbean queries"
+      - name: "Source matrix 02/14: Caribbean queries"
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
           test_caribbean_ru29_query_browser.py
-      - name: "Source matrix 02/14: Caribbean source evidence"
+      - name: "Source matrix 03/14: Caribbean source evidence"
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
           test_caribbean_ru29_source_browser.py
-      - name: "Source matrix 03/14: Kuroshio Extension length series"
+      - name: "Source matrix 04/14: Kuroshio Extension length series"
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
           test_ke_length_series_browser.py
-      - name: "Source matrix 04/14: Labrador geographic bound"
+      - name: "Source matrix 05/14: Labrador geographic bound"
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
           test_labrador_gate_bound_browser.py
-      - name: "Source matrix 05/14: Angola Nansen sections"
+      - name: "Source matrix 06/14: Angola Nansen sections"
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
           test_angola_nansen_sections_browser.py
-      - name: "Source matrix 06/14: Angola Nansen queries"
+      - name: "Source matrix 07/14: Angola Nansen queries"
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
           test_angola_nansen_query_browser.py
-      - name: "Source matrix 07/14: REDSOX station support"
+      - name: "Source matrix 08/14: REDSOX station support"
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
           test_redsox_station_support_browser.py
-      - name: "Source matrix 08/14: REDSOX station queries"
-        run: >-
-          python analysis/run_rust_query_browser_checks.py --start-server --only-check
-          test_redsox_station_support_query_browser.py
       - name: "Source matrix 09/14: Current-gap source queries"
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
