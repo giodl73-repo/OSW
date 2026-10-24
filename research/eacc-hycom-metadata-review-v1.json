@@ -1,0 +1,73 @@
+{
+  "schema": "osw.eacc-hycom.metadata-review.v1",
+  "reviewed_utc": "2026-10-24T15:32:17.175005+00:00",
+  "status": "METADATA_ONLY_NOT_FROZEN_SOURCE_SELECTION",
+  "entity_id": "current:east-african-coastal",
+  "source_endpoint": "https://tds.hycom.org/thredds/dodsC/GLBv0.08/expt_53.X/data/2013",
+  "scope": "Fresh DDS and DAS only. No coordinate arrays or velocity fields requested. Header declarations are not evidence of complete availability, current identity or measurable widths.",
+  "source_metadata": {
+    "research/source-data/eacc-hycom-2013-metadata-v1/metadata.dds": {
+      "sha256": "cda879f0e01f250542f3d32d302efe5d451652a30f40eea1044b382f6248e28b",
+      "bytes": 2342,
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBv0.08/expt_53.X/data/2013.dds"
+    },
+    "research/source-data/eacc-hycom-2013-metadata-v1/metadata.das": {
+      "sha256": "3ba0408be3f0df13b953c6b19a01605ab874aaeee2d4561fd6e4470a6abee458",
+      "bytes": 4615,
+      "url": "https://tds.hycom.org/thredds/dodsC/GLBv0.08/expt_53.X/data/2013.das"
+    }
+  },
+  "declared_dimensions": {
+    "time": 2884,
+    "depth": 40,
+    "lat": 3251,
+    "lon": 4500
+  },
+  "paired_velocity_declarations": {
+    "water_u": "eastward_sea_water_velocity",
+    "water_v": "northward_sea_water_velocity",
+    "storage_type": "Int16",
+    "units": "m/s",
+    "missing_value": -30000,
+    "scale_type": "Float32",
+    "scale_factor_declared_decimal": "0.001",
+    "add_offset_declared_decimal": "0.0"
+  },
+  "coordinate_declarations": {
+    "depth_units": "m",
+    "depth_positive": "down",
+    "latitude_units": "degrees_north",
+    "longitude_units": "degrees_east",
+    "time_units": "hours since 2000-01-01 00:00:00",
+    "calendar": "gregorian"
+  },
+  "provider_distribution_statement": "Approved for public release. Distribution unlimited.",
+  "provider_institution": "Naval Oceanographic Office",
+  "provider_field_type": "instantaneous",
+  "unverified": [
+    "Exact 15 m depth value/index",
+    "Coordinate values, ordering and regional native indices",
+    "Actual timestamps and daily 00Z availability",
+    "Product naming/citation and documented limitations beyond endpoint/header",
+    "Packed velocity payload validity and availability",
+    "Named-current association",
+    "Axis/edge support and effective resolution"
+  ],
+  "resource_use": {
+    "requests": 2,
+    "max_concurrent_requests": 1,
+    "retries": 0,
+    "total_response_bytes": 6957,
+    "response_cap_bytes_each": 65536,
+    "local_velocity_arrays_processed": false,
+    "local_native_or_wasm_builds": 0,
+    "local_browser_runs": 0
+  },
+  "source_request_manifest_frozen": false,
+  "source_velocity_acquisition_allowed": false,
+  "new_paired_widths": 0,
+  "new_ranked_lengths": 0,
+  "new_annual_ranges": 0,
+  "geometry_or_state_joins_added": false,
+  "next_action": "Complete prospective operator and coordinate-selection preparation; review and freeze all scientific dependencies before a single later cloud original case. Keep heavy work disabled during preparation."
+}

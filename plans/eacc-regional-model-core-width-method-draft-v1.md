@@ -103,3 +103,57 @@ until its actual required support is present and reviewed.
 No local original-array processing, native/WASM build or browser run is allowed.
 An eventual source/diagnostic case must be a later single cloud job after the
 current candidate, presentation and installation sequence has finished.
+
+## Implemented preparation checkpoint (no original case)
+
+`analysis/eacc_model_core_seed_v1.py` now implements the prospective seed
+selection separately from the frozen eastward Indian SECC case. Its companion
+`analysis/test_eacc_model_core_seed_v1.py` passed 23 tiny synthetic checks on
+2026-10-24, with one logical CPU, BelowNormal priority and one numerical worker.
+No network, original model arrays, build, browser or map rendering was used.
+
+The native row must bracket the target latitude in the source domain. Equally
+near native latitudes within 1e-12 degrees are retained as an unresolved tie.
+Within 39–41 E, select the largest northward component among finite paired
+native cells, retaining missing-cell counts. Numerical peak ties within
+1e-10 m/s are unresolved. This maximum is conditional on the available paired
+cells and editorial window; it is not a claim about missing cells or the
+whole current. The winning vector must also pass the four-corner bilinear
+support, 0.1 m/s northward and 45 degree direction checks. A failed winner does
+not trigger selection of a more favorable runner-up.
+
+Neighboring-row perturbations retain the primary longitude and move by exactly
+one native row, with their own paired-corner and direction checks. They do not
+reselect a peak. An unsupported primary seed cannot be rescued by a neighbor.
+The checks include an independently specified northward Gaussian with sigma
+40 km: its expected half-peak span is 2 × 40 × sqrt(2 × ln(2)) km, recovered to
+within 1 km by the frozen geodesic profile helpers on the synthetic grid.
+
+This is a seed-selection component, not the complete new diagnostic operator.
+Remaining prerequisites include verified provider metadata and exact source
+requests; full local-axis/connected-edge/competing-core/resolution decisions;
+all-month and station retention; geographic source-association figures and
+semantic alternatives; operator tests; role review; and a committed frozen
+preflight. Neither a successful synthetic seed nor this checkpoint authorizes
+source acquisition or scientific admission. The cloud heavy-work phase stays
+disabled while preparation continues.
+
+Fresh provider DDS/DAS metadata was retrieved sequentially on 2026-10-24 and
+retained with byte hashes, timestamps and one-attempt receipts in
+`research/source-data/eacc-hycom-2013-metadata-v1/`. The review is
+`research/eacc-hycom-metadata-review-v1.json`. Both requests returned HTTP 200;
+total response content was 6,957 bytes. Headers declare paired Int16 eastward
+and northward velocities, Float32 packing scales, metres-per-second units,
+Gregorian time and depth positive down. These checks establish declarations,
+not payload validity. Coordinate arrays were not requested: exact depth,
+dates, daily support and regional indices remain unverified. No velocity
+request manifest is frozen, and source velocity acquisition remains disabled.
+
+The prospective diagnostic is now implemented separately in
+`analysis/eacc_model_core_diagnostic_v1.py`, with its detailed decisions in
+`plans/eacc-regional-model-core-width-protocol-v1.md`. Synthetic coverage now
+includes connected-edge censoring, overlapping-core rises, conservative native
+resolution, five-station paths and all72 retained yearly attempts. The new
+protocol remains unfrozen. The geographic figures, source selection/custody
+and first original cloud case are still outstanding; earlier checkpoint
+requirements are not claims that those deliverables have already run.
