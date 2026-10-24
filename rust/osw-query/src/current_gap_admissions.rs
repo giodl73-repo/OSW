@@ -64,6 +64,13 @@ pub fn entities(bundle: &Bundle) -> Vec<Value> {
         vec![]
     }
 }
+pub fn atlas_sources(bundle: &Bundle) -> Vec<(&'static str, &'static str)> {
+    if active(bundle) {
+        CONTRACTS.to_vec()
+    } else {
+        vec![]
+    }
+}
 pub fn widths(bundle: &Bundle) -> Vec<Value> {
     let mut widths = if active(bundle) {
         vec![doc(WIDTH.1)["width_record"].clone()]

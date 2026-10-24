@@ -223,3 +223,47 @@ test also covers changed coordinates and projection pins; it has not run
 locally. Rust formatting parsed the updated module. A fresh sequential cloud run is
 required before publication; the prior terminal failure must not be rerun
 against its uncorrected source revision.
+
+## Catalogue presentation follow-up prepared while cloud validation runs
+
+The full browser suite still had two 102-era checks. The catalogue query check
+now expects the exact 102 historical accepted IDs plus the four separately
+admitted coastal IDs. Atlas selectors must contain those 106 IDs and one empty
+prompt; the empty prompt is not a current. The exact 140 eddy-record selector
+count and all eighteen source-corruption checks remain required. The expected
+atlas source inventory also includes the previously omitted NWASC, ASAR, NEUC,
+Aleutian and coastal admission documents; source byte comparisons remain exact.
+
+The older route-detail card list did not contain the four coastal identities. A
+prepared native snapshot extension exposes the five already-validated cohort
+contracts to the existing checked-source loader. Four additional cards use their identity
+admissions, accepted-record links and source scope, while all remaining proposed
+identities stay proposed. No measurement, geometry, width inheritance, ranking
+or seasonal admission changes. The updated browser checks compare exact current
+and 27 remaining-proposal IDs; no unrelated proposal is removed. This work stays local while run40062178497 uses its
+fixed source revision; actual browser execution is still pending.
+
+## Corrected native/WASM pass and SVG screenshot failure
+
+Run40062178497 completed the corrected full-parent export, native packet guard,
+native tests and WASM compilation. The Davidson browser test verified full
+native/WASM object equality, both preserved widths, source-scoped card text,
+phone layout, the width evidence query, byte-identical SVG and visible linked
+SVG caption. It then timed out at a full-page screenshot of the standalone SVG.
+The later keyboard-focus check, preceding-card checks and broader matrix did
+not complete, and publication was skipped.
+
+Its 144,500-byte `card-phone.png` was downloaded from the small browser-receipt
+artifact and visually inspected without opening a browser. The full about65km
+card and scalar are readable, including the embedded source caption and scope
+limitations. Source products remain unchanged. The browser gate now captures
+the scalar image within its HTML card, checks standalone caption bounds and
+keyboard focus separately, and records phase/URL/error diagnostics if it fails.
+The known failing standalone full-page capture is removed.
+
+The next sequential run also includes the corrected catalogue and atlas checks
+prepared above, retaining all eighteen corruption rejections, all exact source
+comparisons, exact106 current IDs, the empty selector prompt and the27 remaining
+proposal IDs. No local builds, browser tests or complete packet/index loads have
+run. The previous run is terminal; this is a new source correction, not a blind
+retry of its old revision.

@@ -119,10 +119,28 @@
   let catalog;
   load("../research/ocean-current-inventory-expansion-candidates.json").then(async value => {
     const admissions=await load('../research/norwegian-atlantic-slope-working-admission.json');
+    const coastalPath='research/indian-current-identity-query-contract-v1.json';
+    const coastal=window.oswAtlasSnapshot?.sources_json[coastalPath]
+      ? await load('../'+coastalPath) : null;
+    const acceptedEntries=[...admissions.entries,...(coastal?.additions.current_identity_admissions||[])];
+    const listed=new Set(value.entries.map(row=>row.proposed_id));
+    const coastalCards=(coastal?.additions.current_identity_admissions||[])
+      .filter(admitted=>!listed.has(admitted.proposal_id)).map(admitted=>{
+        const source=coastal.additions.sources.find(row=>row.id===admitted.source_id);
+        return {proposed_id:admitted.proposal_id,name:admitted.entity.label,
+          proposed_kind:'named current',identity_scope:admitted.entity.identity_scope_note,
+          evidence:source?[{citation:source.label||source.title,url:source.url,
+            locator:admitted.source_locator,supports:'Names this current and describes its qualitative scope. Measurements retain their separate source support.'}]:[],
+          remaining_gates:[
+            'Review reported measurements with their own dates, layers and boundary rules.',
+            admitted.route_planning_decision.next_action,
+            'Obtain repeated dated evidence before annual ranges or seasonal geometry.']};
+      });
     const asar=await load('../research/hansen-2011-asar-surface-width-admissions.json');
     const measured=await load('../research/southern-east-madagascar-prose-dimension-admissions.json').catch(()=>null);
-    for (const row of value.entries) {
-      const admitted=admissions.entries.find(r=>r.proposal_id===row.proposed_id);
+    const cardRows=[...value.entries,...coastalCards];
+    for (const row of cardRows) {
+      const admitted=acceptedEntries.find(r=>r.proposal_id===row.proposed_id);
       const numeric=measured?.current_id===row.proposed_id?measured:null;
       const card = node("section", null, byId("inventory-addition-cards")); card.id = `inventory-addition-${row.proposed_id}`; card.className = admitted?'current-admission-card':'inventory-addition-card'; card.tabIndex = -1;
       node("h3", row.name, card);
@@ -130,7 +148,7 @@
       link(admitted?'Link to this current':'Link to this proposed current', `#${card.id}`, navigation);
       navigation.append(document.createTextNode(" · "));
       link("Back to current atlas", "#route-atlas", navigation);
-      node("p", `${admitted?'Source-supported':'Proposed'} classification: ${row.proposed_kind}. ${row.identity_scope}`, card);
+      node("p", `${admitted?'Source-supported':'Proposed'} classification: ${row.proposed_kind}. ${admitted?.entity?.identity_scope_note||row.identity_scope}`, card);
       node("p", admitted?'Current identity admitted to the working catalogue. Quantitative measurements, routes and annual ranges retain their separate review gates.':'Inventory addition pending review; no whole-current length or rank admitted.', card);
       if(admitted){
         link('Open accepted current record',objectHref(admitted.entity_id),node('p',null,card));
@@ -249,7 +267,8 @@
       ]:admitted?.remaining_measurement_gates||row.remaining_gates;
       const list = node("ul", null, card); for (const gate of gates) node("li", gate, list);
     }
-    byId("inventory-addition-status").textContent = `${value.entries.length-admissions.entries.length} pending inventory additions; ${admissions.entries.length} identity admitted beyond the historical 100-name package. Coverage is incomplete.`;
+    const acceptedCount=cardRows.filter(row=>acceptedEntries.some(admitted=>admitted.proposal_id===row.proposed_id)).length;
+    byId("inventory-addition-status").textContent = `${cardRows.length-acceptedCount} pending inventory additions; ${acceptedCount} identities admitted beyond the historical 100-name package. Coverage is incomplete.`;
     requestAnimationFrame(revealInitialCard);
   }).catch(error => { byId("inventory-addition-status").textContent = `Inventory additions unavailable: ${error.message}`; });
   const widthInventoryReady = load("../research/ocean-current-width-inventory.json").then(async base => {

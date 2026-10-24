@@ -40,6 +40,7 @@ def main():
     output = ROOT / '.pytest_cache/davidson-reported-width-browser'
     output.mkdir(parents=True, exist_ok=True)
     errors, originals = [], []
+    phase = 'load-current-card'
     with sync_playwright() as pw:
         browser = pw.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'])
         page = browser.new_page(viewport={'width':1200,'height':900})
@@ -64,10 +65,16 @@ def main():
             page.set_viewport_size({'width':390,'height':844})
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
             section.screenshot(path=str(output / 'card-phone.png'))
+            # Capture the rendered scalar inside its HTML card. Full-page
+            # capture of a standalone SVG stalled in Chromium after all text
+            # checks passed; the source itself must remain byte-identical.
+            image.screenshot(path=str(output / 'scalar-phone.png'))
+            phase = 'keyboard-width-query'
             target = section.get_by_role('link', name='Evidence and source details', exact=True)
             target.focus(); page.keyboard.press('Enter')
             page.wait_for_function('window.oswLastQueryResult', timeout=180000)
             assert page.evaluate('window.oswLastQueryResult.rows') == [new]
+            phase = 'standalone-svg-caption-and-keyboard'
             # Render the immutable SVG directly: its linked caption was omitted
             # by the earlier non-browser preview renderer.
             response = page.goto(BASE + '/' + FIGURE)
@@ -76,11 +83,21 @@ def main():
             expect(caption).to_be_visible()
             expect(caption).to_have_text('Wallace · NPS-hosted course report')
             assert page.locator('svg circle.reported-value').count() == 1
-            page.screenshot(path=str(output / 'scalar-phone.png'), full_page=True)
+            bounds = caption.bounding_box()
+            assert bounds and bounds['x'] >= 0 and bounds['y'] >= 0
+            assert bounds['x'] + bounds['width'] <= 391
+            assert bounds['y'] + bounds['height'] <= 845
             caption.locator('..').focus()
             assert page.evaluate('document.activeElement.localName') == 'a'
             assert not errors, errors
             assert not originals, originals
+        except Exception as error:
+            (output / 'failure.json').write_text(json.dumps({
+                'status':'FAIL','phase':phase,'error':str(error),'url':page.url,
+                'bundle_sha256':native['bundle_sha256'],'errors':errors,
+                'original_downloads':originals,
+            },indent=2)+'\n',encoding='utf-8')
+            raise
         finally:
             browser.close()
     (output / 'result.json').write_text(json.dumps({

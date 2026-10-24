@@ -8,6 +8,7 @@ from playwright.sync_api import sync_playwright, expect
 import nwasc_working_admission as n
 import hansen_asar_widths as asar
 from test_current_research_evidence_browser import BASE, native
+from browser_current_catalogue_fixture import expected_current_ids, expected_proposal_ids
 
 
 def check_admitted_card_navigation(page):
@@ -71,6 +72,7 @@ def navigation_main():
 
 def main():
     doc, _ = n.verify_inputs()
+    current_ids = expected_current_ids(n.ROOT)
     out = n.ROOT / '.pytest_cache/nwasc-admission-browser'
     out.mkdir(exist_ok=True)
     errors, originals = [], []
@@ -80,7 +82,7 @@ def main():
         page.on('pageerror', lambda e: errors.append(str(e)))
         page.on('request', lambda r: originals.append(r.url) if r.url.lower().endswith(('.pdf', '.nc', '.zip', '.xml')) else None)
         queries = [
-            {'collection': 'entities', 'filters': [{'field': 'type', 'op': 'eq', 'value': 'named_current'}], 'limit': 1},
+            {'collection': 'entities', 'filters': [{'field': 'type', 'op': 'eq', 'value': 'named_current'}], 'limit': 200},
             {'collection': 'current_identity_admissions', 'filters': [{'field': 'entity_id', 'op': 'eq', 'value': n.ENTITY}], 'limit': 1},
             {'collection': 'widths', 'filters': [{'field': 'current_id', 'op': 'eq', 'value': n.ID}], 'limit': 10},
             {'collection': 'length_assessments', 'filters': [{'field': 'rank_eligible', 'op': 'eq', 'value': True}], 'sort': {'field': 'published_length_km', 'direction': 'desc'}, 'limit': 100},
@@ -92,7 +94,9 @@ def main():
             page.wait_for_function('window.oswLastQueryResult', timeout=120000)
             result = page.evaluate('oswLastQueryResult')
             assert result == native(q)
-            assert result['total'] == [102, 1, 8, 13, 1, 1][i]
+            assert result['total'] == [len(current_ids), 1, 8, 13, 1, 1][i]
+            if i == 0:
+                assert sorted(row['id'] for row in result['rows']) == current_ids
             if i == 1:
                 assert result['rows'] == [doc['identity_entry']]
             if i == 2:
@@ -113,7 +117,7 @@ def main():
         page.goto(BASE + '/almanac/index.html#working-current-catalogue')
         page.wait_for_function('window.oswCurrentIdentityAdmissions', timeout=120000)
         section = page.locator('#working-current-catalogue')
-        expect(section).to_contain_text('102 accepted named currents')
+        expect(section).to_contain_text(f'{len(current_ids)} accepted named currents')
         accepted = section.get_by_role('link', name='Norwegian Atlantic Slope Current', exact=True)
         accepted.focus()
         page.keyboard.press('Enter')
@@ -133,7 +137,17 @@ def main():
         expect(card).to_have_class('current-admission-card')
         expect(card.locator('.nwasc-admitted-dimensions')).to_contain_text('3,500 km')
         expect(card.locator('.nwasc-admitted-dimensions')).to_contain_text('Six local width records')
-        assert page.locator('.inventory-addition-card').count() == 27
+        proposals = expected_proposal_ids(n.ROOT)
+        assert sorted(page.locator('.inventory-addition-card').evaluate_all(
+            "cards => cards.map(card => card.id.replace('inventory-addition-', ''))")) == proposals
+        expect(page.locator('#inventory-addition-status')).to_contain_text(f'{len(proposals)} pending inventory additions')
+        expect(page.locator('#inventory-addition-status')).to_contain_text(f'{len(current_ids)-100} identities admitted')
+        for slug in ['west-india-coastal','east-india-coastal','east-african-coastal','south-java']:
+            admitted = page.locator('#inventory-addition-' + slug)
+            expect(admitted).to_have_class('current-admission-card')
+            expect(admitted).to_contain_text('Current identity admitted to the working catalogue')
+            expect(admitted.get_by_role('link', name='Open accepted current record')).to_have_attribute(
+                'href', 'object.html?id=current%3A' + slug)
         expect(page.locator('#inventory-addition-southern-east-madagascar')).to_contain_text('working reported-length rank 13')
         # Every source served by the atlas retains its own file address and bytes.
         for path in [n.FILE, n.CATALOGUE, n.EXPORT]:
@@ -157,7 +171,8 @@ def main():
         check_admitted_card_navigation(page)
         assert not errors and not originals, (errors, originals)
         browser.close()
-    receipt = {'status': 'PASS', 'native_actual_wasm_queries': 6, 'current_identities': 102,
+    receipt = {'status': 'PASS', 'native_actual_wasm_queries': 6, 'current_identities': len(current_ids),
+               'exact_current_ids':current_ids,'remaining_proposal_ids':proposals,
                'ranked_lengths': 13, 'admitted_local_widths': 8, 'current_rank': 6, 'madagascar_rank': 13,
                'accepted_index_and_object_navigation': True, 'atlas_sources_exact': True,
                'proposal_links_resolve_accepted_identity': True, 'mobile_320px': True,
