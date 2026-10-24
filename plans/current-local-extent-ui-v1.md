@@ -64,3 +64,16 @@ and public release are outside this scoped check.
 Next continue actual current length/width/depth/time/uncertainty coverage and
 the remaining eddy/state joins; do not count these864 research attempts as
 independent measured current widths.
+
+## First browser execution and checker correction
+
+Run40139826692, attempt2, source0cf1f804166cd9d80a4ce3164f46e79daf9e980c
+passed asset/source checks, loaded12 primary rows and the chart, and opened the
+record panel. The checker then attempted `inner_text()` on the source-case JSON
+inside a closed disclosure and received an empty string. It stopped there;
+remaining behaviors and screenshots were not verified. The request is disabled.
+
+Operational revision2 opens the source-case disclosure and waits for its text
+to be visible before parsing. This changes the checker, not the UI or scientific
+data. Preserve the executed preflight/run and bind the corrected checker before
+another serial cloud case. Do not represent the first attempt as UI success.

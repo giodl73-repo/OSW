@@ -23,7 +23,7 @@ analogy is used. This approves preparation of one cloud check, not UI release.
 | 3 | CURRENT | Attempts could inflate the measured width inventory. | P2 | Results | Label864 attempts and72 cases; physical width/rank/state fields unchanged. |
 | 4 | SOUNDER | Browser assets could differ from the verified runtime. | P2 | Worker | Exact size/SHA256 gates bind engine and snapshot before load. |
 | 5 | SOUNDER | Missing outcomes could disappear behind defaults. | P2 | Presets | Complete inventory and6 missing primary cases have direct queries; actual browser checks pending. |
-| 6 | SOUNDER | Derived bounds need an original case trail. | P2 | Record panel | Rust record lookup retains case_context; shared-link/source-case behavior must pass cloud checks. |
+| 6 | SOUNDER | Derived bounds need an original case trail. | P2 | Record panel | Rust lookup retains case_context; revision2 checker opens its disclosure before reading. Full source-case/shared-link checks remain pending. |
 | 7 | CHART | Interval bars could imply physical uncertainty. | P2 | Chart caption | Describe source-scale support bounds and retained missing markers explicitly. |
 | 8 | CHART | Local directions could imply a geographic current boundary. | P2 | Scope text | Positive normal is not verified as offshore; no new map outline or width polygon added. |
 | 9 | CHART | A desktop-only chart could obscure evidence on phones. | P2 | Layout | Responsive SVG plus tabular values;390px screenshot/reflow check pending. |
@@ -33,7 +33,7 @@ analogy is used. This approves preparation of one cloud check, not UI release.
 | 13 | HARBOR | Color-only categories would hide missing outcomes. | P2 | Results | Text status, null labels, table caption, chart alternative and exact data links. |
 | 14 | HARBOR | Old rows could be selected while a new query is pending. | P2 | Query flow | Result body made inert during queries; errors clear stale rows and selected record. |
 | 15 | HARBOR | Browser resource use could freeze the user's computer. | P2 | Delivery | Dedicated278KB engine, worker,100-row pages; local browser automation deferred by user constraint. |
-| 16 | KEEL | Source syntax does not prove actual worker ABI behavior. | P2 | Cloud case | Syntax passed locally; real engine/browser checks must pass before delivery claim. |
+| 16 | KEEL | Source syntax does not prove actual worker ABI behavior. | P2 | Cloud case | First cloud run loaded12 rows/chart and a record, then checker read closed disclosure text. Revision2 opens the disclosure; full browser rerun still required. |
 | 17 | KEEL | Corrupt data or absent engine could trigger silent fallback. | P2 | Worker/failure tests | No fallback exists; cloud checks require refusal and clean retry recovery. |
 | 18 | KEEL | Scoped checks do not prove full-atlas regression. | P2 | Protocol | Full suite is deferred under resource constraint; no broad regression/merge/release claim. |
 | 19 | LOGBOOK | Installing the separate engine changes the earlier runtime-only status. | P2 | Manifest/outcome | New UI manifest records separate installed binary and pending browser verification; historical review remains unchanged. |

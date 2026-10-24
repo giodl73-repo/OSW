@@ -76,6 +76,8 @@ def main():
             page.locator('#result-body button').first.click()
             expect(page.locator('#record-panel')).to_be_visible()
             record = json.loads(page.locator('#record-json').inner_text())
+            page.locator('#case-context > summary').click()
+            expect(page.locator('#case-json')).to_be_visible()
             case = json.loads(page.locator('#case-json').inner_text())
             assert record['case_id'] == case['id']
             assert record['whole_current_width_km'] is None
