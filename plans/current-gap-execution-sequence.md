@@ -50,6 +50,21 @@ ocean arrays, provider requests, local builds or browser automation were used.
 The execution protocol and internal role review are now written. Complete
 freeze and committed held source backup still precede any new cloud case.
 
+The subsequent83-path freeze and disabled workflow were verified on the working
+branch. A request-only activation then ran40128227569, attempt1,
+job120974133716, to terminal success. Cloud132 checks passed in2.35s and all72
+cases/864 metric attempts were retained. Execution is disabled again. No local
+computation overlapped the cloud case; original arrays stayed remote.
+
+Bounded metadata and four January/July PNGs were retrieved and inspected after
+completion. Primary5km local core-to-positive-normal extents have source-scale
+support in12 months; the model-support-boundary extent has support in11.
+The primary10km peak is unusable in six months. No original regional gate passes,
+no independent shore reference is supplied and no whole-current width or annual
+physical range is admitted. Preserve this distinct dimensional evidence before
+reviewing the remaining monthly geography or integrating a new typed collection.
+See `plans/eacc-coastal-reference-extent-outcome-v1.md` for the full checkpoint.
+
 ## Ordered queue
 
 1. **Prepare EACC continuation.** Finish the adapter's internal review, dependency
