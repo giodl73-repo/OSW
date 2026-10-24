@@ -184,6 +184,26 @@ card checks passed. Do not push the local phase switch until this run is
 terminal and its installed-delivery receipt is actually verified. No local
 full packet load, build, browser session or large artifact download occurred.
 
+### Global-map navigation coverage added before the Baffin run
+
+Integration review found that the Baffin browser gate started at its object
+record and did not verify the requested global-map path. It now selects Baffin
+in the atlas at 320px, checks all four exact prepared evidence links, captures
+the open evidence panel, and follows its scenario query by keyboard. All nine
+returned rows must equal the frozen-derived scenario records. This adds a tenth
+record-parity query; publication additionally requires explicit map-selection,
+atlas-link and keyboard-atlas-query receipts. No new map geometry is created.
+
+Five targeted publication fixture checks pass for the complete cohort, missing
+atlas-selection/link/keyboard proofs and insufficient query coverage. The full
+expanded 28-case publication suite remains required in the cloud. Actual Baffin
+browser rendering/navigation is still pending; these small fixtures do not
+close the frozen HARBOR or LOGBOOK delivery findings.
+
+Latest direct API observation of run40067999078 job120795182428: live at
+preceding card/dashboard checks, step started 06:01:30 UTC on 2026-10-24,
+observed at 06:08:13 UTC. No retry, cancellation or source push was performed.
+
 1. Finish Davidson run40065785176 on its pinned source head. It has passed
    native/WASM, Davidson card, five preceding cards/dashboard and regional
    reach and catalogue navigation checks. The separate downloaded navigation

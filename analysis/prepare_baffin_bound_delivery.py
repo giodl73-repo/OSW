@@ -98,9 +98,10 @@ def verify(root, source, browser, prior_davidson, prior_cards, run, jobs, expect
     if browser.get('status') != 'PASS':raise ValueError('Baffin browser gate failed')
     for key in ('native_wasm_card_equal','complete_nine_scenario_table','scenario_rows_are_editorial_not_observations',
                 'parent_width_ids_preserved','parent_owner_physical_fields_preserved',
-                'historical_naming_scope_visible','keyboard_scenario_query'):
+                'historical_naming_scope_visible','keyboard_scenario_query',
+                'global_map_current_selection_verified','atlas_evidence_links_verified','keyboard_atlas_scenario_query'):
         if browser.get(key) is not True:raise ValueError('Missing Baffin browser evidence: '+key)
-    for key, value in {'record_parity_queries':9,'qualified_length_ranks_preserved':13,
+    for key, value in {'record_parity_queries':10,'qualified_length_ranks_preserved':13,
                        'phone_viewports_verified':[320,390],'phone_horizontal_overflow':False,
                        'errors':[],'original_downloads':[],
                        'source_scalar_sha256':admission.OUTPUTS[admission.FIGURE]}.items():

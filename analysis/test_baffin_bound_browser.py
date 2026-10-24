@@ -102,6 +102,26 @@ def main():
             phase = 'scalar-source-integrity'
             response = page.request.get(BASE+'/'+a.FIGURE)
             assert response.ok and hashlib.sha256(response.body()).hexdigest() == a.OUTPUTS[a.FIGURE]
+            phase = 'global-map-evidence-links'
+            page.set_viewport_size({'width':320,'height':844})
+            page.goto(BASE+'/almanac/reference-routes.html?atlas-feature=current%3Abaffin#route-atlas')
+            expect(page.locator('#route-atlas-select')).to_have_value(a.ENTITY,timeout=180000)
+            panel = page.locator('.route-atlas-evidence-links')
+            panel.wait_for(state='attached',timeout=180000)
+            if not panel.evaluate('panel => panel.open'):
+                panel.locator('summary').focus();page.keyboard.press('Enter')
+            for evidence in document['card_links']:
+                expect(panel.get_by_role('link',name=evidence['label'],exact=True)).to_have_attribute('href',evidence['url'])
+            assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
+            panel.screenshot(path=str(output/'atlas-evidence-phone.png'))
+            phase = 'keyboard-global-map-scenario-query'
+            evidence = panel.get_by_role('link',name='Compare all nine editorial latitude scenarios',exact=True)
+            evidence.focus()
+            assert evidence.evaluate('link => document.activeElement === link')
+            page.keyboard.press('Enter')
+            page.wait_for_function('window.oswLastQueryResult',timeout=180000)
+            assert page.evaluate('window.oswLastQueryResult.rows') == document['scenario_records']
+            parity_queries += 1
             assert not errors,errors
             assert not originals,originals
         except Exception as error:
@@ -120,6 +140,8 @@ def main():
         'historical_naming_scope_visible':True,'qualified_length_ranks_preserved':13,
         'phone_viewports_verified':[320,390],'phone_horizontal_overflow':False,
         'keyboard_scenario_query':True,'source_scalar_sha256':a.OUTPUTS[a.FIGURE],
+        'global_map_current_selection_verified':True,'atlas_evidence_links_verified':True,
+        'keyboard_atlas_scenario_query':True,
         'errors':errors,'original_downloads':originals,'scientific_release_published':False,
     },indent=2)+'\n',encoding='utf8')
 

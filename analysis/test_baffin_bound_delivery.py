@@ -47,11 +47,12 @@ def cohort(tmp_path):
     current_previous = {**previous,'bundle_sha256':sha}
     current_cards = {**cards,'bundle_sha256':sha}
     browser = {
-        'status':'PASS','bundle_sha256':sha,'native_wasm_card_equal':True,'record_parity_queries':9,
+        'status':'PASS','bundle_sha256':sha,'native_wasm_card_equal':True,'record_parity_queries':10,
         'complete_nine_scenario_table':True,'scenario_rows_are_editorial_not_observations':True,
         'parent_width_ids_preserved':True,'parent_owner_physical_fields_preserved':True,
         'historical_naming_scope_visible':True,'qualified_length_ranks_preserved':13,
         'phone_viewports_verified':[320,390],'phone_horizontal_overflow':False,'keyboard_scenario_query':True,
+        'global_map_current_selection_verified':True,'atlas_evidence_links_verified':True,'keyboard_atlas_scenario_query':True,
         'source_scalar_sha256':d.admission.OUTPUTS[d.admission.FIGURE],'errors':[],'original_downloads':[],
     }
     source = {
@@ -90,7 +91,8 @@ def test_complete_cohort_binding_accepts_only_working_delivery(cohort):
 
 
 @pytest.mark.parametrize('change', ['revision','workflow','job','job-inventory','source','parent','inventory',
-    'physical','preservation','index','browser','phone','queries','cohort','prior-davidson','prior-cards'])
+    'physical','preservation','index','browser','phone','queries','cohort','prior-davidson','prior-cards',
+    'atlas-selection','atlas-links','atlas-keyboard'])
 def test_coherent_delivery_is_required(cohort,change):
     root,source,browser,previous,cards,run,jobs,sha = cohort
     if change == 'revision': run['head_sha'] = 'a'*40
@@ -109,6 +111,9 @@ def test_coherent_delivery_is_required(cohort,change):
     if change == 'cohort': browser['bundle_sha256'] = 'e'*64
     if change == 'prior-davidson': previous['historical_width_preserved'] = False
     if change == 'prior-cards': cards['source_scoped_widths'] = 1
+    if change == 'atlas-selection': browser['global_map_current_selection_verified'] = False
+    if change == 'atlas-links': browser['atlas_evidence_links_verified'] = False
+    if change == 'atlas-keyboard': browser['keyboard_atlas_scenario_query'] = False
     with pytest.raises(ValueError): d.verify(*cohort)
 
 
