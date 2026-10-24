@@ -47,6 +47,10 @@ def main():
             page.goto('http://127.0.0.1:8788/almanac/object.html?id=current%3Abaffin')
             page.wait_for_function('window.oswObjectView?.id === "current:baffin"', timeout=180000)
             section = page.locator('#current-geographic-length-bound')
+            image = section.locator('img')
+            image.scroll_into_view_if_needed()
+            expect(image).to_have_js_property('complete', True)
+            assert image.evaluate('node => node.naturalWidth > 0')
             for width in [320, 390]:
                 page.set_viewport_size({'width': width, 'height': 844})
                 expect(section.locator('tbody tr')).to_have_count(9)
