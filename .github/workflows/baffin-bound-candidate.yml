@@ -154,16 +154,61 @@ jobs:
           path: .pytest_cache/rust-atlas-snapshot-browser/
           include-hidden-files: true
           if-no-files-found: ignore
-      - name: Check the broader source matrix sequentially
+      - name: "Source matrix 01/14: Caribbean queries"
         run: >-
           python analysis/run_rust_query_browser_checks.py --start-server --only-check
-          test_caribbean_ru29_query_browser.py test_caribbean_ru29_source_browser.py
-          test_ke_length_series_browser.py test_labrador_gate_bound_browser.py
-          test_angola_nansen_sections_browser.py test_angola_nansen_query_browser.py
-          test_redsox_station_support_browser.py test_redsox_station_support_query_browser.py
+          test_caribbean_ru29_query_browser.py
+      - name: "Source matrix 02/14: Caribbean source evidence"
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_caribbean_ru29_source_browser.py
+      - name: "Source matrix 03/14: Kuroshio Extension length series"
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_ke_length_series_browser.py
+      - name: "Source matrix 04/14: Labrador geographic bound"
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_labrador_gate_bound_browser.py
+      - name: "Source matrix 05/14: Angola Nansen sections"
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_angola_nansen_sections_browser.py
+      - name: "Source matrix 06/14: Angola Nansen queries"
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_angola_nansen_query_browser.py
+      - name: "Source matrix 07/14: REDSOX station support"
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_redsox_station_support_browser.py
+      - name: "Source matrix 08/14: REDSOX station queries"
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_redsox_station_support_query_browser.py
+      - name: "Source matrix 09/14: Current-gap source queries"
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
           test_current_gap_source_query_browser.py
-          test_south_indian_front_level_browser.py test_south_indian_front_level_query_browser.py
-          test_south_indian_front_property_browser.py test_south_indian_front_property_query_browser.py
+      - name: "Source matrix 10/14: South Indian front levels"
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_south_indian_front_level_browser.py
+      - name: "Source matrix 11/14: South Indian front-level queries"
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_south_indian_front_level_query_browser.py
+      - name: "Source matrix 12/14: South Indian front properties"
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_south_indian_front_property_browser.py
+      - name: "Source matrix 13/14: South Indian front-property queries"
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_south_indian_front_property_query_browser.py
+      - name: "Source matrix 14/14: Indian SECC source boundaries"
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
           test_indian_secc_source_boundary_browser.py
 
   publish-baffin-working-data:
