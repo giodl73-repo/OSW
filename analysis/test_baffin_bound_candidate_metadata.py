@@ -73,6 +73,28 @@ def test_postpreparation_corruption_is_not_misreported_as_preservation(collectio
     with pytest.raises(ValueError): m.verify_preservation(collections,staged,doc)
 
 
+@pytest.mark.parametrize('collection,key,value', [
+    ('measurements','value',1100), ('claims','source_id','source:other'),
+    ('sources','original_sha256','0'*64),
+    ('current_length_bound_admissions','rank_eligible',True),
+    ('current_length_bound_scenarios','is_observation',True)])
+def test_correct_append_count_cannot_hide_changed_evidence_values(collection,key,value):
+    doc, collections, manifest, raw = fixture()
+    _, staged, _, _ = m.prepare(manifest,collections,raw,doc,prepared_at_utc='2026-10-24T01:00:00Z')
+    staged[collection] = copy.deepcopy(staged[collection])
+    staged[collection][len(collections.get(collection,[]))][key] = value
+    with pytest.raises(ValueError,match='unexpected append'):
+        m.verify_preservation(collections,staged,doc)
+
+
+def test_scenario_order_and_source_identity_cannot_change_with_same_counts():
+    doc, collections, manifest, raw = fixture()
+    _, staged, _, _ = m.prepare(manifest,collections,raw,doc,prepared_at_utc='2026-10-24T01:00:00Z')
+    staged['current_length_bound_scenarios'] = list(reversed(staged['current_length_bound_scenarios']))
+    with pytest.raises(ValueError,match='unexpected append'):
+        m.verify_preservation(collections,staged,doc)
+
+
 def parent_fixture():
     packet = json.loads(a.read('research/davidson-width-parent-query-packet-v1.json'))
     packet['logical_sha256'] = 'e'*64

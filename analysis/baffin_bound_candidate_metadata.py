@@ -34,7 +34,8 @@ def validate_parent(packet, installed):
 
 
 def verify_preservation(prior, staged, document):
-    additions = Counter(name for name, _ in a.records(document))
+    declared_records = a.records(document)
+    additions = Counter(name for name, _ in declared_records)
     if set(staged) != set(prior) | set(additions):
         raise ValueError('Unexpected Baffin candidate collection')
     preserved = 0
@@ -44,7 +45,8 @@ def verify_preservation(prior, staged, document):
         old = prior.get(name, [])
         expected = [document['length_assessment'] if name == 'length_assessments' and row.get('entity_id') == a.ENTITY else row
                     for row in old]
-        if rows[:len(old)] != expected or len(rows) != len(old) + additions.get(name, 0):
+        appended = [row for collection, row in declared_records if collection == name]
+        if rows != expected + appended:
             raise ValueError('Prior evidence changed or unexpected append: ' + name)
         preserved += len(old) - (1 if name == 'length_assessments' else 0)
     if len(staged['objects']) != len(prior['objects']):

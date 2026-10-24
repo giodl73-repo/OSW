@@ -204,6 +204,20 @@ Latest direct API observation of run40067999078 job120795182428: live at
 preceding card/dashboard checks, step started 06:01:30 UTC on 2026-10-24,
 observed at 06:08:13 UTC. No retry, cancellation or source push was performed.
 
+### Source-audit completeness fix
+
+Review found that the preservation audit checked historical rows and appended
+row counts, leaving exact new values to the later native guards. The audit now
+compares every new record and its order against the declared contract before
+index generation or compilation. Same-count changes to measurement value,
+claim source, original source hash, admission eligibility or scenario semantics,
+and reordered scenarios are rejected in the source stage.
+
+All **29 focused candidate-metadata tests pass** after this change. Frozen
+source producers, scientific tests, protocols, reports, figures and owner
+transition bytes remain unchanged. Run40067999078 remains live at regional
+reach checks at the latest direct observation. Remote source remains held.
+
 1. Finish Davidson run40065785176 on its pinned source head. It has passed
    native/WASM, Davidson card, five preceding cards/dashboard and regional
    reach and catalogue navigation checks. The separate downloaded navigation
