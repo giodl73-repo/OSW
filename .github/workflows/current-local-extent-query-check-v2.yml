@@ -1,0 +1,144 @@
+name: Check dedicated local extent WASM target v2
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/current-local-extent-query-check-request-v2.json
+      - .github/workflows/current-local-extent-query-check-v2.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  CARGO_BUILD_JOBS: "1"
+  CARGO_INCREMENTAL: "0"
+  CARGO_TARGET_DIR: ${{ github.workspace }}/.pytest_cache/current-local-extent-build-v2/target
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  scoped-rust-query-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 8
+      - id: request
+        name: Read committed build-only request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          request=json.loads(pathlib.Path('research/current-local-extent-query-check-request-v2.json').read_bytes())
+          assert request['schema']=='osw.current-local-extent-query-check-request.v2'
+          assert type(request['execution_permitted']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
+              stream.write('enabled='+str(request['execution_permitted']).lower()+'\n')
+          PY
+      - uses: actions/setup-python@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          python-version: "3.14.8"
+      - name: Check build-only controls on tiny fictional metadata
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_current_local_extent_query_cloud_v2.py -v
+      - name: Verify committed source and unchanged scientific inputs before compilation
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_current_local_extent_query_cloud_v2.py
+      - name: Install pinned compiler and formatter
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal --component rustfmt --target wasm32-unknown-unknown
+          rustc +1.95.0 --version > .pytest_cache/current-local-extent-query-check-v2/rust-version.txt
+      - name: Check formatting without changing the frozen source
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup run 1.95.0 rustfmt --edition 2024 --config skip_children=true --check rust/osw-query/src/lib.rs rust/osw-query/src/local_extents.rs rust/osw-query/src/scalar_query.rs rust/osw-local-extents/src/lib.rs rust/osw-local-extents/src/main.rs
+      - name: Fetch locked code dependencies
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 fetch --locked --manifest-path rust/osw-query/Cargo.toml
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 fetch --locked --manifest-path rust/osw-local-extents/Cargo.toml
+      - name: Run dedicated and shared atlas scalar tests
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 test --locked --manifest-path rust/osw-local-extents/Cargo.toml --lib -- --test-threads=1
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 test --locked --manifest-path rust/osw-query/Cargo.toml --lib scalar -- --test-threads=1
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 test --locked --manifest-path rust/osw-query/Cargo.toml --lib filter_null_is_not_zero -- --test-threads=1
+      - name: Build both native CLIs after tests finish
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 build --locked --manifest-path rust/osw-query/Cargo.toml --bin osw-query-cli
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 build --locked --manifest-path rust/osw-local-extents/Cargo.toml --bin osw-local-extents-cli
+      - name: Build only the dedicated WASM target
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 build --locked --release --target wasm32-unknown-unknown --manifest-path rust/osw-local-extents/Cargo.toml --lib
+      - name: Bind the exact previously verified baseline artifact
+        if: steps.request.outputs.enabled == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json, pathlib, subprocess
+          folder=pathlib.Path('.pytest_cache/current-local-extent-query-check-v2')
+          run=json.loads(subprocess.check_output(['gh','api','repos/giodl73-repo/OSW/actions/runs/40131603572']))
+          artifact=json.loads(subprocess.check_output(['gh','api','repos/giodl73-repo/OSW/actions/artifacts/12574929493']))
+          assert run['run_attempt']==2 and run['status']=='completed' and run['conclusion']=='success'
+          assert run['head_sha']=='469b25bdeaa57ef93706fe524ce0df4191852cba'
+          assert artifact['id']==12574929493 and artifact['name']=='current-local-extent-query-check-v1'
+          assert artifact['size_in_bytes']==9030795 and not artifact['expired']
+          assert artifact['digest']=='sha256:80194e96bbb850037b1688562adb520fecc16784251a8724ad40ade42aa8eefd'
+          assert artifact['workflow_run']['id']==run['id'] and artifact['workflow_run']['head_sha']==run['head_sha']
+          for name,value in [('baseline-run.json',run),('baseline-artifact.json',artifact)]:
+              (folder/name).write_text(json.dumps(value,indent=2)+'\n')
+          PY
+      - name: Restore baseline in the cloud only after compilation
+        if: steps.request.outputs.enabled == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: current-local-extent-query-check-v1
+          run-id: 40131603572
+          github-token: ${{ github.token }}
+          path: .pytest_cache/current-local-extent-baseline-v2
+      - uses: actions/setup-node@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          node-version: "24"
+          package-manager-cache: false
+      - name: Compare dedicated native WASM and recorded baseline queries
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 node analysis/check_current_local_extent_query_parity_v2.mjs "$CARGO_TARGET_DIR/debug/osw-query-cli" "$CARGO_TARGET_DIR/debug/osw-local-extents-cli" "$CARGO_TARGET_DIR/wasm32-unknown-unknown/release/osw_local_extents.wasm" .pytest_cache/current-local-extent-baseline-v2/rust/osw-query/target/wasm32-unknown-unknown/release/osw_query.wasm
+      - name: Retain scoped check evidence and compiled artifact
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-local-extent-query-check-v2
+          path: |
+            .pytest_cache/current-local-extent-query-check-v2/
+            .pytest_cache/current-local-extent-build-v2/target/wasm32-unknown-unknown/release/osw_local_extents.wasm
+          include-hidden-files: true
+          if-no-files-found: ignore
+          compression-level: 1
+          retention-days: 90

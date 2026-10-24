@@ -189,3 +189,15 @@ Next implement and verify the separate source-bound cloud adapter, native-cell
 scale footprints and actual-data evidence output. The new prototype preparation
 does not permit original-data execution or measurement admission. Keep all62
 executed inputs and the completed failed two-sided case unchanged.
+
+## Dedicated query target v2: current checkpoint
+
+Source preparation extracts the scalar helpers/store and uses the same local
+extent module in a separate crate without atlas assets. All83 scientific inputs
+and the835839-byte scalar snapshot remain unchanged. The v1 runtime preflight,
+reports and history are preserved; runtime refactoring is bound through a new
+v2 gate/request. Fixed-width pagination counts support native/wasm32 agreement.
+A2MiB raw-WASM and64MiB scoped memory budget plus reference-engine parity are
+required before delivery. The dedicated lock uses the22-package closure of the
+existing locked versions. Actual locked compilation and runtime results remain
+outstanding; keep the default-disabled request until freeze/backup is verified.

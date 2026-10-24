@@ -1,10 +1,10 @@
 //! Small, immutable research dataset using the existing query semantics.
 //! It never loads or modifies the complete atlas or its workspace journal.
-use crate::{Bundle, Query, Store, collect_fields, spatial, workspace};
+use crate::scalar_query::{Query, ScalarStore};
 use serde::Deserialize;
 use serde_json::{Value, json};
 use sha2::{Digest, Sha256};
-use std::collections::{BTreeMap, BTreeSet};
+use std::collections::BTreeMap;
 
 pub const EXPECTED_BYTES: usize = 835839;
 pub const EXPECTED_SHA256: &str =
@@ -14,7 +14,7 @@ pub const COLLECTIONS: [&str; 2] = ["current_local_extent_cases", "current_local
 pub const SCOPE: &str = "2013 monthly mean-field local extents at15m. Candidate-region research evidence; original failures retained. No physical whole-current widths, annual ranges, ranks or OSW state joins admitted.";
 
 pub struct LocalExtentStore {
-    engine: Store,
+    engine: ScalarStore,
     provenance: Value,
 }
 
@@ -40,7 +40,7 @@ impl LocalExtentStore {
         {
             return Err("Unsupported local-extent research scope".into());
         }
-        let mut collections: BTreeMap<String, Vec<Value>> =
+        let collections: BTreeMap<String, Vec<Value>> =
             serde_json::from_value(document["collections"].clone()).map_err(|e| e.to_string())?;
         if collections.len() != 2
             || collections.get(COLLECTIONS[0]).map(Vec::len) != Some(72)
@@ -48,38 +48,8 @@ impl LocalExtentStore {
         {
             return Err("Incomplete local-extent research collections".into());
         }
-        // Internal empty objects support the shared query implementation only.
-        // They are not exposed as an atlas or a named-current inventory.
-        collections.insert("objects".into(), vec![]);
-        let mut ids = BTreeMap::new();
-        let mut fields = BTreeMap::new();
-        for (name, rows) in &collections {
-            let mut index = BTreeMap::new();
-            let mut keys = BTreeSet::new();
-            for (position, row) in rows.iter().enumerate() {
-                let id = row["id"].as_str().ok_or("Missing local-extent ID")?;
-                if index.insert(id.to_owned(), position).is_some() {
-                    return Err("Duplicate local-extent ID".into());
-                }
-                collect_fields(row, "", &mut keys);
-            }
-            ids.insert(name.clone(), index);
-            fields.insert(name.clone(), keys);
-        }
-        let spatial = spatial::Index::build(&collections)?;
-        let bundle = Bundle {
-            schema: "osw.local-extent-research-store.v1".into(),
-            manifest: json!({"dataset":"current-local-extents-v1","source_sha256":EXPECTED_SHA256}),
-            collections,
-        };
         Ok(Self {
-            engine: Store {
-                bundle,
-                ids,
-                fields,
-                spatial,
-                workspace: workspace::Journal::empty(EXPECTED_SHA256.into()),
-            },
+            engine: ScalarStore::new(collections)?,
             provenance: json!({"source":document["source"],"source_scope":document["source_scope"],
                 "admission":document["admission"],"input_sha256":document["input_sha256"]}),
         })
@@ -91,7 +61,7 @@ impl LocalExtentStore {
             "complete_atlas_loaded":false,"workspace_available":false,"physical_width_inventory_increment":0,
             "provenance":self.provenance,"evidence_figure":"../figures/eacc-local-extent-primary-months-v1.svg",
             "collections":COLLECTIONS.iter().map(|name|json!({"name":name,
-                "count":self.engine.bundle.collections[*name].len(),"fields":self.engine.fields[*name]})).collect::<Vec<_>>()})
+                "count":self.engine.collections[*name].len(),"fields":self.engine.fields[*name]})).collect::<Vec<_>>()})
     }
 
     pub fn query(&self, bytes: &[u8]) -> Result<Value, String> {
@@ -144,6 +114,7 @@ impl LocalExtentStore {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::collections::BTreeSet;
     const RAW: &[u8] =
         include_bytes!("../../../research/eacc-local-extent-evidence-bundle-v1.json");
     fn store() -> LocalExtentStore {
@@ -162,7 +133,10 @@ mod tests {
         assert_eq!(metadata["collections"].as_array().unwrap().len(), 2);
         assert_eq!(metadata["complete_atlas_loaded"], false);
         assert_eq!(metadata["physical_width_inventory_increment"], 0);
-        assert!(Store::load(RAW).is_err());
+        assert_eq!(
+            serde_json::from_slice::<Value>(RAW).unwrap()["schema"],
+            "osw.current-local-extent-evidence.v1"
+        );
     }
 
     #[test]
@@ -248,7 +222,7 @@ mod tests {
     #[test]
     fn record_resolves_original_seed_case_without_claiming_a_boundary() {
         let store = store();
-        let row = &store.engine.bundle.collections[COLLECTIONS[1]][0];
+        let row = &store.engine.collections[COLLECTIONS[1]][0];
         let result = store
             .record(
                 &serde_json::to_vec(&json!({"collection":COLLECTIONS[1],"id":row["id"]})).unwrap(),

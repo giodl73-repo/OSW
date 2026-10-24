@@ -83,6 +83,7 @@ mod qualitative_calendar;
 mod rebase;
 mod ring_radii;
 mod samples;
+mod scalar_query;
 mod seasonal;
 mod seasons_data;
 mod selected_core_widths;
@@ -152,78 +153,17 @@ fn objects() -> String {
     "objects".into()
 }
 
-#[derive(Deserialize)]
-#[serde(deny_unknown_fields)]
-pub struct Filter {
-    pub field: String,
-    pub op: String,
-    pub value: Value,
-}
-#[derive(Deserialize)]
-#[serde(deny_unknown_fields)]
-pub struct Sort {
-    pub field: String,
-    #[serde(default = "asc")]
-    pub direction: String,
-}
-fn asc() -> String {
-    "asc".into()
-}
+#[cfg(test)]
+use scalar_query::filter_equal;
+pub use scalar_query::{Filter, Sort};
+use scalar_query::{collect_fields, field};
 
-fn field<'a>(record: &'a Value, path: &str) -> Option<&'a Value> {
-    path.split('.')
-        .try_fold(record, |value, key| value.as_object()?.get(key))
-}
-fn collect_fields(value: &Value, prefix: &str, fields: &mut BTreeSet<String>) {
-    if let Some(object) = value.as_object() {
-        for (key, child) in object {
-            let path = if prefix.is_empty() {
-                key.clone()
-            } else {
-                format!("{prefix}.{key}")
-            };
-            fields.insert(path.clone());
-            collect_fields(child, &path, fields);
-        }
-    }
-}
-fn present(value: Option<&Value>) -> bool {
-    value.is_some_and(|v| !v.is_null())
-}
-// Scalar numeric equality follows value, while avoiding integer-to-f64 rounding.
-fn filter_equal(a: &Value, b: &Value) -> bool {
-    if a == b {
-        return true;
-    }
-    let (Some(a), Some(b)) = (a.as_number(), b.as_number()) else {
-        return false;
-    };
-    let (integer, float) = match (a.is_f64(), b.is_f64()) {
-        (false, true) => (a, b.as_f64().unwrap()),
-        (true, false) => (b, a.as_f64().unwrap()),
-        _ => return false,
-    };
-    if float.fract() != 0.0 {
-        return false;
-    }
-    if let Some(value) = integer.as_i64() {
-        // The upper bound is exclusive: i64::MAX rounds up in binary64.
-        float >= -9223372036854775808.0 && float < 9223372036854775808.0 && float as i64 == value
-    } else if let Some(value) = integer.as_u64() {
-        float >= 0.0 && float < 18446744073709551616.0 && float as u64 == value
-    } else {
-        false
-    }
-}
-
-fn compare(a: &Value, b: &Value) -> std::cmp::Ordering {
-    match (a.as_f64(), b.as_f64()) {
-        (Some(a), Some(b)) => a.total_cmp(&b),
-        _ => a
-            .as_str()
-            .unwrap_or("")
-            .to_lowercase()
-            .cmp(&b.as_str().unwrap_or("").to_lowercase()),
+#[cfg(test)]
+mod scalar_scope_boundary_tests {
+    #[test]
+    fn research_snapshot_does_not_load_as_the_complete_atlas() {
+        let raw = include_bytes!("../../../research/eacc-local-extent-evidence-bundle-v1.json");
+        assert!(super::Store::load(raw).is_err());
     }
 }
 
@@ -647,57 +587,19 @@ impl Store {
                         return false;
                     }
                 }
-                query.filters.iter().all(|filter| {
-                    let actual = field(r, &filter.field).unwrap_or(&Value::Null);
-                    match filter.op.as_str() {
-                        "eq" => filter_equal(actual, &filter.value),
-                        "ne" => !filter_equal(actual, &filter.value),
-                        "exists" => {
-                            present(field(r, &filter.field)) == filter.value.as_bool().unwrap()
-                        }
-                        "contains" => {
-                            if let Some(text) = actual.as_str() {
-                                text.to_lowercase()
-                                    .contains(&filter.value.as_str().unwrap().to_lowercase())
-                            } else if let Some(array) = actual.as_array() {
-                                array.iter().any(|v| v == &filter.value)
-                            } else {
-                                false
-                            }
-                        }
-                        "gt" => actual
-                            .as_f64()
-                            .is_some_and(|n| n > filter.value.as_f64().unwrap()),
-                        "lt" => actual
-                            .as_f64()
-                            .is_some_and(|n| n < filter.value.as_f64().unwrap()),
-                        _ => false,
-                    }
-                })
+                query
+                    .filters
+                    .iter()
+                    .all(|filter| scalar_query::matches_filter(r, filter))
             })
             .collect();
-        if let Some(sort) = &query.sort {
-            matches.sort_by(|a, b| {
-                let av = field(a, &sort.field);
-                let bv = field(b, &sort.field);
-                let ordering = match (present(av), present(bv)) {
-                    (false, true) => std::cmp::Ordering::Greater,
-                    (true, false) => std::cmp::Ordering::Less,
-                    (false, false) => std::cmp::Ordering::Equal,
-                    _ => {
-                        let result = compare(av.unwrap(), bv.unwrap());
-                        if sort.direction == "desc" {
-                            result.reverse()
-                        } else {
-                            result
-                        }
-                    }
-                };
-                ordering.then_with(|| a["id"].as_str().cmp(&b["id"].as_str()))
-            });
-        } else {
-            matches.sort_by(|a, b| a["id"].as_str().cmp(&b["id"].as_str()));
-        }
+        scalar_query::sort_rows(
+            &mut matches,
+            query
+                .sort
+                .as_ref()
+                .map(|s| (s.field.as_str(), s.direction == "desc")),
+        );
         let total = matches.len();
         let mut map_scene = if query.collection == "objects" {
             map::scene_selected(
