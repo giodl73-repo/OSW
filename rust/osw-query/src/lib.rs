@@ -41,6 +41,7 @@ mod index_map;
 mod index_noaa;
 pub mod index_store;
 mod index_support;
+mod indian_coastal_context;
 mod ke_regional_length;
 mod kuroshio_daily;
 mod kuroshio_filtered_width;
@@ -387,6 +388,7 @@ impl Store {
         mooring_velocity::validate(&bundle)?;
         current_sections::validate(&bundle)?;
         current_gap_admissions::validate(&bundle)?;
+        indian_coastal_context::validate(&bundle)?;
         davidson_reported_width::validate(&bundle)?;
         current_catalogue::validate(&bundle)?;
         current_measurements::validate(&bundle)?;
