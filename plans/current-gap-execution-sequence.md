@@ -18,8 +18,10 @@ time. Never overlap acquisition, numerical processing, builds or browser checks.
 
 1. **Prepare EACC continuation.** Finish the adapter's internal review, dependency
    freeze and workflow wiring while `source-review-only-v1` remains in force.
-   Forty small synthetic continuation checks passed locally on 2026-10-24.
-   They did not contact the source or process original velocity arrays.
+   The focused suite passed225 checks locally on2026-10-24. A versioned startup
+   correction then passed24 targeted checks, including execution of the actual
+   checkout script against a tiny offline Git fixture. These checks did not
+   contact the source or process original velocity arrays.
 2. **Acquire EACC in one cloud job.** Validate and reuse the three saved chunks;
    request the remaining 79 sequentially. Preserve progress on failure. Keep all
    40 executed scientific inputs unchanged. Enable the execution phase only
@@ -34,6 +36,34 @@ time. Never overlap acquisition, numerical processing, builds or browser checks.
 5. **Take the next current gap.** Select it after recording the EACC outcome;
    do not fan out additional acquisition jobs.
 
-The source-review hold is still active. The new continuation workflow is
-preparation, not an enabled or completed source run. No new current measurements
-have been admitted by this preparation.
+## Execution checkpoint: 2026-10-24
+
+Stage2 completed successfully in cloud run40117999392, attempt2,
+job120943453102, source commit69cddec0412ca5b1a57c8416067a3e2fd10720af.
+It passed226 cloud checks and completed82 requests by reusing3 and acquiring79.
+All12 months and72 diagnostic cases are retained. Preserve the completed case;
+do not restart it. The versioned continuation preflight binds52 inputs,
+including the unchanged40 original scientific inputs.
+
+The preceding continuation startup run40117618572 stopped before source access
+because of an unsupported Git checkout option. Its v1 artifacts are preserved;
+the v2 operational correction uses `sparse-checkout set --no-cone`.
+
+Readback uses bounded HTTP206 ranges for compact JSON and at most four selected
+PNGs per call, capped at3MiB transferred per call. The reader was checked with a
+tiny synthetic archive and refuses a server's whole-response fallback. It will
+not request an artifact until the exact run is terminal.
+
+Stage3 is active. Compact metadata and four January/July PNGs were retrieved and
+inspected, without downloading the55MB ZIP or source arrays. No month passes
+both primary five-station width diagnostics. Sixty-six cases stop at missing
+seed-refinement endpoint support; the two January primary cases retain resolved
+central spans but fail regional axis gates. This is unsupported method coverage,
+not zero flow or current absence. A coastal-mask interaction is a hypothesis
+pending a separate support inspection of the already saved diagnostic.
+
+The compact original result and figure manifest are preserved under research;
+see `research/eacc-hycom-source-resume-execution-review-v1.json`. No new current
+measurements have been admitted. The source-review hold is restored, with zero
+local heavy jobs. Native/WASM builds and browser checks remain deferred until
+the ordered delivery stage.
