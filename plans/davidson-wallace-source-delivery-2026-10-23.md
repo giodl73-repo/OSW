@@ -52,3 +52,25 @@ Proof: `research/davidson-wallace-2008-source-replay-proof-v1.json`.
 No canonical width, raw sample, whole-current length, annual range, geometry,
 state intersection, new current or animation frame has been admitted by this
 source-stage increment. The full core-data goal remains incomplete.
+
+## Prepared atomic admission
+
+`analysis/davidson_wallace_width_admission.py` prepares six records: three
+registered provenance references (course report, OSW method and the shared NIST
+unit definition), one scoped width, its claim and an admission. An identical
+registered NIST definition is reused. Reference counts are not observation
+counts. The width retains 35 NM and exact normalization 64.82 km while its public
+approximate value is 65 km. Publication date/year and exact occupation date stay
+unknown; the campaign window does not become an exact width date.
+
+Seven small checks cover atomicity, unchanged old rows/physical fields,
+source-grade/date/layer scope, source and contract mutations, missing/duplicate
+identity, collisions, shared-standard reuse and registered source ownership.
+No source product is edited by these checks. The contract is preparation only:
+the complete 106-current parent packet has not yet been applied or verified,
+and native guards, WASM, actual card rendering and the next coherent cloud
+export remain outstanding. The live packet and counts are unchanged.
+
+Preserve the local freeze commit when reconciling a future generated remote
+delivery commit. Use an ordinary merge into this working branch rather than
+rebasing the freeze: its commit ID is part of the source-execution proof.
