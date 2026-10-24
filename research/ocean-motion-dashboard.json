@@ -1211,7 +1211,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "c2690088b516e9d1917d6a03bca4b02408a5ea2511b001b09812c774f0c30735",
+  "snapshot_fingerprint": "a2b6d71002270485e6914b9fecac9ddca617d0719231f86f12e9cc61ddce4df5",
   "entries": [
     {
       "id": "current:agulhas",
@@ -18518,24 +18518,25 @@
         "passage_transport": 0,
         "width_samples": 0
       },
-      "recorded_claims": 56,
+      "recorded_claims": 57,
       "nasa_links": 1,
-      "fingerprint": "debbcd9f9d1f6b9751d8561340cf5c2919997107a76000759f45fecef078a04f",
+      "fingerprint": "f15f7013bb27e0ff23de0824995f7068459967f13ec2ec67809b7c94945b87d2",
       "series": [],
       "section_fingerprints": {
         "identity": "717960c30d9bb77fc3e3043c9cb45bb8d27ab059814b5692aa23ca72a0526958",
-        "sources": "5045fa318ee2d0a40f8142fc420af7babf61424a2cf772810fdb472c1da05446",
-        "claims": "98acf47cd5bbe72b116c7b71f949ab1137af3fae77996d2fc418cc77cf9959e4",
-        "measurements": "be3fcce99f32bd476c43d267c27d727700a9dc4a8dee54124a3abe7e2057ac38",
+        "sources": "d382467253196b9642057a3781165165849f02af7a7e8b0e3e56a3acb0fa707c",
+        "claims": "a3750b7373a8b8276fc97dc6814804d1fabde75b0dbc8c7d464f1b4e9bcd28e7",
+        "measurements": "4562a1a0d56825e361663f6e132a270fd71ded926cc0ac11d92d138114446984",
         "routes_geometry": "0318e7bcd5daa4e1de6730261ec18c50a50e061f1fe52d368d7bc79e29d8e94c",
         "media": "588b57510aa3305986174ddee70c7d6e1aaf444314fe5ec9da814cabd4cd96e9",
-        "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd"
+        "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd",
+        "source_ownership": "390d9a52d9e657ddd98b7812c793e4e28bd0aac0fdbbef11c62ea941796534d4"
       },
       "latest_observation_date": null,
       "claim_review_counts": {
-        "not_individually_reviewed": 56
+        "not_individually_reviewed": 57
       },
-      "linked_source_count": 6,
+      "linked_source_count": 8,
       "map_features": [
         {
           "geometry": {
@@ -19077,7 +19078,24 @@
       "state_evidence": [],
       "connections": [],
       "scope_notes": [],
-      "evidence_links": [],
+      "evidence_links": [
+        {
+          "label": "Inspect the conditional 1,000 km Baffin geographic floor",
+          "url": "../figures/baffin-latitude-gate-bound-v1.svg"
+        },
+        {
+          "label": "Query the Baffin length assessment",
+          "url": "query.html?q=%7B%22collection%22%3A%22length_assessments%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22entity_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22current%3Abaffin%22%7D%5D%2C%22limit%22%3A1%7D"
+        },
+        {
+          "label": "Audit the Baffin bound and historical naming scope",
+          "url": "query.html?q=%7B%22collection%22%3A%22current_length_bound_admissions%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22current_length_bound_admission%3Abaffin%3Adescribed-latitudes-v1%22%7D%5D%2C%22limit%22%3A1%7D"
+        },
+        {
+          "label": "Compare all nine editorial latitude scenarios",
+          "url": "query.html?q=%7B%22collection%22%3A%22current_length_bound_scenarios%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22entity_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22current%3Abaffin%22%7D%5D%2C%22limit%22%3A9%7D"
+        }
+      ],
       "object_url": "object.html?id=current%3Abaffin",
       "route_url": "reference-routes.html#baffin-reach-reference-path-candidate",
       "season_url": "seasons.html?current=baffin",
@@ -19086,7 +19104,9 @@
         "baffin-fissel-1982-east-devon-regional-width",
         "baffin-fissel-1982-lancaster-average-width-span"
       ],
-      "measurement_ids": [],
+      "measurement_ids": [
+        "measurement:baffin:described-latitude-floor"
+      ],
       "route_ids": [
         "baffin-reach-reference-path-candidate"
       ],
@@ -19096,7 +19116,9 @@
         "source:7d77d9146f863efd",
         "source:803229fe82eb2360",
         "source:a9cf41fd1887dc49",
-        "source:b038491b0e5a3967"
+        "source:b038491b0e5a3967",
+        "source:baffin-fissel-1982-length-selected-original",
+        "source:baffin-latitude-gate-bound-v1"
       ],
       "state_codes": [],
       "published_length_km": null,
@@ -19105,7 +19127,23 @@
         "route-decision:baffin"
       ],
       "current_section_ids": [],
-      "velocity_sample_ids": []
+      "velocity_sample_ids": [],
+      "regional_length_bound": {
+        "value_km": 1000,
+        "admission_id": "current_length_bound_admission:baffin:described-latitudes-v1",
+        "measurement_id": "measurement:baffin:described-latitude-floor",
+        "conditional_on_nominal_gates": true,
+        "whole_current_representative": false,
+        "rank_eligible": false,
+        "annual_length_range_km": null
+      },
+      "evidence_transition": {
+        "id": "owner_transition:baffin:latitude-bound-v1",
+        "parent_owner_fingerprint": "debbcd9f9d1f6b9751d8561340cf5c2919997107a76000759f45fecef078a04f",
+        "parent_owner_projection_sha256": "c9fa011656ef90aa43c2e77f5dfd32d63fde0431f0b539c84cd6e4ce79836e8c",
+        "section_digest_method": "hash_of_prior_section_digest_and_explicit_admitted_evidence",
+        "scientific_source_inputs_recomputed": false
+      }
     },
     {
       "id": "current:balearic",
@@ -167113,17 +167151,17 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "parent_built_at_utc": "2026-10-24T02:23:01.954421Z",
-  "built_at_utc": "2026-10-24T08:16:11.754840Z",
+  "parent_built_at_utc": "2026-10-24T08:16:11.754840Z",
+  "built_at_utc": "2026-10-24T11:05:56.679645Z",
   "candidate_delivery": {
+    "version": "baffin-described-latitudes-v1",
+    "published": false,
+    "scope": "One conditional regional geographic floor and nine editorial scenarios; no measured axis, seasonal range or qualified length rank."
+  },
+  "parent_candidate_delivery": {
     "version": "davidson-wallace-line67-v1",
     "published": false,
     "parent_logical_sha256": "31a0bf88a5fe40e5929c9cd6fa5f5d4cc5db92a03574354e1f8554003bf802e3",
     "scope": "One source-reported regional campaign span; no raw samples, annual range or geometry."
-  },
-  "parent_candidate_delivery": {
-    "version": "indian-coastal-brazil-t24-v1",
-    "published": false,
-    "scope": "Verified source batch projected into candidate owners; no new physical geometry or annual extrema."
   }
 }
