@@ -1,0 +1,222 @@
+name: Sequential Baffin-bound delivery
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths-ignore:
+      - almanac/query-data.json
+      - almanac/query-parts/**
+      - almanac/query-engine.wasm
+      - almanac/query-engine.manifest.json
+      - almanac/index-catalog.json
+      - almanac/index-sources.json
+      - almanac/index-data.json.gz
+      - research/ocean-motion-dashboard.json
+      - research/davidson-width-installed-delivery-v1.json
+      - research/baffin-bound-installed-delivery-v1.json
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  CARGO_BUILD_JOBS: "1"
+  CARGO_INCREMENTAL: "0"
+  RUSTUP_TOOLCHAIN: 1.95.0
+
+jobs:
+  baffin-candidate-and-views:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v6
+      - name: Require the declared Baffin phase
+        run: |
+          python -c "import json,pathlib; p=json.loads(pathlib.Path('research/current-gap-delivery-phase.json').read_bytes()); assert p['phase']=='baffin-bound-v1'"
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install pinned dependencies
+        run: python -m pip install -r requirements-test.txt
+      - name: Check small admission preservation and publication fixtures
+        run: >-
+          python -m pytest -q analysis/test_baffin_bound_admission.py
+          analysis/test_baffin_bound_owner_projection.py
+          analysis/test_baffin_bound_candidate_metadata.py
+          analysis/test_baffin_bound_candidate_export.py
+          analysis/test_baffin_bound_browser_policy.py
+          analysis/test_baffin_bound_delivery.py
+          analysis/test_current_gap_index_extension.py
+      - name: Export complete candidate and preserve the installed parent
+        run: python analysis/export_baffin_bound_candidate.py --cloud-candidate
+      - name: Retain candidate audit before compilation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: baffin-candidate-audit
+          path: .pytest_cache/baffin-bound-candidate/result.json
+          include-hidden-files: true
+          if-no-files-found: ignore
+      - name: Install the pinned native and WASM toolchain
+        run: rustup toolchain install 1.95.0 --profile minimal --component rustfmt --target wasm32-unknown-unknown
+      - name: Fetch locked dependencies
+        run: cargo fetch --locked --manifest-path rust/osw-query/Cargo.toml
+      - name: Build and check native then WASM on one CPU
+        run: python analysis/build_rust_query_engine.py
+      - name: Retain candidate data for reproducible browser diagnosis
+        uses: actions/upload-artifact@v4
+        with:
+          name: baffin-derived-candidate
+          path: .pytest_cache/baffin-bound-candidate/artifact/
+          if-no-files-found: error
+          compression-level: 1
+      - name: Retain the matching compiled engine before browser checks
+        uses: actions/upload-artifact@v4
+        with:
+          name: baffin-query-engine
+          path: |
+            almanac/query-engine.wasm
+            almanac/query-engine.manifest.json
+          compression-level: 1
+      - name: Install the browser after compilation finishes
+        run: python -m playwright install --with-deps chromium
+      - name: Check the Baffin card scenarios and exact source scope
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_baffin_bound_browser.py
+      - name: Retain Baffin phone and query evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: baffin-browser-receipts
+          path: .pytest_cache/baffin-bound-browser/
+          include-hidden-files: true
+          if-no-files-found: ignore
+      - name: Check the Davidson card and scalar caption
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_davidson_reported_width_browser.py
+      - name: Retain Davidson card and scalar render evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: davidson-browser-receipts
+          path: .pytest_cache/davidson-reported-width-browser/
+          include-hidden-files: true
+          if-no-files-found: ignore
+      - name: Check existing current cards and the 106-current dashboard
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_current_gap_admission_browser.py
+      - name: Retain preceding current-card evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: baffin-prior-card-receipts
+          path: .pytest_cache/current-gap-admission/browser/
+          include-hidden-files: true
+          if-no-files-found: ignore
+      - name: Check published regional reaches
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_published_regional_reaches_browser.py
+      - name: Check catalogue cards and current-card navigation
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_nwasc_working_admission_browser.py
+      - name: Retain catalogue and navigation diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-catalogue-navigation-receipts
+          path: |
+            .pytest_cache/nwasc-admission-browser/
+            .pytest_cache/nwasc-card-navigation/
+          include-hidden-files: true
+          if-no-files-found: ignore
+      - name: Check complete atlas selectors sources and corruption rejection
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_rust_atlas_snapshot_browser.py
+      - name: Retain complete atlas diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: complete-atlas-diagnostics
+          path: .pytest_cache/rust-atlas-snapshot-browser/
+          include-hidden-files: true
+          if-no-files-found: ignore
+      - name: Check the broader source matrix sequentially
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_caribbean_ru29_query_browser.py test_caribbean_ru29_source_browser.py
+          test_ke_length_series_browser.py test_labrador_gate_bound_browser.py
+          test_angola_nansen_sections_browser.py test_angola_nansen_query_browser.py
+          test_redsox_station_support_browser.py test_redsox_station_support_query_browser.py
+          test_current_gap_source_query_browser.py
+          test_south_indian_front_level_browser.py test_south_indian_front_level_query_browser.py
+          test_south_indian_front_property_browser.py test_south_indian_front_property_query_browser.py
+          test_indian_secc_source_boundary_browser.py
+
+  publish-baffin-working-data:
+    needs: baffin-candidate-and-views
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - uses: actions/download-artifact@v4
+        with:
+          name: baffin-derived-candidate
+          path: .
+      - uses: actions/download-artifact@v4
+        with:
+          name: baffin-query-engine
+          path: almanac
+      - uses: actions/download-artifact@v4
+        with:
+          name: baffin-candidate-audit
+          path: .pytest_cache/baffin-publication/source
+      - uses: actions/download-artifact@v4
+        with:
+          name: davidson-browser-receipts
+          path: .pytest_cache/baffin-publication/prior-davidson
+      - uses: actions/download-artifact@v4
+        with:
+          name: baffin-prior-card-receipts
+          path: .pytest_cache/baffin-publication/prior-cards
+      - uses: actions/download-artifact@v4
+        with:
+          name: baffin-browser-receipts
+          path: .pytest_cache/baffin-publication/browser
+      - name: Read this run and its completed sequential gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > .pytest_cache/baffin-publication/run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs?per_page=100" > .pytest_cache/baffin-publication/jobs.json
+      - name: Verify all artifact bindings and publish generated working data
+        run: >-
+          python analysis/prepare_baffin_bound_delivery.py --publish
+          --audit-dir .pytest_cache/baffin-publication
+      - name: Retain the installed working-data receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: baffin-installed-delivery
+          path: research/baffin-bound-installed-delivery-v1.json
+          if-no-files-found: ignore

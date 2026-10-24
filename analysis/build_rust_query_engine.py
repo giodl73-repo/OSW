@@ -200,6 +200,9 @@ def main():
                   'analysis/export_baffin_bound_candidate.py','analysis/test_baffin_bound_candidate_export.py',
                   'analysis/test_baffin_bound_browser.py','analysis/test_baffin_bound_browser_policy.py',
                   'analysis/test_labrador_gate_bound_browser.py',*baffin['input_sha256']])
+    paths.extend(['analysis/prepare_baffin_bound_delivery.py','analysis/test_baffin_bound_delivery.py',
+                  '.github/workflows/baffin-bound-candidate.yml','research/current-gap-delivery-phase.json',
+                  'research/davidson-width-installed-delivery-v1.json'])
     paths.extend(['rust/osw-query/src/current_catalogue.rs','analysis/current_identity_admissions.py','almanac/current-identity-ui.js',
                   'plans/current-identity-admission-protocol-v1.md','research/ocean-current-identity-admissions.json',
                   'research/ocean-current-working-catalogue.json','figures/southern-east-madagascar-admitted-identity.svg'])

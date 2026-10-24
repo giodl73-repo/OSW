@@ -13,6 +13,7 @@ name: Sequential current-gap delivery
       - almanac/index-data.json.gz
       - research/ocean-motion-dashboard.json
       - research/davidson-width-installed-delivery-v1.json
+      - research/baffin-bound-installed-delivery-v1.json
 
 concurrency:
   group: osw-current-gap-delivery
@@ -31,7 +32,26 @@ env:
   RUSTUP_TOOLCHAIN: 1.95.0
 
 jobs:
+  select-delivery-phase:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      phase: ${{ steps.phase.outputs.phase }}
+    steps:
+      - uses: actions/checkout@v6
+      - id: phase
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          path = pathlib.Path('research/current-gap-delivery-phase.json')
+          phase = json.loads(path.read_bytes())['phase'] if path.exists() else 'davidson'
+          assert phase in ('davidson', 'baffin-bound-v1'), phase
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
+              stream.write('phase=' + phase + '\n')
+          PY
   davidson-candidate-and-views:
+    needs: select-delivery-phase
+    if: needs.select-delivery-phase.outputs.phase == 'davidson'
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:

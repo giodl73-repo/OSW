@@ -144,6 +144,46 @@ commit agreement and strict generated-only changed paths. Route the preceding
 Davidson workflow away from this next phase to avoid redundant heavy rebuilds.
 Require the actually installed Davidson proof before the Baffin export can run.
 
+### Sequential workflow and publication controls prepared
+
+The Baffin workflow, phase selector and publication verifier are now prepared
+locally. The Baffin workflow uses the same `osw-current-gap-delivery` concurrency
+group with cancellation disabled. Native/WASM work, Baffin browser, preceding
+Davidson browser, five preceding cards/dashboard, regional reaches, catalogue
+navigation, complete atlas/18 corruptions and the 14-source matrix remain
+sequential. Candidate data and matching engine artifacts are saved before
+browser work. The publication job depends on the complete heavy job succeeding.
+
+The preceding Davidson workflow gains only a lightweight phase-selection job
+for future source pushes. With the declared Baffin phase it skips the redundant
+Davidson heavy job. The currently running retry uses its earlier pinned source
+and is unaffected by this local change.
+
+`analysis/prepare_baffin_bound_delivery.py` requires the exact run/source/branch/
+workflow, successful complete heavy job, verified preceding installed Davidson
+receipt, 14 appended rows and one scoped assessment replacement, 245 unchanged
+other owners, unchanged prior scientific source strings, nine Baffin query
+parities and both phone viewports. It rechecks the preceding actual browser
+receipts, streams every engine/source/data/part hash, requires one matching
+logical packet cohort, and compares the dashboard's exact Baffin owner.
+Only generated files and parts referenced by the candidate packet may be
+published to the working branch. Remote-head guards reject stale publication;
+historical deletion, scientific-file changes, main merge and scientific release
+are excluded. The earlier Rotschi1972 HTTP403 gate remains unresolved separately.
+
+All **25 small publication fixture tests pass**, including corrupted phase,
+source pins, packet parts, owner, parent proof, run/jobs, prior browser evidence,
+viewport/query coverage, candidate inventory and changed-path scope. Python
+syntax and YAML phase/concurrency/dependency/coverage checks pass. These fixture
+checks do not replace actual native/WASM compilation, browser execution or
+visual review for Baffin; all remain pending in the cloud.
+
+Latest verified retry state: run40067999078 job120795182428 is live at the
+preceding five-current-card/dashboard stage, after native/WASM and Davidson
+card checks passed. Do not push the local phase switch until this run is
+terminal and its installed-delivery receipt is actually verified. No local
+full packet load, build, browser session or large artifact download occurred.
+
 1. Finish Davidson run40065785176 on its pinned source head. It has passed
    native/WASM, Davidson card, five preceding cards/dashboard and regional
    reach and catalogue navigation checks. The separate downloaded navigation

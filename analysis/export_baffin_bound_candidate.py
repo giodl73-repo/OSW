@@ -29,6 +29,8 @@ OPERATORS = [
     'almanac/current-source-evidence-ui.js', metadata.PARENT_PROOF,
     'analysis/run_rust_query_browser_checks.py', 'analysis/test_baffin_bound_browser.py',
     'analysis/test_baffin_bound_browser_policy.py', 'analysis/test_labrador_gate_bound_browser.py',
+    'analysis/prepare_baffin_bound_delivery.py', 'analysis/test_baffin_bound_delivery.py',
+    '.github/workflows/baffin-bound-candidate.yml', 'research/current-gap-delivery-phase.json',
 ]
 
 
