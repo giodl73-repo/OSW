@@ -1,0 +1,87 @@
+name: Check South Java model context candidate v1
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/south-java-model-layer-cloud-request-v1.json
+      - .github/workflows/south-java-model-layer-cloud-v1.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  CARGO_BUILD_JOBS: "1"
+  CARGO_INCREMENTAL: "0"
+  CARGO_TARGET_DIR: ${{ github.workspace }}/.pytest_cache/south-java-model-layer-cloud-build-v1/target
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  append-and-query:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v6
+      - id: request
+        name: Read committed compatibility-only request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          request=json.loads(pathlib.Path('research/south-java-model-layer-cloud-request-v1.json').read_bytes())
+          assert request['schema']=='osw.south-java-model-layer-cloud-request.v1'
+          assert type(request['execution_permitted']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
+              stream.write('enabled='+str(request['execution_permitted']).lower()+'\n')
+          PY
+      - uses: actions/setup-python@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          python-version: "3.14.8"
+      - name: Verify source freeze and resource controls before compilation
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_model_layer_cloud_v1.py --cloud-check --preflight-only
+      - name: Check tiny source and transactional fixtures
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_south_java_layer_query_v1.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_south_java_model_layer_cloud_v1.py -v
+      - name: Install native compiler only
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal
+      - name: Fetch locked dependencies
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 fetch --locked --manifest-path rust/osw-query/Cargo.toml
+      - name: Build existing native CLI without changing source
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 build --locked --manifest-path rust/osw-query/Cargo.toml --bin osw-query-cli
+      - name: Append temporary candidate and verify exact Rust queries
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_model_layer_cloud_v1.py --cloud-check --cli "$CARGO_TARGET_DIR/debug/osw-query-cli"
+      - name: Retain compact result only
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: south-java-model-layer-cloud-check-v1
+          path: .pytest_cache/south-java-model-layer-cloud-check-v1/result.json
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90
