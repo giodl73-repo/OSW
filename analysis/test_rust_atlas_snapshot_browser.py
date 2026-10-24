@@ -109,7 +109,26 @@ def main():
             'options => options.map(option => option.value).filter(Boolean)')) == current_ids
         expect(page.locator('#route-atlas-eddy-select option')).to_have_count(141)
         assert page.evaluate('window.oswAtlasSnapshot')==native
-        assert page.locator('.route-card').count()==json.loads((ROOT/'research/ocean-current-working-reference-routes.json').read_bytes())['counts']['route_candidates']
+        route_catalog=json.loads((ROOT/'research/ocean-current-working-reference-routes.json').read_bytes())
+        expected_route_ids=sorted(row['id'] for row in route_catalog['candidates'])
+        assert len(expected_route_ids)==route_catalog['counts']['route_candidates']
+        assert len(set(expected_route_ids))==len(expected_route_ids)
+        # The selectors and route-card list finish in separate async handlers.
+        # Wait for the complete list, retaining exact count and identity checks.
+        try:
+            expect(page.locator('.route-card')).to_have_count(len(expected_route_ids),timeout=90000)
+            assert sorted(page.locator('.route-card').evaluate_all('cards => cards.map(card => card.id)'))==expected_route_ids
+        except Exception:
+            output=ROOT/'.pytest_cache/rust-atlas-snapshot-browser';output.mkdir(parents=True,exist_ok=True)
+            (output/'failure.json').write_text(json.dumps({
+                'status':'FAIL','phase':'complete_route_cards','url':page.url,
+                'expected_route_ids':expected_route_ids,
+                'actual_route_ids':page.locator('.route-card').evaluate_all('cards => cards.map(card => card.id)'),
+                'route_status':page.locator('#route-status').inner_text(),
+                'page_errors':errors,'direct_source_requests':direct,
+                'preceding_corruption_rejections_completed':18,
+            },indent=2),encoding='utf-8')
+            raise
         assert page.locator('#route-status').get_attribute('data-engine')=='rust-osw-query-v1'
         page.locator('#route-atlas-select').select_option('current:agulhas')
         expect(page.locator('#route-atlas-preview')).to_contain_text('Agulhas')
