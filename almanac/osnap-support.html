@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>West Greenland sampling coverage · OSW</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="osnap-support.css">
+  <script src="osnap-support.js" defer></script>
+</head>
+<body>
+  <a class="support-skip" href="#main">Skip to sampling coverage</a>
+  <header><a class="mark" href="../">OSW</a><nav aria-label="Ocean atlas"><a href="dashboard.html">Coverage dashboard</a><a href="query.html">Query atlas</a><a href="reference-routes.html?atlas-layout=map#route-atlas">Current atlas</a></nav></header>
+  <main id="main" class="support-page">
+    <p class="eyebrow">West Greenland / observation sources</p>
+    <h1>When and where we have observations.</h1>
+    <p class="lead">Explore the eight OSNAP Labrador Sea moorings and their instrument records. Source coverage helps us decide which seasonal current measurements the observations can support.</p>
+    <p class="support-limit">These are instrument records. Their date spans and depth labels do not establish current width, length, or both current edges.</p>
+    <ol class="support-stages" aria-label="Evidence stages">
+      <li><strong>1. Original custody</strong><span id="custody-stage">Loading…</span></li>
+      <li><strong>2. File headers</strong><span id="headers-stage">Loading…</span></li>
+      <li><strong>3. Sample support</strong><span id="samples-stage">Loading reviewed audit…</span></li>
+      <li><strong>4. Current dimensions</strong><span>Not derived from this inventory</span></li>
+    </ol>
+    <p id="support-status" role="status" aria-live="polite">Loading checked source metadata…</p>
+    <section aria-labelledby="moorings-title">
+      <h2 id="moorings-title">The observation array</h2>
+      <p>Eight LS moorings are included here. The two additional deep moorings in the cited ten-mooring study are outside this source archive.</p>
+      <div id="support-moorings" class="support-moorings"></div>
+    </section>
+    <section aria-labelledby="timeline-title">
+      <h2 id="timeline-title">Instrument timeline</h2>
+      <p id="timeline-basis">The upper bar shows dates declared in file headers. Monthly marks below it show paired, unmasked finite velocity cells as a fraction of all time-by-bin cells. Hydrography records have no velocity marks. Availability does not establish physical quality or current width.</p>
+      <div class="support-filters">
+        <label>Mooring<select id="support-mooring"><option value="all">All eight moorings</option></select></label>
+        <label>Instrument role<select id="support-kind"><option value="all">All instruments</option><option value="adcp">ADCP velocity profiles</option><option value="point">Point velocity meters</option><option value="hydro">Hydrography</option></select></label>
+        <label>Find an instrument<input id="support-search" type="search" placeholder="Name, serial number, mooring…"></label>
+      </div>
+      <p id="support-count" role="status" aria-live="polite"></p>
+      <div class="support-axis" aria-hidden="true"><span id="support-start"></span><span id="support-end"></span></div>
+      <div id="support-instruments" class="support-instruments"></div>
+      <p id="support-empty" hidden>No instruments match these filters.</p>
+    </section>
+    <section aria-labelledby="limits-title">
+      <h2 id="limits-title">What the audit found—and what comes next</h2>
+      <p id="support-findings">Loading reviewed findings…</p>
+      <ul>
+        <li>Cross-instrument synchronization and common-layer overlap; the audited arrays retain their original timing.</li>
+        <li>Changing ADCP bin depths and pressure variation at nominal-depth point meters.</li>
+        <li>A common physical layer, current identity, velocity processing, and coverage of both current edges.</li>
+      </ul>
+      <p>Nominal depth is an instrument label. Pressure variation is not converted to observed depth in the support audit. A successful audit does not by itself make a current dimension measurable.</p>
+    </section>
+    <section aria-labelledby="source-title">
+      <h2 id="source-title">Source and evidence</h2>
+      <p>Pickart, Robert (2020), <cite>Microcat, Aquadopp, and ADCP data from the 2016–2018 Labrador Sea eastern boundary mooring array as part of OSNAP</cite>. Georgia Institute of Technology. <a href="https://doi.org/10.35090/fz80-6c32">Dataset and attribution</a>.</p>
+      <p>The repository links CC BY 4.0. Instrument headers also contain citation and PI-contact language. Both statements are retained in the source evidence; their relationship remains unresolved in this inventory.</p>
+      <ul class="support-evidence-links">
+        <li><a href="../research/osnap-wg-2016-2018-source-header-execution-review-v1.json">Header execution review</a></li>
+        <li><a href="../research/osnap-wg-2016-2018-source-headers-v1.json">All 78 original instrument headers (JSON)</a></li>
+        <li><a href="../research/osnap-wg-2016-2018-original-custody-v1.json">Original archive custody and checksum</a></li>
+        <li><a href="../research/osnap-wg-2016-2018-sample-support-execution-review-v1.json">Sample-support execution review</a></li>
+        <li><a href="../research/osnap-wg-2016-2018-sample-support-v1.json">All 78 sample-support records (JSON)</a></li>
+        <li><a href="../plans/osnap-wg-2016-2018-sample-support-protocol-v1.md">Prospective sample-support method</a></li>
+      </ul>
+    </section>
+    <noscript><p>The interactive timeline needs JavaScript. The linked instrument-header JSON and execution review contain the full textual source evidence.</p></noscript>
+  </main>
+</body>
+</html>

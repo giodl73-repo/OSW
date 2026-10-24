@@ -46,7 +46,7 @@ jobs:
           import json, os, pathlib
           path = pathlib.Path('research/current-gap-delivery-phase.json')
           phase = json.loads(path.read_bytes())['phase'] if path.exists() else 'davidson'
-          assert phase in ('davidson', 'baffin-bound-v1', 'baffin-bound-recovery-v1', 'osnap-wg-source-inventory-v1', 'source-review-only-v1', 'osnap-wg-sample-support-v1'), phase
+          assert phase in ('davidson', 'baffin-bound-v1', 'baffin-bound-recovery-v1', 'osnap-wg-source-inventory-v1', 'source-review-only-v1', 'osnap-wg-sample-support-v1', 'osnap-support-view-v1'), phase
           with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
               stream.write('phase=' + phase + '\n')
           PY
@@ -323,3 +323,8 @@ jobs:
     needs: select-delivery-phase
     if: needs.select-delivery-phase.outputs.phase == 'osnap-wg-sample-support-v1'
     uses: ./.github/workflows/osnap-wg-sample-support-v1.yml
+
+  osnap-support-view:
+    needs: select-delivery-phase
+    if: needs.select-delivery-phase.outputs.phase == 'osnap-support-view-v1'
+    uses: ./.github/workflows/osnap-support-view-v1.yml

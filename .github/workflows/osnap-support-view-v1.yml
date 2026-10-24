@@ -1,0 +1,51 @@
+name: OSNAP observation-support view
+
+"on":
+  workflow_call:
+
+# The parent phase controller owns the shared single-heavy-job lock.
+permissions:
+  contents: read
+
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  verify-observation-support-view:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Require the sequential view phase and successful sample-support receipt
+        run: |
+          python - <<'PY'
+          import hashlib, json, os, pathlib
+          assert os.environ['GITHUB_REF'] == 'refs/heads/codex/current-measurement-gaps'
+          load = lambda name: json.loads(pathlib.Path(name).read_bytes())
+          assert load('research/current-gap-delivery-phase.json')['phase'] == 'osnap-support-view-v1'
+          review = load('research/osnap-wg-2016-2018-sample-support-execution-review-v1.json')
+          assert review['source_run_id'] == 40093031002 and review['run_conclusion'] == 'success'
+          spec = review['support_report']
+          raw = pathlib.Path(spec['path']).read_bytes()
+          assert len(raw) == 1728271 and hashlib.sha256(raw).hexdigest() == '453eab8ad0e7319e46bd7b2c3a092327e05061d3a2dc3b837864cd5c7697df81'
+          PY
+      - name: Install the pinned browser checker
+        run: python -m pip install playwright==1.58.0
+      - name: Install one Chromium instance
+        run: python -m playwright install --with-deps chromium
+      - name: Verify source parity, filters, keyboard, phone reflow and corruption rejection
+        run: python analysis/check_osnap_support_browser.py
+      - name: Retain the view receipt and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: osnap-observation-support-view
+          path: .pytest_cache/osnap-source-view-browser/
+          include-hidden-files: true
+          if-no-files-found: ignore
