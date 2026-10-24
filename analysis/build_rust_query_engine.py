@@ -283,6 +283,11 @@ def main():
     paths.extend(['rust/osw-query/src/packet.rs','analysis/query_packet.py','almanac/query-packet.js','almanac/query-worker.js','almanac/query-workspace.js','plans/query-packet-transport-protocol-v1.md'])
     if packet.get('schema')==SCHEMA:
         paths.extend('almanac/'+part['path'] for part in descriptors(packet))
+    from indian_coastal_dimension_context_v1 import evidence as coastal_context_evidence
+    coastal_contract,_=coastal_context_evidence()
+    paths.extend(['rust/osw-query/src/indian_coastal_context.rs',
+                  'research/indian-coastal-dimension-context-query-contract-v1.json',
+                  *coastal_contract['input_sha256']])
     hashes={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in paths}
     rust=subprocess.check_output(['rustc','--version'],text=True).strip()
     (ROOT/'almanac/query-engine.manifest.json').write_text(json.dumps({'schema':'osw.query-engine-manifest.v1','engine':'rust-osw-query-v1',

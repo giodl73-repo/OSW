@@ -58,5 +58,9 @@ refresh. No historical scientific producer is replayed.
    verified working packet. Keep the existing PR; no main merge or scientific
    release is part of this batch. Rotschi1972 remains a separate unresolved gate.
 
-The phase remains `source-review-only-v1` until that workflow and its focused
-browser gates are ready. Prepared implementations do not establish delivery.
+The workflow and focused browser checker are now prepared. The declared phase
+`indian-coastal-context-v1` permits one cloud candidate under the shared lock.
+All 65 focused Python checks pass; native/WASM, actual export and browser gates
+remain unexecuted until the cloud run. Prepared implementations do not establish
+delivery. The dashboard gate now expects both the existing EACC context and the
+new SJC context to light up, with the exact extra SJC card description required.

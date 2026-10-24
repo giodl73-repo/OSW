@@ -19,7 +19,12 @@ OPERATORS = ['analysis/indian_coastal_context_candidate.py',
              'analysis/test_indian_coastal_context_export.py',
              'analysis/current_gap_index_extension.py', 'analysis/build_rust_query_engine.py',
              'rust/osw-query/src/indian_coastal_context.rs', 'rust/osw-query/src/lib.rs',
-             'almanac/current-source-evidence-ui.js', metadata.PARENT_PROOF]
+             'almanac/current-source-evidence-ui.js', metadata.PARENT_PROOF,
+             'analysis/run_rust_query_browser_checks.py', 'analysis/test_indian_coastal_context_browser.py',
+             'analysis/test_current_gap_admission_browser.py',
+             '.github/workflows/indian-coastal-context-candidate.yml', 'research/current-gap-delivery-phase.json',
+             'plans/indian-coastal-context-candidate-delivery-v1.md',
+             'signals/roles/check/indian-coastal-runtime-delivery-v1-roles-check-2026-10-24.md']
 
 
 def load_parent():

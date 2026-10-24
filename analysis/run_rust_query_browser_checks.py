@@ -69,6 +69,7 @@ CHECKS = ('test_published_regional_reaches_browser.py',) + CHECKS
 CHECKS = ('test_current_gap_admission_browser.py',) + CHECKS
 CHECKS = ('test_davidson_reported_width_browser.py',) + CHECKS
 CHECKS = ('test_baffin_bound_browser.py',) + CHECKS
+CHECKS = ('test_indian_coastal_context_browser.py',) + CHECKS
 
 
 def check_port_available(address=('127.0.0.1', 8788)):

@@ -80,6 +80,9 @@ def main():
                 if slug == 'south-java':
                     expect(page.locator('#current-direction-calendar')).to_have_count(0)
                     expect(page.locator('#current-reported-widths')).to_have_count(0)
+                    expect(page.locator('#current-cross-shore-context dt')).to_have_count(1)
+                    expect(page.locator('#current-cross-shore-context')).to_contain_text('SST-associated coastal confinement')
+                    expect(page.locator('#current-cross-shore-context')).to_contain_text('10–15 km')
                 if slug == 'brazil':
                     expect(page.locator('#current-regional-reach')).to_contain_text('1500 km')
                     expect(page.locator('#current-regional-reach')).to_contain_text('unranked')
@@ -112,7 +115,7 @@ def main():
             for metric, ids in [
                 ('direction_descriptions', ['current:east-african-coastal','current:west-india-coastal']),
                 ('reported_width_evidence', ['current:east-india-coastal']),
-                ('cross_shore_context', ['current:east-african-coastal']),
+                ('cross_shore_context', ['current:east-african-coastal','current:south-java']),
                 ('regime_context', ['current:west-india-coastal']),
             ]:
                 page.locator('#dashboard-metric').select_option(metric)
