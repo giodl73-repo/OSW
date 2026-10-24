@@ -19,6 +19,7 @@ PARENT_ROWS = 108524
 PARENT_PACKET = 'research/davidson-width-parent-query-packet-v1.json'
 PARENT_PACKET_SHA = '229fecfa0f1043527766a2d0cdea48bea90b62cd85d8441bfc4673d58eae57ed'
 VERSION = 'davidson-wallace-line67-v1'
+INSTALLED_PROOF = 'research/davidson-width-installed-delivery-v1.json'
 OWNER_METADATA = {
     'width_ids', 'source_ids', 'linked_source_count', 'evidence_links',
     'recorded_claims', 'claim_review_counts', 'section_fingerprints', 'fingerprint',
@@ -41,6 +42,30 @@ def validate_parent(packet, installed):
                 'objects':PARENT_OBJECTS, 'rows':PARENT_ROWS, 'named_currents':106}
     if installed.get('candidate') != expected:
         raise ValueError('Changed parent inventory receipt')
+
+
+def validate_current(packet, installed, newer=None, *, contract_sha256=None):
+    """Permit an exact replay of this cohort, never a later/unknown cohort."""
+    descriptors(packet)
+    if packet['logical_sha256'] == PARENT_SHA:
+        validate_parent(packet, installed)
+        return
+    newer = newer or {}
+    inventory = newer.get('candidate', {})
+    if (newer.get('schema') != 'osw.davidson-width-installed-delivery.v1'
+            or newer.get('status') != 'verified_cloud_delivery'
+            or newer.get('cohort_version') != VERSION
+            or newer.get('parent_logical_sha256') != PARENT_SHA
+            or newer.get('packet_logical_sha256') != packet['logical_sha256']
+            or not contract_sha256 or newer.get('admission_contract_sha256') != contract_sha256
+            or any(newer.get(key) is not True for key in
+                   ['native_verified','browser_verified','working_dataset_delivery_verified'])
+            or inventory.get('logical_sha256') != packet['logical_sha256']
+            or inventory.get('logical_bytes') != packet['logical_byte_length']
+            or inventory.get('objects') != PARENT_OBJECTS
+            or inventory.get('rows') not in (PARENT_ROWS + 5,PARENT_ROWS + 6)
+            or inventory.get('named_currents') != 106 or inventory.get('widths') != 172):
+        raise ValueError('Unknown current packet or unverified Davidson replay')
 
 
 def verify_preservation(prior, staged, receipt):

@@ -24,11 +24,18 @@ OWNER_METADATA = {
 }
 
 
-def verify_current_packet(current, installed):
+def verify_current_packet(current, installed, davidson=None):
     """Do not overwrite an unknown/future published dataset with this batch."""
     if current.get('schema') != 'osw.query-packet.v1':
         raise ValueError('Unsupported current packet')
     if current.get('logical_sha256') == PARENT_SHA:
+        return
+    if davidson:
+        # Explicit historical batch replay only. The working branch publisher
+        # uses the separate Davidson cohort and never installs this older batch.
+        from davidson_width_candidate_metadata import validate_current
+        from davidson_wallace_width_admission import FILE, pin
+        validate_current(current, installed, davidson, contract_sha256=pin(FILE))
         return
     if (installed.get('status') != 'verified_cloud_delivery'
             or installed.get('cohort_version') != 'indian-coastal-brazil-t24-v1'
@@ -49,7 +56,9 @@ def load_pinned_parent():
     current = json.loads((ROOT / 'almanac/query-data.json').read_bytes())
     installed_path = ROOT / INSTALLED_PROOF
     installed = json.loads(installed_path.read_bytes()) if installed_path.exists() else {}
-    verify_current_packet(current, installed)
+    davidson_path = ROOT / 'research/davidson-width-installed-delivery-v1.json'
+    davidson = json.loads(davidson_path.read_bytes()) if davidson_path.exists() else {}
+    verify_current_packet(current, installed, davidson)
     raw = (ROOT / PARENT_PACKET).read_bytes()
     if hashlib.sha256(raw).hexdigest() != PARENT_PACKET_SHA:
         raise ValueError('Changed immutable current-gap parent manifest')

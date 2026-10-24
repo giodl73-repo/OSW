@@ -141,8 +141,49 @@ physical/annual/time changes, insufficient resources and local invocation. The
 cloud export and full-parent/index preservation remain unexecuted. The browser
 gate is registered with the existing sequential runner but has not run.
 
-Before pushing: reconcile remote data without rebasing; wire the new exporter
-and browser gate into a sequential cloud workflow; update candidate publication
-verification for this separate cohort; retain the offline regression as its
-own unresolved final gate. The existing workflow still selects the older batch
-exporter and must not be used to publish the new source stack as-is.
+The pre-push requirements were a separate sequential workflow, a new-cohort
+publication verifier and reconciliation without rebasing. The implementation
+below supplies those controls. The general workflow retains its historical
+batch replay; working publication uses the dedicated Davidson workflow.
+
+## Prepared sequential cloud workflow and publication gate
+
+`.github/workflows/davidson-width-candidate.yml` now selects the prepared
+Davidson exporter, followed by native/WASM builds, Davidson and preceding
+current-card checks, and the broader source matrix. These stages share one
+runner and execute sequentially. Compilation and browser processes inherit one
+logical CPU and reduced priority; Cargo and numerical worker limits stay one.
+Only a successful complete validation job enables a separate publication job.
+
+`analysis/prepare_davidson_width_delivery.py` verifies same-run/source-revision
+provenance, actual browser equality, preservation of 245 other owners and all
+prior non-object rows, index-source preservation, frozen contract/source pins,
+every engine input and streamed transport bytes. Generated-path checks forbid
+source changes, deletion, unreferenced historical-part changes or replacement
+of the earlier 106-current delivery receipt. Publication targets the existing
+working branch only. Its new receipt retains the offline HTTP 403 limitation
+and explicitly disclaims a scientific release or main merge.
+
+Same-cohort replay requires its exact installed receipt, unchanged admission
+contract and generated index hashes. Unknown/future cohorts remain rejected.
+The retained 106-current manifest supplies the original parent dashboard,
+avoiding accidental use of a later dashboard with an older parent manifest.
+
+The general validation workflow skips automatic duplicate work for this
+working branch and temporary source-transfer branches. Explicit full validation
+remains available, and its heavy jobs now form a sequential dependency chain.
+The historical original-batch rehearsal recognizes an explicitly verified
+Davidson working receipt; its candidate remains an isolated historical replay.
+The dedicated workflow publishes the Davidson cohort.
+
+Thirty focused tests and 42 subtests passed on one local CPU. Workflow YAML,
+permissions, duplicate-run controls and dependency order were checked. No full
+packet/index load, source production, compilation or browser execution ran here.
+The prepared workflow still needs an actual cloud run and rendered review.
+
+To avoid downloading generated datasets while disk is constrained, transfer the
+small local source commits to a temporary remote branch and perform an ordinary
+GitHub merge into the existing working branch. This retains the original frozen
+source commit and remote generated data, with no main merge or additional PR.
+Remove the temporary branch after a successful merge. The local data preview
+will remain on its older packet until a later resource-safe synchronization.

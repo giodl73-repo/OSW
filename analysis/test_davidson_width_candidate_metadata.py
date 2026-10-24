@@ -60,6 +60,28 @@ class CandidateChecks(unittest.TestCase):
         proof = installed(); proof['candidate']['named_currents'] = 107
         with self.assertRaises(ValueError):candidate.validate_parent(self.packet, proof)
 
+    def test_installed_same_cohort_replay_requires_exact_proof_and_contract(self):
+        packet = {**self.packet,'logical_sha256':'a'*64}
+        proof = {'schema':'osw.davidson-width-installed-delivery.v1','status':'verified_cloud_delivery',
+                 'cohort_version':candidate.VERSION,'parent_logical_sha256':candidate.PARENT_SHA,
+                 'packet_logical_sha256':'a'*64,'admission_contract_sha256':'c'*64,
+                 'native_verified':True,'browser_verified':True,'working_dataset_delivery_verified':True,
+                 'candidate':{'logical_sha256':'a'*64,'logical_bytes':packet['logical_byte_length'],
+                              'objects':246,'rows':108530,'named_currents':106,'widths':172}}
+        candidate.validate_current(packet,installed(),proof,contract_sha256='c'*64)
+        # The separate original-batch replay may inspect its immutable parent,
+        # but it must receive the explicit newer installed proof first.
+        import check_current_gap_parent_rehearsal as historical
+        proof['admission_contract_sha256'] = admission.pin(admission.FILE)
+        historical.verify_current_packet(packet,installed(),proof)
+        proof['admission_contract_sha256'] = 'c'*64
+        candidate.validate_current(self.packet,installed())
+        for change in [{'cohort_version':'future'},{'native_verified':False},
+                       {'packet_logical_sha256':'b'*64},{'admission_contract_sha256':'d'*64}]:
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                candidate.validate_current(packet,installed(),{**proof,**change},contract_sha256='c'*64)
+        with self.assertRaises(ValueError):candidate.validate_current(packet,installed())
+
     def test_coherent_append_and_owner_projection_without_input_mutation(self):
         manifest, rows, raw = fixture(self.document)
         before = copy.deepcopy((manifest,rows,raw))

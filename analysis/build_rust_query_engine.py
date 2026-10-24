@@ -10,6 +10,9 @@ ROOT=Path(__file__).resolve().parents[1]
 MANIFEST='rust/osw-query/Cargo.toml'
 
 def main():
+    if os.environ.get('GITHUB_ACTIONS') == 'true' and hasattr(os, 'sched_getaffinity'):
+        os.sched_setaffinity(0, {min(os.sched_getaffinity(0))})
+        os.nice(5)
     if shutil.disk_usage(ROOT).free < 512*1024*1024:
         raise SystemExit('Need at least512MiB free before formatting/building the query engine; existing sources are left untouched.')
     # Embedded scientific reports make incremental caches large; default to a
@@ -174,6 +177,9 @@ def main():
                   'analysis/test_davidson_width_candidate_metadata.py',
                   'analysis/export_davidson_width_candidate.py',
                   'analysis/test_davidson_width_candidate_export.py',
+                  'analysis/prepare_davidson_width_delivery.py',
+                  'analysis/test_davidson_width_delivery.py',
+                  '.github/workflows/davidson-width-candidate.yml',
                   'research/davidson-width-parent-query-packet-v1.json', davidson_file,
                   *davidson['input_sha256']])
     paths.extend(['rust/osw-query/src/current_catalogue.rs','analysis/current_identity_admissions.py','almanac/current-identity-ui.js',

@@ -99,6 +99,9 @@ def wait_for_checkout(server=None):
 
 
 def main():
+    if os.environ.get('GITHUB_ACTIONS') == 'true' and hasattr(os, 'sched_getaffinity'):
+        os.sched_setaffinity(0, {min(os.sched_getaffinity(0))})
+        os.nice(5)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--start-server', action='store_true',
                         help='Start and stop a dedicated server; omit to reuse the existing local server')

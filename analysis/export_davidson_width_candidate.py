@@ -21,6 +21,12 @@ OPERATORS = [
     'analysis/test_davidson_width_candidate_metadata.py',
     'analysis/export_davidson_width_candidate.py',
     'analysis/test_davidson_width_candidate_export.py',
+    'analysis/check_current_gap_parent_rehearsal.py',
+    'analysis/build_rust_query_engine.py',
+    'analysis/run_rust_query_browser_checks.py',
+    'analysis/prepare_davidson_width_delivery.py',
+    'analysis/test_davidson_width_delivery.py',
+    '.github/workflows/davidson-width-candidate.yml',
     metadata.PARENT_PACKET,
 ]
 
@@ -37,7 +43,9 @@ def load_parent():
     from query_packet import assemble
     current = json.loads((ROOT / 'almanac/query-data.json').read_bytes())
     installed = json.loads((ROOT / resources.INSTALLED_PROOF).read_bytes())
-    metadata.validate_parent(current, installed)
+    newer_path = ROOT / metadata.INSTALLED_PROOF
+    newer = json.loads(newer_path.read_bytes()) if newer_path.exists() else {}
+    metadata.validate_current(current, installed, newer, contract_sha256=admission.pin(admission.FILE))
     raw = (ROOT / metadata.PARENT_PACKET).read_bytes()
     if metadata.digest(raw) != metadata.PARENT_PACKET_SHA:
         raise ValueError('Pinned 106-current parent transport changed')
@@ -57,6 +65,12 @@ def load_parent():
             or sum(len(v) for v in rows.values()) != metadata.PARENT_ROWS
             or sum(row['type'] == 'named_current' for row in rows['objects']) != 106):
         raise ValueError('Assembled parent inventory differs from tested receipt')
+    from prepare_current_gap_cloud_delivery import digest
+    index_pins = (parent['manifest']['input_sha256'] if current['logical_sha256'] == metadata.PARENT_SHA
+                  else newer.get('generated_sha256', {}))
+    for path in ['almanac/index-catalog.json','almanac/index-sources.json','almanac/index-data.json.gz']:
+        if digest(ROOT / path) != index_pins.get(path):
+            raise ValueError('Current source index differs from verified installed input: ' + path)
     return parent
 
 
@@ -92,7 +106,7 @@ def main():
             raise ValueError('Changed prepared admission contract')
         manifest, staged, dashboard_raw, receipt = metadata.prepare(
             parent['manifest'], parent['collections'],
-            (ROOT / metadata.DASHBOARD).read_bytes(), document,
+            parent['manifest']['dashboard_receipt']['source_json'].encode('utf-8'), document,
             prepared_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00','Z'))
         result['admission'] = receipt
         del parent
@@ -125,6 +139,7 @@ def main():
                 or result['candidate']['named_currents'] != 106
                 or result['candidate']['widths'] != 172):
             raise ValueError('Unexpected Davidson candidate inventory')
+        result['admission']['complete_parent_packet_verified'] = True
         artifact = OUTPUT / 'artifact'
         paths = ['almanac/query-data.json', metadata.DASHBOARD, *index_paths,
                  *['almanac/' + row['path'] for row in packet['parts']]]
