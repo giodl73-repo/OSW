@@ -931,7 +931,7 @@ def build():
         own_width_audits=[width_audits[path] for path in sorted({context['audit_file'] for w in own_widths for context in [w.get('stream_mean_context') or w.get('eulerian_section_context') or w.get('width_statistics_context') or w.get('regional_range_context') or w.get('regional_scalar_context') or w.get('mean_offshore_context') or w.get('adcp_threshold_context')] if context})]
         if own_width_audits:payload['width_scope_audits']=own_width_audits
         groups = {
-            'identity': entity, 'sources': [own_sources, own_notes, own_audits] if own_notes else own_sources, 'claims': own_claims,
+            'identity': entity, 'sources': [list(own_sources), own_notes, own_audits] if own_notes else list(own_sources), 'claims': own_claims,
             'measurements': [own_measures, own_widths, payload.get('derived_width_series')],
             'routes_geometry': [own_routes, own_geometry, map_features, own_connections], 'media': own_media,
             'time_evidence': [own_phases, payload.get('time_series'), payload.get('regional_series'), payload.get('regional_maps')],

@@ -54,3 +54,44 @@ The cloud atlas job waits for the source job before native/WASM compilation.
 The checked-in packet still has 102 named currents. Until the gates above
 pass, source changes and prepared records must not be described as live atlas
 coverage. Engine artifacts need regeneration after these source edits.
+
+## Candidate export integration
+
+At `0e98becae0d2108b090332f3501145103ab83e88`, the actual
+[cloud atlas job 120726579999](https://github.com/giodl73-repo/OSW/actions/runs/40045515266/job/120726579999)
+reported its native/WASM build-and-test step successful. The job then advanced
+to browser installation. This proves that step against the existing parent
+packet; it does not prove acceptance of the new candidate. Its terminal job
+log and exact test totals still need inspection.
+
+The next source job runs `export_current_gap_cloud_candidate.py` after source
+verification and the complete-parent preservation rehearsal. The exporter:
+
+- Rejects local/default invocation before loading the packet; requires an
+  explicit cloud flag, GitHub Actions checkout, 3GiB disk and 6GiB available RAM.
+- Runs at one logical CPU and reduced priority, with no simultaneous build.
+- Applies the verified 79-row batch and repeats old-row/physical preservation.
+- Projects dashboard entries directly from admitted owners, preserves record
+  fingerprints, records an actual presentation preparation timestamp, binds
+  all contract inputs and updates taxonomy node count. It does not change any
+  observation date or infer physical geometry.
+- Checks the original compressed/uncompressed index and each old document
+  digest, then appends the new JSON source documents. The only permitted old
+  source replacement is the explicitly refreshed dashboard snapshot. Historical
+  scientific source strings remain exact; no old science producer is rerun.
+- Transfers only referenced candidate packet parts, dashboard and index files
+  to a fresh native/WASM cloud job. Original PDFs are excluded. Artifacts are
+  candidate test inputs, not a published atlas release.
+
+Seventeen small metadata/index fixtures passed locally at CPU1/BelowNormal,
+including source custody, receipt conflicts, wrong counts, dropped identities
+and refusal to start complete-data work locally. The full exporter has not yet
+run. It must pass before the candidate native store and browser checks can run.
+
+The raw dashboard builder's source fingerprint group now copies its source
+list before appending contextual dictionaries. Candidate owner counts still
+come from the separately verified registered-source projection. Native object
+views now include owned identity/measurement admissions, scoped widths/reaches,
+route decisions and the five source-context collections for an active cohort.
+Their human-readable card presentation and complete index navigation remain
+separate UI checks; extra JSON response fields alone do not prove those views.

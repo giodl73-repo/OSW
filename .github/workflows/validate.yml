@@ -13,7 +13,7 @@ jobs:
     # in full pytest collection. This job supplies separate exact Linux evidence.
     continue-on-error: true
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     env:
       OMP_NUM_THREADS: "1"
       OPENBLAS_NUM_THREADS: "1"
@@ -38,6 +38,26 @@ jobs:
       - name: Rehearse complete pinned parent admission on the cloud runner
         if: success()
         run: python analysis/check_current_gap_parent_rehearsal.py --full-parent
+      - name: Check small candidate metadata and source-preservation fixtures
+        if: success()
+        run: python -m pytest -q analysis/test_current_gap_candidate_metadata.py analysis/test_current_gap_index_extension.py
+      - name: Export complete candidate dashboard packet and exact-source index sequentially
+        if: success()
+        run: python analysis/export_current_gap_cloud_candidate.py --cloud-candidate
+      - name: Transfer candidate derived data to the native and WASM job
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-gap-derived-candidate
+          path: .pytest_cache/current-gap-cloud-candidate/artifact/
+          if-no-files-found: error
+      - name: Retain candidate preservation and delivery audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-gap-cloud-candidate-audit
+          path: .pytest_cache/current-gap-cloud-candidate/result.json
+          include-hidden-files: true
       - name: Retain source replay result and logs without the original book
         if: always()
         uses: actions/upload-artifact@v4
@@ -153,6 +173,11 @@ jobs:
       CARGO_BUILD_JOBS: "1"
     steps:
       - uses: actions/checkout@v6
+      - name: Load the source-verified candidate from the preceding cloud job
+        uses: actions/download-artifact@v4
+        with:
+          name: current-gap-derived-candidate
+          path: .
       - uses: actions/setup-python@v6
         with:
           python-version: "3.13"

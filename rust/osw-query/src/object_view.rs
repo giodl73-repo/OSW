@@ -77,6 +77,30 @@ impl Store {
                 .collect();
             data[name] = json!(selected);
         }
+        if crate::current_gap_admissions::active(&self.bundle) {
+            for name in [
+                "widths",
+                "current_identity_admissions",
+                "current_measurement_admissions",
+                "current_regional_reaches",
+                "route_decisions",
+                "current_direction_calendars",
+                "current_direction_descriptions",
+                "current_reported_width_evidence",
+                "current_cross_shore_context",
+                "current_regime_context",
+            ] {
+                data[name] = json!(
+                    self.bundle
+                        .collections
+                        .get(name)
+                        .into_iter()
+                        .flatten()
+                        .filter(|row| row["entity_id"] == id)
+                        .collect::<Vec<_>>()
+                );
+            }
+        }
         let footprints = data["named_eddy_footprint_candidates"]
             .as_array()
             .ok_or("Missing footprint inventory")?

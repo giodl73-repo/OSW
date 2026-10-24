@@ -151,6 +151,9 @@ def main():
     paths.append('plans/published-local-model-snapshot-width-admission-v1.md')
     paths.append('figures/southern-east-madagascar-reported-dimensions.svg')
     paths.extend(['rust/osw-query/src/current_gap_admissions.rs',
+                  'analysis/current_gap_candidate_metadata.py',
+                  'analysis/current_gap_index_extension.py',
+                  'analysis/export_current_gap_cloud_candidate.py',
                   'research/indian-current-identity-query-contract-v1.json',
                   'research/indian-current-evidence-query-contract-v1.json',
                   'research/brazil-regional-reach-query-contract-v1.json',
