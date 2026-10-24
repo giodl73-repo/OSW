@@ -40,6 +40,14 @@ use one private, randomly named exact-byte temporary copy, capped at 64 MiB,
 inside the owned cloud workspace. Remove that copy after inspection. Do not pad
 an empty record dimension or load observation arrays to accommodate a reader.
 
+The versioned reusable workflow is invoked through the shared delivery phase
+controller. Its source phase requires the already verified installed Baffin
+receipt and matching packet descriptor. Keep the current Baffin phase selected
+until that preceding delivery finishes. The source workflow has no automatic
+working-data publication and shares the controller's single-heavy-job queue.
+Retain the pinned README and source attribution beside the original ZIP and
+header report in the cloud artifact store; do not sync the archive locally.
+
 Record acquisition start/completion times, request and response metadata,
 provider license link, reported deployment period and first execution commit.
 An exact replay preserves that first-acquisition record; do not replace its date

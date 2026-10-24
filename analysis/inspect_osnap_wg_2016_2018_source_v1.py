@@ -1,7 +1,7 @@
 """Prepared cloud-only original custody and NetCDF HEADER inspection.
 
 No velocity arrays, widths, lengths, monthly ranges or state joins are derived.
-Original execution requires a committed prospective preflight, still pending.
+Original execution requires a committed prospective preflight and queue prerequisites.
 After original execution this version and its dependencies must remain frozen.
 """
 import argparse
