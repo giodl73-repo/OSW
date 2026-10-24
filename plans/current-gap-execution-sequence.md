@@ -86,6 +86,15 @@ passed30 checks in1.66s on one BelowNormal CPU. The corrected PNG is byte
 identical to the inspected version, and the SVG parses with accessible labels
 and its JSON alternative link. Dataset values and geometry did not change.
 
+Scoped Rust query preparation now adds a separate835839-byte research store,
+native CLI route and separate WASM exports. It reuses existing filtering/sorting/
+paging and exposes only the72 cases/864 outcomes. Original physical-width and
+state-join coverage stays unchanged. Source formatting passed with1.95.0 on one
+BelowNormal CPU; six fictional build-gate checks passed in2.908s. No local
+compilation or native/WASM execution occurred. The dedicated cloud workflow is
+prepared for native tests, native CLI build, WASM build and parity in that order;
+complete its freeze and disabled-request backup before activating one check.
+
 ## Ordered queue
 
 1. **Prepare EACC continuation.** Finish the adapter's internal review, dependency

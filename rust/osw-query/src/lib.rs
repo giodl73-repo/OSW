@@ -48,6 +48,7 @@ mod kuroshio_filtered_width;
 mod kuroshio_normal;
 mod labrador_latitude_bound;
 mod length_assessment_overlays;
+pub mod local_extents;
 mod loop_diagnostics;
 mod loop_recorded;
 mod madagascar_coastal_curve;
@@ -925,6 +926,7 @@ mod wasm {
     thread_local! { static STORE: RefCell<Option<Store>>=const{RefCell::new(None)}; static RESULT:RefCell<Vec<u8>>=const{RefCell::new(Vec::new())}; }
     thread_local! {static REBASE_SOURCE:RefCell<Option<Store>>=const{RefCell::new(None)};}
     thread_local! {static INDEX_STORE:RefCell<Option<index_store::IndexStore>>=const{RefCell::new(None)};}
+    thread_local! {static LOCAL_EXTENTS:RefCell<Option<local_extents::LocalExtentStore>>=const{RefCell::new(None)};}
     fn output(value: Value) {
         RESULT.with(|result| *result.borrow_mut() = serde_json::to_vec(&value).unwrap());
     }
@@ -952,6 +954,63 @@ mod wasm {
                 0
             }
         }
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_local_extents_load(ptr: *const u8, len: usize) -> i32 {
+        LOCAL_EXTENTS.with(|store| *store.borrow_mut() = None);
+        if len != local_extents::EXPECTED_BYTES {
+            output(json!({"ok":false,"error":"Unexpected local-extent research snapshot size"}));
+            return 0;
+        }
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        match local_extents::LocalExtentStore::load(bytes) {
+            Ok(store) => {
+                output(store.metadata());
+                LOCAL_EXTENTS.with(|s| *s.borrow_mut() = Some(store));
+                1
+            }
+            Err(error) => {
+                output(json!({"ok":false,"error":error}));
+                0
+            }
+        }
+    }
+    #[unsafe(no_mangle)]
+    pub extern "C" fn osw_local_extents_metadata() {
+        let result = LOCAL_EXTENTS.with(|s| s.borrow().as_ref().map(|s| s.metadata()));
+        output(
+            result.unwrap_or_else(|| json!({"ok":false,"error":"Local-extent store not loaded"})),
+        );
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_local_extents_query(ptr: *const u8, len: usize) {
+        if len > local_extents::MAX_REQUEST_BYTES {
+            output(json!({"ok":false,"error":"Local-extent query is too large"}));
+            return;
+        }
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = LOCAL_EXTENTS.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or_else(|| "Local-extent store not loaded".to_owned())
+                .and_then(|s| s.query(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_local_extents_record(ptr: *const u8, len: usize) {
+        if len > local_extents::MAX_REQUEST_BYTES {
+            output(json!({"ok":false,"error":"Local-extent record request is too large"}));
+            return;
+        }
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = LOCAL_EXTENTS.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or_else(|| "Local-extent store not loaded".to_owned())
+                .and_then(|s| s.record(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
     }
     #[unsafe(no_mangle)]
     pub unsafe extern "C" fn osw_index_load(ptr: *const u8, len: usize) -> i32 {
