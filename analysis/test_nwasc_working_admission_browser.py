@@ -11,6 +11,26 @@ from test_current_research_evidence_browser import BASE, native
 from browser_current_catalogue_fixture import expected_current_ids, expected_proposal_ids
 
 
+def expect_card_position(page, card_id, phase):
+    try:
+        page.wait_for_function('id => Math.abs(document.getElementById(id).getBoundingClientRect().top) < 100', arg=card_id)
+    except Exception as error:
+        output = n.ROOT / '.pytest_cache/nwasc-card-navigation'
+        output.mkdir(parents=True, exist_ok=True)
+        detail = page.evaluate('''id => {
+          const card=document.getElementById(id),rect=card?.getBoundingClientRect();
+          return {url:location.href,scrollY,scrollX,viewport:[innerWidth,innerHeight],
+            focused:document.activeElement?.id,
+            scrollBehavior:getComputedStyle(document.documentElement).scrollBehavior,
+            maxScroll:document.documentElement.scrollHeight-innerHeight,
+            card:rect?{top:rect.top,height:rect.height}:null};
+        }''', card_id)
+        (output / 'failure.json').write_text(json.dumps({
+            'status':'FAIL','phase':phase,'card_id':card_id,'error':str(error),**detail,
+        },indent=2)+'\n',encoding='utf-8')
+        raise
+
+
 def check_admitted_card_navigation(page):
     """Initial hashes, in-page links and history must reveal admitted cards."""
     for current, width in [('norwegian-atlantic-slope', 1280),
@@ -21,7 +41,7 @@ def check_admitted_card_navigation(page):
         card = page.locator('#' + card_id)
         expect(card).to_have_class('current-admission-card', timeout=120000)
         expect(card).to_be_focused(timeout=120000)
-        page.wait_for_function('id => Math.abs(document.getElementById(id).getBoundingClientRect().top) < 100', arg=card_id)
+        expect_card_position(page, card_id, 'initial-hash')
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
         card.get_by_role('link', name='Back to current atlas', exact=True).focus()
         page.keyboard.press('Enter')
@@ -29,12 +49,16 @@ def check_admitted_card_navigation(page):
         # A real hashchange returns keyboard focus, not just native anchor scroll.
         page.evaluate('(id) => { location.hash = id; }', card_id)
         expect(card).to_be_focused()
-        page.wait_for_function('id => Math.abs(document.getElementById(id).getBoundingClientRect().top) < 100', arg=card_id)
+        expect_card_position(page, card_id, 'hashchange')
         # A same-hash self-link still restores focus and position.
-        page.evaluate('window.scrollTo(0, 0)')
+        # CSS enables smooth scrolling. Settle the setup at the top before
+        # testing activation; an outstanding setup animation can move the
+        # viewport after the navigation handler has already scrolled the card.
+        page.evaluate('window.scrollTo({left:0, top:0, behavior:"instant"})')
+        page.wait_for_function('window.scrollX === 0 && window.scrollY === 0')
         card.get_by_role('link', name='Link to this current', exact=True).evaluate('(e) => e.click()')
         expect(card).to_be_focused()
-        page.wait_for_function('id => Math.abs(document.getElementById(id).getBoundingClientRect().top) < 100', arg=card_id)
+        expect_card_position(page, card_id, 'same-hash-self-link')
         page.go_back()
         expect(page.locator('#route-atlas')).to_be_focused()
         print('PASS accepted-card deep link, hashchange, self-link and history', current, width, flush=True)
