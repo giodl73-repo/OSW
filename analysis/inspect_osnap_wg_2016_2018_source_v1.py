@@ -14,6 +14,7 @@ from pathlib import Path, PurePosixPath
 import shutil
 import struct
 import subprocess
+import tempfile
 import time
 import urllib.request
 import zipfile
@@ -141,23 +142,34 @@ def attribute_value(value):
     raise ValueError('Unsupported NetCDF attribute type: ' + type(value).__name__)
 
 
-def header_metadata(raw):
+def header_metadata(raw, temporary_directory=None):
     # Import only after the cloud/local guard and original custody checks.
     from netCDF4 import Dataset
     if not raw.startswith((b'CDF\x01', b'CDF\x02', b'CDF\x05', b'\x89HDF\r\n\x1a\n')):
         raise ValueError('Provider-described NetCDF member has an unexpected signature')
-    with Dataset('source-header.nc', mode='r', memory=raw) as dataset:
-        if dataset.groups:
-            raise ValueError('Nested NetCDF groups require an explicitly reviewed inspection version')
-        if any(getattr(dataset, name) for name in ('enumtypes', 'cmptypes', 'vltypes')):
-            raise ValueError('User-defined NetCDF types require an explicitly reviewed inspection version')
-        attributes = lambda obj: {key: attribute_value(obj.getncattr(key)) for key in obj.ncattrs()}
-        result = {'data_model': dataset.data_model, 'attributes': attributes(dataset),
-                  'dimensions': {name: {'length': len(dim), 'unlimited': dim.isunlimited()}
-                                 for name, dim in dataset.dimensions.items()},
-                  'variables': {name: {'dtype': str(var.dtype), 'dimensions': list(var.dimensions),
-                                       'shape': list(var.shape), 'attributes': attributes(var)}
-                                for name, var in dataset.variables.items()}}
+    if len(raw) > 64 * 1024**2:
+        raise ValueError('Instrument member exceeds the temporary-copy budget')
+    # Classic NetCDF zero-record files are not reliably supported by nc_open_mem
+    # across platforms. A private exact-byte copy avoids padding source bytes or
+    # materializing arrays through an alternate eager reader. No archive path is used.
+    with tempfile.NamedTemporaryFile(prefix='osnap-header-', suffix='.nc', dir=temporary_directory, delete=False) as stream:
+        temporary = Path(stream.name)
+        stream.write(raw)
+    try:
+        with Dataset(str(temporary), mode='r') as dataset:
+            if dataset.groups:
+                raise ValueError('Nested NetCDF groups require an explicitly reviewed inspection version')
+            if any(getattr(dataset, name) for name in ('enumtypes', 'cmptypes', 'vltypes')):
+                raise ValueError('User-defined NetCDF types require an explicitly reviewed inspection version')
+            attributes = lambda obj: {key: attribute_value(obj.getncattr(key)) for key in obj.ncattrs()}
+            result = {'data_model': dataset.data_model, 'attributes': attributes(dataset),
+                      'dimensions': {name: {'length': len(dim), 'unlimited': dim.isunlimited()}
+                                     for name, dim in dataset.dimensions.items()},
+                      'variables': {name: {'dtype': str(var.dtype), 'dimensions': list(var.dimensions),
+                                           'shape': list(var.shape), 'attributes': attributes(var)}
+                                    for name, var in dataset.variables.items()}}
+    finally:
+        temporary.unlink()
     if len(encoded(result)) > 256 * 1024:
         raise ValueError('Instrument header exceeds the declared metadata budget')
     return result
@@ -253,9 +265,9 @@ def main():
         for info in checked_members(archive, plan['instrument_candidates']):
             if info.file_size > 64 * 1024**2:
                 raise ValueError('Instrument member exceeds the memory budget')
-            raw = archive.read(info)  # ZipFile checks CRC; no filesystem extraction.
+            raw = archive.read(info)  # ZipFile checks CRC; no archive-path extraction.
             records.append({'member': info.filename, 'bytes': len(raw),
-                            'sha256': hashlib.sha256(raw).hexdigest(), 'header': header_metadata(raw)})
+                            'sha256': hashlib.sha256(raw).hexdigest(), 'header': header_metadata(raw, OUTPUT)})
             print('PASS instrument HEADER ' + info.filename, flush=True)
     result = {'schema': 'osw.osnap-wg-source-header-inventory.v1', 'status': 'PASS_SOURCE_HEADERS_ONLY',
               'custody': source_custody, 'instrument_headers': records, 'instrument_count': len(records),

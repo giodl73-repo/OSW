@@ -35,7 +35,10 @@ priority. Require 2 GiB free disk and available memory. Download at most the rev
 with a ten-minute download budget. Record the complete archive SHA-256 before
 header inspection; verify its central directory and every selected member's
 metadata and ZIP CRC. Read at most one 64 MiB instrument member in memory.
-Never extract archive paths onto the filesystem.
+Never extract archive paths onto the filesystem. For portable header parsing,
+use one private, randomly named exact-byte temporary copy, capped at 64 MiB,
+inside the owned cloud workspace. Remove that copy after inspection. Do not pad
+an empty record dimension or load observation arrays to accommodate a reader.
 
 Record acquisition start/completion times, request and response metadata,
 provider license link, reported deployment period and first execution commit.
