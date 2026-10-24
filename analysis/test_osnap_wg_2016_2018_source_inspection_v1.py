@@ -107,3 +107,16 @@ def test_user_defined_type_details_cannot_be_silently_lost(monkeypatch, kind):
     monkeypatch.setitem(__import__('sys').modules, 'netCDF4', types.SimpleNamespace(Dataset=lambda *a, **k: header))
     with pytest.raises(ValueError, match='User-defined NetCDF types'):
         source.header_metadata(b'CDF\x01synthetic-header-only')
+
+
+def test_replay_preserves_first_acquisition_time_and_source_commit():
+    first = source.custody_record({'sha256': 'original'}, {'completed_at_utc': 'first-time'}, 'first-commit')
+    assert source.custody_record({'sha256': 'original'}, None, 'later-commit', first) == first
+    assert first['acquisition']['completed_at_utc'] == 'first-time'
+    assert first['first_execution_commit'] == 'first-commit'
+    with pytest.raises(ValueError): source.custody_record({'sha256': 'changed'}, None, 'later-commit', first)
+
+
+def test_missing_acquisition_provenance_cannot_be_invented():
+    with pytest.raises(ValueError): source.custody_record({'sha256': 'original'}, None, 'commit')
+    with pytest.raises(ValueError): source.custody_record({'sha256': 'original'}, None, 'commit', {'sha256': 'original'})

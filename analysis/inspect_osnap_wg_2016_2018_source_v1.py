@@ -5,6 +5,7 @@ Original execution requires a committed prospective preflight, still pending.
 After original execution this version and its dependencies must remain frozen.
 """
 import argparse
+import datetime
 import hashlib
 import json
 import math
@@ -23,6 +24,7 @@ TESTS = 'analysis/test_osnap_wg_2016_2018_source_inspection_v1.py'
 PROTOCOL = 'plans/osnap-wg-2016-2018-source-inspection-protocol-v1.md'
 INVENTORY = 'research/west-greenland-osnap-2016-2018-archive-inventory-v1.json'
 REVIEW = 'research/west-greenland-osnap-2016-2018-metadata-review-v1.json'
+ROLE_REVIEW = 'signals/roles/check/osnap-wg-source-inspection-v1-roles-check-2026-10-24.md'
 PREFLIGHT = 'research/osnap-wg-2016-2018-source-inspection-preflight-v1.json'
 OUTPUT = ROOT / '.pytest_cache/osnap-wg-2016-2018-source'
 
@@ -66,7 +68,7 @@ def verify_preflight():
     if committed != (ROOT / PREFLIGHT).read_bytes():
         raise ValueError('Prospective source preflight must be committed before original access')
     preflight = json.loads(committed)
-    required = {OPERATOR, TESTS, PROTOCOL, INVENTORY, REVIEW, 'requirements-test.txt'}
+    required = {OPERATOR, TESTS, PROTOCOL, INVENTORY, REVIEW, ROLE_REVIEW, 'requirements-test.txt'}
     workflow = preflight.get('execution_workflow', '')
     if (not workflow.startswith('.github/workflows/') or not workflow.endswith('.yml')
             or not (ROOT / workflow).resolve().is_relative_to((ROOT / '.github/workflows').resolve())):
@@ -169,10 +171,15 @@ def download_original(path, plan):
     partial = path.with_suffix('.partial')
     deadline = time.monotonic() + 600
     created = False
+    acquisition = {'started_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                   'request': {'method': 'GET', 'url': url, 'headers': {'Accept-Encoding': 'identity'}}}
     try:
         with urllib.request.urlopen(urllib.request.Request(url, headers={'Accept-Encoding': 'identity'}), timeout=30) as response:
             if response.status != 200 or response.headers.get('Content-Encoding', 'identity') != 'identity':
                 raise ValueError('Unexpected original response encoding or status')
+            acquisition['response'] = {'status': response.status, 'url': response.geturl(),
+                'headers': {name: response.headers.get(name) for name in
+                            ('Content-Type', 'Content-Length', 'ETag', 'Last-Modified')}}
             count = 0
             with partial.open('xb') as output:
                 created = True
@@ -184,9 +191,22 @@ def download_original(path, plan):
             if count != size or path.exists():
                 raise ValueError('Incomplete original download or existing target')
         partial.rename(path)
+        acquisition['completed_at_utc'] = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        return acquisition
     finally:
         if created and partial.exists():
             partial.unlink()
+
+
+def custody_record(expected, acquisition, source_commit, previous=None):
+    if previous is not None:
+        if (any(previous.get(key) != value for key, value in expected.items())
+                or not previous.get('first_execution_commit') or not previous.get('acquisition')):
+            raise ValueError('Original custody changed or lacks first-acquisition provenance')
+        return previous
+    if not acquisition or not source_commit:
+        raise ValueError('First original custody requires acquisition provenance and source commit')
+    return {**expected, 'first_execution_commit': source_commit, 'acquisition': acquisition}
 
 
 def main():
@@ -202,6 +222,7 @@ def main():
         raise ValueError('Cloud source inspection requires 2 GiB free disk and available memory')
     preflight_sha = verify_preflight()
     plan = json.loads((ROOT / INVENTORY).read_bytes())
+    source_review = json.loads((ROOT / REVIEW).read_bytes())
     if plan['instrument_candidate_count'] != 78 or len(plan['instrument_candidates']) != 78:
         raise ValueError('Changed reviewed deployment inventory')
     OUTPUT.mkdir(parents=True, exist_ok=True)
@@ -209,16 +230,23 @@ def main():
     custody = OUTPUT / 'acquisition.json'
     if original.exists() and not custody.exists():
         raise ValueError('Unregistered cached original; custody must precede reuse')
+    acquisition = None
     if not original.exists():
-        download_original(original, plan)
+        acquisition = download_original(original, plan)
     directory_sha, entries = archive_directory_hash(original)
     if (original.stat().st_size != plan['archive_total_bytes_from_content_range']
             or directory_sha != plan['acquisition_scope']['central_directory_sha256']
             or entries != plan['central_directory_entry_count']):
         raise ValueError('Original differs from the reviewed archive metadata')
-    source_custody = {'provider_url': plan['provider_content_url'], 'bytes': original.stat().st_size,
+    expected_custody = {'schema': 'osw.osnap-original-custody.v1',
+                      'provider_url': plan['provider_content_url'], 'bytes': original.stat().st_size,
                       'sha256': digest(original), 'central_directory_sha256': directory_sha,
-                      'dataset_doi': plan['dataset_doi'], 'preflight_sha256': preflight_sha}
+                      'dataset_doi': plan['dataset_doi'], 'preflight_sha256': preflight_sha,
+                      'reported_collection_period': source_review['readme']['reported_collection_period'],
+                      'provider_license_link': source_review['metadata_page']['license_link_observed']}
+    source_commit = subprocess.check_output(['git', '-c', 'core.fsmonitor=false', 'rev-parse', 'HEAD'], cwd=ROOT).decode().strip()
+    source_custody = custody_record(expected_custody, acquisition, source_commit,
+                                   json.loads(custody.read_bytes()) if custody.exists() else None)
     write_once(custody, encoded(source_custody))
     records = []
     with zipfile.ZipFile(original) as archive:

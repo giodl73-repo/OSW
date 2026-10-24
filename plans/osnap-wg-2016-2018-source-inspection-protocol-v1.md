@@ -25,7 +25,7 @@ do not inherit a license from another deployment.
 Run the tiny synthetic guard/inventory tests. Review the source and resource
 scope. Commit a prospective preflight binding the producer, tests, this protocol,
 the two reviewed source records, pinned requirements and the eventual cloud
-execution workflow. The producer checks committed bytes and hashes before
+execution workflow, plus the repository role review. The producer checks committed bytes and hashes before
 networking. Do not create that preflight until the execution workflow is ready.
 
 ## Execution and evidence
@@ -36,6 +36,11 @@ with a ten-minute download budget. Record the complete archive SHA-256 before
 header inspection; verify its central directory and every selected member's
 metadata and ZIP CRC. Read at most one 64 MiB instrument member in memory.
 Never extract archive paths onto the filesystem.
+
+Record acquisition start/completion times, request and response metadata,
+provider license link, reported deployment period and first execution commit.
+An exact replay preserves that first-acquisition record; do not replace its date
+or source commit with the replay's values.
 
 Inspect file signatures, NetCDF dimensions, variable names, data types, shapes
 and attributes. Retain units, fill values, quality flags, accuracy and processing
