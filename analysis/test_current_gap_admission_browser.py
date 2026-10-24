@@ -26,7 +26,7 @@ def main():
     output = ROOT / '.pytest_cache/current-gap-admission/browser'
     output.mkdir(parents=True, exist_ok=True)
     expected = {slug: native('--object-view', 'current:' + slug) for slug in CASES}
-    query = {'collection':'objects','filters':[{'field':'type','op':'eq','value':'named_current'}],'limit':1000}
+    query = {'collection':'objects','filters':[{'field':'type','op':'eq','value':'named_current'}],'limit':500}
     currents = native('-', query=query)
     assert len(currents['rows']) == 106
     assert all(row['linked_source_count'] == len(row['source_ids']) for row in currents['rows'])
@@ -87,6 +87,33 @@ def main():
             target.focus(); page.keyboard.press('Enter')
             page.wait_for_function('window.oswLastQueryResult', timeout=180000)
             assert page.evaluate('window.oswLastQueryResult.rows') == expected['west-india-coastal']['collections']['current_direction_calendars']
+            page.goto(BASE + '/almanac/dashboard.html')
+            page.wait_for_function('window.oswDashboardSelection', timeout=180000)
+            page.locator('#dashboard-type').select_option('named_current')
+            page.wait_for_function('window.oswDashboardSelection.request.record_type === "named_current"')
+            expect(page.locator('#dashboard-grid .motion-card')).to_have_count(106)
+            page.locator('#dashboard-metric').select_option('direction_descriptions')
+            page.locator('#dashboard-search').fill('WICC')
+            page.wait_for_function('window.oswDashboardSelection.request.text === "WICC" && window.oswDashboardSelection.request.metric === "direction_descriptions"')
+            selection = page.evaluate('window.oswDashboardSelection')
+            assert selection['result'] == native('--dashboard-query', query=selection['request'])
+            assert selection['result']['ids'] == ['current:west-india-coastal']
+            page.locator('#dashboard-card-view').click()
+            expect(page.locator('#dashboard-grid .motion-card.lit')).to_have_count(1)
+            expect(page.locator('#dashboard-grid')).to_contain_text('12 records')
+            page.screenshot(path=str(output / 'dashboard-source-lights.png'))
+            page.locator('#dashboard-search').fill('')
+            page.locator('#dashboard-covered').check()
+            for metric, ids in [
+                ('direction_descriptions', ['current:east-african-coastal','current:west-india-coastal']),
+                ('reported_width_evidence', ['current:east-india-coastal']),
+                ('cross_shore_context', ['current:east-african-coastal']),
+                ('regime_context', ['current:west-india-coastal']),
+            ]:
+                page.locator('#dashboard-metric').select_option(metric)
+                page.wait_for_function('([metric]) => window.oswDashboardSelection.request.metric === metric && window.oswDashboardSelection.request.covered_only && window.oswDashboardSelection.request.text === ""', arg=[metric])
+                assert sorted(page.evaluate('window.oswDashboardSelection.result.ids')) == ids
+                expect(page.locator('#dashboard-grid .motion-card.lit')).to_have_count(len(ids))
             assert not errors, errors
             assert not originals, originals
         except Exception as error:
@@ -101,6 +128,8 @@ def main():
         'qualitative_calendar_months':24,'scoped_t24_width_records':1,
         'raw_width_samples_added':0,'annual_width_ranges_added':0,
         'keyboard_evidence_query':True,'phone_horizontal_overflow':False,
+        'dashboard_all_106_currents':True,'dashboard_alias_native_wasm_parity':True,
+        'source_context_coverage_modes_verified':4,
         'original_downloads':originals,'errors':errors},indent=2)+'\n',encoding='utf-8')
     print('PASS106-current candidate, five native/WASM cards, scoped widths and qualitative calendars')
 

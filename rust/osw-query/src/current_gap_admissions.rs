@@ -197,6 +197,16 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             return Err("Missing current-gap owner".into());
         }
         let owner = owners[0];
+        let identity_contract = doc(IDENTITY.1);
+        let identity_owner = identity_contract["additions"]["objects"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|row| row["id"] == entity["id"])
+            .unwrap();
+        if owner["search_aliases"] != identity_owner["search_aliases"] {
+            return Err("Changed admitted current search aliases".into());
+        }
         let measured = entity["id"] == width["width_record"]["entity_id"];
         let expected_widths = if measured {
             json!([width["width_record"]["id"]])
@@ -391,6 +401,10 @@ mod tests {
     fn rejects_missing_receipt_rows_and_wrong_owner() {
         let mut b = fixture();
         b.manifest["input_sha256"][WIDTH.0] = json!("changed");
+        assert!(validate(&b).is_err());
+        let mut b = fixture();
+        b.collections.get_mut("objects").unwrap()[0]["search_aliases"] =
+            json!(["Unrelated Current"]);
         assert!(validate(&b).is_err());
         let mut b = fixture();
         b.collections

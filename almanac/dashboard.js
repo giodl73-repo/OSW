@@ -3,6 +3,14 @@
   const labels = {observed_velocity:'Observed velocity summaries',radius_evidence:'Scoped radius evidence',reported_length:'Published ranked length',reference_route:'Editorial reference route',scoped_width:'Scoped width evidence',geometry:'Geometry beyond a locator',time_samples:'Time samples / phase records',source_connectivity:'Source-described current links',scope_notes:'Source scope notes',dated_diagnostics:'Dated method diagnostics',flow_network:'Passage networks',passage_transport:'Observed passage transport',section_transport:'Published section transport statistics'};
   labels.model_dimension_samples='Regional model dimension attempts';
   labels.axis_normal_samples='Axis-normal model span attempts';
+  const contextMetrics = {direction_calendars:'Qualitative direction calendars',
+    direction_descriptions:'Qualitative month descriptions',reported_width_evidence:'Reported width source statements',
+    cross_shore_context:'Offshore position / extent descriptions',regime_context:'Dated survey regime descriptions'};
+  Object.assign(labels,contextMetrics);
+  for(const [value,label] of Object.entries(contextMetrics)){
+    const option=document.createElement('option');option.value=value;option.textContent=label;option.disabled=true;
+    $('dashboard-metric').append(option);
+  }
   const normalOption=document.createElement('option');normalOption.value='axis_normal_samples';normalOption.textContent=labels.axis_normal_samples;$('dashboard-metric').append(normalOption);
   const kinds = {named_current:'Current',named_eddy:'Named eddy',operational_eddy_detection:'Dated detection'};
   const key = 'osw-motion-dashboard-seen-v2';
@@ -152,9 +160,14 @@
     try {
       candidate=rustClient();await candidate.request('load');
       const loaded=await candidate.request('dashboard'),next=JSON.parse(loaded.snapshot_json);
-      if(next.schema!=='osw.motion-dashboard.v1'||next.fingerprint_version!==2||!Array.isArray(next.entries)||!next.counts||new Set(next.entries.map(r=>r.id)).size!==next.entries.length||next.entries.some(r=>!kinds[r.type]||typeof r.label!=='string'||typeof r.fingerprint!=='string'||!r.section_fingerprints||Object.keys(groupLabels).some(k=>typeof r.section_fingerprints[k]!=='string')||!r.claim_review_counts||!Number.isInteger(r.linked_source_count)||!r.capabilities||Object.keys(labels).some(k=>{const value=r.capabilities[k]??(['section_transport','model_dimension_samples','axis_normal_samples'].includes(k)?0:undefined);return !Number.isInteger(value)||value<0;})||!Array.isArray(r.series)||!Array.isArray(r.scope_notes)||!Array.isArray(r.evidence_links)||r.evidence_links.some(e=>typeof e.label!=='string'||typeof e.url!=='string'))||Object.keys(kinds).some(k=>next.counts[k]!==next.entries.filter(r=>r.type===k).length))throw Error('Unsupported or incomplete coverage snapshot');
+      if(next.schema!=='osw.motion-dashboard.v1'||next.fingerprint_version!==2||!Array.isArray(next.entries)||!next.counts||new Set(next.entries.map(r=>r.id)).size!==next.entries.length||next.entries.some(r=>!kinds[r.type]||typeof r.label!=='string'||typeof r.fingerprint!=='string'||!r.section_fingerprints||Object.keys(groupLabels).some(k=>typeof r.section_fingerprints[k]!=='string')||!r.claim_review_counts||!Number.isInteger(r.linked_source_count)||!r.capabilities||Object.keys(labels).some(k=>{const value=r.capabilities[k]??(['section_transport','model_dimension_samples','axis_normal_samples'].includes(k)||Object.hasOwn(contextMetrics,k)?0:undefined);return !Number.isInteger(value)||value<0;})||!Array.isArray(r.series)||!Array.isArray(r.scope_notes)||!Array.isArray(r.evidence_links)||r.evidence_links.some(e=>typeof e.label!=='string'||typeof e.url!=='string'))||Object.keys(kinds).some(k=>next.counts[k]!==next.entries.filter(r=>r.type===k).length))throw Error('Unsupported or incomplete coverage snapshot');
       if(next.entries.some(r=>!Array.isArray(r.map_features)))throw Error('Snapshot has no atlas location evidence');
       data=next;
+      for(const metric of Object.keys(contextMetrics)) {
+        const option=$('dashboard-metric').querySelector(`option[value="${metric}"]`);
+        option.disabled=!next.entries.some(row=>Object.hasOwn(row.capabilities,metric));
+        if(option.disabled&&$('dashboard-metric').value===metric)$('dashboard-metric').value='reference_route';
+      }
       const previous=client;client=candidate;candidate=null;previous?.close();
       window.oswDashboardSnapshot={...loaded,snapshot:next};
       $('dashboard-status').dataset.engine=loaded.engine;

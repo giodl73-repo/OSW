@@ -130,3 +130,26 @@ reported regional reach. They do not draw unsourced current geometry or turn
 source statements into annual envelopes. A new cloud browser check exercises
 five native/WASM object views, mobile layout and keyboard evidence navigation.
 Its syntax checks passed locally; the actual browser check is pending.
+
+## Source coverage discovery
+
+The coverage dashboard now has separate modes for qualitative calendars,
+qualitative month descriptions, reported width statements, offshore descriptions
+and dated survey regimes. These count their declared source-context records;
+they do not count them as raw samples or physical routes. Modes stay disabled
+until the loaded snapshot declares the corresponding capability. Existing
+objects without these capabilities remain readable as having no such records.
+
+Native dashboard search now includes declared `search_aliases` without changing
+the required label-plus-basin `dashboard_search` source projection. New-cohort
+aliases are checked against their compiled identity contract. A 640-object test
+checks an alias on the second page with type/coverage filtering and a sparse
+search result. Pagination counts scanned rows independently of matched IDs.
+
+The main almanac links its older source-set ranking table to the complete
+working current query, which includes later unmeasured identities. The browser
+check now verifies all 106 dashboard current cards, alias native/WASM parity
+and four source-context lighting modes, and captures the actual dashboard.
+Its all-current query uses the API's supported limit500, correcting the earlier
+test's invalid limit1000. Syntax checks passed locally; native/browser execution
+of these latest changes remains a cloud gate.
