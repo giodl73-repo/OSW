@@ -7,6 +7,8 @@ use std::collections::BTreeSet;
 pub const FILE: &str = "research/davidson-wallace-2008-width-admission-v1.json";
 pub const RAW: &str =
     include_str!("../../../research/davidson-wallace-2008-width-admission-v1.json");
+const PARENT_FILE: &str = "research/davidson-width-parent-owner-v1.json";
+const PARENT_RAW: &str = include_str!("../../../research/davidson-width-parent-owner-v1.json");
 const VERSION_KEY: &str = "davidson_reported_width_version";
 const VERSION: &str = "wallace-line67-v1";
 const ENTITY: &str = "current:davidson";
@@ -17,6 +19,9 @@ const ADMISSION: &str = "current_measurement_admission:davidson:wallace-2008-lin
 
 fn document() -> Value {
     serde_json::from_str(RAW).expect("compiled Davidson admission contract")
+}
+fn parent() -> Value {
+    serde_json::from_str(PARENT_RAW).expect("compiled verified Davidson parent")
 }
 fn pin(raw: &str) -> String {
     format!("{:x}", Sha256::digest(raw.as_bytes()))
@@ -200,7 +205,13 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             ));
         }
     }
-    if owner["map_features"].as_array().map(Vec::len) != Some(2) {
+    let prior = parent();
+    if bundle.manifest["input_sha256"][PARENT_FILE] != pin(PARENT_RAW)
+        || prior["parent_logical_sha256"]
+            != "31a0bf88a5fe40e5929c9cd6fa5f5d4cc5db92a03574354e1f8554003bf802e3"
+        || prior["owner"]["id"] != ENTITY
+        || owner["map_features"] != prior["owner"]["map_features"]
+    {
         return Err("Davidson scalar evidence added or erased map features".into());
     }
     if bundle
@@ -251,6 +262,7 @@ mod tests {
         let d = document();
         let mut pins = d["input_sha256"].clone();
         pins[FILE] = json!(pin(RAW));
+        pins[PARENT_FILE] = json!(pin(PARENT_RAW));
         let mut sources = d["source_records"].as_array().unwrap().clone();
         sources.push(json!({"id":d["accepted_entity"]["source_id"]}));
         serde_json::from_value(json!({"schema":"osw.query-bundle.v1",
@@ -259,7 +271,7 @@ mod tests {
                 "widths":[{"id":OLD_WIDTH,"current_id":"davidson","approximate_width_km":64},d["width_record"]],
                 "claims":[d["claim"]],"current_measurement_admissions":[d["admission"]],
                 "objects":[{"id":ENTITY,"type":"named_current","width_ids":[OLD_WIDTH,WIDTH],"latest_observation_date":null,
-                    "map_features":[{"existing":1},{"existing":2}],
+                    "map_features":parent()["owner"]["map_features"],
                     "source_ids":[d["accepted_entity"]["source_id"],d["source_records"][0]["id"],
                         d["source_records"][1]["id"],d["source_records"][2]["id"]],"linked_source_count":4,
                     "capabilities":{"scoped_width":2,"reference_route":1,"time_samples":1}}]}})).unwrap()
@@ -311,6 +323,31 @@ mod tests {
             b.collections.get_mut("objects").unwrap()[0]["capabilities"][key] = value;
             assert!(validate(&b).is_err(), "{key}");
         }
+    }
+    #[test]
+    fn preserves_exact_parent_geometry_including_the_seasonal_editorial_route() {
+        let b = fixture();
+        assert_eq!(
+            b.collections["objects"][0]["map_features"]
+                .as_array()
+                .unwrap()
+                .len(),
+            3
+        );
+        validate(&b).unwrap();
+        let mut changed = fixture();
+        changed.collections.get_mut("objects").unwrap()[0]["map_features"]
+            .as_array_mut()
+            .unwrap()
+            .pop();
+        assert!(validate(&changed).is_err());
+        let mut changed = fixture();
+        changed.collections.get_mut("objects").unwrap()[0]["map_features"][0]["geometry"]["coordinates"]
+            [0] = json!(-123);
+        assert!(validate(&changed).is_err());
+        let mut changed = fixture();
+        changed.manifest["input_sha256"][PARENT_FILE] = json!("changed");
+        assert!(validate(&changed).is_err());
     }
     #[test]
     fn indexing_prepared_contract_or_registering_sources_does_not_admit_width() {

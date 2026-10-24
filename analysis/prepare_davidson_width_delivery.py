@@ -22,6 +22,7 @@ GENERATED = {
     metadata.DASHBOARD,INSTALLED_PROOF,
 }
 REQUIRED_INPUTS = {
+    metadata.PARENT_OWNER,
     admission.FILE, metadata.PARENT_PACKET, admission.REPORT, admission.FIGURE, admission.PROOF,
     'rust/osw-query/src/davidson_reported_width.rs','rust/osw-query/src/object_view.rs',
     'almanac/current-source-evidence-ui.js','analysis/test_davidson_reported_width_browser.py',

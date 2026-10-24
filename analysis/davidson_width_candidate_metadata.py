@@ -20,10 +20,24 @@ PARENT_PACKET = 'research/davidson-width-parent-query-packet-v1.json'
 PARENT_PACKET_SHA = '229fecfa0f1043527766a2d0cdea48bea90b62cd85d8441bfc4673d58eae57ed'
 VERSION = 'davidson-wallace-line67-v1'
 INSTALLED_PROOF = 'research/davidson-width-installed-delivery-v1.json'
+PARENT_OWNER = 'research/davidson-width-parent-owner-v1.json'
+PARENT_OWNER_SHA = 'ccfa19808990ecc5bdf40f7a222d9facf87491b5201da420296ae16fc4e016c4'
 OWNER_METADATA = {
     'width_ids', 'source_ids', 'linked_source_count', 'evidence_links',
     'recorded_claims', 'claim_review_counts', 'section_fingerprints', 'fingerprint',
 }
+
+
+def parent_owner():
+    raw = admission.read(PARENT_OWNER)
+    if digest(raw) != PARENT_OWNER_SHA:
+        raise ValueError('Changed verified Davidson parent projection')
+    document = json.loads(raw)
+    if (document.get('schema') != 'osw.davidson-width-parent-owner.v1'
+            or document.get('parent_logical_sha256') != PARENT_SHA
+            or document.get('owner', {}).get('id') != admission.ENTITY):
+        raise ValueError('Wrong Davidson parent projection')
+    return document
 
 
 def validate_parent(packet, installed):
@@ -120,7 +134,12 @@ def prepare(manifest, collections, dashboard_raw, document, *, prepared_at_utc):
             or old.get('snapshot_fingerprint') != fingerprint(collections['objects'])
             or old.get('counts') != dict(Counter(row['type'] for row in collections['objects']))):
         raise ValueError('Parent dashboard no longer projects its owners')
+    expected_owner = parent_owner()['owner']
+    owners = [row for row in collections['objects'] if row['id'] == admission.ENTITY]
+    if len(owners) != 1 or any(owners[0].get(key) != value for key,value in expected_owner.items()):
+        raise ValueError('Davidson owner differs from its verified parent projection')
     metadata, staged, admission_receipt = admission.prepare_candidate(manifest, collections, document)
+    metadata['input_sha256'][PARENT_OWNER] = PARENT_OWNER_SHA
     preservation = verify_preservation(collections, staged, admission_receipt)
     dashboard = copy.deepcopy(old)
     dashboard['entries'] = copy.deepcopy(staged['objects'])
