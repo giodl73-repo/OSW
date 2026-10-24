@@ -69,7 +69,11 @@ def main():
         page.goto(BASE+'/almanac/reference-routes.html?atlas-feature=current%3Anorwegian-atlantic-slope#route-atlas')
         page.wait_for_function('window.oswAtlasSnapshot',timeout=180000)
         expect(page.locator('#route-atlas-preview > h3')).to_have_text('Norwegian Atlantic Slope Current',timeout=120000)
-        assert page.locator('.route-atlas-station').count()==current_count
+        stations=page.locator('.route-atlas-station')
+        assert stations.count()==len(mapped_ids),(stations.count(),len(mapped_ids))
+        assert set(stations.evaluate_all('nodes => nodes.map(node => node.dataset.currentId)'))==mapped_ids
+        options=page.locator('#route-atlas-select option').evaluate_all('nodes => nodes.map(node => node.value).filter(Boolean)')
+        assert len(options)==len(set(options))==current_count and set(options)==current_ids
         snap=page.evaluate('window.oswAtlasSnapshot')
         frozen=json.loads((n.ROOT/n.BASE).read_bytes())
         historical=n.extend_catalogue(frozen,doc)
