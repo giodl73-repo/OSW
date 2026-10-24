@@ -46,7 +46,7 @@ jobs:
           import json, os, pathlib
           path = pathlib.Path('research/current-gap-delivery-phase.json')
           phase = json.loads(path.read_bytes())['phase'] if path.exists() else 'davidson'
-          assert phase in ('davidson', 'baffin-bound-v1', 'baffin-bound-recovery-v1', 'osnap-wg-source-inventory-v1'), phase
+          assert phase in ('davidson', 'baffin-bound-v1', 'baffin-bound-recovery-v1', 'osnap-wg-source-inventory-v1', 'source-review-only-v1'), phase
           with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
               stream.write('phase=' + phase + '\n')
           PY
