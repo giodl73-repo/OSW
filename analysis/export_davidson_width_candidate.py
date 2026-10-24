@@ -28,6 +28,7 @@ OPERATORS = [
     'analysis/test_davidson_width_delivery.py',
     '.github/workflows/davidson-width-candidate.yml',
     metadata.PARENT_PACKET,
+    metadata.PARENT_OWNER,
 ]
 
 
@@ -60,6 +61,8 @@ def load_parent():
         return path.read_bytes()
 
     parent = json.loads(assemble(raw, read_part))
+    if metadata.digest(parent['manifest']['dashboard_receipt']['source_json'].encode('utf-8')) != metadata.parent_owner()['parent_dashboard_sha256']:
+        raise ValueError('Parent-owner projection belongs to a different verified dashboard')
     rows = parent['collections']
     if (len(rows['objects']) != metadata.PARENT_OBJECTS
             or sum(len(v) for v in rows.values()) != metadata.PARENT_ROWS
@@ -113,7 +116,8 @@ def main():
         # Existing index verifier preserves all old source strings except the
         # explicit dashboard projection. No scientific producer is replayed.
         result['index_extension'] = extend_index(
-            dashboard_raw, {admission.FILE:(ROOT / admission.FILE).read_bytes()})
+            dashboard_raw, {admission.FILE:(ROOT / admission.FILE).read_bytes(),
+                            metadata.PARENT_OWNER:(ROOT / metadata.PARENT_OWNER).read_bytes()})
         catalog_path = ROOT / 'almanac/index-catalog.json'
         catalog = json.loads(catalog_path.read_bytes())
         for path in OPERATORS:

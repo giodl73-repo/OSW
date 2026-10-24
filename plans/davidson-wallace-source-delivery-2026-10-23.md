@@ -187,3 +187,39 @@ GitHub merge into the existing working branch. This retains the original frozen
 source commit and remote generated data, with no main merge or additional PR.
 Remove the temporary branch after a successful merge. The local data preview
 will remain on its older packet until a later resource-safe synchronization.
+
+## First complete-parent cloud result and geometry guard correction
+
+Run `40061588953`, merge source
+`f83925cbabc1254f3a251c7fb734915c7065672d`, completed the full candidate export:
+106 currents, 246 objects, 108,530 rows and 172 scoped width records. All 108,278
+prior non-object rows and the 245 other owners were preserved. All 572 earlier
+index sources were verified; 571 source strings stayed exact and only the
+dashboard projection changed. Eight source JSONs were added; no scientific
+source document was replaced. This candidate was not published.
+
+Native compilation and all 161 Rust tests passed. The subsequent complete
+packet snapshot rejected the new guard's assumed two map features. The verified
+106-current parent actually contains three Davidson features: the locator, the
+editorial reference route, and the seasonal editorial reference route. The
+earlier local dashboard had not exposed the complete query-packet projection.
+This was a delivery-guard error; the exporter had preserved the existing
+features and added no geometry. WASM and browser checks did not run.
+
+`research/davidson-width-parent-owner-v1.json` now retains the exact selected
+owner fields from the verified parent dashboard, with its dashboard SHA and
+logical packet SHA. Its byte SHA is fixed in the operational metadata adapter.
+The exporter verifies that the retained full-parent dashboard matches this
+projection, then checks the actual selected owner fields. The native guard
+checks the exact three feature records, including coordinates and context,
+against the compiled projection and requires its manifest hash. The source
+index and engine input manifest also bind this separate projection. The
+previous scientific producer, protocol, inputs, outputs and admission records
+remain unchanged.
+
+Twelve focused tests and 37 subtests passed after this correction. Coverage
+includes a missing third feature and failed publication bindings. A new Rust
+test also covers changed coordinates and projection pins; it has not run
+locally. Rust formatting parsed the updated module. A fresh sequential cloud run is
+required before publication; the prior terminal failure must not be rerun
+against its uncorrected source revision.

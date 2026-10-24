@@ -11,6 +11,7 @@ from test_davidson_wallace_width_admission import baseline
 
 def fixture(document):
     rows = baseline(document)
+    rows['objects'][0].update(copy.deepcopy(candidate.parent_owner()['owner']))
     rows['objects'][1]['type'] = 'named_current'
     dashboard = {'schema':'osw.motion-dashboard.v1', 'fingerprint_version':2,
                  'entries':copy.deepcopy(rows['objects']), 'counts':{'named_current':2},
@@ -122,6 +123,19 @@ class CandidateChecks(unittest.TestCase):
                 self.prepare({**manifest, **change}, rows, raw)
         with self.assertRaises(ValueError):
             candidate.prepare(manifest,rows,raw,self.document,prepared_at_utc=None)
+
+    def test_parent_projection_includes_all_three_existing_features_and_rejects_changes(self):
+        parent = candidate.parent_owner()
+        self.assertEqual(len(parent['owner']['map_features']),3)
+        self.assertEqual(parent['parent_logical_sha256'],candidate.PARENT_SHA)
+        manifest, rows, raw = fixture(self.document)
+        rows['objects'][0]['map_features'].pop()
+        dashboard = json.loads(raw); dashboard['entries'] = copy.deepcopy(rows['objects'])
+        dashboard['snapshot_fingerprint'] = candidate.fingerprint(rows['objects'])
+        raw = candidate.encoded(dashboard)
+        manifest['dashboard_receipt'].update(source_sha256=candidate.digest(raw),source_json=raw.decode())
+        manifest['input_sha256'][candidate.DASHBOARD] = candidate.digest(raw)
+        with self.assertRaises(ValueError):self.prepare(manifest,rows,raw)
 
     def test_preservation_guard_rejects_erasure_reordering_and_physical_changes(self):
         manifest, rows, raw = fixture(self.document)
