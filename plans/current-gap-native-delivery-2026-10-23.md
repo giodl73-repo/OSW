@@ -220,3 +220,49 @@ EGC/cSICC naming warning. The separate follow-up review is
 scope and preserves unresolved parent/old-name mapping. It admits no identity,
 length, width, geometry or annual range to the current packet. The old frozen
 identity review remains unchanged. Original PDFs remain ignored.
+
+## Browser result and cloud working-data delivery
+
+At source commit `2aa824c0b0a6c624bf9b5c0899ceeacb2ac1ae69`,
+[job120733327151](https://github.com/giodl73-repo/OSW/actions/runs/40047621882/job/120733327151)
+passed all156 Rust tests and built the candidate native/WASM engine. The
+regional-reach browser check passed. The new admission browser check reached
+the dashboard filter after its five native/WASM card comparisons, source
+calendar/width/offshore/regime checks, narrow-screen check and keyboard source
+query. The actual log and downloaded failure receipt were inspected; its
+JavaScript error list was empty. No full admission-browser pass is claimed.
+
+The failure was a malformed closing `option` tag in `dashboard.html` that left
+the named-current option missing. It is corrected. A small HTML parser check
+now requires all four object-type choices before the expensive cloud tests.
+The phone screenshot now starts at the scoped-width section heading, so its
+100km entry is visible. Failure receipts record completed stages; the eventual
+PASS receipt binds the actual native/WASM packet digest.
+
+Disk space on the user's computer fell below500MB, so large local downloads
+and installation remain held. The workflow now has a dependent, cloud-only
+working-data delivery job for the existing `codex/current-measurement-gaps`
+branch. It requires successful source, native/WASM/browser, scientific replay,
+temperature-conformance and NetCDF jobs. It verifies every engine input hash,
+streams all packet parts, matches the source and browser packet digests, checks
+the246-object dashboard totals, and retains the offline job's actual status.
+The full offline regression is not represented as passing or waived.
+
+Only generated query/index/dashboard/engine files, currently referenced packet
+parts and the installation receipt may enter its commit. Historical parts,
+original PDFs, source code and scientific reports cannot change. The job
+checks the remote branch head twice and uses a normal fast-forward push. It
+does not merge main or publish a scientific release. Its job token has scoped
+`contents:write` and `actions:read`; other jobs retain their existing read scope.
+[GitHub documents job-level token permissions](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token)
+and [suppression of recursive push workflows for that token](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow).
+No new credentials or local artifact download is required.
+
+The generated installation receipt supplies the exact cohort/packet flags
+needed by subsequent immutable-parent replays. This job has not yet executed;
+its14 small fixtures passed locally, including mismatched artifacts, missing
+gates, altered dimension scope, protected source/old-part writes, local refusal
+and the discovered dropdown regression. Together with the previously verified
+28 rehearsal/metadata/index fixtures, the source job now runs42 small checks.
+The main publication test and the complete browser matrix still need an actual
+successful cloud run before any generated working-data commit can occur.

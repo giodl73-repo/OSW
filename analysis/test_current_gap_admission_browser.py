@@ -37,6 +37,8 @@ def main():
         assert not seasons['phase_plans'][slug]['can_play']
         assert decisions[slug]['annual_width_range_km'] is None
     errors, originals = [], []
+    progress = {'native_candidate':True,'native_wasm_cards':[],'keyboard_evidence_query':False,
+                'dashboard_all_currents':False,'dashboard_modes':[]}
     with sync_playwright() as pw:
         browser = pw.chromium.launch(executable_path=os.environ['OSW_TEST_BROWSER'])
         page = browser.new_page(viewport={'width':1200,'height':900})
@@ -64,7 +66,7 @@ def main():
                     for index in [1,2]: expect(articles.nth(index)).to_contain_text('no separate canonical width admitted')
                     expect(page.locator('#current-reported-widths')).to_contain_text('annual minimum, maximum or uncertainty range')
                     page.set_viewport_size({'width':390,'height':844})
-                    page.locator('#current-reported-widths').scroll_into_view_if_needed()
+                    page.locator('#current-reported-widths').evaluate("element => element.scrollIntoView({block:'start'})")
                     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
                     page.screenshot(path=str(output / 'eicc-scoped-width-phone.png'))
                     page.set_viewport_size({'width':1200,'height':900})
@@ -81,17 +83,20 @@ def main():
                 if slug == 'brazil':
                     expect(page.locator('#current-regional-reach')).to_contain_text('1500 km')
                     expect(page.locator('#current-regional-reach')).to_contain_text('unranked')
+                progress['native_wasm_cards'].append(slug)
             # Exercise the source query from a real card with keyboard activation.
             page.goto(BASE + '/almanac/object.html?id=current%3Awest-india-coastal')
             target = page.locator('#current-direction-calendar').get_by_role('link',name='Evidence and source details')
             target.focus(); page.keyboard.press('Enter')
             page.wait_for_function('window.oswLastQueryResult', timeout=180000)
             assert page.evaluate('window.oswLastQueryResult.rows') == expected['west-india-coastal']['collections']['current_direction_calendars']
+            progress['keyboard_evidence_query'] = True
             page.goto(BASE + '/almanac/dashboard.html')
             page.wait_for_function('window.oswDashboardSelection', timeout=180000)
             page.locator('#dashboard-type').select_option('named_current')
             page.wait_for_function('window.oswDashboardSelection.request.record_type === "named_current"')
             expect(page.locator('#dashboard-grid .motion-card')).to_have_count(106)
+            progress['dashboard_all_currents'] = True
             page.locator('#dashboard-metric').select_option('direction_descriptions')
             page.locator('#dashboard-search').fill('WICC')
             page.wait_for_function('window.oswDashboardSelection.request.text === "WICC" && window.oswDashboardSelection.request.metric === "direction_descriptions"')
@@ -114,16 +119,18 @@ def main():
                 page.wait_for_function('([metric]) => window.oswDashboardSelection.request.metric === metric && window.oswDashboardSelection.request.covered_only && window.oswDashboardSelection.request.text === ""', arg=[metric])
                 assert sorted(page.evaluate('window.oswDashboardSelection.result.ids')) == ids
                 expect(page.locator('#dashboard-grid .motion-card.lit')).to_have_count(len(ids))
+                progress['dashboard_modes'].append(metric)
             assert not errors, errors
             assert not originals, originals
         except Exception as error:
             (output / 'failure.json').write_text(json.dumps({'error':str(error),'url':page.url,
-                'body':page.locator('body').inner_text()[:16000],'errors':errors},indent=2)+'\n',encoding='utf-8')
+                'body':page.locator('body').inner_text()[:16000],'errors':errors,'completed':progress},indent=2)+'\n',encoding='utf-8')
             page.screenshot(path=str(output / 'failure.png'))
             raise
         finally:
             browser.close()
     (output / 'result.json').write_text(json.dumps({'status':'PASS','named_currents':106,
+        'bundle_sha256':expected['east-india-coastal']['bundle_sha256'],
         'native_wasm_object_views_equal':CASES,'source_scoped_widths':3,
         'qualitative_calendar_months':24,'scoped_t24_width_records':1,
         'raw_width_samples_added':0,'annual_width_ranges_added':0,

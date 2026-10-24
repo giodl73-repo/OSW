@@ -40,7 +40,10 @@ jobs:
         run: python analysis/check_current_gap_parent_rehearsal.py --full-parent
       - name: Check small candidate metadata and source-preservation fixtures
         if: success()
-        run: python -m pytest -q analysis/test_current_gap_candidate_metadata.py analysis/test_current_gap_index_extension.py
+        run: >-
+          python -m pytest -q analysis/test_current_gap_candidate_metadata.py
+          analysis/test_current_gap_index_extension.py analysis/test_current_gap_parent_rehearsal.py
+          analysis/test_current_gap_cloud_delivery.py
       - name: Export complete candidate dashboard packet and exact-source index sequentially
         if: success()
         run: python analysis/export_current_gap_cloud_candidate.py --cloud-candidate
@@ -344,3 +347,54 @@ jobs:
           python -m unittest
           analysis.test_oisst_snapshot.OisstSnapshotTests.test_netcdf_fixture_preserves_dimensions_order_and_mask
           analysis.test_argo_snapshot.ArgoSnapshotTests.test_fixture_selects_exact_pressure_stride_and_mask
+
+  promote-current-candidate:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/codex/current-measurement-gaps'
+    needs: [front-level-atlas, scientific-reproduction, front-temperature-conformance, netcdf-fixture]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Load the exact candidate data from this run
+        uses: actions/download-artifact@v4
+        with:
+          name: current-gap-derived-candidate
+          path: .
+      - name: Load the engine built and browser-tested against that candidate
+        uses: actions/download-artifact@v4
+        with:
+          name: front-level-query-engine
+          path: almanac
+      - name: Load source preservation audit
+        uses: actions/download-artifact@v4
+        with:
+          name: current-gap-cloud-candidate-audit
+          path: .pytest_cache/current-gap-publication/source
+      - name: Load actual current-card and dashboard browser receipt
+        uses: actions/download-artifact@v4
+        with:
+          name: current-gap-admission-browser-receipts
+          path: .pytest_cache/current-gap-publication/browser
+      - name: Read the exact run and required gate results
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" > .pytest_cache/current-gap-publication/run.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs?per_page=100" > .pytest_cache/current-gap-publication/jobs.json
+      - name: Verify streamed artifact bindings and commit generated working data
+        run: >-
+          python analysis/prepare_current_gap_cloud_delivery.py --publish
+          --audit-dir .pytest_cache/current-gap-publication
+      - name: Retain exact working-data delivery receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-gap-installed-working-delivery
+          path: research/current-gap-installed-delivery-v1.json
