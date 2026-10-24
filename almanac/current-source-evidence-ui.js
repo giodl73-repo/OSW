@@ -156,20 +156,24 @@
     if (crossShore.length) {
       const section = heading(parent, 'current-cross-shore-context', 'Offshore position and extent');
       node('p', 'Distances from the coast describe different features. They do not define a width between two current edges.', section);
-      node('p', 'Observation dates and paired inner boundaries are unspecified for these review descriptions. The ranges are not annual extrema or error bounds.', section);
+      node('p', 'Read the region, time support and boundary meaning with each description. These ranges are not annual extrema or error bounds.', section);
       const labels = {
         reported_recognisable_current_offshore_extent:'Recognisable offshore extent',
         reported_current_core_offshore_position:'Position of the fastest core',
         reported_eastern_boundary_offshore_distance:'Outer-boundary distance',
         reported_typical_transport_concentration_offshore_extent:'Typical transport concentration',
+        sst_associated_coastal_confinement_scale:'SST-associated coastal confinement',
       };
       const list = node('dl', null, section);
       for (const row of crossShore) {
         const value = Array.isArray(row.reported_range_km) ? row.reported_range_km.join('–') : row.reported_value_km;
         node('dt', `${labels[row.quantity] || row.quantity.replaceAll('_',' ')} · ${value} km`, list);
         const description = node('dd', null, list);
+        if (row.geographic_scope) node('p', row.geographic_scope, description);
         node('p', `${row.source_precision}. Reference: ${row.reference}.`, description);
         if (row.range_meaning || row.criterion_context) node('p', row.range_meaning || row.criterion_context, description);
+        if (row.time_support_note) node('p', row.time_support_note, description);
+        if (row.proxy_note) node('p', row.proxy_note, description);
         source(row, description, sourceLink);
         recordLink(description, 'current_cross_shore_context', row.id);
       }
@@ -191,6 +195,7 @@
       node('p', 'This regional reach is unranked. A whole-current length, physical length lower bound and annual range have not been established.', section);
       if (row.source?.source_title) node('p', [row.source.source_title,
         (row.source.authors || []).join(', '), row.source.chapter].filter(Boolean).join(' · '), section);
+      source(row, section, sourceLink);
       recordLink(section, 'current_regional_reaches', row.id);
     }
   };

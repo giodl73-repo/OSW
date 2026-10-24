@@ -46,6 +46,12 @@ owner references, ranks, null geometry and preservation before real application.
 Original numerical extraction or figure generation, if needed, requires its
 own committed freeze before the first original case. Preserve executed versions.
 
+The metadata adapter must match each fact's original URL, byte count and SHA256
+to its preserved acquisition receipt before preparing the contract. This check
+does not reopen either original PDF. Commit the exact contract and all pinned
+inputs before applying it to a real query packet; contract preparation alone
+does not establish delivery or close a physical measurement gap.
+
 Integrate accepted records and all reviewed context documents through the
 existing preserved-source index extension. Verify native/WASM query parity,
 object-card ownership and accessible presentation in one serialized cloud
