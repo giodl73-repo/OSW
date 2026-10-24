@@ -1211,7 +1211,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "a2b6d71002270485e6914b9fecac9ddca617d0719231f86f12e9cc61ddce4df5",
+  "snapshot_fingerprint": "923bac3fb50a7bed939168cb8a96f2df16d703fa4fb149b7dd866386089c2e21",
   "entries": [
     {
       "id": "current:agulhas",
@@ -166809,10 +166809,12 @@
       "vertical_setting": "unspecified",
       "source_ids": [
         "source:eacc-context-painter-2020",
+        "source:indian-coastal-dimension-context-v1",
         "source:indian-coastal-identities-vinayachandran-2021",
+        "source:painter-eacc-2020-regional-reach",
         "source:reported-current-direction-calendar-v1"
       ],
-      "linked_source_count": 3,
+      "linked_source_count": 5,
       "capabilities": {
         "dated_diagnostics": 0,
         "flow_network": 0,
@@ -166831,7 +166833,8 @@
         "direction_descriptions": 12,
         "reported_width_evidence": 0,
         "cross_shore_context": 4,
-        "regime_context": 0
+        "regime_context": 0,
+        "reported_regional_reaches": 1
       },
       "dashboard_search": "East African Coastal Current Southwestern Indian Ocean",
       "search_aliases": [
@@ -166842,9 +166845,11 @@
       "season_url": "seasons.html?current=east-african-coastal",
       "published_length_km": null,
       "latest_observation_date": null,
-      "recorded_claims": 0,
+      "recorded_claims": 1,
       "nasa_links": 0,
-      "claim_review_counts": {},
+      "claim_review_counts": {
+        "not_individually_reviewed": 1
+      },
       "evidence_links": [
         {
           "label": "Query the separate identity and scope",
@@ -166873,6 +166878,10 @@
         {
           "label": "View source-qualified evidence diagram",
           "url": "../figures/indian-current-reported-direction-calendars-v1.svg"
+        },
+        {
+          "label": "Query the source-reported regional connection",
+          "url": "query.html?q=%7B%22collection%22%3A%22current_regional_reaches%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22regional-reach%3Aeast-african-coastal%3Apainter-2020-connection%22%7D%5D%2C%22limit%22%3A1%7D"
         }
       ],
       "connections": [],
@@ -166893,15 +166902,16 @@
       "width_sample_ids": [],
       "section_fingerprints": {
         "identity": "0a21a4a9adc7990ee6f168d5473130302a55994b09907dbf7306795a49c9093d",
-        "sources": "b6013fbe617a1c23562b289d76a44c922629591810530f6be82a188f58c4577e",
-        "claims": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sources": "4fb2ef09c09e43b33fe175986385b071c6de33fa10d449809a297755b67ca7e6",
+        "claims": "0d8f328fdd8384e38ae81c1fd70987ee697e839114ddcdd8bd10eb6ed572f32b",
         "measurements": "15c3552e1e91fe59730f30e986ed063d0d03207d363575360ca9d7ce269597f2",
         "routes_geometry": "210e130878aabaf46f1fe72749a263f9eb71c6a262b80f13882ed08d472c0ecd",
         "media": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd",
-        "source_context": "f1dc3783b7adb92f9a69ec87be06ffcb6249776618f51f23e2f82d71b8a9350a"
+        "source_context": "f1dc3783b7adb92f9a69ec87be06ffcb6249776618f51f23e2f82d71b8a9350a",
+        "coastal_dimension_context": "a0179a0e7eba26055d47a74a42a12cba0eab0fb6d9227e951cfa26900fd20321"
       },
-      "fingerprint": "242b08324a4bb88cb7f0a182cd5b939480836b6a77ef872c8ea129eb877c3f2a",
+      "fingerprint": "838db08c42488667439d0750bd531069c9052812144ffc30551bb32c4c5e09b1",
       "direction_calendar_ids": [
         "direction-calendar:eacc-vinayachandran-2021"
       ],
@@ -166926,7 +166936,10 @@
         "cross-shore-context:eacc:painter-2020:eastern-boundary",
         "cross-shore-context:eacc:painter-2020:transport-concentration"
       ],
-      "regime_context_ids": []
+      "regime_context_ids": [],
+      "regional_reach_ids": [
+        "regional-reach:east-african-coastal:painter-2020-connection"
+      ]
     },
     {
       "id": "current:south-java",
@@ -166940,9 +166953,11 @@
       "identity_scope_note": "Coastal waters south of Java. Source explicitly describes a reversing South Java Current associated with seasonal upwelling. Exact monthly phase limits are not assigned.",
       "vertical_setting": "unspecified",
       "source_ids": [
-        "source:indian-coastal-identities-vinayachandran-2021"
+        "source:indian-coastal-dimension-context-v1",
+        "source:indian-coastal-identities-vinayachandran-2021",
+        "source:sprintall-sjc-2010-ombai-confinement"
       ],
-      "linked_source_count": 1,
+      "linked_source_count": 3,
       "capabilities": {
         "dated_diagnostics": 0,
         "flow_network": 0,
@@ -166960,7 +166975,7 @@
         "direction_calendars": 0,
         "direction_descriptions": 0,
         "reported_width_evidence": 0,
-        "cross_shore_context": 0,
+        "cross_shore_context": 1,
         "regime_context": 0
       },
       "dashboard_search": "South Java Current Eastern Indian Ocean",
@@ -166972,9 +166987,11 @@
       "season_url": "seasons.html?current=south-java",
       "published_length_km": null,
       "latest_observation_date": null,
-      "recorded_claims": 0,
+      "recorded_claims": 1,
       "nasa_links": 0,
-      "claim_review_counts": {},
+      "claim_review_counts": {
+        "not_individually_reviewed": 1
+      },
       "evidence_links": [
         {
           "label": "Query the separate identity and scope",
@@ -166987,6 +167004,10 @@
         {
           "label": "Query the unresolved reference-route work",
           "url": "query.html?q=%7B%22collection%22%3A%22route_decisions%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22route-decision%3Asouth-java%22%7D%5D%2C%22limit%22%3A1%7D"
+        },
+        {
+          "label": "Query the SST-associated confinement context",
+          "url": "query.html?q=%7B%22collection%22%3A%22current_cross_shore_context%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22cross-shore-context%3Asouth-java%3Asprintall-2010-ombai-confinement%22%7D%5D%2C%22limit%22%3A1%7D"
         }
       ],
       "connections": [],
@@ -167007,19 +167028,22 @@
       "width_sample_ids": [],
       "section_fingerprints": {
         "identity": "5dc8aac70c4ddc856970f510fcccdd33c1a75be47f5ebedf2104bf0c35bedff8",
-        "sources": "c820a217270341787c210c4388bbb1edf9f05eba8c4a364c3bacb2a90c2565db",
-        "claims": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "sources": "100aa002c05596d2a30ec51795a175de8a3eb78d959d281aec69ddfff2136ea2",
+        "claims": "077d6883c4344d98dc20f5cbada180445bff30596527e144d659dbbf6f448bc5",
         "measurements": "15c3552e1e91fe59730f30e986ed063d0d03207d363575360ca9d7ce269597f2",
         "routes_geometry": "210e130878aabaf46f1fe72749a263f9eb71c6a262b80f13882ed08d472c0ecd",
         "media": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd",
-        "source_context": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        "source_context": "af3da4d1bb5472c2954efa36f93b7f30e8291209ac4033a3bfc40a707ca91d4e",
+        "coastal_dimension_context": "af3da4d1bb5472c2954efa36f93b7f30e8291209ac4033a3bfc40a707ca91d4e"
       },
-      "fingerprint": "c5cfd91f0c7b04c110398b77cd6b03acbce707e04f5d519696fd600b733451b6",
+      "fingerprint": "df800dd515bc63b6dab6b639b0c0bc464c2826f9a855bbc887019d5f243a9b46",
       "direction_calendar_ids": [],
       "direction_description_ids": [],
       "reported_width_evidence_ids": [],
-      "cross_shore_context_ids": [],
+      "cross_shore_context_ids": [
+        "cross-shore-context:south-java:sprintall-2010-ombai-confinement"
+      ],
       "regime_context_ids": []
     }
   ],
@@ -167151,17 +167175,16 @@
   ],
   "fingerprint_version": 2,
   "coverage_meaning": "Presence of stored evidence, not confidence, currency of observations or scientific approval. Regional samples and editorial routes retain their separate scopes.",
-  "parent_built_at_utc": "2026-10-24T08:16:11.754840Z",
-  "built_at_utc": "2026-10-24T11:05:56.679645Z",
+  "parent_built_at_utc": "2026-10-24T11:05:56.679645Z",
+  "built_at_utc": "2026-10-24T13:54:38.206199Z",
   "candidate_delivery": {
+    "version": "indian-coastal-dimension-context-v1",
+    "published": false,
+    "scope": "Two source contexts; no new measured length, paired width, annual range or geometry."
+  },
+  "parent_candidate_delivery": {
     "version": "baffin-described-latitudes-v1",
     "published": false,
     "scope": "One conditional regional geographic floor and nine editorial scenarios; no measured axis, seasonal range or qualified length rank."
-  },
-  "parent_candidate_delivery": {
-    "version": "davidson-wallace-line67-v1",
-    "published": false,
-    "parent_logical_sha256": "31a0bf88a5fe40e5929c9cd6fa5f5d4cc5db92a03574354e1f8554003bf802e3",
-    "scope": "One source-reported regional campaign span; no raw samples, annual range or geometry."
   }
 }
