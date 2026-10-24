@@ -80,8 +80,12 @@ def main():
             assert summary.evaluate('element => element === document.activeElement')
             for width in [320, 390]:
                 page.set_viewport_size({'width': width, 'height': 844})
-                page.locator('#timeline-title').scroll_into_view_if_needed()
+                page.evaluate('scrollTo(0, 0)')
+                page.screenshot(path=str(output / f'heading-{width}px.png'))
+                page.locator('#timeline-title').evaluate("element => element.scrollIntoView({block: 'start'})")
                 page.screenshot(path=str(output / f'timeline-{width}px.png'))
+                rows.first.locator('h3').evaluate("element => element.scrollIntoView({block: 'start'})")
+                page.screenshot(path=str(output / f'instrument-{width}px.png'))
                 overflow = page.evaluate('''() => [...document.querySelectorAll('*')].map(node => {
                     const r = node.getBoundingClientRect(), css = getComputedStyle(node);
                     return {tag: node.tagName, id: node.id, class: node.className,
