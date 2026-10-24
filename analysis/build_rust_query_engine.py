@@ -175,6 +175,7 @@ def main():
                   'analysis/test_davidson_reported_width_browser.py',
                   'analysis/browser_current_catalogue_fixture.py',
                   'analysis/test_browser_current_catalogue_fixture.py',
+                  'analysis/test_nwasc_reference_route_browser.py',
                   'analysis/test_nwasc_working_admission_browser.py',
                   'analysis/test_rust_atlas_snapshot_browser.py',
                   'analysis/davidson_width_candidate_metadata.py',

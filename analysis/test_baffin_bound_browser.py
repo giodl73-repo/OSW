@@ -106,6 +106,14 @@ def main():
             page.set_viewport_size({'width':320,'height':844})
             page.goto(BASE+'/almanac/reference-routes.html?atlas-feature=current%3Abaffin#route-atlas')
             expect(page.locator('#route-atlas-select')).to_have_value(a.ENTITY,timeout=180000)
+            page.wait_for_function('window.oswAtlasSnapshot',timeout=180000)
+            coverage=page.evaluate('window.oswAtlasSnapshot.working_reference_routes.counts')
+            assert {key:coverage[key] for key in ['accepted_current_names','route_candidates','currents_with_route_candidates',
+                                                'currents_without_any_reference_card','route_decision_records']}=={
+                'accepted_current_names':106,'route_candidates':78,'currents_with_route_candidates':72,
+                'currents_without_any_reference_card':34,'route_decision_records':95}
+            expect(page.locator('#route-status')).to_contain_text('of 106 currents',timeout=180000)
+            expect(page.locator('#route-status')).to_contain_text('34 currents have no reference card')
             panel = page.locator('.route-atlas-evidence-links')
             panel.wait_for(state='attached',timeout=180000)
             if not panel.evaluate('panel => panel.open'):
@@ -142,6 +150,9 @@ def main():
         'keyboard_scenario_query':True,'source_scalar_sha256':a.OUTPUTS[a.FIGURE],
         'global_map_current_selection_verified':True,'atlas_evidence_links_verified':True,
         'keyboard_atlas_scenario_query':True,
+        'atlas_route_coverage_totals':{'accepted_current_names':106,'route_candidates':78,
+                                     'currents_with_route_candidates':72,'currents_without_any_reference_card':34,
+                                     'route_decision_records':95},
         'errors':errors,'original_downloads':originals,'scientific_release_published':False,
     },indent=2)+'\n',encoding='utf8')
 

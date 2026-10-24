@@ -25,8 +25,10 @@ REQUIRED_INPUTS = {
     admission.FILE,owner.FILE,owner.PARENT,admission.REPORT,admission.FIGURE,admission.PROOF,
     metadata.PARENT_PROOF,WORKFLOW,PHASE,
     'rust/osw-query/src/baffin_latitude_bound.rs','rust/osw-query/src/object_view.rs',
+    'rust/osw-query/src/current_gap_admissions.rs','rust/osw-query/src/seasons_data.rs',
     'rust/osw-query/src/length_assessment_overlays.rs','almanac/current-source-evidence-ui.js','almanac/object.html',
     'analysis/test_baffin_bound_browser.py','analysis/test_baffin_bound_browser_policy.py',
+    'analysis/test_nwasc_reference_route_browser.py','analysis/browser_current_catalogue_fixture.py',
     'analysis/baffin_bound_admission.py','analysis/baffin_bound_owner_projection.py',
     'analysis/baffin_bound_candidate_metadata.py','analysis/export_baffin_bound_candidate.py',
     'analysis/prepare_baffin_bound_delivery.py','analysis/test_baffin_bound_delivery.py',
@@ -104,6 +106,8 @@ def verify(root, source, browser, prior_davidson, prior_cards, run, jobs, expect
     for key, value in {'record_parity_queries':10,'qualified_length_ranks_preserved':13,
                        'phone_viewports_verified':[320,390],'phone_horizontal_overflow':False,
                        'errors':[],'original_downloads':[],
+                       'atlas_route_coverage_totals':{'accepted_current_names':106,'route_candidates':78,
+                           'currents_with_route_candidates':72,'currents_without_any_reference_card':34,'route_decision_records':95},
                        'source_scalar_sha256':admission.OUTPUTS[admission.FIGURE]}.items():
         if browser.get(key) != value:raise ValueError('Changed Baffin browser scope: '+key)
     # Re-run the predecessor's actual cards on this same new data/engine cohort.

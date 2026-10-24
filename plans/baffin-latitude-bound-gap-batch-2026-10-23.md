@@ -243,6 +243,38 @@ reach checks at the latest direct observation. Remote source remains held.
 
 ## Completion boundary
 
+### Complete identity coverage in the runtime route view
+
+The preceding atlas diagnostic also exposed stale runtime summary counts:
+102 accepted names / 30 without a card, despite the checked selector inventory
+containing 106 names. The new runtime projection includes the four already
+admitted, unlocated coastal identities and their existing unresolved plans.
+It preserves all 78 route candidates and every historical decision in order;
+no geometry, measured axis, width band, state intersection or length rank is
+created. Expected totals are 106 names, 72 names with 78 route cards, 34 without
+a card, 93 unranked names, 95 planning decisions and 23 unbuilt worklist entries.
+
+The projection requires the verified coastal cohort, rejects duplicate plans
+or strategies, retains the legacy catalogue exactly when inactive and exposes
+the existing cohort version as its planning-extension provenance. Historical
+source JSON remains byte-identical. Two new native cases cover counts, complete
+old-route/decision preservation, legacy compatibility and rejection of invalid
+or repeated projection. These native cases have not yet been compiled/run.
+
+The existing NWASC browser gate still checks its complete historical route
+catalogue, and now separately checks the exact declared planning overlay when
+the coastal cohort is active. Baffin's actual browser gate and publication
+receipt additionally require the full 106/78/72/34/95 route-coverage summary.
+Six targeted publication fixture checks pass; Python syntax and Rust formatting
+parse checks pass. The expanded full publication suite now has 30 cases and
+remains a required cloud gate. No local build or browser session was started.
+
+Run40070679739 job120803227175 is live at preceding card/dashboard checks after
+the early eight-case route-inventory fixture and native/WASM/Davidson checks.
+Its source is still the isolated operational correction; these new Baffin-phase
+runtime changes have not been pushed. Latest observed C: free space is 0.84 GiB;
+local heavy work and full generated-asset synchronization remain held.
+
 ### Second atlas diagnostic: stale expected route inventory
 
 Run40067999078 is terminal failure; publication was skipped. Its diagnostic

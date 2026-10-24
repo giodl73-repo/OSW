@@ -53,6 +53,8 @@ def cohort(tmp_path):
         'historical_naming_scope_visible':True,'qualified_length_ranks_preserved':13,
         'phone_viewports_verified':[320,390],'phone_horizontal_overflow':False,'keyboard_scenario_query':True,
         'global_map_current_selection_verified':True,'atlas_evidence_links_verified':True,'keyboard_atlas_scenario_query':True,
+        'atlas_route_coverage_totals':{'accepted_current_names':106,'route_candidates':78,
+            'currents_with_route_candidates':72,'currents_without_any_reference_card':34,'route_decision_records':95},
         'source_scalar_sha256':d.admission.OUTPUTS[d.admission.FIGURE],'errors':[],'original_downloads':[],
     }
     source = {
@@ -92,7 +94,7 @@ def test_complete_cohort_binding_accepts_only_working_delivery(cohort):
 
 @pytest.mark.parametrize('change', ['revision','workflow','job','job-inventory','source','parent','inventory',
     'physical','preservation','index','browser','phone','queries','cohort','prior-davidson','prior-cards',
-    'atlas-selection','atlas-links','atlas-keyboard'])
+    'atlas-selection','atlas-links','atlas-keyboard','atlas-counts','atlas-plans'])
 def test_coherent_delivery_is_required(cohort,change):
     root,source,browser,previous,cards,run,jobs,sha = cohort
     if change == 'revision': run['head_sha'] = 'a'*40
@@ -114,6 +116,8 @@ def test_coherent_delivery_is_required(cohort,change):
     if change == 'atlas-selection': browser['global_map_current_selection_verified'] = False
     if change == 'atlas-links': browser['atlas_evidence_links_verified'] = False
     if change == 'atlas-keyboard': browser['keyboard_atlas_scenario_query'] = False
+    if change == 'atlas-counts': browser['atlas_route_coverage_totals']['accepted_current_names'] = 102
+    if change == 'atlas-plans': browser['atlas_route_coverage_totals']['route_decision_records'] = 91
     with pytest.raises(ValueError): d.verify(*cohort)
 
 

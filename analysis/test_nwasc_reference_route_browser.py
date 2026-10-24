@@ -64,7 +64,12 @@ def main():
         assert page.locator('.route-atlas-station').count()==CURRENT_COUNT
         snap=page.evaluate('window.oswAtlasSnapshot')
         frozen=json.loads((n.ROOT/n.BASE).read_bytes())
-        assert snap['working_reference_routes']==n.extend_catalogue(frozen,doc)
+        historical=n.extend_catalogue(frozen,doc)
+        if 'research/indian-current-identity-query-contract-v1.json' in snap['sources_json']:
+            from browser_current_catalogue_fixture import assert_route_planning_projection
+            assert_route_planning_projection(n.ROOT,snap['working_reference_routes'],historical)
+        else:
+            assert snap['working_reference_routes']==historical
         assert snap['sources_json'][n.BASE].encode('utf8')==(n.ROOT/n.BASE).read_bytes()
         assert snap['sources_json'][n.FILE].encode('utf8')==(n.ROOT/n.FILE).read_bytes()
         assert len(frozen['candidates'])==77 and len(snap['working_reference_routes']['candidates'])==78
