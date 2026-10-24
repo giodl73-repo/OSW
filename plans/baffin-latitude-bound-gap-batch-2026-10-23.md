@@ -73,6 +73,41 @@ passes. Actual browser behavior and mobile rendering remain unverified.
 
 ### Next gates
 
+The complete Baffin parent owner was recovered from checksum-verified public
+dashboard metadata at commit `f83925cbabc1254f3a251c7fb734915c7065672d`.
+`research/baffin-bound-parent-owner-v1.json` preserves all fields, including
+two original map features and two width IDs. The separate prepared owner
+transition preserves all physical fields and capabilities exactly. Display
+section digests explicitly chain the previous section digest with admitted
+evidence; they do not claim to recompute historical scientific inputs.
+
+Owner preparation validates registered sources, old claim count/review counts,
+measurement IDs and width IDs before returning any candidate. Fourteen focused
+owner tests passed. Dashboard/manifest metadata adds the nine-case collection,
+keeps preparation time separate from observations, verifies prior-row and
+unrelated-owner preservation, and requires a verified installed Davidson parent.
+Twenty-three focused metadata tests passed. New native guards also bind the
+exact owner transition, its parent checksum and all physical owner fields;
+these native tests remain uncompiled.
+
+`analysis/export_baffin_bound_candidate.py` is prepared but has not run. It
+requires explicit GitHub Actions execution, 3 GiB disk and 6 GiB available
+memory before loading data, then verifies the installed preceding delivery,
+packet, index and dashboard. It prepares the 14 appended records and one
+assessment replacement, extends the source index with preservation checks and
+archives a candidate only. Six local refusal/resource tests passed. A separate
+workflow, actual native/WASM/browser tests and guarded publication remain needed.
+
+Davidson run40065785176 is now **terminal failure**, with publication skipped.
+Native/WASM, Davidson, prior cards/dashboard, regional reaches and catalogue
+navigation passed. Atlas source equality and all 18 corruption rejections were
+reached before failure at the immediate route-card count assertion. Its log
+did not record the actual count. Selectors and cards render in separate async
+handlers. A focused operational fix now waits for all 77 cards and verifies
+their exact source IDs, retaining existing selector/source/corruption gates;
+failure diagnostics will capture IDs, status and page errors. This fix requires
+a new sequential cloud run; do not claim complete atlas success yet.
+
 1. Finish Davidson run40065785176 on its pinned source head. It has passed
    native/WASM, Davidson card, five preceding cards/dashboard and regional
    reach and catalogue navigation checks. The separate downloaded navigation
