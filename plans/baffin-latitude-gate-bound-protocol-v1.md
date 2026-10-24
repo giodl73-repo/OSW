@@ -79,7 +79,23 @@ tests and bulk asset synchronization remain held while disk pressure persists.
 
 ## Current stage
 
-Source review and prospective protocol only. No Baffin length measurement,
-calculation product, admission, new ranking or rendered measurement figure
-has been produced. Finish the running Davidson integration gate before
-publishing this next batch to the working branch.
+Source review, prospective operator and synthetic tests only. No actual Baffin
+gate calculation product, admission, new ranking or rendered measurement
+figure has been produced at declaration. Finish the running Davidson integration
+gate before publishing this next batch to the working branch.
+
+## Commands after the prospective files are committed
+
+Use the recorded exact freeze commit, not a moving branch name:
+
+```text
+python analysis/baffin_latitude_gate_bound_v1.py build --freeze-commit <40-character-commit>
+python analysis/baffin_latitude_gate_bound_v1.py check --freeze-commit <same-commit>
+python analysis/baffin_latitude_gate_bound_v1.py original --original-path research/source-data/fissel-baffin-1982/journal-article.pdf
+```
+
+Before that commit, run only the focused synthetic tests and `declare` action.
+Keep first-execution time, source commit, interpreter and numerical-library
+versions in a separate execution proof. All local commands use one logical CPU,
+BelowNormal priority and one numerical worker; arithmetic is small and does
+not trigger native builds, browser sessions or full-packet reads.
