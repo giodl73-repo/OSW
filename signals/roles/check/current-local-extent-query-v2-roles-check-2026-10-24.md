@@ -34,7 +34,7 @@ delivery remain unverified. ORBIT is excluded because no analogy is used.
 | HARBOR | Resource pressure itself impairs use. | P2 | Raw size and memory gates prevent accepting an oversized browser artifact; original general engine stays remote. |
 | KEEL | Scalar extraction could change nulls, integer equality or ordering. | P2 | Shared predicates/comparator plus native primitive/schema tests and expanded reference parity required. |
 | KEEL | Native usize and wasm32 counts differ on overflow. | P2 | Scalar-only counts use u32; both new runtimes must reject overflow consistently while the baseline also rejects it. |
-| KEEL | Shared modules must actually compile in both crates. | P2 | Installed1.95.0 formatter parses source; dedicated and atlas native builds plus dedicated WASM compilation still required. |
+| KEEL | Shared modules must actually compile in both crates. | P2 | Initial run passed11 dedicated native tests; atlas build found a missing crate comparator alias. Revision2 restores that alias; full rerun still required. |
 | LOGBOOK | Runtime source may evolve while scientific evidence remains fixed. | P2 | Preserve83 scientific paths and v1 history; bind changed runtime source in a separate v2 freeze. |
 | LOGBOOK | Artifact output could accidentally include the59MB reference. | P2 | Separate baseline/build directories from reports; upload only dedicated WASM and compact evidence. |
 | LOGBOOK | A build check must not update installed assets or current coverage. | P2 | Separate default-disabled request, unchanged acquisition hold, installation/admission flags false. |

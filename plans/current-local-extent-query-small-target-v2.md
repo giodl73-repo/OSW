@@ -80,3 +80,17 @@ case inspection, missing outcomes, source navigation and evidence chart in
 serial cloud browser checks. Preserve ordinary atlas assets and physical width
 coverage. Wider current/eddy measurements, uncertainty and state joins remain
 active gap work.
+
+## Initial execution and operational correction
+
+Run40135768056, attempt2, source857382e5e6d51505e11bb0c178ac5dc4cd8116a2
+passed all11 dedicated native tests and verified the locked dependency closure.
+The atlas-side build then stopped because index_store still calls
+`crate::compare`; the extracted comparator needed a root re-export. No WASM or
+parity stage ran. The failed run/source and original v2 preflight remain in Git
+and the retained cloud artifact. The request was disabled before correction.
+
+Operational revision2 restores that comparator alias without changing its
+implementation, the scalar dataset or any83-input scientific file. Native,
+WASM, size/memory and baseline parity verification must be rerun on the newly
+bound source. The failed case is not represented as a passing build.

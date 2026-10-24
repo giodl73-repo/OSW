@@ -156,7 +156,7 @@ fn objects() -> String {
 #[cfg(test)]
 use scalar_query::filter_equal;
 pub use scalar_query::{Filter, Sort};
-use scalar_query::{collect_fields, field};
+use scalar_query::{collect_fields, compare, field};
 
 #[cfg(test)]
 mod scalar_scope_boundary_tests {

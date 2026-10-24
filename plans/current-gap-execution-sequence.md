@@ -18,6 +18,24 @@ time. Never overlap acquisition, numerical processing, builds or browser checks.
 
 ## Current serial queue after renewed resource concern
 
+### Latest checkpoint: resource scheduling takes priority
+
+The active queue below supersedes the older stage list and historical notes.
+The dedicated runtime's first cloud check passed11 native tests, then failed
+atlas compilation on a missing comparator alias. That source correction is
+prepared, and its revised preflight is bound; execution remains disabled.
+
+1. Checkpoint the small source correction and its provenance. No tests, builds,
+   rendering or artifact downloads during this checkpoint.
+2. In the next execution stage, back up the corrected source, then run one cloud
+   verification case. Observe only that case until it is terminal.
+3. Retrieve compact verification metadata after completion. Review it before
+   starting UI integration or choosing another measurement gap.
+
+Do not launch the next execution stage as part of this resource-scheduling
+response. No local compiler or measurement process was found in the current
+process inventory; the Python processes inspected were preview servers.
+
 The user reiterated the computer resource constraint on2026-10-24. Preserve
 unfinished source edits without starting tests, rendering, downloads or builds
 in response to this scheduling change. A process inventory found no local
@@ -201,3 +219,9 @@ A2MiB raw-WASM and64MiB scoped memory budget plus reference-engine parity are
 required before delivery. The dedicated lock uses the22-package closure of the
 existing locked versions. Actual locked compilation and runtime results remain
 outstanding; keep the default-disabled request until freeze/backup is verified.
+
+Initial v2 execution40135768056/attempt2 passed11 dedicated native tests, then
+atlas compilation found the remaining index_store reference to crate::compare.
+The run is preserved and its request disabled. Operational revision2 restores
+the root comparator alias, preserving its implementation and all scientific
+data. Rebind the source freeze and repeat the cloud check before delivery.
