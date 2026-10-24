@@ -1,6 +1,6 @@
 {
   "schema": "osw.current-local-extent-query-check-request.v2",
-  "execution_permitted": true,
+  "execution_permitted": false,
   "build_verification_only": true,
   "provider_requests_permitted": false,
   "original_source_processing_permitted": false,
@@ -11,7 +11,7 @@
   "workflow": ".github/workflows/current-local-extent-query-check-v2.yml",
   "preflight": "research/current-local-extent-query-check-preflight-v2.json",
   "preflight_sha256": "f72ee1783e9c22d9477cfc620b13605e19be61242c13018156748a9943f22928",
-  "reason": "One sequential cloud native/WASM compilation and scoped query parity case. No complete atlas runtime load, provider acquisition, scientific source processing, physical measurement admission or installed-asset update.",
+  "reason": "Revision3 source custody gate failed before compilation. Preserve this exact failed source/run and disable execution before inspecting the cause. Scientific inputs unchanged.",
   "prior_failed_cases": [
     {
       "run_id": 40135768056,
@@ -56,5 +56,13 @@
     "rust_source_formatting_version": "1.95.0",
     "node_parity_script_syntax_verified": true,
     "native_and_wasm_runtime_checks_complete": false
+  },
+  "completed_case": {
+    "run_id": 40137555025,
+    "run_attempt": 2,
+    "job_id": 121002298125,
+    "source_commit": "31769db0d862432cde14c8aa01a941451bd0e955",
+    "conclusion": "failure",
+    "installed_assets_updated": false
   }
 }
