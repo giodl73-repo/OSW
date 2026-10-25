@@ -258,7 +258,7 @@ def main():
     controls(dict(os.environ))
     if args.preflight_only:
         print('Browser source preflight passed'); return
-    OUTPUT.mkdir(exist_ok=False)
+    OUTPUT.mkdir(parents=True, exist_ok=False)
     try:
         proof = restore()
         (OUTPUT / 'custody.json').write_text(json.dumps(proof, indent=2) + '\n')

@@ -54,3 +54,20 @@ Only small source/archive fixtures run locally on one CPU at BelowNormal
 priority. No local browser, build, packet/index load or candidate download.
 While the cloud case runs, locally observe that exact run only. Preserve the
 user's existing browser tabs and preview server8788.
+
+## First execution and fresh-checkout correction
+
+Run40151810409/attempt1, job121044724974, source
+518c9d15a6aea2392094778da1b7d1d2399b0c37 passed source verification,
+the seven fixtures and cloud browser dependency installation. It stopped before
+artifact retrieval or browser launch because the fresh checkout did not contain
+the ignored .pytest_cache parent. No browser receipt or screenshot was produced;
+the workflow log records FileNotFoundError on the output-directory creation.
+Execution was disabled and the original source/run retained.
+
+Revision2 creates the missing parent directories while still refusing an
+existing run directory. A lifecycle fixture exercises a cold checkout through
+the guarded main entry with artifact retrieval/browser work mocked, then
+verifies that rerunning against the same output directory is refused before
+restoring again. Candidate bytes, artifact identity, scientific inputs and all
+actual UI checks remain unchanged. Browser verification is still pending.

@@ -17,6 +17,21 @@ def sha(raw): return hashlib.sha256(raw).hexdigest()
 
 
 class BrowserCustody(unittest.TestCase):
+    def test_fresh_checkout_initializes_once_and_refuses_existing_run(self):
+        with TemporaryDirectory() as folder:
+            output = Path(folder) / '.pytest_cache' / 'browser-case'
+            proof = {'synthetic_custody_verified': True}
+            with patch.object(browser, 'OUTPUT', output), patch.object(browser, 'controls'), \
+                    patch.object(browser, 'restore', return_value=proof) as restore, \
+                    patch.object(browser, 'run_browser') as run, \
+                    patch('sys.argv', ['check', '--cloud-browser']):
+                browser.main()
+                self.assertEqual(json.loads((output / 'custody.json').read_bytes()), proof)
+                restore.assert_called_once_with()
+                run.assert_called_once_with(proof)
+                with self.assertRaises(FileExistsError): browser.main()
+                self.assertEqual(restore.call_count, 1)
+
     def test_local_refusal_before_files_or_browser(self):
         with patch.object(browser.Path, 'read_bytes', side_effect=AssertionError('Data read')):
             with self.assertRaises(RuntimeError): browser.controls({})
