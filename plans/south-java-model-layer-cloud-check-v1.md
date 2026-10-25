@@ -12,11 +12,14 @@ Require the exact parent logical SHA256
 108551 total rows. Assembly occurs only on one cloud CPU. Locally, neither
 descriptor parts nor a complete packet are read by this case.
 
-Keep all existing generator/source manifest entries unchanged. Add a separate
+Keep existing generator/scientific manifest entries unchanged, except the
+derived dashboard receipt and its matching dashboard-input hash. Add a separate
 context-version and append-provenance namespace. Before append, fingerprint
 every prior collection and all other objects. After append, verify all unaffected
 collections, existing prefixes in sources/context collections, other objects,
-prior owner capabilities and section fingerprints. Permit only the declared
+prior owner capabilities and section fingerprints. Refresh only the matching
+dashboard entry's source/context fields so its receipt still projects the owner.
+Preserve other dashboard entries/counts and all physical fields. Permit only the declared
 source/context links and fingerprint changes on the South Java owner. Candidate
 rows must total108558, with no physical dimension or identity admission.
 
@@ -73,3 +76,16 @@ bounded failure receipt with return code, native error and completed-query
 count. It does not change the candidate, context records, Rust source, original
 packet or preservation gates. The underlying native cause remains unknown;
 rerun only the newly frozen checker in one cloud case to obtain that evidence.
+
+Revision2 run40145351751/attempt2 retained the precise native error: the South
+Java evidence-link array no longer matched the embedded dashboard source.
+Zero queries completed. The temporary append and preservation gates passed;
+no installed asset changed. Keep this loader consistency check intact.
+
+Revision3 refreshes only the matching dashboard entry's declared context/source
+fields, its snapshot fingerprint and the matching derived receipt/hash inside
+the temporary candidate. Preserve all245 other entries, counts, geometry and
+physical capabilities, plus every other generator/scientific manifest entry.
+The source facts, model records and Rust implementation remain unchanged.
+Tiny projection checks cover consistent refresh and prohibited physical changes;
+actual native compatibility still requires a new serial cloud case.

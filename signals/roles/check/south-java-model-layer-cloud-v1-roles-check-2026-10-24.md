@@ -22,7 +22,7 @@ covers one disabled-by-default cloud verification case, not a live publication.
 | 3 | CURRENT | Null width could be treated as zero or physical eligibility. | P2 | Queries | Native null/zero and eligibility filters required; no geometry inference. |
 | 4 | SOUNDER | A stale local cohort cannot prove delivered compatibility. | P2 | Parent | Exact delivered logical hash/size and106-current counts required in cloud. |
 | 5 | SOUNDER | Existing source/measurement rows must remain unchanged. | P2 | Preservation | Per-collection fingerprints and affected-prefix comparisons precede native queries. |
-| 6 | SOUNDER | Generator provenance must not be relabeled as recomputed. | P2 | Manifest | Preserve old entries; use a separate context append namespace. |
+| 6 | SOUNDER | Generator provenance must not be relabeled as recomputed. | P2 | Manifest | Revision3 changes only the derived dashboard receipt/input hash plus separate context namespace; other generator/scientific hashes remain intact. |
 | 7 | CHART | Context depth values cannot establish geographic width. | P2 | Records | Existing null geometry and explicit source class remain exact. |
 | 8 | CHART | The reviewed figure must not be regenerated during cohort checks. | P2 | Scope | Figure hashes preserved; no plotting in this case. |
 | 9 | CHART | Native query success does not verify map behavior. | P2 | Outcome | No map, WASM or browser-coverage claim. |
@@ -32,9 +32,9 @@ covers one disabled-by-default cloud verification case, not a live publication.
 | 13 | HARBOR | Parent assembly would impair the user's computer. | P2 | Guard | Cloud environment refused before data I/O; two tiny local refusal tests passed. |
 | 14 | HARBOR | Multiple native processes could overlap memory use. | P2 | Execution | One CPU/worker; Python packet objects released before sequential CLI calls. |
 | 15 | HARBOR | Artifact readback could accidentally download the candidate. | P2 | Upload | Exact result.json path only; no candidate or binary uploaded. |
-| 16 | KEEL | Synthetic append tests are insufficient for the real cohort. | P2 | Native case | First run passed real append/preservation then masked a native failure by parsing empty stdout. Revision2 retains exit/stderr diagnostics;11 actual native checks remain required. |
+| 16 | KEEL | Synthetic append tests are insufficient for the real cohort. | P2 | Native case | Revision2 exposed a dashboard projection mismatch; revision3 refreshes that derived dependency.11 actual native checks remain required. |
 | 17 | KEEL | Compiler/runtime changes would confound the case. | P2 | Build | Pinned1.95.0, locked dependencies and unchanged23 runtime source inputs. |
-| 18 | KEEL | Partial owner/provenance changes must be detected. | P2 | Preservation | First run reached native execution after these checks; keep all preservation gates. Retain compact failure evidence without uploading the candidate. |
+| 18 | KEEL | Partial owner/provenance changes must be detected. | P2 | Preservation | New projection checks preserve245 other entries and prohibit physical/new undeclared capabilities. Retain native diagnostics and every collection preservation gate. |
 | 19 | LOGBOOK | Activation must not relax the scientific hold. | P2 | Request/phase | Separate metadata-candidate permission; provider/source processing stays disabled. |
 | 20 | LOGBOOK | A failed or timed-out observation must not cause blind retries. | P2 | Run identity | Observe the same handle; rerun only after authoritative terminal/queue evidence. |
 | 21 | LOGBOOK | Case completion is not completion of all current gaps. | P2 | Protocol | Disable at terminal; preserve result and continue broader measurement work. |

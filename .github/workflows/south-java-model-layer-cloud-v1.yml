@@ -56,6 +56,7 @@ jobs:
           cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
           taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_south_java_layer_query_v1.py -v
           taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_south_java_model_layer_cloud_v1.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_south_java_model_context_projection_v1.py -v
       - name: Install native compiler only
         if: steps.request.outputs.enabled == 'true'
         run: |

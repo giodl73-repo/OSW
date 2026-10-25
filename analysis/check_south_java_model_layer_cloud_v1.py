@@ -95,6 +95,7 @@ def verify_controls(env):
 
 def run(cli, pref):
     import south_java_layer_query_v1 as context
+    from south_java_model_context_projection_v1 import refresh, DASHBOARD
     from query_packet import read_bundle_bytes
     descriptor=ROOT/'almanac/query-data.json'
     packet=json.loads(descriptor.read_bytes())
@@ -111,6 +112,7 @@ def run(cli, pref):
     original_manifest=json.loads(json.dumps(bundle['manifest']))
     collection_hashes={name:fingerprint(values) for name,values in rows.items()}
     old_owner=next(row for row in rows['objects'] if row['id']==context.TARGET)
+    prior_objects=rows['objects']
     other_objects_hash=fingerprint([row for row in rows['objects'] if row['id']!=context.TARGET])
     contract=context.build_contract()
     if (ROOT/context.FILE).read_bytes()!=context.encoded(contract):raise ValueError('Changed prepared projection')
@@ -133,6 +135,7 @@ def run(cli, pref):
         if owner['capabilities'].get(name)!=value:raise ValueError('Prior capability changed')
     for name,value in old_owner['section_fingerprints'].items():
         if owner['section_fingerprints'].get(name)!=value:raise ValueError('Prior section fingerprint changed')
+    bundle['manifest'],projection=refresh(bundle['manifest'],prior_objects,rows['objects'])
     for name,value in contract['manifest_fields'].items():
         if name in bundle['manifest']:raise ValueError('Context version already exists')
         bundle['manifest'][name]=value
@@ -141,8 +144,13 @@ def run(cli, pref):
     bundle['manifest'][key]={'contract_sha256':digest((ROOT/context.FILE).read_bytes()),
         'source_input_sha256':contract['input_sha256'],'parent_logical_sha256':PARENT_SHA,
         'physical_dimension_admission':False}
-    if any(bundle['manifest'][name]!=value for name,value in original_manifest.items()):
-        raise ValueError('Original generator/source manifest changed')
+    for name,value in original_manifest.items():
+        if name=='dashboard_receipt':continue
+        if name=='input_sha256':
+            current=bundle['manifest'][name]
+            if set(current)!=set(value) or any(current[path]!=old for path,old in value.items() if path!=DASHBOARD):
+                raise ValueError('Original scientific/generator input hashes changed')
+        elif bundle['manifest'][name]!=value:raise ValueError('Original generator/source manifest changed')
     after_counts={name:len(values) for name,values in rows.items()}
     if sum(after_counts.values())!=sum(counts.values())+7 or len(rows['widths'])!=172:
         raise ValueError('Unexpected candidate record/width count')
@@ -154,7 +162,7 @@ def run(cli, pref):
         stream.write('\n')
     if candidate.stat().st_size>210000000:raise ValueError('Candidate exceeded reviewed byte budget')
     expected_rows=contract['collections'];expected_owner=owner
-    del bundle,rows,old_owner,original_manifest
+    del bundle,rows,old_owner,original_manifest,prior_objects
     gc.collect()
     checks=[]
     def query(request, expected):
@@ -200,7 +208,8 @@ def run(cli, pref):
         'native_cli_sha256':native_sha256,
         'parent_records':sum(counts.values()),'candidate_records':sum(after_counts.values()),
         'new_context_records':5,'new_provenance_entries':2,'prior_collections_preserved':len(collection_hashes),
-        'original_manifest_preserved':True,'prior_context_and_source_prefixes_preserved':True,
+        'original_manifest_preserved_except_dashboard_projection':True,'dashboard_projection':projection,
+        'prior_context_and_source_prefixes_preserved':True,
         'other_objects_preserved':245,'prior_owner_capabilities_preserved':True,'scoped_width_records_unchanged':172,
         'native_query_checks':checks,'scientific_inputs_unchanged':83,'runtime_inputs_unchanged':23,'verified_ui_inputs_unchanged':20,
         'cloud_source_inputs_verified':len(pref['input_sha256']),'installed_assets_modified':False,
