@@ -117,6 +117,21 @@ WASM was rebuilt and does not claim browser verification or installation.
 
 Five tiny Python dependency/overlay checks and two Node refusal/ABI checks
 passed on one local CPU at BelowNormal priority. No compiler or browser ran.
-The cloud controller/workflow, actual compile-input byte verification, matching
-native/WASM compilation, real main/index parity and engine-artifact retention
-remain to be implemented and executed before the browser follow-up.
+The cloud controller and disabled workflow are now prepared. Four additional
+controller checks cover local/wrong-branch refusal, precise input mismatch and
+native metadata diagnostics. The controller restores the saved candidate before
+checking the144 data bytes, checkpoints exact source/restoration identity, then
+verifies all inputs again after separate native/release WASM compilation. It
+streams packet assembly and source-index decompression to temporary cloud files
+without parsing either full dataset in Python. Main and index parity run in
+separate Node processes, and only the final binary/manifest plus compact
+receipts are retained. It records actual compiler identity, recipes, dependency
+record hash and the narrowly declared source/data/binary overlay.
+
+The new workflow starts disabled and requires a successful held-run review
+before a request-only activation. All meaningful commands use one actual CPU,
+nice15 and single-worker environment settings; require3GiB free disk and6GiB
+available memory before restoration. Eleven tiny preparation checks pass on one
+local CPU at BelowNormal priority. Actual data-byte verification after restore,
+native/WASM compilation, main/index parity and engine-artifact retention remain
+unexecuted. Browser review and working-branch installation are later gates.
