@@ -18,7 +18,9 @@ export function invoke(engine, name, bytes) {
     new Uint8Array(engine.memory.buffer, ptr, bytes.length).set(bytes);
     engine[name](ptr, bytes.length);
     const length = engine.osw_result_len();
-    assert.ok(length > 0 && length <= 131072, 'Unexpected ABI result size');
+    const limit = name === 'osw_load' ? 4194304 : 131072;
+    assert.ok(length > 0 && length <= limit,
+      `Unexpected ${name} ABI result size: ${length} bytes (limit ${limit})`);
     return JSON.parse(new TextDecoder().decode(
       new Uint8Array(engine.memory.buffer, engine.osw_result_ptr(), length)));
   } finally {
@@ -32,7 +34,7 @@ export async function main(env = process.env, argv = process.argv.slice(2)) {
   const [candidatePath, wasmPath, fixturesPath, receiptPath, expectedWasmSha] = argv;
   assert.ok(fs.statSync(candidatePath).size <= 210000000);
   assert.ok(fs.statSync(wasmPath).size <= 64000000);
-  assert.ok(fs.statSync(fixturesPath).size <= 1572864);
+  assert.ok(fs.statSync(fixturesPath).size <= 6291456);
   const fixtures = JSON.parse(fs.readFileSync(fixturesPath, 'utf8'));
   assert.equal(fixtures.queries.length, 11);
   let binary = fs.readFileSync(wasmPath);
@@ -45,6 +47,7 @@ export async function main(env = process.env, argv = process.argv.slice(2)) {
   assert.equal(sha(candidate), fixtures.candidate_sha256);
   const metadata = invoke(engine, 'osw_load', candidate);
   assert.equal(metadata.ok, true, JSON.stringify(metadata));
+  assert.deepEqual(metadata, fixtures.metadata, 'Native/WASM initialization metadata differs');
   candidate = null;
   let maxMemory = engine.memory.buffer.byteLength;
   const checks = [];
@@ -61,6 +64,7 @@ export async function main(env = process.env, argv = process.argv.slice(2)) {
     run_attempt: env.GITHUB_RUN_ATTEMPT, candidate_sha256: fixtures.candidate_sha256,
     wasm_sha256: wasmSha, max_wasm_linear_memory_bytes: maxMemory,
     node_version: process.version,
+    initialization_metadata_equal: true,
     native_wasm_checks: checks, wasm_rebuilt: false, browser_verified: false,
     installed_assets_modified: false, new_physical_dimensions_admitted: 0};
   fs.writeFileSync(receiptPath, JSON.stringify(receipt, null, 2) + '\n', {flag: 'wx'});

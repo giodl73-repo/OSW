@@ -78,6 +78,16 @@ def run(cli, pref, prior):
             raise ValueError('Candidate differs from verified native case: ' + key)
     candidate = native.OUTPUT / 'candidate.json'
     fixtures = {'candidate_sha256': prior['candidate_logical_sha256'], 'queries': []}
+    metadata_result = subprocess.run([str(cli), str(candidate)], stdout=subprocess.PIPE,
+                                     stderr=subprocess.PIPE, timeout=180, cwd=ROOT)
+    if (metadata_result.returncode != 0 or len(metadata_result.stdout) > 4194304
+            or len(metadata_result.stderr) > 32768):
+        raise ValueError('Native initialization metadata refused or exceeded 4MiB')
+    metadata = json.loads(metadata_result.stdout)
+    if metadata.get('ok') is not True:
+        raise ValueError('Native initialization failed')
+    fixtures['metadata'] = metadata
+    del metadata_result, metadata
     for check in report['native_query_checks']:
         query = {'collection': check['collection'], 'filters': check['filters'],
                  'sort': {'field': 'id'}, 'limit': 100}
@@ -89,7 +99,7 @@ def run(cli, pref, prior):
         fixtures['queries'].append({'query': query, 'expected': response})
     fixture_path = OUTPUT / 'fixtures.json'
     fixture_path.write_text(json.dumps(fixtures, allow_nan=False) + '\n')
-    if fixture_path.stat().st_size > 1572864:
+    if fixture_path.stat().st_size > 6291456:
         raise ValueError('Unexpected fixture size')
     del fixtures, response
     gc.collect()
@@ -97,9 +107,15 @@ def run(cli, pref, prior):
     manifest = json.loads((ROOT / 'almanac/query-engine.manifest.json').read_bytes())
     expected = manifest['sha256']['almanac/query-engine.wasm']
     env = dict(os.environ, OSW_SOUTH_JAVA_SAVED_WASM='1')
-    subprocess.run(['node', '--max-old-space-size=1536', 'analysis/check_south_java_saved_wasm_v1.mjs',
-                    str(candidate), str(engine), str(fixture_path), str(OUTPUT / 'result.json'), expected],
-                   cwd=ROOT, env=env, check=True, timeout=900)
+    result = subprocess.run(['node', '--max-old-space-size=1536', 'analysis/check_south_java_saved_wasm_v1.mjs',
+                             str(candidate), str(engine), str(fixture_path), str(OUTPUT / 'result.json'), expected],
+                            cwd=ROOT, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=900)
+    if result.returncode != 0:
+        raise ValueError('Saved-engine check failed (exit ' + str(result.returncode) + '): '
+                         + result.stderr.decode(errors='replace')[:1200])
+    if len(result.stdout) > 32768 or len(result.stderr) > 32768:
+        raise ValueError('Unexpected saved-engine diagnostic output size')
+    print(result.stdout.decode())
 
 
 def main():

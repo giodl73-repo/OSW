@@ -40,3 +40,22 @@ before working-branch installation. Keep the existing PR and main unchanged.
 Local work is restricted to small source/refusal checks on one CPU at
 BelowNormal priority. While a cloud case is live, only observe that exact run.
 No local builds, full packet/index loads, browser automation or bulk sync.
+
+## First execution and harness correction
+
+Run40147475639/attempt2 from70fd796af6e905ae53a43a679d3b5944fda666c7
+passed the source/fixture gates, native build and complete native reproduction
+of the prior candidate, then stopped at the WASM ABI result-size assertion.
+The original harness used the 128KiB query-result limit for initialization too.
+The runtime returns the manifest in initialization metadata. The original error
+did not retain the response length or ABI function, so no exact byte count or
+completed WASM query count can be claimed. Execution was disabled after failure.
+
+Operational revision2 compares native initialization metadata as well as all11
+query responses. Initialization is bounded separately at4MiB; query responses
+retain128KiB limits. The combined native fixture file is bounded at6MiB. Errors
+now identify the ABI function, actual length and bound, and the Python failure
+receipt retains bounded Node stderr. Tests cover metadata above128KiB, unchanged
+query refusal and initialization above4MiB. Scientific data, Rust runtime,
+candidate identity, installed binary and all preservation gates are unchanged.
+Actual saved-WASM compatibility remains unverified until a new cloud case.
