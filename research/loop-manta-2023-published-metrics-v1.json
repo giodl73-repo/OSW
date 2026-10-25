@@ -1,0 +1,122 @@
+{
+  "schema": "osw.published-current-contour-metrics.v1",
+  "entity_id": "current:loop",
+  "status": "structured_published_evidence_not_reproduced_daily_paths",
+  "source": {
+    "id": "source:manta-loop-2023",
+    "doi": "10.3389/fmars.2023.1156159",
+    "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2023.1156159/full",
+    "title": "Predicting the Loop Current dynamics combining altimetry and deep flow measurements through the Yucatan Channel",
+    "authors": "Manta et al.",
+    "year": 2023,
+    "review_date": "2026-10-24",
+    "access": "publisher_full_html_selected_sections_2_2_3_1_4_1",
+    "original_asset_retained": false,
+    "original_asset_sha256": null,
+    "figures_digitized": false
+  },
+  "source_product": {
+    "name": "Copernicus DUACS DT-2018",
+    "quantities": ["absolute_dynamic_topography", "surface_geostrophic_velocity"],
+    "grid_spacing_degrees": 0.25,
+    "time_step": "daily",
+    "start_year": 1993,
+    "end_year": 2021,
+    "exact_endpoint_dates": null,
+    "locator": "Sections 2.2 and 3.1"
+  },
+  "length_summaries": [
+    {
+      "id": "loop-manta-2023-demeaned-017m-summary",
+      "method": "gulf_demeaned_0_17m_connected_sea_level_contour",
+      "gate_labels": ["Yucatan Channel", "Florida Straits"],
+      "mean_km": 1449,
+      "temporal_standard_deviation_km": 487,
+      "statistic": "author_reported_mean_of_daily_contour_lengths",
+      "locator": "Section 4.1, first paragraph; method in section 3.1",
+      "uncertainty_km": null,
+      "annual_minimum_km": null,
+      "annual_maximum_km": null,
+      "length_of_temporal_mean_path_km": null,
+      "axis_geometry": null,
+      "rank_eligible": false
+    },
+    {
+      "id": "loop-manta-2023-maximum-velocity-summary",
+      "method": "maximum_geostrophic_velocity_connected_sea_level_streamline",
+      "gate_labels": ["Yucatan Channel", "Florida Straits"],
+      "mean_km": 1495,
+      "temporal_standard_deviation_km": 466,
+      "statistic": "author_reported_mean_of_daily_contour_lengths",
+      "locator": "Section 4.1, first paragraph; method in section 3.1",
+      "uncertainty_km": null,
+      "annual_minimum_km": null,
+      "annual_maximum_km": null,
+      "length_of_temporal_mean_path_km": null,
+      "axis_geometry": null,
+      "rank_eligible": false
+    }
+  ],
+  "event_definition": {
+    "detector": "TOEddies",
+    "event_type": "published_algorithm_final_eddy_separation",
+    "meaning": "Final detachment without later reattachment under the source's event convention.",
+    "locator": "Section 3.1 definition; section 4.1 event list",
+    "reported_full_period_separations": 48,
+    "listed_overlap_subset_count": 12,
+    "complete_full_period_event_inventory": false,
+    "date_precision": "calendar_day",
+    "timezone": null,
+    "clock_time": null,
+    "event_date_is_ring_birth_date": false,
+    "event_date_is_initial_detachment_date": false,
+    "independent_direct_observation_claimed": false
+  },
+  "separation_events": [
+    {"id": "loop-manta-2023-separation-20130520", "date": "2013-05-20", "eddy_id": null, "eddy_name": null, "geometry": null},
+    {"id": "loop-manta-2023-separation-20141105", "date": "2014-11-05", "eddy_id": null, "eddy_name": null, "geometry": null},
+    {"id": "loop-manta-2023-separation-20150228", "date": "2015-02-28", "eddy_id": null, "eddy_name": null, "geometry": null},
+    {"id": "loop-manta-2023-separation-20150515", "date": "2015-05-15", "eddy_id": null, "eddy_name": null, "geometry": null},
+    {"id": "loop-manta-2023-separation-20151204", "date": "2015-12-04", "eddy_id": null, "eddy_name": null, "geometry": null},
+    {"id": "loop-manta-2023-separation-20160409", "date": "2016-04-09", "eddy_id": null, "eddy_name": null, "geometry": null},
+    {"id": "loop-manta-2023-separation-20171110", "date": "2017-11-10", "eddy_id": null, "eddy_name": null, "geometry": null},
+    {"id": "loop-manta-2023-separation-20171121", "date": "2017-11-21", "eddy_id": null, "eddy_name": null, "geometry": null},
+    {"id": "loop-manta-2023-separation-20180321", "date": "2018-03-21", "eddy_id": null, "eddy_name": null, "geometry": null},
+    {"id": "loop-manta-2023-separation-20180721", "date": "2018-07-21", "eddy_id": null, "eddy_name": null, "geometry": null},
+    {"id": "loop-manta-2023-separation-20190703", "date": "2019-07-03", "eddy_id": null, "eddy_name": null, "geometry": null},
+    {"id": "loop-manta-2023-separation-20200330", "date": "2020-03-30", "eddy_id": null, "eddy_name": null, "geometry": null}
+  ],
+  "interpretation": {
+    "methods_are_independent_observations": false,
+    "standard_deviation_is_measurement_error": false,
+    "standard_deviation_is_confidence_interval": false,
+    "standard_deviation_is_annual_extrema": false,
+    "method_difference_is_error_bar": false,
+    "whole_current_width_km": null,
+    "daily_paths_supplied": false,
+    "geographic_playback_supported": false,
+    "state_intersections_supported": false,
+    "nasa_eddy_identifications_supported": false,
+    "horizon_name_join_verified": false
+  },
+  "related_publication": {
+    "doi": "10.1029/2026EA005115",
+    "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2026EA005115",
+    "first_published": "2026-10-19",
+    "reviewed_sections": ["2.5", "4.4", "Availability Statement"],
+    "role": "Subsequent connected-streamline methodology and seven-day forecast binning; no new numerical series acquired.",
+    "same_numeric_archive_verified": false,
+    "independent_reproduction_claimed": false
+  },
+  "delivery": {
+    "page": "almanac/loop-published-metrics.html",
+    "figure": "figures/loop-manta-2023-published-metrics-v1.svg",
+    "main_packet_installed": false,
+    "source_index_installed": false,
+    "new_reported_contour_summaries_structured": 2,
+    "new_reported_events_structured": 12,
+    "new_current_widths_admitted": 0,
+    "new_ranked_lengths_admitted": 0,
+    "new_named_eddies_admitted": 0
+  }
+}
