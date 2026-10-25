@@ -1,6 +1,6 @@
 {
   "schema": "osw.south-java-saved-wasm-request.v1",
-  "execution_permitted": false,
+  "execution_permitted": true,
   "max_cloud_jobs": 1,
   "max_heavy_local_jobs": 0,
   "installed_assets_change_permitted": false,
@@ -9,7 +9,7 @@
   "browser_automation_permitted": false,
   "main_merge_permitted": false,
   "preflight_sha256": "02e2c1e5c1a79ee3a0bc14637b379e7591a433b053f8d0d9d6de3537a3c49869",
-  "reason": "Held corrected ABI initialization-size harness. Compare native metadata with saved WASM under a separate 4MiB bound; retain 128KiB query bounds and exact candidate identity. Actual compatibility remains unverified.",
+  "reason": "One serial cloud saved-engine ABI comparison of the exact verified candidate. No WASM compilation, browser, provider processing, installed asset change or main merge.",
   "completed_case": {
     "run_id": 40147475639,
     "run_attempt": 2,
@@ -18,5 +18,17 @@
     "conclusion": "failure",
     "installed_assets_updated": false
   },
-  "operational_revision": 2
+  "operational_revision": 2,
+  "readiness": {
+    "frozen_source_commit": "efcc64870ed7773a5bad92157abacd7bf68fe110",
+    "held_run_id": 40148092740,
+    "held_run_attempt": 1,
+    "held_job_id": 121033656051,
+    "all_compute_steps_skipped": true,
+    "all_remote_source_pins_verified": 164,
+    "stage_inputs_verified": 12,
+    "tiny_refusal_and_abi_checks_passed": 6,
+    "native_candidate_verified": true,
+    "wasm_compatibility_verified": false
+  }
 }
