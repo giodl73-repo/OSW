@@ -1,6 +1,6 @@
 {
   "schema": "osw.south-java-saved-wasm-request.v1",
-  "execution_permitted": true,
+  "execution_permitted": false,
   "max_cloud_jobs": 1,
   "max_heavy_local_jobs": 0,
   "installed_assets_change_permitted": false,
@@ -9,7 +9,7 @@
   "browser_automation_permitted": false,
   "main_merge_permitted": false,
   "preflight_sha256": "4e6c7876974b6a616cb09eb5cea3a86628947237a6b21a932494bc180ea52d48",
-  "reason": "One serial cloud saved-engine ABI comparison of the exact verified candidate. No WASM compilation, browser, provider processing, installed asset change or main merge.",
+  "reason": "Saved-engine compatibility stage failed. Disable execution and inspect the exact failure before editing. Installed packet and scientific inputs unchanged.",
   "readiness": {
     "frozen_source_commit": "e6f178ecfa917d8df711d21f752b6447848cb055",
     "held_run_id": 40147272209,
@@ -21,5 +21,13 @@
     "tiny_refusal_and_abi_checks_passed": 4,
     "native_candidate_verified": true,
     "wasm_compatibility_verified": false
+  },
+  "completed_case": {
+    "run_id": 40147475639,
+    "run_attempt": 2,
+    "job_id": 121032047510,
+    "source_commit": "70fd796af6e905ae53a43a679d3b5944fda666c7",
+    "conclusion": "failure",
+    "installed_assets_updated": false
   }
 }
