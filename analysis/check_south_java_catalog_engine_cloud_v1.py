@@ -154,6 +154,12 @@ def query(cli, payload, request, index=False):
     return value
 
 
+def original_source_matches(response, raw):
+    reconstructed = {row['source_key']: row['record'] for row in response['rows']}
+    return (response['source_sha256'] == native.digest(raw)
+            and native.fingerprint(reconstructed) == native.fingerprint(json.loads(raw)))
+
+
 def parity(mode, cli, wasm, payload, wasm_sha):
     metadata = OUTPUT / (mode + '-metadata.json')
     capture([str(cli)] + (['--index'] if mode == 'index' else []) + [str(payload)],
@@ -173,8 +179,7 @@ def parity(mode, cli, wasm, payload, wasm_sha):
             request = {'document': path, 'pointer': '', 'limit': 500, 'offset': 0}
             response = query(cli, payload, request, index=True)
             raw = (ROOT / path).read_bytes()
-            if (response['source_sha256'] != native.digest(raw)
-                    or {row['source_key']: row['record'] for row in response['rows']} != json.loads(raw)):
+            if not original_source_matches(response, raw):
                 raise ValueError('Indexed source differs from exact checked document: ' + path)
             fixtures['queries'].append({'request': request, 'expected': response})
         wrong = OUTPUT / 'wrong-index.json'

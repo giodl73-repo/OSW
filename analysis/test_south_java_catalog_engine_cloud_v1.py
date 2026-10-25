@@ -8,6 +8,16 @@ import check_south_java_catalog_engine_cloud_v1 as cloud
 
 
 class Controller(unittest.TestCase):
+    def test_original_source_comparison_distinguishes_false_zero_and_null(self):
+        raw = b'{"eligible":false,"width":null}'
+        response = {'source_sha256': cloud.native.digest(raw),
+                    'rows': [{'source_key': 'eligible', 'record': False}, {'source_key': 'width', 'record': None}]}
+        self.assertTrue(cloud.original_source_matches(response, raw))
+        response['rows'][0]['record'] = 0
+        self.assertFalse(cloud.original_source_matches(response, raw))
+        response['rows'][0]['record'] = False; response['rows'][1]['record'] = 0
+        self.assertFalse(cloud.original_source_matches(response, raw))
+
     def test_local_refusal_precedes_payload_reads(self):
         with patch.object(cloud.Path, 'read_bytes', side_effect=AssertionError('File read')):
             with self.assertRaises(RuntimeError): cloud.controls({})
