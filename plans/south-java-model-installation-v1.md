@@ -78,3 +78,22 @@ Do not download the large artifacts or synchronize the local preview packet/
 engine under the resource hold. The existing preview8788 and user tabs remain
 untouched. Local work is limited to small one-CPU source/custody checks. The
 Rotschi1972/default-suite403 gate remains separate from this scoped installation.
+
+## Prepared installer and receipt binding
+
+`analysis/install_south_java_model_v1.py` reuses the verified restoration and
+manifest-overlay functions from the completed browser case. It does not invoke
+the browser driver, compiler or scientific producers. Seven small fixtures
+cover local refusal, typed request limits, source run/job custody, reviewed
+screenshots and result bytes, permitted output paths and a moved-branch refusal.
+
+The initial request remains disabled. The workflow uses the shared serial lock.
+On successful installation, the same publication commit disables its request.
+That commit contains the 19 saved generated paths, one installed proof and the
+disabled request. Unchanged historical parts remain in place.
+
+A proof inside a Git commit cannot contain its own commit hash. The installed
+proof therefore records the exact control parent and all generated SHA256/Git
+blob identities. The separate cloud `result.json` receipt records the actual
+installed commit, proof blob identity and independent remote byte-size/blob
+verification for all 21 paths. Keep both records together when verifying delivery.
