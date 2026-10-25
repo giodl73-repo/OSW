@@ -1,6 +1,6 @@
 {
   "schema": "osw.south-java-catalog-engine-request.v1",
-  "execution_permitted": false,
+  "execution_permitted": true,
   "native_build_permitted": true,
   "wasm_build_permitted": true,
   "max_cloud_jobs": 1,
@@ -10,5 +10,19 @@
   "installed_assets_change_permitted": false,
   "main_merge_permitted": false,
   "preflight_sha256": "c067f794d6daddeca5edc8cb74c23f5bac75875afcf93c80d1068ec95bc5273b",
-  "reason": "Held one serial cloud matching-catalog build from frozen current Rust sources and exact saved candidate. Check actual144data bytes after restore, compile native and release WASM, compare main/index APIs and guard refusals; retain matching engine only in cloud. No local compilation, data regeneration, browser automation, branch installation or main merge."
+  "reason": "One serial cloud matching-catalog native/WASM build against exact saved candidate. Verify actual embedded inputs, production compiler dependencies, both APIs and mismatched-corpus refusal. No scientific regeneration, local build/browser/download, branch installation or main merge.",
+  "readiness": {
+    "frozen_source_commit": "33ce174f06bea1d19787298f8196fb5dcd99395b",
+    "held_run_id": 40154546354,
+    "held_run_attempt": 2,
+    "held_job_id": 121053205544,
+    "all_compute_steps_skipped": true,
+    "all_remote_source_pins_verified": 297,
+    "stage_inputs_verified": 21,
+    "tiny_preparation_checks_passed": 12,
+    "native_candidate_verified": true,
+    "temporary_candidate_wasm_verified": true,
+    "final_candidate_exported": true,
+    "browser_verified": false
+  }
 }
