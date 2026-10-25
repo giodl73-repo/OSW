@@ -1,6 +1,6 @@
 {
   "schema": "osw.south-java-model-delivery-request.v1",
-  "execution_permitted": true,
+  "execution_permitted": false,
   "cloud_derived_artifact_permitted": true,
   "max_cloud_jobs": 1,
   "max_heavy_local_jobs": 0,
@@ -10,7 +10,7 @@
   "browser_automation_permitted": false,
   "main_merge_permitted": false,
   "preflight_sha256": "d3e7f5bda76c298638b2e323b705e9c83da219062f75942d33516a5202825379",
-  "reason": "One serial cloud generated-candidate/index export, final native/saved-WASM parity and derived cloud artifact. No scientific processing, WASM rebuild, browser automation, working-branch data installation or main merge.",
+  "reason": "Final generated candidate export and native/saved-WASM parity passed. Disable execution before compact receipt review and serial cloud browser stage. Saved derived candidate stays cloud-only; working-branch installed data and scientific inputs unchanged.",
   "readiness": {
     "frozen_source_commit": "45fae1abfd57920c152d136ce43c1bbc9e54128a",
     "held_run_id": 40150266406,
@@ -23,5 +23,13 @@
     "native_candidate_verified": true,
     "temporary_candidate_wasm_verified": true,
     "final_candidate_exported": false
+  },
+  "completed_case": {
+    "run_id": 40150485982,
+    "run_attempt": 2,
+    "job_id": 121041034782,
+    "source_commit": "4bc5025098656048e2def466448ab884888afe58",
+    "conclusion": "success",
+    "installed_assets_updated": false
   }
 }
