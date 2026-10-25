@@ -82,3 +82,41 @@ three indexed derived source documents and no new physical dimensions. Broader
 current/eddy measurements, seasonal ranges, uncertainty and state joins remain
 open. Rotschi1972's earlier403/default-suite gate is still separate; this scoped
 build cannot establish a full scientific release.
+
+## Prepared input and verification components
+
+research/south-java-compiled-catalog-build-inputs-v1.json now pins all98
+Rust/Cargo sources and144 data references using recorded engine/source-catalog
+and saved-candidate hashes. The prior594-source catalog metadata was fetched
+as199835bytes and verified against its previously recorded SHA256. No
+scientific data payload was opened locally to derive these data pins.
+
+The literal Rust macro inventory found150 distinct data references. Six appear
+only in cfg(test) modules and have no production pin in those metadata sources;
+their source locations are recorded separately. Do not load their scientific
+payloads locally or silently admit them as unpinned production dependencies.
+The compiler-emitted production dependency record must exclude all six and
+must include the saved catalog and unchanged index_store.rs guard. Other144
+references are a checksummed superset; the actual compiler record determines
+which ones enter a production build.
+
+analysis/south_java_catalog_engine_v1.py prepares a manifest overlay that
+permits only the four already declared runtime-source differences and the
+new binary identity, while binding all actual compiled source/data pins and
+preserving historical receipts and scientific/generated inputs. It rejects
+undeclared dependencies, test-only fixtures in production, source changes
+outside the prior runtime scope and rewritten data/catalog hashes.
+
+analysis/check_south_java_compiled_catalog_v1.mjs has separate main/index
+verification modes, run in separate serial Node processes to release each
+store before loading the other. They compare complete initialization metadata
+and11 main/3source-query responses with native Rust, with bounded files, ABI
+responses and memory. The index mode must also reject a different valid JSON
+corpus with the unchanged compiled-catalog integrity error. It records that
+WASM was rebuilt and does not claim browser verification or installation.
+
+Five tiny Python dependency/overlay checks and two Node refusal/ABI checks
+passed on one local CPU at BelowNormal priority. No compiler or browser ran.
+The cloud controller/workflow, actual compile-input byte verification, matching
+native/WASM compilation, real main/index parity and engine-artifact retention
+remain to be implemented and executed before the browser follow-up.
