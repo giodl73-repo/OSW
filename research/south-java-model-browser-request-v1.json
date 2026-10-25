@@ -1,6 +1,6 @@
 {
   "schema": "osw.south-java-model-browser-request.v1",
-  "execution_permitted": false,
+  "execution_permitted": true,
   "browser_automation_permitted": true,
   "local_browser_permitted": false,
   "max_cloud_jobs": 1,
@@ -11,7 +11,7 @@
   "wasm_build_permitted": false,
   "main_merge_permitted": false,
   "preflight_sha256": "3a13fcf9777fe830278f9c40d5ffa36c7c531c2dc3c4b6c89690c5ff105decd1",
-  "reason": "Held cold-checkout output-directory correction. The previous cloud run stopped before artifact retrieval/browser launch. Preserve saved candidate and all UI checks; create missing output parents and still refuse an existing run directory. Actual browser review remains pending.",
+  "reason": "One serial cloud browser review restoring the exact verified saved candidate. No candidate regeneration, compilation, local browser or large local download, scientific processing, working-branch data installation or main merge.",
   "completed_case": {
     "run_id": 40151810409,
     "run_attempt": 1,
@@ -20,5 +20,19 @@
     "conclusion": "failure",
     "installed_assets_updated": false
   },
-  "operational_revision": 2
+  "operational_revision": 2,
+  "readiness": {
+    "frozen_source_commit": "311b415164de5a35a95fd9fb04d3a3c41e423cb4",
+    "held_run_id": 40152110909,
+    "held_run_attempt": 2,
+    "held_job_id": 121045775081,
+    "all_compute_steps_skipped": true,
+    "all_remote_source_pins_verified": 193,
+    "stage_inputs_verified": 24,
+    "tiny_preparation_checks_passed": 8,
+    "native_candidate_verified": true,
+    "temporary_candidate_wasm_verified": true,
+    "final_candidate_exported": true,
+    "browser_verified": false
+  }
 }
