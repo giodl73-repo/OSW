@@ -1,6 +1,6 @@
 {
   "schema": "osw.south-java-saved-wasm-request.v1",
-  "execution_permitted": false,
+  "execution_permitted": true,
   "max_cloud_jobs": 1,
   "max_heavy_local_jobs": 0,
   "installed_assets_change_permitted": false,
@@ -9,7 +9,7 @@
   "browser_automation_permitted": false,
   "main_merge_permitted": false,
   "preflight_sha256": "40035e195bd2542e343cc8b7fd74faef5da2444ff0c3a9ce9f4834b474aecd08",
-  "reason": "Held streamed native metadata export correction. Compare saved WASM with exact native metadata and11 queries under candidate-derived metadata bound and unchanged query bound. Retain exact export diagnostics. No installed assets or scientific inputs change.",
+  "reason": "One serial cloud saved-engine ABI comparison of the exact verified candidate. No WASM compilation, browser, provider processing, installed asset change or main merge.",
   "completed_case": {
     "run_id": 40148242247,
     "run_attempt": 2,
@@ -18,5 +18,17 @@
     "conclusion": "failure",
     "installed_assets_updated": false
   },
-  "operational_revision": 3
+  "operational_revision": 3,
+  "readiness": {
+    "frozen_source_commit": "a62340107d58c24a544aef91d8fce1f97b62851e",
+    "held_run_id": 40148919750,
+    "held_run_attempt": 1,
+    "held_job_id": 121036152078,
+    "all_compute_steps_skipped": true,
+    "all_remote_source_pins_verified": 164,
+    "stage_inputs_verified": 12,
+    "tiny_refusal_and_abi_checks_passed": 9,
+    "native_candidate_verified": true,
+    "wasm_compatibility_verified": false
+  }
 }
