@@ -1211,7 +1211,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "923bac3fb50a7bed939168cb8a96f2df16d703fa4fb149b7dd866386089c2e21",
+  "snapshot_fingerprint": "18d77eaaf58573ee9bbbcd9b2ba1e7a2ba937407eeb3d5d32388151e33310444",
   "entries": [
     {
       "id": "current:agulhas",
@@ -166955,9 +166955,11 @@
       "source_ids": [
         "source:indian-coastal-dimension-context-v1",
         "source:indian-coastal-identities-vinayachandran-2021",
+        "source:iskandar-south-java-ofes-2006",
+        "source:published-model-layer-context-v1",
         "source:sprintall-sjc-2010-ombai-confinement"
       ],
-      "linked_source_count": 3,
+      "linked_source_count": 5,
       "capabilities": {
         "dated_diagnostics": 0,
         "flow_network": 0,
@@ -166976,7 +166978,9 @@
         "direction_descriptions": 0,
         "reported_width_evidence": 0,
         "cross_shore_context": 1,
-        "regime_context": 0
+        "regime_context": 0,
+        "model_analysis_layers": 1,
+        "model_depth_context": 2
       },
       "dashboard_search": "South Java Current Eastern Indian Ocean",
       "search_aliases": [
@@ -167008,6 +167012,18 @@
         {
           "label": "Query the SST-associated confinement context",
           "url": "query.html?q=%7B%22collection%22%3A%22current_cross_shore_context%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22cross-shore-context%3Asouth-java%3Asprintall-2010-ombai-confinement%22%7D%5D%2C%22limit%22%3A1%7D"
+        },
+        {
+          "label": "Query related model model analysis layers (includes separate undercurrent context)",
+          "url": "query.html?q=%7B%22collection%22%3A%22current_model_analysis_layers%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22related_current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22current%3Asouth-java%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22id%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A100%7D"
+        },
+        {
+          "label": "Query related model model depth context (includes separate undercurrent context)",
+          "url": "query.html?q=%7B%22collection%22%3A%22current_model_depth_context%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22related_current_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22current%3Asouth-java%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22id%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A100%7D"
+        },
+        {
+          "label": "Model study layer/depth context, not current thickness",
+          "url": "../figures/south-java-iskandar-2006-layer-context-v1.svg"
         }
       ],
       "connections": [],
@@ -167035,16 +167051,24 @@
         "media": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd",
         "source_context": "af3da4d1bb5472c2954efa36f93b7f30e8291209ac4033a3bfc40a707ca91d4e",
-        "coastal_dimension_context": "af3da4d1bb5472c2954efa36f93b7f30e8291209ac4033a3bfc40a707ca91d4e"
+        "coastal_dimension_context": "af3da4d1bb5472c2954efa36f93b7f30e8291209ac4033a3bfc40a707ca91d4e",
+        "model_layer_context": "3e502e985555af0e80238eb2a11894217ed5d63f3584af52943b8792910eddf6"
       },
-      "fingerprint": "df800dd515bc63b6dab6b639b0c0bc464c2826f9a855bbc887019d5f243a9b46",
+      "fingerprint": "84630ab8b88323a12b9e29a927f62f3202d023144b6a31a76ec8e483ac4310c2",
       "direction_calendar_ids": [],
       "direction_description_ids": [],
       "reported_width_evidence_ids": [],
       "cross_shore_context_ids": [
         "cross-shore-context:south-java:sprintall-2010-ombai-confinement"
       ],
-      "regime_context_ids": []
+      "regime_context_ids": [],
+      "model_analysis_layer_ids": [
+        "south-java-iskandar-2006-sjcc-analysis-band"
+      ],
+      "model_depth_context_ids": [
+        "south-java-iskandar-2006-surface-mean-core",
+        "south-java-iskandar-2006-surface-mean-threshold-depth-cap"
+      ]
     }
   ],
   "connections": [
@@ -167186,5 +167210,13 @@
     "version": "baffin-described-latitudes-v1",
     "published": false,
     "scope": "One conditional regional geographic floor and nine editorial scenarios; no measured axis, seasonal range or qualified length rank."
+  },
+  "model_context_projection": {
+    "version": "south-java-iskandar-2006-v1",
+    "parent_source_sha256": "a3f3fd8f6c80d11a9e80fd2b218460fb877d2be461caed19c9be0cf62a9cf8fb",
+    "changed_owner_ids": [
+      "current:south-java"
+    ],
+    "physical_dimension_admission": false
   }
 }
