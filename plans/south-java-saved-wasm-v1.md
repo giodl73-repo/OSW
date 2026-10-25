@@ -59,3 +59,21 @@ receipt retains bounded Node stderr. Tests cover metadata above128KiB, unchanged
 query refusal and initialization above4MiB. Scientific data, Rust runtime,
 candidate identity, installed binary and all preservation gates are unchanged.
 Actual saved-WASM compatibility remains unverified until a new cloud case.
+
+Revision2 run40148242247/attempt2 stopped at native initialization export,
+before invoking WASM. Its combined guard did not retain whether the native
+process exited nonzero or the output exceeded4MiB. Do not assert either cause
+or any saved-engine parity from this run. Source/fixture gates, native build
+and exact candidate/query reproduction passed again. Execution was disabled.
+
+Revision3 streams native metadata into a separate temporary cloud file instead
+of embedding a second complete manifest in the query-fixture JSON. The source
+implementation returns the candidate manifest plus metadata-only inventories,
+so both native and WASM metadata budgets use candidate bytes plus2MiB, capped
+by the existing210000000-byte candidate bound. Query output limits stay128KiB;
+query fixtures return to1.5MiB. The export reports actual byte count, budget,
+timeout or native exit/error, and kills a child that exceeds its budget. Node
+compares complete metadata and all11 responses; its compact receipt records the
+actual metadata byte count. No larger metadata file is downloaded or retained
+as an artifact. The full manifest is no longer eagerly stringified in an
+assertion message. Compatibility and delivery remain unverified.

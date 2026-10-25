@@ -41,3 +41,14 @@ test('oversized initialization metadata is refused before reading the result', (
   assert.throws(() => invoke(engine, 'osw_load', new Uint8Array([1])), /osw_load.*4194305 bytes/);
   assert.equal(released, true);
 });
+
+test('candidate-derived metadata bound does not change the query bound', () => {
+  let released = 0;
+  const engine = {memory: new WebAssembly.Memory({initial: 1}), osw_alloc: () => 4,
+    osw_load: () => {}, osw_query: () => {}, osw_result_len: () => 150000,
+    osw_result_ptr: () => {throw Error('Must refuse before reading result');},
+    osw_dealloc: () => {released++;}};
+  assert.throws(() => invoke(engine, 'osw_load', new Uint8Array([1]), 149999), /osw_load.*limit 149999/);
+  assert.throws(() => invoke(engine, 'osw_query', new Uint8Array([1]), 999999), /osw_query.*limit 131072/);
+  assert.equal(released, 2);
+});

@@ -78,16 +78,11 @@ def run(cli, pref, prior):
             raise ValueError('Candidate differs from verified native case: ' + key)
     candidate = native.OUTPUT / 'candidate.json'
     fixtures = {'candidate_sha256': prior['candidate_logical_sha256'], 'queries': []}
-    metadata_result = subprocess.run([str(cli), str(candidate)], stdout=subprocess.PIPE,
-                                     stderr=subprocess.PIPE, timeout=180, cwd=ROOT)
-    if (metadata_result.returncode != 0 or len(metadata_result.stdout) > 4194304
-            or len(metadata_result.stderr) > 32768):
-        raise ValueError('Native initialization metadata refused or exceeded 4MiB')
-    metadata = json.loads(metadata_result.stdout)
-    if metadata.get('ok') is not True:
-        raise ValueError('Native initialization failed')
-    fixtures['metadata'] = metadata
-    del metadata_result, metadata
+    # Metadata embeds the original manifest. Its budget follows the bound on the
+    # exact candidate, plus 2MiB for metadata-only inventories; queries stay small.
+    metadata_path = OUTPUT / 'native-metadata.json'
+    metadata_budget = candidate.stat().st_size + 2097152
+    write_native_metadata(cli, candidate, metadata_path, metadata_budget)
     for check in report['native_query_checks']:
         query = {'collection': check['collection'], 'filters': check['filters'],
                  'sort': {'field': 'id'}, 'limit': 100}
@@ -99,7 +94,7 @@ def run(cli, pref, prior):
         fixtures['queries'].append({'query': query, 'expected': response})
     fixture_path = OUTPUT / 'fixtures.json'
     fixture_path.write_text(json.dumps(fixtures, allow_nan=False) + '\n')
-    if fixture_path.stat().st_size > 6291456:
+    if fixture_path.stat().st_size > 1572864:
         raise ValueError('Unexpected fixture size')
     del fixtures, response
     gc.collect()
@@ -108,7 +103,8 @@ def run(cli, pref, prior):
     expected = manifest['sha256']['almanac/query-engine.wasm']
     env = dict(os.environ, OSW_SOUTH_JAVA_SAVED_WASM='1')
     result = subprocess.run(['node', '--max-old-space-size=1536', 'analysis/check_south_java_saved_wasm_v1.mjs',
-                             str(candidate), str(engine), str(fixture_path), str(OUTPUT / 'result.json'), expected],
+                             str(candidate), str(engine), str(fixture_path), str(OUTPUT / 'result.json'),
+                             expected, str(metadata_path)],
                             cwd=ROOT, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=900)
     if result.returncode != 0:
         raise ValueError('Saved-engine check failed (exit ' + str(result.returncode) + '): '
@@ -116,6 +112,37 @@ def run(cli, pref, prior):
     if len(result.stdout) > 32768 or len(result.stderr) > 32768:
         raise ValueError('Unexpected saved-engine diagnostic output size')
     print(result.stdout.decode())
+
+
+def write_native_metadata(cli, candidate, target, budget):
+    """Stream to a cloud-only file; never duplicate the manifest in fixtures."""
+    stderr_path = target.with_suffix('.stderr')
+    with target.open('xb') as output, stderr_path.open('xb') as errors:
+        process = subprocess.Popen([str(cli), str(candidate)], cwd=ROOT,
+                                   stdout=output, stderr=errors)
+        try:
+            # stdout is a regular file, so the child cannot block on a pipe.
+            # Bound its growth while waiting, and retain exact size/status.
+            import time
+            deadline = time.monotonic() + 180
+            while process.poll() is None:
+                if target.stat().st_size > budget or stderr_path.stat().st_size > 32768:
+                    process.kill(); process.wait()
+                    raise ValueError('Native metadata export exceeded budget: '
+                                     + str(target.stat().st_size) + '/' + str(budget) + ' bytes')
+                if time.monotonic() > deadline:
+                    process.kill(); process.wait()
+                    raise ValueError('Native metadata export timed out; bytes=' + str(target.stat().st_size))
+                time.sleep(0.2)
+        finally:
+            if process.poll() is None:
+                process.kill(); process.wait()
+    length = target.stat().st_size
+    if process.returncode != 0 or not 0 < length <= budget or stderr_path.stat().st_size > 32768:
+        with stderr_path.open('rb') as stream:
+            detail = stream.read(1200).decode(errors='replace')
+        raise ValueError('Native metadata export exit=' + str(process.returncode)
+                         + ', bytes=' + str(length) + ', budget=' + str(budget) + ': ' + detail)
 
 
 def main():
