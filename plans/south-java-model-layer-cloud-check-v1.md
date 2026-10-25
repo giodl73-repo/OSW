@@ -54,7 +54,22 @@ held. No provider acquisition, velocity recomputation, browser automation,
 installed-asset write, index rebuild, WASM build or main merge is permitted.
 
 The candidate remains cloud-only and is not uploaded. Retain only the compact
-result JSON. The baseline packet/parts and binaries stay in the cloud. After
+result JSON or bounded native-failure JSON. The baseline packet/parts and binaries stay in the cloud. After
 terminal status, disable the request and review the compact result before
 choosing publication or the next measurement gap. Local refusal tests must
 demonstrate that a local/wrong-branch invocation reads no data file.
+
+## Initial execution and diagnostic correction
+
+Run40144452810/attempt2 from55f4fd62328459ce9ea615cdc8f45bc919bf9477
+passed source/fixture gates and native compilation. It assembled the exact
+parent and reached the native query loop after append/preservation checks.
+The checker then tried parsing stdout before inspecting the process
+exit code/stderr, masking the native failure. No native query is verified.
+Execution was disabled and the original run/source preserved.
+
+Operational revision2 handles nonzero status before JSON parsing and retains a
+bounded failure receipt with return code, native error and completed-query
+count. It does not change the candidate, context records, Rust source, original
+packet or preservation gates. The underlying native cause remains unknown;
+rerun only the newly frozen checker in one cloud case to obtain that evidence.

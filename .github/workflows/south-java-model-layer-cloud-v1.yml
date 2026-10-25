@@ -81,7 +81,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: south-java-model-layer-cloud-check-v1
-          path: .pytest_cache/south-java-model-layer-cloud-check-v1/result.json
+          path: |
+            .pytest_cache/south-java-model-layer-cloud-check-v1/result.json
+            .pytest_cache/south-java-model-layer-cloud-check-v1/failure.json
           include-hidden-files: true
           if-no-files-found: ignore
           retention-days: 90

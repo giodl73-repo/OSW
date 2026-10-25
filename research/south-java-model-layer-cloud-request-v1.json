@@ -14,31 +14,22 @@
   "browser_automation_permitted": false,
   "main_merge_permitted": false,
   "preflight": "research/south-java-model-layer-cloud-preflight-v1.json",
-  "preflight_sha256": "2d80a9285ecd2acad2b81f0a385ce6b6a2e2aad75aae303248509e461b26412f",
+  "preflight_sha256": "478d110994b6d098bacff4d90530a80b54ef20cd256c01643a480c2ddd9413a5",
   "workflow": ".github/workflows/south-java-model-layer-cloud-v1.yml",
-  "reason": "Cloud native build passed; temporary candidate/query step failed. Preserve exact run/source and disable execution before inspecting the error. Installed packet and scientific inputs unchanged.",
-  "readiness": {
-    "frozen_source_commit": "95fa0a308f148453d5cffc44abc005ad454d6f72",
-    "held_run_id": 40144269164,
-    "held_run_attempt": 1,
-    "held_job_id": 121022197049,
-    "held_conclusion": "success",
-    "all_build_candidate_steps_skipped": true,
-    "all_remote_source_pins_verified": 153,
-    "cloud_source_inputs_verified": 24,
-    "scientific_inputs_unchanged": 83,
-    "runtime_inputs_unchanged": 23,
-    "verified_ui_inputs_unchanged": 20,
-    "append_fixture_checks_passed": 15,
-    "local_refusal_checks_passed": 2,
-    "native_compatibility_verified": false
-  },
-  "completed_case": {
-    "run_id": 40144452810,
-    "run_attempt": 2,
-    "job_id": 121022858364,
-    "source_commit": "55f4fd62328459ce9ea615cdc8f45bc919bf9477",
-    "conclusion": "failure",
-    "installed_assets_updated": false
-  }
+  "reason": "Held diagnostic correction after real append/preservation and native build passed. Native return/stderr were masked by JSON parsing; preserve failed run and obtain bounded diagnostics in one corrected cloud case before any compatibility claim.",
+  "prior_failed_cases": [
+    {
+      "run_id": 40144452810,
+      "run_attempt": 2,
+      "job_id": 121022858364,
+      "source_commit": "55f4fd62328459ce9ea615cdc8f45bc919bf9477",
+      "conclusion": "failure",
+      "installed_assets_updated": false,
+      "preflight_sha256": "2d80a9285ecd2acad2b81f0a385ce6b6a2e2aad75aae303248509e461b26412f",
+      "native_compilation_passed": true,
+      "native_compatibility_verified": false,
+      "execution_review": "research/south-java-model-layer-cloud-execution-review-v1.json"
+    }
+  ],
+  "operational_revision": 2
 }

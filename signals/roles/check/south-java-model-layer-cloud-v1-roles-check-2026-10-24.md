@@ -32,9 +32,9 @@ covers one disabled-by-default cloud verification case, not a live publication.
 | 13 | HARBOR | Parent assembly would impair the user's computer. | P2 | Guard | Cloud environment refused before data I/O; two tiny local refusal tests passed. |
 | 14 | HARBOR | Multiple native processes could overlap memory use. | P2 | Execution | One CPU/worker; Python packet objects released before sequential CLI calls. |
 | 15 | HARBOR | Artifact readback could accidentally download the candidate. | P2 | Upload | Exact result.json path only; no candidate or binary uploaded. |
-| 16 | KEEL | Synthetic append tests are insufficient for the real cohort. | P2 | Native case | Hash-verified parent append plus11 exact native query comparisons required. |
+| 16 | KEEL | Synthetic append tests are insufficient for the real cohort. | P2 | Native case | First run passed real append/preservation then masked a native failure by parsing empty stdout. Revision2 retains exit/stderr diagnostics;11 actual native checks remain required. |
 | 17 | KEEL | Compiler/runtime changes would confound the case. | P2 | Build | Pinned1.95.0, locked dependencies and unchanged23 runtime source inputs. |
-| 18 | KEEL | Partial owner/provenance changes must be detected. | P2 | Preservation | Other245 objects, previous capabilities, section fingerprints and manifest fields checked. |
+| 18 | KEEL | Partial owner/provenance changes must be detected. | P2 | Preservation | First run reached native execution after these checks; keep all preservation gates. Retain compact failure evidence without uploading the candidate. |
 | 19 | LOGBOOK | Activation must not relax the scientific hold. | P2 | Request/phase | Separate metadata-candidate permission; provider/source processing stays disabled. |
 | 20 | LOGBOOK | A failed or timed-out observation must not cause blind retries. | P2 | Run identity | Observe the same handle; rerun only after authoritative terminal/queue evidence. |
 | 21 | LOGBOOK | Case completion is not completion of all current gaps. | P2 | Protocol | Disable at terminal; preserve result and continue broader measurement work. |

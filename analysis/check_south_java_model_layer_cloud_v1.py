@@ -24,6 +24,22 @@ def fingerprint(value):
     return digest(json.dumps(value,sort_keys=True,ensure_ascii=True,allow_nan=False,separators=(',',':')).encode())
 
 
+def decode_native_result(result):
+    if len(result.stdout)>131072 or len(result.stderr)>32768:
+        raise ValueError('Unexpected native output size')
+    if result.returncode!=0:
+        detail=result.stderr.decode(errors='replace').strip()[:800]
+        if not detail and result.stdout:
+            try:detail=str(json.loads(result.stdout).get('error',''))[:800]
+            except (ValueError,AttributeError):detail='Non-JSON native output'
+        raise ValueError(f'Native CLI failed (exit {result.returncode}): '+(detail or 'No stderr or JSON error output'))
+    try:actual=json.loads(result.stdout)
+    except ValueError as error:raise ValueError('Native CLI returned empty or invalid JSON on exit0') from error
+    if not isinstance(actual,dict) or actual.get('ok') is not True:
+        raise ValueError('Native query refused: '+str(actual.get('error','Invalid response') if isinstance(actual,dict) else 'Invalid response')[:800])
+    return actual
+
+
 def cloud_environment(env):
     # Refuse before reading any file, including the packet descriptor.
     if (env.get('GITHUB_ACTIONS') != 'true' or env.get('GITHUB_REPOSITORY') != 'giodl73-repo/OSW'
@@ -145,10 +161,16 @@ def run(cli, pref):
         command=[str(cli),str(candidate),'-']
         result=subprocess.run(command,input=json.dumps(request).encode(),stdout=subprocess.PIPE,stderr=subprocess.PIPE,
                               cwd=ROOT,timeout=180)
-        if len(result.stdout)>131072 or len(result.stderr)>32768:raise ValueError('Unexpected native output size')
-        actual=json.loads(result.stdout)
-        if result.returncode!=0 or actual.get('ok') is not True:
-            raise ValueError('Native query refused: '+str(actual.get('error',result.stderr.decode(errors='replace')[:400])))
+        try:actual=decode_native_result(result)
+        except ValueError as error:
+            failure={'schema':'osw.south-java-model-layer-cloud-failure.v1','status':'NATIVE_QUERY_FAILED',
+                'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],
+                'run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],'native_return_code':result.returncode,
+                'error':str(error),'parent_append_preservation_verified':True,
+                'native_queries_completed':len(checks),'failed_query':request,
+                'installed_assets_modified':False,'candidate_uploaded':False}
+            (OUTPUT/'failure.json').write_text(json.dumps(failure,indent=2)+'\n')
+            raise
         if actual['total']!=len(expected) or context.encoded(actual['rows'])!=context.encoded(sorted(expected,key=lambda row:row['id'])):
             raise ValueError('Native result differs from exact prepared rows')
         checks.append({'collection':request['collection'],'filters':request.get('filters',[]),
