@@ -1,7 +1,7 @@
 {
   "schema": "osw.loop-published-metrics-installation-request.v1",
-  "execution_permitted": true,
-  "working_branch_installation_permitted": true,
+  "execution_permitted": false,
+  "working_branch_installation_permitted": false,
   "installation_workflow": ".github/workflows/install-loop-published-metrics-v1.yml",
   "preflight_sha256": "efd0ed5f8614c614643e8df3962c31508fbcd8f2a469b115866e43b711fad545",
   "max_cloud_jobs": 1,
@@ -11,5 +11,14 @@
   "browser_automation_permitted": false,
   "scientific_source_processing_permitted": false,
   "local_bulk_sync_permitted": false,
-  "main_merge_permitted": false
+  "main_merge_permitted": false,
+  "completed_case": {
+    "run_id": 40344923275,
+    "run_attempt": 1,
+    "job_id": 121649634471,
+    "source_commit": "812fc5cbcf5529c45eb007496257a5c1e0f7cb22",
+    "conclusion": "failure",
+    "installed_assets_updated": false
+  },
+  "reason": "Installer source/parent checks passed, but workflow referenced a nonexistent test filename; Python3.14 correctly failed with zero tests. Restore/publish step skipped. Disable before fixing workflow test selection; no generated files installed."
 }
