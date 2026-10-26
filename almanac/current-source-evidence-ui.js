@@ -201,6 +201,23 @@
       node('p', row.constraint.display, section);
       node('p', contextText(row, row.scope_note || row.constraint.numeric_precision), section);
       node('p', 'This regional reach is unranked. A whole-current length, physical length lower bound and annual range have not been established.', section);
+      if (row.id === 'regional-reach:east-african-coastal:painter-2020-connection'
+          && row.schema === 'osw.source-reported-regional-connection.v1'
+          && row.source_id === 'source:painter-eacc-2020-regional-reach'
+          && row.constraint.reported_value_km === 1000
+          && row.constraint.relation === 'source_reported_approximate_value'
+          && row.whole_current_length_admitted === false
+          && row.constraint.whole_current_length_km === null
+          && row.constraint.current_geometry === null) {
+        const figure = node('figure', null, section);
+        const image = node('img', null, figure);
+        image.src = '../figures/eacc-regional-connection-v1.svg';
+        image.alt = 'Approximately 1000 km regional connection from coastal contact near 11°S to the Somali Current confluence near 3°S. Schematic, not a measured current axis; observation dates, layer, uncertainty and annual ranges unknown.';
+        image.loading = 'lazy'; image.style.cssText = 'width:100%;max-width:860px;height:auto';
+        node('figcaption', 'Published regional connection in a theoretical-transit discussion. This diagram adds no measurement or geographic route.', figure);
+        const open = node('a', 'Open the regional-connection diagram', section);
+        open.href = image.src;
+      }
       if (row.source?.source_title) node('p', [row.schema === 'osw.source-reported-regional-connection.v1' ? null : row.source.source_title,
         (row.source.authors || []).join(', '), row.source.chapter].filter(Boolean).join(' · '), section);
       source(row, section, sourceLink);

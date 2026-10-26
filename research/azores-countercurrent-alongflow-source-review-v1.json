@@ -1,0 +1,61 @@
+{
+  "schema": "osw.current-alongflow-source-review.v1",
+  "current_id": "azores-countercurrent",
+  "review_date": "2026-10-26",
+  "status": "SUBSURFACE_ALONGFLOW_SUPPORT_REQUIRED",
+  "access": "Publisher full HTML passages read; no original figure pixels inspected, geometry digitized or new PDF acquired.",
+  "sources": [
+    {
+      "doi": "10.1029/2010JC006538",
+      "citation": "Barbosa Aguiar et al. (2011), Zonal structure of the mean flow and eddies in the Azores Current system",
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2010JC006538",
+      "locators": ["Section 2.1.1, paragraph 8", "Section 3.1, paragraphs 31-32", "Section 4.1.2, paragraph 55"],
+      "source_summary": "The drifter study covers December 1990-June 2008, with drogues centered at 15 m. Its surface mean does not resolve a persistent zonally continuous northern AzCC. Distinct westward flows include a plateau-associated recirculation. The authors explicitly leave deeper counterflow possible.",
+      "use": "Surface continuity is not established; absence at the surface does not establish absence at depth.",
+      "surface_study_domain_is_current_extent": false
+    },
+    {
+      "doi": "10.1029/2011JC007129",
+      "citation": "Comas-Rodriguez et al. (2011), The Azores Current System from a meridional section at 24.5 W",
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2011JC007129",
+      "locators": ["Section 2, paragraph 6", "Section 3.2, paragraph 10", "Section 3.2, paragraph 12", "Section 3.2, paragraph 14", "Section 4, paragraph 15", "Figure 1 caption"],
+      "source_summary": "Stations were occupied 26 October-1 November 2009. At 24.5 W, stations 42-46 bound the subsurface westward AzCC between 36.25 and 35.25 N. The reported approximately 110 km is transverse width. Upper-50-m and nearly-700-m SADCP averages are distinct diagnostics. The shallow signal does not reproduce the AzCC. Figure 1's caption says fall 2010, conflicting with the methods' 2009 dates.",
+      "existing_width_id": "azores-countercurrent-2009-section-width",
+      "section_context": {
+        "longitude_deg_east": -24.5,
+        "north_station": 42,
+        "north_latitude_deg_north": 36.25,
+        "south_station": 46,
+        "south_latitude_deg_north": 35.25,
+        "methods_start_date": "2009-10-26",
+        "methods_end_date": "2009-11-01",
+        "caption_year": 2010,
+        "date_discrepancy_resolved": false,
+        "alongflow_endpoints": false,
+        "new_geometry_admitted": false
+      },
+      "use": "Retain existing scoped width without duplication. Keep date discrepancy explicit; the methods end date supports the existing November date. Do not convert the transverse span into current length."
+    }
+  ],
+  "decision": {
+    "new_measurements": 0,
+    "whole_current_length_km": null,
+    "reference_route_admitted": false,
+    "physical_axis_admitted": false,
+    "annual_ranges_admitted": false,
+    "surface_counterflows_joinable_as_azcc_axis": false,
+    "date_correction_to_existing_sample_authorized": false
+  },
+  "next_action": "Seek explicit subsurface alongflow endpoints and continuity in the original Onken (1993) or Alves et al. (2002) study; do not reconstruct a whole-current route from the surface study or concatenate transverse surveys.",
+  "next_source_leads": [
+    {"doi": "10.1175/1520-0485(1993)023<1638:TAC>2.0.CO;2", "title": "The Azores Countercurrent", "full_original_reviewed_here": false},
+    {"doi": "10.1016/S0967-0645(02)00138-8", "title": "Circulation patterns and transport of the Azores Front-Current system", "full_original_reviewed_here": false}
+  ],
+  "viz_requirements": {
+    "existing_section_card": "Keep the 110 km label scoped to the dated meridional section.",
+    "global_map": "Do not draw a continuous AzCC surface route from these papers.",
+    "seasonal_playback": "One survey is not a seasonal cycle; no interpolated annual envelope."
+  },
+  "related_audit": "research/azores-countercurrent-posaf-coordinate-meaning-audit.json",
+  "runtime_or_generated_packet_changed": false
+}
