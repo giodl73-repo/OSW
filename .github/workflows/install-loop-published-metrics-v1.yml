@@ -1,0 +1,73 @@
+name: Install exact reviewed Loop published evidence v1
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/loop-published-metrics-installation-request-v1.json
+      - .github/workflows/install-loop-published-metrics-v1.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: read
+
+env:
+  GH_TOKEN: ${{ github.token }}
+  CARGO_BUILD_JOBS: "1"
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  install-saved-cohort:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v6
+      - id: request
+        name: Read exact saved installation request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          request=json.loads(pathlib.Path('research/loop-published-metrics-installation-request-v1.json').read_bytes())
+          assert request['schema']=='osw.loop-published-metrics-installation-request.v1'
+          assert type(request['execution_permitted']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
+              stream.write('enabled='+str(request['execution_permitted']).lower()+'\n')
+          PY
+      - uses: actions/setup-python@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          python-version: "3.14.8"
+      - name: Verify installation source and preserved inputs
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/install_loop_published_metrics_v1.py --cloud-install --preflight-only
+      - name: Verify refusal and custody fixtures
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_install_loop_published_metrics_v1.py -v
+      - name: Restore reviewed saved artifacts and publish only to existing working branch
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/install_loop_published_metrics_v1.py --cloud-install
+      - name: Retain compact installed commit and byte identity proof
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: loop-published-metrics-installation-receipts-v1
+          path: |
+            .pytest_cache/loop-published-metrics-installation-v1/result.json
+            .pytest_cache/loop-published-metrics-installation-v1/failure.json
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90
