@@ -1211,7 +1211,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "18d77eaaf58573ee9bbbcd9b2ba1e7a2ba937407eeb3d5d32388151e33310444",
+  "snapshot_fingerprint": "ef158c4a1ae631984f139aa9331a122e642a9b8be009e607162f6eed2a072da5",
   "entries": [
     {
       "id": "current:agulhas",
@@ -69349,23 +69349,25 @@
       "time_behavior": "persistent_variable",
       "basin": "Gulf of Mexico",
       "capabilities": {
-        "observed_velocity": 0,
-        "radius_evidence": 0,
-        "reported_length": 0,
-        "reference_route": 0,
-        "scoped_width": 3,
-        "geometry": 0,
-        "time_samples": 10,
-        "source_connectivity": 0,
-        "scope_notes": 2,
         "dated_diagnostics": 10,
         "flow_network": 0,
+        "geometry": 0,
+        "observed_velocity": 0,
         "passage_transport": 0,
-        "width_samples": 10
+        "radius_evidence": 0,
+        "reference_route": 0,
+        "reported_length": 0,
+        "scope_notes": 2,
+        "scoped_width": 3,
+        "source_connectivity": 0,
+        "time_samples": 10,
+        "width_samples": 10,
+        "reported_contour_length_summaries": 2,
+        "reported_separation_events": 12
       },
       "recorded_claims": 56,
       "nasa_links": 1,
-      "fingerprint": "9193c94feba12db86ed4a77f2868d20bc4b5f609047dc92eec70f335b1b2de12",
+      "fingerprint": "a91428f04373cbe0b55309e6027e353dfea803fc570c1fcc5de5f8d1926836bc",
       "series": [
         {
           "label": "Yucatan inflow section spans — NOAA",
@@ -69381,19 +69383,20 @@
         }
       ],
       "section_fingerprints": {
-        "identity": "c5f9393dc80ca34a21c8f344cc69bbd95ddd0d6704e4750659ca3a75c1860bc1",
-        "sources": "f7e9802ad87ae79b8cab7c1fe164ff2e03ddc40a8a54666ab79ad8592f1e22d4",
         "claims": "8fd900f024a266c568a68aa1633d39e77a1eff43bd50c1788b95e398f0390d37",
+        "identity": "c5f9393dc80ca34a21c8f344cc69bbd95ddd0d6704e4750659ca3a75c1860bc1",
         "measurements": "4b2597984b5565b9b4d127d4e0fe22434da7e4e337969d20388563954d51134c",
-        "routes_geometry": "2d601a6fa9cb9b4c0b25f5793aca89666a28af5814fa583dec1794e82424a212",
         "media": "cd8bc8cd5e5b92bdd401b2f5842416faaf13701cbfeebb38eed166b88e2c025d",
-        "time_evidence": "f28b80db6d56ec0147f3b570360abfe39bae5211eb1c9a1019cbac249066861d"
+        "routes_geometry": "2d601a6fa9cb9b4c0b25f5793aca89666a28af5814fa583dec1794e82424a212",
+        "sources": "f7e9802ad87ae79b8cab7c1fe164ff2e03ddc40a8a54666ab79ad8592f1e22d4",
+        "time_evidence": "f28b80db6d56ec0147f3b570360abfe39bae5211eb1c9a1019cbac249066861d",
+        "published_contour_events": "d9672a9e0d01bdf95b6a1bfc2ac1486e1ba9ef0af6e0873917cb8b8ba7dbf2fc"
       },
       "latest_observation_date": "2026-09-25",
       "claim_review_counts": {
         "not_individually_reviewed": 56
       },
-      "linked_source_count": 5,
+      "linked_source_count": 7,
       "map_features": [
         {
           "geometry": {
@@ -74475,6 +74478,18 @@
         {
           "label": "Pre-Lili geostrophic core width definition",
           "url": "../figures/loop-uhlhorn-2008-core-width.svg"
+        },
+        {
+          "label": "Query published contour-length summaries",
+          "url": "query.html?q=%7B%22collection%22%3A%22current_reported_contour_length_summaries%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22entity_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22current%3Aloop%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22id%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A100%7D"
+        },
+        {
+          "label": "Query reported final-separation events",
+          "url": "query.html?q=%7B%22collection%22%3A%22current_reported_separation_events%22%2C%22filters%22%3A%5B%7B%22field%22%3A%22entity_id%22%2C%22op%22%3A%22eq%22%2C%22value%22%3A%22current%3Aloop%22%7D%5D%2C%22sort%22%3A%7B%22field%22%3A%22date%22%2C%22direction%22%3A%22asc%22%7D%2C%22limit%22%3A100%7D"
+        },
+        {
+          "label": "Published Loop Current metrics and event timeline",
+          "url": "loop-published-metrics.html"
         }
       ],
       "object_url": "object.html?id=current%3Aloop",
@@ -74491,7 +74506,9 @@
         "source:4f7441b953be4651",
         "source:803229fe82eb2360",
         "source:b038491b0e5a3967",
-        "source:d35c9b294dd4c44b"
+        "source:d35c9b294dd4c44b",
+        "source:manta-loop-2023",
+        "source:published-current-contour-event-query-v1"
       ],
       "state_codes": [],
       "published_length_km": null,
@@ -74535,7 +74552,25 @@
         "route-decision:loop"
       ],
       "current_section_ids": [],
-      "velocity_sample_ids": []
+      "velocity_sample_ids": [],
+      "reported_contour_length_summary_ids": [
+        "loop-manta-2023-demeaned-017m-summary",
+        "loop-manta-2023-maximum-velocity-summary"
+      ],
+      "reported_separation_event_ids": [
+        "loop-manta-2023-separation-20130520",
+        "loop-manta-2023-separation-20141105",
+        "loop-manta-2023-separation-20150228",
+        "loop-manta-2023-separation-20150515",
+        "loop-manta-2023-separation-20151204",
+        "loop-manta-2023-separation-20160409",
+        "loop-manta-2023-separation-20171110",
+        "loop-manta-2023-separation-20171121",
+        "loop-manta-2023-separation-20180321",
+        "loop-manta-2023-separation-20180721",
+        "loop-manta-2023-separation-20190703",
+        "loop-manta-2023-separation-20200330"
+      ]
     },
     {
       "id": "current:mauritanian",
@@ -167216,6 +167251,13 @@
     "parent_source_sha256": "a3f3fd8f6c80d11a9e80fd2b218460fb877d2be461caed19c9be0cf62a9cf8fb",
     "changed_owner_ids": [
       "current:south-java"
+    ],
+    "physical_dimension_admission": false
+  },
+  "loop_published_metrics_delivery_v1": {
+    "parent_source_sha256": "90d6904bdb35111012b3ddc6aadca4d6396fb5b187b55c4611e2c5e5a5d6ca84",
+    "changed_owner_ids": [
+      "current:loop"
     ],
     "physical_dimension_admission": false
   }
