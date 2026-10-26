@@ -1,0 +1,96 @@
+{
+  "schema": "osw.eicc-reference-delivery-failure-review.v4",
+  "status": "GLOBAL_REGRESSION_FIXTURE_PROVENANCE_FAILED_REQUEST_DISABLED_NOT_INSTALLED",
+  "run_id": 40394556181,
+  "run_attempt": 1,
+  "job_id": 121824034063,
+  "source_commit": "909be74e3f4a88f8f3df13a44cdd50616d7bc057",
+  "disabled_remote_commit": "1dbee26cbc29725e9ebdc8bfffbc5053c5e127c2",
+  "artifact": {
+    "id": 12686550577,
+    "name": "eicc-reference-delivery-evidence-v4",
+    "bytes": 22415,
+    "sha256": "efe0034076a76bb9e6052152b231b8d7a4c38d02fc396bd8062a5159bf5fc688"
+  },
+  "rust_planning_tests": {
+    "tests_passed": 6,
+    "exit_code": 0,
+    "stdout_sha256": "c9bad91a4d56049bf60c65ac70ee71fb20574717ec7f4f6ce1e0b81b99b6161d",
+    "stderr_sha256": "81a303e423122420e1e91b013f0914932ed589e79f13b23d9e00be5be921fd98"
+  },
+  "rust_global_route_inventory_tests": {
+    "tests_passed": 0,
+    "exit_code": 101,
+    "stdout_sha256": "3301c5779ff22707ff6d8a0b6bded00503b3d69eb8d073cb941cd3c7404a5f58",
+    "stderr_sha256": "31d0dff925c43fe2f6e748e05a3e0af9068438c4b646250cc46da80d5d72097c",
+    "stdout_preview": "\nrunning 2 tests\ntest madagascar_coastal_curve::tests::eicc_extension_preserves_coastal_catalogue_and_rejects_route_changes ... ok\ntest nwasc_reference_route::tests::eicc_extension_preserves_nwasc_and_rejects_duplicates_and_bad_receipts ... FAILED\n\nfailures:\n\nfailures:\n    nwasc_reference_route::tests::eicc_extension_preserves_nwasc_and_rejects_duplicates_and_bad_receipts\n\ntest result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 194 filtered out; finished in 0.07s\n\n",
+    "stderr_preview": "warning: unused variable: `b`\n   --> src/asca_calendar.rs:152:13\n    |\n152 |         let b = fixture();\n    |             ^ help: if this is intentional, prefix it with an underscore: `_b`\n    |\n    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default\n\nwarning: `osw-query` (lib test) generated 1 warning (run `cargo fix --lib -p osw-query --tests` to apply 1 suggestion)\n    Finished `test` profile [optimized + debuginfo] target(s) in 0.01s\n     Running unittests src/lib.rs (.pytest_cache/eicc-reference-delivery-v4/build/debug/deps/osw_query-ddc5e8708e56be26)\n\nthread 'nwasc_reference_route::tests::eicc_extension_preserves_nwasc_and_rejects_duplicates_and_bad_receipts' (4066) panicked at src/nwasc_reference_route.rs:234:53:\ncalled `Result::unwrap()` on an `Err` value: \"Invalid current-gap owner provenance projection\"\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\nerror: test failed, to rerun pass `--lib`\n"
+  },
+  "observed_failure": {
+    "status": "FAIL",
+    "stage": "engine",
+    "source_commit": "909be74e3f4a88f8f3df13a44cdd50616d7bc057",
+    "error": "ValueError: Both global route-inventory tests required: {\"tests_passed\": 0, \"exit_code\": 101, \"stdout_sha256\": \"3301c5779ff22707ff6d8a0b6bded00503b3d69eb8d073cb941cd3c7404a5f58\", \"stderr_sha256\": \"31d0dff925c43fe2f6e748e05a3e0af9068438c4b646250cc46da80d5d72097c\", \"stdout_preview\": \"\\nrunning 2 tests\\ntest madagascar_coastal_curve::tests::eicc_extension_preserves_coastal_catalogue_and_rejects_route_changes ... ok\\ntest nwasc_reference_route::tests::eicc_extension_preserves_nwasc_and_rejects_duplicates_and_bad_receipts ... FAILED\\n\\nfailures:\\n\\nfailures:\\n    nwasc_reference_route::tests::eicc_extension_preserves_nwasc_and_rejects_duplicates_and_bad_receipts\\n\\ntest result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 194 filtered out; finished in 0.07s\\n\\n\", \"stderr_preview\": \"warning: unused variable: `b`\\n   --> src/asca_calendar.rs:152:13\\n    |\\n152 |         let b = fixture();\\n    |             ^ help: if this is intentional, prefix it with an underscore: `_b`\\n    |\\n    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default\\n\\nwarning: `osw-query` (lib test) generated 1 warning (run `cargo fix --lib -p osw-query --tests` to apply 1 suggestion)\\n    Finished `test` profile [optimized + debuginfo] target(s) in 0.01s\\n     Running unittests src/lib.rs (.pytest_cache/eicc-reference-delivery-v4/build/debug/deps/osw_query-ddc5e8708e56be26)\\n\\nthread 'nwasc_reference_route::tests::eicc_extension_preserves_nwasc_and_rejects_duplicates_and_bad_receipts' (4066) panicked at src/nwasc_reference_route.rs:234:53:\\ncalled `Result::unwrap()` on an `Err` value: \\\"Invalid current-gap owner provenance projection\\\"\\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\\nerror: test failed, to rerun pass `--lib`\\n\"}",
+    "working_branch_installed": false
+  },
+  "passed_stages": [
+    "exact source and installed-parent checks",
+    "46 source/controller checks",
+    "actual parent WASM atlas/seasons capture",
+    "candidate and source-index preservation",
+    "candidate byte identity with v3",
+    "native compilation",
+    "six Rust planning tests",
+    "coastal global route regression",
+    "NwASC positive route-inventory and planning assertions before cohort fixture failure"
+  ],
+  "candidate_byte_length": 190404811,
+  "candidate_sha256": "93c7c184e547ad0c2801ff2183cc5f88f2e11f6150b69b7583fc2f0db05ab696",
+  "source_diagnosis": {
+    "failure_location": "nwasc_reference_route::tests::eicc_extension_preserves_nwasc_and_rejects_duplicates_and_bad_receipts, cohort validation assertion",
+    "error": "Invalid current-gap owner provenance projection",
+    "cause": "The older standalone NwASC fixture lacks linked_source_count and registers only its method source, while its source_ids also references source:hansen-asar-2011. The combined cohort validator checks every owner.",
+    "required_correction": "Complete the test fixture with the exact existing Hansen source record and actual linked-source count. Retain global provenance rules and add negative tests for missing source/count."
+  },
+  "route_catalog_counts": {
+    "parent": {
+      "accepted_current_names": 106,
+      "coastal_reference_curve_candidates": 1,
+      "currents_with_route_candidates": 72,
+      "currents_without_any_reference_card": 34,
+      "currents_without_published_ranked_estimate": 93,
+      "currents_without_route_candidates": 23,
+      "route_candidates": 78,
+      "route_decision_records": 95,
+      "source_anchor_connection_candidates": 1,
+      "studied_reach_candidates": 37
+    },
+    "candidate": {
+      "accepted_current_names": 106,
+      "coastal_reference_curve_candidates": 1,
+      "currents_with_route_candidates": 73,
+      "currents_without_any_reference_card": 33,
+      "currents_without_published_ranked_estimate": 93,
+      "currents_without_route_candidates": 22,
+      "route_candidates": 80,
+      "route_decision_records": 95,
+      "source_anchor_connection_candidates": 1,
+      "studied_reach_candidates": 37
+    },
+    "meaning": "Route-card catalogue counts; not whole-current measurement completeness."
+  },
+  "native_smoke_started": false,
+  "wasm_build_started": false,
+  "native_wasm_parities_completed": 0,
+  "browser_started": false,
+  "working_dataset_updated": false,
+  "main_merged": false,
+  "full_goal_complete": false,
+  "compact_artifact_file_sha256": {
+    "prepared.json": "bc1a9e87caa6b372613f5b348eb9a99c0f9d8dea8b148a932c594f01b336e1a7",
+    "parent-snapshots.json": "91c65ae8d78df3a0450be252560232e966c6c2dd52e854181ee18a413f673a50",
+    "planning-tests.json": "af0c5814843aadbeb0f70817a71f9c5d6370b3151f0d63c1c6e83cdd51c1748e",
+    "route-inventory-tests.json": "988f1ea6ecea6e03f43b803838a9dc479409a797d5cc2cd80323ee4efc6f5b36",
+    "failure.json": "e06a15133d8e7ad3affa4ab5222611c6b2a27b81ce0f9df0a2bf4ed6c6abd3a1"
+  }
+}

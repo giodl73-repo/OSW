@@ -191,6 +191,14 @@ pub(crate) mod tests {
     // Combine small source-bound fixtures; never load the installed packet.
     pub(crate) fn eicc_fixture() -> Bundle {
         let mut combined = fixture();
+        // The standalone route fixture predates the cohort's global provenance
+        // checks. Supply its real primary source and linked-source count before
+        // combining it with that cohort; do not relax the provenance validator.
+        let hansen: Value = serde_json::from_str(crate::hansen_asar_widths::RAW).unwrap();
+        combined.collections.get_mut("sources").unwrap().push(hansen["source_record"].clone());
+        let owner = combined.collections.get_mut("objects").unwrap().iter_mut()
+            .find(|owner| owner["id"] == OWNER).unwrap();
+        owner["linked_source_count"] = json!(owner["source_ids"].as_array().unwrap().len());
         for addition in [
             crate::madagascar_coastal_curve::tests::fixture(),
             crate::planning::tests::revised_fixture(),
@@ -232,6 +240,15 @@ pub(crate) mod tests {
         validate(&b).unwrap();
         crate::planning::validate(&b.collections, &b.manifest).unwrap();
         crate::current_gap_admissions::validate(&b).unwrap();
+        let mut missing_source = eicc_fixture();
+        missing_source.collections.get_mut("sources").unwrap()
+            .retain(|row| row["id"] != "source:hansen-asar-2011");
+        assert!(crate::current_gap_admissions::validate(&missing_source).is_err());
+        let mut wrong_source_count = eicc_fixture();
+        let owner = wrong_source_count.collections.get_mut("objects").unwrap().iter_mut()
+            .find(|owner| owner["id"] == OWNER).unwrap();
+        owner["linked_source_count"] = json!(0);
+        assert!(crate::current_gap_admissions::validate(&wrong_source_count).is_err());
         let mut duplicate = eicc_fixture();
         let row = duplicate.collections["reference_routes"][78].clone();
         duplicate.collections.get_mut("reference_routes").unwrap().push(row);
