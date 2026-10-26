@@ -290,12 +290,14 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
           }
           paragraph(content,`Layer: ${report.layer} Time: ${report.time_convention}`);
           paragraph(content,'Editorial reference route; scenario limits are selected assumptions, not measured seasonal variation.');
-          if(row.comparison_group==='osw_source_anchor_connections')paragraph(content,'Source-reference regional connection through P1, P2 and S1. Connecting legs and bend probes are editorial geometry, with no observed current axis,500m contour or annual route range.');
+          if(row.comparison_group==='osw_source_anchor_connections')paragraph(content,report.rendering_role==='derived_inline_source_reference_card_not_additional_observation'?'Source-reference regional connection through approximate source anchors. Connecting legs and bend probes are editorial geometry, with no observed current axis or annual route range.':'Source-reference regional connection through P1, P2 and S1. Connecting legs and bend probes are editorial geometry, with no observed current axis,500m contour or annual route range.');
           if(row.comparison_group==='osw_studied_reach_routes')paragraph(content,'Studied reach only; this is not a whole-current length.');
           const states=document.createElement('section');states.className='route-atlas-state-links';content.append(states);
-          const heading=document.createElement('h4');heading.textContent='OSW states intersected by this reference route';states.append(heading);
+          const unassessed=row.state_intersection_status==='unassessed_no_physical_join_admitted';
+          const heading=document.createElement('h4');heading.textContent=unassessed?'OSW state relation status':'OSW states intersected by this reference route';states.append(heading);
           if(report.state_scope_note)paragraph(states,report.state_scope_note);
-          if(stateJoin) {
+          if(unassessed)paragraph(states,'State intersections have not been assessed for this source reference. Unknown does not mean that no state is crossed.');
+          else if(stateJoin) {
             const crossings=Object.entries(stateJoin.states).flatMap(([code,state])=>(state.route_candidates||[]).filter(item=>item.candidate_id===row.id).map(item=>({...item,code,name:state.name})));
             paragraph(states,'Editorial line crossings of approximate state shapes. Scenario counts describe sensitivity to path assumptions, not observed passage, probabilities or seasonal occupancy.');
             if(crossings.length) {
@@ -310,7 +312,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
           previewLink(content,'Full route card, measurements and sources ↓','#'+row.id);
           previewLink(content,'Current record →',current.object_url);
         }
-        paths.forEach((path,index)=>{const button=document.createElement('button');button.type='button';button.textContent=paths.length>1?path.row.route_extent_kind:'Reference route';button.addEventListener('click',()=>showPath(path,index));tabs.append(button);});
+        paths.forEach((path,index)=>{const button=document.createElement('button');button.type='button';button.textContent=path.report.rendering_role==='derived_inline_source_reference_card_not_additional_observation'?path.row.label:paths.length>1?path.row.route_extent_kind:'Reference route';button.addEventListener('click',()=>showPath(path,index));tabs.append(button);});
         const requestedIndex=paths.findIndex(path=>path.row.id===requestedRoute);
         const initialIndex=requestedIndex<0?0:requestedIndex;
         showPath(paths[initialIndex],initialIndex);
