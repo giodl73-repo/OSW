@@ -98,13 +98,17 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
             return Err(format!("Changed NwASC route dependency:{path}"));
         }
     }
-    let expected = extend_routes(
+    let mut expected = extend_routes(
         crate::madagascar_coastal_curve::catalogue()["candidates"]
             .as_array()
             .unwrap()
             .clone(),
         b,
     );
+    expected.extend(crate::planning::eicc_reference_routes(
+        &b.collections,
+        &b.manifest,
+    )?);
     if b.collections.get("reference_routes") != Some(&expected) {
         return Err("Changed source-reference route or previous route inventory".into());
     }
@@ -162,7 +166,7 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     Ok(())
 }
 #[cfg(test)]
-mod tests {
+pub(crate) mod tests {
     use super::*;
     fn fixture() -> Bundle {
         let d = document();
@@ -183,6 +187,64 @@ mod tests {
         );
         b.collections.insert("reference_routes".into(), rows);
         b
+    }
+    // Combine small source-bound fixtures; never load the installed packet.
+    pub(crate) fn eicc_fixture() -> Bundle {
+        let mut combined = fixture();
+        for addition in [
+            crate::madagascar_coastal_curve::tests::fixture(),
+            crate::planning::tests::revised_fixture(),
+        ] {
+            for (key, value) in addition.manifest.as_object().unwrap() {
+                if key == "input_sha256" {
+                    for (path, digest) in value.as_object().unwrap() {
+                        if let Some(existing) = combined.manifest[key].get(path) {
+                            assert_eq!(existing, digest, "conflicting source receipt: {path}");
+                        } else {
+                            combined.manifest[key][path] = digest.clone();
+                        }
+                    }
+                } else if let Some(existing) = combined.manifest.get(key) {
+                    assert_eq!(existing, value, "conflicting manifest field: {key}");
+                } else {
+                    combined.manifest[key] = value.clone();
+                }
+            }
+            for (name, rows) in addition.collections {
+                let target = combined.collections.entry(name.clone()).or_default();
+                for row in rows {
+                    if let Some(existing) = target.iter().find(|existing| existing["id"] == row["id"]) {
+                        assert_eq!(existing, &row, "conflicting {name} row: {}", row["id"]);
+                    } else {
+                        target.push(row);
+                    }
+                }
+            }
+        }
+        assert_eq!(combined.collections["reference_routes"].len(), 80);
+        let previous = fixture();
+        assert_eq!(&combined.collections["reference_routes"][..78], previous.collections["reference_routes"].as_slice());
+        combined
+    }
+    #[test]
+    fn eicc_extension_preserves_nwasc_and_rejects_duplicates_and_bad_receipts() {
+        let b = eicc_fixture();
+        validate(&b).unwrap();
+        crate::planning::validate(&b.collections, &b.manifest).unwrap();
+        crate::current_gap_admissions::validate(&b).unwrap();
+        let mut duplicate = eicc_fixture();
+        let row = duplicate.collections["reference_routes"][78].clone();
+        duplicate.collections.get_mut("reference_routes").unwrap().push(row);
+        assert!(validate(&duplicate).is_err());
+        let mut missing = eicc_fixture();
+        missing.collections.get_mut("reference_routes").unwrap().pop();
+        assert!(validate(&missing).is_err());
+        let mut bad_receipt = eicc_fixture();
+        bad_receipt.manifest["eicc_reference_spectral_delivery_v1"]["planning_revision"]["query_contract_sha256"] = json!("0".repeat(64));
+        assert!(validate(&bad_receipt).is_err());
+        let mut changed = eicc_fixture();
+        changed.collections.get_mut("reference_routes").unwrap()[0]["approximate_reference_path_km"] = json!(999);
+        assert!(validate(&changed).is_err());
     }
     #[test]
     fn accepts_regional_reference_and_preserved_projection() {

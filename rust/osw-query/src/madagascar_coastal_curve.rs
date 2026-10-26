@@ -92,12 +92,15 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             }
         }
     }
-    if bundle.collections.get("reference_routes").map(|r| json!(r))
-        != Some(json!(crate::nwasc_reference_route::extend_routes(
-            cat["candidates"].as_array().unwrap().clone(),
-            bundle
-        )))
-    {
+    let mut expected = crate::nwasc_reference_route::extend_routes(
+        cat["candidates"].as_array().unwrap().clone(),
+        bundle,
+    );
+    expected.extend(crate::planning::eicc_reference_routes(
+        &bundle.collections,
+        &bundle.manifest,
+    )?);
+    if bundle.collections.get("reference_routes") != Some(&expected) {
         return Err("Changed working route catalogue projection".into());
     }
     for (name, expected) in [
@@ -184,9 +187,9 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     Ok(())
 }
 #[cfg(test)]
-mod tests {
+pub(crate) mod tests {
     use super::*;
-    fn fixture() -> Bundle {
+    pub(crate) fn fixture() -> Bundle {
         let doc = document();
         let cat = catalogue();
         let coast: Value = serde_json::from_str(COAST_RAW).unwrap();
@@ -228,6 +231,19 @@ mod tests {
             manifest: json!({"madagascar_coastal_curve_version":"1","input_sha256":pins}),
             collections,
         }
+    }
+    #[test]
+    fn eicc_extension_preserves_coastal_catalogue_and_rejects_route_changes() {
+        let b = crate::nwasc_reference_route::tests::eicc_fixture();
+        validate(&b).unwrap();
+        for index in [0, 78, 79] {
+            let mut changed = crate::nwasc_reference_route::tests::eicc_fixture();
+            changed.collections.get_mut("reference_routes").unwrap()[index]["rank_eligible"] = json!(true);
+            assert!(validate(&changed).is_err(), "route index {index}");
+        }
+        let mut missing = crate::nwasc_reference_route::tests::eicc_fixture();
+        missing.collections.get_mut("reference_routes").unwrap().remove(0);
+        assert!(validate(&missing).is_err());
     }
     #[test]
     fn rejects_catalogue_omission_changed_coast_and_physical_promotions() {
