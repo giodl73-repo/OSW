@@ -1,6 +1,11 @@
 """Local refusal and browser representation checks; no payload/build/browser."""
 import unittest
 import subprocess
+import os
+import tempfile
+import textwrap
+import json
+from pathlib import Path
 from unittest.mock import patch
 
 import check_eicc_reference_delivery_v4 as controller
@@ -8,6 +13,18 @@ import eicc_reference_browser_values_v3 as values
 
 
 class EiccPhases(unittest.TestCase):
+    def test_actual_workflow_reads_the_matching_request(self):
+        workflow = (controller.ROOT / controller.WORKFLOW).read_text()
+        trigger = workflow.split('concurrency:', 1)[0]
+        self.assertIn(controller.REQUEST, trigger)
+        script = workflow.split("python - <<'PY'\n", 1)[1].split('\n          PY', 1)[0]
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / 'github-output'
+            with patch.dict(os.environ, {'GITHUB_OUTPUT': str(output)}):
+                exec(compile(textwrap.dedent(script), controller.WORKFLOW, 'exec'), {})
+            request = json.loads((controller.ROOT / controller.REQUEST).read_bytes())
+            self.assertEqual(output.read_text(), 'enabled=' + str(request['execution_permitted']).lower() + '\n')
+
     def compile_case(self, fail_inventory=False):
         events = []
         def run(command, **kwargs):

@@ -4,7 +4,7 @@ name: Verify compatible EICC reference and source-table phased delivery v4
   push:
     branches: [codex/current-measurement-gaps]
     paths:
-      - research/eicc-reference-delivery-request-v3.json
+      - research/eicc-reference-delivery-request-v4.json
       - .github/workflows/eicc-reference-delivery-v4.yml
 
 concurrency:
@@ -35,7 +35,7 @@ jobs:
         run: |
           python - <<'PY'
           import json, os, pathlib
-          request=json.loads(pathlib.Path('research/eicc-reference-delivery-request-v3.json').read_bytes())
+          request=json.loads(pathlib.Path('research/eicc-reference-delivery-request-v4.json').read_bytes())
           assert request['schema']=='osw.eicc-reference-delivery-request.v4'
           assert type(request['execution_permitted']) is bool
           with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
