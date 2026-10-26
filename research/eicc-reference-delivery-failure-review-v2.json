@@ -1,0 +1,60 @@
+{
+  "schema": "osw.eicc-reference-delivery-failure-review.v2",
+  "status": "FAILED_DURING_CANDIDATE_PREPARATION_DISABLED_NOT_INSTALLED",
+  "run_id": 40364739085,
+  "run_attempt": 2,
+  "job_id": 121726666243,
+  "source_commit": "571e2af8e98b7f8b8713b0d96dd7b03612cbf5c4",
+  "disabled_remote_commit": "2e4173908a0008261c79f7ba69eaa095617a8bba",
+  "artifact": {
+    "id": 12672491405,
+    "name": "eicc-reference-delivery-evidence-v2",
+    "bytes": 308,
+    "sha256": "a3cbab7fc7e111cc536fe8410861c7c0991b24755c6069be345f8cbc3c187bf3",
+    "failure_json_sha256": "51587869b60672d0a4c8c6c4064293def510adabd36ba6e77db31479b136f559"
+  },
+  "observed_failure": {
+    "status": "FAIL",
+    "source_commit": "571e2af8e98b7f8b8713b0d96dd7b03612cbf5c4",
+    "error": "ValueError: Exact original EICC planning worklist with no routes required",
+    "working_branch_installed": false
+  },
+  "passed_workflow_steps": [
+    "exact source and installed-parent preflight",
+    "source fixture tests",
+    "compiler dependency installation",
+    "browser dependency installation"
+  ],
+  "candidate_preparation_completed": false,
+  "native_engine_built_this_attempt": false,
+  "rust_planning_tests_run": false,
+  "wasm_engine_built_this_attempt": false,
+  "native_wasm_queries_completed": 0,
+  "browser_review_started": false,
+  "source_diagnosis": {
+    "incorrect_assumed_base": "research/ocean-current-reference-path-candidates.json",
+    "actual_admitted_planning_source": "research/indian-current-reference-route-planning-v1.json",
+    "exact_prior_decision_source": "research/indian-current-identity-query-contract-v1.json",
+    "actual_planning_source_sha256": "23d2c9f2e466ee5b4ced75da715296618492c403157ed94fc00071983a6ac359"
+  },
+  "additional_source_audit": {
+    "rust/osw-query/src/planning.rs": "Must validate the real admitted planning source and exact prior decision.",
+    "rust/osw-query/src/current_gap_admissions.rs": "Requires exact original planning records and empty admitted-current routes/features; needs a narrowly verified editorial extension.",
+    "rust/osw-query/src/seasons_data.rs": "Requires full reference-route count to equal the seasonal source projection; must include new references without seasonal playback.",
+    "rust/osw-query/src/atlas_data.rs": "Requires candidate_file and checked old-format atlas receipts for every route; must recognize verified new source-bound reference rows.",
+    "almanac/reference-routes.js": "Loads a report file for every catalog row; requires validated inline report support for new card payloads.",
+    "almanac/reference-route-atlas.js": "Consumes complete reports and should label bend-probe spans as editorial sensitivity."
+  },
+  "source_audit_is_runtime_verification": false,
+  "working_dataset_updated": false,
+  "main_merged": false,
+  "full_goal_complete": false,
+  "audit_input_sha256": {
+    "rust/osw-query/src/planning.rs": "d0064b6aa7fe335da130a8f7414bb6371fbc3343e8d09970551aa185c9fe74a5",
+    "rust/osw-query/src/current_gap_admissions.rs": "2696cdc6bc5113d611a94803d760087d2b7282f0fb844b64e0f311e392bb8e4b",
+    "rust/osw-query/src/seasons_data.rs": "a0957cfc35fa93375585d78968f58444519374ac5c692ae254d5ff035f0a1ea9",
+    "rust/osw-query/src/atlas_data.rs": "3e072b0d74d39b992cb557e1e01d243de8ec1dd4de0775fb6f8f948f495d0060",
+    "almanac/reference-routes.js": "7d5b79ff93a5182c8be2c50ecd6873bbbb9c4727f719d4621371582634f33c7c",
+    "almanac/reference-route-atlas.js": "e5c0e36d1e20f5c543fdd79d9a33cf03aa383949b08c311a0cc88a63c91e8ef2"
+  }
+}
