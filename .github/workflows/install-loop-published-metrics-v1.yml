@@ -54,7 +54,13 @@ jobs:
         if: steps.request.outputs.enabled == 'true'
         run: |
           cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
-          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_install_loop_published_metrics_v1.py -v
+          taskset -c "$cpu" nice -n 15 python - <<'PY'
+          import unittest
+          suite=unittest.defaultTestLoader.discover('analysis', pattern='test_loop_saved_installation_v1.py')
+          assert suite.countTestCases()==6, 'Expected exactly six installation custody fixtures'
+          result=unittest.TextTestRunner(verbosity=2).run(suite)
+          raise SystemExit(0 if result.wasSuccessful() else 1)
+          PY
       - name: Restore reviewed saved artifacts and publish only to existing working branch
         if: steps.request.outputs.enabled == 'true'
         run: |
