@@ -384,7 +384,7 @@
       node("td", `${strategy.current_count} records · ${strategy.unbuilt_count} awaiting routes`, tr);
       node("td", strategy.description, tr);
     }
-    const [reports, seasonalRoutes] = await Promise.all([Promise.all(catalog.candidates.map(row => load(`../${row.candidate_file}`))), seasonalRoutesReady]);
+    const [reports, seasonalRoutes] = await Promise.all([Promise.all(catalog.candidates.map(row => row.report_inline || load(`../${row.candidate_file}`))), seasonalRoutesReady]);
     const body = byId("reference-route-rows");
     for (const id of catalog.reference_route_length_order) {
       const row = catalog.candidates.find(item => item.id === id);
@@ -430,6 +430,7 @@
         link('Query all 54 paired coastline checks','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,compare));
       }
       const image = node("img", null, card); image.className = "route-map"; image.src = `../${row.figure}`; image.alt = `${row.name}: schematic editorial route with labeled endpoints. Approximate length and scenario limits are provided in the surrounding text.`;
+      if(report.rendering_role==='derived_inline_source_reference_card_not_additional_observation')node('p','The comparison figure shows both source-coordinate conventions and their retained bend probes. This card describes the selected connection; neither convention is a measured whole-current axis.',card);
       // Reserve map height so earlier image loads cannot move the linked card.
       image.width = 800;
       image.height = Math.round(800 * (report.figure_aspect_ratio||report.map_view_box[3] / report.map_view_box[2]));
@@ -467,7 +468,10 @@
       link("Widths and seasonal evidence", `seasons.html?current=${encodeURIComponent(row.current_id)}${phase ? `&phase=${encodeURIComponent(phase.id)}` : ""}`, node("p", null, card));
       if(row.current_id==='zeehan')window.renderQualitativeCurrentCalendar(card,await load('../research/zeehan-ridgway-2007-seasonal-scope-audit.json'));
       if(row.current_id==='atlantic-equatorial-undercurrent')window.renderAtlanticEucSectionProperties(card,await load('../research/atlantic-euc-layer-island-scope-audit.json'));
-      link("Download coordinates, all scenarios and joins (JSON)", `../${row.candidate_file}`, card);
+      if(report.rendering_role==='derived_inline_source_reference_card_not_additional_observation'){
+        link('Download source reference candidates (JSON)',`../${row.candidate_file}`,card);
+        link('Download all retained reference calculations (JSON)',`../${report.calculation_file}`,node('p',null,card));
+      }else link("Download coordinates, all scenarios and joins (JSON)", `../${row.candidate_file}`, card);
     }
     if(window.oswAtlasSnapshot?.kuroshio_daily_scene&&!catalog.candidates.some(r=>r.current_id==='kuroshio')){
       const card=node('section',null,byId('route-cards'));card.id='kuroshio-2024-model-card';card.className='current-model-card';card.tabIndex=-1;

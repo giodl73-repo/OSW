@@ -105,6 +105,25 @@ pub fn planning_source(current: &str, manifest: &Value) -> Option<(Value, &'stat
         .map(|row| (row.clone(), PLANNING.0))
 }
 
+pub(crate) fn original_planning_decision(current: &str, manifest: &Value) -> Result<Value, String> {
+    if manifest["current_gap_admission_version"] != VERSION
+        || manifest["input_sha256"][IDENTITY.0] != pin(IDENTITY.1)
+        || manifest["input_sha256"][PLANNING.0] != pin(PLANNING.1)
+    {
+        return Err("Original current-gap planning receipts differ".into());
+    }
+    let identity = doc(IDENTITY.1);
+    let record = identity["additions"]["route_decisions"].as_array().unwrap().iter()
+        .find(|row| row["current_id"] == current).cloned().ok_or("Missing original admitted planning decision")?;
+    let plan = planning_source(current, manifest).ok_or("Missing original admitted planning source")?;
+    if record["source_decision"] != plan.0 || record["source_catalog_file"] != plan.1
+        || record["source_catalog_sha256"] != pin(PLANNING.1)
+    {
+        return Err("Original admitted planning projection differs".into());
+    }
+    Ok(record)
+}
+
 pub fn route_catalogue(mut catalogue: Value, bundle: &Bundle) -> Result<Value, String> {
     if !active(bundle) {
         return Ok(catalogue);
@@ -256,6 +275,8 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             }
         }
     }
+    let eicc_references = crate::planning::eicc_reference_routes(&bundle.collections, &bundle.manifest)?;
+    let revised_eicc = !eicc_references.is_empty();
     for (name, expected) in expected_records() {
         let actual: Vec<_> = bundle
             .collections
@@ -264,7 +285,10 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             .flatten()
             .filter(|row| row["id"] == expected["id"])
             .collect();
-        if actual != vec![&expected] {
+        let retained_revision = revised_eicc && name == "route_decisions"
+            && expected["entity_id"] == "current:east-india-coastal" && actual.len() == 1
+            && actual[0]["prior_route_decision"] == expected;
+        if actual != vec![&expected] && !retained_revision {
             return Err(format!(
                 "Changed current-gap {name} record: {}",
                 expected["id"]
@@ -309,8 +333,8 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             || owner["width_sample_ids"] != json!([])
             || owner["state_codes"] != json!([])
             || owner["state_evidence"] != json!([])
-            || owner["route_ids"] != json!([])
-            || owner["map_features"] != json!([])
+            || (!(revised_eicc && entity["id"] == "current:east-india-coastal")
+                && (owner["route_ids"] != json!([]) || owner["map_features"] != json!([])))
             || !owner["published_length_km"].is_null()
             || !owner["latest_observation_date"].is_null()
         {
@@ -382,9 +406,9 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
 }
 
 #[cfg(test)]
-mod tests {
+pub(crate) mod tests {
     use super::*;
-    fn fixture() -> Bundle {
+    pub(crate) fn fixture() -> Bundle {
         let mut manifest = json!({"current_gap_admission_version":VERSION,"input_sha256":{}});
         for (path, raw) in CONTRACTS {
             manifest["input_sha256"][path] = json!(pin(raw));
