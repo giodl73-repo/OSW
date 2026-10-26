@@ -1,0 +1,2407 @@
+{
+  "schema": "osw.current-measurement-gap-queue.v1",
+  "status": "HISTORICAL_METADATA_TRIAGE_NOT_NEW_MEASUREMENTS",
+  "baseline_file": "research/current-measurement-coverage-baseline-v1.json",
+  "baseline_sha256": "eac6175279cef24de14a17ea36ca6dd063f678d235b629a5c863498bc0c72569",
+  "baseline_git_blob_oid": "5531fe006488f17e09b7bf6f7beb6bd95081defd",
+  "baseline_remote_commit": "6dfc3248dc1cf8df3d2cb8090584a53df56136cc",
+  "baseline_logical_sha256": "369004f99601dd53db77b50cb671c3875cd350aec6df66d56b0781326b37fc5c",
+  "baseline_source_run_id": 40100017734,
+  "current_packet_requeried": false,
+  "named_currents": 106,
+  "counts": {
+    "neither_route_nor_reported": 23,
+    "no_length_current": 10,
+    "no_length_family": 8,
+    "no_length_segment": 1,
+    "no_length_system": 4,
+    "published_length_owners": 13,
+    "reference_route_owners": 72,
+    "reported_only": 11,
+    "route_and_reported": 2,
+    "route_only": 70,
+    "scoped_width_id_owners": 86,
+    "width_sample_id_owners": 14
+  },
+  "length_evidence_or_route_owners": 83,
+  "limitations": [
+    "Counts describe the pinned historical coverage snapshot, not a newly queried installed packet.",
+    "Reference routes, published estimates and local studied reaches differ in physical scope; coverage is not ranking eligibility.",
+    "Scoped width IDs and dated sample IDs do not prove paired boundaries, whole-current width, annual extrema or uncertainty.",
+    "Missing metadata does not establish that published measurements do not exist.",
+    "No catalog-wide depth or seasonal completeness percentage can be derived from this snapshot.",
+    "The pending Loop evidence batch adds summaries/events, not reference-route or published whole-current length coverage."
+  ],
+  "new_measurements": 0,
+  "records": [
+    {
+      "entity_id": "current:acc",
+      "label": "Antarctic Circumpolar Current",
+      "identity_level": "system",
+      "length_coverage": "reported_only",
+      "reference_route_ids": [],
+      "published_length_km": 25000,
+      "scoped_width_ids": [
+        "acc-park-2019-udintsev-major-front-separation",
+        "acc-park-2019-udintsev-boundary-breadth"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:agulhas",
+      "label": "Agulhas Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "agulhas-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "agulhas-act-eulerian-mean-section-width",
+        "agulhas-vinayachandran-2021-typical-core-description"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:agulhas-return",
+      "label": "Agulhas Return Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "agulhas-return-extent-reference-path-candidate",
+        "agulhas-return-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "agulhas-return-boebel-2003-adcp-a",
+        "agulhas-return-boebel-2003-adcp-b1",
+        "agulhas-return-boebel-2003-adcp-b2",
+        "agulhas-return-boebel-2003-adcp-c"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:alaska",
+      "label": "Alaska Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "alaska-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "alaska-weingartner-2002-regional-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:alaska-coastal-gulf",
+      "label": "Alaska Coastal Current (Gulf of Alaska)",
+      "identity_level": "system",
+      "length_coverage": "reported_only",
+      "reference_route_ids": [],
+      "published_length_km": 1700,
+      "scoped_width_ids": [
+        "alaska-coastal-gulf-jarosz-2017-typical-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:aleutian",
+      "label": "Aleutian Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "aleutian-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "aleutian-onishi-2001-published-width-constraint"
+      ],
+      "width_sample_ids": [
+        "width-sample:basin-aleutian-160w:months:0",
+        "width-sample:basin-aleutian-160w:months:1",
+        "width-sample:basin-aleutian-160w:months:2",
+        "width-sample:basin-aleutian-160w:months:3",
+        "width-sample:basin-aleutian-160w:months:4",
+        "width-sample:basin-aleutian-160w:months:5",
+        "width-sample:basin-aleutian-160w:months:6",
+        "width-sample:basin-aleutian-160w:months:7",
+        "width-sample:basin-aleutian-160w:months:8",
+        "width-sample:basin-aleutian-160w:months:9",
+        "width-sample:basin-aleutian-160w:months:10",
+        "width-sample:basin-aleutian-160w:months:11"
+      ],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:algerian",
+      "label": "Algerian Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "algerian-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "algerian-cotroneo-2019-regional-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:antarctic-coastal",
+      "label": "Antarctic Coastal Current (East Wind Drift)",
+      "identity_level": "system",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "antarctic-coastal-schubert-2021-section-01",
+        "antarctic-coastal-schubert-2021-section-02",
+        "antarctic-coastal-schubert-2021-section-03",
+        "antarctic-coastal-schubert-2021-section-04",
+        "antarctic-coastal-schubert-2021-section-05",
+        "antarctic-coastal-schubert-2021-section-06",
+        "antarctic-coastal-schubert-2021-section-07"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Define a source-supported branch graph and length convention before a system total."
+    },
+    {
+      "entity_id": "current:antarctic-slope",
+      "label": "Antarctic Slope Current",
+      "identity_level": "system",
+      "length_coverage": "reported_only",
+      "reference_route_ids": [],
+      "published_length_km": 21000,
+      "scoped_width_ids": [
+        "antarctic-slope-chavanne-2009-02-23-jet-width-constraint"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:antilles",
+      "label": "Antilles Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "antilles-northern-bahamas-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "cainzos-2023-t02-row-51-section-span",
+        "cainzos-2023-t02-row-52-section-span",
+        "cainzos-2023-t02-row-53-section-span"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:atlantic-equatorial-undercurrent",
+      "label": "Atlantic Equatorial Undercurrent",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "atlantic-euc-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "atlantic-euc-gouriou-1988-background-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:atlantic-north-equatorial-countercurrent",
+      "label": "Atlantic North Equatorial Countercurrent",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "atlantic-necc-western-summer-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "atlantic-necc-hs5-mean-zero-contour-width",
+        "atlantic-necc-hs6-mean-zero-contour-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:atlantic-north-equatorial-undercurrent",
+      "label": "Atlantic North Equatorial Undercurrent",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "atlantic-neuc-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "atlantic-neuc-1993-02-angular-section-span",
+        "atlantic-neuc-1996-04-angular-section-span"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:atlantic-south-equatorial-countercurrent",
+      "label": "Atlantic South Equatorial Countercurrent",
+      "identity_level": "current",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "atlantic-secc-1994-03-described-band-span"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Review primary source for explicit alongflow gates, layer, season and continuous path; then construct a declared reference route."
+    },
+    {
+      "entity_id": "current:atlantic-south-equatorial-undercurrent",
+      "label": "Atlantic South Equatorial Undercurrent",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "atlantic-seuc-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "atlantic-seuc-molinari-1981-core-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:australian-west-south-boundary-flow",
+      "label": "Western and southern Australian boundary flow",
+      "identity_level": "system",
+      "length_coverage": "reported_only",
+      "reference_route_ids": [],
+      "published_length_km": 5500,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:azores",
+      "label": "Azores Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "azores-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "azores-2009-section-width",
+        "azores-carracedo-2014-spring-core-width",
+        "azores-carracedo-2014-autumn-core-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:azores-countercurrent",
+      "label": "Azores Countercurrent",
+      "identity_level": "current",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "azores-countercurrent-2009-section-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Review primary source for explicit alongflow gates, layer, season and continuous path; then construct a declared reference route."
+    },
+    {
+      "entity_id": "current:baffin",
+      "label": "Baffin Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "baffin-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "baffin-fissel-1982-east-devon-regional-width",
+        "baffin-fissel-1982-lancaster-average-width-span"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:balearic",
+      "label": "Balearic Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "balearic-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "balearic-socib-2023-regional-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:benguela",
+      "label": "Benguela Current",
+      "identity_level": "system",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "benguela-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "cainzos-2023-t02-row-25-section-span",
+        "cainzos-2023-t02-row-27-section-span",
+        "cainzos-2023-t02-row-28-section-span",
+        "cainzos-2023-t02-row-29-section-span",
+        "cainzos-2023-t02-row-31-section-span",
+        "cainzos-2023-t02-row-32-section-span",
+        "cainzos-2023-t02-row-34-section-span"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:black-sea-rim",
+      "label": "Black Sea Rim Current",
+      "identity_level": "system",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "black-sea-rim-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "black-sea-rim-korotaev-2011-regional-width-range"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:brazil",
+      "label": "Brazil Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "brazil-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "cainzos-2023-t02-row-5-section-span",
+        "cainzos-2023-t02-row-6-section-span",
+        "cainzos-2023-t02-row-7-section-span",
+        "cainzos-2023-t02-row-13-section-span",
+        "cainzos-2023-t02-row-14-section-span",
+        "cainzos-2023-t02-row-19-section-span"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:california",
+      "label": "California Current",
+      "identity_level": "system",
+      "length_coverage": "reported_only",
+      "reference_route_ids": [],
+      "published_length_km": 3000,
+      "scoped_width_ids": [
+        "california-2011-abstract-regional-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:canary",
+      "label": "Canary Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "canary-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "cainzos-2023-t02-row-55-section-span",
+        "cainzos-2023-t02-row-56-section-span",
+        "cainzos-2023-t02-row-57-section-span"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:caribbean",
+      "label": "Caribbean Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "caribbean-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "caribbean-duncan-1982-october-1974-mainstream-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:davidson",
+      "label": "Davidson Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "davidson-winter-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "davidson-historical-winter-width",
+        "davidson-wallace-2008-line67-27-59m-reported-span"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:deep-western-boundary",
+      "label": "Deep Western Boundary Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "deep-western-boundary-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "deep-western-boundary-richardson-1993-upper-core-zero-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:east-adriatic",
+      "label": "East Adriatic Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "east-adriatic-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "east-adriatic-pasaric-2019-c1-coastal-inflow-extent"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:east-african-coastal",
+      "label": "East African Coastal Current",
+      "identity_level": "current",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Review primary source for explicit alongflow gates, layer, season and continuous path; then construct a declared reference route."
+    },
+    {
+      "entity_id": "current:east-australian",
+      "label": "East Australian Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "east-australian-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "east-australian-imos-typical-regional-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:east-greenland",
+      "label": "East Greenland Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "east-greenland-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "cainzos-2023-t02-row-78-section-span",
+        "cainzos-2023-t02-row-79-section-span",
+        "cainzos-2023-t02-row-80-section-span"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:east-greenland-coastal",
+      "label": "East Greenland Coastal Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "east-greenland-coastal-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "east-greenland-coastal-2004-cape-farewell-threshold-section"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:east-india-coastal",
+      "label": "East India Coastal Current",
+      "identity_level": "current",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "east-india-coastal-wijesekera-2015-t24-21m-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Review primary source for explicit alongflow gates, layer, season and continuous path; then construct a declared reference route."
+    },
+    {
+      "entity_id": "current:equatorial-countercurrent",
+      "label": "Equatorial Countercurrent",
+      "identity_level": "family",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:equatorial-undercurrent",
+      "label": "Equatorial Undercurrent",
+      "identity_level": "family",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:falkland",
+      "label": "Falkland (Malvinas) Current",
+      "identity_level": "current",
+      "length_coverage": "reported_only",
+      "reference_route_ids": [],
+      "published_length_km": 2000,
+      "scoped_width_ids": [
+        "cainzos-2023-t02-row-3-section-span"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:florida",
+      "label": "Florida Current",
+      "identity_level": "segment",
+      "length_coverage": "reported_only",
+      "reference_route_ids": [],
+      "published_length_km": 1200,
+      "scoped_width_ids": [
+        "florida-hf-radar-width-statistics-2005-2006"
+      ],
+      "width_sample_ids": [
+        "width-sample:florida-monthly-width:months:0",
+        "width-sample:florida-monthly-width:months:1",
+        "width-sample:florida-monthly-width:months:2",
+        "width-sample:florida-monthly-width:months:3",
+        "width-sample:florida-monthly-width:months:4",
+        "width-sample:florida-monthly-width:months:5",
+        "width-sample:florida-monthly-width:months:6",
+        "width-sample:florida-monthly-width:months:7",
+        "width-sample:florida-monthly-width:months:8",
+        "width-sample:florida-monthly-width:months:9",
+        "width-sample:florida-monthly-width:months:10",
+        "width-sample:florida-monthly-width:months:11"
+      ],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:gaspe",
+      "label": "Gaspé Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "gaspe-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "gaspe-regional-typical-width-range"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:greenland-middle-atlantic-shelf-hypothesis",
+      "label": "Greenland–Middle Atlantic shelf-current hypothesis",
+      "identity_level": "system",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Define a source-supported branch graph and length convention before a system total."
+    },
+    {
+      "entity_id": "current:guiana",
+      "label": "Guiana Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "guiana-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "guiana-hs3-oblique-mean-zero-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:guinea",
+      "label": "Guinea Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "guinea-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "guinea-djakoure-2017-reference-mean-regional-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:gulf-stream",
+      "label": "Gulf Stream",
+      "identity_level": "current",
+      "length_coverage": "reported_only",
+      "reference_route_ids": [],
+      "published_length_km": 2500,
+      "scoped_width_ids": [
+        "cainzos-2023-t02-row-59-section-span",
+        "gulf-stream-richardson-1967-transport-width-statistics",
+        "gulf-stream-lozier-1995-climatological-isopycnal-span"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:gulf-stream-system",
+      "label": "Gulf Stream System",
+      "identity_level": "system",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [
+        "width-sample:gulf-stream-widths:frames:0",
+        "width-sample:gulf-stream-widths:frames:1",
+        "width-sample:gulf-stream-widths:frames:2",
+        "width-sample:gulf-stream-widths:frames:3",
+        "width-sample:gulf-stream-widths:frames:4",
+        "width-sample:gulf-stream-widths:frames:5",
+        "width-sample:gulf-stream-widths:frames:6",
+        "width-sample:gulf-stream-widths:frames:7",
+        "width-sample:gulf-stream-widths:frames:8",
+        "width-sample:gulf-stream-widths:frames:9",
+        "width-sample:gulf-stream-widths:frames:10",
+        "width-sample:gulf-stream-widths:frames:11",
+        "width-sample:gulf-stream-widths:frames:12",
+        "width-sample:gulf-stream-widths:frames:13",
+        "width-sample:gulf-stream-widths:frames:14",
+        "width-sample:gulf-stream-widths:frames:15",
+        "width-sample:gulf-stream-widths:frames:16"
+      ],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Define a source-supported branch graph and length convention before a system total."
+    },
+    {
+      "entity_id": "current:hiri-current",
+      "label": "Hiri Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "hiri-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "hiri-hughes-1993-1987-07-local-decay-scale",
+        "hiri-hughes-1993-1990-07-local-decay-scale"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:indian-equatorial-undercurrent",
+      "label": "Indian Ocean Equatorial Undercurrent",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "indian-euc-spring-observation-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "indian-euc-2017-03-described-subsurface-band"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-countercurrent",
+      "label": "Indian Ocean South Equatorial Countercurrent",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "indian-secc-winter-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [
+        "width-sample:basin-indian-secc-80p333e:months:0",
+        "width-sample:basin-indian-secc-80p333e:months:1",
+        "width-sample:basin-indian-secc-80p333e:months:2",
+        "width-sample:basin-indian-secc-80p333e:months:3",
+        "width-sample:basin-indian-secc-80p333e:months:4",
+        "width-sample:basin-indian-secc-80p333e:months:5",
+        "width-sample:basin-indian-secc-80p333e:months:6",
+        "width-sample:basin-indian-secc-80p333e:months:7",
+        "width-sample:basin-indian-secc-80p333e:months:8",
+        "width-sample:basin-indian-secc-80p333e:months:9",
+        "width-sample:basin-indian-secc-80p333e:months:10",
+        "width-sample:basin-indian-secc-80p333e:months:11",
+        "width-sample:basin-indian-secc-80p667e:months:0",
+        "width-sample:basin-indian-secc-80p667e:months:1",
+        "width-sample:basin-indian-secc-80p667e:months:2",
+        "width-sample:basin-indian-secc-80p667e:months:3",
+        "width-sample:basin-indian-secc-80p667e:months:4",
+        "width-sample:basin-indian-secc-80p667e:months:5",
+        "width-sample:basin-indian-secc-80p667e:months:6",
+        "width-sample:basin-indian-secc-80p667e:months:7",
+        "width-sample:basin-indian-secc-80p667e:months:8",
+        "width-sample:basin-indian-secc-80p667e:months:9",
+        "width-sample:basin-indian-secc-80p667e:months:10",
+        "width-sample:basin-indian-secc-80p667e:months:11"
+      ],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:indian-south-equatorial-undercurrent",
+      "label": "Indian Ocean South Equatorial Undercurrent",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "indian-seuc-mam-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "indian-seuc-bran-mam-core-spatial-summary"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:indonesian-throughflow",
+      "label": "Indonesian Throughflow",
+      "identity_level": "system",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Define a source-supported branch graph and length convention before a system total."
+    },
+    {
+      "entity_id": "current:irminger",
+      "label": "Irminger Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "irminger-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "cainzos-2023-t02-row-74-section-span",
+        "cainzos-2023-t02-row-75-section-span",
+        "cainzos-2023-t02-row-76-section-span"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:jutland",
+      "label": "Jutland Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "jutland-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "jutland-skov-2019-coastal-water-mass-breadth",
+        "jutland-nielsen-2000-thyboron-cited-satellite-width",
+        "jutland-nielsen-2000-hanstholm-cited-satellite-width",
+        "jutland-nielsen-2000-hirtshals-cited-satellite-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:kuroshio",
+      "label": "Kuroshio Current",
+      "identity_level": "current",
+      "length_coverage": "reported_only",
+      "reference_route_ids": [],
+      "published_length_km": 3000,
+      "scoped_width_ids": [
+        "kuroshio-ecs-winter-stream-mean-width",
+        "kuroshio-ecs-summer-stream-mean-width",
+        "kuroshio-ecs-period-stream-mean-width"
+      ],
+      "width_sample_ids": [
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:0",
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:1",
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:2",
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:3",
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:4",
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:5",
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:6",
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:7",
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:8",
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:9",
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:10",
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:11",
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:12",
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:13",
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:14",
+        "width-sample:kuroshio-seasonal-width:seasons:0:samples:15",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:0",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:1",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:2",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:3",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:4",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:5",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:6",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:7",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:8",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:9",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:10",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:11",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:12",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:13",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:14",
+        "width-sample:kuroshio-seasonal-width:seasons:1:samples:15",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:0",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:1",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:2",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:3",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:4",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:5",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:6",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:7",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:8",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:9",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:10",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:11",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:12",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:13",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:14",
+        "width-sample:kuroshio-seasonal-width:seasons:2:samples:15",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:0",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:1",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:2",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:3",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:4",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:5",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:6",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:7",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:8",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:9",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:10",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:11",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:12",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:13",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:14",
+        "width-sample:kuroshio-seasonal-width:seasons:3:samples:15",
+        "width-sample:kuroshio-filtered-width:samples:0",
+        "width-sample:kuroshio-filtered-width:samples:1",
+        "width-sample:kuroshio-filtered-width:samples:2",
+        "width-sample:kuroshio-filtered-width:samples:3",
+        "width-sample:kuroshio-filtered-width:samples:4",
+        "width-sample:kuroshio-filtered-width:samples:5",
+        "width-sample:kuroshio-filtered-width:samples:6",
+        "width-sample:kuroshio-filtered-width:samples:7",
+        "width-sample:kuroshio-filtered-width:samples:8",
+        "width-sample:kuroshio-filtered-width:samples:9",
+        "width-sample:kuroshio-filtered-width:samples:10",
+        "width-sample:kuroshio-filtered-width:samples:11",
+        "width-sample:kuroshio-filtered-width:samples:12",
+        "width-sample:kuroshio-filtered-width:samples:13",
+        "width-sample:kuroshio-filtered-width:samples:14",
+        "width-sample:kuroshio-filtered-width:samples:15",
+        "width-sample:kuroshio-filtered-width:samples:16",
+        "width-sample:kuroshio-filtered-width:samples:17",
+        "width-sample:kuroshio-filtered-width:samples:18",
+        "width-sample:kuroshio-filtered-width:samples:19",
+        "width-sample:kuroshio-filtered-width:samples:20",
+        "width-sample:kuroshio-filtered-width:samples:21",
+        "width-sample:kuroshio-filtered-width:samples:22",
+        "width-sample:kuroshio-filtered-width:samples:23",
+        "width-sample:kuroshio-filtered-width:samples:24",
+        "width-sample:kuroshio-filtered-width:samples:25",
+        "width-sample:kuroshio-filtered-width:samples:26",
+        "width-sample:kuroshio-filtered-width:samples:27",
+        "width-sample:kuroshio-filtered-width:samples:28",
+        "width-sample:kuroshio-filtered-width:samples:29",
+        "width-sample:kuroshio-filtered-width:samples:30",
+        "width-sample:kuroshio-filtered-width:samples:31",
+        "width-sample:kuroshio-filtered-width:samples:32",
+        "width-sample:kuroshio-filtered-width:samples:33",
+        "width-sample:kuroshio-filtered-width:samples:34",
+        "width-sample:kuroshio-filtered-width:samples:35",
+        "width-sample:kuroshio-filtered-width:samples:36",
+        "width-sample:kuroshio-filtered-width:samples:37",
+        "width-sample:kuroshio-filtered-width:samples:38",
+        "width-sample:kuroshio-filtered-width:samples:39",
+        "width-sample:kuroshio-filtered-width:samples:40",
+        "width-sample:kuroshio-filtered-width:samples:41",
+        "width-sample:kuroshio-filtered-width:samples:42",
+        "width-sample:kuroshio-filtered-width:samples:43",
+        "width-sample:kuroshio-filtered-width:samples:44",
+        "width-sample:kuroshio-filtered-width:samples:45",
+        "width-sample:kuroshio-filtered-width:samples:46",
+        "width-sample:kuroshio-filtered-width:samples:47",
+        "width-sample:kuroshio-filtered-width:samples:48",
+        "width-sample:kuroshio-filtered-width:samples:49",
+        "width-sample:kuroshio-filtered-width:samples:50",
+        "width-sample:kuroshio-filtered-width:samples:51",
+        "width-sample:kuroshio-filtered-width:samples:52",
+        "width-sample:kuroshio-filtered-width:samples:53",
+        "width-sample:kuroshio-filtered-width:samples:54",
+        "width-sample:kuroshio-filtered-width:samples:55",
+        "width-sample:kuroshio-filtered-width:samples:56",
+        "width-sample:kuroshio-filtered-width:samples:57",
+        "width-sample:kuroshio-filtered-width:samples:58",
+        "width-sample:kuroshio-filtered-width:samples:59",
+        "width-sample:kuroshio-filtered-width:samples:60",
+        "width-sample:kuroshio-filtered-width:samples:61",
+        "width-sample:kuroshio-filtered-width:samples:62",
+        "width-sample:kuroshio-filtered-width:samples:63",
+        "width-sample:kuroshio-filtered-width:samples:64",
+        "width-sample:kuroshio-filtered-width:samples:65",
+        "width-sample:kuroshio-filtered-width:samples:66",
+        "width-sample:kuroshio-filtered-width:samples:67",
+        "width-sample:kuroshio-filtered-width:samples:68",
+        "width-sample:kuroshio-filtered-width:samples:69",
+        "width-sample:kuroshio-filtered-width:samples:70",
+        "width-sample:kuroshio-filtered-width:samples:71",
+        "width-sample:kuroshio-filtered-width:samples:72",
+        "width-sample:kuroshio-filtered-width:samples:73",
+        "width-sample:kuroshio-filtered-width:samples:74",
+        "width-sample:kuroshio-filtered-width:samples:75",
+        "width-sample:kuroshio-filtered-width:samples:76",
+        "width-sample:kuroshio-filtered-width:samples:77",
+        "width-sample:kuroshio-filtered-width:samples:78",
+        "width-sample:kuroshio-filtered-width:samples:79",
+        "width-sample:kuroshio-filtered-width:samples:80",
+        "width-sample:kuroshio-filtered-width:samples:81",
+        "width-sample:kuroshio-filtered-width:samples:82",
+        "width-sample:kuroshio-filtered-width:samples:83",
+        "width-sample:kuroshio-filtered-width:samples:84",
+        "width-sample:kuroshio-filtered-width:samples:85",
+        "width-sample:kuroshio-filtered-width:samples:86",
+        "width-sample:kuroshio-filtered-width:samples:87",
+        "width-sample:kuroshio-filtered-width:samples:88",
+        "width-sample:kuroshio-filtered-width:samples:89",
+        "width-sample:kuroshio-filtered-width:samples:90",
+        "width-sample:kuroshio-filtered-width:samples:91",
+        "width-sample:kuroshio-filtered-width:samples:92",
+        "width-sample:kuroshio-filtered-width:samples:93",
+        "width-sample:kuroshio-filtered-width:samples:94",
+        "width-sample:kuroshio-filtered-width:samples:95",
+        "width-sample:kuroshio-filtered-width:samples:96",
+        "width-sample:kuroshio-filtered-width:samples:97",
+        "width-sample:kuroshio-filtered-width:samples:98",
+        "width-sample:kuroshio-filtered-width:samples:99",
+        "width-sample:kuroshio-filtered-width:samples:100",
+        "width-sample:kuroshio-filtered-width:samples:101",
+        "width-sample:kuroshio-filtered-width:samples:102",
+        "width-sample:kuroshio-filtered-width:samples:103",
+        "width-sample:kuroshio-filtered-width:samples:104",
+        "width-sample:kuroshio-filtered-width:samples:105",
+        "width-sample:kuroshio-filtered-width:samples:106",
+        "width-sample:kuroshio-filtered-width:samples:107",
+        "width-sample:kuroshio-filtered-width:samples:108",
+        "width-sample:kuroshio-filtered-width:samples:109",
+        "width-sample:kuroshio-filtered-width:samples:110",
+        "width-sample:kuroshio-filtered-width:samples:111",
+        "width-sample:kuroshio-filtered-width:samples:112",
+        "width-sample:kuroshio-filtered-width:samples:113",
+        "width-sample:kuroshio-filtered-width:samples:114",
+        "width-sample:kuroshio-filtered-width:samples:115",
+        "width-sample:kuroshio-filtered-width:samples:116",
+        "width-sample:kuroshio-filtered-width:samples:117",
+        "width-sample:kuroshio-filtered-width:samples:118",
+        "width-sample:kuroshio-filtered-width:samples:119",
+        "width-sample:kuroshio-filtered-width:samples:120",
+        "width-sample:kuroshio-filtered-width:samples:121",
+        "width-sample:kuroshio-filtered-width:samples:122",
+        "width-sample:kuroshio-filtered-width:samples:123",
+        "width-sample:kuroshio-filtered-width:samples:124",
+        "width-sample:kuroshio-filtered-width:samples:125",
+        "width-sample:kuroshio-filtered-width:samples:126",
+        "width-sample:kuroshio-filtered-width:samples:127",
+        "width-sample:kuroshio-filtered-width:samples:128",
+        "width-sample:kuroshio-filtered-width:samples:129",
+        "width-sample:kuroshio-filtered-width:samples:130",
+        "width-sample:kuroshio-filtered-width:samples:131",
+        "width-sample:kuroshio-filtered-width:samples:132",
+        "width-sample:kuroshio-filtered-width:samples:133",
+        "width-sample:kuroshio-filtered-width:samples:134",
+        "width-sample:kuroshio-filtered-width:samples:135",
+        "width-sample:kuroshio-filtered-width:samples:136",
+        "width-sample:kuroshio-filtered-width:samples:137",
+        "width-sample:kuroshio-filtered-width:samples:138",
+        "width-sample:kuroshio-filtered-width:samples:139",
+        "width-sample:kuroshio-filtered-width:samples:140",
+        "width-sample:kuroshio-filtered-width:samples:141",
+        "width-sample:kuroshio-filtered-width:samples:142",
+        "width-sample:kuroshio-filtered-width:samples:143",
+        "width-sample:kuroshio-filtered-width:samples:144",
+        "width-sample:kuroshio-filtered-width:samples:145",
+        "width-sample:kuroshio-filtered-width:samples:146",
+        "width-sample:kuroshio-filtered-width:samples:147",
+        "width-sample:kuroshio-filtered-width:samples:148",
+        "width-sample:kuroshio-filtered-width:samples:149",
+        "width-sample:kuroshio-filtered-width:samples:150",
+        "width-sample:kuroshio-filtered-width:samples:151",
+        "width-sample:kuroshio-filtered-width:samples:152",
+        "width-sample:kuroshio-filtered-width:samples:153",
+        "width-sample:kuroshio-filtered-width:samples:154",
+        "width-sample:kuroshio-filtered-width:samples:155",
+        "width-sample:kuroshio-filtered-width:samples:156",
+        "width-sample:kuroshio-filtered-width:samples:157",
+        "width-sample:kuroshio-filtered-width:samples:158",
+        "width-sample:kuroshio-filtered-width:samples:159",
+        "width-sample:kuroshio-filtered-width:samples:160",
+        "width-sample:kuroshio-filtered-width:samples:161",
+        "width-sample:kuroshio-filtered-width:samples:162",
+        "width-sample:kuroshio-filtered-width:samples:163",
+        "width-sample:kuroshio-filtered-width:samples:164",
+        "width-sample:kuroshio-filtered-width:samples:165",
+        "width-sample:kuroshio-filtered-width:samples:166",
+        "width-sample:kuroshio-filtered-width:samples:167",
+        "width-sample:kuroshio-filtered-width:samples:168",
+        "width-sample:kuroshio-filtered-width:samples:169",
+        "width-sample:kuroshio-filtered-width:samples:170",
+        "width-sample:kuroshio-filtered-width:samples:171",
+        "width-sample:kuroshio-filtered-width:samples:172",
+        "width-sample:kuroshio-filtered-width:samples:173",
+        "width-sample:kuroshio-filtered-width:samples:174",
+        "width-sample:kuroshio-filtered-width:samples:175",
+        "width-sample:kuroshio-filtered-width:samples:176",
+        "width-sample:kuroshio-filtered-width:samples:177",
+        "width-sample:kuroshio-filtered-width:samples:178",
+        "width-sample:kuroshio-filtered-width:samples:179",
+        "width-sample:kuroshio-filtered-width:samples:180",
+        "width-sample:kuroshio-filtered-width:samples:181",
+        "width-sample:kuroshio-filtered-width:samples:182",
+        "width-sample:kuroshio-filtered-width:samples:183",
+        "width-sample:kuroshio-filtered-width:samples:184",
+        "width-sample:kuroshio-filtered-width:samples:185",
+        "width-sample:kuroshio-filtered-width:samples:186",
+        "width-sample:kuroshio-filtered-width:samples:187",
+        "width-sample:kuroshio-filtered-width:samples:188",
+        "width-sample:kuroshio-filtered-width:samples:189",
+        "width-sample:kuroshio-filtered-width:samples:190",
+        "width-sample:kuroshio-filtered-width:samples:191"
+      ],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:kuroshio-extension",
+      "label": "Kuroshio Extension",
+      "identity_level": "segment",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "kuroshio-extension-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "kuroshio-extension-sasaki-2013-monthly-field-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:labrador",
+      "label": "Labrador Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "labrador-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "labrador-thompson-2009-regional-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:leeuwin",
+      "label": "Leeuwin Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "leeuwin-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "leeuwin-a101-monthly-fit-04",
+        "leeuwin-a101-monthly-fit-09"
+      ],
+      "width_sample_ids": [
+        "width-sample:leeuwin-monthly-width:months:0",
+        "width-sample:leeuwin-monthly-width:months:1",
+        "width-sample:leeuwin-monthly-width:months:2",
+        "width-sample:leeuwin-monthly-width:months:3",
+        "width-sample:leeuwin-monthly-width:months:4",
+        "width-sample:leeuwin-monthly-width:months:5",
+        "width-sample:leeuwin-monthly-width:months:6",
+        "width-sample:leeuwin-monthly-width:months:7",
+        "width-sample:leeuwin-monthly-width:months:8",
+        "width-sample:leeuwin-monthly-width:months:9",
+        "width-sample:leeuwin-monthly-width:months:10",
+        "width-sample:leeuwin-monthly-width:months:11"
+      ],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:ligurian",
+      "label": "Ligurian Current",
+      "identity_level": "segment",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "ligurian-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "ligurian-menton-nice-composite-profile-band"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:loop",
+      "label": "Loop Current",
+      "identity_level": "segment",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "loop-uhlhorn-2008-prelili-geostrophic-core"
+      ],
+      "width_sample_ids": [
+        "width-sample:yucatan-noaa-sections:frames:0",
+        "width-sample:yucatan-noaa-sections:frames:1",
+        "width-sample:yucatan-noaa-sections:frames:2",
+        "width-sample:yucatan-noaa-sections:frames:3",
+        "width-sample:yucatan-noaa-sections:frames:4",
+        "width-sample:yucatan-adt-sections:frames:0",
+        "width-sample:yucatan-adt-sections:frames:1",
+        "width-sample:yucatan-adt-sections:frames:2",
+        "width-sample:yucatan-adt-sections:frames:3",
+        "width-sample:yucatan-adt-sections:frames:4"
+      ],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Finish pending delivery of two published contour summaries; retain method-specific scope and no whole-current rank."
+    },
+    {
+      "entity_id": "current:mauritanian",
+      "label": "Mauritanian Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "mauritanian-summer-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "mauritanian-upwelling-seasonal-mean-width-range"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:mediterranean-undercurrent",
+      "label": "Mediterranean Undercurrent",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "mediterranean-undercurrent-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "mediterranean-undercurrent-mean-offshore-span",
+        "mediterranean-undercurrent-1993-section-band"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:mindanao-current",
+      "label": "Mindanao Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "mindanao-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "mindanao-schonau-2015-mean-surface-offshore-extent"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:monsoon",
+      "label": "Monsoon Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "monsoon-summer-sri-lanka-reference-path-candidate",
+        "monsoon-winter-sri-lanka-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "monsoon-webber-2018-observed-near-surface-flow-width",
+        "monsoon-webber-2018-conditional-salinity-origin-component-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-current",
+      "label": "New Guinea Coastal Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "new-guinea-coastal-surface-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "ngcc-radenac-2016-winter-east-099",
+        "ngcc-radenac-2016-winter-west-range",
+        "ngcc-radenac-2016-winter-west-maxima",
+        "ngcc-radenac-2016-winter-west-cold-vein"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:new-guinea-coastal-undercurrent",
+      "label": "New Guinea Coastal Undercurrent",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "new-guinea-coastal-undercurrent-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "ngcu-zenk-1999-vitiaz-width-constraint"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:new-ireland-coastal-undercurrent",
+      "label": "New Ireland Coastal Undercurrent",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "new-ireland-coastal-undercurrent-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "nicu-melet-2010-coastal-confinement"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:north-atlantic",
+      "label": "North Atlantic Current",
+      "identity_level": "system",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "north-atlantic-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "cainzos-2023-t02-row-63-section-span",
+        "cainzos-2023-t02-row-64-section-span",
+        "cainzos-2023-t02-row-66-section-span",
+        "cainzos-2023-t02-row-67-section-span",
+        "cainzos-2023-t02-row-68-section-span"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:north-brazil",
+      "label": "North Brazil Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "north-brazil-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "north-brazil-hs1-oblique-mean-zero-width",
+        "north-brazil-hs2-oblique-mean-zero-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:north-cape",
+      "label": "North Cape Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "north-cape-northern-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "north-cape-northern-2007-profile-scale"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:north-equatorial",
+      "label": "North Equatorial Current",
+      "identity_level": "family",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:north-equatorial-countercurrent",
+      "label": "North Equatorial Countercurrent",
+      "identity_level": "family",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:north-equatorial-undercurrent",
+      "label": "North Equatorial Undercurrent",
+      "identity_level": "family",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:north-pacific",
+      "label": "North Pacific Current",
+      "identity_level": "system",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "north-pacific-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "north-pacific-tomczak-2005-broad-flow-band"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:northern-mediterranean",
+      "label": "Northern Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "northern-mediterranean-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "northern-mediterranean-winter-width",
+        "northern-mediterranean-summer-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:norwegian",
+      "label": "Norwegian Current",
+      "identity_level": "current",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Resolve naming and branch scope before adopting neighbouring current geometry."
+    },
+    {
+      "entity_id": "current:norwegian-atlantic-slope",
+      "label": "Norwegian Atlantic Slope Current",
+      "identity_level": "current",
+      "length_coverage": "route_and_reported",
+      "reference_route_ids": [
+        "norwegian-atlantic-slope-asar-regional-reference-route"
+      ],
+      "published_length_km": 3500,
+      "scoped_width_ids": [
+        "admitted-width:nwasc:norwegian-atlantic-slope-orvik-2001-regional-width",
+        "admitted-width:nwasc:norwegian-atlantic-slope-mork-2010-surface-scale",
+        "admitted-width:nwasc:norwegian-fer-2020-gimsoy-relative-geostrophic-span",
+        "admitted-width:nwasc:norwegian-atlantic-slope-baumann-2026-svinoy-mean-core-span",
+        "admitted-width:nwasc:norwegian-atlantic-slope-baumann-2026-gimsoy-mean-core-span",
+        "admitted-width:nwasc:orvik2003-mean-flow-description",
+        "hansen-asar-2011-p1-fwhm",
+        "hansen-asar-2011-s1-isobath-partition"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:norwegian-coastal",
+      "label": "Norwegian Coastal Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "norwegian-coastal-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "norwegian-coastal-saetre-1999-halten-regional-width",
+        "hansen-asar-2011-ncc-haltenbanken-froya"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:oyashio",
+      "label": "Oyashio",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "oyashio-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "oyashio-2005-abstract-regional-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:pacific-equatorial-undercurrent",
+      "label": "Pacific Equatorial Undercurrent",
+      "identity_level": "current",
+      "length_coverage": "reported_only",
+      "reference_route_ids": [],
+      "published_length_km": 14000,
+      "scoped_width_ids": [
+        "pacific-euc-wang-2022-background-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial-countercurrent",
+      "label": "Pacific North Equatorial Countercurrent",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "pacific-necc-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "pacific-necc-chen-2016-model-axis-spread-from",
+        "pacific-necc-chen-2016-model-axis-spread-to"
+      ],
+      "width_sample_ids": [
+        "width-sample:necc-monthly-section:months:0",
+        "width-sample:necc-monthly-section:months:1",
+        "width-sample:necc-monthly-section:months:2",
+        "width-sample:necc-monthly-section:months:3",
+        "width-sample:necc-monthly-section:months:4",
+        "width-sample:necc-monthly-section:months:5",
+        "width-sample:necc-monthly-section:months:6",
+        "width-sample:necc-monthly-section:months:7",
+        "width-sample:necc-monthly-section:months:8",
+        "width-sample:necc-monthly-section:months:9",
+        "width-sample:necc-monthly-section:months:10",
+        "width-sample:necc-monthly-section:months:11"
+      ],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial-undercurrent",
+      "label": "Pacific North Equatorial Undercurrent",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "pacific-neuc-southern-reach-reference-path-candidate",
+        "pacific-neuc-middle-reach-reference-path-candidate",
+        "pacific-neuc-northern-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "pacific-neuc-li-2018-southern-isopycnal-breadth",
+        "pacific-neuc-li-2018-northern-isopycnal-breadth",
+        "neuc-glider-2015-southern-jet-range",
+        "neuc-glider-2015-northern-jet-range"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:pacific-north-subsurface-countercurrent",
+      "label": "Pacific North Subsurface Countercurrent",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "pacific-nscc-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "pacific-north-subsurface-countercurrent-rowe-2000-general-angular-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial-countercurrent",
+      "label": "Pacific South Equatorial Countercurrent",
+      "identity_level": "current",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "pacific-secc-rotschi-1972-170e-width-range"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Review primary source for explicit alongflow gates, layer, season and continuous path; then construct a declared reference route."
+    },
+    {
+      "entity_id": "current:pacific-south-subsurface-countercurrent",
+      "label": "Pacific South Subsurface Countercurrent",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "pacific-sscc-mean-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "pacific-south-subsurface-countercurrent-rowe-2000-general-angular-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:persian-gulf-saline-overflow",
+      "label": "Persian Gulf saline overflow",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "persian-gulf-cascading-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "persian-gulf-gogp99-r13-geostrophic-band",
+        "persian-gulf-gogp99-r13-geostrophic-peak",
+        "persian-gulf-gogp99-core-width-1",
+        "persian-gulf-gogp99-core-width-2",
+        "persian-gulf-gogp99-core-width-3",
+        "persian-gulf-gogp99-core-width-4",
+        "persian-gulf-gogp99-core-width-5",
+        "persian-gulf-gogp99-core-width-6"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:peru-humboldt",
+      "label": "Peru (Humboldt) Current",
+      "identity_level": "system",
+      "length_coverage": "reported_only",
+      "reference_route_ids": [],
+      "published_length_km": 6000,
+      "scoped_width_ids": [
+        "humboldt-fuenzalida-2008-core-width",
+        "humboldt-fuenzalida-2008-jet-width",
+        "humboldt-fuenzalida-2008-coarse-mean-band-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:portugal",
+      "label": "Portugal Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "portugal-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "portugal-perez-2009-orca-source-section-span"
+      ],
+      "width_sample_ids": [
+        "width-sample:basin-portugal-40n:months:0",
+        "width-sample:basin-portugal-40n:months:1",
+        "width-sample:basin-portugal-40n:months:2",
+        "width-sample:basin-portugal-40n:months:3",
+        "width-sample:basin-portugal-40n:months:4",
+        "width-sample:basin-portugal-40n:months:5",
+        "width-sample:basin-portugal-40n:months:6",
+        "width-sample:basin-portugal-40n:months:7",
+        "width-sample:basin-portugal-40n:months:8",
+        "width-sample:basin-portugal-40n:months:9",
+        "width-sample:basin-portugal-40n:months:10",
+        "width-sample:basin-portugal-40n:months:11"
+      ],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:red-sea-saline-overflow",
+      "label": "Red Sea saline overflow",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "redsox-northern-plume-reach-reference-path-candidate",
+        "redsox-southern-plume-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:solomon-island-coastal-undercurrent",
+      "label": "Solomon Island Coastal Undercurrent",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "solomon-island-coastal-undercurrent-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "sicu-melet-2010-coastal-confinement"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:somali",
+      "label": "Somali Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "somali-winter-reference-path-candidate",
+        "somali-summer-southern-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "somali-schott-2001-march-may-coastal-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:south-atlantic",
+      "label": "South Atlantic Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "south-atlantic-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "south-atlantic-stramma-1983-10-southern-band-width"
+      ],
+      "width_sample_ids": [
+        "width-sample:basin-south-atlantic-30w:months:0",
+        "width-sample:basin-south-atlantic-30w:months:1",
+        "width-sample:basin-south-atlantic-30w:months:2",
+        "width-sample:basin-south-atlantic-30w:months:3",
+        "width-sample:basin-south-atlantic-30w:months:4",
+        "width-sample:basin-south-atlantic-30w:months:5",
+        "width-sample:basin-south-atlantic-30w:months:6",
+        "width-sample:basin-south-atlantic-30w:months:7",
+        "width-sample:basin-south-atlantic-30w:months:8",
+        "width-sample:basin-south-atlantic-30w:months:9",
+        "width-sample:basin-south-atlantic-30w:months:10",
+        "width-sample:basin-south-atlantic-30w:months:11",
+        "width-sample:basin-south-atlantic-30w-climatology:months:0",
+        "width-sample:basin-south-atlantic-30w-climatology:months:1",
+        "width-sample:basin-south-atlantic-30w-climatology:months:2",
+        "width-sample:basin-south-atlantic-30w-climatology:months:3",
+        "width-sample:basin-south-atlantic-30w-climatology:months:4",
+        "width-sample:basin-south-atlantic-30w-climatology:months:5",
+        "width-sample:basin-south-atlantic-30w-climatology:months:6",
+        "width-sample:basin-south-atlantic-30w-climatology:months:7",
+        "width-sample:basin-south-atlantic-30w-climatology:months:8",
+        "width-sample:basin-south-atlantic-30w-climatology:months:9",
+        "width-sample:basin-south-atlantic-30w-climatology:months:10",
+        "width-sample:basin-south-atlantic-30w-climatology:months:11"
+      ],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:south-australian",
+      "label": "South Australian Current",
+      "identity_level": "segment",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "south-australian-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "south-australian-miller-2006-exp6-day20-width"
+      ],
+      "width_sample_ids": [
+        "width-sample:basin-south-australian-132e-100m:months:0",
+        "width-sample:basin-south-australian-132e-100m:months:1",
+        "width-sample:basin-south-australian-132e-100m:months:2",
+        "width-sample:basin-south-australian-132e-100m:months:3",
+        "width-sample:basin-south-australian-132e-100m:months:4",
+        "width-sample:basin-south-australian-132e-100m:months:5",
+        "width-sample:basin-south-australian-132e-100m:months:6",
+        "width-sample:basin-south-australian-132e-100m:months:7",
+        "width-sample:basin-south-australian-132e-100m:months:8",
+        "width-sample:basin-south-australian-132e-100m:months:9",
+        "width-sample:basin-south-australian-132e-100m:months:10",
+        "width-sample:basin-south-australian-132e-100m:months:11"
+      ],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:south-equatorial",
+      "label": "South Equatorial Current",
+      "identity_level": "family",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:south-equatorial-countercurrent",
+      "label": "South Equatorial Countercurrent",
+      "identity_level": "family",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:south-equatorial-undercurrent",
+      "label": "South Equatorial Undercurrent",
+      "identity_level": "family",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:south-indian",
+      "label": "South Indian Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "south-indian-eastern-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [
+        "width-sample:basin-south-indian-80e:months:0",
+        "width-sample:basin-south-indian-80e:months:1",
+        "width-sample:basin-south-indian-80e:months:2",
+        "width-sample:basin-south-indian-80e:months:3",
+        "width-sample:basin-south-indian-80e:months:4",
+        "width-sample:basin-south-indian-80e:months:5",
+        "width-sample:basin-south-indian-80e:months:6",
+        "width-sample:basin-south-indian-80e:months:7",
+        "width-sample:basin-south-indian-80e:months:8",
+        "width-sample:basin-south-indian-80e:months:9",
+        "width-sample:basin-south-indian-80e:months:10",
+        "width-sample:basin-south-indian-80e:months:11",
+        "width-sample:basin-south-indian-80e-climatology:months:0",
+        "width-sample:basin-south-indian-80e-climatology:months:1",
+        "width-sample:basin-south-indian-80e-climatology:months:2",
+        "width-sample:basin-south-indian-80e-climatology:months:3",
+        "width-sample:basin-south-indian-80e-climatology:months:4",
+        "width-sample:basin-south-indian-80e-climatology:months:5",
+        "width-sample:basin-south-indian-80e-climatology:months:6",
+        "width-sample:basin-south-indian-80e-climatology:months:7",
+        "width-sample:basin-south-indian-80e-climatology:months:8",
+        "width-sample:basin-south-indian-80e-climatology:months:9",
+        "width-sample:basin-south-indian-80e-climatology:months:10",
+        "width-sample:basin-south-indian-80e-climatology:months:11"
+      ],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:south-java",
+      "label": "South Java Current",
+      "identity_level": "current",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Review primary source for explicit alongflow gates, layer, season and continuous path; then construct a declared reference route."
+    },
+    {
+      "entity_id": "current:south-pacific",
+      "label": "South Pacific Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "south-pacific-eastern-front-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "south-pacific-stramma-1990-03-relative-band-constraint"
+      ],
+      "width_sample_ids": [
+        "width-sample:basin-south-pacific-100w:months:0",
+        "width-sample:basin-south-pacific-100w:months:1",
+        "width-sample:basin-south-pacific-100w:months:2",
+        "width-sample:basin-south-pacific-100w:months:3",
+        "width-sample:basin-south-pacific-100w:months:4",
+        "width-sample:basin-south-pacific-100w:months:5",
+        "width-sample:basin-south-pacific-100w:months:6",
+        "width-sample:basin-south-pacific-100w:months:7",
+        "width-sample:basin-south-pacific-100w:months:8",
+        "width-sample:basin-south-pacific-100w:months:9",
+        "width-sample:basin-south-pacific-100w:months:10",
+        "width-sample:basin-south-pacific-100w:months:11",
+        "width-sample:basin-south-pacific-100w-climatology:months:0",
+        "width-sample:basin-south-pacific-100w-climatology:months:1",
+        "width-sample:basin-south-pacific-100w-climatology:months:2",
+        "width-sample:basin-south-pacific-100w-climatology:months:3",
+        "width-sample:basin-south-pacific-100w-climatology:months:4",
+        "width-sample:basin-south-pacific-100w-climatology:months:5",
+        "width-sample:basin-south-pacific-100w-climatology:months:6",
+        "width-sample:basin-south-pacific-100w-climatology:months:7",
+        "width-sample:basin-south-pacific-100w-climatology:months:8",
+        "width-sample:basin-south-pacific-100w-climatology:months:9",
+        "width-sample:basin-south-pacific-100w-climatology:months:10",
+        "width-sample:basin-south-pacific-100w-climatology:months:11"
+      ],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:southern-east-madagascar",
+      "label": "Southern East Madagascar Current",
+      "identity_level": "current",
+      "length_coverage": "route_and_reported",
+      "reference_route_ids": [
+        "southern-east-madagascar-coastal-reference-curve"
+      ],
+      "published_length_km": 650,
+      "scoped_width_ids": [
+        "southern-east-madagascar-nauw2008-near-surface-survey-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:spitsbergen-atlantic",
+      "label": "Spitsbergen Atlantic Current",
+      "identity_level": "current",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Resolve naming and branch scope before adopting neighbouring current geometry."
+    },
+    {
+      "entity_id": "current:tasman-front",
+      "label": "Tasman Front",
+      "identity_level": "segment",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "tasman-historical-connection-reach-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "tasman-front-nilsson-1980-meander-occupied-band"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:tsushima",
+      "label": "Tsushima Current",
+      "identity_level": "segment",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "tsushima-coastal-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "tsushima-matsuyama-1990-nearshore-modal-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:west-australian",
+      "label": "West Australian Current",
+      "identity_level": "current",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "west-australian-glenn-2008-offshore-breadth-constraint"
+      ],
+      "width_sample_ids": [
+        "width-sample:basin-west-australian-32s:months:0",
+        "width-sample:basin-west-australian-32s:months:1",
+        "width-sample:basin-west-australian-32s:months:2",
+        "width-sample:basin-west-australian-32s:months:3",
+        "width-sample:basin-west-australian-32s:months:4",
+        "width-sample:basin-west-australian-32s:months:5",
+        "width-sample:basin-west-australian-32s:months:6",
+        "width-sample:basin-west-australian-32s:months:7",
+        "width-sample:basin-west-australian-32s:months:8",
+        "width-sample:basin-west-australian-32s:months:9",
+        "width-sample:basin-west-australian-32s:months:10",
+        "width-sample:basin-west-australian-32s:months:11"
+      ],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Review saved regional trace identity and failed connections; do not promote regional numerical paths to a whole-current length."
+    },
+    {
+      "entity_id": "current:west-greenland",
+      "label": "West Greenland Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "west-greenland-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "cainzos-2023-t02-row-82-section-span",
+        "cainzos-2023-t02-row-83-section-span",
+        "cainzos-2023-t02-row-84-section-span"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:west-india-coastal",
+      "label": "West India Coastal Current",
+      "identity_level": "current",
+      "length_coverage": "neither_route_nor_reported",
+      "reference_route_ids": [],
+      "published_length_km": null,
+      "scoped_width_ids": [],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Review primary source for explicit alongflow gates, layer, season and continuous path; then construct a declared reference route."
+    },
+    {
+      "entity_id": "current:west-spitsbergen",
+      "label": "West Spitsbergen Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "west-spitsbergen-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "west-spitsbergen-kolas-2018-a-tube-1",
+        "west-spitsbergen-kolas-2018-a-tube-2",
+        "west-spitsbergen-kolas-2018-b-tube-1",
+        "west-spitsbergen-kolas-2018-b-tube-2",
+        "west-spitsbergen-kolas-2018-c-tube-1",
+        "west-spitsbergen-kolas-2018-c-tube-2",
+        "west-spitsbergen-dundas-2026-selected-core-width-statistic"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:western-adriatic",
+      "label": "Western Adriatic Current",
+      "identity_level": "current",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "western-adriatic-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "western-adriatic-chavanne-2007-ravenna-mean-width",
+        "western-adriatic-chavanne-2007-pesaro-mean-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    },
+    {
+      "entity_id": "current:zeehan",
+      "label": "Zeehan Current",
+      "identity_level": "segment",
+      "length_coverage": "route_only",
+      "reference_route_ids": [
+        "zeehan-reference-path-candidate"
+      ],
+      "published_length_km": null,
+      "scoped_width_ids": [
+        "zeehan-cresswell-2000-historical-slope-width"
+      ],
+      "width_sample_ids": [],
+      "whole_current_length_complete": null,
+      "whole_current_width_complete": null,
+      "seasonal_dimension_ranges_complete": null,
+      "next_length_action": "Retain existing length scope; inspect seasonal and uncertainty support separately."
+    }
+  ]
+}
