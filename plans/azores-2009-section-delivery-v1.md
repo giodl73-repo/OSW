@@ -1,6 +1,7 @@
 # Azores dated section provenance and visualization
 
-Status: source implementation prepared; native/WASM/browser delivery unverified.
+Status: source implementation and cloud orchestration prepared;
+native/WASM/browser delivery unverified.
 
 The original Comas-Rodriguez et al. (2011) PDF has now been inspected. Retain
 the two existing 110 km section measurements and their dates, geometry, methods,
@@ -69,3 +70,20 @@ checks do not establish native/WASM execution or real browser behavior.
 
 Whole-current length, width uncertainty, repeated seasonal observations, and
 the wider catalogue's remaining measurement gaps stay open after this delivery.
+
+## Execution assembly
+
+The orchestrator is `analysis/check_azores_2009_section_delivery_v1.py`, with
+separate preflight, engine and browser phases inside one shared-concurrency
+workflow. It checks the entire original scientific-collection digest, preserves
+all old snapshot fields, verifies 42 Rust tests, 26 complete main-query responses,
+12 complete source-document responses and both complete snapshot APIs. Real
+browser checks cover both current selections, dated width navigation, original
+source rows, individual/mixed queries, disabled playback, and desktop/mobile
+layouts. These are declared checks until an actual successful run proves them.
+
+Source/control metadata is frozen in the new preflight. Existing request bytes
+are read from the exact remote parent rather than stale local control copies.
+The previous installation request remains disabled. The three inherited control
+file exceptions stay separately bound by the existing historical-source audit;
+they are not rewritten as current engine source pins.

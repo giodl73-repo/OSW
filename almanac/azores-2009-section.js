@@ -9,6 +9,7 @@ window.renderAzores2009Section=function(parent,scene,selectedId,inspect){
   const image=add('img',undefined,figure);image.src='../'+scene.figure_file;image.style.cssText='display:block;width:100%;max-width:880px;height:auto';
   image.alt='At 24.5 W: Azores Countercurrent stations 42-46, 36.25-35.25 N, westward; Azores Current stations 49-53, 34.5-33.5 N, eastward. Each reported section span is about 110 km. Not current length or annual variability.';
   add('figcaption','One occupation: 26 Oct-1 Nov 2009 in the methods. Figure 1 says fall 2010; the source date conflict remains unresolved.',figure);
+  const full=add('a','Open section diagram at full size',figure);full.href='../'+scene.figure_file;full.style.cssText='display:block;min-height:44px';
   for(const [index,row] of scene.records.entries()){
     const matching=row.id===selectedId||'current:'+row.current_id===selectedId||scene.matching_ids.includes(row.id);
     const item=add('section',undefined,section);item.dataset.widthId=row.id;
