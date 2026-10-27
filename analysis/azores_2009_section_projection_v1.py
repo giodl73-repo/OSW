@@ -5,6 +5,7 @@ already verified installed bundle in the cloud. Measurement collections and
 all earlier manifest entries must survive unchanged.
 """
 import copy
+import gzip
 import hashlib
 import json
 from pathlib import Path
@@ -76,3 +77,37 @@ def prepare(bundle, *, logical_parent_sha256):
 def extend_source_index(catalog, corpus, registry):
     from current_gap_index_extension import extend
     return extend(catalog, corpus, registry, documents())
+
+
+def encode(value):
+    return (json.dumps(value, ensure_ascii=False, separators=(',', ':'), allow_nan=False) + '\n').encode()
+
+
+def source_index(catalog, compressed, registry):
+    if sha(compressed) != catalog['compressed_sha256'] or len(compressed) != catalog['compressed_bytes']:
+        raise ValueError('Exact installed compressed index required')
+    raw = gzip.decompress(compressed)
+    if sha(raw) != catalog['bundle_sha256'] or len(raw) != catalog['bundle_bytes']:
+        raise ValueError('Exact installed logical index required')
+    updated, corpus, next_registry, audit = extend_source_index(catalog, json.loads(raw), registry)
+    if audit['replaced_source_paths'] or set(audit['added_source_paths']) != set(documents()):
+        raise ValueError('Unexpected historical source replacement or new source inventory')
+    body = encode(corpus)
+    packed = gzip.compress(body, compresslevel=9, mtime=0)
+    registry_raw = encode(next_registry)
+    updated.update(bundle_sha256=sha(body), bundle_bytes=len(body),
+                   compressed_sha256=sha(packed), compressed_bytes=len(packed))
+    updated['input_sha256'] = {**updated.get('input_sha256', {}),
+        **{p: sha(b) for p, b in documents().items()}, 'almanac/index-sources.json': sha(registry_raw)}
+    return {'almanac/index-catalog.json': encode(updated), 'almanac/index-data.json.gz': packed,
+            'almanac/index-sources.json': registry_raw}, audit
+
+
+def packet_manifest(manifest, generated, audit):
+    expected = {'almanac/index-catalog.json', 'almanac/index-data.json.gz', 'almanac/index-sources.json'}
+    if set(generated) != expected or manifest.get(KEY) != marker():
+        raise ValueError('Exact prepared source-bound packet and index required')
+    result = copy.deepcopy(manifest)
+    result['input_sha256'].update({p: sha(raw) for p, raw in generated.items()})
+    result['azores_2009_section_source_index_v1'] = copy.deepcopy(audit)
+    return result

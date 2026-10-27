@@ -26,6 +26,17 @@ the Azores Current's existing seasonal model-core records as a separate metric.
   width record and exact indexed source row. It is wired to the three UI surfaces.
 - The runtime diagram derives from the visually reviewed source diagram, with
   the preparation-status footer replaced by a scientific scope note.
+- `analysis/azores_2009_section_engine_v1.py` prepares the matching compiler
+  inventory and engine overlay. Nine exact installed source versions are
+  archived under `research/azores-2009-section-runtime-history-v1/`; inherited
+  historical bindings remain separately verified. These source-fixture checks
+  are not a full live 1194-file custody audit.
+- `analysis/azores_2009_section_cases_v1.py` retains twenty previous query cases
+  and adds six section cases, including both owners, record IDs, sorting and
+  pagination. Twelve complete source-document queries are declared. Execution
+  against native/WASM engines is still pending.
+- Source-index compression and receipt updates are implemented and tested with
+  a tiny fixture. No installed packet or index was loaded locally.
 
 ## Verification completed locally
 

@@ -1,0 +1,1409 @@
+use serde::Deserialize;
+use serde_json::{Value, json};
+use std::collections::{BTreeMap, BTreeSet};
+pub const MAX_SOURCE_SNAPSHOT_BYTES: usize = 512 * 1024 * 1024;
+mod abstract_regional_widths;
+mod agulhas_reported;
+mod aleutian_onishi_width;
+mod antilles_cruise_spans;
+mod asca_calendar;
+mod asca_component_spans;
+mod astrid_scales;
+mod atlantic_euc_sections;
+mod atlas_data;
+mod baffin_latitude_bound;
+mod basin_spans;
+mod caribbean_source_fields;
+pub mod cartography;
+mod charts;
+mod coastal_composite_widths;
+mod current_catalogue;
+mod current_gap_admissions;
+mod current_length_bounds;
+mod current_measurements;
+mod current_research_evidence;
+mod current_section_measurements;
+mod current_sections;
+mod current_width_source_reviews;
+mod dashboard;
+mod dashboard_beck;
+mod dashboard_map;
+mod davidson_reported_width;
+mod dwbc_float_composite;
+mod eac_core_spans;
+mod eac_source_fields;
+mod eddy_recurrence;
+mod eddy_source_panels;
+mod guinea_width;
+mod hansen_asar_widths;
+mod index_bifurcation;
+mod index_map;
+mod index_noaa;
+pub mod index_store;
+mod index_support;
+mod indian_coastal_context;
+mod ke_regional_length;
+mod kuroshio_daily;
+mod kuroshio_filtered_width;
+mod kuroshio_normal;
+mod labrador_latitude_bound;
+mod length_assessment_overlays;
+pub mod local_extents;
+mod loop_diagnostics;
+mod loop_recorded;
+mod madagascar_coastal_curve;
+mod madagascar_navigation;
+mod map;
+mod measurement_scope;
+mod modal_decay_widths;
+mod model_axis_spread;
+mod model_sections;
+mod mooring_velocity;
+mod movies;
+mod network;
+mod neuc_glider_widths;
+mod nordic_widths;
+mod norkyst_data;
+mod nwasc_admission;
+mod nwasc_mean_core;
+mod nwasc_reference_route;
+mod object_plot;
+mod object_view;
+mod observed_sections;
+mod observed_spans;
+mod original_regional_widths;
+mod pacific_neuc_breadths;
+mod pacific_secc_reference;
+mod south_java_reference;
+pub mod packet;
+mod planning;
+mod portugal_section_span;
+mod proposed_widths;
+mod published_regional_reaches;
+mod published_transports;
+mod qualitative_calendar;
+mod rebase;
+mod ring_radii;
+mod samples;
+mod scalar_query;
+mod seasonal;
+mod seasons_data;
+mod selected_core_widths;
+mod somali_width;
+mod south_australian_context;
+mod spatial;
+mod stream_tube_widths;
+mod svg;
+mod taxonomy;
+mod temporal;
+mod ursa_contour;
+mod workspace;
+use sha2::{Digest, Sha256};
+
+impl Store {
+    /// Standalone display SVG from the same complete query scene as the browser.
+    pub fn query_svg(&self, query: &[u8]) -> Result<String, String> {
+        let result = self.execute(query);
+        if result["ok"] != true {
+            return Err(result.to_string());
+        }
+        svg::render(
+            &result["map_scene"],
+            &serde_json::from_slice(query).map_err(|e| e.to_string())?,
+            &self.metadata()["bundle_sha256"],
+        )
+    }
+}
+
+#[derive(Deserialize)]
+pub struct Bundle {
+    pub schema: String,
+    pub manifest: Value,
+    pub collections: BTreeMap<String, Vec<Value>>,
+}
+
+pub struct Store {
+    bundle: Bundle,
+    ids: BTreeMap<String, BTreeMap<String, usize>>,
+    fields: BTreeMap<String, BTreeSet<String>>,
+    spatial: spatial::Index,
+    workspace: workspace::Journal,
+}
+
+#[derive(Deserialize, Default)]
+#[serde(deny_unknown_fields)]
+pub struct Query {
+    #[serde(default = "objects")]
+    pub collection: String,
+    pub text: Option<String>,
+    pub record_type: Option<String>,
+    pub state_code: Option<String>,
+    pub evidence: Option<String>,
+    pub spatial: Option<spatial::SpatialQuery>,
+    pub geometry_time: Option<temporal::GeometryTime>,
+    pub seasonal: Option<seasonal::SeasonalSelection>,
+    pub network_path: Option<network::PathQuery>,
+    pub taxonomy: Option<taxonomy::Selection>,
+    #[serde(default)]
+    pub filters: Vec<Filter>,
+    pub sort: Option<Sort>,
+    pub limit: Option<usize>,
+    #[serde(default)]
+    pub offset: usize,
+}
+fn objects() -> String {
+    "objects".into()
+}
+
+pub use scalar_query::{Filter, Sort};
+use scalar_query::{collect_fields, compare, field, filter_equal};
+
+#[cfg(test)]
+mod scalar_scope_boundary_tests {
+    #[test]
+    fn research_snapshot_does_not_load_as_the_complete_atlas() {
+        let raw = include_bytes!("../../../research/eacc-local-extent-evidence-bundle-v1.json");
+        assert!(super::Store::load(raw).is_err());
+    }
+}
+
+impl Store {
+    pub fn load(bytes: &[u8]) -> Result<Self, String> {
+        let mut bundle: Bundle =
+            serde_json::from_slice(bytes).map_err(|e| format!("Invalid bundle JSON: {e}"))?;
+        if bundle.schema != "osw.query-bundle.v1" {
+            return Err("Unsupported bundle schema".into());
+        }
+        if !bundle.collections.contains_key("objects") {
+            return Err("Missing objects collection".into());
+        }
+        if bundle.collections.contains_key("working_records") {
+            return Err("Working records belong in a workspace journal".into());
+        }
+        bundle.collections.insert("working_records".into(), vec![]);
+        let mut ids = BTreeMap::new();
+        let mut fields = BTreeMap::new();
+        for (name, records) in &bundle.collections {
+            let mut index = BTreeMap::new();
+            let mut keys = BTreeSet::new();
+            for (i, record) in records.iter().enumerate() {
+                let id = record
+                    .get("id")
+                    .and_then(Value::as_str)
+                    .filter(|s| !s.is_empty())
+                    .ok_or_else(|| format!("Missing record ID in {name}"))?;
+                if index.insert(id.to_owned(), i).is_some() {
+                    return Err(format!("Duplicate ID {id} in {name}"));
+                }
+                collect_fields(record, "", &mut keys);
+            }
+            ids.insert(name.clone(), index);
+            fields.insert(name.clone(), keys);
+        }
+        published_transports::validate(&bundle)?;
+        original_regional_widths::validate_south_atlantic_inventory(&bundle)?;
+        original_regional_widths::validate_south_pacific_inventory(&bundle)?;
+        original_regional_widths::validate_ngcc_inventory(&bundle)?;
+        original_regional_widths::validate_azores_inventory(&bundle)?;
+        original_regional_widths::validate_balearic_inventory(&bundle)?;
+        original_regional_widths::validate_atlantic_seuc_inventory(&bundle)?;
+        original_regional_widths::validate_gogp_inventory(&bundle)?;
+        original_regional_widths::validate_gulf_stream_inventory(&bundle)?;
+        original_regional_widths::validate_loop_core_inventory(&bundle)?;
+        original_regional_widths::validate_antarctic_jet_inventory(&bundle)?;
+        observed_spans::validate(&bundle)?;
+        current_section_measurements::validate(&bundle)?;
+        nordic_widths::validate(&bundle)?;
+        nwasc_mean_core::validate(&bundle)?;
+        selected_core_widths::validate(&bundle)?;
+        antilles_cruise_spans::validate(&bundle)?;
+        model_axis_spread::validate(&bundle)?;
+        pacific_neuc_breadths::validate(&bundle)?;
+        eddy_source_panels::validate(&bundle)?;
+        ursa_contour::validate(&bundle)?;
+        // Joined object IDs must resolve in the imported collections.
+        for object in &bundle.collections["objects"] {
+            for (key, collection) in [
+                ("width_ids", "widths"),
+                ("measurement_ids", "measurements"),
+                ("route_ids", "reference_routes"),
+                ("source_ids", "sources"),
+                ("frame_ids", "geometry_frames"),
+                ("seasonal_route_ids", "seasonal_routes"),
+                ("width_sample_ids", "width_samples"),
+                ("velocity_sample_ids", "current_velocity_samples"),
+                ("current_section_ids", "current_sections"),
+                ("route_decision_ids", "route_decisions"),
+                ("diagnostic_ids", "diagnostics"),
+                ("flow_network_ids", "flow_networks"),
+                ("passage_sample_ids", "passage_samples"),
+                ("model_frame_ids", "model_frames"),
+            ] {
+                if let Some(list) = object.get(key) {
+                    let list = list.as_array().ok_or_else(|| format!("Invalid {key}"))?;
+                    for id in list {
+                        let id = id
+                            .as_str()
+                            .ok_or_else(|| format!("Invalid {key} reference"))?;
+                        if !ids
+                            .get(collection)
+                            .is_some_and(|index| index.contains_key(id))
+                        {
+                            return Err(format!("Unresolved {collection} ID {id}"));
+                        }
+                        if (collection == "geometry_frames"
+                            || collection == "seasonal_routes"
+                            || collection == "width_samples"
+                            || collection == "current_velocity_samples"
+                            || collection == "current_sections"
+                            || collection == "diagnostics"
+                            || collection == "route_decisions"
+                            || collection == "flow_networks"
+                            || collection == "passage_samples"
+                            || collection == "model_frames")
+                            && bundle.collections[collection][ids[collection][id]]["entity_id"]
+                                != object["id"]
+                        {
+                            return Err(format!("Joined record {id} belongs to another object"));
+                        }
+                    }
+                }
+            }
+        }
+        for object in &bundle.collections["objects"] {
+            for feature in object["map_features"].as_array().into_iter().flatten() {
+                if let Some(frame_id) = feature.get("frame_id") {
+                    let id = frame_id
+                        .as_str()
+                        .ok_or("Invalid geometry frame reference")?;
+                    let index = ids
+                        .get("geometry_frames")
+                        .and_then(|i| i.get(id))
+                        .ok_or_else(|| format!("Unresolved geometry frame {id}"))?;
+                    let frame = &bundle.collections["geometry_frames"][*index];
+                    if frame["entity_id"] != object["id"]
+                        || frame["date"] != feature["observation_date"]
+                        || frame["coordinates_lon_lat"] != feature["geometry"]["coordinates"]
+                        || frame["geometry_role"] != feature["role"]
+                    {
+                        return Err(format!(
+                            "Geometry frame {id} does not match its map feature"
+                        ));
+                    }
+                }
+            }
+        }
+        seasonal::validate_features(&bundle.collections)?;
+        eddy_recurrence::validate(&bundle)?;
+        samples::validate(&bundle.collections, &bundle.manifest)?;
+        basin_spans::validate(&bundle)?;
+        planning::validate(&bundle.collections, &bundle.manifest)?;
+        pacific_secc_reference::routes(&bundle.collections, &bundle.manifest)?;
+        south_java_reference::routes(&bundle.collections, &bundle.manifest)?;
+        loop_diagnostics::validate(&bundle.collections, &bundle.manifest)?;
+        loop_recorded::validate(&bundle)?;
+        network::validate(&bundle.collections, &bundle.manifest)?;
+        taxonomy::validate(&bundle.collections, &bundle.manifest)?;
+        dashboard::validate(&bundle)?;
+        seasons_data::validate(&bundle)?;
+        portugal_section_span::validate_inventory(&bundle)?;
+        current_width_source_reviews::validate(&bundle)?;
+        current_research_evidence::validate(&bundle)?;
+        kuroshio_filtered_width::validate(&bundle)?;
+        kuroshio_daily::validate(&bundle)?;
+        agulhas_reported::validate(&bundle)?;
+        kuroshio_normal::validate(&bundle)?;
+        asca_component_spans::validate(&bundle)?;
+        asca_calendar::validate(&bundle)?;
+        eac_source_fields::validate(&bundle)?;
+        caribbean_source_fields::validate(&bundle)?;
+        published_regional_reaches::validate(&bundle)?;
+        eac_core_spans::validate(&bundle)?;
+        south_australian_context::validate(&bundle)?;
+        madagascar_navigation::validate(&bundle)?;
+        madagascar_coastal_curve::validate(&bundle)?;
+        coastal_composite_widths::validate(&bundle)?;
+        dwbc_float_composite::validate(&bundle)?;
+        atlas_data::validate(&bundle)?;
+        atlantic_euc_sections::validate(&bundle)?;
+        qualitative_calendar::validate(&bundle)?;
+        model_sections::validate(&bundle)?;
+        mooring_velocity::validate(&bundle)?;
+        current_sections::validate(&bundle)?;
+        current_gap_admissions::validate(&bundle)?;
+        indian_coastal_context::validate(&bundle)?;
+        davidson_reported_width::validate(&bundle)?;
+        current_catalogue::validate(&bundle)?;
+        current_measurements::validate(&bundle)?;
+        nwasc_admission::validate(&bundle)?;
+        nwasc_reference_route::validate(&bundle)?;
+        hansen_asar_widths::validate(&bundle)?;
+        neuc_glider_widths::validate(&bundle)?;
+        aleutian_onishi_width::validate(&bundle)?;
+        current_length_bounds::validate(&bundle)?;
+        labrador_latitude_bound::validate(&bundle)?;
+        baffin_latitude_bound::validate(&bundle)?;
+        ke_regional_length::validate(&bundle)?;
+        movies::validate(&bundle)?;
+        measurement_scope::validate(&bundle.collections, &bundle.manifest)?;
+        let spatial = spatial::Index::build(&bundle.collections)?;
+        fields.insert(
+            "working_records".into(),
+            BTreeSet::from([
+                "id".into(),
+                "label".into(),
+                "summary".into(),
+                "status".into(),
+                "target.collection".into(),
+                "target.id".into(),
+            ]),
+        );
+        Ok(Self {
+            bundle,
+            ids,
+            fields,
+            spatial,
+            workspace: workspace::Journal::empty(format!("{:x}", Sha256::digest(bytes))),
+        })
+    }
+
+    pub fn metadata(&self) -> Value {
+        let mut object_type_counts = BTreeMap::<String, usize>::new();
+        let mut geometry_dates = BTreeSet::new();
+        for row in &self.bundle.collections["objects"] {
+            for feature in row["map_features"].as_array().into_iter().flatten() {
+                if let Some(day) = feature["observation_date"]
+                    .as_str()
+                    .filter(|d| temporal::valid_day(d))
+                {
+                    geometry_dates.insert(day);
+                }
+            }
+            if let Some(kind) = row.get("type").and_then(Value::as_str) {
+                *object_type_counts.entry(kind.to_owned()).or_default() += 1;
+            }
+        }
+        json!({"ok":true,"engine":"rust-osw-query-v1","manifest":self.bundle.manifest,
+            "workspace_revision":self.workspace.events.len(),"bundle_sha256":self.workspace.bundle_sha256,
+            "object_type_counts":object_type_counts,
+            "taxonomy":taxonomy::metadata(&self.bundle.collections,&self.bundle.manifest),
+            "geometry_observation_dates":geometry_dates,
+            "width_sample_currents":self.bundle.collections["objects"].iter().filter(|r|r["width_sample_ids"].as_array().is_some_and(|ids|!ids.is_empty())).map(|r|json!({"current_id":r["id"].as_str().unwrap().trim_start_matches("current:"),"label":r["label"]})).collect::<Vec<_>>(),
+            "width_sample_years":self.bundle.collections.get("width_samples").map(|rs|rs.iter().filter_map(|r|r["year"].as_u64()).collect::<BTreeSet<_>>()).unwrap_or_default(),
+            "width_sample_days":self.bundle.collections.get("width_samples").map(|rs|rs.iter().filter_map(|r|r["observation_date"].as_str().map(str::to_owned)).collect::<BTreeSet<_>>()).unwrap_or_default(),
+            "route_decision_currents":self.bundle.collections.get("route_decisions").map(|rs|rs.iter().map(|r|json!({"entity_id":r["entity_id"],"label":r["label"]})).collect::<Vec<_>>()).unwrap_or_default(),
+            "route_decision_strategies":self.bundle.collections.get("route_decisions").map(|rs|rs.iter().map(|r|(r["strategy_id"].as_str().unwrap_or("").to_owned(),r["strategy_label"].clone())).collect::<BTreeMap<_,_>>()).unwrap_or_default(),
+            "seasonal_phases":self.bundle.collections.get("seasonal_routes").map(|rs| rs.iter().map(|r| json!({"id":r["id"],"label":r["label"],"calendar_months":r["calendar_months"]})).collect::<Vec<_>>()).unwrap_or_default(),
+            "collections":self.bundle.collections.iter().map(|(name,records)| json!({"name":name,"count":records.len(),"fields":self.fields[name]})).collect::<Vec<_>>()})
+    }
+    fn known_field(&self, collection: &str, name: &str) -> Result<(), String> {
+        if !self.fields[collection].contains(name) {
+            return Err(format!("Unknown field {name} in {collection}"));
+        }
+        Ok(())
+    }
+    pub fn query(&self, query: Query) -> Result<Value, String> {
+        if query.network_path.is_some() && query.collection != "flow_networks" {
+            return Err("Network path queries require flow_networks collection".into());
+        }
+        if query.taxonomy.is_some() && query.collection != "objects" {
+            return Err("Taxonomy selection requires objects collection".into());
+        }
+        let taxonomy_ids = query
+            .taxonomy
+            .as_ref()
+            .map(|q| taxonomy::select(&self.bundle.collections, q))
+            .transpose()?;
+        let records = self
+            .bundle
+            .collections
+            .get(&query.collection)
+            .ok_or_else(|| format!("Unknown collection {}", query.collection))?;
+        let limit = query.limit.unwrap_or(100);
+        if let Some(seasonal) = &query.seasonal {
+            if query.collection != "objects" || query.geometry_time.is_some() {
+                return Err("Seasonal selection applies to objects and cannot be combined with exact observation dates".into());
+            }
+            seasonal.validate(&self.bundle.collections)?;
+        }
+        if let Some(time) = &query.geometry_time {
+            if query.collection != "objects" {
+                return Err("Geometry time applies to objects".into());
+            }
+            time.validate()?;
+        }
+        if !(1..=500).contains(&limit) {
+            return Err("Limit must be 1..500".into());
+        }
+        if query.filters.len() > 20 || query.text.as_ref().is_some_and(|s| s.len() > 1000) {
+            return Err("Query exceeds input limits".into());
+        }
+        if (query.state_code.is_some() || query.evidence.is_some()) && query.collection != "objects"
+        {
+            return Err("State and evidence joins apply to objects".into());
+        }
+        if let Some(spatial) = &query.spatial {
+            if !["objects", "passage_samples"].contains(&query.collection.as_str()) {
+                return Err("Spatial queries apply to objects and passage observations".into());
+            }
+            if query.collection == "passage_samples" && spatial.predicate != "locator" {
+                return Err("Passage observation queries require locator predicate; point sites do not establish current containment".into());
+            }
+            self.spatial.validate(spatial)?;
+        }
+        if let Some(kind) = &query.record_type {
+            self.known_field(&query.collection, "type")?;
+            if !records
+                .iter()
+                .any(|r| r.get("type").and_then(Value::as_str) == Some(kind))
+            {
+                return Err(format!("Unknown record type {kind}"));
+            }
+        }
+        if let Some(state) = &query.state_code {
+            let known = self.bundle.collections.get("states").is_some_and(|rows| {
+                rows.iter()
+                    .any(|r| r.get("code").and_then(Value::as_str) == Some(state))
+            });
+            if !known {
+                return Err(format!("Unknown OSW state {state}"));
+            }
+        }
+        if let Some(evidence) = &query.evidence {
+            self.known_field("objects", &format!("capabilities.{evidence}"))?;
+        }
+        for filter in &query.filters {
+            self.known_field(&query.collection, &filter.field)?;
+            if !["eq", "ne", "contains", "exists", "gt", "lt"].contains(&filter.op.as_str()) {
+                return Err(format!("Unsupported operator {}", filter.op));
+            }
+            if ["gt", "lt"].contains(&filter.op.as_str()) && !filter.value.is_number() {
+                return Err("Numeric comparison requires a number".into());
+            }
+            if filter.op == "contains" && !filter.value.is_string() {
+                return Err("Contains requires text".into());
+            }
+            if filter.op == "exists" && !filter.value.is_boolean() {
+                return Err("Exists requires true or false".into());
+            }
+        }
+        if let Some(sort) = &query.sort {
+            self.known_field(&query.collection, &sort.field)?;
+            if !["asc", "desc"].contains(&sort.direction.as_str()) {
+                return Err("Sort direction must be asc or desc".into());
+            }
+            if records
+                .iter()
+                .filter_map(|r| field(r, &sort.field))
+                .any(|v| !v.is_null() && !v.is_string() && !v.is_number())
+            {
+                return Err("Sort field must be text or numeric".into());
+            }
+        }
+        let text = query.text.as_ref().map(|s| s.trim().to_lowercase());
+        let spatial_matches: BTreeMap<String, Vec<Value>> = if let Some(spatial) = &query.spatial {
+            records
+                .iter()
+                .filter_map(|row| {
+                    let id = row["id"].as_str().unwrap();
+                    let mut matches = self.spatial.matches(id, spatial);
+                    if let Some(time) = &query.geometry_time {
+                        matches.retain(|relation| {
+                            relation["feature_index"]
+                                .as_u64()
+                                .and_then(|i| row["map_features"].get(i as usize))
+                                .is_some_and(|feature| time.includes(feature))
+                        });
+                    }
+                    if let Some(seasonal) = &query.seasonal {
+                        matches.retain(|relation| {
+                            relation["feature_index"]
+                                .as_u64()
+                                .and_then(|i| row["map_features"].get(i as usize))
+                                .is_some_and(|feature| seasonal.includes(feature))
+                        });
+                    }
+                    if matches.is_empty() {
+                        None
+                    } else {
+                        Some((id.to_owned(), matches))
+                    }
+                })
+                .collect()
+        } else {
+            BTreeMap::new()
+        };
+        let mut matches: Vec<&Value> = records
+            .iter()
+            .filter(|r| {
+                if taxonomy_ids
+                    .as_ref()
+                    .is_some_and(|ids| !ids.contains(r["id"].as_str().unwrap()))
+                {
+                    return false;
+                }
+                if query.seasonal.as_ref().is_some_and(|s| {
+                    !r["map_features"]
+                        .as_array()
+                        .is_some_and(|fs| fs.iter().any(|f| s.includes(f)))
+                }) {
+                    return false;
+                }
+                if query.geometry_time.as_ref().is_some_and(|t| {
+                    !r["map_features"]
+                        .as_array()
+                        .is_some_and(|fs| fs.iter().any(|f| t.includes(f)))
+                }) {
+                    return false;
+                }
+                if query.spatial.is_some()
+                    && !spatial_matches.contains_key(r["id"].as_str().unwrap())
+                {
+                    return false;
+                }
+                if let Some(text) = &text {
+                    if !text.is_empty() && !r.to_string().to_lowercase().contains(text) {
+                        return false;
+                    }
+                }
+                if let Some(kind) = &query.record_type {
+                    if r.get("type").and_then(Value::as_str) != Some(kind) {
+                        return false;
+                    }
+                }
+                if let Some(state) = &query.state_code {
+                    if !r
+                        .get("state_codes")
+                        .and_then(Value::as_array)
+                        .is_some_and(|a| a.iter().any(|v| v.as_str() == Some(state)))
+                    {
+                        return false;
+                    }
+                }
+                if let Some(evidence) = &query.evidence {
+                    if field(r, &format!("capabilities.{evidence}"))
+                        .and_then(Value::as_u64)
+                        .unwrap_or(0)
+                        == 0
+                    {
+                        return false;
+                    }
+                }
+                query
+                    .filters
+                    .iter()
+                    .all(|filter| scalar_query::matches_filter(r, filter))
+            })
+            .collect();
+        scalar_query::sort_rows(
+            &mut matches,
+            query
+                .sort
+                .as_ref()
+                .map(|s| (s.field.as_str(), s.direction == "desc")),
+        );
+        let total = matches.len();
+        let mut map_scene = if query.collection == "objects" {
+            map::scene_selected(
+                &matches,
+                query.geometry_time.as_ref(),
+                query.seasonal.as_ref(),
+            )
+        } else if query.collection == "reference_routes" {
+            map::reference_routes_scene(&matches, &self.bundle.collections["objects"])
+        } else if query.collection == "passage_samples" {
+            let mut scene = map::scene(&matches);
+            scene["inspection_collection"] = json!("passage_samples");
+            scene["scope"] = json!(
+                "Published first-deployment mooring positions, not current axes, edges, width polygons or whole-system containment."
+            );
+            scene
+        } else if query.collection == "width_samples" {
+            map::sample_scene(&matches)
+        } else if query.collection == "current_velocity_samples" {
+            mooring_velocity::map_scene(&matches)
+        } else if query.collection == "current_sections" {
+            Value::Null
+        } else if ["model_frames", "model_samples"].contains(&query.collection.as_str()) {
+            model_sections::scene(&matches, &query.collection)
+        } else {
+            Value::Null
+        };
+        if let Some(time) = &query.geometry_time {
+            map_scene["geometry_time"] = json!({"from":time.from,"to":time.to,"include_undated":time.include_undated,
+                "scope":"Exact recorded observation days, inclusive. Undated marks are context only. No interpolation, persistence or seasonal inference."});
+        }
+        if let Some(seasonal) = &query.seasonal {
+            map_scene["seasonal"] = json!({"month":seasonal.month,"phase_id":seasonal.phase_id,"scope":"Source-defined regional editorial phases. Months are source conventions, not observed monthly fields. Unknown month ranges excluded from month selection. No interpolation, annual extrema or uniform width footprint."});
+        }
+        if let Some(spatial) = &query.spatial {
+            for feature in map_scene["features"].as_array_mut().unwrap() {
+                let relations = &spatial_matches[feature["entity_id"].as_str().unwrap()];
+                feature["matches_selected_state"] = json!(
+                    relations
+                        .iter()
+                        .any(|r| r["feature_index"] == feature["feature_index"])
+                );
+            }
+            let relations: BTreeMap<_, _> = matches
+                .iter()
+                .map(|r| {
+                    let id = r["id"].as_str().unwrap();
+                    (id, &spatial_matches[id])
+                })
+                .collect();
+            map_scene["spatial_relations"] = json!(relations);
+            let state = self.bundle.collections["states"]
+                .iter()
+                .find(|s| s["code"] == spatial.state_code)
+                .unwrap();
+            let display = json!({"id":state["id"],"label":state["label"],"type":"osw_state","map_features":[{"geometry":state["display_geometry"],"role":"approximate_masked_state","note":state["geometry_scope"]}]});
+            map_scene["state_features"] = map::scene(&[&display])["features"].clone();
+            map_scene["selected_state_code"] = json!(spatial.state_code);
+        }
+        let daily_scene = if query.collection == "diagnostics" {
+            kuroshio_daily::query(&matches, &self.bundle)
+        } else {
+            Value::Null
+        };
+        let chart_scene = if !daily_scene.is_null() {
+            daily_scene
+        } else if query.collection == "diagnostics"
+            && !agulhas_reported::query(&matches, &self.bundle).is_null()
+        {
+            agulhas_reported::query(&matches, &self.bundle)
+        } else if query.collection == "diagnostics"
+            && !hansen_asar_widths::query(&matches, &self.bundle).is_null()
+        {
+            hansen_asar_widths::query(&matches, &self.bundle)
+        } else if query.collection == "diagnostics"
+            && !neuc_glider_widths::query(&matches, &self.bundle).is_null()
+        {
+            neuc_glider_widths::query(&matches, &self.bundle)
+        } else if query.collection == "diagnostics"
+            && !aleutian_onishi_width::query(&matches, &self.bundle).is_null()
+        {
+            aleutian_onishi_width::query(&matches, &self.bundle)
+        } else if query.collection == "observed_section_spans" {
+            observed_spans::scene(&matches)
+        } else if query.collection == "proposed_widths" {
+            nordic_widths::scene(&matches, records)
+        } else if query.collection == "diagnostics" {
+            let reviews = current_width_source_reviews::query(&matches, &self.bundle);
+            let research = current_research_evidence::query(&matches, &self.bundle);
+            let filtered = kuroshio_filtered_width::query(&matches, &self.bundle);
+            let asca = asca_component_spans::query(&matches, &self.bundle);
+            let eac = eac_source_fields::query(&matches, &self.bundle);
+            let sac = south_australian_context::query(&matches, &self.bundle);
+            if !sac.is_null() {
+                if research.is_null()
+                    && reviews.is_null()
+                    && filtered.is_null()
+                    && asca.is_null()
+                    && eac.is_null()
+                {
+                    sac
+                } else {
+                    json!({"kind":"current_diagnostic_evidence","scope":"Model-grid context retains unresolved identity and dimensions.",
+                    "source_review_scenes":reviews["scenes"].as_array().cloned().unwrap_or_default(),
+                    "research_evidence_scenes":research["scenes"].as_array().cloned().unwrap_or_default(),
+                    "filtered_width_curve_scenes":if filtered.is_null(){vec![]}else{vec![filtered]},
+                    "asca_component_span_scenes":if asca.is_null(){vec![]}else{vec![asca]},
+                    "eac_source_field_scenes":if eac.is_null(){vec![]}else{vec![eac]},"south_australian_context_scenes":[sac]})
+                }
+            } else if !eac.is_null() {
+                if research.is_null() && reviews.is_null() && filtered.is_null() && asca.is_null() {
+                    eac
+                } else {
+                    json!({"kind":"current_diagnostic_evidence","scope":"Source fields and derived evidence retain their separate processing and admission scope.",
+                    "source_review_scenes":reviews["scenes"].as_array().cloned().unwrap_or_default(),
+                    "research_evidence_scenes":research["scenes"].as_array().cloned().unwrap_or_default(),
+                    "filtered_width_curve_scenes":if filtered.is_null(){vec![]}else{vec![filtered]},
+                    "asca_component_span_scenes":if asca.is_null(){vec![]}else{vec![asca]},"eac_source_field_scenes":[eac]})
+                }
+            } else if !asca.is_null() {
+                if research.is_null() && reviews.is_null() && filtered.is_null() {
+                    asca
+                } else {
+                    json!({"kind":"current_diagnostic_evidence","scope":"Derived diagnostics retain source scope, unresolved cases and physical admission limits.",
+                    "source_review_scenes":reviews["scenes"].as_array().cloned().unwrap_or_default(),
+                    "research_evidence_scenes":research["scenes"].as_array().cloned().unwrap_or_default(),
+                    "filtered_width_curve_scenes":if filtered.is_null(){vec![]}else{vec![filtered]},
+                    "asca_component_span_scenes":[asca]})
+                }
+            } else if !filtered.is_null() {
+                if research.is_null() && reviews.is_null() {
+                    filtered
+                } else {
+                    json!({"kind":"current_diagnostic_evidence","scope":"Source readings preserve filtering, observation support and unresolved physical dimensions.",
+                    "source_review_scenes":reviews["scenes"].as_array().cloned().unwrap_or_default(),
+                    "research_evidence_scenes":research["scenes"].as_array().cloned().unwrap_or_default(),
+                    "filtered_width_curve_scenes":[filtered]})
+                }
+            } else if research.is_null() {
+                reviews
+            } else if reviews.is_null() {
+                research
+            } else {
+                json!({"kind":"current_diagnostic_evidence","scope":"Source reviews and research calculations preserve their distinct definitions and unresolved physical dimensions.","source_review_scenes":reviews["scenes"],"research_evidence_scenes":research["scenes"]})
+            }
+        } else if query.collection == "width_samples" {
+            charts::scene(&matches, records)
+        } else if query.collection == "widths" {
+            let scenes: Vec<_> = [
+                selected_core_widths::scene(&matches),
+                nordic_widths::scene(&matches, records),
+                coastal_composite_widths::scene(&matches, records),
+                dwbc_float_composite::scene(&matches, records),
+                pacific_neuc_breadths::scene(&matches, records),
+                neuc_glider_widths::width_scene(&matches, &self.bundle),
+                aleutian_onishi_width::query(&matches, &self.bundle),
+                portugal_section_span::scene(&matches),
+                antilles_cruise_spans::scene(&matches),
+                model_axis_spread::scene(&matches),
+            ]
+            .into_iter()
+            .filter(|s| !s.is_null())
+            .collect();
+            match scenes.len() {
+                0 => Value::Null,
+                1 => scenes.into_iter().next().unwrap(),
+                _ => {
+                    json!({"kind":"scoped_width_comparisons","scope":"Source comparisons preserve different definitions, integration and sampling support.","scenes":scenes})
+                }
+            }
+        } else if ["section_transports", "transport_validations"]
+            .contains(&query.collection.as_str())
+        {
+            published_transports::query(&matches, &query.collection)
+        } else if query.collection == "current_velocity_samples" {
+            mooring_velocity::scene(&matches, records)
+        } else if query.collection == "current_sections" {
+            current_sections::scene(&matches, records)
+        } else {
+            Value::Null
+        };
+        let rows: Vec<_> = matches
+            .into_iter()
+            .skip(query.offset)
+            .take(limit)
+            .map(|row| {
+                let mut row = row.clone();
+                if query.spatial.is_some() {
+                    row["spatial_matches"] = json!(spatial_matches[row["id"].as_str().unwrap()]);
+                }
+                row
+            })
+            .collect();
+        let network_paths = if let Some(path) = &query.network_path {
+            network::paths(&self.bundle.collections, path)?
+        } else {
+            Value::Null
+        };
+        Ok(
+            json!({"taxonomy_scope":if query.taxonomy.is_some(){json!(taxonomy::SCOPE)}else{Value::Null},"network_paths":network_paths,"ok":true,"engine":"rust-osw-query-v1","collection":query.collection,"total":total,"offset":query.offset,"limit":limit,"rows":rows,"map_scene":map_scene,"chart_scene":chart_scene,
+                "spatial_scope":if query.spatial.is_some(){json!("Computed display geometry, separate from recorded state links. Point locators and shared gateways require their own predicates; neither is current or eddy containment.")}else{Value::Null}}),
+        )
+    }
+    pub fn record(&self, collection: &str, id: &str) -> Result<Value, String> {
+        let index = self
+            .ids
+            .get(collection)
+            .and_then(|ids| ids.get(id))
+            .ok_or_else(|| format!("Record not found: {collection}/{id}"))?;
+        Ok(
+            json!({"ok":true,"collection":collection,"record":self.bundle.collections[collection][*index],"taxonomy_context":if collection=="objects"{taxonomy::context(&self.bundle.collections,id)}else{Value::Null}}),
+        )
+    }
+    pub fn execute(&self, bytes: &[u8]) -> Value {
+        let result = serde_json::from_slice(bytes)
+            .map_err(|e| format!("Invalid query: {e}"))
+            .and_then(|q| self.query(q));
+        result.unwrap_or_else(|error| json!({"ok":false,"error":error}))
+    }
+}
+
+#[cfg(target_arch = "wasm32")]
+mod wasm {
+    use super::*;
+    use std::cell::RefCell;
+    thread_local! { static STORE: RefCell<Option<Store>>=const{RefCell::new(None)}; static RESULT:RefCell<Vec<u8>>=const{RefCell::new(Vec::new())}; }
+    thread_local! {static REBASE_SOURCE:RefCell<Option<Store>>=const{RefCell::new(None)};}
+    thread_local! {static INDEX_STORE:RefCell<Option<index_store::IndexStore>>=const{RefCell::new(None)};}
+    thread_local! {static LOCAL_EXTENTS:RefCell<Option<local_extents::LocalExtentStore>>=const{RefCell::new(None)};}
+    fn output(value: Value) {
+        RESULT.with(|result| *result.borrow_mut() = serde_json::to_vec(&value).unwrap());
+    }
+    #[unsafe(no_mangle)]
+    pub extern "C" fn osw_alloc(len: usize) -> *mut u8 {
+        Box::into_raw(vec![0u8; len].into_boxed_slice()) as *mut u8
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_dealloc(ptr: *mut u8, len: usize) {
+        unsafe {
+            drop(Box::from_raw(std::ptr::slice_from_raw_parts_mut(ptr, len)));
+        }
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_load(ptr: *const u8, len: usize) -> i32 {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        match Store::load(bytes) {
+            Ok(store) => {
+                output(store.metadata());
+                STORE.with(|s| *s.borrow_mut() = Some(store));
+                1
+            }
+            Err(error) => {
+                output(json!({"ok":false,"error":error}));
+                0
+            }
+        }
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_local_extents_load(ptr: *const u8, len: usize) -> i32 {
+        LOCAL_EXTENTS.with(|store| *store.borrow_mut() = None);
+        if len != local_extents::EXPECTED_BYTES {
+            output(json!({"ok":false,"error":"Unexpected local-extent research snapshot size"}));
+            return 0;
+        }
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        match local_extents::LocalExtentStore::load(bytes) {
+            Ok(store) => {
+                output(store.metadata());
+                LOCAL_EXTENTS.with(|s| *s.borrow_mut() = Some(store));
+                1
+            }
+            Err(error) => {
+                output(json!({"ok":false,"error":error}));
+                0
+            }
+        }
+    }
+    #[unsafe(no_mangle)]
+    pub extern "C" fn osw_local_extents_metadata() {
+        let result = LOCAL_EXTENTS.with(|s| s.borrow().as_ref().map(|s| s.metadata()));
+        output(
+            result.unwrap_or_else(|| json!({"ok":false,"error":"Local-extent store not loaded"})),
+        );
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_local_extents_query(ptr: *const u8, len: usize) {
+        if len > local_extents::MAX_REQUEST_BYTES {
+            output(json!({"ok":false,"error":"Local-extent query is too large"}));
+            return;
+        }
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = LOCAL_EXTENTS.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or_else(|| "Local-extent store not loaded".to_owned())
+                .and_then(|s| s.query(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_local_extents_record(ptr: *const u8, len: usize) {
+        if len > local_extents::MAX_REQUEST_BYTES {
+            output(json!({"ok":false,"error":"Local-extent record request is too large"}));
+            return;
+        }
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = LOCAL_EXTENTS.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or_else(|| "Local-extent store not loaded".to_owned())
+                .and_then(|s| s.record(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_load(ptr: *const u8, len: usize) -> i32 {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        match index_store::IndexStore::load(bytes) {
+            Ok(store) => {
+                output(store.metadata());
+                INDEX_STORE.with(|s| *s.borrow_mut() = Some(store));
+                1
+            }
+            Err(error) => {
+                output(json!({"ok":false,"error":error}));
+                0
+            }
+        }
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_query(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.query(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_document(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.document(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_map(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.map_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_support(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.support_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_noaa_state(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.noaa_state_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_noaa_track(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.noaa_track_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_state_context(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.state_context_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_state_memberships(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.state_membership_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_release_media(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.release_media_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_nasa(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.nasa_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_eddies(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.eddy_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_index_currents(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = INDEX_STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Index store not loaded".into())
+                .and_then(|s| s.current_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_query(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        STORE.with(|s| {
+            output(
+                s.borrow()
+                    .as_ref()
+                    .map(|s| s.execute(bytes))
+                    .unwrap_or_else(|| json!({"ok":false,"error":"Store not loaded"})),
+            )
+        });
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_record(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let request: Result<Value, _> = serde_json::from_slice(bytes);
+        let result = request.map_err(|e| e.to_string()).and_then(|r| {
+            STORE.with(|s| {
+                s.borrow()
+                    .as_ref()
+                    .ok_or("Store not loaded".into())
+                    .and_then(|s| {
+                        s.record(
+                            r["collection"].as_str().unwrap_or(""),
+                            r["id"].as_str().unwrap_or(""),
+                        )
+                    })
+            })
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_query_svg(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.query_svg(bytes))
+        });
+        output(match result {
+            Ok(svg) => json!({"ok":true,"svg":svg}),
+            Err(error) => json!({"ok":false,"error":error}),
+        });
+    }
+    #[unsafe(no_mangle)]
+    pub extern "C" fn osw_result_ptr() -> *const u8 {
+        RESULT.with(|r| r.borrow().as_ptr())
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_object_view(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.object_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_movies(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.movie_view(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub extern "C" fn osw_seasons() {
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.seasons_snapshot())
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub extern "C" fn osw_loop_recorded() {
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.loop_recorded_view())
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_cartography(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        output(
+            crate::cartography::execute(bytes)
+                .unwrap_or_else(|error| json!({"ok":false,"error":error})),
+        );
+    }
+    #[unsafe(no_mangle)]
+    pub extern "C" fn osw_atlas() {
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.atlas_snapshot())
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub extern "C" fn osw_dashboard() {
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.dashboard_snapshot())
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_dashboard_select(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.dashboard_select(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub extern "C" fn osw_result_len() -> usize {
+        RESULT.with(|r| r.borrow().len())
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_rebase_source(ptr: *const u8, len: usize) {
+        REBASE_SOURCE.with(|old| *old.borrow_mut() = None);
+        if len > MAX_SOURCE_SNAPSHOT_BYTES {
+            output(json!({"ok":false,"error":"Source snapshot exceeds 512 MiB"}));
+            return;
+        }
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = Store::load(bytes).map(|store| {
+            let metadata = store.metadata();
+            REBASE_SOURCE.with(|old| *old.borrow_mut() = Some(store));
+            metadata
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_workspace_rebase(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let envelope: Result<Value, _> = serde_json::from_slice(bytes);
+        let result = envelope.map_err(|e| e.to_string()).and_then(|r| {
+            STORE.with(|s| {
+                REBASE_SOURCE.with(|old| {
+                    s.borrow()
+                        .as_ref()
+                        .ok_or("Store not loaded".into())
+                        .and_then(|s| {
+                            old.borrow()
+                                .as_ref()
+                                .ok_or("Matching old source snapshot is required".into())
+                                .and_then(|old| {
+                                    s.workspace_rebase(
+                                        old,
+                                        r["request"].to_string().as_bytes(),
+                                        r["prepare"] == true,
+                                    )
+                                })
+                        })
+                })
+            })
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_workspace_prepare(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.workspace_prepare(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_workspace_import(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = STORE.with(|s| {
+            s.borrow_mut()
+                .as_mut()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.workspace_import(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+    #[unsafe(no_mangle)]
+    pub extern "C" fn osw_workspace_export() {
+        output(STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .map(|s| s.workspace_export())
+                .unwrap_or_else(|| json!({"ok":false,"error":"Store not loaded"}))
+        }));
+    }
+    #[unsafe(no_mangle)]
+    pub extern "C" fn osw_metadata() {
+        output(STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .map(|s| s.metadata())
+                .unwrap_or_else(|| json!({"ok":false,"error":"Store not loaded"}))
+        }));
+    }
+    #[unsafe(no_mangle)]
+    pub unsafe extern "C" fn osw_workspace_check(ptr: *const u8, len: usize) {
+        let bytes = unsafe { std::slice::from_raw_parts(ptr, len) };
+        let result = STORE.with(|s| {
+            s.borrow()
+                .as_ref()
+                .ok_or("Store not loaded".into())
+                .and_then(|s| s.workspace_check(bytes))
+        });
+        output(result.unwrap_or_else(|error| json!({"ok":false,"error":error})));
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    fn store() -> Store {
+        Store::load(json!({"schema":"osw.query-bundle.v1","manifest":{},"collections":{"objects":[
+        {"id":"a","label":"Alpha","type":"named_current","width_ids":["w"],"state_codes":["KURO"],"capabilities":{"scoped_width":1},"published_length_km":null},
+        {"id":"b","label":"Beta","type":"named_current","width_ids":[],"state_codes":[],"capabilities":{"scoped_width":0},"published_length_km":3000},
+        {"id":"c","label":"Gamma","type":"named_eddy","width_ids":[],"state_codes":[],"capabilities":{"scoped_width":0},"published_length_km":20000}],"widths":[{"id":"w","approximate_width_km":218,"fixed_layer_bounds_m":null}],"states":[{"id":"state:KURO","code":"KURO"}]}}).to_string().as_bytes()).unwrap()
+    }
+    #[test]
+    fn joins_and_missing() {
+        let s = store();
+        let r = s.execute(br#"{"state_code":"KURO","evidence":"scoped_width"}"#);
+        assert_eq!(r["total"], 1);
+        assert_eq!(r["rows"][0]["id"], "a");
+        assert!(r["rows"][0]["published_length_km"].is_null());
+    }
+    #[test]
+    fn frame_identity_and_geometry_binding() {
+        let mut bundle = json!({"schema":"osw.query-bundle.v1","manifest":{},"collections":{"states":[],"objects":[{"id":"a","frame_ids":["f"],"map_features":[{"frame_id":"f","observation_date":"2025-01-15","role":"diagnostic","geometry":{"type":"LineString","coordinates":[[0,0],[1,1]]}}]}],"geometry_frames":[{"id":"f","entity_id":"a","date":"2025-01-15","geometry_role":"diagnostic","coordinates_lon_lat":[[0,0],[1,1]]}]}});
+        assert!(Store::load(bundle.to_string().as_bytes()).is_ok());
+        bundle["collections"]["geometry_frames"][0]["date"] = json!("2025-02-15");
+        assert!(
+            Store::load(bundle.to_string().as_bytes())
+                .err()
+                .unwrap()
+                .contains("does not match")
+        );
+    }
+    #[test]
+    fn numeric_sort_null_last_and_page() {
+        let s = store();
+        let r = s.execute(
+            br#"{"sort":{"field":"published_length_km","direction":"desc"},"limit":1,"offset":1}"#,
+        );
+        assert_eq!(r["rows"][0]["id"], "b");
+        assert_eq!(r["total"], 3);
+        let r =
+            s.execute(br#"{"sort":{"field":"published_length_km","direction":"desc"},"offset":2}"#);
+        assert_eq!(r["rows"][0]["id"], "a");
+    }
+    #[test]
+    fn reject_bad_queries() {
+        let s = store();
+        for q in [
+            r#"{"limit":0}"#,
+            r#"{"state_code":"NOPE"}"#,
+            r#"{"evidence":"unknown"}"#,
+            r#"{"sort":{"field":"width_ids"}}"#,
+            r#"{"filters":[{"field":"label","op":"execute","value":"x"}]}"#,
+            r#"{"filters":[{"field":"missing","op":"eq","value":0}]}"#,
+            r#"{"filters":[{"field":"published_length_km","op":"gt","value":"3"}]}"#,
+            r#"{"sql":"drop table"}"#,
+        ] {
+            assert_eq!(s.execute(q.as_bytes())["ok"], false, "{q}");
+        }
+    }
+    #[test]
+    fn numeric_filter_equality_keeps_exact_integers_and_scalar_types() {
+        let s = Store::load(br#"{"schema":"osw.query-bundle.v1","manifest":{},"collections":{"objects":[{"id":"a","depth_m":15.0},{"id":"b","depth_m":15},{"id":"c","depth_m":1000.0}]}}"#).unwrap();
+        for value in ["15", "15.0"] {
+            for (op, total) in [("eq", 2), ("ne", 1)] {
+                let query =
+                    format!(r#"{{"filters":[{{"field":"depth_m","op":"{op}","value":{value}}}]}}"#);
+                assert_eq!(s.execute(query.as_bytes())["total"], total);
+            }
+        }
+        for (a, b, equal) in [
+            ("15", "15.0", true),
+            ("1000.0", "1000", true),
+            ("-15", "-15.0", true),
+            ("0", "-0.0", true),
+            ("15", "15.25", false),
+            ("null", "0", false),
+            ("true", "1", false),
+            ("\"15\"", "15", false),
+            ("9007199254740993", "9007199254740992.0", false),
+            ("9223372036854775807", "9223372036854775808.0", false),
+            ("18446744073709551615", "18446744073709551616.0", false),
+            ("-9223372036854775808", "-9223372036854775808.0", true),
+            ("9223372036854775808", "9223372036854775808.0", true),
+        ] {
+            let a: Value = serde_json::from_str(a).unwrap();
+            let b: Value = serde_json::from_str(b).unwrap();
+            assert_eq!(filter_equal(&a, &b), equal, "{a} vs {b}");
+            assert_eq!(filter_equal(&b, &a), equal, "{b} vs {a}");
+        }
+    }
+    #[test]
+    fn filter_null_is_not_zero() {
+        let s = store();
+        let r = s.execute(br#"{"filters":[{"field":"published_length_km","op":"eq","value":0}]}"#);
+        assert_eq!(r["total"], 0);
+        let r = s.execute(
+            br#"{"filters":[{"field":"published_length_km","op":"exists","value":false}]}"#,
+        );
+        assert_eq!(r["total"], 1);
+    }
+    #[test]
+    fn duplicate_and_unresolved_ids_fail() {
+        let mut b = store().bundle;
+        b.collections.remove("working_records");
+        let duplicate = b.collections["objects"][0].clone();
+        b.collections.get_mut("objects").unwrap().push(duplicate);
+        let raw = json!({"schema":b.schema,"manifest":b.manifest,"collections":b.collections});
+        assert!(
+            Store::load(&serde_json::to_vec(&raw).unwrap())
+                .err()
+                .unwrap()
+                .contains("Duplicate ID")
+        );
+        let s=br#"{"schema":"osw.query-bundle.v1","manifest":{},"collections":{"objects":[{"id":"a","width_ids":["missing"]}],"widths":[]}}"#;
+        assert!(Store::load(s).is_err());
+    }
+}

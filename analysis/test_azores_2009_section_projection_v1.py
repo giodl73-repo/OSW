@@ -1,5 +1,6 @@
 """Small source fixtures: no installed packet, native build or browser required."""
 import copy
+import gzip
 import json
 import unittest
 import azores_2009_section_projection_v1 as p
@@ -54,6 +55,28 @@ class SectionPresentation(unittest.TestCase):
         self.assertEqual(after['documents'][path], raw.decode())
         self.assertEqual(audit['scientific_source_documents_replaced'], 0)
         self.assertEqual(set(audit['added_source_paths']), set(p.documents()))
+
+    def test_compressed_index_and_packet_receipts_match_exact_sources(self):
+        raw = b'{"schema":"old.v1","value":42}\n'
+        path = 'research/old.json'
+        corpus = {'schema': 'osw.almanac-index-bundle.v1', 'documents': {path: raw.decode()}}
+        logical = p.encode(corpus); packed = gzip.compress(logical, mtime=0)
+        catalog = {'schema': 'osw.almanac-index-catalog.v1', 'source_count': 1,
+                   'documents': [{'path': path, 'source_sha256': p.sha(raw), 'source_bytes': len(raw)}],
+                   'bundle_sha256': p.sha(logical), 'bundle_bytes': len(logical),
+                   'compressed_sha256': p.sha(packed), 'compressed_bytes': len(packed)}
+        registry = {'schema': 'osw.almanac-index-sources.v1', 'documents': [path]}
+        generated, audit = p.source_index(catalog, packed, registry)
+        child = p.prepare(self.fixture(), logical_parent_sha256=p.PARENT)
+        manifest = p.packet_manifest(child['manifest'], generated, audit)
+        next_catalog = json.loads(generated['almanac/index-catalog.json'])
+        self.assertEqual(next_catalog['compressed_sha256'], p.sha(generated['almanac/index-data.json.gz']))
+        self.assertEqual(manifest[p.KEY], p.marker())
+        self.assertEqual(manifest['input_sha256']['prior'], 'preserved')
+        next_corpus = json.loads(gzip.decompress(generated['almanac/index-data.json.gz']))
+        self.assertEqual(next_corpus['documents'][path], raw.decode())
+        for name, body in p.documents().items():
+            self.assertEqual(next_corpus['documents'][name], body.decode())
 
 
 if __name__ == '__main__':
