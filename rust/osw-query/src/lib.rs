@@ -73,6 +73,7 @@ mod observed_sections;
 mod observed_spans;
 mod original_regional_widths;
 mod pacific_neuc_breadths;
+mod pacific_secc_reference;
 pub mod packet;
 mod planning;
 mod portugal_section_span;
@@ -296,6 +297,7 @@ impl Store {
         samples::validate(&bundle.collections, &bundle.manifest)?;
         basin_spans::validate(&bundle)?;
         planning::validate(&bundle.collections, &bundle.manifest)?;
+        pacific_secc_reference::routes(&bundle.collections, &bundle.manifest)?;
         loop_diagnostics::validate(&bundle.collections, &bundle.manifest)?;
         loop_recorded::validate(&bundle)?;
         network::validate(&bundle.collections, &bundle.manifest)?;

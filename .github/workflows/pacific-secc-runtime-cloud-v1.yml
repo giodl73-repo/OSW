@@ -1,0 +1,64 @@
+name: Check Pacific SECC source-bound native reference integration v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/pacific-secc-runtime-cloud-request-v1.json
+      - .github/workflows/pacific-secc-runtime-cloud-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  CARGO_BUILD_JOBS: "1"
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  PYTHONPATH: analysis
+jobs:
+  source-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+      - id: request
+        name: Read exact source-check request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          request=json.loads(pathlib.Path('research/pacific-secc-runtime-cloud-request-v1.json').read_bytes())
+          assert request['schema']=='osw.pacific-secc-runtime-cloud-request.v1'
+          assert type(request['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('enabled='+str(request['execute']).lower()+'\n')
+          PY
+      - name: Verify frozen sources and installed parent source archives
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_pacific_secc_runtime_cloud_v1.py preflight
+      - name: Install pinned native compiler and locked dependencies
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 fetch --locked --manifest-path rust/osw-query/Cargo.toml
+      - name: Check planning and route tests sequentially on one CPU
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_pacific_secc_runtime_cloud_v1.py tests
+      - name: Retain compact source-check evidence
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacific-secc-runtime-source-evidence-v1
+          path: .pytest_cache/pacific-secc-runtime-cloud-v1/*
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90

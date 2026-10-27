@@ -476,10 +476,11 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         .get("objects")
         .ok_or("Missing atlas objects")?;
     let eicc_references = crate::planning::eicc_reference_routes(&bundle.collections, &bundle.manifest)?;
+    let pacific_references = crate::pacific_secc_reference::routes(&bundle.collections, &bundle.manifest)?;
     for route in routes {
         // These complete rows and their saved display geometry are checked by
         // the exact source/query contract; historical file receipts stay exact.
-        if eicc_references.contains(route) {
+        if eicc_references.contains(route) || pacific_references.contains(route) {
             continue;
         }
         let path = route["candidate_file"]

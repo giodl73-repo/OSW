@@ -109,6 +109,7 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
         &b.collections,
         &b.manifest,
     )?);
+    expected.extend(crate::pacific_secc_reference::routes(&b.collections, &b.manifest)?);
     if b.collections.get("reference_routes") != Some(&expected) {
         return Err("Changed source-reference route or previous route inventory".into());
     }

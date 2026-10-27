@@ -195,7 +195,9 @@ pub fn validate(
                 return Err(format!("Planning projection differs in {key}"));
             }
         }
-        let source_path = if let Some(path) = revised_eicc_source(record, manifest, collections)? {
+        let source_path = if let Some(path) = crate::pacific_secc_reference::planning_source(record, collections, manifest)? {
+            path
+        } else if let Some(path) = revised_eicc_source(record, manifest, collections)? {
             path
         } else if let Some((expected, path)) =
             crate::current_catalogue::planning_source(current, manifest)

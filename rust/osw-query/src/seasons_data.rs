@@ -206,6 +206,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         }
         if key == "routes" {
             source.extend(crate::planning::eicc_reference_routes(&bundle.collections, &bundle.manifest)?);
+            source.extend(crate::pacific_secc_reference::routes(&bundle.collections, &bundle.manifest)?);
         }
         let actual = bundle
             .collections
@@ -533,7 +534,8 @@ impl Store {
         let reference_catalogue = if reference_catalogue.is_null() {
             reference_catalogue
         } else {
-            crate::planning::eicc_catalogue_projection(&self.bundle, reference_catalogue)?
+            crate::pacific_secc_reference::catalogue_projection(&self.bundle,
+                crate::planning::eicc_catalogue_projection(&self.bundle, reference_catalogue)?)?
         };
         Ok(
             json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],"sources_json":sources,"phase_plans":plans,"admitted_current_decisions":crate::current_catalogue::decisions(&self.bundle),"supplemental_widths":supplemental,"working_reference_routes":reference_catalogue,"south_australian_context_scene":crate::south_australian_context::scene(&self.bundle),"eac_source_field_scene":crate::eac_source_fields::scene(&self.bundle),"asca_component_span_scene":crate::asca_component_spans::scene(&self.bundle),"kuroshio_filtered_width_scene":crate::kuroshio_filtered_width::scene(&self.bundle),"agulhas_reported_scene":crate::agulhas_reported::scene(&self.bundle),"kuroshio_daily_scene":crate::kuroshio_daily::scene(&self.bundle),"width_source_review_scenes":crate::current_width_source_reviews::scenes(&self.bundle),"research_evidence_scenes":crate::current_research_evidence::scenes(&self.bundle),"published_transport_scenes":crate::published_transports::by_current(&self.bundle),"pacific_neuc_breadth_scene":crate::pacific_neuc_breadths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"dwbc_float_composite_scene":crate::dwbc_float_composite::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"coastal_composite_width_scene":crate::coastal_composite_widths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[]))}),
