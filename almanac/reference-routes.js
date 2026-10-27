@@ -430,9 +430,10 @@
         link('Query all 54 paired coastline checks','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,compare));
       }
       const image = node("img", null, card); image.className = "route-map"; image.src = `../${row.figure}`; image.alt = `${row.name}: schematic editorial route with labeled endpoints. Approximate length and scenario limits are provided in the surrounding text.`;
-      if(row.figure==='figures/pacific-secc-western-mean-reference-path-v2-candidate.svg'){
+      const compactFigure=row.compact_figure_file||report.compact_figure_file||(row.figure==='figures/pacific-secc-western-mean-reference-path-v2-candidate.svg'?'figures/pacific-secc-western-reference-compact-v1.svg':null);
+      if(compactFigure){
         const responsive=document.createElement('picture'),mobile=document.createElement('source');
-        mobile.media='(max-width:480px)';mobile.srcset='../figures/pacific-secc-western-reference-compact-v1.svg';
+        mobile.media='(max-width:480px)';mobile.srcset=`../${compactFigure}`;
         image.replaceWith(responsive);responsive.append(mobile,image);
       }
       if(report.rendering_role==='derived_inline_source_reference_card_not_additional_observation')node('p','The comparison figure shows both source-coordinate conventions and their retained bend probes. This card describes the selected connection; neither convention is a measured whole-current axis.',card);
