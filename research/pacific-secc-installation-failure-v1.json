@@ -1,0 +1,22 @@
+{
+  "schema": "osw.pacific-secc-installation-failure.v1",
+  "status": "FAILED_WITHOUT_BRANCH_UPDATE",
+  "run_id": 40554313625,
+  "run_attempt": 2,
+  "job_id": 122366589569,
+  "source_commit": "2d8ae52d2208c514640f7ce25f72ccf00066153b",
+  "receipt_artifact_id": 12757091072,
+  "receipt_artifact_sha256": "0675016444e6a34d98fb9ceb42f43b2f44aa302e6dd3796942d46232719a02e3",
+  "failure": {
+    "status": "FAIL",
+    "control_commit": "2d8ae52d2208c514640f7ce25f72ccf00066153b",
+    "error": "CalledProcessError: Command '['gh', 'api', 'repos/giodl73-repo/OSW/git/blobs', '-H', 'Cache-Control: no-cache', '--input', '-']' returned non-zero exit status 1.",
+    "instruction": "Inspect authoritative branch: ref update may already have succeeded."
+  },
+  "cause": "GitHub Git Blobs REST API rejected a large saved artifact upload with HTTP422 input too large.",
+  "preflight_passed": true,
+  "eight_custody_tests_passed": true,
+  "branch_head_verified_unchanged": true,
+  "scientific_artifacts_changed": false,
+  "next_action": "Use cloud Git object transport for the same exact reviewed artifacts, guarded against changed parent, extra files, main updates and local synchronization."
+}
