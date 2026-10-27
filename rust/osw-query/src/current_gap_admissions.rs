@@ -277,6 +277,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     }
     let eicc_references = crate::planning::eicc_reference_routes(&bundle.collections, &bundle.manifest)?;
     let revised_eicc = !eicc_references.is_empty();
+    let revised_south_java = !crate::south_java_reference::routes(&bundle.collections, &bundle.manifest)?.is_empty();
     for (name, expected) in expected_records() {
         let actual: Vec<_> = bundle
             .collections
@@ -285,9 +286,11 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             .flatten()
             .filter(|row| row["id"] == expected["id"])
             .collect();
-        let retained_revision = revised_eicc && name == "route_decisions"
-            && expected["entity_id"] == "current:east-india-coastal" && actual.len() == 1
-            && actual[0]["prior_route_decision"] == expected;
+        // Each revised route is fully validated above before its retained prior row is accepted.
+        let retained_revision = name == "route_decisions" && actual.len() == 1
+            && actual[0]["prior_route_decision"] == expected
+            && ((revised_eicc && expected["entity_id"] == "current:east-india-coastal")
+                || (revised_south_java && expected["entity_id"] == "current:south-java"));
         if actual != vec![&expected] && !retained_revision {
             return Err(format!(
                 "Changed current-gap {name} record: {}",
@@ -333,7 +336,8 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             || owner["width_sample_ids"] != json!([])
             || owner["state_codes"] != json!([])
             || owner["state_evidence"] != json!([])
-            || (!(revised_eicc && entity["id"] == "current:east-india-coastal")
+            || (!((revised_eicc && entity["id"] == "current:east-india-coastal")
+                    || (revised_south_java && entity["id"] == "current:south-java"))
                 && (owner["route_ids"] != json!([]) || owner["map_features"] != json!([])))
             || !owner["published_length_km"].is_null()
             || !owner["latest_observation_date"].is_null()
@@ -494,6 +498,49 @@ pub(crate) mod tests {
             schema: "osw.query-bundle.v1".into(),
             manifest,
             collections,
+        }
+    }
+    #[test]
+    fn reviewed_south_java_reference_composes_with_existing_cohort_without_physical_promotion() {
+        let selected: Bundle = serde_json::from_str(include_str!("../../../research/south-java-reference-runtime-fixture-v1.json")).unwrap();
+        let mut b = fixture();
+        for (key, value) in selected.manifest["input_sha256"].as_object().unwrap() {
+            b.manifest["input_sha256"][key] = value.clone();
+        }
+        b.manifest["south_java_reference_delivery_v1"] = selected.manifest["south_java_reference_delivery_v1"].clone();
+        for name in ["objects", "route_decisions"] {
+            let rows = b.collections.get_mut(name).unwrap();
+            let changed = selected.collections[name].iter().find(|row|
+                row["id"] == "current:south-java" || row["entity_id"] == "current:south-java").unwrap();
+            let row = rows.iter_mut().find(|row| row["id"] == changed["id"]).unwrap();
+            *row = changed.clone();
+        }
+        b.collections.insert("reference_routes".into(), selected.collections["reference_routes"].clone());
+        let sources = b.collections.get_mut("sources").unwrap();
+        for row in &selected.collections["sources"] {
+            if row["id"].as_str().unwrap().starts_with("fixture:") { continue; }
+            if let Some(prior) = sources.iter().find(|prior| prior["id"] == row["id"]) {
+                assert_eq!(prior, row);
+            } else { sources.push(row.clone()); }
+        }
+        while sources.len() < 211 {
+            sources.push(json!({"id":format!("fixture:cohort-source:{}", sources.len())}));
+        }
+        assert_eq!(sources.len(), 211);
+        validate(&b).unwrap();
+        for mode in ["physical", "prior", "receipt", "other"] {
+            let mut bad = Bundle { schema: b.schema.clone(), manifest: b.manifest.clone(), collections: b.collections.clone() };
+            match mode {
+                "physical" => bad.collections.get_mut("objects").unwrap().iter_mut()
+                    .find(|r| r["id"] == "current:south-java").unwrap()["published_length_km"] = json!(1100),
+                "prior" => bad.collections.get_mut("route_decisions").unwrap().iter_mut()
+                    .find(|r| r["entity_id"] == "current:south-java").unwrap()["prior_route_decision"]["candidate_count"] = json!(1),
+                "receipt" => { bad.manifest.as_object_mut().unwrap().remove("south_java_reference_delivery_v1"); },
+                "other" => bad.collections.get_mut("route_decisions").unwrap().iter_mut()
+                    .find(|r| r["entity_id"] != "current:south-java").unwrap()["candidate_count"] = json!(1),
+                _ => unreachable!(),
+            }
+            assert!(validate(&bad).is_err(), "{mode}");
         }
     }
     #[test]
