@@ -1,0 +1,68 @@
+name: South Java Java-Bali reference geography
+on:
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/south-java-reference-cloud-request-v1.json
+      - .github/workflows/south-java-reference-cloud-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/south-java-reference-cloud-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/south-java-reference-cloud-request-v1.json').read_bytes())
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute'] is True).lower()+'\n')
+          PY
+  geography:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Verify frozen case before geographic dependencies or coast data
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_reference_cloud_v1.py --preflight-only
+      - name: Install pinned geographic dependencies only
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2 shapely==2.1.2 pyshp==2.3.1 matplotlib==3.10.8 PyMuPDF==1.26.7 pytest==8.4.2
+      - name: Synthetic geodesic and local-refusal checks
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pytest -q analysis/test_current_reference_path_candidate.py analysis/test_south_java_reference_cloud_v1.py
+      - name: Calculate27 scenarios, both land masks and review maps
+        run: |
+          cpu=$(python -c "import os;print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_reference_cloud_v1.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: south-java-reference-geography-v1
+          path: .pytest_cache/south-java-reference-cloud-v1/
+          include-hidden-files: true
+          if-no-files-found: ignore
