@@ -48,6 +48,7 @@
     const caption=document.createElement('figcaption');caption.textContent='ADCP means acoustic Doppler current profiler. A, B1, B2 and C are four 1997 cruise crossings; exact crossing dates remain unresolved. Points show the reported layer-median widths; whiskers show source total error estimates. Projection error is included already. No confidence level or seasonal range inferred.';container.append(caption);
   }
   function renderRegionalRange(row) {
+    if(window.oswSeasonSnapshot?.azores_2009_section_scene?.records.some(r=>r.id===row?.id)){const container=byId("regional-width-range");container.replaceChildren();container.hidden=false;window.renderAzores2009Section(container,window.oswSeasonSnapshot.azores_2009_section_scene,row.id);return;}
     const container=byId('regional-width-range');container.replaceChildren();container.hidden=true;
     if(row?.phase_kind==='published_near_surface_survey_summary'){
       container.hidden=false;

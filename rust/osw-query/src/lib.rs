@@ -11,6 +11,7 @@ mod asca_component_spans;
 mod astrid_scales;
 mod atlantic_euc_sections;
 mod atlas_data;
+mod azores_section_review;
 mod baffin_latitude_bound;
 mod basin_spans;
 mod caribbean_source_fields;
@@ -201,6 +202,7 @@ impl Store {
             fields.insert(name.clone(), keys);
         }
         published_transports::validate(&bundle)?;
+        azores_section_review::validate(&bundle)?;
         original_regional_widths::validate_south_atlantic_inventory(&bundle)?;
         original_regional_widths::validate_south_pacific_inventory(&bundle)?;
         original_regional_widths::validate_ngcc_inventory(&bundle)?;
@@ -756,6 +758,7 @@ impl Store {
                 coastal_composite_widths::scene(&matches, records),
                 dwbc_float_composite::scene(&matches, records),
                 pacific_neuc_breadths::scene(&matches, records),
+                azores_section_review::query(&matches, &self.bundle),
                 neuc_glider_widths::width_scene(&matches, &self.bundle),
                 aleutian_onishi_width::query(&matches, &self.bundle),
                 portugal_section_span::scene(&matches),

@@ -1,6 +1,7 @@
 "use strict";
 window.renderAtlasWidthEvidence = function(panel, current, inventory) {
   const id=current.id.replace(/^current:/,'');
+  window.renderAzores2009Section(panel,window.oswAtlasSnapshot?.azores_2009_section_scene,current.id);
   if(id==='kuroshio')window.renderKuroshioFilteredWidths(panel,window.oswAtlasSnapshot?.kuroshio_filtered_width_scene);
   if(id==='kuroshio')window.renderKuroshioDaily(panel,window.oswAtlasSnapshot?.kuroshio_daily_scene);
   if(id==='agulhas')window.renderAgulhasReportedDimensions(panel,window.oswAtlasSnapshot?.agulhas_reported_scene);
