@@ -5,6 +5,8 @@ use std::collections::{BTreeMap, BTreeSet};
 
 pub(crate) const FILE: &str = "research/pacific-secc-reference-runtime-contract-v1.json";
 const RAW: &str = include_str!("../../../research/pacific-secc-reference-runtime-contract-v1.json");
+const PUBLICATION_FILE: &str = "research/pacific-secc-reference-publication-admission-v1.json";
+const PUBLICATION_RAW: &str = include_str!("../../../research/pacific-secc-reference-publication-admission-v1.json");
 const KEY: &str = "pacific_secc_reference_delivery_v1";
 const OWNER: &str = "current:pacific-south-equatorial-countercurrent";
 const CURRENT: &str = "pacific-south-equatorial-countercurrent";
@@ -42,7 +44,8 @@ pub(crate) fn routes(collections: &BTreeMap<String, Vec<Value>>, manifest: &Valu
         .filter(|row| row["current_id"] == CURRENT).collect();
     let receipt = &manifest[KEY];
     if receipt.is_null() {
-        if !actual.is_empty() || !manifest["input_sha256"][FILE].is_null() { return Err(fail()); }
+        if !actual.is_empty() || !manifest["input_sha256"][FILE].is_null()
+            || !manifest["input_sha256"][PUBLICATION_FILE].is_null() { return Err(fail()); }
         return Ok(vec![]);
     }
     let document = contract()?;
@@ -57,6 +60,27 @@ pub(crate) fn routes(collections: &BTreeMap<String, Vec<Value>>, manifest: &Valu
     }
     let query = &document["query_contract"];
     let sources = collections.get("sources").ok_or_else(fail)?;
+    let publication_admission = &receipt["publication_admission"];
+    if !publication_admission.is_null() {
+        let expected: Value = serde_json::from_str(PUBLICATION_RAW).map_err(|_| fail())?;
+        if publication_admission != &expected
+            || manifest["input_sha256"][PUBLICATION_FILE] != pin(PUBLICATION_RAW)
+            || receipt["prior_owner"] != expected["audited_prior_owner"]
+            || receipt["prior_decision"] != expected["audited_prior_decision"]
+            || receipt["publication_source"] != expected["publication_source"]
+            || sources.len() != 210
+        { return Err(fail()); }
+        for (path, sha) in expected["input_sha256"].as_object().ok_or_else(fail)? {
+            if manifest["input_sha256"][path] != *sha { return Err(fail()); }
+        }
+        for source in expected["audited_owner_sources"].as_array().ok_or_else(fail)? {
+            if sources.iter().filter(|r| r["id"] == source["id"]).collect::<Vec<_>>() != vec![source] {
+                return Err(fail());
+            }
+        }
+    } else if !manifest["input_sha256"][PUBLICATION_FILE].is_null() {
+        return Err(fail());
+    }
     let matches: Vec<_> = sources.iter().filter(|r| publication(r)).collect();
     if matches.len() != 1 || matches[0] != &receipt["publication_source"]
         || (!matches[0]["doi"].is_null() && doi(&matches[0]["doi"]) != DOI)
@@ -120,6 +144,9 @@ pub(crate) fn routes(collections: &BTreeMap<String, Vec<Value>>, manifest: &Valu
     ids.insert(method["id"].as_str().ok_or_else(fail)?.into());
     expected_owner["source_ids"] = json!(ids.iter().collect::<Vec<_>>());
     expected_owner["linked_source_count"] = json!(ids.len());
+    if !publication_admission.is_null() {
+        expected_owner["route_url"] = publication_admission["atlas_route_url"].clone();
+    }
     let section_raw = receipt["section_fingerprint_json"].as_str().ok_or_else(fail)?;
     let section: Value = serde_json::from_str(section_raw).map_err(|_| fail())?;
     if section != expected_route { return Err(fail()); }
@@ -183,6 +210,35 @@ mod tests {
     use super::*;
     fn fixture() -> crate::Bundle {
         serde_json::from_str(include_str!("../../../research/pacific-secc-reference-runtime-fixture-v1.json")).unwrap()
+    }
+    fn publication_fixture() -> crate::Bundle {
+        serde_json::from_str(include_str!("../../../research/pacific-secc-reference-publication-fixture-v1.json")).unwrap()
+    }
+    #[test]
+    fn audited_publication_and_direct_atlas_navigation_are_source_bound() {
+        let b = publication_fixture();
+        let rows = routes(&b.collections, &b.manifest).unwrap();
+        assert_eq!(rows.len(), 1);
+        assert_eq!(rows[0]["source_id"], "source:chen-qiu-secc-seasonal-2004");
+        assert_eq!(b.collections["sources"].len(), 210);
+        assert!(b.collections["objects"][0]["route_url"].as_str().unwrap().contains("atlas-route="));
+        crate::planning::validate(&b.collections, &b.manifest).unwrap();
+    }
+    #[test]
+    fn publication_supplement_refuses_changed_audited_parent_and_navigation() {
+        for change in ["parent", "navigation", "publication", "pin", "partial", "registry"] {
+            let mut b = publication_fixture();
+            match change {
+                "parent" => b.manifest[KEY]["prior_owner"]["published_length_km"] = json!(1800),
+                "navigation" => b.collections.get_mut("objects").unwrap()[0]["route_url"] = json!("wrong.html"),
+                "publication" => b.collections.get_mut("sources").unwrap()[208]["title"] = json!("wrong paper"),
+                "pin" => b.manifest["input_sha256"][PUBLICATION_FILE] = json!("wrong"),
+                "partial" => { b.manifest[KEY].as_object_mut().unwrap().remove("publication_admission"); },
+                "registry" => { b.collections.get_mut("sources").unwrap().pop(); },
+                _ => unreachable!(),
+            }
+            assert!(routes(&b.collections, &b.manifest).is_err(), "{change}");
+        }
     }
     #[test]
     fn source_bound_reference_accepts_and_generic_planning_matches() {
