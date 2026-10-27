@@ -1211,7 +1211,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "2474da59d062b1d931bc9cfcb010205d512de99516f2510f34eeba3ea968d7bf",
+  "snapshot_fingerprint": "f0ed9253a5bc5b7e7abc977776971e201d355a093bab0a0dbb0a253e6dec16c6",
   "entries": [
     {
       "id": "current:agulhas",
@@ -172046,37 +172046,38 @@
         "source:indian-coastal-identities-vinayachandran-2021",
         "source:iskandar-south-java-ofes-2006",
         "source:published-model-layer-context-v1",
+        "source:south-java-java-bali-reference-method-v1",
         "source:sprintall-sjc-2010-ombai-confinement"
       ],
-      "linked_source_count": 5,
+      "linked_source_count": 6,
       "capabilities": {
+        "cross_shore_context": 1,
         "dated_diagnostics": 0,
+        "direction_calendars": 0,
+        "direction_descriptions": 0,
         "flow_network": 0,
         "geometry": 0,
+        "model_analysis_layers": 1,
+        "model_depth_context": 2,
         "observed_velocity": 0,
         "passage_transport": 0,
         "radius_evidence": 0,
-        "reference_route": 0,
+        "reference_route": 1,
+        "regime_context": 0,
         "reported_length": 0,
+        "reported_width_evidence": 0,
         "scope_notes": 0,
         "scoped_width": 0,
         "source_connectivity": 0,
         "time_samples": 0,
-        "width_samples": 0,
-        "direction_calendars": 0,
-        "direction_descriptions": 0,
-        "reported_width_evidence": 0,
-        "cross_shore_context": 1,
-        "regime_context": 0,
-        "model_analysis_layers": 1,
-        "model_depth_context": 2
+        "width_samples": 0
       },
       "dashboard_search": "South Java Current Eastern Indian Ocean",
       "search_aliases": [
         "SJC"
       ],
       "object_url": "object.html?id=current%3Asouth-java",
-      "route_url": null,
+      "route_url": "reference-routes.html?atlas-layout=map&atlas-feature=current%3Asouth-java&atlas-route=south-java-java-bali-reference-reach-v1#route-atlas",
       "season_url": "seasons.html?current=south-java",
       "published_length_km": null,
       "latest_observation_date": null,
@@ -172113,17 +172114,76 @@
         {
           "label": "Model study layer/depth context, not current thickness",
           "url": "../figures/south-java-iskandar-2006-layer-context-v1.svg"
+        },
+        {
+          "label": "View the South Java reference reach",
+          "url": "south-java-reference-support.html"
         }
       ],
       "connections": [],
       "current_section_ids": [],
       "diagnostic_ids": [],
-      "map_features": [],
+      "map_features": [
+        {
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                105,
+                -7.25
+              ],
+              [
+                106,
+                -7.8
+              ],
+              [
+                108,
+                -8.2
+              ],
+              [
+                110,
+                -8.5
+              ],
+              [
+                112,
+                -8.8
+              ],
+              [
+                114,
+                -9
+              ],
+              [
+                115,
+                -9
+              ]
+            ]
+          },
+          "role": "editorial_reference_route",
+          "candidate_id": "south-java-java-bali-reference-reach-v1",
+          "source_id": "source:iskandar-south-java-ofes-2006",
+          "source_ids": [
+            "source:iskandar-south-java-ofes-2006",
+            "source:sprintall-sjc-2010-ombai-confinement",
+            "source:south-java-java-bali-reference-method-v1"
+          ],
+          "note": "Partial Java-Bali study reach at OSW-selected105E/115E truncations. Offshore vertices are drawing choices, not observed axis points. Excludes Sumatra, Lombok recirculation, Savu-Ombai extension and the SJCU.",
+          "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2006JC003486",
+          "source_locator": "Iskandar2006 paragraphs10-14 and Figure3 caption for study meridians; Sprintall2010 Figure1 and caption on PDF3 for regional system geography.",
+          "source_file_sha256": "e0e280c236c9836c45c3857338927eb07a48ab549045f83b1c1b9785dad7c2e1",
+          "observation_date": null,
+          "layer": "Surface-feature geographic context only. The source model defines SJCC above150m; no fixed-depth axis or physical current thickness is assigned to this drawing.",
+          "time_convention": "No dated route. Model1990-2003 and observational2004-2006 contexts remain separate; neither is assigned as the drawing observation interval.",
+          "physical_current_axis_admitted": false,
+          "physical_state_join_eligible": false
+        }
+      ],
       "measurement_ids": [],
       "route_decision_ids": [
         "route-decision:south-java"
       ],
-      "route_ids": [],
+      "route_ids": [
+        "south-java-java-bali-reference-reach-v1"
+      ],
       "scope_notes": [],
       "series": [],
       "state_codes": [],
@@ -172132,18 +172192,19 @@
       "width_ids": [],
       "width_sample_ids": [],
       "section_fingerprints": {
-        "identity": "5dc8aac70c4ddc856970f510fcccdd33c1a75be47f5ebedf2104bf0c35bedff8",
-        "sources": "100aa002c05596d2a30ec51795a175de8a3eb78d959d281aec69ddfff2136ea2",
         "claims": "077d6883c4344d98dc20f5cbada180445bff30596527e144d659dbbf6f448bc5",
-        "measurements": "15c3552e1e91fe59730f30e986ed063d0d03207d363575360ca9d7ce269597f2",
-        "routes_geometry": "210e130878aabaf46f1fe72749a263f9eb71c6a262b80f13882ed08d472c0ecd",
-        "media": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd",
-        "source_context": "af3da4d1bb5472c2954efa36f93b7f30e8291209ac4033a3bfc40a707ca91d4e",
         "coastal_dimension_context": "af3da4d1bb5472c2954efa36f93b7f30e8291209ac4033a3bfc40a707ca91d4e",
-        "model_layer_context": "3e502e985555af0e80238eb2a11894217ed5d63f3584af52943b8792910eddf6"
+        "identity": "5dc8aac70c4ddc856970f510fcccdd33c1a75be47f5ebedf2104bf0c35bedff8",
+        "measurements": "15c3552e1e91fe59730f30e986ed063d0d03207d363575360ca9d7ce269597f2",
+        "media": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "model_layer_context": "3e502e985555af0e80238eb2a11894217ed5d63f3584af52943b8792910eddf6",
+        "routes_geometry": "210e130878aabaf46f1fe72749a263f9eb71c6a262b80f13882ed08d472c0ecd",
+        "source_context": "af3da4d1bb5472c2954efa36f93b7f30e8291209ac4033a3bfc40a707ca91d4e",
+        "sources": "100aa002c05596d2a30ec51795a175de8a3eb78d959d281aec69ddfff2136ea2",
+        "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd",
+        "south_java_java_bali_reference": "b1382511fe58d58f199e669ad0a678d82538d4345485abcee558698ec0123014"
       },
-      "fingerprint": "84630ab8b88323a12b9e29a927f62f3202d023144b6a31a76ec8e483ac4310c2",
+      "fingerprint": "56a4ee809ce97875dc06f72a4ef6bcf5ac992501fea1320a7276241b75f1af0b",
       "direction_calendar_ids": [],
       "direction_description_ids": [],
       "reported_width_evidence_ids": [],
@@ -172326,6 +172387,14 @@
     "parent_source_sha256": "767dc97d2b4f994ea10532ed32256d0994e9e15c9d1e5e3e851f202d8757100f",
     "changed_owner_ids": [
       "current:pacific-south-equatorial-countercurrent"
+    ],
+    "new_physical_dimensions": 0,
+    "editorial_reference_routes": 1
+  },
+  "south_java_reference_delivery_v1": {
+    "parent_source_sha256": "93aaf4e644e67f624ad334a75072237301af5a16328066c4b3c572aedb24617c",
+    "changed_owner_ids": [
+      "current:south-java"
     ],
     "new_physical_dimensions": 0,
     "editorial_reference_routes": 1
