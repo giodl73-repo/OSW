@@ -210,10 +210,12 @@
           && row.constraint.whole_current_length_km === null
           && row.constraint.current_geometry === null) {
         const figure = node('figure', null, section);
+        figure.style.cssText = 'margin:1rem 0';
         const image = node('img', null, figure);
         image.src = '../figures/eacc-regional-connection-v1.svg';
+        image.srcset = '../figures/eacc-regional-connection-card-v1.svg';
         image.alt = 'Approximately 1000 km regional connection from coastal contact near 11°S to the Somali Current confluence near 3°S. Schematic, not a measured current axis; observation dates, layer, uncertainty and annual ranges unknown.';
-        image.loading = 'lazy'; image.style.cssText = 'width:100%;max-width:860px;height:auto';
+        image.loading = 'lazy'; image.style.cssText = 'width:100%;max-width:420px;height:auto';
         node('figcaption', 'Published regional connection in a theoretical-transit discussion. This diagram adds no measurement or geographic route.', figure);
         const open = node('a', 'Open the regional-connection diagram', section);
         open.href = image.src;
