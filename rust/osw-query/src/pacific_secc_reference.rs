@@ -173,18 +173,20 @@ pub(crate) fn catalogue_projection(bundle: &crate::Bundle, mut catalog: Value) -
     if rows.is_empty() { return Ok(catalog); }
     let fail = || "Invalid Pacific SECC atlas projection".to_owned();
     let doc = contract()?;
-    let report = &doc["atlas_report"];
+    let mut report = doc["atlas_report"].clone();
+    report["rendering_role"] = json!("derived_inline_editorial_reach_card_not_additional_observation");
     let candidates = catalog["candidates"].as_array_mut().ok_or_else(fail)?;
     if candidates.iter().any(|r| r["current_id"] == CURRENT) { return Err(fail()); }
     let mut entry = rows[0].clone();
     entry["candidate_file"] = entry["source_file"].clone();
     entry["candidate_sha256"] = entry["source_file_sha256"].clone();
+    entry["figure"] = entry["figure_file"].clone();
     entry["route_extent_kind"] = json!("western mean-circulation editorial reference reach");
     entry["scenario_range_km"] = entry["public_editorial_probe_span_km"].clone();
     entry["nominal_atlas_state_crossings"] = json!([]);
     entry["state_intersection_status"] = json!("unassessed_no_physical_join_admitted");
     entry["remaining_gates"] = report["remaining_gates"].clone();
-    entry["report_inline"] = report.clone();
+    entry["report_inline"] = report;
     candidates.push(entry);
     let decision = bundle.collections.get("route_decisions").into_iter().flatten()
         .find(|r| r["entity_id"] == OWNER).ok_or_else(fail)?;
@@ -279,7 +281,10 @@ mod tests {
         let result = catalogue_projection(&b, catalog).unwrap();
         assert_eq!(result["counts"]["route_candidates"], 81);
         assert_eq!(result["candidates"][0]["nominal_atlas_state_crossings"], json!([]));
-        assert_eq!(result["candidates"][0]["report_inline"], doc["atlas_report"]);
+        let mut expected_report = doc["atlas_report"].clone();
+        expected_report["rendering_role"] = json!("derived_inline_editorial_reach_card_not_additional_observation");
+        assert_eq!(result["candidates"][0]["report_inline"], expected_report);
+        assert_eq!(result["candidates"][0]["figure"], result["candidates"][0]["figure_file"]);
         assert!(catalogue_projection(&b, result).is_err());
         b.manifest.as_object_mut().unwrap().remove(KEY);
         b.manifest["input_sha256"].as_object_mut().unwrap().remove(FILE);
