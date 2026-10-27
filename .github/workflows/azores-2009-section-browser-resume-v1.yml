@@ -1,0 +1,84 @@
+name: Verify saved Azores section candidate in browser v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/azores-2009-section-browser-resume-request-v1.json
+      - .github/workflows/azores-2009-section-browser-resume-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  CARGO_BUILD_JOBS: "1"
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  OSW_AZORES_SECTION_BROWSER_RESUME_V1: "1"
+  PYTHONPATH: analysis
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/azores-2009-section-browser-resume-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/azores-2009-section-browser-resume-request-v1.json').read_bytes())
+          assert r['schema']=='osw.azores-2009-section-browser-resume-request.v1'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  browser-resume:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+      - name: Verify exact observer source and saved-engine metadata
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/resume_azores_2009_section_browser_v1.py preflight
+          taskset -c "$cpu" nice -n 15 python -m unittest test_azores_2009_section_browser_observer_v2 test_resume_azores_2009_section_browser_v1 -v
+      - name: Restore verified saved candidate without rebuilding
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/resume_azores_2009_section_browser_v1.py restore
+      - name: Install cloud browser on one CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0
+          taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
+      - name: Verify both currents and unclipped desktop/mobile evidence
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/resume_azores_2009_section_browser_v1.py browser
+      - name: Retain compact evidence only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: azores-2009-section-browser-resume-evidence-v1
+          path: |
+            .pytest_cache/azores-2009-section-browser-resume-v1/*-failure.json
+            .pytest_cache/azores-2009-section-browser-resume-v1/restored.json
+            .pytest_cache/azores-2009-section-browser-resume-v1/browser.json
+            .pytest_cache/azores-2009-section-browser-resume-v1/result.json
+            .pytest_cache/azores-2009-section-browser-resume-v1/*.png
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90
