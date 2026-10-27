@@ -504,6 +504,12 @@ pub(crate) mod tests {
     fn reviewed_south_java_reference_composes_with_existing_cohort_without_physical_promotion() {
         let selected: Bundle = serde_json::from_str(include_str!("../../../research/south-java-reference-runtime-fixture-v1.json")).unwrap();
         let mut b = fixture();
+        // The audited selected owner includes a coastal context admitted after the original cohort.
+        let coastal: Value = serde_json::from_str(include_str!("../../../research/indian-coastal-dimension-context-query-contract-v1.json")).unwrap();
+        for row in coastal["additions"]["current_cross_shore_context"].as_array().unwrap().iter()
+            .filter(|row| row["entity_id"] == "current:south-java") {
+            b.collections.entry("current_cross_shore_context".into()).or_default().push(row.clone());
+        }
         for (key, value) in selected.manifest["input_sha256"].as_object().unwrap() {
             b.manifest["input_sha256"][key] = value.clone();
         }
