@@ -112,7 +112,7 @@
     const frame = phase?.frame;
     const direction = phase?.direction;
     const current=byId("season-current").value;
-    const transports=byId("published-section-transports");transports.replaceChildren();const transportScene=window.oswSeasonSnapshot?.published_transport_scenes?.[current];transports.hidden=!transportScene;window.renderPublishedSectionTransports(transports,transportScene);
+    const transports=byId("published-section-transports");transports.replaceChildren();const transportScene=window.oswSeasonSnapshot?.published_transport_scenes?.[current],speedScene=window.oswSeasonSnapshot?.published_speed_scenes?.[current];transports.hidden=!transportScene&&!speedScene;window.renderPublishedSectionTransports(transports,transportScene);window.renderPublishedCurrentSpeeds(transports,speedScene);
     window.renderAtlanticCruiseWidths(byId('cruise-span-panel'), current, inventory);
     const address=new URL(location.href);address.searchParams.set("current",current);
     if(phaseId(phase))address.searchParams.set("phase",phaseId(phase));else address.searchParams.delete("phase");

@@ -12,6 +12,7 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
   window.renderCurrentWidthSourceReview(panel,window.oswAtlasSnapshot?.width_source_review_scenes?.[id]);
   if(id==='pacific-north-equatorial-undercurrent')window.renderPacificNeucBreadths(panel,window.oswAtlasSnapshot?.pacific_neuc_breadth_scene);
   window.renderPublishedSectionTransports(panel,window.oswAtlasSnapshot?.published_transport_scenes?.[id]);
+  window.renderPublishedCurrentSpeeds(panel,window.oswAtlasSnapshot?.published_speed_scenes?.[id]);
   const section=document.createElement('section');section.className='atlas-width-evidence';panel.append(section);
   const node=(tag,text,parent=section)=>{const element=document.createElement(tag);element.textContent=text;parent.append(element);return element;};
   const link=(text,href,parent)=>{const anchor=node('a',text,parent);anchor.href=href;return anchor;};

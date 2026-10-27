@@ -84,6 +84,20 @@ pub(crate) fn validate(bundle: &Bundle) -> Result<(), String> {
     Ok(())
 }
 
+pub(crate) fn by_current(bundle: &Bundle) -> Value {
+    let mut output = json!({});
+    let rows = bundle
+        .collections
+        .get(COLLECTION)
+        .map(Vec::as_slice)
+        .unwrap_or(&[]);
+    let matches: Vec<_> = rows.iter().filter(|r| r["entity_id"] == OWNER).collect();
+    if !matches.is_empty() {
+        output["east-african-coastal"] = scene(&matches);
+    }
+    output
+}
+
 pub(crate) fn scene(matches: &[&Value]) -> Value {
     if matches.is_empty() {
         return Value::Null;

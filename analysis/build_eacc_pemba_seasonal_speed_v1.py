@@ -35,7 +35,7 @@ def render(data, monthly=False):
     parts += [f'<text x="445" y="{footer+21}" text-anchor="middle" font-size="13">Speed (m/s) · line: observed range · dot: median</text>',
               f'<text x="24" y="{footer+48}" font-size="12">SE: May–Sep · IN: Apr, Oct · NE: Nov–Mar. Unequal sampling; 45 unique drifters.</text>',
               f'<text x="24" y="{footer+68}" font-size="12">NE minimum: table 0.05; prose 0.04 m/s. Conflict retained. Ranges are not uncertainty.</text>',
-              f'<text x="24" y="{footer+88}" font-size="12">doi:10.1371/journal.pone.0210303 · Source-review chart; runtime integration pending.</text>', '</g></svg>']
+              f'<text x="24" y="{footer+88}" font-size="12">doi:10.1371/journal.pone.0210303 · Regional statistics; no current footprint or annual envelope.</text>', '</g></svg>']
     return '\n'.join(parts) + '\n'
 
 
