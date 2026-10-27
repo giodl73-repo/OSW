@@ -75,11 +75,11 @@ mod observed_spans;
 mod original_regional_widths;
 mod pacific_neuc_breadths;
 mod pacific_secc_reference;
-mod south_java_reference;
 pub mod packet;
 mod planning;
 mod portugal_section_span;
 mod proposed_widths;
+mod published_current_speeds;
 mod published_regional_reaches;
 mod published_transports;
 mod qualitative_calendar;
@@ -92,6 +92,7 @@ mod seasons_data;
 mod selected_core_widths;
 mod somali_width;
 mod south_australian_context;
+mod south_java_reference;
 mod spatial;
 mod stream_tube_widths;
 mod svg;
@@ -202,6 +203,7 @@ impl Store {
             fields.insert(name.clone(), keys);
         }
         published_transports::validate(&bundle)?;
+        published_current_speeds::validate(&bundle)?;
         azores_section_review::validate(&bundle)?;
         original_regional_widths::validate_south_atlantic_inventory(&bundle)?;
         original_regional_widths::validate_south_pacific_inventory(&bundle)?;
@@ -622,6 +624,8 @@ impl Store {
             scene
         } else if query.collection == "width_samples" {
             map::sample_scene(&matches)
+        } else if query.collection == "current_speed_statistics" {
+            published_current_speeds::scene(&matches)
         } else if query.collection == "current_velocity_samples" {
             mooring_velocity::map_scene(&matches)
         } else if query.collection == "current_sections" {

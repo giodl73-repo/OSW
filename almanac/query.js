@@ -130,6 +130,8 @@
   for(const event of ['pointerup','pointercancel','lostpointercapture'])$('query-map').addEventListener(event,()=>{mapDrag=null;});
   const sortFields={objects:['label','published_length_km','capabilities.scoped_width','capabilities.reference_route','capabilities.time_samples'],widths:['name','current_id','approximate_width_km','phase_label'],reference_routes:['name','approximate_reference_path_km'],measurements:['entity_id','value','quantity'],states:['label','code'],state_links:['entity_label','state_code','kind'],sources:['label','title'],claims:['id','predicate','review_status'],relations:['id','predicate','subject_id'],entities:['label','type'],geometries:['id','entity_id'],series:['entity_id','frames'],diagnostics:['id']};
   sortFields.model_frames=['date','sample_count','available_sample_count'];
+  names.current_speed_statistics='Published regional speed statistics';
+  sortFields.current_speed_statistics=['current_id','statistic_period','month','season','median','mean','minimum','maximum','standard_deviation','observation_count'];
   sortFields.current_section_measurements=['observation_start_utc','current_id','vertical_reference','depth_low_m','height_low_m','boundary_fraction','component_span_km','status'];
   sortFields.model_samples=['date','sample_index','distance_from_section_start_km','salinity','u_eastward','v_northward'];
   const fieldNames={label:'Name',name:'Name',published_length_km:'Published ranked length (km)',approximate_width_km:'Scoped width value (km)',approximate_reference_path_km:'Reference route estimate (km)','capabilities.scoped_width':'Width record count','capabilities.reference_route':'Route record count','capabilities.time_samples':'Time record count'};
