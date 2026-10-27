@@ -1211,7 +1211,7 @@
     "research/loop-current-noaa-section-spans.json": "9cedc2179add51da324ffa1a697e6607fa8c2c0edb6d3f49f42b9d1574e92fa2",
     "research/loop-current-adt-section-spans.json": "d774f01b14355d1a12e82ba4346cc6b63b3483c315411653c8e3235b1a3e331d"
   },
-  "snapshot_fingerprint": "20f081941776e22e78362aec5fec08c6d1070b046b6b877f831eff894a5becc6",
+  "snapshot_fingerprint": "2474da59d062b1d931bc9cfcb010205d512de99516f2510f34eeba3ea968d7bf",
   "entries": [
     {
       "id": "current:agulhas",
@@ -96021,40 +96021,42 @@
       "time_behavior": "seasonal",
       "basin": "Tropical South Pacific",
       "capabilities": {
-        "observed_velocity": 0,
-        "radius_evidence": 0,
-        "reported_length": 0,
-        "reference_route": 0,
-        "scoped_width": 1,
-        "geometry": 0,
-        "time_samples": 0,
-        "source_connectivity": 0,
-        "scope_notes": 2,
         "dated_diagnostics": 0,
         "flow_network": 0,
+        "geometry": 0,
+        "observed_velocity": 0,
         "passage_transport": 0,
+        "radius_evidence": 0,
+        "reference_route": 1,
+        "reported_length": 0,
+        "scope_notes": 2,
+        "scoped_width": 1,
+        "source_connectivity": 0,
+        "time_samples": 0,
         "width_samples": 0
       },
       "recorded_claims": 56,
       "nasa_links": 1,
-      "fingerprint": "66e41ceb39ed8f12c1e5b517b2946575fc708a8d6eb87e1babc349379518f2bc",
+      "fingerprint": "9d8334e036009bad4fb92b532ef5cb40417b5abd4398c118c00fdb0a0aa79aba",
       "series": [],
       "section_fingerprints": {
-        "identity": "0a7c9e3aeadc47415d4d10a028f9175f4ae733f8e295ba3a97a4b47de019c4a4",
-        "sources": "fc499f8708a71982e37552a03408341daeae9bce690af22335d5fd8aadbcac63",
         "claims": "a2260e85e85cdaacd05696a2bbc881fb6f1e636ebc87bed5300f637bf643449c",
+        "identity": "0a7c9e3aeadc47415d4d10a028f9175f4ae733f8e295ba3a97a4b47de019c4a4",
         "measurements": "48898dff5dc1c51f0d87ec135947e45563dfef5209883cd906076bda24075e23",
-        "routes_geometry": "74aeb995dc693bc0f23130b0cba8251d723d2686090deea7764749eca886698f",
         "media": "68658cd0ec2f73124154cc258620ecc3b963fde1f88b1db76b5ddb15420c2128",
-        "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd"
+        "routes_geometry": "74aeb995dc693bc0f23130b0cba8251d723d2686090deea7764749eca886698f",
+        "sources": "fc499f8708a71982e37552a03408341daeae9bce690af22335d5fd8aadbcac63",
+        "time_evidence": "8d86da8229951992c802d517eaeaeeb84a4b5f1a3e916ecd7944f448135387bd",
+        "pacific_secc_western_reference": "de110b943b30e095c0ff37a17859c4eb3f665aae90e6e89ff9fa91da71cc989e"
       },
       "latest_observation_date": null,
       "claim_review_counts": {
         "not_individually_reviewed": 56
       },
-      "linked_source_count": 5,
+      "linked_source_count": 7,
       "map_features": [
         {
+          "coordinate_reference_system": "OGC:CRS84",
           "geometry": {
             "coordinates": [
               165,
@@ -96062,12 +96064,50 @@
             ],
             "type": "Point"
           },
-          "role": "editorial_locator",
-          "note": "Representative point inside Argo-observed boreal-spring 150°E–170°W, 5–13°S envelope; not a path endpoint.",
           "geometry_id": "geometry:0099",
-          "coordinate_reference_system": "OGC:CRS84",
+          "note": "Representative point inside Argo-observed boreal-spring 150°E–170°W, 5–13°S envelope; not a path endpoint.",
           "positional_uncertainty": "not quantified; no observed current core or path",
+          "role": "editorial_locator",
           "source_id": "source:4dc5fc618c26565f"
+        },
+        {
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [
+                164,
+                -9
+              ],
+              [
+                168,
+                -9
+              ],
+              [
+                172,
+                -9.5
+              ],
+              [
+                176,
+                -9.5
+              ],
+              [
+                180,
+                -9.5
+              ]
+            ]
+          },
+          "role": "editorial_reference_route",
+          "candidate_id": "pacific-south-equatorial-countercurrent-western-mean-reference-reach-v1",
+          "note": "Western mean-circulation reference reach between OSW offshore gates164E and180E. Gates and bends are editorial, not physical origin/termination or source-extracted axis points. Excludes upstream island branches, eastern seasonal extensions, SEC return, STCC and subsurface equatorial jets. No whole-current length.",
+          "source_url": "https://www.soest.hawaii.edu/oceanography/bo/CQ04.pdf",
+          "source_locator": "Paragraph2 on PDF page1 and Figure1b/caption on PDF page2: western SECC context and mean0-200m geostrophy relative to1500dbar. Selected page2 pixels actually reviewed on2026-10-27.",
+          "source_file_sha256": "a8bb517551f04dbe1018a6d5a51817cee4c3e3afaf2d82447bccdab03cef1d85",
+          "observation_date": null,
+          "layer": "Source context: mean0-200m relative zonal geostrophy, referenced to1500dbar. The selected path is not a fixed-depth, absolute-current or observed velocity-core axis.",
+          "time_convention": "WOA01 mean-field context only. Publication2004 is not an observation date. No dated trajectory or seasonal route reconstructed.",
+          "physical_current_axis_admitted": false,
+          "physical_state_join_eligible": false,
+          "source_id": "source:chen-qiu-secc-seasonal-2004"
         }
       ],
       "state_evidence": [],
@@ -96092,22 +96132,31 @@
           "observed_period": null
         }
       ],
-      "evidence_links": [],
+      "evidence_links": [
+        {
+          "label": "Pacific SECC western reference and measurement scope",
+          "url": "pacific-secc-reference-support.html"
+        }
+      ],
       "object_url": "object.html?id=current%3Apacific-south-equatorial-countercurrent",
-      "route_url": null,
+      "route_url": "reference-routes.html?atlas-layout=map&atlas-feature=current%3Apacific-south-equatorial-countercurrent&atlas-route=pacific-south-equatorial-countercurrent-western-mean-reference-reach-v1#route-atlas",
       "season_url": "seasons.html?current=pacific-south-equatorial-countercurrent",
       "dashboard_search": "Pacific South Equatorial Countercurrent Tropical South Pacific",
       "width_ids": [
         "pacific-secc-rotschi-1972-170e-width-range"
       ],
       "measurement_ids": [],
-      "route_ids": [],
+      "route_ids": [
+        "pacific-south-equatorial-countercurrent-western-mean-reference-reach-v1"
+      ],
       "source_ids": [
         "source:4dc5fc618c26565f",
         "source:4f7441b953be4651",
         "source:803229fe82eb2360",
         "source:b038491b0e5a3967",
-        "source:cb7e6dd38745baf6"
+        "source:cb7e6dd38745baf6",
+        "source:chen-qiu-secc-seasonal-2004",
+        "source:pacific-secc-western-reference-method-v1"
       ],
       "state_codes": [],
       "published_length_km": null,
@@ -172272,5 +172321,13 @@
       "current:east-india-coastal"
     ],
     "new_physical_dimensions_admitted": 0
+  },
+  "pacific_secc_reference_delivery_v1": {
+    "parent_source_sha256": "767dc97d2b4f994ea10532ed32256d0994e9e15c9d1e5e3e851f202d8757100f",
+    "changed_owner_ids": [
+      "current:pacific-south-equatorial-countercurrent"
+    ],
+    "new_physical_dimensions": 0,
+    "editorial_reference_routes": 1
   }
 }
