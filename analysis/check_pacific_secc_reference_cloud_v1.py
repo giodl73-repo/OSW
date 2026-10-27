@@ -145,7 +145,8 @@ def calculate(head):
                'scenarios':checks,'all_27_clear':not any(r['fine_land_contact'] or r['coarse_land_contact_1km'] for r in checks),
                'interpretation':'Geographic screening only; no velocity continuity, current edges, physical passage or navigational clearance established.'}
     write(OUTPUT/'geography.json',geography)
-    fig,ax=plt.subplots(figsize=(11,5),layout='constrained')
+    fig,ax=plt.subplots(figsize=(11,5))
+    fig.subplots_adjust(left=.09,right=.98,bottom=.18,top=.82)
     for piece in pieces:
         for polygon in ([piece] if piece.geom_type=='Polygon' else piece.geoms):
             if polygon.geom_type=='Polygon':
