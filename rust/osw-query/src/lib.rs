@@ -624,8 +624,6 @@ impl Store {
             scene
         } else if query.collection == "width_samples" {
             map::sample_scene(&matches)
-        } else if query.collection == "current_speed_statistics" {
-            published_current_speeds::scene(&matches)
         } else if query.collection == "current_velocity_samples" {
             mooring_velocity::map_scene(&matches)
         } else if query.collection == "current_sections" {
@@ -783,6 +781,8 @@ impl Store {
             .contains(&query.collection.as_str())
         {
             published_transports::query(&matches, &query.collection)
+        } else if query.collection == "current_speed_statistics" {
+            published_current_speeds::scene(&matches)
         } else if query.collection == "current_velocity_samples" {
             mooring_velocity::scene(&matches, records)
         } else if query.collection == "current_sections" {

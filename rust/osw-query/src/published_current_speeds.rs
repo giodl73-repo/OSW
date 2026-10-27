@@ -133,6 +133,30 @@ mod tests {
     }
 
     #[test]
+    fn store_dispatch_returns_chart_without_inventing_map_geometry() {
+        let bundle = candidate();
+        let raw = json!({"schema":bundle.schema,"manifest":bundle.manifest,"collections":bundle.collections});
+        let store = crate::Store::load(raw.to_string().as_bytes()).unwrap();
+        let all = store.execute(br#"{"collection":"current_speed_statistics","limit":100}"#);
+        assert_eq!(all["ok"], true);
+        assert_eq!(all["total"], 15);
+        assert_eq!(
+            all["chart_scene"]["kind"],
+            "published_current_speed_statistics"
+        );
+        assert_eq!(all["chart_scene"]["records"].as_array().unwrap().len(), 15);
+        assert!(all["map_scene"].is_null());
+        let page = store.execute(br#"{"collection":"current_speed_statistics","filters":[{"field":"statistic_period","op":"eq","value":"monthly"}],"sort":{"field":"month","direction":"asc"},"offset":1,"limit":2}"#);
+        assert_eq!(page["total"], 12);
+        assert_eq!(page["rows"].as_array().unwrap().len(), 2);
+        assert_eq!(page["rows"][0]["month"], 2);
+        assert_eq!(page["chart_scene"]["records"].as_array().unwrap().len(), 12);
+        let empty = store.execute(br#"{"collection":"current_speed_statistics","filters":[{"field":"current_id","op":"eq","value":"agulhas"}]}"#);
+        assert_eq!(empty["total"], 0);
+        assert!(empty["chart_scene"].is_null());
+    }
+
+    #[test]
     fn reject_changed_statistics_source_and_owner_joins() {
         assert!(validate(&candidate()).is_ok());
         let mut changed = candidate();

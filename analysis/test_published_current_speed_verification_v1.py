@@ -21,5 +21,14 @@ class VerificationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'support'):
             v.verify_case(case,response)
 
+    def test_verifier_rejects_chart_routed_to_map_output(self):
+        case={'name':'dispatch','expected_total':1,'expected_scene_kind':'published_current_speed_statistics'}
+        response={'ok':True,'total':1,'rows':[{}],'chart_scene':None,'map_scene':{'kind':'published_current_speed_statistics'}}
+        with self.assertRaisesRegex(ValueError,'map geometry'):
+            v.verify_case(case,response)
+        response['map_scene']=None
+        with self.assertRaisesRegex(ValueError,'dispatch missing'):
+            v.verify_case(case,response)
+
 
 if __name__=='__main__':unittest.main()

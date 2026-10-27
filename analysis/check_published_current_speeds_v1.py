@@ -92,6 +92,10 @@ def verify_case(case, response):
     if response.get('ok') is not True or response['total'] != case['expected_total']:
         raise ValueError('Query failed or count differs: ' + case['name'])
     rows, scene = response['rows'], response['chart_scene']
+    if response.get('map_scene') is not None:
+        raise ValueError('Regional speed summaries must not invent map geometry')
+    if case['expected_total'] and not isinstance(scene, dict):
+        raise ValueError('Speed chart dispatch missing: ' + case['name'])
     for key, index in [('expected_first_id',0),('expected_last_id',-1)]:
         if key in case and rows[index]['id'] != case[key]:
             raise ValueError('Sorted query endpoint differs')
