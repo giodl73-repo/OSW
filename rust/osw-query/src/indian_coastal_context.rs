@@ -135,8 +135,10 @@ fn validate_with_catalog(bundle: &crate::Bundle, catalog: &Value) -> Result<(), 
             }
         }
     }
-    // References outside the exact seven admitted rows and their two owners
-    // would promote, duplicate or attach the source statements elsewhere.
+    // A later editorial reference may cite the publication only after its complete
+    // source-bound route, planning record and exact owner have been validated.
+    let reviewed_reference = crate::south_java_reference::routes(&bundle.collections, &bundle.manifest)?;
+    // All other references outside the admitted rows and owners remain forbidden.
     for (name, group) in &bundle.collections {
         for row in group {
             if !mentions(row, &markers) || name == "objects" {
@@ -146,7 +148,10 @@ fn validate_with_catalog(bundle: &crate::Bundle, catalog: &Value) -> Result<(), 
                 .get(name)
                 .and_then(Value::as_array)
                 .is_some_and(|expected| expected.contains(row));
-            if !exact {
+            let reviewed_citation = !reviewed_reference.is_empty()
+                && ((name == "reference_routes" && reviewed_reference.contains(row))
+                    || (name == "route_decisions" && row["entity_id"] == "current:south-java"));
+            if !exact && !reviewed_citation {
                 return Err(format!(
                     "Coastal source context promoted or misattached in {name}"
                 ));
@@ -249,6 +254,7 @@ fn validate_with_catalog(bundle: &crate::Bundle, catalog: &Value) -> Result<(), 
                     "evidence_links",
                 ]
                 .contains(&field.as_str())
+                    && !(field == "map_features" && owner["id"] == "current:south-java" && !reviewed_reference.is_empty())
                     && mentions(value, &markers)
                 {
                     return Err("Coastal context attached to a physical owner field".into());
@@ -303,6 +309,46 @@ mod tests {
         )
     }
 
+    #[test]
+    fn reviewed_reference_cites_context_without_promoting_or_reassigning_it() {
+        let selected: crate::Bundle = serde_json::from_str(include_str!("../../../research/south-java-reference-runtime-fixture-v1.json")).unwrap();
+        let (mut b, catalog) = fixture();
+        for (key, value) in selected.manifest["input_sha256"].as_object().unwrap() {
+            b.manifest["input_sha256"][key] = value.clone();
+        }
+        b.manifest["south_java_reference_delivery_v1"] = selected.manifest["south_java_reference_delivery_v1"].clone();
+        for name in ["objects", "entities"] {
+            let expected = selected.collections[name].iter().find(|r| r["id"] == "current:south-java").unwrap();
+            *b.collections.get_mut(name).unwrap().iter_mut().find(|r| r["id"] == expected["id"]).unwrap() = expected.clone();
+        }
+        for name in ["route_decisions", "reference_routes"] {
+            b.collections.insert(name.into(), selected.collections[name].clone());
+        }
+        let sources = b.collections.get_mut("sources").unwrap();
+        for row in &selected.collections["sources"] {
+            if row["id"].as_str().unwrap().starts_with("fixture:") { continue; }
+            if let Some(prior) = sources.iter().find(|prior| prior["id"] == row["id"]) {
+                assert_eq!(prior, row);
+            } else { sources.push(row.clone()); }
+        }
+        while sources.len() < 211 {
+            sources.push(json!({"id":format!("fixture:coastal-source:{}", sources.len())}));
+        }
+        assert_eq!(sources.len(), 211);
+        validate_with_catalog(&b, &catalog).unwrap();
+        for mode in ["physical", "receipt", "foreign-route", "foreign-map"] {
+            let mut bad = crate::Bundle { schema: b.schema.clone(), manifest: b.manifest.clone(), collections: b.collections.clone() };
+            match mode {
+                "physical" => bad.collections.get_mut("reference_routes").unwrap().last_mut().unwrap()["physical_width_km"] = json!(15),
+                "receipt" => { bad.manifest.as_object_mut().unwrap().remove("south_java_reference_delivery_v1"); },
+                "foreign-route" => bad.collections.get_mut("reference_routes").unwrap().push(json!({"id":"invented", "source_id":METHOD})),
+                "foreign-map" => bad.collections.get_mut("objects").unwrap().iter_mut()
+                    .find(|r| r["id"] == "current:east-african-coastal").unwrap()["map_features"] = json!([{"source_id":METHOD}]),
+                _ => unreachable!(),
+            }
+            assert!(validate_with_catalog(&bad, &catalog).is_err(), "{mode}");
+        }
+    }
     #[test]
     fn complete_context_and_unrelated_legacy_pass() {
         let (mut bundle, catalog) = fixture();
