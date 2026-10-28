@@ -14,6 +14,7 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
   window.renderPublishedSectionTransports(panel,window.oswAtlasSnapshot?.published_transport_scenes?.[id]);
   window.renderPublishedCurrentSpeeds(panel,window.oswAtlasSnapshot?.published_speed_scenes?.[id]);
   window.renderMeanCoreSections(panel,window.oswAtlasSnapshot?.mean_core_section_scenes?.[id],undefined,{collapsed:true});
+  window.renderCurrentDimensionEvidence(panel,window.oswAtlasSnapshot?.current_dimension_evidence_scenes?.[id],undefined,{collapsed:true});
   window.renderSatelliteCoreWidths(panel,window.oswAtlasSnapshot?.satellite_core_width_scenes?.[id]);
   window.renderReviewCitedWidths(panel,window.oswAtlasSnapshot?.review_cited_width_scenes?.[id]);
   window.renderCitedWidthConstraints(panel,window.oswAtlasSnapshot?.cited_width_constraint_scenes?.[id]);

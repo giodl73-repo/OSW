@@ -82,6 +82,7 @@ mod portugal_section_span;
 mod proposed_widths;
 mod published_current_speeds;
 mod mean_core_sections;
+mod madagascar_dimensions;
 mod published_regional_reaches;
 mod published_seasonal_core_velocities;
 mod published_transports;
@@ -211,6 +212,7 @@ impl Store {
         published_transports::validate(&bundle)?;
         published_current_speeds::validate(&bundle)?;
         mean_core_sections::validate(&bundle)?;
+        madagascar_dimensions::validate(&bundle)?;
         published_seasonal_core_velocities::validate(&bundle)?;
         azores_section_review::validate(&bundle)?;
         original_regional_widths::validate_south_atlantic_inventory(&bundle)?;
@@ -249,6 +251,7 @@ impl Store {
                 ("velocity_sample_ids", "current_velocity_samples"),
                 ("current_section_ids", "current_sections"),
                 ("mean_core_section_ids", mean_core_sections::COLLECTION),
+                ("reported_flow_event_ids", madagascar_dimensions::COLLECTION),
                 ("route_decision_ids", "route_decisions"),
                 ("diagnostic_ids", "diagnostics"),
                 ("flow_network_ids", "flow_networks"),
@@ -273,6 +276,7 @@ impl Store {
                             || collection == "current_velocity_samples"
                             || collection == "current_sections"
                             || collection == mean_core_sections::COLLECTION
+                            || collection == madagascar_dimensions::COLLECTION
                             || collection == "diagnostics"
                             || collection == "route_decisions"
                             || collection == "flow_networks"
@@ -769,6 +773,7 @@ impl Store {
             charts::scene(&matches, records)
         } else if query.collection == "widths" {
             let scenes: Vec<_> = [
+                madagascar_dimensions::width_scene(&matches, &self.bundle),
                 selected_core_widths::scene(&matches),
                 satellite_core_widths::scene(&matches),
                 wicc_review_width::scene(&matches),
@@ -798,6 +803,8 @@ impl Store {
             .contains(&query.collection.as_str())
         {
             published_transports::query(&matches, &query.collection)
+        } else if query.collection == madagascar_dimensions::COLLECTION {
+            madagascar_dimensions::event_scene(&matches)
         } else if query.collection == mean_core_sections::COLLECTION {
             mean_core_sections::scene(&matches)
         } else if query.collection == "current_speed_statistics" {

@@ -1,6 +1,6 @@
 (() => {
   const $ = id => document.getElementById(id);
-  const labels = {observed_velocity:'Observed velocity summaries',radius_evidence:'Scoped radius evidence',reported_model_core_sections:'Published model mean-core sections',reported_length:'Published ranked length',reference_route:'Editorial reference route',scoped_width:'Scoped width evidence',geometry:'Geometry beyond a locator',time_samples:'Time samples / phase records',source_connectivity:'Source-described current links',scope_notes:'Source scope notes',dated_diagnostics:'Dated method diagnostics',flow_network:'Passage networks',passage_transport:'Observed passage transport',section_transport:'Published section transport statistics'};
+  const labels = {observed_velocity:'Observed velocity summaries',radius_evidence:'Scoped radius evidence',reported_model_core_sections:'Published model mean-core sections',reported_flow_events:'Dated flow examples',reported_length:'Published ranked length',reference_route:'Editorial reference route',scoped_width:'Scoped width evidence',geometry:'Geometry beyond a locator',time_samples:'Time samples / phase records',source_connectivity:'Source-described current links',scope_notes:'Source scope notes',dated_diagnostics:'Dated method diagnostics',flow_network:'Passage networks',passage_transport:'Observed passage transport',section_transport:'Published section transport statistics'};
   labels.model_dimension_samples='Regional model dimension attempts';
   labels.axis_normal_samples='Axis-normal model span attempts';
   const contextMetrics = {direction_calendars:'Qualitative direction calendars',
@@ -14,7 +14,7 @@
   const normalOption=document.createElement('option');normalOption.value='axis_normal_samples';normalOption.textContent=labels.axis_normal_samples;$('dashboard-metric').append(normalOption);
   const kinds = {named_current:'Current',named_eddy:'Named eddy',operational_eddy_detection:'Dated detection'};
   const key = 'osw-motion-dashboard-seen-v2';
-  const groupLabels = {identity:'Identity',sources:'Sources',claims:'Claims / reviews',measurements:'Measurements',routes_geometry:'Routes / geometry',media:'Media links',time_evidence:'Time evidence',mean_model_core_sections:'Mean model-core sections'};
+  const groupLabels = {identity:'Identity',sources:'Sources',claims:'Claims / reviews',measurements:'Measurements',routes_geometry:'Routes / geometry',media:'Media links',time_evidence:'Time evidence',mean_model_core_sections:'Mean model-core sections',reported_flow_events:'Dated flow examples'};
   let data, baseline, busy = false, interval, client, renderGeneration=0;
   function rustClient() {
     const worker=new Worker('query-worker.js?v=5');
@@ -35,7 +35,7 @@
   if (!baseline || typeof baseline !== 'object' || Array.isArray(baseline)) baseline = null;
   const element = (tag,text,parent) => { const el=document.createElement(tag); if(text!=null) el.textContent=text; if(parent) parent.append(el); return el; };
   const link = (label,url,parent) => { const a=element('a',label,parent); a.href=url; };
-  const atlasUrl = row => $('dashboard-metric').value==='reported_model_core_sections' ? (row.evidence_links?.find(link=>link.url.includes('current_mean_core_sections'))?.url || `reference-routes.html?atlas-feature=${encodeURIComponent(row.id)}#route-atlas`) : ['dated_diagnostics','flow_network','passage_transport'].includes($('dashboard-metric').value)&&row.evidence_links?.length ? row.evidence_links[0].url : `reference-routes.html?atlas-feature=${encodeURIComponent(row.id)}#route-atlas`;
+  const atlasUrl = row => $('dashboard-metric').value==='reported_flow_events' ? (row.evidence_links?.find(link=>link.url.includes('current_reported_flow_events'))?.url || `reference-routes.html?atlas-feature=${encodeURIComponent(row.id)}#route-atlas`) : $('dashboard-metric').value==='reported_model_core_sections' ? (row.evidence_links?.find(link=>link.url.includes('current_mean_core_sections'))?.url || `reference-routes.html?atlas-feature=${encodeURIComponent(row.id)}#route-atlas`) : ['dated_diagnostics','flow_network','passage_transport'].includes($('dashboard-metric').value)&&row.evidence_links?.length ? row.evidence_links[0].url : `reference-routes.html?atlas-feature=${encodeURIComponent(row.id)}#route-atlas`;
   const changed = row => baseline && baseline[row.id]?.fingerprint !== row.fingerprint;
   function markSeen() {
     baseline = Object.fromEntries(data.entries.map(r => [r.id,{fingerprint:r.fingerprint,sections:r.section_fingerprints}]));
