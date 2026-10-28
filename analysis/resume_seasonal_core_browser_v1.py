@@ -11,8 +11,8 @@ from install_published_current_speed_saved_v1 import extract_candidate
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'.pytest_cache/seasonal-core-velocity-browser-resume-v1'
 REQUEST='research/seasonal-core-velocity-browser-resume-request-v1.json'
-PREFLIGHT='research/seasonal-core-velocity-browser-resume-preflight-v1.json'
-REVISION='research/seasonal-core-velocity-browser-revision-v1.json'
+PREFLIGHT='research/seasonal-core-velocity-browser-resume-preflight-v2.json'
+REVISION='research/seasonal-core-velocity-browser-revision-v2.json'
 EVIDENCE='research/seasonal-core-velocity-engine-evidence-v1.json'
 KEY='published_seasonal_core_velocity_browser_revision_v1'
 ARTIFACT={'id':12787263106,'bytes':96204707,'sha256':'e97c2e096341da184a244de8199ffcf5f4193ebb3d0e88ef1b60a495314f856b'}
@@ -103,7 +103,7 @@ def main():
     updated=revise_manifest(original,revision,source_commit=source,verification_inputs=pref['input_sha256'])
     write(manifest_path,updated);hashes=dict(hashes);hashes[manifest_path]=sha(manifest_path)
     shutil.copyfile(ROOT/manifest_path,OUT/'candidate-engine-manifest.json')
-    from check_seasonal_core_velocity_browser_v2 import browser_review
+    from check_seasonal_core_velocity_browser_v3 import browser_review
     write(OUT/'browser.json',browser_review(ROOT,OUT))
     for path,pin in hashes.items():
         if sha(path)!=pin:raise ValueError('Browser changed candidate')

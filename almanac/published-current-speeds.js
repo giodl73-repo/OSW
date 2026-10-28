@@ -48,7 +48,7 @@ window.renderPublishedSeasonalCoreVelocities=function(parent,scene,inspect){
   html('h3',scene.title,panel);html('p',scene.scope,panel);
   html('p','Approximate points, reported intervals and greater-than thresholds are different estimates. The intervals below are not error bars or confidence intervals.',panel);
   const scroller=html('div',undefined,panel);scroller.style.cssText='max-width:100%;overflow-x:auto';scroller.tabIndex=0;scroller.setAttribute('role','region');scroller.setAttribute('aria-label','Published core-velocity estimates; scroll horizontally for layer and source details');
-  const table=html('table',undefined,scroller);html('caption','Matching XBT-derived seasonal core-velocity estimates (m/s)',table);
+  const table=html('table',undefined,scroller);table.style.minWidth='780px';html('caption','Matching XBT-derived seasonal core-velocity estimates (m/s)',table);
   const header=html('tr',undefined,html('thead',undefined,table));
   for(const [index,label] of ['Current','Estimate','Season','Layer','Record','Source'].entries()){const th=html('th',label,header);th.scope='col';th.style.whiteSpace='nowrap';if(index===0)th.style.width='4rem';if(index>=4)th.style.width='5rem';}
   const body=html('tbody',undefined,table);

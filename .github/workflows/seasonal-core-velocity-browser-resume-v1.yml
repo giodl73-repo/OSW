@@ -52,7 +52,7 @@ jobs:
         run: |
           cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
           taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_resume_seasonal_core_browser_v1.py' -v
-          taskset -c "$cpu" nice -n 15 node analysis/test_published_seasonal_core_velocities_ui_v2.mjs
+          taskset -c "$cpu" nice -n 15 node analysis/test_published_seasonal_core_velocities_ui_v3.mjs
           taskset -c "$cpu" nice -n 15 node analysis/test_published_current_speeds_ui_v1.mjs
           taskset -c "$cpu" nice -n 15 node analysis/test_published_current_speed_source_links_v1.mjs
       - name: Install pinned browser
@@ -78,6 +78,7 @@ jobs:
             .pytest_cache/seasonal-core-velocity-browser-resume-v1/source-engine-manifest.json
             .pytest_cache/seasonal-core-velocity-browser-resume-v1/candidate-engine-manifest.json
             .pytest_cache/seasonal-core-velocity-browser-resume-v1/*.png
+            .pytest_cache/seasonal-core-velocity-browser-resume-v1/*.geometry.json
           if-no-files-found: warn
           retention-days: 14
       - name: Retain exact browser-verified candidate
