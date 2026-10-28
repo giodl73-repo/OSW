@@ -84,7 +84,8 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
         .filter(|r| r["id"] == "current:agulhas")
         .collect();
     if owners.len() != 1
-        || owners[0]["capabilities"]["scoped_width"] != 2
+        || owners[0]["capabilities"]["scoped_width"]
+            != 2 + crate::satellite_core_widths::added_count(b)
         || !owners[0]["diagnostic_ids"]
             .as_array()
             .is_some_and(|a| a.contains(&json!(ID)))

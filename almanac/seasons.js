@@ -76,6 +76,7 @@
     if(row?.phase_kind==='isopycnal_jet_breadth_summary'){container.hidden=false;window.renderPacificNeucBreadths(container,window.oswSeasonSnapshot?.pacific_neuc_breadth_scene,row.id);return;}
     if(row?.phase_kind==='coastal_composite_threshold_section'){container.hidden=false;window.renderCoastalCompositeWidths(container,window.oswSeasonSnapshot?.coastal_composite_width_scene,row.id);return;}
     if(row?.modal_decay_context){container.hidden=false;window.renderModalDecayWidth(container,row);return;}
+    if(row?.satellite_core_context){container.hidden=false;const scene=window.oswSeasonSnapshot?.satellite_core_width_scenes?.[row.current_id];if(scene)window.renderSatelliteCoreWidths(container,{...scene,records:scene.records.filter(r=>r.id===row.id)});return;}
     if(row?.selected_core_context){container.hidden=false;window.renderSelectedCoreWidth(container,row,null,{open:true});return;}
     if(row?.model_axis_spread_context){container.hidden=false;window.renderModelAxisSpread(container,inventory.measurements.filter(r=>r.current_id===row.current_id),null,{open:true,selectedId:row.id});return;}
     if(row?.published_section_context){container.hidden=false;window.renderPublishedCoordinateSpan(container,row);return;}
@@ -112,7 +113,7 @@
     const frame = phase?.frame;
     const direction = phase?.direction;
     const current=byId("season-current").value;
-    const transports=byId("published-section-transports");transports.replaceChildren();const transportScene=window.oswSeasonSnapshot?.published_transport_scenes?.[current],speedScene=window.oswSeasonSnapshot?.published_speed_scenes?.[current];transports.hidden=!transportScene&&!speedScene;window.renderPublishedSectionTransports(transports,transportScene);window.renderPublishedCurrentSpeeds(transports,speedScene);
+    const transports=byId("published-section-transports");transports.replaceChildren();const transportScene=window.oswSeasonSnapshot?.published_transport_scenes?.[current],speedScene=window.oswSeasonSnapshot?.published_speed_scenes?.[current];const satelliteScene=phase?.width?.satellite_core_context?null:window.oswSeasonSnapshot?.satellite_core_width_scenes?.[current];transports.hidden=!transportScene&&!speedScene&&!satelliteScene;window.renderSatelliteCoreWidths(transports,satelliteScene);window.renderPublishedSectionTransports(transports,transportScene);window.renderPublishedCurrentSpeeds(transports,speedScene);
     window.renderAtlanticCruiseWidths(byId('cruise-span-panel'), current, inventory);
     const address=new URL(location.href);address.searchParams.set("current",current);
     if(phaseId(phase))address.searchParams.set("phase",phaseId(phase));else address.searchParams.delete("phase");
@@ -158,6 +159,7 @@
       byId('season-title').textContent='ADCP crossing width · layer median';
       byId('season-value').textContent=`${row.name}: ${row.approximate_width_km} ±${row.reported_total_error_km} km · source total error · ${row.phase_label} · 1997 cruise`;
     }
+    if(row?.satellite_core_context){byId('season-title').textContent='Published satellite core mean';byId('season-value').textContent=`${row.name}: ${row.reported_mean_width_km} km / ${row.label} / regional mean, not a seasonal range`;}
     if(row?.selected_core_context){byId('season-title').textContent='Published selected-core width statistic';byId('season-value').textContent=`${row.name}: ${row.approximate_width_km} km core · ${row.width_standard_deviation_km} km reported standard deviation · not an annual range`;}
     if(row?.phase_kind==='synoptic_stream_tube_section')byId('season-title').textContent='Synoptic stream-tube section width';
     if(row?.phase_kind==='campaign_modal_decay_width'){byId('season-title').textContent='Campaign modal decay estimate';byId('season-value').textContent=`${row.name}: source reports ${row.approximate_width_km} km · coastal branch (1980)`;}

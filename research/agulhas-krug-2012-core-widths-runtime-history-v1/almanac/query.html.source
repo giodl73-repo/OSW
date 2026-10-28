@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Query the ocean atlas — OSW</title>
+  <link rel="stylesheet" href="query.css?v=regional-reaches-1"><script src="query-workspace.js?v=1" defer></script><script src="current-section-charts.js?v=2" defer></script><script src="mooring-velocity-charts.js?v=1" defer></script><script src="dwbc-float-composite.js?v=1" defer></script><script src="coastal-composite-widths.js?v=1" defer></script><script src="pacific-neuc-breadths.js?v=1" defer></script><script src="azores-2009-section.js?v=1" defer></script><script src="published-section-transports.js?v=1" defer></script><script src="published-current-speeds.js?v=6" defer></script><script src="query-charts.js?v=seasonal-core-velocities-1" defer></script><script src="model-section-card.js?v=1" defer></script><script src="query.js?v=published-speeds-1" defer></script><script src="source-query.js?v=1" defer></script>
+<script src="published-coordinate-span.js?v=1" defer></script><script src="current-width-source-review.js?v=1" defer></script><script src="current-research-evidence.js?v=1" defer></script><script src="kuroshio-filtered-width.js?v=1" defer></script><script src="reported-dimensions.js?v=1" defer></script><script src="kuroshio-daily.js?v=1" defer></script><script src="asca-component-spans.js?v=1" defer></script><script src="eac-source-fields.js?v=2" defer></script><script src="south-australian-context.js?v=1" defer></script><script src="selected-core-width.js?v=1" defer></script><script src="cartography.js?v=rust-map-1" defer></script><script src="atlantic-station-context.js?v=antilles-2" defer></script><script src="atlantic-cruise-widths.js?v=antilles-2" defer></script><script src="model-axis-spread.js?v=1" defer></script></head>
+<body>
+<a class="skip" href="#main">Skip to query</a>
+<header><a href="index.html" class="brand">OSW</a><nav aria-label="Ocean atlas"><a href="reference-routes.html?atlas-layout=map#route-atlas">Map</a><a href="dashboard.html">Updates</a><a href="local-extents.html">Local extent evidence</a><a href="seasons.html">Seasons</a></nav></header>
+<main id="main">
+  <p class="eyebrow">Ocean atlas · record workspace</p><h1>Ask the atlas</h1>
+  <p class="lead">Find currents and eddies by state, measurements and available evidence. Inspect the records, then open their maps.</p>
+  <p id="query-inventory" class="inventory">Loading the record store…</p>
+  <details id="source-query-panel">
+    <summary>Query checked source documents</summary>
+    <h2 id="source-query-title">Source evidence workspace</h2>
+    <p>Search the checked documents behind the almanac, including source audits, name decisions and monthly extractions. Records retain their original evidence status, source address and checksum. This workspace loads when opened.</p>
+    <form id="source-query-form"><fieldset disabled id="source-query-fields">
+      <label>Source document<select id="source-query-document"></select></label>
+      <label>Path within source (JSON Pointer)<input id="source-query-pointer" value="/entries" placeholder="/series/0/months"></label>
+      <label>Text contains<input id="source-query-text" type="search"></label>
+      <label>Rows per page<input id="source-query-limit" type="number" min="1" max="500" value="25"></label>
+      <button id="source-query-run" type="submit">Run source query</button>
+    </fieldset></form>
+    <p class="note">A path selects an array or object; leave it empty for the document root. Filter fields in the structured query start with <code>record.</code>, such as <code>record.month</code>. Returned addresses identify the original row before filtering or sorting.</p>
+    <details><summary>Structured source query</summary><label for="source-query-json">Source request</label><textarea id="source-query-json" rows="8" spellcheck="false" disabled></textarea><button id="source-query-run-json" type="button" disabled>Run structured source query</button></details>
+    <p id="source-query-status" role="status" aria-live="polite">Open this workspace to load the checked source catalog.</p>
+    <p id="source-query-active" class="note" hidden></p>
+    <p id="source-query-receipt" class="note"></p>
+    <div class="record-links"><a id="source-query-share" hidden>Link to this source query</a><button id="source-query-export" type="button" disabled>Download this result page</button></div>
+    <div id="source-query-results" class="table-wrap"><table><caption>Source query results</caption><thead><tr><th scope="col">Source address</th><th scope="col">Record preview</th></tr></thead><tbody id="source-query-rows"></tbody></table></div>
+    <div class="pagination"><button id="source-query-previous" type="button" disabled>Previous source page</button><span id="source-query-page"></span><button id="source-query-next" type="button" disabled>Next source page</button></div>
+  </details>
+  <details id="workspace-controls"><summary>Local working records</summary><p>Save full proposed copies with revision history. Working records are pending changes to the imported snapshot. Browser storage stays on this device; export a journal to back it up or use it with the native Rust tool.</p><p id="workspace-status" role="status">Loading workspace…</p><button id="workspace-query" type="button" disabled>Query working records</button> <button id="workspace-refresh" type="button" disabled>Reload working records</button> <button id="workspace-export" type="button" disabled>Export revision journal</button><label>Import revision journal<input id="workspace-import" type="file" accept="application/json,.json" disabled></label><details id="workspace-archive-controls"><summary>Journals for previous snapshots</summary><p>Source updates create a new workspace. Preview a three-way rebase to carry proposed changes into the current snapshot. The original journal stays available.</p><button id="workspace-list" type="button" disabled>List saved snapshot journals</button><label>Saved snapshot<select id="workspace-snapshots"></select></label><button id="workspace-export-snapshot" type="button" disabled>Export selected snapshot journal</button> <button id="workspace-export-source" type="button" disabled>Export matching source snapshot</button><label>Attach old source snapshot if unavailable locally<input id="workspace-rebase-source" type="file" accept="application/json,.json"></label><button id="workspace-rebase-preview" type="button" disabled>Preview rebase into current snapshot</button><section id="workspace-rebase-plan" hidden aria-label="Rebase preview and conflict decisions"></section></details></details>
+  <section aria-labelledby="query-title">
+    <h2 id="query-title">Build a query</h2>
+    <div class="presets" aria-label="Example queries">
+      <button type="button" data-preset="width" disabled>Currents with widths</button>
+      <button type="button" data-preset="lengths" disabled>Published lengths</button>
+      <button type="button" data-preset="countercurrent-family" disabled>Countercurrent family members</button>
+      <button type="button" data-preset="length-decisions" disabled>Remaining length decisions</button>
+      <button type="button" data-preset="unbuilt-decisions" disabled>Unbuilt remaining routes</button>
+      <button type="button" data-preset="missing-routes" disabled>Routes still missing</button>
+      <button type="button" data-preset="eddy-geometry" disabled>Eddies with geometry</button>
+      <button type="button" data-preset="kuro" disabled>Currents linked to KURO</button>
+      <button type="button" data-preset="spatial-nadr" disabled>Geometry meets NADR</button>
+      <button type="button" data-preset="gulf-dated" disabled>Gulf Stream recorded diagnostics</button>
+      <button type="button" data-preset="seasonal-january" disabled>January source phases</button>
+      <button type="button" data-preset="leeuwin-samples" disabled>Leeuwin monthly widths</button>
+      <button type="button" data-preset="kuroshio-samples" disabled>Kuroshio width profiles</button>
+      <button type="button" data-preset="necc-samples" disabled>NECC monthly diagnostics</button>
+      <button type="button" data-preset="itf-moorings-sund" disabled>Throughflow mooring sites in SUND</button>
+      <button type="button" data-preset="loop-section-samples" disabled>Loop inflow dated spans</button>
+      <button type="button" data-preset="gulf-width-samples" disabled>Gulf Stream dated section spans</button>
+      <button type="button" data-preset="norkyst-frames" disabled>NorKyst hourly model frames</button>
+      <button type="button" data-preset="norkyst-january" disabled>NorKyst January sampling sites</button>
+    </div>
+    <form id="query-form">
+      <fieldset id="query-controls" disabled><legend class="sr">Query controls</legend>
+        <label>Records<select id="query-collection"></select></label>
+        <label>Text<input id="query-text" type="search" placeholder="Name, scope, source or ID" maxlength="1000"></label>
+        <label>Type<select id="query-type"><option value="">All types</option><option value="named_current">Currents</option><option value="named_eddy">Named eddies</option><option value="operational_eddy_detection">Dated detections</option></select></label>
+        <label>Identity level<select id="query-identity-level"><option value="">All identity levels</option></select></label>
+        <label>Family or system root<select id="query-taxonomy-root"><option value="">No membership filter</option></select></label>
+        <label>Membership direction<select id="query-taxonomy-relation"><option value="descendants">All declared descendants</option><option value="children">Direct children</option><option value="ancestors">All declared ancestors</option><option value="parents">Direct parents</option></select></label>
+        <label class="time-context"><input id="query-taxonomy-include" type="checkbox">Include root record</label>
+        <label>OSW state<select id="query-state"><option value="">All states</option></select></label>
+        <label>State relation<select id="query-state-mode"><option value="recorded">Recorded evidence links</option><option value="intersects">Line / polygon intersects</option><option value="within">Polygon covered by state</option><option value="locator">Locator in state</option><option value="gateway">Shared gateway in state</option></select></label>
+        <label>Has evidence<select id="query-evidence"><option value="">Any / unresolved</option><option value="scoped_width">Scoped width</option><option value="radius_evidence">Scoped radius evidence</option><option value="reference_route">Reference route</option><option value="reported_length">Published ranked length</option><option value="geometry">Geometry beyond locator</option><option value="observed_velocity">Observed velocity summaries</option><option value="time_samples">Time samples / phases</option><option value="width_samples">Scoped width samples</option><option value="source_connectivity">Source-described links</option></select></label>
+        <label>Order by<select id="query-sort"></select></label>
+        <label>Geometry observed from<input id="query-time-from" type="date"></label>
+        <label>Through<input id="query-time-to" type="date"></label>
+        <label class="time-context"><input id="query-time-context" type="checkbox">Include undated map context</label>
+        <label>Seasonal month<select id="query-season-month"><option value="">All / no month selection</option></select></label>
+        <label>Source route phase<select id="query-season-phase"><option value="">All / no phase selection</option></select></label>
+        <label>Sample current<select id="query-sample-current"><option value="">All covered currents</option></select></label>
+        <label>Remaining current<select id="query-decision-current"><option value="">All remaining currents</option></select></label>
+        <label>Route strategy<select id="query-decision-strategy"><option value="">All strategies</option></select></label>
+        <label>Construction status<select id="query-decision-status"><option value="">All statuses</option><option value="reference_path_not_constructed">No route candidate</option><option value="editorial_candidate_present_scientific_review_pending">Candidate present; review pending</option></select></label>
+        <label>Sample method<select id="query-sample-family"><option value="">All methods</option></select></label>
+        <label>Sample source month<select id="query-sample-month"><option value="">All / unresolved months</option></select></label>
+        <label>Sample source year<select id="query-sample-year"><option value="">All / unresolved years</option></select></label>
+        <label>Sample observation day<select id="query-sample-day"><option value="">All / undated samples</option></select></label>
+        <label>Sample value<select id="query-sample-availability"><option value="">Any / unresolved</option><option value="true">Available</option><option value="false">Unresolved</option></select></label>
+        <label>Direction<select id="query-direction"><option value="asc">Ascending</option><option value="desc">Descending</option></select></label>
+        <button id="query-run" type="submit">Run query</button>
+      </fieldset>
+    </form>
+    <p id="query-sample-extra" class="note" hidden>Additional sample constraints remain active in the structured query.</p>
+    <p id="query-decision-extra" class="note" hidden>Additional route decision constraints remain active in the structured query.</p>
+    <p class="note">Seasonal selections use source-defined regional route phases. Month coverage is incomplete; unresolved month ranges appear only when selected by phase name. These drawings do not provide observed monthly fields, annual extrema or uniform current widths. Exact observation dates use a separate selection.</p>
+    <p class="note">Width samples retain different source metrics. Ordering their values does not establish a global width ranking. Plot-reading intervals are extraction allowances, not measurement confidence intervals.</p>
+    <p class="note">Recorded links and computed geometry are separate queries. Spatial predicates use approximate, land-masked OSW display polygons; intersection includes boundary contact. Locators and gateways require their own modes. These are not physical current passage or full-current containment. Width records retain their region, layer and boundary definition; ordering them does not make a uniform width ranking.</p>
+    <details id="query-advanced"><summary>Structured query</summary><p>Edit fields, filters, sort and pagination directly. This query runs in the same engine as the controls.</p><label class="sr" for="query-json">JSON query</label><textarea id="query-json" rows="9" spellcheck="false"></textarea><button id="query-run-json" type="button" disabled>Run structured query</button><a href="../plans/rust-query-store-v1.md">Query and storage contract</a></details>
+  </section>
+  <p id="query-status" role="status" aria-live="polite">Loading Rust WebAssembly engine…</p>
+  <section id="query-chart-section" aria-labelledby="chart-title" hidden><h2 id="chart-title">Width profiles</h2><p id="query-chart-scope" class="note"></p><p id="query-chart-legend" class="note">Circles: scoped numeric samples. Solid whiskers: plot-reading allowances. Dashed whiskers: finite threshold-choice sensitivity. Neither is a confidence interval. Crosses in the separate Missing strip: unresolved readings. Points are not connected or interpolated. The table and sample cards provide the original values and sources.</p><div id="query-chart-panels"></div></section>
+  <section id="query-map-section" aria-labelledby="map-title" hidden>
+    <div class="result-head"><h2 id="map-title">Map the matches</h2><div><button type="button" id="query-map-in" aria-label="Zoom map in">+</button> <button type="button" id="query-map-out" aria-label="Zoom map out">−</button> <button type="button" id="query-map-world">World</button></div></div>
+    <p id="query-map-count" role="status"></p>
+    <button type="button" id="query-map-export">Download map SVG</button>
+    <button type="button" id="query-map-fit">Fit matches</button>
+    <label>Step through recorded geometry days<select id="query-map-day"><option value="">Choose a recorded day</option></select></label>
+    <button type="button" id="query-map-play" aria-pressed="false">Play recorded days</button>
+    <button type="button" id="query-map-play-months" aria-pressed="false">Play source months</button>
+    <button type="button" id="query-map-play-samples" aria-pressed="false" hidden>Play recorded section days</button>
+    <p id="query-map-sample-playback-note" class="note" hidden>Section playback follows the recorded dates in the current query, retaining year, month, method and source filters. It replaces only the day shown in the sample-day control. One observation per second, with no interpolation; gaps are not elapsed-time animation. Source processing versions can change. Map window and chart axes stay fixed during playback.</p>
+    <p id="query-map-playback-note" class="note">Recorded-day playback advances by observation; source-month playback advances by month. One step per second, with no interpolation. Unequal date gaps are not elapsed-time animation. Empty month scenes mean coverage is unavailable.</p>
+    <p id="query-map-time" class="note">Dates select recorded observations; gaps are not interpolated.</p>
+    <p id="query-map-position" class="note">Global view · equirectangular display; geographic coordinates remain in source records.</p>
+    <svg id="query-map" viewBox="0 0 360 180" role="group" aria-label="Query results on the OSW map"><image id="query-map-ground" href="../figures/ocean-motion-dashboard-ground.svg" x="0" y="0" width="360" height="180" opacity=".6"/><g id="query-map-state"></g><g id="query-map-features"></g></svg>
+    <p id="query-map-hover" aria-live="polite">Hover or focus a mark for its name; select it to inspect its record.</p>
+    <p id="query-map-legend" class="note">Solid teal lines: editorial reference routes. Dashed orange lines and purple polygons: dated evidence. Hollow circles: locators. Dashed amber circles: shared gateways. Names appear on hover or focus. Overlapping marks may represent several records; all remain in the results table. Coarse OSW coastline, display only.</p>
+  </section>
+  <section aria-labelledby="result-title"><div class="result-head"><h2 id="result-title">Results</h2><div><a id="query-share" hidden>Link to this query</a> <button id="query-export" type="button" disabled>Download this result page</button></div></div>
+    <div class="table-wrap"><table><caption id="query-caption">Matching records</caption><thead><tr><th scope="col">Record</th><th scope="col">Value / type</th><th scope="col">Scope / evidence</th></tr></thead><tbody id="query-rows"></tbody></table></div>
+    <div class="pagination"><button id="query-previous" type="button" disabled>Previous</button><span id="query-page"></span><button id="query-next" type="button" disabled>Next</button></div>
+  </section>
+  <section id="query-detail" aria-label="Selected record and linked evidence" hidden tabindex="-1"></section>
+  <details class="engine-details"><summary>Snapshot and engine</summary><p id="query-engine-info"></p><p>Rust owns the imported store, query indexes and revisioned proposed working records. Source admission and snapshot rebasing remain separate review workflows.</p><pre id="query-manifest"></pre></details>
+</main></body></html>

@@ -80,13 +80,14 @@ mod planning;
 mod portugal_section_span;
 mod proposed_widths;
 mod published_current_speeds;
-mod published_seasonal_core_velocities;
 mod published_regional_reaches;
+mod published_seasonal_core_velocities;
 mod published_transports;
 mod qualitative_calendar;
 mod rebase;
 mod ring_radii;
 mod samples;
+mod satellite_core_widths;
 mod scalar_query;
 mod seasonal;
 mod seasons_data;
@@ -222,6 +223,7 @@ impl Store {
         nordic_widths::validate(&bundle)?;
         nwasc_mean_core::validate(&bundle)?;
         selected_core_widths::validate(&bundle)?;
+        satellite_core_widths::validate(&bundle)?;
         antilles_cruise_spans::validate(&bundle)?;
         model_axis_spread::validate(&bundle)?;
         pacific_neuc_breadths::validate(&bundle)?;
@@ -758,6 +760,7 @@ impl Store {
         } else if query.collection == "widths" {
             let scenes: Vec<_> = [
                 selected_core_widths::scene(&matches),
+                satellite_core_widths::scene(&matches),
                 nordic_widths::scene(&matches, records),
                 coastal_composite_widths::scene(&matches, records),
                 dwbc_float_composite::scene(&matches, records),
