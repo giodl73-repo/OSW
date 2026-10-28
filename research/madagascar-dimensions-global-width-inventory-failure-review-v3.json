@@ -1,0 +1,31 @@
+{
+  "schema": "osw.madagascar-global-width-inventory-failure-review.v3",
+  "status": "FAIL_RETAINED_WITH_SPECIFIC_SOURCE_JOIN_FIX_REQUIRED",
+  "source_commit": "b9083979f4a1a20d4ba8b67d3c0127340adcd757",
+  "run_id": 40733219907,
+  "run_attempt": 2,
+  "request_file": "research/madagascar-dimensions-delivery-request-v3.json",
+  "request_disabled": true,
+  "native_build_completed": true,
+  "rust_tests_passed": 255,
+  "source_index_original_strings_preserved": 634,
+  "failing_check": {
+    "file": "rust/osw-query/src/hansen_asar_widths.rs",
+    "message": "Changed ASAR effective width inventory/order",
+    "reason": "The global exact width inventory reconstructs176 historical rows but does not append the new independently validated Madagascar width."
+  },
+  "related_guard_audit": {
+    "files": [
+      "rust/osw-query/src/neuc_glider_widths.rs",
+      "rust/osw-query/src/aleutian_onishi_width.rs"
+    ],
+    "finding": "Both reconstruct the same complete historical width inventory and need the same exact validated append, not count relaxation."
+  },
+  "required_fix": "Append the one exact validated Madagascar width after prior entries in all three global inventory validators, preserving ordering, duplication, length and source checks.",
+  "missing_test_scope": "Legacy coastal/identity integration now passes255 tests, but full historical width-inventory validators were not combined with the new row.",
+  "followup_test": "Run one table-driven Rust test through actual Hansen, NEUC and Aleutian validators with the additive evidence, and reject duplicated or changed prior rows. Keep full installed-candidate load gate.",
+  "wasm_verified": false,
+  "browser_verified": false,
+  "installed": false,
+  "full_goal_complete": false
+}
