@@ -200,6 +200,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             source.extend(crate::hansen_asar_widths::widths(bundle));
             source.extend(crate::neuc_glider_widths::widths(bundle));
             source.extend(crate::aleutian_onishi_width::widths(bundle));
+            source.extend(crate::madagascar_dimensions::seasonal_source_widths(bundle)?);
         }
         if key == "routes" && crate::madagascar_coastal_curve::active(bundle) {
             source = crate::nwasc_reference_route::catalogue(bundle)["candidates"]

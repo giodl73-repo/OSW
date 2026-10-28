@@ -92,6 +92,10 @@ pub(crate) fn widths(bundle:&Bundle)->Vec<Value> {
     bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[]).iter()
         .filter(|r|r["id"]==document()["width_record"]["id"]).cloned().collect()
 }
+pub(crate) fn seasonal_source_widths(bundle:&Bundle)->Result<Vec<Value>,String> {
+    if !active(&bundle.collections,&bundle.manifest)? {return Ok(vec![]);}
+    Ok(widths(bundle))
+}
 pub(crate) fn width_scene(rows:&[&Value],bundle:&Bundle)->Value {
     if bundle.manifest[KEY].is_null() {return Value::Null;}
     let selected=rows.iter().copied().filter(|r|r["current_id"]==CURRENT).collect::<Vec<_>>();
@@ -160,6 +164,18 @@ mod tests {
         let b=fixture();assert_eq!(dashboard_row(&b,&document()["dashboard_before"]).unwrap(),document()["dashboard_after"]);
         assert!(dashboard_row(&b,&json!({"id":OWNER})).is_err());
         let other=json!({"id":"current:other"});assert_eq!(dashboard_row(&b,&other).unwrap(),other);
+    }
+    #[test] fn seasonal_source_projection_requires_exact_regional_evidence() {
+        let mut b=fixture();
+        assert_eq!(seasonal_source_widths(&b).unwrap(),vec![document()["width_record"].clone()]);
+        let mut combined=vec![json!({"id":"prior-source-row","keep":true})];
+        combined.extend(seasonal_source_widths(&b).unwrap());
+        assert_eq!(combined.len(),2);assert_eq!(combined[0]["keep"],true);
+        assert_eq!(combined[1]["seasonal_playback_eligible"],false);
+        b.collections.get_mut("widths").unwrap().last_mut().unwrap()["annual_width_range_km"]=json!([60,120]);
+        assert!(seasonal_source_widths(&b).is_err());
+        let legacy=Bundle{schema:"osw.query-bundle.v1".into(),manifest:json!({}),collections:BTreeMap::new()};
+        assert!(seasonal_source_widths(&legacy).unwrap().is_empty());
     }
     #[test] fn old_bundles_work_but_new_orphans_fail() {
         let b=Bundle{schema:"osw.query-bundle.v1".into(),manifest:json!({}),collections:BTreeMap::new()};
