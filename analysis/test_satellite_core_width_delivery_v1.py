@@ -1,5 +1,8 @@
 import copy
 import json
+from pathlib import Path
+import subprocess
+import tempfile
 import unittest
 from unittest.mock import patch
 import satellite_core_width_delivery_v1 as m
@@ -44,6 +47,20 @@ class SatelliteDeliveryTests(unittest.TestCase):
     def test_cloud_refused_before_any_installed_artifact_read(self):
         with patch.dict(cloud.os.environ,{'GITHUB_ACTIONS':'false'}),patch.object(cloud,'read',side_effect=AssertionError('Unexpected packet read')):
             with self.assertRaisesRegex(ValueError,'Exact cloud'):cloud.controls()
+
+    def test_native_rejection_keeps_the_actual_validator_reason(self):
+        result=subprocess.CompletedProcess([],2,b'{"ok":false,"error":"Dashboard source mismatch"}',b'')
+        with tempfile.TemporaryDirectory() as tmp,patch.object(cloud,'OUT',Path(tmp)),patch.object(cloud.subprocess,'run',return_value=result):
+            with self.assertRaisesRegex(ValueError,'Dashboard source mismatch'):cloud.native('unused','unused',{'collection':'objects'})
+            failure=json.loads((Path(tmp)/'native-failure.json').read_bytes());self.assertEqual(failure['returncode'],2);self.assertIn('Dashboard source mismatch',failure['stdout'])
+
+    def test_complete_dashboard_projection_is_checked(self):
+        parent=fixtures.SatelliteWidthProjectionTests().parent();raw=parent['manifest']['dashboard_receipt']['source_json']
+        old={'ok':True,'engine':'rust-osw-query-v1','bundle_sha256':'old','snapshot_json':raw}
+        doc=m.core.dashboard_document(json.loads(raw),m.digest(raw.encode()))
+        new={**old,'bundle_sha256':'new','snapshot_json':json.dumps(doc)};m.verify_snapshot('dashboard',old,new)
+        doc['entries'][0]['fingerprint']='0'*64
+        with self.assertRaises(ValueError):m.verify_snapshot('dashboard',old,{**new,'snapshot_json':json.dumps(doc)})
 
     def test_manifest_preserves_historical_namespaces_and_rejects_rebinding(self):
         scope=m.scopes();parent=json.loads((m.ROOT/scope['parent_engine_manifest_file']).read_bytes())

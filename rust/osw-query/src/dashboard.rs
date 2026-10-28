@@ -44,6 +44,10 @@ fn document(bundle: &Bundle) -> Result<Value, String> {
     serde_json::from_str(raw).map_err(|e| format!("Invalid dashboard source JSON: {e}"))
 }
 
+fn presentation(bundle: &Bundle) -> Result<Value, String> {
+    crate::satellite_core_widths::dashboard_document(bundle, document(bundle)?)
+}
+
 pub fn validate(bundle: &Bundle) -> Result<(), String> {
     // Older journal snapshots remain readable without this new presentation API.
     if bundle.manifest.get("dashboard_receipt").is_none() {
@@ -61,9 +65,10 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     if rows.len() != objects.len() {
         return Err("Incomplete dashboard identity coverage".into());
     }
-    for row in rows {
+    for source_row in rows {
+        let row = crate::satellite_core_widths::dashboard_row(bundle, source_row)?;
         let id = row["id"].as_str().ok_or("Missing dashboard object ID")?;
-        if !ids.insert(id) {
+        if !ids.insert(id.to_owned()) {
             return Err("Duplicate dashboard object ID".into());
         }
         let object = objects
@@ -210,7 +215,7 @@ impl Store {
         }
         let beck_scene = if self.bundle.manifest.get("dashboard_receipt").is_some() {
             crate::dashboard_beck::scene(
-                &document(&self.bundle)?,
+                &presentation(&self.bundle)?,
                 &ids,
                 &request.metric,
                 &changed,
@@ -220,7 +225,12 @@ impl Store {
             Value::Null
         };
         let map_scene = if self.bundle.manifest.get("dashboard_receipt").is_some() {
-            crate::dashboard_map::scene(&document(&self.bundle)?, &ids, &request.metric, &changed)?
+            crate::dashboard_map::scene(
+                &presentation(&self.bundle)?,
+                &ids,
+                &request.metric,
+                &changed,
+            )?
         } else {
             Value::Null
         };
@@ -231,9 +241,17 @@ impl Store {
         )
     }
     pub fn dashboard_snapshot(&self) -> Result<Value, String> {
+        let snapshot = if crate::satellite_core_widths::active(&self.bundle) {
+            serde_json::to_string(&presentation(&self.bundle)?).map_err(|e| e.to_string())?
+        } else {
+            self.bundle.manifest["dashboard_receipt"]["source_json"]
+                .as_str()
+                .ok_or("Missing dashboard source bytes")?
+                .to_owned()
+        };
         Ok(json!({"ok":true,"engine":"rust-osw-query-v1",
                   "bundle_sha256":self.metadata()["bundle_sha256"],
-            "snapshot_json":self.bundle.manifest["dashboard_receipt"]["source_json"].as_str().ok_or("Missing dashboard source bytes")?}))
+            "snapshot_json":snapshot}))
     }
 }
 

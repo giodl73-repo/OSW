@@ -74,7 +74,7 @@ jobs:
           cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
           taskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0
           taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
-      - name: Verify desktop and narrow query, atlas, seasons and source links
+      - name: Verify desktop and narrow query, atlas, seasons, dashboard updates and source links
         run: |
           cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
           taskset -c "$cpu" nice -n 15 python analysis/check_satellite_core_width_delivery_v1.py browser

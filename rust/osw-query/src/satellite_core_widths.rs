@@ -27,6 +27,82 @@ fn document() -> Value {
     serde_json::from_str(RAW).unwrap()
 }
 
+pub(crate) fn changed_fingerprint(prior: &str, group: &str) -> Result<String, String> {
+    if prior.len() != 64
+        || !prior
+            .bytes()
+            .all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))
+    {
+        return Err("Prior dashboard fingerprint required".into());
+    }
+    let text = format!(
+        "osw.satellite-core-widths.v1\n{group}\n{prior}\n{}\n{}\n{}\n",
+        pin(),
+        IDS[0],
+        IDS[1]
+    );
+    Ok(format!("{:x}", Sha256::digest(text.as_bytes())))
+}
+
+pub(crate) fn dashboard_row(bundle: &Bundle, original: &Value) -> Result<Value, String> {
+    if !active(bundle) || original["id"] != OWNER {
+        return Ok(original.clone());
+    }
+    let marker = &bundle.manifest[KEY];
+    let prior = marker["prior_dashboard_fingerprint"]
+        .as_str()
+        .ok_or("Missing prior dashboard fingerprint")?;
+    let measurements = marker["prior_measurements_fingerprint"]
+        .as_str()
+        .ok_or("Missing prior measurement fingerprint")?;
+    if original["capabilities"]["scoped_width"] != 2
+        || original["fingerprint"] != prior
+        || original["section_fingerprints"]["measurements"] != measurements
+    {
+        return Err("Historical Agulhas dashboard row differs".into());
+    }
+    let mut row = original.clone();
+    if let Some(ids) = row.get_mut("width_ids") {
+        if *ids != marker["prior_agulhas_width_ids"] {
+            return Err("Historical dashboard width join differs".into());
+        }
+        ids.as_array_mut()
+            .ok_or("Invalid dashboard width join")?
+            .extend(IDS.iter().map(|id| json!(id)));
+    }
+    row["capabilities"]["scoped_width"] = json!(4);
+    row["fingerprint"] = json!(changed_fingerprint(prior, "object")?);
+    row["section_fingerprints"]["measurements"] =
+        json!(changed_fingerprint(measurements, "measurements")?);
+    Ok(row)
+}
+
+pub(crate) fn dashboard_document(bundle: &Bundle, mut doc: Value) -> Result<Value, String> {
+    if !active(bundle) {
+        return Ok(doc);
+    }
+    let entries = doc["entries"]
+        .as_array()
+        .ok_or("Missing dashboard entries")?;
+    if entries.iter().filter(|r| r["id"] == OWNER).count() != 1 {
+        return Err("One historical Agulhas dashboard row required".into());
+    }
+    let projected = entries
+        .iter()
+        .map(|r| dashboard_row(bundle, r))
+        .collect::<Result<Vec<_>, _>>()?;
+    let fingerprint = changed_fingerprint(
+        doc["snapshot_fingerprint"]
+            .as_str()
+            .ok_or("Missing dashboard snapshot fingerprint")?,
+        "snapshot",
+    )?;
+    doc["entries"] = json!(projected);
+    doc["snapshot_fingerprint"] = json!(fingerprint);
+    doc["published_satellite_core_width_projection_v1"] = json!({"source_file":SOURCE,"source_file_sha256":pin(),"source_dashboard_sha256":bundle.manifest["dashboard_receipt"]["source_sha256"],"scope":"Two source-defined satellite mean widths; no geometry or annual ranges added."});
+    Ok(doc)
+}
+
 fn expected() -> Vec<Value> {
     let doc = document();
     doc["records"].as_array().unwrap().iter().enumerate().map(|(index, original)| {
@@ -120,9 +196,22 @@ pub(crate) fn validate(bundle: &Bundle) -> Result<(), String> {
     {
         return Err("Changed satellite width owner, prior join or capability".into());
     }
+    let prior = bundle.manifest[KEY]["prior_dashboard_fingerprint"]
+        .as_str()
+        .ok_or("Missing prior dashboard fingerprint")?;
+    let measurements = bundle.manifest[KEY]["prior_measurements_fingerprint"]
+        .as_str()
+        .ok_or("Missing prior measurement fingerprint")?;
+    if owner["fingerprint"] != changed_fingerprint(prior, "object")?
+        || owner["section_fingerprints"]["measurements"]
+            != changed_fingerprint(measurements, "measurements")?
+    {
+        return Err("Satellite measurement-change fingerprint differs".into());
+    }
     let marker = json!({"logical_parent_sha256":PARENT,"source_file":SOURCE,"source_file_sha256":pin(),
         "records_added":2,"prior_width_records":172,"prior_agulhas_width_ids":ids[..2],
-        "width_samples_added":0,"length_records_added":0,"geometry_added":false});
+        "width_samples_added":0,"length_records_added":0,"geometry_added":false,
+        "prior_dashboard_fingerprint":prior,"prior_measurements_fingerprint":measurements});
     if bundle.manifest[KEY] != marker || bundle.manifest["input_sha256"][SOURCE] != pin() {
         return Err("Changed satellite width source or marker".into());
     }
@@ -195,13 +284,17 @@ mod tests {
             .chain(IDS.iter())
             .map(|id| json!(id))
             .collect();
+        let prior = "f".repeat(64);
+        let measurements = "e".repeat(64);
         Bundle {
             schema: "osw.query-bundle.v1".into(),
-            manifest: json!({"input_sha256":{SOURCE:pin()},KEY:{"logical_parent_sha256":PARENT,"source_file":SOURCE,"source_file_sha256":pin(),"records_added":2,"prior_width_records":172,"prior_agulhas_width_ids":ids[..2],"width_samples_added":0,"length_records_added":0,"geometry_added":false}}),
+            manifest: json!({"input_sha256":{SOURCE:pin()},KEY:{"logical_parent_sha256":PARENT,"source_file":SOURCE,"source_file_sha256":pin(),"records_added":2,"prior_width_records":172,"prior_agulhas_width_ids":ids[..2],"width_samples_added":0,"length_records_added":0,"geometry_added":false,"prior_dashboard_fingerprint":prior,"prior_measurements_fingerprint":measurements}}),
             collections: std::collections::BTreeMap::from([
                 (
                     "objects".into(),
-                    vec![json!({"id":OWNER,"width_ids":ids,"capabilities":{"scoped_width":4}})],
+                    vec![
+                        json!({"id":OWNER,"type":"named_current","label":"Agulhas Current","width_ids":ids,"capabilities":{"scoped_width":4},"fingerprint":changed_fingerprint(&prior,"object").unwrap(),"section_fingerprints":{"measurements":changed_fingerprint(&measurements,"measurements").unwrap()}}),
+                    ],
                 ),
                 ("widths".into(), expected()),
             ]),
@@ -256,5 +349,33 @@ mod tests {
         assert_eq!(s["records"][0]["reported_mean_width_km"], 80);
         assert!(s["records"][0]["width_range_km"].is_null());
         assert!(scene(&[]).is_null());
+    }
+    #[test]
+    fn dashboard_accepts_only_the_exact_projection_and_marks_measurements_changed() {
+        let mut bundle = fixture();
+        let original = json!({"schema":"osw.motion-dashboard.v1","fingerprint_version":2,"snapshot_fingerprint":"d".repeat(64),"counts":{"named_current":1,"named_eddy":0,"operational_eddy_detection":0},"entries":[{"id":OWNER,"type":"named_current","label":"Agulhas Current","width_ids":OLD_IDS,"capabilities":{"scoped_width":2},"fingerprint":"f".repeat(64),"section_fingerprints":{"measurements":"e".repeat(64)}}]});
+        let raw = serde_json::to_string(&original).unwrap();
+        let hash = format!("{:x}", Sha256::digest(raw.as_bytes()));
+        bundle.manifest["dashboard_receipt"] = json!({"source_file":"research/ocean-motion-dashboard.json","source_sha256":hash,"source_json":raw});
+        bundle.manifest["input_sha256"]["research/ocean-motion-dashboard.json"] = json!(hash);
+        validate(&bundle).unwrap();
+        crate::dashboard::validate(&bundle).unwrap();
+        let projected = dashboard_document(&bundle, original.clone()).unwrap();
+        assert_eq!(projected["entries"][0]["capabilities"]["scoped_width"], 4);
+        assert_ne!(
+            projected["entries"][0]["fingerprint"],
+            original["entries"][0]["fingerprint"]
+        );
+        assert_eq!(
+            projected["entries"][0]["width_ids"]
+                .as_array()
+                .unwrap()
+                .len(),
+            4
+        );
+        assert_eq!(bundle.manifest["dashboard_receipt"]["source_json"], raw);
+        bundle.collections.get_mut("objects").unwrap()[0]["fingerprint"] = json!("f".repeat(64));
+        assert!(validate(&bundle).is_err());
+        assert!(crate::dashboard::validate(&bundle).is_err());
     }
 }

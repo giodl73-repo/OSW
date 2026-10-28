@@ -1,0 +1,30 @@
+{
+  "schema": "osw.satellite-core-width-failure-review.v1",
+  "run_id": 40631293076,
+  "run_attempt": 1,
+  "source_commit": "e5d6077e18cb9523a16ec6b921b60670c0752d75",
+  "status": "NATIVE_BUILD_AND_219_TESTS_PASS_CANDIDATE_LOAD_REJECTED",
+  "artifact": {
+    "id": 12790929388,
+    "bytes": 27599,
+    "sha256": "7e5100ba893b711f1cdb218ce19a247c1027f92cd7dfae209fc1c16f99a8684a"
+  },
+  "native_build_passed": true,
+  "rust_tests_passed": 219,
+  "native_wasm_parity_verified": false,
+  "browser_verified": false,
+  "captured_cli_validator_reason": null,
+  "source_review_finding": "Dashboard source projection still requires the prior scoped-width capability of2 and original dashboard metadata, while the new candidate appends two widths and sets capability4. This is an identified load incompatibility; the captured subprocess failure did not retain the exact first validator reason.",
+  "next_action": "Add an exact source-bound dashboard projection and measurement-change fingerprints; retain bounded native stdout/stderr on rejection; repeat the sequential cloud verification.",
+  "retained_evidence_sha256": {
+    "research/satellite-core-width-failed-run-v1/compile-inventory.json": "ecb98e3d3f49fb8dc7db45b7eac86e182c6eab234bbb78b0bc7b1da1d67414a9",
+    "research/satellite-core-width-failed-run-v1/engine-failure.json": "94b89bfba2407e60599bd868f75d5dbc8e35212f79a88e777ca7f231dccbd4a3",
+    "research/satellite-core-width-failed-run-v1/parent-snapshots.json": "3f2cdcfb3ba01773d76ae96d7a4572968f47fbf13809f269f931eaf95d03fc49",
+    "research/satellite-core-width-failed-run-v1/parent-speeds.json": "f0585656c93fd4d10d06c2532e63c7bc75a1645021d2317d2b445be5abaa4f74",
+    "research/satellite-core-width-failed-run-v1/rust-tests.txt": "6837a674721bf6734c014afce6bb86eca7e8ae9751db8a1b0cb342bc75abab3b",
+    "research/satellite-core-width-failed-run-v1/source-index-audit.json": "9aadef45ca3ceea052e94e1c33614ebb284510cd60fd68b716dd04e65563aae3"
+  },
+  "installed": false,
+  "new_installed_width_records": 0,
+  "full_goal_complete": false
+}

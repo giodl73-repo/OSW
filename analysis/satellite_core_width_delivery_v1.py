@@ -8,7 +8,7 @@ import published_satellite_core_widths_v1 as core
 import published_satellite_core_width_index_v1 as index
 
 ROOT=Path(__file__).resolve().parents[1]
-SCOPE='research/agulhas-krug-2012-core-widths-runtime-scope-v1.json'
+SCOPE='research/agulhas-krug-2012-core-widths-runtime-scope-v2.json'
 INVENTORY='research/seasonal-core-velocity-engine-run-v1/compile-inventory.json'
 MANIFEST='almanac/query-engine.manifest.json';WASM='almanac/query-engine.wasm'
 PARENT_MANIFEST='a3704ee9d03f68fe6dff1fc9737be584ff573998ef99aa997b1505b773edd36e'
@@ -19,6 +19,13 @@ def digest(raw):return hashlib.sha256(raw).hexdigest()
 
 def scopes():
     scope=json.loads((ROOT/SCOPE).read_bytes())
+    previous=json.loads((ROOT/scope['previous_runtime_scope_file']).read_bytes())
+    if digest((ROOT/scope['previous_runtime_scope_file']).read_bytes())!=scope['previous_runtime_scope_sha256']:raise ValueError('Previous runtime scope changed')
+    old_preflight=json.loads((ROOT/scope['previous_preflight_file']).read_bytes())
+    if digest((ROOT/scope['previous_preflight_file']).read_bytes())!=scope['previous_preflight_sha256']:raise ValueError('Previous cloud preflight changed')
+    for path,row in scope['candidate_source_revisions'].items():
+        prior_pin=previous['added_source_sha256'].get(path,old_preflight['input_sha256'].get(path))
+        if digest((ROOT/row['archive_path']).read_bytes())!=row['previous_sha256'] or prior_pin!=row['previous_sha256'] or digest((ROOT/path).read_bytes())!=row['candidate_sha256']:raise ValueError('Candidate revision custody differs: '+path)
     parent_raw=(ROOT/scope['parent_engine_manifest_file']).read_bytes()
     if digest(parent_raw)!=PARENT_MANIFEST or scope['parent_engine_manifest_sha256']!=PARENT_MANIFEST:raise ValueError('Parent engine custody differs')
     parent=json.loads(parent_raw)
@@ -46,6 +53,7 @@ def compile_inventory(parent,scope,*,catalog_sha,logical_sha):
 
 def verify_collections(parent,child):
     if set(parent['collections'])!=set(child['collections']):raise ValueError('Collection inventory changed')
+    if parent['manifest']['dashboard_receipt']!=child['manifest']['dashboard_receipt']:raise ValueError('Historical dashboard source receipt changed')
     for name,rows in parent['collections'].items():
         actual=copy.deepcopy(child['collections'][name]) if name=='objects' else child['collections'][name]
         if name=='widths':
@@ -54,11 +62,20 @@ def verify_collections(parent,child):
         elif name=='objects':
             owners=[r for r in actual if r['id']==core.OWNER]
             if len(owners)!=1 or owners[0]['width_ids'][-2:]!=[r['id'] for r in core.records()] or owners[0]['capabilities']['scoped_width']!=4:raise ValueError('Agulhas append differs')
+            prior=next(r for r in parent['collections']['objects'] if r['id']==core.OWNER)
+            if owners[0]['fingerprint']!=core.changed_fingerprint(prior['fingerprint'],'object') or owners[0]['section_fingerprints']['measurements']!=core.changed_fingerprint(prior['section_fingerprints']['measurements'],'measurements'):raise ValueError('Measurement-change fingerprints differ')
+            owners[0]['fingerprint']=prior['fingerprint'];owners[0]['section_fingerprints']['measurements']=prior['section_fingerprints']['measurements']
             owners[0]['width_ids']=owners[0]['width_ids'][:-2];owners[0]['capabilities']['scoped_width']=2
         if actual!=rows:raise ValueError('Original collection changed: '+name)
 
 
 def verify_snapshot(name,old,new):
+    if name=='dashboard':
+        if set(old)!=set(new) or new.get('ok') is not True or any(new[k]!=old[k] for k in set(old)-{'snapshot_json','bundle_sha256'}):raise ValueError('Dashboard snapshot shape changed')
+        original=json.loads(old['snapshot_json'])
+        expected=core.dashboard_document(original,digest(old['snapshot_json'].encode()))
+        if json.loads(new['snapshot_json'])!=expected:raise ValueError('Dashboard projection or measurement-change fingerprints differ')
+        return
     if new.get('ok') is not True or set(new)!=set(old)|{'satellite_core_width_scenes'}:raise ValueError('Snapshot field inventory differs')
     allowed={'bundle_sha256','satellite_core_width_scenes','supplemental_widths'}|({'phase_plans'} if name=='seasons' else set())
     for key in set(old)-allowed:

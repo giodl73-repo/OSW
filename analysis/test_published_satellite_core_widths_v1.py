@@ -10,10 +10,13 @@ class SatelliteWidthProjectionTests(unittest.TestCase):
     def parent(self):
         widths=[{'id':identity,'current_id':'agulhas','preserve':'old definition'} for identity in sorted(m.OLD_IDS)]
         widths.extend({'id':f'old-{i}','current_id':'other'} for i in range(170))
-        return {'schema':'osw.query-bundle.v1','manifest':{'preserve':True,'input_sha256':{}},'collections':{
+        parent={'schema':'osw.query-bundle.v1','manifest':{'preserve':True,'input_sha256':{}},'collections':{
             'widths':widths,'width_samples':[{'id':'sample','unchanged':True}],
-            'objects':[{'id':m.OWNER,'width_ids':sorted(m.OLD_IDS),'capabilities':{'scoped_width':2,'reference_route':1},'route_ids':['route']},{'id':'current:other','preserve':True}],
+            'objects':[{'id':m.OWNER,'type':'named_current','width_ids':sorted(m.OLD_IDS),'capabilities':{'scoped_width':2,'reference_route':1},'fingerprint':'f'*64,'section_fingerprints':{'measurements':'e'*64,'identity':'d'*64},'route_ids':['route']},{'id':'current:other','preserve':True}],
             'current_core_velocity_estimates':[{'id':'older','preserve':True}]}}
+        doc={'schema':'osw.motion-dashboard.v1','fingerprint_version':2,'snapshot_fingerprint':'c'*64,'entries':[copy.deepcopy(parent['collections']['objects'][0])],'counts':{'named_current':1}}
+        raw=json.dumps(doc);pin=index.sha(raw.encode());parent['manifest']['dashboard_receipt']={'source_file':m.DASHBOARD,'source_json':raw,'source_sha256':pin};parent['manifest']['input_sha256'][m.DASHBOARD]=pin
+        return parent
 
     def test_only_two_widths_and_agulhas_join_change(self):
         parent=self.parent();original=copy.deepcopy(parent);result=m.prepare(parent,logical_parent_sha256=m.PARENT)
@@ -23,6 +26,10 @@ class SatelliteWidthProjectionTests(unittest.TestCase):
         self.assertEqual(result['collections']['objects'][1],original['collections']['objects'][1])
         owner=result['collections']['objects'][0];self.assertEqual(owner['width_ids'][:2],original['collections']['objects'][0]['width_ids'])
         self.assertEqual(owner['capabilities'],{'scoped_width':4,'reference_route':1});self.assertEqual(owner['route_ids'],['route'])
+        self.assertNotEqual(owner['fingerprint'],original['collections']['objects'][0]['fingerprint'])
+        self.assertNotEqual(owner['section_fingerprints']['measurements'],original['collections']['objects'][0]['section_fingerprints']['measurements'])
+        self.assertEqual(owner['section_fingerprints']['identity'],'d'*64)
+        self.assertEqual(result['manifest']['dashboard_receipt'],original['manifest']['dashboard_receipt'])
         self.assertEqual([r['approximate_width_km'] for r in result['collections']['widths'][172:]],[64,80])
 
     def test_wrong_parent_collision_missing_owner_or_old_join_refused(self):
@@ -44,6 +51,17 @@ class SatelliteWidthProjectionTests(unittest.TestCase):
             for key in ['width_range_km','observed_period','fixed_layer_bounds_m','geometry','confidence_interval_km']:self.assertIsNone(row[key])
             self.assertIs(row['seasonal_playback_eligible'],False)
         self.assertEqual(m.records()[0]['satellite_core_context']['source_ambiguities'][0]['resolved'],False)
+
+    def test_dashboard_projection_changes_only_measurement_metadata(self):
+        parent=self.parent();old=json.loads(parent['manifest']['dashboard_receipt']['source_json']);before=copy.deepcopy(old)
+        projected=m.dashboard_document(old,parent['manifest']['dashboard_receipt']['source_sha256'])
+        self.assertEqual(old,before);row=projected['entries'][0]
+        self.assertEqual(row['capabilities']['scoped_width'],4);self.assertEqual(len(row['width_ids']),4)
+        self.assertNotEqual(row['fingerprint'],before['entries'][0]['fingerprint'])
+        self.assertEqual(row['section_fingerprints']['identity'],before['entries'][0]['section_fingerprints']['identity'])
+        for change in [lambda d:d['entries'][0]['capabilities'].update(scoped_width=3),lambda d:d['entries'][0].update(fingerprint='wrong')]:
+            bad=copy.deepcopy(old);change(bad)
+            with self.assertRaises(ValueError):m.dashboard_document(bad,parent['manifest']['dashboard_receipt']['source_sha256'])
 
 
 class SatelliteWidthIndexTests(unittest.TestCase):
