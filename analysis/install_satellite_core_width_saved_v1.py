@@ -11,7 +11,7 @@ import verified_artifact_git_transport_v1 as transport
 ROOT=Path(__file__).resolve().parents[1]
 REPO=saved.REPO;BRANCH=saved.BRANCH
 REQUEST='research/satellite-core-width-installation-request-v1.json'
-PREFLIGHT='research/satellite-core-width-installation-preflight-v1.json'
+PREFLIGHT='research/satellite-core-width-installation-preflight-v2.json'
 WORKFLOW='.github/workflows/install-satellite-core-width-saved-v1.yml'
 PROOF='research/satellite-core-width-installed-v1.json'
 SAVED='research/satellite-core-width-installation-saved-engine-manifest-v1.json'
@@ -26,9 +26,21 @@ LOGICAL_BYTES=190540300
 BINARY='ac809aadc3bc5b2a2b1e6bdc1d71207535b3383efa391f656c4623a27cd5f668'
 FINAL_MANIFEST='924a379214df55974f9fbc1dfba6f080c8a8ab5ad80a5c129b2f8044f9101a29'
 ARTIFACT={'id':12794069098,'bytes':96251401,'sha256':'8d9aa800d63e453a0feb8336afc353c56d3c1bb6b157a28669af8e90238be573'}
+INDEX_LOGICAL='9627ef0a62a2f6d56c0787c4b4ff4719b89397956676d461284e3516f40e4f36'
+PARITY_SOURCE='analysis/check_satellite_core_width_parity_v1.mjs'
+PARITY_SOURCE_SHA='ea53fff0e81a8d7f2b81b16d4b9bfd682634422d4898d64742634ef244dfdd68'
 sha,oid,encode,api,objects,file_sha=saved.sha,saved.oid,saved.encode,saved.api,saved.objects,saved.file_sha
 
 def read(path):return json.loads((ROOT/path).read_bytes())
+
+def verify_parity_receipt(name,parity):
+    count={'main':53,'index':23,'snapshots':3}[name]
+    assert parity['status']=='PASS' and len(parity['checks'])==count and parity['initialization_metadata_equal'] is True
+    assert all(r['entire_response_equal'] is True for r in parity['checks']) and parity['wasm_sha256']==BINARY
+    assert 0<parity['max_wasm_linear_memory_bytes']<=3221225472
+    assert parity['payload_sha256']==(INDEX_LOGICAL if name=='index' else LOGICAL)
+    assert parity['mode']==('candidate' if name=='snapshots' else name)
+    if name=='snapshots':assert {r['view'] for r in parity['checks']}=={'atlas','seasons','dashboard'}
 
 def verify_request(request):
     for key,value in {'schema':'osw.satellite-core-width-installation-request.v1','workflow':WORKFLOW,
@@ -82,12 +94,11 @@ def controls():
     execution=read(EXECUTION)
     for path,pin in execution['retained_evidence_sha256'].items():assert file_sha(ROOT/path)==pin,path
     assert execution['visual_review_sha256']==file_sha(ROOT/REVIEW)
-    for name,count in [('main',53),('index',23),('snapshots',3)]:
-        parity=read(EVIDENCE+name+'-parity.json')
-        assert parity['status']=='PASS' and len(parity['checks'])==count and parity['initialization_metadata_equal'] is True
-        assert all(r['entire_response_equal'] for r in parity['checks']) and parity['wasm_sha256']==BINARY
-        if name=='index':assert parity['mismatched_corpus_refused'] is True
-        else:assert parity['payload_sha256']==LOGICAL
+    # This exact checker asserts compiled-catalog mismatch refusal in index mode
+    # before writing PASS. Its receipt does not emit a separate refusal boolean.
+    assert file_sha(ROOT/PARITY_SOURCE)==PARITY_SOURCE_SHA
+    for name in ['main','index','snapshots']:
+        verify_parity_receipt(name,read(EVIDENCE+name+'-parity.json'))
     assert file_sha(ROOT/delivery.MANIFEST)==delivery.PARENT_MANIFEST
     assert not (ROOT/PROOF).exists() and not (ROOT/SAVED).exists()
     delivery.scopes()

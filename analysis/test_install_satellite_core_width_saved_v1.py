@@ -5,6 +5,20 @@ from unittest.mock import patch
 import install_satellite_core_width_saved_v1 as m
 
 class SatelliteInstallationTests(unittest.TestCase):
+    def test_all_actual_saved_parity_receipt_formats(self):
+        for name in ['main','index','snapshots']:
+            m.verify_parity_receipt(name,m.read(m.EVIDENCE+name+'-parity.json'))
+        self.assertEqual(m.file_sha(m.ROOT/m.PARITY_SOURCE),m.PARITY_SOURCE_SHA)
+
+    def test_changed_parity_payload_mode_or_response_is_rejected(self):
+        for name in ['main','index','snapshots']:
+            original=m.read(m.EVIDENCE+name+'-parity.json')
+            for field,value in [('payload_sha256','0'*64),('mode','parent'),('wasm_sha256','0'*64)]:
+                changed=copy.deepcopy(original);changed[field]=value
+                with self.assertRaises(AssertionError):m.verify_parity_receipt(name,changed)
+            changed=copy.deepcopy(original);changed['checks'][0]['entire_response_equal']=False
+            with self.assertRaises(AssertionError):m.verify_parity_receipt(name,changed)
+
     def evidence(self):
         return [m.read(m.EVIDENCE+'engine.json'),m.read(m.EVIDENCE+'result.json'),m.read(m.EXECUTION),m.read(m.REVIEW),m.read(m.EVIDENCE+'browser.json')]
 
