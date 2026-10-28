@@ -1,0 +1,73 @@
+{
+  "schema": "osw.equatorial-basin-identity-source-review.v1",
+  "status": "BASIN_QUALIFICATIONS_SOURCE_RECONFIRMED_INSTALLED_DUPLICATE_AUDIT_PENDING",
+  "review_date": "2026-10-28",
+  "source_url": "https://tidesandcurrents.noaa.gov/glossary.html",
+  "source_kind": "NOAA primary glossary, selected entries read through web tool",
+  "selected_entries": [
+    "North Equatorial Current",
+    "South Equatorial Current",
+    "Monsoon Current (Southwest Monsoon Current)"
+  ],
+  "source_facts": {
+    "north_equatorial": "NOAA names westward currents in the North Atlantic and North Pacific, and a seasonal Indian Ocean usage.",
+    "south_equatorial": "NOAA names westward currents in the Atlantic, Pacific and Indian Oceans, with basin-specific placement relative to the equator.",
+    "monsoon": "The Indian North Equatorial naming is season-dependent and related to the Monsoon Current; no separate Indian NEC identity is admitted here."
+  },
+  "proposal_origin_file": "research/equatorial-basin-family-inventory-audit.json",
+  "proposal_origin_sha256": "dd053682b07525f818a0b5b9b6c03ecab717ff63926d2d273dfb0dae8ff4bac9",
+  "proposals": [
+    {
+      "proposed_id": "atlantic-north-equatorial",
+      "proposed_label": "Atlantic North Equatorial Current",
+      "parent_current_id": "north-equatorial",
+      "basin": "Atlantic Ocean",
+      "source_term": "North Equatorial Current",
+      "source_locator": "North Equatorial Current entry"
+    },
+    {
+      "proposed_id": "pacific-north-equatorial",
+      "proposed_label": "Pacific North Equatorial Current",
+      "parent_current_id": "north-equatorial",
+      "basin": "Pacific Ocean",
+      "source_term": "North Equatorial Current",
+      "source_locator": "North Equatorial Current entry"
+    },
+    {
+      "proposed_id": "atlantic-south-equatorial",
+      "proposed_label": "Atlantic South Equatorial Current",
+      "parent_current_id": "south-equatorial",
+      "basin": "Atlantic Ocean",
+      "source_term": "South Equatorial Current",
+      "source_locator": "South Equatorial Current entry"
+    },
+    {
+      "proposed_id": "pacific-south-equatorial",
+      "proposed_label": "Pacific South Equatorial Current",
+      "parent_current_id": "south-equatorial",
+      "basin": "Pacific Ocean",
+      "source_term": "South Equatorial Current",
+      "source_locator": "South Equatorial Current entry"
+    },
+    {
+      "proposed_id": "indian-south-equatorial",
+      "proposed_label": "Indian South Equatorial Current",
+      "parent_current_id": "south-equatorial",
+      "basin": "Indian Ocean",
+      "source_term": "South Equatorial Current",
+      "source_locator": "South Equatorial Current entry"
+    }
+  ],
+  "basin_qualified_labels_are": "OSW editorial qualifiers for the separate basin usages; not quotations of five separate NOAA headings.",
+  "identity_admitted": false,
+  "measurements_admitted": false,
+  "geometry_admitted": false,
+  "member_values_inherited_by_family": false,
+  "remaining_gates": [
+    "Audit exact installed entities, names, objects, source reuse and existing proposal records.",
+    "Resolve any aliases or partial records before additive identity integration.",
+    "Retain family records; assess basin-member dimensions independently with layer, period and boundary support."
+  ],
+  "installed_checkpoint": "research/current-measurement-coverage-checkpoint-v14.json",
+  "full_goal_complete": false
+}

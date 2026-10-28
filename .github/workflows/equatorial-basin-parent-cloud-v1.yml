@@ -1,0 +1,62 @@
+name: Audit installed equatorial basin identity parent v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/equatorial-basin-parent-request-v1.json
+      - .github/workflows/equatorial-basin-parent-cloud-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/equatorial-basin-parent-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/equatorial-basin-parent-request-v1.json').read_bytes())
+          assert r['schema']=='osw.equatorial-basin-parent-request.v1'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  parent-audit:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+      - name: Identity collision and pre-read refusal fixtures
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_equatorial_basin_parent_v1.py -v
+      - name: Read bounded installed equatorial basin identity metadata without changing data
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_equatorial_basin_parent_v1.py
+      - name: Retain compact audit records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: equatorial-basin-parent-audit-v1
+          path: .pytest_cache/equatorial-basin-parent-v1/*.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90
