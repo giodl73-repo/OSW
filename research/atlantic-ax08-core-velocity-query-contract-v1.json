@@ -1,0 +1,31 @@
+{
+  "schema": "osw.seasonal-core-velocity-query-contract.v1",
+  "status": "CLOUD_EXECUTION_PENDING",
+  "collection": "current_core_velocity_estimates",
+  "parent_logical_sha256": "037ef0045d75dac4b8893df9bf200bd55e049d4708ceaa56195df9d6da9f5cc4",
+  "parent_catalog_sha256": "e1393726b1fa73d6adf9bfe7494ffe4077efe86c82ff2c31dbc55b63c137fbc2",
+  "cases": [
+    {"request": {"collection": "current_core_velocity_estimates", "limit": 100}, "expected_total": 6, "expected_scene_records": 6},
+    {"request": {"collection": "current_core_velocity_estimates", "offset": 1, "limit": 1}, "expected_total": 6, "expected_scene_records": 6, "expected_row_count": 1},
+    {"request": {"collection": "current_core_velocity_estimates", "filters": [{"field": "current_id", "op": "eq", "value": "atlantic-north-equatorial-countercurrent"}]}, "expected_total": 2, "expected_scene_records": 2},
+    {"request": {"collection": "current_core_velocity_estimates", "filters": [{"field": "current_id", "op": "eq", "value": "atlantic-north-equatorial-undercurrent"}]}, "expected_total": 2, "expected_scene_records": 2},
+    {"request": {"collection": "current_core_velocity_estimates", "filters": [{"field": "current_id", "op": "eq", "value": "atlantic-south-equatorial-undercurrent"}]}, "expected_total": 2, "expected_scene_records": 2},
+    {"request": {"collection": "current_core_velocity_estimates", "filters": [{"field": "estimate_kind", "op": "eq", "value": "approximate_prose_interval"}]}, "expected_total": 1, "expected_scene_records": 1, "expected_record_ids": ["goes-2013-necc-core-outside-spring"]},
+    {"request": {"collection": "current_core_velocity_estimates", "filters": [{"field": "estimate_kind", "op": "eq", "value": "reported_greater_than"}]}, "expected_total": 1, "expected_scene_records": 1, "expected_record_ids": ["goes-2013-seuc-core-late-spring-fall"]},
+    {"request": {"collection": "current_core_velocity_estimates", "filters": [{"field": "current_id", "op": "eq", "value": "agulhas"}]}, "expected_total": 0, "expected_scene_records": 0},
+    {"request": {"collection": "current_speed_statistics", "limit": 100}, "expected_total": 15, "existing_whole_response_preserved": true}
+  ],
+  "all_nonempty_new_scenes_kind": "published_seasonal_core_velocities",
+  "all_new_map_scenes_null": true,
+  "source_pointer_checks": "Resolve all six row.source_pointer values in the newly indexed source document; compare entire original source record fields.",
+  "snapshot_checks": "Complete atlas and seasons responses: preserve previous fields and Pemba scene; add exactly three owner-bound core-velocity scenes with two records each.",
+  "browser_cases": [
+    "Query all six and inspect one source pointer",
+    "Query filtered greater-than record; no finite upper endpoint or point-value substitution",
+    "Open each of the three currents in atlas and seasons views and inspect one exact query record",
+    "At desktop and narrow viewports, keep estimate text readable and details inside the labelled table scroller"
+  ],
+  "execution_constraints": {"local_builds": false, "local_browser_automation": false, "original_field_processing": false, "cloud_concurrency_group": "osw-current-gap-delivery", "max_cloud_heavy_jobs": 1},
+  "execution_completed": false,
+  "installed": false
+}

@@ -85,7 +85,7 @@ pub(crate) fn validate(bundle: &Bundle) -> Result<(), String> {
 }
 
 pub(crate) fn by_current(bundle: &Bundle) -> Value {
-    let mut output = json!({});
+    let mut output = crate::published_seasonal_core_velocities::by_current(bundle);
     let rows = bundle
         .collections
         .get(COLLECTION)

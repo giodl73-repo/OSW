@@ -1,0 +1,92 @@
+{
+  "schema": "osw.published-seasonal-core-speed-evidence.v1",
+  "status": "PREPARED_SOURCE_EXTRACTION_NOT_INSTALLED",
+  "source": {
+    "doi": "10.1002/jgrc.20186",
+    "citation": "Goes, Goni, Hormann and Perez (2013), Variability of the Atlantic off-equatorial eastward currents during 1993–2010 using a synthetic method, JGR Oceans 118, 3026–3045.",
+    "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/jgrc.20186",
+    "access": "Publisher full HTML methods and sections 4.2.1–4.3 read. Values transcribed from prose, not digitized from Figure 5. Original PDF not acquired.",
+    "independent_product_context_url": "https://www.aoml.noaa.gov/phod/goos/xbtscience/ax08_currents.php",
+    "source_locator": "Sections 2.1, 3.1, 4.1, 4.2 and 4.3; Figure 5 caption; Table 1"
+  },
+  "common_support": {
+    "region": "Central tropical Atlantic, selected oblique AX08 sections",
+    "median_transect_longitude_degrees_east_approx": -23,
+    "transect_is_fixed_meridian": false,
+    "transect_angle_from_meridional_degrees_approx": 40,
+    "input_section_count": 39,
+    "selected_section_count": 31,
+    "selected_section_count_is_shared_across_currents": true,
+    "hydrography_context_years": [2000, 2010],
+    "first_ax08_section_month": "2000-12",
+    "exact_selected_occupation_dates": null,
+    "quantity": "XBT-derived geostrophic core velocity in author's fitted seasonal cycle",
+    "method": "Annual and semiannual harmonics fitted to monthly XBT-derived averages. Salinity inferred from climatological T–S relations; absolute dynamic height referenced at 800 m.",
+    "velocity_is_direct_current_meter_measurement": false,
+    "velocity_is_scalar_particle_speed": false,
+    "xbt_months_without_sections": [2],
+    "xbt_months_with_only_one_section": [1, 5, 6],
+    "calendar_months_assigned_to_season_labels": false,
+    "season_convention": "Author's boreal seasonal prose labels; no precise seasonal averaging windows supplied for these prose estimates.",
+    "row_specific_sample_counts": null,
+    "numeric_uncertainty_m_s": null,
+    "uncertainty_note": "Figure 5 distinguishes XBT standard-plus-fitting errors from synthetic standard errors. Numeric errors are not supplied for the transcribed prose values.",
+    "reconstruction_period_years": [1993, 2010],
+    "reconstruction_values_mixed_into_these_records": false,
+    "interpretation_limit": "Regionally sampled seasonal fit, not observed annual extrema, a whole-current speed, or geometry for seasonal map playback."
+  },
+  "current_scopes": [
+    {
+      "current_id": "atlantic-north-equatorial-countercurrent",
+      "source_label": "NECC",
+      "latitude_search_band_degrees_north": [3, 10],
+      "layer": "Surface to potential-density anomaly 24.5 kg/m3",
+      "potential_density_anomaly_bounds_kg_m3": null,
+      "surface_to_potential_density_anomaly_kg_m3": 24.5,
+      "fixed_depth_bounds_m": null,
+      "search_band_is_current_width": false
+    },
+    {
+      "current_id": "atlantic-north-equatorial-undercurrent",
+      "source_label": "NEUC",
+      "latitude_search_band_degrees_north": [3, 6],
+      "layer": "Potential-density anomaly 24.5–26.8 kg/m3",
+      "potential_density_anomaly_bounds_kg_m3": [24.5, 26.8],
+      "surface_to_potential_density_anomaly_kg_m3": null,
+      "fixed_depth_bounds_m": null,
+      "search_band_is_current_width": false
+    },
+    {
+      "current_id": "atlantic-south-equatorial-undercurrent",
+      "source_label": "SEUC",
+      "latitude_search_band_degrees_north": [-6, -3],
+      "layer": "Potential-density anomaly 24.5–26.8 kg/m3",
+      "potential_density_anomaly_bounds_kg_m3": [24.5, 26.8],
+      "surface_to_potential_density_anomaly_kg_m3": null,
+      "fixed_depth_bounds_m": null,
+      "search_band_is_current_width": false
+    }
+  ],
+  "records": [
+    {"id": "goes-2013-necc-core-spring", "current_id": "atlantic-north-equatorial-countercurrent", "source_locator": "Section 4.2.1, paragraph 26", "season_label": "Boreal spring", "calendar_months": null, "estimate_kind": "approximate_point", "value_m_s": 0.2, "interval_m_s": null, "lower_threshold_m_s": null, "display": "about 0.20 m/s"},
+    {"id": "goes-2013-necc-core-outside-spring", "current_id": "atlantic-north-equatorial-countercurrent", "source_locator": "Section 4.2.1, paragraph 26", "season_label": "Rest of year", "calendar_months": null, "estimate_kind": "approximate_prose_interval", "value_m_s": null, "interval_m_s": [0.4, 0.5], "lower_threshold_m_s": null, "display": "about 0.40–0.50 m/s"},
+    {"id": "goes-2013-neuc-core-spring", "current_id": "atlantic-north-equatorial-undercurrent", "source_locator": "Section 4.2.2, paragraph 27", "season_label": "Boreal spring", "calendar_months": null, "estimate_kind": "approximate_point", "value_m_s": 0.2, "interval_m_s": null, "lower_threshold_m_s": null, "display": "about 0.20 m/s"},
+    {"id": "goes-2013-neuc-core-summer-fall", "current_id": "atlantic-north-equatorial-undercurrent", "source_locator": "Section 4.2.2, paragraph 27", "season_label": "Boreal summer and fall", "calendar_months": null, "estimate_kind": "approximate_point", "value_m_s": 0.3, "interval_m_s": null, "lower_threshold_m_s": null, "display": "about 0.30 m/s"},
+    {"id": "goes-2013-seuc-core-summer", "current_id": "atlantic-south-equatorial-undercurrent", "source_locator": "Section 4.2.3, paragraph 28", "season_label": "Boreal summer", "calendar_months": null, "estimate_kind": "approximate_point", "value_m_s": 0.25, "interval_m_s": null, "lower_threshold_m_s": null, "display": "about 0.25 m/s"},
+    {"id": "goes-2013-seuc-core-late-spring-fall", "current_id": "atlantic-south-equatorial-undercurrent", "source_locator": "Section 4.2.3, paragraph 28", "season_label": "Late boreal spring and fall", "calendar_months": null, "estimate_kind": "reported_greater_than", "value_m_s": null, "interval_m_s": null, "lower_threshold_m_s": 0.3, "display": "greater than 0.30 m/s"}
+  ],
+  "method_discrepancies": [
+    {"current_id": "atlantic-north-equatorial-undercurrent", "source_locator": "Section 4.3, paragraph 30", "detail": "Synthetic summer/fall core velocity is about 0.1 m/s, unlike the XBT estimate of about 0.3 m/s. Retain method-specific values; do not pool them.", "synthetic_value_m_s_approx": 0.1, "included_as_another_record": false},
+    {"current_id": "atlantic-south-equatorial-undercurrent", "source_locator": "Section 4.3, paragraphs 30 and 32", "detail": "Synthetic core velocities are lower, and the reconstruction fails to reproduce observed transport variability reliably. No reconstruction-based seasonal width or length inferred."}
+  ],
+  "visualization": {
+    "figure": "figures/atlantic-ax08-goes-2013-seasonal-core-speeds-v1.svg",
+    "generator": "analysis/build_atlantic_ax08_goes_2013_core_speeds_v1.py",
+    "encoding": "Separate categorical rows; point, reported interval, or open-ended threshold. No connected annual cycle, invented error bars, or width bands."
+  },
+  "new_length_records": 0,
+  "new_width_records": 0,
+  "installed_packet_changed": false,
+  "coverage_checkpoint_changed": false,
+  "full_goal_complete": false
+}

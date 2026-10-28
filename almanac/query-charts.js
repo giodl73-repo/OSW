@@ -54,7 +54,7 @@ window.oswCharts=(()=>{
     stopAll();stops=[];
     document.getElementById('query-chart-section').hidden=!scene;root().replaceChildren();if(!scene)return;
     document.getElementById('query-chart-scope').textContent=scene.scope;
-    if(scene.kind==='published_current_speed_statistics'){
+    if(['published_current_speed_statistics','published_seasonal_core_velocities'].includes(scene.kind)){
       document.getElementById('query-chart-legend').hidden=true;
       document.getElementById('chart-title').textContent=scene.title;
       window.renderPublishedCurrentSpeeds(root(),scene,inspect);return;

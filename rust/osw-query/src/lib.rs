@@ -80,6 +80,7 @@ mod planning;
 mod portugal_section_span;
 mod proposed_widths;
 mod published_current_speeds;
+mod published_seasonal_core_velocities;
 mod published_regional_reaches;
 mod published_transports;
 mod qualitative_calendar;
@@ -204,6 +205,7 @@ impl Store {
         }
         published_transports::validate(&bundle)?;
         published_current_speeds::validate(&bundle)?;
+        published_seasonal_core_velocities::validate(&bundle)?;
         azores_section_review::validate(&bundle)?;
         original_regional_widths::validate_south_atlantic_inventory(&bundle)?;
         original_regional_widths::validate_south_pacific_inventory(&bundle)?;
@@ -783,6 +785,8 @@ impl Store {
             published_transports::query(&matches, &query.collection)
         } else if query.collection == "current_speed_statistics" {
             published_current_speeds::scene(&matches)
+        } else if query.collection == "current_core_velocity_estimates" {
+            published_seasonal_core_velocities::scene(&matches)
         } else if query.collection == "current_velocity_samples" {
             mooring_velocity::scene(&matches, records)
         } else if query.collection == "current_sections" {
