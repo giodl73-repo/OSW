@@ -29,5 +29,18 @@
       'figures/wicc-winter-regional-reference-route-v4-candidate.svg': 'figures/wicc-winter-regional-reference-compact-v1.svg'
     })[row.figure] || null;
   }
-  window.OSWReferenceRouteText = Object.freeze({hasRange, range, summary, seasonal, compactFigure});
+  function supportCitation(support) {
+    return support.citation || support.title || (support.doi ? `doi:${support.doi}` : support.url) || 'Source details unavailable';
+  }
+  function regionContext(row, report) {
+    const excluded = new Set((report.state_semantic_exclusions || []).map(item => item.state_code));
+    const codes = (row.nominal_atlas_state_crossings || []).filter(code => !excluded.has(code));
+    if (codes.length) return {label:'Editorial route crosses atlas regions: ', codes, note:''};
+    if (row.display_context?.role === 'editorial_display_overlap_only') {
+      return {label:'Editorial map overlap only: ', codes:(row.display_context.state_codes || []).filter(code => !excluded.has(code)),
+        note:'Physical current passage through atlas regions remains unresolved.'};
+    }
+    return {label:'Atlas-region passage: unresolved.', codes:[], note:''};
+  }
+  window.OSWReferenceRouteText = Object.freeze({hasRange, range, summary, seasonal, compactFigure, supportCitation, regionContext});
 })();

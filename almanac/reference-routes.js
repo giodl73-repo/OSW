@@ -459,12 +459,13 @@
         }
       }
       for (const support of report.supporting_sources || []) {
-        const citation = node("p", "Supporting source: ", card); link(support.citation, support.url, citation, true);
+        const citation = node("p", "Supporting source: ", card); link(window.OSWReferenceRouteText.supportCitation(support), support.url, citation, true);
         node("p", `${support.locator} ${support.role || ""}`, card);
       }
-      const geography = node("p", "Editorial route crosses atlas regions: ", card);
-      const excludedStates=new Set((report.state_semantic_exclusions||[]).map(item=>item.state_code));
-      for (const state of row.nominal_atlas_state_crossings.filter(code=>!excludedStates.has(code))) { link(state, objectHref(`state:${state}`), geography); geography.append(document.createTextNode(" ")); }
+      const regionContext=window.OSWReferenceRouteText.regionContext(row,report);
+      const geography = node("p", regionContext.label, card);
+      for (const state of regionContext.codes) { link(state, objectHref(`state:${state}`), geography); geography.append(document.createTextNode(" ")); }
+      if(regionContext.note)node('p',regionContext.note,card);
       if(report.state_scope_note)node('p',report.state_scope_note,card);
       const tile = report.nasa_movie_context.find(item => item.tile_id === report.recommended_nasa_tile_id);
       if (tile) link(`Open complete-route NASA crop ${tile.tile_id} (geographic context)`, tile.url, card, true);
