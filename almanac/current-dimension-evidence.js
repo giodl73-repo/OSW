@@ -10,13 +10,15 @@ window.renderCurrentDimensionEvidence=function(parent,scene,inspect,options={}){
   const number=value=>finite(value)?value.toLocaleString('en-US'):'Unknown';
   inspect||=((collection,id)=>{location.href='query.html?q='+encodeURIComponent(JSON.stringify({collection,filters:[{field:'id',op:'eq',value:id}],limit:100}));});
   const wrapper=node(options.collapsed?'details':'section',undefined,parent);wrapper.className='current-dimension-evidence';wrapper.style.cssText='min-width:0;overflow-wrap:anywhere';
-  if(options.collapsed)node('summary',`${widths.length} regional width summaries · ${events.length} dated flow examples`,wrapper);
+  if(options.collapsed)node('summary',`${widths.length} regional width summaries${events.length?` · ${events.length} dated flow examples`:''}`,wrapper);
   const panel=options.collapsed?node('div',undefined,wrapper):wrapper;
   node('h3',scene.title,panel);node('p',scene.scope,panel);node('p',scene.definition,panel);
   const sourceLink=(row,container)=>{
-    const file=row.source_file||row.source_report_file;
-    if(file)link('Source evidence record','query.html?source-q='+encodeURIComponent(JSON.stringify({document:file,pointer:row.source_pointer||'',limit:100})),node('p',undefined,container));
+    const source=row.source_file||row.source_report_file?row:scene.width_source_links?.[row.id]||row;
+    const file=source.source_file||source.source_report_file;
+    if(file)link('Source evidence record','query.html?source-q='+encodeURIComponent(JSON.stringify({document:file,pointer:source.source_pointer||'',limit:100})),node('p',undefined,container));
   };
+  const widthMaximum=Math.max(140,...widths.flatMap(row=>Array.isArray(row.width_range_km)?row.width_range_km.filter(finite):finite(row.approximate_width_km)?[row.approximate_width_km]:[]));
   for(const row of widths){
     const card=node('article',undefined,panel);card.setAttribute('data-dimension-width-id',row.id);
     card.style.cssText='min-width:0;border:1px solid #b7ced2;border-radius:.5rem;padding:.8rem;margin:.8rem 0';
@@ -25,8 +27,8 @@ window.renderCurrentDimensionEvidence=function(parent,scene,inspect,options={}){
     const central=finite(row.approximate_width_km)?row.approximate_width_km:null;
     node('p',hasRange?`About ${number(range[0])}–${number(range[1])} km`:central===null?'Width: Unknown':`About ${number(central)} km`,card);
     if(hasRange||central!==null){
-      const maximum=Math.max(140,hasRange?range[1]:central);
-      const chart=svgNode('svg',{viewBox:'0 0 300 56',role:'img','aria-label':hasRange?`Reported regional width range ${number(range[0])} to ${number(range[1])} km. Study summary, not annual extrema or error bars.`:`Reported regional survey width about ${number(central)} km.`,},card);
+      const maximum=widthMaximum;
+      const chart=svgNode('svg',{viewBox:'0 0 300 56',role:'img','aria-label':hasRange?`Reported regional width range ${number(range[0])} to ${number(range[1])} km. Study summary, not annual extrema or error bars.`:`Reported regional width about ${number(central)} km.`,},card);
       chart.style.cssText='display:block;width:100%;max-width:600px;height:auto';
       const x=value=>12+value/maximum*276;
       svgNode('line',{x1:12,x2:288,y1:20,y2:20,stroke:'#cadbdf','stroke-width':2},chart);
@@ -50,7 +52,7 @@ window.renderCurrentDimensionEvidence=function(parent,scene,inspect,options={}){
       const action=node('button','Inspect dated event',item);action.type='button';action.onclick=()=>inspect('current_reported_flow_events',row.id);sourceLink(row,item);
     }
   }
-  link('Original mooring study',scene.source_url,node('p',undefined,panel));
+  link(scene.source_label||'Original mooring study',scene.source_url,node('p',undefined,panel));
   link('Full evidence context chart','../'+scene.figure,node('p',undefined,panel));
   link('Open current atlas','reference-routes.html?atlas-feature='+encodeURIComponent(scene.entity_id)+'#route-atlas',node('p',undefined,panel));
 };

@@ -76,6 +76,7 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     expected.extend(crate::wicc_review_width::widths(b));
     expected.extend(crate::eacc_cited_width::widths(b));
     expected.extend(crate::madagascar_dimensions::validated_widths(b)?);
+    expected.extend(crate::azcc_onken_width::validated_widths(b)?);
     let expected_lengths =
         crate::length_assessment_overlays::expected(b, &previous["length_assessments"])?;
     if b.collections.get("widths") != Some(&expected)
