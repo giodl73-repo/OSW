@@ -101,6 +101,7 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     expected_widths.extend(crate::neuc_glider_widths::widths(b));
     expected_widths.extend(crate::aleutian_onishi_width::widths(b));
     expected_widths.extend(crate::current_gap_admissions::widths(b));
+    expected_widths.extend(crate::satellite_core_widths::widths(b));
     if actual != &expected_widths {
         return Err("Changed ASAR effective width inventory/order".into());
     }
@@ -166,6 +167,26 @@ mod tests {
                     {"id":"current:norwegian-coastal","capabilities":{"scoped_width":2},"source_ids":[d["source_record"]["id"]],"diagnostic_ids":[format!("{ID}:coastal")]}
                 ]}}))
         .unwrap()
+    }
+    #[test]
+    fn exact_satellite_append_preserves_the_complete_inventory_guard() {
+        let mut b = fixture();
+        b.manifest["published_satellite_core_widths_v1"] = json!({});
+        let appended = crate::satellite_core_widths::widths(&b);
+        assert_eq!(appended.len(), 2);
+        b.collections.get_mut("widths").unwrap().extend(appended);
+        validate(&b).unwrap();
+        let original = b.collections["widths"].clone();
+        let rows = b.collections.get_mut("widths").unwrap();
+        rows.last_mut().unwrap()["approximate_width_km"] = json!(81);
+        assert!(validate(&b).is_err());
+        b.collections.insert("widths".into(), original.clone());
+        let extra = original.last().unwrap().clone();
+        b.collections.get_mut("widths").unwrap().push(extra);
+        assert!(validate(&b).is_err());
+        b.collections.insert("widths".into(), original);
+        b.collections.get_mut("widths").unwrap().swap(0, 1);
+        assert!(validate(&b).is_err());
     }
     #[test]
     fn exact_mean_field_reports_are_admitted() {

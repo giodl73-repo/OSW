@@ -22,7 +22,7 @@ from check_published_current_speeds_v1 import verify_case
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'.pytest_cache/satellite-core-width-delivery-v1'
 REQUEST='research/satellite-core-width-delivery-request-v1.json'
-PREFLIGHT='research/satellite-core-width-delivery-preflight-v2.json'
+PREFLIGHT='research/satellite-core-width-delivery-preflight-v3.json'
 WORKFLOW='.github/workflows/satellite-core-width-delivery-v1.yml'
 CONTRACT='research/atlantic-ax08-core-velocity-query-contract-v1.json'
 def read(path):return json.loads((ROOT/path).read_bytes())
@@ -116,7 +116,7 @@ def engine():
     env=dict(os.environ,CARGO_TARGET_DIR=str(OUT/'build'),CARGO_INCREMENTAL='0');cargo=['cargo','+1.95.0'];locked=['--offline','--locked','--manifest-path','rust/osw-query/Cargo.toml']
     run(cargo+['build']+locked+['--bin','osw-query-cli'],env=env)
     with (OUT/'rust-tests.txt').open('wb') as stream:run(cargo+['test']+locked+['--lib','--','--test-threads=1'],env=env,stdout=stream,stderr=subprocess.STDOUT)
-    if not re.search(rb'test result: ok\. 220 passed; 0 failed;',(OUT/'rust-tests.txt').read_bytes()):raise ValueError('Complete220-test suite did not pass')
+    if not re.search(rb'test result: ok\. 223 passed; 0 failed;',(OUT/'rust-tests.txt').read_bytes()):raise ValueError('Complete223-test suite did not pass')
     cli=OUT/'build/debug/osw-query-cli';fixtures={'main':[],'index':[]}
     for query,expected in old_cases:
         response=native(cli,candidate,query);previous_cases.verify_response(query,expected,response);fixtures['main'].append({'request':query,'expected':response})
@@ -164,7 +164,7 @@ def engine():
     shutil.copyfile(wasm,ROOT/delivery.WASM);write(delivery.MANIFEST,overlay);generated_paths|={delivery.WASM,delivery.MANIFEST};hashes={p:sha(p) for p in generated_paths}
     for path in generated_paths:
         dst=OUT/'artifact'/path;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/path,dst)
-    write(OUT/'engine.json',{'status':'PASS','source_commit':head,'logical_sha256':packet['logical_sha256'],'logical_bytes':packet['logical_byte_length'],'wasm_sha256':wasm_sha,'compiler':compiler,'generated_sha256':hashes,'source_index_audit':audit,'rust_tests_passed':220,'main_query_comparisons':53,'source_query_comparisons':23,'complete_api_comparisons':3,'prior_speed_whole_responses_preserved':2,'new_width_records':2,'new_width_samples':0,'new_length_records':0,'browser_verified':False,'installed':False})
+    write(OUT/'engine.json',{'status':'PASS','source_commit':head,'logical_sha256':packet['logical_sha256'],'logical_bytes':packet['logical_byte_length'],'wasm_sha256':wasm_sha,'compiler':compiler,'generated_sha256':hashes,'source_index_audit':audit,'rust_tests_passed':223,'main_query_comparisons':53,'source_query_comparisons':23,'complete_api_comparisons':3,'prior_speed_whole_responses_preserved':2,'new_width_records':2,'new_width_samples':0,'new_length_records':0,'browser_verified':False,'installed':False})
 
 
 def browser():

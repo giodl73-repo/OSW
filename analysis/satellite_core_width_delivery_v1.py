@@ -8,7 +8,7 @@ import published_satellite_core_widths_v1 as core
 import published_satellite_core_width_index_v1 as index
 
 ROOT=Path(__file__).resolve().parents[1]
-SCOPE='research/agulhas-krug-2012-core-widths-runtime-scope-v2.json'
+SCOPE='research/agulhas-krug-2012-core-widths-runtime-scope-v3.json'
 INVENTORY='research/seasonal-core-velocity-engine-run-v1/compile-inventory.json'
 MANIFEST='almanac/query-engine.manifest.json';WASM='almanac/query-engine.wasm'
 PARENT_MANIFEST='a3704ee9d03f68fe6dff1fc9737be584ff573998ef99aa997b1505b773edd36e'

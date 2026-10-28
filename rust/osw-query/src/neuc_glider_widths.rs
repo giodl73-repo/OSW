@@ -92,6 +92,7 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     let mut expected_widths = e["widths"].as_array().unwrap().clone();
     expected_widths.extend(crate::aleutian_onishi_width::widths(b));
     expected_widths.extend(crate::current_gap_admissions::widths(b));
+    expected_widths.extend(crate::satellite_core_widths::widths(b));
     let expected_lengths =
         crate::length_assessment_overlays::expected(b, &e["length_assessments"])?;
     if b.collections.get("widths") != Some(&expected_widths)
@@ -154,6 +155,26 @@ mod tests {
         serde_json::from_value(json!({"schema":"osw.query-bundle.v1","manifest":{"neuc_glider_widths_version":"1","input_sha256":pins},
             "collections":{"widths":e["widths"],"length_assessments":e["length_assessments"],"sources":[d["source_record"]],"diagnostics":[diagnostic()],
                 "objects":[{"id":OWNER,"capabilities":{"scoped_width":4},"source_ids":[d["source_record"]["id"]],"diagnostic_ids":[ID]}]}})).unwrap()
+    }
+    #[test]
+    fn exact_satellite_append_preserves_the_complete_inventory_guard() {
+        let mut b = fixture();
+        b.manifest["published_satellite_core_widths_v1"] = json!({});
+        let appended = crate::satellite_core_widths::widths(&b);
+        assert_eq!(appended.len(), 2);
+        b.collections.get_mut("widths").unwrap().extend(appended);
+        validate(&b).unwrap();
+        let original = b.collections["widths"].clone();
+        let rows = b.collections.get_mut("widths").unwrap();
+        rows.last_mut().unwrap()["approximate_width_km"] = json!(81);
+        assert!(validate(&b).is_err());
+        b.collections.insert("widths".into(), original.clone());
+        let extra = original.last().unwrap().clone();
+        b.collections.get_mut("widths").unwrap().push(extra);
+        assert!(validate(&b).is_err());
+        b.collections.insert("widths".into(), original);
+        b.collections.get_mut("widths").unwrap().swap(0, 1);
+        assert!(validate(&b).is_err());
     }
     #[test]
     fn exact_local_ranges_keep_zero_and_distinct_mean_context() {
