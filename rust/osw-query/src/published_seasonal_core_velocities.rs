@@ -118,6 +118,18 @@ mod tests {
 
     fn candidate() -> Bundle {
         let rows = expected();
+        // This canonical owner also activates the existing SEUC width guard.
+        // A valid Store fixture must retain that previously admitted evidence.
+        const SEUC_SOURCE: &str =
+            "research/atlantic-seuc-molinari-1981-core-width-scope-audit.json";
+        const SEUC_RAW: &str = include_str!(
+            "../../../research/atlantic-seuc-molinari-1981-core-width-scope-audit.json"
+        );
+        let seuc: Value = serde_json::from_str(SEUC_RAW).unwrap();
+        let seuc_pin = format!("{:x}", Sha256::digest(SEUC_RAW.as_bytes()));
+        let mut width = seuc["measurement"].clone();
+        width["original_regional_context"]["audit_file"] = json!(SEUC_SOURCE);
+        width["original_regional_context"]["audit_sha256"] = json!(seuc_pin);
         let ids = [
             "atlantic-north-equatorial-countercurrent",
             "atlantic-north-equatorial-undercurrent",
@@ -137,12 +149,13 @@ mod tests {
             .collect();
         Bundle {
             schema: "osw.query-bundle.v1".into(),
-            manifest: json!({"input_sha256":{(SOURCE):pin()},(KEY):{
+            manifest: json!({"input_sha256":{(SOURCE):pin(),(SEUC_SOURCE):seuc_pin},(KEY):{
                 "logical_parent_sha256":PARENT,"source_file":SOURCE,"source_file_sha256":pin(),
                 "records_added":6,"length_or_width_records_added":0}}),
             collections: std::collections::BTreeMap::from([
                 ("objects".into(), owners),
                 (COLLECTION.into(), rows),
+                ("widths".into(), vec![width]),
             ]),
         }
     }
@@ -150,6 +163,7 @@ mod tests {
     #[test]
     fn filtered_queries_preserve_qualifiers_without_map_geometry() {
         let bundle = candidate();
+        crate::original_regional_widths::validate_atlantic_seuc_inventory(&bundle).unwrap();
         let store = crate::Store::load(json!({"schema":bundle.schema,"manifest":bundle.manifest,"collections":bundle.collections}).to_string().as_bytes()).unwrap();
         let all = store.execute(br#"{"collection":"current_core_velocity_estimates","limit":1}"#);
         assert_eq!(all["ok"], true);

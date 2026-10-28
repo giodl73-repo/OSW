@@ -20,7 +20,7 @@ from check_published_current_speeds_v1 import verify_case
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / '.pytest_cache/seasonal-core-velocity-delivery-v1'
 REQUEST = 'research/seasonal-core-velocity-delivery-request-v1.json'
-PREFLIGHT = 'research/seasonal-core-velocity-delivery-preflight-v1.json'
+PREFLIGHT = 'research/seasonal-core-velocity-delivery-preflight-v2.json'
 WORKFLOW = '.github/workflows/seasonal-core-velocity-delivery-v1.yml'
 CONTRACT = 'research/atlantic-ax08-core-velocity-query-contract-v1.json'
 
@@ -58,6 +58,8 @@ def controls(clean=True):
     if read('research/current-gap-delivery-phase.json')['heavy_work_permitted'] is not False:
         raise ValueError('Scientific field processing must remain disabled')
     pref = read(PREFLIGHT)
+    if sha(pref['previous_preflight_file']) != pref['previous_preflight_sha256']:
+        raise ValueError('Previous frozen preflight changed')
     generated = {} if clean else read(OUT/'engine.json')['generated_sha256']
     for path, pin in pref['input_sha256'].items():
         if sha(path) != generated.get(path, pin): raise ValueError('Frozen input differs: '+path)

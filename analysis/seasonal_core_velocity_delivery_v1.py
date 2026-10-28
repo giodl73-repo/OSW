@@ -8,7 +8,7 @@ import published_seasonal_core_velocities_v1 as core
 import published_seasonal_core_velocity_index_v1 as index
 
 ROOT = Path(__file__).resolve().parents[1]
-SCOPE = "research/atlantic-ax08-core-velocity-runtime-scope-v1.json"
+SCOPE = "research/atlantic-ax08-core-velocity-runtime-scope-v2.json"
 INVENTORY = "research/published-current-speed-delivery-compile-inventory-v1.json"
 MANIFEST = "almanac/query-engine.manifest.json"
 WASM = "almanac/query-engine.wasm"
@@ -23,6 +23,19 @@ def digest(raw):
 
 def scopes():
     scope = json.loads((ROOT / SCOPE).read_bytes())
+    previous = (ROOT / scope["previous_runtime_scope_file"]).read_bytes()
+    if digest(previous) != scope["previous_runtime_scope_sha256"]:
+        raise ValueError("Previous runtime scope changed")
+    old = json.loads(previous)
+    for path, row in scope["candidate_source_revisions"].items():
+        if (digest((ROOT / row["archive_path"]).read_bytes()) != row["previous_sha256"]
+                or old["added_source_sha256"][path] != row["previous_sha256"]
+                or scope["added_source_sha256"][path] != row["candidate_sha256"]):
+            raise ValueError("Candidate source revision custody differs")
+        before = (ROOT / row["archive_path"]).read_bytes().split(b"#[cfg(test)]", 1)[0]
+        after = (ROOT / path).read_bytes().split(b"#[cfg(test)]", 1)[0]
+        if before != after:
+            raise ValueError("Fixture-only correction changed production code")
     for path, row in scope["runtime_source_changes"].items():
         original = (ROOT / row["archive_path"]).read_bytes()
         if (digest(original) != row["historical_sha256"] or len(original) != row["bytes"]
