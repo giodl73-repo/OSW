@@ -50,13 +50,14 @@ window.renderPublishedSeasonalCoreVelocities=function(parent,scene,inspect){
   const scroller=html('div',undefined,panel);scroller.style.cssText='max-width:100%;overflow-x:auto';scroller.tabIndex=0;scroller.setAttribute('role','region');scroller.setAttribute('aria-label','Published core-velocity estimates; scroll horizontally for layer and source details');
   const table=html('table',undefined,scroller);html('caption','Matching XBT-derived seasonal core-velocity estimates (m/s)',table);
   const header=html('tr',undefined,html('thead',undefined,table));
-  for(const label of ['Current','Season','Estimate','Layer','Record','Source']){const th=html('th',label,header);th.scope='col';}
+  for(const [index,label] of ['Current','Estimate','Season','Layer','Record','Source'].entries()){const th=html('th',label,header);th.scope='col';th.style.whiteSpace='nowrap';if(index===0)th.style.width='4rem';if(index>=4)th.style.width='5rem';}
   const body=html('tbody',undefined,table);
   const x=value=>20+value/0.55*550;
   const discrepancies=new Map();
   for(const row of scene.records){
     const tr=html('tr',undefined,body);
-    html('td',row.current_scope.source_label,tr);html('td',row.season_label,tr);
+    tr.setAttribute('data-core-velocity-id',row.id);
+    const current=html('td',row.current_scope.source_label,tr);current.style.width='4rem';current.style.whiteSpace='nowrap';
     const cell=html('td',undefined,tr);html('span',row.display,cell);
     const graphic=svgNode('svg',{viewBox:'0 0 600 40',role:'img','aria-label':`${row.label}: ${row.display}. This is a seasonal-fit estimate, not a sample range or confidence interval.`},cell);
     graphic.style.cssText='display:block;width:100%;min-width:130px;max-width:280px;height:24px';
@@ -72,9 +73,11 @@ window.renderPublishedSeasonalCoreVelocities=function(parent,scene,inspect){
       svgNode('line',{x1:start+12,x2:start+62,y1:20,y2:20,...common},graphic);
       svgNode('polyline',{points:`${start+50},12 ${start+62},20 ${start+50},28`,fill:'none',...common},graphic);
     }
-    html('td',row.current_scope.layer,tr);
-    const button=html('button','Inspect',html('td',undefined,tr));button.type='button';button.onclick=()=>inspect('current_core_velocity_estimates',row.id);
-    const source=html('a','Source record',html('td',undefined,tr));source.href='query.html?source-q='+encodeURIComponent(JSON.stringify({document:row.source_file,pointer:row.source_pointer,limit:50}));
+    html('td',row.season_label,tr);html('td',row.current_scope.layer,tr);
+    const recordCell=html('td',undefined,tr);recordCell.style.whiteSpace='nowrap';
+    const button=html('button','Inspect',recordCell);button.type='button';button.onclick=()=>inspect('current_core_velocity_estimates',row.id);
+    const sourceCell=html('td',undefined,tr);sourceCell.style.whiteSpace='nowrap';
+    const source=html('a','Source record',sourceCell);source.href='query.html?source-q='+encodeURIComponent(JSON.stringify({document:row.source_file,pointer:row.source_pointer,limit:50}));
     for(const item of row.method_discrepancies||[])discrepancies.set(item.current_id,item.detail);
   }
   html('p','Small graphics share a 0–0.55 m/s scale. Text gives the source precision. No exact seasonal month windows, row-specific observation counts or numeric uncertainty are supplied.',panel);
