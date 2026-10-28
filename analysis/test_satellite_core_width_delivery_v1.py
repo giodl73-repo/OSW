@@ -12,6 +12,20 @@ import test_published_satellite_core_widths_v1 as fixtures
 
 
 class SatelliteDeliveryTests(unittest.TestCase):
+    def test_atlas_allows_only_the_exact_embedded_dashboard_projection(self):
+        old,new=self.snapshots();del old['phase_plans'];del new['phase_plans']
+        raw=fixtures.SatelliteWidthProjectionTests().parent()['manifest']['dashboard_receipt']['source_json']
+        old['sources_json']={m.core.DASHBOARD:raw,'prior-source.json':'{ "original": true }'}
+        new['sources_json']={**old['sources_json'],m.core.DASHBOARD:json.dumps(m.core.dashboard_document(json.loads(raw),m.digest(raw.encode())))}
+        m.verify_snapshot('atlas',old,new)
+        for mutation in ['old-source','extra-source','wrong-dashboard']:
+            bad=copy.deepcopy(new)
+            if mutation=='old-source':bad['sources_json']['prior-source.json']='{"original":true}'
+            elif mutation=='extra-source':bad['sources_json']['invented.json']='{}'
+            else:
+                doc=json.loads(bad['sources_json'][m.core.DASHBOARD]);doc['entries'][0]['capabilities']['scoped_width']=3;bad['sources_json'][m.core.DASHBOARD]=json.dumps(doc)
+            with self.assertRaises(ValueError):m.verify_snapshot('atlas',old,bad)
+
     def test_only_the_exact_changed_inventory_expectation_is_adapted(self):
         old=[({'collection':'objects','limit':1},106),({'collection':'widths','limit':1},172),({'collection':'reference_routes','limit':1},82)]
         original=copy.deepcopy(old);new=cases.adapt_legacy_cases(old)

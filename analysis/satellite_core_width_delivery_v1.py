@@ -8,7 +8,7 @@ import published_satellite_core_widths_v1 as core
 import published_satellite_core_width_index_v1 as index
 
 ROOT=Path(__file__).resolve().parents[1]
-SCOPE='research/agulhas-krug-2012-core-widths-runtime-scope-v4.json'
+SCOPE='research/agulhas-krug-2012-core-widths-runtime-scope-v5.json'
 INVENTORY='research/seasonal-core-velocity-engine-run-v1/compile-inventory.json'
 MANIFEST='almanac/query-engine.manifest.json';WASM='almanac/query-engine.wasm'
 PARENT_MANIFEST='a3704ee9d03f68fe6dff1fc9737be584ff573998ef99aa997b1505b773edd36e'
@@ -77,9 +77,17 @@ def verify_snapshot(name,old,new):
         if json.loads(new['snapshot_json'])!=expected:raise ValueError('Dashboard projection or measurement-change fingerprints differ')
         return
     if new.get('ok') is not True or set(new)!=set(old)|{'satellite_core_width_scenes'}:raise ValueError('Snapshot field inventory differs')
-    allowed={'bundle_sha256','satellite_core_width_scenes','supplemental_widths'}|({'phase_plans'} if name=='seasons' else set())
+    allowed={'bundle_sha256','satellite_core_width_scenes','supplemental_widths'}|({'phase_plans'} if name=='seasons' else {'sources_json'})
     for key in set(old)-allowed:
         if new[key]!=old[key]:raise ValueError('Prior snapshot field changed: '+key)
+    if name=='atlas':
+        before=old['sources_json'];after=new['sources_json']
+        if set(before)!=set(after) or core.DASHBOARD not in before:raise ValueError('Atlas source inventory changed')
+        for path,raw in before.items():
+            if path==core.DASHBOARD:
+                expected=core.dashboard_document(json.loads(raw),digest(raw.encode()))
+                if json.loads(after[path])!=expected:raise ValueError('Atlas embedded dashboard projection differs')
+            elif after[path]!=raw:raise ValueError('Historical atlas source bytes changed: '+path)
     scene=new['satellite_core_width_scenes']
     if set(scene)!= {'agulhas'} or scene['agulhas']['records']!=core.records():raise ValueError('Satellite snapshot scene differs')
     ids={r['id'] for r in core.records()}

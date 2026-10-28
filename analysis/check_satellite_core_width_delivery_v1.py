@@ -22,7 +22,7 @@ from check_published_current_speeds_v1 import verify_case
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'.pytest_cache/satellite-core-width-delivery-v1'
 REQUEST='research/satellite-core-width-delivery-request-v1.json'
-PREFLIGHT='research/satellite-core-width-delivery-preflight-v4.json'
+PREFLIGHT='research/satellite-core-width-delivery-preflight-v5.json'
 WORKFLOW='.github/workflows/satellite-core-width-delivery-v1.yml'
 CONTRACT='research/atlantic-ax08-core-velocity-query-contract-v1.json'
 def read(path):return json.loads((ROOT/path).read_bytes())
