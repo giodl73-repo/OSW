@@ -112,6 +112,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             .flatten()
             .find(|r| r["id"] == *entity)
         {
+            let object = crate::madagascar_dimensions::legacy_owner_projection(bundle, object)?;
             let count = if crate::current_measurements::active(bundle) {
                 1
             } else {
@@ -203,9 +204,9 @@ pub fn add_plans(bundle: &Bundle, plans: &mut Value) {
     }
 }
 #[cfg(test)]
-mod tests {
+pub(crate) mod tests {
     use super::*;
-    fn fixture() -> Bundle {
+    pub(crate) fn fixture() -> Bundle {
         let doc = document();
         let cat: Value = serde_json::from_str(CATALOGUE_RAW).unwrap();
         let mut inputs = doc["input_sha256"].clone();

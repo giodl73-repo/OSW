@@ -96,6 +96,11 @@ pub(crate) fn seasonal_source_widths(bundle:&Bundle)->Result<Vec<Value>,String> 
     if !active(&bundle.collections,&bundle.manifest)? {return Ok(vec![]);}
     Ok(widths(bundle))
 }
+pub(crate) fn legacy_owner_projection(bundle:&Bundle,owner:&Value)->Result<Value,String> {
+    if owner["id"]!=OWNER || !active(&bundle.collections,&bundle.manifest)? {return Ok(owner.clone());}
+    if owner!=&document()["final_owner"] {return Err("Changed owner passed to legacy Madagascar guard".into());}
+    Ok(document()["prior_records"]["owner"].clone())
+}
 pub(crate) fn width_scene(rows:&[&Value],bundle:&Bundle)->Value {
     if bundle.manifest[KEY].is_null() {return Value::Null;}
     let selected=rows.iter().copied().filter(|r|r["current_id"]==CURRENT).collect::<Vec<_>>();
@@ -176,6 +181,41 @@ mod tests {
         assert!(seasonal_source_widths(&b).is_err());
         let legacy=Bundle{schema:"osw.query-bundle.v1".into(),manifest:json!({}),collections:BTreeMap::new()};
         assert!(seasonal_source_widths(&legacy).unwrap().is_empty());
+    }
+    #[test] fn legacy_owner_projection_is_exact_and_does_not_accept_arbitrary_extensions() {
+        let mut b=fixture();let owner=document()["final_owner"].clone();
+        assert_eq!(legacy_owner_projection(&b,&owner).unwrap(),document()["prior_records"]["owner"]);
+        assert_eq!(b.collections["objects"][0],owner);
+        let mut unrelated=owner.clone();unrelated["id"]=json!("current:other");
+        assert_eq!(legacy_owner_projection(&b,&unrelated).unwrap(),unrelated);
+        let mut forged=owner.clone();forged["capabilities"]["scoped_width"]=json!(99);
+        assert!(legacy_owner_projection(&b,&forged).is_err());
+        b.collections.get_mut("objects").unwrap()[0]["source_ids"].as_array_mut().unwrap().push(json!("unverified-source"));
+        assert!(legacy_owner_projection(&b,&b.collections["objects"][0]).is_err());
+    }
+    #[test] fn additive_evidence_passes_legacy_coastal_and_identity_guards_without_physical_promotion() {
+        let mut b=crate::current_catalogue::tests::fixture();
+        let coastal=crate::madagascar_coastal_curve::tests::fixture();let added=fixture();
+        for (path,digest) in coastal.manifest["input_sha256"].as_object().unwrap() {b.manifest["input_sha256"][path]=digest.clone();}
+        b.manifest["madagascar_coastal_curve_version"]=json!("1");
+        for (path,digest) in added.manifest["input_sha256"].as_object().unwrap() {b.manifest["input_sha256"][path]=digest.clone();}
+        b.manifest[KEY]=marker();
+        for name in ["reference_routes","diagnostics"] {b.collections.insert(name.into(),coastal.collections[name].clone());}
+        for name in ["objects","sources","widths",COLLECTION] {b.collections.insert(name.into(),added.collections[name].clone());}
+        b.collections.insert("current_measurement_admissions".into(),vec![]);
+        let length=crate::current_measurements::document()["length_assessment"].clone();
+        let lengths=b.collections.get_mut("length_assessments").unwrap();
+        lengths.retain(|r|r["id"]!=length["id"]);lengths.push(length);
+        b.collections.insert("state_links".into(),vec![json!({"entity_id":OWNER,"state_code":"EAFR",
+            "source_file":crate::madagascar_coastal_curve::FILE,"kind":"editorial_coastal_reference_curve","observation_date":null})]);
+        assert!(validate(&b).is_ok());
+        crate::madagascar_coastal_curve::validate(&b).unwrap();
+        crate::current_catalogue::validate(&b).unwrap();
+        assert_eq!(b.collections["objects"][0]["capabilities"]["scoped_width"],2);
+        assert_eq!(b.collections["objects"][0]["source_ids"].as_array().unwrap().len(),3);
+        b.collections.get_mut("objects").unwrap()[0]["map_features"][0]["observation_date"]=json!("2011-01-19");
+        assert!(crate::madagascar_coastal_curve::validate(&b).is_err());
+        assert!(crate::current_catalogue::validate(&b).is_err());
     }
     #[test] fn old_bundles_work_but_new_orphans_fail() {
         let b=Bundle{schema:"osw.query-bundle.v1".into(),manifest:json!({}),collections:BTreeMap::new()};

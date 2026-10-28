@@ -129,6 +129,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         .flatten()
         .find(|r| r["id"] == "current:southern-east-madagascar")
     {
+        let owner = crate::madagascar_dimensions::legacy_owner_projection(bundle, owner)?;
         let features = owner["map_features"]
             .as_array()
             .ok_or("Missing coastal reference map feature")?;
