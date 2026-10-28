@@ -12,6 +12,13 @@ import test_published_satellite_core_widths_v1 as fixtures
 
 
 class SatelliteDeliveryTests(unittest.TestCase):
+    def test_only_the_exact_changed_inventory_expectation_is_adapted(self):
+        old=[({'collection':'objects','limit':1},106),({'collection':'widths','limit':1},172),({'collection':'reference_routes','limit':1},82)]
+        original=copy.deepcopy(old);new=cases.adapt_legacy_cases(old)
+        self.assertEqual(old,original);self.assertEqual(new[0],old[0]);self.assertEqual(new[2],old[2]);self.assertEqual(new[1],(old[1][0],174))
+        for invalid in [old[:1],old+[old[1]],[(old[1][0],173)],[(old[1][0],True)]]:
+            with self.assertRaises(ValueError):cases.adapt_legacy_cases(invalid)
+
     def test_runtime_archives_and_compiler_inventory_preserve_old_data(self):
         scope=m.scopes();parent=json.loads((m.ROOT/m.INVENTORY).read_bytes())
         updated=m.compile_inventory(parent,scope,catalog_sha='a'*64,logical_sha='b'*64)

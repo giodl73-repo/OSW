@@ -1,0 +1,30 @@
+{
+  "schema": "osw.satellite-core-width-failure-review.v3",
+  "run_id": 40635224967,
+  "run_attempt": 2,
+  "source_commit": "e2a113dd1a5348fe075e7bccec1cd4de9a3ec297",
+  "status": "NATIVE_BUILD_223_TESTS_AND_FULL_CANDIDATE_LOAD_PASS_LEGACY_QUERY_EXPECTATION_FAILED",
+  "artifact": {
+    "id": 12793397626,
+    "bytes": 27611,
+    "sha256": "efd82041809bf442075037dfb5067d5df1c5c1f6dee22689e2d7f7c60f507494"
+  },
+  "native_build_passed": true,
+  "rust_tests_passed": 223,
+  "candidate_native_load_passed": true,
+  "captured_failure": "Historical inventory query differs",
+  "source_review_finding": "The retained South Java query suite expects172 widths for its unfiltered limit1 query. The source-bound satellite append correctly changes the declared total to174. Update only that expectation in the new delivery wrapper; preserve original historical case files.",
+  "native_wasm_parity_verified": false,
+  "browser_verified": false,
+  "retained_evidence_sha256": {
+    "research/satellite-core-width-failed-run-v3/compile-inventory.json": "a2f4f7958c9f244d1bcd781132c8e915bf07635b359a933c6cfd3dbe75a40600",
+    "research/satellite-core-width-failed-run-v3/parent-snapshots.json": "97f554997e9b239d4aec2b3a8be26d28fefb621b726cdbc5b2dab3b6e3d091ca",
+    "research/satellite-core-width-failed-run-v3/engine-failure.json": "2214fad571746b0293ed526a383553cf933d38c0aa74ff20a529c18835a36061",
+    "research/satellite-core-width-failed-run-v3/parent-speeds.json": "f0585656c93fd4d10d06c2532e63c7bc75a1645021d2317d2b445be5abaa4f74",
+    "research/satellite-core-width-failed-run-v3/rust-tests.txt": "bf509eeb216b8e71c46545f08970bb63ba21e1c0a88db6c1fed8e2b8a0a5d28c",
+    "research/satellite-core-width-failed-run-v3/source-index-audit.json": "9aadef45ca3ceea052e94e1c33614ebb284510cd60fd68b716dd04e65563aae3"
+  },
+  "installed": false,
+  "new_installed_width_records": 0,
+  "full_goal_complete": false
+}

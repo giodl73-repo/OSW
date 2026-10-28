@@ -2,6 +2,18 @@
 import published_satellite_core_widths_v1 as core
 
 
+def adapt_legacy_cases(cases):
+    """Change only the declared total affected by this exact two-row append."""
+    result=[];changes=0
+    for query,expected in cases:
+        if query=={'collection':'widths','limit':1}:
+            if type(expected) is not int or expected!=172:raise ValueError('Exact historical172-width expectation required')
+            expected=174;changes+=1
+        result.append((query,expected))
+    if changes!=1:raise ValueError('Exactly one historical width inventory case required')
+    return result
+
+
 def main_cases(collections):
     new=core.records();all_agulhas=[r for r in collections['widths'] if r['current_id']=='agulhas']
     if len(all_agulhas)!=4:raise ValueError('Four Agulhas scoped widths required')

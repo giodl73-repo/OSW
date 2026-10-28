@@ -22,7 +22,7 @@ from check_published_current_speeds_v1 import verify_case
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'.pytest_cache/satellite-core-width-delivery-v1'
 REQUEST='research/satellite-core-width-delivery-request-v1.json'
-PREFLIGHT='research/satellite-core-width-delivery-preflight-v3.json'
+PREFLIGHT='research/satellite-core-width-delivery-preflight-v4.json'
 WORKFLOW='.github/workflows/satellite-core-width-delivery-v1.yml'
 CONTRACT='research/atlantic-ax08-core-velocity-query-contract-v1.json'
 def read(path):return json.loads((ROOT/path).read_bytes())
@@ -100,7 +100,7 @@ def engine():
     parent=read(parent_path);child=core.prepare(parent,logical_parent_sha256=core.PARENT)
     generated,audit=index.source_index((ROOT/'almanac/index-catalog.json').read_bytes(),(ROOT/'almanac/index-data.json.gz').read_bytes(),(ROOT/'almanac/index-sources.json').read_bytes())
     child=index.attach(child,generated,audit);delivery.verify_collections(parent,child)
-    old_cases=previous_cases.main_cases(child['collections']);width_cases=cases.main_cases(child['collections'])
+    old_cases=cases.adapt_legacy_cases(previous_cases.main_cases(child['collections']));width_cases=cases.main_cases(child['collections'])
     candidate=OUT/'candidate.json';candidate.write_bytes(index.encode(child));del child,parent;gc.collect()
     packet=write_packet(ROOT/'almanac/query-data.json',candidate.read_bytes())
     for path,body in generated.items():(ROOT/path).write_bytes(body)
