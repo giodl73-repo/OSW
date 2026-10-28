@@ -92,10 +92,11 @@ pub(crate) fn widths(bundle:&Bundle)->Vec<Value> {
     bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[]).iter()
         .filter(|r|r["id"]==document()["width_record"]["id"]).cloned().collect()
 }
-pub(crate) fn seasonal_source_widths(bundle:&Bundle)->Result<Vec<Value>,String> {
+pub(crate) fn validated_widths(bundle:&Bundle)->Result<Vec<Value>,String> {
     if !active(&bundle.collections,&bundle.manifest)? {return Ok(vec![]);}
     Ok(widths(bundle))
 }
+pub(crate) fn seasonal_source_widths(bundle:&Bundle)->Result<Vec<Value>,String> {validated_widths(bundle)}
 pub(crate) fn legacy_owner_projection(bundle:&Bundle,owner:&Value)->Result<Value,String> {
     if owner["id"]!=OWNER || !active(&bundle.collections,&bundle.manifest)? {return Ok(owner.clone());}
     if owner!=&document()["final_owner"] {return Err("Changed owner passed to legacy Madagascar guard".into());}
@@ -216,6 +217,36 @@ mod tests {
         b.collections.get_mut("objects").unwrap()[0]["map_features"][0]["observation_date"]=json!("2011-01-19");
         assert!(crate::madagascar_coastal_curve::validate(&b).is_err());
         assert!(crate::current_catalogue::validate(&b).is_err());
+    }
+    #[test] fn exact_append_passes_all_three_global_width_inventories_and_preserves_rejection() {
+        type Check=fn(&Bundle)->Result<(),String>;
+        let cases:Vec<(&str,Bundle,Check)>=vec![
+            ("ASAR",crate::hansen_asar_widths::tests::fixture(),crate::hansen_asar_widths::validate),
+            ("NEUC",crate::neuc_glider_widths::tests::fixture(),crate::neuc_glider_widths::validate),
+            ("Aleutian",crate::aleutian_onishi_width::tests::fixture(),crate::aleutian_onishi_width::validate)];
+        for (name,mut b,check) in cases {
+            let before=b.collections["widths"].clone();
+            assert_eq!(before.iter().filter(|r|r["current_id"]==CURRENT).collect::<Vec<_>>(),
+                document()["prior_records"]["widths"].as_array().unwrap().iter().collect::<Vec<_>>());
+            b.collections.get_mut("widths").unwrap().push(document()["width_record"].clone());
+            b.collections.insert("entities".into(),vec![document()["prior_records"]["entity"].clone()]);
+            b.collections.insert("reference_routes".into(),document()["prior_records"]["reference_routes"].as_array().unwrap().clone());
+            b.collections.insert(COLLECTION.into(),document()["event_records"].as_array().unwrap().clone());
+            let objects=b.collections.entry("objects".into()).or_default();objects.retain(|r|r["id"]!=OWNER);objects.push(document()["final_owner"].clone());
+            let sources=b.collections.entry("sources".into()).or_default();
+            for row in document()["prior_records"]["owner_sources"].as_array().unwrap().iter().chain(std::iter::once(&document()["new_source"])) {
+                sources.retain(|r|r["id"]!=row["id"]);sources.push(row.clone());
+            }
+            for (path,digest) in document()["input_sha256"].as_object().unwrap() {b.manifest["input_sha256"][path]=digest.clone();}
+            b.manifest["input_sha256"][FILE]=json!(pin(RAW));b.manifest[KEY]=marker();
+            validate(&b).unwrap();check(&b).unwrap_or_else(|error|panic!("{name}: {error}"));
+            assert_eq!(&b.collections["widths"][..before.len()],before.as_slice());
+            let mut duplicated=Bundle{schema:b.schema.clone(),manifest:b.manifest.clone(),collections:b.collections.clone()};
+            duplicated.collections.get_mut("widths").unwrap().push(document()["width_record"].clone());
+            assert!(check(&duplicated).is_err(),"{name} duplicate");
+            b.collections.get_mut("widths").unwrap()[0]["unexpected_change"]=json!(true);
+            assert!(check(&b).is_err(),"{name} prior row change");
+        }
     }
     #[test] fn old_bundles_work_but_new_orphans_fail() {
         let b=Bundle{schema:"osw.query-bundle.v1".into(),manifest:json!({}),collections:BTreeMap::new()};

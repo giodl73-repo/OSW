@@ -75,6 +75,7 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     expected.extend(crate::satellite_core_widths::widths(b));
     expected.extend(crate::wicc_review_width::widths(b));
     expected.extend(crate::eacc_cited_width::widths(b));
+    expected.extend(crate::madagascar_dimensions::validated_widths(b)?);
     let expected_lengths =
         crate::length_assessment_overlays::expected(b, &previous["length_assessments"])?;
     if b.collections.get("widths") != Some(&expected)
@@ -131,9 +132,9 @@ pub fn query(rows: &[&Value], b: &Bundle) -> Value {
         "scope":"Onishi2001 introductory regional description of the eastward Subarctic/Aleutian Current: strict width>400km. Width epoch, layer, numeric edges and upper extent unspecified. Study180E/1990-1998/3000m reference are not width support. No finite mean, annual range, new geometry, physical state passage or seasonal playback."})
 }
 #[cfg(test)]
-mod tests {
+pub(crate) mod tests {
     use super::*;
-    fn fixture() -> Bundle {
+    pub(crate) fn fixture() -> Bundle {
         let d = document();
         let c: Value = serde_json::from_str(CONTRACT_RAW).unwrap();
         let e: Value = serde_json::from_str(crate::neuc_glider_widths::EXPORT_RAW).unwrap();

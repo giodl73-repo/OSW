@@ -104,6 +104,7 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     expected_widths.extend(crate::satellite_core_widths::widths(b));
     expected_widths.extend(crate::wicc_review_width::widths(b));
     expected_widths.extend(crate::eacc_cited_width::widths(b));
+    expected_widths.extend(crate::madagascar_dimensions::validated_widths(b)?);
     if actual != &expected_widths {
         return Err("Changed ASAR effective width inventory/order".into());
     }
@@ -149,9 +150,9 @@ pub fn query(rows: &[&Value], b: &Bundle) -> Value {
         "scope":"August2007-July2010 weighted mean surface field. Local source reports with different operators; no annual width range, physical edges or source-field reconstruction."})
 }
 #[cfg(test)]
-mod tests {
+pub(crate) mod tests {
     use super::*;
-    fn fixture() -> Bundle {
+    pub(crate) fn fixture() -> Bundle {
         let d = document();
         let e: Value = serde_json::from_str(EXPORT_RAW).unwrap();
         let mut inputs = e["input_sha256"].clone();

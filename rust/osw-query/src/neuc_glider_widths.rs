@@ -95,6 +95,7 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     expected_widths.extend(crate::satellite_core_widths::widths(b));
     expected_widths.extend(crate::wicc_review_width::widths(b));
     expected_widths.extend(crate::eacc_cited_width::widths(b));
+    expected_widths.extend(crate::madagascar_dimensions::validated_widths(b)?);
     let expected_lengths =
         crate::length_assessment_overlays::expected(b, &e["length_assessments"])?;
     if b.collections.get("widths") != Some(&expected_widths)
@@ -143,9 +144,9 @@ pub fn width_scene(rows: &[&Value], b: &Bundle) -> Value {
     s
 }
 #[cfg(test)]
-mod tests {
+pub(crate) mod tests {
     use super::*;
-    fn fixture() -> Bundle {
+    pub(crate) fn fixture() -> Bundle {
         let d = document();
         let e: Value = serde_json::from_str(EXPORT_RAW).unwrap();
         let mut pins = e["input_sha256"].clone();
