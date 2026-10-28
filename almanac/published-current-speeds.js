@@ -5,19 +5,24 @@ window.renderPublishedCurrentSpeeds=function(parent,scene,inspect){
   const html=(tag,text,container)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;container.append(n);return n;};
   const svgNode=(tag,attrs,container,text)=>{const n=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,String(v));if(text!==undefined)n.textContent=text;container.append(n);return n;};
   inspect ||= (collection,id)=>{location.href='query.html?q='+encodeURIComponent(JSON.stringify({collection,filters:[{field:'id',op:'eq',value:id}],limit:100}));};
-  html('h3',scene.title,parent);html('p',scene.scope,parent);
-      const panel=html('section',undefined,parent);panel.style.cssText='min-width:0;overflow-wrap:anywhere';
-      const rows=scene.records,chart=svgNode('svg',{viewBox:`0 0 880 ${rows.length*38+65}`,role:'img','aria-label':'Matching regional speed summaries. Lines show observed minima to maxima; dots show medians. Sample ranges are not confidence intervals.'},panel);
+      const panel=html('section',undefined,parent);panel.className='published-current-speeds';panel.style.cssText='min-width:0;overflow-wrap:anywhere';
+      html('h3',scene.title,panel);html('p',scene.scope,panel);
+      const rows=scene.records,chart=svgNode('svg',{viewBox:`0 0 800 ${rows.length*28+55}`,role:'img','aria-label':'Matching regional speed summaries. Lines show observed minima to maxima; dots show medians. Sample ranges are not confidence intervals.'},panel);
       chart.style.cssText='display:block;width:100%;max-width:1000px;height:auto';
-      const x=value=>230+value/2*540;
+      const marks=[],ticks=[];
       rows.forEach((row,index)=>{
-        const y=25+index*38,label=row.statistic_period==='monthly'?new Date(Date.UTC(2000,row.month-1,1)).toLocaleString('en',{month:'short',timeZone:'UTC'}):row.season;
-        svgNode('text',{x:8,y:y+5,'font-size':15,fill:'currentColor'},chart,`${label} · n=${row.observation_count}`);
-        svgNode('line',{x1:x(row.minimum),x2:x(row.maximum),y1:y,y2:y,stroke:'#387a9c','stroke-width':4},chart);
-        svgNode('circle',{cx:x(row.median),cy:y,r:5,fill:'#387a9c'},chart);
-        svgNode('text',{x:800,y:y+5,'font-size':14,fill:'currentColor'},chart,row.median.toFixed(2));
+        const y=25+index*28,label=row.statistic_period==='monthly'?new Date(Date.UTC(2000,row.month-1,1)).toLocaleString('en',{month:'short',timeZone:'UTC'}):row.season;
+        svgNode('text',{x:8,y:y+5,'font-size':14,fill:'currentColor'},chart,`${label} · n=${row.observation_count}`);
+        const line=svgNode('line',{y1:y,y2:y,stroke:'#387a9c','stroke-width':4},chart);
+        const dot=svgNode('circle',{cy:y,r:5,fill:'#387a9c'},chart);
+        const median=svgNode('text',{y:y+5,'font-size':14,fill:'currentColor'},chart,row.median.toFixed(2));
+        marks.push({row,line,dot,median});
       });
-      for(const tick of [0,.5,1,1.5,2])svgNode('text',{x:x(tick),y:rows.length*38+30,'text-anchor':'middle','font-size':14,fill:'currentColor'},chart,`${tick}`);
+      for(const value of [0,.5,1,1.5,2])ticks.push({value,node:svgNode('text',{y:rows.length*28+30,'text-anchor':'middle','font-size':13,fill:'currentColor'},chart,`${value}`)});
+      let previousWidth;
+      const layout=available=>{const width=Math.max(240,Math.min(1000,available||800));if(width===previousWidth)return;previousWidth=width;chart.setAttribute('viewBox',`0 0 ${width} ${rows.length*28+55}`);const x=value=>112+value/2*(width-170);for(const {row,line,dot,median} of marks){line.setAttribute('x1',x(row.minimum));line.setAttribute('x2',x(row.maximum));dot.setAttribute('cx',x(row.median));median.setAttribute('x',width-45);}for(const {value,node} of ticks){node.setAttribute('x',x(value));node.setAttribute('visibility',width<280&&!Number.isInteger(value)?'hidden':'visible');}};
+      layout(panel.clientWidth);
+      if(typeof ResizeObserver!=='undefined'){const observer=new ResizeObserver(entries=>{if(!panel.isConnected){observer.disconnect();return;}layout(entries[0].contentRect.width);});observer.observe(panel);}
       html('p','Speed in m/s. Lines: observed sample minima–maxima. Dots and right-hand values: medians. Filtering changes the displayed records.',panel);
       const scroller=html('div',undefined,panel);scroller.style.overflowX='auto';scroller.tabIndex=0;scroller.setAttribute('role','region');scroller.setAttribute('aria-label','Speed statistics table; scroll horizontally for all columns');
       const table=html('table',undefined,scroller);html('caption','Matching published regional speed summaries (m/s)',table);

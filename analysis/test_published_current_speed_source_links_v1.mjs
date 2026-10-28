@@ -3,12 +3,18 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 class Element{
-  constructor(tag){this.tag=tag;this.children=[];this.style={};}
+  constructor(tag){this.tag=tag;this.children=[];this.style={};this.attributes={};this.isConnected=true;this.clientWidth=800;}
   append(n){this.children.push(n);}
-  setAttribute(){}
+  setAttribute(key,value){this.attributes[key]=String(value);}
 }
 const document={createElement:t=>new Element(t),createElementNS:(_n,t)=>new Element(t)};
-const context={window:{},document,location:{}};
+const observers=[];
+class ResizeObserver{
+  constructor(callback){this.callback=callback;observers.push(this);}
+  observe(target){this.target=target;}
+  disconnect(){this.disconnected=true;}
+}
+const context={window:{},document,location:{},ResizeObserver};
 vm.runInNewContext(fs.readFileSync('almanac/published-current-speeds.js','utf8'),context);
 const path='research/eacc-pemba-semba-2019-seasonal-speed-v1.json';
 const doc=JSON.parse(fs.readFileSync(path));
@@ -24,4 +30,12 @@ assert.equal(query.pointer,'/monthly_records/3');
 const target=query.pointer.split('/').slice(1).reduce((value,key)=>value[key],doc);
 assert.equal(target.id,row.id);
 assert.equal(target.median,1.13);
-console.log('PASS: exact April source-table navigation resolves to the matching original summary.');
+const observer=observers[0];assert(observer);
+observer.callback([{contentRect:{width:320}}]);
+const chart=all(root).find(n=>n.tag==='svg');
+assert.equal(chart.attributes.viewBox,'0 0 320 83');
+const marker=all(root).find(n=>n.tag==='circle');
+assert(Math.abs((Number(marker.attributes.cx)-112)/150*2-target.median)<1e-12);
+observer.target.isConnected=false;observer.callback([{contentRect:{width:0}}]);
+assert.equal(observer.disconnected,true);
+console.log('PASS: exact source-table navigation, responsive median scale, and detached observer cleanup.');
