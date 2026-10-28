@@ -101,6 +101,7 @@ mod svg;
 mod taxonomy;
 mod temporal;
 mod ursa_contour;
+mod wicc_review_width;
 mod workspace;
 use sha2::{Digest, Sha256};
 
@@ -224,6 +225,7 @@ impl Store {
         nwasc_mean_core::validate(&bundle)?;
         selected_core_widths::validate(&bundle)?;
         satellite_core_widths::validate(&bundle)?;
+        wicc_review_width::validate(&bundle)?;
         antilles_cruise_spans::validate(&bundle)?;
         model_axis_spread::validate(&bundle)?;
         pacific_neuc_breadths::validate(&bundle)?;
@@ -761,6 +763,7 @@ impl Store {
             let scenes: Vec<_> = [
                 selected_core_widths::scene(&matches),
                 satellite_core_widths::scene(&matches),
+                wicc_review_width::scene(&matches),
                 nordic_widths::scene(&matches, records),
                 coastal_composite_widths::scene(&matches, records),
                 dwbc_float_composite::scene(&matches, records),

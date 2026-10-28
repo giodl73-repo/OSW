@@ -45,7 +45,8 @@ fn document(bundle: &Bundle) -> Result<Value, String> {
 }
 
 fn presentation(bundle: &Bundle) -> Result<Value, String> {
-    crate::satellite_core_widths::dashboard_document(bundle, document(bundle)?)
+    let doc = crate::satellite_core_widths::dashboard_document(bundle, document(bundle)?)?;
+    crate::wicc_review_width::dashboard_document(bundle, doc)
 }
 
 pub fn validate(bundle: &Bundle) -> Result<(), String> {
@@ -67,6 +68,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     }
     for source_row in rows {
         let row = crate::satellite_core_widths::dashboard_row(bundle, source_row)?;
+        let row = crate::wicc_review_width::dashboard_row(bundle, &row)?;
         let id = row["id"].as_str().ok_or("Missing dashboard object ID")?;
         if !ids.insert(id.to_owned()) {
             return Err("Duplicate dashboard object ID".into());
@@ -241,7 +243,9 @@ impl Store {
         )
     }
     pub fn dashboard_snapshot(&self) -> Result<Value, String> {
-        let snapshot = if crate::satellite_core_widths::active(&self.bundle) {
+        let snapshot = if crate::satellite_core_widths::active(&self.bundle)
+            || crate::wicc_review_width::active(&self.bundle)
+        {
             serde_json::to_string(&presentation(&self.bundle)?).map_err(|e| e.to_string())?
         } else {
             self.bundle.manifest["dashboard_receipt"]["source_json"]

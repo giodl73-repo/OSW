@@ -113,10 +113,17 @@ pub(crate) fn original_planning_decision(current: &str, manifest: &Value) -> Res
         return Err("Original current-gap planning receipts differ".into());
     }
     let identity = doc(IDENTITY.1);
-    let record = identity["additions"]["route_decisions"].as_array().unwrap().iter()
-        .find(|row| row["current_id"] == current).cloned().ok_or("Missing original admitted planning decision")?;
-    let plan = planning_source(current, manifest).ok_or("Missing original admitted planning source")?;
-    if record["source_decision"] != plan.0 || record["source_catalog_file"] != plan.1
+    let record = identity["additions"]["route_decisions"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|row| row["current_id"] == current)
+        .cloned()
+        .ok_or("Missing original admitted planning decision")?;
+    let plan =
+        planning_source(current, manifest).ok_or("Missing original admitted planning source")?;
+    if record["source_decision"] != plan.0
+        || record["source_catalog_file"] != plan.1
         || record["source_catalog_sha256"] != pin(PLANNING.1)
     {
         return Err("Original admitted planning projection differs".into());
@@ -206,10 +213,11 @@ pub fn decision(bundle: &Bundle, admission: &Value) -> Option<Value> {
         .into_iter()
         .find(|row| row["id"] == admission["entity_id"])?;
     let measured = entity["id"] == "current:east-india-coastal";
+    let review_ids = crate::wicc_review_width::owner_ids(bundle, &entity["id"]);
     Some(
         json!({"current_id":admission["proposal_id"],"name":entity["label"],
-        "measurement_ids":if measured { json!([doc(WIDTH.1)["width_record"]["id"]]) } else { json!([]) },
-        "status":if measured { "scoped_published_width_admitted" } else { "identity_admitted_width_not_admitted" },
+        "measurement_ids":if measured { json!([doc(WIDTH.1)["width_record"]["id"]]) } else { json!(review_ids) },
+        "status":if measured { "scoped_published_width_admitted" } else if !review_ids.is_empty() { "review_cited_scoped_width_admitted" } else { "identity_admitted_width_not_admitted" },
         "whole_current_width_km":null,"annual_width_range_km":null,"admission_id":admission["id"]}),
     )
 }
@@ -275,9 +283,11 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             }
         }
     }
-    let eicc_references = crate::planning::eicc_reference_routes(&bundle.collections, &bundle.manifest)?;
+    let eicc_references =
+        crate::planning::eicc_reference_routes(&bundle.collections, &bundle.manifest)?;
     let revised_eicc = !eicc_references.is_empty();
-    let revised_south_java = !crate::south_java_reference::routes(&bundle.collections, &bundle.manifest)?.is_empty();
+    let revised_south_java =
+        !crate::south_java_reference::routes(&bundle.collections, &bundle.manifest)?.is_empty();
     for (name, expected) in expected_records() {
         let actual: Vec<_> = bundle
             .collections
@@ -287,7 +297,8 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             .filter(|row| row["id"] == expected["id"])
             .collect();
         // Each revised route is fully validated above before its retained prior row is accepted.
-        let retained_revision = name == "route_decisions" && actual.len() == 1
+        let retained_revision = name == "route_decisions"
+            && actual.len() == 1
             && actual[0]["prior_route_decision"] == expected
             && ((revised_eicc && expected["entity_id"] == "current:east-india-coastal")
                 || (revised_south_java && expected["entity_id"] == "current:south-java"));
@@ -322,13 +333,14 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             return Err("Changed admitted current search aliases".into());
         }
         let measured = entity["id"] == width["width_record"]["entity_id"];
-        let expected_widths = if measured {
-            json!([width["width_record"]["id"]])
+        let mut expected_widths = if measured {
+            vec![width["width_record"]["id"].clone()]
         } else {
-            json!([])
+            vec![]
         };
-        if owner["width_ids"] != expected_widths
-            || owner["capabilities"]["scoped_width"] != json!(usize::from(measured))
+        expected_widths.extend(crate::wicc_review_width::owner_ids(bundle, &entity["id"]));
+        if owner["width_ids"] != json!(expected_widths)
+            || owner["capabilities"]["scoped_width"] != json!(expected_widths.len())
             || owner["capabilities"]["width_samples"] != 0
             || owner["capabilities"]["reported_length"] != 0
             || owner["capabilities"]["time_samples"] != 0
@@ -337,7 +349,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             || owner["state_codes"] != json!([])
             || owner["state_evidence"] != json!([])
             || (!((revised_eicc && entity["id"] == "current:east-india-coastal")
-                    || (revised_south_java && entity["id"] == "current:south-java"))
+                || (revised_south_java && entity["id"] == "current:south-java"))
                 && (owner["route_ids"] != json!([]) || owner["map_features"] != json!([])))
             || !owner["published_length_km"].is_null()
             || !owner["latest_observation_date"].is_null()
@@ -502,32 +514,60 @@ pub(crate) mod tests {
     }
     #[test]
     fn reviewed_south_java_reference_composes_with_existing_cohort_without_physical_promotion() {
-        let selected: Bundle = serde_json::from_str(include_str!("../../../research/south-java-reference-runtime-fixture-v1.json")).unwrap();
+        let selected: Bundle = serde_json::from_str(include_str!(
+            "../../../research/south-java-reference-runtime-fixture-v1.json"
+        ))
+        .unwrap();
         let mut b = fixture();
         // The audited selected owner includes a coastal context admitted after the original cohort.
-        let coastal: Value = serde_json::from_str(include_str!("../../../research/indian-coastal-dimension-context-query-contract-v1.json")).unwrap();
-        for row in coastal["additions"]["current_cross_shore_context"].as_array().unwrap().iter()
-            .filter(|row| row["entity_id"] == "current:south-java") {
-            b.collections.entry("current_cross_shore_context".into()).or_default().push(row.clone());
+        let coastal: Value = serde_json::from_str(include_str!(
+            "../../../research/indian-coastal-dimension-context-query-contract-v1.json"
+        ))
+        .unwrap();
+        for row in coastal["additions"]["current_cross_shore_context"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .filter(|row| row["entity_id"] == "current:south-java")
+        {
+            b.collections
+                .entry("current_cross_shore_context".into())
+                .or_default()
+                .push(row.clone());
         }
         for (key, value) in selected.manifest["input_sha256"].as_object().unwrap() {
             b.manifest["input_sha256"][key] = value.clone();
         }
-        b.manifest["south_java_reference_delivery_v1"] = selected.manifest["south_java_reference_delivery_v1"].clone();
+        b.manifest["south_java_reference_delivery_v1"] =
+            selected.manifest["south_java_reference_delivery_v1"].clone();
         for name in ["objects", "route_decisions"] {
             let rows = b.collections.get_mut(name).unwrap();
-            let changed = selected.collections[name].iter().find(|row|
-                row["id"] == "current:south-java" || row["entity_id"] == "current:south-java").unwrap();
-            let row = rows.iter_mut().find(|row| row["id"] == changed["id"]).unwrap();
+            let changed = selected.collections[name]
+                .iter()
+                .find(|row| {
+                    row["id"] == "current:south-java" || row["entity_id"] == "current:south-java"
+                })
+                .unwrap();
+            let row = rows
+                .iter_mut()
+                .find(|row| row["id"] == changed["id"])
+                .unwrap();
             *row = changed.clone();
         }
-        b.collections.insert("reference_routes".into(), selected.collections["reference_routes"].clone());
+        b.collections.insert(
+            "reference_routes".into(),
+            selected.collections["reference_routes"].clone(),
+        );
         let sources = b.collections.get_mut("sources").unwrap();
         for row in &selected.collections["sources"] {
-            if row["id"].as_str().unwrap().starts_with("fixture:") { continue; }
+            if row["id"].as_str().unwrap().starts_with("fixture:") {
+                continue;
+            }
             if let Some(prior) = sources.iter().find(|prior| prior["id"] == row["id"]) {
                 assert_eq!(prior, row);
-            } else { sources.push(row.clone()); }
+            } else {
+                sources.push(row.clone());
+            }
         }
         while sources.len() < 211 {
             sources.push(json!({"id":format!("fixture:cohort-source:{}", sources.len())}));
@@ -535,15 +575,42 @@ pub(crate) mod tests {
         assert_eq!(sources.len(), 211);
         validate(&b).unwrap();
         for mode in ["physical", "prior", "receipt", "other"] {
-            let mut bad = Bundle { schema: b.schema.clone(), manifest: b.manifest.clone(), collections: b.collections.clone() };
+            let mut bad = Bundle {
+                schema: b.schema.clone(),
+                manifest: b.manifest.clone(),
+                collections: b.collections.clone(),
+            };
             match mode {
-                "physical" => bad.collections.get_mut("objects").unwrap().iter_mut()
-                    .find(|r| r["id"] == "current:south-java").unwrap()["published_length_km"] = json!(1100),
-                "prior" => bad.collections.get_mut("route_decisions").unwrap().iter_mut()
-                    .find(|r| r["entity_id"] == "current:south-java").unwrap()["prior_route_decision"]["candidate_count"] = json!(1),
-                "receipt" => { bad.manifest.as_object_mut().unwrap().remove("south_java_reference_delivery_v1"); },
-                "other" => bad.collections.get_mut("route_decisions").unwrap().iter_mut()
-                    .find(|r| r["entity_id"] != "current:south-java").unwrap()["candidate_count"] = json!(1),
+                "physical" => {
+                    bad.collections
+                        .get_mut("objects")
+                        .unwrap()
+                        .iter_mut()
+                        .find(|r| r["id"] == "current:south-java")
+                        .unwrap()["published_length_km"] = json!(1100)
+                }
+                "prior" => {
+                    bad.collections
+                        .get_mut("route_decisions")
+                        .unwrap()
+                        .iter_mut()
+                        .find(|r| r["entity_id"] == "current:south-java")
+                        .unwrap()["prior_route_decision"]["candidate_count"] = json!(1)
+                }
+                "receipt" => {
+                    bad.manifest
+                        .as_object_mut()
+                        .unwrap()
+                        .remove("south_java_reference_delivery_v1");
+                }
+                "other" => {
+                    bad.collections
+                        .get_mut("route_decisions")
+                        .unwrap()
+                        .iter_mut()
+                        .find(|r| r["entity_id"] != "current:south-java")
+                        .unwrap()["candidate_count"] = json!(1)
+                }
                 _ => unreachable!(),
             }
             assert!(validate(&bad).is_err(), "{mode}");
