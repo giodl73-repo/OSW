@@ -1,0 +1,222 @@
+{
+  "schema": "osw.current-measurement-coverage-checkpoint.v6",
+  "status": "INSTALLED_REGIONAL_SPEED_STATISTICS_SOURCE_INDEX_AND_VISUALS_INDEPENDENTLY_VERIFIED",
+  "installed_commit": "064a0f209c10d4fad50c4c64c36a9a9ed6d859a2",
+  "installation_control_commit": "be4e0871a1d00211abdb3156e8083a6e4d1b0d0d",
+  "previous_checkpoint_file": "research/current-measurement-coverage-checkpoint-v5.json",
+  "installation_result_file": "research/published-current-speed-installation-result-v1.json",
+  "installed_proof_file": "research/published-current-speed-installed-v1.json",
+  "installation_execution_review_file": "research/published-current-speed-installation-execution-review-v1.json",
+  "logical_sha256": "037ef0045d75dac4b8893df9bf200bd55e049d4708ceaa56195df9d6da9f5cc4",
+  "logical_bytes": 190509162,
+  "wasm_sha256": "a59352b7e3dc875d656f3f592ff7809386b8015bfe8412b307ae359818bb3f9b",
+  "engine_manifest_sha256": "6e5f7e0b2cbe710b911c24360b57c884e905c0a8707c29877ba7b9e39aa9a8d2",
+  "counts": {
+    "accepted_current_identities": 106,
+    "canonical_reported_length_field_owners": 13,
+    "reference_route_records": 82,
+    "reference_route_owners": 75,
+    "overlap_canonical_length_and_reference_route": 2,
+    "either_canonical_length_field_or_reference_route": 86,
+    "missing_both_canonical_length_field_and_reference_route": 20,
+    "without_reference_route_regardless_of_length_field": 31,
+    "owners_with_scoped_width_capability": 87,
+    "owners_with_width_sample_capability": 14,
+    "scoped_width_records": 172,
+    "width_sample_records": 463,
+    "owners_with_published_regional_speed_statistics": 1,
+    "published_regional_speed_summary_records": 15,
+    "source_index_documents": 628
+  },
+  "verification": {
+    "rust_tests_passed": 214,
+    "main_native_wasm_whole_response_comparisons": 33,
+    "source_native_wasm_whole_response_comparisons": 13,
+    "complete_api_native_wasm_comparisons": 2,
+    "actual_screenshots_individually_reviewed": 12,
+    "desktop_and_narrow_viewports": [
+      1100,
+      320,
+      390
+    ],
+    "installed_git_blob_identities_and_sizes_independently_verified": 21,
+    "protected_paths_independently_preserved": 440,
+    "installation_request_disabled": true
+  },
+  "new_speed_support": {
+    "entity_id": "current:east-african-coastal",
+    "region": "Pemba Channel",
+    "source_doi": "10.1371/journal.pone.0210303",
+    "monthly_summaries": 12,
+    "seasonal_summaries": 3,
+    "underlying_observations": 328,
+    "unique_drifters": 45,
+    "summary_groups_overlap": true,
+    "source_window": "1986 through September2017, uneven sampling",
+    "quantity": "regional near-surface speed magnitude",
+    "unit": "m/s",
+    "fixed_depth_m": null,
+    "confidence_interval": null,
+    "whole_current_dimension": false,
+    "observed_annual_geometry_animation": false,
+    "query_collection": "current_speed_statistics"
+  },
+  "interpretation_rules": [
+    "Canonical reported-length fields, partial regional reference routes and physical full-current axes are different evidence types. Do not rank them together.",
+    "The20 missing both canonical length and reference-route fields are not necessarily devoid of size evidence: Loop retains two published contour summaries outside those fields.",
+    "The31 without reference routes differ from the20 missing both fields.",
+    "Width capability counts87 and14 remain verified through unchanged scientific collections; this does not establish uniform whole-current width or seasonal coverage.",
+    "No whole-catalogue seasonal, thickness or uncertainty completeness percentage has been established.",
+    "This delivery adds reviewed source context and section visualization. The measurement collections and their172 scoped-width/463 width-sample records were preserved.",
+    "South Java drawing-scenario envelope1100-1200km is not seasonal variability, physical width or a confidence interval. Existing Ombai10-15km confinement context is preserved once and remains outside physical width admission.",
+    "Azores2009 section spans remain two existing approximately110km dated meridional widths. Original-source review is not another measurement or a whole-current dimension. The source caption date conflict remains explicit.",
+    "Monthly and seasonal speed summaries describe overlapping views of the same328 observations, not656 observations or328 independent drifters.",
+    "Observed speed extrema and standard deviations are not width/length margins, annual current envelopes or confidence intervals.",
+    "628indexed source documents are distinct from publication/source collection counts.",
+    "This installation adds regional speed summaries and their provenance/navigation. Existing length and width coverage counts remain unchanged."
+  ],
+  "remaining_missing_both_by_identity_level": {
+    "system": 4,
+    "current": 7,
+    "family": 8,
+    "segment": 1
+  },
+  "remaining_records": [
+    {
+      "entity_id": "current:antarctic-coastal",
+      "label": "Antarctic Coastal Current (East Wind Drift)",
+      "identity_level": "system",
+      "next_length_action": "Define a source-supported branch graph and length convention before a system total."
+    },
+    {
+      "entity_id": "current:atlantic-south-equatorial-countercurrent",
+      "label": "Atlantic South Equatorial Countercurrent",
+      "identity_level": "current",
+      "next_length_action": "Review Merle (1977) original for a longitudinal endpoint; inspected NOAA 1979 page prints ambiguous 25N and cannot supply an eastward gate. Do not join unsynchronized sections.",
+      "source_review_file": "research/atlantic-secc-noaa-1979-extent-review-v1.json"
+    },
+    {
+      "entity_id": "current:azores-countercurrent",
+      "label": "Azores Countercurrent",
+      "identity_level": "current",
+      "next_length_action": "Original2009 section boundaries and width provenance are now installed and visually verified. Seek explicit subsurface alongflow endpoints and continuity; the110km transverse span is not current length. Surface averaging does not establish an AzCC axis.",
+      "source_review_file": "research/azores-2009-section-original-review-v1.json"
+    },
+    {
+      "entity_id": "current:east-african-coastal",
+      "label": "East African Coastal Current",
+      "identity_level": "current",
+      "next_length_action": "Regional connection context and readable compact diagram are installed. Seek source-supported physical alongflow endpoints/continuity for the current; the approximately1000km review statement remains regional and unranked.",
+      "prepared_regional_connection_file": "research/eacc-regional-connection-candidate-v1.json",
+      "preparation_review_file": "research/eacc-regional-connection-preparation-review-v1.json",
+      "existing_record_review_file": "research/eacc-regional-connection-existing-record-review-v1.json",
+      "prepared_candidate_disposition": "Duplicate statement of existing installed source context; do not admit as another record.",
+      "compact_card_preparation_file": "research/eacc-connection-compact-card-preparation-v4.json",
+      "new_scoped_speed_support": "15 published Pemba Channel monthly/seasonal speed summaries,328 observations from45 unique drifters. These do not establish current-axis endpoints or whole-current dimensions."
+    },
+    {
+      "entity_id": "current:equatorial-countercurrent",
+      "label": "Equatorial Countercurrent",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:equatorial-undercurrent",
+      "label": "Equatorial Undercurrent",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:greenland-middle-atlantic-shelf-hypothesis",
+      "label": "Greenland\u2013Middle Atlantic shelf-current hypothesis",
+      "identity_level": "system",
+      "next_length_action": "Define a source-supported branch graph and length convention before a system total."
+    },
+    {
+      "entity_id": "current:gulf-stream-system",
+      "label": "Gulf Stream System",
+      "identity_level": "system",
+      "next_length_action": "Define a source-supported branch graph and length convention before a system total."
+    },
+    {
+      "entity_id": "current:indonesian-throughflow",
+      "label": "Indonesian Throughflow",
+      "identity_level": "system",
+      "next_length_action": "Define a source-supported branch graph and length convention before a system total."
+    },
+    {
+      "entity_id": "current:loop",
+      "label": "Loop Current",
+      "identity_level": "segment",
+      "next_length_action": "Retain the two installed published contour summaries with method-specific scope; resolve whole-current convention before a canonical length or route. Delivery is complete.",
+      "known_scoped_length_support": "Two installed published contour-length summaries; these do not populate canonical whole-current length or a reference-route record."
+    },
+    {
+      "entity_id": "current:north-equatorial",
+      "label": "North Equatorial Current",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:north-equatorial-countercurrent",
+      "label": "North Equatorial Countercurrent",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:north-equatorial-undercurrent",
+      "label": "North Equatorial Undercurrent",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:norwegian",
+      "label": "Norwegian Current",
+      "identity_level": "current",
+      "next_length_action": "Resolve naming and branch scope before adopting neighbouring current geometry."
+    },
+    {
+      "entity_id": "current:south-equatorial",
+      "label": "South Equatorial Current",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:south-equatorial-countercurrent",
+      "label": "South Equatorial Countercurrent",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:south-equatorial-undercurrent",
+      "label": "South Equatorial Undercurrent",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:spitsbergen-atlantic",
+      "label": "Spitsbergen Atlantic Current",
+      "identity_level": "current",
+      "next_length_action": "Resolve naming and branch scope before adopting neighbouring current geometry."
+    },
+    {
+      "entity_id": "current:west-australian",
+      "label": "West Australian Current",
+      "identity_level": "current",
+      "next_length_action": "Review saved regional trace identity and failed connections; do not promote regional numerical paths to a whole-current length."
+    },
+    {
+      "entity_id": "current:west-india-coastal",
+      "label": "West India Coastal Current",
+      "identity_level": "current",
+      "next_length_action": "Review primary source for explicit alongflow gates, layer, season and continuous path; then construct a declared reference route."
+    }
+  ],
+  "remaining_focus": "Prioritize source-supported length and width gaps for individual currents, while resolving family/system conventions separately. Catalogue-wide seasonal dimensions, thickness and uncertainty completeness remain unquantified.",
+  "new_length_records": 0,
+  "new_width_records": 0,
+  "new_geographic_footprints": 0,
+  "local_preview_synchronized": false,
+  "main_merged": false,
+  "full_goal_complete": false
+}
