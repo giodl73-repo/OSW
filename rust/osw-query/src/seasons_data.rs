@@ -482,6 +482,14 @@ fn plans(docs: &Value) -> Result<Value, String> {
     Ok(plans)
 }
 
+fn phase_plans(bundle: &Bundle, docs: &Value) -> Result<Value, String> {
+    let mut result = plans(docs)?;
+    crate::current_catalogue::add_plans(bundle, &mut result);
+    crate::wicc_review_width::apply_phase_plan(bundle, &mut result);
+    crate::eacc_cited_width::apply_phase_plan(bundle, &mut result)?;
+    Ok(result)
+}
+
 impl Store {
     pub fn seasons_snapshot(&self) -> Result<Value, String> {
         let mut docs = documents(&self.bundle)?;
@@ -527,10 +535,8 @@ impl Store {
         supplemental.extend(crate::satellite_core_widths::widths(&self.bundle));
         supplemental.extend(crate::wicc_review_width::widths(&self.bundle));
         supplemental.extend(crate::eacc_cited_width::widths(&self.bundle));
-        docs["widths"]["measurements"]
-            .as_array_mut()
-            .unwrap()
-            .extend(crate::eacc_cited_width::widths(&self.bundle));
+        // Keep the static constraint outside the legacy phase derivation.
+        // It is returned in supplemental widths and appended exactly once below.
         let gap_widths = crate::current_gap_admissions::widths(&self.bundle);
         docs["widths"]["measurements"]
             .as_array_mut()
@@ -542,10 +548,7 @@ impl Store {
         supplemental.extend(crate::hansen_asar_widths::widths(&self.bundle));
         supplemental.extend(crate::neuc_glider_widths::widths(&self.bundle));
         supplemental.extend(crate::aleutian_onishi_width::widths(&self.bundle));
-        let mut plans = plans(&docs)?;
-        crate::current_catalogue::add_plans(&self.bundle, &mut plans);
-        crate::wicc_review_width::apply_phase_plan(&self.bundle, &mut plans);
-        crate::eacc_cited_width::apply_phase_plan(&self.bundle, &mut plans)?;
+        let plans = phase_plans(&self.bundle, &docs)?;
         let mut sources = json!({});
         for (key, _, _) in SOURCES {
             sources[key] = self.bundle.manifest["seasons_receipts"][key]["source_json"].clone();
@@ -575,5 +578,42 @@ impl Store {
         Ok(
             json!({"ok":true,"engine":"rust-osw-query-v1","bundle_sha256":self.metadata()["bundle_sha256"],"sources_json":sources,"phase_plans":plans,"admitted_current_decisions":crate::current_catalogue::decisions(&self.bundle),"supplemental_widths":supplemental,"working_reference_routes":reference_catalogue,"south_australian_context_scene":crate::south_australian_context::scene(&self.bundle),"eac_source_field_scene":crate::eac_source_fields::scene(&self.bundle),"asca_component_span_scene":crate::asca_component_spans::scene(&self.bundle),"kuroshio_filtered_width_scene":crate::kuroshio_filtered_width::scene(&self.bundle),"agulhas_reported_scene":crate::agulhas_reported::scene(&self.bundle),"kuroshio_daily_scene":crate::kuroshio_daily::scene(&self.bundle),"width_source_review_scenes":crate::current_width_source_reviews::scenes(&self.bundle),"research_evidence_scenes":crate::current_research_evidence::scenes(&self.bundle),"published_transport_scenes":crate::published_transports::by_current(&self.bundle),"published_speed_scenes":crate::published_current_speeds::by_current(&self.bundle),"satellite_core_width_scenes":crate::satellite_core_widths::by_current(&self.bundle),"review_cited_width_scenes":crate::wicc_review_width::by_current(&self.bundle),"cited_width_constraint_scenes":crate::eacc_cited_width::by_current(&self.bundle),"azores_2009_section_scene":crate::azores_section_review::full(&self.bundle),"pacific_neuc_breadth_scene":crate::pacific_neuc_breadths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"dwbc_float_composite_scene":crate::dwbc_float_composite::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[])),"coastal_composite_width_scene":crate::coastal_composite_widths::full(self.bundle.collections.get("widths").map(Vec::as_slice).unwrap_or(&[]))}),
         )
+    }
+}
+
+#[cfg(test)]
+mod eacc_phase_integration_tests {
+    use super::*;
+    #[test]
+    fn dynamically_admitted_eacc_gets_one_constraint_after_legacy_plan() {
+        let bundle = Bundle {
+            schema: "osw.query-bundle.v1".into(),
+            manifest: json!({"published_eacc_cited_width_constraint_v1": {}}),
+            collections: std::collections::BTreeMap::new(),
+        };
+        // current_measurements dynamically supplies this decision even though
+        // it is absent from the frozen width inventory's current index.
+        let docs = json!({"widths":{"measurements":[],"current_decisions":[{"current_id":"east-african-coastal"}]},"frames":{"frames":[]},"directions":{}});
+        let prior = plans(&docs).unwrap();
+        let actual = phase_plans(&bundle, &docs).unwrap();
+        let expected =
+            crate::eacc_cited_width::extend_phase_plan(&prior["east-african-coastal"]).unwrap();
+        assert_eq!(actual["east-african-coastal"], expected);
+        assert_eq!(
+            actual["east-african-coastal"]["phases"]
+                .as_array()
+                .unwrap()
+                .len(),
+            1
+        );
+        assert_eq!(
+            actual["east-african-coastal"]["eligible_indices"],
+            json!([])
+        );
+        assert_eq!(actual["east-african-coastal"]["can_play"], false);
+        // Preserve the duplicate refusal; never make the append idempotent.
+        let mut duplicate = docs.clone();
+        duplicate["widths"]["measurements"] = json!([crate::eacc_cited_width::expected()]);
+        assert!(phase_plans(&bundle, &duplicate).is_err());
     }
 }

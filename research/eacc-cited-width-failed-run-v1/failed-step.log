@@ -1,0 +1,105 @@
+delivery	Assemble indexed candidate, build once and verify parity	﻿2026-10-28T08:57:15.1363418Z ##[group]Run cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:57:15.1392168Z ^[[36;1mcpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")^[[0m
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:57:15.1393258Z ^[[36;1mtaskset -c "$cpu" nice -n 15 python analysis/check_eacc_cited_width_delivery_v1.py engine^[[0m
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:57:15.1455362Z shell: /usr/bin/bash -e {0}
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:57:15.1455617Z env:
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:57:15.1458308Z   GH_TOKEN: ***
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:57:15.1458538Z   OSW_EACC_CITED_WIDTH_DELIVERY_V1: 1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:57:15.1458792Z   CARGO_BUILD_JOBS: 1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:57:15.1459002Z   RUST_TEST_THREADS: 1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:57:15.1459204Z   OMP_NUM_THREADS: 1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:57:15.1459410Z   OPENBLAS_NUM_THREADS: 1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:57:15.1459626Z   MKL_NUM_THREADS: 1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:57:15.1459824Z   NUMEXPR_NUM_THREADS: 1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:57:15.1460038Z   PYTHONPATH: analysis
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:57:15.1460245Z ##[endgroup]
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:36.7641865Z    Compiling libm v0.2.16
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:36.8912403Z    Compiling autocfg v1.5.1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:37.0697759Z    Compiling version_check v0.9.5
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:37.1995541Z    Compiling generic-array v0.14.7
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:37.2505016Z    Compiling num-traits v0.2.19
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:39.0688310Z    Compiling proc-macro2 v1.0.107
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:39.2721326Z    Compiling quote v1.0.47
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:39.3550030Z    Compiling byteorder v1.5.0
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:39.4331637Z    Compiling unicode-ident v1.0.24
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:39.4674107Z    Compiling heapless v0.8.0
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:39.5578667Z    Compiling typenum v1.20.1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:40.6040723Z    Compiling hash32 v0.3.1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:41.1429180Z    Compiling serde_core v1.0.228
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:41.2464143Z    Compiling stable_deref_trait v1.2.1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:41.6314904Z    Compiling smallvec v1.15.1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:41.7372297Z    Compiling zmij v1.0.23
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:41.8312225Z    Compiling rstar v0.12.2
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:42.0624285Z    Compiling syn v2.0.119
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:44.8309121Z    Compiling approx v0.5.1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:44.8771949Z    Compiling block-buffer v0.10.4
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:44.9218533Z    Compiling crypto-common v0.1.7
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:44.9577644Z    Compiling serde v1.0.228
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:45.0564271Z    Compiling serde_json v1.0.149
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:45.1216045Z    Compiling digest v0.10.7
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:45.2060813Z    Compiling geo-types v0.7.19
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:45.4355469Z    Compiling serde_derive v1.0.228
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:47.3754968Z    Compiling geographiclib-rs v0.2.7
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:48.0211753Z    Compiling cpufeatures v0.2.17
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:48.0380705Z    Compiling cfg-if v1.0.4
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:48.0532395Z    Compiling itoa v1.0.18
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:48.1897607Z    Compiling log v0.4.33
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:48.2980896Z    Compiling memchr v2.8.3
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:49.4378517Z    Compiling float_next_after v1.0.0
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:49.4676446Z    Compiling robust v1.2.0
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:50.0400429Z    Compiling geo v0.28.0
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:55.2807091Z    Compiling sha2 v0.10.9
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T08:58:56.7401680Z    Compiling osw-query v0.1.0 (/home/runner/work/OSW/OSW/rust/osw-query)
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:00:01.2636012Z     Finished `dev` profile [optimized + debuginfo] target(s) in 1m 24s
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:17.6616029Z    Compiling libm v0.2.16
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:17.7517346Z    Compiling version_check v0.9.5
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:17.8749430Z    Compiling autocfg v1.5.1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:18.0514705Z    Compiling num-traits v0.2.19
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:18.0939509Z    Compiling generic-array v0.14.7
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:18.9455223Z    Compiling proc-macro2 v1.0.107
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:19.1362691Z    Compiling quote v1.0.47
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:19.2067797Z    Compiling byteorder v1.5.0
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:19.2829742Z    Compiling typenum v1.20.1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:19.6516918Z    Compiling unicode-ident v1.0.24
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:19.6848705Z    Compiling heapless v0.8.0
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:20.4198561Z    Compiling hash32 v0.3.1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:20.8708799Z    Compiling serde_core v1.0.228
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:20.9587354Z    Compiling stable_deref_trait v1.2.1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:21.3360736Z    Compiling zmij v1.0.23
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:21.4067476Z    Compiling smallvec v1.15.1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:21.5015593Z    Compiling rstar v0.12.2
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:21.7327817Z    Compiling syn v2.0.119
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:24.3774828Z    Compiling approx v0.5.1
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:24.4216437Z    Compiling block-buffer v0.10.4
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:24.4632097Z    Compiling crypto-common v0.1.7
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:24.4927374Z    Compiling serde v1.0.228
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:24.5784754Z    Compiling serde_json v1.0.149
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:24.6344911Z    Compiling digest v0.10.7
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:24.7110179Z    Compiling geo-types v0.7.19
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:24.9318891Z    Compiling serde_derive v1.0.228
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:26.7006059Z    Compiling geographiclib-rs v0.2.7
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:26.9259622Z    Compiling log v0.4.33
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:27.0002285Z    Compiling itoa v1.0.18
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:27.0781635Z    Compiling robust v1.2.0
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:27.3011737Z    Compiling float_next_after v1.0.0
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:27.3243687Z    Compiling memchr v2.8.3
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:27.6051772Z    Compiling cfg-if v1.0.4
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:27.6187718Z    Compiling sha2 v0.10.9
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:29.0993493Z    Compiling geo v0.28.0
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:07:30.9918941Z    Compiling osw-query v0.1.0 (/home/runner/work/OSW/OSW/rust/osw-query)
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:08.5102393Z     Finished `release` profile [optimized] target(s) in 50.88s
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:51.9105535Z Constraint duplicate or prior playback support differs
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:52.0359255Z Traceback (most recent call last):
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:52.0360429Z   File "/home/runner/work/OSW/OSW/analysis/check_eacc_cited_width_delivery_v1.py", line 193, in <module>
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:52.0361717Z     elif action=='engine':engine()
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:52.0362265Z                           ^^^^^^^^
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:52.0363211Z   File "/home/runner/work/OSW/OSW/analysis/check_eacc_cited_width_delivery_v1.py", line 165, in engine
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:52.0364067Z     with path.open('wb') as stream:run([str(cli),str(candidate),'--'+name],stdout=stream)
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:52.0365015Z                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:52.0366058Z   File "/home/runner/work/OSW/OSW/analysis/check_eacc_cited_width_delivery_v1.py", line 37, in run
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:52.0367434Z     def run(args,**kwargs):return subprocess.run(args,cwd=ROOT,check=True,timeout=3600,**kwargs)
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:52.0368273Z                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:52.0368714Z   File "/usr/lib/python3.12/subprocess.py", line 571, in run
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:52.0371342Z     raise CalledProcessError(retcode, process.args,
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:52.0374047Z subprocess.CalledProcessError: Command '['/home/runner/work/OSW/OSW/.pytest_cache/eacc-cited-width-delivery-v1/build/debug/osw-query-cli', '/home/runner/work/OSW/OSW/.pytest_cache/eacc-cited-width-delivery-v1/candidate.json', '--atlas']' returned non-zero exit status 2.
+delivery	Assemble indexed candidate, build once and verify parity	2026-10-28T09:08:52.0614915Z ##[error]Process completed with exit code 1.
