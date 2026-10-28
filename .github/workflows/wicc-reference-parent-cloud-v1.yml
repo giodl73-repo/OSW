@@ -1,0 +1,92 @@
+name: Audit installed WICC reference parent v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/wicc-reference-parent-request-v1.json
+      - .github/workflows/wicc-reference-parent-cloud-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/wicc-reference-parent-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/wicc-reference-parent-request-v1.json').read_bytes())
+          assert r['schema']=='osw.wicc-reference-parent-request.v1'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  parent-audit:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.gitattributes
+            /.github/workflows/wicc-reference-parent-cloud-v1.yml
+            /.gitignore
+            /almanac/query-data.json
+            /almanac/query-engine.manifest.json
+            /almanac/query-parts/000000-9238cea70614fcf8d006e62b324b67a62821226587dc863bbd2d437bebd48497.bin
+            /almanac/query-parts/000001-51d60a6a2c5cf064403df7dd66d089d9c0330506a818c33ae235d5fbec2ccfc9.bin
+            /almanac/query-parts/000002-a0904e2158aec63c215747bca8da4bb15df825b51adc4c2ae900e6eb82cf3a39.bin
+            /almanac/query-parts/000003-1e3e46afff639581646639af34b018d786392e70a704c65eddde17b7d5c33816.bin
+            /almanac/query-parts/000004-69372897e96b4fa5ca9fa44507bfe50679c66c4810083b1cc762d43816a248d1.bin
+            /almanac/query-parts/000005-2beabdfa4f9be3d656fb013f7397e2fb6dc2bc9a03706c600bf334cc5f09d140.bin
+            /almanac/query-parts/000006-4713bc6e36de66ee746171ec34c4acc286d7935febe52e6f4481e235bcfa27ca.bin
+            /almanac/query-parts/000007-4568ff54d52cbe3c5bcce5f849f61ca56ca9e6df85ccb292dda1f83161fb9777.bin
+            /almanac/query-parts/000008-6d5d76f099581d166c4d19b735c18e0b8b0207a32024ad18f725986373726b3a.bin
+            /almanac/query-parts/000009-3ce5813875c1b6a960f9bb654d2610b8e0b2ce292bceb94e3736e6f4e4b034d1.bin
+            /almanac/query-parts/000010-7159797d12c7597a110c0ff48e383d43326dd0f7f9cea6950d25d365169749b2.bin
+            /almanac/query-parts/000011-f30e260089450045488340735493612bfb2d87232919697e7854c089fd0b0cc3.bin
+            /analysis/check_wicc_reference_parent_v1.py
+            /analysis/query_packet.py
+            /analysis/test_wicc_reference_parent_v1.py
+            /plans/wicc-reference-installed-parent-audit-v1.md
+            /research/current-gap-delivery-phase.json
+            /research/eacc-cited-width-installation-result-v1.json
+            /research/wicc-reference-parent-preflight-v1.json
+            /research/wicc-reference-parent-request-v1.json
+            /research/wicc-winter-regional-reference-route-preparation-review-v1.json
+            /research/wicc-winter-regional-reference-route-v4-candidate.json
+      - name: Identity and pre-read refusal fixtures
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_wicc_reference_parent_v1.py -v
+      - name: Read installed WICC metadata without building or changing artifacts
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_wicc_reference_parent_v1.py
+      - name: Retain compact audit records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wicc-reference-parent-audit-v1
+          path: .pytest_cache/wicc-reference-parent-v1/*.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90
