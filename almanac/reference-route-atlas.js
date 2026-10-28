@@ -274,7 +274,10 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
           paragraph(content,window.OSWReferenceRouteText.summary(row,'atlas'));
           if(report.route_topology==='closed_circuit')paragraph(content,`Closed ${report.circuit_direction} circuit; arbitrary anchor, no current origin or termination. Not a parcel travel path or continuous annual flow.`);
           const original=byId(row.id)?.querySelector('.route-map');
-          const image=(original?.closest('picture')||original)?.cloneNode(true);if(image)content.append(image);
+          const image=(original?.closest('picture')||original)?.cloneNode(true);
+          const compact=window.OSWReferenceRouteText.compactFigure(row,report);
+          if(image&&compact){const target=image.tagName==='IMG'?image:image.querySelector('img');if(target)target.src='../'+compact;}
+          if(image)content.append(image);
           paragraph(content,row.scope);
           const phase=seasonalRoutes?.frames.find(frame=>frame.route_candidate_file===row.candidate_file);
           if(phase)previewLink(content,'Open this recorded seasonal phase →',`${current.season_url}&phase=${encodeURIComponent(phase.id)}`);
