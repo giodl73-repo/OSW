@@ -70,6 +70,7 @@ pub(crate) fn routes(collections: &BTreeMap<String, Vec<Value>>, manifest: &Valu
             || receipt["publication_source"] != expected["publication_source"]
             || sources.len() != 210 + crate::south_java_reference::additional_source_count(collections, manifest)?
                 + crate::wicc_winter_reference::additional_source_count(collections, manifest)?
+                + crate::mean_core_sections::additional_source_count(collections, manifest)?
         { return Err(fail()); }
         for (path, sha) in expected["input_sha256"].as_object().ok_or_else(fail)? {
             if manifest["input_sha256"][path] != *sha { return Err(fail()); }

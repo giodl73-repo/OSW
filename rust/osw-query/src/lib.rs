@@ -81,6 +81,7 @@ mod planning;
 mod portugal_section_span;
 mod proposed_widths;
 mod published_current_speeds;
+mod mean_core_sections;
 mod published_regional_reaches;
 mod published_seasonal_core_velocities;
 mod published_transports;
@@ -209,6 +210,7 @@ impl Store {
         }
         published_transports::validate(&bundle)?;
         published_current_speeds::validate(&bundle)?;
+        mean_core_sections::validate(&bundle)?;
         published_seasonal_core_velocities::validate(&bundle)?;
         azores_section_review::validate(&bundle)?;
         original_regional_widths::validate_south_atlantic_inventory(&bundle)?;
@@ -246,6 +248,7 @@ impl Store {
                 ("width_sample_ids", "width_samples"),
                 ("velocity_sample_ids", "current_velocity_samples"),
                 ("current_section_ids", "current_sections"),
+                ("mean_core_section_ids", mean_core_sections::COLLECTION),
                 ("route_decision_ids", "route_decisions"),
                 ("diagnostic_ids", "diagnostics"),
                 ("flow_network_ids", "flow_networks"),
@@ -269,6 +272,7 @@ impl Store {
                             || collection == "width_samples"
                             || collection == "current_velocity_samples"
                             || collection == "current_sections"
+                            || collection == mean_core_sections::COLLECTION
                             || collection == "diagnostics"
                             || collection == "route_decisions"
                             || collection == "flow_networks"
@@ -794,6 +798,8 @@ impl Store {
             .contains(&query.collection.as_str())
         {
             published_transports::query(&matches, &query.collection)
+        } else if query.collection == mean_core_sections::COLLECTION {
+            mean_core_sections::scene(&matches)
         } else if query.collection == "current_speed_statistics" {
             published_current_speeds::scene(&matches)
         } else if query.collection == "current_core_velocity_estimates" {

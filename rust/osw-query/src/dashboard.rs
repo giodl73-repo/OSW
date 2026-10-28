@@ -48,7 +48,8 @@ fn presentation(bundle: &Bundle) -> Result<Value, String> {
     let doc = crate::satellite_core_widths::dashboard_document(bundle, document(bundle)?)?;
     let doc = crate::wicc_review_width::dashboard_document(bundle, doc)?;
     let doc = crate::eacc_cited_width::dashboard_document(bundle, doc)?;
-    crate::wicc_winter_reference::dashboard_document(bundle, doc)
+    let doc = crate::wicc_winter_reference::dashboard_document(bundle, doc)?;
+    crate::mean_core_sections::dashboard_document(bundle, doc)
 }
 
 pub fn validate(bundle: &Bundle) -> Result<(), String> {
@@ -73,6 +74,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         let row = crate::wicc_review_width::dashboard_row(bundle, &row)?;
         let row = crate::eacc_cited_width::dashboard_row(bundle, &row)?;
         let row = crate::wicc_winter_reference::dashboard_row(bundle, &row)?;
+        let row = crate::mean_core_sections::dashboard_row(bundle, &row)?;
         let id = row["id"].as_str().ok_or("Missing dashboard object ID")?;
         if !ids.insert(id.to_owned()) {
             return Err("Duplicate dashboard object ID".into());
@@ -133,6 +135,7 @@ impl Store {
             "scope_notes",
             "dated_diagnostics",
             "model_dimension_samples",
+            "reported_model_core_sections",
             "axis_normal_samples",
             "flow_network",
             "passage_transport",

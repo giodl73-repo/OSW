@@ -55,6 +55,7 @@ pub(crate) fn routes(collections: &BTreeMap<String, Vec<Value>>, manifest: &Valu
         || receipt["contract_file"] != FILE || receipt["contract_sha256"] != pin(RAW)
         || manifest["input_sha256"][FILE] != pin(RAW)
         || sources.len() != 211 + crate::wicc_winter_reference::additional_source_count(collections, manifest)?
+                + crate::mean_core_sections::additional_source_count(collections, manifest)?
         || receipt["new_physical_dimensions"] != 0 || receipt["installed"] != false
         || receipt["prior_owner"] != query["prior_owner"] || receipt["prior_entity"] != query["prior_entity"]
         || receipt["prior_decision"] != query["prior_decision"]

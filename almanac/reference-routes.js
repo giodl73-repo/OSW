@@ -472,6 +472,7 @@
       const details = node("details", null, card); node("summary", "Method and remaining review", details);
       node("p", report.method, details); node("p", report.map_land_check, details);
       const list = node("ul", null, details); for (const gate of row.remaining_gates) node("li", gate, list);
+      window.renderMeanCoreSections(card,window.oswAtlasSnapshot?.mean_core_section_scenes?.[row.current_id],undefined,{collapsed:true});
       const phase = seasonalRoutes.frames.find(frame => frame.route_candidate_file === row.candidate_file);
       link("Widths and seasonal evidence", `seasons.html?current=${encodeURIComponent(row.current_id)}${phase ? `&phase=${encodeURIComponent(phase.id)}` : ""}`, node("p", null, card));
       if(row.current_id==='zeehan')window.renderQualitativeCurrentCalendar(card,await load('../research/zeehan-ridgway-2007-seasonal-scope-audit.json'));
