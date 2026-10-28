@@ -271,9 +271,10 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
           shareSelection(panel,current.id,row.id);
           tabs.querySelectorAll('button').forEach((button,i)=>button.setAttribute('aria-pressed',String(i===index)));
           fit(report.coordinates_lon_lat);link.href='#'+row.id;
-          paragraph(content,`≈ ${Number(row.approximate_reference_path_km).toLocaleString('en-US')} km · ${row.scenario_range_km.map(v=>Number(v).toLocaleString('en-US')).join('–')} km ${row.comparison_group==='osw_source_anchor_connections'?'editorial bend-probe span':'scenario envelope'}`);
+          paragraph(content,window.OSWReferenceRouteText.summary(row,'atlas'));
           if(report.route_topology==='closed_circuit')paragraph(content,`Closed ${report.circuit_direction} circuit; arbitrary anchor, no current origin or termination. Not a parcel travel path or continuous annual flow.`);
-          const image=byId(row.id)?.querySelector('.route-map')?.cloneNode(true);if(image)content.append(image);
+          const original=byId(row.id)?.querySelector('.route-map');
+          const image=(original?.closest('picture')||original)?.cloneNode(true);if(image)content.append(image);
           paragraph(content,row.scope);
           const phase=seasonalRoutes?.frames.find(frame=>frame.route_candidate_file===row.candidate_file);
           if(phase)previewLink(content,'Open this recorded seasonal phase →',`${current.season_url}&phase=${encodeURIComponent(phase.id)}`);

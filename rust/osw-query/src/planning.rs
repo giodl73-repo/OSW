@@ -195,7 +195,9 @@ pub fn validate(
                 return Err(format!("Planning projection differs in {key}"));
             }
         }
-        let source_path = if let Some(path) = crate::south_java_reference::planning_source(record, collections, manifest)? {
+        let source_path = if let Some(path) = crate::wicc_winter_reference::planning_source(record, collections, manifest)? {
+            path
+        } else if let Some(path) = crate::south_java_reference::planning_source(record, collections, manifest)? {
             path
         } else if let Some(path) = crate::pacific_secc_reference::planning_source(record, collections, manifest)? {
             path

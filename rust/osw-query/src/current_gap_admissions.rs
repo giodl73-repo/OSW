@@ -289,6 +289,8 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     let revised_eicc = !eicc_references.is_empty();
     let revised_south_java =
         !crate::south_java_reference::routes(&bundle.collections, &bundle.manifest)?.is_empty();
+    let revised_wicc =
+        !crate::wicc_winter_reference::routes(&bundle.collections, &bundle.manifest)?.is_empty();
     for (name, expected) in expected_records() {
         let actual: Vec<_> = bundle
             .collections
@@ -302,7 +304,8 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             && actual.len() == 1
             && actual[0]["prior_route_decision"] == expected
             && ((revised_eicc && expected["entity_id"] == "current:east-india-coastal")
-                || (revised_south_java && expected["entity_id"] == "current:south-java"));
+                || (revised_south_java && expected["entity_id"] == "current:south-java")
+                || (revised_wicc && expected["entity_id"] == "current:west-india-coastal"));
         if actual != vec![&expected] && !retained_revision {
             return Err(format!(
                 "Changed current-gap {name} record: {}",
@@ -351,7 +354,8 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             || owner["state_codes"] != json!([])
             || owner["state_evidence"] != json!([])
             || (!((revised_eicc && entity["id"] == "current:east-india-coastal")
-                || (revised_south_java && entity["id"] == "current:south-java"))
+                || (revised_south_java && entity["id"] == "current:south-java")
+                || (revised_wicc && entity["id"] == "current:west-india-coastal"))
                 && (owner["route_ids"] != json!([]) || owner["map_features"] != json!([])))
             || !owner["published_length_km"].is_null()
             || !owner["latest_observation_date"].is_null()

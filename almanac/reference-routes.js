@@ -390,7 +390,7 @@
       const row = catalog.candidates.find(item => item.id === id);
       const tr = node("tr", null, body); tr.id = `comparison-${id}`; link(row.name, `#${id}`, node("td", null, tr));
       node("td", `≈ ${number(row.approximate_reference_path_km)} km`, tr);
-      node("td", `${row.scenario_range_km.map(number).join("–")} km`, tr);
+      node("td", window.OSWReferenceRouteText.range(row), tr);
       const sensitivity = node("td", null, tr), bounds = row.ordering_sensitivity.envelope_position_bounds;
       node("span", bounds[0] === bounds[1] ? `Position ${bounds[0]} within retained envelopes` : `Positions ${bounds[0]}–${bounds[1]} within retained envelopes`, sensitivity);
       if (row.ordering_sensitivity.overlapping_candidate_ids.length) {
@@ -411,8 +411,9 @@
       link("Link to this route card", `#${row.id}`, node("p", null, card));
       const back = link("Back to global current map ↑", '#route-atlas', node("p", null, card));
 
-      node("p", `≈ ${number(row.approximate_reference_path_km)} km · ${row.scenario_count} scenarios · ${row.scenario_range_km.map(number).join("–")} km ${row.comparison_group==='osw_offshore_coastal_reference_curves'?'convention sensitivity':row.comparison_group==='osw_source_anchor_connections'?'bend-probe span':'scenario envelope'}`, card);
+      node("p", window.OSWReferenceRouteText.summary(row), card);
       node("p", row.scope, card);
+      if(row.comparison_group==='osw_abstract_supported_regional_references')node('p','Regional editorial route based on the published abstract. Whole-current endpoints, physical axis and annual range remain unresolved. Excluded from length ordering.',card).className='warning';
       if (report.parent_current_id) {
         const relation = node("p", report.parent_scope_note + " ", card);
         const parent = catalog.candidates.find(item => item.current_id === report.parent_current_id);
@@ -429,8 +430,8 @@
         const q={collection:'diagnostics',filters:[{field:'id',op:'eq',value:'diagnostic:madagascar-coastline-comparison'}],limit:1};
         link('Query all 54 paired coastline checks','query.html?q='+encodeURIComponent(JSON.stringify(q)),node('p',null,compare));
       }
-      const image = node("img", null, card); image.className = "route-map"; image.src = `../${row.figure}`; image.alt = `${row.name}: schematic editorial route with labeled endpoints. Approximate length and scenario limits are provided in the surrounding text.`;
-      const compactFigure=row.compact_figure_file||report.compact_figure_file||(row.figure==='figures/pacific-secc-western-mean-reference-path-v2-candidate.svg'?'figures/pacific-secc-western-reference-compact-v1.svg':null);
+      const image = node("img", null, card); image.className = "route-map"; image.src = `../${row.figure}`; image.alt = `${row.name}: schematic editorial route with labeled gates. ${window.OSWReferenceRouteText.hasRange(row)?'Approximate length and scenario limits are provided in the surrounding text.':'Approximate regional length is provided in the surrounding text; endpoints and dimension ranges remain unresolved.'}`;
+      const compactFigure=window.OSWReferenceRouteText.compactFigure(row,report);
       if(compactFigure){
         const responsive=document.createElement('picture'),mobile=document.createElement('source');
         mobile.media='(max-width:480px)';mobile.srcset=`../${compactFigure}`;

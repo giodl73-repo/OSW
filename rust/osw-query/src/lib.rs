@@ -96,6 +96,7 @@ mod selected_core_widths;
 mod somali_width;
 mod south_australian_context;
 mod south_java_reference;
+mod wicc_winter_reference;
 mod spatial;
 mod stream_tube_widths;
 mod svg;
@@ -312,6 +313,7 @@ impl Store {
         planning::validate(&bundle.collections, &bundle.manifest)?;
         pacific_secc_reference::routes(&bundle.collections, &bundle.manifest)?;
         south_java_reference::routes(&bundle.collections, &bundle.manifest)?;
+        wicc_winter_reference::routes(&bundle.collections, &bundle.manifest)?;
         loop_diagnostics::validate(&bundle.collections, &bundle.manifest)?;
         loop_recorded::validate(&bundle)?;
         network::validate(&bundle.collections, &bundle.manifest)?;

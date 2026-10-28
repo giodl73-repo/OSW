@@ -220,6 +220,10 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
                 &bundle.collections,
                 &bundle.manifest,
             )?);
+            source.extend(crate::wicc_winter_reference::routes(
+                &bundle.collections,
+                &bundle.manifest,
+            )?);
         }
         let actual = bundle
             .collections
@@ -567,11 +571,14 @@ impl Store {
         let reference_catalogue = if reference_catalogue.is_null() {
             reference_catalogue
         } else {
-            crate::south_java_reference::catalogue_projection(
+            crate::wicc_winter_reference::catalogue_projection(
+                &self.bundle,
+                crate::south_java_reference::catalogue_projection(
                 &self.bundle,
                 crate::pacific_secc_reference::catalogue_projection(
                     &self.bundle,
                     crate::planning::eicc_catalogue_projection(&self.bundle, reference_catalogue)?,
+                )?,
                 )?,
             )?
         };

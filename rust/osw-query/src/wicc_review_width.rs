@@ -153,7 +153,8 @@ pub(crate) fn validate(b: &Bundle) -> Result<(), String> {
     if owners.len() != 1 {
         return Err("One WICC review width owner required".into());
     }
-    let owner = owners[0];
+    let retained = crate::wicc_winter_reference::retained_width_owner(b, owners[0])?;
+    let owner = &retained;
     let marker = &b.manifest[KEY];
     let prior = marker["prior_dashboard_fingerprint"]
         .as_str()
