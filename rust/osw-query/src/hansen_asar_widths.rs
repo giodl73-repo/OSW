@@ -103,6 +103,7 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     expected_widths.extend(crate::current_gap_admissions::widths(b));
     expected_widths.extend(crate::satellite_core_widths::widths(b));
     expected_widths.extend(crate::wicc_review_width::widths(b));
+    expected_widths.extend(crate::eacc_cited_width::widths(b));
     if actual != &expected_widths {
         return Err("Changed ASAR effective width inventory/order".into());
     }
@@ -168,6 +169,21 @@ mod tests {
                     {"id":"current:norwegian-coastal","capabilities":{"scoped_width":2},"source_ids":[d["source_record"]["id"]],"diagnostic_ids":[format!("{ID}:coastal")]}
                 ]}}))
         .unwrap()
+    }
+    #[test]
+    fn exact_cited_constraint_append_preserves_inventory_rejection() {
+        let mut b = fixture();
+        b.manifest["published_eacc_cited_width_constraint_v1"] = json!({});
+        let rows = crate::eacc_cited_width::widths(&b);
+        b.collections.get_mut("widths").unwrap().extend(rows);
+        validate(&b).unwrap();
+        let row = b.collections["widths"].last().unwrap().clone();
+        b.collections.get_mut("widths").unwrap().push(row);
+        assert!(validate(&b).is_err());
+        b.collections.get_mut("widths").unwrap().pop();
+        b.collections.get_mut("widths").unwrap().last_mut().unwrap()["reported_bound_km"] =
+            json!(400);
+        assert!(validate(&b).is_err());
     }
     #[test]
     fn exact_review_width_append_preserves_inventory_rejection() {

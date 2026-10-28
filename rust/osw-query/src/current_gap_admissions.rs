@@ -214,10 +214,11 @@ pub fn decision(bundle: &Bundle, admission: &Value) -> Option<Value> {
         .find(|row| row["id"] == admission["entity_id"])?;
     let measured = entity["id"] == "current:east-india-coastal";
     let review_ids = crate::wicc_review_width::owner_ids(bundle, &entity["id"]);
+    let constraint_ids = crate::eacc_cited_width::owner_ids(bundle, &entity["id"]);
     Some(
         json!({"current_id":admission["proposal_id"],"name":entity["label"],
-        "measurement_ids":if measured { json!([doc(WIDTH.1)["width_record"]["id"]]) } else { json!(review_ids) },
-        "status":if measured { "scoped_published_width_admitted" } else if !review_ids.is_empty() { "review_cited_scoped_width_admitted" } else { "identity_admitted_width_not_admitted" },
+        "measurement_ids":if measured { json!([doc(WIDTH.1)["width_record"]["id"]]) } else if !review_ids.is_empty() { json!(review_ids) } else { json!(constraint_ids) },
+        "status":if measured { "scoped_published_width_admitted" } else if !review_ids.is_empty() { "review_cited_scoped_width_admitted" } else if !constraint_ids.is_empty() { "review_cited_width_constraint_admitted" } else { "identity_admitted_width_not_admitted" },
         "whole_current_width_km":null,"annual_width_range_km":null,"admission_id":admission["id"]}),
     )
 }
@@ -339,6 +340,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             vec![]
         };
         expected_widths.extend(crate::wicc_review_width::owner_ids(bundle, &entity["id"]));
+        expected_widths.extend(crate::eacc_cited_width::owner_ids(bundle, &entity["id"]));
         if owner["width_ids"] != json!(expected_widths)
             || owner["capabilities"]["scoped_width"] != json!(expected_widths.len())
             || owner["capabilities"]["width_samples"] != 0

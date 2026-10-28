@@ -33,6 +33,7 @@ mod davidson_reported_width;
 mod dwbc_float_composite;
 mod eac_core_spans;
 mod eac_source_fields;
+mod eacc_cited_width;
 mod eddy_recurrence;
 mod eddy_source_panels;
 mod guinea_width;
@@ -226,6 +227,7 @@ impl Store {
         selected_core_widths::validate(&bundle)?;
         satellite_core_widths::validate(&bundle)?;
         wicc_review_width::validate(&bundle)?;
+        eacc_cited_width::validate(&bundle)?;
         antilles_cruise_spans::validate(&bundle)?;
         model_axis_spread::validate(&bundle)?;
         pacific_neuc_breadths::validate(&bundle)?;
@@ -764,6 +766,7 @@ impl Store {
                 selected_core_widths::scene(&matches),
                 satellite_core_widths::scene(&matches),
                 wicc_review_width::scene(&matches),
+                eacc_cited_width::scene(&matches),
                 nordic_widths::scene(&matches, records),
                 coastal_composite_widths::scene(&matches, records),
                 dwbc_float_composite::scene(&matches, records),

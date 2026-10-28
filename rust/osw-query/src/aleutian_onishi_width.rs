@@ -74,6 +74,7 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     expected.extend(crate::current_gap_admissions::widths(b));
     expected.extend(crate::satellite_core_widths::widths(b));
     expected.extend(crate::wicc_review_width::widths(b));
+    expected.extend(crate::eacc_cited_width::widths(b));
     let expected_lengths =
         crate::length_assessment_overlays::expected(b, &previous["length_assessments"])?;
     if b.collections.get("widths") != Some(&expected)
@@ -146,6 +147,21 @@ mod tests {
         serde_json::from_value(json!({"schema":"osw.query-bundle.v1","manifest":{"aleutian_onishi_width_version":"1","input_sha256":pins},
             "collections":{"widths":ws,"length_assessments":e["length_assessments"],"sources":[d["source_record"]],"diagnostics":[diagnostic()],
                 "objects":[{"id":"current:aleutian","capabilities":{"scoped_width":1},"source_ids":[d["source_record"]["id"]],"diagnostic_ids":[ID]}]}})).unwrap()
+    }
+    #[test]
+    fn exact_cited_constraint_append_preserves_inventory_rejection() {
+        let mut b = fixture();
+        b.manifest["published_eacc_cited_width_constraint_v1"] = json!({});
+        let rows = crate::eacc_cited_width::widths(&b);
+        b.collections.get_mut("widths").unwrap().extend(rows);
+        validate(&b).unwrap();
+        let row = b.collections["widths"].last().unwrap().clone();
+        b.collections.get_mut("widths").unwrap().push(row);
+        assert!(validate(&b).is_err());
+        b.collections.get_mut("widths").unwrap().pop();
+        b.collections.get_mut("widths").unwrap().last_mut().unwrap()["reported_bound_km"] =
+            json!(400);
+        assert!(validate(&b).is_err());
     }
     #[test]
     fn exact_review_width_append_preserves_inventory_rejection() {
