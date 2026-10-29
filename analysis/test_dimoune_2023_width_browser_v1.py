@@ -17,16 +17,12 @@ class BrowserScopeTests(unittest.TestCase):
         bad=copy.deepcopy(result);bad['generated_files']['almanac/query-engine.manifest.json']['sha256']='0'*64
         with self.assertRaises(ValueError):browser.saved_files(bad)
 
-    def test_presentation_changes_only_five_static_files(self):
-        parent_raw=(browser.ROOT/(browser.SAVED+'engine-manifest.json')).read_bytes()
-        scope=browser.read('research/dimoune-2023-width-presentation-scope-v1.json')
-        parent=browser.read(browser.SAVED+'engine-manifest.json')
-        result=presentation.presentation_manifest(parent_raw,scope,'a'*40)
-        changed={p for p,pin in result['sha256'].items() if pin!=parent['sha256'].get(p)}
-        self.assertEqual(changed,presentation.FILES)
-        self.assertEqual(result['sha256']['almanac/query-engine.wasm'],parent['sha256']['almanac/query-engine.wasm'])
-        self.assertEqual(result['sha256']['almanac/query-data.json'],parent['sha256']['almanac/query-data.json'])
-        bad=copy.deepcopy(scope);bad['source_changes']['almanac/query-engine.wasm']=next(iter(scope['source_changes'].values()))
-        with self.assertRaises(ValueError):presentation.presentation_manifest(parent_raw,bad,'a'*40)
+    def test_corrected_saved_engine_already_binds_current_presentation(self):
+        manifest=browser.read(browser.SAVED+'engine-manifest.json')
+        for path in presentation.FILES:self.assertEqual(manifest['sha256'][path],browser.sha(path))
+        self.assertEqual(manifest['sha256']['almanac/query-engine.wasm'],browser.BINARY)
+        result=browser.read(browser.SAVED+'result.json')
+        self.assertEqual(result['query_contract_file'],'research/dimoune-2023-width-query-contract-v2.json')
+        self.assertEqual(result['packet_comparison']['width_records_added'],6)
 
 if __name__=='__main__':unittest.main()

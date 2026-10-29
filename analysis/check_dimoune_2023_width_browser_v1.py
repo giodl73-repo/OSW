@@ -12,19 +12,19 @@ from urllib.parse import quote
 import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
-REQUEST='research/dimoune-2023-width-browser-request-v1.json'
-PREFLIGHT='research/dimoune-2023-width-browser-preflight-v1.json'
-SAVED='research/dimoune-2023-width-delivery-run-v1/'
-OUT=ROOT/'.pytest_cache/dimoune-2023-width-browser-v1'
-WORK=ROOT/'.pytest_cache/dimoune-2023-width-browser-work-v1'
+REQUEST='research/dimoune-2023-width-browser-request-v2.json'
+PREFLIGHT='research/dimoune-2023-width-browser-preflight-v2.json'
+SAVED='research/dimoune-2023-width-delivery-run-v2/'
+OUT=ROOT/'.pytest_cache/dimoune-2023-width-browser-v2'
+WORK=ROOT/'.pytest_cache/dimoune-2023-width-browser-work-v2'
 REPO='repos/giodl73-repo/OSW'
-SOURCE='8976b4b029ff9c2636eebfba7ad6acf360f9e7f9'
-RUN=40936955911
-ARTIFACT={'id':12924779550,'bytes':98845920,'sha256':'d21a413cef309a477ad705fc5c4721d85c14dbe49c434ffbe5cbb3534adfe4b5'}
+SOURCE='d8be4d6b6113bef967ed92d7da5efffdc86b4ea5'
+RUN=40969801784
+ARTIFACT={'id':12940630989,'bytes':98846921,'sha256':'adc0faec299a0e94fb8d32207b34f8b21fb69533333c06bffa9972b179fc81b3'}
 OWNER='current:atlantic-south-equatorial'
-LOGICAL='32b836f1015a96a5a281e082343bba81c73e2141c1f5ee438228c63f21f42607'
-BINARY='628fd63dd68979d4baa168cb65b105387f9f60acae4e06ed7e57718c62621682'
-MANIFEST='17a45d20ac53cd91d729cec4522afa98fa3513fc4fc6073eb08ed45254e7e20a'
+LOGICAL='6bbbb4ddcc3f7eb73468a81305b03f30c593c8f004a15b3dd7ad95e312792bac'
+BINARY='c29ca8a11f3a21c555af3410217330385b7e6d315af08aeacbaa754b42ee2d4f'
+MANIFEST='b976e1b8c745be46313fef9dc2696f5961813b7317fb9189f52d63bd1dc66b82'
 def read(path):return json.loads((ROOT/path).read_bytes())
 def sha(path):
     with (ROOT/path).open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
@@ -39,7 +39,7 @@ def controls():
     for key in ['OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS']:
         if os.environ.get(key)!='1':raise ValueError('One worker required')
     request=read(REQUEST)
-    if request.get('schema')!='osw.dimoune-2023-width-browser-request.v1' or request.get('execute') is not True or request['preflight_sha256']!=sha(PREFLIGHT) or request.get('max_cloud_jobs')!=1 or request.get('max_heavy_local_jobs')!=0:raise ValueError('Disabled or changed browser request')
+    if request.get('schema')!='osw.dimoune-2023-width-browser-request.v2' or request.get('execute') is not True or request['preflight_sha256']!=sha(PREFLIGHT) or request.get('max_cloud_jobs')!=1 or request.get('max_heavy_local_jobs')!=0:raise ValueError('Disabled or changed browser request')
     for key in ['browser_permitted','cloud_candidate_files_permitted']:
         if request.get(key) is not True:raise ValueError('Missing browser permission')
     for key in ['native_build_permitted','wasm_build_permitted','installation_permitted','ocean_field_processing_permitted','main_merge_permitted','local_bulk_sync_permitted']:
@@ -101,6 +101,8 @@ def browser_review():
             card=panel.locator('[data-dimension-width-id="'+row['id']+'"]')
             expect(card).to_contain_text('About '+str(row['approximate_width_km'])+' km')
             expect(card).to_contain_text('1993-01 to 2017-12')
+            expect(card).to_contain_text(row['range_interpretation'])
+            expect(card).not_to_contain_text('undefined')
             expect(card).to_contain_text('Seasonal width range: Unknown. Numerical uncertainty: Unknown.')
             if row.get('source_discrepancy_note'):expect(card).to_contain_text('Source discrepancy: '+row['source_discrepancy_note'])
             metrics=card.locator('p,h4,button,a').evaluate_all("""nodes=>nodes.filter(n=>n.getClientRects().length).map(n=>{const r=n.getBoundingClientRect(),b=n.closest('article').getBoundingClientRect();return {text:n.textContent,font:parseFloat(getComputedStyle(n).fontSize),inside:r.left>=b.left-2&&r.right<=b.right+2};})""")
@@ -228,13 +230,6 @@ def main():
     files=saved_files(read(SAVED+'result.json'));extract_saved(files)
     if sha('almanac/query-engine.manifest.json')!=MANIFEST or read('almanac/query-engine.manifest.json')!=read(SAVED+'engine-manifest.json'):
         raise ValueError('Saved engine manifest differs')
-    from dimoune_2023_width_presentation_v1 import presentation_manifest
-    scope=read('research/dimoune-2023-width-presentation-scope-v1.json')
-    for path,row in scope['source_changes'].items():
-        if sha(path)!=row['candidate_sha256'] or sha(row['archive_path'])!=row['parent_sha256']:
-            raise ValueError('Display source custody differs: '+path)
-    overlay=presentation_manifest((ROOT/'almanac/query-engine.manifest.json').read_bytes(),scope,os.environ['GITHUB_SHA'])
-    write(ROOT/'almanac/query-engine.manifest.json',overlay);write(OUT/'engine-manifest-presentation.json',overlay)
     for group in ('rust_source_sha256','compile_time_data_sha256'):
         for path,pin in read(SAVED+'compile-inventory.json')[group].items():
             if sha(path)!=pin:raise ValueError('Saved compiler input differs: '+path)
@@ -243,13 +238,11 @@ def main():
         if sha(path)!=pin or manifest['sha256'].get(path)!=pin:raise ValueError('Presentation differs from saved engine: '+path)
     observed=browser_review()
     for path,row in files.items():
-        if path!='almanac/query-engine.manifest.json' and sha(path)!=row['sha256']:raise ValueError('Browser changed saved engine file: '+path)
-    if read('almanac/query-engine.manifest.json')!=overlay:raise ValueError('Browser changed scoped display manifest')
-    write(OUT/'result.json',{'schema':'osw.dimoune-2023-width-browser-result.v1','status':observed['status'],
+        if sha(path)!=row['sha256']:raise ValueError('Browser changed saved engine file: '+path)
+    write(OUT/'result.json',{'schema':'osw.dimoune-2023-width-browser-result.v2','status':observed['status'],
         'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],'run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],
         'saved_engine_source':SOURCE,'saved_engine_run':RUN,'saved_artifact':ARTIFACT,
-        'logical_sha256':LOGICAL,'wasm_sha256':BINARY,'parent_engine_manifest_sha256':MANIFEST,
-        'presentation_manifest_sha256':sha(OUT/'engine-manifest-presentation.json'),
+        'logical_sha256':LOGICAL,'wasm_sha256':BINARY,'engine_manifest_sha256':MANIFEST,
         'screenshots':len(observed['screenshots']),'browser_checks':len(observed['checks']),
         'native_or_wasm_rebuild':False,'visual_review_complete':False,'installed':False,'main_updated':False,'full_goal_complete':False})
 
