@@ -1,6 +1,6 @@
 """Exercise admission boundaries against synthetic metadata, never installed packets."""
-import copy
 import unittest
+from unittest.mock import patch
 import audit_dimoune_2023_width_parent_v1 as audit
 
 class ParentAuditTests(unittest.TestCase):
@@ -36,6 +36,7 @@ class ParentAuditTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'not be assigned'):audit.summarize(self.bundle,self.prepared)
 
     def test_local_installed_access_refused(self):
-        with self.assertRaisesRegex(ValueError,'Cloud-only'):audit.guard()
+        with patch.dict(audit.os.environ,{'GITHUB_ACTIONS':'false'}):
+            with self.assertRaisesRegex(ValueError,'Cloud-only'):audit.guard()
 
 if __name__=='__main__':unittest.main()
