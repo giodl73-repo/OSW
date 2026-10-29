@@ -34,7 +34,6 @@ def summarize(bundle,prepared):
         require(len(ids)==len(set(ids)),'Duplicate installed IDs: '+name)
     source_matches=[r for r in sources if '10.5194/os-19-251-2023' in json.dumps(r).lower()
                     or 'dimoune' in json.dumps(r).lower()]
-    require(source_matches,'Registered publication missing')
     owners={}
     for owner in OWNERS:
         selected={name:[r for r in collections[name] if r['id']==owner] for name in ('objects','entities')}
@@ -66,7 +65,9 @@ def summarize(bundle,prepared):
     surface_identities=[{'collection':name,'record':r} for name in ('objects','entities')
                         for r in collections[name] if 'equatorial surface' in json.dumps(r).lower()]
     return {'collection_counts':{n:len(r) for n,r in sorted(collections.items())},
-            'source_matches':source_matches,'owners':owners,'existing_duplicate_rows':duplicates,
+            'source_matches':source_matches,'source_inventory':sources,
+            'publication_resolution':'MISSING' if not source_matches else 'UNIQUE_EXISTING' if len(source_matches)==1 else 'RECONCILIATION_REQUIRED',
+            'owners':owners,'existing_duplicate_rows':duplicates,
             'additional_candidates':candidates,'unplaced_surface_current_rows':unplaced,
             'all_publication_related_records':related,'possible_surface_current_identities':surface_identities,
             'admission_performed':False,'family_evidence_inherited':False,

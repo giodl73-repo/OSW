@@ -22,6 +22,12 @@ class ParentAuditTests(unittest.TestCase):
         self.bundle['collections']['widths'].pop()
         with self.assertRaisesRegex(ValueError,'Known duplicate missing'):audit.summarize(self.bundle,self.prepared)
 
+    def test_missing_publication_is_reported_without_admission(self):
+        self.bundle['collections']['sources']=[{'id':'source:unrelated'}]
+        result=audit.summarize(self.bundle,self.prepared)
+        self.assertEqual(result['publication_resolution'],'MISSING')
+        self.assertFalse(result['admission_performed'])
+
     def test_candidate_id_collision_rejected(self):
         self.bundle['collections']['widths'].append({'id':self.prepared['records'][2]['id']})
         with self.assertRaisesRegex(ValueError,'already installed'):audit.summarize(self.bundle,self.prepared)
