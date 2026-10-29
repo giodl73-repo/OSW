@@ -1,0 +1,32 @@
+{
+  "schema": "osw.chen-indian-sec-delivery-execution-review.v2",
+  "status": "FAIL_VERIFIER_PROJECTED_HISTORICAL_SOURCE_DOCUMENT_AS_LIVE_RECORDS",
+  "evidence_sha256": {
+    "research/chen-indian-sec-delivery-run-v2/canonical-replay.json": "60c42fa425b510c4bf4fc8e2a563cbbf14c258c72171e111810008fca1c98c23",
+    "research/chen-indian-sec-delivery-run-v2/compile-inventory.json": "ef558590ea27967cc91bfa526ac5463612c273487a0563dbb1e6a17f68348241",
+    "research/chen-indian-sec-delivery-run-v2/executed-request.json": "e611609911e6cddb5418c4d4b55894cef10525cb016569a4b01e5dcd4c6a4919",
+    "research/chen-indian-sec-delivery-run-v2/failed-step-log.txt": "e39b40f93d7140e4c118890e7cdad209be0663499fd33e1059d282abb9a3e517",
+    "research/chen-indian-sec-delivery-run-v2/failure.json": "0888d73020dab1f736b11003f7f7389f41eda736e02b429eaf3590f802a63e47",
+    "research/chen-indian-sec-delivery-run-v2/native-batch-summary.json": "53d7f8b489958751f7cf444f5bc963122e93758992f648e6f5571f02287daf43",
+    "research/chen-indian-sec-delivery-run-v2/native-build.txt": "4cb25cc906cdbee6d5734569e40a0c23510373339b28c23fd59c0f2351d513d0",
+    "research/chen-indian-sec-delivery-run-v2/preservation-failure-differences.json": "53d5060e2b8bc6a9bd71eaf691b755621f84100030f67774a86e3a7617305df3",
+    "research/chen-indian-sec-delivery-run-v2/run-receipt.json": "582b01c197bda3a8183c8a72eb5c98f425545a8751c80a778a6d71f0ae1ca737",
+    "research/chen-indian-sec-delivery-run-v2/rust-tests.txt": "88b6aea4af32199a2bef353075bbbbabceec80251f7cc17de7431b89f991f54b"
+  },
+  "rust_tests_passed": 289,
+  "native_main_responses_executed": 234,
+  "native_source_responses_executed": 86,
+  "native_main_batch_elapsed_seconds": 28.524123911,
+  "native_source_batch_elapsed_seconds": 2.9044279250000002,
+  "ordinary_cli_equivalence_checks": 3,
+  "historical_main_queries_preserved_before_failure": 215,
+  "completion_evidence": "Frozen v2 control flow reaches the first atlas snapshot only after all215 historical main query checks. Native source and new-query responses were executed in the batches, but their acceptance loops had not been reached.",
+  "atlas_semantic_differences": 19,
+  "all_difference_pointers_under": "/basin_identity_contract/",
+  "diagnosis": "The recursive v1 verifier replaces old Indian SEC object and assessment records even inside the immutable compiled basin source contract. Runtime snapshot_projection embeds document().clone(), preserving its independently pinned original contents.",
+  "correction": "Version the verifier to require the exact SHA-pinned historical contract and preserve it unchanged while still projecting live records everywhere else. Retain v1 and v2 failures. No product Rust or scientific contract changes.",
+  "wasm_candidate_built": false,
+  "installed": false,
+  "main_updated": false,
+  "full_goal_complete": false
+}
