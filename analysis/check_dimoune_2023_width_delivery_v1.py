@@ -81,6 +81,31 @@ def run():
         if mode.startswith('compare'):
             batch,cache=batches['index' if mode.endswith('index') else 'main']
             rows=[{**item,'raw_response_json':cache[case_key(item)]} for item in rows];extra={'metadata_json':batch['metadata_json']}
+        if mode.startswith('compare'):
+            from bounded_parity_cases_v1 import partition,encoded
+            groups=partition({'payload_sha256':sha(payload),**extra},rows)
+            reports=[]
+            for number,group in enumerate(groups,1):
+                fixture=WORK/(mode+f'-fixture-{number}.json');fixture.write_bytes(encoded(group))
+                output=OUT/(mode+f'-part-{number}.json')
+                subprocess.run(['node','--max-old-space-size=1536','analysis/check_chen_indian_sec_parity_v2.mjs',mode,str(wasm),str(payload),str(fixture),str(output),sha(wasm)],check=True,timeout=1800)
+                report=read(output)
+                if (report['status']!='PASS' or report['mode']!=mode or report['payload_sha256']!=group['payload_sha256']
+                    or report['wasm_sha256']!=sha(wasm) or report['complete_initialization_equal'] is not True
+                    or len(report['checks'])!=len(group['cases'])):raise ValueError('Incomplete bounded parity report')
+                if mode.endswith('index') and report['mismatched_corpus_refused'] is not True:raise ValueError('Index mismatch refusal missing')
+                for wanted,actual in zip(group['cases'],report['checks']):
+                    if (actual['kind']!=wanted['kind'] or actual['name']!=wanted.get('name')
+                        or actual['request_json']!=wanted.get('request_json') or actual['entire_response_equal'] is not True
+                        or actual['response_sha256']!=hashlib.sha256(wanted['raw_response_json'].encode()).hexdigest()):
+                        raise ValueError('Bounded comparison changed case identity or complete response')
+                reports.append(report)
+            combined={**reports[0],'checks':[check for report in reports for check in report['checks']],
+                'max_wasm_linear_memory_bytes':max(r['max_wasm_linear_memory_bytes'] for r in reports),
+                'bounded_fixture_bytes':64*1024*1024,'sequential_comparison_parts':len(reports)}
+            if len(combined['checks'])!=len(cases):raise ValueError('Bounded comparisons lost cases')
+            write(OUT/(mode+'.json'),combined)
+            return combined
         fixture=WORK/(mode+'-fixture.json');write(fixture,{'payload_sha256':sha(payload),'cases':rows,**extra})
         output=(WORK if mode.startswith('capture') else OUT)/(mode+'.json')
         subprocess.run(['node','--max-old-space-size=1536','analysis/check_chen_indian_sec_parity_v2.mjs',mode,str(wasm),str(payload),str(fixture),str(output),sha(wasm)],check=True,timeout=1800)
@@ -127,6 +152,9 @@ def run():
     for item in new_source:
         path=item['request']['document'];actual=native('index',item)
         if actual['source_sha256']!=sha(path) or not rules.same({r['source_key']:r['record'] for r in actual['rows']},read(path)):raise ValueError('New indexed source differs: '+path)
+    write(OUT/'native-preservation.json',{'status':'PASS_COMPLETE_NATIVE_PRESERVATION_AND_NEW_SOURCE_QUERIES',
+        'historical_main_cases':historical_main_count,'historical_source_cases':93,'additional_main_cases':len(new_main),
+        'additional_source_cases':len(new_source),'complete_response_checks':len(requests['main'])+93+len(new_source)})
     cli=WORK/'build/debug/osw-query-cli'
     for mode,item in [('main',new_main[0]),('index',new_source[0])]:
         payload=candidate if mode=='main' else new_index
