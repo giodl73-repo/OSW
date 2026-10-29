@@ -122,7 +122,8 @@ def run():
                         require(answer['current_dimension_evidence_scenes'][owner.removeprefix('current:')]['width_records']
                             ==[r for r in collections['widths'] if query.owns(r,owner)],'Atlas/seasons evidence differs')
                 elif requested['name']=='dashboard':
-                    require(answer['entries'] and all(next(r for r in answer['entries'] if r['id']==owner)['capabilities']['scoped_width']
+                    dashboard=json.loads(answer['snapshot_json'])
+                    require(dashboard['entries'] and all(next(r for r in dashboard['entries'] if r['id']==owner)['capabilities']['scoped_width']
                         ==contract['final_objects'][owner]['capabilities']['scoped_width'] for owner in query.OWNERS),'Dashboard width coverage differs')
             checked.append({**requested,'response_sha256':hashlib.sha256(item['raw_response_json'].encode()).hexdigest()})
         write(OUT/'native-api-checks.json',{'checks':checked,'complete_parent_collections_preserved':len(collections),

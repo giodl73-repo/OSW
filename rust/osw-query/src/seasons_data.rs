@@ -203,6 +203,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             source.extend(crate::madagascar_dimensions::seasonal_source_widths(bundle)?);
             source.extend(crate::azcc_onken_width::validated_widths(bundle)?);
             source.extend(crate::pacific_nec_nominal_width::validated_widths(bundle)?);
+            source.extend(crate::dimoune_section_widths::validated_widths(bundle)?);
         }
         if key == "routes" && crate::madagascar_coastal_curve::active(bundle) {
             source = crate::nwasc_reference_route::catalogue(bundle)["candidates"]
@@ -560,6 +561,7 @@ impl Store {
         supplemental.extend(crate::madagascar_dimensions::widths(&self.bundle));
         supplemental.extend(crate::azcc_onken_width::widths(&self.bundle));
         supplemental.extend(crate::pacific_nec_nominal_width::widths(&self.bundle));
+        supplemental.extend(crate::dimoune_section_widths::validated_widths(&self.bundle)?);
         let plans = phase_plans(&self.bundle, &docs)?;
         let mut sources = json!({});
         for (key, _, _) in SOURCES {
