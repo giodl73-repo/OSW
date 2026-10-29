@@ -1,6 +1,6 @@
 {
   "schema": "osw.current-gap-workflow-trigger-review.v1",
-  "status": "PASS_TWO_FOCUSED_EVENT_ISOLATION_TESTS_AND_BYTE_IDENTICAL_JOBS",
+  "status": "PASS_FOCUSED_TESTS_AND_LIVE_NONCONTROL_PUBLICATION_PROBE",
   "reason": "Unrelated scoped source publications started dormant phase workflows that cancelled the intended pending job in the shared concurrency group.",
   "changed_workflows": {
     ".github/workflows/baffin-bound-candidate.yml": {
@@ -34,5 +34,28 @@
   "test_file": "analysis/test_current_gap_workflow_triggers_v1.py",
   "test_sha256": "d43bc6686875bf466ac5e5a003c0a3a6c583eaaf1214303f9bc78971d7d288b7",
   "archive_matches_actual_parent_git_blobs": true,
-  "live_next_noncontrol_publication_probe": "Observe the next ordinary scoped source publication; old phase deliveries must be absent from its runs."
+  "live_next_noncontrol_publication_probe": "Observe the next ordinary scoped source publication; old phase deliveries must be absent from its runs.",
+  "live_probe": {
+    "source_commit": "d78d7828091ae37d67c2400874c1d75cc302aca7",
+    "audit_run_id": 40898856942,
+    "audit_attempt": 1,
+    "expected_phase_workflows_absent": [
+      "Sequential Baffin-bound delivery",
+      "Sequential Indian coastal context candidate",
+      "Sequential current-gap delivery"
+    ],
+    "observed_runs": [
+      {
+        "id": 40898883441,
+        "name": "validate",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 40898856942,
+        "name": "Audit installed parent for Pacific NEC product-axis diagnostics v1",
+        "conclusion": "success"
+      }
+    ],
+    "result": "PASS_NO_DORMANT_PHASE_WORKFLOWS_STARTED_FIRST_AUDIT_ATTEMPT_SUCCEEDED"
+  }
 }
