@@ -15,6 +15,7 @@ mod azores_section_review;
 mod azcc_onken_width;
 mod pacific_nec_nominal_width;
 mod indian_sec_model_grid_lengths;
+mod pacific_nec_product_axes;
 mod baffin_latitude_bound;
 mod basin_spans;
 mod caribbean_source_fields;
@@ -213,6 +214,7 @@ impl Store {
             ids.insert(name.clone(), index);
             fields.insert(name.clone(), keys);
         }
+        pacific_nec_product_axes::validate(&bundle)?;
         indian_sec_model_grid_lengths::validate(&bundle)?;
         equatorial_basin_identities::validate(&bundle)?;
         published_transports::validate(&bundle)?;
@@ -697,7 +699,10 @@ impl Store {
             Value::Null
         };
         let regional_model_scene = indian_sec_model_grid_lengths::query_scene(&query.collection, &matches, &self.bundle)?;
-        let chart_scene = if !regional_model_scene.is_null() {
+        let product_axis_scene = pacific_nec_product_axes::query_scene(&query.collection, &matches, &self.bundle)?;
+        let chart_scene = if !product_axis_scene.is_null() {
+            product_axis_scene
+        } else if !regional_model_scene.is_null() {
             regional_model_scene
         } else if query.collection == "current_basin_memberships" {
             equatorial_basin_identities::membership_scene(&matches, &self.bundle)

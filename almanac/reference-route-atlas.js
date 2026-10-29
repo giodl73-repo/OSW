@@ -3,7 +3,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
   const byId=id=>document.getElementById(id), svg=byId('route-atlas-map'), layer=byId('route-atlas-features');
   const world=[60,90,1480,740], minimumViewWidth=8, ns='http://www.w3.org/2000/svg';
   let view=[...world], drag=null, dragged=false, sectionGround=false, inventorySummary='Loading atlas inventory…', timelineCleanup=()=>{}, refreshDirectory=()=>{}, refreshStateMap=()=>{};
-  let restoredView=null,restoringSelection=false,selectedModelReadingId=null;
+  let restoredView=null,restoringSelection=false,selectedModelReadingId=null,selectedProductReadingId=null;
   const project=point=>window.oswCartography({op:'project',coordinates:point}).point;
   function make(tag,attrs,parent=layer) {
     const el=document.createElementNS(ns,tag);
@@ -47,7 +47,8 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
   }
   function clearSelection() {
     if(!restoringSelection)restoredView=null;
-    sectionGround=false;selectedModelReadingId=null;
+    sectionGround=false;selectedModelReadingId=null;selectedProductReadingId=null;
+    layer.querySelectorAll('[data-product-reading-id]').forEach(el=>{el.style.display=el.dataset.productDefault==='true'?'':'none';});
     timelineCleanup();timelineCleanup=()=>{};
     byId('route-atlas-model-lines')?.replaceChildren();
     layer.querySelectorAll('.selected,.route-atlas-related').forEach(el=>el.classList.remove('selected','route-atlas-related'));
@@ -66,7 +67,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
   function paragraph(parent,text) { const p=document.createElement('p');p.textContent=text;parent.append(p);return p; }
   function previewLink(parent,text,href) { const a=document.createElement('a');a.textContent=text;a.href=href;paragraph(parent,'').append(a); }
   function selectionAddress(id) {
-    const url=new URL(location.href);url.searchParams.delete('atlas-feature');url.searchParams.delete('atlas-route');url.searchParams.delete('atlas-geometry');url.searchParams.delete('atlas-date');url.searchParams.delete('atlas-series');url.searchParams.delete('atlas-section');url.searchParams.delete('atlas-view');url.searchParams.delete('atlas-width-month');url.searchParams.delete('atlas-width-season');url.searchParams.delete('atlas-model-reading');
+    const url=new URL(location.href);url.searchParams.delete('atlas-feature');url.searchParams.delete('atlas-route');url.searchParams.delete('atlas-geometry');url.searchParams.delete('atlas-date');url.searchParams.delete('atlas-series');url.searchParams.delete('atlas-section');url.searchParams.delete('atlas-view');url.searchParams.delete('atlas-width-month');url.searchParams.delete('atlas-width-season');url.searchParams.delete('atlas-model-reading');url.searchParams.delete('atlas-product-reading');
     if(id)url.searchParams.set('atlas-feature',id);
     return url;
   }
@@ -80,6 +81,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
     const widthSeason=panel.querySelector('.atlas-width-season:not([disabled])')?.value;
     if(id==='current:kuroshio'&&['winter','spring','summer','autumn'].includes(widthSeason))url.searchParams.set('atlas-width-season',widthSeason);
     if(selectedModelReadingId)url.searchParams.set('atlas-model-reading',selectedModelReadingId);
+    if(selectedProductReadingId)url.searchParams.set('atlas-product-reading',selectedProductReadingId);
     url.searchParams.set('atlas-view',encodedView());
     history.replaceState(null,'',url);
     let anchor=panel.querySelector('[data-atlas-share]');
@@ -113,10 +115,13 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
     const snapshot=sources['research/ocean-motion-dashboard.json'],currents=snapshot.entries.filter(r=>r.type==='named_current');
     const eddies=snapshot.entries.filter(r=>r.type==='named_eddy'||r.type==='operational_eddy_detection');
     inventorySummary=`${currents.length} named currents · ${catalog.counts.currents_with_route_candidates} with reference-route cards · ${eddies.filter(r=>r.type==='named_eddy').length} named eddies · ${eddies.filter(r=>r.type==='operational_eddy_detection').length} dated detections. Select a current, eddy or path.`;
+    const productScene=id=>window.oswSurfaceProductAxes.scene(window.oswAtlasSnapshot,id);
     const regionalScene=id=>window.oswRegionalModelAtlas.scene(window.oswAtlasSnapshot,id);
     const regionalTraceCount=currents.reduce((n,r)=>n+window.oswRegionalModelAtlas.nominal(regionalScene(r.id)).length,0);
     if(regionalTraceCount)inventorySummary+=` ${regionalTraceCount} nominal regional model traces (separate from reference routes).`;
-    const unlocated=currents.filter(r=>!r.map_features.some(f=>f.geometry.type==='Point'||f.geometry.type==='LineString')&&!window.oswRegionalModelAtlas.nominal(regionalScene(r.id)).length);
+    const productPathCount=currents.reduce((n,r)=>n+window.oswSurfaceProductAxes.paths(productScene(r.id)).length,0);
+    if(productPathCount)inventorySummary+=` ${productPathCount} experimental dated product paths, selected by month/window (separate from current counts and reference routes).`;
+    const unlocated=currents.filter(r=>!r.map_features.some(f=>f.geometry.type==='Point'||f.geometry.type==='LineString')&&!window.oswRegionalModelAtlas.nominal(regionalScene(r.id)).length&&!window.oswSurfaceProductAxes.paths(productScene(r.id)).length);
     if(unlocated.length)inventorySummary+=` ${unlocated.length} current identity has no source-supported map placement; use the selector or directory.`;
     if(snapshot.schema!=='osw.motion-dashboard.v1'||snapshot.fingerprint_version!==2||new Set(snapshot.entries.map(r=>r.id)).size!==snapshot.entries.length||snapshot.entries.some(r=>typeof r.id!=='string'||typeof r.fingerprint!=='string'||!r.section_fingerprints||!Array.isArray(r.map_features)))throw Error('Invalid atlas inventory snapshot');
     const seenKey='osw-motion-dashboard-seen-v2';
@@ -181,6 +186,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
     const sectionLayer=make('g',{id:'route-atlas-section-locators'});
     const modelLayer=make('g',{id:'route-atlas-model-lines'});
     const regionalModelLayer=make('g',{id:'route-atlas-regional-model-lines'});
+    const productLayer=make('g',{id:'route-atlas-product-axis-lines'});
     document.addEventListener('osw:kuroshio-frame',event=>{
       if(byId('route-atlas-select').value!=='current:kuroshio'||!event.detail.host.closest('#route-atlas-preview,#kuroshio-2024-model-card'))return;
       const frame=event.detail.frame;modelLayer.replaceChildren();
@@ -194,7 +200,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
     const datedRoles={dated_partial_geostrophic_streamline:'Partial geostrophic diagnostic',dated_analyzed_surface_front:'Analyzed surface front'};
     const datedFeatures=current=>current.map_features.filter(f=>f.geometry.type==='LineString'&&datedRoles[f.role]&&f.geometry_id&&f.observation_date);
     const datedLabel=f=>`${f.observation_date} · ${datedRoles[f.role]}${f.front_side?' · '+f.front_side.replaceAll('_',' '):''}`;
-    function chooseCurrent(current,geometryId,modelReadingId) {
+    function chooseCurrent(current,geometryId,modelReadingId,productReadingId) {
       const requestedRoute=new URL(location.href).searchParams.get('atlas-route');
       const requestedGeometry=geometryId||new URL(location.href).searchParams.get('atlas-geometry');
       const requestedDate=new URL(location.href).searchParams.get('atlas-date'),requestedSeries=new URL(location.href).searchParams.get('atlas-series');
@@ -202,9 +208,12 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
       const requestedWidthMonth=new URL(location.href).searchParams.get('atlas-width-month');
       const requestedWidthSeason=new URL(location.href).searchParams.get('atlas-width-season');
       const requestedModelReading=modelReadingId||new URL(location.href).searchParams.get('atlas-model-reading');
+      const requestedProductReading=productReadingId||new URL(location.href).searchParams.get('atlas-product-reading');
       clearSelection();byId('route-atlas-select').value=current.id;
       const regional=regionalScene(current.id),modelReading=window.oswRegionalModelAtlas.selection(regional,requestedModelReading);
       selectedModelReadingId=modelReading?.id||null;
+      const product=productScene(current.id),productReading=window.oswSurfaceProductAxes.selection(product,requestedProductReading);
+      selectedProductReadingId=productReading?.id||null;
       layer.querySelectorAll('[data-current-id]').forEach(el=>el.classList.toggle('selected',el.dataset.currentId===current.id));
       const paths=reportsById.get(current.id.replace(/^current:/,''))||[];
       const observedSeries=current.series.find(row=>row.evidence_role==='observed_sections_with_unadmitted_one_sided_span');
@@ -212,7 +221,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
       sectionGround=Boolean(monthlySeries)||!paths.length&&(sectionRecords.some(row=>'current:'+row.current_id===current.id)||Boolean(observedSeries));
       const point=current.map_features.find(f=>f.geometry.type==='Point')?.geometry.coordinates;
       const modelScene=current.id==='current:kuroshio'?window.oswAtlasSnapshot?.kuroshio_daily_scene:null;
-      fit(modelReading?.geometry.coordinates||modelScene?.extent_lon_lat|| (paths.length?paths[0].report.coordinates_lon_lat:point?[point]:[]));
+      fit((productReading?window.oswSurfaceProductAxes.segments(productReading).flat():null)||modelReading?.geometry.coordinates||modelScene?.extent_lon_lat|| (paths.length?paths[0].report.coordinates_lon_lat:point?[point]:[]));
       const link=byId('route-atlas-card-link');link.hidden=false;link.href=paths.length?'#'+paths[0].row.id:current.object_url;
       link.textContent=paths.length?'Open current map card ↓':'Open current record — route pending';
       if(modelScene){link.href='#kuroshio-2024-model-card';link.textContent='Open dated regional model map card ↓';}
@@ -228,6 +237,13 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
       }
       const panel=preview(current.label);
       if(regional)window.renderRegionalModelLengths(panel,regional);
+      if(product)timelineCleanup=window.renderSurfaceProductAxes(panel,product,null,{readingId:productReading?.id,onSelect:row=>{
+        selectedProductReadingId=row.id;
+        productLayer.querySelectorAll('[data-product-reading-id]').forEach(line=>{line.style.display=line.dataset.productReadingId===row.id?'':'none';line.classList.toggle('selected',line.dataset.productReadingId===row.id);});
+        link.href=current.object_url;link.textContent='Open monthly product evidence card →';
+        byId('route-atlas-status').textContent=`${current.label} · ${window.oswSurfaceProductAxes.date(row)} · ${window.oswSurfaceProductAxes.windowLabel(row)} · experimental regional product path; physical whole-current dimensions unresolved.`;
+        shareSelection(panel,current.id);
+      }});
       window.renderEquatorialBasinIdentities(panel,window.oswAtlasSnapshot.basin_identity_scenes?.[current.id]);
       const dated=datedFeatures(current);
       let showDated;
@@ -476,6 +492,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
         line.dataset.currentId=current.id;interactive(line,current.label+' — editorial reference route',()=>chooseCurrent(current));
       }
       window.oswRegionalModelAtlas.draw({scene:regionalScene(current.id),currentId:current.id,parent:regionalModelLayer,make,pathData,interactive,onSelect:row=>chooseCurrent(current,undefined,row.id)});
+      window.oswSurfaceProductAxes.draw({scene:productScene(current.id),currentId:current.id,parent:productLayer,make,pathData,interactive,onSelect:row=>chooseCurrent(current,undefined,undefined,row.id)});
       for(const feature of datedFeatures(current)) {
         const line=make('path',{d:pathData(feature.geometry.coordinates),class:'route-atlas-dated-line '+feature.role,'vector-effect':'non-scaling-stroke'},datedLayer);
         line.dataset.currentId=current.id;line.dataset.geometryId=feature.geometry_id;line.dataset.atlasLabel=current.label+' · '+datedLabel(feature);

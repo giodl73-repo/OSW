@@ -177,6 +177,9 @@
       const sourceViews=$('dashboard-source-views');sourceViews.replaceChildren();
       for(const source of data.proposed_source_views||[]){const li=document.createElement('li');link(source.label,source.url,li);li.append(document.createTextNode(' · '+source.status+' '));link('Query source inventory',source.query_url,li);sourceViews.append(li)}
       $('dashboard-source-section').hidden=!sourceViews.children.length;
+      document.getElementById('dashboard-product-axis-status')?.remove();
+      const diagnostic=data.surface_product_axis_diagnostics;
+      if(diagnostic){const section=element('section',null,$('dashboard-proposals').parentElement);section.id='dashboard-product-axis-status';element('h3','Experimental product diagnostics',section);element('p',`${diagnostic.monthly_path_count} monthly paths · ${diagnostic.series_count} analysis windows · ${diagnostic.method_scenario_count} related operator scenarios · ${diagnostic.withheld_scenario_count} withheld scenarios. Physical measurement coverage is unchanged.`,section);link(diagnostic.label,diagnostic.object_url,section);link('Explore monthly paths on the global atlas',`reference-routes.html?atlas-feature=${encodeURIComponent(diagnostic.entity_id)}#route-atlas`,section);}
       const proposals=$('dashboard-proposals');proposals.replaceChildren();link(`${data.proposed_current_additions} additional current names await inventory review`,'reference-routes.html#inventory-addition-cards',proposals);
       await render();
     } catch(error) { $('dashboard-status').textContent=`Update check failed: ${error.message}.${data?' Showing the previously loaded snapshot.':''}`; }
