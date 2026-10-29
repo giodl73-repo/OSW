@@ -425,6 +425,7 @@ mod tests {
     fn fixture() -> Bundle {
         let doc = document();
         let mut b = Bundle {
+            schema: "osw.query-bundle.v1".into(),
             manifest: json!({"input_sha256":{}}),
             collections: BTreeMap::new(),
         };
