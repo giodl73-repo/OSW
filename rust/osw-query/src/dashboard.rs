@@ -51,7 +51,8 @@ fn presentation(bundle: &Bundle) -> Result<Value, String> {
     let doc = crate::wicc_winter_reference::dashboard_document(bundle, doc)?;
     let doc = crate::mean_core_sections::dashboard_document(bundle, doc)?;
     let doc = crate::madagascar_dimensions::dashboard_document(bundle, doc)?;
-    crate::azcc_onken_width::dashboard_document(bundle, doc)
+    let doc = crate::azcc_onken_width::dashboard_document(bundle, doc)?;
+    crate::equatorial_basin_identities::dashboard_document(bundle, doc)
 }
 
 pub fn validate(bundle: &Bundle) -> Result<(), String> {
@@ -59,7 +60,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     if bundle.manifest.get("dashboard_receipt").is_none() {
         return Ok(());
     }
-    let doc = document(bundle)?;
+    let doc = crate::equatorial_basin_identities::dashboard_document(bundle, document(bundle)?)?;
     if doc["schema"] != "osw.motion-dashboard.v1" || doc["fingerprint_version"] != 2 {
         return Err("Unsupported dashboard snapshot".into());
     }
@@ -255,7 +256,8 @@ impl Store {
         )
     }
     pub fn dashboard_snapshot(&self) -> Result<Value, String> {
-        let snapshot = if crate::satellite_core_widths::active(&self.bundle)
+        let snapshot = if crate::equatorial_basin_identities::active(&self.bundle)
+            || crate::satellite_core_widths::active(&self.bundle)
             || crate::wicc_review_width::active(&self.bundle)
             || crate::eacc_cited_width::active(&self.bundle)
         {

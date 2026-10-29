@@ -34,6 +34,7 @@ fn records() -> Vec<(&'static str, Value)> {
     result
 }
 pub fn validate(bundle: &Bundle) -> Result<(), String> {
+    crate::equatorial_basin_identities::validate(bundle)?;
     let required = bundle.manifest["input_sha256"][PATH].is_string()
         || bundle
             .collections
@@ -100,6 +101,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         expected.push(crate::nwasc_admission::document()["entity"].clone());
     }
     expected.extend(crate::current_gap_admissions::entities(bundle));
+    expected.extend(crate::equatorial_basin_identities::entities(bundle));
     if currents.len() != expected.len() || expected.iter().any(|r| !currents.contains(&r)) {
         return Err("Incomplete effective current identity inventory".into());
     }
@@ -134,6 +136,9 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     Ok(())
 }
 pub fn planning_source(current: &str, manifest: &Value) -> Option<(Value, &'static str)> {
+    if let Some(source) = crate::equatorial_basin_identities::planning_source(current, manifest) {
+        return Some(source);
+    }
     if let Some(source) = crate::current_gap_admissions::planning_source(current, manifest) {
         return Some(source);
     }

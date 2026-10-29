@@ -106,6 +106,10 @@ impl Store {
                 );
             }
         }
+        if let Some(rows) = self.bundle.collections.get("current_basin_memberships") {
+            let related: Vec<_> = rows.iter().filter(|r| r["entity_id"] == id || r["family_entity_id"] == id).collect();
+            if !related.is_empty() { data["current_basin_memberships"] = json!(related); }
+        }
         let footprints = data["named_eddy_footprint_candidates"]
             .as_array()
             .ok_or("Missing footprint inventory")?
@@ -222,9 +226,9 @@ impl Store {
             footprint_plots[candidate_id]["source_panel_overlay"] =
                 crate::ursa_contour::overlay(&self.bundle, candidate)?;
         }
-        Ok(
+        Ok(crate::equatorial_basin_identities::object_projection(&self.bundle, id,
             json!({"ok":true,"engine":"rust-osw-query-v1","id":id,"bundle_sha256":self.metadata()["bundle_sha256"],"collections":data,"detection_plot":detection_plot,"footprint_plots":footprint_plots,"source_panel_scene":crate::eddy_source_panels::for_owner(&self.bundle,id)?}),
-        )
+        ))
     }
 }
 

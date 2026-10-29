@@ -52,6 +52,13 @@ window.oswCharts=(()=>{
   }
   function render(scene,inspect){
     stopAll();stops=[];
+    if(scene?.kind==='equatorial_basin_identity_context'){
+      document.getElementById('query-chart-section').hidden=false;root().replaceChildren();
+      document.getElementById('query-chart-scope').textContent=scene.scope;
+      document.getElementById('query-chart-legend').hidden=true;
+      document.getElementById('chart-title').textContent=scene.title;
+      window.renderEquatorialBasinIdentities(root(),scene,inspect);return;
+    }
     if(scene?.kind==='published_current_dimension_evidence'){document.getElementById('query-chart-section').hidden=false;root().replaceChildren();document.getElementById('query-chart-scope').textContent=scene.scope;document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent=scene.title;window.renderCurrentDimensionEvidence(root(),scene,inspect);return;}
     if(scene?.kind==='published_mean_core_sections'){document.getElementById('query-chart-section').hidden=false;root().replaceChildren();document.getElementById('query-chart-scope').textContent=scene.scope;document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent=scene.title;window.renderMeanCoreSections(root(),scene,inspect);return;}
     document.getElementById('query-chart-section').hidden=!scene;root().replaceChildren();if(!scene)return;

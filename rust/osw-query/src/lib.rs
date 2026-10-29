@@ -20,6 +20,7 @@ pub mod cartography;
 mod charts;
 mod coastal_composite_widths;
 mod current_catalogue;
+mod equatorial_basin_identities;
 mod current_gap_admissions;
 mod current_length_bounds;
 mod current_measurements;
@@ -210,6 +211,7 @@ impl Store {
             ids.insert(name.clone(), index);
             fields.insert(name.clone(), keys);
         }
+        equatorial_basin_identities::validate(&bundle)?;
         published_transports::validate(&bundle)?;
         published_current_speeds::validate(&bundle)?;
         mean_core_sections::validate(&bundle)?;
@@ -690,7 +692,9 @@ impl Store {
         } else {
             Value::Null
         };
-        let chart_scene = if !daily_scene.is_null() {
+        let chart_scene = if query.collection == "current_basin_memberships" {
+            equatorial_basin_identities::membership_scene(&matches, &self.bundle)
+        } else if !daily_scene.is_null() {
             daily_scene
         } else if query.collection == "diagnostics"
             && !agulhas_reported::query(&matches, &self.bundle).is_null()

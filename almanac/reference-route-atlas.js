@@ -214,6 +214,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
       if(changed(current))byId('route-atlas-status').textContent+=' '+changeDescription(current);
       if(!paths.length&&!point)byId('route-atlas-status').textContent=`${current.label} · no source-supported map placement or reference route. Use its current record for identity and separately scoped source evidence.`;
       const panel=preview(current.label);
+      window.renderEquatorialBasinIdentities(panel,window.oswAtlasSnapshot.basin_identity_scenes?.[current.id]);
       const dated=datedFeatures(current);
       let showDated;
       const classification=document.createElement('details');classification.className='route-atlas-classification';panel.append(classification);
@@ -386,7 +387,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
           }
           if(note.measurement_scope_assessment) {
             const audit=current.scope_audits?.find(row=>row.current_id===note.current_id&&row.schema==='osw.current-measurement-object-scope.v1');
-            if(audit) {
+            if(audit && !window.oswAtlasSnapshot.basin_identity_scenes?.[current.id]) {
               const figure=document.createElement('figure');figure.className='measurement-object-scope';figure.style.margin='1rem 0';reviews.append(figure);
               const image=document.createElement('img');image.src='../'+audit.figure;image.alt=audit.figure_alt;image.style.width='100%';image.style.height='auto';figure.append(image);
               const caption=document.createElement('figcaption');caption.textContent='Measurement relationships only. Member values stay with their owners; proposals and related names are not confirmed aliases.';figure.append(caption);
@@ -400,6 +401,8 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
               }
               previewLink(reviews,'Inspect measurement scope data',`query.html?source-q=${encodeURIComponent(JSON.stringify({document:note.audit_file,pointer:'',limit:100}))}`);
               previewLink(reviews,'Open relationship diagram at full size','../'+audit.figure);
+            } else if(audit) {
+              previewLink(reviews,'Inspect historical family scope assessment',`query.html?source-q=${encodeURIComponent(JSON.stringify({document:note.audit_file,pointer:'',limit:100}))}`);
             }
           }
           if(current.id==='current:red-sea-saline-overflow') {

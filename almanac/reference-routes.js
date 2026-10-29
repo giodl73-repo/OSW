@@ -149,7 +149,9 @@
     const coastalPath='research/indian-current-identity-query-contract-v1.json';
     const coastal=window.oswAtlasSnapshot?.sources_json[coastalPath]
       ? await load('../'+coastalPath) : null;
-    const acceptedEntries=[...admissions.entries,...(coastal?.additions.current_identity_admissions||[])];
+    const basin=window.oswAtlasSnapshot.basin_identity_contract;
+    const basinAdmissions=basin?.additions.current_identity_admissions||[];
+    const acceptedEntries=[...admissions.entries,...(coastal?.additions.current_identity_admissions||[]),...basinAdmissions];
     const listed=new Set(value.entries.map(row=>row.proposed_id));
     const coastalCards=(coastal?.additions.current_identity_admissions||[])
       .filter(admitted=>!listed.has(admitted.proposal_id)).map(admitted=>{
@@ -165,12 +167,19 @@
       });
     const asar=await load('../research/hansen-2011-asar-surface-width-admissions.json');
     const measured=await load('../research/southern-east-madagascar-prose-dimension-admissions.json').catch(()=>null);
-    const cardRows=[...value.entries,...coastalCards];
+    const basinCards=basinAdmissions.filter(admitted=>!listed.has(admitted.proposal_id)).map(admitted=>({
+      proposed_id:admitted.proposal_id,name:admitted.entity.label,proposed_kind:'named current',
+      identity_scope:admitted.entity.identity_scope_note,
+      remaining_gates:[admitted.route_planning_decision.next_action,
+        'Collect separately scoped lengths, widths, dated observations and seasonal ranges.']
+    }));
+    const cardRows=[...value.entries,...coastalCards,...basinCards];
     for (const row of cardRows) {
       const admitted=acceptedEntries.find(r=>r.proposal_id===row.proposed_id);
       const numeric=measured?.current_id===row.proposed_id?measured:null;
       const card = node("section", null, byId("inventory-addition-cards")); card.id = `inventory-addition-${row.proposed_id}`; card.className = admitted?'current-admission-card':'inventory-addition-card'; card.tabIndex = -1;
       node("h3", row.name, card);
+      window.renderEquatorialBasinIdentities(card,window.oswAtlasSnapshot.basin_identity_scenes?.[admitted?.entity_id]);
       const navigation = node("p", null, card);
       link(admitted?'Link to this current':'Link to this proposed current', `#${card.id}`, navigation);
       navigation.append(document.createTextNode(" · "));

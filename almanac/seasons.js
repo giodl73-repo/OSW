@@ -286,6 +286,12 @@
   }
   function renderCurrent(requestedPhase = null) {
     stop(); const id = byId("season-current").value;
+    let basinPanel=byId('season-basin-identities');
+    if(!basinPanel){basinPanel=document.createElement('section');basinPanel.id='season-basin-identities';byId('season-range').after(basinPanel);}
+    basinPanel.replaceChildren();
+    const basinScene=window.oswSeasonSnapshot.basin_identity_scenes?.['current:'+id];
+    basinPanel.hidden=!basinScene;
+    window.renderEquatorialBasinIdentities(basinPanel,basinScene);
     const plan=window.oswSeasonSnapshot.phase_plans[id];
     if(!plan)throw Error('No checked seasonal phase plan for this current');
     const widths=new Map(inventory.measurements.map(row=>[row.id,row])),frames=new Map(seasonalRoutes.frames.map(row=>[row.id,row])),directions=new Map(directionAudit.phases.map(row=>[row.id,row]));
