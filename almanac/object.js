@@ -111,6 +111,7 @@ loadObjectView().then(data => {
     identity.replaceChildren();
     window.renderEquatorialBasinIdentities(identity,window.oswObjectView.basin_identity_context_scene);
     window.renderCurrentDimensionEvidence(identity,window.oswObjectView.current_dimension_evidence_scene);
+    window.renderRegionalModelLengths(identity,window.oswObjectView.regional_model_length_scene);
     window.renderEddySourcePanels(identity,window.oswObjectView.source_panel_scene);
     if (["named_current", "named_eddy", "operational_eddy_detection"].includes(item.type)) {
       link("Explore on the current atlas", `reference-routes.html?atlas-feature=${encodeURIComponent(item.id)}#route-atlas`, element("p", null, identity));
