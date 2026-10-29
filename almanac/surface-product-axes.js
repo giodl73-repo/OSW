@@ -63,7 +63,7 @@ window.renderSurfaceProductAxes=function(parent,scene,inspect,options={}){
     function fillMonths(wanted){monthSelect.replaceChildren();for(const r of months()){const o=node('option',date(r),monthSelect);o.value=r.id;}monthSelect.value=months().some(r=>r.id===wanted)?wanted:months()[0].id;}
     function render(){
       active=readings.find(r=>r.id===monthSelect.value);if(!active)return;
-      const width=Math.max(220,panel.getBoundingClientRect?.().width||720),height=Math.max(220,width*.38),left=48,right=width-20,top=20,bottom=height-38;
+      const width=Math.max(180,map.getBoundingClientRect?.().width||panel.clientWidth||720),height=Math.max(220,width*.38),left=64,right=width-28,top=20,bottom=height-38;
       const x=lon=>left+(lon-130)/110*(right-left),y=lat=>top+(26-lat)/22*(bottom-top);
       map.replaceChildren();map.setAttribute('viewBox',`0 0 ${width} ${height}`);
       for(const lon of (width<420?[130,180,240]:[130,150,180,210,240])){svgNode('line',{x1:x(lon),x2:x(lon),y1:top,y2:bottom,stroke:'#b8ccd4'},map);svgNode('text',{x:x(lon),y:height-12,'text-anchor':'middle','font-size':13},map,lon<=180?`${lon}°E`:`${360-lon}°W`);}
