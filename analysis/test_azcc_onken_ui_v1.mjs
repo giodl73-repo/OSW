@@ -35,7 +35,7 @@ const filtered=new Element('div');context.window.renderCurrentDimensionEvidence(
 assert.equal(all(filtered).filter(n=>n.attributes['data-dimension-width-id']).length,1);
 assert(!text(filtered).includes('About 110 km'));
 for(const path of ['almanac/query.html','almanac/reference-routes.html','almanac/seasons.html']){
-  assert(fs.readFileSync(path,'utf8').includes('current-dimension-evidence.js?v=azcc-onken-1'));
+  assert(/<script[^>]+src="current-dimension-evidence\.js\?v=[^"]+"/.test(fs.readFileSync(path,'utf8')));
 }
 assert.deepEqual(scene.width_records,[...contract.prior_records.widths,contract.width_record]);
 console.log('PASS: two separate widths on a common scale, original source pointers, filtered cards, unknown ranges, no event promotion and explicit historical-study link. Actual browser layout pending.');

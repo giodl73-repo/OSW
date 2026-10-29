@@ -16,6 +16,7 @@ mod azcc_onken_width;
 mod pacific_nec_nominal_width;
 mod indian_sec_model_grid_lengths;
 mod pacific_nec_product_axes;
+mod dimoune_section_widths;
 mod baffin_latitude_bound;
 mod basin_spans;
 mod caribbean_source_fields;
@@ -215,6 +216,7 @@ impl Store {
             fields.insert(name.clone(), keys);
         }
         pacific_nec_product_axes::validate(&bundle)?;
+        dimoune_section_widths::validate(&bundle)?;
         indian_sec_model_grid_lengths::validate(&bundle)?;
         equatorial_basin_identities::validate(&bundle)?;
         published_transports::validate(&bundle)?;
@@ -794,6 +796,7 @@ impl Store {
                 madagascar_dimensions::width_scene(&matches, &self.bundle),
                 azcc_onken_width::width_scene(&matches, &self.bundle),
                 pacific_nec_nominal_width::width_scene(&matches, &self.bundle),
+                dimoune_section_widths::width_scene(&matches, &self.bundle),
                 selected_core_widths::scene(&matches),
                 satellite_core_widths::scene(&matches),
                 wicc_review_width::scene(&matches),

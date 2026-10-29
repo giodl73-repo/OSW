@@ -39,6 +39,13 @@ window.renderCurrentDimensionEvidence=function(parent,scene,inspect,options={}){
     }
     node('p',row.range_interpretation||(nominal?'Nominal latitude-band conversion; paired physical edges and annual variability remain unknown.':'Regional survey summary; variability range unspecified.'),card);
     node('p',row.vertical_scope||row.layer||'Fixed width layer: Unknown',card);
+    if(row.mean_section_context){
+      const context=row.mean_section_context,period=context.averaging_period_months;
+      node('p',`${context.section_id} / ${context.source_flow_label}${period?` · Mean velocity profile, ${period.start} to ${period.end}`:''}`,card);
+      if(row.boundary_rule)node('p',row.boundary_rule,card);
+    }
+    if(row.source_discrepancy_note)node('p',`Source discrepancy: ${row.source_discrepancy_note}`,card);
+    if(row.source_quality_note)node('p',row.source_quality_note,card);
     node('p','Seasonal width range: Unknown. Numerical uncertainty: Unknown.',card);
     const action=node('button','Inspect width record',card);action.type='button';action.onclick=()=>inspect('widths',row.id);sourceLink(row,card);
   }
@@ -55,5 +62,5 @@ window.renderCurrentDimensionEvidence=function(parent,scene,inspect,options={}){
   }
   link(scene.source_label||'Original mooring study',scene.source_url,node('p',undefined,panel));
   link('Full evidence context chart','../'+scene.figure,node('p',undefined,panel));
-  link('Open current atlas','reference-routes.html?atlas-feature='+encodeURIComponent(scene.entity_id)+'#route-atlas',node('p',undefined,panel));
+  if(scene.entity_id)link('Open current atlas','reference-routes.html?atlas-feature='+encodeURIComponent(scene.entity_id)+'#route-atlas',node('p',undefined,panel));
 };

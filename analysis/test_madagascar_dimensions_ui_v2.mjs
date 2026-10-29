@@ -38,9 +38,9 @@ assert.ok(!Object.hasOwn(collapsed.children[0].attributes,'open'));
 const empty=new Element('div');context.window.renderCurrentDimensionEvidence(empty,{...scene,width_records:[],event_records:[]});assert.equal(empty.children.length,0);
 for(const page of ['query','reference-routes','seasons']){
  const html=fs.readFileSync(`almanac/${page}.html`,'utf8');
- assert.ok(html.includes('current-dimension-evidence.js?v=azcc-onken-1'));
+ assert.ok(html.includes('current-dimension-evidence.js?'));
  const consumer=page==='query'?'query-charts.js?':`${page}.js?`;
- assert.ok(html.indexOf('current-dimension-evidence.js?v=azcc-onken-1')<html.indexOf(consumer));
+ assert.ok(html.indexOf('current-dimension-evidence.js?')<html.indexOf(consumer));
 }
 const schemaContext={window:{}};vm.runInNewContext(fs.readFileSync('almanac/dashboard-evidence-schema.js','utf8'),schemaContext);
 const schema=schemaContext.window.oswDashboardEvidenceSchema;
@@ -54,5 +54,7 @@ for(const value of [undefined,null,-1,1.5,'8',NaN])assert.equal(schema.validCapa
 const oldGroups=JSON.parse(fs.readFileSync('research/eac-mean-core-query-contract-v1.json','utf8')).dashboard_after;
 assert(schema.validFingerprints(oldGroups.section_fingerprints,groups));assert(schema.validCapabilities(oldGroups.capabilities,labels,{}));
 const html=fs.readFileSync('almanac/dashboard.html','utf8');
-assert(html.indexOf('dashboard-evidence-schema.js?v=madagascar-dimensions-1')<html.indexOf('dashboard.js?v=madagascar-dimensions-1'));
+const scriptNames=[...html.matchAll(/<script[^>]+src="([^"]+)"/g)].map(match=>match[1].split('?')[0]);
+assert(scriptNames.indexOf('dashboard-evidence-schema.js')>=0);
+assert(scriptNames.indexOf('dashboard-evidence-schema.js')<scriptNames.indexOf('dashboard.js'));
 console.log('PASS: width intervals, unknowns, filtered event cards, chronological order, source/Inspect links, collapsed atlas context, consumer order and optional dashboard fields. Actual browser layout remains pending.');
