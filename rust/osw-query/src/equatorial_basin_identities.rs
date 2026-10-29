@@ -5,11 +5,11 @@ use sha2::{Digest, Sha256};
 use std::collections::BTreeSet;
 use std::sync::OnceLock;
 
-pub(crate) const FILE: &str = "research/equatorial-basin-identity-query-contract-v2.json";
-pub(crate) const RAW: &str = include_str!("../../../research/equatorial-basin-identity-query-contract-v2.json");
+pub(crate) const FILE: &str = "research/equatorial-basin-identity-query-contract-v3.json";
+pub(crate) const RAW: &str = include_str!("../../../research/equatorial-basin-identity-query-contract-v3.json");
 pub(crate) const PLANNING: &str = "research/equatorial-basin-reference-route-planning-v1.json";
 const PLANNING_RAW: &str = include_str!("../../../research/equatorial-basin-reference-route-planning-v1.json");
-const KEY: &str = "equatorial_basin_identities_v2";
+const KEY: &str = "equatorial_basin_identities_v3";
 const MEMBERSHIPS: &str = "current_basin_memberships";
 
 fn pin(raw: &str) -> String { format!("{:x}", Sha256::digest(raw.as_bytes())) }
@@ -25,7 +25,7 @@ fn member_ids() -> Vec<&'static str> {
 }
 fn owns(row: &Value) -> bool {
     member_ids().iter().any(|id| {
-        ["id", "entity_id", "subject_id", "object_id"].iter().any(|field| row[*field] == *id)
+        ["id", "entity_id", "subject_id", "object_id", "child_id", "parent_id"].iter().any(|field| row[*field] == *id)
             || row["current_id"] == id.strip_prefix("current:").unwrap()
     })
 }
@@ -54,6 +54,9 @@ fn checked(bundle: &Bundle) -> Result<bool, String> {
         if bundle.manifest["input_sha256"][path] != *digest { return Err(fail()); }
     }
     if bundle.manifest["input_sha256"][PLANNING] != pin(PLANNING_RAW) { return Err(fail()); }
+    for key in ["node_count", "link_count"] {
+        if bundle.manifest["taxonomy"][key] != doc["taxonomy_counts"]["after"][key] { return Err(fail()); }
+    }
     let additions = doc["additions"].as_object().ok_or_else(fail)?;
     for (name, expected) in additions {
         let expected = expected.as_array().ok_or_else(fail)?;
@@ -88,6 +91,18 @@ fn checked(bundle: &Bundle) -> Result<bool, String> {
     }
     Ok(true)
 }
+pub(crate) fn taxonomy_links(manifest: &Value) -> Result<Vec<Value>, String> {
+    if manifest[KEY].is_null() { return Ok(vec![]); }
+    if manifest[KEY] != marker() || manifest["input_sha256"][FILE] != pin(RAW) {
+        return Err("Invalid basin taxonomy extension receipt".into());
+    }
+    for key in ["node_count", "link_count"] {
+        if manifest["taxonomy"][key] != document()["taxonomy_counts"]["after"][key] {
+            return Err("Invalid basin taxonomy extension counts".into());
+        }
+    }
+    Ok(document()["additions"]["taxonomy_links"].as_array().unwrap().clone())
+}
 pub(crate) fn validate(bundle: &Bundle) -> Result<(), String> { checked(bundle).map(|_| ()) }
 pub(crate) fn entities(bundle: &Bundle) -> Vec<Value> {
     if active(bundle) { document()["additions"]["entities"].as_array().unwrap().clone() } else { vec![] }
@@ -106,11 +121,11 @@ pub(crate) fn dashboard_document(bundle: &Bundle, mut doc: Value) -> Result<Valu
     let mut updated = old.clone();
     updated.extend(document()["additions"]["objects"].as_array().unwrap().clone());
     let previous = doc["snapshot_fingerprint"].as_str().ok_or("Missing preceding dashboard fingerprint")?;
-    let fingerprint = pin(&format!("osw.equatorial-basin-identities.v2\n{previous}\n{}\n", pin(RAW)));
+    let fingerprint = pin(&format!("osw.equatorial-basin-identities.v3\n{previous}\n{}\n", pin(RAW)));
     let pending = doc["proposed_current_additions"].as_u64().and_then(|v| v.checked_sub(5)).ok_or("Invalid preceding proposal count")?;
     doc["entries"] = json!(updated); doc["counts"]["named_current"] = json!(111);
     doc["proposed_current_additions"] = json!(pending); doc["snapshot_fingerprint"] = json!(fingerprint);
-    doc["equatorial_basin_identity_projection_v2"] = json!({"contract_file":FILE,"contract_sha256":pin(RAW),"new_identities":5,"new_measurements":0});
+    doc["equatorial_basin_identity_projection_v3"] = json!({"contract_file":FILE,"contract_sha256":pin(RAW),"new_identities":5,"new_measurements":0});
     Ok(doc)
 }
 pub(crate) fn catalogue_projection(bundle: &Bundle, mut catalogue: Value) -> Result<Value, String> {
@@ -132,7 +147,7 @@ pub(crate) fn catalogue_projection(bundle: &Bundle, mut catalogue: Value) -> Res
     }
     catalogue["counts"]["route_decision_records"] = json!(count);
     catalogue["effective_accepted_current_count"] = catalogue["counts"]["accepted_current_names"].clone();
-    catalogue["equatorial_basin_identity_projection_v2"] = json!({"contract_file":FILE,"contract_sha256":pin(RAW),"new_route_plans":5,"new_routes":0});
+    catalogue["equatorial_basin_identity_projection_v3"] = json!({"contract_file":FILE,"contract_sha256":pin(RAW),"new_route_plans":5,"new_routes":0});
     Ok(catalogue)
 }
 fn scene(selected: Vec<&Value>, selected_owner: Option<&str>) -> Value {
@@ -198,7 +213,86 @@ mod tests {
         }
         b.collections.insert("sources".into(), doc["prior_glossary_sources"].as_array().unwrap().clone());
         for (path,digest) in doc["input_sha256"].as_object().unwrap() { b.manifest["input_sha256"][path] = digest.clone(); }
-        b.manifest["input_sha256"][FILE] = json!(pin(RAW)); b.manifest[KEY] = marker(); b
+        b.manifest["input_sha256"][FILE] = json!(pin(RAW)); b.manifest[KEY] = marker();
+        b.manifest["taxonomy"] = json!({"node_count":251,"link_count":25}); b
+    }
+    //Synthetic historical nodes and ledger receipts exercise the complete taxonomy validator.
+    //This fixture is not a reconstruction of the installed ocean observations.
+    fn full_taxonomy_fixture() -> Bundle {
+        let mut b = fixture();
+        let mut entries = Vec::new();
+        let mut historical_links = Vec::new();
+        let parent = document()["prior_family_records"]["current:north-equatorial"]["entities"][0].clone();
+        for i in 0..244 {
+            let short = format!("fixture-taxonomy-{i}");
+            let id = format!("current:{short}");
+            let label = format!("Historical taxonomy fixture {i}");
+            let node = json!({"id":id,"label":label,"type":"named_current","identity_level":"current",
+                "setting":"equatorial","time_behavior":"persistent_variable","basin":"Fixture basin"});
+            b.collections.get_mut("entities").unwrap().push(node.clone());
+            b.collections.get_mut("objects").unwrap().push(node);
+            if i < 20 {
+                entries.push(json!({"id":short,"part_of_system":"north-equatorial","name_source":"fixture"}));
+                historical_links.push(json!({"id":format!("taxonomy-link:{short}"),"child_id":id,"parent_id":parent["id"],
+                    "child_label":label,"parent_label":parent["label"],"predicate":"basin_or_subfamily_member_of",
+                    "status":"existing_editorial_ledger_assignment_not_new_canonical_relation",
+                    "source_file":"research/ocean-current-almanac.json","source_pointer":format!("/entries/{i}/part_of_system"),
+                    "evidence_role":"existing_editorial_parent_assignment","naming_source_url":"https://example.invalid/fixture",
+                    "naming_source_is_parent_relation_evidence":false,"physical_connectivity_eligible":false,
+                    "measurement_inheritance_eligible":false,"scope":crate::taxonomy::SCOPE}));
+            }
+        }
+        historical_links.extend(rows(&b,"taxonomy_links").iter().cloned());
+        b.collections.insert("taxonomy_links".into(),historical_links);
+        let vocabulary = json!({"axes":{"identity_level":{"current":{},"family":{}}}});
+        let ledger = json!({"entries":entries,"sources":{"fixture":"https://example.invalid/fixture"}});
+        let mut receipts = Vec::new();
+        for (file, value) in [("research/ocean-current-almanac.json",ledger),
+                               ("research/ocean-motion-taxonomy.json",vocabulary.clone())] {
+            let raw = value.to_string(); let hash = pin(&raw);
+            b.manifest["input_sha256"][file] = json!(hash);
+            receipts.push(json!({"file":file,"source_json":raw,"sha256":hash}));
+        }
+        b.manifest["taxonomy"] = json!({"schema":"osw.query-taxonomy.v1","scope":crate::taxonomy::SCOPE,
+            "complete_physical_taxonomy":false,"measurement_inheritance_eligible":false,
+            "node_count":251,"link_count":25,"source_receipts":receipts,"identity_levels":vocabulary["axes"]["identity_level"]});
+        b
+    }
+    #[test] fn basin_members_participate_in_general_taxonomy_selection_and_context() {
+        let b = fixture();
+        for (root, relation, count) in [("current:north-equatorial","children",2),
+            ("current:south-equatorial","descendants",3),("current:pacific-north-equatorial","ancestors",1)] {
+            let selection = crate::taxonomy::Selection { root_id:root.into(),relation:relation.into(),include_root:false };
+            assert_eq!(crate::taxonomy::select(&b.collections,&selection).unwrap().len(),count);
+        }
+        let context = crate::taxonomy::context(&b.collections,"current:indian-south-equatorial");
+        assert_eq!(context["parents"],json!([document()["additions"]["taxonomy_links"][4]]));
+        assert_eq!(context["measurement_inheritance_eligible"],false);
+        assert_eq!(context["physical_completeness"],false);
+    }
+    #[test] fn complete_taxonomy_validator_accepts_twenty_preserved_and_five_new_links() {
+        let b = full_taxonomy_fixture();
+        validate(&b).unwrap();
+        crate::taxonomy::validate(&b.collections,&b.manifest).unwrap();
+        assert_eq!(rows(&b,"objects").len(),251);
+        assert_eq!(rows(&b,"taxonomy_links").len(),25);
+        let mut bad = full_taxonomy_fixture();
+        bad.manifest["taxonomy"]["source_receipts"][0]["source_json"] = json!("{}");
+        assert!(crate::taxonomy::validate(&bad.collections,&bad.manifest).is_err());
+        let mut bad = full_taxonomy_fixture();
+        bad.collections.get_mut("taxonomy_links").unwrap().remove(0);
+        assert!(crate::taxonomy::validate(&bad.collections,&bad.manifest).is_err());
+    }
+    #[test] fn taxonomy_counts_and_coherent_link_promotions_are_rejected() {
+        for key in ["node_count","link_count"] {
+            let mut b = fixture(); b.manifest["taxonomy"][key] = json!(999);
+            assert!(validate(&b).is_err()); assert!(taxonomy_links(&b.manifest).is_err());
+        }
+        for key in ["physical_connectivity_eligible","measurement_inheritance_eligible"] {
+            let mut b = fixture(); b.collections.get_mut("taxonomy_links").unwrap()[0][key] = json!(true);
+            assert!(validate(&b).is_err());
+            assert!(crate::taxonomy::validate(&b.collections,&b.manifest).is_err());
+        }
     }
     #[test] fn legacy_bundle_remains_inactive() {
         let b=Bundle { schema:"osw.query-bundle.v1".into(), manifest:json!({}), collections:Default::default() };
