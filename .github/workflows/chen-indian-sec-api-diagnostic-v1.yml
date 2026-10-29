@@ -1,0 +1,81 @@
+name: Diagnose complete Indian SEC API differences with one native Store v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/chen-indian-sec-api-diagnostic-request-v1.json
+      - .github/workflows/chen-indian-sec-api-diagnostic-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OSW_CHEN_INDIAN_SEC_DELIVERY_V1: "1"
+  OSW_CHEN_INDIAN_SEC_INDEX_V1: "1"
+  CARGO_BUILD_JOBS: "1"
+  CARGO_INCREMENTAL: "0"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/chen-indian-sec-api-diagnostic-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/chen-indian-sec-api-diagnostic-request-v1.json').read_bytes())
+          assert r['schema']=='osw.chen-indian-sec-api-diagnostic-request.v1'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  native-core:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Prove local native compilation is refused before access
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_check_chen_indian_sec_api_diagnostic_v1.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_chen_indian_sec_snapshot_diff_v1.py -v
+      - name: Install the frozen Rust toolchain on one CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal
+      - name: Install frozen geodesic runtime and verify query contract fixtures
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_chen_indian_sec_canonical_replay_v2.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_chen_indian_sec_ridge_query_v2.py -v
+      - name: Capture and diagnose complete API differences without changing acceptance rules
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_chen_indian_sec_api_diagnostic_v1.py
+      - name: Retain compact native evidence only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chen-indian-sec-api-diagnostic-evidence-v1
+          path: .pytest_cache/chen-indian-sec-api-diagnostic-v1/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90
