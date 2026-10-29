@@ -104,6 +104,10 @@ pub(crate) fn taxonomy_links(manifest: &Value) -> Result<Vec<Value>, String> {
     Ok(document()["additions"]["taxonomy_links"].as_array().unwrap().clone())
 }
 pub(crate) fn validate(bundle: &Bundle) -> Result<(), String> { checked(bundle).map(|_| ()) }
+pub(crate) fn verified_length_assessments(bundle: &Bundle) -> Result<Vec<Value>, String> {
+    if !checked(bundle)? { return Ok(vec![]); }
+    Ok(document()["additions"]["length_assessments"].as_array().unwrap().clone())
+}
 pub(crate) fn entities(bundle: &Bundle) -> Vec<Value> {
     if active(bundle) { document()["additions"]["entities"].as_array().unwrap().clone() } else { vec![] }
 }
@@ -293,6 +297,35 @@ mod tests {
             assert!(validate(&b).is_err());
             assert!(crate::taxonomy::validate(&b.collections,&b.manifest).is_err());
         }
+    }
+    #[test] fn shared_length_table_appends_only_five_unmeasured_assessments_and_preserves_ranks() {
+        let b = fixture();
+        let previous = json!([{"id":"length_assessment:fixture","entity_id":"current:fixture",
+            "published_length_km":1234,"published_rank":4,"rank_eligible":true,"source":"synthetic test sentinel"}]);
+        let actual = crate::length_assessment_overlays::expected(&b,&previous).unwrap();
+        assert_eq!(actual[0],previous[0]);
+        assert_eq!(&actual.as_array().unwrap()[1..],document()["additions"]["length_assessments"].as_array().unwrap().as_slice());
+        assert_eq!(actual.as_array().unwrap().len(),6);
+        for row in actual.as_array().unwrap().iter().skip(1) {
+            assert!(row["published_length_km"].is_null()); assert!(row["published_rank"].is_null());
+            assert_eq!(row["rank_eligible"],false);
+        }
+    }
+    #[test] fn shared_length_table_rejects_duplicate_owners_or_promoted_basin_ranks() {
+        let b = fixture();
+        let duplicate = json!([document()["additions"]["length_assessments"][0]]);
+        assert!(crate::length_assessment_overlays::expected(&b,&duplicate).is_err());
+        for key in ["published_rank","published_length_km"] {
+            let mut bad = fixture(); bad.collections.get_mut("length_assessments").unwrap()[0][key] = json!(1);
+            assert!(crate::length_assessment_overlays::expected(&bad,&json!([])).is_err());
+        }
+    }
+    #[test] fn shared_length_table_preserves_legacy_and_refuses_partial_basin_receipt() {
+        let b = Bundle { schema:"osw.query-bundle.v1".into(),manifest:json!({}),collections:Default::default() };
+        let previous = json!([{"id":"old","published_rank":7}]);
+        assert_eq!(crate::length_assessment_overlays::expected(&b,&previous).unwrap(),previous);
+        let mut bad = fixture(); bad.manifest.as_object_mut().unwrap().remove(KEY);
+        assert!(crate::length_assessment_overlays::expected(&bad,&previous).is_err());
     }
     #[test] fn legacy_bundle_remains_inactive() {
         let b=Bundle { schema:"osw.query-bundle.v1".into(), manifest:json!({}), collections:Default::default() };

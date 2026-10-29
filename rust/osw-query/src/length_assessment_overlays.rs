@@ -28,7 +28,10 @@ pub(crate) fn expected(bundle: &Bundle, previous: &Value) -> Result<Value, Strin
     }
     // New identities have their own explicitly unmeasured assessments. Keep
     // the historical table byte-for-value and in order; never recompute ranks.
-    for addition in crate::current_gap_admissions::verified_length_assessments(bundle)? {
+    for addition in crate::current_gap_admissions::verified_length_assessments(bundle)?
+        .into_iter()
+        .chain(crate::equatorial_basin_identities::verified_length_assessments(bundle)?)
+    {
         let rows = result
             .as_array_mut()
             .ok_or("Invalid historical length table")?;
@@ -36,7 +39,7 @@ pub(crate) fn expected(bundle: &Bundle, previous: &Value) -> Result<Value, Strin
             .iter()
             .any(|row| row["id"] == addition["id"] || row["entity_id"] == addition["entity_id"])
         {
-            return Err("Duplicate current-gap length assessment owner".into());
+            return Err("Duplicate admitted length assessment owner".into());
         }
         rows.push(addition);
     }
