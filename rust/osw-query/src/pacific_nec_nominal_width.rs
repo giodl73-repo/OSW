@@ -146,6 +146,22 @@ pub(crate) fn member_context(bundle:&Bundle,owner:&Value)->Value {
     json!({"label":"Nominal regional width: about 1,000 km","query_url":document()["width_query_after_installation"],
         "scope":"Near-surface regional summary; annual range and physical edges unknown."})
 }
+pub(crate) fn identity_decision(bundle:&Bundle,admission:&Value)->Option<Value> {
+    if admission["proposal_id"]!=CURRENT || bundle.manifest[KEY].is_null() {return None;}
+    Some(json!({"current_id":CURRENT,"name":document()["final_owner"]["label"],
+        "measurement_ids":[document()["width_record"]["id"]],"status":"nominal_regional_width_admitted",
+        "whole_current_width_km":null,"annual_width_range_km":null,"admission_id":admission["id"]}))
+}
+pub(crate) fn apply_phase_plan(bundle:&Bundle,plans:&mut Value)->Result<(),String> {
+    if bundle.manifest[KEY].is_null() {return Ok(());}
+    let plan=&mut plans[CURRENT];
+    if plan["current_id"]!=CURRENT || plan["phases"]!=json!([]) || plan["can_play"]!=false || plan["eligible_indices"]!=json!([]) {
+        return Err("Nominal Pacific NEC width cannot acquire dated seasonal phases".into());
+    }
+    plan["range_note"]=json!("Nominal regional width about 1,000 km; sampling dates, annual ranges and numerical uncertainty remain unknown.");
+    plan["playback_scope"]=json!("Static nominal summary; no comparable dated states for seasonal animation.");
+    Ok(())
+}
 pub(crate) fn dashboard_row(bundle:&Bundle,original:&Value)->Result<Value,String> {
     if original["id"]!=OWNER || !checked(&bundle.collections,&bundle.manifest)? {return Ok(original.clone());}
     if original!=&document()["dashboard_before"] {return Err("Changed preceding Pacific NEC dashboard row".into());}
@@ -231,6 +247,16 @@ mod tests {
         let old=Bundle{schema:"osw.query-bundle.v1".into(),manifest:json!({}),collections:BTreeMap::new()};
         validate(&old).unwrap();assert!(!identity_overlay(&old).unwrap());assert!(validated_widths(&old).unwrap().is_empty());
         assert_eq!(additional_source_count(&old.collections,&old.manifest).unwrap(),0);assert!(member_context(&old,&json!(OWNER)).is_null());
+    }
+    #[test] fn measured_identity_status_does_not_enable_seasonal_playback() {
+        let b=fixture();let admission=json!({"proposal_id":CURRENT,"id":"current_admission:pacific-north-equatorial"});
+        let decision=identity_decision(&b,&admission).unwrap();assert_eq!(decision["status"],"nominal_regional_width_admitted");
+        assert_eq!(decision["measurement_ids"],json!([document()["width_record"]["id"]]));
+        assert!(identity_decision(&b,&json!({"proposal_id":"atlantic-north-equatorial"})).is_none());
+        let original=json!({"current_id":CURRENT,"phases":[],"can_play":false,"eligible_indices":[],"range_note":"old","playback_scope":"old"});
+        let mut plans=json!({"other":{"keep":true}});plans[CURRENT]=original;apply_phase_plan(&b,&mut plans).unwrap();
+        assert_eq!(plans[CURRENT]["phases"],json!([]));assert_eq!(plans[CURRENT]["can_play"],false);assert_eq!(plans["other"]["keep"],true);
+        plans[CURRENT]["can_play"]=json!(true);assert!(apply_phase_plan(&b,&mut plans).is_err());
     }
     #[test] fn frozen_basin_identity_guarantees_coexist_with_only_the_reviewed_width() {
         let identity:Value=serde_json::from_str(crate::equatorial_basin_identities::RAW).unwrap();

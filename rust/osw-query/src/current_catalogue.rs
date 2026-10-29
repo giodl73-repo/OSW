@@ -183,6 +183,7 @@ pub fn decisions(bundle: &Bundle) -> Vec<Value> {
     bundle.collections.get("current_identity_admissions").into_iter().flatten().map(|r|{
         if r["proposal_id"] == "norwegian-atlantic-slope" && crate::nwasc_admission::active(bundle) { return crate::nwasc_admission::identity_decision(bundle); }
         if let Some(decision) = crate::current_gap_admissions::decision(bundle, r) { return decision; }
+        if let Some(decision) = crate::pacific_nec_nominal_width::identity_decision(bundle, r) { return decision; }
         let measured=r["proposal_id"] == "southern-east-madagascar" && crate::current_measurements::active(bundle);
         json!({"current_id":r["proposal_id"],"name":r["entity"]["label"],
         "measurement_ids":if measured{json!([crate::current_measurements::document()["width_record"]["id"]])}else{json!([])},

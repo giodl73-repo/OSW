@@ -494,6 +494,7 @@ fn phase_plans(bundle: &Bundle, docs: &Value) -> Result<Value, String> {
     crate::current_catalogue::add_plans(bundle, &mut result);
     crate::wicc_review_width::apply_phase_plan(bundle, &mut result);
     crate::eacc_cited_width::apply_phase_plan(bundle, &mut result)?;
+    crate::pacific_nec_nominal_width::apply_phase_plan(bundle, &mut result)?;
     Ok(result)
 }
 
