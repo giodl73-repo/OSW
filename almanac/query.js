@@ -264,7 +264,10 @@
       lastQuery=JSON.parse(JSON.stringify(query));lastResult=result;window.oswLastQueryResult=result;
       showBuilder(query);
       $('query-json').value=JSON.stringify(query,null,2);
-      const url=new URL(location.href);url.searchParams.delete('inspect');url.searchParams.set('q',JSON.stringify(query));history.replaceState(null,'',url);
+      const url=new URL(location.href);url.searchParams.delete('inspect');url.searchParams.set('q',JSON.stringify(query));
+      const regionalTraceAnchor=result.chart_scene?.kind==='regional_model_core_length_series'&&!result.map_scene&&['#query-map-section','#query-chart-section'].includes(url.hash);
+      if(regionalTraceAnchor)url.hash='query-chart-section';
+      history.replaceState(null,'',url);
       $('query-share').hidden=false;$('query-share').href=url.href;$('query-export').disabled=false;
       $('query-status').textContent=`${result.total.toLocaleString()} matching ${names[result.collection]?.toLowerCase()||result.collection}. Query executed in Rust / WebAssembly.`;
       if(result.taxonomy_scope)element('p',result.taxonomy_scope,$('query-status'));
@@ -284,6 +287,7 @@
       const start=result.total?Math.min(result.offset+1,result.total):0,end=Math.min(result.offset+result.rows.length,result.total);
       $('query-page').textContent=`${start}–${end} of ${result.total.toLocaleString()}`;$('query-previous').disabled=result.offset===0;$('query-next').disabled=end>=result.total;
       $('query-detail').hidden=true;detailSequence++;
+      if(regionalTraceAnchor)requestAnimationFrame(()=>{if(lastResult===result&&location.hash==='#query-chart-section'&&!$('query-chart-section').hidden)$('query-chart-section').scrollIntoView({block:'start'});});
     }catch(error){rejectResult(error.message);}
     finally{setBusy(false);}
   }
