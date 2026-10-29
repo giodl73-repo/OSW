@@ -43,5 +43,11 @@ pub(crate) fn expected(bundle: &Bundle, previous: &Value) -> Result<Value, Strin
         }
         rows.push(addition);
     }
+    if let Some(overlay) = crate::indian_sec_model_grid_lengths::verified_assessment_overlay(bundle)? {
+        let rows = result.as_array_mut().ok_or("Invalid model-grid length assessment table")?;
+        let indices: Vec<_> = rows.iter().enumerate().filter(|(_, row)| row["entity_id"] == overlay["entity_id"]).map(|(index, _)| index).collect();
+        if indices.len() != 1 { return Err("Ambiguous regional model-grid length assessment owner".into()); }
+        rows[indices[0]] = overlay;
+    }
     Ok(result)
 }

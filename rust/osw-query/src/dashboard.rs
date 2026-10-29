@@ -53,7 +53,8 @@ fn presentation(bundle: &Bundle) -> Result<Value, String> {
     let doc = crate::madagascar_dimensions::dashboard_document(bundle, doc)?;
     let doc = crate::azcc_onken_width::dashboard_document(bundle, doc)?;
     let doc = crate::equatorial_basin_identities::dashboard_document(bundle, doc)?;
-    crate::pacific_nec_nominal_width::dashboard_document(bundle, doc)
+    let doc = crate::pacific_nec_nominal_width::dashboard_document(bundle, doc)?;
+    crate::indian_sec_model_grid_lengths::dashboard_document(bundle, doc)
 }
 
 pub fn validate(bundle: &Bundle) -> Result<(), String> {
@@ -82,6 +83,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         let row = crate::madagascar_dimensions::dashboard_row(bundle, &row)?;
         let row = crate::azcc_onken_width::dashboard_row(bundle, &row)?;
         let row = crate::pacific_nec_nominal_width::dashboard_row(bundle, &row)?;
+        let row = crate::indian_sec_model_grid_lengths::dashboard_row(bundle, &row)?;
         let id = row["id"].as_str().ok_or("Missing dashboard object ID")?;
         if !ids.insert(id.to_owned()) {
             return Err("Duplicate dashboard object ID".into());

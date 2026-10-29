@@ -55,7 +55,7 @@ pub(crate) fn routes(collections: &BTreeMap<String, Vec<Value>>, manifest: &Valu
         return Ok(vec![]);
     }
     if manifest[KEY] != marker() || manifest["input_sha256"][FILE] != pin(RAW)
-        || sources.len() as u64 != query["parent_collection_counts"]["sources"].as_u64().ok_or_else(fail)? + 3 + crate::mean_core_sections::additional_source_count(collections, manifest)? as u64 + crate::madagascar_dimensions::additional_source_count(collections, manifest)? as u64 + crate::azcc_onken_width::additional_source_count(collections, manifest)? as u64 + crate::pacific_nec_nominal_width::additional_source_count(collections, manifest)? as u64
+        || sources.len() as u64 != query["parent_collection_counts"]["sources"].as_u64().ok_or_else(fail)? + 3 + crate::mean_core_sections::additional_source_count(collections, manifest)? as u64 + crate::madagascar_dimensions::additional_source_count(collections, manifest)? as u64 + crate::azcc_onken_width::additional_source_count(collections, manifest)? as u64 + crate::pacific_nec_nominal_width::additional_source_count(collections, manifest)? as u64 + crate::indian_sec_model_grid_lengths::additional_source_count(collections, manifest)? as u64
         || rows("reference_routes").len() as u64 != query["parent_collection_counts"]["reference_routes"].as_u64().ok_or_else(fail)? + 1
         || actual != vec![&query["route"]] { return Err(fail()); }
     for (path, digest) in doc["input_sha256"].as_object().ok_or_else(fail)? {

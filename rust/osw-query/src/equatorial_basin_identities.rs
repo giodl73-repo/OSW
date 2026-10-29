@@ -48,6 +48,7 @@ pub(crate) fn active(bundle: &Bundle) -> bool {
 fn checked(bundle: &Bundle) -> Result<bool, String> {
     let fail = || "Invalid basin-qualified current identity extension".to_owned();
     if !active(bundle) { return Ok(false); }
+    let model_overlay = crate::indian_sec_model_grid_lengths::identity_overlay(bundle)?;
     let overlay = crate::pacific_nec_nominal_width::identity_overlay(bundle)?;
     let doc = document();
     if bundle.manifest[KEY] != marker() || bundle.manifest["input_sha256"][FILE] != pin(RAW) { return Err(fail()); }
@@ -61,11 +62,11 @@ fn checked(bundle: &Bundle) -> Result<bool, String> {
     let additions = doc["additions"].as_object().ok_or_else(fail)?;
     for (name, expected) in additions {
         let expected = expected.as_array().ok_or_else(fail)?;
-        if rows(bundle, name).iter().filter_map(|r| crate::pacific_nec_nominal_width::identity_parent_row(name,r,overlay)).filter(|r| owns(r)).collect::<Vec<_>>() != expected.iter().collect::<Vec<_>>() { return Err(fail()); }
+        if rows(bundle, name).iter().filter_map(|r| crate::indian_sec_model_grid_lengths::identity_parent_row(name,r,model_overlay)).filter_map(|r| crate::pacific_nec_nominal_width::identity_parent_row(name,r,overlay)).filter(|r| owns(r)).collect::<Vec<_>>() != expected.iter().collect::<Vec<_>>() { return Err(fail()); }
     }
     if rows(bundle, MEMBERSHIPS) != doc["additions"][MEMBERSHIPS].as_array().ok_or_else(fail)?.as_slice() { return Err(fail()); }
     for (name, records) in &bundle.collections {
-        if !additions.contains_key(name) && name != "working_records" && records.iter().filter_map(|r| crate::pacific_nec_nominal_width::identity_parent_row(name,r,overlay)).any(owns) { return Err(fail()); }
+        if !additions.contains_key(name) && name != "working_records" && records.iter().filter_map(|r| crate::indian_sec_model_grid_lengths::identity_parent_row(name,r,model_overlay)).filter_map(|r| crate::pacific_nec_nominal_width::identity_parent_row(name,r,overlay)).any(owns) { return Err(fail()); }
     }
     for expected in doc["additions"]["entities"].as_array().ok_or_else(fail)? {
         for name in ["entities", "objects", "names"] {

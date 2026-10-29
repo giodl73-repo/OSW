@@ -14,6 +14,7 @@ mod atlas_data;
 mod azores_section_review;
 mod azcc_onken_width;
 mod pacific_nec_nominal_width;
+mod indian_sec_model_grid_lengths;
 mod baffin_latitude_bound;
 mod basin_spans;
 mod caribbean_source_fields;
@@ -212,6 +213,7 @@ impl Store {
             ids.insert(name.clone(), index);
             fields.insert(name.clone(), keys);
         }
+        indian_sec_model_grid_lengths::validate(&bundle)?;
         equatorial_basin_identities::validate(&bundle)?;
         published_transports::validate(&bundle)?;
         published_current_speeds::validate(&bundle)?;
@@ -694,7 +696,10 @@ impl Store {
         } else {
             Value::Null
         };
-        let chart_scene = if query.collection == "current_basin_memberships" {
+        let regional_model_scene = indian_sec_model_grid_lengths::query_scene(&query.collection, &matches, &self.bundle)?;
+        let chart_scene = if !regional_model_scene.is_null() {
+            regional_model_scene
+        } else if query.collection == "current_basin_memberships" {
             equatorial_basin_identities::membership_scene(&matches, &self.bundle)
         } else if !daily_scene.is_null() {
             daily_scene
