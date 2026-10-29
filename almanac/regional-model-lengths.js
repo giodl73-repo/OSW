@@ -1,5 +1,13 @@
 "use strict";
-window.renderRegionalModelLengths=function(parent,scene,inspect){
+window.renderRegionalModelLengths=(()=>{
+  const redraws=new WeakMap();
+  const observer=typeof ResizeObserver==='function'?new ResizeObserver(entries=>{
+    for(const {target} of entries){
+      if(!target.isConnected){observer.unobserve(target);redraws.delete(target);}
+      else redraws.get(target)?.();
+    }
+  }):null;
+  return function(parent,scene,inspect){
   if(scene?.kind!=='regional_model_core_length_series')return;
   const series=scene.series,collection=scene.selected_collection;
   if(!series)return;
@@ -7,7 +15,7 @@ window.renderRegionalModelLengths=function(parent,scene,inspect){
   const readings=collection==='current_length_readings'?selected:collection?[]:scene.readings||[];
   const sensitivities=collection==='current_length_sensitivities'?selected:collection?[]:scene.sensitivities||[];
   const summary=!collection||collection==='current_length_series';
-  const node=(tag,text,p)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;p.append(n);return n;};
+  const node=(tag,text,p)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(tag==='tr'){n.setAttribute('role','row');n._regionalHeadings=p._regionalHeadings;}p.append(n);return n;};
   const svgNode=(tag,attrs,p,text)=>{const n=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,String(v));if(text!==undefined)n.textContent=text;p.append(n);return n;};
   const finite=x=>typeof x==='number'&&Number.isFinite(x);
   const km=x=>finite(x)?`about ${(Math.round(x/100)*100).toLocaleString('en-US')} km`:'Withheld';
@@ -18,8 +26,8 @@ window.renderRegionalModelLengths=function(parent,scene,inspect){
   node('p','Whole-current length, physical width, annual dimension ranges and physical uncertainty: Unknown.',panel);
   if(collection)node('p',`${selected.length} matching ${collection==='current_length_sensitivities'?'sensitivity scenarios':collection==='current_length_readings'?'trace cases':'series records'}. This view uses only these matches.`,panel);
   const action=(label,name,id,p)=>{const b=node('button',label,p);b.type='button';b.addEventListener('click',()=>inspect(name,id));return b;};
-  const table=(headings,p)=>{const wrap=node('div',undefined,p);wrap.style.cssText='max-width:100%;overflow-x:auto';const t=node('table',undefined,wrap);t.style.cssText='width:100%;font-size:.9rem;border-collapse:collapse';const head=node('tr',undefined,node('thead',undefined,t));for(const text of headings){const h=node('th',text,head);h.scope='col';h.style.cssText='text-align:left;padding:.4rem';}return node('tbody',undefined,t);};
-  const cell=(text,row)=>{const c=node('td',text,row);c.style.cssText='padding:.4rem;border-top:1px solid #c9d8df';return c;};
+  const table=(headings,p)=>{const wrap=node('div',undefined,p);wrap.className='regional-model-table-wrap';wrap.style.cssText='max-width:100%;overflow-x:auto';const t=node('table',undefined,wrap);t.className='regional-model-table';t.setAttribute('role','table');t.setAttribute('data-columns',String(headings.length));t.style.cssText='width:100%;font-size:.9rem;border-collapse:collapse';const head=node('tr',undefined,node('thead',undefined,t));for(const text of headings){const h=node('th',text,head);h.scope='col';h.style.cssText='text-align:left;padding:.4rem';}const body=node('tbody',undefined,t);body.setAttribute('role','rowgroup');body._regionalHeadings=headings;return body;};
+  const cell=(text,row)=>{const c=node('td',text,row);c.setAttribute('role','cell');c.setAttribute('data-label',row._regionalHeadings[row.children.length-1]);c.style.cssText='padding:.4rem;border-top:1px solid #c9d8df';return c;};
   if(summary){
     const coverage=node('details',undefined,panel);node('summary','Model-year coverage',coverage);
     node('p',`${series.qualified_grid_length_count} qualified method traces / ${series.reading_count} evaluated cases; ${series.withheld_reading_count} withheld. Nominal kernel: ${series.nominal_kernel_cells} cells.`,coverage);
@@ -35,19 +43,44 @@ window.renderRegionalModelLengths=function(parent,scene,inspect){
     if(qualified.length){
       const map=svgNode('svg',{viewBox:'0 0 720 300',role:'img','aria-label':'Regional model-grid traces in longitude and latitude. Editorial gates, not whole-current endpoints.'},panel);
       map.style.cssText='display:block;width:100%;height:auto;background:#eef6f9;border-radius:.5rem';
-      const x=lon=>55+(lon-60)/50*640,y=lat=>20+(-5-lat)/15*240;
-      for(const lon of [60,70,80,90,100,110]){svgNode('line',{x1:x(lon),x2:x(lon),y1:20,y2:260,stroke:'#d0dee3'},map);svgNode('text',{x:x(lon),y:282,'text-anchor':'middle','font-size':12},map,`${lon}°E`);}
-      for(const lat of [-5,-10,-15,-20]){svgNode('line',{x1:55,x2:695,y1:y(lat),y2:y(lat),stroke:'#d0dee3'},map);svgNode('text',{x:48,y:y(lat)+4,'text-anchor':'end','font-size':12},map,`${-lat}°S`);}
-      for(const lon of series.geographic_gates_degrees_east||[])svgNode('line',{x1:x(lon),x2:x(lon),y1:20,y2:260,stroke:'#7a687c','stroke-dasharray':'4 4'},map);
+      const longitudeTicks=[60,70,80,90,100,110].map(lon=>({lon,
+        line:svgNode('line',{stroke:'#d0dee3'},map),
+        label:svgNode('text',{'text-anchor':'middle','font-size':13,'data-model-axis-label':'longitude'},map,`${lon}°E`)}));
+      const latitudeTicks=[-5,-10,-15,-20].map(lat=>({lat,
+        line:svgNode('line',{stroke:'#d0dee3'},map),
+        label:svgNode('text',{'text-anchor':'end','font-size':13,'data-model-axis-label':'latitude'},map,`${-lat}°S`)}));
+      const gates=(series.geographic_gates_degrees_east||[]).map(lon=>({lon,
+        line:svgNode('line',{stroke:'#7a687c','stroke-dasharray':'4 4'},map)}));
       const paths=[];
       for(const row of qualified){
         const coords=row.geometry.coordinates;
-        const path=svgNode('path',{d:coords.map(([lon,lat],i)=>`${i?'L':'M'}${x(lon).toFixed(2)},${y(lat).toFixed(2)}`).join(' '),fill:'none',stroke:'#087f8c','stroke-width':2,opacity:.45,tabindex:0,role:'button','aria-label':`${row.provider_year}, kernel ${row.kernel_cells}: ${km(row.length_km)}; inspect trace`,'data-model-reading-id':row.id},map);
+        const path=svgNode('path',{d:'',fill:'none',stroke:'#087f8c','stroke-width':2,'vector-effect':'non-scaling-stroke',opacity:.45,tabindex:0,role:'button','aria-label':`${row.provider_year}, kernel ${row.kernel_cells}: ${km(row.length_km)}; inspect trace`,'data-model-reading-id':row.id},map);
         svgNode('title',{},path,`${row.provider_year} · kernel ${row.kernel_cells} · ${km(row.length_km)}`);
         const show=()=>{legend.textContent=`${row.provider_year} · kernel ${row.kernel_cells} · ${km(row.length_km)}. Regional model trace.`;for(const other of paths){other.path.setAttribute('opacity',other.id===row.id?'1':'.2');other.path.setAttribute('stroke-width',other.id===row.id?'4':'2');}};
-        paths.push({path,id:row.id});path.addEventListener('mouseenter',show);path.addEventListener('focus',show);
+        paths.push({path,id:row.id,coordinates:coords});path.addEventListener('mouseenter',show);path.addEventListener('focus',show);
         path.addEventListener('click',()=>inspect('current_length_readings',row.id));path.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();inspect('current_length_readings',row.id);}});
       }
+      let lastWidth=-1;
+      const layout=()=>{
+        const width=Math.max(180,map.getBoundingClientRect?.()?.width||panel.clientWidth||720);
+        if(Math.abs(width-lastWidth)<.5)return;lastWidth=width;
+        const height=Math.max(230,width*300/720),left=44,right=width-18,top=20,bottom=height-38;
+        map.setAttribute('viewBox',`0 0 ${width} ${height}`);
+        const x=lon=>left+(lon-60)/50*(right-left),y=lat=>top+(-5-lat)/15*(bottom-top);
+        const attributes=(node,values)=>{for(const [key,value] of Object.entries(values))node.setAttribute(key,String(value));};
+        for(const tick of longitudeTicks){
+          attributes(tick.line,{x1:x(tick.lon),x2:x(tick.lon),y1:top,y2:bottom});
+          attributes(tick.label,{x:x(tick.lon),y:height-14,display:width<360&&[70,90,110].includes(tick.lon)?'none':'inline'});
+        }
+        for(const tick of latitudeTicks){
+          attributes(tick.line,{x1:left,x2:right,y1:y(tick.lat),y2:y(tick.lat)});
+          attributes(tick.label,{x:left-8,y:y(tick.lat)+4});
+        }
+        for(const gate of gates)attributes(gate.line,{x1:x(gate.lon),x2:x(gate.lon),y1:top,y2:bottom});
+        for(const item of paths)item.path.setAttribute('d',item.coordinates.map(([lon,lat],i)=>`${i?'L':'M'}${x(lon).toFixed(2)},${y(lat).toFixed(2)}`).join(' '));
+      };
+      layout();
+      if(observer){redraws.set(map,layout);observer.observe(map);}
       legend.textContent='Hover or focus a trace for its model year, kernel and length. Select it to inspect the record.';
       node('p','Longitude–latitude reference grid. Dashed lines are editorial comparison gates. Display interpolation adds no observations; these paths are not diagnosed whole-current axes.',panel);
     }else legend.textContent='No qualified map geometry among the matching cases. Failed paths are withheld.';
@@ -65,3 +98,4 @@ window.renderRegionalModelLengths=function(parent,scene,inspect){
   for(const [label,key]of [['Paper','source_id'],['Model deposit','dataset_source_id'],['Measurement method','method_source_id']])if(series[key])action(label,'sources',series[key],links);
   const a=node('a','Open current card',node('p',undefined,panel));a.href='object.html?id='+encodeURIComponent(scene.entity_id);
 };
+})();
