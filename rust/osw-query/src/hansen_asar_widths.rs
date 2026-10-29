@@ -106,6 +106,7 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     expected_widths.extend(crate::eacc_cited_width::widths(b));
     expected_widths.extend(crate::madagascar_dimensions::validated_widths(b)?);
     expected_widths.extend(crate::azcc_onken_width::validated_widths(b)?);
+    expected_widths.extend(crate::pacific_nec_nominal_width::validated_widths(b)?);
     if actual != &expected_widths {
         return Err("Changed ASAR effective width inventory/order".into());
     }

@@ -48,6 +48,7 @@ pub(crate) fn active(bundle: &Bundle) -> bool {
 fn checked(bundle: &Bundle) -> Result<bool, String> {
     let fail = || "Invalid basin-qualified current identity extension".to_owned();
     if !active(bundle) { return Ok(false); }
+    let overlay = crate::pacific_nec_nominal_width::identity_overlay(bundle)?;
     let doc = document();
     if bundle.manifest[KEY] != marker() || bundle.manifest["input_sha256"][FILE] != pin(RAW) { return Err(fail()); }
     for (path, digest) in doc["input_sha256"].as_object().ok_or_else(fail)? {
@@ -60,11 +61,11 @@ fn checked(bundle: &Bundle) -> Result<bool, String> {
     let additions = doc["additions"].as_object().ok_or_else(fail)?;
     for (name, expected) in additions {
         let expected = expected.as_array().ok_or_else(fail)?;
-        if rows(bundle, name).iter().filter(|r| owns(r)).collect::<Vec<_>>() != expected.iter().collect::<Vec<_>>() { return Err(fail()); }
+        if rows(bundle, name).iter().filter_map(|r| crate::pacific_nec_nominal_width::identity_parent_row(name,r,overlay)).filter(|r| owns(r)).collect::<Vec<_>>() != expected.iter().collect::<Vec<_>>() { return Err(fail()); }
     }
     if rows(bundle, MEMBERSHIPS) != doc["additions"][MEMBERSHIPS].as_array().ok_or_else(fail)?.as_slice() { return Err(fail()); }
     for (name, records) in &bundle.collections {
-        if !additions.contains_key(name) && name != "working_records" && records.iter().any(owns) { return Err(fail()); }
+        if !additions.contains_key(name) && name != "working_records" && records.iter().filter_map(|r| crate::pacific_nec_nominal_width::identity_parent_row(name,r,overlay)).any(owns) { return Err(fail()); }
     }
     for expected in doc["additions"]["entities"].as_array().ok_or_else(fail)? {
         for name in ["entities", "objects", "names"] {
@@ -154,31 +155,36 @@ pub(crate) fn catalogue_projection(bundle: &Bundle, mut catalogue: Value) -> Res
     catalogue["equatorial_basin_identity_projection_v3"] = json!({"contract_file":FILE,"contract_sha256":pin(RAW),"new_route_plans":5,"new_routes":0});
     Ok(catalogue)
 }
-fn scene(selected: Vec<&Value>, selected_owner: Option<&str>) -> Value {
+fn scene(selected: Vec<&Value>, selected_owner: Option<&str>, bundle: &Bundle) -> Value {
     if selected.is_empty() { return Value::Null; }
     let doc = document();
     let members: Vec<_> = selected.into_iter().map(|r| {
         let entity = doc["additions"]["entities"].as_array().unwrap().iter().find(|e| e["id"] == r["entity_id"]).unwrap();
         let family = &doc["prior_family_records"][r["family_entity_id"].as_str().unwrap()]["entities"][0];
-        json!({"membership_record":r,"entity_id":entity["id"],"label":entity["label"],"object_url":entity["almanac_url"],
+        let mut member = json!({"membership_record":r,"entity_id":entity["id"],"label":entity["label"],"object_url":entity["almanac_url"],
             "family_entity_id":family["id"],"family_label":family["label"],
-            "family_url":format!("object.html?id=current%3A{}",r["family_entity_id"].as_str().unwrap().strip_prefix("current:").unwrap())})
+            "family_url":format!("object.html?id=current%3A{}",r["family_entity_id"].as_str().unwrap().strip_prefix("current:").unwrap())});
+        let evidence = crate::pacific_nec_nominal_width::member_context(bundle,&entity["id"]);
+        if !evidence.is_null() {member["nominal_width_evidence"] = evidence;}
+        member
     }).collect();
+    let has_width = members.iter().any(|r| !r["nominal_width_evidence"].is_null());
+    let dimension_status = if has_width {"Separately sourced nominal regional width evidence is linked for the Pacific NEC. Family and sibling measurements are not inherited; lengths, annual ranges and physical edges remain unresolved."} else {"Lengths, widths, observation dates and annual ranges remain unmeasured by this identity admission."};
     json!({"kind":"equatorial_basin_identity_context","title":"Basin-specific current identities","members":members,
         "selected_entity_id":selected_owner,"source_file":FILE,"source_pointer":"/additions/current_basin_memberships",
         "source_url":"https://www.tidesandcurrents.noaa.gov/glossary.html","figure":"figures/equatorial-basin-identity-members-v1.svg",
         "scope":"These editorial basin qualifications separate measurement targets. Family relationships do not establish physical connections, shared dimensions or observed current geometry.",
-        "dimension_status":"Lengths, widths, observation dates and annual ranges remain unmeasured by this identity admission."})
+        "dimension_status":dimension_status})
 }
 pub(crate) fn membership_scene(selected: &[&Value], bundle: &Bundle) -> Value {
     if !active(bundle) { return Value::Null; }
-    scene(selected.iter().copied().filter(|r| rows(bundle, MEMBERSHIPS).contains(r)).collect(), None)
+    scene(selected.iter().copied().filter(|r| rows(bundle, MEMBERSHIPS).contains(r)).collect(), None, bundle)
 }
 pub(crate) fn for_owner(bundle: &Bundle, owner: &str) -> Value {
     if !active(bundle) { return Value::Null; }
     let family = rows(bundle, MEMBERSHIPS).iter().find(|r| r["entity_id"] == owner)
         .and_then(|r| r["family_entity_id"].as_str()).unwrap_or(owner);
-    scene(rows(bundle, MEMBERSHIPS).iter().filter(|r| r["family_entity_id"] == family).collect(), Some(owner))
+    scene(rows(bundle, MEMBERSHIPS).iter().filter(|r| r["family_entity_id"] == family).collect(), Some(owner), bundle)
 }
 pub(crate) fn scenes(bundle: &Bundle) -> Value {
     let mut result = json!({});

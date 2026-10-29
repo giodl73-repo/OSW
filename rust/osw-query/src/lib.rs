@@ -13,6 +13,7 @@ mod atlantic_euc_sections;
 mod atlas_data;
 mod azores_section_review;
 mod azcc_onken_width;
+mod pacific_nec_nominal_width;
 mod baffin_latitude_bound;
 mod basin_spans;
 mod caribbean_source_fields;
@@ -217,6 +218,7 @@ impl Store {
         mean_core_sections::validate(&bundle)?;
         madagascar_dimensions::validate(&bundle)?;
         azcc_onken_width::validate(&bundle)?;
+        pacific_nec_nominal_width::validate(&bundle)?;
         published_seasonal_core_velocities::validate(&bundle)?;
         azores_section_review::validate(&bundle)?;
         original_regional_widths::validate_south_atlantic_inventory(&bundle)?;
@@ -781,6 +783,7 @@ impl Store {
             let scenes: Vec<_> = [
                 madagascar_dimensions::width_scene(&matches, &self.bundle),
                 azcc_onken_width::width_scene(&matches, &self.bundle),
+                pacific_nec_nominal_width::width_scene(&matches, &self.bundle),
                 selected_core_widths::scene(&matches),
                 satellite_core_widths::scene(&matches),
                 wicc_review_width::scene(&matches),

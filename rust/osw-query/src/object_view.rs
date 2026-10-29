@@ -227,7 +227,9 @@ impl Store {
                 crate::ursa_contour::overlay(&self.bundle, candidate)?;
         }
         Ok(crate::equatorial_basin_identities::object_projection(&self.bundle, id,
-            json!({"ok":true,"engine":"rust-osw-query-v1","id":id,"bundle_sha256":self.metadata()["bundle_sha256"],"collections":data,"detection_plot":detection_plot,"footprint_plots":footprint_plots,"source_panel_scene":crate::eddy_source_panels::for_owner(&self.bundle,id)?}),
+            crate::pacific_nec_nominal_width::object_projection(&self.bundle, id,
+                json!({"ok":true,"engine":"rust-osw-query-v1","id":id,"bundle_sha256":self.metadata()["bundle_sha256"],"collections":data,"detection_plot":detection_plot,"footprint_plots":footprint_plots,"source_panel_scene":crate::eddy_source_panels::for_owner(&self.bundle,id)?}),
+            ),
         ))
     }
 }

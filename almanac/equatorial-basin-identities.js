@@ -30,6 +30,11 @@
       const family = add('p', 'Member of: ', item);
       family.style.margin = '.25rem 0';
       link(member.family_label, member.family_url, family);
+      if (member.nominal_width_evidence) {
+        const evidence = member.nominal_width_evidence;
+        link(evidence.label, evidence.query_url, add('p', null, item));
+        add('p', evidence.scope, item);
+      }
       if (inspect) {
         const button = add('button', 'Inspect membership record', item);
         button.type = 'button';

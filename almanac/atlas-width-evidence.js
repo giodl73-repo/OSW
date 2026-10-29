@@ -61,10 +61,10 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
       :row.reported_width_constraint?`${row.reported_width_constraint.source_notation} reported size constraint`
       :row.approximate_width_km===null?`${row.width_range_km.map(format).join('–')} km reported span`:`about ${format(row.approximate_width_km)} km`;
     node('summary',`${value} · ${row.width_metric_label||row.width_metric.replaceAll('_',' ')} · ${row.phase_label}`,details);
-    node('p',row.time_convention,details);
+    node('p',row.time_convention||(row.measurement_type==='published_nominal_regional_angular_width'?'Nominal regional summary; sampling dates are unresolved.':'Sampling period is unresolved.'),details);
     node('p',`${row.geographic_scope} ${row.layer}`,details);
-    node('p',`Definition: ${row.boundary_rule}${row.boundary_sides?' Boundary support: '+row.boundary_sides.replaceAll('_',' ')+'.':''}`,details);
-    node('p',row.range_interpretation,details);
+    node('p',`Definition: ${row.boundary_rule||'No reproducible paired-edge rule is recorded.'}${row.boundary_sides?' Boundary support: '+row.boundary_sides.replaceAll('_',' ')+'.':''}`,details);
+    node('p',row.range_interpretation||'Regional evidence; annual width range and numerical uncertainty remain unknown.',details);
     if(row.source_quality_note)node('p',row.source_quality_note,details);
     const links=node('p','',details);
     link('Inspect this width record',`seasons.html?current=${encodeURIComponent(id)}&phase=${encodeURIComponent(row.id)}`,links);

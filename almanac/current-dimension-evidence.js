@@ -23,12 +23,13 @@ window.renderCurrentDimensionEvidence=function(parent,scene,inspect,options={}){
     const card=node('article',undefined,panel);card.setAttribute('data-dimension-width-id',row.id);
     card.style.cssText='min-width:0;border:1px solid #b7ced2;border-radius:.5rem;padding:.8rem;margin:.8rem 0';
     node('h4',row.phase_label||row.width_metric||'Regional width summary',card);
+    const nominal=row.measurement_type==='published_nominal_regional_angular_width';
     const range=row.width_range_km,hasRange=Array.isArray(range)&&range.length===2&&range.every(finite)&&range[0]<=range[1];
     const central=finite(row.approximate_width_km)?row.approximate_width_km:null;
     node('p',hasRange?`About ${number(range[0])}–${number(range[1])} km`:central===null?'Width: Unknown':`About ${number(central)} km`,card);
     if(hasRange||central!==null){
       const maximum=widthMaximum;
-      const chart=svgNode('svg',{viewBox:'0 0 300 56',role:'img','aria-label':hasRange?`Reported regional width range ${number(range[0])} to ${number(range[1])} km. Study summary, not annual extrema or error bars.`:`Reported regional width about ${number(central)} km.`,},card);
+      const chart=svgNode('svg',{viewBox:'0 0 300 56',role:'img','aria-label':hasRange?`Reported regional width range ${number(range[0])} to ${number(range[1])} km. Study summary, not annual extrema or error bars.`:nominal?`Derived nominal regional latitude span about ${number(central)} km. No physical edge coordinates or annual range.`:`Reported regional width about ${number(central)} km.`,},card);
       chart.style.cssText='display:block;width:100%;max-width:600px;height:auto';
       const x=value=>12+value/maximum*276;
       svgNode('line',{x1:12,x2:288,y1:20,y2:20,stroke:'#cadbdf','stroke-width':2},chart);
@@ -36,7 +37,7 @@ window.renderCurrentDimensionEvidence=function(parent,scene,inspect,options={}){
       else svgNode('circle',{cx:x(central),cy:20,r:5,fill:'#98632b'},chart);
       node('p',`Width scale: 0–${number(maximum)} km. Studies retain separate definitions and periods.`,card);
     }
-    node('p',row.range_interpretation||'Regional survey summary; variability range unspecified.',card);
+    node('p',row.range_interpretation||(nominal?'Nominal latitude-band conversion; paired physical edges and annual variability remain unknown.':'Regional survey summary; variability range unspecified.'),card);
     node('p',row.vertical_scope||row.layer||'Fixed width layer: Unknown',card);
     node('p','Seasonal width range: Unknown. Numerical uncertainty: Unknown.',card);
     const action=node('button','Inspect width record',card);action.type='button';action.onclick=()=>inspect('widths',row.id);sourceLink(row,card);
