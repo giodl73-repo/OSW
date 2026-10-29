@@ -1,0 +1,90 @@
+{
+  "schema": "osw.atlantic-nec-primary-dimension-source-review.v1",
+  "status": "PRIMARY_PAPER_LEADS_IDENTIFIED_FULL_SOURCE_AND_DIMENSION_ADMISSION_PENDING",
+  "review_date": "2026-10-29",
+  "entity_id": "current:atlantic-north-equatorial",
+  "installed_checkpoint_file": "research/current-measurement-coverage-checkpoint-v18.json",
+  "installed_checkpoint_sha256": "2af31fd6b163017edcde2471981bc210b8083a82eb8a468df0a541a4427b131b",
+  "target_gaps": [
+    "Source-supported regional or whole-current alongflow continuity and endpoints",
+    "Explicit current-width edges/operator, layer and period",
+    "Physical seasonal ranges and numerical uncertainty when supported"
+  ],
+  "sources": [
+    {
+      "id": "lead:lumpkin-garzoli-2005",
+      "title": "Near-surface circulation in the Tropical Atlantic Ocean",
+      "authors": [
+        "Rick Lumpkin",
+        "Silvia L. Garzoli"
+      ],
+      "doi": "10.1016/j.dsr.2004.09.001",
+      "publisher_url": "https://www.sciencedirect.com/science/article/abs/pii/S0967063704001694",
+      "official_pdf_url": "https://www.aoml.noaa.gov/phod/docs/LumpkinGarzoli05.pdf",
+      "publication_year": 2005,
+      "verified_from": "Primary-publisher and official NOAA PDF search-index text; direct full-file access failed.",
+      "supported_context": "Drifter-derived tropical Atlantic circulation is decomposed into a mean component, annual and semiannual terms, plus residual variability. The paper distinguishes total and Ekman-removed velocities.",
+      "relevant_followup": "Recover the original methods and current-description sections and inspect Figures6 and9 before selecting an Atlantic NEC domain, edges or alongflow gates.",
+      "measurement_period": null,
+      "current_specific_length_km": null,
+      "current_specific_width_km": null,
+      "original_pdf_retained": false,
+      "figures_digitized": false
+    },
+    {
+      "id": "lead:fratantoni-2001",
+      "title": "North Atlantic surface circulation during the 1990's observed with satellite-tracked drifters",
+      "author": "David M. Fratantoni",
+      "doi": "10.1029/2000JC000730",
+      "publisher_url": "https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2000JC000730",
+      "publication_year": 2001,
+      "verified_from": "Primary-publisher abstract indexed in search.",
+      "supported_context": "A North Atlantic compilation uses over1500 satellite-tracked drifters drogued at nominal15m, from January1990 through December1999, with velocity and eddy-energy fields on a1-degree grid.",
+      "current_specific_length_km": null,
+      "current_specific_width_km": null,
+      "physical_current_thickness_m": null,
+      "original_pdf_retained": false,
+      "figures_digitized": false,
+      "exclusion": "The abstract maximum drifter speed belongs to the Gulf Stream; it is not an Atlantic NEC speed or dimension."
+    },
+    {
+      "id": "lead:stramma-schott-1999",
+      "title": "The mean flow field of the tropical Atlantic Ocean",
+      "authors": [
+        "Lothar Stramma",
+        "Friedrich Schott"
+      ],
+      "doi": "10.1016/S0967-0645(98)00109-X",
+      "publisher_url": "https://www.sciencedirect.com/science/article/pii/S096706459800109X",
+      "publication_year": 1999,
+      "verified_from": "Primary-publisher abstract indexed in search.",
+      "supported_context": "The study examines20N–20S circulation in surface, central-water and Antarctic Intermediate Water layers.",
+      "exclusion": "The study latitude domain is not a current width. Water-mass layer categories are not a uniform NEC thickness.",
+      "current_specific_length_km": null,
+      "current_specific_width_km": null,
+      "original_pdf_retained": false,
+      "figures_digitized": false
+    }
+  ],
+  "access_receipt_file": "research/source-data/lumpkin-garzoli-2005/access-attempt-v1.json",
+  "access_receipt_sha256": "03f28278bbf8204ec9fa4a440d80176d1da007ba6e0047ddad3c17d151b6a83f",
+  "provider_page_observation": {
+    "canonical_url": "https://www.aoml.noaa.gov/phod/gdp/mean_velocity.php",
+    "web_reader_result": "Redirect to https://temp.aoml.oarcloud.noaa.gov/ was not accessible via the web tool.",
+    "pdf_attempts": "Both the canonical and temporary-host PDF paths returned HTTP403 using ordinary direct HTTP requests.",
+    "scope": "These are this-session access observations, not evidence that all NOAA material is unavailable."
+  },
+  "rules": [
+    "Keep Atlantic NEC distinct from Atlantic NECC/NEUC and Pacific NEC.",
+    "Do not convert a study domain, latitude of a core, water-mass layer, basin span or velocity/EKE statistic into a current dimension.",
+    "Require source-supported endpoints or paired edges, vertical/time scope, operator and source page/figure/table before admission.",
+    "Numerical seasonal harmonics or climatological frames are not individual dated observations or annual physical extrema."
+  ],
+  "next_action": "Recover a lawful accessible primary full text or author/institutional copy; inspect current-specific geometry/edge definitions and dates. If a gridded climatology is used later, freeze its version and a consistent operator before one sequential cloud calculation.",
+  "new_measurement_records_admitted": 0,
+  "new_query_source_rows": 0,
+  "new_geometry_admitted": false,
+  "ocean_field_downloaded": false,
+  "ocean_field_processed": false,
+  "full_goal_complete": false
+}
