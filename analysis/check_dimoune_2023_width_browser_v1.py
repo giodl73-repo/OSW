@@ -121,13 +121,26 @@ def browser_review():
         result=page.evaluate('window.oswSourceQueryResult')
         if result['source_sha256']!=sha(doc):raise ValueError('Indexed source hash differs')
         return result
-    try:
+    from contextlib import contextmanager
+    @contextmanager
+    def observed_page():
         with sync_playwright() as pw:
             browser=pw.chromium.launch(args=['--renderer-process-limit=1'])
             page=browser.new_page(viewport={'width':1100,'height':1000});page.set_default_timeout(180000)
+            expect.set_options(timeout=180000)
             page.on('pageerror',lambda e:errors.append(str(e)))
             page.on('response',lambda r:missing.append({'url':r.url,'status':r.status}) if r.url.startswith(base) and r.status>=400 and not r.url.endswith('/favicon.ico') else None)
             page.on('request',lambda r:originals.append(r.url) if r.url.split('?')[0].endswith(('.pdf','.zip','.nc','.npz','.mat','.csv')) else None)
+            try:yield page
+            except Exception:
+                try:
+                    page.screenshot(path=str(OUT/'browser-failure.png'))
+                    write(OUT/'browser-failure-state.json',page.evaluate("""()=>({url:location.href,title:document.title,status:document.querySelector('#dashboard-status')?.textContent,selection:window.oswDashboardSelection?{request:window.oswDashboardSelection.request,ids:window.oswDashboardSelection.result.ids}:null,visibleCardIds:[...document.querySelectorAll('.motion-card')].map(n=>n.dataset.id)})"""))
+                except Exception:pass
+                raise
+            finally:browser.close()
+    try:
+        with observed_page() as page:
             for width in (1100,320):
                 suffix='-'+str(width)+'px';page.set_viewport_size({'width':width,'height':1000})
                 for owner in (OWNER,'current:north-brazil'):
@@ -183,7 +196,12 @@ def browser_review():
                 snapshot=page.evaluate('window.oswDashboardSnapshot.snapshot')
                 if sum(r.get('type')=='named_current' and r['capabilities'].get('scoped_width',0)>0 for r in snapshot['entries'])!=91:raise ValueError('Dashboard current width coverage differs')
                 page.locator('#dashboard-metric').select_option('scoped_width');page.locator('#dashboard-type').select_option('named_current')
+                page.locator('#dashboard-card-view').click()
                 page.locator('#dashboard-search').fill('Atlantic South Equatorial Current')
+                page.wait_for_function("""text=>{const status=document.querySelector('#dashboard-status'),selection=window.oswDashboardSelection;return status?.dataset.pending==='false'&&(status.textContent.startsWith('Selection failed:')||(selection?.request.text===text&&selection.request.metric==='scoped_width'&&selection.request.record_type==='named_current'));}""",arg='Atlantic South Equatorial Current')
+                status=page.locator('#dashboard-status').inner_text()
+                if status.startswith('Selection failed:'):raise ValueError(status)
+                write(OUT/('dashboard-state'+suffix+'.json'),page.evaluate("""()=>({status:document.querySelector('#dashboard-status').textContent,request:window.oswDashboardSelection.request,ids:window.oswDashboardSelection.result.ids})"""))
                 card=page.locator('.motion-card[data-id="'+OWNER+'"]');expect(card).to_be_visible();expect(card).to_have_class(__import__('re').compile(r'\blit\b'))
                 expect(card.locator('.selected-evidence')).to_contain_text('4')
                 capture(card,'dashboard-width-light'+suffix);no_overflow(page)
@@ -192,7 +210,6 @@ def browser_review():
                 page.wait_for_function('window.oswLastQueryResult?.ok === true')
                 if page.evaluate('window.oswLastQueryResult.total')!=4:raise ValueError('Dashboard evidence navigation differs')
                 checks.append({'width':width,'case':'91 covered current identities, four-record lit card and direct evidence navigation'})
-            browser.close()
         if errors or missing or originals:raise ValueError('Page error, missing asset or original science download')
         result={'status':'PASS_BROWSER_OBSERVATION_VISUAL_REVIEW_PENDING','checks':checks,'screenshots':captures,
             'page_errors':errors,'missing_assets':missing,'original_science_downloads':originals,'legibility':legibility,

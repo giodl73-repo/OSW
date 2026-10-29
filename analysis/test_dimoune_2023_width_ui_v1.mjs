@@ -8,7 +8,7 @@ class Element {
 }
 const context={window:{},document:{createElement:tag=>new Element(tag),createElementNS:(_ns,tag)=>new Element(tag)},location:{href:''}};
 vm.runInNewContext(fs.readFileSync('almanac/current-dimension-evidence.js','utf8'),context);
-const contract=JSON.parse(fs.readFileSync('research/dimoune-2023-width-query-contract-v1.json','utf8'));
+const contract=JSON.parse(fs.readFileSync('research/dimoune-2023-width-query-contract-v2.json','utf8'));
 const all=node=>[node,...node.children.flatMap(all)];
 const text=node=>all(node).map(n=>n.textContent||'').join(' ');
 const root=new Element('div'),calls=[];

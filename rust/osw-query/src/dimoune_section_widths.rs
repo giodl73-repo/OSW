@@ -5,8 +5,8 @@ use sha2::{Digest, Sha256};
 use std::collections::{BTreeMap, BTreeSet};
 use std::sync::OnceLock;
 
-const FILE: &str = "research/dimoune-2023-width-query-contract-v1.json";
-const RAW: &str = include_str!("../../../research/dimoune-2023-width-query-contract-v1.json");
+const FILE: &str = "research/dimoune-2023-width-query-contract-v2.json";
+const RAW: &str = include_str!("../../../research/dimoune-2023-width-query-contract-v2.json");
 const KEY: &str = "published_dimoune_2023_section_widths_v1";
 fn pin(raw: &str) -> String { format!("{:x}", Sha256::digest(raw.as_bytes())) }
 fn document() -> &'static Value {
@@ -157,7 +157,11 @@ mod tests {
     #[test] fn complete_rows_and_exact_reverse_projection() {
         let b=fixture();validate(&b).unwrap();assert_eq!(validated_widths(&b).unwrap().len(),6);
         assert_eq!(additional_source_count(&b.collections,&b.manifest).unwrap(),1);
-        for row in document()["width_records"].as_array().unwrap() {assert!(identity_parent_row("widths",row,true).is_none());}
+        for row in document()["width_records"].as_array().unwrap() {
+            assert!(identity_parent_row("widths",row,true).is_none());
+            let axis=row["mean_section_context"]["section_axis_kind"].as_str().unwrap();
+            assert!(row["range_interpretation"].as_str().unwrap().contains(&format!("{axis} section width")));
+        }
         let changed=&document()["final_objects"]["current:atlantic-south-equatorial"];
         assert_eq!(identity_parent_row("objects",changed,true),Some(&document()["prior_owners"]["current:atlantic-south-equatorial"]["objects"][0]));
         let unrelated=json!({"id":"unrelated"});assert_eq!(identity_parent_row("widths",&unrelated,true),Some(&unrelated));

@@ -1,6 +1,7 @@
 """Bounded semantic admission tests; no installed packet or index access."""
 import copy
 import unittest
+from unittest.mock import patch
 import dimoune_2023_width_query_v1 as query
 
 class AdmissionTests(unittest.TestCase):
@@ -63,6 +64,7 @@ class AdmissionTests(unittest.TestCase):
         after,_=self.apply();new=after['widths'][-6:]
         self.assertEqual(sum(bool(r['source_discrepancy_note']) for r in new),3)
         for row in new:
+            self.assertIn(row['mean_section_context']['section_axis_kind']+' section width',row['range_interpretation'])
             self.assertIsNone(row['annual_width_range_km']);self.assertIsNone(row['numerical_width_uncertainty_km'])
             self.assertIsNone(row['section_geometry']);self.assertFalse(row['seasonal_playback_eligible'])
             self.assertFalse(row['whole_current_representative']);self.assertFalse(row['width_rank_eligible'])
@@ -71,5 +73,23 @@ class AdmissionTests(unittest.TestCase):
 
     def test_frozen_contract_reproduces(self):
         self.assertEqual((query.ROOT/query.FILE).read_bytes(),query.encoded(query.build_contract()))
+
+    def test_template_orientation_contradiction_refused(self):
+        original_read=query.read;prepared=original_read(query.PREPARED)
+        row=next(r for r in prepared['new_width_records'] if r['mean_section_context']['section_axis_kind']=='meridional')
+        row['range_interpretation']=row['range_interpretation'].replace('meridional','oblique')
+        with patch.object(query,'read',side_effect=lambda path:prepared if path==query.PREPARED else original_read(path)):
+            with self.assertRaisesRegex(ValueError,'orientation and scope description disagree'):query.build_contract()
+
+    def test_orientation_correction_preserves_every_other_record_field(self):
+        old=query.read('research/dimoune-2023-section-width-admission-prepared-v1.json')['new_width_records']
+        new=query.read(query.PREPARED)['new_width_records'];changed=[]
+        self.assertEqual([r['id'] for r in old],[r['id'] for r in new])
+        for before,after in zip(old,new):
+            self.assertEqual({k:v for k,v in before.items() if k!='range_interpretation'},
+                             {k:v for k,v in after.items() if k!='range_interpretation'})
+            if before['range_interpretation']!=after['range_interpretation']:
+                changed.append(after['mean_section_context']['source_flow_label'])
+        self.assertEqual(changed,['nSEC5','nSEC6','cSEC6'])
 
 if __name__=='__main__':unittest.main()

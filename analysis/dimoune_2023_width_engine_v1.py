@@ -9,7 +9,7 @@ RUST_CHANGED={'rust/osw-query/src/'+name for name in ('lib.rs','object_view.rs',
     'equatorial_basin_identities.rs','pacific_secc_reference.rs','south_java_reference.rs','wicc_winter_reference.rs',
     'aleutian_onishi_width.rs','hansen_asar_widths.rs','neuc_glider_widths.rs')}
 RUST_ADDED={'rust/osw-query/src/dimoune_section_widths.rs'}
-CONTRACT='research/dimoune-2023-width-query-contract-v1.json'
+CONTRACT='research/dimoune-2023-width-query-contract-v2.json'
 
 def engine_manifest(parent,replacements,*,inventory,proof,source_commit,logical_sha,wasm_sha,compiler,source_documents):
     if parent.get('schema')!='osw.query-engine-manifest.v1' or KEY in parent:raise ValueError('Exact unapplied engine required')

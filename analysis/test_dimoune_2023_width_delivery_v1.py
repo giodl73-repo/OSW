@@ -62,6 +62,14 @@ class DeliveryTests(unittest.TestCase):
         parent=query.read('research/pacific-nec-product-axis-installation-saved-engine-manifest-v1.json')
         inventory=query.read('research/dimoune-2023-width-runtime-run-v1/compile-inventory.json')
         proof=query.read('research/dimoune-2023-width-runtime-run-v1/dependency-proof.json')
+        # Synthetic proof fixture follows the new uninstalled contract filename;
+        # actual compilation is independently verified only by the cloud job.
+        old='research/dimoune-2023-width-query-contract-v1.json'
+        inventory['compile_time_data_sha256'].pop(old)
+        inventory['compile_time_data_sha256'][query.FILE]=query.sha(query.FILE)
+        module='rust/osw-query/src/dimoune_section_widths.rs'
+        inventory['rust_source_sha256'][module]=query.sha(module)
+        proof['production_dependencies']=[query.FILE if path==old else path for path in proof['production_dependencies']]
         replacements={**inventory['rust_source_sha256'],**inventory['compile_time_data_sha256'],
             **{p:query.sha(p) for p in engine.PRESENTATION},'almanac/query-engine.wasm':'1'*64}
         args=dict(inventory=inventory,proof=proof,source_commit='2'*40,logical_sha='3'*64,wasm_sha='1'*64,

@@ -6,8 +6,8 @@ from pathlib import Path
 from urllib.parse import quote
 
 ROOT=Path(__file__).resolve().parents[1]
-FILE='research/dimoune-2023-width-query-contract-v1.json'
-PREPARED='research/dimoune-2023-section-width-admission-prepared-v1.json'
+FILE='research/dimoune-2023-width-query-contract-v2.json'
+PREPARED='research/dimoune-2023-section-width-admission-prepared-v2.json'
 AUDIT='research/dimoune-2023-width-parent-run-v1/audit.json'
 KEY='published_dimoune_2023_section_widths_v1'
 PARENT='dc671a2af236089e37c02489e0cba6bea52e81298879abf0ea809f8d9552a936'
@@ -30,6 +30,10 @@ def build_contract():
         or request['execute'] is not False or request['cloud_parent_packet_read_permitted'] is not False
         or request['completed_run_id']!=40925528451):raise ValueError('Exact completed parent review required')
     widths=copy.deepcopy(prep['new_width_records']);source=copy.deepcopy(prep['new_source_record'])
+    for row in widths:
+        axis=row['mean_section_context']['section_axis_kind']
+        if axis not in ('meridional','oblique') or axis+' section width' not in row['range_interpretation']:
+            raise ValueError('Section orientation and scope description disagree')
     source.update(kind='publication',year=2023,used_in_collections=['objects','widths'],
         source_facts_file='research/dimoune-2023-section-width-records-prepared-v1.json',
         source_facts_sha256=sha('research/dimoune-2023-section-width-records-prepared-v1.json'))
@@ -50,8 +54,12 @@ def build_contract():
     inputs=[PREPARED,AUDIT,'research/dimoune-2023-width-parent-execution-review-v1.json',
         'research/dimoune-2023-width-parent-request-v1.json','research/dimoune-2023-section-width-records-prepared-v1.json',
         'analysis/dimoune_2023_width_query_v1.py','plans/dimoune-2023-width-delivery-v1.md',
-        'figures/dimoune-2023-section-widths-source-review-v1.svg']
-    return {'schema':'osw.dimoune-2023-width-query-contract.v1','parent_logical_sha256':PARENT,
+        'figures/dimoune-2023-section-widths-source-review-v1.svg',
+        'research/dimoune-2023-section-orientation-correction-v1.json',
+        'research/dimoune-2023-width-query-contract-v1.json']
+    return {'schema':'osw.dimoune-2023-width-query-contract.v2','parent_logical_sha256':PARENT,
+        'supersedes_uninstalled_contract_file':'research/dimoune-2023-width-query-contract-v1.json',
+        'superseded_uninstalled_contract_sha256':sha('research/dimoune-2023-width-query-contract-v1.json'),
         'parent_collection_counts':audit['collection_counts'],'prior_source_inventory':audit['source_inventory'],
         'prior_owners':audit['owners'],'final_objects':final,'width_records':widths,'new_source':source,
         'citation_owner_ids':list(OWNERS),'family':'current:south-equatorial',
