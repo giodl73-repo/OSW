@@ -266,6 +266,14 @@ mod tests {
             for name in ["entities","objects","names"] {b.collections.get_mut(name).unwrap().extend(prior[name].as_array().unwrap().clone());}
         }
         b.collections.insert("sources".into(),identity["prior_glossary_sources"].as_array().unwrap().clone());
+        // The combined fixture must also retain every source already linked to the family.
+        // The earlier identity-only fixture needed only the two glossary publications.
+        for prior in document()["prior_records"]["identities"].as_object().unwrap().values() {
+            for source in prior["owner_sources"].as_array().unwrap() {
+                let rows=b.collections.get_mut("sources").unwrap();
+                if !rows.iter().any(|r|r["id"]==source["id"]) {rows.push(source.clone());}
+            }
+        }
         for (path,digest) in identity["input_sha256"].as_object().unwrap() {b.manifest["input_sha256"][path]=digest.clone();}
         b.manifest["input_sha256"][crate::equatorial_basin_identities::FILE]=json!(pin(crate::equatorial_basin_identities::RAW));
         b.manifest["equatorial_basin_identities_v3"]=json!({"contract_file":crate::equatorial_basin_identities::FILE,
