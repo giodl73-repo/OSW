@@ -41,7 +41,8 @@ window.renderCurrentDimensionEvidence=function(parent,scene,inspect,options={}){
     node('p',row.vertical_scope||row.layer||'Fixed width layer: Unknown',card);
     if(row.mean_section_context){
       const context=row.mean_section_context,period=context.averaging_period_months;
-      node('p',`${context.section_id} / ${context.source_flow_label}${period?` · Mean velocity profile, ${period.start} to ${period.end}`:''}`,card);
+      const section=[context.section_id,context.source_flow_label].filter(Boolean).join(' / ')||row.phase_label||'Mean section';
+      node('p',`${section}${period?` · Mean velocity profile, ${period.start} to ${period.end}`:''}`,card);
       if(row.boundary_rule)node('p',row.boundary_rule,card);
     }
     if(row.source_discrepancy_note)node('p',`Source discrepancy: ${row.source_discrepancy_note}`,card);
