@@ -1,0 +1,113 @@
+native-core	Install frozen geodesic runtime and verify query contract fixtures	﻿2026-10-29T08:12:26.3596999Z ##[group]Run cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3597602Z ^[[36;1mcpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")^[[0m
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3598099Z ^[[36;1mtaskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2^[[0m
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3599038Z ^[[36;1mtaskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_chen_indian_sec_ridge_query_v1.py -v^[[0m
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3628345Z shell: /usr/bin/bash -e {0}
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3628601Z env:
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3629042Z   CARGO_BUILD_JOBS: 1
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3629274Z   CARGO_INCREMENTAL: 0
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3629491Z   OMP_NUM_THREADS: 1
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3629701Z   OPENBLAS_NUM_THREADS: 1
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3629922Z   MKL_NUM_THREADS: 1
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3630132Z   NUMEXPR_NUM_THREADS: 1
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3630421Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.17/x64
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3630860Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.17/x64/lib/pkgconfig
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3631327Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.17/x64
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3631706Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.17/x64
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3632091Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.17/x64
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3632472Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.17/x64/lib
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:26.3632797Z ##[endgroup]
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:27.9522098Z Collecting pyproj==3.7.2
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:27.9769010Z   Downloading pyproj-3.7.2-cp313-cp313-manylinux_2_28_x86_64.whl.metadata (31 kB)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:27.9995642Z Collecting certifi (from pyproj==3.7.2)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.0038148Z   Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.0120743Z Downloading pyproj-3.7.2-cp313-cp313-manylinux_2_28_x86_64.whl (9.5 MB)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.1008386Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.5/9.5 MB 124.1 MB/s  0:00:00
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.1045271Z Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.2157025Z Installing collected packages: certifi, pyproj
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.4046804Z 
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.4058588Z Successfully installed certifi-2026.10.23 pyproj-3.7.2
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.6454656Z test_all_values_failures_and_sensitivities_are_first_class (test_chen_indian_sec_ridge_query_v1.QueryAdmissionGuards.test_all_values_failures_and_sensitivities_are_first_class) ... ERROR
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.6758383Z test_append_changes_only_declared_rows_and_preserves_physical_gaps (test_chen_indian_sec_ridge_query_v1.QueryAdmissionGuards.test_append_changes_only_declared_rows_and_preserves_physical_gaps) ... ERROR
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.7067100Z test_deleted_withheld_case_or_changed_ownership_rejected (test_chen_indian_sec_ridge_query_v1.QueryAdmissionGuards.test_deleted_withheld_case_or_changed_ownership_rejected) ... ERROR
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.7069814Z test_display_interpolation_preserves_gates_and_ten_km_limit (test_chen_indian_sec_ridge_query_v1.QueryAdmissionGuards.test_display_interpolation_preserves_gates_and_ten_km_limit) ... ok
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.7379641Z test_false_whole_current_claim_or_uncertainty_rejected (test_chen_indian_sec_ridge_query_v1.QueryAdmissionGuards.test_false_whole_current_claim_or_uncertainty_rejected) ... ERROR
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.7710476Z test_new_source_id_collision_refused (test_chen_indian_sec_ridge_query_v1.QueryAdmissionGuards.test_new_source_id_collision_refused) ... ERROR
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8024506Z test_parent_owner_or_source_change_refused (test_chen_indian_sec_ridge_query_v1.QueryAdmissionGuards.test_parent_owner_or_source_change_refused) ... ERROR
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8334680Z test_reapplication_or_wrong_logical_parent_refused (test_chen_indian_sec_ridge_query_v1.QueryAdmissionGuards.test_reapplication_or_wrong_logical_parent_refused) ... ERROR
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8335949Z 
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8336186Z ======================================================================
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8337555Z ERROR: test_all_values_failures_and_sensitivities_are_first_class (test_chen_indian_sec_ridge_query_v1.QueryAdmissionGuards.test_all_values_failures_and_sensitivities_are_first_class)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8339890Z ----------------------------------------------------------------------
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8340443Z Traceback (most recent call last):
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8348316Z   File "/home/runner/work/OSW/OSW/analysis/test_chen_indian_sec_ridge_query_v1.py", line 29, in test_all_values_failures_and_sensitivities_are_first_class
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8349708Z     c=subject.build_contract()
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8350543Z   File "/home/runner/work/OSW/OSW/analysis/chen_indian_sec_ridge_query_v1.py", line 141, in build_contract
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8379206Z ##[error]    raise ValueError('Frozen scientific outputs changed')
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8389401Z ValueError: Frozen scientific outputs changed
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8389789Z 
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8389987Z ======================================================================
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8391429Z ERROR: test_append_changes_only_declared_rows_and_preserves_physical_gaps (test_chen_indian_sec_ridge_query_v1.QueryAdmissionGuards.test_append_changes_only_declared_rows_and_preserves_physical_gaps)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8392899Z ----------------------------------------------------------------------
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8393486Z Traceback (most recent call last):
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8394566Z   File "/home/runner/work/OSW/OSW/analysis/test_chen_indian_sec_ridge_query_v1.py", line 38, in test_append_changes_only_declared_rows_and_preserves_physical_gaps
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8395643Z     c=subject.build_contract();before,manifest=self.fixture(c)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8396584Z   File "/home/runner/work/OSW/OSW/analysis/chen_indian_sec_ridge_query_v1.py", line 141, in build_contract
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8397981Z ##[error]    raise ValueError('Frozen scientific outputs changed')
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8399593Z ValueError: Frozen scientific outputs changed
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8399929Z 
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8400124Z ======================================================================
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8401442Z ERROR: test_deleted_withheld_case_or_changed_ownership_rejected (test_chen_indian_sec_ridge_query_v1.QueryAdmissionGuards.test_deleted_withheld_case_or_changed_ownership_rejected)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8402821Z ----------------------------------------------------------------------
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8403408Z Traceback (most recent call last):
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8404563Z   File "/home/runner/work/OSW/OSW/analysis/test_chen_indian_sec_ridge_query_v1.py", line 56, in test_deleted_withheld_case_or_changed_ownership_rejected
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8406172Z     c=subject.build_contract();data,manifest=self.fixture(c)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8407157Z   File "/home/runner/work/OSW/OSW/analysis/chen_indian_sec_ridge_query_v1.py", line 141, in build_contract
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8408507Z ##[error]    raise ValueError('Frozen scientific outputs changed')
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8410085Z ValueError: Frozen scientific outputs changed
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8410458Z 
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8410667Z ======================================================================
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8412000Z ERROR: test_false_whole_current_claim_or_uncertainty_rejected (test_chen_indian_sec_ridge_query_v1.QueryAdmissionGuards.test_false_whole_current_claim_or_uncertainty_rejected)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8413383Z ----------------------------------------------------------------------
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8413958Z Traceback (most recent call last):
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8415162Z   File "/home/runner/work/OSW/OSW/analysis/test_chen_indian_sec_ridge_query_v1.py", line 64, in test_false_whole_current_claim_or_uncertainty_rejected
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8416378Z     c=subject.build_contract();data,manifest=self.fixture(c)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8417407Z   File "/home/runner/work/OSW/OSW/analysis/chen_indian_sec_ridge_query_v1.py", line 141, in build_contract
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8418931Z ##[error]    raise ValueError('Frozen scientific outputs changed')
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8420283Z ValueError: Frozen scientific outputs changed
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8420966Z 
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8421166Z ======================================================================
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8422286Z ERROR: test_new_source_id_collision_refused (test_chen_indian_sec_ridge_query_v1.QueryAdmissionGuards.test_new_source_id_collision_refused)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8423459Z ----------------------------------------------------------------------
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8424077Z Traceback (most recent call last):
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8425110Z   File "/home/runner/work/OSW/OSW/analysis/test_chen_indian_sec_ridge_query_v1.py", line 71, in test_new_source_id_collision_refused
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8426153Z     c=subject.build_contract();data,manifest=self.fixture(c)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8427435Z   File "/home/runner/work/OSW/OSW/analysis/chen_indian_sec_ridge_query_v1.py", line 141, in build_contract
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8455647Z ##[error]    raise ValueError('Frozen scientific outputs changed')
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8457149Z ValueError: Frozen scientific outputs changed
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8457529Z 
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8457715Z ======================================================================
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8459144Z ERROR: test_parent_owner_or_source_change_refused (test_chen_indian_sec_ridge_query_v1.QueryAdmissionGuards.test_parent_owner_or_source_change_refused)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8460378Z ----------------------------------------------------------------------
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8460976Z Traceback (most recent call last):
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8462076Z   File "/home/runner/work/OSW/OSW/analysis/test_chen_indian_sec_ridge_query_v1.py", line 77, in test_parent_owner_or_source_change_refused
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8463090Z     c=subject.build_contract()
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8463937Z   File "/home/runner/work/OSW/OSW/analysis/chen_indian_sec_ridge_query_v1.py", line 141, in build_contract
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8465302Z ##[error]    raise ValueError('Frozen scientific outputs changed')
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8466645Z ValueError: Frozen scientific outputs changed
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8467017Z 
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8467213Z ======================================================================
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8468525Z ERROR: test_reapplication_or_wrong_logical_parent_refused (test_chen_indian_sec_ridge_query_v1.QueryAdmissionGuards.test_reapplication_or_wrong_logical_parent_refused)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8470105Z ----------------------------------------------------------------------
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8471007Z Traceback (most recent call last):
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8472123Z   File "/home/runner/work/OSW/OSW/analysis/test_chen_indian_sec_ridge_query_v1.py", line 87, in test_reapplication_or_wrong_logical_parent_refused
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8473278Z     c=subject.build_contract();data,manifest=self.fixture(c)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8474151Z   File "/home/runner/work/OSW/OSW/analysis/chen_indian_sec_ridge_query_v1.py", line 141, in build_contract
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8475395Z ##[error]    raise ValueError('Frozen scientific outputs changed')
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8476788Z ValueError: Frozen scientific outputs changed
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8477291Z 
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8477552Z ----------------------------------------------------------------------
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8478189Z Ran 8 tests in 0.222s
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8478418Z 
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8478553Z FAILED (errors=7)
+native-core	Install frozen geodesic runtime and verify query contract fixtures	2026-10-29T08:12:28.8586963Z ##[error]Process completed with exit code 1.
