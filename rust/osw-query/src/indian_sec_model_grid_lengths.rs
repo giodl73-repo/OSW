@@ -369,6 +369,22 @@ pub(crate) fn query_scene(
         "scope":document()["series_record"]["scope"],"figure":"figures/chen-indian-sec-regional-ridge-lengths-v1.svg"}),
     )
 }
+fn full_scene() -> Value {
+    json!({"kind":"regional_model_core_length_series","entity_id":OWNER,
+        "title":"Indian SEC: regional model-grid lengths","series":document()["series_record"],
+        "readings":document()["reading_records"],"sensitivities":document()["sensitivity_records"],
+        "scope":document()["series_record"]["scope"],"figure":"figures/chen-indian-sec-regional-ridge-lengths-v1.svg"})
+}
+pub(crate) fn by_current(bundle: &Bundle) -> Result<Value, String> {
+    Ok(if identity_overlay(bundle)? {
+        json!({"indian-south-equatorial":full_scene()})
+    } else { json!({}) })
+}
+pub(crate) fn atlas_projection(bundle: &Bundle, mut value: Value) -> Result<Value, String> {
+    let scenes=by_current(bundle)?;
+    if scenes.as_object().is_some_and(|s| !s.is_empty()) { value["regional_model_length_scenes"]=scenes; }
+    Ok(value)
+}
 pub(crate) fn object_projection(
     bundle: &Bundle,
     id: &str,
@@ -377,10 +393,7 @@ pub(crate) fn object_projection(
     if id != OWNER || !identity_overlay(bundle)? {
         return Ok(value);
     }
-    value["regional_model_length_scene"] = json!({"kind":"regional_model_core_length_series","entity_id":OWNER,
-        "title":"Indian SEC: regional model-grid lengths","series":document()["series_record"],
-        "readings":document()["reading_records"],"sensitivities":document()["sensitivity_records"],
-        "scope":document()["series_record"]["scope"],"figure":"figures/chen-indian-sec-regional-ridge-lengths-v1.svg"});
+    value["regional_model_length_scene"] = full_scene();
     Ok(value)
 }
 pub(crate) fn dashboard_row(bundle: &Bundle, row: &Value) -> Result<Value, String> {
@@ -604,6 +617,23 @@ mod tests {
         assert!(query_scene(READINGS, &[], &b).unwrap().is_null());
         let other = json!({"id":"other","entity_id":"current:other"});
         assert!(query_scene(READINGS, &[&other], &b).unwrap().is_null());
+    }
+    #[test]
+    fn atlas_scene_preserves_complete_evidence_without_family_inheritance() {
+        let b=fixture();let scenes=by_current(&b).unwrap();
+        assert_eq!(scenes.as_object().unwrap().len(),1);
+        let scene=&scenes["indian-south-equatorial"];
+        assert_eq!(scene["readings"].as_array().unwrap().len(),75);
+        assert_eq!(scene["sensitivities"].as_array().unwrap().len(),120);
+        assert_eq!(scene["series"]["whole_current_length_km"],Value::Null);
+        assert_eq!(scene["series"]["physical_state_join_eligible"],false);
+        assert!(scenes.get("south-equatorial").is_none());
+        let empty=Bundle{schema:"osw.query-bundle.v1".into(),manifest:json!({}),collections:BTreeMap::new()};
+        assert_eq!(by_current(&empty).unwrap(),json!({}));
+        assert_eq!(atlas_projection(&empty,json!({"keep":true})).unwrap(),json!({"keep":true}));
+        assert_eq!(atlas_projection(&b,json!({"keep":true})).unwrap()["regional_model_length_scenes"],scenes);
+        let mut bad=fixture();bad.collections.get_mut(READINGS).unwrap().pop();
+        assert!(by_current(&bad).is_err());
     }
     #[test]
     fn owner_and_dashboard_keep_whole_current_and_observation_gaps() {

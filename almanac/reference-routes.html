@@ -16,9 +16,9 @@
   <script src="atlas-seasonal-width-profile.js?v=checked-3" defer></script>
   <script src="atlas-state-navigation.js?v=review-2" defer></script>
   <script src="atlas-directory.js?v=state-map-3" defer></script>
-  <script src="stream-tube-width-chart.js?v=1" defer></script><script src="abstract-regional-width-chart.js?v=1" defer></script><script src="seasonal-regional-width-chart.js?v=1" defer></script><script src="model-regional-width-chart.js?v=1" defer></script><script src="dwbc-float-composite.js?v=1" defer></script><script src="coastal-composite-widths.js?v=1" defer></script><script src="original-regional-width-chart.js?v=gulf-stream-definitions-1" defer></script><script src="modal-decay-width-chart.js?v=1" defer></script><script src="pacific-neuc-breadths.js?v=1" defer></script><script src="azores-2009-section.js?v=1" defer></script><script src="published-section-transports.js?v=1" defer></script><script src="cited-width-constraints.js?v=1" defer></script><script src="review-cited-widths.js?v=1" defer></script><script src="satellite-core-widths.js?v=1" defer></script><script src="published-current-speeds.js?v=6" defer></script><script src="mean-core-sections.js?v=1" defer></script><script src="current-dimension-evidence.js?v=azcc-onken-1" defer></script><script src="atlas-width-evidence.js?v=madagascar-dimensions-1" defer></script>
+  <script src="stream-tube-width-chart.js?v=1" defer></script><script src="abstract-regional-width-chart.js?v=1" defer></script><script src="seasonal-regional-width-chart.js?v=1" defer></script><script src="model-regional-width-chart.js?v=1" defer></script><script src="dwbc-float-composite.js?v=1" defer></script><script src="coastal-composite-widths.js?v=1" defer></script><script src="original-regional-width-chart.js?v=gulf-stream-definitions-1" defer></script><script src="modal-decay-width-chart.js?v=1" defer></script><script src="pacific-neuc-breadths.js?v=1" defer></script><script src="azores-2009-section.js?v=1" defer></script><script src="published-section-transports.js?v=1" defer></script><script src="cited-width-constraints.js?v=1" defer></script><script src="review-cited-widths.js?v=1" defer></script><script src="satellite-core-widths.js?v=1" defer></script><script src="published-current-speeds.js?v=6" defer></script><script src="mean-core-sections.js?v=1" defer></script><script src="regional-model-lengths.js?v=1" defer></script><script src="regional-model-atlas.js?v=1" defer></script><script src="current-dimension-evidence.js?v=azcc-onken-1" defer></script><script src="atlas-width-evidence.js?v=madagascar-dimensions-1" defer></script>
   <script src="reference-route-text.js?v=2" defer></script>
-  <script src="reference-route-atlas.js?v=wicc-regional-2" defer></script>
+  <script src="reference-route-atlas.js?v=regional-model-lengths-1" defer></script>
   <script src="qualitative-current-calendar.js?v=1" defer></script>
   <script src="atlantic-euc-section-properties.js?v=2" defer></script>
   <script src="reference-routes.js?v=madagascar-dimensions-1" defer></script>
@@ -69,6 +69,10 @@
     .atlas-observed-station:focus circle,.atlas-observed-station.selected-cast circle {stroke:white;stroke-width:3;}
     .atlas-observed-station.updated circle {stroke:#ffc663;stroke-width:3;}
     .route-atlas-line { fill:none;stroke:#64dfce;stroke-width:3;cursor:pointer; }
+    .route-atlas-regional-model-line { fill:none;stroke:#eeabff;stroke-width:2;stroke-dasharray:5 3;cursor:pointer;opacity:.7; }
+    .route-atlas-regional-model-line[data-model-nominal="false"]:not(.selected) { display:none; }
+    .route-atlas-regional-model-line.selected,.route-atlas-regional-model-line:focus { stroke:#ffc663;stroke-width:4;opacity:1;outline:none; }
+    .route-atlas-regional-model-line.updated { filter:drop-shadow(0 0 2px #ffc663); }
     .route-atlas-dated-line { fill:none;stroke:#81ceff;stroke-width:3;cursor:pointer; }
     .route-atlas-dated-line.dated_analyzed_surface_front { stroke:#e7a7ff;stroke-dasharray:7 4; }
     .route-atlas-dated-line.selected,.route-atlas-dated-line:focus { stroke:#ffc663;stroke-width:5; }
