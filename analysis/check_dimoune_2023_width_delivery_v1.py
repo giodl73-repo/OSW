@@ -82,22 +82,38 @@ def run():
             batch,cache=batches['index' if mode.endswith('index') else 'main']
             rows=[{**item,'raw_response_json':cache[case_key(item)]} for item in rows];extra={'metadata_json':batch['metadata_json']}
         if mode.startswith('compare'):
-            from bounded_parity_cases_v1 import partition,encoded
-            groups=partition({'payload_sha256':sha(payload),**extra},rows)
+            from bounded_parity_cases_v1 import partition,encoded,expected_descriptor
+            def store_expected(label,raw):
+                descriptor,body=expected_descriptor(mode+'-'+label+'.expected.json',raw)
+                with (WORK/descriptor['file']).open('xb') as stream:stream.write(body)
+                return descriptor
+            expected_metadata=store_expected('metadata',extra['metadata_json'])
+            referenced=[]
+            for number,row in enumerate(rows,1):
+                referenced.append({**{k:v for k,v in row.items() if k!='raw_response_json'},
+                    'expected_response':store_expected(str(number),row['raw_response_json'])})
+            groups=partition({'schema':'osw.bounded-expected-response-fixture.v1','payload_sha256':sha(payload),
+                              'expected_metadata':expected_metadata},referenced)
+            write(OUT/(mode+'-transport.json'),{'expected_transport':'hash_checked_one_complete_response_file_at_a_time',
+                'case_count':len(referenced),'initialization_response_bytes':expected_metadata['bytes'],
+                'largest_expected_response_bytes':max(r['expected_response']['bytes'] for r in referenced),
+                'fixture_bytes':[len(encoded(group)) for group in groups],'all_expected_files_cloud_only':True})
             reports=[]
             for number,group in enumerate(groups,1):
                 fixture=WORK/(mode+f'-fixture-{number}.json');fixture.write_bytes(encoded(group))
                 output=OUT/(mode+f'-part-{number}.json')
-                subprocess.run(['node','--max-old-space-size=1536','analysis/check_chen_indian_sec_parity_v2.mjs',mode,str(wasm),str(payload),str(fixture),str(output),sha(wasm)],check=True,timeout=1800)
+                subprocess.run(['node','--max-old-space-size=1536','analysis/check_bounded_native_wasm_v1.mjs',mode,str(wasm),str(payload),str(fixture),str(output),sha(wasm)],check=True,timeout=1800)
                 report=read(output)
                 if (report['status']!='PASS' or report['mode']!=mode or report['payload_sha256']!=group['payload_sha256']
                     or report['wasm_sha256']!=sha(wasm) or report['complete_initialization_equal'] is not True
+                    or report.get('initialization_response_sha256')!=group['expected_metadata']['sha256']
                     or len(report['checks'])!=len(group['cases'])):raise ValueError('Incomplete bounded parity report')
                 if mode.endswith('index') and report['mismatched_corpus_refused'] is not True:raise ValueError('Index mismatch refusal missing')
                 for wanted,actual in zip(group['cases'],report['checks']):
                     if (actual['kind']!=wanted['kind'] or actual['name']!=wanted.get('name')
                         or actual['request_json']!=wanted.get('request_json') or actual['entire_response_equal'] is not True
-                        or actual['response_sha256']!=hashlib.sha256(wanted['raw_response_json'].encode()).hexdigest()):
+                        or actual['response_bytes']!=wanted['expected_response']['bytes']
+                        or actual['response_sha256']!=wanted['expected_response']['sha256']):
                         raise ValueError('Bounded comparison changed case identity or complete response')
                 reports.append(report)
             combined={**reports[0],'checks':[check for report in reports for check in report['checks']],

@@ -1,5 +1,14 @@
 """Partition comparison fixtures by exact UTF-8 bytes, retaining order and repeats."""
 import json
+import hashlib
+import re
+
+def expected_descriptor(filename,raw):
+    if not re.fullmatch(r'compare-(main|index)-(metadata|[0-9]+)\.expected\.json',filename):
+        raise ValueError('Confined expected JSON filename required')
+    if not isinstance(raw,str) or not raw:raise ValueError('Nonempty exact JSON bytes required')
+    body=raw.encode('utf-8')
+    return {'file':filename,'bytes':len(body),'sha256':hashlib.sha256(body).hexdigest()},body
 
 def encoded(value):
     return (json.dumps(value,ensure_ascii=False,separators=(',',':'),allow_nan=False)+'\n').encode()

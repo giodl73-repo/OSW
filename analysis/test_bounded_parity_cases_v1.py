@@ -1,5 +1,5 @@
 import unittest
-from bounded_parity_cases_v1 import encoded,partition
+from bounded_parity_cases_v1 import encoded,partition,expected_descriptor
 
 class BoundedParityTests(unittest.TestCase):
     def test_utf8_escaping_order_and_repeated_cases_are_retained(self):
@@ -22,5 +22,14 @@ class BoundedParityTests(unittest.TestCase):
     def test_invalid_headers_and_empty_inventory_refused(self):
         for header,cases,bound in [({'cases':[]},[{}],100),({},[],100),({},[{}],0)]:
             with self.assertRaises(ValueError):partition(header,cases,maximum_bytes=bound)
+
+    def test_large_expected_metadata_and_responses_stay_outside_request_fixture(self):
+        metadata,body=expected_descriptor('compare-main-metadata.expected.json','é'*5000)
+        response,other=expected_descriptor('compare-main-1.expected.json','海'*3000)
+        self.assertEqual(metadata['bytes'],10000);self.assertEqual(response['bytes'],9000)
+        self.assertEqual(body.decode(),'é'*5000);self.assertEqual(other.decode(),'海'*3000)
+        groups=partition({'expected_metadata':metadata},[{'kind':'snapshot','name':'atlas','expected_response':response}],maximum_bytes=1024)
+        self.assertLess(len(encoded(groups[0])),1024)
+        with self.assertRaises(ValueError):expected_descriptor('../compare-main-1.expected.json','{}')
 
 if __name__=='__main__':unittest.main()
