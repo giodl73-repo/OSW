@@ -3,17 +3,9 @@ name: Sequential current-gap delivery
 "on":
   push:
     branches: [codex/current-measurement-gaps]
-    paths-ignore:
-      - almanac/query-data.json
-      - almanac/query-parts/**
-      - almanac/query-engine.wasm
-      - almanac/query-engine.manifest.json
-      - almanac/index-catalog.json
-      - almanac/index-sources.json
-      - almanac/index-data.json.gz
-      - research/ocean-motion-dashboard.json
-      - research/davidson-width-installed-delivery-v1.json
-      - research/baffin-bound-installed-delivery-v1.json
+    paths:
+      - research/current-gap-delivery-phase.json
+      - .github/workflows/davidson-width-candidate.yml
 
 concurrency:
   group: osw-current-gap-delivery
