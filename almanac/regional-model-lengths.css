@@ -2,7 +2,7 @@
 .regional-model-lengths .regional-model-table td { white-space: normal; overflow-wrap: anywhere; }
 @container (max-width: 480px) {
   .regional-model-table-wrap { overflow: visible !important; }
-  .regional-model-table, .regional-model-table tbody { display: block; width: 100%; }
+  .regional-model-table, .regional-model-table tbody { display: block; width: 100%; min-width: 0; max-width: 100%; }
   .regional-model-table thead {
     position: absolute; width: 1px; height: 1px; padding: 0;
     overflow: hidden; clip-path: inset(50%); white-space: nowrap;
@@ -12,7 +12,7 @@
     margin: .6rem 0; border: 1px solid #73929c; border-radius: .3rem;
   }
   .regional-model-table td {
-    display: block; min-width: 0; border-top: 0 !important;
+    display: block; width: auto !important; min-width: 0; max-width: none; border-top: 0 !important;
     white-space: normal !important;
   }
   .regional-model-table td::before {
