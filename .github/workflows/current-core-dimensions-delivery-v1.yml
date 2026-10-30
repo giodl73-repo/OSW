@@ -61,6 +61,8 @@ jobs:
           taskset -c "$cpu" nice -n 15 node analysis/test_characteristic_velocity_dashboard_schema_v1.mjs
           taskset -c "$cpu" nice -n 15 node analysis/test_eac_mean_core_dashboard_schema_v1.mjs
           taskset -c "$cpu" nice -n 15 node analysis/test_current_core_dimensions_ui_v1.mjs
+          taskset -c "$cpu" nice -n 15 node analysis/test_current_core_dimensions_capture_scope_v1.mjs
+          taskset -c "$cpu" nice -n 15 node analysis/test_bounded_capture_json_v1.mjs
       - name: Install frozen Rust toolchain on one low-priority CPU
         run: |
           cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
