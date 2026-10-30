@@ -27,6 +27,7 @@ try{
 const clean={...process.env,GITHUB_ACTIONS:'true',GITHUB_REPOSITORY:'giodl73-repo/OSW',GITHUB_REF:'refs/heads/codex/current-measurement-gaps'};
 delete clean.OSW_PACIFIC_SEC_JET_WIDTHS_DELIVERY_V1;
 delete clean.OSW_CURRENT_CORE_DIMENSIONS_DELIVERY_V1;
+delete clean.OSW_ATLANTIC_NSEC_REFERENCE_DELIVERY_V1;
 for(const env of [clean,{...clean,OSW_PACIFIC_SEC_JET_WIDTHS_DELIVERY_V1:'1',GITHUB_REPOSITORY:'wrong/repo'}]){
   const result=spawnSync(process.execPath,['analysis/capture_bounded_wasm_responses_v1.mjs'],{env,encoding:'utf8'});
   assert.notEqual(result.status,0);assert(!result.stderr.includes('0 !== 6'));
