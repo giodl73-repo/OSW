@@ -221,8 +221,10 @@ pub(crate) fn dashboard_document(bundle: &Bundle, mut value: Value) -> Result<Va
     }
     value["entries"] = json!(updated);
     value["snapshot_fingerprint"] = json!(pin(&format!(
-        "{}{}",
-        value["snapshot_fingerprint"],
+        "osw.atlantic-nsec-reference.v1\n{}\n{}\n",
+        value["snapshot_fingerprint"]
+            .as_str()
+            .ok_or("Missing prior dashboard fingerprint")?,
         pin(RAW)
     )));
     Ok(value)

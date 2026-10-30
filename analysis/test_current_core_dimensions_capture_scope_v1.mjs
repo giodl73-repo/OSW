@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {spawnSync} from 'node:child_process';
-const keys=['OSW_DIMOUNE_WIDTH_DELIVERY_V1','OSW_ATLANTIC_NEC_BANDS_DELIVERY_V1','OSW_CHARACTERISTIC_VELOCITIES_DELIVERY_V1','OSW_PACIFIC_SEC_JET_WIDTHS_DELIVERY_V1','OSW_CURRENT_CORE_DIMENSIONS_DELIVERY_V1'];
+const keys=['OSW_DIMOUNE_WIDTH_DELIVERY_V1','OSW_ATLANTIC_NEC_BANDS_DELIVERY_V1','OSW_CHARACTERISTIC_VELOCITIES_DELIVERY_V1','OSW_PACIFIC_SEC_JET_WIDTHS_DELIVERY_V1','OSW_CURRENT_CORE_DIMENSIONS_DELIVERY_V1','OSW_ATLANTIC_NSEC_REFERENCE_DELIVERY_V1'];
 const clean={...process.env,GITHUB_ACTIONS:'true',GITHUB_REPOSITORY:'giodl73-repo/OSW',GITHUB_REF:'refs/heads/codex/current-measurement-gaps'};
 for(const key of keys)delete clean[key];
 for(const script of ['analysis/capture_bounded_wasm_responses_v1.mjs','analysis/check_bounded_native_wasm_v1.mjs']){
