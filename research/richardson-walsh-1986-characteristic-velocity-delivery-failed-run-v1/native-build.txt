@@ -1,0 +1,113 @@
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded generic-array v0.14.7
+  Downloaded itoa v1.0.18
+  Downloaded approx v0.5.1
+  Downloaded cfg-if v1.0.4
+  Downloaded crypto-common v0.1.7
+  Downloaded cpufeatures v0.2.17
+  Downloaded version_check v0.9.5
+  Downloaded heapless v0.8.0
+  Downloaded stable_deref_trait v1.2.1
+  Downloaded serde_derive v1.0.228
+  Downloaded serde_core v1.0.228
+  Downloaded zmij v1.0.23
+  Downloaded unicode-ident v1.0.24
+  Downloaded num-traits v0.2.19
+  Downloaded memchr v2.8.3
+  Downloaded geo v0.28.0
+  Downloaded libm v0.2.16
+  Downloaded block-buffer v0.10.4
+  Downloaded typenum v1.20.1
+  Downloaded smallvec v1.15.1
+  Downloaded serde_json v1.0.149
+  Downloaded sha2 v0.10.9
+  Downloaded serde v1.0.228
+  Downloaded proc-macro2 v1.0.107
+  Downloaded rstar v0.12.2
+  Downloaded log v0.4.33
+  Downloaded geographiclib-rs v0.2.7
+  Downloaded geo-types v0.7.19
+  Downloaded robust v1.2.0
+  Downloaded digest v0.10.7
+  Downloaded quote v1.0.47
+  Downloaded float_next_after v1.0.0
+  Downloaded byteorder v1.5.0
+  Downloaded hash32 v0.3.1
+  Downloaded autocfg v1.5.1
+  Downloaded syn v2.0.119
+   Compiling libm v0.2.16
+   Compiling autocfg v1.5.1
+   Compiling version_check v0.9.5
+   Compiling generic-array v0.14.7
+   Compiling num-traits v0.2.19
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling byteorder v1.5.0
+   Compiling typenum v1.20.1
+   Compiling unicode-ident v1.0.24
+   Compiling heapless v0.8.0
+   Compiling hash32 v0.3.1
+   Compiling serde_core v1.0.228
+   Compiling stable_deref_trait v1.2.1
+   Compiling zmij v1.0.23
+   Compiling smallvec v1.15.1
+   Compiling rstar v0.12.2
+   Compiling syn v2.0.119
+   Compiling approx v0.5.1
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling serde_json v1.0.149
+   Compiling serde v1.0.228
+   Compiling digest v0.10.7
+   Compiling geo-types v0.7.19
+   Compiling serde_derive v1.0.228
+   Compiling geographiclib-rs v0.2.7
+   Compiling robust v1.2.0
+   Compiling itoa v1.0.18
+   Compiling cfg-if v1.0.4
+   Compiling memchr v2.8.3
+   Compiling cpufeatures v0.2.17
+   Compiling float_next_after v1.0.0
+   Compiling log v0.4.33
+   Compiling geo v0.28.0
+   Compiling sha2 v0.10.9
+   Compiling osw-query v0.1.0 (/home/runner/work/OSW/OSW/rust/osw-query)
+error[E0308]: mismatched types
+   --> src/object_view.rs:234:79
+    |
+234 | ...   crate::characteristic_velocities::object_projection(&self.bundle, id, crate::pacific_nec_product_axes::object_projection(&self.bundle, id, crate::atlantic_nec_band_spans::object_projection(&self.bundle, id, crate::dimoune_section_widths::object_projection(&self.bundle, id, projected))))
+    |       ---------------------------------------------------                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Value`, found `Result<Value, String>`
+    |       |
+    |       arguments to this function are incorrect
+    |
+    = note: expected enum `serde_json::Value`
+               found enum `Result<serde_json::Value, std::string::String>`
+note: function defined here
+   --> src/characteristic_velocities.rs:57:14
+    |
+ 57 | pub(crate)fn object_projection(bundle:&Bundle,owner:&str,mut result:Value)->Value{
+    |              ^^^^^^^^^^^^^^^^^                           ----------------
+help: use the `?` operator to extract the `Result<serde_json::Value, std::string::String>` value, propagating a `Result::Err` value to the caller
+    |
+234 |         crate::characteristic_velocities::object_projection(&self.bundle, id, crate::pacific_nec_product_axes::object_projection(&self.bundle, id, crate::atlantic_nec_band_spans::object_projection(&self.bundle, id, crate::dimoune_section_widths::object_projection(&self.bundle, id, projected)))?)
+    |                                                                                                                                                                                                                                                                                                       +
+
+error[E0308]: mismatched types
+   --> src/object_view.rs:234:9
+    |
+ 19 | ...ub fn object_view(&self, bytes: &[u8]) -> Result<Value, String> {
+    |                                              --------------------- expected `Result<serde_json::Value, std::string::String>` because of return type
+...
+234 | ...   crate::characteristic_velocities::object...bject_projection(&self.bundle, id, projected))))
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Result<Value, String>`, found `Value`
+    |
+    = note: expected enum `Result<serde_json::Value, std::string::String>`
+               found enum `serde_json::Value`
+help: try wrapping the expression in `Ok`
+    |
+234 |         Ok(crate::characteristic_velocities::object_projection(&self.bundle, id, crate::pacific_nec_product_axes::object_projection(&self.bundle, id, crate::atlantic_nec_band_spans::object_projection(&self.bundle, id, crate::dimoune_section_widths::object_projection(&self.bundle, id, projected)))))
+    |         +++                                                                                                                                                                                                                                                                                               +
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `osw-query` (lib) due to 2 previous errors
