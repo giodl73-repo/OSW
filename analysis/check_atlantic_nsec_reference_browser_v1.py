@@ -84,6 +84,9 @@ def browser_review():
     import atlantic_nsec_reference_query_v1 as query
     contract=query.build_contract();owner=query.OWNER;short=owner.removeprefix('current:')
     routes=contract['routes']
+    width_coverage=read('research/current-width-record-owner-reconciliation-v1.json')
+    expected_width_owners={r['id']:r['current_id'] for group in width_coverage['source_width_groups'] for r in group['rows']}
+    if len(expected_width_owners)!=190:raise ValueError('Complete reconciled source width inventory required')
     class Handler(http.server.SimpleHTTPRequestHandler):
         def log_message(self,*args):pass
     server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Handler,directory=str(ROOT)))
@@ -112,9 +115,16 @@ def browser_review():
         width_status=page.locator('#width-status').inner_text()
         if width_status.startswith('Width evidence unavailable:'):
             raise ValueError('Atlas width inventory adapter failed: '+width_status)
-        expect(page.locator('#width-status')).to_contain_text('190 scoped width records for 94 of 111 current identities;')
+        expect(page.locator('#width-status')).to_contain_text('190 scoped width records for 93 of 111 current identities;')
         expect(page.locator('#width-rows > tr')).to_have_count(190)
+        actual_widths=page.locator('#width-rows > tr').evaluate_all('rows=>rows.map(row=>({id:row.id.slice(6),current_id:new URL(row.cells[0].querySelector("a").href).searchParams.get("id").replace(/^current:/,"")}))')
+        if len({r['id'] for r in actual_widths})!=190 or {r['id']:r['current_id'] for r in actual_widths}!=expected_width_owners:
+            raise ValueError('Rendered width IDs or owners differ from the retained190 source records')
+        base_width_source='research/ocean-current-width-inventory.json'
+        actual_base_pin=page.evaluate('async path=>{const raw=window.oswAtlasSnapshot.sources_json[path];if(typeof raw!=="string")throw Error("Missing actual width source receipt");return [...new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(raw)))].map(n=>n.toString(16).padStart(2,"0")).join("")}',base_width_source)
+        if actual_base_pin!=width_coverage['input_sha256'][base_width_source]:raise ValueError('Historical width source receipt differs from reconciled source bytes')
         expect(page.locator('#width-decision-rows > tr')).to_have_count(111)
+        expect(page.locator('#width-decision-gulf-stream-system > td').nth(1)).to_have_text('derived width candidate requires review')
         bound=page.locator('#width-eacc-dekeyzer-2012-bell-cited-width-lower-bound > td').nth(1)
         expect(bound).to_contain_text('>160 km')
         expect(bound).to_contain_text('central width and upper limit unknown')
@@ -150,7 +160,7 @@ def browser_review():
                     loads.append({'width':width,'cold_browser_context':not loads,'status':page.evaluate('window.oswAtlasLoadStatus')})
                     page.locator('#width-eacc-dekeyzer-2012-bell-cited-width-lower-bound').scroll_into_view_if_needed()
                     capture(page,'width-inventory-exclusive-bound'+suffix)
-                    checks.append({'width':width,'case':'all 190 width records and 111 identities render; EACC remains an exclusive lower bound with no finite range'})
+                    checks.append({'width':width,'case':'190 scoped rows across93 owners and111 identities render; Gulf Stream System stays candidate-only; EACC remains an exclusive lower bound'})
                     expect(panel.get_by_role('button',name=routes[1]['label'],exact=True)).to_have_attribute('aria-pressed','true')
                     for row in routes:
                         select_path(page,panel,row);no_overflow(page)
@@ -200,6 +210,10 @@ def browser_review():
                     checks.append({'width':width,'case':'canonical current card opens its map and both source-phase reference cards'})
                     page.goto(base+'/almanac/dashboard.html');page.wait_for_function('window.oswDashboardSnapshot?.snapshot?.entries?.length>0')
                     rows=page.evaluate('window.oswDashboardSnapshot.snapshot.entries');selected=next(r for r in rows if r['id']==owner)
+                    width_capabilities={r['id'].removeprefix('current:') for r in rows if r['type']=='named_current' and r['capabilities']['scoped_width']>0}
+                    record_owners=set(expected_width_owners.values())
+                    if len(width_capabilities)!=94 or width_capabilities-record_owners!={'gulf-stream-system'} or not record_owners<=width_capabilities:
+                        raise ValueError('Dashboard width capability must retain the candidate-only Gulf Stream System separately from93 record owners')
                     if selected['route_ids']!=contract['final_owner']['route_ids'] or selected['capabilities']['reference_route']!=2:raise ValueError('Dashboard route coverage differs')
                     page.locator('#dashboard-metric').select_option('reference_route');page.locator('#dashboard-type').select_option('named_current');page.locator('#dashboard-covered').check();page.locator('#dashboard-card-view').click();page.locator('#dashboard-search').fill(selected['label'])
                     page.wait_for_function('arg=>{const s=document.querySelector("#dashboard-status"),v=window.oswDashboardSelection;return s?.dataset.pending==="false"&&(s.textContent.startsWith("Selection failed:")||(v?.request.text===arg&&v.request.metric==="reference_route"&&v.request.covered_only===true))}',arg=selected['label'])

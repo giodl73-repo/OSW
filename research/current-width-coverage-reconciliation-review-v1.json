@@ -1,0 +1,82 @@
+{
+  "schema": "osw.current-width-coverage-reconciliation-review.v1",
+  "status": "COLD_ENTRY_PASSED_RECORD_COVERAGE_AND_CAPABILITY_DEFINITIONS_RECONCILED",
+  "browser_source_commit": "7dbeaf3cf08a3a60477e63662411326294083dc9",
+  "browser_run_id": 41102945036,
+  "browser_run_attempt": 1,
+  "browser_artifact": {
+    "id": 13000661357,
+    "bytes": 330087,
+    "sha256": "6546ad3e9c392c89b13a2a836f3546d2b453af30e03e3223adc491169b34f783"
+  },
+  "actual_atlas_load": {
+    "phase": "ready",
+    "started_at_ms": 163.89999999999418,
+    "phase_started_at_ms": 36769.70000000001,
+    "completed_phases": [
+      {
+        "phase": "load",
+        "elapsed_ms": 36605.70000000001
+      },
+      {
+        "phase": "atlas",
+        "elapsed_ms": 31241.599999999977
+      }
+    ],
+    "settled": true,
+    "worker_progress": {
+      "phase": "ready",
+      "elapsed_ms": 36479.49999999997,
+      "completed_phases": [
+        {
+          "phase": "runtime-files",
+          "elapsed_ms": 1002.1000000000058
+        },
+        {
+          "phase": "packet-and-compile",
+          "elapsed_ms": 6034.099999999977
+        },
+        {
+          "phase": "instantiate",
+          "elapsed_ms": 27.900000000023283
+        },
+        {
+          "phase": "rust-load",
+          "elapsed_ms": 29288.399999999965
+        },
+        {
+          "phase": "workspace",
+          "elapsed_ms": 3.400000000023283
+        },
+        {
+          "phase": "metadata",
+          "elapsed_ms": 123.59999999997672
+        }
+      ]
+    },
+    "elapsed_ms": 67847.6
+  },
+  "failure": "Browser expected94 admitted width-record owners but rendered93.",
+  "cause": "The historical dashboard increments scoped_width for the Gulf Stream System derived-width candidate. That identity has no admitted scoped width rows. The190 source-owned rows cover93 identities;94 is the broader dashboard capability-owner total.",
+  "record_coverage_source_file": "research/current-width-record-owner-reconciliation-v1.json",
+  "record_coverage_source_sha256": "433571fed71060688e37eda0448f5cbbcdffef1a4c2d56eb82de0e6f41993ed9",
+  "counting_rules_file": "research/current-measurement-coverage-counting-rules-v1.json",
+  "counting_rules_sha256": "16c5975cae8ac5a8870a56fc8cdc109fafa4efda234ff228d9688116aeddf102",
+  "preserved_candidate_current_id": "gulf-stream-system",
+  "preserved_candidate_decision": "derived_width_candidate_requires_review",
+  "cold_load_phase_within_existing90_seconds": true,
+  "atlas_phase_within_existing90_seconds": true,
+  "actual_failure_image": {
+    "path": "browser-failure.png",
+    "sha256": "3a2f2117d6393ea999a17d492dedda5dd8a5fe79cbe11fa06769af10e0d0c002",
+    "actually_viewed_individually": true,
+    "visual_observation": "Atlantic SEC map and current card rendered. Two regional reference cards are available. The failure is a coverage-definition assertion, not the startup timeout."
+  },
+  "correction_does_not_promote_candidate_or_add_width": true,
+  "scientific_records_changed": 0,
+  "native_or_wasm_rebuild": false,
+  "browser_review_complete": false,
+  "installed": false,
+  "main_updated": false,
+  "full_goal_complete": false
+}

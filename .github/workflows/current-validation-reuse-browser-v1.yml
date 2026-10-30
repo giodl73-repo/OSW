@@ -56,6 +56,7 @@ jobs:
           cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
           taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_atlantic_nsec_reference_browser_v1.py -v
           taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_current_validation_reuse_browser_v1.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_width_record_coverage_v1.py -v
           taskset -c "$cpu" nice -n 15 node analysis/test_reference_route_text_v1.mjs
           taskset -c "$cpu" nice -n 15 node analysis/test_cited_width_constraints_ui_v1.mjs
           taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_atlantic_nsec_client_transport_manifest_v1.py -v
