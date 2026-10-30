@@ -3,7 +3,7 @@ import copy
 import re
 
 KEY='published_characteristic_velocities_engine_v1'
-PRESENTATION={'almanac/'+name for name in ('published-current-speeds.js','query-charts.js','object.js','dashboard.js','query.html','object.html','reference-routes.html','seasons.html','dashboard.html')}
+PRESENTATION={'almanac/'+name for name in ('dashboard-evidence-schema.js','published-current-speeds.js','query-charts.js','object.js','dashboard.js','query.html','object.html','reference-routes.html','seasons.html','dashboard.html')}
 RUST_CHANGED={'rust/osw-query/src/'+name for name in ('lib.rs','object_view.rs','seasons_data.rs','dashboard.rs','equatorial_basin_identities.rs','dimoune_section_widths.rs','atlantic_nec_band_spans.rs','pacific_secc_reference.rs','south_java_reference.rs','wicc_winter_reference.rs')}
 RUST_ADDED={'rust/osw-query/src/characteristic_velocities.rs'}
 CONTRACT='research/richardson-walsh-1986-characteristic-velocity-query-contract-v1.json'

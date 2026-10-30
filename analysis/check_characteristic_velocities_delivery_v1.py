@@ -10,10 +10,10 @@ import shutil
 import subprocess
 
 ROOT=Path(__file__).resolve().parents[1]
-REQUEST='research/richardson-walsh-1986-characteristic-velocity-delivery-request-v1.json'
-PREFLIGHT='research/richardson-walsh-1986-characteristic-velocity-delivery-preflight-v1.json'
-OUT=ROOT/'.pytest_cache/richardson-walsh-1986-characteristic-velocity-delivery-v1'
-WORK=ROOT/'.pytest_cache/richardson-walsh-1986-characteristic-velocity-delivery-work-v1'
+REQUEST='research/richardson-walsh-1986-characteristic-velocity-delivery-request-v2.json'
+PREFLIGHT='research/richardson-walsh-1986-characteristic-velocity-delivery-preflight-v2.json'
+OUT=ROOT/'.pytest_cache/richardson-walsh-1986-characteristic-velocity-delivery-v2'
+WORK=ROOT/'.pytest_cache/richardson-walsh-1986-characteristic-velocity-delivery-work-v2'
 def read(path):return json.loads((ROOT/path).read_bytes())
 def sha(path):
     with (ROOT/path).open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
