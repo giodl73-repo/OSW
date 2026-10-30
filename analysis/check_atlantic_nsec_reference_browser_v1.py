@@ -256,16 +256,22 @@ def browser_review():
 
 
 
-def main():
+def bind_client_manifest(original_raw,apply_binding=True):
+    if not apply_binding:return original_raw,[]
+    import atlantic_nsec_client_transport_manifest_v1 as transport_binding
+    final_raw=(ROOT/transport_binding.FILE).read_bytes()
+    expected=transport_binding.overlay(original_raw,{p:sha(p) for p in sorted(transport_binding.PATHS)})
+    if json.loads(final_raw)!=expected:raise ValueError('Client transport binding differs from the exact saved engine')
+    return final_raw,sorted(transport_binding.PATHS)
+
+def main(*,apply_client_transport_binding=True):
     pref=controls();OUT.mkdir(parents=True,exist_ok=False);WORK.mkdir(parents=True,exist_ok=False)
     files=saved_files(read(SAVED+'result.json'));extract_saved(files)
     if sha('almanac/query-engine.manifest.json')!=MANIFEST or read('almanac/query-engine.manifest.json')!=read(SAVED+'engine-manifest.json'):
         raise ValueError('Saved engine manifest differs')
-    import atlantic_nsec_client_transport_manifest_v1 as transport_binding
-    final_raw=(ROOT/transport_binding.FILE).read_bytes()
-    expected=transport_binding.overlay((ROOT/(SAVED+'engine-manifest.json')).read_bytes(),
-        {p:sha(p) for p in sorted(transport_binding.PATHS)})
-    if json.loads(final_raw)!=expected:raise ValueError('Client transport binding differs from the exact saved engine')
+    # A rebuilt engine can already bind every reviewed client asset. Preserve
+    # its verified bytes when an older saved-engine overlay is not needed.
+    final_raw,client_updates=bind_client_manifest((ROOT/'almanac/query-engine.manifest.json').read_bytes(),apply_client_transport_binding)
     files={p:dict(row) for p,row in files.items()}
     files['almanac/query-engine.manifest.json']={'sha256':hashlib.sha256(final_raw).hexdigest(),'bytes':len(final_raw)}
     (ROOT/'almanac/query-engine.manifest.json').write_bytes(final_raw)
@@ -283,7 +289,7 @@ def main():
         'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],'run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],
         'saved_engine_source':SOURCE,'saved_engine_run':RUN,'saved_artifact':ARTIFACT,
         'logical_sha256':LOGICAL,'wasm_sha256':BINARY,'original_engine_manifest_sha256':MANIFEST,
-        'engine_manifest_sha256':hashlib.sha256(final_raw).hexdigest(),'client_transport_updates':sorted(transport_binding.PATHS),
+        'engine_manifest_sha256':hashlib.sha256(final_raw).hexdigest(),'client_transport_updates':client_updates,
         'screenshots':len(observed['screenshots']),'browser_checks':len(observed['checks']),
         'native_or_wasm_rebuild':False,'visual_review_complete':False,'installed':False,'main_updated':False,'full_goal_complete':False})
 
