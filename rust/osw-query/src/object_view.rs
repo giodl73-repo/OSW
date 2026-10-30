@@ -91,6 +91,7 @@ impl Store {
             "current_length_bound_admissions",
             "current_length_bound_scenarios",
             "current_regional_reaches",
+            "current_core_migration_profiles",
             "route_decisions",
             "current_direction_calendars",
             "current_direction_descriptions",
@@ -232,7 +233,7 @@ impl Store {
             ),
         ))?;
         let projected = crate::pacific_nec_product_axes::object_projection(&self.bundle, id, crate::atlantic_nec_band_spans::object_projection(&self.bundle, id, crate::dimoune_section_widths::object_projection(&self.bundle, id, projected)))?;
-        Ok(crate::current_core_dimensions::object_projection(&self.bundle, id, crate::pacific_sec_jet_widths::object_projection(&self.bundle, id, crate::characteristic_velocities::object_projection(&self.bundle, id, projected))))
+        Ok(crate::current_reference_profiles::object_projection(&self.bundle, id, crate::current_core_dimensions::object_projection(&self.bundle, id, crate::pacific_sec_jet_widths::object_projection(&self.bundle, id, crate::characteristic_velocities::object_projection(&self.bundle, id, projected)))))
     }
 }
 

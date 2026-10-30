@@ -55,6 +55,7 @@
   names.seasonal_routes='Source-defined seasonal routes';
   names.width_samples='Scoped width samples';
   names.current_regional_reaches='Published regional reaches';
+  names.current_core_migration_profiles='Core movement by depth';
   names.current_dimension_samples='Regional model dimension attempts';
   names.current_axis_normal_samples='Axis-normal model span attempts';
   names.current_velocity_samples='Observed current velocity';
@@ -164,6 +165,7 @@
   function rejectResult(message){failure(message);renderMap(null);window.oswCharts.render(null,inspect);$('query-detail').hidden=true;detailSequence++;$('query-share').hidden=true;$('query-export').disabled=true;$('query-previous').disabled=true;$('query-next').disabled=true;lastQuery=null;lastResult=null;window.oswLastQueryResult=null;$('query-rows').replaceChildren();$('query-page').textContent='';}
   function label(row){if(row.constraint?.quantity==='reported_nearshore_regional_extent')return row.constraint.regional_support.join('–')+' coastal reach ('+row.constraint.study_window[0].slice(0,4)+')';if(row.id?.startsWith('taxonomy-link:'))return row.child_label+' → '+row.parent_label;return row.label||row.name||row.title||row.entity_label||row.id;}
   function value(row){
+    if(row.type==='source_plot_core_migration')return `≈ ${row.approximate_migration_degrees.toFixed(2)}° poleward · source-plot reading`;
     if(row.constraint?.quantity==='reported_nearshore_regional_extent')return row.constraint.display+' · reported coastal reach';
     if(row.metric==='fixed_array_southwestward_v_component_span')return row.component_span_km===null?'Unresolved':`≈ ${row.component_span_km.toFixed(1)} km · fixed-array component span`;
     if(row.metric==='local_section_normal_component_span')return (row.component_span_km===null?'Unresolved':`≈ ${row.component_span_km.toFixed(1)} km · local component span`)+(row.saline_outflow_screen===false?' · saline screen fails':'');
@@ -347,6 +349,14 @@
       image.alt='Regional coastal reach '+c.display+'; upper endpoint and numerical uncertainty unreported. Not a geographic route or whole-current length.';
       element('figcaption','Schematic source constraint; the arrow is not a mapped route.',figure);
     }
+    if(row.type==='source_plot_core_migration'){
+      element('p',row.component_scope,parent);
+      element('p',`${Math.abs(row.section_longitude_degrees_east)}°W section · ${row.sampling_depth_m}m depth · source panel ${row.source_panel}.`,parent);
+      element('p','Plot-reading allowance: '+row.plot_reading_interval_degrees.map(v=>v.toFixed(2)).join('–')+'°'+(row.interval_includes_zero?' (includes zero)':'')+'. This is not a confidence interval, physical uncertainty or an annual range.',parent);
+      element('p','Underlying mapped field: '+row.underlying_grid_degrees+'° grid. Geostrophic no-motion reference: '+row.no_motion_reference_depth_m+'m; this is not current thickness.',parent);
+      element('p',row.time_convention,parent);
+      element('p','No source-supported current axis or footprint is supplied by these longitude/depth readings.',parent);
+    }
     if(row.source_decision){
       element('p','Editorial worklist for names without a published ranked length. Existing candidates remain pending scientific review; no new length is assigned by this decision.',parent);
       element('h4','Next evidence needed',parent);element('p',row.next_action,parent);
@@ -464,6 +474,7 @@
       if(spatial?.length){const details=element('details',undefined,panel);details.open=true;element('summary','Computed state relations ('+spatial.length+')',details);element('p',lastResult.spatial_scope,details);element('pre',JSON.stringify(spatial,null,2),details);}
       const groups=[['width_ids','widths','Scoped width records'],['measurement_ids','measurements','Published measurements'],['route_ids','reference_routes','Editorial routes'],['source_ids','sources','Linked sources'],['frame_ids','geometry_frames','Dated diagnostic frames']];
       groups.push(['seasonal_route_ids','seasonal_routes','Source-defined seasonal routes']);
+      groups.push(['core_migration_profile_ids','current_core_migration_profiles','Core movement by depth']);
       groups.push(['route_decision_ids','route_decisions','Length construction decision']);
       groups.push(['diagnostic_ids','diagnostics','Unranked method diagnostics']);
       groups.push(['flow_network_ids','flow_networks','Source-described flow networks']);

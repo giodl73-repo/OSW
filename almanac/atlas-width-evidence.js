@@ -13,6 +13,7 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
   if(id==='pacific-north-equatorial-undercurrent')window.renderPacificNeucBreadths(panel,window.oswAtlasSnapshot?.pacific_neuc_breadth_scene);
   window.renderPublishedSectionTransports(panel,window.oswAtlasSnapshot?.published_transport_scenes?.[id]);
   window.renderPublishedCurrentSpeeds(panel,window.oswAtlasSnapshot?.published_speed_scenes?.[id]);
+  window.renderCoreMigrationProfiles(panel,window.oswAtlasSnapshot?.core_migration_scenes?.[id],undefined,{collapsed:true});
   window.renderMeanCoreSections(panel,window.oswAtlasSnapshot?.mean_core_section_scenes?.[id],undefined,{collapsed:true});
   window.renderCurrentDimensionEvidence(panel,window.oswAtlasSnapshot?.current_dimension_evidence_scenes?.[id],undefined,{collapsed:true});
   window.renderSatelliteCoreWidths(panel,window.oswAtlasSnapshot?.satellite_core_width_scenes?.[id]);

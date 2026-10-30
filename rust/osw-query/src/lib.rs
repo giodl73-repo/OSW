@@ -21,6 +21,7 @@ mod atlantic_nec_band_spans;
 mod pacific_sec_jet_widths;
 mod current_core_dimensions;
 mod atlantic_nsec_reference;
+mod current_reference_profiles;
 mod baffin_latitude_bound;
 mod basin_spans;
 mod caribbean_source_fields;
@@ -244,6 +245,7 @@ impl Store {
             fields.insert(name.clone(), keys);
         }
         let validation_scope = validation_scope::Scope::new(&bundle.collections, &bundle.manifest);
+        current_reference_profiles::validate(&bundle)?;
         pacific_nec_product_axes::validate(&bundle)?;
         dimoune_section_widths::validate(&bundle)?;
         atlantic_nec_band_spans::validate(&bundle)?;
@@ -298,6 +300,7 @@ impl Store {
                 ("current_section_ids", "current_sections"),
                 ("mean_core_section_ids", mean_core_sections::COLLECTION),
                 ("reported_flow_event_ids", madagascar_dimensions::COLLECTION),
+                ("core_migration_profile_ids", current_reference_profiles::COLLECTION),
                 ("route_decision_ids", "route_decisions"),
                 ("diagnostic_ids", "diagnostics"),
                 ("flow_network_ids", "flow_networks"),
@@ -323,6 +326,7 @@ impl Store {
                             || collection == "current_sections"
                             || collection == mean_core_sections::COLLECTION
                             || collection == madagascar_dimensions::COLLECTION
+                            || collection == current_reference_profiles::COLLECTION
                             || collection == "diagnostics"
                             || collection == "route_decisions"
                             || collection == "flow_networks"
@@ -870,6 +874,8 @@ impl Store {
             madagascar_dimensions::event_scene(&matches)
         } else if query.collection == mean_core_sections::COLLECTION {
             mean_core_sections::scene(&matches)
+        } else if query.collection == current_reference_profiles::COLLECTION {
+            current_reference_profiles::scene(&matches)
         } else if query.collection == "current_characteristic_velocities" {
             characteristic_velocities::scene(&matches)
         } else if query.collection == "current_speed_statistics" {

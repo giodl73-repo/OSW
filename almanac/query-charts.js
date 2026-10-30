@@ -52,6 +52,12 @@ window.oswCharts=(()=>{
   }
   function render(scene,inspect){
     stopAll();stops=[];
+    if(scene?.kind==='published_core_migration_profiles'){
+      document.getElementById('query-chart-section').hidden=false;root().replaceChildren();
+      document.getElementById('query-chart-scope').textContent=scene.scope;
+      document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent=scene.title;
+      window.renderCoreMigrationProfiles(root(),scene,inspect);return;
+    }
     if(scene?.kind==='equatorial_basin_identity_context'){
       document.getElementById('query-chart-section').hidden=false;root().replaceChildren();
       document.getElementById('query-chart-scope').textContent=scene.scope;

@@ -195,7 +195,9 @@ pub fn validate(
                 return Err(format!("Planning projection differs in {key}"));
             }
         }
-        let source_path = if let Some(path) = crate::atlantic_nsec_reference::planning_source(record, collections, manifest)? {
+        let source_path = if let Some(path) = crate::current_reference_profiles::planning_source(record, collections, manifest)? {
+            path
+        } else if let Some(path) = crate::atlantic_nsec_reference::planning_source(record, collections, manifest)? {
             path
         } else if let Some(path) = crate::wicc_winter_reference::planning_source(record, collections, manifest)? {
             path

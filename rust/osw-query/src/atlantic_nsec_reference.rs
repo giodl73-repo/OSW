@@ -147,7 +147,7 @@ pub(crate) fn additional_source_count(
     c: &BTreeMap<String, Vec<Value>>,
     manifest: &Value,
 ) -> Result<usize, String> {
-    Ok(if checked(c, manifest)? { 2 } else { 0 })
+    Ok((if checked(c, manifest)? { 2 } else { 0 }) + crate::current_reference_profiles::additional_source_count(c, manifest)?)
 }
 pub(crate) fn additional_reference_route_count(
     c: &BTreeMap<String, Vec<Value>>,
@@ -157,16 +157,15 @@ pub(crate) fn additional_reference_route_count(
         additions("reference_routes").len()
     } else {
         0
-    })
+    } + crate::current_reference_profiles::additional_reference_route_count(c, manifest)?)
 }
 pub(crate) fn validated_reference_routes(bundle: &Bundle) -> Result<Vec<Value>, String> {
-    Ok(if identity_overlay(bundle)? {
-        additions("reference_routes").to_vec()
-    } else {
-        vec![]
-    })
+    let mut result = if identity_overlay(bundle)? { additions("reference_routes").to_vec() } else { vec![] };
+    result.extend(crate::current_reference_profiles::validated_routes(bundle)?);
+    Ok(result)
 }
 pub(crate) fn parent_object<'a>(row: &'a Value, manifest: &Value) -> &'a Value {
+    let row = crate::current_reference_profiles::parent_object(row, manifest);
     if !manifest[KEY].is_null() && row == &document()["final_owner"] {
         &document()["prior_owner"]
     } else {
