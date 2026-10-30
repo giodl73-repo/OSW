@@ -103,6 +103,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     expected.extend(crate::pacific_secc_reference::routes(&bundle.collections, &bundle.manifest)?);
     expected.extend(crate::south_java_reference::routes(&bundle.collections, &bundle.manifest)?);
     expected.extend(crate::wicc_winter_reference::routes(&bundle.collections, &bundle.manifest)?);
+    expected.extend(crate::atlantic_nsec_reference::validated_reference_routes(bundle)?);
     if bundle.collections.get("reference_routes") != Some(&expected) {
         return Err("Changed working route catalogue projection".into());
     }

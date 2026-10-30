@@ -25,6 +25,7 @@
   function compactFigure(row, report) {
     if (row.compact_figure_file || report?.compact_figure_file) return row.compact_figure_file || report.compact_figure_file;
     return ({
+      'figures/atlantic-nsec-regional-reference-reaches-v1.svg': 'figures/atlantic-nsec-regional-reference-reaches-compact-v1.svg',
       'figures/pacific-secc-western-mean-reference-path-v2-candidate.svg': 'figures/pacific-secc-western-reference-compact-v1.svg',
       'figures/wicc-winter-regional-reference-route-v4-candidate.svg': 'figures/wicc-winter-regional-reference-compact-v1.svg'
     })[row.figure] || null;

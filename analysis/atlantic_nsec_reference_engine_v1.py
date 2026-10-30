@@ -3,9 +3,12 @@ import copy
 import re
 
 KEY='atlantic_nsec_reference_engine_v1'
-PRESENTATION={'figures/atlantic-nsec-regional-reference-reaches-v1.svg','almanac/reference-route-atlas.js'}
+PRESENTATION={'figures/atlantic-nsec-regional-reference-reaches-v1.svg',
+    'figures/atlantic-nsec-regional-reference-reaches-compact-v1.svg',
+    'almanac/reference-route-atlas.js','almanac/reference-route-text.js'}
 RUST_CHANGED={'rust/osw-query/src/'+name for name in ('lib.rs','seasons_data.rs','atlas_data.rs','dashboard.rs','planning.rs',
-    'equatorial_basin_identities.rs','indian_sec_model_grid_lengths.rs','pacific_secc_reference.rs',
+    'equatorial_basin_identities.rs','madagascar_coastal_curve.rs','nwasc_reference_route.rs',
+    'indian_sec_model_grid_lengths.rs','pacific_secc_reference.rs',
     'south_java_reference.rs','wicc_winter_reference.rs','characteristic_velocities.rs')}
 RUST_ADDED={'rust/osw-query/src/atlantic_nsec_reference.rs'}
 CONTRACT='research/atlantic-nsec-reference-query-contract-v2.json'

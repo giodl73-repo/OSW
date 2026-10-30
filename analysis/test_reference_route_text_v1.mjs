@@ -19,6 +19,7 @@ assert.equal(text.summary({...old,comparison_group:'osw_source_anchor_connection
 assert.equal(text.summary({...old,comparison_group:'osw_offshore_coastal_reference_curves'}),'≈ 1,500 km · 3 scenarios · 1,500–1,600 km convention sensitivity');
 assert.match(text.summary({approximate_reference_path_km:null,scenario_range_km:null}),/^Length unknown/);
 assert.equal(text.compactFigure({figure:'figures/wicc-winter-regional-reference-route-v4-candidate.svg'},{}),'figures/wicc-winter-regional-reference-compact-v1.svg');
+assert.equal(text.compactFigure({figure:'figures/atlantic-nsec-regional-reference-reaches-v1.svg'},{}),'figures/atlantic-nsec-regional-reference-reaches-compact-v1.svg');
 for(const name of ['reference-routes','reference-route-atlas','seasons']) {
   const source=fs.readFileSync(`almanac/${name}.js`,'utf8');
   assert.ok(source.includes('window.OSWReferenceRouteText.'));
@@ -26,8 +27,9 @@ for(const name of ['reference-routes','reference-route-atlas','seasons']) {
 }
 for(const page of ['reference-routes','seasons']) {
   const source=fs.readFileSync(`almanac/${page}.html`,'utf8');
-  assert.ok(source.includes('reference-route-text.js?v=1'));
-  assert.ok(source.indexOf('reference-route-text.js?v=1')<source.indexOf(`${page}.js?v=`));
+  const helper=source.match(/<script src="reference-route-text\.js\?v=[^"]+" defer><\/script>/g);
+  assert.equal(helper?.length,1);
+  assert.ok(source.indexOf(helper[0])<source.indexOf(`${page}.js?v=`));
 }
 assert.ok(fs.readFileSync('almanac/reference-route-atlas.js','utf8').includes("original?.closest('picture')"));
 console.log('PASS: nullable ranges, unchanged finite labels, consumers, asset order and compact atlas picture selection');

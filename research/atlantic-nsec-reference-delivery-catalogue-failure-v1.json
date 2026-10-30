@@ -1,0 +1,30 @@
+{
+  "schema": "osw.atlantic-nsec-reference-delivery-catalogue-failure.v1",
+  "source_commit": "817d30f367bdac9d9aab7114f764b48d31f2c34f",
+  "run_id": 41069867140,
+  "run_attempt": 1,
+  "conclusion": "failure",
+  "native_tests_passed": 314,
+  "failed_step": "complete candidate main load",
+  "stderr": "Changed working route catalogue projection",
+  "cause": "The Madagascar and NwASC historical validators compared complete ordered reference arrays without the two new validated rows.",
+  "correction": "Append exactly the two validated nSEC rows in canonical packet order; preserve equality of every historical row and method.",
+  "complete_direct_inventory_consumer_review": [
+    "wicc_winter_reference.rs",
+    "madagascar_coastal_curve.rs",
+    "nwasc_reference_route.rs",
+    "seasons_data.rs",
+    "atlas_data.rs"
+  ],
+  "evidence_artifact": {
+    "id": 12983729475,
+    "bytes": 25103,
+    "sha256": "8780219ac30d83b4d10ea2ae7636e9168fbf309d97cdd62fdf148aa08ecaf1b9"
+  },
+  "rust_tests_log_sha256": "bda76d8c2eb3600cee4f1496d49c9ebbb78551b03b09da9a0abbb5b40de06a6a",
+  "failure_sha256": "8db2301d57c4479fc7efdf03bb871806fee8c767c8dc49a6241e1db5540dbf25",
+  "preflight_sha256": "6f76267536ba00a313df8f51163fdec8485870666af49aa2786d527ed8fae2cb",
+  "installed": false,
+  "main_updated": false,
+  "local_bulk_sync": false
+}
