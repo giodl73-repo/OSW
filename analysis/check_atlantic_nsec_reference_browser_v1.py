@@ -184,6 +184,12 @@ def browser_review():
                         capture(page,'route-card-'+row['phase']+suffix);no_overflow(page)
                         expect(card.locator('a[href="'+row['source_url']+'"]').first).to_be_attached()
                         card.get_by_role('link',name='Back to global current map ↑',exact=True).click()
+                        expect(panel).to_be_hidden()
+                        expect(page.locator('#route-atlas-select')).to_have_value('')
+                        expect(page.locator('#route-atlas-map')).to_have_attribute('viewBox','60 90 1480 740')
+                        if row['id']==routes[0]['id']:
+                            page.locator('#route-atlas-map').scroll_into_view_if_needed();capture(page,'global-map-return'+suffix)
+                        page.locator('#route-atlas-select').select_option(owner)
                         expect(panel).to_be_visible()
                     checks.append({'width':width,'case':'cold direct fall route restored; distinct spring/fall tabs, global map and full map-card navigation; no ranking or physical-state promotion'})
                     result=query_page(page,route_query())
