@@ -169,7 +169,7 @@ def geography():
         ax.plot([p[0] for p in points],[p[1] for p in points],color=color,label=route['phase'].replace('_',' '),linewidth=1.8)
     ax.set(xlim=(-66,-20),ylim=(8,24),xlabel='Longitude (degrees east)',ylabel='Latitude (degrees north)')
     ax.set_facecolor('#e7f2f7');ax.grid(alpha=.2);ax.legend();ax.set_title('Atlantic NEC interior reach | 36 editorial drawings and gate choices')
-    fig.text(.5,.035,'Nominal gates:0Â°â€“35Â°W. About3900km per reach. Geographic screening only; whole-current length remains unresolved.',ha='center',fontsize=9)
+    fig.text(.5,.035,'Interior gates:30W to55W. Approximate2700-2800km per reach. Geographic screening only; whole-current length unresolved.',ha='center',fontsize=9)
     fig.savefig(OUT/'geography.png',dpi=120);plt.close(fig)
     if result['status']!='PASS' or len(checks)!=36:raise ValueError('Retain failed scenarios; no partial geography admission')
     return result
