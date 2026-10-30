@@ -45,6 +45,11 @@ window.renderCurrentDimensionEvidence=function(parent,scene,inspect,options={}){
       node('p',`${section}${period?` · Mean velocity profile, ${period.start} to ${period.end}`:''}`,card);
       if(row.boundary_rule)node('p',row.boundary_rule,card);
     }
+    if(row.regional_band_context){
+      const limits=row.source_reported_latitude_bounds_deg_north;
+      if(Array.isArray(limits)&&limits.length===2)node('p',`Reported southern band: ${number(limits[0])}–${number(limits[1])}°N · regional section near 27°W.`,card);
+      node('p','Latitude-band estimate; the northern band is excluded. Sampling depth is not current thickness.',card);
+    }
     if(row.source_discrepancy_note)node('p',`Source discrepancy: ${row.source_discrepancy_note}`,card);
     if(row.source_quality_note)node('p',row.source_quality_note,card);
     node('p','Seasonal width range: Unknown. Numerical uncertainty: Unknown.',card);

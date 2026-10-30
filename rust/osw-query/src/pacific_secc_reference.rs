@@ -73,7 +73,7 @@ pub(crate) fn routes(collections: &BTreeMap<String, Vec<Value>>, manifest: &Valu
                 + crate::mean_core_sections::additional_source_count(collections, manifest)?
                 + crate::madagascar_dimensions::additional_source_count(collections, manifest)?
                 + crate::azcc_onken_width::additional_source_count(collections, manifest)?
-                + crate::pacific_nec_nominal_width::additional_source_count(collections, manifest)? + crate::indian_sec_model_grid_lengths::additional_source_count(collections, manifest)? + crate::pacific_nec_product_axes::additional_source_count(collections, manifest)? + crate::dimoune_section_widths::additional_source_count(collections, manifest)?
+                + crate::pacific_nec_nominal_width::additional_source_count(collections, manifest)? + crate::indian_sec_model_grid_lengths::additional_source_count(collections, manifest)? + crate::pacific_nec_product_axes::additional_source_count(collections, manifest)? + crate::dimoune_section_widths::additional_source_count(collections, manifest)? + crate::atlantic_nec_band_spans::additional_source_count(collections, manifest)?
         { return Err(fail()); }
         for (path, sha) in expected["input_sha256"].as_object().ok_or_else(fail)? {
             if manifest["input_sha256"][path] != *sha { return Err(fail()); }
