@@ -55,8 +55,9 @@ def catalogue(old,c):
 def expected_snapshot(name,old,c,logical_sha):
     result=copy.deepcopy(old);result['bundle_sha256']=logical_sha
     if name=='dashboard':result['snapshot_json']=dashboard(json.loads(old['snapshot_json']),c)
-    elif name=='atlas':
+    elif name in ['atlas','seasons']:
         result['working_reference_routes']=catalogue(old['working_reference_routes'],c)
+    if name=='atlas':
         path='research/ocean-motion-dashboard.json';result['sources_json'][path]=dashboard(json.loads(old['sources_json'][path]),c)
     return result
 

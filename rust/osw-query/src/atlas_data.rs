@@ -483,6 +483,8 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         crate::south_java_reference::routes(&bundle.collections, &bundle.manifest)?;
     let wicc_references =
         crate::wicc_winter_reference::routes(&bundle.collections, &bundle.manifest)?;
+    let atlantic_nsec_references =
+        crate::atlantic_nsec_reference::validated_reference_routes(bundle)?;
     for route in routes {
         // These complete rows and their saved display geometry are checked by
         // the exact source/query contract; historical file receipts stay exact.
@@ -490,6 +492,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
             || pacific_references.contains(route)
             || south_java_references.contains(route)
             || wicc_references.contains(route)
+            || atlantic_nsec_references.contains(route)
         {
             continue;
         }

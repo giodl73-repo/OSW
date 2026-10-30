@@ -231,6 +231,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
                 &bundle.collections,
                 &bundle.manifest,
             )?);
+            source.extend(crate::atlantic_nsec_reference::validated_reference_routes(bundle)?);
         }
         let actual = bundle
             .collections

@@ -156,6 +156,13 @@ pub(crate) fn additional_reference_route_count(
         0
     })
 }
+pub(crate) fn validated_reference_routes(bundle: &Bundle) -> Result<Vec<Value>, String> {
+    Ok(if identity_overlay(bundle)? {
+        additions("reference_routes").to_vec()
+    } else {
+        vec![]
+    })
+}
 pub(crate) fn parent_object<'a>(row: &'a Value, manifest: &Value) -> &'a Value {
     if !manifest[KEY].is_null() && row == &document()["final_owner"] {
         &document()["prior_owner"]
@@ -393,6 +400,10 @@ mod tests {
             2
         );
         assert_eq!(
+            validated_reference_routes(&b).unwrap(),
+            additions("reference_routes").to_vec()
+        );
+        assert_eq!(
             parent_object(&document()["final_owner"], &b.manifest),
             &document()["prior_owner"]
         );
@@ -432,6 +443,7 @@ mod tests {
             }
             assert!(validate(&b).is_err(), "case {case}");
             assert!(additional_reference_route_count(&b.collections, &b.manifest).is_err());
+            assert!(validated_reference_routes(&b).is_err());
         }
     }
     #[test]

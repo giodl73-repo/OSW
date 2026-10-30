@@ -40,6 +40,18 @@ class DeliveryScopeTests(unittest.TestCase):
         self.assertTrue(rules.owner_selected({'collection':'objects','taxonomy':{'root_id':'current:south-equatorial','relation':'children','include_root':False}},c))
         self.assertFalse(rules.owner_selected({'collection':'objects','taxonomy':{'root_id':query.OWNER,'relation':'ancestors','include_root':False}},c))
 
+    def test_shared_route_catalogue_updates_seasons_without_seasonal_promotion(self):
+        old={'bundle_sha256':'parent','working_reference_routes':{'candidates':[]},
+            'phase_plans':{'atlantic-south-equatorial':{'can_play':False,'annual_length_range_km':None}},
+            'sources_json':{'frames':'original source bytes'}}
+        projected={'candidates':['two independently validated editorial references']}
+        with patch.object(rules,'catalogue',return_value=projected) as apply_catalogue:
+            result=rules.expected_snapshot('seasons',old,{'test_contract':True},'child')
+        apply_catalogue.assert_called_once_with(old['working_reference_routes'],{'test_contract':True})
+        self.assertEqual(result,{**old,'bundle_sha256':'child','working_reference_routes':projected})
+        self.assertFalse(result['phase_plans']['atlantic-south-equatorial']['can_play'])
+        self.assertIsNone(result['phase_plans']['atlantic-south-equatorial']['annual_length_range_km'])
+
     def test_full_compiler_closure_and_unrelated_binding_refusal(self):
         parent=query.read('research/current-core-dimensions-installation-saved-engine-manifest-v1.json')
         inventory=copy.deepcopy(query.read('research/current-core-dimensions-delivery-run-v1/compile-inventory.json'))
