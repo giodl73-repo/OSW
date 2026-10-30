@@ -120,9 +120,13 @@ def controls():
 
 def run():
     saved=controls();OUT.mkdir(parents=True,exist_ok=False);WORK.mkdir(parents=True,exist_ok=False)
-    for group in ['rust_source_sha256','compile_time_data_sha256']:
-        for path,pin in saved.read(saved.SAVED+'compile-inventory.json')[group].items():require(sha(ROOT/path)==pin,'Saved compiler source differs: '+path)
+    inventory=saved.read(saved.SAVED+'compile-inventory.json')
+    for path,pin in inventory['rust_source_sha256'].items():require(sha(ROOT/path)==pin,'Saved Rust source differs: '+path)
     saved.WORK=WORK;saved.extract_saved(saved.saved_files(saved.read(saved.SAVED+'result.json')))
+    # Generated compiled inputs (including the source-index catalog) belong to
+    # the saved candidate, so verify them after its exact artifacts replace the
+    # installed parent's files in this disposable cloud checkout.
+    for path,pin in inventory['compile_time_data_sha256'].items():require(sha(ROOT/path)==pin,'Saved compiled data differs: '+path)
     descriptor=read('almanac/query-data.json');require(descriptor['logical_sha256']==saved.LOGICAL,'Saved logical identity differs')
     payload=WORK/'logical.json';logical=hashlib.sha256();total=0
     with payload.open('xb') as output:
