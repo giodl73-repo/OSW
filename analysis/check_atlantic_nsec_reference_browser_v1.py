@@ -109,6 +109,9 @@ def browser_review():
     def atlas_ready(page):
         page.wait_for_function('logical=>typeof window.restoreReferenceRouteAtlas==="function"&&window.oswAtlasSnapshot?.bundle_sha256===logical',arg=LOGICAL)
         expect(page.locator('#route-atlas-preview')).to_be_visible()
+        width_status=page.locator('#width-status').inner_text()
+        if width_status.startswith('Width evidence unavailable:'):
+            raise ValueError('Atlas width inventory adapter failed: '+width_status)
         snapshot=page.evaluate('short=>({candidates:window.oswAtlasSnapshot.working_reference_routes.candidates.filter(r=>r.current_id===short),order:window.oswAtlasSnapshot.working_reference_routes.reference_route_length_order})',short)
         candidates=snapshot['candidates']
         if [r['id'] for r in candidates]!=[r['id'] for r in routes]:raise ValueError('Atlas lost one of the two distinct source phases')
@@ -142,7 +145,7 @@ def browser_review():
                         panel.get_by_role('link',name='Full route card, measurements and sources ↓',exact=True).click()
                         card=page.locator('[id="'+row['id']+'"]');expect(card).to_be_visible()
                         expect(card).to_contain_text('Studied reach only. Excluded from reference-route ordering above.')
-                        expect(card.locator('h3')).to_contain_text(row['name'])
+                        expect(card.locator(':scope > h3')).to_contain_text(row['name'])
                         image=card.locator('img.route-map');image.scroll_into_view_if_needed()
                         page.wait_for_function('id=>{const n=document.getElementById(id)?.querySelector("img.route-map");return n?.complete&&n.naturalWidth>0}',arg=row['id'])
                         if width==320:
@@ -203,7 +206,7 @@ def browser_review():
                 if errors or missing or originals:raise ValueError('Page errors, missing assets or original scientific downloads')
             except Exception:
                 page.screenshot(path=str(OUT/'browser-failure.png'))
-                write(OUT/'browser-failure-state.json',page.evaluate('()=>({url:location.href,atlasLoad:window.oswAtlasLoadStatus??null,body:document.body.innerText.slice(0,9000)})'))
+                write(OUT/'browser-failure-state.json',page.evaluate('()=>({url:location.href,atlasLoad:window.oswAtlasLoadStatus??null,widthStatus:document.querySelector("#width-status")?.textContent,body:document.body.innerText.slice(0,9000)})'))
                 raise
             finally:browser.close()
         result={'status':'PASS_BROWSER_OBSERVATION_VISUAL_REVIEW_PENDING','checks':checks,'screenshots':captures,'page_errors':errors,'missing_assets':missing,'original_science_downloads':originals,'legibility':legibility,'atlas_load_observations':loads,'viewports':[1100,320],'one_page_and_renderer':True,'visual_review_complete':False}
