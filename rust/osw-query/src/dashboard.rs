@@ -55,7 +55,7 @@ fn presentation(bundle: &Bundle) -> Result<Value, String> {
     let doc = crate::equatorial_basin_identities::dashboard_document(bundle, doc)?;
     let doc = crate::pacific_nec_nominal_width::dashboard_document(bundle, doc)?;
     let doc = crate::indian_sec_model_grid_lengths::dashboard_document(bundle, doc)?;
-    crate::pacific_nec_product_axes::dashboard_projection(bundle, crate::atlantic_nec_band_spans::dashboard_document(bundle, crate::dimoune_section_widths::dashboard_document(bundle, doc)?))
+    crate::pacific_nec_product_axes::dashboard_projection(bundle, crate::atlantic_nec_band_spans::dashboard_document(bundle, crate::dimoune_section_widths::dashboard_document(bundle, doc)?)?)
 }
 
 pub fn validate(bundle: &Bundle) -> Result<(), String> {
