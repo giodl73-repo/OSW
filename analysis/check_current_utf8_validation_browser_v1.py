@@ -2,6 +2,7 @@
 import os
 from pathlib import Path
 import check_atlantic_nsec_reference_browser_v1 as browser
+import current_query_map_focus_presentation_v1 as presentation
 
 ROOT=Path(__file__).resolve().parents[1]
 REQUEST='research/current-utf8-validation-browser-request-v1.json'
@@ -32,7 +33,7 @@ def run():
     validate_candidate(browser.read(SAVED+'result.json'))
     for name in ['REQUEST','PREFLIGHT','SAVED','OUT','WORK','SOURCE','RUN','ARTIFACT','BINARY','MANIFEST','LOGICAL']:
         setattr(browser,name,globals()[name])
-    browser.main(apply_client_transport_binding=False)
+    browser.main(apply_client_transport_binding=False,presentation_binding=presentation.bind_client_manifest)
 
 if __name__=='__main__':
     try:run()

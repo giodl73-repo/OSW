@@ -163,6 +163,8 @@ def browser_review():
                     page.get_by_role('button',name='Full almanac',exact=True).click()
                     expect(page.locator('#width-eacc-dekeyzer-2012-bell-cited-width-lower-bound')).to_be_visible()
                     page.locator('#width-eacc-dekeyzer-2012-bell-cited-width-lower-bound').scroll_into_view_if_needed()
+                    if width==1100 and page.locator('#width-eacc-dekeyzer-2012-bell-cited-width-lower-bound > td').first.evaluate('n=>n.getBoundingClientRect().width')<120:
+                        raise ValueError('Desktop width inventory current names are squeezed into a narrow column')
                     capture(page,'width-inventory-exclusive-bound'+suffix)
                     if width==320:
                         row=page.locator('#width-eacc-dekeyzer-2012-bell-cited-width-lower-bound')
@@ -176,6 +178,13 @@ def browser_review():
                     expect(panel.get_by_role('button',name=routes[1]['label'],exact=True)).to_have_attribute('aria-pressed','true')
                     for row in routes:
                         select_path(page,panel,row);no_overflow(page)
+                        preview=panel.locator('img.route-map').last
+                        page.wait_for_function('()=>{const ns=document.querySelectorAll("#route-atlas-preview img.route-map"),n=ns[ns.length-1];return n?.complete&&n.naturalWidth>0}')
+                        metrics=preview.evaluate('n=>({kind:"atlas-preview",source:n.currentSrc,width:n.getBoundingClientRect().width,naturalWidth:n.naturalWidth})')
+                        if not metrics['source'].endswith('/figures/atlantic-nsec-regional-reference-reaches-compact-v1.svg'):raise ValueError('Atlas preview did not use its compact source-bound figure')
+                        metrics['minimum_text_px']=17*metrics['width']/360
+                        if metrics['minimum_text_px']<11:raise ValueError('Atlas preview text below11px')
+                        legibility.append(metrics)
                         page.locator('#route-atlas-map').scroll_into_view_if_needed();capture(page,'atlas-'+row['phase']+suffix)
                         phase_button=panel.get_by_role('button',name=row['label'],exact=True)
                         phase_button.scroll_into_view_if_needed();capture(page,'atlas-phase-control-'+row['phase']+suffix)
@@ -186,7 +195,7 @@ def browser_review():
                         image=card.locator('img.route-map');image.scroll_into_view_if_needed()
                         page.wait_for_function('id=>{const n=document.getElementById(id)?.querySelector("img.route-map");return n?.complete&&n.naturalWidth>0}',arg=row['id'])
                         if width==320:
-                            metrics=image.evaluate('n=>({source:n.currentSrc,width:n.getBoundingClientRect().width,naturalWidth:n.naturalWidth})')
+                            metrics=image.evaluate('n=>({kind:"full-route-card",source:n.currentSrc,width:n.getBoundingClientRect().width,naturalWidth:n.naturalWidth})')
                             if not metrics['source'].endswith('/figures/atlantic-nsec-regional-reference-reaches-compact-v1.svg'):raise ValueError('Narrow card did not select the compact source-bound figure')
                             metrics['minimum_text_px']=17*metrics['width']/360
                             if metrics['minimum_text_px']<11:raise ValueError('Compact route labels below 11px')
@@ -208,7 +217,14 @@ def browser_review():
                     page.locator('#query-map').scroll_into_view_if_needed();capture(page,'query-two-routes'+suffix)
                     for row in routes:
                         mark=page.locator('#query-map-features [data-entity="'+row['id']+'"]')
-                        mark.focus();expect(page.locator('#query-map-hover')).to_contain_text(row['name']);mark.press('Enter');selected_record(page,row)
+                        mark.focus();expect(mark).to_be_focused();expect(page.locator('#query-map-hover')).to_contain_text(row['name'])
+                        other=next(candidate for candidate in routes if candidate['id']!=row['id'])
+                        page.locator('#query-map-features [data-entity="'+other['id']+'"]').dispatch_event('pointerenter')
+                        expect(mark).to_be_focused();expect(page.locator('#query-map-hover')).to_contain_text(row['name'])
+                        if row['id']==routes[1]['id']:
+                            page.locator('#query-map-hover').scroll_into_view_if_needed();capture(page,'query-focused-fall-label'+suffix)
+                        mark.press('Enter');selected_record(page,row)
+                    checks.append({'width':width,'case':'Focused route label survives an explicit competing pointerenter event in the actual browser; keyboard Inspect retains the exact phase'})
                     result=query_page(page,route_query(limit=1,offset=2))
                     if result['total']!=2 or result['rows']!=[] or result['map_scene']['mapped_objects']!=2:raise ValueError('Empty paginated table lost the matching route inventory')
                     mark=page.locator('#query-map-features [data-entity="'+routes[1]['id']+'"]');mark.focus();mark.press('Enter');selected_record(page,routes[1])
@@ -279,7 +295,7 @@ def browser_review():
                 if errors or missing or originals:raise ValueError('Page errors, missing assets or original scientific downloads')
             except Exception:
                 page.screenshot(path=str(OUT/'browser-failure.png'))
-                write(OUT/'browser-failure-state.json',page.evaluate('()=>({url:location.href,atlasLoad:window.oswAtlasLoadStatus??null,widthStatus:document.querySelector("#width-status")?.textContent,body:document.body.innerText.slice(0,9000)})'))
+                write(OUT/'browser-failure-state.json',page.evaluate('()=>({url:location.href,activeElement:document.activeElement?.outerHTML.slice(0,1200),atlasLoad:window.oswAtlasLoadStatus??null,widthStatus:document.querySelector("#width-status")?.textContent,body:document.body.innerText.slice(0,9000)})'))
                 raise
             finally:browser.close()
         result={'status':'PASS_BROWSER_OBSERVATION_VISUAL_REVIEW_PENDING','checks':checks,'screenshots':captures,'page_errors':errors,'missing_assets':missing,'original_science_downloads':originals,'legibility':legibility,'atlas_load_observations':loads,'viewports':[1100,320],'one_page_and_renderer':True,'visual_review_complete':False}
@@ -298,14 +314,15 @@ def bind_client_manifest(original_raw,apply_binding=True):
     if json.loads(final_raw)!=expected:raise ValueError('Client transport binding differs from the exact saved engine')
     return final_raw,sorted(transport_binding.PATHS)
 
-def main(*,apply_client_transport_binding=True):
+def main(*,apply_client_transport_binding=True,presentation_binding=None):
     pref=controls();OUT.mkdir(parents=True,exist_ok=False);WORK.mkdir(parents=True,exist_ok=False)
     files=saved_files(read(SAVED+'result.json'));extract_saved(files)
     if sha('almanac/query-engine.manifest.json')!=MANIFEST or read('almanac/query-engine.manifest.json')!=read(SAVED+'engine-manifest.json'):
         raise ValueError('Saved engine manifest differs')
     # A rebuilt engine can already bind every reviewed client asset. Preserve
     # its verified bytes when an older saved-engine overlay is not needed.
-    final_raw,client_updates=bind_client_manifest((ROOT/'almanac/query-engine.manifest.json').read_bytes(),apply_client_transport_binding)
+    original_raw=(ROOT/'almanac/query-engine.manifest.json').read_bytes()
+    final_raw,client_updates=(presentation_binding(original_raw) if presentation_binding else bind_client_manifest(original_raw,apply_client_transport_binding))
     files={p:dict(row) for p,row in files.items()}
     files['almanac/query-engine.manifest.json']={'sha256':hashlib.sha256(final_raw).hexdigest(),'bytes':len(final_raw)}
     (ROOT/'almanac/query-engine.manifest.json').write_bytes(final_raw)
