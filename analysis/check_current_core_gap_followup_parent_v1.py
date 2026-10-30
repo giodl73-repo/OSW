@@ -104,6 +104,13 @@ def named_candidate(row):
         return False
     return scan(row)
 
+def commit_parent(raw):
+    # cat-file retains the actual commit headers even in a depth-one checkout.
+    headers=raw.decode('utf8').split('\n\n',1)[0].splitlines()
+    parents=[line.removeprefix('parent ') for line in headers if line.startswith('parent ')]
+    if len(parents)!=1 or not re.fullmatch('[0-9a-f]{40}',parents[0]):raise ValueError('One exact commit parent required')
+    return parents[0]
+
 def controls():
     if (os.name!='posix' or os.environ.get('GITHUB_ACTIONS')!='true'
         or os.environ.get('GITHUB_REPOSITORY')!='giodl73-repo/OSW'
@@ -135,7 +142,7 @@ def controls():
     main=json.loads(subprocess.check_output(['gh','api','repos/giodl73-repo/OSW/git/ref/heads/main']))['object']['sha']
     if main!='19148702de6433253dbf412a0a28c0cb4f8e409e':raise ValueError('Main ref changed')
     if head!=remote or head!=os.environ['GITHUB_SHA']:raise ValueError('Current source checkout required')
-    parent=subprocess.check_output(['git','-c','core.fsmonitor=false','rev-parse','HEAD^']).decode().strip()
+    parent=commit_parent(subprocess.check_output(['git','-c','core.fsmonitor=false','cat-file','-p','HEAD']))
     if parent!=pref['source_parent_commit']:raise ValueError('Exact audited source parent required')
     if subprocess.check_output(['git','-c','core.fsmonitor=false','status','--porcelain']).strip():raise ValueError('Clean checkout required')
     return head

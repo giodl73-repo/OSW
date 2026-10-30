@@ -6,6 +6,13 @@ import check_current_core_gap_followup_parent_v1 as audit
 
 
 class FollowupAuditTests(unittest.TestCase):
+    def test_commit_header_parent_does_not_require_parent_object(self):
+        parent='a'*40
+        raw=('tree '+'b'*40+'\nparent '+parent+'\nauthor A\ncommitter B\n\nmessage\nparent '+'c'*40).encode()
+        self.assertEqual(audit.commit_parent(raw),parent)
+        for invalid in [b'tree abc\n\nmessage',b'parent a\n\nmessage',('parent '+parent+'\nparent '+parent+'\n\nmerge').encode()]:
+            with self.assertRaises(ValueError):audit.commit_parent(invalid)
+
     def test_primary_DOI_normalizes_url_case_encoding(self):
         rows=[{'id':'peters','doi':'https://doi.org/10.1175%2FJPO2679.1'},
               {'id':'nilsen','doi':'doi:10.1175/JPO-D-15-0058.1'}]
