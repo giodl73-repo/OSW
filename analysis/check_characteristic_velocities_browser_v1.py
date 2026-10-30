@@ -104,7 +104,7 @@ def browser_review():
             card=panel.locator('[data-characteristic-velocity-id="'+row['id']+'"]')
             expect(card).to_contain_text(row['source_current_label'])
             interval=row['characteristic_mean_vector_speed_interval_m_s']
-            mean='â€“'.join(format(v,'.2f') for v in interval) if interval else format(row['characteristic_mean_vector_speed_m_s'],'.2f')
+            mean='\u2013'.join(format(v,'.2f') for v in interval) if interval else format(row['characteristic_mean_vector_speed_m_s'],'.2f')
             values=[mean]+[format(row[k],'.2f') for k in ['seasonal_velocity_variation_m_s','annual_harmonic_source_amplitude_m_s','semiannual_harmonic_source_amplitude_m_s']]
             expect(card.locator('dd')).to_have_text([v+' m/s' for v in values])
             expect(card).to_contain_text('annual extrema, confidence interval and monthly series remain unknown')
