@@ -28,10 +28,13 @@ const clean={...process.env,GITHUB_ACTIONS:'true',GITHUB_REPOSITORY:'giodl73-rep
 delete clean.OSW_PACIFIC_SEC_JET_WIDTHS_DELIVERY_V1;
 delete clean.OSW_CURRENT_CORE_DIMENSIONS_DELIVERY_V1;
 delete clean.OSW_ATLANTIC_NSEC_REFERENCE_DELIVERY_V1;
+delete clean.OSW_REFERENCE_PROFILE_DELIVERY_V1;
 for(const env of [clean,{...clean,OSW_PACIFIC_SEC_JET_WIDTHS_DELIVERY_V1:'1',GITHUB_REPOSITORY:'wrong/repo'}]){
   const result=spawnSync(process.execPath,['analysis/capture_bounded_wasm_responses_v1.mjs'],{env,encoding:'utf8'});
   assert.notEqual(result.status,0);assert(!result.stderr.includes('0 !== 6'));
 }
-const allowed=spawnSync(process.execPath,['analysis/capture_bounded_wasm_responses_v1.mjs'],{env:{...clean,OSW_PACIFIC_SEC_JET_WIDTHS_DELIVERY_V1:'1'},encoding:'utf8'});
-assert.notEqual(allowed.status,0);assert(allowed.stderr.includes('0 !== 6'));
+for(const scope of ['OSW_PACIFIC_SEC_JET_WIDTHS_DELIVERY_V1','OSW_REFERENCE_PROFILE_DELIVERY_V1']){
+  const allowed=spawnSync(process.execPath,['analysis/capture_bounded_wasm_responses_v1.mjs'],{env:{...clean,[scope]:'1'},encoding:'utf8'});
+  assert.notEqual(allowed.status,0);assert(allowed.stderr.includes('0 !== 6'));
+}
 console.log('PASS exact original JSON bytes, bounded confined no-clobber capture and cloud-only scope refusal');
