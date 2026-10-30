@@ -10,10 +10,10 @@ import shutil
 import subprocess
 
 ROOT=Path(__file__).resolve().parents[1]
-REQUEST='research/atlantic-nec-stramma-2005-delivery-request-v2.json'
-PREFLIGHT='research/atlantic-nec-stramma-2005-delivery-preflight-v2.json'
-OUT=ROOT/'.pytest_cache/atlantic-nec-stramma-2005-delivery-v2'
-WORK=ROOT/'.pytest_cache/atlantic-nec-stramma-2005-delivery-work-v2'
+REQUEST='research/atlantic-nec-stramma-2005-delivery-request-v3.json'
+PREFLIGHT='research/atlantic-nec-stramma-2005-delivery-preflight-v3.json'
+OUT=ROOT/'.pytest_cache/atlantic-nec-stramma-2005-delivery-v3'
+WORK=ROOT/'.pytest_cache/atlantic-nec-stramma-2005-delivery-work-v3'
 def read(path):return json.loads((ROOT/path).read_bytes())
 def sha(path):
     with (ROOT/path).open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
@@ -27,7 +27,7 @@ def controls():
     for key in ['CARGO_BUILD_JOBS','RUST_TEST_THREADS','OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS']:
         if os.environ.get(key)!='1':raise ValueError('One worker required: '+key)
     request=read(REQUEST)
-    if request.get('schema')!='osw.atlantic-nec-band-spans-delivery-request.v2' or request.get('execute') is not True or request['preflight_sha256']!=sha(PREFLIGHT):raise ValueError('Disabled or changed delivery request')
+    if request.get('schema')!='osw.atlantic-nec-band-spans-delivery-request.v3' or request.get('execute') is not True or request['preflight_sha256']!=sha(PREFLIGHT):raise ValueError('Disabled or changed delivery request')
     for key in ['cloud_parent_packet_read_permitted','cloud_index_registration_permitted','cloud_candidate_files_permitted','native_build_permitted','wasm_build_permitted','cloud_engine_artifact_permitted']:
         if request.get(key) is not True:raise ValueError('Missing permission: '+key)
     for key in ['browser_permitted','installation_permitted','ocean_field_processing_permitted','main_merge_permitted','local_bulk_sync_permitted']:
@@ -199,7 +199,7 @@ def run():
     overlay=engine_manifest(engine,replacements,inventory=inventory,proof=proof,source_commit=os.environ['GITHUB_SHA'],logical_sha=logical,wasm_sha=sha(wasm),compiler=compiler,source_documents=index.DOCUMENTS)
     write(artifact/'almanac/query-engine.manifest.json',overlay);write(OUT/'engine-manifest.json',overlay)
     files={p.relative_to(artifact).as_posix():{'sha256':sha(p),'bytes':p.stat().st_size} for p in artifact.rglob('*') if p.is_file()}
-    report={'schema':'osw.atlantic-nec-band-spans-delivery-result.v2','query_contract_file':query.FILE,'status':'PASS_COMPLETE_NATIVE_WASM_CANDIDATE_BROWSER_PENDING','source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],'run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],
+    report={'schema':'osw.atlantic-nec-band-spans-delivery-result.v3','query_contract_file':query.FILE,'status':'PASS_COMPLETE_NATIVE_WASM_CANDIDATE_BROWSER_PENDING','source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],'run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],
         'logical_sha256':logical,'logical_bytes':packet['logical_byte_length'],'wasm_sha256':sha(wasm),'rust_tests_passed':301,'historical_main_api_cases':historical_main_count,'historical_source_api_cases':97,
         'new_main_api_cases':len(new_main),'new_source_api_cases':len(new_source),'ordinary_cli_equivalence_checks':2,'source_index_audit':audit,'packet_comparison':comparison,'generated_files':files,
         'request_sha256':sha(REQUEST),'preflight_sha256':sha(PREFLIGHT),'browser_review_completed':False,'installed':False,'main_updated':False,'local_bulk_sync':False,'full_goal_complete':False}

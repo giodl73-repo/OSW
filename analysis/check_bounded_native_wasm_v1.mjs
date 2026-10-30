@@ -8,7 +8,7 @@ import {readExpectedJson} from './bounded_expected_json_v1.mjs';
 assert.equal(process.env.GITHUB_ACTIONS,'true');
 assert.equal(process.env.GITHUB_REPOSITORY,'giodl73-repo/OSW');
 assert.equal(process.env.GITHUB_REF,'refs/heads/codex/current-measurement-gaps');
-assert.equal(process.env.OSW_DIMOUNE_WIDTH_DELIVERY_V1,'1');
+assert.equal(['OSW_DIMOUNE_WIDTH_DELIVERY_V1','OSW_ATLANTIC_NEC_BANDS_DELIVERY_V1'].some(key=>process.env[key]==='1'),true);
 const [mode,wasmPath,payloadPath,fixturePath,outputPath,expectedWasmSha]=process.argv.slice(2);
 assert.equal(process.argv.slice(2).length,6);
 assert(['compare-main','compare-index'].includes(mode));
