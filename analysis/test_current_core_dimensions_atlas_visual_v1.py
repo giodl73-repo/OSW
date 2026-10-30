@@ -22,6 +22,24 @@ class BrowserScopeTests(unittest.TestCase):
             elif case==1:value['generated_files']['almanac/query-engine.manifest.json']['sha256']='0'*64
             else:value['run_id']='wrong'
             with self.assertRaises(ValueError):browser.saved_files(value)
+    def test_presentation_overlay_changes_only_manifest_descriptor(self):
+        original=browser.saved_files(browser.read(browser.SAVED+'result.json'))
+        final,raw=browser.presentation_files(original)
+        self.assertEqual(set(final),set(original))
+        self.assertEqual({p:v for p,v in final.items() if p!='almanac/query-engine.manifest.json'},
+                         {p:v for p,v in original.items() if p!='almanac/query-engine.manifest.json'})
+        self.assertEqual(final['almanac/query-engine.manifest.json']['sha256'],browser.hashlib.sha256(raw).hexdigest())
+        import current_core_dimensions_atlas_presentation_v1 as presentation
+        original_read=browser.Path.read_bytes
+        def changed(path):
+            value=original_read(path)
+            if path==browser.ROOT/presentation.FILE:
+                doc=browser.json.loads(value);doc['sha256']['almanac/query-engine.wasm']='0'*64
+                return browser.json.dumps(doc).encode()
+            return value
+        with patch.object(browser.Path,'read_bytes',changed):
+            with self.assertRaisesRegex(ValueError,'Presentation overlay differs'):browser.presentation_files(original)
+
     def test_local_browser_refuses_before_payload_access(self):
         with patch.object(browser.os,'name','nt'),patch.object(browser.Path,'read_bytes',side_effect=AssertionError('No local payload read')):
             with self.assertRaisesRegex(ValueError,'Scoped cloud'):browser.controls()

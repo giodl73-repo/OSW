@@ -20,22 +20,38 @@
   const objectHref = id => `object.html?id=${encodeURIComponent(id)}`;
   window.oswAtlasSourcesReady = new Promise((resolve,reject)=>{
     const worker=new Worker('query-worker.js?v=atlas-cartography-9');
-    const timer=setTimeout(()=>finish(Error('Atlas data request timed out')),90000);
-    const finish=(error,result)=>{clearTimeout(timer);worker.terminate();if(error){byId('route-atlas-status').textContent=`Atlas unavailable: ${error.message}`;reject(error);}else resolve(result);};
+    let timer=null,settled=false,phase='load';
+    const readiness=window.oswAtlasLoadStatus={phase,started_at_ms:performance.now(),phase_started_at_ms:performance.now(),completed_phases:[],settled:false};
+    const finish=(error,result)=>{
+      if(settled)return;
+      settled=true;clearTimeout(timer);worker.terminate();readiness.settled=true;
+      readiness.elapsed_ms=performance.now()-readiness.started_at_ms;
+      if(error){readiness.error=error.message;byId('route-atlas-status').textContent=`Atlas unavailable: ${error.message}`;reject(error);}else {readiness.phase='ready';resolve(result);}
+    };
+    const arm=next=>{
+      clearTimeout(timer);phase=next;readiness.phase=next;readiness.phase_started_at_ms=performance.now();
+      timer=setTimeout(()=>finish(Error(next==='load'?'Atlas data loading timed out':'Atlas map preparation timed out')),90000);
+    };
     worker.onerror=()=>finish(Error('Rust atlas data worker failed'));
-    worker.onmessage=async event=>{const {id,result}=event.data;
-      if(!result.ok){finish(Error(result.error));return;}
-      if(id===1){worker.postMessage({id:2,action:'atlas'});return;}
+    worker.onmessage=async event=>{
+      if(settled)return;
+      const {id,result}=event.data;
+      if(!result?.ok){finish(Error(result?.error||'Invalid atlas worker response'));return;}
+      if(id===1&&phase==='load'){
+        readiness.completed_phases.push({phase:'load',elapsed_ms:performance.now()-readiness.phase_started_at_ms});
+        arm('atlas');worker.postMessage({id:2,action:'atlas'});return;
+      }
+      if(id!==2||phase!=='atlas'){finish(Error('Unexpected atlas worker response'));return;}
       try {
-        window.oswCartography=await window.createOswCartography(result.engine_binary);
-        delete result.engine_binary;
-        window.oswAtlasSnapshot=result;
-        byId('route-status').dataset.engine=result.engine;
+        const cartography=await window.createOswCartography(result.engine_binary);
+        if(settled)return;
         const docs=Object.fromEntries(Object.entries(result.sources_json).map(([path,raw])=>[path,JSON.parse(raw)]));
-        finish(null,docs);
+        readiness.completed_phases.push({phase:'atlas',elapsed_ms:performance.now()-readiness.phase_started_at_ms});
+        window.oswCartography=cartography;delete result.engine_binary;window.oswAtlasSnapshot=result;
+        byId('route-status').dataset.engine=result.engine;finish(null,docs);
       } catch(error){finish(error);}
     };
-    worker.postMessage({id:1,action:'load'});
+    arm('load');worker.postMessage({id:1,action:'load'});
   });
   async function load(path) {
     const docs=await window.oswAtlasSourcesReady,key=path.replace(/^\.\.\//,'');
