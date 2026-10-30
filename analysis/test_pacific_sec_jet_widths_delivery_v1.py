@@ -4,7 +4,7 @@ import subprocess
 import unittest
 import pacific_sec_jet_widths_query_v1 as query
 import pacific_sec_jet_widths_delivery_rules_v1 as rules
-from check_pacific_sec_jet_widths_delivery_v1 import new_requests, REQUEST, PREFLIGHT, failure_report
+from check_pacific_sec_jet_widths_delivery_v1 import new_requests, REQUEST, PREFLIGHT, OUT, WORK, failure_report
 import pacific_sec_jet_widths_index_v1 as index
 import pacific_sec_jet_widths_engine_v1 as engine
 
@@ -17,6 +17,9 @@ class DeliveryTests(unittest.TestCase):
         workflow = (query.ROOT / '.github/workflows/pacific-sec-gourdeau-2008-delivery-v1.yml').read_text(encoding='utf-8')
         self.assertEqual(workflow.count(REQUEST), 3)
         self.assertNotIn('delivery-request-v2.json', workflow)
+        self.assertIn('path: ' + OUT.relative_to(query.ROOT).as_posix() + '/', workflow)
+        self.assertIn('path: ' + WORK.relative_to(query.ROOT).as_posix() + '/artifact/', workflow)
+        self.assertNotIn('delivery-work-v2/', workflow)
         self.assertTrue((query.ROOT / REQUEST).is_file())
         self.assertTrue((query.ROOT / PREFLIGHT).is_file())
         self.assertIn('group: osw-current-gap-delivery', workflow)
