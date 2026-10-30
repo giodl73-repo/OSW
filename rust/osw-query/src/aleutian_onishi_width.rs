@@ -81,6 +81,7 @@ pub fn validate(b: &Bundle) -> Result<(), String> {
     expected.extend(crate::dimoune_section_widths::validated_widths(b)?);
     expected.extend(crate::atlantic_nec_band_spans::validated_widths(b)?);
     expected.extend(crate::pacific_sec_jet_widths::validated_widths(b)?);
+    expected.extend(crate::current_core_dimensions::validated_widths(b)?);
     let expected_lengths =
         crate::length_assessment_overlays::expected(b, &previous["length_assessments"])?;
     if b.collections.get("widths") != Some(&expected)

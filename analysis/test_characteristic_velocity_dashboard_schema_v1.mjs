@@ -21,6 +21,6 @@ assert(schema.validCapabilities({...previous,characteristic_velocity:0},labels,{
 delete previous.scoped_width;
 assert.equal(schema.validCapabilities(previous,labels,{}),false);
 const html=fs.readFileSync('almanac/dashboard.html','utf8');
-assert(html.includes('dashboard-evidence-schema.js?v=characteristic-1'));
+assert(/dashboard-evidence-schema\.js\?v=[^"\s]+/.test(html));
 assert(html.indexOf('dashboard-evidence-schema.js?')<html.indexOf('dashboard.js?'));
 console.log('PASS all ten prior owners/families and eight updated owners; absent velocity allowed, malformed present velocity and missing required width refused.');

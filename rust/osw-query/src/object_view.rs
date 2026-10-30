@@ -232,7 +232,7 @@ impl Store {
             ),
         ))?;
         let projected = crate::pacific_nec_product_axes::object_projection(&self.bundle, id, crate::atlantic_nec_band_spans::object_projection(&self.bundle, id, crate::dimoune_section_widths::object_projection(&self.bundle, id, projected)))?;
-        Ok(crate::pacific_sec_jet_widths::object_projection(&self.bundle, id, crate::characteristic_velocities::object_projection(&self.bundle, id, projected)))
+        Ok(crate::current_core_dimensions::object_projection(&self.bundle, id, crate::pacific_sec_jet_widths::object_projection(&self.bundle, id, crate::characteristic_velocities::object_projection(&self.bundle, id, projected))))
     }
 }
 

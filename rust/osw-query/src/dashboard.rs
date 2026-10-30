@@ -56,7 +56,7 @@ fn presentation(bundle: &Bundle) -> Result<Value, String> {
     let doc = crate::pacific_nec_nominal_width::dashboard_document(bundle, doc)?;
     let doc = crate::indian_sec_model_grid_lengths::dashboard_document(bundle, doc)?;
     let doc = crate::characteristic_velocities::dashboard_document(bundle, crate::pacific_nec_product_axes::dashboard_projection(bundle, crate::atlantic_nec_band_spans::dashboard_document(bundle, crate::dimoune_section_widths::dashboard_document(bundle, doc)?)?)?)?;
-    crate::pacific_sec_jet_widths::dashboard_document(bundle, doc)
+    crate::current_core_dimensions::dashboard_document(bundle, crate::pacific_sec_jet_widths::dashboard_document(bundle, doc)?)
 }
 
 pub fn validate(bundle: &Bundle) -> Result<(), String> {
@@ -90,6 +90,7 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
         let row = crate::atlantic_nec_band_spans::dashboard_row(bundle, &row)?;
         let row = crate::characteristic_velocities::dashboard_row(bundle, &row)?;
         let row = crate::pacific_sec_jet_widths::dashboard_row(bundle, &row)?;
+        let row = crate::current_core_dimensions::dashboard_row(bundle, &row)?;
         let id = row["id"].as_str().ok_or("Missing dashboard object ID")?;
         if !ids.insert(id.to_owned()) {
             return Err("Duplicate dashboard object ID".into());
@@ -140,6 +141,7 @@ impl Store {
         let request: Selection = serde_json::from_slice(bytes).map_err(|e| e.to_string())?;
         if ![
             "reported_length",
+            "reported_regional_reaches",
             "reference_route",
             "scoped_width",
             "characteristic_velocity",

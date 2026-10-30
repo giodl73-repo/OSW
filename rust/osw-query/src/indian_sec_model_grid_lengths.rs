@@ -149,6 +149,7 @@ fn checked(collections: &BTreeMap<String, Vec<Value>>, manifest: &Value) -> Resu
     let doc = document();
     let rows = |name: &str| collections.get(name).map(Vec::as_slice).unwrap_or(&[]);
     let sources = doc["new_sources"].as_array().ok_or_else(fail)?;
+    let core_overlay = crate::current_core_dimensions::additional_source_count(collections, manifest)? > 0;
     let present = !manifest[KEY].is_null()
         || !manifest["input_sha256"][FILE].is_null()
         || [SERIES, READINGS, SENSITIVITIES]
@@ -269,6 +270,7 @@ fn checked(collections: &BTreeMap<String, Vec<Value>>, manifest: &Value) -> Resu
         };
         if rows("objects")
             .iter()
+            .map(|r| crate::current_core_dimensions::parent_object(r, manifest))
             .filter(|r| r["id"] == *owner)
             .collect::<Vec<_>>()
             != vec![object]
@@ -296,6 +298,7 @@ fn checked(collections: &BTreeMap<String, Vec<Value>>, manifest: &Value) -> Resu
                 .unwrap_or_default();
             if actual
                 .iter()
+                .filter_map(|r| crate::current_core_dimensions::identity_parent_row(name, r, core_overlay))
                 .filter_map(|r| identity_parent_row(name, r, true))
                 .filter(|r| owns(r, owner))
                 .collect::<Vec<_>>()

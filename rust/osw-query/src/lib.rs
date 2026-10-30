@@ -19,6 +19,7 @@ mod pacific_nec_product_axes;
 mod dimoune_section_widths;
 mod atlantic_nec_band_spans;
 mod pacific_sec_jet_widths;
+mod current_core_dimensions;
 mod baffin_latitude_bound;
 mod basin_spans;
 mod caribbean_source_fields;
@@ -227,6 +228,7 @@ impl Store {
         published_current_speeds::validate(&bundle)?;
         characteristic_velocities::validate(&bundle)?;
         pacific_sec_jet_widths::validate(&bundle)?;
+        current_core_dimensions::validate(&bundle)?;
         mean_core_sections::validate(&bundle)?;
         madagascar_dimensions::validate(&bundle)?;
         azcc_onken_width::validate(&bundle)?;
@@ -795,6 +797,8 @@ impl Store {
             } else {
                 json!({"kind":"current_diagnostic_evidence","scope":"Source reviews and research calculations preserve their distinct definitions and unresolved physical dimensions.","source_review_scenes":reviews["scenes"],"research_evidence_scenes":research["scenes"]})
             }
+        } else if query.collection == "current_regional_reaches" {
+            current_core_dimensions::query_scene(&matches, "current_regional_reaches", &self.bundle)
         } else if query.collection == "width_samples" {
             charts::scene(&matches, records)
         } else if query.collection == "widths" {
@@ -805,6 +809,7 @@ impl Store {
                 dimoune_section_widths::width_scene(&matches, &self.bundle),
                 atlantic_nec_band_spans::width_scene(&matches, &self.bundle),
                 pacific_sec_jet_widths::width_scene(&matches, &self.bundle),
+                current_core_dimensions::query_scene(&matches, "widths", &self.bundle),
                 selected_core_widths::scene(&matches),
                 satellite_core_widths::scene(&matches),
                 wicc_review_width::scene(&matches),

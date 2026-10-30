@@ -2,7 +2,8 @@
 window.renderCurrentDimensionEvidence=function(parent,scene,inspect,options={}){
   if(scene?.kind!=='published_current_dimension_evidence')return;
   const widths=Array.isArray(scene.width_records)?scene.width_records:[],events=Array.isArray(scene.event_records)?scene.event_records:[];
-  if(!widths.length&&!events.length)return;
+  const lengths=Array.isArray(scene.length_records)?scene.length_records:[];
+  if(!widths.length&&!events.length&&!lengths.length)return;
   const node=(tag,text,container)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;container.append(n);return n;};
   const link=(label,url,container)=>{const n=node('a',label,container);n.href=url;return n;};
   const svgNode=(tag,attrs,container)=>{const n=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,String(v));container.append(n);return n;};
@@ -10,7 +11,7 @@ window.renderCurrentDimensionEvidence=function(parent,scene,inspect,options={}){
   const number=value=>finite(value)?value.toLocaleString('en-US'):'Unknown';
   inspect||=((collection,id)=>{location.href='query.html?q='+encodeURIComponent(JSON.stringify({collection,filters:[{field:'id',op:'eq',value:id}],limit:100}));});
   const wrapper=node(options.collapsed?'details':'section',undefined,parent);wrapper.className='current-dimension-evidence';wrapper.style.cssText='min-width:0;overflow-wrap:anywhere';
-  if(options.collapsed)node('summary',`${widths.length} regional width summaries${events.length?` · ${events.length} dated flow examples`:''}`,wrapper);
+  if(options.collapsed)node('summary',[widths.length?`${widths.length} regional width summaries`:'',lengths.length?`${lengths.length} reported regional reaches`:'',events.length?`${events.length} dated flow examples`:''].filter(Boolean).join(' · '),wrapper);
   const panel=options.collapsed?node('div',undefined,wrapper):wrapper;
   node('h3',scene.title,panel);node('p',scene.scope,panel);node('p',scene.definition,panel);
   const sourceLink=(row,container)=>{
@@ -18,18 +19,42 @@ window.renderCurrentDimensionEvidence=function(parent,scene,inspect,options={}){
     const file=source.source_file||source.source_report_file;
     if(file)link('Source evidence record','query.html?source-q='+encodeURIComponent(JSON.stringify({document:file,pointer:source.source_pointer||'',limit:100})),node('p',undefined,container));
   };
+  const lengthMaximum=Math.max(150,...lengths.flatMap(row=>Array.isArray(row.reported_length_interval_km)?row.reported_length_interval_km.filter(finite):[]));
+  for(const row of lengths){
+    const card=node('article',undefined,panel);card.setAttribute('data-dimension-length-id',row.id);
+    card.style.cssText='min-width:0;border:1px solid #b7ced2;border-radius:.5rem;padding:.8rem;margin:.8rem 0';
+    node('h4',row.phase_label||'Reported regional reach',card);
+    const range=row.reported_length_interval_km,valid=Array.isArray(range)&&range.length===2&&range.every(finite)&&range[0]<=range[1];
+    node('p',valid?`Reported regional reach: ${number(range[0])}–${number(range[1])} km`:'Regional reach: Unknown',card);
+    if(valid){
+      const chart=svgNode('svg',{viewBox:'0 0 300 56',role:'img','aria-label':`Source-reported regional reach interval ${number(range[0])} to ${number(range[1])} km. Neither uncertainty nor annual extrema.`},card);
+      chart.style.cssText='display:block;width:100%;max-width:600px;height:auto';
+      const x=value=>12+value/lengthMaximum*276;
+      svgNode('line',{x1:12,x2:288,y1:20,y2:20,stroke:'#cadbdf','stroke-width':2},chart);
+      svgNode('line',{x1:x(range[0]),x2:x(range[1]),y1:20,y2:20,stroke:'#087f8c','stroke-width':8},chart);
+      for(const value of range)svgNode('line',{x1:x(value),x2:x(value),y1:12,y2:28,stroke:'#087f8c','stroke-width':2},chart);
+      node('p',`Length scale: 0–${number(lengthMaximum)} km. Source-reported extent interval.`,card);
+    }
+    node('p',row.interval_interpretation,card);node('p',`Distance origin: ${row.distance_origin||'Unknown'}`,card);
+    if(row.source_contour_references?.length)node('p','Source contour references: '+row.source_contour_references.map(c=>`${c.quantity} ${number(c.value)} ${c.unit||c.unit_as_printed}`).join('; ')+'. Exact combined edge operator and endpoint coordinates: Unknown.',card);
+    if(row.campaign_envelope)node('p',`Campaign: ${row.campaign_envelope.from} to ${row.campaign_envelope.to}. Exact reach occupation dates: Unknown. Nonsynoptic survey.`,card);
+    node('p','Annual length range: Unknown. Numerical length uncertainty: Unknown. Whole-current length: Unknown.',card);
+    if(row.source_quality_note)node('p',row.source_quality_note,card);
+    const action=node('button','Inspect regional reach record',card);action.type='button';action.onclick=()=>inspect('current_regional_reaches',row.id);sourceLink(row,card);
+  }
   const widthMaximum=Math.max(140,...widths.flatMap(row=>Array.isArray(row.width_range_km)?row.width_range_km.filter(finite):finite(row.approximate_width_km)?[row.approximate_width_km]:[]));
   for(const row of widths){
     const card=node('article',undefined,panel);card.setAttribute('data-dimension-width-id',row.id);
     card.style.cssText='min-width:0;border:1px solid #b7ced2;border-radius:.5rem;padding:.8rem;margin:.8rem 0';
     node('h4',row.phase_label||row.width_metric||'Regional width summary',card);
     const nominal=row.measurement_type==='published_nominal_regional_angular_width';
+    const cited=row.measurement_type==='literature_cited_approximate_regional_width_claim';
     const range=row.width_range_km,hasRange=Array.isArray(range)&&range.length===2&&range.every(finite)&&range[0]<=range[1];
     const central=finite(row.approximate_width_km)?row.approximate_width_km:null;
-    node('p',hasRange?`About ${number(range[0])}–${number(range[1])} km`:central===null?'Width: Unknown':`About ${number(central)} km`,card);
+    node('p',hasRange?`About ${number(range[0])}–${number(range[1])} km`:central===null?'Width: Unknown':`${cited?'Cited estimate: about':'About'} ${number(central)} km`,card);
     if(hasRange||central!==null){
       const maximum=widthMaximum;
-      const chart=svgNode('svg',{viewBox:'0 0 300 56',role:'img','aria-label':hasRange?`Reported regional width range ${number(range[0])} to ${number(range[1])} km. Study summary, not annual extrema or error bars.`:nominal?`Derived nominal regional latitude span about ${number(central)} km. No physical edge coordinates or annual range.`:`Reported regional width about ${number(central)} km.`,},card);
+      const chart=svgNode('svg',{viewBox:'0 0 300 56',role:'img','aria-label':hasRange?`Reported regional width range ${number(range[0])} to ${number(range[1])} km. Study summary, not annual extrema or error bars.`:nominal?`Derived nominal regional latitude span about ${number(central)} km. No physical edge coordinates or annual range.`:`${cited?'Literature-cited estimate of':'Reported'} regional width about ${number(central)} km.${cited?' Observation date and original method unverified.':''}`,},card);
       chart.style.cssText='display:block;width:100%;max-width:600px;height:auto';
       const x=value=>12+value/maximum*276;
       svgNode('line',{x1:12,x2:288,y1:20,y2:20,stroke:'#cadbdf','stroke-width':2},chart);
@@ -50,6 +75,7 @@ window.renderCurrentDimensionEvidence=function(parent,scene,inspect,options={}){
       if(Array.isArray(limits)&&limits.length===2)node('p',`Reported southern band: ${number(limits[0])}–${number(limits[1])}°N · regional section near 27°W.`,card);
       node('p','Latitude-band estimate; the northern band is excluded. Sampling depth is not current thickness.',card);
     }
+    if(cited)node('p','Evidence: literature-cited estimate. Observation dates, paired edges and original measurement method: Unknown. Not an independent new observation.',card);
     if(row.source_discrepancy_note)node('p',`Source discrepancy: ${row.source_discrepancy_note}`,card);
     if(row.source_quality_note)node('p',row.source_quality_note,card);
     node('p','Seasonal width range: Unknown. Numerical uncertainty: Unknown.',card);

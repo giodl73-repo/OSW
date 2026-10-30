@@ -7,7 +7,7 @@ window.oswDashboardEvidenceSchema={
   },
   validCapabilities(capabilities,labels,contextMetrics){
     if(!capabilities||typeof capabilities!=='object'||Array.isArray(capabilities))return false;
-    const optional=new Set(['section_transport','model_dimension_samples','axis_normal_samples','reported_model_core_sections','reported_flow_events','characteristic_velocity']);
+    const optional=new Set(['section_transport','model_dimension_samples','axis_normal_samples','reported_model_core_sections','reported_flow_events','characteristic_velocity','reported_regional_reaches']);
     return Object.keys(labels).every(key=>{
       const present=Object.hasOwn(capabilities,key);
       if(!present&&(optional.has(key)||Object.hasOwn(contextMetrics,key)))return true;
