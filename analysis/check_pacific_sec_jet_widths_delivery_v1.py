@@ -19,6 +19,15 @@ def sha(path):
     with (ROOT/path).open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
 def write(path,value):Path(path).write_bytes((json.dumps(value,indent=2,ensure_ascii=False,allow_nan=False)+'\n').encode())
 
+def failure_report(error,source_commit):
+    result={'status':'FAIL','error':str(error),'source_commit':source_commit}
+    stderr=getattr(error,'stderr',None)
+    if stderr:
+        raw=stderr.encode('utf-8') if isinstance(stderr,str) else bytes(stderr)
+        result.update(stderr_text=raw[:16384].decode('utf-8',errors='replace'),
+            stderr_bytes=len(raw),stderr_sha256=hashlib.sha256(raw).hexdigest(),stderr_truncated=len(raw)>16384)
+    return result
+
 def controls():
     if (os.name!='posix' or os.environ.get('GITHUB_ACTIONS')!='true' or os.environ.get('GITHUB_REPOSITORY')!='giodl73-repo/OSW'
         or os.environ.get('GITHUB_REF')!='refs/heads/codex/current-measurement-gaps' or os.environ.get('OSW_PACIFIC_SEC_JET_WIDTHS_DELIVERY_V1')!='1'):
@@ -147,7 +156,6 @@ def run():
             raise ValueError('Invalid complete captured initialization')
         write(OUT/(mode+'-transport.json'),captured)
         return captured
-    baseline={mode:parity('capture-'+mode,ROOT/'almanac/query-engine.wasm',payload,requests[mode]) for mode,payload in [('main',parent_path),('index',parent_index)]}
     collections,manifest=query.prepare(parent['collections'],parent['manifest'],contract,parent_logical_sha256=query.PARENT)
     child={**parent,'collections':collections,'manifest':manifest};comparison=rules.verify_extension(parent,child,contract)
     generated,audit=index.source_index((ROOT/'almanac/index-catalog.json').read_bytes(),(ROOT/'almanac/index-data.json.gz').read_bytes(),(ROOT/'almanac/index-sources.json').read_bytes())
@@ -172,6 +180,7 @@ def run():
     new_source=[{'kind':'query','request':{'document':path,'pointer':'','limit':500}} for path in index.DOCUMENTS]
     probe=WORK/'build/debug/examples/delivery_probe_v2'
     batches={mode:run_batch(probe,mode,payload,requests[mode]+new) for mode,payload,new in [('main',candidate,[]),('index',new_index,new_source)]}
+    baseline={mode:parity('capture-'+mode,ROOT/'almanac/query-engine.wasm',payload,requests[mode]) for mode,payload in [('main',parent_path),('index',parent_index)]}
     def native(mode,item):return json.loads(batches[mode][1][case_key(encode_case(item))])
     for mode in ['main','index']:
         for saved in baseline[mode]['cases']:
@@ -221,5 +230,5 @@ if __name__=='__main__':
     try:run()
     except Exception as error:
         if os.name=='posix' and os.environ.get('GITHUB_ACTIONS')=='true':
-            OUT.mkdir(parents=True,exist_ok=True);write(OUT/'failure.json',{'status':'FAIL','error':str(error),'source_commit':os.environ.get('GITHUB_SHA')})
+            OUT.mkdir(parents=True,exist_ok=True);write(OUT/'failure.json',failure_report(error,os.environ.get('GITHUB_SHA')))
         raise

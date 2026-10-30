@@ -1,9 +1,10 @@
 """Scientific scope and complete-response preservation without loading packets."""
 import copy
+import subprocess
 import unittest
 import pacific_sec_jet_widths_query_v1 as query
 import pacific_sec_jet_widths_delivery_rules_v1 as rules
-from check_pacific_sec_jet_widths_delivery_v1 import new_requests, REQUEST, PREFLIGHT
+from check_pacific_sec_jet_widths_delivery_v1 import new_requests, REQUEST, PREFLIGHT, failure_report
 import pacific_sec_jet_widths_index_v1 as index
 
 
@@ -19,6 +20,23 @@ class DeliveryTests(unittest.TestCase):
         self.assertTrue((query.ROOT / PREFLIGHT).is_file())
         self.assertIn('group: osw-current-gap-delivery', workflow)
         self.assertIn('cancel-in-progress: false', workflow)
+
+    def test_native_failure_keeps_underlying_invariant(self):
+        message = b'Changed fixture source identity\n'
+        error = subprocess.CalledProcessError(2, ['probe'], stderr=message)
+        report = failure_report(error, 'source')
+        self.assertEqual(report['stderr_text'], message.decode())
+        self.assertEqual(report['stderr_bytes'], len(message))
+        self.assertFalse(report['stderr_truncated'])
+        self.assertEqual(failure_report(ValueError('no subprocess'), 'source'),
+                         {'status': 'FAIL', 'error': 'no subprocess', 'source_commit': 'source'})
+
+    def test_large_native_diagnostic_is_bounded_without_dropping_its_hash(self):
+        report = failure_report(subprocess.CalledProcessError(2, ['probe'], stderr=b'x'*20000), 'source')
+        self.assertEqual(len(report['stderr_text']), 16384)
+        self.assertEqual(report['stderr_bytes'], 20000)
+        self.assertEqual(len(report['stderr_sha256']), 64)
+        self.assertTrue(report['stderr_truncated'])
 
     def test_distinct_components_and_unknowns_survive_scene(self):
         rows = self.contract['width_records']
