@@ -349,9 +349,12 @@
       const scope = node("td", row.geographic_scope, tr);
       node("p", row.layer, scope); node("p", row.boundary_rule, scope);
       node("p", `${row.measurement_type.replaceAll("_", " ")}; not a uniform whole-current width.`, scope);
-      node("p", `Metric: ${row.width_metric.replaceAll("_", " ")}. ${row.section_orientation}`, scope);
+      node("p", `Metric: ${row.width_metric.replaceAll("_", " ")}. ${row.section_orientation || "Section orientation unknown."}`, scope);
       if (row.source_quality_note) node("p", row.source_quality_note, scope);
       const source = node("td", null, tr); link(row.source_citation, row.source_url, source, true); node("p", row.source_locator, source);
+      ["Current", "Approximate width", "Season / period", "Scope and definition", "Source"].forEach((label, index) => {
+        tr.cells[index].dataset.label = label;
+      });
     }
     for (const summary of value.seasonal_summaries) {
       const card = node("section", null, byId("width-seasonal-summaries")); card.id = `width-seasonal-${summary.current_id}`;

@@ -182,6 +182,23 @@ use scalar_query::{collect_fields, compare, field, filter_equal};
 #[cfg(test)]
 mod scalar_scope_boundary_tests {
     #[test]
+    fn invalid_utf8_in_ignored_fields_is_refused_before_structural_validation() {
+        for bytes in [
+            &b"{\"schema\":\"osw.query-bundle.v1\",\"manifest\":{},\"collections\":{},\"ignored\":\"\xff\"}"[..],
+            &b"{\"schema\":\"unsupported\",\"manifest\":{},\"collections\":{},\"ignored\":[{\"nested\":\"\xff\"}]}"[..],
+        ] {
+            let error = super::Store::load(bytes).err().expect("invalid UTF-8 must fail");
+            assert!(error.starts_with("Invalid bundle JSON: invalid UTF-8:"), "{error}");
+        }
+    }
+
+    #[test]
+    fn valid_non_ascii_ignored_fields_reach_schema_validation() {
+        let bytes = "{\"schema\":\"unsupported\",\"manifest\":{},\"collections\":{},\"ignored\":\"é海🌊\"}";
+        assert_eq!(super::Store::load(bytes.as_bytes()).err().unwrap(), "Unsupported bundle schema");
+    }
+
+    #[test]
     fn research_snapshot_does_not_load_as_the_complete_atlas() {
         let raw = include_bytes!("../../../research/eacc-local-extent-evidence-bundle-v1.json");
         assert!(super::Store::load(raw).is_err());
@@ -190,8 +207,13 @@ mod scalar_scope_boundary_tests {
 
 impl Store {
     pub fn load(bytes: &[u8]) -> Result<Self, String> {
+        // Typed deserialization can skip unknown values without validating
+        // their string bytes. Validate the complete input, without allocating,
+        // before parsing so every admitted packet is valid UTF-8 JSON.
+        let text = std::str::from_utf8(bytes)
+            .map_err(|e| format!("Invalid bundle JSON: invalid UTF-8: {e}"))?;
         let mut bundle: Bundle =
-            serde_json::from_slice(bytes).map_err(|e| format!("Invalid bundle JSON: {e}"))?;
+            serde_json::from_str(text).map_err(|e| format!("Invalid bundle JSON: {e}"))?;
         if bundle.schema != "osw.query-bundle.v1" {
             return Err("Unsupported bundle schema".into());
         }

@@ -21,10 +21,17 @@
   <script src="reference-route-atlas.js?v=product-axes-1" defer></script>
   <script src="qualitative-current-calendar.js?v=1" defer></script>
   <script src="atlantic-euc-section-properties.js?v=2" defer></script>
-  <script src="reference-routes.js?v=nsec-load-phases-1" defer></script>
+  <script src="reference-routes.js?v=nsec-width-cards-2" defer></script>
   <script src="atlas-presentation.js?v=1" defer></script>
   <style>
     .route-map { display:block;width:100%;max-width:800px;height:auto; }
+    @media(max-width:37.5rem) {
+      .scoped-width-table, .scoped-width-table tbody, .scoped-width-table tr, .scoped-width-table td {display:block;width:auto;min-width:0;}
+      .scoped-width-table thead {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
+      .scoped-width-table tr {border:1px solid #a7c5cf;border-radius:.4rem;margin:.75rem 0;padding:.6rem;}
+      .scoped-width-table td {padding:.4rem 0;border:0;overflow-wrap:anywhere;}
+      .scoped-width-table td::before {content:attr(data-label);display:block;font-weight:700;margin-bottom:.2rem;}
+    }
     .route-card, .inventory-addition-card { overflow-wrap:anywhere;scroll-margin-top:1rem; }
     .inventory-addition-card:focus { outline:3px solid #087e9a;outline-offset:3px; }
     .atlas-state-region { cursor:pointer; }
@@ -196,7 +203,7 @@
       <p>Widths belong to a region, layer and time period. Seasonal variation, observed sample ranges and measurement uncertainty are different quantities. Route scenario ranges above test selected assumptions; they are not measured annual length ranges. Matching branch, gates and layer are required before comparing seasonal lengths.</p>
       <p id="width-status" role="status" aria-live="polite">Loading width evidence…</p>
       <div id="width-seasonal-summaries"></div>
-      <div class="table-wrap"><table><caption>Scoped published width evidence · editorial extraction</caption><thead><tr><th scope="col">Current</th><th scope="col">Approximate width</th><th scope="col">Season / period</th><th scope="col">Scope and definition</th><th scope="col">Source</th></tr></thead><tbody id="width-rows"></tbody></table></div>
+      <div class="table-wrap"><table class="scoped-width-table" role="table"><caption>Scoped published width evidence · editorial extraction</caption><thead><tr><th scope="col">Current</th><th scope="col">Approximate width</th><th scope="col">Season / period</th><th scope="col">Scope and definition</th><th scope="col">Source</th></tr></thead><tbody id="width-rows"></tbody></table></div>
       <details><summary>Width coverage for all 100 names</summary><p>Not assessed means the width source search is incomplete. Pending source review means an existing mention has been identified. Sources reviewed without a comparable numeric current width means inspected evidence has not supplied a compatible number; it does not establish physical absence.</p><div class="table-wrap"><table><caption>Width evidence decisions</caption><thead><tr><th scope="col">Current</th><th scope="col">Status</th><th scope="col">Next action</th></tr></thead><tbody id="width-decision-rows"></tbody></table></div></details>
       <p><a href="../research/ocean-current-working-measurements.json">Download working dimensions, widths and citations (JSON)</a> · <a href="../research/ocean-current-width-inventory.json">Historical 100-current width inventory and coverage decisions</a> · <a href="../plans/ocean-current-width-measurement-protocol-v1.md">Width measurement rules</a></p>
     </section>

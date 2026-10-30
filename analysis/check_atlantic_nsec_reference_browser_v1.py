@@ -117,6 +117,8 @@ def browser_review():
             raise ValueError('Atlas width inventory adapter failed: '+width_status)
         expect(page.locator('#width-status')).to_contain_text('190 scoped width records for 93 of 111 current identities;')
         expect(page.locator('#width-rows > tr')).to_have_count(190)
+        if page.locator('#width-rows').inner_text().find('undefined') >= 0:
+            raise ValueError('Width inventory contains an unresolved JavaScript label')
         actual_widths=page.locator('#width-rows > tr').evaluate_all('rows=>rows.map(row=>({id:row.id.slice(6),current_id:new URL(row.cells[0].querySelector("a").href).searchParams.get("id").replace(/^current:/,"")}))')
         if len({r['id'] for r in actual_widths})!=190 or {r['id']:r['current_id'] for r in actual_widths}!=expected_width_owners:
             raise ValueError('Rendered width IDs or owners differ from the retained190 source records')
@@ -162,6 +164,12 @@ def browser_review():
                     expect(page.locator('#width-eacc-dekeyzer-2012-bell-cited-width-lower-bound')).to_be_visible()
                     page.locator('#width-eacc-dekeyzer-2012-bell-cited-width-lower-bound').scroll_into_view_if_needed()
                     capture(page,'width-inventory-exclusive-bound'+suffix)
+                    if width==320:
+                        row=page.locator('#width-eacc-dekeyzer-2012-bell-cited-width-lower-bound')
+                        cells=row.locator('td').evaluate_all('nodes=>nodes.map(n=>({left:n.getBoundingClientRect().left,right:n.getBoundingClientRect().right,label:n.dataset.label,display:getComputedStyle(n).display}))')
+                        if len(cells)!=5 or any(c['left']<0 or c['right']>320 or c['display']!='block' or not c['label'] for c in cells):
+                            raise ValueError('Narrow width record does not expose all five readable labeled fields')
+                        row.locator('td').last.scroll_into_view_if_needed();capture(page,'width-inventory-source'+suffix)
                     page.get_by_role('button',name='Map-first view',exact=True).click()
                     page.wait_for_function('new URL(location.href).searchParams.get("atlas-layout")==="map"')
                     checks.append({'width':width,'case':'190 scoped rows across93 owners and111 identities render; Gulf Stream System stays candidate-only; EACC remains an exclusive lower bound'})
@@ -169,6 +177,8 @@ def browser_review():
                     for row in routes:
                         select_path(page,panel,row);no_overflow(page)
                         page.locator('#route-atlas-map').scroll_into_view_if_needed();capture(page,'atlas-'+row['phase']+suffix)
+                        phase_button=panel.get_by_role('button',name=row['label'],exact=True)
+                        phase_button.scroll_into_view_if_needed();capture(page,'atlas-phase-control-'+row['phase']+suffix)
                         panel.get_by_role('link',name='Full route card, measurements and sources ↓',exact=True).click()
                         card=page.locator('[id="'+row['id']+'"]');expect(card).to_be_visible()
                         expect(card).to_contain_text('Studied reach only. Excluded from reference-route ordering above.')
