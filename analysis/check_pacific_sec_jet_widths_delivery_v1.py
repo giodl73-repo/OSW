@@ -71,6 +71,7 @@ def run():
     from pacific_sec_jet_widths_engine_v1 import engine_manifest
     from chen_indian_sec_native_batch_v2 import encode_case,case_key,run_batch
     from query_packet import read_bundle_bytes,write_packet
+    from captured_response_files_v1 import read_captured_json
     from south_java_catalog_engine_v1 import dependencies
     contract=query.build_contract()
     if query.encoded(contract)!=(ROOT/query.FILE).read_bytes():raise ValueError('Frozen contract differs')
@@ -135,8 +136,17 @@ def run():
             return combined
         fixture=WORK/(mode+'-fixture.json');write(fixture,{'payload_sha256':sha(payload),'cases':rows,**extra})
         output=(WORK if mode.startswith('capture') else OUT)/(mode+'.json')
-        subprocess.run(['node','--max-old-space-size=1536','analysis/check_chen_indian_sec_parity_v2.mjs',mode,str(wasm),str(payload),str(fixture),str(output),sha(wasm)],check=True,timeout=1800)
-        return read(output)
+        subprocess.run(['node','--max-old-space-size=1536','analysis/capture_bounded_wasm_responses_v1.mjs',mode,str(wasm),str(payload),str(fixture),str(output),sha(wasm)],check=True,timeout=1800)
+        captured=read(output)
+        if (captured.get('status')!='PASS_COMPLETE_RESPONSE_FILES_CAPTURED' or captured['mode']!=mode
+            or captured['payload_sha256']!=sha(payload) or captured['wasm_sha256']!=sha(wasm)
+            or len(captured['cases'])!=len(rows)
+            or [{k:v for k,v in row.items() if k!='response'} for row in captured['cases']]!=rows):
+            raise ValueError('Incomplete capture or altered ordered case inventory')
+        if json.loads(read_captured_json(WORK,captured['metadata'],payload.stat().st_size+2097152)).get('ok') is not True:
+            raise ValueError('Invalid complete captured initialization')
+        write(OUT/(mode+'-transport.json'),captured)
+        return captured
     baseline={mode:parity('capture-'+mode,ROOT/'almanac/query-engine.wasm',payload,requests[mode]) for mode,payload in [('main',parent_path),('index',parent_index)]}
     collections,manifest=query.prepare(parent['collections'],parent['manifest'],contract,parent_logical_sha256=query.PARENT)
     child={**parent,'collections':collections,'manifest':manifest};comparison=rules.verify_extension(parent,child,contract)
@@ -167,7 +177,7 @@ def run():
         for saved in baseline[mode]['cases']:
             item={k:v for k,v in saved.items() if k in ('kind','name')}
             if 'request_json' in saved:item['request']=json.loads(saved['request_json'])
-            old=json.loads(saved['raw_response_json']);actual=native(mode,item)
+            old=json.loads(read_captured_json(WORK,saved['response'],134217728 if item['kind']=='snapshot' else 16777216));actual=native(mode,item)
             if mode=='index':expected=old
             elif item['kind']=='snapshot':expected=rules.expected_snapshot(item['name'],old,contract,logical);actual=rules.normalized_snapshot(item['name'],actual)
             elif item['kind']=='object':expected=rules.expected_object(item['request']['id'],old,contract,logical)
