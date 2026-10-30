@@ -1,0 +1,522 @@
+{
+  "schema": "osw.current-measurement-coverage-checkpoint.v23",
+  "status": "REGIONAL_REACH_AND_CITED_WIDTH_INSTALLED_PHYSICAL_DIMENSION_GAPS_REMAIN",
+  "installed_commit": "5aecb63549b672105cb38e94701c1bacc100bf52",
+  "installation_control_commit": "bdf488b5ba38d120b75ec1a23954ca2ea1bc1190",
+  "previous_checkpoint_file": "research/current-measurement-coverage-checkpoint-v22.json",
+  "previous_checkpoint_sha256": "e97ef4aac9c82e44c0c4798a9f3dcca1245d4c4bb210c9b0c5fdd37e38cb047a",
+  "installation_result_file": "research/current-core-dimensions-installation-result-v1.json",
+  "installed_proof_file": "research/current-core-dimensions-installed-v1.json",
+  "installation_execution_review_file": "research/current-core-dimensions-installation-execution-review-v1.json",
+  "logical_sha256": "191874b005d09c9680e13e5f1fd037a4045a47bbc709782318c3a3d5561d5127",
+  "logical_bytes": 195343885,
+  "wasm_sha256": "208ae406cc8b49094885f3015a6e3ff601d5bac395374682b53ec4703e2da82e",
+  "engine_manifest_sha256": "fd57024ad29cacd4614d6667dfe061e39e290ddfe6c8dd53cbb8ee91a4fcbcba",
+  "catalog_sha256": "bc62c91cbb89bf3b67837427c1be0c6ba8bbaf3b875fa6b56786a7efbc5a3b23",
+  "counts": {
+    "accepted_current_identities": 111,
+    "canonical_reported_length_field_owners": 13,
+    "reference_route_records": 83,
+    "reference_route_owners": 76,
+    "overlap_canonical_length_and_reference_route": 2,
+    "either_canonical_length_field_or_reference_route": 87,
+    "missing_both_canonical_length_field_and_reference_route": 24,
+    "without_reference_route_regardless_of_length_field": 35,
+    "owners_with_scoped_width_capability": 94,
+    "owners_with_width_sample_capability": 14,
+    "scoped_width_records": 190,
+    "width_sample_records": 463,
+    "owners_with_published_regional_speed_statistics": 1,
+    "published_regional_speed_summary_records": 15,
+    "source_index_documents": 678,
+    "owners_with_published_seasonal_core_velocity_estimates": 3,
+    "published_seasonal_core_velocity_estimate_records": 6,
+    "publication_source_collection_rows": 231,
+    "owners_with_published_model_mean_core_sections": 1,
+    "published_model_mean_core_section_records": 5,
+    "owners_with_published_dated_flow_events": 1,
+    "published_dated_flow_event_reference_records": 8,
+    "indian_sec_regional_model_length_cases": 75,
+    "indian_sec_qualified_regional_model_lengths": 8,
+    "indian_sec_nominal_model_years_with_lengths": 3,
+    "indian_sec_withheld_regional_model_length_cases": 67,
+    "indian_sec_resolution_sensitivity_scenarios": 120,
+    "experimental_surface_product_axis_series": 3,
+    "experimental_monthly_surface_product_paths": 36,
+    "experimental_related_operator_scenarios": 1332,
+    "experimental_withheld_operator_scenarios": 85,
+    "numerical_fixed_meridian_section_span_records": 36,
+    "numerically_paired_fixed_meridian_section_spans": 35,
+    "withheld_numerical_section_spans": 1,
+    "query_collection_count": 78,
+    "query_record_count": 110324,
+    "owners_with_published_characteristic_velocity_summaries": 8,
+    "published_characteristic_velocity_summary_records": 10,
+    "published_regional_reach_records": 4
+  },
+  "verification": {
+    "rust_tests_passed": 311,
+    "main_native_wasm_whole_response_comparisons": 372,
+    "source_native_wasm_whole_response_comparisons": 115,
+    "complete_historical_api_cases_preserved": 463,
+    "new_complete_api_cases": 24,
+    "complete_api_snapshots": 18,
+    "complete_object_apis": 25,
+    "ordinary_cli_equivalence_checks": 2,
+    "browser_check_groups": 27,
+    "actual_screenshots_individually_reviewed": 33,
+    "desktop_and_narrow_viewports": [
+      1100,
+      320
+    ],
+    "installed_git_blob_identities_and_sizes_independently_verified": 21,
+    "protected_paths_independently_preserved": 9051,
+    "installation_request_disabled": true,
+    "native_or_wasm_rebuild_for_installation": false,
+    "cold_direct_atlas_entry_verified": true,
+    "presentation_only_manifest_overlay_verified": true
+  },
+  "interpretation_rules": [
+    "111 identities include individual currents, families, systems and a segment; they are not equivalent physical measurement targets.",
+    "13 reported-length owners and83 editorial routes across76 owners give87 identities with either capability.24 lack both, including11 individual currents. Reference routes are not automatically measured whole-current axes.",
+    "190 scoped width records across94 identities include regional, method-specific and cited evidence.17 identities still lack scoped-width evidence:13 need scope definition and4 are current/plume source-search targets. These counts do not establish comparable whole-current widths.",
+    "The new Red Sea Northern Channel110-120km reach is a nonsynoptic summer2001 regional extent referenced to Perim Narrows. It is not whole-current length, measurement uncertainty or an annual range; existingwinter130km support is not duplicated or combined into an annual envelope.",
+    "The new Indian SEC approximately650km width is a literature-cited regional claim in the51-page2008 ASCLME report. Original New2007 methods and attribution remain unverified. Cruise dates,1000m current depth and transport-section bounds are not width sampling metadata.",
+    "All prior463 width samples across14 owners,15 pooled regional speed summaries for one owner,6 seasonal core estimates across3 owners and10 characteristic velocity summaries across8 owners retain distinct operators.",
+    "Experimental model/product axes and fixed-meridian spans remain separate from physical whole-current lengths, flow-normal widths, annual ranges and measurement uncertainty.",
+    "No new whole-current lengths, editorial routes, width samples, physical geometry, state intersections or seasonal playback are admitted in this batch.",
+    "The original verified binary and scientific data are installed unchanged from the saved engine artifact. Only two atlas presentation bindings are updated in the final manifest; compiler and data closure remain verified.",
+    "Installed on the remote working branch only. Main and local packet/index/WASM preview files remain unchanged."
+  ],
+  "remaining_missing_both_by_identity_level": {
+    "system": 4,
+    "current": 11,
+    "family": 8,
+    "segment": 1
+  },
+  "remaining_records": [
+    {
+      "entity_id": "current:antarctic-coastal",
+      "label": "Antarctic Coastal Current (East Wind Drift)",
+      "identity_level": "system",
+      "next_length_action": "Define a source-supported branch graph and length convention before a system total."
+    },
+    {
+      "entity_id": "current:atlantic-south-equatorial-countercurrent",
+      "label": "Atlantic South Equatorial Countercurrent",
+      "identity_level": "current",
+      "next_length_action": "Review accessible primary alongflow studies or the distinct1978 atlas for longitudinal continuity and gates. Recovered1980 NOAA regional flow bands and their date conflict do not establish current length.",
+      "source_review_file": "research/atlantic-secc-length-source-followup-v2.json"
+    },
+    {
+      "entity_id": "current:azores-countercurrent",
+      "label": "Azores Countercurrent",
+      "identity_level": "current",
+      "next_length_action": "Keep the installed110km2009 section and approximately200km historical regional width separate. Seek source-supported subsurface alongflow endpoints and continuity;17W-to55W evidence locations are not a current axis or length.",
+      "source_review_file": "research/azores-2009-section-original-review-v1.json",
+      "latest_installation_review_file": "research/azcc-onken-installation-execution-review-v1.json"
+    },
+    {
+      "entity_id": "current:east-african-coastal",
+      "label": "East African Coastal Current",
+      "identity_level": "current",
+      "next_length_action": "Regional connection context and readable compact diagram are installed. Seek source-supported physical alongflow endpoints/continuity for the current; the approximately1000km review statement remains regional and unranked.",
+      "prepared_regional_connection_file": "research/eacc-regional-connection-candidate-v1.json",
+      "preparation_review_file": "research/eacc-regional-connection-preparation-review-v1.json",
+      "existing_record_review_file": "research/eacc-regional-connection-existing-record-review-v1.json",
+      "prepared_candidate_disposition": "Duplicate statement of existing installed source context; do not admit as another record.",
+      "compact_card_preparation_file": "research/eacc-connection-compact-card-preparation-v4.json",
+      "new_scoped_speed_support": "15 published Pemba Channel monthly/seasonal speed summaries,328 observations from45 unique drifters. These do not establish current-axis endpoints or whole-current dimensions."
+    },
+    {
+      "entity_id": "current:equatorial-countercurrent",
+      "label": "Equatorial Countercurrent",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:equatorial-undercurrent",
+      "label": "Equatorial Undercurrent",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:greenland-middle-atlantic-shelf-hypothesis",
+      "label": "Greenland–Middle Atlantic shelf-current hypothesis",
+      "identity_level": "system",
+      "next_length_action": "Define a source-supported branch graph and length convention before a system total."
+    },
+    {
+      "entity_id": "current:gulf-stream-system",
+      "label": "Gulf Stream System",
+      "identity_level": "system",
+      "next_length_action": "Define a source-supported branch graph and length convention before a system total."
+    },
+    {
+      "entity_id": "current:indonesian-throughflow",
+      "label": "Indonesian Throughflow",
+      "identity_level": "system",
+      "next_length_action": "Define a source-supported branch graph and length convention before a system total."
+    },
+    {
+      "entity_id": "current:loop",
+      "label": "Loop Current",
+      "identity_level": "segment",
+      "next_length_action": "Retain the two installed published contour summaries with method-specific scope; resolve whole-current convention before a canonical length or route. Delivery is complete.",
+      "known_scoped_length_support": "Two installed published contour-length summaries; these do not populate canonical whole-current length or a reference-route record."
+    },
+    {
+      "entity_id": "current:north-equatorial",
+      "label": "North Equatorial Current",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:north-equatorial-countercurrent",
+      "label": "North Equatorial Countercurrent",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:north-equatorial-undercurrent",
+      "label": "North Equatorial Undercurrent",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:norwegian",
+      "label": "Norwegian Current",
+      "identity_level": "current",
+      "next_length_action": "Resolve naming and branch scope before adopting neighbouring current geometry."
+    },
+    {
+      "entity_id": "current:south-equatorial",
+      "label": "South Equatorial Current",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:south-equatorial-countercurrent",
+      "label": "South Equatorial Countercurrent",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:south-equatorial-undercurrent",
+      "label": "South Equatorial Undercurrent",
+      "identity_level": "family",
+      "next_length_action": "Identify basin-specific members and measure each supported member separately."
+    },
+    {
+      "entity_id": "current:spitsbergen-atlantic",
+      "label": "Spitsbergen Atlantic Current",
+      "identity_level": "current",
+      "next_length_action": "Resolve naming and branch scope before adopting neighbouring current geometry."
+    },
+    {
+      "entity_id": "current:west-australian",
+      "label": "West Australian Current",
+      "identity_level": "current",
+      "next_length_action": "Review saved regional trace identity and failed connections; do not promote regional numerical paths to a whole-current length."
+    },
+    {
+      "entity_id": "current:atlantic-north-equatorial",
+      "label": "Atlantic North Equatorial Current",
+      "identity_level": "current",
+      "next_length_action": "Review basin-specific alongflow continuity, layer and endpoints before an editorial route or physical length.",
+      "source_review_file": "research/equatorial-basin-identity-source-review-v1.json",
+      "route_planning_file": "research/equatorial-basin-reference-route-planning-v1.json"
+    },
+    {
+      "entity_id": "current:pacific-north-equatorial",
+      "label": "Pacific North Equatorial Current",
+      "identity_level": "current",
+      "next_length_action": "Regional2013 product paths, dated playback and numerical section spans are installed separately. Seek source-supported whole-current physical endpoints/continuity and qualified paired width edges; retain regional numerical lengths unranked.",
+      "source_review_file": "research/equatorial-basin-identity-source-review-v1.json",
+      "route_planning_file": "research/equatorial-basin-reference-route-planning-v1.json",
+      "latest_installation_review_file": "research/pacific-nec-product-axis-installation-execution-review-v1.json"
+    },
+    {
+      "entity_id": "current:atlantic-south-equatorial",
+      "label": "Atlantic South Equatorial Current",
+      "identity_level": "current",
+      "next_length_action": "Review basin-specific alongflow continuity, layer and endpoints before an editorial route or physical length.",
+      "source_review_file": "research/equatorial-basin-identity-source-review-v1.json",
+      "route_planning_file": "research/equatorial-basin-reference-route-planning-v1.json"
+    },
+    {
+      "entity_id": "current:pacific-south-equatorial",
+      "label": "Pacific South Equatorial Current",
+      "identity_level": "current",
+      "next_length_action": "Review basin-specific alongflow continuity, layer and endpoints before an editorial route or physical length.",
+      "source_review_file": "research/equatorial-basin-identity-source-review-v1.json",
+      "route_planning_file": "research/equatorial-basin-reference-route-planning-v1.json",
+      "known_scoped_width_support": "Two installed author-reported component jet widths: North Vanuatu about300km; North Caledonian about100km. Whole-current length, paired physical width edges and annual ranges remain unresolved."
+    },
+    {
+      "entity_id": "current:indian-south-equatorial",
+      "label": "Indian South Equatorial Current",
+      "identity_level": "current",
+      "next_length_action": "Retain regional model traces separately. Seek source-supported whole-current physical endpoints and continuity; do not promote regional model lengths to a whole-current ranking or annual range.",
+      "source_review_file": "research/equatorial-basin-identity-source-review-v1.json",
+      "route_planning_file": "research/equatorial-basin-reference-route-planning-v1.json",
+      "known_scoped_length_support": "Eight installed regional model lengths, including three nominal model years;75 total cases and120 sensitivity scenarios. Whole-current endpoints and length remain unresolved.",
+      "latest_installation_review_file": "research/chen-indian-sec-installation-execution-review-v1.json",
+      "known_scoped_width_support": "Installed approximately650km regional width cited by the2008 ASCLME report. Underlying New2007 original, layer, dates, paired edges, numerical uncertainty and annual range remain unresolved."
+    }
+  ],
+  "remaining_focus": "Prioritize source-supported lengths for11 individual currents lacking both reported-length fields and reference routes, plus physical-width support for4 current/plume targets.17 entries lack any scoped width evidence;13 require scope definition. Annual ranges, paired edges, layer, dates and numerical uncertainty remain incomplete across the catalogue.",
+  "new_editorial_reference_routes": 0,
+  "new_length_records": 0,
+  "new_width_records": 1,
+  "new_width_samples": 0,
+  "new_published_model_mean_section_records": 0,
+  "new_independent_observations": 0,
+  "preserved_wicc_regional_reference_support": {
+    "entity_id": "current:west-india-coastal",
+    "route_id": "wicc-winter-10n-22n-regional-reference-v1",
+    "source_file": "research/wicc-winter-regional-reference-route-v4-candidate.json",
+    "reported_approximate_reference_path_km": 1500,
+    "calculated_editorial_path_km": 1549.568,
+    "whole_current_length_km": null,
+    "annual_length_range_km": null,
+    "uncertainty_km": null,
+    "rank_eligible": false,
+    "physical_state_join_eligible": false,
+    "seasonal_playback_eligible": false
+  },
+  "preserved_review_cited_width_support": {
+    "entity_id": "current:west-india-coastal",
+    "source_file": "research/wicc-vinayachandran-2021-surface-width-source-facts-v1.json",
+    "source_doi": "10.5194/bg-18-5967-2021",
+    "record_id": "wicc-vinayachandran-2021-review-surface-width",
+    "reported_width_km": 150,
+    "approximate": true,
+    "independent_observational_sample": false,
+    "underlying_original_measurement_methods_verified": false,
+    "annual_width_range_km": null,
+    "width_uncertainty_km": null,
+    "numerical_width_sampling_depth_m": null,
+    "whole_current_representative": false,
+    "seasonal_playback_eligible": false,
+    "geographic_geometry_added": false,
+    "owner_width_records_before": 0,
+    "owner_width_records_after": 1
+  },
+  "preserved_cited_width_constraint_support": {
+    "entity_id": "current:east-african-coastal",
+    "source_file": "research/eacc-dekeyzer-2012-cited-width-lower-bound-source-facts-v1.json",
+    "record_id": "eacc-dekeyzer-2012-bell-cited-width-lower-bound",
+    "reported_operator": "gt",
+    "lower_bound_km": 160,
+    "lower_bound_exclusive": true,
+    "reported_width_km": null,
+    "upper_bound_km": null,
+    "annual_width_range_km": null,
+    "width_uncertainty_km": null,
+    "width_sampling_dates": null,
+    "width_sampling_depth_m": null,
+    "geographic_geometry_added": false,
+    "independent_observational_sample": false,
+    "underlying_original_measurement_methods_verified": false,
+    "seasonal_playback_eligible": false,
+    "whole_current_representative": false,
+    "owner_width_records_before": 0,
+    "owner_width_records_after": 1
+  },
+  "full_goal_complete": false,
+  "new_published_dated_flow_event_reference_records": 0,
+  "preserved_eac_model_mean_section_support": {
+    "entity_id": "current:east-australian",
+    "source_doi": "10.1029/2019JC015227",
+    "source_file": "research/eac-kerry-2020-mean-core-dimensions-source-facts-v2.json",
+    "measurement_type": "published_model_mean_core_section_dimensions",
+    "records": [
+      {
+        "id": "eac-kerry-2020-mean-core-27p5s",
+        "place": "Brisbane",
+        "latitude_degrees_north": -27.5,
+        "source_component": "upstream_coherent_jet",
+        "offshore_extent_km": 157.6,
+        "maximum_depth_m": 820,
+        "section_area_km2": 97.1,
+        "source_file": "research/eac-kerry-2020-mean-core-dimensions-source-facts-v2.json",
+        "source_pointer": "/records/0"
+      },
+      {
+        "id": "eac-kerry-2020-mean-core-30p3s",
+        "place": "Coffs Harbour",
+        "latitude_degrees_north": -30.3,
+        "source_component": "north_of_typical_separation",
+        "offshore_extent_km": 156.1,
+        "maximum_depth_m": 1010,
+        "section_area_km2": 104.2,
+        "source_file": "research/eac-kerry-2020-mean-core-dimensions-source-facts-v2.json",
+        "source_pointer": "/records/1"
+      },
+      {
+        "id": "eac-kerry-2020-mean-core-32p3s",
+        "place": "Forster",
+        "latitude_degrees_north": -32.3,
+        "source_component": "typical_separation_region",
+        "offshore_extent_km": 178.7,
+        "maximum_depth_m": 1190,
+        "section_area_km2": 141.3,
+        "source_file": "research/eac-kerry-2020-mean-core-dimensions-source-facts-v2.json",
+        "source_pointer": "/records/2"
+      },
+      {
+        "id": "eac-kerry-2020-mean-core-33p9s",
+        "place": "Sydney",
+        "latitude_degrees_north": -33.9,
+        "source_component": "south_of_typical_separation",
+        "offshore_extent_km": 198.7,
+        "maximum_depth_m": 980,
+        "section_area_km2": 114.5,
+        "source_file": "research/eac-kerry-2020-mean-core-dimensions-source-facts-v2.json",
+        "source_pointer": "/records/3"
+      },
+      {
+        "id": "eac-kerry-2020-mean-core-36p2s",
+        "place": "Narooma",
+        "latitude_degrees_north": -36.2,
+        "source_component": "southern_extension",
+        "offshore_extent_km": 165.0,
+        "maximum_depth_m": 1250,
+        "section_area_km2": 132.3,
+        "source_file": "research/eac-kerry-2020-mean-core-dimensions-source-facts-v2.json",
+        "source_pointer": "/records/4"
+      }
+    ],
+    "paired_edge_width_km": null,
+    "uniform_current_thickness_m": null,
+    "annual_width_range_km": null,
+    "annual_depth_range_m": null,
+    "numerical_uncertainty_km": null,
+    "numerical_depth_uncertainty_m": null,
+    "physical_state_joins_added": 0,
+    "seasonal_playback_eligible": false,
+    "owner_scoped_width_records_before": 1,
+    "owner_scoped_width_records_after": 1,
+    "owner_width_samples_before": 0,
+    "owner_width_samples_after": 0
+  },
+  "preserved_madagascar_regional_dimension_support": {
+    "entity_id": "current:southern-east-madagascar",
+    "source_doi": "10.1175/JPO-D-15-0154.1",
+    "source_file": "research/ponsoni-emc-2016-dimension-source-facts-v1.json",
+    "width_record_id": "southern-east-madagascar-ponsoni2016-inatex-study-summary-width",
+    "typical_study_summary_width_km": [
+      60,
+      100
+    ],
+    "study_period": [
+      "2010-10-07",
+      "2013-03-12"
+    ],
+    "seasonal_width_range_km": null,
+    "numerical_width_uncertainty_km": null,
+    "new_width_samples": 0,
+    "new_length_records": 0,
+    "new_dated_event_references": 8,
+    "physical_geometry_added": false,
+    "seasonal_playback_eligible": false
+  },
+  "new_identity_records": 0,
+  "new_index_documents": 4,
+  "preserved_azcc_historical_regional_dimension_support": {
+    "entity_id": "current:azores-countercurrent",
+    "width_record_id": "azores-countercurrent-onken1993-cited-regional-width",
+    "approximate_width_km": 200,
+    "source_file": "research/onken-azcc-1993-source-facts-v1.json",
+    "source_pointer": "/cited_width_summary",
+    "existing_width_record_preserved": "azores-countercurrent-2009-section-width",
+    "existing_width_km": 110,
+    "observation_dates": null,
+    "fixed_width_sampling_layer": null,
+    "paired_width_edges": null,
+    "seasonal_width_range_km": null,
+    "numerical_width_uncertainty_km": null,
+    "whole_current_length_km": null,
+    "new_independent_observations": 0,
+    "new_width_samples": 0,
+    "new_length_records": 0,
+    "physical_geometry_added": false,
+    "seasonal_playback_eligible": false,
+    "width_ranking_eligible": false
+  },
+  "new_publication_source_rows": 1,
+  "previously_installed_basin_identity_support": {
+    "entity_ids": [
+      "current:atlantic-north-equatorial",
+      "current:pacific-north-equatorial",
+      "current:atlantic-south-equatorial",
+      "current:pacific-south-equatorial",
+      "current:indian-south-equatorial"
+    ],
+    "family_memberships": 5,
+    "editorial_taxonomy_links": 5,
+    "new_length_records": 0,
+    "new_width_records": 0,
+    "new_width_samples": 0,
+    "new_independent_observations": 0,
+    "physical_geometry_added": false,
+    "seasonal_playback_eligible": false
+  },
+  "source_index_registry_sha256": "3bb7557f8fb7b83b6f5b5a6292352d504fbb50c2e3e5dd89c30f3a6ddf26a1d7",
+  "source_index_gzip_sha256": "c3607e32191bf9e3a23ec53a5f788d19f0f5e7a5854be090e0f53d9f7f05b72c",
+  "preserved_nominal_regional_width_support": {
+    "entity_id": "current:pacific-north-equatorial",
+    "width_id": "pacific-nec-qiu2015-nominal-surface-span",
+    "approximate_width_km": 1000,
+    "source_contract": "research/pacific-nec-nominal-width-query-contract-v1.json",
+    "source_facts": "research/qiu-pacific-nec-2015-source-facts-v1.json",
+    "figure": "figures/pacific-nec-nominal-width-v1.svg",
+    "new_sources": 2,
+    "annual_width_range_km": null,
+    "numerical_width_uncertainty_km": null,
+    "seasonal_playback_eligible": false,
+    "physical_geometry_added": false,
+    "new_length_records": 0
+  },
+  "preserved_characteristic_velocity_support": {
+    "collection": "current_characteristic_velocities",
+    "records": 10,
+    "owners": 8,
+    "publication_source_id": "source:richardson-walsh-1986-tropical-atlantic-ship-drifts",
+    "query_contract_file": "research/richardson-walsh-1986-characteristic-velocity-query-contract-v1.json",
+    "execution_review_file": "research/richardson-walsh-1986-characteristic-velocity-complete-execution-review-v1.json"
+  },
+  "new_pacific_sec_component_width_support": {
+    "entity_id": "current:pacific-south-equatorial",
+    "record_ids": [
+      "pacific-sec-gourdeau2008-north-vanuatu-jet-reported-width",
+      "pacific-sec-gourdeau2008-north-caledonian-jet-reported-width"
+    ],
+    "approximate_component_widths_km": {
+      "north_vanuatu_jet": 300,
+      "north_caledonian_jet": 100
+    },
+    "source_doi": "10.1175/2007JPO3780.1",
+    "query_contract_file": "research/pacific-sec-gourdeau-2008-query-contract-v1.json",
+    "source_facts_file": "research/pacific-sec-gourdeau-2008-width-source-facts-v1.json",
+    "figure_file": "figures/pacific-sec-gourdeau-2008-regional-widths-v1.svg",
+    "annual_ranges_added": 0,
+    "whole_current_dimensions_added": 0,
+    "width_rank_eligible": false
+  },
+  "query_record_count_basis": "Previous110320 plus one regional-reach row, one width row and two source rows; existing78 collections and measurement rows preserved by the delivery packet comparison.",
+  "new_reported_regional_reach_records": 1,
+  "new_publication_sources": 2,
+  "new_source_index_documents": 6,
+  "current_installed_batch": {
+    "query_contract_file": "research/current-core-dimensions-query-contract-v1.json",
+    "red_sea_record": "redsox-peters2005-northern-summer-reported-reach",
+    "indian_sec_record": "indian-sec-asclme2008-literature-cited-upstream-width",
+    "regional_reaches_added": 1,
+    "widths_added": 1,
+    "whole_current_dimensions_added": 0,
+    "annual_ranges_added": 0,
+    "independent_observations_added": 0
+  }
+}
