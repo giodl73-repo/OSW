@@ -158,8 +158,12 @@ def browser_review():
                     page.goto(base+'/almanac/reference-routes.html?atlas-layout=map&atlas-feature='+quote(owner)+'&atlas-route='+routes[1]['id']+'#route-atlas')
                     panel=atlas_ready(page)
                     loads.append({'width':width,'cold_browser_context':not loads,'status':page.evaluate('window.oswAtlasLoadStatus')})
+                    page.get_by_role('button',name='Full almanac',exact=True).click()
+                    expect(page.locator('#width-eacc-dekeyzer-2012-bell-cited-width-lower-bound')).to_be_visible()
                     page.locator('#width-eacc-dekeyzer-2012-bell-cited-width-lower-bound').scroll_into_view_if_needed()
                     capture(page,'width-inventory-exclusive-bound'+suffix)
+                    page.get_by_role('button',name='Map-first view',exact=True).click()
+                    page.wait_for_function('new URL(location.href).searchParams.get("atlas-layout")==="map"')
                     checks.append({'width':width,'case':'190 scoped rows across93 owners and111 identities render; Gulf Stream System stays candidate-only; EACC remains an exclusive lower bound'})
                     expect(panel.get_by_role('button',name=routes[1]['label'],exact=True)).to_have_attribute('aria-pressed','true')
                     for row in routes:
