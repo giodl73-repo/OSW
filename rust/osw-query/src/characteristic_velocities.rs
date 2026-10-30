@@ -23,7 +23,7 @@ fn checked(collections:&BTreeMap<String,Vec<Value>>,manifest:&Value)->Result<boo
     for expected in doc["prior_source_inventory"].as_array().ok_or_else(fail)?.iter().chain(std::iter::once(source)){if rows(collections,"sources").iter().filter(|r|r["id"]==expected["id"]).collect::<Vec<_>>()!=vec![expected]{return Err(fail());}}
     for(owner,prior)in doc["prior_owners"].as_object().ok_or_else(fail)?{
         let object=doc["final_objects"].get(owner).unwrap_or(&prior["objects"][0]);
-        if rows(collections,"objects").iter().filter(|r|r["id"]==*owner).collect::<Vec<_>>()!=vec![object]
+        if rows(collections,"objects").iter().map(|r|crate::atlantic_nsec_reference::parent_object(r,manifest)).filter(|r|r["id"]==*owner).collect::<Vec<_>>()!=vec![object]
             ||rows(collections,"entities").iter().filter(|r|r["id"]==*owner).collect::<Vec<_>>() !=prior["entities"].as_array().ok_or_else(fail)?.iter().collect::<Vec<_>>(){return Err(fail());}
         if rows(collections,"widths").iter().filter(|r|r["entity_id"]==*owner||r["current_id"]==owner.strip_prefix("current:").unwrap_or("")).collect::<Vec<_>>() !=prior["widths"].as_array().ok_or_else(fail)?.iter().collect::<Vec<_>>(){return Err(fail());}
     }
@@ -38,6 +38,7 @@ pub(crate)fn additional_source_count(collections:&BTreeMap<String,Vec<Value>>,ma
 pub(crate)fn identity_overlay(bundle:&Bundle)->Result<bool,String>{checked(&bundle.collections,&bundle.manifest)}
 // Older validators compare their exact preceding object; the new full validator remains mandatory.
 pub(crate)fn parent_object<'a>(row:&'a Value,manifest:&Value)->&'a Value{
+    let row=crate::atlantic_nsec_reference::parent_object(row,manifest);
     if !manifest[KEY].is_null(){if let Some(owner)=row["id"].as_str(){if document()["final_objects"].get(owner)==Some(row){return &document()["prior_owners"][owner]["objects"][0];}}}row
 }
 pub(crate)fn identity_parent_row<'a>(name:&str,row:&'a Value,enabled:bool)->Option<&'a Value>{

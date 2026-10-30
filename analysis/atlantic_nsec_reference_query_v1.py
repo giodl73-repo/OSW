@@ -6,7 +6,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 ROOT=Path(__file__).resolve().parents[1]
-FILE='research/atlantic-nsec-reference-query-contract-v1.json'
+FILE='research/atlantic-nsec-reference-query-contract-v2.json'
 PREPARED='research/atlantic-nsec-schematic-reference-reaches-prepared-v1.json'
 REVIEW='research/atlantic-nsec-reference-parent-execution-review-v1.json'
 PARENT_FOLDER='research/atlantic-nsec-reference-parent-run-v1/'
@@ -57,7 +57,7 @@ def build_contract():
             'approximate_reference_path_km':source['approximate_display_length_km'],
             'editorial_probe_length_range_km':[min(cases),max(cases)],'scenario_count':len(cases),
             'editorial_probe_interpretation':prepared['sensitivity_interpretation'],'comparison_group':'osw_studied_reach_routes',
-            'figure_file':'figures/atlantic-nsec-schematic-reference-reaches-prepared-v1.svg',
+            'figure_file':'figures/atlantic-nsec-regional-reference-reaches-v1.svg',
             'rank_eligible':False,'whole_current_length_km':None,'physical_width_km':None,'current_thickness_m':None,
             'annual_length_range_km':None,'annual_width_range_km':None,'uncertainty_km':None,'sample_date':None,
             'independent_observation_count':0,'physical_current_axis_admitted':False,'physical_current_edges_admitted':False,
@@ -102,7 +102,7 @@ def build_contract():
     inputs=[PREPARED,REVIEW,PARENT_FOLDER+'result.json',PARENT_FOLDER+'selected-records.json',PARENT_FOLDER+'run-receipt.json',
         PARENT_FOLDER+'geography.json','research/atlantic-nsec-reference-parent-request-v1.json',
         'research/atlantic-nsec-schematic-reference-reach-input-v1.json','research/atlantic-nsec-schematic-reference-preparation-review-v1.json',
-        'figures/atlantic-nsec-schematic-reference-reaches-prepared-v1.svg','analysis/atlantic_nsec_reference_reaches_v1.py',
+        'figures/atlantic-nsec-schematic-reference-reaches-prepared-v1.svg','figures/atlantic-nsec-regional-reference-reaches-v1.svg','analysis/atlantic_nsec_reference_reaches_v1.py',
         'analysis/atlantic_nsec_reference_query_v1.py']
     return {'schema':'osw.atlantic-nsec-reference-query-contract.v1','parent_logical_sha256':PARENT,
         'parent_collection_counts':counts,'prior_owner':old,'prior_entity':selected['entities'][0],

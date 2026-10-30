@@ -20,6 +20,7 @@ mod dimoune_section_widths;
 mod atlantic_nec_band_spans;
 mod pacific_sec_jet_widths;
 mod current_core_dimensions;
+mod atlantic_nsec_reference;
 mod baffin_latitude_bound;
 mod basin_spans;
 mod caribbean_source_fields;
@@ -229,6 +230,7 @@ impl Store {
         characteristic_velocities::validate(&bundle)?;
         pacific_sec_jet_widths::validate(&bundle)?;
         current_core_dimensions::validate(&bundle)?;
+        atlantic_nsec_reference::validate(&bundle)?;
         mean_core_sections::validate(&bundle)?;
         madagascar_dimensions::validate(&bundle)?;
         azcc_onken_width::validate(&bundle)?;
