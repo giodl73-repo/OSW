@@ -12,19 +12,19 @@ from urllib.parse import quote
 import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
-REQUEST='research/richardson-walsh-1986-characteristic-velocity-browser-request-v1.json'
-PREFLIGHT='research/richardson-walsh-1986-characteristic-velocity-browser-preflight-v1.json'
-SAVED='research/richardson-walsh-1986-characteristic-velocity-delivery-run-v1/'
-OUT=ROOT/'.pytest_cache/richardson-walsh-1986-characteristic-velocity-browser-v1'
-WORK=ROOT/'.pytest_cache/richardson-walsh-1986-characteristic-velocity-browser-work-v1'
+REQUEST='research/richardson-walsh-1986-characteristic-velocity-browser-request-v2.json'
+PREFLIGHT='research/richardson-walsh-1986-characteristic-velocity-browser-preflight-v2.json'
+SAVED='research/richardson-walsh-1986-characteristic-velocity-delivery-run-v2/'
+OUT=ROOT/'.pytest_cache/richardson-walsh-1986-characteristic-velocity-browser-v2'
+WORK=ROOT/'.pytest_cache/richardson-walsh-1986-characteristic-velocity-browser-work-v2'
 REPO='repos/giodl73-repo/OSW'
-SOURCE='156c254e5560634cf4da4b4046d4906f738782b3'
-RUN=41002792054
-ARTIFACT={'id':12954307576,'bytes':99102493,'sha256':'5a26096f3c929c5b51462795298f187628499bc3731e60b73525340785e60849'}
+SOURCE='ffa9275c6a7271ec0974c7bbba4579de994edfd3'
+RUN=41009487072
+ARTIFACT={'id':12957143941,'bytes':99102487,'sha256':'3361186e72365eeceb679fee9c79c301e76780144eda8197df136e88a73738fa'}
 OWNER='current:atlantic-north-equatorial'
 LOGICAL='d21ade39ba095192df3f4c6adef702d0d5f68570ea736f455eaf84980d9800ea'
 BINARY='536521a9aca1ab106bb8cb7445786c8fb224f08cec58e1aa7141dad0b8c9604e'
-MANIFEST='9bdca901dc64887f9f8176bc0fb484cebbd95e11baf2d9d1f47143854fbf7df3'
+MANIFEST='1f583dfe3eb9701cdcf116b2ee5cae1190c45c413f2c360baf798d147df1d728'
 def read(path):return json.loads((ROOT/path).read_bytes())
 def sha(path):
     with (ROOT/path).open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
@@ -185,7 +185,8 @@ def browser_review():
                     scene=page.evaluate('(name)=>window[name].published_speed_scenes["atlantic-north-equatorial-countercurrent"]',arg='oswAtlasSnapshot' if name=='atlas' else 'oswSeasonSnapshot')
                     if scene['kind']!='published_velocity_evidence_groups' or len(scene['scenes'])!=2 or scene['scenes'][0]['kind']!='published_seasonal_core_velocities':raise ValueError('Prior core operator merged or lost')
                 checks.append({'width':width,'case':'atlas and seasons retain separate prior core estimates and static characteristic summaries'})
-                page.goto(base+'/almanac/dashboard.html');page.wait_for_function('window.oswDashboardSnapshot?.snapshot?.entries?.length>0')
+                page.goto(base+'/almanac/dashboard.html');page.wait_for_function('window.oswDashboardSnapshot?.snapshot?.entries?.length>0||document.querySelector("#dashboard-status")?.textContent.startsWith("Update check failed:")')
+                if page.locator('#dashboard-status').inner_text().startswith('Update check failed:'):raise ValueError(page.locator('#dashboard-status').inner_text())
                 entries=page.evaluate('window.oswDashboardSnapshot.snapshot.entries')
                 covered=[r for r in entries if r.get('type')=='named_current' and r['capabilities'].get('characteristic_velocity',0)>0]
                 if {r['id'] for r in covered}!=set(query.OWNERS) or sum(r['capabilities']['characteristic_velocity'] for r in covered)!=10:raise ValueError('Dashboard characteristic coverage differs')
