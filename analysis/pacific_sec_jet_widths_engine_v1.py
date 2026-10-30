@@ -7,6 +7,7 @@ PRESENTATION={'almanac/current-dimension-evidence.js','almanac/query.html','alma
               'almanac/reference-routes.html','almanac/seasons.html'}
 RUST_CHANGED={'rust/osw-query/src/'+name for name in ('lib.rs','object_view.rs','seasons_data.rs','dashboard.rs',
     'equatorial_basin_identities.rs','pacific_secc_reference.rs','south_java_reference.rs','wicc_winter_reference.rs',
+    'aleutian_onishi_width.rs','hansen_asar_widths.rs','neuc_glider_widths.rs',
     )}
 RUST_ADDED={'rust/osw-query/src/pacific_sec_jet_widths.rs'}
 CONTRACT='research/pacific-sec-gourdeau-2008-query-contract-v1.json'

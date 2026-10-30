@@ -6,6 +6,7 @@ import pacific_sec_jet_widths_query_v1 as query
 import pacific_sec_jet_widths_delivery_rules_v1 as rules
 from check_pacific_sec_jet_widths_delivery_v1 import new_requests, REQUEST, PREFLIGHT, failure_report
 import pacific_sec_jet_widths_index_v1 as index
+import pacific_sec_jet_widths_engine_v1 as engine
 
 
 class DeliveryTests(unittest.TestCase):
@@ -37,6 +38,32 @@ class DeliveryTests(unittest.TestCase):
         self.assertEqual(report['stderr_bytes'], 20000)
         self.assertEqual(len(report['stderr_sha256']), 64)
         self.assertTrue(report['stderr_truncated'])
+
+    def test_complete_compiler_receipt_accepts_inventory_fix_but_refuses_unrelated_changes(self):
+        inventory = copy.deepcopy(query.read(PREFLIGHT)['compile_inventory'])
+        for group in ('rust_source_sha256', 'compile_time_data_sha256'):
+            for path in inventory[group]:
+                if path != 'almanac/index-catalog.json':
+                    inventory[group][path] = query.sha(path)
+        parent = query.read('research/richardson-walsh-1986-characteristic-velocity-delivery-run-v2/engine-manifest.json')
+        proof = copy.deepcopy(query.read('research/richardson-walsh-1986-characteristic-velocity-delivery-run-v2/dependency-proof.json'))
+        proof['production_dependencies'] = sorted(set(proof['production_dependencies']) | engine.RUST_ADDED | {engine.CONTRACT})
+        proof['production_dependency_count'] = len(proof['production_dependencies'])
+        self.assertEqual(proof['production_dependency_count'], 282)
+        replacements = {**inventory['rust_source_sha256'], **inventory['compile_time_data_sha256'],
+                        **{p: query.sha(p) for p in engine.PRESENTATION | set(index.DOCUMENTS)},
+                        'almanac/query-engine.wasm': 'e'*64}
+        options = dict(inventory=inventory, proof=proof, source_commit='candidate',
+                       logical_sha='f'*64, wasm_sha='e'*64, compiler='rustc 1.95.0 (fixture)',
+                       source_documents=index.DOCUMENTS)
+        result = engine.engine_manifest(parent, replacements, **options)
+        for name in ('hansen_asar_widths.rs', 'neuc_glider_widths.rs', 'aleutian_onishi_width.rs'):
+            path = 'rust/osw-query/src/' + name
+            self.assertNotEqual(result['sha256'][path], parent['sha256'][path])
+        self.assertEqual({k:v for k,v in result.items() if k not in ('sha256','rustc',engine.KEY)},
+                         {k:v for k,v in parent.items() if k not in ('sha256','rustc')})
+        with self.assertRaises(ValueError):
+            engine.engine_manifest(parent, {**replacements, 'almanac/query-charts.js': '0'*64}, **options)
 
     def test_distinct_components_and_unknowns_survive_scene(self):
         rows = self.contract['width_records']

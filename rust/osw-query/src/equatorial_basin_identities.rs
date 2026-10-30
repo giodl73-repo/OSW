@@ -216,9 +216,9 @@ pub(crate) fn object_projection(bundle: &Bundle, owner: &str, mut result: Value)
 }
 
 #[cfg(test)]
-mod tests {
+pub(crate) mod tests {
     use super::*;
-    fn fixture() -> Bundle {
+    pub(crate) fn fixture() -> Bundle {
         let doc = document();
         let mut b = Bundle { schema:"osw.query-bundle.v1".into(), manifest:json!({"input_sha256":{}}),
             collections:serde_json::from_value(doc["additions"].clone()).unwrap() };

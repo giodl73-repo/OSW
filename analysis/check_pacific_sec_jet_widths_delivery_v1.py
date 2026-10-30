@@ -176,7 +176,7 @@ def run():
         with (OUT/log).open('wb') as stream:subprocess.run(['cargo','+1.95.0',*args,'--manifest-path','rust/osw-query/Cargo.toml'],env=env,stdout=stream,stderr=subprocess.STDOUT,check=True,timeout=2400)
     cargo(['build','--locked','--bin','osw-query-cli','--example','delivery_probe_v2'],'native-build.txt')
     cargo(['test','--locked','--lib'],'rust-tests.txt')
-    if b'test result: ok. 307 passed; 0 failed;' not in (OUT/'rust-tests.txt').read_bytes():raise ValueError('Expected 307 native regression tests')
+    if b'test result: ok. 308 passed; 0 failed;' not in (OUT/'rust-tests.txt').read_bytes():raise ValueError('Expected 308 native regression tests')
     new_source=[{'kind':'query','request':{'document':path,'pointer':'','limit':500}} for path in index.DOCUMENTS]
     probe=WORK/'build/debug/examples/delivery_probe_v2'
     batches={mode:run_batch(probe,mode,payload,requests[mode]+new) for mode,payload,new in [('main',candidate,[]),('index',new_index,new_source)]}
@@ -221,7 +221,7 @@ def run():
     write(artifact/'almanac/query-engine.manifest.json',overlay);write(OUT/'engine-manifest.json',overlay)
     files={p.relative_to(artifact).as_posix():{'sha256':sha(p),'bytes':p.stat().st_size} for p in artifact.rglob('*') if p.is_file()}
     report={'schema':'osw.pacific-sec-jet-widths-delivery-result.v1','query_contract_file':query.FILE,'status':'PASS_COMPLETE_NATIVE_WASM_CANDIDATE_BROWSER_PENDING','source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],'run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],
-        'logical_sha256':logical,'logical_bytes':packet['logical_byte_length'],'wasm_sha256':sha(wasm),'rust_tests_passed':307,'historical_main_api_cases':historical_main_count,'historical_source_api_cases':105,
+        'logical_sha256':logical,'logical_bytes':packet['logical_byte_length'],'wasm_sha256':sha(wasm),'rust_tests_passed':308,'historical_main_api_cases':historical_main_count,'historical_source_api_cases':105,
         'new_main_api_cases':len(new_main),'new_source_api_cases':len(new_source),'ordinary_cli_equivalence_checks':2,'source_index_audit':audit,'packet_comparison':comparison,'generated_files':files,
         'request_sha256':sha(REQUEST),'preflight_sha256':sha(PREFLIGHT),'browser_review_completed':False,'installed':False,'main_updated':False,'local_bulk_sync':False,'full_goal_complete':False}
     write(OUT/'result.json',report);print(json.dumps(report),flush=True)

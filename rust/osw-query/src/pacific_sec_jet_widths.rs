@@ -186,4 +186,48 @@ mod tests {
         assert_eq!(by_current(&b)["pacific-south-equatorial"]["width_records"].as_array().unwrap().len(),2);
         assert!(by_current(&b)["south-equatorial"].is_null());assert!(width_scene(&[],&b).is_null());
     }
+    #[test] fn legacy_complete_inventory_guards_accept_only_the_exact_appended_jet_rows() {
+        let cases: [(fn()->Bundle,fn(&Bundle)->Result<(),String>);3] = [
+            (crate::hansen_asar_widths::tests::fixture,crate::hansen_asar_widths::validate),
+            (crate::neuc_glider_widths::tests::fixture,crate::neuc_glider_widths::validate),
+            (crate::aleutian_onishi_width::tests::fixture,crate::aleutian_onishi_width::validate),
+        ];
+        for (legacy_fixture,legacy_validate) in cases {
+            for mutation in 0..5 {
+                let mut b=legacy_fixture();
+                for extension in [crate::equatorial_basin_identities::tests::fixture(),fixture()] {
+                    for (key,value) in extension.manifest.as_object().unwrap() {
+                        if key=="input_sha256" {continue;}
+                        if let Some(prior)=b.manifest.get(key) {assert_eq!(prior,value);}
+                        b.manifest[key]=value.clone();
+                    }
+                    for (path,digest) in extension.manifest["input_sha256"].as_object().unwrap() {
+                        if let Some(prior)=b.manifest["input_sha256"].get(path) {assert_eq!(prior,digest);}
+                        b.manifest["input_sha256"][path]=digest.clone();
+                    }
+                    for (name,records) in extension.collections {
+                        let target=b.collections.entry(name.clone()).or_default();
+                        for row in records {
+                            if let Some(prior)=target.iter_mut().find(|r|r["id"]==row["id"]) {
+                                if name=="objects" && row["id"]=="current:pacific-south-equatorial" {
+                                    assert_eq!(prior,&document()["prior_owners"]["current:pacific-south-equatorial"]["objects"][0]);
+                                    *prior=row;
+                                } else {assert_eq!(prior,&row);}
+                            } else {target.push(row);}
+                        }
+                    }
+                }
+                validate(&b).unwrap();legacy_validate(&b).unwrap();
+                let widths=b.collections.get_mut("widths").unwrap();let count=widths.len();
+                match mutation {
+                    0=>continue,
+                    1=>widths[0]["unexpected_change"]=json!(true),
+                    2=>widths[count-1]["approximate_width_km"]=json!(301),
+                    3=>widths.swap(count-1,count-2),
+                    _=>{let duplicate=widths[0].clone();widths.push(duplicate);},
+                }
+                assert!(legacy_validate(&b).is_err(),"mutation {mutation}");
+            }
+        }
+    }
 }
