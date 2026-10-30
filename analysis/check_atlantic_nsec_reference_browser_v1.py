@@ -112,6 +112,13 @@ def browser_review():
         width_status=page.locator('#width-status').inner_text()
         if width_status.startswith('Width evidence unavailable:'):
             raise ValueError('Atlas width inventory adapter failed: '+width_status)
+        expect(page.locator('#width-status')).to_contain_text('190 scoped width records for 94 of 111 current identities;')
+        expect(page.locator('#width-rows > tr')).to_have_count(190)
+        expect(page.locator('#width-decision-rows > tr')).to_have_count(111)
+        bound=page.locator('#width-eacc-dekeyzer-2012-bell-cited-width-lower-bound > td').nth(1)
+        expect(bound).to_contain_text('>160 km')
+        expect(bound).to_contain_text('central width and upper limit unknown')
+        expect(bound).not_to_contain_text('About 160')
         snapshot=page.evaluate('short=>({candidates:window.oswAtlasSnapshot.working_reference_routes.candidates.filter(r=>r.current_id===short),order:window.oswAtlasSnapshot.working_reference_routes.reference_route_length_order})',short)
         candidates=snapshot['candidates']
         if [r['id'] for r in candidates]!=[r['id'] for r in routes]:raise ValueError('Atlas lost one of the two distinct source phases')
@@ -138,6 +145,9 @@ def browser_review():
                     page.goto(base+'/almanac/reference-routes.html?atlas-layout=map&atlas-feature='+quote(owner)+'&atlas-route='+routes[1]['id']+'#route-atlas')
                     panel=atlas_ready(page)
                     loads.append({'width':width,'cold_browser_context':not loads,'status':page.evaluate('window.oswAtlasLoadStatus')})
+                    page.locator('#width-eacc-dekeyzer-2012-bell-cited-width-lower-bound').scroll_into_view_if_needed()
+                    capture(page,'width-inventory-exclusive-bound'+suffix)
+                    checks.append({'width':width,'case':'all 190 width records and 111 identities render; EACC remains an exclusive lower bound with no finite range'})
                     expect(panel.get_by_role('button',name=routes[1]['label'],exact=True)).to_have_attribute('aria-pressed','true')
                     for row in routes:
                         select_path(page,panel,row);no_overflow(page)

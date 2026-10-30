@@ -52,14 +52,14 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
   for(const row of records) {
     const details=document.createElement('details');details.className='atlas-width-record';details.dataset.measurementId=row.id;section.append(details);
     const angular=row.ensemble_angular_context;
-    const value=row.selected_core_context?`${format(row.approximate_width_km)} km core · ${format(row.width_standard_deviation_km)} km reported standard deviation`
+    const value=window.citedWidthConstraintLabel(row)||(row.selected_core_context?`${format(row.approximate_width_km)} km core · ${format(row.width_standard_deviation_km)} km reported standard deviation`
       :angular?`${format(angular.source_reported_latitude_span_degrees)}° latitude (~${format(row.approximate_width_km)} km conversion)`
       :row.phase_kind==='campaign_width_statistics'?`${format(row.approximate_width_km)} km mean (${row.width_range_km.map(format).join('–')} km across three complete crossings)`
       :row.phase_kind==='width_time_series_statistics'?`${format(row.approximate_width_km)} km mean (${row.width_range_km.map(format).join('–')} km observed)`
       :row.phase_kind==='survey_layer_median_threshold_width'?`${format(row.approximate_width_km)} ±${format(row.reported_total_error_km)} km source width and total error`
       :row.phase_kind==='mean_offshore_extent_range'?`${row.width_range_km.map(format).join('–')} km mean surface offshore extent (not full width)`
       :row.reported_width_constraint?`${row.reported_width_constraint.source_notation} reported size constraint`
-      :row.approximate_width_km===null?`${row.width_range_km.map(format).join('–')} km reported span`:`about ${format(row.approximate_width_km)} km`;
+      :row.approximate_width_km===null?`${row.width_range_km.map(format).join('–')} km reported span`:`about ${format(row.approximate_width_km)} km`);
     node('summary',`${value} · ${row.width_metric_label||row.width_metric.replaceAll('_',' ')} · ${row.phase_label}`,details);
     node('p',row.time_convention||(row.measurement_type==='published_nominal_regional_angular_width'?'Nominal regional summary; sampling dates are unresolved.':'Sampling period is unresolved.'),details);
     node('p',`${row.geographic_scope} ${row.layer}`,details);

@@ -1,4 +1,9 @@
 "use strict";
+window.citedWidthConstraintLabel = function(row) {
+  if(!row?.cited_width_constraint_context)return null;
+  if(row.reported_operator!=='gt' || row.lower_bound_exclusive!==true || !Number.isFinite(row.reported_bound_km) || row.upper_bound_km!==null || row.reported_width_km!==null)throw new Error('Unsupported cited width constraint');
+  return `>${row.reported_bound_km.toLocaleString('en-US')} km · cited exclusive lower bound; central width and upper limit unknown`;
+};
 window.renderCitedWidthConstraints = function(parent,scene,inspect) {
   if(!scene || scene.kind!=='published_cited_width_constraints' || !scene.records?.length)return;
   const node=(tag,text,into)=>{const el=document.createElement(tag);if(text!==undefined)el.textContent=text;into.append(el);return el;};
@@ -7,7 +12,7 @@ window.renderCitedWidthConstraints = function(parent,scene,inspect) {
   node('p','Historical cited constraint; not another independent width observation.',panel);
   inspect ||= (collection,id)=>{location.href='query.html?q='+encodeURIComponent(JSON.stringify({collection,filters:[{field:'id',op:'eq',value:id}],limit:100}));};
   for(const row of scene.records){
-    if(row.reported_operator!=='gt' || row.lower_bound_exclusive!==true || !Number.isFinite(row.reported_bound_km) || row.upper_bound_km!==null || row.reported_width_km!==null)throw new Error('Unsupported cited width constraint');
+    if(!window.citedWidthConstraintLabel(row))throw new Error('Unsupported cited width constraint');
     const card=node('section',undefined,panel);card.setAttribute('data-cited-width-id',row.id);card.style.cssText='border-top:1px solid #b8ccd3;padding:.6rem 0;min-width:0';
     node('h4',row.width_metric_label,card);node('strong',`>${row.reported_bound_km} km`,card);
     const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 240 16');svg.setAttribute('role','img');
