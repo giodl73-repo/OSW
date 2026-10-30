@@ -146,6 +146,16 @@ pub(crate) fn additional_source_count(
 ) -> Result<usize, String> {
     Ok(if checked(c, manifest)? { 2 } else { 0 })
 }
+pub(crate) fn additional_reference_route_count(
+    c: &BTreeMap<String, Vec<Value>>,
+    manifest: &Value,
+) -> Result<usize, String> {
+    Ok(if checked(c, manifest)? {
+        additions("reference_routes").len()
+    } else {
+        0
+    })
+}
 pub(crate) fn parent_object<'a>(row: &'a Value, manifest: &Value) -> &'a Value {
     if !manifest[KEY].is_null() && row == &document()["final_owner"] {
         &document()["prior_owner"]
@@ -379,6 +389,10 @@ mod tests {
             2
         );
         assert_eq!(
+            additional_reference_route_count(&b.collections, &b.manifest).unwrap(),
+            2
+        );
+        assert_eq!(
             parent_object(&document()["final_owner"], &b.manifest),
             &document()["prior_owner"]
         );
@@ -417,6 +431,7 @@ mod tests {
                 }
             }
             assert!(validate(&b).is_err(), "case {case}");
+            assert!(additional_reference_route_count(&b.collections, &b.manifest).is_err());
         }
     }
     #[test]

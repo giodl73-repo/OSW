@@ -347,7 +347,7 @@ window.initReferenceRouteAtlas = async function(catalog, reports, widthInventory
           previewLink(content,'Full route card, measurements and sources ↓','#'+row.id);
           previewLink(content,'Current record →',current.object_url);
         }
-        paths.forEach((path,index)=>{const button=document.createElement('button');button.type='button';button.textContent=path.report.rendering_role==='derived_inline_source_reference_card_not_additional_observation'?path.row.label:paths.length>1?path.row.route_extent_kind:'Reference route';button.addEventListener('click',()=>showPath(path,index));tabs.append(button);});
+        paths.forEach((path,index)=>{const button=document.createElement('button');button.type='button';button.textContent=['derived_inline_source_reference_card_not_additional_observation','derived_inline_editorial_reach_card_not_additional_observation'].includes(path.report.rendering_role)?path.row.label:paths.length>1?path.row.route_extent_kind:'Reference route';button.addEventListener('click',()=>showPath(path,index));tabs.append(button);});
         const requestedIndex=paths.findIndex(path=>path.row.id===requestedRoute);
         const initialIndex=requestedIndex<0?0:requestedIndex;
         showPath(paths[initialIndex],initialIndex);
