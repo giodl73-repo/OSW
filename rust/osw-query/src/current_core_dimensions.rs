@@ -21,6 +21,9 @@ fn additions(name:&str)->&'static [Value] {
     document()[key].as_array().unwrap()
 }
 fn checked(collections:&BTreeMap<String,Vec<Value>>,manifest:&Value)->Result<bool,String> {
+    crate::validation_scope::checked(collections,manifest,module_path!(),||checked_uncached(collections,manifest))
+}
+fn checked_uncached(collections:&BTreeMap<String,Vec<Value>>,manifest:&Value)->Result<bool,String> {
     let fail=||"Invalid scoped current reach or cited-width extension".to_owned();let doc=document();
     let trace=collections.values().flatten().any(|r|["sources","widths",REACHES].iter().any(|name|additions(name).iter().any(|e|e["id"]==r["id"])));
     if manifest[KEY].is_null() && manifest["input_sha256"][FILE].is_null() && !trace {return Ok(false);}

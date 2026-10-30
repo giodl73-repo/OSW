@@ -145,6 +145,9 @@ pub(crate) fn identity_parent_row<'a>(
 }
 
 fn checked(collections: &BTreeMap<String, Vec<Value>>, manifest: &Value) -> Result<bool, String> {
+    crate::validation_scope::checked(collections, manifest, module_path!(), || checked_uncached(collections, manifest))
+}
+fn checked_uncached(collections: &BTreeMap<String, Vec<Value>>, manifest: &Value) -> Result<bool, String> {
     let fail = || "Invalid Indian SEC regional model-grid length extension".to_owned();
     let doc = document();
     let rows = |name: &str| collections.get(name).map(Vec::as_slice).unwrap_or(&[]);

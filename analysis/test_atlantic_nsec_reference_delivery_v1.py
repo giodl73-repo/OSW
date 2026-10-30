@@ -55,8 +55,9 @@ class DeliveryScopeTests(unittest.TestCase):
     def test_full_compiler_closure_and_unrelated_binding_refusal(self):
         parent=query.read('research/current-core-dimensions-installation-saved-engine-manifest-v1.json')
         inventory=copy.deepcopy(query.read('research/current-core-dimensions-delivery-run-v1/compile-inventory.json'))
-        for p in inventory['rust_source_sha256']:inventory['rust_source_sha256'][p]=query.sha(p)
-        for p in engine.RUST_ADDED:inventory['rust_source_sha256'][p]=query.sha(p)
+        historical=query.read('research/atlantic-nsec-reference-delivery-run-v1/compile-inventory.json')['rust_source_sha256']
+        for p in inventory['rust_source_sha256']:inventory['rust_source_sha256'][p]=historical[p]
+        for p in engine.RUST_ADDED:inventory['rust_source_sha256'][p]=historical[p]
         inventory['compile_time_data_sha256'][engine.CONTRACT]=query.sha(engine.CONTRACT)
         proof=copy.deepcopy(query.read('research/current-core-dimensions-delivery-run-v1/dependency-proof.json'))
         proof['production_dependencies']=sorted(set(proof['production_dependencies'])|engine.RUST_ADDED|{engine.CONTRACT})

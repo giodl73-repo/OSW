@@ -37,6 +37,9 @@ fn marker() -> Value {
     json!({"schema":"osw.atlantic-nsec-reference-runtime.v1","parent_logical_sha256":document()["parent_logical_sha256"],"contract_file":FILE,"contract_sha256":pin(RAW),"reference_routes_added":2,"sources_added":2,"reported_whole_current_lengths_added":0,"annual_ranges_added":0,"physical_geometries_added":0,"independent_observations_added":0})
 }
 fn checked(c: &BTreeMap<String, Vec<Value>>, manifest: &Value) -> Result<bool, String> {
+    crate::validation_scope::checked(c, manifest, module_path!(), || checked_uncached(c, manifest))
+}
+fn checked_uncached(c: &BTreeMap<String, Vec<Value>>, manifest: &Value) -> Result<bool, String> {
     let fail = || "Invalid source-bound Atlantic SEC regional references".to_owned();
     let doc = document();
     let trace = c.values().flatten().any(|r| {

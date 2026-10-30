@@ -116,6 +116,7 @@ mod svg;
 mod taxonomy;
 mod temporal;
 mod ursa_contour;
+mod validation_scope;
 mod wicc_review_width;
 mod workspace;
 use sha2::{Digest, Sha256};
@@ -220,6 +221,7 @@ impl Store {
             ids.insert(name.clone(), index);
             fields.insert(name.clone(), keys);
         }
+        let validation_scope = validation_scope::Scope::new(&bundle.collections, &bundle.manifest);
         pacific_nec_product_axes::validate(&bundle)?;
         dimoune_section_widths::validate(&bundle)?;
         atlantic_nec_band_spans::validate(&bundle)?;
@@ -402,6 +404,7 @@ impl Store {
                 "target.id".into(),
             ]),
         );
+        drop(validation_scope);
         Ok(Self {
             bundle,
             ids,

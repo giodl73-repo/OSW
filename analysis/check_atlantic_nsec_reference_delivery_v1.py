@@ -76,13 +76,14 @@ def new_requests(contract):
     return result
 
 
-def run():
+def run(*,engine_binding=None,expected_rust_tests=314):
     pref=controls();OUT.mkdir(parents=True,exist_ok=False);WORK.mkdir(parents=True,exist_ok=False)
     import atlantic_nsec_reference_query_v1 as query
     import atlantic_nsec_reference_delivery_rules_v1 as patch
     import atlantic_nsec_reference_index_v1 as index
     import atlantic_nsec_reference_response_rules_v1 as rules
-    from atlantic_nsec_reference_engine_v1 import engine_manifest
+    from atlantic_nsec_reference_engine_v1 import engine_manifest as original_engine_manifest
+    engine_manifest=engine_binding or original_engine_manifest
     from chen_indian_sec_native_batch_v2 import encode_case,case_key,run_batch
     from query_packet import read_bundle_bytes,write_packet
     from captured_response_files_v1 import read_captured_json
@@ -181,7 +182,7 @@ def run():
         with (OUT/log).open('wb') as stream:subprocess.run(['cargo','+1.95.0',*args,'--manifest-path','rust/osw-query/Cargo.toml'],env=env,stdout=stream,stderr=subprocess.STDOUT,check=True,timeout=2400)
     cargo(['build','--locked','--bin','osw-query-cli','--example','delivery_probe_v2'],'native-build.txt')
     cargo(['test','--locked','--lib'],'rust-tests.txt')
-    if b'test result: ok. 314 passed; 0 failed;' not in (OUT/'rust-tests.txt').read_bytes():raise ValueError('Expected 314 native regression tests')
+    if f'test result: ok. {expected_rust_tests} passed; 0 failed;'.encode() not in (OUT/'rust-tests.txt').read_bytes():raise ValueError(f'Expected {expected_rust_tests} native regression tests')
     new_source=[{'kind':'query','request':{'document':path,'pointer':'','limit':500}} for path in index.DOCUMENTS]
     probe=WORK/'build/debug/examples/delivery_probe_v2'
     batches={mode:run_batch(probe,mode,payload,requests[mode]+new) for mode,payload,new in [('main',candidate,[]),('index',new_index,new_source)]}
@@ -226,7 +227,7 @@ def run():
     write(artifact/'almanac/query-engine.manifest.json',overlay);write(OUT/'engine-manifest.json',overlay)
     files={p.relative_to(artifact).as_posix():{'sha256':sha(p),'bytes':p.stat().st_size} for p in artifact.rglob('*') if p.is_file()}
     report={'schema':'osw.atlantic-nsec-reference-delivery-result.v1','query_contract_file':query.FILE,'status':'PASS_COMPLETE_NATIVE_WASM_CANDIDATE_BROWSER_PENDING','source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],'run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],
-        'logical_sha256':logical,'logical_bytes':packet['logical_byte_length'],'wasm_sha256':sha(wasm),'rust_tests_passed':314,'historical_main_api_cases':historical_main_count,'historical_source_api_cases':115,
+        'logical_sha256':logical,'logical_bytes':packet['logical_byte_length'],'wasm_sha256':sha(wasm),'rust_tests_passed':expected_rust_tests,'historical_main_api_cases':historical_main_count,'historical_source_api_cases':115,
         'new_main_api_cases':len(new_main),'new_source_api_cases':len(new_source),'ordinary_cli_equivalence_checks':2,'source_index_audit':audit,'packet_comparison':comparison,'generated_files':files,
         'request_sha256':sha(REQUEST),'preflight_sha256':sha(PREFLIGHT),'browser_review_completed':False,'installed':False,'main_updated':False,'local_bulk_sync':False,'full_goal_complete':False}
     write(OUT/'result.json',report);print(json.dumps(report),flush=True)
