@@ -45,7 +45,7 @@ fn checked(collections:&BTreeMap<String,Vec<Value>>,manifest:&Value)->Result<boo
     }
     for (owner,prior) in doc["prior_owners"].as_object().ok_or_else(fail)? {
         let object=doc["final_objects"].get(owner).unwrap_or(&prior["objects"][0]);
-        if rows(collections,"objects").iter().filter(|r|r["id"]==*owner).collect::<Vec<_>>()!=vec![object]
+        if rows(collections,"objects").iter().map(|r|crate::characteristic_velocities::parent_object(r,manifest)).filter(|r|r["id"]==*owner).collect::<Vec<_>>()!=vec![object]
             ||rows(collections,"entities").iter().filter(|r|r["id"]==*owner).collect::<Vec<_>>()
                 !=prior["entities"].as_array().ok_or_else(fail)?.iter().collect::<Vec<_>>() {return Err(fail());}
         let mut expected=prior["widths"].as_array().ok_or_else(fail)?.iter().collect::<Vec<_>>();

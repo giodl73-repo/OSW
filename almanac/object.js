@@ -111,6 +111,7 @@ loadObjectView().then(data => {
     identity.replaceChildren();
     window.renderEquatorialBasinIdentities(identity,window.oswObjectView.basin_identity_context_scene);
     window.renderCurrentDimensionEvidence(identity,window.oswObjectView.current_dimension_evidence_scene);
+    window.renderPublishedCurrentSpeeds(identity,window.oswObjectView.characteristic_velocity_scene);
     window.renderRegionalModelLengths(identity,window.oswObjectView.regional_model_length_scene);
     window.oswProductAxisCardCleanup?.();
     window.oswProductAxisCardCleanup=window.renderSurfaceProductAxes(identity,window.oswObjectView.surface_product_axis_scene);

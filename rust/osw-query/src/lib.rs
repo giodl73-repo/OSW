@@ -88,6 +88,7 @@ mod planning;
 mod portugal_section_span;
 mod proposed_widths;
 mod published_current_speeds;
+mod characteristic_velocities;
 mod mean_core_sections;
 mod madagascar_dimensions;
 mod published_regional_reaches;
@@ -223,6 +224,7 @@ impl Store {
         equatorial_basin_identities::validate(&bundle)?;
         published_transports::validate(&bundle)?;
         published_current_speeds::validate(&bundle)?;
+        characteristic_velocities::validate(&bundle)?;
         mean_core_sections::validate(&bundle)?;
         madagascar_dimensions::validate(&bundle)?;
         azcc_onken_width::validate(&bundle)?;
@@ -833,6 +835,8 @@ impl Store {
             madagascar_dimensions::event_scene(&matches)
         } else if query.collection == mean_core_sections::COLLECTION {
             mean_core_sections::scene(&matches)
+        } else if query.collection == "current_characteristic_velocities" {
+            characteristic_velocities::scene(&matches)
         } else if query.collection == "current_speed_statistics" {
             published_current_speeds::scene(&matches)
         } else if query.collection == "current_core_velocity_estimates" {

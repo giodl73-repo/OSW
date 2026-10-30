@@ -1,5 +1,7 @@
 "use strict";
 window.renderPublishedCurrentSpeeds=function(parent,scene,inspect){
+  if(scene?.kind==='published_velocity_evidence_groups'){for(const child of scene.scenes||[])window.renderPublishedCurrentSpeeds(parent,child,inspect);return;}
+  if(scene?.kind==='published_characteristic_current_velocities')return window.renderCharacteristicCurrentVelocities(parent,scene,inspect);
   if(scene?.kind==='published_seasonal_core_velocities')return window.renderPublishedSeasonalCoreVelocities(parent,scene,inspect);
   if(!scene||scene.kind!=='published_current_speed_statistics')return;
   const ns='http://www.w3.org/2000/svg';
@@ -85,4 +87,29 @@ window.renderPublishedSeasonalCoreVelocities=function(parent,scene,inspect){
   html('p','XBT sampling context: 2000–2010, with 31 selected sections shared across these currents. January, May and June each have one section; February has none. These rows exclude the 1993–2010 satellite-based reconstruction. They cannot supply seasonal length, width or map animation.',panel);
   const original=html('a','Original study and methods',html('p',undefined,panel));original.href=scene.source_url;
   const context=html('a','Full published-estimate comparison',html('p',undefined,panel));context.href='../'+scene.full_context_figure;
+};
+
+window.renderCharacteristicCurrentVelocities=function(parent,scene,inspect){
+  if(scene?.kind!=='published_characteristic_current_velocities'||!scene.records?.length)return;
+  const node=(tag,text,container)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;container.append(n);return n;};
+  const link=(text,url,container)=>{const n=node('a',text,container);n.href=url;return n;};
+  const number=v=>typeof v==='number'&&Number.isFinite(v)?v.toFixed(2):'Unknown';
+  inspect||=((collection,id)=>{location.href='query.html?q='+encodeURIComponent(JSON.stringify({collection,filters:[{field:'id',op:'eq',value:id}],limit:100}));});
+  const panel=node('section',undefined,parent);panel.className='published-characteristic-velocities';panel.style.cssText='min-width:0;overflow-wrap:anywhere';
+  node('h3',scene.title,panel);node('p',scene.scope,panel);node('p',scene.time_support,panel);
+  node('p',scene.operator_note,panel);node('p',scene.unknowns,panel);
+  for(const row of scene.records){
+    const card=node('article',undefined,panel);card.setAttribute('data-characteristic-velocity-id',row.id);card.style.cssText='min-width:0;border:1px solid #b7ced2;border-radius:.5rem;padding:.8rem;margin:.8rem 0';
+    node('h4',row.source_current_label,card);
+    const grid=node('dl',undefined,card);grid.style.cssText='display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10rem),1fr));gap:.8rem;margin:.8rem 0';
+    const interval=row.characteristic_mean_vector_speed_interval_m_s;
+    const mean=Array.isArray(interval)?`${number(interval[0])}–${number(interval[1])}`:number(row.characteristic_mean_vector_speed_m_s);
+    for(const [label,value]of [['Characteristic mean-vector speed',mean],['Seasonal velocity variation',number(row.seasonal_velocity_variation_m_s)],['Annual harmonic, source definition',number(row.annual_harmonic_source_amplitude_m_s)],['Semiannual harmonic, source definition',number(row.semiannual_harmonic_source_amplitude_m_s)]]){
+      const cell=node('div',undefined,grid);cell.style.minWidth='0';node('dt',label,cell);const dd=node('dd',value+' m/s',cell);dd.style.cssText='margin:.25rem 0 0;font-weight:bold';
+    }
+    node('p','Characteristic map summary; annual extrema, confidence interval and monthly series remain unknown.',card);
+    const button=node('button','Inspect velocity summary',card);button.type='button';button.onclick=()=>inspect('current_characteristic_velocities',row.id);
+    link('Source table record','query.html?source-q='+encodeURIComponent(JSON.stringify({document:scene.source_file,pointer:row.source_pointer,limit:100})),node('p',undefined,card));
+  }
+  link('Original ship-drift study',scene.source_url,node('p',undefined,panel));link('Full source-order comparison','../'+scene.figure,node('p',undefined,panel));
 };

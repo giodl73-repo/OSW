@@ -65,7 +65,7 @@ window.oswCharts=(()=>{
     if(scene?.kind==='published_mean_core_sections'){document.getElementById('query-chart-section').hidden=false;root().replaceChildren();document.getElementById('query-chart-scope').textContent=scene.scope;document.getElementById('query-chart-legend').hidden=true;document.getElementById('chart-title').textContent=scene.title;window.renderMeanCoreSections(root(),scene,inspect);return;}
     document.getElementById('query-chart-section').hidden=!scene;root().replaceChildren();if(!scene)return;
     document.getElementById('query-chart-scope').textContent=scene.scope;
-    if(['published_current_speed_statistics','published_seasonal_core_velocities'].includes(scene.kind)){
+    if(['published_current_speed_statistics','published_seasonal_core_velocities','published_characteristic_current_velocities','published_velocity_evidence_groups'].includes(scene.kind)){
       document.getElementById('query-chart-legend').hidden=true;
       document.getElementById('chart-title').textContent=scene.title;
       window.renderPublishedCurrentSpeeds(root(),scene,inspect);return;
