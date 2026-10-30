@@ -203,6 +203,32 @@ def browser_review():
                     result=query_page(page,{'collection':'reference_routes','filters':[{'field':'current_id','op':'eq','value':'south-equatorial'}],'limit':100})
                     if result['total']!=0 or result['map_scene']['mapped_objects']!=0:raise ValueError('Parent family inherited member reference geometry')
                     checks.append({'width':width,'case':'parent family has no inherited route rows or map marks'})
+                # Run after the cold atlas checks, so negative fixtures cannot
+                # warm the binary before the real cold-entry observation.
+                manifest=read('almanac/query-engine.manifest.json')
+                fixtures=[('wrong-schema',b'{"schema":"unsupported","manifest":{},"collections":{"objects":[]}}','Unsupported bundle schema'),
+                    ('malformed-json',b'{"schema":"osw.query-bundle.v1","manifest":{},"collections":','Invalid bundle JSON'),
+                    ('invalid-utf8',b'{"schema":"osw.query-bundle.v1","manifest":{},"collections":{},"bad":"\xff"}','Invalid bundle JSON')]
+                for label,body,error in fixtures:
+                    pin=hashlib.sha256(body).hexdigest();part='query-parts/000000-'+pin+'.bin'
+                    packet={'schema':'osw.query-packet.v1','logical_schema':'osw.query-bundle.v1','hash_algorithm':'sha256',
+                        'part_byte_limit':16*1024*1024,'logical_sha256':pin,'logical_byte_length':len(body),
+                        'parts':[{'index':0,'path':part,'sha256':pin,'byte_length':len(body)}]}
+                    raw=json.dumps(packet).encode();fixture_manifest=json.loads(json.dumps(manifest))
+                    fixture_manifest['sha256'].update({'almanac/query-data.json':hashlib.sha256(raw).hexdigest(),'almanac/'+part:pin})
+                    routes_to_remove=[]
+                    def intercept(pattern,handler):page.route(pattern,handler);routes_to_remove.append((pattern,handler))
+                    intercept('**/query-engine.manifest.json',lambda r:r.fulfill(json=fixture_manifest))
+                    intercept('**/query-data.json',lambda r:r.fulfill(body=raw,content_type='application/json'))
+                    intercept('**/'+part,lambda r:r.fulfill(body=body,content_type='application/octet-stream'))
+                    try:
+                        page.goto(base+'/almanac/query.html')
+                        page.wait_for_function('wanted=>document.querySelector("#query-status")?.textContent.includes(wanted)',arg=error)
+                        if page.evaluate('!!window.oswLastQueryResult'):raise ValueError('Malformed source produced a successful query')
+                        page.locator('#query-status').scroll_into_view_if_needed();capture(page,'rust-refuses-'+label)
+                        checks.append({'width':320,'case':'Hash-valid '+label+' is refused by the unchanged Rust parser before engine load success','expected_error':error})
+                    finally:
+                        for pattern,handler in routes_to_remove:page.unroute(pattern,handler)
                 if errors or missing or originals:raise ValueError('Page errors, missing assets or original scientific downloads')
             except Exception:
                 page.screenshot(path=str(OUT/'browser-failure.png'))
@@ -222,6 +248,15 @@ def main():
     files=saved_files(read(SAVED+'result.json'));extract_saved(files)
     if sha('almanac/query-engine.manifest.json')!=MANIFEST or read('almanac/query-engine.manifest.json')!=read(SAVED+'engine-manifest.json'):
         raise ValueError('Saved engine manifest differs')
+    import atlantic_nsec_client_transport_manifest_v1 as transport_binding
+    final_raw=(ROOT/transport_binding.FILE).read_bytes()
+    expected=transport_binding.overlay((ROOT/(SAVED+'engine-manifest.json')).read_bytes(),
+        {p:sha(p) for p in sorted(transport_binding.PATHS)})
+    if json.loads(final_raw)!=expected:raise ValueError('Client transport binding differs from the exact saved engine')
+    files={p:dict(row) for p,row in files.items()}
+    files['almanac/query-engine.manifest.json']={'sha256':hashlib.sha256(final_raw).hexdigest(),'bytes':len(final_raw)}
+    (ROOT/'almanac/query-engine.manifest.json').write_bytes(final_raw)
+    (OUT/'engine-manifest.json').write_bytes(final_raw)
     for group in ('rust_source_sha256','compile_time_data_sha256'):
         for path,pin in read(SAVED+'compile-inventory.json')[group].items():
             if sha(path)!=pin:raise ValueError('Saved compiler input differs: '+path)
@@ -234,7 +269,8 @@ def main():
     write(OUT/'result.json',{'schema':'osw.atlantic-nsec-reference-browser-result.v1','status':observed['status'],
         'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],'run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],
         'saved_engine_source':SOURCE,'saved_engine_run':RUN,'saved_artifact':ARTIFACT,
-        'logical_sha256':LOGICAL,'wasm_sha256':BINARY,'engine_manifest_sha256':MANIFEST,
+        'logical_sha256':LOGICAL,'wasm_sha256':BINARY,'original_engine_manifest_sha256':MANIFEST,
+        'engine_manifest_sha256':hashlib.sha256(final_raw).hexdigest(),'client_transport_updates':sorted(transport_binding.PATHS),
         'screenshots':len(observed['screenshots']),'browser_checks':len(observed['checks']),
         'native_or_wasm_rebuild':False,'visual_review_complete':False,'installed':False,'main_updated':False,'full_goal_complete':False})
 

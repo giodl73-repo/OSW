@@ -19,7 +19,8 @@ async function assembleQueryPacket(rootBytes, fetchBytes, digestBytes, pins) {
     result.set(new Uint8Array(chunk),part.index*limit);
   }
   if(await digestBytes(result)!==packet.logical_sha256)throw Error('Changed logical query bundle');
-  // Decode only after joining bytes: a UTF-8 character may cross a part boundary.
-  if(JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(result)).schema!==packet.logical_schema)throw Error('Wrong logical query schema');
+  // Pass the exact joined bytes to osw_load (or osw_rebase_source). Rust rejects
+  // malformed JSON, invalid UTF-8 and unsupported schemas before accepting a
+  // store. Avoid allocating a second complete JavaScript object tree here.
   return result.buffer;
 }
