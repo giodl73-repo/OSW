@@ -18,6 +18,7 @@ mod indian_sec_model_grid_lengths;
 mod pacific_nec_product_axes;
 mod dimoune_section_widths;
 mod atlantic_nec_band_spans;
+mod pacific_sec_jet_widths;
 mod baffin_latitude_bound;
 mod basin_spans;
 mod caribbean_source_fields;
@@ -225,6 +226,7 @@ impl Store {
         published_transports::validate(&bundle)?;
         published_current_speeds::validate(&bundle)?;
         characteristic_velocities::validate(&bundle)?;
+        pacific_sec_jet_widths::validate(&bundle)?;
         mean_core_sections::validate(&bundle)?;
         madagascar_dimensions::validate(&bundle)?;
         azcc_onken_width::validate(&bundle)?;
@@ -802,6 +804,7 @@ impl Store {
                 pacific_nec_nominal_width::width_scene(&matches, &self.bundle),
                 dimoune_section_widths::width_scene(&matches, &self.bundle),
                 atlantic_nec_band_spans::width_scene(&matches, &self.bundle),
+                pacific_sec_jet_widths::width_scene(&matches, &self.bundle),
                 selected_core_widths::scene(&matches),
                 satellite_core_widths::scene(&matches),
                 wicc_review_width::scene(&matches),
