@@ -3,13 +3,22 @@ import copy
 import unittest
 import pacific_sec_jet_widths_query_v1 as query
 import pacific_sec_jet_widths_delivery_rules_v1 as rules
-from check_pacific_sec_jet_widths_delivery_v1 import new_requests
+from check_pacific_sec_jet_widths_delivery_v1 import new_requests, REQUEST, PREFLIGHT
 import pacific_sec_jet_widths_index_v1 as index
 
 
 class DeliveryTests(unittest.TestCase):
     def setUp(self):
         self.contract = query.build_contract()
+
+    def test_workflow_reads_the_actual_scoped_request(self):
+        workflow = (query.ROOT / '.github/workflows/pacific-sec-gourdeau-2008-delivery-v1.yml').read_text(encoding='utf-8')
+        self.assertEqual(workflow.count(REQUEST), 3)
+        self.assertNotIn('delivery-request-v2.json', workflow)
+        self.assertTrue((query.ROOT / REQUEST).is_file())
+        self.assertTrue((query.ROOT / PREFLIGHT).is_file())
+        self.assertIn('group: osw-current-gap-delivery', workflow)
+        self.assertIn('cancel-in-progress: false', workflow)
 
     def test_distinct_components_and_unknowns_survive_scene(self):
         rows = self.contract['width_records']

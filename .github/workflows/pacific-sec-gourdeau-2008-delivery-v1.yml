@@ -3,7 +3,7 @@ name: Verify Pacific SEC regional jet widths native and WASM delivery v1
   push:
     branches: [codex/current-measurement-gaps]
     paths:
-      - research/pacific-sec-gourdeau-2008-delivery-request-v2.json
+      - research/pacific-sec-gourdeau-2008-delivery-request-v1.json
       - .github/workflows/pacific-sec-gourdeau-2008-delivery-v1.yml
 concurrency:
   group: osw-current-gap-delivery
@@ -29,12 +29,12 @@ jobs:
       - uses: actions/checkout@v6
         with:
           sparse-checkout-cone-mode: false
-          sparse-checkout: research/pacific-sec-gourdeau-2008-delivery-request-v2.json
+          sparse-checkout: research/pacific-sec-gourdeau-2008-delivery-request-v1.json
       - id: request
         run: |
           python - <<'PY'
           import json,os,pathlib
-          r=json.loads(pathlib.Path('research/pacific-sec-gourdeau-2008-delivery-request-v2.json').read_bytes())
+          r=json.loads(pathlib.Path('research/pacific-sec-gourdeau-2008-delivery-request-v1.json').read_bytes())
           assert r['schema']=='osw.pacific-sec-jet-widths-delivery-request.v1' and type(r['execute']) is bool
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
           PY
