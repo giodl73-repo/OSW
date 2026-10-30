@@ -19,7 +19,7 @@
   const link = (text, href, parent, external = false) => { const el = node("a", text, parent); el.href = href; if (external) { el.target = "_blank"; el.rel = "noopener noreferrer"; } return el; };
   const objectHref = id => `object.html?id=${encodeURIComponent(id)}`;
   window.oswAtlasSourcesReady = new Promise((resolve,reject)=>{
-    const worker=new Worker('query-worker.js?v=atlas-cartography-9');
+    const worker=new Worker('query-worker.js?v=nsec-load-phases-1');
     let timer=null,settled=false,phase='load';
     const readiness=window.oswAtlasLoadStatus={phase,started_at_ms:performance.now(),phase_started_at_ms:performance.now(),completed_phases:[],settled:false};
     const finish=(error,result)=>{
@@ -35,7 +35,8 @@
     worker.onerror=()=>finish(Error('Rust atlas data worker failed'));
     worker.onmessage=async event=>{
       if(settled)return;
-      const {id,result}=event.data;
+      const {id,result,progress}=event.data;
+      if(id===1&&phase==='load'&&progress){readiness.worker_progress=progress;return;}
       if(!result?.ok){finish(Error(result?.error||'Invalid atlas worker response'));return;}
       if(id===1&&phase==='load'){
         readiness.completed_phases.push({phase:'load',elapsed_ms:performance.now()-readiness.phase_started_at_ms});
@@ -51,7 +52,7 @@
         byId('route-status').dataset.engine=result.engine;finish(null,docs);
       } catch(error){finish(error);}
     };
-    arm('load');worker.postMessage({id:1,action:'load'});
+    arm('load');worker.postMessage({id:1,action:'load',value:{report_progress:true}});
   });
   async function load(path) {
     const docs=await window.oswAtlasSourcesReady,key=path.replace(/^\.\.\//,'');

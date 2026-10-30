@@ -119,6 +119,9 @@ def browser_review():
         expect(bound).to_contain_text('>160 km')
         expect(bound).to_contain_text('central width and upper limit unknown')
         expect(bound).not_to_contain_text('About 160')
+        progress=page.evaluate('window.oswAtlasLoadStatus.worker_progress')
+        if progress['phase']!='ready' or [r['phase'] for r in progress['completed_phases']]!=['runtime-files','packet-and-compile','instantiate','rust-load','workspace','metadata']:
+            raise ValueError('Complete cold-load worker phase diagnostics missing')
         snapshot=page.evaluate('short=>({candidates:window.oswAtlasSnapshot.working_reference_routes.candidates.filter(r=>r.current_id===short),order:window.oswAtlasSnapshot.working_reference_routes.reference_route_length_order})',short)
         candidates=snapshot['candidates']
         if [r['id'] for r in candidates]!=[r['id'] for r in routes]:raise ValueError('Atlas lost one of the two distinct source phases')
