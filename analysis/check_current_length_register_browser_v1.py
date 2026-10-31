@@ -103,6 +103,7 @@ def run():
             assert page.locator('#length-rows tr').count()==1
             page.locator('#length-rows summary').click()
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
+            assert page.locator('.length-scroll').evaluate('(el)=>el.scrollWidth<=el.clientWidth+1')
             page.screenshot(path=str(OUT/'mobile.png'),full_page=True)
             page.set_viewport_size({'width':1440,'height':1000})
             page.fill('#length-search','Indonesian Throughflow')

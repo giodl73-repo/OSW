@@ -12,7 +12,7 @@
       const text=$('length-search').value.trim().toLowerCase(),filter=$('length-filter').value,identity=$('length-identity').value;
       const rows=data.records.filter(r=>(!text||`${r.name} ${r.basin||''}`.toLowerCase().includes(text))&&(filter==='all'||filter==='estimated'&&r.length_estimate_km!==null||filter==='remaining'&&r.needs_full_extent_estimate||filter===r.status)&&(identity==='all'||identity==='individual'&&!['family','system'].includes(r.identity_level)||identity===r.identity_level));
       rows.sort($('length-sort').value==='name'?(a,b)=>a.name.localeCompare(b.name):(a,b)=>(b.length_estimate_km??-1)-(a.length_estimate_km??-1)||a.name.localeCompare(b.name));
-      $('length-results').textContent=`${rows.length} currents shown. Missing estimates stay visible at the end of length order.`;
+      $('length-results').textContent=`${rows.length} ${rows.length===1?'current':'currents'} shown. ${counts.remaining_full_extent_estimates?'Missing estimates stay visible at the end of length order.':'Every length entry has a stated method and extent.'}`;
       $('length-rows').replaceChildren();
       for(const row of rows){
         const tr=node('tr',undefined,$('length-rows'));tr.dataset.currentId=row.entity_id;
