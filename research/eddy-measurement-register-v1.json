@@ -2,8 +2,8 @@
   "schema": "osw.eddy-measurement-register.v1",
   "status": "MEASUREMENT_GAP_FILLING_IN_PROGRESS",
   "rules_file": "plans/eddy-measurement-register-v1.md",
-  "rules_sha256": "9b358ccfabe7b91971bcb40465373748879faeda63be4b568872b967fc3ea471",
-  "generator_sha256": "f726fd206359615351eac15c61bc3e69494d493566d8cd3870ee5862979b3e01",
+  "rules_sha256": "aa4105d8555b38061191ea91c76cd7889322a809fc7d16369be5679887bfcbdb",
+  "generator_sha256": "ad181c4d019c6f9ac2197f3159d9a516143d1a147b77ed33e1258dbbaf30b290",
   "input_sha256": {
     "research/ocean-eddy-name-inventory.json": "d78c31a96b93cc9e746562f2d5c3b0f6d37ad36c3f1d10bb769aec8aa4472015",
     "research/named-eddy-geography.json": "50f20f1f32589b780f7ff29824afa7f7af4a78bfd80a25a4784e6fc992bf3547",
@@ -15,7 +15,7 @@
     "research/eddy-measurement-register-additions-v2.json": "3bb1a6760a5e68efd41f5562425225da70e7bd78429257a8b1466937114fa62b",
     "plans/agulhas-ring-radius-protocol-v1.md": "620981e7dccd1a888083d5daa670548a6f1254825f2acda73da5a821bcb4e876",
     "plans/black-sea-eddy-recurrence-protocol-v1.md": "66fef56b5960d802df68ca35d3241912650f7fe2c58803375743b4f42a48b5cf",
-    "research/eddy-measurement-batches-v1.json": "4e1bd9b10e5a0ee84f436625bfcf69b5d907bab212987e1295dd8d0700eb4b74",
+    "research/eddy-measurement-batches-v1.json": "ef785e971f56f02e3bbeefa6a46837b97596290765d3e7ee7b7536c127f3542a",
     "research/eddy-measurement-register-additions-v3.json": "d1c91350952ea08a49562c5aa0b671f0624930fd73e4735c2227c1b17708fc15",
     "research/eddy-measurement-register-additions-v4.json": "359d14c7927a6fc045bce23eb8ae4f7c226caa1a5355a27045a735125bdeaa11",
     "research/named-loop-current-eddies.json": "4a41a3b4b127f42ac31b114117c0d5d2caf998b84bed6caeac58de6ef94eecca",
@@ -39,11 +39,14 @@
     "research/source-data/exley-loop-2022/journal-article.xml": "028757a8727a183ce8a4e2f4d06de969d9a74dcd1d7d21fda968529c5c904c2c",
     "research/thor-ursa-2022-dated-source-panels.json": "5ec56eaf942007a146acedfadfe1def961522a8f30cc12c3f1bdde74a4da240d",
     "research/source-data/exley-loop-2022/acquisition.json": "839391c69823260951a55e790b4a0bcd6e2c6ce633863b61ade144eca75cde6a",
-    "plans/ursa-dated-contour-digitization-protocol-v1.md": "cc2145e3b169b2f2e9d4e2102f5cab0d8b9377ef03b0198f9dc322360bc0d77d"
+    "plans/ursa-dated-contour-digitization-protocol-v1.md": "cc2145e3b169b2f2e9d4e2102f5cab0d8b9377ef03b0198f9dc322360bc0d77d",
+    "research/eddy-measurement-register-additions-v19.json": "0ba4965170fcf5cce20fc95d52b1a0fcc3210528cb2c8c61f1b0319d1f10eb34",
+    "research/eddy-colour-span-source-verification-v1.json": "57b77a64e7a508a19621dd895b5f2037ce430150931e7af25c06cff2ae4e48b6"
   },
   "method_implementation_sha256": {
     "analysis/eddy_map_spans_v1.py": "b7594aa7eac20a1968e4432f2979f6b11c4f7008b3f5745753f0ad6e70f1f6e4",
-    "analysis/eddy_audit_spans_v1.py": "db9db395ac3d1d52849e4d4086fecc823a5fec0ec08d0d0c10179979a6435523"
+    "analysis/eddy_audit_spans_v1.py": "db9db395ac3d1d52849e4d4086fecc823a5fec0ec08d0d0c10179979a6435523",
+    "analysis/eddy_colour_spans_v1.py": "8c50bd79451c8f933c329f3e23cae320351c7f94f669163162007c5fa24a5994"
   },
   "first_batch_evidence_sha256": "702311bd7b238182a51b6160f902500e371a88eec635c6d500bc93df53373a4b",
   "first_batch_evidence_preserved": 40,
@@ -143,6 +146,12 @@
       "baseline_count": 313,
       "preserved_baseline_sha256": "757302237a59a46d6313b8b6548e3107695767a9d0bee3ebcad623216aadb904",
       "added": 2
+    },
+    {
+      "file": "research/eddy-measurement-register-additions-v19.json",
+      "baseline_count": 315,
+      "preserved_baseline_sha256": "e22e4c5531eb8c35d23a0a646de9af54d986e4434d1bb9015864b1539bae3e59",
+      "added": 2
     }
   ],
   "scope": "One address for every independently named eddy label or named regional/family record currently admitted to the OSW almanac. This source-set inventory is not a complete global list of all eddies or all names. NOAA detection IDs are separate unnamed, dated observations.",
@@ -153,9 +162,9 @@
     "individual_source_records": 112,
     "recurrent_regions": 20,
     "families": 4,
-    "evidence_records": 315,
-    "size_records": 107,
-    "size_owners": 70,
+    "evidence_records": 317,
+    "size_records": 109,
+    "size_owners": 71,
     "duration_owners": 99,
     "recurrence_owners": 12,
     "structure_owners": 10,
@@ -6604,15 +6613,18 @@
         "lilian-2006-author_reported_approximate_lifetime",
         "lilian-2006-author_reported_travel_lower_bound",
         "lilian-guerra-2018-mid-atlantic-depth",
-        "lilian-guerra-2018-brazil-depth"
+        "lilian-guerra-2018-brazil-depth",
+        "lilian-guerra-2018-colour-level-10-east-west-span",
+        "lilian-guerra-2018-colour-level-10-north-south-span"
       ],
       "categories": [
         "duration",
+        "size",
         "structure",
         "travel"
       ],
       "size_classification_ids": [],
-      "size_gap": true,
+      "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
       "linked_primary_context": null,
@@ -39011,6 +39023,1158 @@
           "range_km": [
             250,
             325
+          ]
+        }
+      }
+    },
+    {
+      "id": "lilian-guerra-2018-colour-level-10-east-west-span",
+      "entity_id": "eddy:geography:lilian-2006",
+      "category": "size",
+      "metric": "source_colour_level_patch_east_west_bounding_arc_span",
+      "metric_label": "source colour level patch east west bounding arc span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2006-07-05",
+      "period_end": "2006-07-05",
+      "period_label": null,
+      "definition": "Not eddy diameter. Parallel arc at patch bounding-box midlatitude.",
+      "scope": "OSW reading of the plotted Lilian SLA colour patch; this selection is not the authors ring-edge or radius operator.",
+      "qualification": "Source colour-level 10 is an OSW diagnostic choice; no unit is supplied by the figure legend or caption, and no conversion to centimetres or metres is made. Levels 9 and 11 define selection sensitivity, plus six pixels at each extent and outward rounding to 25 km. Colour matching uses the source legend and largest eight-connected component without filling vector/annotation holes. These are map-patch spans, not whole-ring width, radius, area, seasonal extrema, physical uncertainty or a confidence interval. No physical footprint, state containment, lifespan or animation inferred.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://data.coaps.fsu.edu/pub/eric/papers_html/Guerra_et_al_18.pdf",
+      "source_locator": "Figure 3(b), 05-Jul-2006, printed page 109 / PDF page 6; Figure 3 caption and Section 3.2 identify the tracked Lilian anomaly.",
+      "source_file": "research/eddy-measurement-register-additions-v19.json",
+      "source_pointer": "/records/0",
+      "source_sha256": "0ba4965170fcf5cce20fc95d52b1a0fcc3210528cb2c8c61f1b0319d1f10eb34",
+      "raw_record": {
+        "id": "lilian-guerra-2018-colour-level-10-east-west-span",
+        "entity_id": "eddy:geography:lilian-2006",
+        "source_id": "guerra-2018",
+        "source_locator": "Figure 3(b), 05-Jul-2006, printed page 109 / PDF page 6; Figure 3 caption and Section 3.2 identify the tracked Lilian anomaly.",
+        "category": "size",
+        "metric": "source_colour_level_patch_east_west_bounding_arc_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          100,
+          225
+        ],
+        "range_kind": "source_figure_colour_selection_and_reading_interval",
+        "evidence_role": "map_read_source_colour_patch_reference",
+        "colour_span_case_index": 0,
+        "map_span_component": "east_west",
+        "rights_screened_release_eligible": false,
+        "case_label": "Lilian 2006-07-05 source colour-level 10 patch, legend unit unresolved",
+        "period_start": "2006-07-05",
+        "period_end": "2006-07-05",
+        "period_precision": "day",
+        "definition": "Not eddy diameter. Parallel arc at patch bounding-box midlatitude.",
+        "scope": "OSW reading of the plotted Lilian SLA colour patch; this selection is not the authors ring-edge or radius operator.",
+        "qualification": "Source colour-level 10 is an OSW diagnostic choice; no unit is supplied by the figure legend or caption, and no conversion to centimetres or metres is made. Levels 9 and 11 define selection sensitivity, plus six pixels at each extent and outward rounding to 25 km. Colour matching uses the source legend and largest eight-connected component without filling vector/annotation holes. These are map-patch spans, not whole-ring width, radius, area, seasonal extrema, physical uncertainty or a confidence interval. No physical footprint, state containment, lifespan or animation inferred."
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Retained published PDF at author institution. Actual native Figure 3 pixels, panel b date, shared figure-axis labels and numbered colour legend reviewed. Complete source text reviewed for Lilian attribution and method context. The colour legend and caption do not specify a unit for the plotted levels; it remains unresolved.",
+      "source_id": "guerra-2018",
+      "period_precision": "day",
+      "case_label": "Lilian 2006-07-05 source colour-level 10 patch, legend unit unresolved",
+      "range_value": [
+        100,
+        225
+      ],
+      "range_kind": "source_figure_colour_selection_and_reading_interval",
+      "evidence_role": "map_read_source_colour_patch_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "method": "source_palette_level_patch_v1",
+          "source_name": "Lilian",
+          "owner_id": "eddy:geography:lilian-2006",
+          "date": "2006-07-05",
+          "figure": 3,
+          "panel": "b, 05-Jul-2006",
+          "pdf_page": 6,
+          "source_raster": {
+            "xref": 76,
+            "width": 2000,
+            "height": 1865,
+            "samples_sha256": "959674a25d6c4d0aad98882cc74976848405fcf1ad7a826cbe8a8a44dd7fb78f"
+          },
+          "roi_xyxy_inclusive": [
+            970,
+            270,
+            1160,
+            410
+          ],
+          "palette_calibration": {
+            "x_pixels": [
+              1923,
+              1943
+            ],
+            "positive_15_line_y": 703,
+            "pixels_per_level": 15.2,
+            "half_patch_height": 2,
+            "extension_15_y": 688
+          },
+          "palette": [
+            {
+              "level_lower_edge": -15,
+              "sample_center_y": 1151,
+              "rgb_median": [
+                22,
+                15,
+                167
+              ]
+            },
+            {
+              "level_lower_edge": -14,
+              "sample_center_y": 1136,
+              "rgb_median": [
+                32,
+                31,
+                202
+              ]
+            },
+            {
+              "level_lower_edge": -13,
+              "sample_center_y": 1121,
+              "rgb_median": [
+                32,
+                64,
+                247
+              ]
+            },
+            {
+              "level_lower_edge": -12,
+              "sample_center_y": 1106,
+              "rgb_median": [
+                46,
+                96,
+                250
+              ]
+            },
+            {
+              "level_lower_edge": -11,
+              "sample_center_y": 1091,
+              "rgb_median": [
+                65,
+                121,
+                248
+              ]
+            },
+            {
+              "level_lower_edge": -10,
+              "sample_center_y": 1075,
+              "rgb_median": [
+                65,
+                147,
+                248
+              ]
+            },
+            {
+              "level_lower_edge": -9,
+              "sample_center_y": 1060,
+              "rgb_median": [
+                84,
+                169,
+                251
+              ]
+            },
+            {
+              "level_lower_edge": -8,
+              "sample_center_y": 1045,
+              "rgb_median": [
+                96,
+                191,
+                253
+              ]
+            },
+            {
+              "level_lower_edge": -7,
+              "sample_center_y": 1030,
+              "rgb_median": [
+                113,
+                211,
+                252
+              ]
+            },
+            {
+              "level_lower_edge": -6,
+              "sample_center_y": 1015,
+              "rgb_median": [
+                135,
+                224,
+                252
+              ]
+            },
+            {
+              "level_lower_edge": -5,
+              "sample_center_y": 999,
+              "rgb_median": [
+                155,
+                236,
+                253
+              ]
+            },
+            {
+              "level_lower_edge": -4,
+              "sample_center_y": 984,
+              "rgb_median": [
+                180,
+                243,
+                254
+              ]
+            },
+            {
+              "level_lower_edge": -3,
+              "sample_center_y": 969,
+              "rgb_median": [
+                195,
+                251,
+                253
+              ]
+            },
+            {
+              "level_lower_edge": -2,
+              "sample_center_y": 954,
+              "rgb_median": [
+                218,
+                254,
+                254
+              ]
+            },
+            {
+              "level_lower_edge": -1,
+              "sample_center_y": 939,
+              "rgb_median": [
+                238,
+                255,
+                254
+              ]
+            },
+            {
+              "level_lower_edge": 0,
+              "sample_center_y": 923,
+              "rgb_median": [
+                252,
+                254,
+                242
+              ]
+            },
+            {
+              "level_lower_edge": 1,
+              "sample_center_y": 908,
+              "rgb_median": [
+                255,
+                251,
+                221
+              ]
+            },
+            {
+              "level_lower_edge": 2,
+              "sample_center_y": 893,
+              "rgb_median": [
+                255,
+                244,
+                195
+              ]
+            },
+            {
+              "level_lower_edge": 3,
+              "sample_center_y": 878,
+              "rgb_median": [
+                253,
+                230,
+                176
+              ]
+            },
+            {
+              "level_lower_edge": 4,
+              "sample_center_y": 863,
+              "rgb_median": [
+                254,
+                215,
+                153
+              ]
+            },
+            {
+              "level_lower_edge": 5,
+              "sample_center_y": 847,
+              "rgb_median": [
+                254,
+                194,
+                131
+              ]
+            },
+            {
+              "level_lower_edge": 6,
+              "sample_center_y": 832,
+              "rgb_median": [
+                252,
+                170,
+                115
+              ]
+            },
+            {
+              "level_lower_edge": 7,
+              "sample_center_y": 817,
+              "rgb_median": [
+                253,
+                142,
+                103
+              ]
+            },
+            {
+              "level_lower_edge": 8,
+              "sample_center_y": 802,
+              "rgb_median": [
+                253,
+                112,
+                84
+              ]
+            },
+            {
+              "level_lower_edge": 9,
+              "sample_center_y": 787,
+              "rgb_median": [
+                254,
+                78,
+                69
+              ]
+            },
+            {
+              "level_lower_edge": 10,
+              "sample_center_y": 771,
+              "rgb_median": [
+                251,
+                57,
+                56
+              ]
+            },
+            {
+              "level_lower_edge": 11,
+              "sample_center_y": 756,
+              "rgb_median": [
+                249,
+                45,
+                55
+              ]
+            },
+            {
+              "level_lower_edge": 12,
+              "sample_center_y": 741,
+              "rgb_median": [
+                236,
+                34,
+                52
+              ]
+            },
+            {
+              "level_lower_edge": 13,
+              "sample_center_y": 726,
+              "rgb_median": [
+                222,
+                23,
+                48
+              ]
+            },
+            {
+              "level_lower_edge": 14,
+              "sample_center_y": 711,
+              "rgb_median": [
+                196,
+                11,
+                42
+              ]
+            },
+            {
+              "level_lower_edge": 15,
+              "sample_center_y": 688,
+              "rgb_median": [
+                166,
+                9,
+                33
+              ]
+            }
+          ],
+          "rgb_distance_squared_max": 900,
+          "source_level": 10,
+          "source_level_unit": null,
+          "physical_level_m": null,
+          "nominal_patch_index": 1,
+          "patch_cases": [
+            {
+              "level_lower_edge": 9,
+              "bbox_xyxy": [
+                1005,
+                293,
+                1129,
+                374
+              ],
+              "selected_pixels": 6317,
+              "selected_pixels_sha256": "bc3b23e614630c9bea3db3041541bacc127dd0fdb25b9fb482ea6db0b4a7b7dd",
+              "other_component_sizes": [
+                61,
+                6,
+                3,
+                2,
+                2,
+                2,
+                1,
+                1,
+                1
+              ]
+            },
+            {
+              "level_lower_edge": 10,
+              "bbox_xyxy": [
+                1013,
+                299,
+                1122,
+                371
+              ],
+              "selected_pixels": 5017,
+              "selected_pixels_sha256": "b31e13ba6b3336981c98909097235e4d9e6645658d2ff532e93797c9fac576c4",
+              "other_component_sizes": [
+                8,
+                3,
+                3,
+                3,
+                2,
+                2,
+                2,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            },
+            {
+              "level_lower_edge": 11,
+              "bbox_xyxy": [
+                1019,
+                303,
+                1113,
+                365
+              ],
+              "selected_pixels": 3622,
+              "selected_pixels_sha256": "7518479f17a6095c094370402d5287a7238b1ab9256cb9aeee2dbd62ad8d7605",
+              "other_component_sizes": [
+                11,
+                9,
+                8,
+                8,
+                8,
+                8,
+                7,
+                6,
+                6,
+                5,
+                5,
+                4,
+                4,
+                4,
+                3,
+                3,
+                3,
+                3,
+                3,
+                3,
+                3,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            }
+          ],
+          "axes": {
+            "longitude": [
+              [
+                720,
+                -45
+              ],
+              [
+                853,
+                -43
+              ],
+              [
+                987,
+                -41
+              ],
+              [
+                1120,
+                -39
+              ],
+              [
+                1254,
+                -37
+              ]
+            ],
+            "latitude": [
+              [
+                133,
+                -22
+              ],
+              [
+                280,
+                -24
+              ],
+              [
+                427,
+                -26
+              ],
+              [
+                574,
+                -28
+              ]
+            ]
+          },
+          "earth_radius_km": 6371,
+          "reading_allowance_pixels": 6,
+          "round_outward_km": 25,
+          "association_is_verified": false,
+          "physical_state_join_eligible": false,
+          "full_ring_boundary_admitted": false,
+          "boundary_description": "Largest connected source-colour patch at plotted SLA level 10 within the Lilian ROI, with levels 9/11 as selection sensitivity. Source legend unit unspecified; no physical SLA level in metres assigned. Not the full ring boundary."
+        },
+        "component": "east_west",
+        "calculation": {
+          "audit_span_km": 165.497188,
+          "audit_reading_interval_km": [
+            124.451284,
+            206.519277
+          ],
+          "audit_decimal_places": 6,
+          "plot_level_sensitivity": [
+            9,
+            10,
+            11
+          ],
+          "range_km": [
+            100,
+            225
+          ]
+        }
+      }
+    },
+    {
+      "id": "lilian-guerra-2018-colour-level-10-north-south-span",
+      "entity_id": "eddy:geography:lilian-2006",
+      "category": "size",
+      "metric": "source_colour_level_patch_north_south_bounding_arc_span",
+      "metric_label": "source colour level patch north south bounding arc span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2006-07-05",
+      "period_end": "2006-07-05",
+      "period_label": null,
+      "definition": "Not eddy diameter. Meridional arc between patch north/south extrema.",
+      "scope": "OSW reading of the plotted Lilian SLA colour patch; this selection is not the authors ring-edge or radius operator.",
+      "qualification": "Source colour-level 10 is an OSW diagnostic choice; no unit is supplied by the figure legend or caption, and no conversion to centimetres or metres is made. Levels 9 and 11 define selection sensitivity, plus six pixels at each extent and outward rounding to 25 km. Colour matching uses the source legend and largest eight-connected component without filling vector/annotation holes. These are map-patch spans, not whole-ring width, radius, area, seasonal extrema, physical uncertainty or a confidence interval. No physical footprint, state containment, lifespan or animation inferred.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://data.coaps.fsu.edu/pub/eric/papers_html/Guerra_et_al_18.pdf",
+      "source_locator": "Figure 3(b), 05-Jul-2006, printed page 109 / PDF page 6; Figure 3 caption and Section 3.2 identify the tracked Lilian anomaly.",
+      "source_file": "research/eddy-measurement-register-additions-v19.json",
+      "source_pointer": "/records/1",
+      "source_sha256": "0ba4965170fcf5cce20fc95d52b1a0fcc3210528cb2c8c61f1b0319d1f10eb34",
+      "raw_record": {
+        "id": "lilian-guerra-2018-colour-level-10-north-south-span",
+        "entity_id": "eddy:geography:lilian-2006",
+        "source_id": "guerra-2018",
+        "source_locator": "Figure 3(b), 05-Jul-2006, printed page 109 / PDF page 6; Figure 3 caption and Section 3.2 identify the tracked Lilian anomaly.",
+        "category": "size",
+        "metric": "source_colour_level_patch_north_south_bounding_arc_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          75,
+          150
+        ],
+        "range_kind": "source_figure_colour_selection_and_reading_interval",
+        "evidence_role": "map_read_source_colour_patch_reference",
+        "colour_span_case_index": 0,
+        "map_span_component": "north_south",
+        "rights_screened_release_eligible": false,
+        "case_label": "Lilian 2006-07-05 source colour-level 10 patch, legend unit unresolved",
+        "period_start": "2006-07-05",
+        "period_end": "2006-07-05",
+        "period_precision": "day",
+        "definition": "Not eddy diameter. Meridional arc between patch north/south extrema.",
+        "scope": "OSW reading of the plotted Lilian SLA colour patch; this selection is not the authors ring-edge or radius operator.",
+        "qualification": "Source colour-level 10 is an OSW diagnostic choice; no unit is supplied by the figure legend or caption, and no conversion to centimetres or metres is made. Levels 9 and 11 define selection sensitivity, plus six pixels at each extent and outward rounding to 25 km. Colour matching uses the source legend and largest eight-connected component without filling vector/annotation holes. These are map-patch spans, not whole-ring width, radius, area, seasonal extrema, physical uncertainty or a confidence interval. No physical footprint, state containment, lifespan or animation inferred."
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Retained published PDF at author institution. Actual native Figure 3 pixels, panel b date, shared figure-axis labels and numbered colour legend reviewed. Complete source text reviewed for Lilian attribution and method context. The colour legend and caption do not specify a unit for the plotted levels; it remains unresolved.",
+      "source_id": "guerra-2018",
+      "period_precision": "day",
+      "case_label": "Lilian 2006-07-05 source colour-level 10 patch, legend unit unresolved",
+      "range_value": [
+        75,
+        150
+      ],
+      "range_kind": "source_figure_colour_selection_and_reading_interval",
+      "evidence_role": "map_read_source_colour_patch_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "method": "source_palette_level_patch_v1",
+          "source_name": "Lilian",
+          "owner_id": "eddy:geography:lilian-2006",
+          "date": "2006-07-05",
+          "figure": 3,
+          "panel": "b, 05-Jul-2006",
+          "pdf_page": 6,
+          "source_raster": {
+            "xref": 76,
+            "width": 2000,
+            "height": 1865,
+            "samples_sha256": "959674a25d6c4d0aad98882cc74976848405fcf1ad7a826cbe8a8a44dd7fb78f"
+          },
+          "roi_xyxy_inclusive": [
+            970,
+            270,
+            1160,
+            410
+          ],
+          "palette_calibration": {
+            "x_pixels": [
+              1923,
+              1943
+            ],
+            "positive_15_line_y": 703,
+            "pixels_per_level": 15.2,
+            "half_patch_height": 2,
+            "extension_15_y": 688
+          },
+          "palette": [
+            {
+              "level_lower_edge": -15,
+              "sample_center_y": 1151,
+              "rgb_median": [
+                22,
+                15,
+                167
+              ]
+            },
+            {
+              "level_lower_edge": -14,
+              "sample_center_y": 1136,
+              "rgb_median": [
+                32,
+                31,
+                202
+              ]
+            },
+            {
+              "level_lower_edge": -13,
+              "sample_center_y": 1121,
+              "rgb_median": [
+                32,
+                64,
+                247
+              ]
+            },
+            {
+              "level_lower_edge": -12,
+              "sample_center_y": 1106,
+              "rgb_median": [
+                46,
+                96,
+                250
+              ]
+            },
+            {
+              "level_lower_edge": -11,
+              "sample_center_y": 1091,
+              "rgb_median": [
+                65,
+                121,
+                248
+              ]
+            },
+            {
+              "level_lower_edge": -10,
+              "sample_center_y": 1075,
+              "rgb_median": [
+                65,
+                147,
+                248
+              ]
+            },
+            {
+              "level_lower_edge": -9,
+              "sample_center_y": 1060,
+              "rgb_median": [
+                84,
+                169,
+                251
+              ]
+            },
+            {
+              "level_lower_edge": -8,
+              "sample_center_y": 1045,
+              "rgb_median": [
+                96,
+                191,
+                253
+              ]
+            },
+            {
+              "level_lower_edge": -7,
+              "sample_center_y": 1030,
+              "rgb_median": [
+                113,
+                211,
+                252
+              ]
+            },
+            {
+              "level_lower_edge": -6,
+              "sample_center_y": 1015,
+              "rgb_median": [
+                135,
+                224,
+                252
+              ]
+            },
+            {
+              "level_lower_edge": -5,
+              "sample_center_y": 999,
+              "rgb_median": [
+                155,
+                236,
+                253
+              ]
+            },
+            {
+              "level_lower_edge": -4,
+              "sample_center_y": 984,
+              "rgb_median": [
+                180,
+                243,
+                254
+              ]
+            },
+            {
+              "level_lower_edge": -3,
+              "sample_center_y": 969,
+              "rgb_median": [
+                195,
+                251,
+                253
+              ]
+            },
+            {
+              "level_lower_edge": -2,
+              "sample_center_y": 954,
+              "rgb_median": [
+                218,
+                254,
+                254
+              ]
+            },
+            {
+              "level_lower_edge": -1,
+              "sample_center_y": 939,
+              "rgb_median": [
+                238,
+                255,
+                254
+              ]
+            },
+            {
+              "level_lower_edge": 0,
+              "sample_center_y": 923,
+              "rgb_median": [
+                252,
+                254,
+                242
+              ]
+            },
+            {
+              "level_lower_edge": 1,
+              "sample_center_y": 908,
+              "rgb_median": [
+                255,
+                251,
+                221
+              ]
+            },
+            {
+              "level_lower_edge": 2,
+              "sample_center_y": 893,
+              "rgb_median": [
+                255,
+                244,
+                195
+              ]
+            },
+            {
+              "level_lower_edge": 3,
+              "sample_center_y": 878,
+              "rgb_median": [
+                253,
+                230,
+                176
+              ]
+            },
+            {
+              "level_lower_edge": 4,
+              "sample_center_y": 863,
+              "rgb_median": [
+                254,
+                215,
+                153
+              ]
+            },
+            {
+              "level_lower_edge": 5,
+              "sample_center_y": 847,
+              "rgb_median": [
+                254,
+                194,
+                131
+              ]
+            },
+            {
+              "level_lower_edge": 6,
+              "sample_center_y": 832,
+              "rgb_median": [
+                252,
+                170,
+                115
+              ]
+            },
+            {
+              "level_lower_edge": 7,
+              "sample_center_y": 817,
+              "rgb_median": [
+                253,
+                142,
+                103
+              ]
+            },
+            {
+              "level_lower_edge": 8,
+              "sample_center_y": 802,
+              "rgb_median": [
+                253,
+                112,
+                84
+              ]
+            },
+            {
+              "level_lower_edge": 9,
+              "sample_center_y": 787,
+              "rgb_median": [
+                254,
+                78,
+                69
+              ]
+            },
+            {
+              "level_lower_edge": 10,
+              "sample_center_y": 771,
+              "rgb_median": [
+                251,
+                57,
+                56
+              ]
+            },
+            {
+              "level_lower_edge": 11,
+              "sample_center_y": 756,
+              "rgb_median": [
+                249,
+                45,
+                55
+              ]
+            },
+            {
+              "level_lower_edge": 12,
+              "sample_center_y": 741,
+              "rgb_median": [
+                236,
+                34,
+                52
+              ]
+            },
+            {
+              "level_lower_edge": 13,
+              "sample_center_y": 726,
+              "rgb_median": [
+                222,
+                23,
+                48
+              ]
+            },
+            {
+              "level_lower_edge": 14,
+              "sample_center_y": 711,
+              "rgb_median": [
+                196,
+                11,
+                42
+              ]
+            },
+            {
+              "level_lower_edge": 15,
+              "sample_center_y": 688,
+              "rgb_median": [
+                166,
+                9,
+                33
+              ]
+            }
+          ],
+          "rgb_distance_squared_max": 900,
+          "source_level": 10,
+          "source_level_unit": null,
+          "physical_level_m": null,
+          "nominal_patch_index": 1,
+          "patch_cases": [
+            {
+              "level_lower_edge": 9,
+              "bbox_xyxy": [
+                1005,
+                293,
+                1129,
+                374
+              ],
+              "selected_pixels": 6317,
+              "selected_pixels_sha256": "bc3b23e614630c9bea3db3041541bacc127dd0fdb25b9fb482ea6db0b4a7b7dd",
+              "other_component_sizes": [
+                61,
+                6,
+                3,
+                2,
+                2,
+                2,
+                1,
+                1,
+                1
+              ]
+            },
+            {
+              "level_lower_edge": 10,
+              "bbox_xyxy": [
+                1013,
+                299,
+                1122,
+                371
+              ],
+              "selected_pixels": 5017,
+              "selected_pixels_sha256": "b31e13ba6b3336981c98909097235e4d9e6645658d2ff532e93797c9fac576c4",
+              "other_component_sizes": [
+                8,
+                3,
+                3,
+                3,
+                2,
+                2,
+                2,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            },
+            {
+              "level_lower_edge": 11,
+              "bbox_xyxy": [
+                1019,
+                303,
+                1113,
+                365
+              ],
+              "selected_pixels": 3622,
+              "selected_pixels_sha256": "7518479f17a6095c094370402d5287a7238b1ab9256cb9aeee2dbd62ad8d7605",
+              "other_component_sizes": [
+                11,
+                9,
+                8,
+                8,
+                8,
+                8,
+                7,
+                6,
+                6,
+                5,
+                5,
+                4,
+                4,
+                4,
+                3,
+                3,
+                3,
+                3,
+                3,
+                3,
+                3,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            }
+          ],
+          "axes": {
+            "longitude": [
+              [
+                720,
+                -45
+              ],
+              [
+                853,
+                -43
+              ],
+              [
+                987,
+                -41
+              ],
+              [
+                1120,
+                -39
+              ],
+              [
+                1254,
+                -37
+              ]
+            ],
+            "latitude": [
+              [
+                133,
+                -22
+              ],
+              [
+                280,
+                -24
+              ],
+              [
+                427,
+                -26
+              ],
+              [
+                574,
+                -28
+              ]
+            ]
+          },
+          "earth_radius_km": 6371,
+          "reading_allowance_pixels": 6,
+          "round_outward_km": 25,
+          "association_is_verified": false,
+          "physical_state_join_eligible": false,
+          "full_ring_boundary_admitted": false,
+          "boundary_description": "Largest connected source-colour patch at plotted SLA level 10 within the Lilian ROI, with levels 9/11 as selection sensitivity. Source legend unit unspecified; no physical SLA level in metres assigned. Not the full ring boundary."
+        },
+        "component": "north_south",
+        "calculation": {
+          "audit_span_km": 108.925642,
+          "audit_reading_interval_km": [
+            75.642807,
+            140.695621
+          ],
+          "audit_decimal_places": 6,
+          "plot_level_sensitivity": [
+            9,
+            10,
+            11
+          ],
+          "range_km": [
+            75,
+            150
           ]
         }
       }

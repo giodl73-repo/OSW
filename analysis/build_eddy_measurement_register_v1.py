@@ -9,6 +9,7 @@ import math
 from pathlib import Path
 from eddy_map_spans_v1 import validate_map_case,span_interval
 from eddy_audit_spans_v1 import validate_case as validate_audit_span_case,spans as audit_spans
+from eddy_colour_spans_v1 import validate_case as validate_colour_span_case,spans as colour_spans
 
 ROOT=Path(__file__).resolve().parents[1]
 JSON_PATH='research/eddy-measurement-register-v1.json'
@@ -188,6 +189,22 @@ def build():
         for n,r in enumerate(batch['records']):
             source=batch['sources'][r['source_id']]
             map_values={}
+            if r.get('colour_span_case_index') is not None:
+                assert r.get('map_case_index') is None and r.get('audit_span_case_index') is None
+                case=batch['colour_span_cases'][r['colour_span_case_index']];validate_colour_span_case(case)
+                report=read(batch['source_pixel_report'])
+                assert report['status']=='PASS' and report['source_pixels_verified'] and report['source_palette_verified']
+                assert report['batch_sha256']==pins[path] and report['original_pdf_sha256']==source['original']['sha256']
+                assert report['verifier_sha256']==hashlib.sha256((ROOT/'analysis/eddy_colour_spans_v1.py').read_bytes()).hexdigest()
+                assert report['span_math_sha256']==hashlib.sha256((ROOT/'analysis/eddy_map_spans_v1.py').read_bytes()).hexdigest()
+                assert report['patches']==case['patch_cases'] and report['source_level_unit'] is None and not report['full_ring_boundary_admitted']
+                assert case['owner_id']==r['entity_id'] and r['category']=='size' and r['unit']=='km'
+                assert r['metric']=='source_colour_level_patch_'+r['map_span_component']+'_bounding_arc_span'
+                assert r['period_start']==r['period_end']==case['date']
+                assert r['evidence_role']=='map_read_source_colour_patch_reference' and r['rights_screened_release_eligible'] is False
+                calculation=colour_spans(case,r['map_span_component']);assert calculation==report['spans'][r['map_span_component']]
+                assert r['range_value']==calculation['range_km']
+                map_values={'source_map_estimate':{'case':case,'component':r['map_span_component'],'calculation':calculation}}
             if r.get('audit_span_case_index') is not None:
                 assert r.get('map_case_index') is None
                 case=batch['audit_span_cases'][r['audit_span_case_index']]
@@ -334,7 +351,7 @@ def build():
     return {'schema':'osw.eddy-measurement-register.v1','status':'MEASUREMENT_GAP_FILLING_IN_PROGRESS',
         'rules_file':RULES,'rules_sha256':hashlib.sha256((ROOT/RULES).read_bytes()).hexdigest(),
         'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'input_sha256':pins,
-        'method_implementation_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['analysis/eddy_map_spans_v1.py','analysis/eddy_audit_spans_v1.py']},
+        'method_implementation_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['analysis/eddy_map_spans_v1.py','analysis/eddy_audit_spans_v1.py','analysis/eddy_colour_spans_v1.py']},
         'first_batch_evidence_sha256':baseline_sha,'first_batch_evidence_preserved':40,
         'additional_batches':applied,
         'scope':inventory['scope'],'identity_rule':'Source records remain separate; possible Horizon/published matches are not verified identity joins.',

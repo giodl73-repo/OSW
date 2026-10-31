@@ -356,6 +356,18 @@ def run():
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             page.screenshot(path=str(OUT/'mobile-ursa-candidate-spans.png'),full_page=True)
             checks.append('Ursa dated editorial contour spans with accepted stroke/threshold and axis sensitivity, literal unresolved SSH unit and pending physical attribution; paper-stage interval stays separate; no registry inheritance or physical boundary admission')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ageography%3Alilian-2006')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:geography:lilian-2006"]');assert row.locator('details').evaluate('(e)=>e.open')
+            page.set_viewport_size({'width':1440,'height':1000})
+            for needle in ['100–225 km · map estimate','75–150 km · map estimate','source legend unit unspecified','plot levels 9, 10, 11','OSW diagnostic choice','2006-07-05','not the authors’ ring-edge definition','3.5 years']:
+                assert needle in row.inner_text(),needle
+            assert 'Size reference needed' not in row.inner_text()
+            page.locator('[data-evidence-id="lilian-guerra-2018-colour-level-10-east-west-span"]').screenshot(path=str(OUT/'lilian-colour-patch-east-west-span.png'))
+            page.locator('[data-evidence-id="lilian-guerra-2018-colour-level-10-north-south-span"]').screenshot(path=str(OUT/'lilian-colour-patch-north-south-span.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.screenshot(path=str(OUT/'mobile-lilian-colour-patch-spans.png'),full_page=True)
+            checks.append('Lilian source colour-level patch spans with explicit OSW diagnostic choice, unknown legend unit and selection/reading sensitivity; no whole-ring dimensions or population-radius inheritance; existing lifetime and depth references retained')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

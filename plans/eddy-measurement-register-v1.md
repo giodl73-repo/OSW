@@ -348,3 +348,34 @@ Retain source 0.65 cm literally with unresolved unit, editorial Ursa attribution
 and scientific review pending. These spans are not physical width, radius,
 diameter, area, an admitted footprint, a seasonal range or lifetime. No values
 flow into registry Ursa. Preserve all preceding 313 evidence and CSV rows.
+
+## Source colour-level patch spans
+
+A plotted anomaly patch can supply a diagnostic size reference when the source
+identifies the named case but supplies no whole-ring size. This is an OSW choice
+of plot level, not the authors ring-edge definition. For Lilian, use Figure 3(b)
+on 5 July 2006, numbered colour level 10, with levels 9 and 11 as selection
+sensitivity. The legend and caption supply no level unit: keep it null, and
+never silently call this a centimetre or metre threshold. Preserve that limit
+in the JSON, CSV and visible UI. Do not use the 74-ring population radius table
+or algorithm admission limits as Lilian individual measurements.
+
+Read all 31 palette chips from the native PDF image: per-channel medians of
+21 by 5 pixel patches at each retained legend-band center, including the upper
+extension. Match each ROI pixel to the nearest palette RGB in squared Euclidean
+distance; retain it only within distance 30 and in a band at or above the chosen
+level. Select the largest eight-connected component, requiring >1000 pixels
+and >10 times the next component. Never fill holes, bridge arrows or smooth.
+The ROI must isolate the caption-identified Lilian patch; its component and the
+six-pixel reading allowance must stay strictly inside. Reject clipped patches.
+Pin the complete pixel-set hash, bbox, counts, palette, original PDF and raster.
+
+Use the retained five longitude and four latitude tick anchors, including shared
+labels in the same-column bottom and same-row left panels. Apply the established
+6371 km sphere, parallel/meridional arc definitions, six-pixel extent allowance
+and outward 25 km rounding separately to all three patch selections, then
+envelope those intervals. Six-decimal audit serialization is not measurement
+precision. This envelope describes selection and reading sensitivity, not
+source-field error, statistical confidence, seasonal change or lifetime bounds.
+No physical width, radius, diameter, occupied area, full-ring boundary, state
+join or playback follows. Preserve all 315 preceding evidence and CSV rows.
