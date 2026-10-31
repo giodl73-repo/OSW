@@ -2,8 +2,8 @@
   "schema": "osw.eddy-measurement-register.v1",
   "status": "MEASUREMENT_GAP_FILLING_IN_PROGRESS",
   "rules_file": "plans/eddy-measurement-register-v1.md",
-  "rules_sha256": "f6ecae8571b59b55ef25d5dc5347f2a74cd957b2f47835e4b3389dd1321fb977",
-  "generator_sha256": "db25a1bf6e824583121f08d5ff4000713f166c113fcd3e8d61901a706e717b04",
+  "rules_sha256": "4564c1a33fe868d1f4e16223f66014f651e240c035492f15e062b2ab158a578b",
+  "generator_sha256": "9a41d0668faadc054c753888ff9417359475c5118c64cf41e0c4f014e2db942e",
   "input_sha256": {
     "research/ocean-eddy-name-inventory.json": "d78c31a96b93cc9e746562f2d5c3b0f6d37ad36c3f1d10bb769aec8aa4472015",
     "research/named-eddy-geography.json": "50f20f1f32589b780f7ff29824afa7f7af4a78bfd80a25a4784e6fc992bf3547",
@@ -15,7 +15,7 @@
     "research/eddy-measurement-register-additions-v2.json": "3bb1a6760a5e68efd41f5562425225da70e7bd78429257a8b1466937114fa62b",
     "plans/agulhas-ring-radius-protocol-v1.md": "620981e7dccd1a888083d5daa670548a6f1254825f2acda73da5a821bcb4e876",
     "plans/black-sea-eddy-recurrence-protocol-v1.md": "66fef56b5960d802df68ca35d3241912650f7fe2c58803375743b4f42a48b5cf",
-    "research/eddy-measurement-batches-v1.json": "db248d68bf55fd6af94dc56a58d3d1b34d963efcb69185557aa3cda2a1e4ef2b",
+    "research/eddy-measurement-batches-v1.json": "7e56ad3f0f39d86c8b638049698818faf640b9540c404f7a1903a033f6ec4ef9",
     "research/eddy-measurement-register-additions-v3.json": "d1c91350952ea08a49562c5aa0b671f0624930fd73e4735c2227c1b17708fc15",
     "research/eddy-measurement-register-additions-v4.json": "359d14c7927a6fc045bce23eb8ae4f7c226caa1a5355a27045a735125bdeaa11",
     "research/named-loop-current-eddies.json": "4a41a3b4b127f42ac31b114117c0d5d2caf998b84bed6caeac58de6ef94eecca",
@@ -28,7 +28,8 @@
     "research/eddy-measurement-register-additions-v11.json": "7983361b62a311743821460d1f221d2e8b5586bdbf31b71c56519c7cb0aacbe9",
     "research/eddy-measurement-register-additions-v12.json": "742cb682dd23632d3428d773eb71dfed3bb9cf3e7a87d56ae07ba9b13d422bb9",
     "research/eddy-measurement-register-additions-v13.json": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
-    "research/eddy-measurement-register-additions-v14.json": "5572b4c6a7c022d1d822568d9376a97ee0bb669cc079077b31549c7ca16afeef"
+    "research/eddy-measurement-register-additions-v14.json": "5572b4c6a7c022d1d822568d9376a97ee0bb669cc079077b31549c7ca16afeef",
+    "research/eddy-measurement-register-additions-v15.json": "534b0a5c9906e142675c347d053b3b99cbcd91facb1a75ac1504e97957868e9a"
   },
   "first_batch_evidence_sha256": "702311bd7b238182a51b6160f902500e371a88eec635c6d500bc93df53373a4b",
   "first_batch_evidence_preserved": 40,
@@ -104,6 +105,12 @@
       "baseline_count": 299,
       "preserved_baseline_sha256": "9e37a2059b40cc2754ba6cc76e660ef8aaa7f12396805e3955b25348993c0c2e",
       "added": 6
+    },
+    {
+      "file": "research/eddy-measurement-register-additions-v15.json",
+      "baseline_count": 305,
+      "preserved_baseline_sha256": "cc62b95ed82dfb51d8a9a8ff3102529f53028d274628f5033c88d420db37792b",
+      "added": 4
     }
   ],
   "scope": "One address for every independently named eddy label or named regional/family record currently admitted to the OSW almanac. This source-set inventory is not a complete global list of all eddies or all names. NOAA detection IDs are separate unnamed, dated observations.",
@@ -114,9 +121,9 @@
     "individual_source_records": 112,
     "recurrent_regions": 20,
     "families": 4,
-    "evidence_records": 305,
-    "size_records": 99,
-    "size_owners": 65,
+    "evidence_records": 309,
+    "size_records": 103,
+    "size_owners": 67,
     "duration_owners": 99,
     "recurrence_owners": 12,
     "structure_owners": 10,
@@ -1641,13 +1648,16 @@
       "source_url": "https://www.horizonmarine.com/loop-current-eddies",
       "source_pointer": "/entries/16",
       "evidence_ids": [
-        "eddy:horizon:loop-69-primary-registry-calendar-span"
+        "eddy:horizon:loop-69-primary-registry-calendar-span",
+        "thor-trott-2024-map-east-west-span",
+        "thor-trott-2024-map-north-south-span"
       ],
       "categories": [
-        "duration"
+        "duration",
+        "size"
       ],
       "size_classification_ids": [],
-      "size_gap": true,
+      "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
       "linked_primary_context": null,
@@ -1686,13 +1696,16 @@
       "source_url": "https://www.horizonmarine.com/loop-current-eddies",
       "source_pointer": "/entries/17",
       "evidence_ids": [
-        "eddy:horizon:loop-68-primary-registry-calendar-span"
+        "eddy:horizon:loop-68-primary-registry-calendar-span",
+        "sverdrup-trott-2024-map-east-west-span",
+        "sverdrup-trott-2024-map-north-south-span"
       ],
       "categories": [
-        "duration"
+        "duration",
+        "size"
       ],
       "size_classification_ids": [],
-      "size_gap": true,
+      "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
       "linked_primary_context": null,
@@ -1741,7 +1754,9 @@
         "name": "Sverdrup",
         "url": "eddies.html?id=eddy:horizon:loop-68-primary",
         "evidence_ids": [
-          "eddy:horizon:loop-68-primary-registry-calendar-span"
+          "eddy:horizon:loop-68-primary-registry-calendar-span",
+          "sverdrup-trott-2024-map-east-west-span",
+          "sverdrup-trott-2024-map-north-south-span"
         ],
         "relation": "Associated primary registry row only; no independent secondary measurement assigned."
       },
@@ -36111,6 +36126,2232 @@
         "translation_component_positive_direction": "westward",
         "source_case_label": "Kenai 2006, main track continuation after February 2009 split",
         "physical_crosswalk_verified": false
+      }
+    },
+    {
+      "id": "sverdrup-trott-2024-map-east-west-span",
+      "entity_id": "eddy:horizon:loop-68-primary",
+      "category": "size",
+      "metric": "map_read_east_west_bounding_span",
+      "metric_label": "map read east west bounding span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2019-07-06",
+      "period_end": "2019-07-06",
+      "period_label": "Single published plotted snapshot: 2019-07-06",
+      "definition": "East-west parallel-arc span at the outline bounding-box midlatitude of the selected plotted outline. Not eddy diameter, perimeter, area-equivalent radius or maximum point-to-point distance.",
+      "scope": "One map-read named source-case outline, not an independently reconstructed ocean-field boundary.",
+      "qualification": "Reading estimate on a sphere of radius 6371 km, with six pixels at each extent and outward rounding to 25 km. The interval covers graph reading only; not instrument error, confidence bounds, seasonal variation or full-lifetime extrema. Source name/date context does not verify a physical identity crosswalk to the registry. No geographic polygon, state containment or animation inferred.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.mdpi.com/2072-4292/16/12/2234",
+      "source_locator": "Figure 7, altimetry column, separation-date row, 2019-07-06, PDF page 10; section 2.3 edge method.",
+      "source_file": "research/eddy-measurement-register-additions-v15.json",
+      "source_pointer": "/records/0",
+      "source_sha256": "534b0a5c9906e142675c347d053b3b99cbcd91facb1a75ac1504e97957868e9a",
+      "raw_record": {
+        "id": "sverdrup-trott-2024-map-east-west-span",
+        "entity_id": "eddy:horizon:loop-68-primary",
+        "category": "size",
+        "metric": "map_read_east_west_bounding_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          300,
+          475
+        ],
+        "range_kind": "map_reading_allowance_and_outward_rounding",
+        "source_id": "trott-2024",
+        "source_locator": "Figure 7, altimetry column, separation-date row, 2019-07-06, PDF page 10; section 2.3 edge method.",
+        "case_label": "Sverdrup, plotted altimetry outline 2019-07-06",
+        "period_start": "2019-07-06",
+        "period_end": "2019-07-06",
+        "period_label": "Single published plotted snapshot: 2019-07-06",
+        "period_precision": "day_as_plotted",
+        "definition": "East-west parallel-arc span at the outline bounding-box midlatitude of the selected plotted outline. Not eddy diameter, perimeter, area-equivalent radius or maximum point-to-point distance.",
+        "scope": "One map-read named source-case outline, not an independently reconstructed ocean-field boundary.",
+        "qualification": "Reading estimate on a sphere of radius 6371 km, with six pixels at each extent and outward rounding to 25 km. The interval covers graph reading only; not instrument error, confidence bounds, seasonal variation or full-lifetime extrema. Source name/date context does not verify a physical identity crosswalk to the registry. No geographic polygon, state containment or animation inferred.",
+        "map_case_index": 0,
+        "map_span_component": "east_west",
+        "evidence_role": "map_read_named_case_reference",
+        "rights_screened_release_eligible": false
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Retained published PDF copy hosted by Semantic Scholar, with title, DOI and journal/version footer checked. Publisher rendering unavailable in this pass. Actual source pages 10-13 and native Figure 7 / Figure 8 image tiles reviewed; methods on pages 3-5 reviewed as text.",
+      "source_id": "trott-2024",
+      "period_precision": "day_as_plotted",
+      "case_label": "Sverdrup, plotted altimetry outline 2019-07-06",
+      "range_value": [
+        300,
+        475
+      ],
+      "range_kind": "map_reading_allowance_and_outward_rounding",
+      "evidence_role": "map_read_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "source_name": "Sverdrup",
+          "owner_id": "eddy:horizon:loop-68-primary",
+          "date": "2019-07-06",
+          "figure": 7,
+          "panel": "Altimetry column, LCE separation-date row",
+          "pdf_page": 10,
+          "source_raster": {
+            "xref": 334,
+            "width": 1415,
+            "height": 1388,
+            "samples_sha256": "12e0bc02eed5c387974b84d2c38ca7a70d641b3dd698d9d6425110d2e7380180"
+          },
+          "roi_xyxy_inclusive": [
+            235,
+            415,
+            325,
+            525
+          ],
+          "color_gate": {
+            "minimum_rgb_channel": 180,
+            "maximum_rgb_spread": 75
+          },
+          "outline": {
+            "bbox_xyxy": [
+              243,
+              426,
+              315,
+              514
+            ],
+            "selected_pixels": 722,
+            "selected_pixels_sha256": "bb7f8e2cda45a961372a556c23772a889edb750b072b859662d569eda8317611",
+            "column_y_extents": [
+              [
+                243,
+                484,
+                489
+              ],
+              [
+                244,
+                480,
+                494
+              ],
+              [
+                245,
+                478,
+                495
+              ],
+              [
+                246,
+                476,
+                495
+              ],
+              [
+                247,
+                474,
+                496
+              ],
+              [
+                248,
+                473,
+                497
+              ],
+              [
+                249,
+                472,
+                497
+              ],
+              [
+                250,
+                471,
+                498
+              ],
+              [
+                251,
+                470,
+                498
+              ],
+              [
+                252,
+                469,
+                499
+              ],
+              [
+                253,
+                468,
+                499
+              ],
+              [
+                254,
+                467,
+                500
+              ],
+              [
+                255,
+                466,
+                501
+              ],
+              [
+                256,
+                465,
+                502
+              ],
+              [
+                257,
+                464,
+                502
+              ],
+              [
+                258,
+                464,
+                503
+              ],
+              [
+                259,
+                462,
+                504
+              ],
+              [
+                260,
+                461,
+                504
+              ],
+              [
+                261,
+                460,
+                505
+              ],
+              [
+                262,
+                459,
+                506
+              ],
+              [
+                263,
+                457,
+                507
+              ],
+              [
+                264,
+                455,
+                507
+              ],
+              [
+                265,
+                453,
+                508
+              ],
+              [
+                266,
+                452,
+                508
+              ],
+              [
+                267,
+                449,
+                509
+              ],
+              [
+                268,
+                445,
+                510
+              ],
+              [
+                269,
+                443,
+                510
+              ],
+              [
+                270,
+                441,
+                511
+              ],
+              [
+                271,
+                440,
+                511
+              ],
+              [
+                272,
+                438,
+                512
+              ],
+              [
+                273,
+                437,
+                512
+              ],
+              [
+                274,
+                435,
+                512
+              ],
+              [
+                275,
+                435,
+                512
+              ],
+              [
+                276,
+                434,
+                512
+              ],
+              [
+                277,
+                433,
+                512
+              ],
+              [
+                278,
+                432,
+                513
+              ],
+              [
+                279,
+                432,
+                513
+              ],
+              [
+                280,
+                432,
+                513
+              ],
+              [
+                281,
+                432,
+                513
+              ],
+              [
+                282,
+                432,
+                513
+              ],
+              [
+                283,
+                431,
+                513
+              ],
+              [
+                284,
+                431,
+                513
+              ],
+              [
+                285,
+                430,
+                513
+              ],
+              [
+                286,
+                430,
+                513
+              ],
+              [
+                287,
+                429,
+                514
+              ],
+              [
+                288,
+                428,
+                514
+              ],
+              [
+                289,
+                428,
+                514
+              ],
+              [
+                290,
+                427,
+                514
+              ],
+              [
+                291,
+                427,
+                514
+              ],
+              [
+                292,
+                427,
+                514
+              ],
+              [
+                293,
+                426,
+                513
+              ],
+              [
+                294,
+                426,
+                513
+              ],
+              [
+                295,
+                426,
+                513
+              ],
+              [
+                296,
+                427,
+                512
+              ],
+              [
+                297,
+                427,
+                511
+              ],
+              [
+                298,
+                429,
+                511
+              ],
+              [
+                299,
+                430,
+                510
+              ],
+              [
+                300,
+                433,
+                509
+              ],
+              [
+                301,
+                435,
+                508
+              ],
+              [
+                302,
+                436,
+                506
+              ],
+              [
+                303,
+                436,
+                506
+              ],
+              [
+                304,
+                437,
+                505
+              ],
+              [
+                305,
+                438,
+                504
+              ],
+              [
+                306,
+                439,
+                502
+              ],
+              [
+                307,
+                440,
+                477
+              ],
+              [
+                308,
+                441,
+                476
+              ],
+              [
+                309,
+                442,
+                474
+              ],
+              [
+                310,
+                443,
+                473
+              ],
+              [
+                311,
+                444,
+                471
+              ],
+              [
+                312,
+                445,
+                470
+              ],
+              [
+                313,
+                446,
+                468
+              ],
+              [
+                314,
+                448,
+                467
+              ],
+              [
+                315,
+                452,
+                464
+              ]
+            ],
+            "other_component_sizes": [
+              35,
+              9,
+              8,
+              5,
+              3,
+              1,
+              1,
+              1
+            ],
+            "enclosed_background_pixels": 3471
+          },
+          "axes": {
+            "longitude": [
+              [
+                137,
+                -96
+              ],
+              [
+                192,
+                -93
+              ],
+              [
+                247,
+                -90
+              ],
+              [
+                303,
+                -87
+              ],
+              [
+                358,
+                -84
+              ]
+            ],
+            "latitude": [
+              [
+                392,
+                30
+              ],
+              [
+                454,
+                27
+              ],
+              [
+                515,
+                24
+              ],
+              [
+                575,
+                21
+              ],
+              [
+                634,
+                18
+              ]
+            ]
+          },
+          "earth_radius_km": 6371,
+          "reading_allowance_pixels": 6,
+          "allowance_breakdown_pixels": {
+            "contour_reading": 4,
+            "axis_reading": 2
+          },
+          "round_outward_km": 25,
+          "boundary_description": "Selected white closed outline around the caption-named LCE; study method defines edges using the largest surrounding closed contour. No fixed ADT height threshold assigned.",
+          "calibration_note": "Manual pixel anchors read from labeled latitude/longitude ticks; six-pixel allowance per extent covers contour and axis reading. This is not instrument uncertainty. Piecewise linear interpolation between all retained labeled ticks avoids assuming uniform latitude pixel scale.",
+          "registry_primary_name": "Sverdrup",
+          "registry_primary_initial_separation": "2019-07-08",
+          "source_nomenclature_attribution": "Section 2.3 explicitly uses Horizon / EddyWatch nomenclature",
+          "association_is_verified": false,
+          "physical_state_join_eligible": false,
+          "rights_screened_release_eligible": false
+        },
+        "component": "east_west",
+        "calculation": {
+          "native_span_km": 386.3775723240773,
+          "unrounded_reading_interval_km": [
+            320.45682562619294,
+            452.8183058367861
+          ],
+          "range_km": [
+            300,
+            475
+          ]
+        }
+      }
+    },
+    {
+      "id": "sverdrup-trott-2024-map-north-south-span",
+      "entity_id": "eddy:horizon:loop-68-primary",
+      "category": "size",
+      "metric": "map_read_north_south_bounding_span",
+      "metric_label": "map read north south bounding span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2019-07-06",
+      "period_end": "2019-07-06",
+      "period_label": "Single published plotted snapshot: 2019-07-06",
+      "definition": "North-south meridional-arc span of the selected plotted outline. Not eddy diameter, perimeter, area-equivalent radius or maximum point-to-point distance.",
+      "scope": "One map-read named source-case outline, not an independently reconstructed ocean-field boundary.",
+      "qualification": "Reading estimate on a sphere of radius 6371 km, with six pixels at each extent and outward rounding to 25 km. The interval covers graph reading only; not instrument error, confidence bounds, seasonal variation or full-lifetime extrema. Source name/date context does not verify a physical identity crosswalk to the registry. No geographic polygon, state containment or animation inferred.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.mdpi.com/2072-4292/16/12/2234",
+      "source_locator": "Figure 7, altimetry column, separation-date row, 2019-07-06, PDF page 10; section 2.3 edge method.",
+      "source_file": "research/eddy-measurement-register-additions-v15.json",
+      "source_pointer": "/records/1",
+      "source_sha256": "534b0a5c9906e142675c347d053b3b99cbcd91facb1a75ac1504e97957868e9a",
+      "raw_record": {
+        "id": "sverdrup-trott-2024-map-north-south-span",
+        "entity_id": "eddy:horizon:loop-68-primary",
+        "category": "size",
+        "metric": "map_read_north_south_bounding_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          400,
+          550
+        ],
+        "range_kind": "map_reading_allowance_and_outward_rounding",
+        "source_id": "trott-2024",
+        "source_locator": "Figure 7, altimetry column, separation-date row, 2019-07-06, PDF page 10; section 2.3 edge method.",
+        "case_label": "Sverdrup, plotted altimetry outline 2019-07-06",
+        "period_start": "2019-07-06",
+        "period_end": "2019-07-06",
+        "period_label": "Single published plotted snapshot: 2019-07-06",
+        "period_precision": "day_as_plotted",
+        "definition": "North-south meridional-arc span of the selected plotted outline. Not eddy diameter, perimeter, area-equivalent radius or maximum point-to-point distance.",
+        "scope": "One map-read named source-case outline, not an independently reconstructed ocean-field boundary.",
+        "qualification": "Reading estimate on a sphere of radius 6371 km, with six pixels at each extent and outward rounding to 25 km. The interval covers graph reading only; not instrument error, confidence bounds, seasonal variation or full-lifetime extrema. Source name/date context does not verify a physical identity crosswalk to the registry. No geographic polygon, state containment or animation inferred.",
+        "map_case_index": 0,
+        "map_span_component": "north_south",
+        "evidence_role": "map_read_named_case_reference",
+        "rights_screened_release_eligible": false
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Retained published PDF copy hosted by Semantic Scholar, with title, DOI and journal/version footer checked. Publisher rendering unavailable in this pass. Actual source pages 10-13 and native Figure 7 / Figure 8 image tiles reviewed; methods on pages 3-5 reviewed as text.",
+      "source_id": "trott-2024",
+      "period_precision": "day_as_plotted",
+      "case_label": "Sverdrup, plotted altimetry outline 2019-07-06",
+      "range_value": [
+        400,
+        550
+      ],
+      "range_kind": "map_reading_allowance_and_outward_rounding",
+      "evidence_role": "map_read_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "source_name": "Sverdrup",
+          "owner_id": "eddy:horizon:loop-68-primary",
+          "date": "2019-07-06",
+          "figure": 7,
+          "panel": "Altimetry column, LCE separation-date row",
+          "pdf_page": 10,
+          "source_raster": {
+            "xref": 334,
+            "width": 1415,
+            "height": 1388,
+            "samples_sha256": "12e0bc02eed5c387974b84d2c38ca7a70d641b3dd698d9d6425110d2e7380180"
+          },
+          "roi_xyxy_inclusive": [
+            235,
+            415,
+            325,
+            525
+          ],
+          "color_gate": {
+            "minimum_rgb_channel": 180,
+            "maximum_rgb_spread": 75
+          },
+          "outline": {
+            "bbox_xyxy": [
+              243,
+              426,
+              315,
+              514
+            ],
+            "selected_pixels": 722,
+            "selected_pixels_sha256": "bb7f8e2cda45a961372a556c23772a889edb750b072b859662d569eda8317611",
+            "column_y_extents": [
+              [
+                243,
+                484,
+                489
+              ],
+              [
+                244,
+                480,
+                494
+              ],
+              [
+                245,
+                478,
+                495
+              ],
+              [
+                246,
+                476,
+                495
+              ],
+              [
+                247,
+                474,
+                496
+              ],
+              [
+                248,
+                473,
+                497
+              ],
+              [
+                249,
+                472,
+                497
+              ],
+              [
+                250,
+                471,
+                498
+              ],
+              [
+                251,
+                470,
+                498
+              ],
+              [
+                252,
+                469,
+                499
+              ],
+              [
+                253,
+                468,
+                499
+              ],
+              [
+                254,
+                467,
+                500
+              ],
+              [
+                255,
+                466,
+                501
+              ],
+              [
+                256,
+                465,
+                502
+              ],
+              [
+                257,
+                464,
+                502
+              ],
+              [
+                258,
+                464,
+                503
+              ],
+              [
+                259,
+                462,
+                504
+              ],
+              [
+                260,
+                461,
+                504
+              ],
+              [
+                261,
+                460,
+                505
+              ],
+              [
+                262,
+                459,
+                506
+              ],
+              [
+                263,
+                457,
+                507
+              ],
+              [
+                264,
+                455,
+                507
+              ],
+              [
+                265,
+                453,
+                508
+              ],
+              [
+                266,
+                452,
+                508
+              ],
+              [
+                267,
+                449,
+                509
+              ],
+              [
+                268,
+                445,
+                510
+              ],
+              [
+                269,
+                443,
+                510
+              ],
+              [
+                270,
+                441,
+                511
+              ],
+              [
+                271,
+                440,
+                511
+              ],
+              [
+                272,
+                438,
+                512
+              ],
+              [
+                273,
+                437,
+                512
+              ],
+              [
+                274,
+                435,
+                512
+              ],
+              [
+                275,
+                435,
+                512
+              ],
+              [
+                276,
+                434,
+                512
+              ],
+              [
+                277,
+                433,
+                512
+              ],
+              [
+                278,
+                432,
+                513
+              ],
+              [
+                279,
+                432,
+                513
+              ],
+              [
+                280,
+                432,
+                513
+              ],
+              [
+                281,
+                432,
+                513
+              ],
+              [
+                282,
+                432,
+                513
+              ],
+              [
+                283,
+                431,
+                513
+              ],
+              [
+                284,
+                431,
+                513
+              ],
+              [
+                285,
+                430,
+                513
+              ],
+              [
+                286,
+                430,
+                513
+              ],
+              [
+                287,
+                429,
+                514
+              ],
+              [
+                288,
+                428,
+                514
+              ],
+              [
+                289,
+                428,
+                514
+              ],
+              [
+                290,
+                427,
+                514
+              ],
+              [
+                291,
+                427,
+                514
+              ],
+              [
+                292,
+                427,
+                514
+              ],
+              [
+                293,
+                426,
+                513
+              ],
+              [
+                294,
+                426,
+                513
+              ],
+              [
+                295,
+                426,
+                513
+              ],
+              [
+                296,
+                427,
+                512
+              ],
+              [
+                297,
+                427,
+                511
+              ],
+              [
+                298,
+                429,
+                511
+              ],
+              [
+                299,
+                430,
+                510
+              ],
+              [
+                300,
+                433,
+                509
+              ],
+              [
+                301,
+                435,
+                508
+              ],
+              [
+                302,
+                436,
+                506
+              ],
+              [
+                303,
+                436,
+                506
+              ],
+              [
+                304,
+                437,
+                505
+              ],
+              [
+                305,
+                438,
+                504
+              ],
+              [
+                306,
+                439,
+                502
+              ],
+              [
+                307,
+                440,
+                477
+              ],
+              [
+                308,
+                441,
+                476
+              ],
+              [
+                309,
+                442,
+                474
+              ],
+              [
+                310,
+                443,
+                473
+              ],
+              [
+                311,
+                444,
+                471
+              ],
+              [
+                312,
+                445,
+                470
+              ],
+              [
+                313,
+                446,
+                468
+              ],
+              [
+                314,
+                448,
+                467
+              ],
+              [
+                315,
+                452,
+                464
+              ]
+            ],
+            "other_component_sizes": [
+              35,
+              9,
+              8,
+              5,
+              3,
+              1,
+              1,
+              1
+            ],
+            "enclosed_background_pixels": 3471
+          },
+          "axes": {
+            "longitude": [
+              [
+                137,
+                -96
+              ],
+              [
+                192,
+                -93
+              ],
+              [
+                247,
+                -90
+              ],
+              [
+                303,
+                -87
+              ],
+              [
+                358,
+                -84
+              ]
+            ],
+            "latitude": [
+              [
+                392,
+                30
+              ],
+              [
+                454,
+                27
+              ],
+              [
+                515,
+                24
+              ],
+              [
+                575,
+                21
+              ],
+              [
+                634,
+                18
+              ]
+            ]
+          },
+          "earth_radius_km": 6371,
+          "reading_allowance_pixels": 6,
+          "allowance_breakdown_pixels": {
+            "contour_reading": 4,
+            "axis_reading": 2
+          },
+          "round_outward_km": 25,
+          "boundary_description": "Selected white closed outline around the caption-named LCE; study method defines edges using the largest surrounding closed contour. No fixed ADT height threshold assigned.",
+          "calibration_note": "Manual pixel anchors read from labeled latitude/longitude ticks; six-pixel allowance per extent covers contour and axis reading. This is not instrument uncertainty. Piecewise linear interpolation between all retained labeled ticks avoids assuming uniform latitude pixel scale.",
+          "registry_primary_name": "Sverdrup",
+          "registry_primary_initial_separation": "2019-07-08",
+          "source_nomenclature_attribution": "Section 2.3 explicitly uses Horizon / EddyWatch nomenclature",
+          "association_is_verified": false,
+          "physical_state_join_eligible": false,
+          "rights_screened_release_eligible": false
+        },
+        "component": "north_south",
+        "calculation": {
+          "native_span_km": 478.767367921733,
+          "unrounded_reading_interval_km": [
+            413.67335216524066,
+            544.3171005907028
+          ],
+          "range_km": [
+            400,
+            550
+          ]
+        }
+      }
+    },
+    {
+      "id": "thor-trott-2024-map-east-west-span",
+      "entity_id": "eddy:horizon:loop-69-primary",
+      "category": "size",
+      "metric": "map_read_east_west_bounding_span",
+      "metric_label": "map read east west bounding span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2020-01-26",
+      "period_end": "2020-01-26",
+      "period_label": "Single published plotted snapshot: 2020-01-26",
+      "definition": "East-west parallel-arc span at the outline bounding-box midlatitude of the selected plotted outline. Not eddy diameter, perimeter, area-equivalent radius or maximum point-to-point distance.",
+      "scope": "One map-read named source-case outline, not an independently reconstructed ocean-field boundary.",
+      "qualification": "Reading estimate on a sphere of radius 6371 km, with six pixels at each extent and outward rounding to 25 km. The interval covers graph reading only; not instrument error, confidence bounds, seasonal variation or full-lifetime extrema. Source name/date context does not verify a physical identity crosswalk to the registry. No geographic polygon, state containment or animation inferred.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.mdpi.com/2072-4292/16/12/2234",
+      "source_locator": "Figure 8, altimetry column, separation-date row, 2020-01-26, PDF page 11; section 2.3 edge method.",
+      "source_file": "research/eddy-measurement-register-additions-v15.json",
+      "source_pointer": "/records/2",
+      "source_sha256": "534b0a5c9906e142675c347d053b3b99cbcd91facb1a75ac1504e97957868e9a",
+      "raw_record": {
+        "id": "thor-trott-2024-map-east-west-span",
+        "entity_id": "eddy:horizon:loop-69-primary",
+        "category": "size",
+        "metric": "map_read_east_west_bounding_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          325,
+          500
+        ],
+        "range_kind": "map_reading_allowance_and_outward_rounding",
+        "source_id": "trott-2024",
+        "source_locator": "Figure 8, altimetry column, separation-date row, 2020-01-26, PDF page 11; section 2.3 edge method.",
+        "case_label": "Thor, plotted altimetry outline 2020-01-26",
+        "period_start": "2020-01-26",
+        "period_end": "2020-01-26",
+        "period_label": "Single published plotted snapshot: 2020-01-26",
+        "period_precision": "day_as_plotted",
+        "definition": "East-west parallel-arc span at the outline bounding-box midlatitude of the selected plotted outline. Not eddy diameter, perimeter, area-equivalent radius or maximum point-to-point distance.",
+        "scope": "One map-read named source-case outline, not an independently reconstructed ocean-field boundary.",
+        "qualification": "Reading estimate on a sphere of radius 6371 km, with six pixels at each extent and outward rounding to 25 km. The interval covers graph reading only; not instrument error, confidence bounds, seasonal variation or full-lifetime extrema. Source name/date context does not verify a physical identity crosswalk to the registry. No geographic polygon, state containment or animation inferred.",
+        "map_case_index": 1,
+        "map_span_component": "east_west",
+        "evidence_role": "map_read_named_case_reference",
+        "rights_screened_release_eligible": false
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Retained published PDF copy hosted by Semantic Scholar, with title, DOI and journal/version footer checked. Publisher rendering unavailable in this pass. Actual source pages 10-13 and native Figure 7 / Figure 8 image tiles reviewed; methods on pages 3-5 reviewed as text.",
+      "source_id": "trott-2024",
+      "period_precision": "day_as_plotted",
+      "case_label": "Thor, plotted altimetry outline 2020-01-26",
+      "range_value": [
+        325,
+        500
+      ],
+      "range_kind": "map_reading_allowance_and_outward_rounding",
+      "evidence_role": "map_read_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "source_name": "Thor",
+          "owner_id": "eddy:horizon:loop-69-primary",
+          "date": "2020-01-26",
+          "figure": 8,
+          "panel": "Altimetry column, LCE separation-date row",
+          "pdf_page": 11,
+          "source_raster": {
+            "xref": 373,
+            "width": 618,
+            "height": 607,
+            "samples_sha256": "23ad89930ec000649e0ef16f2c854ceb37c5bca92ef9c413b1d1eb1d60b9f6fb"
+          },
+          "roi_xyxy_inclusive": [
+            230,
+            340,
+            320,
+            438
+          ],
+          "color_gate": {
+            "minimum_rgb_channel": 180,
+            "maximum_rgb_spread": 75
+          },
+          "outline": {
+            "bbox_xyxy": [
+              240,
+              356,
+              308,
+              425
+            ],
+            "selected_pixels": 551,
+            "selected_pixels_sha256": "8515bd6ed779d931088743cc5804265abb5484a7c8ec29350badd577607a024b",
+            "column_y_extents": [
+              [
+                240,
+                377,
+                392
+              ],
+              [
+                241,
+                373,
+                394
+              ],
+              [
+                242,
+                371,
+                396
+              ],
+              [
+                243,
+                369,
+                399
+              ],
+              [
+                244,
+                368,
+                401
+              ],
+              [
+                245,
+                368,
+                402
+              ],
+              [
+                246,
+                367,
+                403
+              ],
+              [
+                247,
+                366,
+                405
+              ],
+              [
+                248,
+                366,
+                406
+              ],
+              [
+                249,
+                365,
+                407
+              ],
+              [
+                250,
+                365,
+                408
+              ],
+              [
+                251,
+                365,
+                409
+              ],
+              [
+                252,
+                365,
+                411
+              ],
+              [
+                253,
+                365,
+                411
+              ],
+              [
+                254,
+                365,
+                412
+              ],
+              [
+                255,
+                365,
+                413
+              ],
+              [
+                256,
+                364,
+                414
+              ],
+              [
+                257,
+                364,
+                415
+              ],
+              [
+                258,
+                364,
+                415
+              ],
+              [
+                259,
+                364,
+                417
+              ],
+              [
+                260,
+                364,
+                418
+              ],
+              [
+                261,
+                364,
+                418
+              ],
+              [
+                262,
+                363,
+                420
+              ],
+              [
+                263,
+                363,
+                420
+              ],
+              [
+                264,
+                363,
+                421
+              ],
+              [
+                265,
+                362,
+                422
+              ],
+              [
+                266,
+                361,
+                422
+              ],
+              [
+                267,
+                361,
+                422
+              ],
+              [
+                268,
+                360,
+                423
+              ],
+              [
+                269,
+                359,
+                423
+              ],
+              [
+                270,
+                359,
+                423
+              ],
+              [
+                271,
+                358,
+                423
+              ],
+              [
+                272,
+                357,
+                424
+              ],
+              [
+                273,
+                357,
+                424
+              ],
+              [
+                274,
+                357,
+                424
+              ],
+              [
+                275,
+                356,
+                424
+              ],
+              [
+                276,
+                356,
+                425
+              ],
+              [
+                277,
+                356,
+                425
+              ],
+              [
+                278,
+                356,
+                425
+              ],
+              [
+                279,
+                356,
+                425
+              ],
+              [
+                280,
+                356,
+                425
+              ],
+              [
+                281,
+                356,
+                425
+              ],
+              [
+                282,
+                356,
+                425
+              ],
+              [
+                283,
+                356,
+                424
+              ],
+              [
+                284,
+                356,
+                423
+              ],
+              [
+                285,
+                356,
+                423
+              ],
+              [
+                286,
+                356,
+                422
+              ],
+              [
+                287,
+                356,
+                420
+              ],
+              [
+                288,
+                356,
+                415
+              ],
+              [
+                289,
+                356,
+                412
+              ],
+              [
+                290,
+                356,
+                411
+              ],
+              [
+                291,
+                356,
+                410
+              ],
+              [
+                292,
+                356,
+                408
+              ],
+              [
+                293,
+                357,
+                407
+              ],
+              [
+                294,
+                357,
+                406
+              ],
+              [
+                295,
+                357,
+                405
+              ],
+              [
+                296,
+                357,
+                403
+              ],
+              [
+                297,
+                357,
+                402
+              ],
+              [
+                298,
+                358,
+                401
+              ],
+              [
+                299,
+                358,
+                400
+              ],
+              [
+                300,
+                359,
+                399
+              ],
+              [
+                301,
+                359,
+                397
+              ],
+              [
+                302,
+                360,
+                395
+              ],
+              [
+                303,
+                360,
+                394
+              ],
+              [
+                304,
+                362,
+                392
+              ],
+              [
+                305,
+                363,
+                389
+              ],
+              [
+                306,
+                365,
+                387
+              ],
+              [
+                307,
+                367,
+                383
+              ],
+              [
+                308,
+                371,
+                377
+              ]
+            ],
+            "other_component_sizes": [
+              102,
+              33,
+              25,
+              22,
+              11,
+              7,
+              5,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "enclosed_background_pixels": 2959
+          },
+          "axes": {
+            "longitude": [
+              [
+                126,
+                -96
+              ],
+              [
+                176,
+                -93
+              ],
+              [
+                225,
+                -90
+              ],
+              [
+                275,
+                -87
+              ],
+              [
+                325,
+                -84
+              ]
+            ],
+            "latitude": [
+              [
+                306,
+                30
+              ],
+              [
+                363,
+                27
+              ],
+              [
+                418,
+                24
+              ],
+              [
+                472,
+                21
+              ],
+              [
+                526,
+                18
+              ]
+            ]
+          },
+          "earth_radius_km": 6371,
+          "reading_allowance_pixels": 6,
+          "allowance_breakdown_pixels": {
+            "contour_reading": 4,
+            "axis_reading": 2
+          },
+          "round_outward_km": 25,
+          "boundary_description": "Selected white closed outline around the caption-named LCE; study method defines edges using the largest surrounding closed contour. No fixed ADT height threshold assigned.",
+          "calibration_note": "Manual pixel anchors read from labeled latitude/longitude ticks; six-pixel allowance per extent covers contour and axis reading. This is not instrument uncertainty. Longitude anchors use the shared same-width left-column bottom image tile (xref 370); selected outline is in the top tile (xref 373). Piecewise linear interpolation between all retained labeled ticks avoids assuming uniform latitude pixel scale.",
+          "registry_primary_name": "Thor",
+          "registry_primary_initial_separation": "2020-01-26",
+          "source_nomenclature_attribution": "Section 2.3 explicitly uses Horizon / EddyWatch nomenclature",
+          "association_is_verified": false,
+          "physical_state_join_eligible": false,
+          "rights_screened_release_eligible": false,
+          "axis_reference_raster": {
+            "xref": 370,
+            "width": 618,
+            "height": 607,
+            "samples_sha256": "bb41a31ac66ee81ce41e34068eca06996749a828ee4c3e01751c52287ed200ae"
+          }
+        },
+        "component": "east_west",
+        "calculation": {
+          "native_span_km": 409.51552956999495,
+          "unrounded_reading_interval_km": [
+            336.3318831594487,
+            483.07637351180483
+          ],
+          "range_km": [
+            325,
+            500
+          ]
+        }
+      }
+    },
+    {
+      "id": "thor-trott-2024-map-north-south-span",
+      "entity_id": "eddy:horizon:loop-69-primary",
+      "category": "size",
+      "metric": "map_read_north_south_bounding_span",
+      "metric_label": "map read north south bounding span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2020-01-26",
+      "period_end": "2020-01-26",
+      "period_label": "Single published plotted snapshot: 2020-01-26",
+      "definition": "North-south meridional-arc span of the selected plotted outline. Not eddy diameter, perimeter, area-equivalent radius or maximum point-to-point distance.",
+      "scope": "One map-read named source-case outline, not an independently reconstructed ocean-field boundary.",
+      "qualification": "Reading estimate on a sphere of radius 6371 km, with six pixels at each extent and outward rounding to 25 km. The interval covers graph reading only; not instrument error, confidence bounds, seasonal variation or full-lifetime extrema. Source name/date context does not verify a physical identity crosswalk to the registry. No geographic polygon, state containment or animation inferred.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.mdpi.com/2072-4292/16/12/2234",
+      "source_locator": "Figure 8, altimetry column, separation-date row, 2020-01-26, PDF page 11; section 2.3 edge method.",
+      "source_file": "research/eddy-measurement-register-additions-v15.json",
+      "source_pointer": "/records/3",
+      "source_sha256": "534b0a5c9906e142675c347d053b3b99cbcd91facb1a75ac1504e97957868e9a",
+      "raw_record": {
+        "id": "thor-trott-2024-map-north-south-span",
+        "entity_id": "eddy:horizon:loop-69-primary",
+        "category": "size",
+        "metric": "map_read_north_south_bounding_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          325,
+          500
+        ],
+        "range_kind": "map_reading_allowance_and_outward_rounding",
+        "source_id": "trott-2024",
+        "source_locator": "Figure 8, altimetry column, separation-date row, 2020-01-26, PDF page 11; section 2.3 edge method.",
+        "case_label": "Thor, plotted altimetry outline 2020-01-26",
+        "period_start": "2020-01-26",
+        "period_end": "2020-01-26",
+        "period_label": "Single published plotted snapshot: 2020-01-26",
+        "period_precision": "day_as_plotted",
+        "definition": "North-south meridional-arc span of the selected plotted outline. Not eddy diameter, perimeter, area-equivalent radius or maximum point-to-point distance.",
+        "scope": "One map-read named source-case outline, not an independently reconstructed ocean-field boundary.",
+        "qualification": "Reading estimate on a sphere of radius 6371 km, with six pixels at each extent and outward rounding to 25 km. The interval covers graph reading only; not instrument error, confidence bounds, seasonal variation or full-lifetime extrema. Source name/date context does not verify a physical identity crosswalk to the registry. No geographic polygon, state containment or animation inferred.",
+        "map_case_index": 1,
+        "map_span_component": "north_south",
+        "evidence_role": "map_read_named_case_reference",
+        "rights_screened_release_eligible": false
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Retained published PDF copy hosted by Semantic Scholar, with title, DOI and journal/version footer checked. Publisher rendering unavailable in this pass. Actual source pages 10-13 and native Figure 7 / Figure 8 image tiles reviewed; methods on pages 3-5 reviewed as text.",
+      "source_id": "trott-2024",
+      "period_precision": "day_as_plotted",
+      "case_label": "Thor, plotted altimetry outline 2020-01-26",
+      "range_value": [
+        325,
+        500
+      ],
+      "range_kind": "map_reading_allowance_and_outward_rounding",
+      "evidence_role": "map_read_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "source_name": "Thor",
+          "owner_id": "eddy:horizon:loop-69-primary",
+          "date": "2020-01-26",
+          "figure": 8,
+          "panel": "Altimetry column, LCE separation-date row",
+          "pdf_page": 11,
+          "source_raster": {
+            "xref": 373,
+            "width": 618,
+            "height": 607,
+            "samples_sha256": "23ad89930ec000649e0ef16f2c854ceb37c5bca92ef9c413b1d1eb1d60b9f6fb"
+          },
+          "roi_xyxy_inclusive": [
+            230,
+            340,
+            320,
+            438
+          ],
+          "color_gate": {
+            "minimum_rgb_channel": 180,
+            "maximum_rgb_spread": 75
+          },
+          "outline": {
+            "bbox_xyxy": [
+              240,
+              356,
+              308,
+              425
+            ],
+            "selected_pixels": 551,
+            "selected_pixels_sha256": "8515bd6ed779d931088743cc5804265abb5484a7c8ec29350badd577607a024b",
+            "column_y_extents": [
+              [
+                240,
+                377,
+                392
+              ],
+              [
+                241,
+                373,
+                394
+              ],
+              [
+                242,
+                371,
+                396
+              ],
+              [
+                243,
+                369,
+                399
+              ],
+              [
+                244,
+                368,
+                401
+              ],
+              [
+                245,
+                368,
+                402
+              ],
+              [
+                246,
+                367,
+                403
+              ],
+              [
+                247,
+                366,
+                405
+              ],
+              [
+                248,
+                366,
+                406
+              ],
+              [
+                249,
+                365,
+                407
+              ],
+              [
+                250,
+                365,
+                408
+              ],
+              [
+                251,
+                365,
+                409
+              ],
+              [
+                252,
+                365,
+                411
+              ],
+              [
+                253,
+                365,
+                411
+              ],
+              [
+                254,
+                365,
+                412
+              ],
+              [
+                255,
+                365,
+                413
+              ],
+              [
+                256,
+                364,
+                414
+              ],
+              [
+                257,
+                364,
+                415
+              ],
+              [
+                258,
+                364,
+                415
+              ],
+              [
+                259,
+                364,
+                417
+              ],
+              [
+                260,
+                364,
+                418
+              ],
+              [
+                261,
+                364,
+                418
+              ],
+              [
+                262,
+                363,
+                420
+              ],
+              [
+                263,
+                363,
+                420
+              ],
+              [
+                264,
+                363,
+                421
+              ],
+              [
+                265,
+                362,
+                422
+              ],
+              [
+                266,
+                361,
+                422
+              ],
+              [
+                267,
+                361,
+                422
+              ],
+              [
+                268,
+                360,
+                423
+              ],
+              [
+                269,
+                359,
+                423
+              ],
+              [
+                270,
+                359,
+                423
+              ],
+              [
+                271,
+                358,
+                423
+              ],
+              [
+                272,
+                357,
+                424
+              ],
+              [
+                273,
+                357,
+                424
+              ],
+              [
+                274,
+                357,
+                424
+              ],
+              [
+                275,
+                356,
+                424
+              ],
+              [
+                276,
+                356,
+                425
+              ],
+              [
+                277,
+                356,
+                425
+              ],
+              [
+                278,
+                356,
+                425
+              ],
+              [
+                279,
+                356,
+                425
+              ],
+              [
+                280,
+                356,
+                425
+              ],
+              [
+                281,
+                356,
+                425
+              ],
+              [
+                282,
+                356,
+                425
+              ],
+              [
+                283,
+                356,
+                424
+              ],
+              [
+                284,
+                356,
+                423
+              ],
+              [
+                285,
+                356,
+                423
+              ],
+              [
+                286,
+                356,
+                422
+              ],
+              [
+                287,
+                356,
+                420
+              ],
+              [
+                288,
+                356,
+                415
+              ],
+              [
+                289,
+                356,
+                412
+              ],
+              [
+                290,
+                356,
+                411
+              ],
+              [
+                291,
+                356,
+                410
+              ],
+              [
+                292,
+                356,
+                408
+              ],
+              [
+                293,
+                357,
+                407
+              ],
+              [
+                294,
+                357,
+                406
+              ],
+              [
+                295,
+                357,
+                405
+              ],
+              [
+                296,
+                357,
+                403
+              ],
+              [
+                297,
+                357,
+                402
+              ],
+              [
+                298,
+                358,
+                401
+              ],
+              [
+                299,
+                358,
+                400
+              ],
+              [
+                300,
+                359,
+                399
+              ],
+              [
+                301,
+                359,
+                397
+              ],
+              [
+                302,
+                360,
+                395
+              ],
+              [
+                303,
+                360,
+                394
+              ],
+              [
+                304,
+                362,
+                392
+              ],
+              [
+                305,
+                363,
+                389
+              ],
+              [
+                306,
+                365,
+                387
+              ],
+              [
+                307,
+                367,
+                383
+              ],
+              [
+                308,
+                371,
+                377
+              ]
+            ],
+            "other_component_sizes": [
+              102,
+              33,
+              25,
+              22,
+              11,
+              7,
+              5,
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "enclosed_background_pixels": 2959
+          },
+          "axes": {
+            "longitude": [
+              [
+                126,
+                -96
+              ],
+              [
+                176,
+                -93
+              ],
+              [
+                225,
+                -90
+              ],
+              [
+                275,
+                -87
+              ],
+              [
+                325,
+                -84
+              ]
+            ],
+            "latitude": [
+              [
+                306,
+                30
+              ],
+              [
+                363,
+                27
+              ],
+              [
+                418,
+                24
+              ],
+              [
+                472,
+                21
+              ],
+              [
+                526,
+                18
+              ]
+            ]
+          },
+          "earth_radius_km": 6371,
+          "reading_allowance_pixels": 6,
+          "allowance_breakdown_pixels": {
+            "contour_reading": 4,
+            "axis_reading": 2
+          },
+          "round_outward_km": 25,
+          "boundary_description": "Selected white closed outline around the caption-named LCE; study method defines edges using the largest surrounding closed contour. No fixed ADT height threshold assigned.",
+          "calibration_note": "Manual pixel anchors read from labeled latitude/longitude ticks; six-pixel allowance per extent covers contour and axis reading. This is not instrument uncertainty. Longitude anchors use the shared same-width left-column bottom image tile (xref 370); selected outline is in the top tile (xref 373). Piecewise linear interpolation between all retained labeled ticks avoids assuming uniform latitude pixel scale.",
+          "registry_primary_name": "Thor",
+          "registry_primary_initial_separation": "2020-01-26",
+          "source_nomenclature_attribution": "Section 2.3 explicitly uses Horizon / EddyWatch nomenclature",
+          "association_is_verified": false,
+          "physical_state_join_eligible": false,
+          "rights_screened_release_eligible": false,
+          "axis_reference_raster": {
+            "xref": 370,
+            "width": 618,
+            "height": 607,
+            "samples_sha256": "bb41a31ac66ee81ce41e34068eca06996749a828ee4c3e01751c52287ed200ae"
+          }
+        },
+        "component": "north_south",
+        "calculation": {
+          "native_span_km": 417.79380332823973,
+          "unrounded_reading_interval_km": [
+            345.61464041861416,
+            489.97296623786525
+          ],
+          "range_km": [
+            325,
+            500
+          ]
+        }
       }
     }
   ],

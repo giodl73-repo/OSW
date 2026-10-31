@@ -7,6 +7,7 @@ import io
 import json
 import math
 from pathlib import Path
+from eddy_map_spans_v1 import validate_map_case,span_interval
 
 ROOT=Path(__file__).resolve().parents[1]
 JSON_PATH='research/eddy-measurement-register-v1.json'
@@ -185,6 +186,17 @@ def build():
                 registry_contexts[owner]=context
         for n,r in enumerate(batch['records']):
             source=batch['sources'][r['source_id']]
+            map_values={}
+            if r.get('map_case_index') is not None:
+                case=batch['map_cases'][r['map_case_index']];validate_map_case(case)
+                assert case['owner_id']==r['entity_id'] and case['source_name']==identities[r['entity_id']]['name']
+                assert r['entity_id'].endswith('-primary') and r['category']=='size' and r['unit']=='km'
+                assert r['period_start']==r['period_end']==case['date']
+                assert r['evidence_role']=='map_read_named_case_reference' and r['rights_screened_release_eligible'] is False
+                registry=next(v for v in read('research/named-loop-current-eddies.json')['entries'] if v['source_number']==int(r['entity_id'].split('-')[1]))
+                assert (case['registry_primary_name'],case['registry_primary_initial_separation'])==(registry['name'],registry['initial_separation'])
+                calculation=span_interval(case,r['map_span_component']);assert r['range_value']==calculation['range_km']
+                map_values={'source_map_estimate':{'case':case,'component':r['map_span_component'],'calculation':calculation}}
             if r.get('model_table_row_index') is not None:
                 raw=batch['model_table_rows'][r['model_table_row_index']]
                 assert raw['mapped_entity_id']==r['entity_id']
@@ -253,7 +265,7 @@ def build():
             add(r['id'],r['entity_id'],r['category'],r['metric'],r['value'],r['unit'],path,f'/records/{n}',batch,
                 source_url=source['url'],source_access=source['access'],source_id=r['source_id'],
                 definition=r['definition'],scope=r['scope'],qualification=r['qualification'],
-                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible','named_case_association','independent_named_case','source_plot_estimate','model_context','model_table_row_index','detection_context'] if k in r})
+                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible','named_case_association','independent_named_case','source_plot_estimate','model_context','model_table_row_index','detection_context'] if k in r},**map_values)
         class_legacy={v['source_number']:v for v in read('research/named-loop-current-eddies.json')['entries']} if batch.get('size_classifications') else {}
         for n,c in enumerate(batch.get('size_classifications',[])):
             owner=c['entity_id'];assert owner in identities and not any(v['id']==c['id'] for v in classifications)
@@ -334,9 +346,9 @@ def build():
 def main():
     document=build();(ROOT/JSON_PATH).write_bytes((json.dumps(document,indent=2,ensure_ascii=False)+'\n').encode())
     fields=['entity_id','id','category','metric','value','unit','range_value_json','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','standard_deviation','sample_count','period_start','period_end','period_label','period_precision','component_label','case_label','right_censored','value_conflict','date_conflict','source_claims_json','calculation_json','calendar_support_json','rights_screened_release_eligible','evidence_role','definition','scope','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
-    fields.extend(['named_case_association_json','independent_named_case_json','source_plot_estimate_json','model_context_json','detection_context_json'])
+    fields.extend(['named_case_association_json','independent_named_case_json','source_plot_estimate_json','model_context_json','detection_context_json','source_map_estimate_json'])
     out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()
-    for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False),'range_value_json':json.dumps(r.get('range_value')),'calculation_json':json.dumps(r.get('calculation')),'calendar_support_json':json.dumps(r.get('calendar_support')),'named_case_association_json':json.dumps(r.get('named_case_association')),'independent_named_case_json':json.dumps(r.get('independent_named_case')),'source_plot_estimate_json':json.dumps(r.get('source_plot_estimate')),'model_context_json':json.dumps(r.get('model_context')),'detection_context_json':json.dumps(r.get('detection_context'))})
+    for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False),'range_value_json':json.dumps(r.get('range_value')),'calculation_json':json.dumps(r.get('calculation')),'calendar_support_json':json.dumps(r.get('calendar_support')),'named_case_association_json':json.dumps(r.get('named_case_association')),'independent_named_case_json':json.dumps(r.get('independent_named_case')),'source_plot_estimate_json':json.dumps(r.get('source_plot_estimate')),'model_context_json':json.dumps(r.get('model_context')),'detection_context_json':json.dumps(r.get('detection_context')),'source_map_estimate_json':json.dumps(r.get('source_map_estimate'))})
     (ROOT/CSV_PATH).write_bytes(out.getvalue().encode());print(json.dumps(document['counts']))
     fields=['id','entity_id','source_name','source_year','label','registry_name','registry_primary_name','registry_primary_initial_separation','source_name_match','numeric_thresholds','value','unit','association_is_verified','source_year_is_separation_year','rank_eligible','seasonal_playback_eligible','physical_state_join_eligible','rights_screened_release_eligible','definition','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
     out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()

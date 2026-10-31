@@ -276,3 +276,34 @@ or death days or full physical lifespan. The final event is main-track
 absorption into another eddy; the split child has a different chronology.
 No annual size range, radius conversion, child inheritance or animation.
 Preserve all preceding 299 numeric evidence records and 15 source classes.
+
+## Map-outline span protocol v1
+
+For Trott et al. (2024), select only the closed white named-LCE outline in
+the altimetry column, separation-date row: Sverdrup 6 July 2019 and Thor
+26 January 2020. Bind original PDF, page, image xref, decoded RGB hash,
+ROI, pixel gate, selected-component hash and column extrema. Select the
+largest eight-connected white component with every RGB channel >=180 and
+channel spread <=75. It must lie wholly inside the ROI, dominate other
+components by a factor greater than three and enclose background pixels
+under four-connected exterior flood fill. Never bridge gaps or clipped curves.
+
+Read longitude and latitude calibration from all retained labeled plot ticks,
+using piecewise linear interpolation between them rather than assuming a
+uniform latitude pixel scale. Thor
+longitude ticks use the same-width bottom-left tile; its selected outline is
+in the top-left tile. Record both source rasters. Use a sphere with chosen
+radius 6371 km: north-south span is meridional arc, east-west span is parallel
+arc at the outline bounding-box midlatitude. Neither is diameter, maximum
+point distance, perimeter, occupied area, a geodesic polygon or state footprint.
+
+Allow six pixels at each extent (four for contour reading, two for axis
+reading), including latitude allowance in the east-west parallel scale. Round
+interval endpoints outward to 25 km. These are deliberately coarse map-reading
+intervals, not instrument uncertainty, confidence intervals or seasonal ranges.
+Retain unrounded calculations for audit only. Preserve source day labels and
+unverified registry name/date context; do not duplicate into possible published
+identity matches. Native Figures 9 and 10 images are identical despite different
+named captions, so exclude those as independent Wilde/Wilde II size evidence.
+Do not equate the source label X with any registry name. Preserve all 305
+preceding numeric records and the 15 qualitative classes.
