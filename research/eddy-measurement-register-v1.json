@@ -2,8 +2,8 @@
   "schema": "osw.eddy-measurement-register.v1",
   "status": "MEASUREMENT_GAP_FILLING_IN_PROGRESS",
   "rules_file": "plans/eddy-measurement-register-v1.md",
-  "rules_sha256": "f99bd56b0a8b3267862369df3646fae6e72bb665b276c7a8b40c4afee58b1e07",
-  "generator_sha256": "6e1e3a63718dc2185c4a1e017ef769746d403b5a9dd458a23187b7d4cf72192d",
+  "rules_sha256": "a5c8944fdd6a4509c36931d9a17cdfc52377358e877d6670dd81342fb2f696ba",
+  "generator_sha256": "e6877157d0714d008b46447c9b1fbfcc95935ee24d6361cb70a4eda95c0ee09b",
   "input_sha256": {
     "research/ocean-eddy-name-inventory.json": "d78c31a96b93cc9e746562f2d5c3b0f6d37ad36c3f1d10bb769aec8aa4472015",
     "research/named-eddy-geography.json": "50f20f1f32589b780f7ff29824afa7f7af4a78bfd80a25a4784e6fc992bf3547",
@@ -15,7 +15,7 @@
     "research/eddy-measurement-register-additions-v2.json": "3bb1a6760a5e68efd41f5562425225da70e7bd78429257a8b1466937114fa62b",
     "plans/agulhas-ring-radius-protocol-v1.md": "620981e7dccd1a888083d5daa670548a6f1254825f2acda73da5a821bcb4e876",
     "plans/black-sea-eddy-recurrence-protocol-v1.md": "66fef56b5960d802df68ca35d3241912650f7fe2c58803375743b4f42a48b5cf",
-    "research/eddy-measurement-batches-v1.json": "8ee79fc5093606d2c678d67442d4b95c40ee84946217acb2dd645dd5b24f4b41",
+    "research/eddy-measurement-batches-v1.json": "49d7759b3cdd080bc1a87490d8719fc39bee91172855e5437c701e2f7a3b7749",
     "research/eddy-measurement-register-additions-v3.json": "d1c91350952ea08a49562c5aa0b671f0624930fd73e4735c2227c1b17708fc15",
     "research/eddy-measurement-register-additions-v4.json": "359d14c7927a6fc045bce23eb8ae4f7c226caa1a5355a27045a735125bdeaa11",
     "research/named-loop-current-eddies.json": "4a41a3b4b127f42ac31b114117c0d5d2caf998b84bed6caeac58de6ef94eecca",
@@ -26,7 +26,8 @@
     "research/eddy-measurement-register-additions-v9.json": "6bc3720573b515ea17c6e2c53550fd81fc65f8e7bbb7983dfe2215372a9b67a3",
     "research/eddy-measurement-register-additions-v10.json": "a37d9b9c064c83a2027ea40bb0709cb4eb70bce806e1c4ab5865b3e056071314",
     "research/eddy-measurement-register-additions-v11.json": "7983361b62a311743821460d1f221d2e8b5586bdbf31b71c56519c7cb0aacbe9",
-    "research/eddy-measurement-register-additions-v12.json": "742cb682dd23632d3428d773eb71dfed3bb9cf3e7a87d56ae07ba9b13d422bb9"
+    "research/eddy-measurement-register-additions-v12.json": "742cb682dd23632d3428d773eb71dfed3bb9cf3e7a87d56ae07ba9b13d422bb9",
+    "research/eddy-measurement-register-additions-v13.json": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69"
   },
   "first_batch_evidence_sha256": "702311bd7b238182a51b6160f902500e371a88eec635c6d500bc93df53373a4b",
   "first_batch_evidence_preserved": 40,
@@ -90,6 +91,12 @@
       "baseline_count": 292,
       "preserved_baseline_sha256": "0045dd168dedd94b27f0b2320558e20377b9baf1012141b14000776657d9d14e",
       "added": 7
+    },
+    {
+      "file": "research/eddy-measurement-register-additions-v13.json",
+      "baseline_count": 299,
+      "preserved_baseline_sha256": "9e37a2059b40cc2754ba6cc76e660ef8aaa7f12396805e3955b25348993c0c2e",
+      "added": 0
     }
   ],
   "scope": "One address for every independently named eddy label or named regional/family record currently admitted to the OSW almanac. This source-set inventory is not a complete global list of all eddies or all names. NOAA detection IDs are separate unnamed, dated observations.",
@@ -118,6 +125,783 @@
     "conflicted_size_records": 2,
     "source_track_spans": 6
   },
+  "size_classification_counts": {
+    "records": 15,
+    "owners": 15,
+    "owners_with_numeric_size_gap": 9,
+    "labels": {
+      "Huge": 6,
+      "Medium": 2,
+      "Small": 7
+    }
+  },
+  "size_classifications": [
+    {
+      "id": "whoi-2005-03-table2-row-01",
+      "entity_id": "eddy:horizon:loop-43-primary",
+      "source_id": "whoi-2005-03",
+      "source_name": "Titantic",
+      "source_year": 2003,
+      "label": "Huge",
+      "registry_name": "Titanic",
+      "registry_initial_separation": "2003-10-05",
+      "source_name_match": "candidate_spelling_variant",
+      "association_is_verified": false,
+      "source_year_is_separation_year": false,
+      "numeric_thresholds": null,
+      "value": null,
+      "unit": null,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "physical_state_join_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 1, PDF page 81 (unnumbered table sheet).",
+      "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+      "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
+      "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
+      "source_file": "research/eddy-measurement-register-additions-v13.json",
+      "source_pointer": "/size_classifications/0",
+      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "raw_record": {
+        "id": "whoi-2005-03-table2-row-01",
+        "entity_id": "eddy:horizon:loop-43-primary",
+        "source_id": "whoi-2005-03",
+        "source_name": "Titantic",
+        "source_year": 2003,
+        "label": "Huge",
+        "registry_name": "Titanic",
+        "registry_initial_separation": "2003-10-05",
+        "source_name_match": "candidate_spelling_variant",
+        "association_is_verified": false,
+        "source_year_is_separation_year": false,
+        "numeric_thresholds": null,
+        "value": null,
+        "unit": null,
+        "rank_eligible": false,
+        "seasonal_playback_eligible": false,
+        "physical_state_join_eligible": false,
+        "rights_screened_release_eligible": false,
+        "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 1, PDF page 81 (unnumbered table sheet).",
+        "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+      }
+    },
+    {
+      "id": "whoi-2005-03-table2-row-02",
+      "entity_id": "eddy:horizon:loop-42-primary",
+      "source_id": "whoi-2005-03",
+      "source_name": "Sargassum",
+      "source_year": 2003,
+      "label": "Huge",
+      "registry_name": "Sargassum",
+      "registry_initial_separation": "2003-05-31",
+      "source_name_match": "exact",
+      "association_is_verified": false,
+      "source_year_is_separation_year": false,
+      "numeric_thresholds": null,
+      "value": null,
+      "unit": null,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "physical_state_join_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 2, PDF page 81 (unnumbered table sheet).",
+      "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+      "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
+      "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
+      "source_file": "research/eddy-measurement-register-additions-v13.json",
+      "source_pointer": "/size_classifications/1",
+      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "raw_record": {
+        "id": "whoi-2005-03-table2-row-02",
+        "entity_id": "eddy:horizon:loop-42-primary",
+        "source_id": "whoi-2005-03",
+        "source_name": "Sargassum",
+        "source_year": 2003,
+        "label": "Huge",
+        "registry_name": "Sargassum",
+        "registry_initial_separation": "2003-05-31",
+        "source_name_match": "exact",
+        "association_is_verified": false,
+        "source_year_is_separation_year": false,
+        "numeric_thresholds": null,
+        "value": null,
+        "unit": null,
+        "rank_eligible": false,
+        "seasonal_playback_eligible": false,
+        "physical_state_join_eligible": false,
+        "rights_screened_release_eligible": false,
+        "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 2, PDF page 81 (unnumbered table sheet).",
+        "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+      }
+    },
+    {
+      "id": "whoi-2005-03-table2-row-03",
+      "entity_id": "eddy:horizon:loop-41-primary",
+      "source_id": "whoi-2005-03",
+      "source_name": "Rebel",
+      "source_year": 2002,
+      "label": "Small",
+      "registry_name": "Rebel",
+      "registry_initial_separation": "2002-04-28",
+      "source_name_match": "exact",
+      "association_is_verified": false,
+      "source_year_is_separation_year": false,
+      "numeric_thresholds": null,
+      "value": null,
+      "unit": null,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "physical_state_join_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 3, PDF page 81 (unnumbered table sheet).",
+      "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+      "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
+      "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
+      "source_file": "research/eddy-measurement-register-additions-v13.json",
+      "source_pointer": "/size_classifications/2",
+      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "raw_record": {
+        "id": "whoi-2005-03-table2-row-03",
+        "entity_id": "eddy:horizon:loop-41-primary",
+        "source_id": "whoi-2005-03",
+        "source_name": "Rebel",
+        "source_year": 2002,
+        "label": "Small",
+        "registry_name": "Rebel",
+        "registry_initial_separation": "2002-04-28",
+        "source_name_match": "exact",
+        "association_is_verified": false,
+        "source_year_is_separation_year": false,
+        "numeric_thresholds": null,
+        "value": null,
+        "unit": null,
+        "rank_eligible": false,
+        "seasonal_playback_eligible": false,
+        "physical_state_join_eligible": false,
+        "rights_screened_release_eligible": false,
+        "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 3, PDF page 81 (unnumbered table sheet).",
+        "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+      }
+    },
+    {
+      "id": "whoi-2005-03-table2-row-04",
+      "entity_id": "eddy:horizon:loop-40-secondary",
+      "source_id": "whoi-2005-03",
+      "source_name": "QE-2",
+      "source_year": 2002,
+      "label": "Small",
+      "registry_name": "QE-2",
+      "registry_initial_separation": "2002-03-10",
+      "source_name_match": "exact",
+      "association_is_verified": false,
+      "source_year_is_separation_year": false,
+      "numeric_thresholds": null,
+      "value": null,
+      "unit": null,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "physical_state_join_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 4, PDF page 81 (unnumbered table sheet).",
+      "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+      "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
+      "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
+      "source_file": "research/eddy-measurement-register-additions-v13.json",
+      "source_pointer": "/size_classifications/3",
+      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "raw_record": {
+        "id": "whoi-2005-03-table2-row-04",
+        "entity_id": "eddy:horizon:loop-40-secondary",
+        "source_id": "whoi-2005-03",
+        "source_name": "QE-2",
+        "source_year": 2002,
+        "label": "Small",
+        "registry_name": "QE-2",
+        "registry_initial_separation": "2002-03-10",
+        "source_name_match": "exact",
+        "association_is_verified": false,
+        "source_year_is_separation_year": false,
+        "numeric_thresholds": null,
+        "value": null,
+        "unit": null,
+        "rank_eligible": false,
+        "seasonal_playback_eligible": false,
+        "physical_state_join_eligible": false,
+        "rights_screened_release_eligible": false,
+        "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 4, PDF page 81 (unnumbered table sheet).",
+        "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+      }
+    },
+    {
+      "id": "whoi-2005-03-table2-row-05",
+      "entity_id": "eddy:horizon:loop-40-primary",
+      "source_id": "whoi-2005-03",
+      "source_name": "Quick",
+      "source_year": 2002,
+      "label": "Huge",
+      "registry_name": "Quick",
+      "registry_initial_separation": "2002-03-10",
+      "source_name_match": "exact",
+      "association_is_verified": false,
+      "source_year_is_separation_year": false,
+      "numeric_thresholds": null,
+      "value": null,
+      "unit": null,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "physical_state_join_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 5, PDF page 81 (unnumbered table sheet).",
+      "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+      "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
+      "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
+      "source_file": "research/eddy-measurement-register-additions-v13.json",
+      "source_pointer": "/size_classifications/4",
+      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "raw_record": {
+        "id": "whoi-2005-03-table2-row-05",
+        "entity_id": "eddy:horizon:loop-40-primary",
+        "source_id": "whoi-2005-03",
+        "source_name": "Quick",
+        "source_year": 2002,
+        "label": "Huge",
+        "registry_name": "Quick",
+        "registry_initial_separation": "2002-03-10",
+        "source_name_match": "exact",
+        "association_is_verified": false,
+        "source_year_is_separation_year": false,
+        "numeric_thresholds": null,
+        "value": null,
+        "unit": null,
+        "rank_eligible": false,
+        "seasonal_playback_eligible": false,
+        "physical_state_join_eligible": false,
+        "rights_screened_release_eligible": false,
+        "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 5, PDF page 81 (unnumbered table sheet).",
+        "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+      }
+    },
+    {
+      "id": "whoi-2005-03-table2-row-06",
+      "entity_id": "eddy:horizon:loop-39-primary",
+      "source_id": "whoi-2005-03",
+      "source_name": "Pelagic",
+      "source_year": 2002,
+      "label": "Huge",
+      "registry_name": "Pelagic",
+      "registry_initial_separation": "2002-03-10",
+      "source_name_match": "exact",
+      "association_is_verified": false,
+      "source_year_is_separation_year": false,
+      "numeric_thresholds": null,
+      "value": null,
+      "unit": null,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "physical_state_join_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 6, PDF page 81 (unnumbered table sheet).",
+      "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+      "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
+      "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
+      "source_file": "research/eddy-measurement-register-additions-v13.json",
+      "source_pointer": "/size_classifications/5",
+      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "raw_record": {
+        "id": "whoi-2005-03-table2-row-06",
+        "entity_id": "eddy:horizon:loop-39-primary",
+        "source_id": "whoi-2005-03",
+        "source_name": "Pelagic",
+        "source_year": 2002,
+        "label": "Huge",
+        "registry_name": "Pelagic",
+        "registry_initial_separation": "2002-03-10",
+        "source_name_match": "exact",
+        "association_is_verified": false,
+        "source_year_is_separation_year": false,
+        "numeric_thresholds": null,
+        "value": null,
+        "unit": null,
+        "rank_eligible": false,
+        "seasonal_playback_eligible": false,
+        "physical_state_join_eligible": false,
+        "rights_screened_release_eligible": false,
+        "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 6, PDF page 81 (unnumbered table sheet).",
+        "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+      }
+    },
+    {
+      "id": "whoi-2005-03-table2-row-07",
+      "entity_id": "eddy:horizon:loop-38-primary",
+      "source_id": "whoi-2005-03",
+      "source_name": "Odessa",
+      "source_year": 2001,
+      "label": "Medium",
+      "registry_name": "Odessa",
+      "registry_initial_separation": "2001-09-16",
+      "source_name_match": "exact",
+      "association_is_verified": false,
+      "source_year_is_separation_year": false,
+      "numeric_thresholds": null,
+      "value": null,
+      "unit": null,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "physical_state_join_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 7, PDF page 81 (unnumbered table sheet).",
+      "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+      "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
+      "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
+      "source_file": "research/eddy-measurement-register-additions-v13.json",
+      "source_pointer": "/size_classifications/6",
+      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "raw_record": {
+        "id": "whoi-2005-03-table2-row-07",
+        "entity_id": "eddy:horizon:loop-38-primary",
+        "source_id": "whoi-2005-03",
+        "source_name": "Odessa",
+        "source_year": 2001,
+        "label": "Medium",
+        "registry_name": "Odessa",
+        "registry_initial_separation": "2001-09-16",
+        "source_name_match": "exact",
+        "association_is_verified": false,
+        "source_year_is_separation_year": false,
+        "numeric_thresholds": null,
+        "value": null,
+        "unit": null,
+        "rank_eligible": false,
+        "seasonal_playback_eligible": false,
+        "physical_state_join_eligible": false,
+        "rights_screened_release_eligible": false,
+        "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 7, PDF page 81 (unnumbered table sheet).",
+        "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+      }
+    },
+    {
+      "id": "whoi-2005-03-table2-row-08",
+      "entity_id": "eddy:horizon:loop-37-primary",
+      "source_id": "whoi-2005-03",
+      "source_name": "Nansen",
+      "source_year": 2001,
+      "label": "Medium",
+      "registry_name": "Nansen",
+      "registry_initial_separation": "2001-04-22",
+      "source_name_match": "exact",
+      "association_is_verified": false,
+      "source_year_is_separation_year": false,
+      "numeric_thresholds": null,
+      "value": null,
+      "unit": null,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "physical_state_join_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 8, PDF page 81 (unnumbered table sheet).",
+      "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+      "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
+      "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
+      "source_file": "research/eddy-measurement-register-additions-v13.json",
+      "source_pointer": "/size_classifications/7",
+      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "raw_record": {
+        "id": "whoi-2005-03-table2-row-08",
+        "entity_id": "eddy:horizon:loop-37-primary",
+        "source_id": "whoi-2005-03",
+        "source_name": "Nansen",
+        "source_year": 2001,
+        "label": "Medium",
+        "registry_name": "Nansen",
+        "registry_initial_separation": "2001-04-22",
+        "source_name_match": "exact",
+        "association_is_verified": false,
+        "source_year_is_separation_year": false,
+        "numeric_thresholds": null,
+        "value": null,
+        "unit": null,
+        "rank_eligible": false,
+        "seasonal_playback_eligible": false,
+        "physical_state_join_eligible": false,
+        "rights_screened_release_eligible": false,
+        "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 8, PDF page 81 (unnumbered table sheet).",
+        "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+      }
+    },
+    {
+      "id": "whoi-2005-03-table2-row-09",
+      "entity_id": "eddy:horizon:loop-36-primary",
+      "source_id": "whoi-2005-03",
+      "source_name": "Millenium",
+      "source_year": 2001,
+      "label": "Huge",
+      "registry_name": "Millennium",
+      "registry_initial_separation": "2001-04-22",
+      "source_name_match": "candidate_spelling_variant",
+      "association_is_verified": false,
+      "source_year_is_separation_year": false,
+      "numeric_thresholds": null,
+      "value": null,
+      "unit": null,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "physical_state_join_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 9, PDF page 81 (unnumbered table sheet).",
+      "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+      "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
+      "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
+      "source_file": "research/eddy-measurement-register-additions-v13.json",
+      "source_pointer": "/size_classifications/8",
+      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "raw_record": {
+        "id": "whoi-2005-03-table2-row-09",
+        "entity_id": "eddy:horizon:loop-36-primary",
+        "source_id": "whoi-2005-03",
+        "source_name": "Millenium",
+        "source_year": 2001,
+        "label": "Huge",
+        "registry_name": "Millennium",
+        "registry_initial_separation": "2001-04-22",
+        "source_name_match": "candidate_spelling_variant",
+        "association_is_verified": false,
+        "source_year_is_separation_year": false,
+        "numeric_thresholds": null,
+        "value": null,
+        "unit": null,
+        "rank_eligible": false,
+        "seasonal_playback_eligible": false,
+        "physical_state_join_eligible": false,
+        "rights_screened_release_eligible": false,
+        "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 9, PDF page 81 (unnumbered table sheet).",
+        "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+      }
+    },
+    {
+      "id": "whoi-2005-03-table2-row-10",
+      "entity_id": "eddy:horizon:loop-35-primary",
+      "source_id": "whoi-2005-03",
+      "source_name": "Lazy",
+      "source_year": 2000,
+      "label": "Small",
+      "registry_name": "Lazy",
+      "registry_initial_separation": "2000-07-02",
+      "source_name_match": "exact",
+      "association_is_verified": false,
+      "source_year_is_separation_year": false,
+      "numeric_thresholds": null,
+      "value": null,
+      "unit": null,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "physical_state_join_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 10, PDF page 81 (unnumbered table sheet).",
+      "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+      "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
+      "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
+      "source_file": "research/eddy-measurement-register-additions-v13.json",
+      "source_pointer": "/size_classifications/9",
+      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "raw_record": {
+        "id": "whoi-2005-03-table2-row-10",
+        "entity_id": "eddy:horizon:loop-35-primary",
+        "source_id": "whoi-2005-03",
+        "source_name": "Lazy",
+        "source_year": 2000,
+        "label": "Small",
+        "registry_name": "Lazy",
+        "registry_initial_separation": "2000-07-02",
+        "source_name_match": "exact",
+        "association_is_verified": false,
+        "source_year_is_separation_year": false,
+        "numeric_thresholds": null,
+        "value": null,
+        "unit": null,
+        "rank_eligible": false,
+        "seasonal_playback_eligible": false,
+        "physical_state_join_eligible": false,
+        "rights_screened_release_eligible": false,
+        "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 10, PDF page 81 (unnumbered table sheet).",
+        "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+      }
+    },
+    {
+      "id": "whoi-2005-03-table2-row-11",
+      "entity_id": "eddy:horizon:loop-34-primary",
+      "source_id": "whoi-2005-03",
+      "source_name": "Kinetic",
+      "source_year": 2000,
+      "label": "Small",
+      "registry_name": "Kinetic",
+      "registry_initial_separation": "2000-06-18",
+      "source_name_match": "exact",
+      "association_is_verified": false,
+      "source_year_is_separation_year": false,
+      "numeric_thresholds": null,
+      "value": null,
+      "unit": null,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "physical_state_join_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 11, PDF page 81 (unnumbered table sheet).",
+      "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+      "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
+      "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
+      "source_file": "research/eddy-measurement-register-additions-v13.json",
+      "source_pointer": "/size_classifications/10",
+      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "raw_record": {
+        "id": "whoi-2005-03-table2-row-11",
+        "entity_id": "eddy:horizon:loop-34-primary",
+        "source_id": "whoi-2005-03",
+        "source_name": "Kinetic",
+        "source_year": 2000,
+        "label": "Small",
+        "registry_name": "Kinetic",
+        "registry_initial_separation": "2000-06-18",
+        "source_name_match": "exact",
+        "association_is_verified": false,
+        "source_year_is_separation_year": false,
+        "numeric_thresholds": null,
+        "value": null,
+        "unit": null,
+        "rank_eligible": false,
+        "seasonal_playback_eligible": false,
+        "physical_state_join_eligible": false,
+        "rights_screened_release_eligible": false,
+        "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 11, PDF page 81 (unnumbered table sheet).",
+        "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+      }
+    },
+    {
+      "id": "whoi-2005-03-table2-row-12",
+      "entity_id": "eddy:horizon:loop-33-primary",
+      "source_id": "whoi-2005-03",
+      "source_name": "Juggernaut",
+      "source_year": 1999,
+      "label": "Huge",
+      "registry_name": "Juggernaut",
+      "registry_initial_separation": "1999-10-10",
+      "source_name_match": "exact",
+      "association_is_verified": false,
+      "source_year_is_separation_year": false,
+      "numeric_thresholds": null,
+      "value": null,
+      "unit": null,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "physical_state_join_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 12, PDF page 81 (unnumbered table sheet).",
+      "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+      "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
+      "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
+      "source_file": "research/eddy-measurement-register-additions-v13.json",
+      "source_pointer": "/size_classifications/11",
+      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "raw_record": {
+        "id": "whoi-2005-03-table2-row-12",
+        "entity_id": "eddy:horizon:loop-33-primary",
+        "source_id": "whoi-2005-03",
+        "source_name": "Juggernaut",
+        "source_year": 1999,
+        "label": "Huge",
+        "registry_name": "Juggernaut",
+        "registry_initial_separation": "1999-10-10",
+        "source_name_match": "exact",
+        "association_is_verified": false,
+        "source_year_is_separation_year": false,
+        "numeric_thresholds": null,
+        "value": null,
+        "unit": null,
+        "rank_eligible": false,
+        "seasonal_playback_eligible": false,
+        "physical_state_join_eligible": false,
+        "rights_screened_release_eligible": false,
+        "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 12, PDF page 81 (unnumbered table sheet).",
+        "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+      }
+    },
+    {
+      "id": "whoi-2005-03-table2-row-13",
+      "entity_id": "eddy:horizon:loop-32-primary",
+      "source_id": "whoi-2005-03",
+      "source_name": "Indigo",
+      "source_year": 1999,
+      "label": "Small",
+      "registry_name": "Indigo",
+      "registry_initial_separation": "1999-08-22",
+      "source_name_match": "exact",
+      "association_is_verified": false,
+      "source_year_is_separation_year": false,
+      "numeric_thresholds": null,
+      "value": null,
+      "unit": null,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "physical_state_join_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 13, PDF page 81 (unnumbered table sheet).",
+      "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+      "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
+      "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
+      "source_file": "research/eddy-measurement-register-additions-v13.json",
+      "source_pointer": "/size_classifications/12",
+      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "raw_record": {
+        "id": "whoi-2005-03-table2-row-13",
+        "entity_id": "eddy:horizon:loop-32-primary",
+        "source_id": "whoi-2005-03",
+        "source_name": "Indigo",
+        "source_year": 1999,
+        "label": "Small",
+        "registry_name": "Indigo",
+        "registry_initial_separation": "1999-08-22",
+        "source_name_match": "exact",
+        "association_is_verified": false,
+        "source_year_is_separation_year": false,
+        "numeric_thresholds": null,
+        "value": null,
+        "unit": null,
+        "rank_eligible": false,
+        "seasonal_playback_eligible": false,
+        "physical_state_join_eligible": false,
+        "rights_screened_release_eligible": false,
+        "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 13, PDF page 81 (unnumbered table sheet).",
+        "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+      }
+    },
+    {
+      "id": "whoi-2005-03-table2-row-14",
+      "entity_id": "eddy:horizon:loop-31-primary",
+      "source_id": "whoi-2005-03",
+      "source_name": "Haskell",
+      "source_year": 1999,
+      "label": "Small",
+      "registry_name": "Haskell",
+      "registry_initial_separation": "1999-07-12",
+      "source_name_match": "exact",
+      "association_is_verified": false,
+      "source_year_is_separation_year": false,
+      "numeric_thresholds": null,
+      "value": null,
+      "unit": null,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "physical_state_join_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 14, PDF page 81 (unnumbered table sheet).",
+      "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+      "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
+      "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
+      "source_file": "research/eddy-measurement-register-additions-v13.json",
+      "source_pointer": "/size_classifications/13",
+      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "raw_record": {
+        "id": "whoi-2005-03-table2-row-14",
+        "entity_id": "eddy:horizon:loop-31-primary",
+        "source_id": "whoi-2005-03",
+        "source_name": "Haskell",
+        "source_year": 1999,
+        "label": "Small",
+        "registry_name": "Haskell",
+        "registry_initial_separation": "1999-07-12",
+        "source_name_match": "exact",
+        "association_is_verified": false,
+        "source_year_is_separation_year": false,
+        "numeric_thresholds": null,
+        "value": null,
+        "unit": null,
+        "rank_eligible": false,
+        "seasonal_playback_eligible": false,
+        "physical_state_join_eligible": false,
+        "rights_screened_release_eligible": false,
+        "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 14, PDF page 81 (unnumbered table sheet).",
+        "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+      }
+    },
+    {
+      "id": "whoi-2005-03-table2-row-15",
+      "entity_id": "eddy:horizon:loop-30-primary",
+      "source_id": "whoi-2005-03",
+      "source_name": "Gyre",
+      "source_year": 1999,
+      "label": "Small",
+      "registry_name": "Gyre",
+      "registry_initial_separation": "1998-05-11",
+      "source_name_match": "exact",
+      "association_is_verified": false,
+      "source_year_is_separation_year": false,
+      "numeric_thresholds": null,
+      "value": null,
+      "unit": null,
+      "rank_eligible": false,
+      "seasonal_playback_eligible": false,
+      "physical_state_join_eligible": false,
+      "rights_screened_release_eligible": false,
+      "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 15, PDF page 81 (unnumbered table sheet).",
+      "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+      "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
+      "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
+      "source_file": "research/eddy-measurement-register-additions-v13.json",
+      "source_pointer": "/size_classifications/14",
+      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "raw_record": {
+        "id": "whoi-2005-03-table2-row-15",
+        "entity_id": "eddy:horizon:loop-30-primary",
+        "source_id": "whoi-2005-03",
+        "source_name": "Gyre",
+        "source_year": 1999,
+        "label": "Small",
+        "registry_name": "Gyre",
+        "registry_initial_separation": "1998-05-11",
+        "source_name_match": "exact",
+        "association_is_verified": false,
+        "source_year_is_separation_year": false,
+        "numeric_thresholds": null,
+        "value": null,
+        "unit": null,
+        "rank_eligible": false,
+        "seasonal_playback_eligible": false,
+        "physical_state_join_eligible": false,
+        "rights_screened_release_eligible": false,
+        "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 15, PDF page 81 (unnumbered table sheet).",
+        "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+      }
+    }
+  ],
   "records": [
     {
       "entity_id": "eddy:horizon:loop-81-primary",
@@ -129,6 +913,7 @@
       "source_pointer": "/entries/0",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "needs_measurements",
@@ -169,6 +954,7 @@
       "source_pointer": "/entries/1",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "needs_measurements",
@@ -213,6 +999,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -257,6 +1044,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -301,6 +1089,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -341,6 +1130,7 @@
       "source_pointer": "/entries/5",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "linked_primary_context",
@@ -384,6 +1174,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -428,6 +1219,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -472,6 +1264,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -512,6 +1305,7 @@
       "source_pointer": "/entries/9",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "linked_primary_context",
@@ -555,6 +1349,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -595,6 +1390,7 @@
       "source_pointer": "/entries/11",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "linked_primary_context",
@@ -638,6 +1434,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -678,6 +1475,7 @@
       "source_pointer": "/entries/13",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "linked_primary_context",
@@ -721,6 +1519,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -765,6 +1564,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -809,6 +1609,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -853,6 +1654,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -893,6 +1695,7 @@
       "source_pointer": "/entries/18",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "linked_primary_context",
@@ -940,6 +1743,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -986,6 +1790,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1032,6 +1837,7 @@
         "duration",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1088,6 +1894,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1137,6 +1944,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1177,6 +1985,7 @@
       "source_pointer": "/entries/24",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "linked_primary_context",
@@ -1229,6 +2038,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1269,6 +2079,7 @@
       "source_pointer": "/entries/26",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "linked_primary_context",
@@ -1318,6 +2129,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1364,6 +2176,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1410,6 +2223,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1459,6 +2273,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1499,6 +2314,7 @@
       "source_pointer": "/entries/31",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "linked_primary_context",
@@ -1549,6 +2365,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1595,6 +2412,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1635,6 +2453,7 @@
       "source_pointer": "/entries/34",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "linked_primary_context",
@@ -1681,6 +2500,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1729,6 +2549,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1777,6 +2598,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1825,6 +2647,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1873,6 +2696,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1921,6 +2745,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -1969,6 +2794,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -2009,6 +2835,7 @@
       "source_pointer": "/entries/42",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "linked_primary_context",
@@ -2058,6 +2885,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -2106,6 +2934,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -2154,6 +2983,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -2202,6 +3032,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -2250,6 +3081,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -2298,6 +3130,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -2338,6 +3171,7 @@
       "source_pointer": "/entries/49",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "linked_primary_context",
@@ -2387,6 +3221,9 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [
+        "whoi-2005-03-table2-row-01"
+      ],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -2435,6 +3272,9 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [
+        "whoi-2005-03-table2-row-02"
+      ],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -2480,6 +3320,9 @@
       "categories": [
         "duration",
         "kinematics"
+      ],
+      "size_classification_ids": [
+        "whoi-2005-03-table2-row-03"
       ],
       "size_gap": true,
       "duration_gap": false,
@@ -2529,6 +3372,9 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [
+        "whoi-2005-03-table2-row-05"
+      ],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -2569,6 +3415,9 @@
       "source_pointer": "/entries/54",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [
+        "whoi-2005-03-table2-row-04"
+      ],
       "size_gap": true,
       "duration_gap": true,
       "status": "linked_primary_context",
@@ -2618,6 +3467,9 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [
+        "whoi-2005-03-table2-row-06"
+      ],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -2664,6 +3516,9 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [
+        "whoi-2005-03-table2-row-07"
+      ],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -2709,6 +3564,9 @@
       "categories": [
         "duration",
         "kinematics"
+      ],
+      "size_classification_ids": [
+        "whoi-2005-03-table2-row-08"
       ],
       "size_gap": true,
       "duration_gap": false,
@@ -2758,6 +3616,9 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [
+        "whoi-2005-03-table2-row-09"
+      ],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -2804,6 +3665,9 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [
+        "whoi-2005-03-table2-row-10"
+      ],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -2849,6 +3713,9 @@
       "categories": [
         "duration",
         "kinematics"
+      ],
+      "size_classification_ids": [
+        "whoi-2005-03-table2-row-11"
       ],
       "size_gap": true,
       "duration_gap": false,
@@ -2898,6 +3765,9 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [
+        "whoi-2005-03-table2-row-12"
+      ],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -2943,6 +3813,9 @@
       "categories": [
         "duration",
         "kinematics"
+      ],
+      "size_classification_ids": [
+        "whoi-2005-03-table2-row-13"
       ],
       "size_gap": true,
       "duration_gap": false,
@@ -2990,6 +3863,9 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [
+        "whoi-2005-03-table2-row-14"
+      ],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3035,6 +3911,9 @@
       "categories": [
         "duration",
         "kinematics"
+      ],
+      "size_classification_ids": [
+        "whoi-2005-03-table2-row-15"
       ],
       "size_gap": true,
       "duration_gap": false,
@@ -3084,6 +3963,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3132,6 +4012,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3178,6 +4059,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3224,6 +4106,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3272,6 +4155,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3320,6 +4204,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3360,6 +4245,7 @@
       "source_pointer": "/entries/71",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "linked_primary_context",
@@ -3409,6 +4295,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3457,6 +4344,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3505,6 +4393,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3545,6 +4434,7 @@
       "source_pointer": "/entries/75",
       "evidence_ids": [],
       "categories": [],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "linked_primary_context",
@@ -3594,6 +4484,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3642,6 +4533,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3688,6 +4580,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3738,6 +4631,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -3784,6 +4678,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3828,6 +4723,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3874,6 +4770,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3918,6 +4815,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -3962,6 +4860,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4008,6 +4907,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4054,6 +4954,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4100,6 +5001,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4146,6 +5048,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4190,6 +5093,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4236,6 +5140,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4280,6 +5185,7 @@
       "categories": [
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "has_measurements",
@@ -4324,6 +5230,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4370,6 +5277,7 @@
         "duration",
         "kinematics"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4414,6 +5322,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4458,6 +5367,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4504,6 +5414,7 @@
         "duration",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4543,6 +5454,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4582,6 +5494,7 @@
       "categories": [
         "duration"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4621,6 +5534,7 @@
       "categories": [
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -4660,6 +5574,7 @@
       "categories": [
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -4705,6 +5620,7 @@
         "size",
         "structure"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -4750,6 +5666,7 @@
         "recurrence",
         "structure"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4798,6 +5715,7 @@
         "size",
         "structure"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4845,6 +5763,7 @@
         "recurrence",
         "structure"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4892,6 +5811,7 @@
         "size",
         "structure"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4937,6 +5857,7 @@
         "recurrence",
         "structure"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -4985,6 +5906,7 @@
         "size",
         "structure"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -5024,6 +5946,7 @@
       "categories": [
         "recurrence"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "has_measurements",
@@ -5065,6 +5988,7 @@
         "duration",
         "recurrence"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -5112,6 +6036,7 @@
         "size",
         "structure"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -5151,6 +6076,7 @@
       "categories": [
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -5191,6 +6117,7 @@
       "categories": [
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -5231,6 +6158,7 @@
       "categories": [
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -5270,6 +6198,7 @@
       "categories": [
         "recurrence"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "has_measurements",
@@ -5315,6 +6244,7 @@
       "categories": [
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -5355,6 +6285,7 @@
       "categories": [
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -5394,6 +6325,7 @@
       "categories": [
         "travel"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": true,
       "status": "has_measurements",
@@ -5435,6 +6367,7 @@
         "duration",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -5481,6 +6414,7 @@
         "duration",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -5527,6 +6461,7 @@
         "duration",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -5574,6 +6509,7 @@
         "structure",
         "travel"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -5619,6 +6555,7 @@
         "duration",
         "travel"
       ],
+      "size_classification_ids": [],
       "size_gap": true,
       "duration_gap": false,
       "status": "has_measurements",
@@ -5660,6 +6597,7 @@
         "size",
         "structure"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -5702,6 +6640,7 @@
         "duration",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -5742,6 +6681,7 @@
       "categories": [
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -5781,6 +6721,7 @@
       "categories": [
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -5826,6 +6767,7 @@
         "duration",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -5871,6 +6813,7 @@
         "recurrence",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -5912,6 +6855,7 @@
         "duration",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -5952,6 +6896,7 @@
       "categories": [
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -5995,6 +6940,7 @@
         "duration",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
@@ -6039,6 +6985,7 @@
         "kinematics",
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -6078,6 +7025,7 @@
       "categories": [
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -6119,6 +7067,7 @@
       "categories": [
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",
@@ -6158,6 +7107,7 @@
       "categories": [
         "size"
       ],
+      "size_classification_ids": [],
       "size_gap": false,
       "duration_gap": true,
       "status": "has_measurements",

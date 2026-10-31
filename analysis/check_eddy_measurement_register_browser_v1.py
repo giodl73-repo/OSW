@@ -277,6 +277,26 @@ def run():
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             page.screenshot(path=str(OUT/'mobile-kerch-origin-case.png'),full_page=True)
             checks.append('Sukhumi and Kerch-origin model sizes, vertical reach and distinct velocity phases; bathymetry configuration dependence, source access and migrated size location retained; no dated observation or state containment inferred')
+            page.set_viewport_size({'width':1440,'height':1000});page.fill('#eddy-search','')
+            page.select_option('#eddy-filter','size-class');assert page.locator('#eddy-rows tr').count()==15
+            assert '9 of these still need numeric sizes' in page.locator('#eddy-class-summary').inner_text()
+            page.screenshot(path=str(OUT/'source-size-class-filter.png'))
+            page.fill('#eddy-search','QE-2')
+            qe=page.locator('tr[data-eddy-id="eddy:horizon:loop-40-secondary"]');qe.locator('summary').click()
+            for needle in ['Small · source size class','Size reference needed','no numeric class thresholds','no values inherited','Source row: QE-2, 2002']:
+                assert needle in qe.inner_text(),needle
+            assert 'Huge · source size class' not in qe.inner_text()
+            page.locator('[data-classification-id="whoi-2005-03-table2-row-04"]').screenshot(path=str(OUT/'qe2-own-source-class.png'))
+            page.select_option('#eddy-filter','measured');assert page.locator('#eddy-rows tr').count()==0
+            page.select_option('#eddy-filter','gap');assert page.locator('#eddy-rows tr').count()==1
+            page.select_option('#eddy-filter','all');page.fill('#eddy-search','Gyre');page.locator('#eddy-rows summary').click()
+            for needle in ['Source row: Gyre, 1999','separation 1998-05-11','not assumed to be separation year']:
+                assert needle in page.locator('#eddy-rows').inner_text(),needle
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.screenshot(path=str(OUT/'mobile-gyre-source-class.png'),full_page=True)
+            with page.expect_download() as pending:page.get_by_role('link',name='Download size classifications CSV').click()
+            assert hashlib.sha256(Path(pending.value.path()).read_bytes()).hexdigest()==sha('research/eddy-size-classifications-v1.csv')
+            checks.append('15 qualitative classes with no numeric thresholds; QE-2 own Small label does not inherit Quick Huge or close numeric gaps; Gyre source year and registry context kept distinct; separate classification CSV and mobile layout')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

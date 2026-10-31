@@ -241,3 +241,17 @@ configuration dependence, not physical variability or measurement uncertainty.
 Do not infer thickness, a fixed contour, containment or annual ranges. Primary
 PDF text was accessible, but original bytes and page images were not verified.
 Preserve all preceding 292 evidence records exactly.
+
+## Qualitative source size classes
+
+WHOI-2005-03 Appendix B Table 2 provides 15 named size labels attributed
+to Horizon Marine. Retain Small, Medium and Huge verbatim in a separate
+classification collection and CSV. The table supplies no thresholds, diameter
+operator or consistent sampling phase: these labels supply no numeric bounds
+and do not close numeric size gaps or count as numeric measurements. QE-2
+receives its own Small classification and no values from Quick. Keep source
+spellings Titantic and Millenium with candidate spelling correspondences to
+Titanic and Millennium; no physical identity verification follows. Preserve
+Gyre's source year 1999 beside the registry's 1998 separation context; the
+source year need not describe separation. Do not infer an annual size cycle,
+rank or geometry. Preserve all 299 numeric evidence records exactly.

@@ -321,4 +321,30 @@ class EddyRegister(unittest.TestCase):
         self.assertEqual([json.loads(r['model_context_json']) for r in exports],[r['model_context'] for r in rows])
 
 
+    def test_qualitative_classes_preserve_source_rows_without_closing_numeric_gaps(self):
+        d=register.build();batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v13.json').read_bytes())
+        self.assertEqual(hashlib.sha256(json.dumps(d['evidence'],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest(),batch['baseline_evidence_sha256'])
+        self.assertEqual(hashlib.sha256((register.ROOT/register.CSV_PATH).read_bytes()).hexdigest(),batch['baseline_measurement_csv_sha256'])
+        self.assertEqual(len(d['evidence']),299)
+        self.assertEqual(d['size_classification_counts'],{'records':15,'owners':15,'owners_with_numeric_size_gap':9,'labels':{'Huge':6,'Medium':2,'Small':7}})
+        self.assertEqual((d['counts']['size_owners'],d['counts']['identities_with_measurements'],d['counts']['identities_without_measurements']),(64,120,16))
+        self.assertEqual(sum(r['size_gap'] for r in d['records']),72)
+        classes=d['size_classifications'];self.assertEqual(len(classes),15)
+        self.assertEqual([(r['source_name'],r['label']) for r in classes],[('Titantic','Huge'),('Sargassum','Huge'),('Rebel','Small'),('QE-2','Small'),('Quick','Huge'),('Pelagic','Huge'),('Odessa','Medium'),('Nansen','Medium'),('Millenium','Huge'),('Lazy','Small'),('Kinetic','Small'),('Juggernaut','Huge'),('Indigo','Small'),('Haskell','Small'),('Gyre','Small')])
+        for r in classes:
+            source=json.loads((register.ROOT/r['source_file']).read_bytes())
+            self.assertEqual(register.pointer(source,r['source_pointer']),r['raw_record'])
+            self.assertEqual(hashlib.sha256((register.ROOT/r['source_file']).read_bytes()).hexdigest(),r['source_sha256'])
+            self.assertTrue(all(r[k] is None for k in ['numeric_thresholds','value','unit']))
+            self.assertTrue(all(r[k] is False for k in ['association_is_verified','source_year_is_separation_year','rank_eligible','seasonal_playback_eligible','physical_state_join_eligible','rights_screened_release_eligible']))
+        qe=next(r for r in d['records'] if r['entity_id']=='eddy:horizon:loop-40-secondary')
+        self.assertFalse(qe['evidence_ids']);self.assertTrue(qe['size_gap']);self.assertEqual(qe['size_classification_ids'],[classes[3]['id']])
+        self.assertEqual(classes[3]['label'],'Small');self.assertEqual(classes[4]['label'],'Huge')
+        self.assertEqual(classes[0]['registry_name'],'Titanic');self.assertEqual(classes[8]['registry_name'],'Millennium')
+        self.assertEqual(classes[-1]['source_year'],1999);self.assertEqual(classes[-1]['registry_initial_separation'],'1998-05-11')
+        with (register.ROOT/'research/eddy-size-classifications-v1.csv').open(encoding='utf8',newline='') as stream:exports=list(csv.DictReader(stream))
+        self.assertEqual(len(exports),15);self.assertEqual([r['label'] for r in exports],[r['label'] for r in classes])
+        self.assertTrue(all(r['value']==r['unit']==r['numeric_thresholds']=='' for r in exports))
+
+
 if __name__=='__main__':unittest.main()

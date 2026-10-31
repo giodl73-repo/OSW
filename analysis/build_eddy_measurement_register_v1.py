@@ -153,7 +153,7 @@ def build():
             definition=r['definition'],scope=r['scope'],qualification=r['qualification'],
             period_start=r.get('period_start'),period_end=r.get('period_end'),period_label=r.get('period_label'),
             period_precision=r.get('period_precision'),component_label=r.get('component_label'),right_censored=r.get('right_censored',False))
-    batches_path='research/eddy-measurement-batches-v1.json';batch_index=read(batches_path);applied=[];registry_contexts={}
+    batches_path='research/eddy-measurement-batches-v1.json';batch_index=read(batches_path);applied=[];registry_contexts={};classifications=[]
     for entry in batch_index['batches']:
         path=entry['file'];batch=read(path);assert pins[path]==entry['sha256']
         prior=hashlib.sha256(json.dumps(evidence,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
@@ -232,6 +232,22 @@ def build():
                 source_url=source['url'],source_access=source['access'],source_id=r['source_id'],
                 definition=r['definition'],scope=r['scope'],qualification=r['qualification'],
                 **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible','named_case_association','independent_named_case','source_plot_estimate','model_context','model_table_row_index'] if k in r})
+        class_legacy={v['source_number']:v for v in read('research/named-loop-current-eddies.json')['entries']} if batch.get('size_classifications') else {}
+        for n,c in enumerate(batch.get('size_classifications',[])):
+            owner=c['entity_id'];assert owner in identities and not any(v['id']==c['id'] for v in classifications)
+            assert c['label'] in ['Small','Medium','Huge'] and isinstance(c['source_year'],int)
+            assert 1900<=c['source_year']<=2100
+            assert identities[owner]['name']==c['registry_name']
+            original=class_legacy[int(owner.split('-')[1])]
+            assert c['registry_initial_separation']==original['initial_separation']
+            assert c['registry_name']==original['secondary_name' if owner.endswith('-secondary') else 'name']
+            assert c['source_name']==c['registry_name'] or (c['source_name'],c['registry_name']) in [('Titantic','Titanic'),('Millenium','Millennium')]
+            assert c['source_name_match']==('exact' if c['source_name']==c['registry_name'] else 'candidate_spelling_variant')
+            assert all(c[k] is None for k in ['numeric_thresholds','value','unit'])
+            assert all(c[k] is False for k in ['association_is_verified','source_year_is_separation_year','rank_eligible','seasonal_playback_eligible','physical_state_join_eligible','rights_screened_release_eligible'])
+            source=batch['sources'][c['source_id']]
+            classifications.append({**c,'source_url':source['url'],'source_access':source['access'],
+                'source_file':path,'source_pointer':f'/size_classifications/{n}','source_sha256':pins[path],'raw_record':c})
         applied.append({'file':path,'baseline_count':batch['baseline_evidence_count'],'preserved_baseline_sha256':prior,'added':len(batch['records'])})
     records=[]
     for identifier,current in identities.items():
@@ -249,6 +265,7 @@ def build():
             'identity_level':current['identity_level'],'source_collection':current['source_collection'],
             'source_url':current['source_url'],'source_pointer':'/entries/'+str(inventory['entries'].index(current)),
             'evidence_ids':[r['id'] for r in owned],'categories':sorted({r['category'] for r in owned}),
+            'size_classification_ids':[c['id'] for c in classifications if c['entity_id']==identifier],
             'size_gap':not any(r['category']=='size' for r in owned),
             'duration_gap':not any(r['category']=='duration' for r in owned),
             'status':'has_measurements' if owned else 'linked_primary_context' if linked_primary else 'needs_measurements',
@@ -285,6 +302,10 @@ def build():
             'identities_without_measurements':sum(not r['evidence_ids'] for r in records),
             'conflicted_size_records':sum(r['value_conflict'] for r in evidence),
             'source_track_spans':sum(r['metric']=='source_track_elapsed_span' for r in evidence)},
+        'size_classification_counts':{'records':len(classifications),'owners':len({c['entity_id'] for c in classifications}),
+            'owners_with_numeric_size_gap':sum(bool(r['size_classification_ids']) and r['size_gap'] for r in records),
+            'labels':{label:sum(c['label']==label for c in classifications) for label in sorted({c['label'] for c in classifications})}},
+        'size_classifications':classifications,
         'records':records,'evidence':evidence,'runtime_changed':False,'full_goal_complete':False}
 
 
@@ -295,6 +316,10 @@ def main():
     out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()
     for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False),'range_value_json':json.dumps(r.get('range_value')),'calculation_json':json.dumps(r.get('calculation')),'calendar_support_json':json.dumps(r.get('calendar_support')),'named_case_association_json':json.dumps(r.get('named_case_association')),'independent_named_case_json':json.dumps(r.get('independent_named_case')),'source_plot_estimate_json':json.dumps(r.get('source_plot_estimate')),'model_context_json':json.dumps(r.get('model_context'))})
     (ROOT/CSV_PATH).write_bytes(out.getvalue().encode());print(json.dumps(document['counts']))
+    fields=['id','entity_id','source_name','source_year','label','registry_name','registry_initial_separation','source_name_match','numeric_thresholds','value','unit','association_is_verified','source_year_is_separation_year','rank_eligible','seasonal_playback_eligible','physical_state_join_eligible','rights_screened_release_eligible','definition','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
+    out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()
+    writer.writerows(document['size_classifications'])
+    (ROOT/'research/eddy-size-classifications-v1.csv').write_bytes(out.getvalue().encode())
 
 
 if __name__=='__main__':main()

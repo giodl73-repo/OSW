@@ -46,26 +46,29 @@
   try{
     const response=await fetch('../research/eddy-measurement-register-v1.json');if(!response.ok)throw Error('Eddy register unavailable');const data=await response.json();
     if(data.schema!=='osw.eddy-measurement-register.v1'||data.records.length!==136||new Set(data.records.map(r=>r.entity_id)).size!==136)throw Error('Incomplete eddy identity inventory');
-    const byId=new Map(data.evidence.map(r=>[r.id,r])),c=data.counts;
+    const byId=new Map(data.evidence.map(r=>[r.id,r])),classById=new Map(data.size_classifications.map(r=>[r.id,r])),c=data.counts;
     $('eddy-summary').textContent=`${c.identities} source identities · ${c.evidence_records} evidence records across ${c.identities_with_measurements} entries · ${c.identities_without_measurements} entries still without numeric measurements`;
     const requested=new URLSearchParams(location.search).get('id');
     const requestedRow=data.records.find(r=>r.entity_id===requested);if(requestedRow)$('eddy-search').value=requestedRow.name;
     function render(){
       const search=$('eddy-search').value.trim().toLowerCase(),identity=$('eddy-identity').value,filter=$('eddy-filter').value,category=$('eddy-category').value;
       const selected=r=>r.evidence_ids.map(id=>byId.get(id)).filter(e=>category==='all'||e.category===category);
-      const rows=data.records.filter(r=>(!search||`${r.name} ${r.basin}`.toLowerCase().includes(search))&&(identity==='all'||r.identity_level===identity)&&(filter==='all'||filter==='measured'&&r.evidence_ids.length>0||filter==='gap'&&!r.evidence_ids.length||filter==='linked'&&r.linked_primary_context&&!r.evidence_ids.length||filter==='unlinked-gap'&&!r.evidence_ids.length&&!r.linked_primary_context||filter==='size-gap'&&r.size_gap||filter==='duration-gap'&&r.duration_gap)&&(category==='all'||selected(r).length)).sort((a,b)=>a.name.localeCompare(b.name)||a.entity_id.localeCompare(b.entity_id));
+      const rows=data.records.filter(r=>(!search||`${r.name} ${r.basin}`.toLowerCase().includes(search))&&(identity==='all'||r.identity_level===identity)&&(filter==='all'||filter==='measured'&&r.evidence_ids.length>0||filter==='gap'&&!r.evidence_ids.length||filter==='linked'&&r.linked_primary_context&&!r.evidence_ids.length||filter==='unlinked-gap'&&!r.evidence_ids.length&&!r.linked_primary_context||filter==='size-gap'&&r.size_gap||filter==='size-class'&&r.size_classification_ids.length>0||filter==='duration-gap'&&r.duration_gap)&&(category==='all'||selected(r).length)).sort((a,b)=>a.name.localeCompare(b.name)||a.entity_id.localeCompare(b.entity_id));
       $('eddy-results').textContent=`${rows.length} source ${rows.length===1?'identity':'identities'} shown · ${c.size_owners} entries have size references; ${c.duration_owners} have duration references; ${c.recurrence_owners} have regional recurrence. No pooled size or lifetime ranking.`;
+      $('eddy-class-summary').textContent=`${data.size_classification_counts.owners} entries also have qualitative source size classes. Thresholds are unspecified; ${data.size_classification_counts.owners_with_numeric_size_gap} of these still need numeric sizes.`;
       $('eddy-rows').replaceChildren();
       for(const row of rows){
         const tr=add('tr',undefined,$('eddy-rows'));tr.dataset.eddyId=row.entity_id;
         const cell=label=>{const td=add('td',undefined,tr);td.dataset.label=label;return td;};
         const owner=cell('Eddy');link(row.name,row.current_card_url,owner);add('span',`${row.basin} · ${row.identity_level.replaceAll('_',' ')}`,owner).className='eddy-note';add('span',row.entity_id,owner).className='eddy-note';
         const evidence=selected(row),size=cell('Size'),time=cell('Time, movement and structure'),body=cell('Details');
+        const classes=(category==='all'||category==='size')?row.size_classification_ids.map(id=>classById.get(id)):[];
+        for(const entry of classes){add('strong',entry.label+' · source size class',size);add('span','Numeric thresholds unspecified',size).className='eddy-note';}
         for(const [target,items,empty] of [[size,evidence.filter(e=>e.category==='size'),'Size reference needed'],[time,evidence.filter(e=>e.category!=='size'),'Duration / movement reference needed']]){
           if(!items.length)add('span',empty,target).className='eddy-note';
           for(const r of items){add('strong',quantity(r),target);add('span',(r.component_label||r.case_label?(r.component_label||r.case_label)+' · ':'')+r.metric_label+(r.period_label?' · '+r.period_label:''),target).className='eddy-note';}
         }
-        const details=add('details',undefined,body);add('summary',evidence.length?`Inspect ${evidence.length} source ${evidence.length===1?'record':'records'}`:'Inspect identity and date context',details);
+        const details=add('details',undefined,body);add('summary',evidence.length?`Inspect ${evidence.length} numeric source ${evidence.length===1?'record':'records'}${classes.length?' + size class':''}`:classes.length?'Inspect source size class and identity context':'Inspect identity and date context',details);
         if(row.event_date)add('p',`Registry separation date: ${row.event_date}. This supplies no lifespan or age.`,details);
         if(row.registry_context){const c=row.registry_context;
           add('p',`Registry dissipation label: ${c.dissipation_label||'Not supplied'}.`,details);
@@ -77,6 +80,15 @@
         if(row.identity_note)add('p',row.identity_note,details);
         if(row.possible_same_ring_as){const p=add('p','Possible name crosswalk · identity unverified: ',details);link(row.possible_same_ring_as,'eddies.html?id='+encodeURIComponent('eddy:'+row.possible_same_ring_as),p);}
         for(const r of evidence)showRecord(r,details);
+        for(const entry of classes){
+          const box=add('section',undefined,details);box.className='eddy-record';box.dataset.classificationId=entry.id;
+          add('h3',entry.label+' · qualitative source size class',box);
+          add('p',`Source row: ${entry.source_name}, ${entry.source_year}. Source year is not assumed to be separation year.`,box);
+          add('p',`Registry context: ${entry.registry_name}, separation ${entry.registry_initial_separation}. Physical name crosswalk unverified.`,box);
+          add('p',entry.definition,box);add('p',entry.qualification,box);add('p',entry.source_access,box);
+          link('Classification source',entry.source_url,box);link('Retained classification row','../'+entry.source_file,box);
+          add('span','Source location: '+entry.source_pointer,box).className='eddy-note';
+        }
         if(!evidence.length)add('p',row.next_action,details);
         link('Identity source',row.source_url,details);link('Atlas context',row.atlas_url,body);
         if(row.entity_id===requested)details.open=true;
