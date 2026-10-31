@@ -1,0 +1,60 @@
+{
+  "schema": "osw.current-reference-path-input.v1",
+  "current_id": "guiana",
+  "name": "Guiana Current",
+  "status": "editorial_reference_path_candidate_not_scientifically_reviewed",
+  "geometry_role": "osw_editorial_reference_route",
+  "crs": "OGC:CRS84",
+  "scope": "Regional Guianas survey-domain corridor from an offshore Maroni approach through the Demerara and Orinoco approaches to east of Trinidad. Both endpoints and all vertices are OSW geographic choices within the report's regional context, not named-current origins, terminations or measured station positions. Excludes a whole North Brazil Current, Caribbean continuation, offshore retroflection, ring trajectories and river-plume boundaries.",
+  "layer": "Upper-ocean regional current geography. No fixed-depth, depth-averaged or direct velocity axis is reconstructed; deeper counterflow and freshwater bands are not this route.",
+  "time_convention": "Geographic context from a report of four repeated hydrographic surveys in 1988, published November 1989. This route is not an observed 1988 trajectory, seasonal axis, annual mean or modern operational current position.",
+  "source_url": "https://www.fao.org/4/x6078e/x6078e03.htm",
+  "source_locator": "H. Gade, Chapter 2.1: sections 2.1.1.3 and 2.1.2.1-2.1.2.3; Guianas/eastern Trinidad regional context, named survey sections and hydrographic interpretation. Publisher HTML is OCR-derived; no original figure or station coordinates digitized.",
+  "source_citation": "Institute of Marine Research, Bergen (1989), Final Report: Surveys of the Fish Resources in the Shelf Areas between Suriname and Colombia 1988, NORAD/UNDP/FAO programme; hydrography chapter by H. Gade.",
+  "source_license": "Factual geography paraphrased with attribution. No report text, figure, station data or original HTML redistributed.",
+  "source_retrieved_date": "2026-10-18",
+  "supporting_sources": [
+    {
+      "url": "https://www.tidesandcurrents.noaa.gov/glossary.html",
+      "citation": "NOAA Tides and Currents glossary, Guiana Current entry.",
+      "locator": "Guiana Current entry: northwestward flow along northeast South America.",
+      "role": "Current identity and direction only; no source-defined endpoints or numeric length."
+    },
+    {
+      "url": "https://www.fao.org/4/x6078e/x6078e00.htm",
+      "citation": "IMR/NORAD/UNDP/FAO report front matter, November 1989.",
+      "locator": "Report title, publication date, chapter attribution and electronic OCR notice.",
+      "role": "Survey and publication provenance; OCR limits remain explicit."
+    }
+  ],
+  "coordinate_selection": "OSW selects offshore regional gates and bends through the named survey domain; these are not hydrographic station coordinates, a traced shelf break, current core or inferred transport path. A shorter Orinoco-approach ending tests reach convention. Small longitude and endpoint-latitude offsets are editorial sensitivity, not measured position errors or seasonal excursions.",
+  "coordinates_lon_lat": [[-53.5,5.9],[-54.5,6.6],[-56,7.3],[-57.5,8.1],[-59,9.0],[-60.3,10.1]],
+  "alternative_routes": [
+    {
+      "id": "orinoco_approach_end",
+      "coordinates_lon_lat": [[-53.5,5.9],[-54.5,6.6],[-56,7.3],[-57.5,8.1],[-59,9.0],[-59.5,9.5]],
+      "interpretation": "Shorter regional reach ending before the eastern Trinidad approach; not a current termination or observed seasonal contraction."
+    }
+  ],
+  "longitude_offsets_degrees": [-0.1,0,0.1],
+  "endpoint_latitude_offsets_degrees": [-0.1,0,0.1],
+  "scenario_rule": "Two regional ending conventions, three longitude shifts and independent three-way latitude shifts at each endpoint: 54 editorial scenarios. Intermediate bends remain fixed apart from the common longitude shift. No uncertainty distribution inferred.",
+  "report_rounding_km": 100,
+  "rank_eligible_published_estimates": false,
+  "candidate_comparison_group": "osw_studied_reach_routes",
+  "whole_system_length": false,
+  "route_extent_kind": "Guianas survey-domain regional reach",
+  "map_view_box": [536,386,70,82],
+  "map_label_size": 1.6,
+  "legend_line_spacing": 2.8,
+  "map_symbol_scale": 0.55,
+  "endpoint_labels": ["Maroni offshore approach","Eastern Trinidad approach"],
+  "figure_source_label": "Gade / IMR-FAO (1989); NOAA identity",
+  "remaining_gates": [
+    "Review regional scope and selected offshore vertices against original survey charts and suitable bathymetry; coarse land clearance is insufficient.",
+    "Resolve Guiana versus North Brazil naming conventions and dated continuity before estimating whole-current length.",
+    "Do not infer a modern velocity axis, freshwater-plume edge, current polygon or physical OSW state passage from this editorial corridor.",
+    "Seasonal geometry, length variation, width and annual extrema remain unsupported by this geographic route.",
+    "Scientific and canonical admission review; retain studied-reach exclusion from the whole-current reference-route order."
+  ]
+}

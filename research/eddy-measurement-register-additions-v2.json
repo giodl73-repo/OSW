@@ -1,0 +1,168 @@
+{
+  "schema": "osw.eddy-measurement-register-additions.v2",
+  "baseline_source_commit": "ad087a74d021e398342d4462322908d5d8f11866",
+  "baseline_evidence_count": 40,
+  "baseline_evidence_sha256": "702311bd7b238182a51b6160f902500e371a88eec635c6d500bc93df53373a4b",
+  "sources": {
+    "rovegno-2009": {
+      "url": "https://bcodata.whoi.edu/NorthernGulfofAlaska_Phytoplankton/jgrc11413.pdf",
+      "doi": "10.1029/2009JC005451",
+      "access": "Original institutional PDF; pages 6 and 13 visually reviewed.",
+      "original": {
+        "source_url": "https://bcodata.whoi.edu/NorthernGulfofAlaska_Phytoplankton/jgrc11413.pdf",
+        "bytes": 3274480,
+        "sha256": "fd410bd92ab8792c130f3627ea3aa51b19878269c2b1d0f04a6edca016423594",
+        "pages": 18
+      },
+      "reviewed_png_sha256": {
+        "6": "e434aaf1124bddc01d59afb705f9685625cc792c79b19033bf93d1ac41d6f882",
+        "13": "de5b2fd48671abf96fbf3768164fbf07d91ffaa905465c20e5e3d01e5d39d7ba"
+      }
+    },
+    "crawford-2002": {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2001JC000876",
+      "doi": "10.1029/2001JC000876",
+      "access": "Publisher full text returned by web reader; paragraphs 23, 34 and 35 inspected. Direct HTTP copy unavailable.",
+      "original_document_sha256": null
+    },
+    "paillet-2002": {
+      "url": "https://journals.ametsoc.org/abstract/journals/phoc/32/1/1520-0485_2002_032_0055_daeoan_2.0.co_2.xml",
+      "doi": "10.1175/1520-0485(2002)032<0055:DAEOAN>2.0.CO;2",
+      "access": "Publisher abstract returned by indexed search; full paper not retrieved in this pass.",
+      "original_document_sha256": null
+    },
+    "van-aken-2003": {
+      "url": "https://www.met.reading.ac.uk/~xv901096/research/Vanaken-2003.pdf",
+      "doi": "10.1016/S0967-0645(02)00383-1",
+      "access": "Retained original PDF; printed page 172 / PDF page 6 visually reviewed.",
+      "original_document_sha256": "00f15a476e1584ae8666d3ab5198d4139b4b63da5d2c78ca7ddd179ee3836776",
+      "reviewed_png_sha256": "2ba45d88585dcb6a900b7c87dfdf2a383d34db6dc3a6e2ef4444dda566a30e42"
+    }
+  },
+  "records": [
+    {
+      "id": "kenai-2007-rovegno-speed-maximum-distance",
+      "entity_id": "eddy:geography:kenai-2007",
+      "category": "size",
+      "metric": "transect_distance_to_maximum_surface_geostrophic_speed",
+      "value": 40,
+      "unit": "km",
+      "source_id": "rovegno-2009",
+      "source_locator": "Paragraph 18, PDF page 6.",
+      "definition": "Distance from transect velocity sign reversal to peak surface geostrophic speed.",
+      "scope": "August-September 2007 hydrographic transects.",
+      "qualification": "No outer radius, diameter or exact occupation day inferred."
+    },
+    {
+      "id": "sitka-2007-rovegno-speed-maximum-distance",
+      "entity_id": "eddy:geography:sitka-2007",
+      "category": "size",
+      "metric": "transect_distance_to_maximum_surface_geostrophic_speed",
+      "value": 40,
+      "unit": "km",
+      "source_id": "rovegno-2009",
+      "source_locator": "Paragraph 18, PDF page 6.",
+      "definition": "Distance from transect velocity sign reversal to peak surface geostrophic speed.",
+      "scope": "August-September 2007 hydrographic transects.",
+      "qualification": "No outer radius, diameter or exact occupation day inferred."
+    },
+    {
+      "id": "kenai-2007-rovegno-censored-track-span",
+      "entity_id": "eddy:geography:kenai-2007",
+      "category": "duration",
+      "metric": "source_track_elapsed_span",
+      "value": 378,
+      "unit": "day",
+      "source_id": "rovegno-2009",
+      "source_locator": "Paragraph 33, PDF page 13; paragraph 18, page 6.",
+      "definition": "Elapsed nominal snapshot dates.",
+      "scope": "Source +10 cm SSH-anomaly tracking; weekly context.",
+      "qualification": "Still detected at study end; birth/death and continuous physical identity unproven.",
+      "period_start": "2007-01-10",
+      "period_end": "2008-01-23",
+      "period_precision": "nominal_source_snapshot_dates",
+      "right_censored": true
+    },
+    {
+      "id": "haida-1998a-crawford-component-radius",
+      "entity_id": "eddy:geography:haida-1998",
+      "category": "size",
+      "metric": "premerger_component_altimetric_radius",
+      "value": 50,
+      "unit": "km",
+      "source_id": "crawford-2002",
+      "source_locator": "Paragraph 34; Figure 4.",
+      "definition": "Author-described satellite radius; edge cutoff unspecified.",
+      "scope": "Haida-1998a, T/P cycle 194, before the June 1998 merger.",
+      "qualification": "Components remain separate. Approximate radius.",
+      "component_label": "Haida-1998a",
+      "period_label": "T/P cycle 194"
+    },
+    {
+      "id": "haida-1998b-crawford-component-radius",
+      "entity_id": "eddy:geography:haida-1998",
+      "category": "size",
+      "metric": "premerger_component_altimetric_radius",
+      "value": 50,
+      "unit": "km",
+      "source_id": "crawford-2002",
+      "source_locator": "Paragraph 35; Figure 4.",
+      "definition": "Author-described satellite radius; edge cutoff unspecified.",
+      "scope": "Haida-1998b, T/P cycle 200, before the June 1998 merger.",
+      "qualification": "Components remain separate. Approaches 50 km; not a strict upper bound.",
+      "component_label": "Haida-1998b",
+      "period_label": "T/P cycle 200"
+    },
+    {
+      "id": "meddy-ulla-paillet-maximum-speed-radius",
+      "entity_id": "eddy:geography:meddy-ulla-1997",
+      "category": "size",
+      "metric": "reported_maximum_azimuthal_velocity_radius",
+      "value": 15,
+      "unit": "km",
+      "source_id": "paillet-2002",
+      "source_locator": "Publisher abstract.",
+      "definition": "Radius at maximum azimuthal velocity.",
+      "scope": "Subsurface Meddy Ulla; core near 1000 m.",
+      "qualification": "Abstract-level extraction; no outer contour or full-depth footprint inferred."
+    },
+    {
+      "id": "meddy-ulla-paillet-tracked-duration",
+      "entity_id": "eddy:geography:meddy-ulla-1997",
+      "category": "duration",
+      "metric": "author_reported_tracking_duration",
+      "value": 18,
+      "unit": "month",
+      "source_id": "paillet-2002",
+      "source_locator": "Publisher abstract.",
+      "definition": "Reported float/buoy tracking duration.",
+      "scope": "Observations beginning in 1997.",
+      "qualification": "Retain months; not a measured full lifespan or inferred calendar endpoints."
+    },
+    {
+      "id": "laura-1999-van-aken-maximum-drift-speed",
+      "entity_id": "eddy:geography:laura-1999",
+      "category": "travel",
+      "metric": "author_reported_maximum_translation_speed",
+      "value": 8.6,
+      "unit": "km/day",
+      "source_id": "van-aken-2003",
+      "source_locator": "Section 2.1, printed page 172 / PDF page 6.",
+      "definition": "Maximum reported scalar drift speed.",
+      "scope": "Initial northwestward movement, November 1999-January 2000 context.",
+      "qualification": "Author also reports 10.0 cm/s; no independent second measurement or rotational speed inferred."
+    }
+  ],
+  "unfilled_source_leads": [
+    {
+      "entity_id": "eddy:geography:agulhas-eddy-w-2000",
+      "source_url": "https://hrcak.srce.hr/file/15841",
+      "decision": "Direct source access failed. No new size/duration invented."
+    },
+    {
+      "entity_id": "eddy:geography:laura-1999",
+      "decision": "Drift speed recovered; no numerical size found in the inspected original passages."
+    }
+  ],
+  "runtime_changed": false
+}

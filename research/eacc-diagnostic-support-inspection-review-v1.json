@@ -1,0 +1,759 @@
+{
+  "schema": "osw.eacc-diagnostic-support-execution-review.v1",
+  "reviewed_utc": "2026-10-24T18:51:06.483817+00:00",
+  "status": "ENDPOINT_SUPPORT_FAILURE_LOCALIZED_NO_NEW_MEASUREMENT",
+  "run_id": 40122083877,
+  "run_attempt": 1,
+  "job_id": 120955643480,
+  "run_conclusion": "success",
+  "projection_source_commit": "1c71c1cd376f62e4fbad1efc79f3ce382437513d",
+  "basis": {
+    "artifact_id": 12570726941,
+    "diagnostic_sha256": "acc14e75d4cbfb6287d2db99e3eb71b01736e7d2693ad45c7a5a91d609e3d9e7",
+    "projection_commit": "1c71c1cd376f62e4fbad1efc79f3ce382437513d",
+    "projection_run_attempt": 1,
+    "projection_run_id": 40122083877,
+    "run_attempt": 2,
+    "run_id": 40117999392,
+    "source_commit": "69cddec0412ca5b1a57c8416067a3e2fd10720af"
+  },
+  "artifact": {
+    "id": 12570894573,
+    "name": "eacc-diagnostic-support-v1",
+    "size_in_bytes": 260676,
+    "digest": "sha256:5a0d1af8dff00d2547859f433b17d911545869f549c76e2f9e38e35f99457485",
+    "expires_at": "2027-01-22T18:44:25Z"
+  },
+  "cloud_focused_checks": {
+    "passed": 35,
+    "elapsed_seconds": 0.73
+  },
+  "original_scientific_inputs_unchanged": 40,
+  "executed_continuation_inputs_unchanged": 52,
+  "projection_inputs_unchanged": 11,
+  "combined_immutable_paths_verified": 62,
+  "preflight_fingerprints": {
+    "raw_committed_preflight_sha256": "65fd9e8b3b21923652c10009b7ad5caa104aa75e4dfe3c18a289f41c03b2a2fc",
+    "artifact_canonical_preflight_sha256": "c78aaf5f7f600afe7748912198c80aefb4c8734d0c440fd230137a523e553445",
+    "semantic_equality_verified": true,
+    "representation_rule": "Artifact stores canonical JSON reserialization; compare its own hash and semantic identity, not raw-file equality to the pretty committed preflight."
+  },
+  "case_inventory": {
+    "copied": 72,
+    "identities_statuses_and_axis_flags_match_completed_case": true,
+    "seed_refinement_missing_search_endpoint": 66,
+    "candidate_diagnostic_unresolved": 2,
+    "seed_sensitivity_section_only": 4
+  },
+  "endpoint_findings": {
+    "cases_with_unsupported_negative_40km_endpoint": 66,
+    "negative_endpoint_not_reached_before_sampling_stopped": 60,
+    "negative_endpoint_reached_but_unsupported": 6,
+    "positive_40km_endpoint_supported_in_these_same_cases": 66,
+    "first_negative_unsupported_reason_counts": {
+      "missing_paired_corner": 66
+    },
+    "first_negative_unsupported_point_west_of_seed_cases": 66,
+    "all_first_negative_unsupported_points_at_or_inside_40km_window": true,
+    "primary_5km_examples_by_month": [
+      {
+        "month": 2,
+        "case_id": "m02:offset0:step5",
+        "seed_origin_lon_lat": [
+          39.9200439453125,
+          -9.039999961853027
+        ],
+        "first_unsupported_negative_sample": [
+          -30.0,
+          39.65126049,
+          -9.08681878,
+          null,
+          null,
+          null,
+          48,
+          20,
+          "missing_paired_corner"
+        ],
+        "negative_40km_endpoint": {
+          "normal_offset_km": -40,
+          "original_support_status": null,
+          "present_in_original": false,
+          "sample": null,
+          "supported_in_original": false
+        },
+        "positive_40km_endpoint": {
+          "normal_offset_km": 40,
+          "original_support_status": "ok",
+          "present_in_original": true,
+          "sample": [
+            40.0,
+            40.27831368,
+            -8.97726859,
+            -0.1336508,
+            0.24941516,
+            0.26886001,
+            49,
+            28,
+            "ok"
+          ],
+          "supported_in_original": true
+        }
+      },
+      {
+        "month": 3,
+        "case_id": "m03:offset0:step5",
+        "seed_origin_lon_lat": [
+          39.760009765625,
+          -9.039999961853027
+        ],
+        "first_unsupported_negative_sample": [
+          -10.0,
+          39.6706779,
+          -9.05700976,
+          null,
+          null,
+          null,
+          48,
+          20,
+          "missing_paired_corner"
+        ],
+        "negative_40km_endpoint": {
+          "normal_offset_km": -40,
+          "original_support_status": null,
+          "present_in_original": false,
+          "sample": null,
+          "supported_in_original": false
+        },
+        "positive_40km_endpoint": {
+          "normal_offset_km": 40,
+          "original_support_status": "ok",
+          "present_in_original": true,
+          "sample": [
+            40.0,
+            40.11725341,
+            -8.97174352,
+            -0.1573147,
+            0.39253743,
+            0.41521242,
+            49,
+            26,
+            "ok"
+          ],
+          "supported_in_original": true
+        }
+      },
+      {
+        "month": 4,
+        "case_id": "m04:offset0:step5",
+        "seed_origin_lon_lat": [
+          39.9200439453125,
+          -9.039999961853027
+        ],
+        "first_unsupported_negative_sample": [
+          -30.0,
+          39.6597013,
+          -9.12130955,
+          null,
+          null,
+          null,
+          47,
+          20,
+          "missing_paired_corner"
+        ],
+        "negative_40km_endpoint": {
+          "normal_offset_km": -40,
+          "original_support_status": null,
+          "present_in_original": false,
+          "sample": null,
+          "supported_in_original": false
+        },
+        "positive_40km_endpoint": {
+          "normal_offset_km": 40,
+          "original_support_status": "ok",
+          "present_in_original": true,
+          "sample": [
+            40.0,
+            40.26698578,
+            -8.93129963,
+            -0.26044039,
+            0.73641168,
+            0.7806528,
+            50,
+            28,
+            "ok"
+          ],
+          "supported_in_original": true
+        }
+      },
+      {
+        "month": 5,
+        "case_id": "m05:offset0:step5",
+        "seed_origin_lon_lat": [
+          39.760009765625,
+          -9.039999961853027
+        ],
+        "first_unsupported_negative_sample": [
+          -10.0,
+          39.67056644,
+          -9.0564204,
+          null,
+          null,
+          null,
+          48,
+          20,
+          "missing_paired_corner"
+        ],
+        "negative_40km_endpoint": {
+          "normal_offset_km": -40,
+          "original_support_status": null,
+          "present_in_original": false,
+          "sample": null,
+          "supported_in_original": false
+        },
+        "positive_40km_endpoint": {
+          "normal_offset_km": 40,
+          "original_support_status": "ok",
+          "present_in_original": true,
+          "sample": [
+            40.0,
+            40.11770204,
+            -8.9741004,
+            -0.22319425,
+            0.59546274,
+            0.62621732,
+            49,
+            26,
+            "ok"
+          ],
+          "supported_in_original": true
+        }
+      },
+      {
+        "month": 6,
+        "case_id": "m06:offset0:step5",
+        "seed_origin_lon_lat": [
+          39.9200439453125,
+          -9.039999961853027
+        ],
+        "first_unsupported_negative_sample": [
+          -30.0,
+          39.65965853,
+          -9.12117399,
+          null,
+          null,
+          null,
+          47,
+          20,
+          "missing_paired_corner"
+        ],
+        "negative_40km_endpoint": {
+          "normal_offset_km": -40,
+          "original_support_status": null,
+          "present_in_original": false,
+          "sample": null,
+          "supported_in_original": false
+        },
+        "positive_40km_endpoint": {
+          "normal_offset_km": 40,
+          "original_support_status": "ok",
+          "present_in_original": true,
+          "sample": [
+            40.0,
+            40.26704308,
+            -8.93148029,
+            -0.24042741,
+            0.57212371,
+            0.61793028,
+            50,
+            28,
+            "ok"
+          ],
+          "supported_in_original": true
+        }
+      },
+      {
+        "month": 7,
+        "case_id": "m07:offset0:step5",
+        "seed_origin_lon_lat": [
+          39.760009765625,
+          -9.039999961853027
+        ],
+        "first_unsupported_negative_sample": [
+          -10.0,
+          39.67172505,
+          -9.06175354,
+          null,
+          null,
+          null,
+          48,
+          20,
+          "missing_paired_corner"
+        ],
+        "negative_40km_endpoint": {
+          "normal_offset_km": -40,
+          "original_support_status": null,
+          "present_in_original": false,
+          "sample": null,
+          "supported_in_original": false
+        },
+        "positive_40km_endpoint": {
+          "normal_offset_km": 40,
+          "original_support_status": "ok",
+          "present_in_original": true,
+          "sample": [
+            40.0,
+            40.11304278,
+            -8.9527735,
+            -0.24877843,
+            0.46423832,
+            0.51059736,
+            50,
+            26,
+            "ok"
+          ],
+          "supported_in_original": true
+        }
+      },
+      {
+        "month": 8,
+        "case_id": "m08:offset0:step5",
+        "seed_origin_lon_lat": [
+          39.760009765625,
+          -9.039999961853027
+        ],
+        "first_unsupported_negative_sample": [
+          -10.0,
+          39.67071309,
+          -9.05719152,
+          null,
+          null,
+          null,
+          48,
+          20,
+          "missing_paired_corner"
+        ],
+        "negative_40km_endpoint": {
+          "normal_offset_km": -40,
+          "original_support_status": null,
+          "present_in_original": false,
+          "sample": null,
+          "supported_in_original": false
+        },
+        "positive_40km_endpoint": {
+          "normal_offset_km": 40,
+          "original_support_status": "ok",
+          "present_in_original": true,
+          "sample": [
+            40.0,
+            40.11711177,
+            -8.97101667,
+            -0.14710368,
+            0.44026218,
+            0.46026725,
+            49,
+            26,
+            "ok"
+          ],
+          "supported_in_original": true
+        }
+      },
+      {
+        "month": 9,
+        "case_id": "m09:offset0:step5",
+        "seed_origin_lon_lat": [
+          39.760009765625,
+          -9.039999961853027
+        ],
+        "first_unsupported_negative_sample": [
+          -10.0,
+          39.67116734,
+          -9.0593792,
+          null,
+          null,
+          null,
+          48,
+          20,
+          "missing_paired_corner"
+        ],
+        "negative_40km_endpoint": {
+          "normal_offset_km": -40,
+          "original_support_status": null,
+          "present_in_original": false,
+          "sample": null,
+          "supported_in_original": false
+        },
+        "positive_40km_endpoint": {
+          "normal_offset_km": 40,
+          "original_support_status": "ok",
+          "present_in_original": true,
+          "sample": [
+            40.0,
+            40.11528454,
+            -8.96226815,
+            -0.16316102,
+            0.30669004,
+            0.33463606,
+            49,
+            26,
+            "ok"
+          ],
+          "supported_in_original": true
+        }
+      },
+      {
+        "month": 10,
+        "case_id": "m10:offset0:step5",
+        "seed_origin_lon_lat": [
+          39.9200439453125,
+          -9.039999961853027
+        ],
+        "first_unsupported_negative_sample": [
+          -30.0,
+          39.65473934,
+          -9.10349017,
+          null,
+          null,
+          null,
+          48,
+          20,
+          "missing_paired_corner"
+        ],
+        "negative_40km_endpoint": {
+          "normal_offset_km": -40,
+          "original_support_status": null,
+          "present_in_original": false,
+          "sample": null,
+          "supported_in_original": false
+        },
+        "positive_40km_endpoint": {
+          "normal_offset_km": 40,
+          "original_support_status": "ok",
+          "present_in_original": true,
+          "sample": [
+            40.0,
+            40.27363874,
+            -8.95504788,
+            -0.17855554,
+            0.51307179,
+            0.54068376,
+            50,
+            28,
+            "ok"
+          ],
+          "supported_in_original": true
+        }
+      },
+      {
+        "month": 11,
+        "case_id": "m11:offset0:step5",
+        "seed_origin_lon_lat": [
+          39.8399658203125,
+          -9.039999961853027
+        ],
+        "first_unsupported_negative_sample": [
+          -20.0,
+          39.66106363,
+          -9.07277893,
+          null,
+          null,
+          null,
+          48,
+          20,
+          "missing_paired_corner"
+        ],
+        "negative_40km_endpoint": {
+          "normal_offset_km": -40,
+          "original_support_status": null,
+          "present_in_original": false,
+          "sample": null,
+          "supported_in_original": false
+        },
+        "positive_40km_endpoint": {
+          "normal_offset_km": 40,
+          "original_support_status": "ok",
+          "present_in_original": true,
+          "sample": [
+            40.0,
+            40.19767305,
+            -8.97418048,
+            -0.17181914,
+            0.53501103,
+            0.55738103,
+            49,
+            27,
+            "ok"
+          ],
+          "supported_in_original": true
+        }
+      },
+      {
+        "month": 12,
+        "case_id": "m12:offset0:step5",
+        "seed_origin_lon_lat": [
+          39.760009765625,
+          -9.039999961853027
+        ],
+        "first_unsupported_negative_sample": [
+          -10.0,
+          39.66993241,
+          -9.05253286,
+          null,
+          null,
+          null,
+          48,
+          20,
+          "missing_paired_corner"
+        ],
+        "negative_40km_endpoint": {
+          "normal_offset_km": -40,
+          "original_support_status": null,
+          "present_in_original": false,
+          "sample": null,
+          "supported_in_original": false
+        },
+        "positive_40km_endpoint": {
+          "normal_offset_km": 40,
+          "original_support_status": "ok",
+          "present_in_original": true,
+          "sample": [
+            40.0,
+            40.12025685,
+            -8.98964743,
+            -0.14814516,
+            0.41148419,
+            0.42814626,
+            49,
+            26,
+            "ok"
+          ],
+          "supported_in_original": true
+        }
+      }
+    ],
+    "interpretation": "The computational failure is incomplete paired-corner support on the negative/westward normal side, while the +40km side is supported. On the inspected regional maps the negative side points shoreward. This is a source-support limit; no missing value is zero velocity.",
+    "physical_cause_limit": "The diagnostic does not distinguish dry land from all other missing-corner causes. NaturalEarth display geography is contextual; exact physical shoreline attribution is not established by this audit."
+  },
+  "january_primary_station_failures": [
+    {
+      "id": "m01:offset0:step5",
+      "stations": [
+        {
+          "station_arc_parameter_km": -100,
+          "failed_axis_checks": [
+            "insufficient_endpoint_contrast",
+            "streamline_peak_displacement_exceeds_10km"
+          ],
+          "original_peak": {
+            "direction_difference_degrees": 1.056236,
+            "endpoint_contrast_fraction": 0.000354,
+            "index": 29,
+            "peak_offset_km": 35,
+            "peak_projected_m_s": 0.41447955,
+            "status": "insufficient_endpoint_contrast",
+            "tie_offsets_km": [
+              35
+            ],
+            "usable_for_thresholds": true
+          }
+        },
+        {
+          "station_arc_parameter_km": -50,
+          "failed_axis_checks": [
+            "streamline_peak_displacement_exceeds_10km"
+          ],
+          "original_peak": {
+            "direction_difference_degrees": 0.554375,
+            "endpoint_contrast_fraction": 0.042437,
+            "index": 28,
+            "peak_offset_km": 15,
+            "peak_projected_m_s": 0.42304576,
+            "status": "supported_local_peak",
+            "tie_offsets_km": [
+              15
+            ],
+            "usable_for_thresholds": true
+          }
+        },
+        {
+          "station_arc_parameter_km": 0,
+          "failed_axis_checks": [],
+          "original_peak": {
+            "direction_difference_degrees": 0.0,
+            "endpoint_contrast_fraction": 0.083066,
+            "index": 24,
+            "peak_offset_km": 0,
+            "peak_projected_m_s": 0.43260844,
+            "status": "supported_local_peak",
+            "tie_offsets_km": [
+              0
+            ],
+            "usable_for_thresholds": true
+          }
+        },
+        {
+          "station_arc_parameter_km": 50,
+          "failed_axis_checks": [],
+          "original_peak": {
+            "direction_difference_degrees": 1.519877,
+            "endpoint_contrast_fraction": 0.10249,
+            "index": 19,
+            "peak_offset_km": -10,
+            "peak_projected_m_s": 0.46086153,
+            "status": "supported_local_peak",
+            "tie_offsets_km": [
+              -10
+            ],
+            "usable_for_thresholds": true
+          }
+        },
+        {
+          "station_arc_parameter_km": 100,
+          "failed_axis_checks": [
+            "streamline_peak_displacement_exceeds_10km"
+          ],
+          "original_peak": {
+            "direction_difference_degrees": 5.3,
+            "endpoint_contrast_fraction": 0.014497,
+            "index": 15,
+            "peak_offset_km": -25,
+            "peak_projected_m_s": 0.59733967,
+            "status": "supported_local_peak",
+            "tie_offsets_km": [
+              -25
+            ],
+            "usable_for_thresholds": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "m01:offset0:step10",
+      "stations": [
+        {
+          "station_arc_parameter_km": -100,
+          "failed_axis_checks": [
+            "peak_at_search_edge",
+            "streamline_peak_displacement_exceeds_10km"
+          ],
+          "original_peak": {
+            "direction_difference_degrees": null,
+            "endpoint_contrast_fraction": null,
+            "index": 15,
+            "peak_offset_km": 40,
+            "peak_projected_m_s": 0.4143328,
+            "status": "peak_at_search_edge",
+            "tie_offsets_km": [
+              40
+            ],
+            "usable_for_thresholds": false
+          }
+        },
+        {
+          "station_arc_parameter_km": -50,
+          "failed_axis_checks": [],
+          "original_peak": {
+            "direction_difference_degrees": 0.424155,
+            "endpoint_contrast_fraction": 0.042058,
+            "index": 14,
+            "peak_offset_km": 10,
+            "peak_projected_m_s": 0.42287836,
+            "status": "supported_local_peak",
+            "tie_offsets_km": [
+              10
+            ],
+            "usable_for_thresholds": true
+          }
+        },
+        {
+          "station_arc_parameter_km": 0,
+          "failed_axis_checks": [],
+          "original_peak": {
+            "direction_difference_degrees": 0.0,
+            "endpoint_contrast_fraction": 0.083066,
+            "index": 12,
+            "peak_offset_km": 0,
+            "peak_projected_m_s": 0.43260844,
+            "status": "supported_local_peak",
+            "tie_offsets_km": [
+              0
+            ],
+            "usable_for_thresholds": true
+          }
+        },
+        {
+          "station_arc_parameter_km": 50,
+          "failed_axis_checks": [],
+          "original_peak": {
+            "direction_difference_degrees": 1.519877,
+            "endpoint_contrast_fraction": 0.10249,
+            "index": 10,
+            "peak_offset_km": -10,
+            "peak_projected_m_s": 0.46086153,
+            "status": "supported_local_peak",
+            "tie_offsets_km": [
+              -10
+            ],
+            "usable_for_thresholds": true
+          }
+        },
+        {
+          "station_arc_parameter_km": 100,
+          "failed_axis_checks": [
+            "streamline_peak_displacement_exceeds_10km"
+          ],
+          "original_peak": {
+            "direction_difference_degrees": 6.598132,
+            "endpoint_contrast_fraction": 0.014153,
+            "index": 7,
+            "peak_offset_km": -30,
+            "peak_projected_m_s": 0.59713135,
+            "status": "supported_local_peak",
+            "tie_offsets_km": [
+              -30
+            ],
+            "usable_for_thresholds": true
+          }
+        }
+      ]
+    }
+  ],
+  "measurement_consequences": {
+    "completed_two_sided_regional_gate_remains_unsupported": true,
+    "new_current_widths_admitted": 0,
+    "new_current_lengths_admitted": 0,
+    "seasonal_physical_range_admitted": false,
+    "offshore_half_span_may_be_doubled": false,
+    "missing_velocity_may_be_imputed_zero": false,
+    "failed_case_may_be_edited_or_restarted": false
+  },
+  "persistent_support_file": "research/eacc-diagnostic-support-inspection-result-v1.json",
+  "persistent_support_sha256": "1d46d99855e02682295cf64f28c426c7288bbd51673c16441fc2f136c8fcdf4e",
+  "support_bytes": 255635,
+  "local_readback": {
+    "actual_range_bytes_transferred": 260632,
+    "original_source_artifact_requested": false,
+    "original_velocity_arrays_downloaded": false,
+    "full_original_profiles_downloaded": false,
+    "new_velocity_requests": 0,
+    "numeric_producer_rerun": false
+  },
+  "installed_working_dataset_changed": false,
+  "local_preview_changed": false,
+  "main_merged": false,
+  "release_approved": false,
+  "next_action": "Design and synthetically validate a separately named coastal extent metric, with declared shoreline/wet-support reference, offshore edge, source depth/time, censoring, interpolation/resolution and uncertainty semantics. Preserve this failed two-sided case; no parameter narrowing, invented inshore edge or doubling of one-sided span. Reuse retained fields in one future cloud case only after a new protocol/review/freeze.",
+  "primary_literature_context": [
+    {
+      "url": "https://journals.ametsoc.org/view/journals/clim/37/17/JCLI-D-23-0563.1.xml",
+      "title": "Interannual Variability of the East African Coastal Current Associated with El Ni\u00f1o\u2013Southern Oscillation",
+      "access": "Direct browser open returned403; public search-indexed primary text was available. Full method not independently inspected.",
+      "scope": "Paper text describes coast-to-eastern-boundary regional averaging. It does not validate the proposed OSW metric or replace the retained failed case."
+    },
+    {
+      "url": "https://gmd.copernicus.org/articles/14/6945/2021/index.html",
+      "title": "Plume spreading test case for coastal ocean models",
+      "access": "Primary full HTML read.",
+      "scope": "A plume-model benchmark discusses coastal geometry, cross-front extent and numerical mixing. Its buoyancy-driven plume mechanism and dimensional predictions are not transferred to the EACC."
+    }
+  ]
+}

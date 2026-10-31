@@ -1,0 +1,119 @@
+name: Build matching saved South Java catalog engine v1
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/south-java-catalog-engine-request-v1.json
+      - .github/workflows/south-java-catalog-engine-v1.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  GH_TOKEN: ${{ github.token }}
+  CARGO_BUILD_JOBS: "1"
+  CARGO_INCREMENTAL: "0"
+  CARGO_TARGET_DIR: ${{ github.workspace }}/.pytest_cache/south-java-catalog-engine-build-v1/target
+  RUST_TEST_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  matching-engine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v6
+      - id: request
+        name: Read matching-catalog build request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          request=json.loads(pathlib.Path('research/south-java-catalog-engine-request-v1.json').read_bytes())
+          assert request['schema']=='osw.south-java-catalog-engine-request.v1'
+          assert type(request['execution_permitted']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
+              stream.write('enabled='+str(request['execution_permitted']).lower()+'\n')
+          PY
+      - uses: actions/setup-python@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          python-version: "3.14.8"
+      - uses: actions/setup-node@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          node-version: "24"
+      - name: Verify frozen build controls before saved-data restoration
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_catalog_engine_cloud_v1.py --preflight-only
+      - name: Check dependency, manifest, refusal and ABI fixtures
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_south_java_catalog_engine_v1.py -v
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_south_java_catalog_engine_cloud_v1.py -v
+          taskset -c "$cpu" nice -n 15 node --test --test-concurrency=1 analysis/test_south_java_compiled_catalog_v1.mjs
+      - name: Restore exact saved candidate and verify embedded-input bytes
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_catalog_engine_cloud_v1.py --restore
+      - name: Install matching native and WASM compiler
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 rustup toolchain install 1.95.0 --profile minimal --target wasm32-unknown-unknown
+      - name: Fetch locked compiler dependencies
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 fetch --locked --manifest-path rust/osw-query/Cargo.toml
+      - name: Build native CLI against the saved catalog
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 build --offline --locked --manifest-path rust/osw-query/Cargo.toml --bin osw-query-cli
+      - name: Compile matching release WASM without Rust source edits
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 cargo +1.95.0 rustc --offline --locked --release --target wasm32-unknown-unknown --lib --crate-type cdylib --manifest-path rust/osw-query/Cargo.toml
+      - name: Verify actual dependencies and both native-WASM stores
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_south_java_catalog_engine_cloud_v1.py --finish
+      - name: Retain compact compilation and API receipts
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: south-java-catalog-engine-receipts-v1
+          path: |
+            .pytest_cache/south-java-catalog-engine-v1/restored.json
+            .pytest_cache/south-java-catalog-engine-v1/result.json
+            .pytest_cache/south-java-catalog-engine-v1/main-parity.json
+            .pytest_cache/south-java-catalog-engine-v1/index-parity.json
+            .pytest_cache/south-java-catalog-engine-v1/failure.json
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90
+      - name: Retain matching compiled engine only in cloud
+        if: success() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: south-java-catalog-engine-overlay-v1
+          path: .pytest_cache/south-java-catalog-engine-v1/artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          compression-level: 1
+          retention-days: 90

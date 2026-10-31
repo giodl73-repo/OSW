@@ -1,0 +1,27 @@
+{
+  "schema": "osw.madagascar-count-expectation-failure-review.v4",
+  "status": "FAIL_RETAINED_WITH_SPECIFIC_SOURCE_JOIN_FIX_REQUIRED",
+  "source_commit": "cba6d7485fe3a67be3adc7aba53b6b1bcc7e7df8",
+  "run_id": 40736525820,
+  "run_attempt": 2,
+  "request_file": "research/madagascar-dimensions-delivery-request-v4.json",
+  "request_disabled": true,
+  "native_build_completed": true,
+  "rust_tests_passed": 256,
+  "source_index_original_strings_preserved": 634,
+  "failing_check": {
+    "file": "analysis/eicc_reference_delivery_cases_v1.py",
+    "message": "Historical inventory query differs",
+    "reason": "The legacy width-count adapter chain ends at176, while the exact verified Madagascar contract appends one width to produce177. The candidate loads and the native query succeeds before semantic verification."
+  },
+  "full_candidate_load_passed": true,
+  "legacy_width_inventory_expectation": 176,
+  "width_total_required_by_verified_collection_contract": 177,
+  "actual_failed_response_saved": false,
+  "required_fix": "Adapt exactly one unfiltered widths limit1 inventory expectation from176 to177; preserve every other query and expected prior row. Refuse missing, duplicate or unexpected count cases.",
+  "followup_test": "Exercise the complete historical width-count adapter chain and retain exact semantic request/expectation/response on any future verifier failure.",
+  "wasm_verified": false,
+  "browser_verified": false,
+  "installed": false,
+  "full_goal_complete": false
+}

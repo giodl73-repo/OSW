@@ -1,0 +1,88 @@
+name: Sequential saved-engine Pacific NEC settled metric browser review v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/pacific-nec-nominal-width-browser-resume-request-v1.json
+      - .github/workflows/pacific-nec-nominal-width-browser-resume-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  OSW_PACIFIC_NEC_NOMINAL_WIDTH_DELIVERY_V1: "1"
+  OSW_PACIFIC_NEC_NOMINAL_WIDTH_BROWSER_RESUME_V1: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  PYTHONPATH: analysis
+jobs:
+  select-request:
+    runs-on: ubuntu-latest
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/pacific-nec-nominal-width-browser-resume-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/pacific-nec-nominal-width-browser-resume-request-v1.json').read_bytes())
+          assert r['schema']=='osw.pacific-nec-nominal-width-browser-resume-request.v1'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  browser:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - name: Install pinned geodesic dependency before contract imports
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2
+      - name: Bounded saved-engine and disclosure checks
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_resume_pacific_nec_nominal_width_browser_v1.py -v
+          taskset -c "$cpu" nice -n 15 node --test --test-concurrency=1 analysis/test_equatorial_basin_identity_ui_v1.cjs
+      - name: Install pinned browser
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0
+          taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
+      - name: Verify exact saved candidate and actual views without rebuilding
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/resume_pacific_nec_nominal_width_browser_v1.py
+      - name: Retain browser evidence and original engine receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacific-nec-nominal-width-browser-resume-evidence-v1
+          include-hidden-files: true
+          path: |
+            .pytest_cache/pacific-nec-nominal-width-browser-resume-v1/browser-failure.json
+            .pytest_cache/pacific-nec-nominal-width-browser-resume-v1/browser-observation-failure.json
+            .pytest_cache/pacific-nec-nominal-width-browser-resume-v1/resume-failure.json
+            .pytest_cache/pacific-nec-nominal-width-browser-resume-v1/browser.json
+            .pytest_cache/pacific-nec-nominal-width-browser-resume-v1/result.json
+            .pytest_cache/pacific-nec-nominal-width-browser-resume-v1/parent-snapshots.json
+            .pytest_cache/pacific-nec-nominal-width-browser-resume-v1/engine.json
+            .pytest_cache/pacific-nec-nominal-width-browser-resume-v1/engine-manifest.json
+            .pytest_cache/pacific-nec-nominal-width-browser-resume-v1/*.png
+            .pytest_cache/pacific-nec-nominal-width-browser-resume-v1/*.geometry.json
+          if-no-files-found: warn
+          retention-days: 90

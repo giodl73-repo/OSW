@@ -1,0 +1,113 @@
+{
+  "schema": "osw.surface-section-preflight.v1",
+  "as_of": "2026-10-13",
+  "status": "rules_declared_before_full_year_acquisition",
+  "dataset_id": "yearly_336c_0b32_9cd3",
+  "product_version": "2017.0",
+  "year": 2013,
+  "nominal_depth_m": 15,
+  "metric": "fixed_orientation_half_peak_directional_component_span",
+  "fractions": [
+    0.4,
+    0.5,
+    0.6
+  ],
+  "minimum_eligible_component_m_s": 0.02,
+  "monthly_cell_minimum_pairs": 5,
+  "rounding_km": 10,
+  "minimum_resolved_cells_for_no_resolution_flag": 4,
+  "annual_extrema_eligible": false,
+  "whole_current_representative": false,
+  "sections": [
+    {
+      "current_id": "portugal",
+      "section_id": "portugal-40n",
+      "fixed_axis": "latitude",
+      "fixed_coordinate": 40,
+      "varying_axis": "longitude",
+      "domain": [
+        -32,
+        -8
+      ],
+      "peak_search": [
+        -24,
+        -12
+      ],
+      "component": "southward",
+      "source_scope": "Offshore Portugal flow; Martins et al. (2002) statistical box constrains peak search only, not boundaries. Exclude coastal poleward flow and upstream/equatorial circulation.",
+      "scope_audit": "research/portugal-current-naming-seasonal-scope-audit.json"
+    },
+    {
+      "current_id": "south-atlantic",
+      "section_id": "south-atlantic-30w",
+      "fixed_axis": "longitude",
+      "fixed_coordinate": -30,
+      "varying_axis": "latitude",
+      "domain": [
+        -48,
+        -30
+      ],
+      "peak_search": [
+        -43,
+        -36
+      ],
+      "component": "eastward",
+      "source_scope": "Southern subtropical-gyre eastward component at 30 W; surface section is separate from the existing intermediate-depth float route. SAC/ACC and branch correspondence require independent review.",
+      "scope_audit": "research/south-atlantic-reach-reference-path-input.json"
+    },
+    {
+      "current_id": "south-pacific",
+      "section_id": "south-pacific-100w",
+      "fixed_axis": "longitude",
+      "fixed_coordinate": -100,
+      "varying_axis": "latitude",
+      "domain": [
+        -45,
+        -25
+      ],
+      "peak_search": [
+        -37,
+        -31
+      ],
+      "component": "eastward",
+      "source_scope": "Eastern South Pacific surface component near the source STF region; source front crossing is not assumed velocity axis. Split-band/branch correspondence unresolved.",
+      "scope_audit": "research/south-pacific-eastern-front-reach-layer-time-scope-audit.json"
+    },
+    {
+      "current_id": "south-indian",
+      "section_id": "south-indian-80e",
+      "fixed_axis": "longitude",
+      "fixed_coordinate": 80,
+      "varying_axis": "latitude",
+      "domain": [
+        -48,
+        -30
+      ],
+      "peak_search": [
+        -43,
+        -37
+      ],
+      "component": "eastward",
+      "source_scope": "South Indian Ocean Current naming context at 80 E near 40 S, east of the Agulhas Return naming transition and west of the 90 E split. Near-surface peaks cannot inherit historical upper-1000 m transport identity; ACC, north subtropical front and eddy attribution remain unresolved.",
+      "scope_audit": "research/south-indian-eastern-reach-naming-layer-scope-audit.json"
+    },
+    {
+      "current_id": "aleutian",
+      "section_id": "aleutian-160w",
+      "fixed_axis": "longitude",
+      "fixed_coordinate": -160,
+      "varying_axis": "latitude",
+      "domain": [
+        40,
+        56
+      ],
+      "peak_search": [
+        46,
+        51
+      ],
+      "component": "eastward",
+      "source_scope": "Eastward Subarctic/Aleutian flow convention in Favorite (1967), Figure 27, investigated at 160 W. OSW chooses a 46-51 N peak-search window around the regional schematic reach, not observed current edges. Surface peaks may be eddies or North Pacific exchange; no cold-water property gate or historical upper-1000 m identity transfer. Westward Alaskan Stream and Bering-side North Slope Current remain separate.",
+      "scope_audit": "research/aleutian-alaskan-stream-naming-scope-audit.json"
+    }
+  ]
+}

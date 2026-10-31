@@ -1,0 +1,67 @@
+name: Install reviewed Pacific SECC saved data and maps v1
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/pacific-secc-installation-request-v1.json
+      - .github/workflows/install-pacific-secc-saved-v1.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: read
+
+env:
+  GH_TOKEN: ${{ github.token }}
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  install-saved-artifacts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v6
+      - id: request
+        name: Read saved installation request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          request=json.loads(pathlib.Path('research/pacific-secc-installation-request-v1.json').read_bytes())
+          assert request['schema']=='osw.pacific-secc-installation-request.v1'
+          assert type(request['execution_permitted']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
+              stream.write('enabled='+str(request['execution_permitted']).lower()+'\n')
+          PY
+      - name: Verify exact parent, source, requests and reviewed results
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/install_pacific_secc_saved_v1.py --cloud-install --preflight-only
+      - name: Check archive refusal and artifact custody
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_install_pacific_secc_saved_v1.py -v
+      - name: Install exact verified artifacts through guarded Git Tree API
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/install_pacific_secc_saved_v1.py --cloud-install
+      - name: Retain compact installation receipt
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacific-secc-installation-receipts-v1
+          path: |
+            .pytest_cache/pacific-secc-installation-v1/result.json
+            .pytest_cache/pacific-secc-installation-v1/failure.json
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90

@@ -1,0 +1,32 @@
+{
+  "schema": "osw.pacific-sec-jet-widths-delivery-failure-review.v2",
+  "run_id": 41023819345,
+  "run_attempt": 1,
+  "source_commit": "69664d46c3fe09ff1a4f1b0f3963e454680e6970",
+  "conclusion": "failure",
+  "evidence_artifact": {
+    "id": 12962688127,
+    "bytes": 49410,
+    "sha256": "2ff7ac1c0100fa67494cb21434605ae0089f0b458d6ef605b6eb7c69c0dee12a"
+  },
+  "retained_evidence": {
+    "research/pacific-sec-gourdeau-2008-native-failure-run-v1/capture-index-transport.json": "2e44849a85c8133712904e557551455ec1e7dd20bc2d3c34decb15bbed5e5190",
+    "research/pacific-sec-gourdeau-2008-native-failure-run-v1/capture-main-transport.json": "6d38efd2e53533e72b3626508b1776f3936e5019ab9e2a2db824b65e0eb18027",
+    "research/pacific-sec-gourdeau-2008-native-failure-run-v1/compile-inventory.json": "0ec15087172e7770ed2763b67a3b1188b57ba6e2c95949d005fc292f9f19eeef",
+    "research/pacific-sec-gourdeau-2008-native-failure-run-v1/failure.json": "d74b96c9b8d92f371adae2917828dd73644db4533ab387eaac8bf3886077d184",
+    "research/pacific-sec-gourdeau-2008-native-failure-run-v1/native-build.txt": "6d16854529b98186b63754ad8670f9aacad128ad46efdef7e42b3faf800f5136",
+    "research/pacific-sec-gourdeau-2008-native-failure-run-v1/rust-tests.txt": "366d87d022796c941777bc74a85189ffba9a38efe6da91fea1a11b00c0536650"
+  },
+  "baseline_main_cases_captured": 354,
+  "baseline_source_cases_captured": 105,
+  "rust_tests_passed": 307,
+  "native_build_passed": true,
+  "candidate_api_probe_exit_code": 2,
+  "underlying_stderr_retained_in_original_runner": false,
+  "cause": "Native API probe failed; original adapter retained stderr internally but driver omitted it from failure receipt. Underlying invariant remains unverified.",
+  "diagnostic_correction": "Preserve bounded stderr, length and full digest on failure. Run candidate native API checks before baseline recapture, retaining every historical comparison when candidate succeeds.",
+  "wasm_build_completed": false,
+  "installed": false,
+  "main_updated": false,
+  "full_goal_complete": false
+}

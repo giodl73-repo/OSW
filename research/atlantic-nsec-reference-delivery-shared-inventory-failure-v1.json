@@ -1,0 +1,28 @@
+{
+  "schema": "osw.atlantic-nsec-reference-delivery-shared-inventory-failure.v1",
+  "source_commit": "122ddf82405e81b95c17f0571270d9576841af56",
+  "run_id": 41068205217,
+  "run_attempt": 1,
+  "conclusion": "failure",
+  "native_tests_passed": 314,
+  "failed_step": "complete candidate main load",
+  "stderr": "Incomplete seasonal source projection",
+  "cause": "The shared seasonal-page reference-route inventory omitted the two independently validated editorial references.",
+  "corrections": [
+    "Extend the shared reference inventory with exactly the fully validated new rows; do not add monthly frames or enable playback.",
+    "Apply the same exact-row path in the atlas receipt validator, preserving historical file receipts.",
+    "Expect the shared working reference catalogue in both seasons and atlas snapshots; keep all phase plans unchanged."
+  ],
+  "regression_coverage": "Existing Rust rejection cases cover exact returned route rows; a new Python check proves seasons catalogue projection preserves all phase plans, source bytes and unknown annual range.",
+  "evidence_artifact": {
+    "id": 12984152091,
+    "bytes": 25102,
+    "sha256": "0e11a58e6112bdb9b029471565fbd26dad9d99a8db4474c687bc84897d48237c"
+  },
+  "rust_tests_log_sha256": "481b57a7c2a6173d029f7a54c338ee57e5e3b733ac4141e181422ac50c7962ff",
+  "failure_sha256": "4d1b52af888b21e1385d8dad0e942b0ce2f819152f5424e16746e6aebcc23f21",
+  "preflight_sha256": "79db0c65972c905df2bc34b1bf96f8ea2ffb124af2f3b51c24e85ebe1ae1ce17",
+  "installed": false,
+  "main_updated": false,
+  "local_bulk_sync": false
+}

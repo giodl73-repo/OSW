@@ -1,0 +1,140 @@
+name: Inspect saved EACC diagnostic support v1
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/eacc-diagnostic-support-request-v1.json
+      - .github/workflows/eacc-diagnostic-support-inspection-v1.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  inspect-saved-diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            research/current-gap-delivery-phase.json
+            research/eacc-diagnostic-support-request-v1.json
+      - id: request
+        name: Read committed inspection request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          request = json.loads(pathlib.Path('research/eacc-diagnostic-support-request-v1.json').read_bytes())
+          assert request['schema'] == 'osw.eacc-diagnostic-support-request.v1'
+          assert type(request['execution_permitted']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
+              stream.write('enabled='+str(request['execution_permitted']).lower()+'\n')
+          PY
+      - uses: actions/setup-python@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          python-version: "3.14.8"
+      - name: Restore frozen projection input set
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          python - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          root = pathlib.Path.cwd()
+          git = ['git','-c','core.fsmonitor=false','-c','maintenance.auto=0','-c','gc.auto=0']
+          request_path = 'research/eacc-diagnostic-support-request-v1.json'
+          phase_path = 'research/current-gap-delivery-phase.json'
+          request_raw = (root/request_path).read_bytes()
+          request = json.loads(request_raw)
+          phase_raw = (root/phase_path).read_bytes()
+          phase = json.loads(phase_raw)
+          assert os.environ['GITHUB_REF'] == 'refs/heads/codex/current-measurement-gaps'
+          assert request['execution_permitted'] is True and request['metadata_projection_only'] is True
+          assert phase['phase'] == 'source-review-only-v1' and phase['heavy_work_permitted'] is False
+          assert phase['max_heavy_local_jobs'] == 0 and phase['max_heavy_cloud_jobs'] == 1
+          assert subprocess.check_output(git+['show','HEAD:'+request_path]) == request_raw
+          assert subprocess.check_output(git+['show','HEAD:'+phase_path]) == phase_raw
+          path = 'research/eacc-diagnostic-support-preflight-v1.json'
+          assert request['preflight'] == path
+          subprocess.run(git+['sparse-checkout','set','--no-cone',phase_path,request_path,path],check=True)
+          raw = (root/path).read_bytes()
+          assert hashlib.sha256(raw).hexdigest() == request['preflight_sha256']
+          assert subprocess.check_output(git+['show','HEAD:'+path]) == raw
+          pins = json.loads(raw)['input_sha256']
+          assert 10 <= len(pins) <= 32
+          for name in pins:
+              assert name and not name.startswith('-') and (root/name).resolve().is_relative_to(root)
+          subprocess.run(git+['sparse-checkout','set','--no-cone',phase_path,request_path,path,*sorted(pins)],check=True)
+          for name,expected in pins.items():
+              assert hashlib.sha256((root/name).read_bytes()).hexdigest() == expected, name
+          PY
+      - name: Install only the pinned small test and YAML dependencies
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          python -m pip install --only-binary=:all: -r requirements-eacc-support-v1.txt
+      - name: Check projection and actual sparse restoration using tiny offline fixtures
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pytest -q analysis/test_eacc_diagnostic_support_inspection_v1.py
+      - name: Verify metadata-only cloud gate before artifact restoration
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/eacc_diagnostic_support_inspection_v1.py --verify-cloud-gate
+      - name: Bind exact completed source run and artifact API identities
+        if: steps.request.outputs.enabled == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json, pathlib, subprocess
+          root = pathlib.Path.cwd()
+          review = json.loads((root/'research/eacc-hycom-source-resume-execution-review-v1.json').read_bytes())
+          folder = root/'.pytest_cache'
+          folder.mkdir(exist_ok=True)
+          assert review['run_id'] == 40117999392 and review['artifact']['id'] == 12570726941
+          for endpoint,target in (
+              ('actions/runs/40117999392','eacc-diagnostic-support-source-run.json'),
+              ('actions/artifacts/12570726941','eacc-diagnostic-support-artifact.json')):
+              raw = subprocess.check_output(['gh','api','repos/giodl73-repo/OSW/'+endpoint])
+              assert len(raw) < 131072
+              (folder/target).write_bytes(raw)
+          PY
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/eacc_diagnostic_support_inspection_v1.py --verify-source-identity
+      - name: Restore completed evidence in the cloud only
+        if: steps.request.outputs.enabled == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: eacc-source-resume-v2
+          run-id: 40117999392
+          github-token: ${{ github.token }}
+          path: .pytest_cache/eacc-diagnostic-support-basis
+      - name: Copy stored support records without running numerical producers
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/eacc_diagnostic_support_inspection_v1.py --cloud-project --basis .pytest_cache/eacc-diagnostic-support-basis/run-40117999392-attempt-2
+      - name: Retain bounded support projection
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: eacc-diagnostic-support-v1
+          path: .pytest_cache/eacc-diagnostic-support-v1/
+          include-hidden-files: true
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 90

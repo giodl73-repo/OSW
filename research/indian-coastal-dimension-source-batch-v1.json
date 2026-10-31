@@ -1,0 +1,60 @@
+{
+  "schema": "osw.indian-coastal-dimension-source-batch.v1",
+  "status": "PREPARED_SOURCE_CONTEXT_BATCH_NOT_DATA_ADMISSION",
+  "review_date": "2026-10-24",
+  "scope": "Four accepted coastal-current identities; classify quantity meaning before any measurement admission.",
+  "entries": [
+    {
+      "entity_id": "current:east-african-coastal",
+      "decision": "prepare_reported_regional_reach_context",
+      "facts_file": "research/eacc-painter-2020-regional-reach-source-facts-v1.json",
+      "quantity": "source_reported_approximate_regional_connection_distance",
+      "reported_value_km": 1000,
+      "new_ranked_length": false,
+      "next_action": "Review and append a regional-reach record; preserve null measured axis and whole-current length."
+    },
+    {
+      "entity_id": "current:south-java",
+      "decision": "prepare_typed_coastal_confinement_context",
+      "facts_file": "research/south-java-sprintall-2010-confinement-source-facts-v1.json",
+      "quantity": "sst_associated_coastal_confinement_scale",
+      "reported_extent_range_km": [10, 15],
+      "new_paired_current_width": false,
+      "next_action": "Review and append cross-shore context; retain the SST proxy and distinguish SJC from SJUC."
+    },
+    {
+      "entity_id": "current:west-india-coastal",
+      "decision": "primary_winter_abstract_lead_full_source_pending",
+      "source_doi": "10.1016/0198-0149(91)90087-V",
+      "source_title": "The coastal current off western India during the northeast monsoon",
+      "source_url": "https://www.sciencedirect.com/science/article/abs/pii/019801499190087V",
+      "source_access": "Primary-publisher abstract available through indexed text; live publisher retrieval returned403. NIO repository search returned a bot challenge; not solved or bypassed.",
+      "abstract_reported_widths_not_admitted": [
+        {"latitude_degrees_north": 10, "approximate_width_km": 400},
+        {"latitude_degrees_north": 22, "approximate_width_km": 100}
+      ],
+      "reported_campaign": "December1987-January1988",
+      "prior_review_retained": "research/wicc-width-literature-discrepancy-review-v1.json",
+      "interpretation": "This winter primary abstract contains the numerical pair quoted by the thesis. It does not prove whether the thesis's1990 citation is wrong; the summer paper may discuss winter comparisons.",
+      "next_action": "Recover the original winter methods/figures through legitimate access; resolve regional definition and the later40km summary before width admission. Do not pool latitudes into a seasonal range."
+    },
+    {
+      "entity_id": "current:east-india-coastal",
+      "decision": "preserve_existing_scoped_width_and_add_continuity_followup",
+      "existing_width_admission_retained": "research/eicc-t24-published-width-admission-v1.json",
+      "additional_source_doi": "10.1029/2008JC004807",
+      "additional_source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2008JC004807",
+      "source_access": "Selected primary-publisher indexed text inspected; no new original custody or figure review.",
+      "finding": "Durand2009 distinguishes seasonal coherence from nonseasonal discontinuity and recirculation. Its150-200km loop scale is not a whole-current width or evidence of an uninterrupted axis.",
+      "next_action": "Keep the existing T24 width unchanged; require time/layer-compatible flow continuity before any alongshore route or annual geometry."
+    }
+  ],
+  "new_widths_admitted": 0,
+  "new_ranked_lengths_admitted": 0,
+  "new_raw_observations": 0,
+  "new_annual_ranges": 0,
+  "new_current_geometry_or_state_joins": 0,
+  "working_query_packet_changed": false,
+  "scientific_release_published": false,
+  "next_delivery_gate": "Review the prepared quantities as a batch, retain source hashes, then integrate accepted context through the preserved-source query-index delivery path."
+}

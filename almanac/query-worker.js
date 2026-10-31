@@ -1,4 +1,5 @@
 "use strict";
+importScripts('query-packet.js');
 // All record selection and joins run in Rust WASM, off the rendering thread.
 let engine=null;
 let engineBinary=null;
@@ -31,28 +32,43 @@ function commitJournal(journal,revision){return new Promise((resolve,reject)=>{
 });}
 function exported(name='osw_workspace_export'){engine[name]();return JSON.parse(decoder.decode(new Uint8Array(engine.memory.buffer,engine.osw_result_ptr(),engine.osw_result_len())));}
 async function refreshWorkspace(){if(!database)throw Error(workspaceError||'Workspace storage is unavailable');const result=invoke('osw_workspace_import',await readJournal());if(!result.ok)throw Error(result.error);return result;}
-async function load(){
+async function load(report=()=>{}){
+  const started=performance.now();let phaseStarted=started,phase='runtime-files';const completed=[];
+  const advance=next=>{const now=performance.now();completed.push({phase,elapsed_ms:now-phaseStarted});phase=next;phaseStarted=now;report({phase,elapsed_ms:now-started,completed_phases:completed.slice()});};
+  report({phase,elapsed_ms:0,completed_phases:[]});
   const fetchFile=async path=>{const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw Error(`${path}: HTTP ${r.status}`);return r;};
   const manifest=await (await fetchFile('query-engine.manifest.json')).json();
   if(manifest.schema!=='osw.query-engine-manifest.v1'||manifest.abi_version!==1)throw Error('Unsupported query engine manifest');
-  const [wasm,bundle]=await Promise.all(['query-engine.wasm','query-data.json'].map(async p=>(await fetchFile(p)).arrayBuffer()));
-  for(const [path,bytes] of [['almanac/query-engine.wasm',wasm],['almanac/query-data.json',bundle]]){
+  const [wasm,entry]=await Promise.all(['query-engine.wasm','query-data.json'].map(async p=>(await fetchFile(p)).arrayBuffer()));
+  for(const [path,bytes] of [['almanac/query-engine.wasm',wasm],['almanac/query-data.json',entry]]){
     if(await digest(bytes)!==manifest.sha256[path])throw Error(`Changed ${path}; rebuild the query snapshot and engine manifest`);
   }
-  const result=await WebAssembly.instantiate(wasm,{});engine=result.instance.exports;engineBinary=wasm;
+  advance('packet-and-compile');
+  // Compile the already hash-verified binary while the independently verified
+  // packet is fetched and joined. Neither can be used until both succeed.
+  const [bundle,module]=await Promise.all([
+    assembleQueryPacket(entry,async path=>(await fetchFile(path)).arrayBuffer(),digest,manifest.sha256),
+    WebAssembly.compile(wasm)
+  ]);
+  advance('instantiate');
+  const instance=await WebAssembly.instantiate(module,{});engine=instance.exports;engineBinary=wasm;
+  advance('rust-load');
   let metadata=invoke('osw_load',new Uint8Array(bundle));
   if(!metadata.ok)throw Error(metadata.error);
   bundleHash=metadata.bundle_sha256;
   sourceSnapshotBytes=bundle;
+  advance('workspace');
   try{database=await openDatabase();await refreshWorkspace();}catch(error){workspaceError=error.message;database=null;}
+  advance('metadata');
   metadata=exported('osw_metadata');
-  return {...metadata,workspace:exported(),workspace_available:!!database,workspace_error:workspaceError,wasm_sha256:manifest.sha256['almanac/query-engine.wasm'],bundle_sha256:bundleHash};
+  const loaded={...metadata,workspace:exported(),workspace_available:!!database,workspace_error:workspaceError,wasm_sha256:manifest.sha256['almanac/query-engine.wasm'],bundle_sha256:bundleHash};
+  advance('ready');return loaded;
 }
 self.onmessage=async event=>{
   const {id,action,value}=event.data;
   try{
     let result;
-    if(action==='load')result=await load();
+    if(action==='load')result=await load(value?.report_progress===true?progress=>self.postMessage({id,progress}):undefined);
     else if(!engine)throw Error('Rust engine is not loaded');
     else if(action==='query')result=invoke('osw_query',value);
     else if(action==='query_svg')result=invoke('osw_query_svg',value);
@@ -84,7 +100,7 @@ self.onmessage=async event=>{
       if(!database)throw Error(workspaceError||'Workspace storage unavailable');
       const journal=await readStored(value.bundle_sha256);if(!journal)throw Error('Saved journal not found');
       const snapshot=value.old_bundle?{bytes:value.old_bundle}:await readStored('~snapshot:'+value.bundle_sha256);
-      if(!snapshot?.bytes)throw Error('Matching old source snapshot is unavailable. Attach its query-data.json to preview a rebase.');
+      if(!snapshot?.bytes)throw Error('Matching old source snapshot is unavailable. Attach its exported complete source snapshot to preview a rebase.');
       const loaded=invoke('osw_rebase_source',new Uint8Array(snapshot.bytes));if(!loaded.ok)throw Error(loaded.error);
       if(loaded.bundle_sha256!==journal.bundle_sha256)throw Error('Attached source snapshot does not match the saved journal');
       rebaseRequest={journal,base_revision:exported().revision,transaction_id:crypto.randomUUID(),created_at:new Date().toISOString(),resolutions:{}};

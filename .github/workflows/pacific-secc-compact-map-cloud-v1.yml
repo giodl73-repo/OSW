@@ -1,0 +1,74 @@
+name: Verify compact Pacific SECC mobile maps on passed engine v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/pacific-secc-compact-map-request-v1.json
+      - .github/workflows/pacific-secc-compact-map-cloud-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  PYTHONPATH: analysis
+jobs:
+  compact-presentation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - id: request
+        name: Read compact presentation request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          r=json.loads(pathlib.Path('research/pacific-secc-compact-map-request-v1.json').read_bytes())
+          assert r['schema']=='osw.pacific-secc-compact-map-request.v1'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('enabled='+str(r['execute']).lower()+'\n')
+          PY
+      - name: Check retained vectors and presentation-only preservation
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_pacific_secc_compact_cloud_v1.py --preflight-only
+          taskset -c "$cpu" nice -n 15 python -m unittest test_pacific_secc_compact_map_v1.CompactMap -v
+      - name: Install cloud browser on one CPU
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0
+          taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
+      - name: Verify candidate artifact custody and actual high-DPI phone maps
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_pacific_secc_compact_cloud_v1.py
+      - name: Retain compact presentation evidence
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacific-secc-compact-map-evidence-v1
+          path: |
+            .pytest_cache/pacific-secc-compact-map-cloud-v1/*.json
+            .pytest_cache/pacific-secc-compact-map-cloud-v1/*.png
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90
+      - name: Retain exact presentation overlay files only in cloud
+        if: always() && steps.request.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pacific-secc-compact-map-overlay-v1
+          path: .pytest_cache/pacific-secc-compact-map-cloud-v1/artifact/**
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90

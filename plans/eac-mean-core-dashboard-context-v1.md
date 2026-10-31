@@ -1,0 +1,9 @@
+# EAC dashboard presentation correction
+
+The first cloud delivery passed 248 Rust tests, 99 main query and 35 source native/WASM whole-response comparisons, and three complete API comparisons. Its browser run timed out at dashboard initialization after seven desktop captures. The new dashboard fingerprint group and capability were incorrectly required on every entry, although the exact scientific contract adds them only to EAC.
+
+Allow absence of the new optional group and capability on unrelated entries. Validate their types and nonnegative integer count when present. Preserve all previously required fingerprint groups and capabilities. Keep every scientific entry unchanged; the EAC capability remains five sections. Add a small shared dashboard schema helper and load it before the dashboard consumer. Preserve the two previous dashboard assets verbatim.
+
+The presentation manifest revision must alter only the two dashboard asset hashes and one new helper hash, plus its own custody namespace. Preserve the saved logical packet, binary, source index, compiler proof, historical namespaces, and every other source pin. No native/WASM rebuild, new measurement, installation, main merge, or local bulk synchronization is authorized by this correction.
+
+Resume browser verification in one scoped cloud job using the exact saved candidate artifact, validating its metadata, ZIP hash, safe members, and member hashes. Repeat all 16 captures at 1100 and 320 pixels, including dashboard initialization and EAC-only updated indicators. Preserve the first failure and reports. On any failure, retain the current page, dashboard status, page errors, failed assets, and observations so a timeout does not hide its cause. Installation remains pending actual browser success and individual review of every retained image.

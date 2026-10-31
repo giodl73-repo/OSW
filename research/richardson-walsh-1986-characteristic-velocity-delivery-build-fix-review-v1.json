@@ -1,0 +1,12 @@
+{
+  "schema": "osw.characteristic-velocities-build-fix-review.v1",
+  "failed_run": 41002119867,
+  "failed_source": "c2aa7db5707c82b7fcc3a6b9397d769e77d7c9ca",
+  "evidence_artifact": 12953943144,
+  "evidence_sha256": "5a509752bd090279688e325ecfa8b2fa417b99d95da0d083e1d3444364dfbef5",
+  "cause": "object_view wrapped a Result<Value,String> in a Value-only projection and returned an unwrapped Value",
+  "fix": "Propagate the previous projection error with ? and return the new projection through Ok",
+  "installed": false,
+  "cloud_retry_required": true,
+  "full_goal_complete": false
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "osw.southern-current-width-source-limitations.v1",
+  "status": "source_review_registered_current_width_unresolved",
+  "as_of": "2026-10-17",
+  "sources": [
+    {
+      "source_document_file": "research/source-data/stramma-south-indian-1992/journal-article.pdf",
+      "source_document_sha256": "96b8af6dc2b3f3084fd65245a20564068b557bf200b50c48f53bd38b13761013",
+      "source_document_bytes": 916643,
+      "source_document_pages": 10,
+      "acquisition_file": "research/source-data/stramma-south-indian-1992/acquisition.json",
+      "acquisition_sha256": "074518ff869d2b3991f4fd3e8a9e23fe5c2456a18b4826334b540ee0ab61190e",
+      "source_url": "https://oceanrep.geomar.de/id/eprint/32119/1/1520-0485%281992%29022_0421_tsioc_2.0.co%3B2.pdf",
+      "review_scope": "Conclusion p430 visually reviewed; OCR across all10pages used for discovery only. Full original retained; full visual page-by-page review not claimed."
+    },
+    {
+      "source_document_file": "research/source-data/duran-southern-australia-2020/journal-article.pdf",
+      "source_document_sha256": "e110e867b50df35706d4786ea493d25b82cd03733c683725324db856bfeb401e",
+      "source_document_bytes": 13727485,
+      "source_document_pages": 20,
+      "acquisition_file": "research/source-data/duran-southern-australia-2020/acquisition.json",
+      "acquisition_sha256": "da9dc3556632806756c335f2a99c9f1b8117961b7f263813a629f98e57a740dd",
+      "source_url": "https://paulspence.github.io/files/1-s2.0-S0079661119304343-main.pdf",
+      "review_scope": "Original p17 AppendixB continuation/C visually reviewed; dataset and method context from parsed text. Full20-page visual review not claimed."
+    }
+  ],
+  "reviews": [
+    {
+      "current_id": "south-indian",
+      "source_index": 0,
+      "source_locator": "Conclusion, printed p430 / original PDF page10",
+      "finding": "The original study calls for closer station spacing to resolve width and seasonal variability. Width and annual range remain unresolved here.",
+      "whole_current_width_km": null,
+      "annual_width_range_km": null,
+      "new_width_record_admitted": false,
+      "cross_source_guard": {
+        "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/epdf/10.1029/96JC03455",
+        "source_locator": "Stramma and Lutjeharms (1997), printed p5525 / PDF page13",
+        "review_method": "Remote PDF parsed text; raw1997PDF and original page images not acquired.",
+        "contextual_value_km": 100,
+        "value_owner": "Agulhas Front latitudinal width, western basin",
+        "value_is_eastern_sioc_current_width": false
+      },
+      "next_required_evidence": "Resolved cross-current velocity boundaries at a stated time, layer and reference, with eastern SIOC identity checked. Keep the 80 E surface-component diagnostic separate."
+    },
+    {
+      "current_id": "south-australian",
+      "source_index": 1,
+      "source_locator": "AppendixB continuation and AppendixC, original p17; parsed dataset/method sections2.1-2.4",
+      "finding": "The paper uses fixed boxes around shelf-break currents to calculate transport. Those boxes do not provide measured current edges or seasonal width extrema.",
+      "control_volume_context": {
+        "north_latitude_offset_degrees": 0.375,
+        "south_latitude_offset_degrees": 0.375,
+        "reference_isobath_m": 700,
+        "reference_isobath_is_sampling_depth": false,
+        "geographic_scope": "Shelf-break control volume west of Portland; not whole southern-Australia system or whole South Australian Current.",
+        "offsets_are_physical_current_edges": false,
+        "kilometre_width_derived": false
+      },
+      "temporal_product_guard": "CARS annual mean and the final seven years of climatologically forced MOM01 are separate from the 2012 HYCOM profiles at 100 m and from calendar-year observations.",
+      "whole_current_width_km": null,
+      "annual_width_range_km": null,
+      "new_width_record_admitted": false,
+      "next_required_evidence": "Compatible boundaries for a stated time and layer, plus verified current association. Keep the 132 E, 100 m HYCOM component diagnostic separate."
+    }
+  ],
+  "source_figures_or_original_pdf_redistributed": false,
+  "prepared_for": "Current-card and query source context; no numeric gap marked filled.",
+  "measurement_coverage_counts_changed": false
+}

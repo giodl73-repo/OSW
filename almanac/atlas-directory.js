@@ -16,7 +16,7 @@ window.initAtlasDirectory = function(rows, api) {
   const items=[...rows].sort((a,b)=>a.label.localeCompare(b.label)).map(row=>{
     const current=row.type==='named_current';
     const roles=row.map_features.map(feature=>feature.role);
-    const evidence=current
+    const evidence=!roles.length?'Unlocated':current
       ? roles.includes('editorial_reference_route')?'Reference route'
         : roles.some(role=>role.startsWith('dated_'))?'Dated geometry':'Locator only'
       : roles.includes('shared_regional_gateway')?'Shared gateway'

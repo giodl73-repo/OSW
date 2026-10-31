@@ -1,0 +1,25 @@
+{
+  "schema": "osw.atlantic-nsec-reference-delivery-composition-failure.v1",
+  "source_commit": "ab03447a2df6e1af441d702fe81f7ca355094bc3",
+  "run_id": 41066580041,
+  "run_attempt": 1,
+  "conclusion": "failure",
+  "native_tests_passed": 314,
+  "failed_step": "complete candidate main load",
+  "stderr": "Invalid WICC winter regional reference projection",
+  "cause": "Older WICC guard required exactly 83 global reference routes; candidate has 85 after two fully validated nSEC routes.",
+  "correction": "Include the exact independently validated nSEC route contribution in the historical global count; retain all preceding WICC row, owner, source and method checks.",
+  "regression_coverage": "The existing nSEC fixture verifies its exact two-route contribution; every partial or promoted route mutation also refuses a count contribution. Full-packet composition is rerun unchanged.",
+  "presentation_correction": "Name the two nSEC tabs by their existing spring/fall route labels; preserve other tab behavior.",
+  "evidence_artifact": {
+    "id": 12983630887,
+    "bytes": 25109,
+    "sha256": "c407a4172bc1509f5fbc478b7429f3c7ceed2fe99169fceac03dfaeec74c0047"
+  },
+  "rust_tests_log_sha256": "8e5da4c436a62dd9bb7505491c5e74cb064b3f575fe5ea3642ed65077e8e1b52",
+  "failure_sha256": "6af51c318023d3bbf7adbacfc574f5e9f28261bf34fd1ae9244ebd169a904f80",
+  "preflight_sha256": "cf663a18bc110acf9b9047ba8934cd1c66edf1a929e3a30eb17a1b7028ea660c",
+  "installed": false,
+  "main_updated": false,
+  "local_bulk_sync": false
+}

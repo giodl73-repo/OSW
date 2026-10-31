@@ -1,0 +1,158 @@
+{
+  "schema": "osw.published-satellite-core-width-preparation.v1",
+  "current_id": "agulhas",
+  "entity_id": "current:agulhas",
+  "status": "ORIGINAL_REVIEWED_TWO_SCOPED_MEANS_PREPARED_NOT_INSTALLED",
+  "source": {
+    "doi": "10.1029/2012GL052335",
+    "title": "Satellite observations of an annual cycle in the Agulhas Current",
+    "authors": [
+      "M. Krug",
+      "J. Tournadre"
+    ],
+    "publication_date": "2012-08-09",
+    "journal": "Geophysical Research Letters39,L15607",
+    "url": "https://researchspace.csir.co.za/dspace/bitstream/10204/6522/1/Krug_2012.pdf",
+    "original_file": "research/source-data/agulhas-krug-2012/article.pdf",
+    "original_bytes": 4470345,
+    "original_sha256": "4345cbf32003a2effe9b6041ff742e69c931caec610a3addf435291f13ac59dc",
+    "acquisition_receipt": "research/source-data/agulhas-krug-2012/acquisition.json",
+    "pdf_pages_text_and_visually_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "source_figures_digitized": false,
+    "original_redistributed": false,
+    "rights": "Copyright AGU2012; institutional public access is not treated as a redistribution license."
+  },
+  "regional_support": {
+    "section": "Topex/Jason Track020 offshore Port Elizabeth",
+    "source_locator": "Section2 paragraphs3-4, PDF pages1-2; Figures1-2",
+    "orientation": "Source describes Track020 as almost perpendicular to the Agulhas Current; no exact flow-normal correction supplied.",
+    "geographic_section_coordinates": null,
+    "geographic_edge_coordinates": null,
+    "fixed_depth_level_m": null,
+    "fixed_depth_interval_m": null,
+    "feature": "Dynamical core; not the full extent of southwestward flow",
+    "sample_counts": null
+  },
+  "records": [
+    {
+      "id": "agulhas-krug-2012-altimetry-gaussian-core-mean-width",
+      "current_id": "agulhas",
+      "label": "Along-track altimetry Gaussian core",
+      "quantity": "author_reported_regional_mean_core_width",
+      "unit": "km",
+      "reported_mean_width_km": 64,
+      "reported_precision": "Integer kilometres as printed; no rounding allowance inferred",
+      "operator": "Gaussian fit to local southward across-track geostrophic velocity maximum, with shoreward and seaward edges described as plus/minus one fitted standard deviation.",
+      "operator_ambiguity_id": "krug-2012-gaussian-sigma-versus-half-maximum",
+      "dataset": "AVISO GDR along-track Topex and Jason1/2 absolute geostrophic velocity,1Hz,nominal5.8km; Lee-filtered ADT and velocity",
+      "source_time_description": "18-year altimetry record; overall variability study described as1992-2011",
+      "exact_mean_estimation_start": null,
+      "exact_mean_estimation_end": null,
+      "mean_core_distance_from_coast_km": 113,
+      "mean_landward_edge_distance_from_coast_km": 81,
+      "mean_seaward_edge_distance_from_coast_km": 145,
+      "source_locator": "Section3 paragraph5, PDF page2, right column; method Section2 paragraph4, PDF pages1-2",
+      "reported_width_uncertainty_km": null,
+      "reported_width_standard_deviation_km": null,
+      "annual_width_range_km": null,
+      "calendar_months": null,
+      "individual_width_observations": null,
+      "source_file": "research/agulhas-krug-2012-core-widths-source-facts-v1.json",
+      "source_pointer": "/records/0"
+    },
+    {
+      "id": "agulhas-krug-2012-sst-core-mean-width",
+      "current_id": "agulhas",
+      "label": "Sea-surface-temperature core",
+      "quantity": "author_reported_regional_mean_core_width",
+      "unit": "km",
+      "reported_mean_width_km": 80,
+      "reported_precision": "Integer kilometres as printed; no rounding allowance inferred",
+      "operator": "Local SST maximum bounded by neighboring SST minima, using five-day exponentially weighted SEVIRI SST maps extracted within a15km bandwidth along Track020.",
+      "operator_ambiguity_id": null,
+      "dataset": "Hourly SEVIRI SST on0.05degree grid, CERSAT product; five-day averages",
+      "source_time_description": "Close to seven years of high-frequency SST; exact width-mean estimation bounds unspecified",
+      "exact_mean_estimation_start": null,
+      "exact_mean_estimation_end": null,
+      "mean_core_distance_from_coast_km": 124,
+      "mean_landward_edge_distance_from_coast_km": 85,
+      "mean_seaward_edge_distance_from_coast_km": 165,
+      "source_locator": "Section3 paragraph5, PDF page2, right column; method Section2 paragraph4, PDF page2, left column",
+      "reported_width_uncertainty_km": null,
+      "reported_width_standard_deviation_km": null,
+      "annual_width_range_km": null,
+      "calendar_months": null,
+      "individual_width_observations": null,
+      "source_file": "research/agulhas-krug-2012-core-widths-source-facts-v1.json",
+      "source_pointer": "/records/1"
+    }
+  ],
+  "source_ambiguities": [
+    {
+      "id": "krug-2012-gaussian-sigma-versus-half-maximum",
+      "locator": "Section2 paragraph4, PDF page1 final lines, continuing on page2",
+      "source_issue": "The text describes the Gaussian-core edges both as plus/minus one fitted standard deviation and as a half-maximum region. These descriptions are not mathematically equivalent for a standard Gaussian.",
+      "handling": "Retain the published64km mean and both descriptions. Do not silently convert to FWHM, infer an exact velocity cutoff, or rerun a corrected estimator.",
+      "resolved": false
+    }
+  ],
+  "seasonality_finding": {
+    "claim": "The authors did not detect annual variations in dynamical-core width in their along-track altimetry and SST analyses.",
+    "locator": "Section3 paragraph5, PDF page3 final lines; Section5 paragraph10, PDF page5; abstract PDF page1",
+    "claim_kind": "source_reported_non_detection_in_regional_analysis",
+    "zero_seasonal_amplitude_claimed": false,
+    "width_constant_claimed": false,
+    "annual_range_known": false,
+    "context": "Rapid width changes and irregular offshore meanders are described. The seasonal cycle detected in core velocity is a different quantity."
+  },
+  "excluded_context": {
+    "core_position_standard_deviations_km": [
+      25,
+      30
+    ],
+    "position_standard_deviations_are_width_errors": false,
+    "sst_gradient_test_period": [
+      "2004-06",
+      "2011-10"
+    ],
+    "gradient_test_period_assigned_to_width_mean": false,
+    "merged_altimetry_third_width_record": false,
+    "mean_core_positions_are_width_midpoints": false
+  },
+  "eligibility": {
+    "prepared_scoped_width_summaries": 2,
+    "installed_width_records_added": 0,
+    "independent_width_observations_added": 0,
+    "whole_current_width": false,
+    "width_rank_eligible": false,
+    "seasonal_playback_eligible": false,
+    "confidence_interval_km": null,
+    "geometry": null,
+    "state_intersections": null,
+    "length_km": null,
+    "annual_width_range_km": null
+  },
+  "source_file": "research/agulhas-krug-2012-core-widths-source-facts-v1.json",
+  "visualization": {
+    "figure_file": "figures/agulhas-krug-2012-core-widths-v1.svg",
+    "quantity": "Two method-specific regional mean core widths; no annual or uncertainty range",
+    "geographic_geometry": null
+  },
+  "full_goal_complete": false,
+  "input_sha256": {
+    "analysis/build_agulhas_krug_2012_core_widths_v1.py": "860810cc91595caf04e03917f9709345356ab03e708b0af368c922015c73f434",
+    "analysis/test_agulhas_krug_2012_core_widths_v1.py": "b10deb222c9a69ba0d887c31a5b5e9a36989ee736288603ba3de2c70753892cb",
+    "plans/agulhas-krug-2012-core-widths-protocol-v1.md": "d69f34f487e1eb9ec800958992f42805bf82d7ca2c6050d1661cb3c81e1c7828",
+    "plans/ocean-current-width-measurement-protocol-v1.md": "1d4d577d8f3b422cf3252b973280cb7073bad7e3234bc40a2808bc16bda974bb",
+    "plans/published-prose-dimension-admission-protocol-v1.md": "b7193bdb4646472778713717cea509868ef59f2c86a5f1c2e8d30ab5b62a2d5a",
+    "research/agulhas-krug-2012-core-widths-source-facts-v1.json": "307c603c3b0604afc39d22fde86f9343de62a61f074dff416ca1c7644063ae7c",
+    "research/source-data/agulhas-krug-2012/acquisition.json": "4fcb668fdb397257de89b8ca31818db388cc0d099223ca50f3196a2a79f72909"
+  }
+}

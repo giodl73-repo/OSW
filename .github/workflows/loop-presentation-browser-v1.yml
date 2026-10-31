@@ -1,0 +1,60 @@
+name: Review Loop published evidence phone layout
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/loop-presentation-browser-request-v1.json
+      - .github/workflows/loop-presentation-browser-v1.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+
+jobs:
+  phone-layout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - id: request
+        name: Read static page review request
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          r=json.loads(pathlib.Path('research/loop-presentation-browser-request-v1.json').read_bytes())
+          assert type(r['execution_permitted']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('enabled='+str(r['execution_permitted']).lower()+'\n')
+          PY
+      - uses: actions/setup-python@v6
+        if: steps.request.outputs.enabled == 'true'
+        with:
+          python-version: "3.14.8"
+      - name: Install browser dependency on one CPU
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install playwright==1.58.0
+          taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
+      - name: Verify source and review two phone widths
+        if: steps.request.outputs.enabled == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_loop_presentation_cloud_v1.py --cloud-browser
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.request.outputs.enabled == 'true'
+        with:
+          name: loop-presentation-browser-evidence-v1
+          path: .pytest_cache/loop-presentation-browser-v1/
+          include-hidden-files: true
+          retention-days: 90
+          if-no-files-found: ignore

@@ -1,4 +1,5 @@
 """Prepare native-verified scope mutations without JavaScript numeric rewriting."""
+from query_packet import read_bundle_bytes
 import copy
 import hashlib
 import json
@@ -7,7 +8,7 @@ from test_rust_query_browser import ROOT,CLI
 
 
 def prepare(directory,mode):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     targets=[]
     cases=['count','date','depth'] if mode=='metadata' else ['value','depth','coverage','years','owner','collection']
     for case in cases:

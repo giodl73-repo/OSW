@@ -1,0 +1,60 @@
+{
+  "schema": "osw.current-store-load-profile-preparation-review.v1",
+  "status": "RUST_LOAD_IDENTIFIED_AS_COLD_ENTRY_BOTTLENECK_NATIVE_PROFILE_PREPARED",
+  "browser_source_commit": "6ed944c1450e782c544f8737cd0d9081c30660b2",
+  "browser_run_id": 41091681432,
+  "browser_run_attempt": 1,
+  "browser_artifact": {
+    "id": 12994847256,
+    "bytes": 417513,
+    "sha256": "d205107545988fe81f2c99d0c26d2ea837852e29a606f98895de7c3264606a71"
+  },
+  "actual_worker_progress": {
+    "phase": "rust-load",
+    "elapsed_ms": 8953.400000000023,
+    "completed_phases": [
+      {
+        "phase": "runtime-files",
+        "elapsed_ms": 1229.2000000000116
+      },
+      {
+        "phase": "packet-and-compile",
+        "elapsed_ms": 7690.799999999988
+      },
+      {
+        "phase": "instantiate",
+        "elapsed_ms": 33.40000000002328
+      }
+    ]
+  },
+  "load_deadline_ms": 90000,
+  "diagnosis": "The worker reached Rust loading after8953.4ms; Rust initialization did not complete before the unchanged90000ms atlas load deadline. Packet transport and compilation are no longer plausible explanations for the remainder of this run.",
+  "source_inspection": "Store::load invokes full validation for all admitted evidence and view projections. Source-count and identity helpers can invoke those full validators repeatedly; native inclusive timing and call counts will identify the dominant work before a semantic-preserving optimization.",
+  "profile_plan": {
+    "exact_saved_logical_sha256": "09b882c97c922a0643880885a6165388bf41b19903e72a6d9ca44437da1ed41e",
+    "native_only_instrumented_build": true,
+    "original_rust_sources_restored_after_compilation": true,
+    "parse_index_validation_and_spatial_stages_timed": true,
+    "checked_helper_calls_timed": true,
+    "metadata_session_timed": true,
+    "inclusive_nested_timings_not_additive": true,
+    "native_timings_not_browser_acceptance": true,
+    "production_engine_generated": false,
+    "wasm_build": false,
+    "browser": false,
+    "installation": false,
+    "max_cloud_jobs": 1,
+    "max_heavy_local_jobs": 0
+  },
+  "local_profile_scope_tests_passed": 4,
+  "actual_failure_image": {
+    "path": "browser-failure.png",
+    "sha256": "adbdaa6cee7b017372776bfc24e50ef997fd301f847460a6ff528e8750fad5e6",
+    "actually_viewed_individually": true,
+    "visual_observation": "OSW global background is visible; current selection, route geometry and width inventory remain unavailable after the explicit load timeout."
+  },
+  "browser_review_complete": false,
+  "installed": false,
+  "main_updated": false,
+  "full_goal_complete": false
+}

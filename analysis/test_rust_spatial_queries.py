@@ -1,4 +1,5 @@
 """Independent Shapely oracle for Rust topology on actual OSW source shapes."""
+from query_packet import read_bundle_bytes
 import json
 import subprocess
 from pathlib import Path
@@ -55,7 +56,7 @@ def native(query):
 
 
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_text(encoding='utf-8'))
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     assert build()==bundle, 'Stale or nondeterministic snapshot'
     states=load_states()
     count=0

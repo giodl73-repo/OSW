@@ -1,0 +1,164 @@
+name: Sequential Indian coastal context candidate
+
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/current-gap-delivery-phase.json
+      - .github/workflows/indian-coastal-context-candidate.yml
+
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  CARGO_BUILD_JOBS: "1"
+  CARGO_INCREMENTAL: "0"
+  RUSTUP_TOOLCHAIN: "1.95.0"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  select-phase:
+    runs-on: ubuntu-latest
+    outputs:
+      phase: ${{ steps.phase.outputs.phase }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/current-gap-delivery-phase.json
+      - id: phase
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          phase = json.loads(pathlib.Path('research/current-gap-delivery-phase.json').read_bytes())
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
+              stream.write('phase=' + phase['phase'] + '\n')
+          PY
+  candidate-and-views:
+    needs: select-phase
+    if: needs.select-phase.outputs.phase == 'indian-coastal-context-v1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Require serialized candidate phase and committed source inputs
+        run: |
+          python - <<'PY'
+          import hashlib, json, os, pathlib, sys
+          assert os.environ['GITHUB_REF'] == 'refs/heads/codex/current-measurement-gaps'
+          phase = json.loads(pathlib.Path('research/current-gap-delivery-phase.json').read_bytes())
+          assert phase['phase'] == 'indian-coastal-context-v1' and phase['heavy_work_permitted'] is True
+          sys.path.insert(0, 'analysis')
+          from indian_coastal_dimension_context_v1 import evidence
+          evidence()
+          pins = json.loads(pathlib.Path('research/west-greenland-core-width-preflight-v1.json').read_bytes())['input_sha256']
+          assert len(pins) == 31
+          for path, sha in pins.items():
+              assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest() == sha, path
+          PY
+      - name: Install pinned dependencies
+        run: python -m pip install -r requirements-test.txt
+      - name: Check source scope, candidate preservation and resource refusal
+        run: >-
+          python -m pytest -q analysis/test_indian_coastal_dimension_context_v1.py
+          analysis/test_indian_coastal_context_candidate.py
+          analysis/test_indian_coastal_context_export.py
+          analysis/test_current_gap_index_extension.py
+      - name: Install pinned Rust toolchain
+        run: rustup toolchain install 1.95.0 --profile minimal --component rustfmt --target wasm32-unknown-unknown
+      - name: Format only the changed operational runtime files before export
+        run: >-
+          rustfmt --edition 2024 --config skip_children=true
+          rust/osw-query/src/lib.rs rust/osw-query/src/indian_coastal_context.rs
+      - name: Retain actual runtime bytes for candidate reproducibility
+        uses: actions/upload-artifact@v4
+        with:
+          name: indian-coastal-formatted-runtime
+          path: |
+            rust/osw-query/src/lib.rs
+            rust/osw-query/src/indian_coastal_context.rs
+      - name: Export one preserved complete-parent candidate
+        run: python analysis/export_indian_coastal_context_candidate.py --cloud-candidate
+      - name: Retain candidate audit before compilation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: indian-coastal-candidate-audit
+          path: .pytest_cache/indian-coastal-context-candidate/result.json
+          include-hidden-files: true
+          if-no-files-found: ignore
+      - name: Retain candidate data without source originals
+        uses: actions/upload-artifact@v4
+        with:
+          name: indian-coastal-derived-candidate
+          path: .pytest_cache/indian-coastal-context-candidate/artifact/
+          include-hidden-files: true
+          compression-level: 1
+          if-no-files-found: error
+      - name: Fetch locked dependencies
+        run: cargo fetch --locked --manifest-path rust/osw-query/Cargo.toml
+      - name: Validate native code then compile the same engine to WASM
+        run: python analysis/build_rust_query_engine.py
+      - name: Retain the matching compiled engine
+        uses: actions/upload-artifact@v4
+        with:
+          name: indian-coastal-query-engine
+          path: |
+            almanac/query-engine.wasm
+            almanac/query-engine.manifest.json
+          compression-level: 1
+      - name: Install one browser after compilation finishes
+        run: python -m playwright install --with-deps chromium
+      - name: Check exact new contexts, both cards, source index and phone navigation
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_indian_coastal_context_browser.py
+      - name: Retain focused card and source evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: indian-coastal-browser-receipts
+          path: .pytest_cache/indian-coastal-context-browser/
+          include-hidden-files: true
+          if-no-files-found: ignore
+      - name: Preserve existing cards, all current identities and the complete atlas
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_current_gap_admission_browser.py test_baffin_bound_browser.py
+          test_davidson_reported_width_browser.py test_published_regional_reaches_browser.py
+          test_nwasc_working_admission_browser.py test_nwasc_reference_route_browser.py
+          test_rust_atlas_snapshot_browser.py
+      - name: Run all fourteen existing source-matrix gates sequentially
+        run: >-
+          python analysis/run_rust_query_browser_checks.py --start-server --only-check
+          test_redsox_station_support_query_browser.py
+          test_caribbean_ru29_query_browser.py test_caribbean_ru29_source_browser.py
+          test_ke_length_series_browser.py test_labrador_gate_bound_browser.py
+          test_angola_nansen_sections_browser.py test_angola_nansen_query_browser.py
+          test_redsox_station_support_browser.py test_current_gap_source_query_browser.py
+          test_south_indian_front_level_browser.py test_south_indian_front_level_query_browser.py
+          test_south_indian_front_property_browser.py test_south_indian_front_property_query_browser.py
+          test_indian_secc_source_boundary_browser.py
+      - name: Retain preceding card and atlas receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: indian-coastal-prior-card-receipts
+          path: |
+            .pytest_cache/current-gap-admission/browser/
+            .pytest_cache/baffin-bound-browser/
+            .pytest_cache/davidson-reported-width-browser/
+            .pytest_cache/rust-atlas-snapshot-browser/
+          include-hidden-files: true
+          if-no-files-found: ignore

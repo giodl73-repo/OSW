@@ -1,0 +1,63 @@
+{
+  "schema": "osw.wicc-review-width-runtime-contract.v1",
+  "status": "RUNTIME_SOURCE_PREPARATION_CLOUD_VERIFICATION_PENDING",
+  "parent_checkpoint": "research/current-measurement-coverage-checkpoint-v8.json",
+  "parent_logical_sha256": "b7884cb7b9febf250c73d2402754f2794598d472b7687f45b9a57555691ab017",
+  "parent_engine_manifest_sha256": "924a379214df55974f9fbc1dfba6f080c8a8ab5ad80a5c129b2f8044f9101a29",
+  "source_file": "research/wicc-vinayachandran-2021-surface-width-source-facts-v1.json",
+  "owner": "current:west-india-coastal",
+  "record_id": "wicc-vinayachandran-2021-review-surface-width",
+  "quantity": "One approximately150km surface-current width explicitly described by the original2021 review, citing earlier ship observations. The cited1990 methods are not deemed reviewed.",
+  "preservation": {
+    "prior_width_records": 174,
+    "expected_width_records_after": 175,
+    "prior_width_owners": 87,
+    "expected_width_owners_after": 88,
+    "prior_source_strings_byte_exact": 630,
+    "expected_indexed_documents_after": 631,
+    "all_prior_collections_and_records_preserved": true,
+    "historical_dashboard_receipt_unchanged": true,
+    "only_allowed_object_changes": "WICC width_ids empty to the exact new ID; scoped_width0 to1; source-bound object and measurement fingerprints. Every other field and owner remains unchanged.",
+    "existing_agulhas_four_width_records_and_update_fingerprints_preserved": true
+  },
+  "query_requirements": [
+    "Exact new-ID, owner, source and zero-match filters; sorting and pagination preserve the exact source-bound row.",
+    "Filtered scenes include only the new width when it matches; unrelated queries produce no review-width scene.",
+    "Source queries at root and records/0 preserve the original facts, lineage and null support.",
+    "The old unfiltered width-count expectation is updated only for the exact one-row append; historical case files remain unchanged.",
+    "Run the full Rust library suite and complete native/WASM response comparisons in one cloud job.",
+    "Verify compile-time catalog mismatch refusal and every original source string's preservation."
+  ],
+  "snapshot_requirements": {
+    "complete_apis": ["atlas", "seasons", "dashboard"],
+    "new_scene_field": "review_cited_width_scenes/west-india-coastal",
+    "supplemental_widths": "Exactly one new row; removing it reproduces the complete prior sequence.",
+    "admitted_current_decisions": "Only WICC gains the exact width ID and review_cited_scoped_width_admitted status.",
+    "atlas_source_strings": "Only the embedded dashboard presentation changes, by the exact new WICC projection. Preserve every other string.",
+    "seasonal_source_strings": "Unchanged.",
+    "seasonal_plan": "Exactly one static WICC evidence state, with no eligible playback steps. All other plans remain unchanged.",
+    "dashboard": "Preserve the prior Agulhas projection. Derive WICC capability and fingerprints, snapshot fingerprint and explicit provenance marker; preserve other rows."
+  },
+  "visual_requirements": [
+    "Query, selected atlas and seasonal cards show about150km, review-cited provenance and unresolved original methods.",
+    "Keep exact dates, numerical width depth, paired edges and uncertainty unknown. Do not assign the nearby top100m upwelling description as a width layer.",
+    "Show a discrete approximate-width marker, with no error bar or seasonal interval.",
+    "Inspect links reach the exact width record; Source links reach records/0; Original review links preserve the public citation.",
+    "Dashboard lights up WICC with Measurements changed and1 scoped-width record against the parent baseline.",
+    "Review actual desktop and320px screenshots, card clipping, text readability, navigation and disabled seasonal playback."
+  ],
+  "new_independent_observations": 0,
+  "new_width_samples": 0,
+  "new_length_records": 0,
+  "new_geographic_geometry": 0,
+  "planned_rust_tests": 230,
+  "planned_compiled_rust_sources": 105,
+  "planned_compile_time_data_files": 155,
+  "max_cloud_jobs": 1,
+  "max_heavy_local_jobs": 0,
+  "source_field_processing_permitted": false,
+  "main_merge_permitted": false,
+  "local_bulk_preview_sync_permitted": false,
+  "installed": false,
+  "full_goal_complete": false
+}

@@ -1,0 +1,114 @@
+name: Continue saved EACC source cohort v2
+
+"on":
+  workflow_call:
+
+# The sole Davidson caller holds osw-current-gap-delivery for this entire job.
+permissions:
+  contents: read
+  actions: read
+
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+
+jobs:
+  continue-source-and-diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/current-gap-delivery-phase.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.14.8"
+      - name: Restore only the committed continuation and original scientific inputs
+        run: |
+          python - <<'PY'
+          import hashlib, json, os, pathlib, re, subprocess
+          root = pathlib.Path.cwd()
+          phase_path = 'research/current-gap-delivery-phase.json'
+          raw = (root / phase_path).read_bytes()
+          phase = json.loads(raw)
+          assert os.environ['GITHUB_REF'] == 'refs/heads/codex/current-measurement-gaps'
+          assert phase['phase'] == 'eacc-source-resume-v2' and phase['heavy_work_permitted'] is True
+          assert phase['max_heavy_cloud_jobs'] == 1 and phase['max_heavy_local_jobs'] == 0
+          path = phase['preflight']
+          assert re.fullmatch(r'research/eacc-hycom-source-resume-preflight-v[1-9]\d*(?:-case[1-9]\d*)?\.json', path)
+          assert subprocess.check_output(['git','show','HEAD:'+phase_path]) == raw
+          subprocess.run(['git','sparse-checkout','set','--no-cone',phase_path,path],check=True)
+          preflight_raw = (root / path).read_bytes()
+          assert hashlib.sha256(preflight_raw).hexdigest() == phase['preflight_sha256']
+          assert subprocess.check_output(['git','show','HEAD:'+path]) == preflight_raw
+          pins = json.loads(preflight_raw)['input_sha256']
+          assert 40 <= len(pins) <= 100
+          for name in pins:
+              assert name and not name.startswith('-') and (root/name).resolve().is_relative_to(root)
+          subprocess.run(['git','sparse-checkout','set','--no-cone',phase_path,path,*sorted(pins)],check=True)
+          for name, expected in pins.items():
+              assert hashlib.sha256((root/name).read_bytes()).hexdigest() == expected, name
+          PY
+      - name: Install the unchanged pinned environment from binary wheels
+        run: |
+          python -m pip install --only-binary=:all: -r requirements-eacc-core-v2-execution-v2.txt
+      - name: Check original rules and saved-cohort continuation with synthetic bodies
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pytest -q analysis/test_eacc_hycom_source_selection_v1.py analysis/test_eacc_hycom_source_compilation_v1.py analysis/test_eacc_model_core_seed_v2.py analysis/test_eacc_model_core_diagnostic_v2.py analysis/test_eacc_hycom_cloud_acquisition_v2.py analysis/test_eacc_model_core_figures_v1.py analysis/test_eacc_hycom_source_resume_v1.py analysis/test_run_eacc_hycom_source_resume_v2.py
+      - name: Verify the complete gate before restoring original velocity bodies
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/run_eacc_hycom_source_resume_v2.py --verify-cloud-gate
+      - id: basis
+        name: Bind the exact reviewed artifact identity
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json, os, pathlib, re, subprocess, sys
+          root = pathlib.Path.cwd()
+          phase = json.loads((root/'research/current-gap-delivery-phase.json').read_bytes())
+          preflight = json.loads((root/phase['preflight']).read_bytes())
+          review = json.loads((root/preflight['source_review']).read_bytes())
+          artifact = review['artifact']
+          assert type(artifact['id']) is int and artifact['id'] > 0
+          assert re.fullmatch(r'[A-Za-z0-9._-]{1,100}', artifact['name'])
+          assert type(review['run_id']) is int and review['run_id'] > 0
+          assert type(review['run_attempt']) is int and review['run_attempt'] > 0
+          response = subprocess.check_output(['gh','api','repos/'+os.environ['GITHUB_REPOSITORY']+'/actions/artifacts/'+str(artifact['id'])])
+          sys.path.insert(0, str(root/'analysis'))
+          from run_eacc_hycom_source_resume_v2 import verify_artifact
+          verify_artifact(json.loads(response), review)
+          target = root/'.pytest_cache/eacc-resume-artifact-metadata.json'
+          target.parent.mkdir(exist_ok=True)
+          target.write_bytes(response)
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:
+              stream.write('run_id='+str(review['run_id'])+'\n')
+              stream.write('name='+artifact['name']+'\n')
+              stream.write('root=run-'+str(review['run_id'])+'-attempt-'+str(review['run_attempt'])+'\n')
+          PY
+      - name: Restore the saved source artifact in the cloud only
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ steps.basis.outputs.name }}
+          run-id: ${{ steps.basis.outputs.run_id }}
+          github-token: ${{ github.token }}
+          path: .pytest_cache/eacc-source-resume-basis
+      - name: Reuse validated successes and request only remaining source chunks
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/run_eacc_hycom_source_resume_v2.py --cloud-continue --basis ".pytest_cache/eacc-source-resume-basis/${{ steps.basis.outputs.root }}"
+      - name: Retain source lineage, failures, full diagnostic and compact review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eacc-source-resume-v2
+          path: .pytest_cache/eacc-source-resume-v2/
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 90
+          compression-level: 0

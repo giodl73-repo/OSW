@@ -1,0 +1,33 @@
+{
+  "schema": "osw.satellite-core-width-failure-review.v4",
+  "run_id": 40636311106,
+  "run_attempt": 1,
+  "source_commit": "bf3ae1a9cdf1811088be3e08b522b882df759b0d",
+  "status": "223_RUST_TESTS_NATIVE_WASM_QUERY_PARITY_PASS_ATLAS_SNAPSHOT_PRESERVATION_CHECK_FAILED",
+  "artifact": {
+    "id": 12793684700,
+    "bytes": 33177,
+    "sha256": "b73b157940af98e35de62b60133a3b60fdef0d2b9bdd47d648a0ee9358d8e453"
+  },
+  "rust_tests_passed": 223,
+  "native_build_passed": true,
+  "wasm_build_passed": true,
+  "captured_failure": "Prior snapshot field changed: sources_json",
+  "source_review_finding": "Atlas embeds dashboard_snapshot.snapshot_json in sources_json under research/ocean-motion-dashboard.json. The newly derived dashboard changes that exact entry. Permit only the independently reconstructed dashboard projection; all other source strings remain byte-exact. Seasonal source strings remain unchanged.",
+  "complete_api_parity_verified": false,
+  "browser_verified": false,
+  "retained_evidence_sha256": {
+    "research/satellite-core-width-failed-run-v4/compile-inventory.json": "a2f4f7958c9f244d1bcd781132c8e915bf07635b359a933c6cfd3dbe75a40600",
+    "research/satellite-core-width-failed-run-v4/dependency-proof.json": "2b4b3eabe534f4b3f2fe8c74713da0b2ff99b6684b046bb280e66dffe1d4b99e",
+    "research/satellite-core-width-failed-run-v4/engine-failure.json": "5f84c4fc90ea2b8777d3391725d18b7904decf87c11d084b2a378878ad461878",
+    "research/satellite-core-width-failed-run-v4/index-parity.json": "c302fb381c710962904c12997ce261bae15da674f866dca8ca64531aecd34f36",
+    "research/satellite-core-width-failed-run-v4/main-parity.json": "ac0d9fe04fc57068dd85ba542079000268c1e1167ee25d3424965035887b79d8",
+    "research/satellite-core-width-failed-run-v4/parent-snapshots.json": "97f554997e9b239d4aec2b3a8be26d28fefb621b726cdbc5b2dab3b6e3d091ca",
+    "research/satellite-core-width-failed-run-v4/parent-speeds.json": "f0585656c93fd4d10d06c2532e63c7bc75a1645021d2317d2b445be5abaa4f74",
+    "research/satellite-core-width-failed-run-v4/rust-tests.txt": "d4a33ea96bb9c2d50ee005a1bba932d5000bce414545af2c39e4801e5c934af4",
+    "research/satellite-core-width-failed-run-v4/source-index-audit.json": "9aadef45ca3ceea052e94e1c33614ebb284510cd60fd68b716dd04e65563aae3"
+  },
+  "installed": false,
+  "new_installed_width_records": 0,
+  "full_goal_complete": false
+}

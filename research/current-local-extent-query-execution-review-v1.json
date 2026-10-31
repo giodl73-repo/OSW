@@ -1,0 +1,112 @@
+{
+  "schema": "osw.current-local-extent-query.execution-review.v1",
+  "status": "NATIVE_AND_WASM_SCOPED_QUERIES_VERIFIED_GENERAL_ENGINE_TOO_LARGE_FOR_LIGHTWEIGHT_UI_DELIVERY",
+  "run_id": 40131603572,
+  "run_attempt": 2,
+  "job_id": 120984471547,
+  "source_commit": "469b25bdeaa57ef93706fe524ce0df4191852cba",
+  "run_conclusion": "success",
+  "queue_history": {
+    "attempt1": "terminal_cancelled_with_zero_jobs_before_execution",
+    "attempt2": "rerun_after_shared_queue_cleared; actual_success"
+  },
+  "artifact": {
+    "id": 12574929493,
+    "node_id": "MDg6QXJ0aWZhY3QxMjU3NDkyOTQ5Mw==",
+    "name": "current-local-extent-query-check-v1",
+    "size_in_bytes": 9030795,
+    "url": "https://api.github.com/repos/giodl73-repo/OSW/actions/artifacts/12574929493",
+    "archive_download_url": "https://api.github.com/repos/giodl73-repo/OSW/actions/artifacts/12574929493/zip",
+    "expired": false,
+    "digest": "sha256:80194e96bbb850037b1688562adb520fecc16784251a8724ad40ade42aa8eefd",
+    "created_at": "2026-10-24T20:56:25Z",
+    "updated_at": "2026-10-24T20:56:25Z",
+    "expires_at": "2027-01-22T20:51:34Z",
+    "workflow_run": {
+      "id": 40131603572,
+      "repository_id": 1341993207,
+      "head_repository_id": 1341993207,
+      "head_branch": "codex/current-measurement-gaps",
+      "head_sha": "469b25bdeaa57ef93706fe524ce0df4191852cba"
+    }
+  },
+  "verified_cloud_gate": {
+    "schema": "osw.current-local-extent-query-check.gate.v1",
+    "source_commit": "469b25bdeaa57ef93706fe524ce0df4191852cba",
+    "run_id": 40131603572,
+    "run_attempt": 2,
+    "preflight_sha256": "27b3f145e96db90b107f8b4a46f36a325619e027e93f51467366e88da529eb93",
+    "reviewed_parent": "e38e7198b1c1d85bfbdec363e3d0420ea1bd93b2",
+    "verified_inputs": 14,
+    "executed_inputs_unchanged": 83,
+    "complete_atlas_load_permitted": false,
+    "source_processing_permitted": false,
+    "installed_assets_change_permitted": false
+  },
+  "native_tests": {
+    "passed": 7,
+    "failed": 0,
+    "seconds": 0.11,
+    "other_tests_filtered_out": 176
+  },
+  "cloud_control_tests": {
+    "passed": 6,
+    "seconds": 0.171
+  },
+  "compiler": "rustc 1.95.0 (59807616e 2026-04-14)",
+  "node_version": "v24.21.0",
+  "query_parity": {
+    "checks": 10,
+    "case_and_record_resolution_verified": true,
+    "failed_reload_invalidates_scope": true,
+    "primary_fine_core_matches": 12,
+    "primary_coarse_missing_matches": 6,
+    "null_physical_width_matches": 864,
+    "zero_physical_width_matches": 0
+  },
+  "scalar_snapshot": {
+    "bytes": 835839,
+    "sha256": "e4ca7c532c39d22efc2d6600a89424f48558669fe6e6682b1c6ec9442d00cdf8"
+  },
+  "compiled_engine": {
+    "bytes": 59201757,
+    "sha256": "e5d119b8978e24469ed31fa2f9e0fb826c76df40dc8c7c51f93a74cef179486f",
+    "local_downloaded": false,
+    "delivery_decision": "Retain remotely. Produce a dedicated smaller target with the shared scalar query semantics before UI delivery."
+  },
+  "bounded_readback": {
+    "actual_range_bytes_transferred": 1623,
+    "compiled_engine_downloaded": false,
+    "source_arrays_downloaded": false,
+    "complete_atlas_downloaded": false,
+    "member_fingerprints": {
+      "gate.json": {
+        "bytes": 514,
+        "sha256": "d2fdeb6ae412ab020b82efb61abcde6afd0fe6b4f0055ab51cc1060b4f40e076"
+      },
+      "parity.json": {
+        "bytes": 1608,
+        "sha256": "30ce9dc2e9e09ea3203ccba386d5971c99d15e14b081f883a74c08ec6ff65172"
+      },
+      "rust-version.txt": {
+        "bytes": 36,
+        "sha256": "f4d034f5660bb49f22bfcba3f3445be67e25b704c193ff421b53863b4faee148"
+      }
+    }
+  },
+  "full_atlas_runtime_loaded": false,
+  "full_atlas_regression_verified": false,
+  "original_executed_scientific_inputs_unchanged": 83,
+  "compiled_query_inputs_unchanged_at_review": 14,
+  "build_request_disabled": true,
+  "disabled_source_commit": "a99bf3a9994b42386a9644507cd5870c04ae3188",
+  "original_source_processing_permitted": false,
+  "new_provider_requests": 0,
+  "new_physical_widths_admitted": 0,
+  "physical_state_joins_admitted": false,
+  "query_worker_ui_wired": false,
+  "compiled_engine_installed": false,
+  "installed_atlas_packet_updated": false,
+  "main_merged": false,
+  "next_action": "Build a dedicated small WASM target sharing scalar filtering/sorting/paging. Retain this verified full-engine artifact as parity baseline. Verify on the same835839-byte snapshot and failed-load/unsupported-join cases, then wire the worker/UI. Keep local compilation, original-source processing and full index loads off."
+}

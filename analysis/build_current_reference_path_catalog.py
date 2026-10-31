@@ -40,6 +40,19 @@ def validate_source_receipt(record: dict, root: Path = ROOT) -> dict[str, str]:
         raise ValueError('Reference-route source receipt ownership or original mismatch')
     if acquisition['bytes'] != (root / receipt['source_document_file']).stat().st_size:
         raise ValueError('Reference-route original byte count mismatch')
+    for extra in audit.get('supporting_originals', []):
+        for kind in ['source_document', 'acquisition']:
+            path = extra[kind + '_file']
+            resolved = (root / path).resolve()
+            resolved.relative_to(root.resolve())
+            pin = hashlib.sha256(resolved.read_bytes()).hexdigest()
+            if pin != extra[kind + '_sha256']:
+                raise ValueError('Changed supporting reference-route original: ' + path)
+            pins[path] = pin
+        document = root / extra['source_document_file']
+        extra_receipt = json.loads((root / extra['acquisition_file']).read_bytes())
+        if document.stat().st_size != extra['source_document_bytes'] or extra_receipt['bytes'] != document.stat().st_size or extra_receipt['sha256'] != extra['source_document_sha256'] or extra_receipt['source_url'] != extra['source_url']:
+            raise ValueError('Supporting reference-route receipt mismatch')
     return pins
 
 

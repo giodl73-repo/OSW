@@ -1,0 +1,14 @@
+{
+  "schema": "osw.published-current-speed-query-cases.v1",
+  "status": "PREPARED_NOT_EXECUTED_AGAINST_NATIVE_OR_WASM",
+  "cases": [
+    {"name":"all-regional-statistics","query":{"collection":"current_speed_statistics","limit":100},"expected_total":15,"expected_scene_kind":"published_current_speed_statistics"},
+    {"name":"monthly-in-calendar-order","query":{"collection":"current_speed_statistics","filters":[{"field":"statistic_period","op":"eq","value":"monthly"}],"sort":{"field":"month","direction":"asc"},"limit":100},"expected_total":12,"expected_first_id":"eacc-pemba-semba-2019-month-01-speed","expected_last_id":"eacc-pemba-semba-2019-month-12-speed"},
+    {"name":"seasonal-medians","query":{"collection":"current_speed_statistics","filters":[{"field":"statistic_period","op":"eq","value":"seasonal"}],"sort":{"field":"median","direction":"desc"},"limit":100},"expected_total":3,"expected_first_id":"eacc-pemba-semba-2019-se-speed"},
+    {"name":"april-inspection","query":{"collection":"current_speed_statistics","filters":[{"field":"id","op":"eq","value":"eacc-pemba-semba-2019-month-04-speed"}],"limit":100},"expected_total":1,"expected_median":1.13,"expected_scene_records":1},
+    {"name":"ne-conflict-preserved","query":{"collection":"current_speed_statistics","filters":[{"field":"season","op":"eq","value":"NE"}],"limit":100},"expected_total":1,"expected_minimum":0.05,"expected_source_conflicts":true},
+    {"name":"other-current-empty","query":{"collection":"current_speed_statistics","filters":[{"field":"current_id","op":"eq","value":"agulhas"}],"limit":100},"expected_total":0,"expected_scene":null},
+    {"name":"pagination-does-not-truncate-comparison-support","query":{"collection":"current_speed_statistics","filters":[{"field":"statistic_period","op":"eq","value":"monthly"}],"sort":{"field":"month","direction":"asc"},"offset":1,"limit":2},"expected_total":12,"expected_returned_rows":2,"expected_first_id":"eacc-pemba-semba-2019-month-02-speed","expected_scene_records":12}
+  ],
+  "required_execution": "Check assertions against actual native responses, then compare entire native and WASM responses for each case. Test atlas and seasons complete APIs separately."
+}

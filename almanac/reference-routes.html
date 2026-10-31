@@ -16,14 +16,29 @@
   <script src="atlas-seasonal-width-profile.js?v=checked-3" defer></script>
   <script src="atlas-state-navigation.js?v=review-2" defer></script>
   <script src="atlas-directory.js?v=state-map-3" defer></script>
-  <script src="stream-tube-width-chart.js?v=1" defer></script><script src="abstract-regional-width-chart.js?v=1" defer></script><script src="seasonal-regional-width-chart.js?v=1" defer></script><script src="model-regional-width-chart.js?v=1" defer></script><script src="dwbc-float-composite.js?v=1" defer></script><script src="coastal-composite-widths.js?v=1" defer></script><script src="original-regional-width-chart.js?v=6" defer></script><script src="modal-decay-width-chart.js?v=1" defer></script><script src="pacific-neuc-breadths.js?v=1" defer></script><script src="published-section-transports.js?v=1" defer></script><script src="atlas-width-evidence.js?v=10" defer></script>
-  <script src="reference-route-atlas.js?v=rust-map-44" defer></script>
+  <script src="stream-tube-width-chart.js?v=1" defer></script><script src="abstract-regional-width-chart.js?v=1" defer></script><script src="seasonal-regional-width-chart.js?v=1" defer></script><script src="model-regional-width-chart.js?v=1" defer></script><script src="dwbc-float-composite.js?v=1" defer></script><script src="coastal-composite-widths.js?v=1" defer></script><script src="original-regional-width-chart.js?v=gulf-stream-definitions-1" defer></script><script src="modal-decay-width-chart.js?v=1" defer></script><script src="pacific-neuc-breadths.js?v=1" defer></script><script src="azores-2009-section.js?v=1" defer></script><script src="published-section-transports.js?v=1" defer></script><script src="cited-width-constraints.js?v=nsec-width-bound-1" defer></script><script src="review-cited-widths.js?v=1" defer></script><script src="satellite-core-widths.js?v=1" defer></script><script src="published-current-speeds.js?v=characteristic-1" defer></script><script src="mean-core-sections.js?v=1" defer></script><link rel="stylesheet" href="surface-product-axes.css?v=2"><script src="surface-product-axes.js?v=2" defer></script><link rel="stylesheet" href="regional-model-lengths.css?v=2"><script src="regional-model-lengths.js?v=2" defer></script><script src="regional-model-atlas.js?v=1" defer></script><script src="current-dimension-evidence.js?v=core-dimensions-1" defer></script><script src="atlas-width-evidence.js?v=reference-profiles-1" defer></script>
+  <script src="reference-route-text.js?v=2" defer></script>
+  <script src="reference-route-atlas.js?v=product-axes-1" defer></script>
   <script src="qualitative-current-calendar.js?v=1" defer></script>
   <script src="atlantic-euc-section-properties.js?v=2" defer></script>
-  <script src="reference-routes.js?v=rust-map-30" defer></script>
+  <script src="reference-routes.js?v=nsec-width-cards-2" defer></script>
   <script src="atlas-presentation.js?v=1" defer></script>
   <style>
     .route-map { display:block;width:100%;max-width:800px;height:auto; }
+    .scoped-width-table {table-layout:fixed;width:100%;}
+    .scoped-width-table th:nth-child(1) {width:16%;}
+    .scoped-width-table th:nth-child(2) {width:17%;}
+    .scoped-width-table th:nth-child(3) {width:22%;}
+    .scoped-width-table th:nth-child(4) {width:28%;}
+    .scoped-width-table th:nth-child(5) {width:17%;}
+    @media(max-width:37.5rem) {
+      body #route-atlas-preview {padding:.5rem;}
+      .scoped-width-table, .scoped-width-table tbody, .scoped-width-table tr, .scoped-width-table td {display:block;width:auto;min-width:0;}
+      .scoped-width-table thead {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
+      .scoped-width-table tr {border:1px solid #a7c5cf;border-radius:.4rem;margin:.75rem 0;padding:.6rem;}
+      .scoped-width-table td {padding:.4rem 0;border:0;overflow-wrap:anywhere;}
+      .scoped-width-table td::before {content:attr(data-label);display:block;font-weight:700;margin-bottom:.2rem;}
+    }
     .route-card, .inventory-addition-card { overflow-wrap:anywhere;scroll-margin-top:1rem; }
     .inventory-addition-card:focus { outline:3px solid #087e9a;outline-offset:3px; }
     .atlas-state-region { cursor:pointer; }
@@ -68,6 +83,10 @@
     .atlas-observed-station:focus circle,.atlas-observed-station.selected-cast circle {stroke:white;stroke-width:3;}
     .atlas-observed-station.updated circle {stroke:#ffc663;stroke-width:3;}
     .route-atlas-line { fill:none;stroke:#64dfce;stroke-width:3;cursor:pointer; }
+    .route-atlas-regional-model-line { fill:none;stroke:#eeabff;stroke-width:2;stroke-dasharray:5 3;cursor:pointer;opacity:.7; }
+    .route-atlas-regional-model-line[data-model-nominal="false"]:not(.selected) { display:none; }
+    .route-atlas-regional-model-line.selected,.route-atlas-regional-model-line:focus { stroke:#ffc663;stroke-width:4;opacity:1;outline:none; }
+    .route-atlas-regional-model-line.updated { filter:drop-shadow(0 0 2px #ffc663); }
     .route-atlas-dated-line { fill:none;stroke:#81ceff;stroke-width:3;cursor:pointer; }
     .route-atlas-dated-line.dated_analyzed_surface_front { stroke:#e7a7ff;stroke-dasharray:7 4; }
     .route-atlas-dated-line.selected,.route-atlas-dated-line:focus { stroke:#ffc663;stroke-width:5; }
@@ -110,7 +129,7 @@
     .route-atlas-local-dimensions {max-width:100%;overflow-x:auto;}
     .route-atlas-local-dimensions table {font-size:.8rem;min-width:340px;}
     .route-atlas-local-dimensions caption {text-align:left;}
-    #route-atlas-preview .route-map { background:white;max-height:320px;object-fit:contain; }
+    #route-atlas-preview .route-map { background:white;max-height:none; }
     #route-atlas-preview [aria-pressed=true] { background:#a76509; }
     @media(max-width:55rem) { .route-atlas-workspace.has-card { grid-template-columns:minmax(0,1fr); } #route-atlas-preview { max-height:none; } }
     .atlas-timeline {margin:.75rem 0;}
@@ -135,7 +154,7 @@
       body.atlas-presentation #route-atlas-preview {max-height:none;}
     }
   </style>
-</head>
+<script src="published-coordinate-span.js?v=1" defer></script><script src="current-width-source-review.js?v=1" defer></script><script src="current-research-evidence.js?v=1" defer></script><script src="kuroshio-filtered-width.js?v=1" defer></script><script src="reported-dimensions.js?v=1" defer></script><script src="kuroshio-daily.js?v=1" defer></script><script src="asca-component-spans.js?v=1" defer></script><script src="eac-source-fields.js?v=2" defer></script><script src="south-australian-context.js?v=1" defer></script><script src="selected-core-width.js?v=1" defer></script><script src="atlantic-station-context.js?v=antilles-2" defer></script><script src="atlantic-cruise-widths.js?v=antilles-2" defer></script><script src="model-axis-spread.js?v=1" defer></script><script src="equatorial-basin-identities.js?v=1" defer></script><link rel="stylesheet" href="core-migration-profiles.css?v=1"><script src="core-migration-profiles.js?v=1" defer></script></head>
 <body>
   <a class="skip" href="#main">Skip to current atlas</a>
   <header class="site-head"><strong>OSW</strong><nav aria-label="Ocean motion"><a href="query.html">Query atlas</a><a href="index.html">Almanac</a><a href="object.html">Object records</a><a href="movies.html">NASA crops</a></nav></header>
@@ -161,7 +180,7 @@
       </section>
       <p id="atlas-state-map-note" class="footnote" role="status" aria-live="polite">Loading clickable OSW state shapes…</p>
       <div id="route-atlas-workspace" class="route-atlas-workspace"><svg id="route-atlas-map" viewBox="60 90 1480 740" role="group" aria-label="Interactive global current and eddy atlas"><image href="../figures/ocean-motion-dashboard-ground.svg" x="60" y="90" width="1480" height="740" opacity=".45"/><g id="route-atlas-features"></g></svg><aside id="route-atlas-preview" aria-label="Selected ocean feature" aria-live="polite" hidden></aside></div>
-      <p class="atlas-map-explanation">Dashed blue section locators show reported latitude spans from local samples; each card states day or month precision. They are not current axes or footprints. Teal lines are editorial reference routes; outlined circles are name locators. When an observed-section card is selected, small filled points locate its instruments; its card states quality and sampling dates. Blue lines are saved geostrophic diagnostics and dashed purple lines are analyzed surface fronts, with their dates available on hover or keyboard focus. These differ in method and date and do not establish a whole-current axis, width or annual extent. Purple markers show eddy name locations; shared regional gateways collect names whose individual locations are unresolved. Purple outlines are dated polygons or contour proxies, not simultaneous live eddies. All 100 currents and 136 named eddies are selectable, plus four dated operational detections.</p>
+      <p class="atlas-map-explanation">Dashed blue section locators show reported latitude spans from local samples; each card states day or month precision. They are not current axes or footprints. Teal lines are editorial reference routes; outlined circles are name locators. When an observed-section card is selected, small filled points locate its instruments; its card states quality and sampling dates. Blue lines are saved geostrophic diagnostics and dashed purple lines are analyzed surface fronts, with their dates available on hover or keyboard focus. These differ in method and date and do not establish a whole-current axis, width or annual extent. Purple markers show eddy name locations; shared regional gateways collect names whose individual locations are unresolved. Purple outlines are dated polygons or contour proxies, not simultaneous live eddies. Every accepted current and all 136 named eddies are selectable, plus four dated operational detections. Current identities without source-supported geography remain in the selector and directory.</p>
     </section>
     <div class="status"><strong>Internal review candidates</strong><p>These OSW sketches have not received independent scientific route review or entered the canonical length measurements. Their scenario ranges describe selected assumptions, not statistical confidence intervals. The eleven source-reported estimates remain separate.</p><p id="route-status" role="status" aria-live="polite">Loading route inventory…</p></div>
     <section aria-labelledby="measurement-rules-title">
@@ -191,13 +210,13 @@
       <p>Widths belong to a region, layer and time period. Seasonal variation, observed sample ranges and measurement uncertainty are different quantities. Route scenario ranges above test selected assumptions; they are not measured annual length ranges. Matching branch, gates and layer are required before comparing seasonal lengths.</p>
       <p id="width-status" role="status" aria-live="polite">Loading width evidence…</p>
       <div id="width-seasonal-summaries"></div>
-      <div class="table-wrap"><table><caption>Scoped published width evidence · editorial extraction</caption><thead><tr><th scope="col">Current</th><th scope="col">Approximate width</th><th scope="col">Season / period</th><th scope="col">Scope and definition</th><th scope="col">Source</th></tr></thead><tbody id="width-rows"></tbody></table></div>
+      <div class="table-wrap"><table class="scoped-width-table" role="table"><caption>Scoped published width evidence · editorial extraction</caption><thead><tr><th scope="col">Current</th><th scope="col">Approximate width</th><th scope="col">Season / period</th><th scope="col">Scope and definition</th><th scope="col">Source</th></tr></thead><tbody id="width-rows"></tbody></table></div>
       <details><summary>Width coverage for all 100 names</summary><p>Not assessed means the width source search is incomplete. Pending source review means an existing mention has been identified. Sources reviewed without a comparable numeric current width means inspected evidence has not supplied a compatible number; it does not establish physical absence.</p><div class="table-wrap"><table><caption>Width evidence decisions</caption><thead><tr><th scope="col">Current</th><th scope="col">Status</th><th scope="col">Next action</th></tr></thead><tbody id="width-decision-rows"></tbody></table></div></details>
-      <p><a href="../research/ocean-current-width-inventory.json">Download width evidence and all coverage decisions (JSON)</a> · <a href="../plans/ocean-current-width-measurement-protocol-v1.md">Width measurement rules</a></p>
+      <p><a href="../research/ocean-current-working-measurements.json">Download working dimensions, widths and citations (JSON)</a> · <a href="../research/ocean-current-width-inventory.json">Historical 100-current width inventory and coverage decisions</a> · <a href="../plans/ocean-current-width-measurement-protocol-v1.md">Width measurement rules</a></p>
     </section>
     <section aria-labelledby="inventory-additions-title">
-      <h2 id="inventory-additions-title">Proposed inventory additions</h2>
-      <p>The 100-name ledger is a working inventory. Newly identified names require identity and scope review, including whether the flow is intermittent, seasonal, a branch or an eddy family.</p>
+      <h2 id="inventory-additions-title">Current identity admissions and pending additions</h2>
+      <p>The working catalogue extends the historical 100-name package with reviewed identities. New names require identity and scope review, including whether the flow is intermittent, seasonal, a branch or an eddy family. Name admission leaves measurement and geographic evidence gates explicit.</p>
       <p id="inventory-addition-status" role="status" aria-live="polite">Loading proposed additions…</p>
       <div id="inventory-addition-cards"></div>
       <p><a href="../research/ocean-current-inventory-expansion-candidates.json">Download proposed additions and evidence (JSON)</a></p>

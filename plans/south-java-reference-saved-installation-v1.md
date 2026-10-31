@@ -1,0 +1,9 @@
+# Install the reviewed South Java artifact
+
+Use only saved candidate artifact12770296976 from successful full-delivery run40579934300/attempt2/source542b94b390b84c0620f561938f053177203eb779. Verify its exact97006910 bytes and SHA256, safe exact20-member archive inventory, every generated file hash, seven actual reviewed screenshots,39 Rust/21 Python tests,20 main/9 source full native-WASM responses and2 complete presentation parity responses.
+
+The exact installed parent manifest is a36845e583cf89ba49a1c75612da627f6d78bebacdc15fdf02574985d51d00fa. Verify active parent file identities, all pinned source/evidence, the disabled source-review phase and older requests before any transfer. No original-field processing, native/WASM build, browser, full logical packet/index decoding or local bulk sync. One cloud job, one CPU, nice15, numerical workers1.
+
+Download and extract the artifact only in cloud. Verify the candidate manifest, unchanged complete inherited namespaces, all actual compiler input hashes, packet descriptor and part sizes/hashes. Retain exact candidate engine metadata separately for future lightweight audits. Stage generated files, saved metadata, installation proof and disabled request in a private Git index. Preserve all other paths, recheck exact current branch and unchanged main, then publish one nonforce atomic update to codex/current-measurement-gaps. Never push local divergent source history or force a ref.
+
+The installed route is a partial regional editorial reference, not a whole-current physical length, width, annual range or physical state intersection. Expected coverage:82 route records across75 owners,86 identities with either a published-length field or reference route,20 missing both; canonical reported-length owners remain13, scoped-width capability87, sampled-width capability14. These are capability counts, not uniform physical completeness. Local preview and main stay unchanged.

@@ -1,0 +1,24 @@
+{
+  "schema": "osw.madagascar-seasonal-projection-failure-review.v1",
+  "status": "FAIL_RETAINED_WITH_SPECIFIC_SOURCE_JOIN_FIX_REQUIRED",
+  "source_commit": "05893d97e2a893ed97b83c91be2f5a8661d50d2f",
+  "run_id": 40722781821,
+  "run_attempt": 2,
+  "request_file": "research/madagascar-dimensions-delivery-request-v1.json",
+  "request_disabled": true,
+  "native_build_completed": true,
+  "rust_tests_passed": 252,
+  "source_index_original_strings_preserved": 634,
+  "failing_check": {
+    "file": "rust/osw-query/src/seasons_data.rs",
+    "message": "Incomplete seasonal source projection",
+    "reason": "The seasonal validator builds an exact source-row inventory. Its list lacks the new separately validated Madagascar width while the query widths collection correctly contains it."
+  },
+  "required_fix": "Append only madagascar_dimensions::widths(bundle) to the seasonal validation source list. Preserve exact inventory and row checks; do not add the range to monthly phase derivation or enable playback.",
+  "missing_test_scope": "Module-level evidence tests passed without constructing a complete installed bundle. The cloud full-bundle load correctly caught the missing cross-module join.",
+  "followup_test": "Exercise the declared width source projection together with an exact receipt and reject orphan or changed rows; rerun the full installed candidate-load gate.",
+  "wasm_verified": false,
+  "browser_verified": false,
+  "installed": false,
+  "full_goal_complete": false
+}

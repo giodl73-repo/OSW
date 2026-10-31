@@ -11,7 +11,8 @@ def main():
         page=browser.new_page(viewport={'width':1200,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto(BASE+'#route-atlas',wait_until='networkidle')
-        page.wait_for_function('document.querySelectorAll(".route-card").length===64');page.wait_for_timeout(100)
+        route_count=json.loads((ROOT/'research/ocean-current-working-reference-routes.json').read_bytes())['counts']['route_candidates']
+        page.wait_for_function('(count)=>document.querySelectorAll(".route-card").length===count',arg=route_count);page.wait_for_timeout(100)
         seen=[]
         for decision in decisions:
             ident=decision['current_id'];page.locator('#route-atlas-select').select_option('current:'+ident)
@@ -35,6 +36,7 @@ def main():
         row=page.locator('[data-measurement-id=north-brazil-hs2-oblique-mean-zero-width]')
         row.locator('summary').click();assert 'Discrepancy unresolved' in row.inner_text()
         row.get_by_text('Inspect this width record').click()
+        page.wait_for_function('window.oswSeasonSnapshot',timeout=60000)
         expect(page.locator('#season-value')).to_contain_text('about 220 km')
         page.locator('#season-atlas').click()
         page.wait_for_function('document.querySelector("#route-atlas-select").value==="current:north-brazil"')

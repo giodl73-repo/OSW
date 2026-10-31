@@ -1,0 +1,100 @@
+{
+  "schema": "osw.atlantic-nec-band-spans-prepared.v2",
+  "source_facts_file": "research/atlantic-nec-stramma-2005-source-facts-v2.json",
+  "source_facts_sha256": "f187b5a9e4c11c39e0fc2bf8b829396fce0571087a3ebb07006260c5e186fc6d",
+  "records": [
+    {
+      "id": "atlantic-nec-stramma2005-observed-southern-band-span",
+      "entity_id": "current:atlantic-north-equatorial",
+      "component": "southern_band",
+      "evidence_kind": "shipboard_ADCP",
+      "measurement_type": "published_regional_meridional_band_extent",
+      "latitude_bounds_deg_north": [
+        16,
+        22
+      ],
+      "angular_span_deg": 6,
+      "width_km": null,
+      "km_conversion_status": "NOMINAL_MERIDIONAL_NORMALIZATION_NOT_FLOW_NORMAL_WIDTH",
+      "source_reported_width_km": null,
+      "source_facts_file": "research/atlantic-nec-stramma-2005-source-facts-v2.json",
+      "source_facts_sha256": "f187b5a9e4c11c39e0fc2bf8b829396fce0571087a3ebb07006260c5e186fc6d",
+      "period": "2003-07/2003-08",
+      "model_month": null,
+      "source_locator": "section5.3 paragraph51 and Figure8",
+      "fixed_depth_m": null,
+      "boundary_velocity_threshold_m_per_s": null,
+      "exact_section_geometry": null,
+      "flow_normal_width_established": false,
+      "whole_current_representative": false,
+      "annual_range_km": null,
+      "numerical_uncertainty_km": null,
+      "seasonal_playback_supported": false,
+      "length_ranking_eligible": false,
+      "physical_state_joins_supported": false,
+      "independent_observation_count_added": 0,
+      "status": "PREPARED_PENDING_EXACT_INSTALLED_DUPLICATE_AUDIT",
+      "approximate_width_km": 700.0,
+      "calculation": {
+        "ellipsoid": "WGS84",
+        "method": "same_arbitrary_meridian_inverse",
+        "audit_distance_km": 664.157245,
+        "rounding_increment_km": 100,
+        "arbitrary_meridian_is_observed_track": false,
+        "measurement_precision_is_calculation_precision": false
+      }
+    },
+    {
+      "id": "atlantic-nec-stramma2005-model-southern-band-span",
+      "entity_id": "current:atlantic-north-equatorial",
+      "component": "southern_band",
+      "evidence_kind": "published_model_section",
+      "measurement_type": "published_regional_meridional_band_extent",
+      "latitude_bounds_deg_north": [
+        14,
+        20
+      ],
+      "angular_span_deg": 6,
+      "width_km": null,
+      "km_conversion_status": "NOMINAL_MERIDIONAL_NORMALIZATION_NOT_FLOW_NORMAL_WIDTH",
+      "source_reported_width_km": null,
+      "source_facts_file": "research/atlantic-nec-stramma-2005-source-facts-v2.json",
+      "source_facts_sha256": "f187b5a9e4c11c39e0fc2bf8b829396fce0571087a3ebb07006260c5e186fc6d",
+      "period": null,
+      "model_month": 7,
+      "source_locator": "section5.3 paragraph51 and Figure8",
+      "fixed_depth_m": null,
+      "boundary_velocity_threshold_m_per_s": null,
+      "exact_section_geometry": null,
+      "flow_normal_width_established": false,
+      "whole_current_representative": false,
+      "annual_range_km": null,
+      "numerical_uncertainty_km": null,
+      "seasonal_playback_supported": false,
+      "length_ranking_eligible": false,
+      "physical_state_joins_supported": false,
+      "independent_observation_count_added": 0,
+      "status": "PREPARED_PENDING_EXACT_INSTALLED_DUPLICATE_AUDIT",
+      "approximate_width_km": 700.0,
+      "calculation": {
+        "ellipsoid": "WGS84",
+        "method": "same_arbitrary_meridian_inverse",
+        "audit_distance_km": 664.020609,
+        "rounding_increment_km": 100,
+        "arbitrary_meridian_is_observed_track": false,
+        "measurement_precision_is_calculation_precision": false
+      }
+    }
+  ],
+  "prepared_records": 2,
+  "admitted_records": 0,
+  "required_gates": [
+    "Audit both candidate IDs and source claim against exact installed packet in cloud",
+    "Review shallow-band scope and orientation without inventing a fixed depth",
+    "Calculate rounded WGS84 nominal meridional spans; do not reconstruct actual ship-track edges",
+    "Carry source details and explicit unknowns through query/cards/atlas and dashboard",
+    "Native/WASM whole-response and browser review before installation"
+  ],
+  "installed": false,
+  "full_goal_complete": false
+}

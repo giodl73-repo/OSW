@@ -1,0 +1,61 @@
+{
+  "schema": "osw.current-gap-workflow-trigger-review.v1",
+  "status": "PASS_FOCUSED_TESTS_AND_LIVE_NONCONTROL_PUBLICATION_PROBE",
+  "reason": "Unrelated scoped source publications started dormant phase workflows that cancelled the intended pending job in the shared concurrency group.",
+  "changed_workflows": {
+    ".github/workflows/baffin-bound-candidate.yml": {
+      "parent_sha256": "f46fe67c46ae575cee33b7264bc2ad3f2231c62d0e2be3794ba3f1e3c6d06aa6",
+      "candidate_sha256": "d965070bc2f30a1df4ddfd551fa05897b0f46e21e621f97c57c5eb775504b2cc",
+      "archive_path": "research/current-gap-trigger-parent-v1/baffin-bound-candidate.yml",
+      "jobs_permissions_workers_and_concurrency_unchanged": true
+    },
+    ".github/workflows/davidson-width-candidate.yml": {
+      "parent_sha256": "b39dbb78d0b781ab8838befa59211dbe6ea5c52bd88f3f864a968b636ac44815",
+      "candidate_sha256": "7ef145c48a5eb1f0c8cda2699ff0be894d94c5948b4a46f65c3120f5cbf7b816",
+      "archive_path": "research/current-gap-trigger-parent-v1/davidson-width-candidate.yml",
+      "jobs_permissions_workers_and_concurrency_unchanged": true
+    },
+    ".github/workflows/indian-coastal-context-candidate.yml": {
+      "parent_sha256": "ec228fbc454af6f6a440ee50159a3bed3a89cf5016b6d9ece177df5e7e379609",
+      "candidate_sha256": "936cf6ff90202e2694c5d48da3f492e7a10cb22a1dd995bac755d35257d438b7",
+      "archive_path": "research/current-gap-trigger-parent-v1/indian-coastal-context-candidate.yml",
+      "jobs_permissions_workers_and_concurrency_unchanged": true
+    }
+  },
+  "accepted_event_paths": [
+    "research/current-gap-delivery-phase.json",
+    "each_workflows_own_file"
+  ],
+  "phase": "source-review-only-v1",
+  "heavy_work_permitted": false,
+  "main_updated": false,
+  "runtime_data_changed": false,
+  "tests_passed": 2,
+  "test_file": "analysis/test_current_gap_workflow_triggers_v1.py",
+  "test_sha256": "d43bc6686875bf466ac5e5a003c0a3a6c583eaaf1214303f9bc78971d7d288b7",
+  "archive_matches_actual_parent_git_blobs": true,
+  "live_next_noncontrol_publication_probe": "Observe the next ordinary scoped source publication; old phase deliveries must be absent from its runs.",
+  "live_probe": {
+    "source_commit": "d78d7828091ae37d67c2400874c1d75cc302aca7",
+    "audit_run_id": 40898856942,
+    "audit_attempt": 1,
+    "expected_phase_workflows_absent": [
+      "Sequential Baffin-bound delivery",
+      "Sequential Indian coastal context candidate",
+      "Sequential current-gap delivery"
+    ],
+    "observed_runs": [
+      {
+        "id": 40898883441,
+        "name": "validate",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 40898856942,
+        "name": "Audit installed parent for Pacific NEC product-axis diagnostics v1",
+        "conclusion": "success"
+      }
+    ],
+    "result": "PASS_NO_DORMANT_PHASE_WORKFLOWS_STARTED_FIRST_AUDIT_ATTEMPT_SUCCEEDED"
+  }
+}

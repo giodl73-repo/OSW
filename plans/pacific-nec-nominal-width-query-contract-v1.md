@@ -1,0 +1,17 @@
+# Admit one Pacific NEC nominal regional width
+
+Use the exact basin-inclusive logical parentda0faf571e5dbb2816e157239ea1e04d842734707ef3f745817debb436a2a84b. The read-only installed audit40809019002 found no member/family widths, no candidate ID match, and no registered versions of the reviewed publications. Preserve its complete selected records and source-resolution receipts.
+
+Append one width and two distinct publication sources: the2015 Oceanography project synthesis supplies the nominal8-17N span; the related2015 JPO study supplies separately identified methods and7-17N context. Only the synthesis supplies this candidate's numerical latitude limits. The2017 model paper remains a pending lead and is not added by this contract. These publications do not add independent observations.
+
+Replace only the Pacific NEC object row's width IDs, scoped-width capability, source links/count, two affected section fingerprints, object fingerprint and evidence links. Preserve its entity identity, unspecified whole-current vertical setting, dates, length, routes, states, geometry, time samples, all other fields, its family object and all sibling objects. Do not transfer the float sampling period to the nominal regional width.
+
+Append source and width rows after all existing rows; leave every unrelated collection and historical manifest namespace intact. Reject altered parent rows, duplicate IDs, changed counts, matching publication aliases, changed historical input hashes, repeated application, invented dates, physical edge geometry, annual ranges and numerical uncertainty before mutating anything.
+
+Expected coverage after eventual verified installation:179 scoped widths across90 owners,219 publication/source rows,111 identities,83 reference routes across76 owners and463 width samples across14 owners. Length and physical geometry counts do not change. This is one source-backed nominal regional approximation; it is not a comparable whole-current width or a seasonal measurement series.
+
+Runtime work must preserve the frozen basin admission contract. Add explicit validation of this one extension and its exact final object/width/source records; continue rejecting arbitrary member dimensions. The basin validator should compare the audited pre-extension view for its historical identity guarantees only after the new extension is independently validated. No unrestricted bypass or generic exclusion of member measurement rows is permitted.
+
+Project the updated owner after basin identity dashboard projection. Preserve all other dashboard rows and freshness sections. Queries, object page, atlas selection, seasonal-status page and dashboard must expose the nominal width, source inspection and compact figure, with dates, edge definition, annual range and numerical uncertainty clearly unresolved. Family and sibling contexts must never claim they inherited the width. Update stale blanket 'all widths unmeasured' presentation only where this exact extension is active.
+
+Before installation, run native Rust and WASM checks, complete query and API response comparisons, original-source preservation checks and actual desktop/narrow browser verification in one sequential cloud job. Individually inspect the resulting captures. Reuse verified artifacts for installation and independently verify the complete resulting Git tree. No local packet/index load, native/WASM build, browser automation, bulk preview synchronization or main merge is authorized by this preparation.

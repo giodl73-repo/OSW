@@ -1,4 +1,5 @@
 """Scoped object evidence, canonical imports, real WASM pages and outage behavior."""
+from query_packet import read_bundle_bytes
 import json,os,subprocess
 from playwright.sync_api import sync_playwright,expect
 from test_rust_query_browser import ROOT,CLI
@@ -9,11 +10,11 @@ def native(ident):
 
 
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes());c=bundle['collections']
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));c=bundle['collections']
     assert len(bundle['manifest']['canonical_collections'])==20
     assert set(c)==set(bundle['manifest']['canonical_collections'])|set(bundle['manifest']['editorial_collections'])
-    for name in bundle['manifest']['canonical_collections']:
-        assert c[name]==json.loads((ROOT/'almanac/release/v0.1.0'/f'{name}.json').read_bytes()),name
+    from canonical_working_assertions import assert_canonical_imports
+    assert_canonical_imports(bundle)
     detection=next(r['id'] for r in c['entities'] if r['type']=='operational_eddy_detection')
     vocabulary=c['classification_vocabularies'][0]['entity_id']
     detections=[r['id'] for r in c['entities'] if r['type']=='operational_eddy_detection']
@@ -98,7 +99,7 @@ def main():
         failed.goto(base+'current:acc');expect(failed.locator('#object-summary')).to_contain_text('Release data unavailable',timeout=90000)
         assert failed.locator('#object-options option').count()==0
         browser.close()
-    print(f'PASS: 20 exact canonical imports, {len(c)} declared collections, {len(ids)} native/WASM object cases including scoped editorial recurrence, source-bound named contour and four detection plots, packet, no direct JSON reads, mobile and unavailable first load')
+    print(f'PASS: 20 canonical imports with pinned working overrides, {len(c)} declared collections, {len(ids)} native/WASM object cases including scoped editorial recurrence, source-bound named contour and four detection plots, packet, no direct JSON reads, mobile and unavailable first load')
 
 
 def check_source_plot(plot,geometry,frame):

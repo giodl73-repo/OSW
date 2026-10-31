@@ -13,7 +13,7 @@ from playwright.sync_api import sync_playwright
 from build_ocean_motion_screened_site import OUTPUT
 
 
-CHROME = Path(r"C:\Program Files\Google\Chrome\Application\chrome.exe")
+CHROME = Path(os.environ.get('OSW_TEST_BROWSER', r"C:\Program Files\Google\Chrome\Application\chrome.exe"))
 
 
 class QuietHandler(SimpleHTTPRequestHandler):

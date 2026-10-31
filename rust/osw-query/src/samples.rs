@@ -17,7 +17,22 @@ pub fn validate(
             Some("diagnostic:florida-monthly-width") => "florida_monthly_half_peak_plot",
             Some("diagnostic:leeuwin-monthly-width") => "leeuwin_monthly_fitted_plot",
             Some("diagnostic:kuroshio-seasonal-width") => "kuroshio_seasonal_profile_plot",
+            Some("diagnostic:kuroshio-filtered-width") => "kuroshio_filtered_curve_plot",
             Some("diagnostic:necc-monthly-section") => "necc_monthly_connected_component",
+            Some(
+                "diagnostic:basin-portugal-40n"
+                | "diagnostic:basin-south-atlantic-30w"
+                | "diagnostic:basin-south-pacific-100w"
+                | "diagnostic:basin-south-indian-80e"
+                | "diagnostic:basin-aleutian-160w"
+                | "diagnostic:basin-south-australian-132e-100m"
+                | "diagnostic:basin-west-australian-32s"
+                | "diagnostic:basin-indian-secc-80p333e"
+                | "diagnostic:basin-indian-secc-80p667e"
+                | "diagnostic:basin-south-atlantic-30w-climatology"
+                | "diagnostic:basin-south-pacific-100w-climatology"
+                | "diagnostic:basin-south-indian-80e-climatology",
+            ) => "basin_monthly_component_section",
             Some("diagnostic:gulf-stream-widths") => "gulf_stream_dated_half_peak_section",
             Some("diagnostic:yucatan-noaa-sections" | "diagnostic:yucatan-adt-sections") => {
                 "loop_dated_half_peak_section"
@@ -42,6 +57,14 @@ pub fn validate(
             "loop_dated_half_peak_section",
         ]
         .contains(&family);
+        let component = family == "basin_monthly_component_section";
+        let filtered = family == "kuroshio_filtered_curve_plot";
+        if component
+            && (row["current_association_verified"] != false
+                || document["current_association_verified"] != false)
+        {
+            return Err("Local component current association is unresolved".into());
+        }
         if family == "loop_dated_half_peak_section" || family == "florida_monthly_half_peak_plot" {
             let owner = collections
                 .get("objects")
@@ -81,7 +104,14 @@ pub fn validate(
                 return Err("Width sample phase/path mismatch".into());
             }
         } else if parts.len() != 3
-            || parts[1] != if dated { "frames" } else { "months" }
+            || parts[1]
+                != if dated {
+                    "frames"
+                } else if filtered {
+                    "samples"
+                } else {
+                    "months"
+                }
             || !row["phase_path"].is_null()
         {
             return Err("Monthly sample path mismatch".into());
@@ -89,6 +119,9 @@ pub fn validate(
         let mut context = document.clone();
         let object = context.as_object_mut().ok_or("Invalid width diagnostic")?;
         object.remove("months");
+        if filtered {
+            object.remove("samples");
+        }
         object.remove("seasons");
         object.remove("frames");
         let phase = if let Some(path) = row["phase_path"].as_str() {
@@ -104,7 +137,7 @@ pub fn validate(
         } else {
             Value::Null
         };
-        let expected_value = if dated {
+        let expected_value = if dated || component {
             &sample["approximate_section_span_km"]
         } else if row["sample_family"] == "necc_monthly_connected_component" {
             &sample["zero_crossing"]["span_km"]
@@ -155,7 +188,9 @@ pub fn validate(
                 .get("longitude_degrees_east")
                 .unwrap_or(&document["section_longitude_degrees_east"])
         };
-        let label = if dated {
+        let label = if filtered {
+            &sample["sample_label"]
+        } else if dated {
             &sample["date"]
         } else if phase.is_null() {
             &sample["label"]
@@ -174,7 +209,7 @@ pub fn validate(
         {
             return Err("Width sample support differs from source".into());
         }
-        let status = if dated {
+        let status = if dated || component {
             &sample["nominal"]["status"]
         } else {
             sample
@@ -184,6 +219,21 @@ pub fn validate(
         };
         if row["status"] != *status {
             return Err("Width sample status differs from source".into());
+        }
+        if filtered {
+            for key in ["plot_year", "plot_year_label", "plot_month_label"] {
+                if row[key] != sample[key] {
+                    return Err("Filtered width plot coordinate mismatch".into());
+                }
+            }
+            if row["sample_time_kind"] != document["sample_time_kind"]
+                || row["source_temporal_filter"] != document["source_temporal_filter"]
+                || row["sample_time_is_observation_date"] != false
+                || row["samples_are_raw_monthly_means"] != false
+                || document["samples_are_raw_monthly_means"] != false
+            {
+                return Err("Filtered plot samples cannot become raw monthly observations".into());
+            }
         }
         for (key, expected) in [
             (
@@ -204,7 +254,7 @@ pub fn validate(
             ),
             (
                 "diagnostic_sensitivity_interval_km",
-                if dated {
+                if dated || component {
                     sample["threshold_sensitivity_span_km"].clone()
                 } else {
                     Value::Null
@@ -212,7 +262,7 @@ pub fn validate(
             ),
             (
                 "sampling_bracket_interval_km",
-                if dated {
+                if dated || component {
                     sample["nominal"]["grid_bracket_span_km"].clone()
                 } else {
                     Value::Null
@@ -220,7 +270,7 @@ pub fn validate(
             ),
             (
                 "resolution_review_required",
-                if dated {
+                if dated || component {
                     sample["nominal"]["resolution_review_required"].clone()
                 } else {
                     Value::Null

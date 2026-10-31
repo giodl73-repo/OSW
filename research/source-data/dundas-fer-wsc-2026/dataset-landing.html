@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="no">
+ <head> 
+  <meta charset="utf-8"> 
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> 
+  <!-- Latest compiled and minified CSS --> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
+  <link rel="stylesheet" href="https://openlayers.org/en/v3.20.1/css/ol.css" type="text/css"> 
+  <script src="https://openlayers.org/en/v3.20.1/build/ol.js"></script> 
+  <link href="../css/prettify.css" type="text/css" rel="stylesheet"> 
+  <script type="text/javascript" src="../js/lib/prettify.js"></script> 
+  <script src="../js/lib/vkBeautify.js"></script> 
+  <script src="../js/map.js"></script> 
+  <script src="../js/cite.js"></script> 
+  <!-- Global Site Tag (gtag.js) - Google Analytics --> 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106734854-1"></script> 
+  <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments)
+            }
+            ;
+            gtag('js', new Date());
+
+            gtag('config', 'UA-106734854-1');
+        </script> 
+  <link rel="stylesheet" type="text/css" href="../css/nmdc.css"> 
+  <title>Physical oceanography data from Seaglider missions west of Svalbard, October 2020 - February 2023</title>
+ </head> 
+ <body> 
+  <div class="container"> 
+   <div class="row"> 
+    <div class="col-lg-2"> 
+     <img class="logo" src="../images/logo.png"> 
+    </div> 
+    <div id="heading-title" class="col-lg-8 "> 
+     <h2>Seamless access to Norwegian marine data</h2> 
+    </div> 
+    <div id="header-links" class="col-lg-2"> 
+     <a href="#" id="back-search">Back to search</a> 
+     <a href="http://nmdc.no/prosjekter/nmdc/om-prosjektet">About</a> 
+    </div> 
+   </div> 
+   <div class="row"> 
+    <div class="header-bar"> 
+    </div> 
+   </div> 
+   <div class="row"> 
+    <div class="col-lg-6 left-col"> 
+     <div id="data-center">
+      University of Bergen
+     </div> 
+     <div id="doi">
+      <img src="../images/doi.png" class="doi-logo">
+      <a href="https://doi.org/10.21335/NMDC-1222822416">https://doi.org/10.21335/NMDC-1222822416</a>
+     </div> 
+     <h4 id="dataset-title">Physical oceanography data from Seaglider missions west of Svalbard, October 2020 - February 2023</h4> 
+     <h5 id="recomended-citation-label">Recommended citation:</h5> 
+     <div id="cite-list">  
+      <div class="recomended-citation"> 
+       <span class="cite-creator">Fer, Ilker; Brakstad, Ailin; Damerell, Gillian M.; Elliott, Fiona</span> 
+       <span class="cite-date">(2025)</span> 
+       <span class="cite-title">Physical oceanography data from Seaglider missions west of Svalbard, October 2020 - February 2023</span> 
+       <span class="cite-doi">https://doi.org/10.21335/NMDC-1222822416</span> 
+      </div>
+     </div> 
+     <div class="citation-formats">
+       To cite this dataset use the following: 
+      <br> 
+      <button id="text-cite" type="button" class="btn btn-primary btn-xs">Text citation</button> 
+      <!-- button type="button" class="btn btn-primary btn-xs">BibTeX citation </button>                                             
+                        <button type="button" class="btn btn-primary btn-xs">RIS citation </button --> 
+     </div> 
+     <h5>Usage :</h5> 
+     <div id="use-constraints">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png"></a>
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+     </div> 
+    </div> 
+    <div id="map" class="map col-lg-6 right-col xleft-col"> 
+    </div> 
+   </div> 
+   <div class="row"> 
+    <div class="col-lg-6 abstract lxeft-col"> 
+     <h5>Abstract</h5> 
+     <div id="abstract">
+      Water column temperature, salinity, and dissolved oxygen were collected using Seagliders in the Arctic Ocean, along a transect west of Spitsbergen during three missions between October 2020 and February 2023. The dataset is provided as separate gridded netCDF data files, one per mission. In addition to the profiles of temperature, salinity, and dissolved oxygen in the upper 1000 m, depth-averaged currents (DAC) between consecutive surfacings of the glider are provided. The data set is collected as a part of the Svalbard Integrated Arctic Earth Observing System - Infrastructure development of the Norwegian node (SIOS InfraNOR), funded by the Research Council of Norway. The gridded netCDF files are: sg562_WSC_2020.nc, between 7 October 2020 and 10 February 2021 sg560_WSC_2021.nc, between 3 Aug 2021 and 20 Feb 2022 sg560_WSC_2022.nc, between 22 July 2022 and 8 February 2023 Each file contains the mission data vertically binned at regular 1-m intervals, combining the up and down profiles extracted from the trajectory of the glider between subsequent surfacings. The profiles are not vertically interpolated. Additionally, two different data products are provided for each mission: individual netCDF files per trajectory, and a single netCDF file that contains the entire mission data in a timeseries. These two files are direct outputs from the Basestation3 software. The individual netCDF files per dive-climb cycle include all recorded data, glider settings for the specific dive, calibration coefficients, quality controlled data and any derived parameters, with associated quality flags. The merged mission timeseries file includes raw and quality controlled data, with associated flags. The gridded mission files have gone through additional automated and manual quality control, and only a selection of variables is provided for the end-user, as combined columns of vertical profiles. The user is referred to the comments in each file for mission and processing specific details.
+     </div> 
+     <div class="row"> 
+      <div class="col-lg-4">
+        Scientific keywords: 
+      </div> 
+     </div> 
+     <div class="row"> 
+      <div id="science_keywords" class="col-lg-12">  
+       <div class="science_keyword">
+        EARTH SCIENCE&gt; OCEANS&gt; OCEAN CHEMISTRY&gt; OXYGEN
+       </div>
+       <div class="science_keyword">
+        EARTH SCIENCE&gt; OCEANS&gt; OCEAN TEMPERATURE&gt; WATER TEMPERATURE
+       </div>
+       <div class="science_keyword">
+        EARTH SCIENCE&gt; OCEANS&gt; SALINITY/DENSITY&gt; SALINITY
+       </div>
+      </div> 
+     </div> 
+     <div class="row"> 
+      <div class="col-lg-3">
+        Key words: 
+      </div> 
+      <div id="keywords" class="col-lg-9">
+       West Spitsbergen Current, Arctic Ocean, Fram Strait, oceanography, hydrography, currents, ocean glider
+      </div> 
+     </div> 
+    </div> 
+    <div class="col-lg-6 right-col"> 
+     <h5>Data downloads</h5> 
+     <table class="table"> 
+      <thead> 
+       <tr>
+        <td>Type</td>
+        <td>Description</td>
+        <td>URL</td>
+       </tr> 
+      </thead> 
+      <tbody id="download_table">  
+       <tr class="download_row">
+        <td class="download_type">GET DATA</td> 
+        <td class="download_desc"></td> 
+        <td><a href="https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg562_WSC_2020.nc" class="download_url">https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg562_WSC_2020.nc</a></td>
+       </tr>
+       <tr class="download_row">
+        <td class="download_type">GET DATA</td> 
+        <td class="download_desc"></td> 
+        <td><a href="https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg560_WSC_2021.nc" class="download_url">https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg560_WSC_2021.nc</a></td>
+       </tr>
+       <tr class="download_row">
+        <td class="download_type">GET DATA</td> 
+        <td class="download_desc"></td> 
+        <td><a href="https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg560_WSC_2022.nc" class="download_url">https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg560_WSC_2022.nc</a></td>
+       </tr>
+       <tr class="download_row">
+        <td class="download_type">GET DATA</td> 
+        <td class="download_desc"></td> 
+        <td><a href="https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg562_LEGACY_WSC_Oct2020_timeseries.nc" class="download_url">https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg562_LEGACY_WSC_Oct2020_timeseries.nc</a></td>
+       </tr>
+       <tr class="download_row">
+        <td class="download_type">GET DATA</td> 
+        <td class="download_desc"></td> 
+        <td><a href="https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg560_SIOS_WSC_Aug2021_timeseries.nc" class="download_url">https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg560_SIOS_WSC_Aug2021_timeseries.nc</a></td>
+       </tr>
+       <tr class="download_row">
+        <td class="download_type">GET DATA</td> 
+        <td class="download_desc"></td> 
+        <td><a href="https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg560_SIOS_WSC_Jul2022_timeseries.nc" class="download_url">https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg560_SIOS_WSC_Jul2022_timeseries.nc</a></td>
+       </tr>
+       <tr class="download_row">
+        <td class="download_type">GET DATA</td> 
+        <td class="download_desc"></td> 
+        <td><a href="https://ftp.nmdc.no/nmdc/UIB/Seaglider/per_trajectory_files_sg562_WSC_2020.zip" class="download_url">https://ftp.nmdc.no/nmdc/UIB/Seaglider/per_trajectory_files_sg562_WSC_2020.zip</a></td>
+       </tr>
+       <tr class="download_row">
+        <td class="download_type">GET DATA</td> 
+        <td class="download_desc"></td> 
+        <td><a href="https://ftp.nmdc.no/nmdc/UIB/Seaglider/per_trajectory_files_sg560_WSC_2021.zip" class="download_url">https://ftp.nmdc.no/nmdc/UIB/Seaglider/per_trajectory_files_sg560_WSC_2021.zip</a></td>
+       </tr>
+       <tr class="download_row">
+        <td class="download_type">GET DATA</td> 
+        <td class="download_desc"></td> 
+        <td><a href="https://ftp.nmdc.no/nmdc/UIB/Seaglider/per_trajectory_files_sg560_WSC_2022.zip" class="download_url">https://ftp.nmdc.no/nmdc/UIB/Seaglider/per_trajectory_files_sg560_WSC_2022.zip</a></td>
+       </tr>
+      </tbody> 
+     </table> 
+    </div> 
+   </div> 
+  </div> 
+  <div id="dataset-extent"> 
+   <div class="Southernmost_Latitude">
+    76.9597
+   </div>
+   <div class="Northernmost_Latitude">
+    78.8574
+   </div>
+   <div class="Westernmost_Longitude">
+    -2.9281
+   </div>
+   <div class="Easternmost_Longitude">
+    12.0413
+   </div>
+   <div class="Minimum_Altitude"></div>
+   <div class="Maximum_Altitude"></div>
+   <div class="Minimum_Depth"></div>
+   <div class="Maximum_Depth"></div>
+  </div> 
+  <!-- Nav tabs --> 
+  <div class="container"> 
+   <div class="row"> 
+    <ul class="nav nav-tabs" role="tablist"> 
+     <li role="presentation" class="active"><a href="#formatted" aria-controls="formatted" role="tab" data-toggle="tab">Metadata</a></li> 
+     <li role="presentation"><a href="#raw" aria-controls="raw" role="tab" data-toggle="tab">Raw</a></li> 
+     <li role="presentation"><a href="#transform" aria-controls="transform" role="tab" data-toggle="tab">Transformed</a></li> 
+     <li role="presentation"><a href="#nmdcXML" aria-controls="nmdcXML" role="tab" data-toggle="tab">NMDC</a></li> 
+    </ul> 
+    <!-- Tab panes --> 
+    <div class="tab-content"> 
+     <div role="tabpanel" class="tab-pane active" id="formatted"> 
+      <div class="well"> 
+       <div id="all_metadata" class="container">  
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Entry ID
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          UIB_2025_SeaGlider_2020-2022
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Entry Title
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          Physical oceanography data from Seaglider missions west of Svalbard, October 2020 - February 2023 
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Data Set Citation List
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          <table class="table">
+           <thead>
+            <tr>
+             <td>Dataset Creator</td>
+             <td>Dataset Title</td>
+             <td>Dataset Release Date</td>
+             <td>Dataset Publisher</td>
+             <td>Version</td>
+             <td>Dataset DOI</td>
+             <td>Online Resource</td>
+            </tr>
+           </thead>
+           <tbody>
+            <tr>
+             <td>Fer, Ilker; Brakstad, Ailin; Damerell, Gillian M.; Elliott, Fiona</td>
+             <td>Physical oceanography data from Seaglider missions west of Svalbard, October 2020 - February 2023</td>
+             <td>2025-02-07T00:00:00:00Z</td>
+             <td>Institute of Marine Research</td>
+             <td>1.0</td>
+             <td>10.21335/NMDC-1222822416</td>
+             <td>http://metadata.nmdc.no/metadata-api/landingpage/7175c49d1a6d48d605da126d3905218a</td>
+            </tr>
+           </tbody>
+          </table>
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Personnel List
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          <table class="table">
+           <thead>
+            <tr>
+             <td>Role</td>
+             <td>First Name</td>
+             <td>Last Name</td>
+            </tr>
+           </thead>
+           <tbody>
+            <tr>
+             <td>DIF Author</td>
+             <td>Arnfinn</td>
+             <td>Morvik</td>
+            </tr>
+            <tr>
+             <td>Investigator</td>
+             <td>Ilker</td>
+             <td>Fer</td>
+            </tr>
+            <tr>
+             <td>Technical Contact</td>
+             <td>Ailin</td>
+             <td>Brakstad</td>
+            </tr>
+            <tr>
+             <td>Technical Contact</td>
+             <td>Fiona</td>
+             <td>Elloitt</td>
+            </tr>
+            <tr>
+             <td>Technical Contact</td>
+             <td>Gillian</td>
+             <td>Damerell</td>
+            </tr>
+           </tbody>
+          </table>
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Parameters List
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          <table class="table">
+           <thead>
+            <tr>
+             <td>Category</td>
+             <td>Topic</td>
+             <td>Term</td>
+             <td>Variable Level 1</td>
+            </tr>
+           </thead>
+           <tbody>
+            <tr>
+             <td>EARTH SCIENCE</td>
+             <td>OCEANS</td>
+             <td>OCEAN CHEMISTRY</td>
+             <td>OXYGEN</td>
+            </tr>
+            <tr>
+             <td>EARTH SCIENCE</td>
+             <td>OCEANS</td>
+             <td>OCEAN TEMPERATURE</td>
+             <td>WATER TEMPERATURE</td>
+            </tr>
+            <tr>
+             <td>EARTH SCIENCE</td>
+             <td>OCEANS</td>
+             <td>SALINITY/DENSITY</td>
+             <td>SALINITY</td>
+            </tr>
+           </tbody>
+          </table>
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          ISO Topic Category List
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          <span>Oceans</span>
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Keywords List
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          <span>West Spitsbergen Current,Arctic Ocean,Fram Strait,oceanography,hydrography,currents,ocean glider</span>
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Temporal Coverage
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          <table class="table">
+           <thead>
+            <tr>
+             <td>Start Date</td>
+             <td>Stop Date</td>
+            </tr>
+           </thead>
+           <tbody>
+            <tr>
+             <td>2020-10-07</td>
+             <td>2023-01-02</td>
+            </tr>
+           </tbody>
+          </table>
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Data Set Progress
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          Complete
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Spatial Coverage
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          <table class="table">
+           <thead>
+            <tr></tr>
+           </thead>
+           <tbody>
+            <tr></tr>
+           </tbody>
+          </table>
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Location List
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          <table class="table">
+           <thead>
+            <tr>
+             <td>Location Category</td>
+             <td>Location Type</td>
+            </tr>
+           </thead>
+           <tbody>
+            <tr>
+             <td>Ocean</td>
+             <td>Arctic Ocean</td>
+            </tr>
+           </tbody>
+          </table>
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Project List
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          <table class="table">
+           <thead>
+            <tr></tr>
+           </thead>
+           <tbody>
+            <tr></tr>
+           </tbody>
+          </table>
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Access Constraints
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          unrestricted
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Originating Center
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          University of Bergen
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Data Center List
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          <table class="table">
+           <thead>
+            <tr>
+             <td>Data Center Name</td>
+             <td>Data Center URL</td>
+             <td>Personnel</td>
+            </tr>
+           </thead>
+           <tbody>
+            <tr>
+             <td>University of Bergen</td>
+             <td>http://www.uib.no</td>
+             <td>Originating institution Ilker Fer</td>
+            </tr>
+           </tbody>
+          </table>
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Distribution List
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          <table class="table">
+           <thead>
+            <tr>
+             <td>Distribution Media</td>
+             <td>Distribution Format</td>
+            </tr>
+           </thead>
+           <tbody>
+            <tr>
+             <td>ftp</td>
+             <td>NetCDF</td>
+            </tr>
+           </tbody>
+          </table>
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Reference List
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          <span></span>
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Summary
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          Water column temperature, salinity, and dissolved oxygen were collected using Seagliders in the Arctic Ocean, along a transect west of Spitsbergen during three missions between October 2020 and February 2023. The dataset is provided as separate gridded netCDF data files, one per mission. In addition to the profiles of temperature, salinity, and dissolved oxygen in the upper 1000 m, depth-averaged currents (DAC) between consecutive surfacings of the glider are provided. The data set is collected as a part of the Svalbard Integrated Arctic Earth Observing System - Infrastructure development of the Norwegian node (SIOS InfraNOR), funded by the Research Council of Norway. The gridded netCDF files are: sg562_WSC_2020.nc, between 7 October 2020 and 10 February 2021 sg560_WSC_2021.nc, between 3 Aug 2021 and 20 Feb 2022 sg560_WSC_2022.nc, between 22 July 2022 and 8 February 2023 Each file contains the mission data vertically binned at regular 1-m intervals, combining the up and down profiles extracted from the trajectory of the glider between subsequent surfacings. The profiles are not vertically interpolated. Additionally, two different data products are provided for each mission: individual netCDF files per trajectory, and a single netCDF file that contains the entire mission data in a timeseries. These two files are direct outputs from the Basestation3 software. The individual netCDF files per dive-climb cycle include all recorded data, glider settings for the specific dive, calibration coefficients, quality controlled data and any derived parameters, with associated quality flags. The merged mission timeseries file includes raw and quality controlled data, with associated flags. The gridded mission files have gone through additional automated and manual quality control, and only a selection of variables is provided for the end-user, as combined columns of vertical profiles. The user is referred to the comments in each file for mission and processing specific details. 
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Related URL List
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          <table class="table">
+           <thead>
+            <tr>
+             <td>URL Content Type</td>
+             <td>URL</td>
+            </tr>
+           </thead>
+           <tbody>
+            <tr>
+             <td>GET DATA</td>
+             <td>https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg562_WSC_2020.nc</td>
+            </tr>
+            <tr>
+             <td>GET DATA</td>
+             <td>https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg560_WSC_2021.nc</td>
+            </tr>
+            <tr>
+             <td>GET DATA</td>
+             <td>https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg560_WSC_2022.nc</td>
+            </tr>
+            <tr>
+             <td>GET DATA</td>
+             <td>https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg562_LEGACY_WSC_Oct2020_timeseries.nc</td>
+            </tr>
+            <tr>
+             <td>GET DATA</td>
+             <td>https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg560_SIOS_WSC_Aug2021_timeseries.nc</td>
+            </tr>
+            <tr>
+             <td>GET DATA</td>
+             <td>https://ftp.nmdc.no/nmdc/UIB/Seaglider/sg560_SIOS_WSC_Jul2022_timeseries.nc</td>
+            </tr>
+            <tr>
+             <td>GET DATA</td>
+             <td>https://ftp.nmdc.no/nmdc/UIB/Seaglider/per_trajectory_files_sg562_WSC_2020.zip</td>
+            </tr>
+            <tr>
+             <td>GET DATA</td>
+             <td>https://ftp.nmdc.no/nmdc/UIB/Seaglider/per_trajectory_files_sg560_WSC_2021.zip</td>
+            </tr>
+            <tr>
+             <td>GET DATA</td>
+             <td>https://ftp.nmdc.no/nmdc/UIB/Seaglider/per_trajectory_files_sg560_WSC_2022.zip</td>
+            </tr>
+           </tbody>
+          </table>
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Originating Metadata Node
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          Norwegian Marine Datacentre
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Metadata Name
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          CEOS IDN DIF
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Metadata Version
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          9.7.1
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          DIF Creation Date
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          2025-02-07T00:00:00:00Z
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          Use Constraints
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          CC BY 4.0
+         </div> 
+        </div>
+        <div class="row"> 
+         <div class="col-lg-2 text-right metadata_label">
+          boundingboxWKT
+         </div> 
+         <div class="col-lg-10 metadata_detail">
+          POLYGON((11.9413 76.8597,-2.8281 76.8597,-2.8281 78.95739999999999,11.9413 78.95739999999999,11.9413 76.8597)) 
+         </div> 
+        </div>
+       </div> 
+      </div> 
+     </div> 
+     <div role="tabpanel" class="tab-pane load-tab" id="raw"> 
+      <pre class="prettyprint">
+                        </pre> 
+     </div> 
+     <div role="tabpanel" class="tab-pane load-tab" id="transform"> 
+      <pre class="prettyprint">
+                        </pre> 
+     </div> 
+     <div role="tabpanel" class="tab-pane load-tab" id="nmdcXML"> 
+      <pre class="prettyprint">
+                        </pre> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <div id="dataset-xml">
+   7175c49d1a6d48d605da126d3905218a.xml
+  </div> 
+  <div id="noSpatial">
+    No Spatial coverage 
+  </div> 
+  <div class="modal fade" id="citeModal" tabindex="-1" role="dialog"> 
+   <div class="modal-dialog" role="document"> 
+    <div class="modal-content"> 
+     <div class="modal-header"> 
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> 
+      <h4 class="modal-title">Text citation</h4> 
+     </div> 
+     <div class="modal-body" id="cite-dialog-body">
+      Fer, Ilker; Brakstad, Ailin; Damerell, Gillian M.; Elliott, Fiona (2025) Physical oceanography data from Seaglider missions west of Svalbard, October 2020 - February 2023 https://doi.org/10.21335/NMDC-1222822416
+     </div> 
+     <div class="modal-footer"> 
+      <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button> 
+     </div> 
+    </div>
+    <!-- /.modal-content --> 
+   </div>
+   <!-- /.modal-dialog --> 
+  </div>
+  <!-- /.modal -->   
+ </body>
+</html>

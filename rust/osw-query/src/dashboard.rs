@@ -44,12 +44,27 @@ fn document(bundle: &Bundle) -> Result<Value, String> {
     serde_json::from_str(raw).map_err(|e| format!("Invalid dashboard source JSON: {e}"))
 }
 
+fn presentation(bundle: &Bundle) -> Result<Value, String> {
+    let doc = crate::satellite_core_widths::dashboard_document(bundle, document(bundle)?)?;
+    let doc = crate::wicc_review_width::dashboard_document(bundle, doc)?;
+    let doc = crate::eacc_cited_width::dashboard_document(bundle, doc)?;
+    let doc = crate::wicc_winter_reference::dashboard_document(bundle, doc)?;
+    let doc = crate::mean_core_sections::dashboard_document(bundle, doc)?;
+    let doc = crate::madagascar_dimensions::dashboard_document(bundle, doc)?;
+    let doc = crate::azcc_onken_width::dashboard_document(bundle, doc)?;
+    let doc = crate::equatorial_basin_identities::dashboard_document(bundle, doc)?;
+    let doc = crate::pacific_nec_nominal_width::dashboard_document(bundle, doc)?;
+    let doc = crate::indian_sec_model_grid_lengths::dashboard_document(bundle, doc)?;
+    let doc = crate::characteristic_velocities::dashboard_document(bundle, crate::pacific_nec_product_axes::dashboard_projection(bundle, crate::atlantic_nec_band_spans::dashboard_document(bundle, crate::dimoune_section_widths::dashboard_document(bundle, doc)?)?)?)?;
+    crate::current_reference_profiles::dashboard_document(bundle, crate::atlantic_nsec_reference::dashboard_document(bundle, crate::current_core_dimensions::dashboard_document(bundle, crate::pacific_sec_jet_widths::dashboard_document(bundle, doc)?)?)?)
+}
+
 pub fn validate(bundle: &Bundle) -> Result<(), String> {
     // Older journal snapshots remain readable without this new presentation API.
     if bundle.manifest.get("dashboard_receipt").is_none() {
         return Ok(());
     }
-    let doc = document(bundle)?;
+    let doc = crate::equatorial_basin_identities::dashboard_document(bundle, document(bundle)?)?;
     if doc["schema"] != "osw.motion-dashboard.v1" || doc["fingerprint_version"] != 2 {
         return Err("Unsupported dashboard snapshot".into());
     }
@@ -61,9 +76,25 @@ pub fn validate(bundle: &Bundle) -> Result<(), String> {
     if rows.len() != objects.len() {
         return Err("Incomplete dashboard identity coverage".into());
     }
-    for row in rows {
+    for source_row in rows {
+        let row = crate::satellite_core_widths::dashboard_row(bundle, source_row)?;
+        let row = crate::wicc_review_width::dashboard_row(bundle, &row)?;
+        let row = crate::eacc_cited_width::dashboard_row(bundle, &row)?;
+        let row = crate::wicc_winter_reference::dashboard_row(bundle, &row)?;
+        let row = crate::mean_core_sections::dashboard_row(bundle, &row)?;
+        let row = crate::madagascar_dimensions::dashboard_row(bundle, &row)?;
+        let row = crate::azcc_onken_width::dashboard_row(bundle, &row)?;
+        let row = crate::pacific_nec_nominal_width::dashboard_row(bundle, &row)?;
+        let row = crate::indian_sec_model_grid_lengths::dashboard_row(bundle, &row)?;
+        let row = crate::dimoune_section_widths::dashboard_row(bundle, &row)?;
+        let row = crate::atlantic_nec_band_spans::dashboard_row(bundle, &row)?;
+        let row = crate::characteristic_velocities::dashboard_row(bundle, &row)?;
+        let row = crate::pacific_sec_jet_widths::dashboard_row(bundle, &row)?;
+        let row = crate::current_core_dimensions::dashboard_row(bundle, &row)?;
+        let row = crate::atlantic_nsec_reference::dashboard_row(bundle, &row)?;
+        let row = crate::current_reference_profiles::dashboard_row(bundle, &row)?;
         let id = row["id"].as_str().ok_or("Missing dashboard object ID")?;
-        if !ids.insert(id) {
+        if !ids.insert(id.to_owned()) {
             return Err("Duplicate dashboard object ID".into());
         }
         let object = objects
@@ -112,8 +143,11 @@ impl Store {
         let request: Selection = serde_json::from_slice(bytes).map_err(|e| e.to_string())?;
         if ![
             "reported_length",
+            "reported_regional_reaches",
             "reference_route",
             "scoped_width",
+            "characteristic_velocity",
+            "core_migration_profile",
             "radius_evidence",
             "geometry",
             "time_samples",
@@ -121,9 +155,18 @@ impl Store {
             "source_connectivity",
             "scope_notes",
             "dated_diagnostics",
+            "model_dimension_samples",
+            "reported_model_core_sections",
+            "reported_flow_events",
+            "axis_normal_samples",
             "flow_network",
             "passage_transport",
             "section_transport",
+            "direction_calendars",
+            "direction_descriptions",
+            "reported_width_evidence",
+            "cross_shore_context",
+            "regime_context",
         ]
         .contains(&request.metric.as_str())
         {
@@ -143,7 +186,11 @@ impl Store {
         {
             return Err("Unresolved or duplicate dashboard changed ID".into());
         }
-        let mut query = json!({"collection":"objects","filters":[{"field":"dashboard_search","op":"contains","value":request.text.trim()}],"sort":{"field":"label"},"limit":500,"offset":0});
+        // Search declared name aliases alongside the pinned label/basin field.
+        // Keep the latter exact so an alias cannot rewrite a source receipt.
+        let text = request.text.trim().to_lowercase();
+        let mut query =
+            json!({"collection":"objects","sort":{"field":"label"},"limit":500,"offset":0});
         if let Some(kind) = &request.record_type {
             query["record_type"] = json!(kind);
         }
@@ -151,6 +198,7 @@ impl Store {
             query["evidence"] = json!(request.metric);
         }
         let mut ids = Vec::new();
+        let mut offset = 0;
         loop {
             let result = self.execute(&serde_json::to_vec(&query).map_err(|e| e.to_string())?);
             if result["ok"] != true {
@@ -164,10 +212,24 @@ impl Store {
                 .ok_or("Missing dashboard query rows")?;
             ids.extend(
                 rows.iter()
+                    .filter(|row| {
+                        row["dashboard_search"]
+                            .as_str()
+                            .unwrap_or("")
+                            .to_lowercase()
+                            .contains(&text)
+                            || row["search_aliases"]
+                                .as_array()
+                                .into_iter()
+                                .flatten()
+                                .filter_map(Value::as_str)
+                                .any(|alias| alias.to_lowercase().contains(&text))
+                    })
                     .filter_map(|r| r["id"].as_str())
                     .map(str::to_owned),
             );
-            if ids.len()
+            offset += rows.len();
+            if offset
                 >= result["total"]
                     .as_u64()
                     .ok_or("Missing dashboard query total")? as usize
@@ -177,14 +239,14 @@ impl Store {
             if rows.is_empty() {
                 return Err("Incomplete dashboard query page".into());
             }
-            query["offset"] = json!(ids.len());
+            query["offset"] = json!(offset);
         }
         if request.changed_only {
             ids.retain(|id| changed.contains(id.as_str()));
         }
         let beck_scene = if self.bundle.manifest.get("dashboard_receipt").is_some() {
             crate::dashboard_beck::scene(
-                &document(&self.bundle)?,
+                &presentation(&self.bundle)?,
                 &ids,
                 &request.metric,
                 &changed,
@@ -194,7 +256,12 @@ impl Store {
             Value::Null
         };
         let map_scene = if self.bundle.manifest.get("dashboard_receipt").is_some() {
-            crate::dashboard_map::scene(&document(&self.bundle)?, &ids, &request.metric, &changed)?
+            crate::dashboard_map::scene(
+                &presentation(&self.bundle)?,
+                &ids,
+                &request.metric,
+                &changed,
+            )?
         } else {
             Value::Null
         };
@@ -205,9 +272,21 @@ impl Store {
         )
     }
     pub fn dashboard_snapshot(&self) -> Result<Value, String> {
+        let snapshot = if crate::equatorial_basin_identities::active(&self.bundle)
+            || crate::satellite_core_widths::active(&self.bundle)
+            || crate::wicc_review_width::active(&self.bundle)
+            || crate::eacc_cited_width::active(&self.bundle)
+        {
+            serde_json::to_string(&presentation(&self.bundle)?).map_err(|e| e.to_string())?
+        } else {
+            self.bundle.manifest["dashboard_receipt"]["source_json"]
+                .as_str()
+                .ok_or("Missing dashboard source bytes")?
+                .to_owned()
+        };
         Ok(json!({"ok":true,"engine":"rust-osw-query-v1",
                   "bundle_sha256":self.metadata()["bundle_sha256"],
-            "snapshot_json":self.bundle.manifest["dashboard_receipt"]["source_json"].as_str().ok_or("Missing dashboard source bytes")?}))
+            "snapshot_json":snapshot}))
     }
 }
 
@@ -233,5 +312,30 @@ mod tests {
         assert_eq!(result["covered_count"], 640);
         let changed = store.dashboard_select(br#"{"metric":"reference_route","changed_only":true,"changed_ids":["current:0639"]}"#).unwrap();
         assert_eq!(changed["ids"], json!(["current:0639"]));
+    }
+    #[test]
+    fn alias_search_keeps_type_coverage_and_later_query_pages() {
+        let mut rows: Vec<_> = (0..640).map(|i| json!({"id":format!("current:{i:04}"),
+            "type":"named_current","label":format!("Current {i:04}"),"dashboard_search":format!("Current {i:04} Ocean"),
+            "capabilities":{"direction_descriptions":0}})).collect();
+        rows[639]["search_aliases"] = json!(["WICC", "West Indian Coastal Current"]);
+        rows[639]["capabilities"]["direction_descriptions"] = json!(12);
+        let store = Store::load(
+            &serde_json::to_vec(&json!({"schema":"osw.query-bundle.v1",
+            "manifest":{},"collections":{"objects":rows}}))
+            .unwrap(),
+        )
+        .unwrap();
+        let result = store
+            .dashboard_select(br#"{"metric":"direction_descriptions","text":" wicc "}"#)
+            .unwrap();
+        assert_eq!(result["ids"], json!(["current:0639"]));
+        let covered = store.dashboard_select(br#"{"metric":"direction_descriptions","text":"WICC","covered_only":true,"record_type":"named_current"}"#).unwrap();
+        assert_eq!(covered["ids"], result["ids"]);
+        assert_eq!(covered["covered_count"], 1);
+        let missing = store
+            .dashboard_select(br#"{"metric":"direction_descriptions","text":"not-present"}"#)
+            .unwrap();
+        assert_eq!(missing["ids"], json!([]));
     }
 }

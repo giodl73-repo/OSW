@@ -1,0 +1,132 @@
+{
+  "schema": "osw.atlantic-nec-schematic-reach-input.v1",
+  "status": "RULES_AND_EDITORIAL_WAYPOINTS_FROZEN_BEFORE_LENGTH_CALCULATION",
+  "current_id": "atlantic-north-equatorial",
+  "entity_id": "current:atlantic-north-equatorial",
+  "component": "label-adjacent NEC schematic flowline; interior reach only",
+  "source_citation": "Stramma and Schott1999, The mean flow field of the tropical Atlantic Ocean, Deep-Sea Research II46,279-303",
+  "source_doi": "10.1016/S0967-0645(98)00109-X",
+  "source_url": "https://mcirano.ufba.br/ftp/aulas/FISA39/artigos/stramma99a.pdf",
+  "source_pdf_sha256": "f356ae59fa5b141489459d23b1c576b91e034d7275a4973d2575db0f7f54fac5",
+  "source_pdf_bytes": 941496,
+  "source_locator": "Figure4a,b,printed289/PDF11; caption and Section4,printed288/PDF10",
+  "source_pages_visually_reviewed": [
+    10,
+    11
+  ],
+  "source_kind": "published circulation schematic",
+  "geometry_role": "osw_editorial_reference_route",
+  "coordinate_selection": "Rounded OSW waypoints follow the westward schematic curve adjacent to the NEC label. Other parallel NEC arrows are excluded. No digitized velocity axis or mean of those arrows is claimed.",
+  "crs": "OGC:CRS84",
+  "direction": "westward",
+  "layer": "Schematic Tropical Surface Water,approximately0-100m; not a fixed-depth velocity core.",
+  "time_convention": "Source northern spring and northern fall climatological schematics. No observation year, monthly geometry or annual extremes.",
+  "gate_convention": {
+    "east_longitude": -30,
+    "nominal_west_longitude": -55,
+    "alternative_west_longitudes": [
+      -50,
+      -55
+    ],
+    "gates_are_current_origin_or_termination": false,
+    "reason": "Interior mid-basin reach following one explicitly chosen schematic curve; exclude eastern source transitions, western island approaches and boundary-current extensions."
+  },
+  "routes": [
+    {
+      "id": "atlantic-nec-spring-30w-55w-reference-reach-v1",
+      "phase": "northern_spring",
+      "source_panel": "Figure4a",
+      "support_waypoints_lon_lat": [
+        [
+          -30,
+          17.4
+        ],
+        [
+          -35,
+          15.5
+        ],
+        [
+          -40,
+          13.9
+        ],
+        [
+          -45,
+          12.9
+        ],
+        [
+          -50,
+          12.6
+        ],
+        [
+          -55,
+          12.8
+        ]
+      ]
+    },
+    {
+      "id": "atlantic-nec-fall-30w-55w-reference-reach-v1",
+      "phase": "northern_fall",
+      "source_panel": "Figure4b",
+      "support_waypoints_lon_lat": [
+        [
+          -30,
+          18.7
+        ],
+        [
+          -35,
+          17.1
+        ],
+        [
+          -40,
+          15.7
+        ],
+        [
+          -45,
+          14.6
+        ],
+        [
+          -50,
+          14.2
+        ],
+        [
+          -55,
+          14.2
+        ]
+      ]
+    }
+  ],
+  "scenario_rule": {
+    "uniform_latitude_shifts_degrees": [
+      -0.5,
+      0,
+      0.5
+    ],
+    "interior_latitude_shifts_degrees": [
+      -0.5,
+      0,
+      0.5
+    ],
+    "interpretation": "Independent drawing and western-gate choices, not physical uncertainty, seasonal extrema, current width or confidence. Half-degree drawing shifts are specific editorial tests for this coarse schematic; not universal precision."
+  },
+  "excluded_features": [
+    "Other parallel NEC schematic curves",
+    "North Equatorial Countercurrent and Guinea Dome circulation",
+    "Atlantic SEC including northern SEC branch",
+    "Canary and Mauritanian coastal flows",
+    "Antilles, Guiana and Caribbean continuations"
+  ],
+  "eligibility": {
+    "published_length_rank": false,
+    "whole_current_length": false,
+    "physical_state_join": false,
+    "seasonal_playback": false,
+    "scientific_width": false
+  },
+  "whole_current_length_km": null,
+  "annual_length_range_km": null,
+  "numerical_length_uncertainty_km": null,
+  "new_observations": 0,
+  "installed": false,
+  "component_is_new_catalogue_identity": false,
+  "full_goal_complete": false
+}

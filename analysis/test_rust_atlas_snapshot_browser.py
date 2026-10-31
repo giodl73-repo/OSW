@@ -1,29 +1,45 @@
 """Checked atlas sources, native/WASM parity, navigation and unavailable data."""
+from query_packet import read_bundle_bytes
 import hashlib,json,os,subprocess,tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
 from test_rust_query_browser import ROOT,CLI
+from browser_current_catalogue_fixture import expected_current_ids,expected_reference_route_ids
 JOIN='research/ocean-current-reference-route-state-join.json'
 BASE='http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas'
 
 def route_atlas_bundle(page,bundle):
-    raw=json.dumps(bundle,ensure_ascii=False).encode('utf-8')
-    manifest=json.loads((ROOT/'almanac/query-engine.manifest.json').read_bytes())
-    manifest['sha256']['almanac/query-data.json']=hashlib.sha256(raw).hexdigest()
-    page.route('**/query-engine.manifest.json',lambda r:r.fulfill(json=manifest))
-    page.route('**/query-data.json',lambda r:r.fulfill(body=raw,content_type='application/json'))
+    from browser_bundle_fixture import install_bundle_fixture
+    install_bundle_fixture(page,bundle)
 
 def without_state_join(page):
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     del bundle['manifest']['atlas_receipts'][JOIN]
     route_atlas_bundle(page,bundle)
 
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    current_ids=expected_current_ids(ROOT)
+    expected_route_ids=expected_reference_route_ids(ROOT)
+    catalog_count=len(expected_route_ids)
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     native=json.loads(subprocess.check_output([str(CLI),str(ROOT/'almanac/query-data.json'),'--atlas'],encoding='utf-8'))
     expected_sources=set(bundle['manifest']['atlas_receipts'])
     expected_sources.update(bundle['manifest']['seasons_receipts'][key]['source_file'] for key in ['widths','routes','frames'])
     expected_sources.add('research/ocean-motion-dashboard.json')
+    expected_sources.add('research/kuroshio-wang-2024-regional-dimensions.json')
+    expected_sources.add('research/kuroshio-wang-2024-axis-normal-spans.json')
+    expected_sources.add('research/agulhas-vinayachandran-2021-reported-dimensions.json')
+    expected_sources.add('research/norwegian-baumann-2026-mean-core-widths.json')
+    expected_sources.update(['research/ocean-current-identity-admissions.json','research/ocean-current-working-catalogue.json','research/southern-east-madagascar-prose-dimension-admissions.json','research/ocean-current-working-reference-routes.json','research/ocean-current-working-reference-route-state-join.json','research/madagascar-coastline-comparison.json'])
+    expected_sources.update([
+        'research/norwegian-atlantic-slope-working-admission.json',
+        'research/ocean-current-effective-catalogue.json','research/ocean-current-live-measurements.json',
+        'research/hansen-2011-asar-surface-width-admissions.json','research/ocean-current-measurements-asar-edition.json',
+        'research/neuc-glider-2015-width-admissions.json','research/ocean-current-measurements-neuc-edition.json',
+        'research/aleutian-onishi-2001-width-admission.json',
+        'research/indian-current-identity-query-contract-v1.json','research/indian-current-evidence-query-contract-v1.json',
+        'research/brazil-regional-reach-query-contract-v1.json','research/eicc-t24-published-width-admission-v1.json',
+        'research/indian-current-reference-route-planning-v1.json'])
     assert native['state_join_available'] and set(native['sources_json'])==expected_sources
     for path,raw in native['sources_json'].items():assert raw==(ROOT/path).read_bytes().decode('utf-8'),path
     report=bundle['collections']['reference_routes'][0]['candidate_file']
@@ -82,17 +98,34 @@ def main():
                 receipts[path].update(source_json=raw,source_sha256=digest);bad['manifest']['input_sha256'][path]=digest
             path=Path(directory)/'bad.json';path.write_text(json.dumps(bad),encoding='utf-8')
             result=subprocess.run([str(CLI),str(path),'--atlas'],capture_output=True,text=True)
-            assert result.returncode==2 and not result.stdout and 'atlas' in result.stderr.lower(),(kind,result.stderr)
+            assert result.returncode==2 and not result.stdout and any(message in result.stderr.lower() for message in ['atlas','coastal reference','working route catalogue']),(kind,result.stderr)
     with sync_playwright() as p:
         browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1100,'height':900});errors=[];direct=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.route('**/research/*.json',lambda r:(direct.append(r.request.url),r.fulfill(status=503,body='Direct source reads disabled'))[-1])
         page.goto(BASE)
-        expect(page.locator('#route-atlas-select option')).to_have_count(101,timeout=90000)
+        expect(page.locator('#route-atlas-select option')).to_have_count(len(current_ids)+1,timeout=90000)
+        assert sorted(page.locator('#route-atlas-select option').evaluate_all(
+            'options => options.map(option => option.value).filter(Boolean)')) == current_ids
         expect(page.locator('#route-atlas-eddy-select option')).to_have_count(141)
         assert page.evaluate('window.oswAtlasSnapshot')==native
-        assert page.locator('.route-card').count()==64
+        # The selectors and route-card list finish in separate async handlers.
+        # Wait for the complete list, retaining exact count and identity checks.
+        try:
+            expect(page.locator('.route-card')).to_have_count(len(expected_route_ids),timeout=90000)
+            assert sorted(page.locator('.route-card').evaluate_all('cards => cards.map(card => card.id)'))==expected_route_ids
+        except Exception:
+            output=ROOT/'.pytest_cache/rust-atlas-snapshot-browser';output.mkdir(parents=True,exist_ok=True)
+            (output/'failure.json').write_text(json.dumps({
+                'status':'FAIL','phase':'complete_route_cards','url':page.url,
+                'expected_route_ids':expected_route_ids,
+                'actual_route_ids':page.locator('.route-card').evaluate_all('cards => cards.map(card => card.id)'),
+                'route_status':page.locator('#route-status').inner_text(),
+                'page_errors':errors,'direct_source_requests':direct,
+                'preceding_corruption_rejections_completed':18,
+            },indent=2),encoding='utf-8')
+            raise
         assert page.locator('#route-status').get_attribute('data-engine')=='rust-osw-query-v1'
         page.locator('#route-atlas-select').select_option('current:agulhas')
         expect(page.locator('#route-atlas-preview')).to_contain_text('Agulhas')
@@ -105,9 +138,11 @@ def main():
         del partial['manifest']['atlas_receipts']['research/ocean-current-dated-timeline-2025.json']
         del partial['manifest']['atlas_receipts']['research/leeuwin-a101-monthly-plot-extraction.json']
         route_atlas_bundle(absent,partial);absent.goto(BASE)
-        expect(absent.locator('#route-atlas-select option')).to_have_count(101,timeout=90000)
+        expect(absent.locator('#route-atlas-select option')).to_have_count(len(current_ids)+1,timeout=90000)
+        assert sorted(absent.locator('#route-atlas-select option').evaluate_all(
+            'options => options.map(option => option.value).filter(Boolean)')) == current_ids
         absent.locator('#route-atlas-select').select_option('current:agulhas')
-        expect(absent.locator('.route-atlas-state-links')).to_contain_text('State crossing inventory unavailable')
+        expect(absent.locator('.route-atlas-state-links')).to_contain_text('State crossing inventory unavailable',timeout=90000)
         assert absent.locator('#route-atlas-preview .route-map').is_visible()
         absent.locator('#route-atlas-select').select_option('current:gulf-stream-system')
         absent.locator('.atlas-timeline summary').click()
@@ -125,6 +160,24 @@ def main():
         assert failed.locator('.route-card').count()==0
         assert failed.locator('#route-atlas-select option').count()==1
         browser.close()
-    print(f'PASS: {len(native["sources_json"])} exact atlas source documents, eighteen loader rejections, native/WASM parity, 100 current/140 eddy selectors, 64 cards, no direct source reads, mobile and optional/unavailable data')
+    output=ROOT/'.pytest_cache/rust-atlas-snapshot-browser';output.mkdir(parents=True,exist_ok=True)
+    (output/'result.json').write_text(json.dumps({
+        'status':'PASS','scope':'complete_atlas_delivery_not_scientific_release',
+        'bundle_sha256':json.loads((ROOT/'almanac/query-data.json').read_bytes())['logical_sha256'],
+        'source_document_count':len(native['sources_json']),
+        'exact_source_sha256':{path:hashlib.sha256(raw.encode('utf-8')).hexdigest()
+                               for path,raw in native['sources_json'].items()},
+        'native_wasm_snapshot_equal':True,'loader_corruptions_rejected':18,
+        'accepted_current_ids':current_ids,'eddy_record_selector_count':140,
+        'exact_reference_route_ids':expected_route_ids,
+        'mobile_viewport_width':320,'mobile_horizontal_overflow':False,
+        'optional_state_join_unavailable_verified':True,
+        'optional_timeline_unavailable_verified':True,
+        'optional_monthly_width_unavailable_verified':True,
+        'unavailable_packet_fails_closed':True,
+        'main_page_errors':errors,'main_page_direct_source_requests':direct,
+        'scientific_release_published':False,
+    },indent=2)+'\n',encoding='utf-8')
+    print(f'PASS: {len(native["sources_json"])} exact atlas source documents, eighteen loader rejections, native/WASM parity, {len(current_ids)} current/140 eddy-record selectors, {catalog_count} cards, no direct source reads, mobile and optional/unavailable data')
 
 if __name__=='__main__':main()

@@ -1,0 +1,73 @@
+{
+  "schema": "osw.eac-mean-core-runtime-preparation-review.v1",
+  "status": "PASS_BOUNDED_SOURCE_FIXTURE_AND_DOM_CHECKS_CLOUD_BUILD_BROWSER_PENDING",
+  "scope_file": "research/eac-mean-core-runtime-scope-v1.json",
+  "scope_sha256": "e690e36fbcce40b89c85a8d2c6802170f94bc2e42dd9c891d83e43bb180eeee1",
+  "checks": [
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis",
+        "-p",
+        "test_eac_mean_core_query_v1.py"
+      ],
+      "expected_tests": 7,
+      "exit_code": 0,
+      "output": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.284s\n\nOK\n"
+    },
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis",
+        "-p",
+        "test_eac_mean_core_index_v1.py"
+      ],
+      "expected_tests": 3,
+      "exit_code": 0,
+      "output": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.002s\n\nOK\n"
+    },
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis",
+        "-p",
+        "test_eac_mean_core_runtime_v1.py"
+      ],
+      "expected_tests": 4,
+      "exit_code": 0,
+      "output": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.417s\n\nOK\n"
+    },
+    {
+      "command": [
+        "node",
+        "analysis/test_mean_core_sections_ui_v1.mjs"
+      ],
+      "expected_tests": null,
+      "exit_code": 0,
+      "output": "PASS: five/filtered section cards, source/Inspect links, unknowns, compact disclosure, separate scales, consumer ordering and dashboard labels; browser layout pending\n"
+    }
+  ],
+  "javascript_parsers_passed": 6,
+  "historical_runtime_files_archived": 16,
+  "rust_source_inventory_entries": 108,
+  "compile_time_data_inventory_entries": 160,
+  "installed_packet_or_index_loaded": false,
+  "native_build_run": false,
+  "wasm_build_run": false,
+  "actual_browser_run": false,
+  "installed": false,
+  "main_changed": false,
+  "local_bulk_preview_changed": false
+}

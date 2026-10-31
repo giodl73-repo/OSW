@@ -1,0 +1,16 @@
+{
+  "schema": "osw.current-reference-profile-delivery-timeout-review.v1",
+  "run_id": 41146870704,
+  "status": "NATIVE_BATCH_TIMEOUT_OPTIMIZATION_PENDING_CLOUD_VERIFICATION",
+  "rust_tests_passed": 326,
+  "semantic_failure_established": false,
+  "finding": "The new validator separately scanned all packet rows for each of29 addition IDs.",
+  "correction": "Collect matching additions in one complete packet pass, preserving every occurrence, collection and value; reuse that index for exact duplicate/misplacement checks.",
+  "timing_instrumentation": "Native-only harness now reports load and completed-case timing to stderr; failure evidence keeps its final16KiB. Native batch timing is retained on success.",
+  "native_harness_source_pin_added": true,
+  "timeout_seconds_unchanged": 600,
+  "scientific_contract_changed": false,
+  "new_coverage_installed": false,
+  "main_updated": false,
+  "full_goal_complete": false
+}

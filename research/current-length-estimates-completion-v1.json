@@ -1,0 +1,501 @@
+{
+  "schema": "osw.current-length-estimates-completion.v1",
+  "status": "PASS_ALL111_DECLARED_LENGTH_ESTIMATES_REVIEWED",
+  "objective": "Deliver length estimates for all currents",
+  "scope": "Complete declared approximate length register, not111 measured physical axes or a seasonal-envelope dataset.",
+  "coverage": {
+    "currents": 111,
+    "with_length_estimate": 111,
+    "remaining_full_extent_estimates": 0,
+    "reported": 13,
+    "reference_estimate": 38,
+    "provisional_estimate": 50,
+    "family_principal_member": 8,
+    "reported_hypothesis": 1,
+    "system_segment_sum": 1
+  },
+  "recordset_sha256": "159050f8541b4542d3b731d83695b996b78669775a4b80ea3497f6cfb44bba52",
+  "input_sha256": {
+    "research/current-measurement-coverage-baseline-v1.json": "eac6175279cef24de14a17ea36ca6dd063f678d235b629a5c863498bc0c72569",
+    "research/equatorial-basin-identity-query-contract-v3.json": "1486ee54bfa7b7b17bdc08ebdc788d63c93a058e4f632b23b39d79f1c74a591d",
+    "research/ocean-current-live-measurements.json": "c6a63921048ff0d414b22ac4c45f9bd13cdb799b09c8bd6fc187836eca11c26a",
+    "research/ocean-current-reference-path-candidates.json": "b06caed27655c39f8127ddda441cba0a856800f599ec52edcd5b30d2ad37b633",
+    "research/south-java-reference-query-contract-v1.json": "d2eb13c8e5e14f08c72cba101e65ba7d544d1520b006b357c807c99ad7d74036",
+    "research/pacific-secc-reference-query-contract-v1.json": "007ff7ba3e1e74f6d2bbf9d1720b617d96b2fafb5249e6ef732df85d7d633fd5",
+    "research/wicc-winter-reference-query-contract-v1.json": "d47c1c2e1ce7af4f5c41c21168526d1f23dd3c413c1f6f9291268105d1d76e45",
+    "research/atlantic-nsec-reference-query-contract-v2.json": "4c02f9bd16497afe3d803717639b46cf635440cb15203bdf9954725c700f04d3",
+    "research/current-reference-profile-batch-query-contract-v1.json": "4d34feed5d172854e381bf66b2c2ab58c0e50ad73179b81be1ad2181cf407542",
+    "research/eicc-reference-query-contract-v1.json": "d570494537d9d9d627a17a2af47d8cc3289429b4055ac30a35a8cd3a0772d346",
+    "research/nwasc-source-anchor-reference-route.json": "47217b9136abbb1d589426a0404c428a1d676e530f1be9647cb62d76c7e8216c",
+    "research/southern-east-madagascar-coastal-reference-curve.json": "ad323cccfa47eca13840b039dc16a957b2f78b7346176877bbae27969882fb0b",
+    "research/current-length-reference-extents-v1.json": "2f6254b67287a589eebfba0914e23874dbe5c767f51e27f7e80c79b96432d87b",
+    "research/current-length-reference-extents-geography-v1.json": "0882a929ca077e1f3bfda05385dfebf6aabcc3135b6350fb975405d09fde3243",
+    "research/current-length-reference-extents-v2.json": "a123f566e4dde20b8656fc2ea7310b78dc9e919d52b0b6a8d2a3ee86dc3c257d",
+    "research/current-length-reference-extents-geography-v2.json": "763b16b897b479415377ee0422b82bdae8b6208b1fd22250857f97b8b602b92e",
+    "research/current-length-reference-extents-v3.json": "a78b592ab32038563d0ac6bf480b37fb3fd1798e25a7b0e6aca6f9f98615ac4b",
+    "research/current-length-reference-extents-geography-v3.json": "96593fede3ec3badbcfa4c4bb44838ead5db1c04e962786434c1ce221153e04f",
+    "research/current-length-reference-extents-v4.json": "6f22d5dd5cd35afee56111f3865ec34677e010526511eb972f8b5b7ff60f9055",
+    "research/current-length-reference-extents-geography-v4.json": "646cbe7a822bf0ab35252d2e744f46ea835d7dc20ae97f63fef8a8ca252d7cd0",
+    "research/current-length-reference-extents-v5.json": "aa1a1cd9ab29601062c3df4e19518f484341a3312747923ced1380a3da938b71",
+    "research/current-length-reference-extents-geography-v5.json": "e2ea2d2299bb606717411b3a6395dd026315321de7a36cf9ec889e2590368188",
+    "research/current-length-reference-extents-v7.json": "5bc934cd0e32dca53af4cca6678771eec11e7d0ed60d4361fbe97505aecea53e",
+    "research/current-length-reference-extents-geography-v7.json": "96175979dd089524a7ba832f68442968b4353b43150d917d082b607dbfaa2126",
+    "research/current-length-family-conventions-v1.json": "75cf3e18950e10fd2cb48eb0f56ca3470a50f4199a0cad2be2aee3e1e3727086"
+  },
+  "rules_sha256": "b98d3e1dde09b77316ead0db8bc0a2b3fd950ca7454f09eab18f95096fcb465a",
+  "frontend_sha256": {
+    "almanac/lengths.html": "4724a5e66f157c404e69bae269476ee41be9d8c0ca7947a1353ab5b22604120a",
+    "almanac/lengths.js": "2d0c61d5b05d75064fa44a83fb38344d720fba62dc183c894e55142b0f174fca"
+  },
+  "requirements": [
+    {
+      "requirement": "complete_inventory",
+      "status": "PASS",
+      "evidence": "111 distinct identities,111 positive declared length entries,0 gaps"
+    },
+    {
+      "requirement": "source_reported_values",
+      "status": "PASS",
+      "evidence": "13 existing reported lengths preserved; separate5000km reported shelf-system hypothesis remains unconfirmed"
+    },
+    {
+      "requirement": "retained_reference_reproduction",
+      "status": "PASS",
+      "evidence": "All38 retained reference nominal lengths independently recalculated from saved coordinates; candidate/input SHA256 pins match"
+    },
+    {
+      "requirement": "new_reference_reproduction",
+      "status": "PASS",
+      "evidence": "All50 new reference estimates reproduce from retained inputs;1800 final geographic scenarios clear coarse land; failed earlier grids preserved"
+    },
+    {
+      "requirement": "explicit_scope_conventions",
+      "status": "PASS",
+      "evidence": "Eight families select named members; Gulf Stream System sums only strict disjoint segments; networks/plumes use explicit principal itineraries"
+    },
+    {
+      "requirement": "sources_and_exports",
+      "status": "PASS",
+      "evidence": "JSON/CSV retain method, extent, source record/citation, conditional status and appropriate sensitivity/components"
+    },
+    {
+      "requirement": "ranked_ui_and_navigation",
+      "status": "PASS",
+      "evidence": "Cloud browser verified all111 sorted positive rows and Rust object targets, filters, downloads,42 unique source/map assets and mobile layout"
+    },
+    {
+      "requirement": "actual_visual_review",
+      "status": "PASS",
+      "evidence": "All new route maps reviewed in prior progress records; final desktop, mobile, conditional, itinerary-map and current-card screenshots viewed"
+    },
+    {
+      "requirement": "preservation",
+      "status": "PASS",
+      "evidence": "Installed21 runtime files and all unrelated tree leaves preserved; no new canonical measurements or annual envelopes; main unchanged"
+    }
+  ],
+  "browser": {
+    "schema": "osw.current-length-register-browser-result.v1",
+    "status": "PASS_COMPLETE_LENGTH_REGISTER_AND_111_CURRENT_TARGETS",
+    "source_commit": "0604f0cdfbf52ffa28ad40af986bc6448ddb1a0a",
+    "run_id": "41162284615",
+    "register_sha256": "7d96cc0f6d4cd7c1e07ab2cb81902b7487171409cb92f2a25f2b39786518ccc5",
+    "recordset_sha256": "159050f8541b4542d3b731d83695b996b78669775a4b80ea3497f6cfb44bba52",
+    "frontend_sha256": {
+      "almanac/lengths.html": "4724a5e66f157c404e69bae269476ee41be9d8c0ca7947a1353ab5b22604120a",
+      "almanac/lengths.js": "2d0c61d5b05d75064fa44a83fb38344d720fba62dc183c894e55142b0f174fca"
+    },
+    "counts": {
+      "currents": 111,
+      "with_length_estimate": 111,
+      "remaining_full_extent_estimates": 0,
+      "reported": 13,
+      "reference_estimate": 38,
+      "provisional_estimate": 50,
+      "family_principal_member": 8,
+      "reported_hypothesis": 1,
+      "system_segment_sum": 1
+    },
+    "all111_rows_positive_sorted_and_linked": true,
+    "all111_rust_object_targets_verified": true,
+    "family_system_filters_and_conditional_notes_verified": true,
+    "csv_download_exact": true,
+    "source_and_map_assets_checked": 42,
+    "mobile_no_document_overflow": true,
+    "length_page_requires_runtime_packet": false,
+    "page_errors": [],
+    "installed_runtime_files_preserved": 21,
+    "native_or_wasm_builds": 0,
+    "main_updated": false
+  },
+  "browser_artifact": {
+    "id": 13027687267,
+    "bytes": 1360547,
+    "sha256": "82d29193a770d7ee5698b120b97e20379899a4f2155edfb7343194e3dbb8cc3a",
+    "url": "https://github.com/giodl73-repo/OSW/actions/runs/41162284615"
+  },
+  "actual_screenshots_reviewed": [
+    "desktop.png",
+    "mobile.png",
+    "conditional-extent.png",
+    "itf-map.png",
+    "current-card.png"
+  ],
+  "retained_reference_reproduction": {
+    "records": [
+      {
+        "entity_id": "current:agulhas",
+        "candidate_file": "research/agulhas-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 1988.49437,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:agulhas-return",
+        "candidate_file": "research/agulhas-return-extent-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 4584.162995,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:alaska",
+        "candidate_file": "research/alaska-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 1378.587143,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:algerian",
+        "candidate_file": "research/algerian-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 869.055054,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:azores",
+        "candidate_file": "research/azores-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 3567.931135,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:balearic",
+        "candidate_file": "research/balearic-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 372.752115,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:benguela",
+        "candidate_file": "research/benguela-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 2470.588882,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:black-sea-rim",
+        "candidate_file": "research/black-sea-rim-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 2082.671486,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:brazil",
+        "candidate_file": "research/brazil-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 3225.310982,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:canary",
+        "candidate_file": "research/canary-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 1740.624474,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:caribbean",
+        "candidate_file": "research/caribbean-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 2783.790589,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:davidson",
+        "candidate_file": "research/davidson-winter-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 1303.860216,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:east-adriatic",
+        "candidate_file": "research/east-adriatic-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 755.893566,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:east-australian",
+        "candidate_file": "research/east-australian-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 2110.298221,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:east-greenland",
+        "candidate_file": "research/east-greenland-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 2670.611173,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:gaspe",
+        "candidate_file": "research/gaspe-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 467.322829,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:guinea",
+        "candidate_file": "research/guinea-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 1154.657754,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:hiri-current",
+        "candidate_file": "research/hiri-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 1948.639859,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:irminger",
+        "candidate_file": "research/irminger-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 1163.63792,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:jutland",
+        "candidate_file": "research/jutland-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 416.880046,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:kuroshio-extension",
+        "candidate_file": "research/kuroshio-extension-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 1384.78149,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:labrador",
+        "candidate_file": "research/labrador-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 2115.196945,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:leeuwin",
+        "candidate_file": "research/leeuwin-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 2927.778024,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:mindanao-current",
+        "candidate_file": "research/mindanao-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 1031.900946,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:north-atlantic",
+        "candidate_file": "research/north-atlantic-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 3258.645326,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:north-brazil",
+        "candidate_file": "research/north-brazil-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 2180.806105,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:north-pacific",
+        "candidate_file": "research/north-pacific-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 4665.467948,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:northern-mediterranean",
+        "candidate_file": "research/northern-mediterranean-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 737.30249,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:norwegian-coastal",
+        "candidate_file": "research/norwegian-coastal-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 2138.486329,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:oyashio",
+        "candidate_file": "research/oyashio-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 996.319716,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:portugal",
+        "candidate_file": "research/portugal-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 1419.565937,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:somali",
+        "candidate_file": "research/somali-winter-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 1488.278601,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:south-australian",
+        "candidate_file": "research/south-australian-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 759.042215,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:tsushima",
+        "candidate_file": "research/tsushima-coastal-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 1270.939904,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:west-greenland",
+        "candidate_file": "research/west-greenland-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 1065.602563,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:west-spitsbergen",
+        "candidate_file": "research/west-spitsbergen-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 773.303133,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:western-adriatic",
+        "candidate_file": "research/western-adriatic-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 738.65449,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      },
+      {
+        "entity_id": "current:zeehan",
+        "candidate_file": "research/zeehan-reference-path-candidate.json",
+        "candidate_sha_matches": true,
+        "input_sha_matches": true,
+        "computed_wgs84_km": 789.699786,
+        "nominal_within_saved_rounding": true,
+        "display_reproduces": true
+      }
+    ],
+    "checked": 38,
+    "errors": []
+  },
+  "new_reference_currents": 50,
+  "new_reference_geographic_scenarios": 1800,
+  "focused_data_tests_passed": 22,
+  "metadata_only_after_browser": "Completion binding/status fields can change; the exact111-record projection and frontend bytes remain bound to the passing browser evidence.",
+  "physical_axis_admission": false,
+  "annual_length_ranges_measured": false,
+  "canonical_runtime_contains_new_length_register": false,
+  "main_merged": false,
+  "full_goal_complete": true
+}

@@ -8,6 +8,9 @@ const PATH: &str = "research/west-spitsbergen-kolas-2018-stream-tube-width-scope
 
 pub(crate) fn validate(row: &Value) -> Result<(), String> {
     let id = row["id"].as_str().unwrap_or("");
+    if id == "west-spitsbergen-dundas-2026-selected-core-width-statistic" {
+        return crate::selected_core_widths::validate_row(row);
+    }
     if row["current_id"] != "west-spitsbergen"
         && row["phase_kind"] != "synoptic_stream_tube_section"
         && !id.starts_with("west-spitsbergen-kolas-2018-")

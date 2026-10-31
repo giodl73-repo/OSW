@@ -1,0 +1,24 @@
+{
+  "schema": "osw.pacific-sec-jet-widths-delivery-failure-review.v1",
+  "run_id": 41022925702,
+  "run_attempt": 1,
+  "source_commit": "e69b29df76ee0d44c46d514d2db8c809b056acad",
+  "conclusion": "failure",
+  "evidence_artifact": {
+    "id": 12962313639,
+    "bytes": 500,
+    "sha256": "697020990825f86d232341bb4d1066b46b47e7fa87ed549fb22478a3e53a1330"
+  },
+  "retained_failure": {
+    "status": "FAIL",
+    "error": "Command '['node', '--max-old-space-size=1536', 'analysis/check_chen_indian_sec_parity_v2.mjs', 'capture-main', '/home/runner/work/OSW/OSW/almanac/query-engine.wasm', '/home/runner/work/OSW/OSW/.pytest_cache/pacific-sec-gourdeau-2008-delivery-work-v1/parent.json', '/home/runner/work/OSW/OSW/.pytest_cache/pacific-sec-gourdeau-2008-delivery-work-v1/capture-main-fixture.json', '/home/runner/work/OSW/OSW/.pytest_cache/pacific-sec-gourdeau-2008-delivery-work-v1/capture-main.json', '536521a9aca1ab106bb8cb7445786c8fb224f08cec58e1aa7141dad0b8c9604e']' died with <Signals.SIGABRT: 6>.",
+    "source_commit": "e69b29df76ee0d44c46d514d2db8c809b056acad"
+  },
+  "cause": "Baseline capture retained and serialized all large responses together; Node reached the unchanged 1536 MiB heap limit.",
+  "correction": "Capture each complete original response to an exclusive hash-bound cloud file; retain ordered descriptors and read one response at a time for preservation checks.",
+  "main_cases_retained": 354,
+  "source_cases_retained": 105,
+  "additional_index_cases_still_required": 4,
+  "no_candidate_build_or_installation_completed": true,
+  "full_goal_complete": false
+}

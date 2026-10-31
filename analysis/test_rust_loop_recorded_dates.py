@@ -1,4 +1,5 @@
 """Recorded-day query, failure omission, pair integrity and accessible playback."""
+from query_packet import read_bundle_bytes
 import copy
 import hashlib
 import re
@@ -15,7 +16,7 @@ DATES=['2025-01-15','2025-04-15','2025-07-15','2025-10-15']
 def query(date):return {'collection':'objects','filters':[{'field':'id','op':'eq','value':'current:loop'}],'geometry_time':{'from':date,'to':date},'limit':1}
 
 def main():
-    bundle=json.loads((ROOT/'almanac/query-data.json').read_bytes())
+    bundle=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'))
     owner=next(r for r in bundle['collections']['objects'] if r['id']=='current:loop')
     view=json.loads(subprocess.check_output([str(CLI),str(ROOT/'almanac/query-data.json'),'--loop-recorded'],encoding='utf-8'))
     comparison=json.loads((ROOT/'research/loop-current-recorded-date-comparison.json').read_bytes())

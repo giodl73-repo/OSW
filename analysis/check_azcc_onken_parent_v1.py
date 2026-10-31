@@ -1,0 +1,147 @@
+"""Read-only cloud audit of Azores Countercurrent metadata and publication identities."""
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+from urllib.parse import urlsplit,unquote
+
+ROOT=Path(__file__).resolve().parents[1]
+REQUEST='research/azcc-onken-parent-request-v1.json'
+PREFLIGHT='research/azcc-onken-parent-preflight-v1.json'
+WORKFLOW='.github/workflows/azcc-onken-parent-cloud-v1.yml'
+OUT=ROOT/'.pytest_cache/azcc-onken-parent-v1'
+OWNER='current:azores-countercurrent'
+ENGINE='75e769027861afa121357f00b7ad125888ade3db2e12a188c0b60d0c23c7b4dd'
+LOGICAL='b00b870ae929172cf5108b08066541fd31d5bf602ef86f4142819fdf91e11049'
+LENGTH=190594973
+FORBIDDEN=['index_load_permitted','native_wasm_build_permitted','browser_permitted','ocean_field_processing_permitted',
+           'working_branch_installation_permitted','local_bulk_sync_permitted','main_merge_permitted']
+PAPERS={'onken_1993':{'doi':'10.1175/1520-0485(1993)023<1638:tac>2.0.co;2','title':'The Azores Countercurrent','urls':['https://oceanrep.geomar.de/42387/1/1520-0485%281993%29023_1638_tac_2.0.co%3B2.pdf']}}
+
+def read(p):return json.loads((ROOT/p).read_bytes())
+def sha(raw):return hashlib.sha256(raw).hexdigest()
+def encoded(value):return (json.dumps(value,indent=2,ensure_ascii=False,allow_nan=False)+'\n').encode()
+def title(value):return re.sub('[^a-z0-9]','',str(value).casefold())
+def url(value):
+    parsed=urlsplit(str(value).strip());return (parsed.hostname or '').lower(),parsed.path.rstrip('/').lower()
+def doi(value):
+    value=unquote(str(value).strip()).lower()
+    if value.startswith(('http://','https://')):
+        parsed=urlsplit(value);value=parsed.path
+        if parsed.hostname in ['doi.org','dx.doi.org']:value=value.lstrip('/')
+        else:
+            found=re.search(r'/doi/(?:full/|abs/|epdf/|pdf/)?(10\.[0-9]{4,9}/.+)$',value)
+            return found.group(1).rstrip('/') if found else ''
+    return value.removeprefix('doi:').strip().rstrip('/')
+
+def publications(rows):
+    ids=[r.get('id') for r in rows]
+    if any(not isinstance(i,str) or not i for i in ids) or len(ids)!=len(set(ids)):
+        raise ValueError('Unique nonempty source IDs required')
+    selected,resolutions={},{}
+    for key,paper in PAPERS.items():
+        matches=[];conflicts=[]
+        for row in rows:
+            match=(doi(row.get('doi',''))==paper['doi'] or doi(row.get('url',''))==paper['doi']
+                or url(row.get('url','')) in {url(u) for u in paper['urls']}
+                or title(row.get('title',''))==title(paper['title'])
+                or title(row.get('label',''))==title(paper['title']))
+            if match:
+                matches.append(row)
+                if row.get('doi') and doi(row['doi'])!=paper['doi']:conflicts.append(row['id'])
+        selected[key]=matches
+        status='CONFLICTING_METADATA' if conflicts else 'MISSING' if not matches else 'UNIQUE_EXISTING' if len(matches)==1 else 'RECONCILIATION_REQUIRED'
+        resolutions[key]={'status':status,'matching_source_ids':[r['id'] for r in matches],'conflicting_source_ids':conflicts}
+    return selected,resolutions
+
+def controls():
+    if (os.name!='posix' or os.environ.get('GITHUB_ACTIONS')!='true'
+        or os.environ.get('GITHUB_REPOSITORY')!='giodl73-repo/OSW'
+        or os.environ.get('GITHUB_REF')!='refs/heads/codex/current-measurement-gaps'
+        or os.environ.get('GITHUB_EVENT_NAME')!='push'):
+        raise ValueError('Exact cloud audit required before installed-packet access')
+    if len(os.sched_getaffinity(0))!=1 or os.getpriority(os.PRIO_PROCESS,0)<15:raise ValueError('One CPU and nice15 required')
+    for k in ['OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS']:
+        if os.environ.get(k)!='1':raise ValueError('Single worker required: '+k)
+    request=read(REQUEST)
+    for key,value in {'schema':'osw.azcc-onken-parent-request.v1','workflow':WORKFLOW,'execute':True,
+                      'cloud_parent_packet_read_permitted':True,'max_cloud_jobs':1,'max_heavy_local_jobs':0}.items():
+        if type(request.get(key)) is not type(value) or request[key]!=value:raise ValueError('Disabled/changed request: '+key)
+    if any(request.get(k) is not False for k in FORBIDDEN):raise ValueError('Unrelated permission enabled')
+    phase=read('research/current-gap-delivery-phase.json')
+    if phase['phase']!='source-review-only-v1' or phase['heavy_work_permitted'] is not False:raise ValueError('Source-field processing must stay disabled')
+    if sha((ROOT/PREFLIGHT).read_bytes())!=request['preflight_sha256']:raise ValueError('Changed preflight')
+    pref=read(PREFLIGHT)
+    for p,pin in pref['input_sha256'].items():
+        if sha((ROOT/p).read_bytes())!=pin:raise ValueError('Changed source: '+p)
+    for p,row in pref['installed_files'].items():
+        with (ROOT/p).open('rb') as stream:actual=hashlib.file_digest(stream,'sha256').hexdigest()
+        if actual!=row['sha256'] or (ROOT/p).stat().st_size!=row['bytes']:raise ValueError('Changed installed file: '+p)
+    for p in pref['disabled_requests']:
+        r=read(p)
+        if r.get('execute',r.get('execution_permitted')) is not False:raise ValueError('Older request enabled: '+p)
+    head=subprocess.check_output(['git','-c','core.fsmonitor=false','rev-parse','HEAD']).decode().strip()
+    remote=json.loads(subprocess.check_output(['gh','api','repos/giodl73-repo/OSW/git/ref/heads/codex/current-measurement-gaps']))['object']['sha']
+    if head!=remote or head!=os.environ['GITHUB_SHA']:raise ValueError('Current source checkout required')
+    if subprocess.check_output(['git','-c','core.fsmonitor=false','status','--porcelain']).strip():raise ValueError('Clean checkout required')
+    return head
+
+def audit():
+    head=controls()
+    from query_packet import descriptors,read_bundle_bytes
+    manifest_raw=(ROOT/'almanac/query-engine.manifest.json').read_bytes()
+    if sha(manifest_raw)!=ENGINE:raise ValueError('Exact Madagascar-inclusive installed engine required')
+    manifest=json.loads(manifest_raw);packet_raw=(ROOT/'almanac/query-data.json').read_bytes();packet=json.loads(packet_raw)
+    parts=descriptors(packet)
+    if (manifest['sha256']['almanac/query-data.json']!=sha(packet_raw)
+        or packet['logical_sha256']!=LOGICAL or packet['logical_byte_length']!=LENGTH):raise ValueError('Installed descriptor differs')
+    if any(manifest['sha256'].get('almanac/'+p['path'])!=p['sha256'] for p in parts):raise ValueError('Part receipt differs')
+    raw=read_bundle_bytes(ROOT/'almanac/query-data.json')
+    if sha(raw)!=LOGICAL or len(raw)!=LENGTH:raise ValueError('Installed logical bytes differ')
+    bundle=json.loads(raw);del raw
+    collections=bundle['collections']
+    for name,count in [('reference_routes',83),('widths',177),('sources',216)]:
+        if len(collections[name])!=count:raise ValueError('Installed inventory differs: '+name)
+    selected={}
+    for key,collection,field in [('owner','objects','id'),('entity','entities','id'),('planning_decision','route_decisions','entity_id')]:
+        rows=[r for r in collections[collection] if r.get(field)==OWNER]
+        if len(rows)!=1:raise ValueError('One Azores Countercurrent record required: '+key)
+        selected[key]=rows[0]
+    for name in ['widths','reference_routes']:
+        selected[name]=[r for r in collections[name] if r.get('current_id')=='azores-countercurrent']
+    candidate_id='azores-countercurrent-onken1993-cited-regional-width'
+    selected['candidate_width_id_matches']=[r for r in collections['widths'] if r.get('id')==candidate_id]
+    selected['publications'],resolutions=publications(collections['sources'])
+    selected['owner_sources']=[r for r in collections['sources'] if r['id'] in selected['owner']['source_ids']]
+    selected['linked_measurement_inventory']={}
+    for name,rows in collections.items():
+        matched=[r for r in rows if r.get('current_id')=='azores-countercurrent' or r.get('entity_id')==OWNER]
+        if matched:selected['linked_measurement_inventory'][name]={'count':len(matched),'ids':[r.get('id') for r in matched]}
+    receipt=bundle['manifest']['dashboard_receipt'];dashboard=receipt['source_json'].encode()
+    if sha(dashboard)!=receipt['source_sha256']:raise ValueError('Dashboard historical receipt differs')
+    selected['historical_dashboard_entry']=[r for r in json.loads(dashboard)['entries'] if r['id']==OWNER]
+    if len(selected['historical_dashboard_entry'])!=1:raise ValueError('Historical Azores Countercurrent dashboard row missing')
+    selected['manifest_namespaces']=sorted(bundle['manifest'])
+    data=encoded(selected)
+    if len(data)>300000:raise ValueError('Bounded selected metadata exceeded')
+    if subprocess.check_output(['git','-c','core.fsmonitor=false','status','--porcelain']).strip():raise ValueError('Audit changed tracked files')
+    result={'schema':'osw.azcc-onken-parent-audit.v1','status':'PASS_READ_ONLY','source_commit':head,
+        'run_id':os.environ['GITHUB_RUN_ID'],'run_attempt':os.environ['GITHUB_RUN_ATTEMPT'],
+        'engine_manifest_sha256':ENGINE,'logical_sha256':LOGICAL,'logical_byte_length':LENGTH,
+        'packet_parts_verified':len(parts),'collection_counts':{k:len(v) for k,v in collections.items()},
+        'publication_resolutions':resolutions,'selected_records_sha256':sha(data),'selected_records_bytes':len(data),
+        'packet_loaded_only_in_cloud':True,'index_loaded':False,'native_wasm_built':False,
+        'scientific_data_changed':False,'browser_run':False,'working_branch_installed':False}
+    OUT.mkdir(parents=True,exist_ok=False)
+    (OUT/'selected-records.json').write_bytes(data);(OUT/'result.json').write_bytes(encoded(result))
+    print(json.dumps(result))
+
+if __name__=='__main__':
+    try:audit()
+    except Exception as error:
+        if os.name=='posix' and os.environ.get('GITHUB_ACTIONS')=='true':
+            OUT.mkdir(parents=True,exist_ok=True)
+            (OUT/'failure.json').write_bytes(encoded({'status':'FAIL','error':str(error),'source_commit':os.environ.get('GITHUB_SHA')}))
+        raise

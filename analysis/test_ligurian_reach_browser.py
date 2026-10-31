@@ -1,4 +1,5 @@
 """Verify local Ligurian reach and nonadditive parent navigation."""
+import os
 import json,hashlib
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -6,7 +7,7 @@ from playwright.sync_api import sync_playwright
 def main():
     assert hashlib.sha256(Path('research/ocean-current-almanac.json').read_bytes()).hexdigest()=='6c8a143208c0953512875f222154a819d5f56b7326daa6816f0609e61b4f261e'
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True,executable_path=r'C:\Program Files\Google\Chrome\Application\chrome.exe')
+        browser=p.chromium.launch(headless=True,executable_path=os.environ.get('OSW_TEST_BROWSER'))
         page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://127.0.0.1:8788/almanac/reference-routes.html#route-atlas',wait_until='networkidle')
@@ -29,7 +30,7 @@ def main():
         assert 'not a separate additive current system' in card.inner_text()
         assert card.get_by_role('link',name='Inspect parent current route').count()==1
         assert page.locator('#reference-route-rows a[href="#ligurian-reach-reference-path-candidate"]').count()==0
-        catalog=json.loads(Path('research/ocean-current-reference-path-candidates.json').read_text(encoding='utf-8'))
+        catalog=json.loads(Path('research/ocean-current-working-reference-routes.json').read_text(encoding='utf-8'))
         assert page.locator('#reference-route-rows tr').count()==sum(r['comparison_group']=='osw_approximate_reference_routes' for r in catalog['candidates'])
         card.locator('.route-map').screenshot(path='figures/ligurian-reach-reference-path-review.png')
         snapshot=json.loads(Path('research/ocean-motion-dashboard.json').read_text(encoding='utf-8'))

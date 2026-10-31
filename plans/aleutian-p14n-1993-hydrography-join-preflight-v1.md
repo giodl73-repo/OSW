@@ -1,0 +1,13 @@
+# Next source stage: P14N hydrography correspondence
+
+This follow-up is declared after inspecting the July1993 SADCP vector section. It is not blinded. The velocity source remains a separate frozen batch; do not silently change its pending-association flags merely because another original is downloaded.
+
+Acquire the CCHDO official 325023_1 CTD CF-NetCDF and original cruise documentation / summary with individual checksums and the cruise-page snapshot. Retain the page's explicit alias325024_1 and legacy cruise-date distinctions; do not relabel a southern-leg cast as the northern July crossing. The provider history contains a June2001 CTD temperature-correction notice. Preserve current source history and determine whether supplied temperature processing resolves that notice; do not silently apply the historical correction again.
+
+Inspect metadata first. Before looking at salinity/temperature fields, declare 40–48N,178–180E,7–18July1993 as the geographic/time selection, the same100–300m layer as the vector section, and the existing41–43N /44–46N branch context. Retain both source station/cast identity and all original quality flags. WOCE2 is the primary good-data flag; missing or questionable cells are not good data. Do not assume flags, pressure/depth units or station timestamp semantics until metadata confirm them.
+
+Candidate correspondence uses an absolute nominal timestamp difference no larger than3hours AND WGS84 point separation no larger than15km. Retain every qualifying candidate pair and its actual offsets; do not choose a salinity-favorable match or force a unique match where several qualify. If metadata timestamps refer to cast start/bottom/end ambiguously, flag that ambiguity explicitly. An hourly SADCP mean is not an instantaneous same-cast velocity measurement.
+
+No interpolation of hydrography to an ADCP time/position or velocity edge is authorized by the initial join. First expose measured water-property profiles and match coverage. Do not treat pressure in dbar as depth in metres; if converting, use a named tested oceanographic relation and retain pressure and latitude. Do not equate in-situ with potential temperature or ordinary salinity with absolute salinity.
+
+This can support water-mass correspondence and distinguish observed branches from nearby jets/eddies. It cannot alone prove full physical width, current endpoints, annual ranges or an independent observed width trend. Preserve all earlier width rows, source masks and the existing2013OSCAR diagnostic. Review any later width estimator against the accumulated measurement protocol before admitting a new width.

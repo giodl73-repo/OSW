@@ -109,6 +109,13 @@ loadObjectView().then(data => {
     document.querySelector("#object-summary").textContent = `${item.type.replaceAll("_", " ")} · ${item.identity_level || "identity scope unresolved"} · ${item.basin || "basin unspecified"}`;
     const identity = document.querySelector("#identity");
     identity.replaceChildren();
+    window.renderEquatorialBasinIdentities(identity,window.oswObjectView.basin_identity_context_scene);
+    window.renderCurrentDimensionEvidence(identity,window.oswObjectView.current_dimension_evidence_scene);
+    window.renderPublishedCurrentSpeeds(identity,window.oswObjectView.characteristic_velocity_scene);
+    window.renderCoreMigrationProfiles(identity,window.oswObjectView.core_migration_scene);
+    window.renderRegionalModelLengths(identity,window.oswObjectView.regional_model_length_scene);
+    window.oswProductAxisCardCleanup?.();
+    window.oswProductAxisCardCleanup=window.renderSurfaceProductAxes(identity,window.oswObjectView.surface_product_axis_scene);
     window.renderEddySourcePanels(identity,window.oswObjectView.source_panel_scene);
     if (["named_current", "named_eddy", "operational_eddy_detection"].includes(item.type)) {
       link("Explore on the current atlas", `reference-routes.html?atlas-feature=${encodeURIComponent(item.id)}#route-atlas`, element("p", null, identity));
@@ -120,6 +127,13 @@ loadObjectView().then(data => {
     if (item.motion_form) element("p", `OSW motion form: ${item.motion_form.replaceAll("_", " ")}`, identity);
     if (item.identity_limit) element("p", item.identity_limit, identity);
     if (item.identity_scope_note) element("p", item.identity_scope_note, identity);
+    if(item.identity_admission_id){
+      const admitted=element('section',undefined,identity);admitted.id='current-identity-admission';
+      element('h3','Working catalogue identity admission',admitted);
+      element('p',`${item.source_kind}. Identity admitted in ${item.catalogue_version}; original-source, measurement, route and seasonal evidence gates remain separate.`,admitted);
+      const q={collection:'current_identity_admissions',filters:[{field:'id',op:'eq',value:item.identity_admission_id}],limit:1};
+      link('Inspect the identity admission and source scope','query.html?q='+encodeURIComponent(JSON.stringify(q)),admitted);
+    }
     if (item.type === "operational_eddy_detection") {
       element("p", `Observation date: ${item.observation_date}. Provider labels: ${item.provider_type}, ${item.provider_rotation}. Source reuse decision: ${sources[item.source_id].rights_status.replaceAll("_", " ")}. Internal research candidate.`, identity);
     }
@@ -215,6 +229,7 @@ loadObjectView().then(data => {
       if (row.source_locator) element("span", `Source locator: ${row.source_locator}. `, li);
       sourceLink(row.source_id, li);
     }, "No comparable whole-object measurement has been admitted.");
+    window.renderCurrentSourceEvidence(measurement, data, id, sourceLink);
 
     const relationArea = document.querySelector("#relations");
     relationArea.replaceChildren();

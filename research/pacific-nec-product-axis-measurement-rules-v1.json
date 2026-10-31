@@ -1,0 +1,73 @@
+{
+  "schema": "osw.pacific-nec-product-axis-measurement-rules.v1",
+  "owner": "current:pacific-north-equatorial",
+  "admission": "experimental_reproducible_product_operator_diagnostics",
+  "product": "OSCAR2017.0 NOAA PIFSC archive",
+  "period": {
+    "year": 2013,
+    "aggregation": "Equal-sample monthly means grouped by UTC product archive timestamps. No interpolation, climatology or direct observation dating."
+  },
+  "layer": "Near-surface product with nominal 15m coordinate; no inferred physical thickness.",
+  "geometry": {
+    "gates_degrees_east_unwrapped": [
+      240,
+      130
+    ],
+    "gate_role": "Fixed regional comparison gates, not physical current endpoints.",
+    "analysis_windows_degrees_north": [
+      [
+        8,
+        18
+      ],
+      [
+        7,
+        19
+      ],
+      [
+        9,
+        17
+      ]
+    ],
+    "native_point_order": "Westward from 240E to 130E; preserve all 331 vector-valued native points.",
+    "display_dateline_rule": "Split only at the existing 180E native source vertex; duplicate -180/+180 display coordinate, not a measurement."
+  },
+  "length": {
+    "operator": "Native supported connected westward core path with local vector alignment and deterministic dynamic programming.",
+    "metric": "WGS84 geodesic sum over retained path vertices, km.",
+    "nominal_parameters": {
+      "westward_threshold_m_s": 0.025,
+      "step_penalty_m_s": 0.02,
+      "maximum_angle_deg": 60
+    },
+    "rounding": "Preserve raw numerical length; about-km display rounds to nearest 100km.",
+    "qualification": "Numerically qualified regional path only; physical current identity, whole-current endpoints and rank remain unresolved."
+  },
+  "section_spans": {
+    "operator": "Connected negative zonal component at fixed meridians 137E, 180E and 220E, anchored to nominal 8-18N native paths.",
+    "interpretation": "Meridional numerical span, not a flow-normal paired-edge physical-current width.",
+    "withholding": "Retain the censored May 180E result as null with its reason.",
+    "tracking": "No section passes all full-year local mutual-overlap criteria; no annual physical-width range admitted."
+  },
+  "sensitivity_quantities": {
+    "native_product_core_path_length": "Threshold, penalty and alignment choices; all native gates remain required.",
+    "native_supported_anchor_search_path_length": "All stride/phase choices require native supported witness paths; chord and native-witness lengths are separate quantities.",
+    "fixed_path_thinned_geodesic_representation_length": "Representation-only vertex thinning on one fixed native path; no new field resolution or independent measurements."
+  },
+  "missing_value_rule": "Preserve null, failure reason and boundary contacts. Never plot a withheld result as zero.",
+  "physical_uncertainty": "Unknown; parameter/window/anchor/thinning spreads are not confidence bounds or physical seasonal envelopes.",
+  "annual_physical_length_and_width_ranges": null,
+  "independent_observations_added": 0,
+  "source_roles": {
+    "source:oscar2017-noaa-pifsc-archive": "Direct numerical source product.",
+    "source:liu-zhou-pacific-nec-2020": "Context and window choice; not the numerical source or a reproduction of the paper.",
+    "source:osw-pacific-nec-connected-product-axis-v1": "Explicit OSW measurement operator and retained diagnostics."
+  },
+  "input_sha256": {
+    "plans/ocean-current-measurement-protocol-v1.md": "83afac80f4b530c598f46d435e21d010927c129543675a1e6de440385c00145f",
+    "plans/ocean-current-width-measurement-protocol-v1.md": "1d4d577d8f3b422cf3252b973280cb7073bad7e3234bc40a2808bc16bda974bb",
+    "plans/pacific-nec-oscar-monthly-dimensions-protocol-v1.md": "d396f926fa5f0e9cbdda9427f9e13172eb6b1d71c8c559f93736842441af8041",
+    "plans/pacific-nec-connected-core-protocol-v1.md": "b07200d466e972fc31eff3932ea79fcfe5341746c91ccb25253676ec03705e98",
+    "plans/pacific-nec-core-window-sampling-protocol-v1.md": "d519fd4364afdc1d78217a4357399fd69e22f603a9e5c589362204d8046e4e03",
+    "research/pacific-nec-product-axis-query-contract-v1.json": "e16c6b7e15d6d632050b41d6d7ebd3213e4ebe92e3d681f8ab1f4f10b0f53d98"
+  }
+}

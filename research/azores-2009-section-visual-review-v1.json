@@ -1,0 +1,31 @@
+{
+  "schema": "osw.source-section-visual-review.v1",
+  "review_date": "2026-10-27",
+  "status": "PASS_SOURCE_DIAGRAM_ONLY",
+  "figure_file": "figures/azores-2009-section-context-v1.svg",
+  "figure_sha256": "d230e8b309c2e28c5d3ac5cf8927f6a73cd0cecedd44f726564ebbe1feb26046",
+  "source_review_file": "research/azores-2009-section-original-review-v1.json",
+  "generator_file": "analysis/build_azores_2009_section_context_v1.py",
+  "actual_render_inspected": ".pytest_cache/azores-2009-section-context-v1.png",
+  "render_method": "PyMuPDF SVG conversion to temporary PDF and 1.3x PNG; final pixels individually inspected.",
+  "checks": [
+    "North-up latitude axis and source-reported current boundary coordinates agree.",
+    "Stations 42/46 bound Azores Countercurrent; 49/53 bound Azores Current.",
+    "Westward and eastward arrowheads are visible and point in the stated directions.",
+    "No labels overlap, clip or obscure the section boundaries.",
+    "Both approximately 110 km labels explicitly describe section spans.",
+    "Date conflict, unknown uncertainty and absent annual range remain visible.",
+    "Source DOI and pending runtime-card integration are readable."
+  ],
+  "source_validation": {
+    "command": "python analysis/build_azores_2009_section_context_v1.py --check --verify-original",
+    "passed": true,
+    "existing_width_records_checked": 2,
+    "original_bytes_and_sha256_checked": true,
+    "generated_svg_matches_source_review": true
+  },
+  "resource_use": {"cpu_affinity_count": 1, "priority": "BelowNormal", "local_native_or_wasm_builds": 0},
+  "browser_or_runtime_verified": false,
+  "measurement_inventory_changed": false,
+  "full_goal_complete": false
+}

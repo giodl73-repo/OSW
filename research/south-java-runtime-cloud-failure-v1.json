@@ -1,0 +1,35 @@
+{
+  "schema": "osw.south-java-runtime-cloud-failure.v1",
+  "status": "FAILED_SPARSE_RUNTIME_TEST_DEPENDENCIES_MISSING",
+  "run_id": 40570951050,
+  "run_attempt": 2,
+  "job_id": 122425176969,
+  "source_commit": "9f24833fe874c695ece45da48f59f7b3fb9b3cf6",
+  "artifact_id": 12764983558,
+  "artifact_bytes": 4216,
+  "artifact_sha256": "c89077e1e2e41b630c01ac0c4aff2fc4a5e55eea6a89e7da198461caff535426",
+  "source_preflight_passed": true,
+  "rust_native_compilation_passed": true,
+  "python_tests_passed": 12,
+  "atlas_js_syntax_passed": true,
+  "rust_tests_passed": {
+    "south_java_reference::tests": 5,
+    "pacific_secc_reference::tests": 5,
+    "planning::tests": 1
+  },
+  "planning_tests_failed_before_exercising_checks": 5,
+  "missing_runtime_test_dependencies": [
+    "research/eicc-reference-query-contract-v1.json",
+    "research/eicc-regional-reference-admission-candidate-v1.json"
+  ],
+  "not_yet_run": [
+    "nwasc_reference_route::tests",
+    "madagascar_coastal_curve::tests"
+  ],
+  "next_action": "Keep all source validators and tests unchanged. Add both runtime-read planning fixtures to a versioned sparse-checkout request and preflight, then rerun all24 native tests.",
+  "packet_or_index_loaded": false,
+  "wasm_built": false,
+  "working_branch_installed": false,
+  "scientific_data_changed": false,
+  "full_goal_complete": false
+}

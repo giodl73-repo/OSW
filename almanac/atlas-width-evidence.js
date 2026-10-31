@@ -1,8 +1,24 @@
 "use strict";
 window.renderAtlasWidthEvidence = function(panel, current, inventory) {
   const id=current.id.replace(/^current:/,'');
+  window.renderAzores2009Section(panel,window.oswAtlasSnapshot?.azores_2009_section_scene,current.id);
+  if(id==='kuroshio')window.renderKuroshioFilteredWidths(panel,window.oswAtlasSnapshot?.kuroshio_filtered_width_scene);
+  if(id==='kuroshio')window.renderKuroshioDaily(panel,window.oswAtlasSnapshot?.kuroshio_daily_scene);
+  if(id==='agulhas')window.renderAgulhasReportedDimensions(panel,window.oswAtlasSnapshot?.agulhas_reported_scene);
+  if(id==='agulhas')window.renderAscaComponentSpans(panel,window.oswAtlasSnapshot?.asca_component_span_scene);
+  if(id==='east-australian')window.renderEacSourceFields(panel,window.oswAtlasSnapshot?.eac_source_field_scene);
+  if(id==='south-australian')window.renderSouthAustralianContext(panel,window.oswAtlasSnapshot?.south_australian_context_scene);
+  window.renderCurrentResearchEvidence(panel,window.oswAtlasSnapshot?.research_evidence_scenes?.[id]);
+  window.renderCurrentWidthSourceReview(panel,window.oswAtlasSnapshot?.width_source_review_scenes?.[id]);
   if(id==='pacific-north-equatorial-undercurrent')window.renderPacificNeucBreadths(panel,window.oswAtlasSnapshot?.pacific_neuc_breadth_scene);
   window.renderPublishedSectionTransports(panel,window.oswAtlasSnapshot?.published_transport_scenes?.[id]);
+  window.renderPublishedCurrentSpeeds(panel,window.oswAtlasSnapshot?.published_speed_scenes?.[id]);
+  window.renderCoreMigrationProfiles(panel,window.oswAtlasSnapshot?.core_migration_scenes?.[id],undefined,{collapsed:true});
+  window.renderMeanCoreSections(panel,window.oswAtlasSnapshot?.mean_core_section_scenes?.[id],undefined,{collapsed:true});
+  window.renderCurrentDimensionEvidence(panel,window.oswAtlasSnapshot?.current_dimension_evidence_scenes?.[id],undefined,{collapsed:true});
+  window.renderSatelliteCoreWidths(panel,window.oswAtlasSnapshot?.satellite_core_width_scenes?.[id]);
+  window.renderReviewCitedWidths(panel,window.oswAtlasSnapshot?.review_cited_width_scenes?.[id]);
+  window.renderCitedWidthConstraints(panel,window.oswAtlasSnapshot?.cited_width_constraint_scenes?.[id]);
   const section=document.createElement('section');section.className='atlas-width-evidence';panel.append(section);
   const node=(tag,text,parent=section)=>{const element=document.createElement(tag);element.textContent=text;parent.append(element);return element;};
   const link=(text,href,parent)=>{const anchor=node('a',text,parent);anchor.href=href;return anchor;};
@@ -15,29 +31,41 @@ window.renderAtlasWidthEvidence = function(panel, current, inventory) {
     node('p',review?'Reviewed sources have not supplied a comparable numeric current width.':decision?.width_decision==='derived_width_candidate_requires_review'?'A derived section-width candidate is available; no published width record is stored here.':'No published width record is stored yet; width remains unresolved.');
     if(review) {node('p',review.reason);for(const evidence of review.evidence)link(evidence.citation,evidence.url,node('p',''));}
     const span=inventory.section_span_diagnostics?.find(diagnostic=>diagnostic.current_id===id);
-    if(span){node('p',span.scope_note);link('Map dated component spans',span.visual_url,section);}
+    if(span){node('p',span.scope_note);link('Map local component spans',span.visual_url,section);}
     node('p','Missing evidence does not mean zero width or physical absence.');return;
   }
   node('p',`${records.length} local or regional source record${records.length===1?'':'s'}. Definitions differ; these do not establish a uniform whole-current width or annual extrema.`);
+  const retainedSpan=inventory.section_span_diagnostics?.find(diagnostic=>diagnostic.current_id===id);
+  if(retainedSpan){node('p',retainedSpan.scope_note);link('Map local component spans',retainedSpan.visual_url,section);}
   const format=value=>Number(value).toLocaleString('en-US');
   window.renderStreamTubeWidths(section,records);
+  for(const row of records)window.renderSelectedCoreWidth(section,row);
+  window.renderModelAxisSpread(section,records);
+  if(id==='antilles' && records.some(row=>row.phase_kind==='inverse_hydrographic_section_span')) {
+    const details=node('details','');details.className='antilles-cruise-evidence';
+    node('summary','Compare the three published cruise spans',details);
+    const body=node('div','',details);body.style.minWidth='0';
+    window.renderAtlanticCruiseWidths(body,id,inventory,{headingTag:'h5',recordBase:'seasons.html'});
+  }
   if(id==='deep-western-boundary')window.renderDwbcFloatComposite(section,window.oswAtlasSnapshot?.dwbc_float_composite_scene);
   if(id==='antarctic-coastal')window.renderCoastalCompositeWidths(section,window.oswAtlasSnapshot?.coastal_composite_width_scene);
   for(const row of records){window.renderModalDecayWidth(section,row);window.renderOriginalRegionalWidth(section,row);window.renderModelRegionalWidth(section,row);window.renderAbstractRegionalWidth(section,row);if(row.phase_kind==='seasonal_regional_width_range')window.renderSeasonalRegionalWidth(section,row);}
   for(const row of records) {
     const details=document.createElement('details');details.className='atlas-width-record';details.dataset.measurementId=row.id;section.append(details);
     const angular=row.ensemble_angular_context;
-    const value=angular?`${format(angular.source_reported_latitude_span_degrees)}° latitude (~${format(row.approximate_width_km)} km conversion)`
+    const value=window.citedWidthConstraintLabel(row)||(row.selected_core_context?`${format(row.approximate_width_km)} km core · ${format(row.width_standard_deviation_km)} km reported standard deviation`
+      :angular?`${format(angular.source_reported_latitude_span_degrees)}° latitude (~${format(row.approximate_width_km)} km conversion)`
+      :row.phase_kind==='campaign_width_statistics'?`${format(row.approximate_width_km)} km mean (${row.width_range_km.map(format).join('–')} km across three complete crossings)`
       :row.phase_kind==='width_time_series_statistics'?`${format(row.approximate_width_km)} km mean (${row.width_range_km.map(format).join('–')} km observed)`
       :row.phase_kind==='survey_layer_median_threshold_width'?`${format(row.approximate_width_km)} ±${format(row.reported_total_error_km)} km source width and total error`
       :row.phase_kind==='mean_offshore_extent_range'?`${row.width_range_km.map(format).join('–')} km mean surface offshore extent (not full width)`
       :row.reported_width_constraint?`${row.reported_width_constraint.source_notation} reported size constraint`
-      :row.approximate_width_km===null?`${row.width_range_km.map(format).join('–')} km reported span`:`about ${format(row.approximate_width_km)} km`;
+      :row.approximate_width_km===null?`${row.width_range_km.map(format).join('–')} km reported span`:`about ${format(row.approximate_width_km)} km`);
     node('summary',`${value} · ${row.width_metric_label||row.width_metric.replaceAll('_',' ')} · ${row.phase_label}`,details);
-    node('p',row.time_convention,details);
+    node('p',row.time_convention||(row.measurement_type==='published_nominal_regional_angular_width'?'Nominal regional summary; sampling dates are unresolved.':'Sampling period is unresolved.'),details);
     node('p',`${row.geographic_scope} ${row.layer}`,details);
-    node('p',`Definition: ${row.boundary_rule}${row.boundary_sides?' Boundary support: '+row.boundary_sides.replaceAll('_',' ')+'.':''}`,details);
-    node('p',row.range_interpretation,details);
+    node('p',`Definition: ${row.boundary_rule||'No reproducible paired-edge rule is recorded.'}${row.boundary_sides?' Boundary support: '+row.boundary_sides.replaceAll('_',' ')+'.':''}`,details);
+    node('p',row.range_interpretation||'Regional evidence; annual width range and numerical uncertainty remain unknown.',details);
     if(row.source_quality_note)node('p',row.source_quality_note,details);
     const links=node('p','',details);
     link('Inspect this width record',`seasons.html?current=${encodeURIComponent(id)}&phase=${encodeURIComponent(row.id)}`,links);

@@ -1,0 +1,51 @@
+Dataset {
+    Float64 depth[depth = 40];
+    Float64 lat[lat = 2001];
+    Float64 lon[lon = 4500];
+    Float64 time[time = 7356];
+    Float64 tau[time = 7356];
+    Grid {
+     ARRAY:
+        Int16 water_u[time = 7356][depth = 40][lat = 2001][lon = 4500];
+     MAPS:
+        Float64 time[time = 7356];
+        Float64 depth[depth = 40];
+        Float64 lat[lat = 2001];
+        Float64 lon[lon = 4500];
+    } water_u;
+    Grid {
+     ARRAY:
+        Int16 water_v[time = 7356][depth = 40][lat = 2001][lon = 4500];
+     MAPS:
+        Float64 time[time = 7356];
+        Float64 depth[depth = 40];
+        Float64 lat[lat = 2001];
+        Float64 lon[lon = 4500];
+    } water_v;
+    Grid {
+     ARRAY:
+        Int16 water_temp[time = 7356][depth = 40][lat = 2001][lon = 4500];
+     MAPS:
+        Float64 time[time = 7356];
+        Float64 depth[depth = 40];
+        Float64 lat[lat = 2001];
+        Float64 lon[lon = 4500];
+    } water_temp;
+    Grid {
+     ARRAY:
+        Int16 salinity[time = 7356][depth = 40][lat = 2001][lon = 4500];
+     MAPS:
+        Float64 time[time = 7356];
+        Float64 depth[depth = 40];
+        Float64 lat[lat = 2001];
+        Float64 lon[lon = 4500];
+    } salinity;
+    Grid {
+     ARRAY:
+        Int16 surf_el[time = 7356][lat = 2001][lon = 4500];
+     MAPS:
+        Float64 time[time = 7356];
+        Float64 lat[lat = 2001];
+        Float64 lon[lon = 4500];
+    } surf_el;
+} GLBu0.08/reanalysis;

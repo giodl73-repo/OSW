@@ -1,0 +1,61 @@
+name: Inspect Indian SEC public model variable headers v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/chen-indian-sec-header-request-v1.json
+      - .github/workflows/chen-indian-sec-header-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  inspect-source-headers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - id: request
+        name: Select the scoped header request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/chen-indian-sec-header-request-v1.json').read_bytes())
+          assert r['schema']=='osw.chen-indian-sec-header-request.v1'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+      - name: Verify frozen metadata and refusal fixtures
+        if: steps.request.outputs.execute == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_chen_indian_sec_headers_v1.py -v
+      - name: Install pinned header-reader dependencies on one CPU
+        if: steps.request.outputs.execute == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install --only-binary=:all: numpy==2.2.6 scipy==1.15.3
+      - name: Inspect one bounded public sample without loading field values
+        if: steps.request.outputs.execute == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 timeout 180s python analysis/inspect_chen_indian_sec_headers_v1.py
+      - name: Retain compact metadata only
+        if: always() && steps.request.outputs.execute == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: chen-indian-sec-header-v1
+          path: .pytest_cache/chen-indian-sec-header-v1/report.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90

@@ -1,10 +1,10 @@
 "use strict";
 (() => {
-  const source = "research/atlantic-cruise-station-context.json";
-  let loading;
-  function load() {
-    if (loading) return loading;
-    loading = (async () => {
+  const defaultSource = "research/atlantic-cruise-station-context.json";
+  const loads = new Map();
+  function load(source) {
+    if (loads.has(source)) return loads.get(source);
+    const loading = (async () => {
       const worker = new Worker("index-worker.js?v=station-context-1"), pending = new Map();
       let serial = 0;
       const fail = error => {
@@ -26,14 +26,15 @@
         const [document, binary] = await Promise.all([
           request("document", {document: source}), request("cartography_binary")]);
         const audit = document.value;
-        if (audit.schema !== "osw.atlantic-cruise-station-context.v1") throw Error("Unsupported station context schema");
+        if (!["osw.atlantic-cruise-station-context.v1", "osw.antilles-published-cruise-spans.v1"].includes(audit.schema)) throw Error("Unsupported station context schema");
         const project = await window.createOswCartography(binary.binary);
         return {audit, project};
       } finally {worker.terminate();}
     })();
-    return loading;
+    loads.set(source, loading); return loading;
   }
   window.renderAtlanticStationContext = function(container, records) {
+    const source = records[0]?.extraction_file === "research/antilles-cainzos-2023-cruise-section-spans.json" ? records[0].extraction_file : defaultSource;
     const node = (tag, text, parent) => {
       const element = document.createElement(tag); element.textContent = text; parent.append(element); return element;
     };
@@ -59,7 +60,7 @@
       drawing.replaceChildren(); receipt.replaceChildren();
       status.textContent = "Loading checked cruise station context…";
       try {
-        const {audit, project} = await load();
+        const {audit, project} = await load(source);
         if (token !== generation || !details.isConnected) return;
         const context = audit.measurement_contexts.find(row => row.measurement_id === select.value);
         if (!context || context.geometry_role !== "cruise_sampling_context_not_current_boundary" ||

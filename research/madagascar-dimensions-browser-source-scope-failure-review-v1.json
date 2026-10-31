@@ -1,0 +1,14 @@
+{
+  "schema": "osw.madagascar-dimensions-browser-source-scope-failure-review.v1",
+  "status": "EXACT_ACTIVE_SOURCE_SCOPE_REQUIRED",
+  "source_commit": "cd8d1db59ceb209c77a6433218708e10f5d3d454",
+  "run_id": 40743341112,
+  "request_disabled": true,
+  "failing_path": ".github/workflows/baffin-bound-candidate.yml",
+  "reason": "Inherited engine manifest contains preserved historical source pins. Blanket current-file comparisons treat historical audit metadata as an active source scope.",
+  "required_fix": "Verify the frozen v4 Madagascar active runtime source/history scope and all candidate Rust source pins against their exact manifest entries. Preserve the entire saved manifest and candidate bytes. Keep frozen request inputs and installed parent hashes enforced.",
+  "new_tests": "Accept exact active scope with unrelated historical manifest pin; reject changed or omitted active source pins, changed active files and changed history.",
+  "browser_verified": false,
+  "installed": false,
+  "full_goal_complete": false
+}

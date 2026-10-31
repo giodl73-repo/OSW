@@ -1,0 +1,56 @@
+{
+  "schema": "osw.regional-seasonal-speed-preparation-review.v1",
+  "status": "SOURCE_FACTS_AND_STATIC_CHARTS_REVIEWED_RUNTIME_INTEGRATION_PENDING",
+  "source_facts_file": "research/eacc-pemba-semba-2019-seasonal-speed-v1.json",
+  "table2_image_sha256": "12057cec1be9c793951f46bdc105e189244aeada50263976b71f80cdd1574388",
+  "table2_visually_reviewed": true,
+  "checks": [
+    "Original HTML byte length and SHA256 verified",
+    "Three summaries transcribed against original Table2 image",
+    "Seasonal observations sum to328; do not count as328unique drifters",
+    "Month partitions cover12months once",
+    "Extrema/median order and positive SD checked",
+    "SVG parses as XML",
+    "Monthly table directly viewed and transcribed",
+    "Seasonal counts, extrema and printed rounded means agree with monthly summaries",
+    "Both chart renders individually inspected"
+  ],
+  "visualization": {
+    "files": [
+      "figures/eacc-pemba-seasonal-speed-v1.svg",
+      "figures/eacc-pemba-monthly-speed-v1.svg"
+    ],
+    "render_review": "PASS: both final static PNG renders individually inspected at1.5scale after replacing the temporary footer; all labels and notes visible",
+    "renderer": "existing PyMuPDF SVG conversion, no dependency installation",
+    "browser_mobile_review": "PENDING",
+    "source_image_is_not_chart_review": true
+  },
+  "installed_measurement_coverage_changed": false,
+  "runtime_integration_complete": false,
+  "next_action": "Run sequential cloud native/WASM whole-response verification and actual desktop/mobile browser checks for query, atlas and seasons before installation.",
+  "table4_image_sha256": "1755b031503237b034bd74498a05eeefd2a0327ba93506c84705b722efa52108",
+  "table4_visually_reviewed": true,
+  "source_fact_summary_records": 15,
+  "underlying_observations": 328,
+  "summary_groups_overlap": true,
+  "projection_module": "analysis/published_current_speed_statistics_v1.py",
+  "projection_tests": {
+    "passed": 5,
+    "local_execution": "one CPU, BelowNormal; no build or full packet load",
+    "coverage": [
+      "input and historical collection preservation",
+      "monthly/seasonal count consistency",
+      "wrong parent, absent owner and repeated admission rejection",
+      "bad count and season overlap rejection",
+      "source-conflict preservation"
+    ]
+  },
+  "runtime_source_preparation": {
+    "scope_file": "research/published-current-speed-runtime-scope-v1.json",
+    "shared_renderer": "almanac/published-current-speeds.js",
+    "query_atlas_seasons_wired_in_source": true,
+    "javascript_dom_checks_passed": true,
+    "actual_browser_layout_verified": false,
+    "native_wasm_verified": false
+  }
+}

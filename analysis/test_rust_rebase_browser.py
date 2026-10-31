@@ -1,4 +1,6 @@
 """Old/current snapshot migration, conflict choices and native/WASM parity."""
+from query_packet import read_bundle_bytes
+from browser_bundle_fixture import install_bundle_fixture
 import hashlib
 import json
 import os
@@ -9,56 +11,52 @@ from playwright.sync_api import sync_playwright,expect
 from test_rust_workspace_browser import ready,inspect_source,edit
 from test_rust_query_browser import CLI,ROOT,BASE,browser_query
 
+def preview(page):
+    page.locator('#workspace-rebase-preview').click()
+    expect(page.locator('#workspace-rebase-preview')).to_be_enabled(timeout=90000)
+    assert page.locator('#workspace-rebase-plan').is_visible(),page.locator('#workspace-status').inner_text()
+    expect(page.locator('#workspace-rebase-plan')).to_contain_text('1 unresolved conflicts')
+
 def main():
     (ROOT/'tmp').mkdir(exist_ok=True)
-    original=(ROOT/'almanac/query-data.json').read_bytes();old_hash=hashlib.sha256(original).hexdigest()
+    original=read_bundle_bytes(ROOT/'almanac/query-data.json');old_hash=hashlib.sha256(original).hexdigest()
     changed=json.loads(original);row=next(r for r in changed['collections']['objects'] if r['id']=='current:kuroshio')
-    # The synthetic new source has no newly reviewed movie export; retain the
-    # old screened export in the old snapshot and make new movie views unavailable.
-    changed['manifest'].pop('movies_receipts',None)
-    row['label']='Kuroshio updated source label';row['new_source_field']='Synthetic source-update fixture'
-    # A synthetic source update must keep all checked identity projections aligned.
-    next(r for r in changed['collections']['entities'] if r['id']==row['id'])['label']=row['label']
-    row['dashboard_search']=row['label']+' '+row['basin']
-    for edge in changed['collections']['taxonomy_links']:
-        if edge['child_id']==row['id']:edge['child_label']=row['label']
-        if edge['parent_id']==row['id']:edge['parent_label']=row['label']
-    receipt=changed['manifest']['dashboard_receipt']
-    doc=json.loads(receipt['source_json'])
-    next(r for r in doc['entries'] if r['id']==row['id'])['label']=row['label']
-    receipt['source_json']=json.dumps(doc,ensure_ascii=False)
-    receipt['source_sha256']=hashlib.sha256(receipt['source_json'].encode()).hexdigest()
-    changed['manifest']['input_sha256'][receipt['source_file']]=receipt['source_sha256']
+    # Keep checked scientific identity and provenance intact. Both editions add
+    # a different editorial note, exercising the same three-way field conflict.
+    row['new_source_field']='Synthetic source-update fixture'
+    row['source_only_addition']='Synthetic source-only addition'
     updated=json.dumps(changed,ensure_ascii=False,separators=(',',':')).encode('utf-8')
     new_hash=hashlib.sha256(updated).hexdigest()
-    manifest=json.loads((ROOT/'almanac/query-engine.manifest.json').read_text(encoding='utf-8'));manifest['sha256']['almanac/query-data.json']=new_hash
     with sync_playwright() as p:
         browser=p.chromium.launch(executable_path=os.environ.get('OSW_TEST_BROWSER'))
         context=browser.new_context(viewport={'width':1200,'height':1000});a=context.new_page();ready(a);inspect_source(a)
-        proposed=json.loads(a.locator('.working-json').input_value());proposed['label']='Kuroshio proposed alias'
+        proposed=json.loads(a.locator('.working-json').input_value());proposed['new_source_field']='Proposed comparison note'
         a.locator('.working-json').fill(json.dumps(proposed));edit(a,'Kuroshio alias proposal','Synthetic proposal for rebase verification.')
         expect(a.locator('#workspace-status')).to_contain_text('Revision 1')
         a.locator('#workspace-controls').evaluate('(el)=>el.open=true')
         with a.expect_download() as downloaded:a.locator('#workspace-export').click()
         old_journal=json.loads(Path(downloaded.value.path()).read_text(encoding='utf-8'))
-        context.route('**/query-data.json',lambda r:r.fulfill(body=updated,content_type='application/json'))
-        context.route('**/query-engine.manifest.json',lambda r:r.fulfill(json=manifest))
-        b=context.new_page();ready(b);expect(b.locator('#workspace-status')).to_contain_text('Revision 0')
+        b=context.new_page()
+        fixture=install_bundle_fixture(b,changed);assert fixture.read_bytes()==updated
+        ready(b);expect(b.locator('#workspace-status')).to_contain_text('Revision 0')
         b.locator('#workspace-archive-controls').evaluate('(el)=>el.open=true');b.locator('#workspace-list').click()
         expect(b.locator('#workspace-snapshots option')).to_have_count(1)
         b.locator('#workspace-snapshots').select_option(old_hash)
         with b.expect_download() as source:b.locator('#workspace-export-source').click()
         assert Path(source.value.path()).read_bytes()==original
-        b.locator('#workspace-rebase-preview').click()
-        expect(b.locator('#workspace-rebase-plan')).to_contain_text('1 unresolved conflicts',timeout=60000)
+        preview(b)
         assert b.get_by_role('button',name='Save rebased working records').is_disabled()
+        # Exported complete source bytes exceed the old 100 MB upload cap.
+        assert len(original)>100000000
+        b.locator('#workspace-rebase-source').set_input_files(source.value.path())
+        preview(b)
         with tempfile.TemporaryDirectory(dir=ROOT/'tmp') as directory:
             folder=Path(directory);new_path=folder/'new.json';new_path.write_bytes(updated)
             request={'journal':old_journal,'base_revision':0,'transaction_id':'native-rebase','created_at':'2026-10-04T12:00:00Z','resolutions':{}}
             rp=folder/'request.json';rp.write_text(json.dumps(request),encoding='utf-8');exe=str(CLI)
             plan=json.loads(subprocess.check_output([exe,str(new_path),'--rebase',str(ROOT/'almanac/query-data.json'),str(rp)],text=True,encoding='utf-8'))
             assert plan['unresolved']==1 and not plan['ready']
-            conflict=plan['conflicts'][0];assert conflict['path']=='/label'
+            conflict=plan['conflicts'][0];assert conflict['path']=='/new_source_field'
             select=b.locator('#workspace-rebase-plan select').first
             assert select.get_attribute('data-conflict')==conflict['id']
             select.select_option('proposed');expect(b.locator('#workspace-rebase-plan')).to_contain_text('0 unresolved conflicts')
@@ -74,17 +72,17 @@ def main():
             b.get_by_role('button',name='Save rebased working records').click();expect(b.locator('#workspace-status')).to_contain_text('Revision 1')
             b.wait_for_function('window.oswLastQueryResult.collection==="working_records"')
             record=b.evaluate('window.oswLastQueryResult.rows[0]')
-            assert record['proposed_data']['label']=='Kuroshio proposed alias'
-            assert record['proposed_data']['new_source_field']=='Synthetic source-update fixture'
+            assert record['proposed_data']['new_source_field']=='Proposed comparison note'
+            assert record['proposed_data']['source_only_addition']=='Synthetic source-only addition'
             assert record==native['journal']['events'][0]['operations'][0]['record']
             with b.expect_download() as exported:b.locator('#workspace-export').click()
             migrated=json.loads(Path(exported.value.path()).read_text(encoding='utf-8'))
             assert migrated['events'][0]['rebase']==native['journal']['events'][0]['rebase']
             assert migrated['bundle_sha256']==new_hash
         b.reload();b.wait_for_function('window.oswLastQueryResult',timeout=60000)
-        assert b.evaluate('window.oswLastQueryResult.rows[0].proposed_data.label')=='Kuroshio proposed alias'
+        assert b.evaluate('window.oswLastQueryResult.rows[0].proposed_data.new_source_field')=='Proposed comparison note'
         source_query=browser_query(b,{'collection':'objects','filters':[{'field':'id','op':'eq','value':'current:kuroshio'}]})
-        assert source_query['rows'][0]['label']=='Kuroshio updated source label'
+        assert source_query['rows'][0]['new_source_field']=='Synthetic source-update fixture'
         with a.expect_download() as unchanged:a.locator('#workspace-export').click()
         assert json.loads(Path(unchanged.value.path()).read_text(encoding='utf-8'))==old_journal
         b.set_viewport_size({'width':320,'height':900});assert b.evaluate('document.documentElement.scrollWidth<=innerWidth')

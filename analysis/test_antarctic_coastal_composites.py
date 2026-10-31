@@ -1,4 +1,5 @@
 """Source definitions, complete spatial context and coherent native guards."""
+from query_packet import read_bundle_bytes
 import copy,hashlib,json,subprocess
 import pytest
 from check_antarctic_coastal_composites import ROOT,validate_row
@@ -37,7 +38,7 @@ def test_context_relabeling_rejected(key,value):
     with pytest.raises(ValueError):validate_row(row)
 
 def check_native_guard(directory):
-    packet=json.loads((ROOT/'almanac/query-data.json').read_bytes());targets=[]
+    packet=json.loads(read_bundle_bytes(ROOT/'almanac/query-data.json'));targets=[]
     for i,change in enumerate(CHANGES+[None]):
         bad=copy.deepcopy(packet);receipt=bad['manifest']['seasons_receipts']['widths'];source=json.loads(receipt['source_json'])
         for rows in [source['measurements'],bad['collections']['widths']]:

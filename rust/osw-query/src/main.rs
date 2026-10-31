@@ -35,6 +35,46 @@ fn main() {
         let path = args.get(1).ok_or(
             "Usage: osw-query-cli BUNDLE.json [--workspace JOURNAL.json] [QUERY.json | --transaction TX.json | --export-workspace] [--output NEW-JOURNAL.json]; map: --svg QUERY.json --output NEW-MAP.svg; migration: --rebase OLD-BUNDLE.json REQUEST.json [--prepare --output NEW-JOURNAL.json]; '-' query reads stdin",
         )?;
+        if path == "--local-extents" {
+            let file = args
+                .get(2)
+                .ok_or("--local-extents needs the reviewed scalar bundle")?;
+            if fs::metadata(file).map_err(|e| e.to_string())?.len()
+                != osw_query::local_extents::EXPECTED_BYTES as u64
+            {
+                return Err("Unexpected local-extent research snapshot size".into());
+            }
+            let store = osw_query::local_extents::LocalExtentStore::load(
+                &fs::read(file).map_err(|e| e.to_string())?,
+            )?;
+            if args.len() == 3 {
+                return Ok(store.metadata());
+            }
+            let record = args.len() == 5 && args[3] == "--record" && args[4] == "-";
+            if !record && args.len() != 4 {
+                return Err("--local-extents FILE [QUERY.json|-|--record -]".into());
+            }
+            let request_path = if record { "-" } else { &args[3] };
+            let mut request = Vec::new();
+            let max = (osw_query::local_extents::MAX_REQUEST_BYTES + 1) as u64;
+            if request_path == "-" {
+                io::stdin()
+                    .take(max)
+                    .read_to_end(&mut request)
+                    .map_err(|e| e.to_string())?;
+            } else {
+                fs::File::open(request_path)
+                    .map_err(|e| e.to_string())?
+                    .take(max)
+                    .read_to_end(&mut request)
+                    .map_err(|e| e.to_string())?;
+            }
+            return if record {
+                store.record(&request)
+            } else {
+                store.query(&request)
+            };
+        }
         if path == "--cartography" {
             if args.len() != 2 {
                 return Err("--cartography reads one request from stdin".into());
@@ -107,7 +147,7 @@ fn main() {
                 index.query(&request)
             };
         }
-        let mut store = Store::load(&fs::read(path).map_err(|e| e.to_string())?)?;
+        let mut store = Store::load(&osw_query::packet::read_bundle(path)?)?;
         let mut position = 2;
         if args.get(position).map(String::as_str) == Some("--movies") {
             if args.len() != 3 {
@@ -207,7 +247,7 @@ fn main() {
             let request_path = args
                 .get(position + 2)
                 .ok_or("--rebase requires REQUEST.json")?;
-            let old = Store::load(&fs::read(old_path).map_err(|e| e.to_string())?)?;
+            let old = Store::load(&osw_query::packet::read_bundle(old_path)?)?;
             let prepare = args.get(position + 3).map(String::as_str) == Some("--prepare");
             let result = store.workspace_rebase(
                 &old,

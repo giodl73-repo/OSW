@@ -1,0 +1,213 @@
+{
+  "schema": "osw.redsox-cruise-log-metadata-reconciliation.v1",
+  "status": "reviewed_derived_source_support_not_current_measurement_admission",
+  "current_id": "red-sea-saline-overflow",
+  "documents": {
+    "rsx1": {
+      "url": "https://www.ncei.noaa.gov/data/oceans/archive/arc0113/0146147/1.2/data/0-data/REDSOX/Documentation/RSX1-cruisereport.pdf",
+      "response_url": "https://www.ncei.noaa.gov/data/oceans/archive/arc0113/0146147/1.2/data/0-data/REDSOX/Documentation/RSX1-cruisereport.pdf",
+      "bytes": 2628251,
+      "sha256": "b32bfd9d477f5bb81d144ae8c294a1f583c4ded3907c49253432048dce68d751",
+      "acquired_at": "2026-10-18T02:40:22.757382+00:00",
+      "local_original_file": "research/source-data/ncei-redsox-2001/rsx1-cruise-report.pdf",
+      "original_is_redistributed": false,
+      "visually_reviewed_pdf_pages": [
+        11,
+        12,
+        14
+      ]
+    },
+    "rsx2": {
+      "url": "https://www.ncei.noaa.gov/data/oceans/archive/arc0113/0146147/1.2/data/0-data/REDSOX/Documentation/RSX2-Cruise_Report.pdf",
+      "response_url": "https://www.ncei.noaa.gov/data/oceans/archive/arc0113/0146147/1.2/data/0-data/REDSOX/Documentation/RSX2-Cruise_Report.pdf",
+      "bytes": 2629270,
+      "sha256": "22a7c1a3983ed89eda15309beb55ac4392bbed5921910f6b28274b623cd89dce",
+      "acquired_at": "2026-10-18T02:40:22.945434+00:00",
+      "local_original_file": "research/source-data/ncei-redsox-2001/rsx2-cruise-report.pdf",
+      "original_is_redistributed": false,
+      "visually_reviewed_pdf_pages": [
+        8,
+        9,
+        10,
+        11
+      ]
+    }
+  },
+  "rule": "Retain all original headers and raw issue counts. Expose reviewed support separately with exact source-file pins and cruise-log locators. Event time is not CTD start time. No automatic coordinate or station guessing.",
+  "coordinate_rule": "Convert explicit published longitude/latitude degree-and-minute pairs to decimal degrees. Log precision0.01arcminute remains source precision, not new decimal precision, independent accuracy or a confidence interval.",
+  "source_log_precision_minutes": 0.01,
+  "source_log_datum_independently_verified": false,
+  "source_log_typesetting_limit": "Only listed fields and rows were transcribed. Other table rows contain clipping or date/coordinate formatting issues; the logs are not presumed globally error-free.",
+  "reconciliations": [
+    {
+      "profile_id": "rsx1-002-ctd",
+      "source_file": "RSX1/rsx1002.ctd.1m.asc",
+      "source_profile_sha256": "b148766cff05122589c3bc516708fb7d4554e1b4a2cd19952d254b85f4d8ec99",
+      "cruise_report": "rsx1",
+      "pdf_page": 11,
+      "table_locator": "Appendix1, station2 row",
+      "reviewed_cast_number": 2,
+      "position_lon_lat_degrees_minutes": [
+        [
+          49,
+          51.52
+        ],
+        [
+          5,
+          30.29
+        ]
+      ],
+      "reason": "Header reuses cast1 label and coordinates. Filename cast2 is corroborated by its later time and deeper pressure support and the separate cruise-log row."
+    },
+    {
+      "profile_id": "rsx1-003-ctd",
+      "source_file": "RSX1/rsx1003.ctd.1m.asc",
+      "source_profile_sha256": "dfcc792f4e351a9b4cf959395ba090708535cc9171cb32c8d24d58cca8c2d2fc",
+      "cruise_report": "rsx1",
+      "pdf_page": 11,
+      "table_locator": "Appendix1, station3 row",
+      "cast_event_time_utc": "2001-02-17T08:36:00Z",
+      "reason": "Recover the documented cast event time only. The malformed original CTD start time remains unknown; event time is not substituted into that field."
+    },
+    {
+      "profile_id": "rsx1-004-ctd",
+      "source_file": "RSX1/rsx1004.ctd.1m.asc",
+      "source_profile_sha256": "cb37f8b8f111dd317c94da7e3c4c374f539f4dfe4d63bd709a36b252cd1bb843",
+      "cruise_report": "rsx1",
+      "pdf_page": 11,
+      "table_locator": "Appendix1, station4 row",
+      "reviewed_cast_number": 4,
+      "reason": "Empty header station; independent cruise-log row corroborates filename cast4."
+    },
+    {
+      "profile_id": "rsx1-006-ctd",
+      "source_file": "RSX1/rsx1006.ctd.1m.asc",
+      "source_profile_sha256": "b49f94045b3f8bb1053c4b0b19ee61aa0b0a318edc24bffaf57ab2a111c91be3",
+      "cruise_report": "rsx1",
+      "pdf_page": 11,
+      "table_locator": "Appendix1, station6 row",
+      "reviewed_cast_number": 6,
+      "reason": "Empty header station; independent cruise-log row corroborates filename cast6."
+    },
+    {
+      "profile_id": "rsx1-049-ctd",
+      "source_file": "RSX1/rsx1049.ctd.1m.asc",
+      "source_profile_sha256": "bb542f9a040231190b7946e15d0f4fa1a39e7b6ccd2252ef21791c490ac73f72",
+      "cruise_report": "rsx1",
+      "pdf_page": 11,
+      "table_locator": "Appendix1, station49 row",
+      "reviewed_cast_number": 49,
+      "reason": "Header labels048; filename time/position and cruise-log station49 row support49, not48."
+    },
+    {
+      "profile_id": "rsx1-075-ctd",
+      "source_file": "RSX1/rsx1075.ctd.1m.asc",
+      "source_profile_sha256": "7cf27e7d535613bffb17b9b906d498aa81e2dd5e4714d14b87195b9af001a6df",
+      "cruise_report": "rsx1",
+      "pdf_page": 12,
+      "table_locator": "Appendix1, station75 row",
+      "position_lon_lat_degrees_minutes": [
+        [
+          43,
+          36
+        ],
+        [
+          12,
+          12.02
+        ]
+      ],
+      "reason": "CTD decimal header truncates longitude/latitude to43/12. Cruise-log row supports LADCP coordinates43.6/12.2003."
+    },
+    {
+      "profile_id": "rsx1-076-ctd",
+      "source_file": "RSX1/rsx1076.ctd.1m.asc",
+      "source_profile_sha256": "e09241bda760b7f909c87ff2608689963630f8c0641f0bc9b9321c82944c5a68",
+      "cruise_report": "rsx1",
+      "pdf_page": 12,
+      "table_locator": "Appendix1, station76 row",
+      "position_lon_lat_degrees_minutes": [
+        [
+          43,
+          32.46
+        ],
+        [
+          12,
+          11.94
+        ]
+      ],
+      "reason": "CTD decimal header truncates longitude/latitude to43/12. Cruise-log row supports LADCP coordinates43.541/12.199."
+    },
+    {
+      "profile_id": "rsx1-194-ctd",
+      "source_file": "RSX1/rsx1194.ctd.1m.asc",
+      "source_profile_sha256": "63082e73a85ff77eb967e63cd170d59a7e45de7df4b373f7ee7f8e668129398d",
+      "cruise_report": "rsx1",
+      "pdf_page": 14,
+      "table_locator": "Appendix1, station194 row",
+      "position_lon_lat_degrees_minutes": [
+        [
+          45,
+          14.91
+        ],
+        [
+          11,
+          8.13
+        ]
+      ],
+      "reason": "Original CTD latitude1108.13 is invalid as decimal degrees. Convert the explicit cruise-log degrees/minutes; do not repair the original header or infer the conversion from the malformed number alone."
+    },
+    {
+      "profile_id": "rsx2-014-ctd",
+      "source_file": "RSX2/rsx2014.ctd.1m.asc",
+      "source_profile_sha256": "9ff0c3b25c609171d0e938e810589672310162da75d93b7f5a1d7a06425e9e88",
+      "cruise_report": "rsx2",
+      "pdf_page": 8,
+      "table_locator": "Appendix1, station14 row",
+      "reviewed_cast_number": 14,
+      "reason": "Cruise-log Appendix1 row corroborates the filename cast. Header label is either a different number or descriptive text; no original header rewritten."
+    },
+    {
+      "profile_id": "rsx2-082-ctd",
+      "source_file": "RSX2/rsx2082.ctd.1m.asc",
+      "source_profile_sha256": "e948c405e92248d512725804a598628a8bbcda991e9d22fda5e2c1402c5dd517",
+      "cruise_report": "rsx2",
+      "pdf_page": 9,
+      "table_locator": "Appendix1, station82 row",
+      "reviewed_cast_number": 82,
+      "reason": "Cruise-log Appendix1 row corroborates the filename cast. Header label is either a different number or descriptive text; no original header rewritten."
+    },
+    {
+      "profile_id": "rsx2-165-ctd",
+      "source_file": "RSX2/rsx2165.ctd.1m.asc",
+      "source_profile_sha256": "5179da2fe4c60ef7a017d0e05a5aa3874ca1f886ba36e6a659f854ec127de341",
+      "cruise_report": "rsx2",
+      "pdf_page": 10,
+      "table_locator": "Appendix1, station165 row",
+      "reviewed_cast_number": 165,
+      "reason": "Cruise-log Appendix1 row corroborates the filename cast. Header label is either a different number or descriptive text; no original header rewritten."
+    },
+    {
+      "profile_id": "rsx2-166-ctd",
+      "source_file": "RSX2/rsx2166.ctd.1m.asc",
+      "source_profile_sha256": "612d666e9e337158a7526058bb30e69ff5dbb6e18915fa2bfed45ab43ae15af6",
+      "cruise_report": "rsx2",
+      "pdf_page": 10,
+      "table_locator": "Appendix1, station166 row",
+      "reviewed_cast_number": 166,
+      "reason": "Cruise-log Appendix1 row corroborates the filename cast. Header label is either a different number or descriptive text; no original header rewritten."
+    },
+    {
+      "profile_id": "rsx2-177-ctd",
+      "source_file": "RSX2/rsx2177.ctd.1m.asc",
+      "source_profile_sha256": "d553d8b45dff21098b19ca03f4bcfaa2a641f325621de96b7559d8d1ffaa6edd",
+      "cruise_report": "rsx2",
+      "pdf_page": 11,
+      "table_locator": "Appendix1, station177 row",
+      "reviewed_cast_number": 177,
+      "reason": "Cruise-log Appendix1 row corroborates the filename cast. Header label is either a different number or descriptive text; no original header rewritten."
+    }
+  ],
+  "new_width_record_admitted": false,
+  "whole_current_width_km": null,
+  "annual_width_range_km": null
+}

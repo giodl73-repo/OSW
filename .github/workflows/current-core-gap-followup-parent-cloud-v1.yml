@@ -1,0 +1,65 @@
+name: Audit three current core data followups against installed parent v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/current-core-gap-followup-parent-request-v1.json
+      - .github/workflows/current-core-gap-followup-parent-cloud-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+  actions: read
+env:
+  GH_TOKEN: ${{ github.token }}
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-24.04
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/current-core-gap-followup-parent-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/current-core-gap-followup-parent-request-v1.json').read_bytes())
+          assert r['schema']=='osw.current-core-gap-followup-parent-request.v1'
+          assert type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  parent-audit:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Publication identity and pre-read refusal fixtures
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p test_current_core_gap_followup_parent_v1.py -v
+      - name: Read bounded current, family and publication metadata without changing data
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_current_core_gap_followup_parent_v1.py
+      - name: Retain compact audit records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-core-gap-followup-parent-audit-v1
+          path: .pytest_cache/current-core-gap-followup-parent-v1/*.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90

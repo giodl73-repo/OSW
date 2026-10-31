@@ -197,6 +197,7 @@ pub fn validate(
             "evidence_role":"existing_editorial_parent_assignment","naming_source_url":ledger["sources"][name_source],"naming_source_is_parent_relation_evidence":false,
             "physical_connectivity_eligible":false,"measurement_inheritance_eligible":false,"scope":SCOPE}));
     }
+    expected.extend(crate::equatorial_basin_identities::taxonomy_links(manifest)?);
     expected.sort_by(|a, b| a["id"].as_str().cmp(&b["id"].as_str()));
     let mut sorted = actual.clone();
     sorted.sort_by(|a, b| a["id"].as_str().cmp(&b["id"].as_str()));
