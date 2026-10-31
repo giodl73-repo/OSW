@@ -13,6 +13,21 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 JSON_PATH='research/current-length-estimate-register-v1.json'
 CSV_PATH='research/current-length-estimate-register-v1.csv'
+COMPLETION_PATH='research/current-length-estimates-completion-v1.json'
+
+
+def completion_binding(rows,pins):
+    path=ROOT/COMPLETION_PATH
+    if not path.exists():return None
+    raw=path.read_bytes();proof=json.loads(raw)
+    recordset=json.dumps(rows,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()
+    valid=(proof.get('status')=='PASS_ALL111_DECLARED_LENGTH_ESTIMATES_REVIEWED'
+        and len(rows)==111 and all(r['length_estimate_km'] and not r['needs_full_extent_estimate'] for r in rows)
+        and proof['recordset_sha256']==hashlib.sha256(recordset).hexdigest()
+        and proof['input_sha256']==pins
+        and proof['rules_sha256']==hashlib.sha256((ROOT/'plans/current-length-estimates-v1.md').read_bytes()).hexdigest()
+        and all(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==pin for p,pin in proof['frontend_sha256'].items()))
+    return hashlib.sha256(raw).hexdigest() if valid else None
 
 
 def apply_family_conventions(rows, document):
@@ -149,13 +164,15 @@ def build():
             'current_card_url':'object.html?id='+identifier.replace(':','%3A')})
     rows=apply_family_conventions(rows,read('research/current-length-family-conventions-v1.json'))
     counts=Counter(r['status'] for r in rows)
-    return {'schema':'osw.current-length-estimate-register.v1','status':'ALL_LENGTH_ENTRIES_AVAILABLE_REVIEW_PENDING' if all(r['length_estimate_km'] is not None for r in rows) else 'LENGTH_FIRST_WORKING_REGISTER_INCOMPLETE',
+    completion=completion_binding(rows,pins)
+    return {'schema':'osw.current-length-estimate-register.v1','status':'ALL111_DECLARED_LENGTH_ESTIMATES_VERIFIED' if completion else 'ALL_LENGTH_ENTRIES_AVAILABLE_REVIEW_PENDING' if all(r['length_estimate_km'] is not None for r in rows) else 'LENGTH_FIRST_WORKING_REGISTER_INCOMPLETE',
         'target':'A declared, reproducible length estimate for every catalogued current.',
         'counts':{'currents':len(rows),'with_length_estimate':sum(r['length_estimate_km'] is not None for r in rows),'remaining_full_extent_estimates':sum(r['needs_full_extent_estimate'] for r in rows),**dict(counts)},
         'rules_file':'plans/current-length-estimates-v1.md','rules_sha256':hashlib.sha256((ROOT/'plans/current-length-estimates-v1.md').read_bytes()).hexdigest(),
         'generator_file':'analysis/build_current_length_register_v1.py','generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'input_sha256':pins,
         'interpretation':['Reported values and editorial reference estimates retain different methods and extents.','Regional reaches remain visible as supporting calculations but do not fill a whole-current estimate.','Endpoint/route sensitivity is not annual variation or statistical uncertainty.','Family/system estimates require an explicit principal-route or aggregate convention before they are filled.'],
-        'full_goal_complete':False,'records':rows}
+        'completion_evidence_file':COMPLETION_PATH if completion else None,'completion_evidence_sha256':completion,
+        'full_goal_complete':bool(completion),'records':rows}
 
 
 def main():

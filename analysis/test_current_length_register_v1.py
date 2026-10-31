@@ -13,7 +13,7 @@ class LengthRegister(unittest.TestCase):
         self.assertEqual(len({r['entity_id'] for r in rows}),111)
         self.assertEqual(sum(r['length_estimate_km'] is not None for r in rows),111)
         self.assertEqual(sum(r['needs_full_extent_estimate'] for r in rows),0)
-        self.assertFalse(document['full_goal_complete'])
+        self.assertEqual(document['full_goal_complete'],(register.ROOT/register.COMPLETION_PATH).exists())
         for row in rows:
             self.assertIsNone(row['annual_length_range_km'])
             if row['length_estimate_km'] is not None:
