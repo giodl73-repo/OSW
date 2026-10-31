@@ -4,18 +4,18 @@
   "target": "A declared, reproducible length estimate for every catalogued current.",
   "counts": {
     "currents": 111,
-    "with_length_estimate": 59,
-    "remaining_full_extent_estimates": 52,
+    "with_length_estimate": 70,
+    "remaining_full_extent_estimates": 41,
     "reported": 13,
     "reference_estimate": 38,
-    "regional_only": 33,
-    "needs_route": 19,
-    "provisional_estimate": 8
+    "regional_only": 26,
+    "needs_route": 15,
+    "provisional_estimate": 19
   },
   "rules_file": "plans/current-length-estimates-v1.md",
   "rules_sha256": "00fbdec80521632251c435c7d3288f2797e79df7aec6b0a1a8599b3285fae9c8",
   "generator_file": "analysis/build_current_length_register_v1.py",
-  "generator_sha256": "6cf66e7bb408fa396d5554c0e1f5b72122a06c0364d17776f0b4ccca131c0eb7",
+  "generator_sha256": "befad964f7cba20d00e3824ad190ff9c0f7938e0db8a0c6ea105409078f3bcb0",
   "input_sha256": {
     "research/current-measurement-coverage-baseline-v1.json": "eac6175279cef24de14a17ea36ca6dd063f678d235b629a5c863498bc0c72569",
     "research/equatorial-basin-identity-query-contract-v3.json": "1486ee54bfa7b7b17bdc08ebdc788d63c93a058e4f632b23b39d79f1c74a591d",
@@ -32,7 +32,9 @@
     "research/current-length-reference-extents-v1.json": "2f6254b67287a589eebfba0914e23874dbe5c767f51e27f7e80c79b96432d87b",
     "research/current-length-reference-extents-geography-v1.json": "0882a929ca077e1f3bfda05385dfebf6aabcc3135b6350fb975405d09fde3243",
     "research/current-length-reference-extents-v2.json": "a123f566e4dde20b8656fc2ea7310b78dc9e919d52b0b6a8d2a3ee86dc3c257d",
-    "research/current-length-reference-extents-geography-v2.json": "763b16b897b479415377ee0422b82bdae8b6208b1fd22250857f97b8b602b92e"
+    "research/current-length-reference-extents-geography-v2.json": "763b16b897b479415377ee0422b82bdae8b6208b1fd22250857f97b8b602b92e",
+    "research/current-length-reference-extents-v3.json": "a78b592ab32038563d0ac6bf480b37fb3fd1798e25a7b0e6aca6f9f98615ac4b",
+    "research/current-length-reference-extents-geography-v3.json": "96593fede3ec3badbcfa4c4bb44838ead5db1c04e962786434c1ce221153e04f"
   },
   "interpretation": [
     "Reported values and editorial reference estimates retain different methods and extents.",
@@ -62,6 +64,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -91,6 +94,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         1800,
         2200
@@ -139,6 +143,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         3900,
         4900
@@ -202,6 +207,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         700,
         1700
@@ -250,6 +256,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -279,6 +286,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -324,6 +332,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         600,
         900
@@ -372,6 +381,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -401,6 +411,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -415,22 +426,26 @@
       "name": "Antilles Current",
       "basin": "North Atlantic",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 1000,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Antilles Current principal Bahamas-margin reference extent from the Turks/Caicos–southeastern Bahamas approach to the northeast-Abaco/Gulf Stream approach.",
+      "selected_route_id": "antilles-principal-reference-extent-v3",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v3.json",
+      "source_url": "https://tidesandcurrents.noaa.gov/glossary",
+      "figure_file": "figures/bahamas-current-length-estimates-v3.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Geographic reference interpretation of source circulation context; no observed dated axis or annual extrema inferred.",
+      "gate_rationale": "21.5N69.5W selects the southeastern offshore approach;28N76.5W selects the northern offshore handoff. Upstream NEC and downstream Gulf Stream lengths are excluded.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "The NOAA named-flow interpretation along the northeast Bahamas margin; wider Antilles usage can have different upstream gates.",
+      "route_sensitivity_km": [
+        900,
+        1100
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -452,7 +467,7 @@
       "available_regional_reach_km": 200,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Aantilles"
     },
     {
@@ -460,22 +475,26 @@
       "name": "Atlantic Equatorial Undercurrent",
       "basin": "Equatorial Atlantic",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 5500,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Atlantic EUC principal thermocline-jet reference extent from the offshore western-boundary feed sector to the eastern pre-island approach.",
+      "selected_route_id": "atlantic-equatorial-undercurrent-principal-reference-extent-v3",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v3.json",
+      "source_url": "https://www.gfdl.noaa.gov/bibliography/related_files/sgp0102.pdf",
+      "figure_file": "figures/tropical-atlantic-current-length-estimates-v3.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Schematic thermocline-jet extent; no fixed depth or observation-year axis reconstructed.",
+      "gate_rationale": "44W0N is a declared western feed-sector handoff, extending beyond the retained35W observational reach.5E0N stops before island splitting near Sao Tome; downstream branches are excluded.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": null,
+      "route_sensitivity_km": [
+        5100,
+        5500
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -497,7 +516,7 @@
       "available_regional_reach_km": 4500,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Aatlantic-equatorial-undercurrent"
     },
     {
@@ -520,6 +539,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         4100,
         4600
@@ -562,22 +582,26 @@
       "name": "Atlantic North Equatorial Countercurrent",
       "basin": "Tropical Atlantic",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 3900,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Atlantic NECC principal eastward basin reference extent from the North Brazil retroflection/feed sector to the Guinea Current handoff sector.",
+      "selected_route_id": "atlantic-north-equatorial-countercurrent-principal-reference-extent-v3",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v3.json",
+      "source_url": "https://www.gfdl.noaa.gov/bibliography/related_files/sgp0102.pdf",
+      "figure_file": "figures/tropical-atlantic-current-length-estimates-v3.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "July–September surface reference under Philander Figure1. The western surface NECC disappears during part of January–May in that source; this is not a year-round measured extent.",
+      "gate_rationale": "50W8N declares the western feed-sector gate.15W5N declares the Guinea Current handoff; the Guinea coast continuation is excluded.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": null,
+      "route_sensitivity_km": [
+        3400,
+        4000
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -599,7 +623,7 @@
       "available_regional_reach_km": 1100,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Aatlantic-north-equatorial-countercurrent"
     },
     {
@@ -622,6 +646,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -667,6 +692,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         3900,
         4500
@@ -724,6 +750,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -753,6 +780,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -798,6 +826,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -827,6 +856,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         3300,
         3700
@@ -875,6 +905,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -889,22 +920,26 @@
       "name": "Baffin Current",
       "basin": "Baffin Bay",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 1500,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Baffin Current principal western-bay reference extent from the northern Baffin Bay feed sector through the western boundary into the Davis Strait handoff.",
+      "selected_route_id": "baffin-principal-reference-extent-v3",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v3.json",
+      "source_url": "https://www.physocean.icm.csic.es/regoc/pdfversion-en.html",
+      "figure_file": "figures/baffin-current-length-estimates-v3.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Geographic reference interpretation of source circulation context; no observed dated axis or annual extrema inferred.",
+      "gate_rationale": "77N75W is a northern-bay handoff, excluding upstream Nares/Lancaster passage lengths.65N59.5W is an offshore Davis Strait handoff before the Labrador Current. An offshore Cape Dyer bend at60.5W66.8N prevents the connecting path cutting the headland.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": null,
+      "route_sensitivity_km": [
+        1500,
+        1600
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -926,7 +961,7 @@
       "available_regional_reach_km": 1200,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Abaffin"
     },
     {
@@ -949,6 +984,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         300,
         400
@@ -997,6 +1033,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         2200,
         2600
@@ -1045,6 +1082,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         1900,
         2200
@@ -1093,6 +1131,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         2600,
         4200
@@ -1141,6 +1180,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -1170,6 +1210,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         1500,
         1800
@@ -1218,6 +1259,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         2500,
         2800
@@ -1266,6 +1308,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         1200,
         1400
@@ -1314,6 +1357,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -1359,6 +1403,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         700,
         800
@@ -1392,28 +1437,32 @@
       "name": "East African Coastal Current",
       "basin": "Southwestern Indian Ocean",
       "identity_level": "current",
-      "status": "needs_route",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 900,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "EACC/Zanzibar principal northward trunk reference extent from the SEC-fed southern sector to a fixed representative Somali-feed/convergence-sector handoff.",
+      "selected_route_id": "east-african-coastal-principal-reference-extent-v3",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v3.json",
+      "source_url": "https://www.physocean.icm.csic.es/regoc/pdfversion-en.html",
+      "figure_file": "figures/east-african-current-length-estimates-v3.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Source convergence moves between about1N and4S and can cross the equator under different monsoons. The selected2S handoff is a geographic convention, not an annual maximum/minimum.",
+      "gate_rationale": "10S41.5E declares the SEC-feed handoff.2S42E is a representative northern handoff within a source-variable convergence region; it is not a permanent observed boundary. The Somali Current is excluded.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "Modern EACC/Zanzibar northward flow; not the NOAA East Africa Coast entry that aliases the Somali Current.",
+      "route_sensitivity_km": [
+        900,
+        1100
+      ],
       "route_choice_rule": null,
       "route_options": [],
       "available_regional_reach_km": null,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Aeast-african-coastal"
     },
     {
@@ -1436,6 +1485,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         2000,
         2300
@@ -1484,6 +1534,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         2500,
         2800
@@ -1532,6 +1583,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -1577,6 +1629,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -1631,6 +1684,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -1660,6 +1714,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -1689,6 +1744,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -1718,6 +1774,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -1747,6 +1804,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         400,
         500
@@ -1795,6 +1853,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -1809,22 +1868,26 @@
       "name": "Guiana Current",
       "basin": "Tropical Atlantic",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 1000,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Guiana Current principal offshore Guianas-coast reference extent from the North Brazil feed-sector approach to the east-Trinidad/Caribbean approach.",
+      "selected_route_id": "guiana-principal-reference-extent-v3",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v3.json",
+      "source_url": "https://tidesandcurrents.noaa.gov/glossary",
+      "figure_file": "figures/tropical-atlantic-current-length-estimates-v3.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Geographic reference interpretation of source circulation context; no observed dated axis or annual extrema inferred.",
+      "gate_rationale": "51.5W5.5N is an offshore French-Guiana/NBC handoff.59.5W10.5N is east of Trinidad; the Caribbean continuation, river plumes and ring loops are excluded.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": null,
+      "route_sensitivity_km": [
+        900,
+        1100
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -1846,7 +1909,7 @@
       "available_regional_reach_km": 900,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Aguiana"
     },
     {
@@ -1869,6 +1932,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         1000,
         1200
@@ -1917,6 +1981,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -1946,6 +2011,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -1975,6 +2041,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         1900,
         2500
@@ -2023,6 +2090,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -2068,6 +2136,7 @@
       "gate_rationale": "115E12S selects the eastern SEC feed sector, excluding ITF passage lengths.51E17S stops offshore Madagascar before the NEMC/SEMC branches.",
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         6200,
         7000
@@ -2100,6 +2169,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -2145,6 +2215,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -2190,6 +2261,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -2219,6 +2291,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         700,
         1400
@@ -2267,6 +2340,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         400,
         500
@@ -2315,6 +2389,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -2344,6 +2419,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         1100,
         1600
@@ -2392,6 +2468,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         1800,
         2400
@@ -2440,6 +2517,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         2400,
         3000
@@ -2488,6 +2566,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -2533,6 +2612,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -2562,6 +2642,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -2607,6 +2688,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -2652,6 +2734,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         800,
         1200
@@ -2700,6 +2783,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -2760,6 +2844,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -2805,6 +2890,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -2850,6 +2936,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -2895,6 +2982,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         3100,
         3500
@@ -2943,6 +3031,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         1800,
         2500
@@ -2976,22 +3065,26 @@
       "name": "North Cape Current",
       "basin": "Arctic / North Atlantic",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 350,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "North Cape Current principal eastward reference extent from the offshore North Cape sector into the western Barents entrance sector.",
+      "selected_route_id": "north-cape-principal-reference-extent-v3",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v3.json",
+      "source_url": "https://tidesandcurrents.noaa.gov/glossary",
+      "figure_file": "figures/nordic-current-length-estimates-v3.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Geographic reference interpretation of source circulation context; no observed dated axis or annual extrema inferred.",
+      "gate_rationale": "23.5E71.5N is the Norwegian-current approach handoff.33E71.8N is the western-Barents handoff; Hopen Deep northern/eastern recirculation branches are not summed.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": null,
+      "route_sensitivity_km": [
+        300,
+        500
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -3013,7 +3106,7 @@
       "available_regional_reach_km": 200,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Anorth-cape"
     },
     {
@@ -3036,6 +3129,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -3065,6 +3159,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -3094,6 +3189,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -3123,6 +3219,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         3900,
         5000
@@ -3171,6 +3268,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         600,
         800
@@ -3204,28 +3302,32 @@
       "name": "Norwegian Current",
       "basin": "North Atlantic",
       "identity_level": "current",
-      "status": "needs_route",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 1600,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Norwegian Current named-flow reference extent northeastward off Norway from the southern offshore feed approach to the northern North Cape handoff.",
+      "selected_route_id": "norwegian-principal-reference-extent-v3",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v3.json",
+      "source_url": "https://tidesandcurrents.noaa.gov/glossary",
+      "figure_file": "figures/nordic-current-length-estimates-v3.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Geographic reference interpretation of source circulation context; no observed dated axis or annual extrema inferred.",
+      "gate_rationale": "60N3E and71.5N23.5E are declared offshore handoffs for this broad name; they are not surveyed endpoints. No neighbouring current length is copied.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "NOAA northeastward off-Norway named-flow convention. No equivalence to Norwegian Coastal, Norwegian Atlantic Slope or Norwegian Atlantic Front Current is established.",
+      "route_sensitivity_km": [
+        1500,
+        1700
+      ],
       "route_choice_rule": null,
       "route_options": [],
       "available_regional_reach_km": null,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Anorwegian"
     },
     {
@@ -3248,6 +3350,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -3293,6 +3396,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         2000,
         2200
@@ -3341,6 +3445,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         700,
         1200
@@ -3389,6 +3494,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -3418,6 +3524,7 @@
       "gate_rationale": "95W12N is an offshore eastern turning-sector gate.127E13N is an offshore approach to the Mindanao/Kuroshio split; coastal branches excluded.",
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         14100,
         15000
@@ -3450,6 +3557,7 @@
       "gate_rationale": "132E5N is the western feed-sector gate.90W8N is west of the Costa Rica Dome sector; western eddy circuits and eastern coastal currents are excluded.",
       "drawing_constraint": null,
       "source_typography_note": "Printed116 gives the Costa Rica Dome longitude as88E; Figure8.13 on printed117 locates it in the eastern Pacific with west-longitude axes. The90W offshore reference gate is an OSW map-based choice, not a verbatim coordinate copied from that sentence.",
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         14300,
         15400
@@ -3498,6 +3606,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -3573,6 +3682,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -3618,6 +3728,7 @@
       "gate_rationale": "85W10S selects an offshore eastern feeder sector.148E18S is an offshore Australian bifurcation approach. The western route is a declared northern-passage connection within the broad SEC system; it does not sum parallel jets.",
       "drawing_constraint": "162E12S is the declared offshore western passage control. Keep it fixed rather than shifting that handoff onto Makira; probe the other vertices and endpoint choices. This geographic constraint is not physical-axis uncertainty.",
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         13200,
         14200
@@ -3650,6 +3761,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -3692,6 +3804,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -3737,6 +3850,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -3782,6 +3896,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -3811,6 +3926,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         1100,
         1800
@@ -3859,6 +3975,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -3919,6 +4036,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -3964,6 +4082,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         1100,
         1800
@@ -4012,22 +4131,26 @@
       "name": "South Atlantic Current",
       "basin": "South Atlantic",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 5800,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "South Atlantic Current principal southern subtropical surface-reference extent from the Brazil–Malvinas separation/turning sector to the eastern Benguela-feed sector.",
+      "selected_route_id": "south-atlantic-principal-reference-extent-v3",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v3.json",
+      "source_url": "https://www.physocean.icm.csic.es/regoc/pdfversion-en.html",
+      "figure_file": "figures/south-atlantic-current-length-estimates-v3.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Geographic reference interpretation of source circulation context; no observed dated axis or annual extrema inferred.",
+      "gate_rationale": "55W40S is the western confluence/turning handoff.12E37S is the offshore eastern turning-sector handoff. Brazil, Falkland, Benguela and Agulhas Return Current lengths are excluded.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": null,
+      "route_sensitivity_km": [
+        5300,
+        5900
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -4049,7 +4172,7 @@
       "available_regional_reach_km": 2100,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Asouth-atlantic"
     },
     {
@@ -4072,6 +4195,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         700,
         1100
@@ -4120,6 +4244,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -4149,6 +4274,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -4178,6 +4304,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -4207,6 +4334,7 @@
       "gate_rationale": "50E40S declares the boundary with the upstream Agulhas Return Current.110E34S declares an offshore turning-sector boundary before western Australian coastal flows; neither is an observed sharp termination.",
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         5200,
         6100
@@ -4255,6 +4383,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -4297,6 +4426,7 @@
       "gate_rationale": "179E39S is an offshore east-New-Zealand handoff, excluding Tasman/EAC upstream lengths.85W33S is an offshore eastern turn toward the Peru-side circulation, excluding coastal Peru Current length.",
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         7900,
         8700
@@ -4345,6 +4475,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -4375,28 +4506,32 @@
       "name": "Spitsbergen Atlantic Current",
       "basin": "Arctic / North Atlantic",
       "identity_level": "current",
-      "status": "needs_route",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 300,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Spitsbergen Atlantic named-flow reference extent northwestward off southwest Spitsbergen, under the NOAA glossary interpretation.",
+      "selected_route_id": "spitsbergen-atlantic-principal-reference-extent-v3",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v3.json",
+      "source_url": "https://tidesandcurrents.noaa.gov/glossary",
+      "figure_file": "figures/nordic-current-length-estimates-v3.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Geographic reference interpretation of source circulation context; no observed dated axis or annual extrema inferred.",
+      "gate_rationale": "75.5N14E and77.5N7E define an offshore southwest-to-northwest segment of the named flow. These are OSW gates; the modern West Spitsbergen path is not transferred.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "Conditional NOAA named-flow interpretation; equivalence and full-extent correspondence with modern West Spitsbergen Current remain unresolved.",
+      "route_sensitivity_km": [
+        250,
+        450
+      ],
       "route_choice_rule": null,
       "route_options": [],
       "available_regional_reach_km": null,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Aspitsbergen-atlantic"
     },
     {
@@ -4419,6 +4554,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -4464,6 +4600,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         1100,
         1300
@@ -4497,28 +4634,32 @@
       "name": "West Australian Current",
       "basin": "Indian Ocean",
       "identity_level": "current",
-      "status": "needs_route",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 2100,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "West Australian Current principal offshore northward return reference extent from the southern subtropical turning sector to the SEC-feed approach.",
+      "selected_route_id": "west-australian-principal-reference-extent-v3",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v3.json",
+      "source_url": "https://tidesandcurrents.noaa.gov/glossary",
+      "figure_file": "figures/west-australian-current-length-estimates-v3.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Geographic reference interpretation of source circulation context; no observed dated axis or annual extrema inferred.",
+      "gate_rationale": "34S110E is an offshore southern-gyre handoff.16S113E is the northern SEC-feed approach. The nearshore southward Leeuwin Current is excluded.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "Offshore northward West Australian named flow, not the southward Leeuwin Current or a diagnosed velocity-axis continuation.",
+      "route_sensitivity_km": [
+        2000,
+        2300
+      ],
       "route_choice_rule": null,
       "route_options": [],
       "available_regional_reach_km": null,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Awest-australian"
     },
     {
@@ -4541,6 +4682,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         900,
         1300
@@ -4589,6 +4731,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -4631,6 +4774,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         600,
         900
@@ -4679,6 +4823,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         700,
         800
@@ -4727,6 +4872,7 @@
       "gate_rationale": null,
       "drawing_constraint": null,
       "source_typography_note": null,
+      "identity_interpretation": null,
       "route_sensitivity_km": [
         500,
         900

@@ -32,6 +32,7 @@
         if(row.gate_rationale)node('p',row.gate_rationale,details);
         if(row.drawing_constraint)node('p',row.drawing_constraint,details);
         if(row.source_typography_note)node('p',row.source_typography_note,details);
+        if(row.identity_interpretation)node('p',row.identity_interpretation,details);
         if(row.geographic_screening)node('p',row.geographic_screening,details);
         if(row.figure_file){const map=node('a','Map of the declared extent and alternatives',details);map.href='../'+row.figure_file;map.className='length-source';}
         if(row.record_file){const source=node('a','Retained source record',details);source.href='../'+row.record_file;source.className='length-source';}

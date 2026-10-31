@@ -11,8 +11,8 @@ class LengthRegister(unittest.TestCase):
         document=register.build();rows=document['records']
         self.assertEqual(len(rows),111)
         self.assertEqual(len({r['entity_id'] for r in rows}),111)
-        self.assertEqual(sum(r['length_estimate_km'] is not None for r in rows),59)
-        self.assertEqual(sum(r['needs_full_extent_estimate'] for r in rows),52)
+        self.assertEqual(sum(r['length_estimate_km'] is not None for r in rows),70)
+        self.assertEqual(sum(r['needs_full_extent_estimate'] for r in rows),41)
         self.assertFalse(document['full_goal_complete'])
         for row in rows:
             self.assertIsNone(row['annual_length_range_km'])
@@ -22,8 +22,10 @@ class LengthRegister(unittest.TestCase):
 
     def test_regional_reach_not_promoted_and_reported_extent_not_overwritten(self):
         rows={r['entity_id']:r for r in register.build()['records']}
-        self.assertIsNone(rows['current:baffin']['length_estimate_km'])
+        self.assertEqual(rows['current:baffin']['length_estimate_km'],1500)
         self.assertEqual(rows['current:baffin']['available_regional_reach_km'],1200)
+        self.assertIsNone(rows['current:aleutian']['length_estimate_km'])
+        self.assertEqual(rows['current:aleutian']['available_regional_reach_km'],3300)
         self.assertEqual(rows['current:southern-east-madagascar']['length_estimate_km'],650)
         self.assertEqual(rows['current:southern-east-madagascar']['status'],'reported')
         self.assertIsNone(rows['current:north-equatorial']['length_estimate_km'])

@@ -60,14 +60,14 @@ def build():
         add(row,path)
     if len(routes)!=87:raise ValueError('All87 prepared reference routes required')
     provisional={}
-    for version in [1,2]:
+    for version in [1,2,3]:
         extent_path=f'research/current-length-reference-extents-v{version}.json'
         extents=read(extent_path);geography=read(f'research/current-length-reference-extents-geography-v{version}.json')
         if geography['estimate_file_sha256']!=pins[extent_path] or not all(r['all_clear'] and r['scenarios']==r['coarse_land_clear']==36 for r in geography['records']):raise ValueError('Exact geographic screening required')
         if {r['entity_id'] for r in extents['records']}!={r['entity_id'] for r in geography['records']}:raise ValueError('Incomplete screening owners')
         for item in extents['records']:
             if item['entity_id'] in provisional:raise ValueError('Duplicate new estimate')
-            provisional[item['entity_id']]={**item,'record_file':extent_path,'figure_file':'figures/atlantic-basin-current-length-estimates-v1.svg' if version==1 else f'figures/{item["map_group"]}-current-length-estimates-v2.svg'}
+            provisional[item['entity_id']]={**item,'record_file':extent_path,'figure_file':'figures/atlantic-basin-current-length-estimates-v1.svg' if version==1 else f'figures/{item["map_group"]}-current-length-estimates-v{version}.svg'}
     rows=[]
     for identifier,current in sorted(identities.items()):
         options=sorted([r for r in routes.values() if r['entity_id']==identifier],key=lambda r:(r['extent_class']!='reference_extent',-r['length_km'],r['id']))
@@ -93,6 +93,7 @@ def build():
             'gate_rationale':draft.get('gate_rationale') if draft else None,
             'drawing_constraint':draft.get('fixed_drawing_vertex_rationale') if draft else None,
             'source_typography_note':draft.get('source_typography_note') if draft else None,
+            'identity_interpretation':draft.get('identity_interpretation') if draft else None,
             'route_sensitivity_km':draft['scenario_range_km'] if draft else chosen['scenario_range_km'] if chosen else None,
             'route_choice_rule':'Longest declared reference-extent route; all phase/definition alternatives retained. This is not a maximum annual length.' if chosen and not publication else None,
             'route_options':options,'available_regional_reach_km':max((r['length_km'] for r in options if r['extent_class']=='regional_reach'),default=None),
