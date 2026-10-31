@@ -205,6 +205,9 @@ def build():
             interval=r.get('range_value')
             if interval is not None:assert len(interval)==2 and 0<=interval[0]<=interval[1] and interval[1]>0 and r['value'] is None
             if r.get('upper_bound') is not None:assert r['upper_bound']>0 and r['value'] is None
+            if r.get('lower_bound') is not None:
+                assert isinstance(r['lower_bound'],(int,float)) and math.isfinite(r['lower_bound']) and r['lower_bound']>0 and r['value'] is None
+                assert isinstance(r.get('lower_bound_exclusive',False),bool)
             if r.get('calculation'):
                 c=r['calculation'];assert c['multiplier']*c['deformation_radius_km']==c['unrounded_km'] and round(c['unrounded_km'])==r['value']
             if r.get('basis_source_file'):
@@ -228,7 +231,7 @@ def build():
             add(r['id'],r['entity_id'],r['category'],r['metric'],r['value'],r['unit'],path,f'/records/{n}',batch,
                 source_url=source['url'],source_access=source['access'],source_id=r['source_id'],
                 definition=r['definition'],scope=r['scope'],qualification=r['qualification'],
-                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible','named_case_association','independent_named_case','source_plot_estimate','model_context','model_table_row_index'] if k in r})
+                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible','named_case_association','independent_named_case','source_plot_estimate','model_context','model_table_row_index'] if k in r})
         applied.append({'file':path,'baseline_count':batch['baseline_evidence_count'],'preserved_baseline_sha256':prior,'added':len(batch['records'])})
     records=[]
     for identifier,current in identities.items():

@@ -239,6 +239,16 @@ def run():
             for path in set(r['source_file'] for r in document['evidence'])|{'plans/eddy-measurement-register-v1.md','research/eddy-measurement-register-v1.json'}:
                 response=context.request.get(base+'/'+path);assert response.status==200 and hashlib.sha256(response.body()).hexdigest()==sha(path),path
                 assets.add(path)
+            page.set_viewport_size({'width':1440,'height':1000})
+            page.fill('#eddy-search','Latakia');page.locator('#eddy-rows summary').click()
+            for needle in ['50 km','100 km','spring 2010 cyclonic','summer 2010 anticyclonic','2010-05-13','2010-08-04','not a seasonal envelope','HTTP 403']:
+                assert needle in page.locator('#eddy-rows').inner_text(),needle
+            page.locator('[data-evidence-id="latakia-menna-2012-spring-diameter"]').screenshot(path=str(OUT/'latakia-spring-diameter.png'))
+            page.locator('[data-evidence-id="latakia-menna-2012-summer-diameter"]').screenshot(path=str(OUT/'latakia-summer-diameter.png'))
+            page.set_viewport_size({'width':390,'height':844})
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.screenshot(path=str(OUT/'mobile-latakia-cases.png'),full_page=True)
+            checks.append('Latakia opposite-rotation regional cases retain separate diameters, map support, qualified source access and no pooled seasonal envelope')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

@@ -197,3 +197,17 @@ eddy footprint. Three other table names (Sakarya, Sinop and Kizilirmak) remain
 explicit unmapped source leads for inventory review; their numbers are never
 assigned to another named entry. These cases do not fill horizontal-size gaps
 or establish physical lifetimes. Preserve all preceding 270 evidence records.
+
+## Dated regional circulation patterns
+
+Menna et al. (2012) describes Latakia spring and summer 2010 regional
+patterns with opposite circulation. Retain approximate diameters of 50 km
+(cyclonic) and 100 km (anticyclonic) as separate cases. Keep spring speed
+as a strict >30 cm/s bound and summer speed as a 15-30 cm/s source interval.
+Figure 12a/c date windows are four-week map support, not tracked lifespans.
+Do not pool these cases into seasonal extrema, a polarity-changing physical
+eddy, or an animation. The source combines drifter tracks and unbiased mean
+geostrophic currents; no fixed diameter contour is specified in the paragraph.
+Institutional PDF text was accessible through web retrieval, but original bytes
+and page images were unavailable. Preserve that access limitation explicitly
+and all preceding 285 evidence records exactly.
