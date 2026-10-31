@@ -29,6 +29,9 @@
         if(row.reported_length_source_locator)node('p',row.reported_length_source_locator,details);
         if(row.route_sensitivity_km)node('p',`Route/gate sensitivity: ${row.route_sensitivity_km.map(n=>n.toLocaleString()).join('–')} km. Not physical uncertainty or annual variation.`,details);
         if(row.source_time_convention)node('p',row.source_time_convention,details);
+        if(row.gate_rationale)node('p',row.gate_rationale,details);
+        if(row.drawing_constraint)node('p',row.drawing_constraint,details);
+        if(row.source_typography_note)node('p',row.source_typography_note,details);
         if(row.geographic_screening)node('p',row.geographic_screening,details);
         if(row.figure_file){const map=node('a','Map of the declared extent and alternatives',details);map.href='../'+row.figure_file;map.className='length-source';}
         if(row.record_file){const source=node('a','Retained source record',details);source.href='../'+row.record_file;source.className='length-source';}

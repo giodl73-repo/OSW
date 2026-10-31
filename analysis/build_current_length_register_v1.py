@@ -59,11 +59,15 @@ def build():
         if identifier:row['id']=identifier
         add(row,path)
     if len(routes)!=87:raise ValueError('All87 prepared reference routes required')
-    extent_path='research/current-length-reference-extents-v1.json'
-    extents=read(extent_path)
-    geography=read('research/current-length-reference-extents-geography-v1.json')
-    if geography['estimate_file_sha256']!=pins[extent_path] or not all(r['all_clear'] and r['scenarios']==r['coarse_land_clear']==36 for r in geography['records']):raise ValueError('Exact geographic screening required')
-    provisional={r['entity_id']:r for r in extents['records']}
+    provisional={}
+    for version in [1,2]:
+        extent_path=f'research/current-length-reference-extents-v{version}.json'
+        extents=read(extent_path);geography=read(f'research/current-length-reference-extents-geography-v{version}.json')
+        if geography['estimate_file_sha256']!=pins[extent_path] or not all(r['all_clear'] and r['scenarios']==r['coarse_land_clear']==36 for r in geography['records']):raise ValueError('Exact geographic screening required')
+        if {r['entity_id'] for r in extents['records']}!={r['entity_id'] for r in geography['records']}:raise ValueError('Incomplete screening owners')
+        for item in extents['records']:
+            if item['entity_id'] in provisional:raise ValueError('Duplicate new estimate')
+            provisional[item['entity_id']]={**item,'record_file':extent_path,'figure_file':'figures/atlantic-basin-current-length-estimates-v1.svg' if version==1 else f'figures/{item["map_group"]}-current-length-estimates-v2.svg'}
     rows=[]
     for identifier,current in sorted(identities.items()):
         options=sorted([r for r in routes.values() if r['entity_id']==identifier],key=lambda r:(r['extent_class']!='reference_extent',-r['length_km'],r['id']))
@@ -81,11 +85,14 @@ def build():
             'selected_route_id':chosen['id'] if chosen and not publication else draft['id'] if draft else None,
             'reported_length_source_id':publication.get('length_source_id') if publication else None,
             'reported_length_source_locator':publication.get('length_source_locator') if publication else None,
-            'record_file':'research/ocean-current-live-measurements.json' if publication else chosen['record_file'] if chosen else extent_path if draft else None,
+            'record_file':'research/ocean-current-live-measurements.json' if publication else chosen['record_file'] if chosen else draft['record_file'] if draft else None,
             'source_url':chosen['source_url'] if chosen and not publication else draft['source_url'] if draft else None,
-            'figure_file':'figures/atlantic-basin-current-length-estimates-v1.svg' if draft else None,
+            'figure_file':draft['figure_file'] if draft else None,
             'geographic_screening':'All36 variants clear coarse OSW land; fine coast not checked.' if draft else None,
             'source_time_convention':draft['source_time_convention'] if draft else None,
+            'gate_rationale':draft.get('gate_rationale') if draft else None,
+            'drawing_constraint':draft.get('fixed_drawing_vertex_rationale') if draft else None,
+            'source_typography_note':draft.get('source_typography_note') if draft else None,
             'route_sensitivity_km':draft['scenario_range_km'] if draft else chosen['scenario_range_km'] if chosen else None,
             'route_choice_rule':'Longest declared reference-extent route; all phase/definition alternatives retained. This is not a maximum annual length.' if chosen and not publication else None,
             'route_options':options,'available_regional_reach_km':max((r['length_km'] for r in options if r['extent_class']=='regional_reach'),default=None),

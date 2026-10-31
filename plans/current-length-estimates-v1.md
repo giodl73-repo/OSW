@@ -31,6 +31,10 @@ initial empty values are a worklist, not an acceptable final deliverable.
    produce a sensitivity interval; source uncertainty and seasonal extrema stay
    separate and remain unknown when unsupported. Do not invent a universal
    curvature factor or percentage error bar.
+   A declared geographic passage control may stay fixed during drawing probes
+   when moving it would shift the handoff onto land. Identify the fixed vertex
+   and its rationale. Retain failed earlier grids and every case in the revised
+   grid; never select only the convenient numerical outcomes.
 8. Deliver the completed register as JSON, CSV, and a sortable length-first view.
    Every number must link to its method, extent and source/route record. Preserve
    the canonical scientific measurements and their published ranking unchanged.
