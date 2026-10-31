@@ -196,8 +196,8 @@ def build():
                 report=read(batch['source_pixel_report'])
                 assert report['status']=='PASS' and report['source_pixels_verified'] and report['prior_rejected_paths_remain_excluded']
                 assert report['verifier_sha256']==hashlib.sha256((ROOT/'analysis/eddy_audit_spans_v1.py').read_bytes()).hexdigest()
-                for path,pin in report['input_sha256'].items():
-                    actual=hashlib.sha256((ROOT/path).read_bytes()).hexdigest();assert actual==pin; pins[path]=actual
+                for proof_path,pin in report['input_sha256'].items():
+                    actual=hashlib.sha256((ROOT/proof_path).read_bytes()).hexdigest();assert actual==pin; pins[proof_path]=actual
                 assert case['owner_id']==r['entity_id'] and r['category']=='size' and r['unit']=='km'
                 assert r['metric']=='figure_contour_candidate_'+r['map_span_component']+'_bounding_arc_span'
                 assert r['period_start']==r['period_end']==case['date']
