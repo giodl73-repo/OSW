@@ -52,8 +52,10 @@ def run():
             assert set(ids)==set(by_id)
             links=page.locator('#width-rows tr td:first-child>a').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))')
             assert all(parse_qs(urlsplit(link).query)['id']==[owner] for link,owner in zip(links,ids))
-            assert page.locator('#width-order option[value="value"]').is_disabled()
             page.screenshot(path=str(OUT/'desktop.png'))
+            state=page.evaluate('({metric:document.getElementById("width-metric").value, order:document.getElementById("width-order").value, disabled:document.querySelector("#width-order option[value=value]").disabled, summary:document.getElementById("width-summary").textContent})')
+            (OUT/'initial-state.json').write_bytes((json.dumps({'state':state,'page_errors':errors},indent=2)+'\n').encode())
+            assert state['metric']=='all' and state['disabled'] is True and not errors,(state,errors)
             for value,expected in [('direct',94),('new_qualified_reference',1),('member_references',8),('needs_width_evidence',9),('all',111)]:
                 page.select_option('#width-filter',value)
                 assert page.locator('#width-rows tr').count()==expected,(value,expected)
