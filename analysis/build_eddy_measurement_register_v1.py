@@ -11,6 +11,7 @@ from eddy_map_spans_v1 import validate_map_case,span_interval
 from eddy_audit_spans_v1 import validate_case as validate_audit_span_case,spans as audit_spans
 from eddy_colour_spans_v1 import validate_case as validate_colour_span_case,spans as colour_spans
 from eddy_arrow_spans_v1 import validate_case as validate_arrow_span_case
+from eddy_pdf_line_spans_v1 import validate_case as validate_pdf_line_case
 
 ROOT=Path(__file__).resolve().parents[1]
 JSON_PATH='research/eddy-measurement-register-v1.json'
@@ -255,6 +256,23 @@ def build():
             source=batch['sources'][r['source_id']]
             if r.get('profile_context'):validate_profile_context(r)
             map_values={}
+            if r.get('pdf_line_case_index') is not None:
+                assert all(r.get(k) is None for k in ['map_case_index','audit_span_case_index','colour_span_case_index','arrow_span_case_index'])
+                case=batch['pdf_line_cases'][r['pdf_line_case_index']];validate_pdf_line_case(case)
+                report=read(batch['source_native_report'])
+                assert report['status']=='PASS' and report['source_native_path_verified'] and report['source_axis_labels_verified']
+                assert report['explicit_endpoint_closure_verified'] and report['chain_breaks']==0
+                assert report['missing_segments_reconstructed'] is False and report['physical_footprint_admitted'] is False and report['contour_observation_date'] is None
+                assert report['batch_sha256']==pins[path] and report['original_pdf_sha256']==source['original']['sha256']==case['native_path']['original_pdf_sha256']
+                assert report['verifier_sha256']==hashlib.sha256((ROOT/'analysis/eddy_pdf_line_spans_v1.py').read_bytes()).hexdigest()
+                assert report['span_math_sha256']==hashlib.sha256((ROOT/'analysis/eddy_map_spans_v1.py').read_bytes()).hexdigest()
+                assert r['entity_id']==case['owner_id'] and r['category']=='size' and r['unit']=='km' and r['value'] is None
+                assert r['period_start'] is None and r['period_end'] is None and r['rights_screened_release_eligible'] is False
+                assert r['evidence_role']=='map_read_native_frontal_line_reference'
+                component=r['map_span_component'];calculation=span_interval(case,component)
+                assert r['metric']=='source_native_frontal_line_'+component+'_span'
+                assert calculation==report['spans'][component] and r['range_value']==calculation['range_km']
+                map_values={'source_map_estimate':{'case':case,'component':component,'calculation':calculation}}
             if r.get('arrow_span_case_index') is not None:
                 assert all(r.get(k) is None for k in ['map_case_index','audit_span_case_index','colour_span_case_index'])
                 case=batch['arrow_span_cases'][r['arrow_span_case_index']];validate_arrow_span_case(case)
@@ -439,7 +457,7 @@ def build():
     return {'schema':'osw.eddy-measurement-register.v1','status':'MEASUREMENT_GAP_FILLING_IN_PROGRESS',
         'rules_file':RULES,'rules_sha256':hashlib.sha256((ROOT/RULES).read_bytes()).hexdigest(),
         'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'input_sha256':pins,
-        'method_implementation_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['analysis/eddy_map_spans_v1.py','analysis/eddy_audit_spans_v1.py','analysis/eddy_colour_spans_v1.py','analysis/eddy_arrow_spans_v1.py']},
+        'method_implementation_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['analysis/eddy_map_spans_v1.py','analysis/eddy_audit_spans_v1.py','analysis/eddy_colour_spans_v1.py','analysis/eddy_arrow_spans_v1.py','analysis/eddy_pdf_line_spans_v1.py']},
         'first_batch_evidence_sha256':baseline_sha,'first_batch_evidence_preserved':40,
         'additional_batches':applied,
         'scope':inventory['scope'],'identity_rule':'Source records remain separate; possible Horizon/published matches are not verified identity joins.',

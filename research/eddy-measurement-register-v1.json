@@ -2,8 +2,8 @@
   "schema": "osw.eddy-measurement-register.v1",
   "status": "MEASUREMENT_GAP_FILLING_IN_PROGRESS",
   "rules_file": "plans/eddy-measurement-register-v1.md",
-  "rules_sha256": "616d4bd419bd22cf2235d602b4a48c4bed42f21ccc7327f9ca589e403566effc",
-  "generator_sha256": "66a196b0ff1eb127e9526733db4321ac6580e036c74b8b5077d072d1086a0553",
+  "rules_sha256": "4ae55131e5b62bb85c268ce38b80816dd859845782fd7e0859b8c7025d42d53d",
+  "generator_sha256": "4a017500c649adc3d1c92135851822e30832182b9fb01f25ffb9a07374b10d62",
   "input_sha256": {
     "research/ocean-eddy-name-inventory.json": "d78c31a96b93cc9e746562f2d5c3b0f6d37ad36c3f1d10bb769aec8aa4472015",
     "research/named-eddy-geography.json": "50f20f1f32589b780f7ff29824afa7f7af4a78bfd80a25a4784e6fc992bf3547",
@@ -15,7 +15,7 @@
     "research/eddy-measurement-register-additions-v2.json": "3bb1a6760a5e68efd41f5562425225da70e7bd78429257a8b1466937114fa62b",
     "plans/agulhas-ring-radius-protocol-v1.md": "620981e7dccd1a888083d5daa670548a6f1254825f2acda73da5a821bcb4e876",
     "plans/black-sea-eddy-recurrence-protocol-v1.md": "66fef56b5960d802df68ca35d3241912650f7fe2c58803375743b4f42a48b5cf",
-    "research/eddy-measurement-batches-v1.json": "404aae1a9d4af5642059d3cb6ce09a8d8b5d3eb59d657ed62fae18c0c05d07fc",
+    "research/eddy-measurement-batches-v1.json": "95596b9c73164e12cc865a517ae0b99c684d2f9685fbec12c25f5a4bf5caac0c",
     "research/eddy-measurement-register-additions-v3.json": "d1c91350952ea08a49562c5aa0b671f0624930fd73e4735c2227c1b17708fc15",
     "research/eddy-measurement-register-additions-v4.json": "359d14c7927a6fc045bce23eb8ae4f7c226caa1a5355a27045a735125bdeaa11",
     "research/named-loop-current-eddies.json": "4a41a3b4b127f42ac31b114117c0d5d2caf998b84bed6caeac58de6ef94eecca",
@@ -45,13 +45,16 @@
     "research/eddy-measurement-register-additions-v20.json": "c24563276b52743f71763bb565969f502c67ddf89148c9e73be034de30ca90bf",
     "research/eddy-arrow-span-source-verification-v1.json": "5fd322096254bd573c1a8cc93d4fb6baff332bc2084d4793c06db3ae64ea8ff5",
     "research/eddy-measurement-register-additions-v21.json": "100d8b42668636fd54a1c15338b29c256c3d003738fd1edcfd70c7b8130df953",
-    "research/eddy-measurement-register-additions-v22.json": "1d12d3480ab149f68534f44780c82dac3b706d479a717dd74efa52d8764d43e8"
+    "research/eddy-measurement-register-additions-v22.json": "1d12d3480ab149f68534f44780c82dac3b706d479a717dd74efa52d8764d43e8",
+    "research/eddy-measurement-register-additions-v23.json": "3e43eedc23cdb9f6c0a7b3a2236b653882cd40106423dae8f31f4f595faffdc8",
+    "research/eddy-pdf-line-source-verification-v1.json": "a44b92d53cb98a290f52ccdc96bae2acad3d8feacc8cb213503e02bd4d3b81f4"
   },
   "method_implementation_sha256": {
     "analysis/eddy_map_spans_v1.py": "b7594aa7eac20a1968e4432f2979f6b11c4f7008b3f5745753f0ad6e70f1f6e4",
     "analysis/eddy_audit_spans_v1.py": "db9db395ac3d1d52849e4d4086fecc823a5fec0ec08d0d0c10179979a6435523",
     "analysis/eddy_colour_spans_v1.py": "8c50bd79451c8f933c329f3e23cae320351c7f94f669163162007c5fa24a5994",
-    "analysis/eddy_arrow_spans_v1.py": "f97555626ece63dc373d695f9d7430ea0349bd064b1aeabd68bde1aabbeb32b9"
+    "analysis/eddy_arrow_spans_v1.py": "f97555626ece63dc373d695f9d7430ea0349bd064b1aeabd68bde1aabbeb32b9",
+    "analysis/eddy_pdf_line_spans_v1.py": "a341c3527e78650801ad6d55d824ccb474df2594d415b5bd59077e76906ecd48"
   },
   "first_batch_evidence_sha256": "702311bd7b238182a51b6160f902500e371a88eec635c6d500bc93df53373a4b",
   "first_batch_evidence_preserved": 40,
@@ -175,6 +178,12 @@
       "baseline_count": 325,
       "preserved_baseline_sha256": "0732f62e22a423652f61c3f638494df8c840a69a27219f7304796b5149f64845",
       "added": 2
+    },
+    {
+      "file": "research/eddy-measurement-register-additions-v23.json",
+      "baseline_count": 327,
+      "preserved_baseline_sha256": "7365acbe8b55b5cec96ca47c81b19ee4eb7191797dc2d7d7dc03aec7c4f2145d",
+      "added": 2
     }
   ],
   "scope": "One address for every independently named eddy label or named regional/family record currently admitted to the OSW almanac. This source-set inventory is not a complete global list of all eddies or all names. NOAA detection IDs are separate unnamed, dated observations.",
@@ -185,9 +194,9 @@
     "individual_source_records": 112,
     "recurrent_regions": 20,
     "families": 4,
-    "evidence_records": 327,
-    "size_records": 114,
-    "size_owners": 74,
+    "evidence_records": 329,
+    "size_records": 116,
+    "size_owners": 75,
     "duration_owners": 99,
     "recurrence_owners": 12,
     "structure_owners": 12,
@@ -1192,13 +1201,16 @@
       "source_url": "https://www.horizonmarine.com/loop-current-eddies",
       "source_pointer": "/entries/4",
       "evidence_ids": [
-        "eddy:horizon:loop-77-primary-registry-calendar-span"
+        "eddy:horizon:loop-77-primary-registry-calendar-span",
+        "berek-bower-2024-native-frontal-east-west-span",
+        "berek-bower-2024-native-frontal-north-south-span"
       ],
       "categories": [
-        "duration"
+        "duration",
+        "size"
       ],
       "size_classification_ids": [],
-      "size_gap": true,
+      "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
       "linked_primary_context": null,
@@ -1247,7 +1259,9 @@
         "name": "Berek",
         "url": "eddies.html?id=eddy:horizon:loop-77-primary",
         "evidence_ids": [
-          "eddy:horizon:loop-77-primary-registry-calendar-span"
+          "eddy:horizon:loop-77-primary-registry-calendar-span",
+          "berek-bower-2024-native-frontal-east-west-span",
+          "berek-bower-2024-native-frontal-north-south-span"
         ],
         "relation": "Associated primary registry row only; no independent secondary measurement assigned."
       },
@@ -42864,6 +42878,610 @@
       "case_label": "Agulhas Eddy W, February 2000 MARE sampling",
       "evidence_role": "qualified_published_named_case_reference",
       "rights_screened_release_eligible": false
+    },
+    {
+      "id": "berek-bower-2024-native-frontal-east-west-span",
+      "entity_id": "eddy:horizon:loop-77-primary",
+      "category": "size",
+      "metric": "source_native_frontal_line_east_west_span",
+      "metric_label": "source native frontal line east west span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": null,
+      "period_end": null,
+      "period_label": "Poster map uses 2023-12-21 SSH background; frontal-line observation date unspecified",
+      "definition": "Bounding east–west arc span of the source-native plotted frontal-analysis line enclosing the Berek label. Legend describes the frontal analysis as a 1.5-knot contour. Not whole-eddy radius or diameter.",
+      "scope": "Named Berek source-case reference only. The poster combines a dated SSH background with active/planned observing systems; it does not independently date the frontal line. Registry physical crosswalk unverified.",
+      "qualification": "Original 3500-segment PDF line is continuous and explicitly closes at its repeated endpoint despite closePath=false. No missing segment reconstructed or pixel gap repaired. Overlay-obscured parts are retained from the original native path, not inferred. Axis values use piecewise interpolation between published tick-label centers, with 6 PDF points (equivalent to six 72 dpi pixels) reading allowance and outward 25 km rounding. The range describes source-line reading only, not field accuracy, measurement uncertainty or seasonal extrema. SSH background date is not assigned as the contour observation date. No physical footprint, source-data polygon, radius, diameter, occupied area, state containment or seasonal playback inferred. Research candidate only; original source assets not republished.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2024/10/UGOS_annualMtng2024_ProgramOverview_v2.pdf",
+      "source_locator": "Single-page UGOS poster, central map label Eddy Berek and lower-right Other / Frontal Analysis legend; native drawing index 217, sequence 254.",
+      "source_file": "research/eddy-measurement-register-additions-v23.json",
+      "source_pointer": "/records/0",
+      "source_sha256": "3e43eedc23cdb9f6c0a7b3a2236b653882cd40106423dae8f31f4f595faffdc8",
+      "raw_record": {
+        "id": "berek-bower-2024-native-frontal-east-west-span",
+        "entity_id": "eddy:horizon:loop-77-primary",
+        "category": "size",
+        "metric": "source_native_frontal_line_east_west_span",
+        "value": null,
+        "range_value": [
+          350,
+          400
+        ],
+        "range_kind": "native_pdf_line_axis_reading_allowance_and_outward_rounding",
+        "unit": "km",
+        "source_id": "bower-2024",
+        "source_locator": "Single-page UGOS poster, central map label Eddy Berek and lower-right Other / Frontal Analysis legend; native drawing index 217, sequence 254.",
+        "evidence_role": "map_read_native_frontal_line_reference",
+        "rights_screened_release_eligible": false,
+        "case_label": "Berek, institutional poster frontal-analysis reference",
+        "period_start": null,
+        "period_end": null,
+        "period_label": "Poster map uses 2023-12-21 SSH background; frontal-line observation date unspecified",
+        "definition": "Bounding east–west arc span of the source-native plotted frontal-analysis line enclosing the Berek label. Legend describes the frontal analysis as a 1.5-knot contour. Not whole-eddy radius or diameter.",
+        "scope": "Named Berek source-case reference only. The poster combines a dated SSH background with active/planned observing systems; it does not independently date the frontal line. Registry physical crosswalk unverified.",
+        "qualification": "Original 3500-segment PDF line is continuous and explicitly closes at its repeated endpoint despite closePath=false. No missing segment reconstructed or pixel gap repaired. Overlay-obscured parts are retained from the original native path, not inferred. Axis values use piecewise interpolation between published tick-label centers, with 6 PDF points (equivalent to six 72 dpi pixels) reading allowance and outward 25 km rounding. The range describes source-line reading only, not field accuracy, measurement uncertainty or seasonal extrema. SSH background date is not assigned as the contour observation date. No physical footprint, source-data polygon, radius, diameter, occupied area, state containment or seasonal playback inferred. Research candidate only; original source assets not republished.",
+        "pdf_line_case_index": 0,
+        "map_span_component": "east_west"
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original institutional poster PDF acquired. Actual poster, named Berek map, axis labels and frontal-analysis legend visually reviewed; original native PDF path, explicit endpoint closure and axes independently extracted and verified.",
+      "source_id": "bower-2024",
+      "case_label": "Berek, institutional poster frontal-analysis reference",
+      "range_value": [
+        350,
+        400
+      ],
+      "range_kind": "native_pdf_line_axis_reading_allowance_and_outward_rounding",
+      "evidence_role": "map_read_native_frontal_line_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "method": "source_native_pdf_frontal_line_spans_v1",
+          "owner_id": "eddy:horizon:loop-77-primary",
+          "source_name": "Berek",
+          "background_ssh_date": "2023-12-21",
+          "contour_observation_date": null,
+          "source_legend_speed_knots": 1.5,
+          "coordinate_system": "PDF points, equivalent to pixels in a 72 dpi rendering",
+          "reading_allowance_pixels": 6,
+          "reading_allowance_pdf_points": 6,
+          "earth_radius_km": 6371,
+          "round_outward_km": 25,
+          "association_is_verified": false,
+          "physical_state_join_eligible": false,
+          "physical_footprint_admitted": false,
+          "rights_screened_release_eligible": false,
+          "missing_segments_reconstructed": false,
+          "background_date_is_contour_date": false,
+          "native_path": {
+            "pdf_page": 1,
+            "drawing_index": 217,
+            "sequence_number": 254,
+            "stroke_rgb": [
+              0,
+              0,
+              0
+            ],
+            "stroke_width_pdf_points": 8,
+            "fill": null,
+            "segments": 3500,
+            "segment_types": [
+              "l"
+            ],
+            "chain_breaks": 0,
+            "explicit_endpoint_closure_verified": true,
+            "pdf_close_path_flag": false,
+            "original_pdf_sha256": "66f70c2f3ef2da78affa0d737b950a4a1e2dfcddfda09921a6dd369d103ed1e1",
+            "points_sha256": "bd9209b10d48f8f4b7aa93302bde1767aa852dcde738d802945fef3a08f0b730",
+            "directional_extrema": {
+              "west": {
+                "index": 353,
+                "point": [
+                  1670.3114013671875,
+                  1060.767333984375
+                ]
+              },
+              "east": {
+                "index": 2146,
+                "point": [
+                  2130.29541015625,
+                  1135.3433837890625
+                ]
+              },
+              "north": {
+                "index": 1058,
+                "point": [
+                  1866.4483642578125,
+                  898.1983642578125
+                ]
+              },
+              "south": {
+                "index": 2762,
+                "point": [
+                  1948.349365234375,
+                  1307.683349609375
+                ]
+              }
+            }
+          },
+          "outline": {
+            "bbox_xyxy": [
+              1670.3114013671875,
+              898.1983642578125,
+              2130.29541015625,
+              1307.683349609375
+            ]
+          },
+          "axis_method": "Piecewise linear interpolation between published tick-label centers; no projection or source-field accuracy inferred.",
+          "axis_label_boxes": [
+            {
+              "bbox": [
+                1102.124267578125,
+                2197.07373046875,
+                1200.3642578125,
+                2251.673828125
+              ],
+              "text": "96°W"
+            },
+            {
+              "bbox": [
+                1598.204345703125,
+                2197.07373046875,
+                1696.4443359375,
+                2251.673828125
+              ],
+              "text": "92°W"
+            },
+            {
+              "bbox": [
+                2094.28466796875,
+                2197.07373046875,
+                2192.524658203125,
+                2251.673828125
+              ],
+              "text": "88°W"
+            },
+            {
+              "bbox": [
+                2590.36474609375,
+                2197.07373046875,
+                2688.604736328125,
+                2251.673828125
+              ],
+              "text": "84°W"
+            },
+            {
+              "bbox": [
+                3086.44482421875,
+                2197.07373046875,
+                3184.684814453125,
+                2251.673828125
+              ],
+              "text": "80°W"
+            },
+            {
+              "bbox": [
+                681.014892578125,
+                2164.48095703125,
+                770.3748779296875,
+                2219.0810546875
+              ],
+              "text": "18°N"
+            },
+            {
+              "bbox": [
+                681.014892578125,
+                1769.7210693359375,
+                770.3748779296875,
+                1824.321044921875
+              ],
+              "text": "21°N"
+            },
+            {
+              "bbox": [
+                681.014892578125,
+                1366.9610595703125,
+                770.3748779296875,
+                1421.56103515625
+              ],
+              "text": "24°N"
+            },
+            {
+              "bbox": [
+                681.014892578125,
+                954.6810302734375,
+                770.3748779296875,
+                1009.281005859375
+              ],
+              "text": "27°N"
+            },
+            {
+              "bbox": [
+                681.014892578125,
+                531.2410888671875,
+                770.3748779296875,
+                585.841064453125
+              ],
+              "text": "30°N"
+            }
+          ],
+          "axes": {
+            "longitude": [
+              [
+                1151.2442626953125,
+                -96
+              ],
+              [
+                1647.3243408203125,
+                -92
+              ],
+              [
+                2143.4046630859375,
+                -88
+              ],
+              [
+                2639.4847412109375,
+                -84
+              ],
+              [
+                3135.5648193359375,
+                -80
+              ]
+            ],
+            "latitude": [
+              [
+                558.5410766601562,
+                30
+              ],
+              [
+                981.9810180664062,
+                27
+              ],
+              [
+                1394.2610473632812,
+                24
+              ],
+              [
+                1797.0210571289062,
+                21
+              ],
+              [
+                2191.781005859375,
+                18
+              ]
+            ]
+          },
+          "poster_overlay_qualification": "Observing-platform symbols and planned-program overlays hide parts of the line in the rendered poster. Extents come from the original source-native path, not repaired pixels or a reconstructed boundary."
+        },
+        "component": "east_west",
+        "calculation": {
+          "audit_span_km": 370.323764,
+          "audit_reading_interval_km": [
+            360.529775,
+            380.124666
+          ],
+          "audit_decimal_places": 6,
+          "range_km": [
+            350,
+            400
+          ]
+        }
+      }
+    },
+    {
+      "id": "berek-bower-2024-native-frontal-north-south-span",
+      "entity_id": "eddy:horizon:loop-77-primary",
+      "category": "size",
+      "metric": "source_native_frontal_line_north_south_span",
+      "metric_label": "source native frontal line north south span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": null,
+      "period_end": null,
+      "period_label": "Poster map uses 2023-12-21 SSH background; frontal-line observation date unspecified",
+      "definition": "Bounding north–south arc span of the source-native plotted frontal-analysis line enclosing the Berek label. Legend describes the frontal analysis as a 1.5-knot contour. Not whole-eddy radius or diameter.",
+      "scope": "Named Berek source-case reference only. The poster combines a dated SSH background with active/planned observing systems; it does not independently date the frontal line. Registry physical crosswalk unverified.",
+      "qualification": "Original 3500-segment PDF line is continuous and explicitly closes at its repeated endpoint despite closePath=false. No missing segment reconstructed or pixel gap repaired. Overlay-obscured parts are retained from the original native path, not inferred. Axis values use piecewise interpolation between published tick-label centers, with 6 PDF points (equivalent to six 72 dpi pixels) reading allowance and outward 25 km rounding. The range describes source-line reading only, not field accuracy, measurement uncertainty or seasonal extrema. SSH background date is not assigned as the contour observation date. No physical footprint, source-data polygon, radius, diameter, occupied area, state containment or seasonal playback inferred. Research candidate only; original source assets not republished.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2024/10/UGOS_annualMtng2024_ProgramOverview_v2.pdf",
+      "source_locator": "Single-page UGOS poster, central map label Eddy Berek and lower-right Other / Frontal Analysis legend; native drawing index 217, sequence 254.",
+      "source_file": "research/eddy-measurement-register-additions-v23.json",
+      "source_pointer": "/records/1",
+      "source_sha256": "3e43eedc23cdb9f6c0a7b3a2236b653882cd40106423dae8f31f4f595faffdc8",
+      "raw_record": {
+        "id": "berek-bower-2024-native-frontal-north-south-span",
+        "entity_id": "eddy:horizon:loop-77-primary",
+        "category": "size",
+        "metric": "source_native_frontal_line_north_south_span",
+        "value": null,
+        "range_value": [
+          300,
+          350
+        ],
+        "range_kind": "native_pdf_line_axis_reading_allowance_and_outward_rounding",
+        "unit": "km",
+        "source_id": "bower-2024",
+        "source_locator": "Single-page UGOS poster, central map label Eddy Berek and lower-right Other / Frontal Analysis legend; native drawing index 217, sequence 254.",
+        "evidence_role": "map_read_native_frontal_line_reference",
+        "rights_screened_release_eligible": false,
+        "case_label": "Berek, institutional poster frontal-analysis reference",
+        "period_start": null,
+        "period_end": null,
+        "period_label": "Poster map uses 2023-12-21 SSH background; frontal-line observation date unspecified",
+        "definition": "Bounding north–south arc span of the source-native plotted frontal-analysis line enclosing the Berek label. Legend describes the frontal analysis as a 1.5-knot contour. Not whole-eddy radius or diameter.",
+        "scope": "Named Berek source-case reference only. The poster combines a dated SSH background with active/planned observing systems; it does not independently date the frontal line. Registry physical crosswalk unverified.",
+        "qualification": "Original 3500-segment PDF line is continuous and explicitly closes at its repeated endpoint despite closePath=false. No missing segment reconstructed or pixel gap repaired. Overlay-obscured parts are retained from the original native path, not inferred. Axis values use piecewise interpolation between published tick-label centers, with 6 PDF points (equivalent to six 72 dpi pixels) reading allowance and outward 25 km rounding. The range describes source-line reading only, not field accuracy, measurement uncertainty or seasonal extrema. SSH background date is not assigned as the contour observation date. No physical footprint, source-data polygon, radius, diameter, occupied area, state containment or seasonal playback inferred. Research candidate only; original source assets not republished.",
+        "pdf_line_case_index": 0,
+        "map_span_component": "north_south"
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original institutional poster PDF acquired. Actual poster, named Berek map, axis labels and frontal-analysis legend visually reviewed; original native PDF path, explicit endpoint closure and axes independently extracted and verified.",
+      "source_id": "bower-2024",
+      "case_label": "Berek, institutional poster frontal-analysis reference",
+      "range_value": [
+        300,
+        350
+      ],
+      "range_kind": "native_pdf_line_axis_reading_allowance_and_outward_rounding",
+      "evidence_role": "map_read_native_frontal_line_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "method": "source_native_pdf_frontal_line_spans_v1",
+          "owner_id": "eddy:horizon:loop-77-primary",
+          "source_name": "Berek",
+          "background_ssh_date": "2023-12-21",
+          "contour_observation_date": null,
+          "source_legend_speed_knots": 1.5,
+          "coordinate_system": "PDF points, equivalent to pixels in a 72 dpi rendering",
+          "reading_allowance_pixels": 6,
+          "reading_allowance_pdf_points": 6,
+          "earth_radius_km": 6371,
+          "round_outward_km": 25,
+          "association_is_verified": false,
+          "physical_state_join_eligible": false,
+          "physical_footprint_admitted": false,
+          "rights_screened_release_eligible": false,
+          "missing_segments_reconstructed": false,
+          "background_date_is_contour_date": false,
+          "native_path": {
+            "pdf_page": 1,
+            "drawing_index": 217,
+            "sequence_number": 254,
+            "stroke_rgb": [
+              0,
+              0,
+              0
+            ],
+            "stroke_width_pdf_points": 8,
+            "fill": null,
+            "segments": 3500,
+            "segment_types": [
+              "l"
+            ],
+            "chain_breaks": 0,
+            "explicit_endpoint_closure_verified": true,
+            "pdf_close_path_flag": false,
+            "original_pdf_sha256": "66f70c2f3ef2da78affa0d737b950a4a1e2dfcddfda09921a6dd369d103ed1e1",
+            "points_sha256": "bd9209b10d48f8f4b7aa93302bde1767aa852dcde738d802945fef3a08f0b730",
+            "directional_extrema": {
+              "west": {
+                "index": 353,
+                "point": [
+                  1670.3114013671875,
+                  1060.767333984375
+                ]
+              },
+              "east": {
+                "index": 2146,
+                "point": [
+                  2130.29541015625,
+                  1135.3433837890625
+                ]
+              },
+              "north": {
+                "index": 1058,
+                "point": [
+                  1866.4483642578125,
+                  898.1983642578125
+                ]
+              },
+              "south": {
+                "index": 2762,
+                "point": [
+                  1948.349365234375,
+                  1307.683349609375
+                ]
+              }
+            }
+          },
+          "outline": {
+            "bbox_xyxy": [
+              1670.3114013671875,
+              898.1983642578125,
+              2130.29541015625,
+              1307.683349609375
+            ]
+          },
+          "axis_method": "Piecewise linear interpolation between published tick-label centers; no projection or source-field accuracy inferred.",
+          "axis_label_boxes": [
+            {
+              "bbox": [
+                1102.124267578125,
+                2197.07373046875,
+                1200.3642578125,
+                2251.673828125
+              ],
+              "text": "96°W"
+            },
+            {
+              "bbox": [
+                1598.204345703125,
+                2197.07373046875,
+                1696.4443359375,
+                2251.673828125
+              ],
+              "text": "92°W"
+            },
+            {
+              "bbox": [
+                2094.28466796875,
+                2197.07373046875,
+                2192.524658203125,
+                2251.673828125
+              ],
+              "text": "88°W"
+            },
+            {
+              "bbox": [
+                2590.36474609375,
+                2197.07373046875,
+                2688.604736328125,
+                2251.673828125
+              ],
+              "text": "84°W"
+            },
+            {
+              "bbox": [
+                3086.44482421875,
+                2197.07373046875,
+                3184.684814453125,
+                2251.673828125
+              ],
+              "text": "80°W"
+            },
+            {
+              "bbox": [
+                681.014892578125,
+                2164.48095703125,
+                770.3748779296875,
+                2219.0810546875
+              ],
+              "text": "18°N"
+            },
+            {
+              "bbox": [
+                681.014892578125,
+                1769.7210693359375,
+                770.3748779296875,
+                1824.321044921875
+              ],
+              "text": "21°N"
+            },
+            {
+              "bbox": [
+                681.014892578125,
+                1366.9610595703125,
+                770.3748779296875,
+                1421.56103515625
+              ],
+              "text": "24°N"
+            },
+            {
+              "bbox": [
+                681.014892578125,
+                954.6810302734375,
+                770.3748779296875,
+                1009.281005859375
+              ],
+              "text": "27°N"
+            },
+            {
+              "bbox": [
+                681.014892578125,
+                531.2410888671875,
+                770.3748779296875,
+                585.841064453125
+              ],
+              "text": "30°N"
+            }
+          ],
+          "axes": {
+            "longitude": [
+              [
+                1151.2442626953125,
+                -96
+              ],
+              [
+                1647.3243408203125,
+                -92
+              ],
+              [
+                2143.4046630859375,
+                -88
+              ],
+              [
+                2639.4847412109375,
+                -84
+              ],
+              [
+                3135.5648193359375,
+                -80
+              ]
+            ],
+            "latitude": [
+              [
+                558.5410766601562,
+                30
+              ],
+              [
+                981.9810180664062,
+                27
+              ],
+              [
+                1394.2610473632812,
+                24
+              ],
+              [
+                1797.0210571289062,
+                21
+              ],
+              [
+                2191.781005859375,
+                18
+              ]
+            ]
+          },
+          "poster_overlay_qualification": "Observing-platform symbols and planned-program overlays hide parts of the line in the rendered poster. Extents come from the original source-native path, not repaired pixels or a reconstructed boundary."
+        },
+        "component": "north_south",
+        "calculation": {
+          "audit_span_km": 329.536609,
+          "audit_reading_interval_km": [
+            319.955095,
+            339.118123
+          ],
+          "audit_decimal_places": 6,
+          "range_km": [
+            300,
+            350
+          ]
+        }
+      }
     }
   ],
   "runtime_changed": false,

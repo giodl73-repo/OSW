@@ -32,9 +32,16 @@
     }
     if(r.source_map_estimate){
       const m=r.source_map_estimate,c=m.case;
-      add('strong','Map-read span estimate · one published snapshot, not eddy diameter.',add('p',undefined,box));
-      add('p',`Reading method: ${m.component.replaceAll('_','–')} bounding span on a ${c.earth_radius_km} km radius sphere; ${c.reading_allowance_pixels} pixels at each extent, rounded outward to ${c.round_outward_km} km. This is graph-reading allowance, not instrument uncertainty.`,box);
-      add('p',`Selected outline: ${c.source_name}, ${c.date}, Figure ${c.figure}, ${c.panel}. ${c.boundary_description}`,box);
+      if(c.method==='source_native_pdf_frontal_line_spans_v1'){
+        add('strong','Native PDF line span · contour observation date unspecified.',add('p',undefined,box));
+        add('p',`Source legend: ${c.source_legend_speed_knots}-knot frontal-analysis contour. SSH background: ${c.background_ssh_date}; this does not date the frontal line.`,box);
+        add('p',`Original native path: ${c.native_path.segments.toLocaleString()} continuous line segments, explicit endpoint closure, no reconstructed gaps. ${c.poster_overlay_qualification}`,box);
+        add('p',`Reading method: ${m.component.replaceAll('_','–')} bounding arc on a ${c.earth_radius_km} km sphere; ${c.reading_allowance_pdf_points} PDF points at each extent (six 72 dpi pixels), rounded outward to ${c.round_outward_km} km. ${c.axis_method}`,box);
+      }else{
+        add('strong','Map-read span estimate · one published snapshot, not eddy diameter.',add('p',undefined,box));
+        add('p',`Reading method: ${m.component.replaceAll('_','–')} bounding span on a ${c.earth_radius_km} km radius sphere; ${c.reading_allowance_pixels} pixels at each extent, rounded outward to ${c.round_outward_km} km. This is graph-reading allowance, not instrument uncertainty.`,box);
+        add('p',`Selected outline: ${c.source_name}, ${c.date}, Figure ${c.figure}, ${c.panel}. ${c.boundary_description}`,box);
+      }
       if(c.method==='retained_contour_audit_span_v1')add('p',`Sensitivity: four accepted stroke/threshold paths, ${m.calculation.accepted_scenarios} axis scenarios with ±${c.axis_sensitivity_pixels} pixel anchor shifts, plus the reading allowance above. Two non-simple paths stay excluded. These are editorial contour spans; physical ring attribution remains pending.`,box);
       if(c.method==='source_palette_level_patch_v1')add('p',`Colour patch: plotted level ${c.source_level}; source legend unit unspecified. OSW selection sensitivity uses plot levels ${m.calculation.plot_level_sensitivity.join(', ')}, with source-palette matching. No level in centimetres or metres is assigned. This patch is not the authors’ ring-edge definition or a full-ring boundary.`,box);
       if(c.method==='manual_ink_arrow_span_v1')add('p','Visible circulation-arrow extents · four manual source-ink readings. Closed-outline extraction rejected; no missing segment repaired and no footprint inferred. Source chart carries CONFIDENTIAL stamp and copyright despite public conference hosting. Research candidate only; excluded from rights-screened release.',box);
