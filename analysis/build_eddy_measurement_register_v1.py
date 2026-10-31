@@ -94,6 +94,43 @@ def validate_profile_context(row):
             assert c['thermal_reference_celsius']==26 and c['quantity_support']=='local_water_column'
 
 
+def station_distance_interval(c):
+    assert c['method']=='spherical_sampled_station_separation_v1'
+    assert c['earth_radius_km']==6371 and c['coordinate_order']=='latitude_longitude'
+    assert c['coordinate_allowance_degrees']==0.05 and c['coordinate_allowance_assumed'] is True
+    assert c['round_outward_km']==25
+    assert all(c[k] is False for k in ['simultaneity_verified','boundary_operator_specified','whole_eddy_radius_inferred','diameter_inferred','closed_footprint_inferred','source_accuracy_quantified','annual_extrema_inferred'])
+    a,b=c['center_station'],c['edge_station']
+    assert a['source_role']=='sampled_center' and b['source_role']=='sampled_edge'
+    for p in [a,b]:
+        assert all(type(p[k]) in [int,float] and math.isfinite(p[k]) for k in ['latitude','longitude'])
+        assert -90<=p['latitude']<=90 and -180<=p['longitude']<=180
+    p,q=map(math.radians,[a['latitude'],b['latitude']]);dl=math.radians(b['longitude']-a['longitude'])
+    h=math.sin((q-p)/2)**2+math.cos(p)*math.cos(q)*math.sin(dl/2)**2
+    nominal=2*6371*math.asin(math.sqrt(min(1,max(0,h))))
+    # A meridional move plus a parallel move bounds each endpoint's displacement.
+    # cos(latitude)<=1 gives R*(|dlat|+|dlon|); sum both endpoints.
+    allowance=4*6371*math.radians(.05)
+    assert c['unrounded_nominal_km']==round(nominal,6)
+    assert c['triangle_inequality_allowance_km']==round(allowance,6)
+    result=[max(0,math.floor((nominal-allowance)/25)*25),math.ceil((nominal+allowance)/25)*25]
+    assert c['range_km']==result
+    return result
+
+
+def validate_station_distance(row):
+    assert row['metric']=='calculated_sampled_center_to_edge_station_separation'
+    assert row['entity_id']=='eddy:geography:agulhas-eddy-w-2000'
+    assert row['category']=='size' and row['unit']=='km' and row['value'] is None
+    assert row['period_start'] is None and row['period_end'] is None and row['period_precision']=='month'
+    assert row['rights_screened_release_eligible'] is False
+    c=row['calculation']
+    assert c['center_station']=={'id':'06','latitude':-29.2,'longitude':8.2,'source_role':'sampled_center'}
+    assert c['edge_station']=={'id':'05','latitude':-28.8,'longitude':6.3,'source_role':'sampled_edge'}
+    assert row['range_kind']=='assumed_coordinate_allowance_and_outward_rounding_sensitivity'
+    assert row['range_value']==station_distance_interval(c)
+
+
 def build():
     pins={}
     def read(path):
@@ -326,7 +363,9 @@ def build():
                 assert isinstance(r['lower_bound'],(int,float)) and math.isfinite(r['lower_bound']) and r['lower_bound']>0 and r['value'] is None
                 assert isinstance(r.get('lower_bound_exclusive',False),bool)
             if r.get('calculation'):
-                c=r['calculation'];assert c['multiplier']*c['deformation_radius_km']==c['unrounded_km'] and round(c['unrounded_km'])==r['value']
+                c=r['calculation']
+                if c.get('method')=='spherical_sampled_station_separation_v1':validate_station_distance(r)
+                else:assert c['multiplier']*c['deformation_radius_km']==c['unrounded_km'] and round(c['unrounded_km'])==r['value']
             if r.get('basis_source_file'):
                 basis=read(r['basis_source_file']);events=pointer(basis,r['basis_source_pointer'])
                 assert hashlib.sha256(json.dumps(events,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()==r['basis_sha256']

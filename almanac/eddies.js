@@ -6,7 +6,7 @@
     if(r.value_conflict)return 'Unresolved source values';
     if(r.lower_bound!==null)return `${r.lower_bound_exclusive?'>':'≥'} ${num(r.lower_bound)} ${units[r.unit]||r.unit}`;
     if(r.upper_bound!==undefined&&r.upper_bound!==null)return `${r.upper_bound_exclusive?'<':'≤'} ${num(r.upper_bound)} ${units[r.unit]||r.unit}`;
-    if(r.range_value)return `${r.range_value.map(num).join('–')} ${units[r.unit]||r.unit} · ${r.source_plot_estimate?'graph estimate':r.source_map_estimate?'map estimate':'source range'}`;
+    if(r.range_value)return `${r.range_value.map(num).join('–')} ${units[r.unit]||r.unit} · ${r.source_plot_estimate?'graph estimate':r.source_map_estimate?'map estimate':r.calculation?.method==='spherical_sampled_station_separation_v1'?'coordinate estimate':'source range'}`;
     if(r.value===null)return 'Value unresolved';
     const elapsed=['source_track_elapsed_span','coherent_core_analysis_interval','source_dated_event_stage_interval'].includes(r.metric);
     return `${elapsed?'':'≈ '}${num(r.value)}${r.standard_deviation!==null?' ± '+num(r.standard_deviation)+' SD':''} ${units[r.unit]||r.unit}`;
@@ -54,7 +54,12 @@
     if(r.period_precision)add('p','Date precision: '+r.period_precision.replaceAll('_',' '),box);
     if(r.source_access)add('p','Source access: '+r.source_access,box);
     if(r.range_kind)add('p','Range meaning: '+r.range_kind.replaceAll('_',' ')+'. No representative midpoint inferred.',box);
-    if(r.calculation)add('p',`Model calculation: ${r.calculation.multiplier} × ${r.calculation.deformation_radius_km} km = ${num(r.calculation.unrounded_km)} km, rounded to ${num(r.value)} km.`,box);
+    if(r.calculation?.method==='spherical_sampled_station_separation_v1'){
+      const c=r.calculation;
+      add('strong','Sampled station separation · not whole-eddy radius or diameter.',add('p',undefined,box));
+      add('p',`Station ${c.center_station.id} (sampled center): ${c.center_station.latitude}°, ${c.center_station.longitude}°. Station ${c.edge_station.id} (sampled edge): ${c.edge_station.latitude}°, ${c.edge_station.longitude}°. Coordinates are latitude, longitude.`,box);
+      add('p',`Nominal coordinate separation: ${num(c.unrounded_nominal_km)} km on a ${num(c.earth_radius_km)} km sphere. OSW assumes ±${c.coordinate_allowance_degrees}° per coordinate; sensitivity allowance ${num(c.triangle_inequality_allowance_km)} km, rounded outward to ${c.round_outward_km} km. Source accuracy and simultaneity unverified.`,box);
+    }else if(r.calculation)add('p',`Model calculation: ${r.calculation.multiplier} × ${r.calculation.deformation_radius_km} km = ${num(r.calculation.unrounded_km)} km, rounded to ${num(r.value)} km.`,box);
     if(r.calendar_support){
       const c=r.calendar_support;
       add('p',`Calendar support: start ${c.start_date_min} to ${c.start_date_max} (${c.start_precision}); end ${c.end_date_min} to ${c.end_date_max} (${c.end_precision}).`,box);

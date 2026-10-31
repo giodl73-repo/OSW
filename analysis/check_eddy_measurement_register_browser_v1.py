@@ -392,6 +392,18 @@ def run():
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             page.locator('[data-evidence-id="lazarus-perry-2015-later-column-ohc"]').screenshot(path=str(OUT/'mobile-lazarus-glider-heat.png'))
             checks.append('Lazarus glider diagnostics retain thermal-column depth, energy-per-area units, strict heat-content bound and depth averaging; later circuit remains context only, no whole-eddy depth or seasonal extrema inferred; mobile layout')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ageography%3Aagulhas-eddy-w-2000')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:geography:agulhas-eddy-w-2000"]');assert row.locator('details').evaluate('(e)=>e.open')
+            page.set_viewport_size({'width':1440,'height':1000})
+            for needle in ['150–225 km · coordinate estimate','190.056 km','Station 06 (sampled center): -29.2°, 8.2°','Station 05 (sampled edge): -28.8°, 6.3°','not whole-eddy radius or diameter','Source accuracy and simultaneity unverified','60 m','2000-02-22','threshold unspecified','Original publisher PDF']:
+                assert needle in row.inner_text(),needle
+            assert 'Size reference needed' not in row.inner_text()
+            page.locator('[data-evidence-id="agulhas-w-loncaric-2006-center-edge-station-separation"]').screenshot(path=str(OUT/'eddy-w-station-separation.png'))
+            page.locator('[data-evidence-id="agulhas-w-loncaric-2006-center-mixed-layer-depth"]').screenshot(path=str(OUT/'eddy-w-mixed-layer.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.locator('[data-evidence-id="agulhas-w-loncaric-2006-center-edge-station-separation"]').screenshot(path=str(OUT/'mobile-eddy-w-station-separation.png'))
+            checks.append('Eddy W sampled station separation retains original center/edge coordinates, assumed coordinate sensitivity and unverified simultaneity; distinct dated mixed-layer depth with unspecified threshold; no full radius, diameter or whole-eddy depth inference; mobile layout')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
