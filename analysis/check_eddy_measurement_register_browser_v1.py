@@ -211,7 +211,8 @@ def run():
             for needle in ['100–220 km · graph estimate','pre-split','first approximately 1-40 plotted days','day 51']:
                 assert needle in page.locator('#eddy-rows').inner_text(),needle
             page.locator('[data-evidence-id="revelle-f-pre-split-dwde-2020-digitized-mean-radius-range"]').screenshot(path=str(OUT/'revelle-pre-split-graph.png'))
-            page.fill('#eddy-search','Quantum II');page.locator('#eddy-rows summary').click()
+            page.fill('#eddy-search','Quantum II')
+            assert page.locator('#eddy-rows details').evaluate('(e)=>e.open')
             for needle in ['40–100 km · graph estimate','304 days','no primary values inherited','plot ends well before the report sampling endpoint']:
                 assert needle in page.locator('#eddy-rows').inner_text(),needle
             page.set_viewport_size({'width':390,'height':844})
