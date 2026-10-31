@@ -34,6 +34,7 @@ def build():
     loops_path='research/named-loop-eddy-published-observations.json';loops=read(loops_path)
     recurrence_path='research/black-sea-eddy-recurrence.json';recurrence=read(recurrence_path)
     extra_path='research/eddy-measurement-register-source-facts-v1.json';extra=read(extra_path)
+    additions_path='research/eddy-measurement-register-additions-v2.json';additions=read(additions_path)
     for d in [rings,recurrence]:
         raw=(ROOT/d['protocol_file']).read_bytes();pin=hashlib.sha256(raw).hexdigest()
         assert pin==d['protocol_sha256'];pins[d['protocol_file']]=pin
@@ -112,6 +113,17 @@ def build():
             standard_deviation=r['standard_deviation_km'],sample_count=r['table_sample_count'],
             definition=extra['definition'],scope=r['longitude_label']+'; long-lived Agulhas ring population, 1993-2016.',
             period_label='1993-2016',qualification=extra['qualification']+' '+r.get('qualification',''))
+    # Bind the first batch before extending it; previous source records stay exact.
+    baseline_sha=hashlib.sha256(json.dumps(evidence,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
+    assert len(evidence)==additions['baseline_evidence_count']==40
+    assert baseline_sha==additions['baseline_evidence_sha256']
+    for n,r in enumerate(additions['records']):
+        source=additions['sources'][r['source_id']]
+        add(r['id'],r['entity_id'],r['category'],r['metric'],r['value'],r['unit'],additions_path,f'/records/{n}',additions,
+            source_url=source['url'],source_access=source['access'],source_id=r['source_id'],
+            definition=r['definition'],scope=r['scope'],qualification=r['qualification'],
+            period_start=r.get('period_start'),period_end=r.get('period_end'),period_label=r.get('period_label'),
+            period_precision=r.get('period_precision'),component_label=r.get('component_label'),right_censored=r.get('right_censored',False))
     records=[]
     for identifier,current in identities.items():
         owned=[r for r in evidence if r['entity_id']==identifier]
@@ -134,9 +146,10 @@ def build():
             'current_card_url':'object.html?id='+identifier,'atlas_url':'index.html'+current['atlas_anchor'],
             'next_action':'Recover definition-qualified dated size and duration evidence; verify identity before joining satellite detections.'})
     owners=lambda category:{r['entity_id'] for r in evidence if r['category']==category}
-    return {'schema':'osw.eddy-measurement-register.v1','status':'FIRST_SIZE_DURATION_BATCH_GAPS_OPEN',
+    return {'schema':'osw.eddy-measurement-register.v1','status':'SECOND_MEASUREMENT_BATCH_GAPS_OPEN',
         'rules_file':RULES,'rules_sha256':hashlib.sha256((ROOT/RULES).read_bytes()).hexdigest(),
         'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'input_sha256':pins,
+        'first_batch_evidence_sha256':baseline_sha,'first_batch_evidence_preserved':40,
         'scope':inventory['scope'],'identity_rule':'Source records remain separate; possible Horizon/published matches are not verified identity joins.',
         'release_scope':'Full research candidate: 136 source identities. The separate rights-screened release excludes 96 Horizon registry labels.',
         'counts':{'identities':len(records),'individual_source_records':sum(r['identity_level']=='individual_eddy' for r in records),
@@ -152,7 +165,7 @@ def build():
 
 def main():
     document=build();(ROOT/JSON_PATH).write_bytes((json.dumps(document,indent=2,ensure_ascii=False)+'\n').encode())
-    fields=['entity_id','id','category','metric','value','unit','lower_bound','lower_bound_exclusive','standard_deviation','sample_count','period_start','period_end','period_label','value_conflict','date_conflict','source_claims_json','definition','scope','qualification','source_url','source_locator','source_file','source_pointer','source_sha256']
+    fields=['entity_id','id','category','metric','value','unit','lower_bound','lower_bound_exclusive','standard_deviation','sample_count','period_start','period_end','period_label','period_precision','component_label','right_censored','value_conflict','date_conflict','source_claims_json','definition','scope','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
     out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()
     for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False)})
     (ROOT/CSV_PATH).write_bytes(out.getvalue().encode());print(json.dumps(document['counts']))

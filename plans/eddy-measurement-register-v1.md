@@ -47,3 +47,17 @@ recurrence protocols authoritative for their records. Work sequentially on one
 low-priority CPU. Browser automation, runtime parsing and ocean-field processing
 remain cloud-only. Publish on the existing working branch, preserving main and
 all installed runtime leaves. This first register leaves unfilled gaps explicit.
+
+## Second measurement batch
+
+Retain the first 40 evidence records exactly, bound by a canonical JSON hash.
+Add source-qualified Kenai/Sitka transect distances to maximum surface speed,
+Kenai's elapsed detection interval, Ulla's peak-speed radius and reported
+tracking months, the two pre-merger Haida component radii, and Laura's maximum
+drift speed. Native speed units stay explicit; translation differs from rotation.
+Mark Kenai's final snapshot as right-censored. Haida component measurements do
+not assign a radius to the merged eddy. Ulla's publisher-abstract access is
+explicit, with full-paper methods still unreviewed. Eddy W's inaccessible source
+and Laura's missing size remain open leads. No new source identity merge,
+radius conversion, seasonal series or runtime installation follows from these
+records.

@@ -14,8 +14,12 @@
     const box=add('section',undefined,parent);box.className='eddy-record';box.dataset.evidenceId=r.id;
     add('h3',quantity(r),box).className=r.value_conflict?'eddy-value eddy-conflict':'eddy-value';
     add('p',r.metric_label,box);
+    if(r.component_label)add('strong','Source component: '+r.component_label+' · no post-merger radius inferred.',box);
     for(const [label,value] of [['Definition',r.definition],['Scope',r.scope],['Period',r.period_label||(r.period_start?`${r.period_start} to ${r.period_end}`:null)],['Qualification',r.qualification]])if(value)add('p',`${label}: ${value}`,box);
     if(r.sample_count!==null)add('p',`Table sample count: ${r.sample_count}. Standard deviation describes population spread; measurement uncertainty is unspecified.`,box);
+    if(r.right_censored)add('strong','Track still present at the final study snapshot; disappearance date unknown.',box);
+    if(r.period_precision)add('p','Date precision: '+r.period_precision.replaceAll('_',' '),box);
+    if(r.source_access)add('p','Source access: '+r.source_access,box);
     for(const claim of r.source_claims)add('p',`Separate source claim: ${num(claim.value_km)} km · ${claim.reported_period} · ${claim.source_locator}`,box);
     if(r.date_conflict)add('strong','Source year conflict unresolved; no normalized observation month assigned.',box);
     add('p',r.source_locator,box);link('Original source',r.source_url,box);link('Retained source record','../'+r.source_file,box);
@@ -41,7 +45,7 @@
         const evidence=selected(row),size=cell('Size'),time=cell('Time and movement'),body=cell('Details');
         for(const [target,items,empty] of [[size,evidence.filter(e=>e.category==='size'),'Size reference needed'],[time,evidence.filter(e=>e.category!=='size'),'Duration / movement reference needed']]){
           if(!items.length)add('span',empty,target).className='eddy-note';
-          for(const r of items){add('strong',quantity(r),target);add('span',r.metric_label+(r.period_label?' · '+r.period_label:''),target).className='eddy-note';}
+          for(const r of items){add('strong',quantity(r),target);add('span',(r.component_label?r.component_label+' · ':'')+r.metric_label+(r.period_label?' · '+r.period_label:''),target).className='eddy-note';}
         }
         const details=add('details',undefined,body);add('summary',evidence.length?`Inspect ${evidence.length} measurement records`:'Inspect identity and date context',details);
         if(row.event_date)add('p',`Registry separation date: ${row.event_date}. This supplies no lifespan or age.`,details);

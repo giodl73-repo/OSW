@@ -51,11 +51,11 @@ def run():
             assert set(ids)=={r['entity_id'] for r in document['records']}
             links=page.locator('#eddy-rows tr td:first-child>a').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))')
             assert all(parse_qs(urlsplit(link).query)['id']==[owner] for link,owner in zip(links,ids))
-            assert '40 measurement records across 18 entries' in page.locator('#eddy-summary').inner_text()
+            assert '48 measurement records across 23 entries' in page.locator('#eddy-summary').inner_text()
             page.screenshot(path=str(OUT/'desktop.png'))
             for value,expected in [('individual_eddy',112),('recurrent_eddy_region',20),('eddy_family',4),('all',136)]:
                 page.select_option('#eddy-identity',value);assert page.locator('#eddy-rows tr').count()==expected
-            for value,expected in [('measured',18),('gap',118),('size-gap',128),('duration-gap',124),('all',136)]:
+            for value,expected in [('measured',23),('gap',113),('size-gap',124),('duration-gap',122),('all',136)]:
                 page.select_option('#eddy-filter',value);assert page.locator('#eddy-rows tr').count()==expected
             for category in ['size','duration','recurrence','travel','all']:
                 page.select_option('#eddy-category',category)
@@ -92,6 +92,23 @@ def run():
             assert page.locator('.eddy-scroll').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
             page.screenshot(path=str(OUT/'mobile-lilian.png'),full_page=True)
             checks.append('Seven population means/SD/cohorts; strict travel bound; approximate year unit; mobile expanded layout')
+            page.set_viewport_size({'width':1440,'height':1000})
+            for search,needles in [
+                ('Kenai Eddy (2007)',['40 km','378 days','Track still present at the final study snapshot','disappearance date unknown']),
+                ('Haida-1998',['Haida-1998a','Haida-1998b','no post-merger radius inferred','Approaches 50 km']),
+                ('Agulhas Ring Laura',['8.6 km/day','Size reference needed'])]:
+                page.fill('#eddy-search',search);assert page.locator('#eddy-rows tr').count()==1
+                page.locator('#eddy-rows summary').click()
+                for needle in needles:assert needle in page.locator('#eddy-rows').inner_text(),(search,needle)
+                if search=='Kenai Eddy (2007)':page.screenshot(path=str(OUT/'kenai-censored.png'),full_page=True)
+            page.fill('#eddy-search','Meddy Ulla');page.locator('#eddy-rows summary').click()
+            text=page.locator('#eddy-rows').inner_text()
+            assert '15 km' in text and '18 months' in text and 'Publisher abstract' in text
+            page.set_viewport_size({'width':390,'height':844})
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            assert page.locator('.eddy-scroll').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
+            page.screenshot(path=str(OUT/'mobile-ulla.png'),full_page=True)
+            checks.append('New Kenai/Sitka scope, right-censored Kenai span, distinct Haida components, Laura drift units and abstract-qualified Ulla months/radius')
             with page.expect_download() as pending:page.get_by_role('link',name='Download measurement CSV').click()
             assert hashlib.sha256(Path(pending.value.path()).read_bytes()).hexdigest()==sha('research/eddy-measurement-register-v1.csv')
             for path in set(r['source_file'] for r in document['evidence'])|{'plans/eddy-measurement-register-v1.md','research/eddy-measurement-register-v1.json'}:
