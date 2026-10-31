@@ -18,7 +18,7 @@
     add('p',r.metric_label,box);
     if(r.component_label)add('strong','Source component: '+r.component_label+' · no post-merger radius inferred.',box);
     if(r.case_label)add('strong','Source case: '+r.case_label,box);
-    if(r.evidence_role==='qualified_indexed_reference')add('strong','Qualified indexed reference · full methods not independently reviewed.',box);
+    if(r.evidence_role==='qualified_indexed_reference')add('strong','Qualified indexed reference · full methods not independently reviewed.',add('p',undefined,box));
     if(r.independent_named_case)add('strong','Independent named source case · no primary values inherited; physical crosswalk remains unverified.',add('p',undefined,box));
     if(r.evidence_role?.includes('model_case_reference'))add('strong','Published model case · simulated quantity; not an observed regional constant.',add('p',undefined,box));
     if(r.evidence_role==='qualified_indexed_model_case_reference')add('strong','Qualified indexed model reference · original PDF not retrieved in this pass.',add('p',undefined,box));
