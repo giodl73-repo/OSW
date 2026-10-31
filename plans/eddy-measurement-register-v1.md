@@ -152,3 +152,30 @@ physical identity merge. Context-only counts exclude such independently
 referenced entries while the primary context link remains available. Sampling
 elapsed days do not establish an eddy's physical lifespan. Preserve all 248
 preceding evidence records exactly.
+
+## Plot-reading protocol v1
+
+For a legible original published plot with defined metric and axes, keep graph
+estimates separate from printed quantities. Bind the original PDF and native,
+unmodified embedded raster by SHA-256. Retain source page/figure, color and case
+label, inclusive pixel selection, axis anchors and per-column trace extrema.
+Exclude legends, labels and other curves. Visually inspect the source raster and
+the numeric result. A clipped trace or ambiguous ownership leaves a gap.
+
+Use a linear axis calibration for these seven DWDE radius cases. Compute the
+selected trace's vertical envelope, add a 5 km reading allowance at both ends,
+and round the lower end down and upper end up to 10 km, clamping at zero. This
+allowance covers graph reading only; it is not an instrument error or confidence
+interval. It deliberately avoids precision beyond the source figure. Preserve
+unrounded values for arithmetic audit, not as headline measurements. The mean
+radius is centroid-to-contour distance averaged around the maximum-circulation
+contour; do not convert it to diameter or area.
+
+Keep A1, A2, A1A2, B1 and B2 as separate child/merger cases; do not pool their
+extrema or assign them to an intact parent. For Revelle select only the first
+approximately 1-40 plotted days, before its documented day-51 split. Quantum II
+uses only its displayed curve, whose endpoint precedes the report's later RAFOS
+sampling endpoint. Display approximate support on the plot's days-since-detachment
+axis; infer no calendar endpoints or observations between samples. These are
+selected-segment envelopes, not full lifetime, seasonal or annual extrema and
+not animation-ready series. Preserve the preceding 263 records exactly.

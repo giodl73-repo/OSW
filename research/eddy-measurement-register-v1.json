@@ -2,8 +2,8 @@
   "schema": "osw.eddy-measurement-register.v1",
   "status": "MEASUREMENT_GAP_FILLING_IN_PROGRESS",
   "rules_file": "plans/eddy-measurement-register-v1.md",
-  "rules_sha256": "1211db825ec74e397c42718df53e0ca733cd793c9b7e8dc4f45585410b262277",
-  "generator_sha256": "e8ae665149acba84c1c27c01b7bed0b8497360972c014f227cb49a9786c33bec",
+  "rules_sha256": "a41f83edf6615a3f712b3a3586bcac6b135fd99c7994da408f6461edad5b18b6",
+  "generator_sha256": "d51b5acbd9ddc32dd16bd0c8595b33a513d59770deb7d7227b890547812bd61b",
   "input_sha256": {
     "research/ocean-eddy-name-inventory.json": "d78c31a96b93cc9e746562f2d5c3b0f6d37ad36c3f1d10bb769aec8aa4472015",
     "research/named-eddy-geography.json": "50f20f1f32589b780f7ff29824afa7f7af4a78bfd80a25a4784e6fc992bf3547",
@@ -15,13 +15,14 @@
     "research/eddy-measurement-register-additions-v2.json": "3bb1a6760a5e68efd41f5562425225da70e7bd78429257a8b1466937114fa62b",
     "plans/agulhas-ring-radius-protocol-v1.md": "620981e7dccd1a888083d5daa670548a6f1254825f2acda73da5a821bcb4e876",
     "plans/black-sea-eddy-recurrence-protocol-v1.md": "66fef56b5960d802df68ca35d3241912650f7fe2c58803375743b4f42a48b5cf",
-    "research/eddy-measurement-batches-v1.json": "d523b25be4b87f3d6f852a5241f80e5bfdc44c3b304134e0f81c9fce84bbb321",
+    "research/eddy-measurement-batches-v1.json": "b6ad151a220e51065c00cf5cb9626a86ecf79345b94e9413619f152e4c6f8eba",
     "research/eddy-measurement-register-additions-v3.json": "d1c91350952ea08a49562c5aa0b671f0624930fd73e4735c2227c1b17708fc15",
     "research/eddy-measurement-register-additions-v4.json": "359d14c7927a6fc045bce23eb8ae4f7c226caa1a5355a27045a735125bdeaa11",
     "research/named-loop-current-eddies.json": "4a41a3b4b127f42ac31b114117c0d5d2caf998b84bed6caeac58de6ef94eecca",
     "research/eddy-measurement-register-additions-v5.json": "bec063cf748d835b228393f9c7f7f5db5d145f93ec535fbdfd4154d37e99998f",
     "research/eddy-measurement-register-additions-v6.json": "9557bdb14104f3ab48c618e2fd6efba16df11ddce6b06fd0fa26c5c37ef1b20b",
-    "research/eddy-measurement-register-additions-v7.json": "3e43ae510b307bb57b16e584c58e449f56181d3807c7e426de74487beaebafe5"
+    "research/eddy-measurement-register-additions-v7.json": "3e43ae510b307bb57b16e584c58e449f56181d3807c7e426de74487beaebafe5",
+    "research/eddy-measurement-register-additions-v8.json": "4f314391ecc4f39ba16e698b90ba6572bcd2968c18fcd605461537dec594d8ef"
   },
   "first_batch_evidence_sha256": "702311bd7b238182a51b6160f902500e371a88eec635c6d500bc93df53373a4b",
   "first_batch_evidence_preserved": 40,
@@ -55,6 +56,12 @@
       "baseline_count": 248,
       "preserved_baseline_sha256": "e0ebd07326d83d779d4db9d263ff4e3b57bfa56bf5838acf28a0f13131dc6672",
       "added": 15
+    },
+    {
+      "file": "research/eddy-measurement-register-additions-v8.json",
+      "baseline_count": 263,
+      "preserved_baseline_sha256": "c7578429b4b2fedc92a83b6fda67b37c8fb7cf51b8c132d8ce49373ad65e2eec",
+      "added": 7
     }
   ],
   "scope": "One address for every independently named eddy label or named regional/family record currently admitted to the OSW almanac. This source-set inventory is not a complete global list of all eddies or all names. NOAA detection IDs are separate unnamed, dated observations.",
@@ -65,9 +72,9 @@
     "individual_source_records": 112,
     "recurrent_regions": 20,
     "families": 4,
-    "evidence_records": 263,
-    "size_records": 82,
-    "size_owners": 55,
+    "evidence_records": 270,
+    "size_records": 89,
+    "size_owners": 59,
     "duration_owners": 97,
     "recurrence_owners": 12,
     "structure_owners": 2,
@@ -897,13 +904,15 @@
       "source_pointer": "/entries/19",
       "evidence_ids": [
         "eddy:horizon:loop-67-primary-registry-maximum-surface-current",
-        "eddy:horizon:loop-67-primary-registry-calendar-span"
+        "eddy:horizon:loop-67-primary-registry-calendar-span",
+        "revelle-f-pre-split-dwde-2020-digitized-mean-radius-range"
       ],
       "categories": [
         "duration",
-        "kinematics"
+        "kinematics",
+        "size"
       ],
-      "size_gap": true,
+      "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
       "linked_primary_context": null,
@@ -988,12 +997,14 @@
       "source_url": "https://www.horizonmarine.com/loop-current-eddies",
       "source_pointer": "/entries/21",
       "evidence_ids": [
-        "quantum-ii-dwde-2020-rafOS-span"
+        "quantum-ii-dwde-2020-rafOS-span",
+        "quantum-ii-d-dwde-2020-digitized-mean-radius-range"
       ],
       "categories": [
-        "duration"
+        "duration",
+        "size"
       ],
-      "size_gap": true,
+      "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
       "linked_primary_context": {
@@ -1089,13 +1100,16 @@
       "source_pointer": "/entries/23",
       "evidence_ids": [
         "eddy:horizon:loop-64-primary-registry-maximum-surface-current",
-        "eddy:horizon:loop-64-primary-registry-calendar-span"
+        "eddy:horizon:loop-64-primary-registry-calendar-span",
+        "olympus-b1-dwde-2020-digitized-mean-radius-range",
+        "olympus-b2-dwde-2020-digitized-mean-radius-range"
       ],
       "categories": [
         "duration",
-        "kinematics"
+        "kinematics",
+        "size"
       ],
-      "size_gap": true,
+      "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
       "linked_primary_context": null,
@@ -1144,7 +1158,9 @@
         "url": "eddies.html?id=eddy:horizon:loop-64-primary",
         "evidence_ids": [
           "eddy:horizon:loop-64-primary-registry-maximum-surface-current",
-          "eddy:horizon:loop-64-primary-registry-calendar-span"
+          "eddy:horizon:loop-64-primary-registry-calendar-span",
+          "olympus-b1-dwde-2020-digitized-mean-radius-range",
+          "olympus-b2-dwde-2020-digitized-mean-radius-range"
         ],
         "relation": "Associated primary registry row only; no independent secondary measurement assigned."
       },
@@ -1175,13 +1191,17 @@
       "source_pointer": "/entries/25",
       "evidence_ids": [
         "eddy:horizon:loop-63-primary-registry-maximum-surface-current",
-        "eddy:horizon:loop-63-primary-registry-calendar-span"
+        "eddy:horizon:loop-63-primary-registry-calendar-span",
+        "nautilus-a1-dwde-2020-digitized-mean-radius-range",
+        "nautilus-a2-dwde-2020-digitized-mean-radius-range",
+        "nautilus-a1a2-dwde-2020-digitized-mean-radius-range"
       ],
       "categories": [
         "duration",
-        "kinematics"
+        "kinematics",
+        "size"
       ],
-      "size_gap": true,
+      "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
       "linked_primary_context": null,
@@ -1230,7 +1250,10 @@
         "url": "eddies.html?id=eddy:horizon:loop-63-primary",
         "evidence_ids": [
           "eddy:horizon:loop-63-primary-registry-maximum-surface-current",
-          "eddy:horizon:loop-63-primary-registry-calendar-span"
+          "eddy:horizon:loop-63-primary-registry-calendar-span",
+          "nautilus-a1-dwde-2020-digitized-mean-radius-range",
+          "nautilus-a2-dwde-2020-digitized-mean-radius-range",
+          "nautilus-a1a2-dwde-2020-digitized-mean-radius-range"
         ],
         "relation": "Associated primary registry row only; no independent secondary measurement assigned."
       },
@@ -24648,6 +24671,7643 @@
         "source_case_id": "LCR D",
         "association_is_verified": false,
         "primary_values_inherited": false
+      }
+    },
+    {
+      "id": "nautilus-a1-dwde-2020-digitized-mean-radius-range",
+      "entity_id": "eddy:horizon:loop-63-primary",
+      "category": "size",
+      "metric": "graph_estimated_case_mean_contour_radius_envelope",
+      "metric_label": "graph estimated case mean contour radius envelope",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": null,
+      "period_end": null,
+      "period_label": "Selected curve segment, approximately days 1-104 on the source time-since-detachment axis",
+      "definition": "Mean distance from the centroid to the maximum-circulation contour; estimated envelope of one labeled plotted trace. This is not an area-equivalent or maximum-speed radius.",
+      "scope": "Nautilus / A1 child; blue curve only.",
+      "qualification": "Graph-read estimate for a named published case; physical catalogue crosswalk remains unverified. Range covers the selected plotted trace only, not a seasonal envelope, confidence interval or full lifetime extrema. A 5 km graph-reading allowance is applied before rounding both ends outward to 10 km. Measurement uncertainty in the original product is unspecified. This is a separately labeled child/merger case, not a dimension assigned to the intact original ring; child traces are not pooled.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2021/05/DWDEFinalReport_20200729.pdf",
+      "source_locator": "Figure 3-25(e), printed page 48 / PDF page 53; definition in Figure 3-25 caption and section 3.9.",
+      "source_file": "research/eddy-measurement-register-additions-v8.json",
+      "source_pointer": "/records/0",
+      "source_sha256": "4f314391ecc4f39ba16e698b90ba6572bcd2968c18fcd605461537dec594d8ef",
+      "raw_record": {
+        "id": "nautilus-a1-dwde-2020-digitized-mean-radius-range",
+        "entity_id": "eddy:horizon:loop-63-primary",
+        "category": "size",
+        "metric": "graph_estimated_case_mean_contour_radius_envelope",
+        "value": null,
+        "unit": "km",
+        "source_id": "dwde-2020-plots",
+        "source_locator": "Figure 3-25(e), printed page 48 / PDF page 53; definition in Figure 3-25 caption and section 3.9.",
+        "definition": "Mean distance from the centroid to the maximum-circulation contour; estimated envelope of one labeled plotted trace. This is not an area-equivalent or maximum-speed radius.",
+        "scope": "Nautilus / A1 child; blue curve only.",
+        "qualification": "Graph-read estimate for a named published case; physical catalogue crosswalk remains unverified. Range covers the selected plotted trace only, not a seasonal envelope, confidence interval or full lifetime extrema. A 5 km graph-reading allowance is applied before rounding both ends outward to 10 km. Measurement uncertainty in the original product is unspecified. This is a separately labeled child/merger case, not a dimension assigned to the intact original ring; child traces are not pooled.",
+        "range_value": [
+          40,
+          80
+        ],
+        "range_kind": "digitized_selected_plot_trace_envelope_with_reading_allowance",
+        "case_label": "Nautilus / A1 child",
+        "period_label": "Selected curve segment, approximately days 1-104 on the source time-since-detachment axis",
+        "period_precision": "graph_axis_days_approximate",
+        "evidence_role": "graph_digitized_named_case_reference",
+        "rights_screened_release_eligible": false,
+        "source_plot_estimate": {
+          "case_id": "nautilus-a1",
+          "pdf_page": 53,
+          "source_raster": {
+            "pdf_page": 53,
+            "xref": 201,
+            "width": 1430,
+            "height": 657,
+            "extension": "png",
+            "sha256": "72ba06a23ccfc01e7b347e12cabd456af7559ba195ece72aed051762c9f340f4",
+            "page_rect": [
+              73.5,
+              91.5,
+              541.4999389648438,
+              306.5999755859375
+            ]
+          },
+          "roi_xyxy_inclusive": [
+            540,
+            270,
+            824,
+            389
+          ],
+          "trace_color": "blue",
+          "color_rule": "B > 180, R < 100, G < 100",
+          "column_y_extents": [
+            [
+              540,
+              323,
+              325
+            ],
+            [
+              541,
+              323,
+              324
+            ],
+            [
+              542,
+              323,
+              324
+            ],
+            [
+              543,
+              323,
+              324
+            ],
+            [
+              544,
+              324,
+              324
+            ],
+            [
+              545,
+              324,
+              325
+            ],
+            [
+              546,
+              324,
+              325
+            ],
+            [
+              547,
+              324,
+              326
+            ],
+            [
+              548,
+              324,
+              326
+            ],
+            [
+              549,
+              324,
+              326
+            ],
+            [
+              550,
+              325,
+              326
+            ],
+            [
+              551,
+              326,
+              326
+            ],
+            [
+              552,
+              325,
+              327
+            ],
+            [
+              553,
+              326,
+              328
+            ],
+            [
+              554,
+              326,
+              329
+            ],
+            [
+              555,
+              327,
+              330
+            ],
+            [
+              556,
+              328,
+              331
+            ],
+            [
+              557,
+              329,
+              331
+            ],
+            [
+              558,
+              330,
+              332
+            ],
+            [
+              559,
+              331,
+              333
+            ],
+            [
+              560,
+              331,
+              333
+            ],
+            [
+              561,
+              332,
+              333
+            ],
+            [
+              562,
+              332,
+              333
+            ],
+            [
+              563,
+              332,
+              334
+            ],
+            [
+              564,
+              333,
+              334
+            ],
+            [
+              565,
+              333,
+              335
+            ],
+            [
+              566,
+              333,
+              336
+            ],
+            [
+              567,
+              335,
+              337
+            ],
+            [
+              568,
+              335,
+              337
+            ],
+            [
+              569,
+              336,
+              338
+            ],
+            [
+              570,
+              336,
+              340
+            ],
+            [
+              571,
+              338,
+              340
+            ],
+            [
+              572,
+              340,
+              342
+            ],
+            [
+              573,
+              340,
+              343
+            ],
+            [
+              574,
+              341,
+              345
+            ],
+            [
+              575,
+              343,
+              345
+            ],
+            [
+              576,
+              344,
+              346
+            ],
+            [
+              577,
+              345,
+              346
+            ],
+            [
+              578,
+              345,
+              347
+            ],
+            [
+              579,
+              345,
+              347
+            ],
+            [
+              580,
+              345,
+              346
+            ],
+            [
+              581,
+              344,
+              346
+            ],
+            [
+              582,
+              344,
+              346
+            ],
+            [
+              583,
+              344,
+              345
+            ],
+            [
+              584,
+              344,
+              345
+            ],
+            [
+              585,
+              344,
+              345
+            ],
+            [
+              586,
+              344,
+              346
+            ],
+            [
+              587,
+              344,
+              345
+            ],
+            [
+              588,
+              345,
+              346
+            ],
+            [
+              589,
+              345,
+              345
+            ],
+            [
+              593,
+              344,
+              344
+            ],
+            [
+              594,
+              343,
+              343
+            ],
+            [
+              595,
+              341,
+              342
+            ],
+            [
+              596,
+              339,
+              341
+            ],
+            [
+              597,
+              338,
+              340
+            ],
+            [
+              598,
+              338,
+              339
+            ],
+            [
+              599,
+              337,
+              339
+            ],
+            [
+              600,
+              335,
+              338
+            ],
+            [
+              601,
+              334,
+              337
+            ],
+            [
+              602,
+              332,
+              336
+            ],
+            [
+              603,
+              330,
+              335
+            ],
+            [
+              604,
+              328,
+              332
+            ],
+            [
+              605,
+              326,
+              330
+            ],
+            [
+              606,
+              325,
+              328
+            ],
+            [
+              607,
+              323,
+              326
+            ],
+            [
+              608,
+              322,
+              326
+            ],
+            [
+              609,
+              322,
+              323
+            ]
+          ],
+          "axis_calibration": {
+            "zero_y_pixel": 395,
+            "tick_y_pixel": 295,
+            "tick_value_km": 100,
+            "km_per_pixel": 1.0,
+            "day_zero_x_pixel": 539,
+            "day_100_x_pixel": 606.5
+          },
+          "trace_y_extrema": [
+            322,
+            347
+          ],
+          "unrounded_trace_range_km": [
+            48.0,
+            73.0
+          ],
+          "reading_allowance_km": 5,
+          "round_outward_to_km": 10,
+          "range_km": [
+            40,
+            80
+          ],
+          "selected_columns": 67,
+          "first_last_x_pixel": [
+            540,
+            609
+          ],
+          "approximate_plot_day_support": [
+            1.4814814814814814,
+            103.70370370370371
+          ]
+        }
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original WHOI-hosted report; native unmodified properties-panel rasters and page 51 methods visually reviewed. Values estimated from the published graphs, not printed numeric observations.",
+      "source_id": "dwde-2020-plots",
+      "period_precision": "graph_axis_days_approximate",
+      "case_label": "Nautilus / A1 child",
+      "range_value": [
+        40,
+        80
+      ],
+      "range_kind": "digitized_selected_plot_trace_envelope_with_reading_allowance",
+      "evidence_role": "graph_digitized_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_plot_estimate": {
+        "case_id": "nautilus-a1",
+        "pdf_page": 53,
+        "source_raster": {
+          "pdf_page": 53,
+          "xref": 201,
+          "width": 1430,
+          "height": 657,
+          "extension": "png",
+          "sha256": "72ba06a23ccfc01e7b347e12cabd456af7559ba195ece72aed051762c9f340f4",
+          "page_rect": [
+            73.5,
+            91.5,
+            541.4999389648438,
+            306.5999755859375
+          ]
+        },
+        "roi_xyxy_inclusive": [
+          540,
+          270,
+          824,
+          389
+        ],
+        "trace_color": "blue",
+        "color_rule": "B > 180, R < 100, G < 100",
+        "column_y_extents": [
+          [
+            540,
+            323,
+            325
+          ],
+          [
+            541,
+            323,
+            324
+          ],
+          [
+            542,
+            323,
+            324
+          ],
+          [
+            543,
+            323,
+            324
+          ],
+          [
+            544,
+            324,
+            324
+          ],
+          [
+            545,
+            324,
+            325
+          ],
+          [
+            546,
+            324,
+            325
+          ],
+          [
+            547,
+            324,
+            326
+          ],
+          [
+            548,
+            324,
+            326
+          ],
+          [
+            549,
+            324,
+            326
+          ],
+          [
+            550,
+            325,
+            326
+          ],
+          [
+            551,
+            326,
+            326
+          ],
+          [
+            552,
+            325,
+            327
+          ],
+          [
+            553,
+            326,
+            328
+          ],
+          [
+            554,
+            326,
+            329
+          ],
+          [
+            555,
+            327,
+            330
+          ],
+          [
+            556,
+            328,
+            331
+          ],
+          [
+            557,
+            329,
+            331
+          ],
+          [
+            558,
+            330,
+            332
+          ],
+          [
+            559,
+            331,
+            333
+          ],
+          [
+            560,
+            331,
+            333
+          ],
+          [
+            561,
+            332,
+            333
+          ],
+          [
+            562,
+            332,
+            333
+          ],
+          [
+            563,
+            332,
+            334
+          ],
+          [
+            564,
+            333,
+            334
+          ],
+          [
+            565,
+            333,
+            335
+          ],
+          [
+            566,
+            333,
+            336
+          ],
+          [
+            567,
+            335,
+            337
+          ],
+          [
+            568,
+            335,
+            337
+          ],
+          [
+            569,
+            336,
+            338
+          ],
+          [
+            570,
+            336,
+            340
+          ],
+          [
+            571,
+            338,
+            340
+          ],
+          [
+            572,
+            340,
+            342
+          ],
+          [
+            573,
+            340,
+            343
+          ],
+          [
+            574,
+            341,
+            345
+          ],
+          [
+            575,
+            343,
+            345
+          ],
+          [
+            576,
+            344,
+            346
+          ],
+          [
+            577,
+            345,
+            346
+          ],
+          [
+            578,
+            345,
+            347
+          ],
+          [
+            579,
+            345,
+            347
+          ],
+          [
+            580,
+            345,
+            346
+          ],
+          [
+            581,
+            344,
+            346
+          ],
+          [
+            582,
+            344,
+            346
+          ],
+          [
+            583,
+            344,
+            345
+          ],
+          [
+            584,
+            344,
+            345
+          ],
+          [
+            585,
+            344,
+            345
+          ],
+          [
+            586,
+            344,
+            346
+          ],
+          [
+            587,
+            344,
+            345
+          ],
+          [
+            588,
+            345,
+            346
+          ],
+          [
+            589,
+            345,
+            345
+          ],
+          [
+            593,
+            344,
+            344
+          ],
+          [
+            594,
+            343,
+            343
+          ],
+          [
+            595,
+            341,
+            342
+          ],
+          [
+            596,
+            339,
+            341
+          ],
+          [
+            597,
+            338,
+            340
+          ],
+          [
+            598,
+            338,
+            339
+          ],
+          [
+            599,
+            337,
+            339
+          ],
+          [
+            600,
+            335,
+            338
+          ],
+          [
+            601,
+            334,
+            337
+          ],
+          [
+            602,
+            332,
+            336
+          ],
+          [
+            603,
+            330,
+            335
+          ],
+          [
+            604,
+            328,
+            332
+          ],
+          [
+            605,
+            326,
+            330
+          ],
+          [
+            606,
+            325,
+            328
+          ],
+          [
+            607,
+            323,
+            326
+          ],
+          [
+            608,
+            322,
+            326
+          ],
+          [
+            609,
+            322,
+            323
+          ]
+        ],
+        "axis_calibration": {
+          "zero_y_pixel": 395,
+          "tick_y_pixel": 295,
+          "tick_value_km": 100,
+          "km_per_pixel": 1.0,
+          "day_zero_x_pixel": 539,
+          "day_100_x_pixel": 606.5
+        },
+        "trace_y_extrema": [
+          322,
+          347
+        ],
+        "unrounded_trace_range_km": [
+          48.0,
+          73.0
+        ],
+        "reading_allowance_km": 5,
+        "round_outward_to_km": 10,
+        "range_km": [
+          40,
+          80
+        ],
+        "selected_columns": 67,
+        "first_last_x_pixel": [
+          540,
+          609
+        ],
+        "approximate_plot_day_support": [
+          1.4814814814814814,
+          103.70370370370371
+        ]
+      }
+    },
+    {
+      "id": "nautilus-a2-dwde-2020-digitized-mean-radius-range",
+      "entity_id": "eddy:horizon:loop-63-primary",
+      "category": "size",
+      "metric": "graph_estimated_case_mean_contour_radius_envelope",
+      "metric_label": "graph estimated case mean contour radius envelope",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": null,
+      "period_end": null,
+      "period_label": "Selected curve segment, approximately days 16-84 on the source time-since-detachment axis",
+      "definition": "Mean distance from the centroid to the maximum-circulation contour; estimated envelope of one labeled plotted trace. This is not an area-equivalent or maximum-speed radius.",
+      "scope": "Nautilus / A2 child; red curve only.",
+      "qualification": "Graph-read estimate for a named published case; physical catalogue crosswalk remains unverified. Range covers the selected plotted trace only, not a seasonal envelope, confidence interval or full lifetime extrema. A 5 km graph-reading allowance is applied before rounding both ends outward to 10 km. Measurement uncertainty in the original product is unspecified. This is a separately labeled child/merger case, not a dimension assigned to the intact original ring; child traces are not pooled.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2021/05/DWDEFinalReport_20200729.pdf",
+      "source_locator": "Figure 3-25(e), printed page 48 / PDF page 53; definition in Figure 3-25 caption and section 3.9.",
+      "source_file": "research/eddy-measurement-register-additions-v8.json",
+      "source_pointer": "/records/1",
+      "source_sha256": "4f314391ecc4f39ba16e698b90ba6572bcd2968c18fcd605461537dec594d8ef",
+      "raw_record": {
+        "id": "nautilus-a2-dwde-2020-digitized-mean-radius-range",
+        "entity_id": "eddy:horizon:loop-63-primary",
+        "category": "size",
+        "metric": "graph_estimated_case_mean_contour_radius_envelope",
+        "value": null,
+        "unit": "km",
+        "source_id": "dwde-2020-plots",
+        "source_locator": "Figure 3-25(e), printed page 48 / PDF page 53; definition in Figure 3-25 caption and section 3.9.",
+        "definition": "Mean distance from the centroid to the maximum-circulation contour; estimated envelope of one labeled plotted trace. This is not an area-equivalent or maximum-speed radius.",
+        "scope": "Nautilus / A2 child; red curve only.",
+        "qualification": "Graph-read estimate for a named published case; physical catalogue crosswalk remains unverified. Range covers the selected plotted trace only, not a seasonal envelope, confidence interval or full lifetime extrema. A 5 km graph-reading allowance is applied before rounding both ends outward to 10 km. Measurement uncertainty in the original product is unspecified. This is a separately labeled child/merger case, not a dimension assigned to the intact original ring; child traces are not pooled.",
+        "range_value": [
+          30,
+          70
+        ],
+        "range_kind": "digitized_selected_plot_trace_envelope_with_reading_allowance",
+        "case_label": "Nautilus / A2 child",
+        "period_label": "Selected curve segment, approximately days 16-84 on the source time-since-detachment axis",
+        "period_precision": "graph_axis_days_approximate",
+        "evidence_role": "graph_digitized_named_case_reference",
+        "rights_screened_release_eligible": false,
+        "source_plot_estimate": {
+          "case_id": "nautilus-a2",
+          "pdf_page": 53,
+          "source_raster": {
+            "pdf_page": 53,
+            "xref": 201,
+            "width": 1430,
+            "height": 657,
+            "extension": "png",
+            "sha256": "72ba06a23ccfc01e7b347e12cabd456af7559ba195ece72aed051762c9f340f4",
+            "page_rect": [
+              73.5,
+              91.5,
+              541.4999389648438,
+              306.5999755859375
+            ]
+          },
+          "roi_xyxy_inclusive": [
+            540,
+            270,
+            824,
+            389
+          ],
+          "trace_color": "red",
+          "color_rule": "R > 180, G < 100, B < 100",
+          "column_y_extents": [
+            [
+              550,
+              332,
+              334
+            ],
+            [
+              551,
+              332,
+              336
+            ],
+            [
+              552,
+              333,
+              340
+            ],
+            [
+              553,
+              337,
+              342
+            ],
+            [
+              554,
+              338,
+              344
+            ],
+            [
+              555,
+              341,
+              347
+            ],
+            [
+              556,
+              344,
+              348
+            ],
+            [
+              557,
+              346,
+              349
+            ],
+            [
+              558,
+              348,
+              351
+            ],
+            [
+              559,
+              349,
+              352
+            ],
+            [
+              560,
+              350,
+              352
+            ],
+            [
+              561,
+              351,
+              353
+            ],
+            [
+              562,
+              352,
+              353
+            ],
+            [
+              563,
+              352,
+              354
+            ],
+            [
+              564,
+              352,
+              353
+            ],
+            [
+              565,
+              352,
+              353
+            ],
+            [
+              566,
+              352,
+              353
+            ],
+            [
+              567,
+              351,
+              353
+            ],
+            [
+              568,
+              351,
+              353
+            ],
+            [
+              569,
+              352,
+              352
+            ],
+            [
+              570,
+              350,
+              352
+            ],
+            [
+              571,
+              351,
+              352
+            ],
+            [
+              572,
+              350,
+              352
+            ],
+            [
+              573,
+              351,
+              352
+            ],
+            [
+              574,
+              351,
+              352
+            ],
+            [
+              575,
+              351,
+              352
+            ],
+            [
+              576,
+              350,
+              352
+            ],
+            [
+              577,
+              351,
+              351
+            ],
+            [
+              578,
+              350,
+              352
+            ],
+            [
+              579,
+              351,
+              352
+            ],
+            [
+              580,
+              350,
+              351
+            ],
+            [
+              581,
+              350,
+              352
+            ],
+            [
+              582,
+              350,
+              351
+            ],
+            [
+              583,
+              350,
+              351
+            ],
+            [
+              584,
+              349,
+              351
+            ],
+            [
+              585,
+              349,
+              350
+            ],
+            [
+              586,
+              348,
+              349
+            ],
+            [
+              587,
+              347,
+              350
+            ],
+            [
+              588,
+              347,
+              349
+            ],
+            [
+              589,
+              346,
+              348
+            ],
+            [
+              590,
+              344,
+              347
+            ],
+            [
+              591,
+              343,
+              346
+            ],
+            [
+              592,
+              341,
+              345
+            ],
+            [
+              593,
+              339,
+              343
+            ],
+            [
+              594,
+              336,
+              342
+            ],
+            [
+              595,
+              337,
+              340
+            ],
+            [
+              596,
+              337,
+              337
+            ]
+          ],
+          "axis_calibration": {
+            "zero_y_pixel": 395,
+            "tick_y_pixel": 295,
+            "tick_value_km": 100,
+            "km_per_pixel": 1.0,
+            "day_zero_x_pixel": 539,
+            "day_100_x_pixel": 606.5
+          },
+          "trace_y_extrema": [
+            332,
+            354
+          ],
+          "unrounded_trace_range_km": [
+            41.0,
+            63.0
+          ],
+          "reading_allowance_km": 5,
+          "round_outward_to_km": 10,
+          "range_km": [
+            30,
+            70
+          ],
+          "selected_columns": 47,
+          "first_last_x_pixel": [
+            550,
+            596
+          ],
+          "approximate_plot_day_support": [
+            16.296296296296298,
+            84.44444444444444
+          ]
+        }
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original WHOI-hosted report; native unmodified properties-panel rasters and page 51 methods visually reviewed. Values estimated from the published graphs, not printed numeric observations.",
+      "source_id": "dwde-2020-plots",
+      "period_precision": "graph_axis_days_approximate",
+      "case_label": "Nautilus / A2 child",
+      "range_value": [
+        30,
+        70
+      ],
+      "range_kind": "digitized_selected_plot_trace_envelope_with_reading_allowance",
+      "evidence_role": "graph_digitized_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_plot_estimate": {
+        "case_id": "nautilus-a2",
+        "pdf_page": 53,
+        "source_raster": {
+          "pdf_page": 53,
+          "xref": 201,
+          "width": 1430,
+          "height": 657,
+          "extension": "png",
+          "sha256": "72ba06a23ccfc01e7b347e12cabd456af7559ba195ece72aed051762c9f340f4",
+          "page_rect": [
+            73.5,
+            91.5,
+            541.4999389648438,
+            306.5999755859375
+          ]
+        },
+        "roi_xyxy_inclusive": [
+          540,
+          270,
+          824,
+          389
+        ],
+        "trace_color": "red",
+        "color_rule": "R > 180, G < 100, B < 100",
+        "column_y_extents": [
+          [
+            550,
+            332,
+            334
+          ],
+          [
+            551,
+            332,
+            336
+          ],
+          [
+            552,
+            333,
+            340
+          ],
+          [
+            553,
+            337,
+            342
+          ],
+          [
+            554,
+            338,
+            344
+          ],
+          [
+            555,
+            341,
+            347
+          ],
+          [
+            556,
+            344,
+            348
+          ],
+          [
+            557,
+            346,
+            349
+          ],
+          [
+            558,
+            348,
+            351
+          ],
+          [
+            559,
+            349,
+            352
+          ],
+          [
+            560,
+            350,
+            352
+          ],
+          [
+            561,
+            351,
+            353
+          ],
+          [
+            562,
+            352,
+            353
+          ],
+          [
+            563,
+            352,
+            354
+          ],
+          [
+            564,
+            352,
+            353
+          ],
+          [
+            565,
+            352,
+            353
+          ],
+          [
+            566,
+            352,
+            353
+          ],
+          [
+            567,
+            351,
+            353
+          ],
+          [
+            568,
+            351,
+            353
+          ],
+          [
+            569,
+            352,
+            352
+          ],
+          [
+            570,
+            350,
+            352
+          ],
+          [
+            571,
+            351,
+            352
+          ],
+          [
+            572,
+            350,
+            352
+          ],
+          [
+            573,
+            351,
+            352
+          ],
+          [
+            574,
+            351,
+            352
+          ],
+          [
+            575,
+            351,
+            352
+          ],
+          [
+            576,
+            350,
+            352
+          ],
+          [
+            577,
+            351,
+            351
+          ],
+          [
+            578,
+            350,
+            352
+          ],
+          [
+            579,
+            351,
+            352
+          ],
+          [
+            580,
+            350,
+            351
+          ],
+          [
+            581,
+            350,
+            352
+          ],
+          [
+            582,
+            350,
+            351
+          ],
+          [
+            583,
+            350,
+            351
+          ],
+          [
+            584,
+            349,
+            351
+          ],
+          [
+            585,
+            349,
+            350
+          ],
+          [
+            586,
+            348,
+            349
+          ],
+          [
+            587,
+            347,
+            350
+          ],
+          [
+            588,
+            347,
+            349
+          ],
+          [
+            589,
+            346,
+            348
+          ],
+          [
+            590,
+            344,
+            347
+          ],
+          [
+            591,
+            343,
+            346
+          ],
+          [
+            592,
+            341,
+            345
+          ],
+          [
+            593,
+            339,
+            343
+          ],
+          [
+            594,
+            336,
+            342
+          ],
+          [
+            595,
+            337,
+            340
+          ],
+          [
+            596,
+            337,
+            337
+          ]
+        ],
+        "axis_calibration": {
+          "zero_y_pixel": 395,
+          "tick_y_pixel": 295,
+          "tick_value_km": 100,
+          "km_per_pixel": 1.0,
+          "day_zero_x_pixel": 539,
+          "day_100_x_pixel": 606.5
+        },
+        "trace_y_extrema": [
+          332,
+          354
+        ],
+        "unrounded_trace_range_km": [
+          41.0,
+          63.0
+        ],
+        "reading_allowance_km": 5,
+        "round_outward_to_km": 10,
+        "range_km": [
+          30,
+          70
+        ],
+        "selected_columns": 47,
+        "first_last_x_pixel": [
+          550,
+          596
+        ],
+        "approximate_plot_day_support": [
+          16.296296296296298,
+          84.44444444444444
+        ]
+      }
+    },
+    {
+      "id": "nautilus-a1a2-dwde-2020-digitized-mean-radius-range",
+      "entity_id": "eddy:horizon:loop-63-primary",
+      "category": "size",
+      "metric": "graph_estimated_case_mean_contour_radius_envelope",
+      "metric_label": "graph estimated case mean contour radius envelope",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": null,
+      "period_end": null,
+      "period_label": "Selected curve segment, approximately days 130-418 on the source time-since-detachment axis",
+      "definition": "Mean distance from the centroid to the maximum-circulation contour; estimated envelope of one labeled plotted trace. This is not an area-equivalent or maximum-speed radius.",
+      "scope": "Nautilus / A1A2 remerged child; green curve only.",
+      "qualification": "Graph-read estimate for a named published case; physical catalogue crosswalk remains unverified. Range covers the selected plotted trace only, not a seasonal envelope, confidence interval or full lifetime extrema. A 5 km graph-reading allowance is applied before rounding both ends outward to 10 km. Measurement uncertainty in the original product is unspecified. This is a separately labeled child/merger case, not a dimension assigned to the intact original ring; child traces are not pooled.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2021/05/DWDEFinalReport_20200729.pdf",
+      "source_locator": "Figure 3-25(e), printed page 48 / PDF page 53; definition in Figure 3-25 caption and section 3.9.",
+      "source_file": "research/eddy-measurement-register-additions-v8.json",
+      "source_pointer": "/records/2",
+      "source_sha256": "4f314391ecc4f39ba16e698b90ba6572bcd2968c18fcd605461537dec594d8ef",
+      "raw_record": {
+        "id": "nautilus-a1a2-dwde-2020-digitized-mean-radius-range",
+        "entity_id": "eddy:horizon:loop-63-primary",
+        "category": "size",
+        "metric": "graph_estimated_case_mean_contour_radius_envelope",
+        "value": null,
+        "unit": "km",
+        "source_id": "dwde-2020-plots",
+        "source_locator": "Figure 3-25(e), printed page 48 / PDF page 53; definition in Figure 3-25 caption and section 3.9.",
+        "definition": "Mean distance from the centroid to the maximum-circulation contour; estimated envelope of one labeled plotted trace. This is not an area-equivalent or maximum-speed radius.",
+        "scope": "Nautilus / A1A2 remerged child; green curve only.",
+        "qualification": "Graph-read estimate for a named published case; physical catalogue crosswalk remains unverified. Range covers the selected plotted trace only, not a seasonal envelope, confidence interval or full lifetime extrema. A 5 km graph-reading allowance is applied before rounding both ends outward to 10 km. Measurement uncertainty in the original product is unspecified. This is a separately labeled child/merger case, not a dimension assigned to the intact original ring; child traces are not pooled.",
+        "range_value": [
+          30,
+          130
+        ],
+        "range_kind": "digitized_selected_plot_trace_envelope_with_reading_allowance",
+        "case_label": "Nautilus / A1A2 remerged child",
+        "period_label": "Selected curve segment, approximately days 130-418 on the source time-since-detachment axis",
+        "period_precision": "graph_axis_days_approximate",
+        "evidence_role": "graph_digitized_named_case_reference",
+        "rights_screened_release_eligible": false,
+        "source_plot_estimate": {
+          "case_id": "nautilus-a1a2",
+          "pdf_page": 53,
+          "source_raster": {
+            "pdf_page": 53,
+            "xref": 201,
+            "width": 1430,
+            "height": 657,
+            "extension": "png",
+            "sha256": "72ba06a23ccfc01e7b347e12cabd456af7559ba195ece72aed051762c9f340f4",
+            "page_rect": [
+              73.5,
+              91.5,
+              541.4999389648438,
+              306.5999755859375
+            ]
+          },
+          "roi_xyxy_inclusive": [
+            540,
+            270,
+            824,
+            389
+          ],
+          "trace_color": "green",
+          "color_rule": "G > 180, R < 100, B < 100",
+          "column_y_extents": [
+            [
+              627,
+              347,
+              347
+            ],
+            [
+              628,
+              345,
+              348
+            ],
+            [
+              629,
+              345,
+              347
+            ],
+            [
+              630,
+              344,
+              346
+            ],
+            [
+              631,
+              344,
+              346
+            ],
+            [
+              632,
+              344,
+              345
+            ],
+            [
+              633,
+              344,
+              345
+            ],
+            [
+              634,
+              343,
+              345
+            ],
+            [
+              635,
+              343,
+              345
+            ],
+            [
+              636,
+              343,
+              344
+            ],
+            [
+              637,
+              343,
+              344
+            ],
+            [
+              638,
+              343,
+              344
+            ],
+            [
+              639,
+              343,
+              344
+            ],
+            [
+              640,
+              343,
+              345
+            ],
+            [
+              641,
+              343,
+              345
+            ],
+            [
+              642,
+              344,
+              345
+            ],
+            [
+              643,
+              344,
+              345
+            ],
+            [
+              644,
+              344,
+              345
+            ],
+            [
+              645,
+              344,
+              346
+            ],
+            [
+              646,
+              344,
+              346
+            ],
+            [
+              647,
+              343,
+              345
+            ],
+            [
+              648,
+              341,
+              345
+            ],
+            [
+              649,
+              340,
+              343
+            ],
+            [
+              650,
+              339,
+              342
+            ],
+            [
+              651,
+              338,
+              340
+            ],
+            [
+              652,
+              335,
+              339
+            ],
+            [
+              653,
+              334,
+              337
+            ],
+            [
+              654,
+              333,
+              335
+            ],
+            [
+              655,
+              332,
+              334
+            ],
+            [
+              656,
+              330,
+              333
+            ],
+            [
+              657,
+              329,
+              332
+            ],
+            [
+              658,
+              328,
+              330
+            ],
+            [
+              659,
+              328,
+              330
+            ],
+            [
+              660,
+              328,
+              329
+            ],
+            [
+              661,
+              326,
+              328
+            ],
+            [
+              662,
+              326,
+              328
+            ],
+            [
+              663,
+              325,
+              327
+            ],
+            [
+              664,
+              326,
+              327
+            ],
+            [
+              665,
+              326,
+              327
+            ],
+            [
+              666,
+              326,
+              327
+            ],
+            [
+              667,
+              326,
+              328
+            ],
+            [
+              668,
+              326,
+              328
+            ],
+            [
+              669,
+              326,
+              327
+            ],
+            [
+              670,
+              326,
+              328
+            ],
+            [
+              671,
+              327,
+              327
+            ],
+            [
+              672,
+              325,
+              327
+            ],
+            [
+              673,
+              324,
+              326
+            ],
+            [
+              674,
+              322,
+              325
+            ],
+            [
+              675,
+              321,
+              325
+            ],
+            [
+              676,
+              319,
+              323
+            ],
+            [
+              677,
+              318,
+              321
+            ],
+            [
+              678,
+              315,
+              320
+            ],
+            [
+              679,
+              311,
+              318
+            ],
+            [
+              680,
+              299,
+              316
+            ],
+            [
+              681,
+              279,
+              313
+            ],
+            [
+              682,
+              276,
+              308
+            ],
+            [
+              683,
+              277,
+              285
+            ],
+            [
+              684,
+              277,
+              281
+            ],
+            [
+              685,
+              278,
+              284
+            ],
+            [
+              686,
+              281,
+              292
+            ],
+            [
+              687,
+              283,
+              295
+            ],
+            [
+              688,
+              287,
+              299
+            ],
+            [
+              689,
+              294,
+              303
+            ],
+            [
+              690,
+              299,
+              306
+            ],
+            [
+              691,
+              303,
+              309
+            ],
+            [
+              692,
+              304,
+              312
+            ],
+            [
+              693,
+              308,
+              316
+            ],
+            [
+              694,
+              312,
+              320
+            ],
+            [
+              695,
+              315,
+              324
+            ],
+            [
+              696,
+              319,
+              327
+            ],
+            [
+              697,
+              323,
+              329
+            ],
+            [
+              698,
+              325,
+              332
+            ],
+            [
+              699,
+              329,
+              334
+            ],
+            [
+              700,
+              331,
+              336
+            ],
+            [
+              701,
+              334,
+              338
+            ],
+            [
+              702,
+              336,
+              339
+            ],
+            [
+              703,
+              338,
+              341
+            ],
+            [
+              704,
+              339,
+              342
+            ],
+            [
+              705,
+              340,
+              344
+            ],
+            [
+              706,
+              342,
+              344
+            ],
+            [
+              707,
+              343,
+              346
+            ],
+            [
+              708,
+              344,
+              348
+            ],
+            [
+              709,
+              345,
+              349
+            ],
+            [
+              710,
+              348,
+              351
+            ],
+            [
+              711,
+              349,
+              352
+            ],
+            [
+              712,
+              350,
+              353
+            ],
+            [
+              713,
+              352,
+              354
+            ],
+            [
+              714,
+              353,
+              355
+            ],
+            [
+              715,
+              353,
+              355
+            ],
+            [
+              716,
+              354,
+              355
+            ],
+            [
+              717,
+              355,
+              356
+            ],
+            [
+              718,
+              355,
+              356
+            ],
+            [
+              719,
+              354,
+              355
+            ],
+            [
+              720,
+              354,
+              355
+            ],
+            [
+              721,
+              354,
+              355
+            ],
+            [
+              722,
+              352,
+              355
+            ],
+            [
+              723,
+              351,
+              354
+            ],
+            [
+              724,
+              351,
+              352
+            ],
+            [
+              725,
+              348,
+              352
+            ],
+            [
+              726,
+              346,
+              352
+            ],
+            [
+              727,
+              343,
+              348
+            ],
+            [
+              728,
+              344,
+              347
+            ],
+            [
+              729,
+              341,
+              344
+            ],
+            [
+              730,
+              340,
+              343
+            ],
+            [
+              731,
+              340,
+              342
+            ],
+            [
+              732,
+              340,
+              341
+            ],
+            [
+              733,
+              339,
+              341
+            ],
+            [
+              734,
+              339,
+              341
+            ],
+            [
+              735,
+              340,
+              341
+            ],
+            [
+              736,
+              340,
+              341
+            ],
+            [
+              737,
+              341,
+              342
+            ],
+            [
+              738,
+              340,
+              343
+            ],
+            [
+              739,
+              341,
+              342
+            ],
+            [
+              740,
+              341,
+              343
+            ],
+            [
+              741,
+              342,
+              343
+            ],
+            [
+              742,
+              341,
+              343
+            ],
+            [
+              743,
+              342,
+              343
+            ],
+            [
+              744,
+              342,
+              343
+            ],
+            [
+              745,
+              341,
+              342
+            ],
+            [
+              746,
+              341,
+              342
+            ],
+            [
+              747,
+              341,
+              342
+            ],
+            [
+              748,
+              341,
+              342
+            ],
+            [
+              749,
+              340,
+              342
+            ],
+            [
+              750,
+              340,
+              341
+            ],
+            [
+              751,
+              340,
+              342
+            ],
+            [
+              752,
+              340,
+              342
+            ],
+            [
+              753,
+              340,
+              342
+            ],
+            [
+              754,
+              340,
+              341
+            ],
+            [
+              755,
+              340,
+              341
+            ],
+            [
+              756,
+              340,
+              341
+            ],
+            [
+              757,
+              340,
+              341
+            ],
+            [
+              758,
+              340,
+              341
+            ],
+            [
+              759,
+              340,
+              341
+            ],
+            [
+              760,
+              340,
+              341
+            ],
+            [
+              761,
+              340,
+              341
+            ],
+            [
+              762,
+              340,
+              341
+            ],
+            [
+              763,
+              340,
+              342
+            ],
+            [
+              764,
+              340,
+              342
+            ],
+            [
+              765,
+              341,
+              342
+            ],
+            [
+              766,
+              340,
+              341
+            ],
+            [
+              767,
+              340,
+              341
+            ],
+            [
+              768,
+              340,
+              341
+            ],
+            [
+              769,
+              340,
+              342
+            ],
+            [
+              770,
+              340,
+              341
+            ],
+            [
+              771,
+              340,
+              341
+            ],
+            [
+              772,
+              340,
+              342
+            ],
+            [
+              773,
+              339,
+              341
+            ],
+            [
+              774,
+              339,
+              341
+            ],
+            [
+              775,
+              338,
+              340
+            ],
+            [
+              776,
+              336,
+              339
+            ],
+            [
+              777,
+              334,
+              338
+            ],
+            [
+              778,
+              333,
+              337
+            ],
+            [
+              779,
+              331,
+              335
+            ],
+            [
+              780,
+              329,
+              334
+            ],
+            [
+              781,
+              326,
+              331
+            ],
+            [
+              782,
+              322,
+              329
+            ],
+            [
+              783,
+              319,
+              327
+            ],
+            [
+              784,
+              315,
+              323
+            ],
+            [
+              785,
+              312,
+              320
+            ],
+            [
+              786,
+              310,
+              316
+            ],
+            [
+              787,
+              307,
+              313
+            ],
+            [
+              788,
+              306,
+              309
+            ],
+            [
+              789,
+              304,
+              308
+            ],
+            [
+              790,
+              304,
+              306
+            ],
+            [
+              791,
+              304,
+              306
+            ],
+            [
+              792,
+              305,
+              307
+            ],
+            [
+              793,
+              305,
+              308
+            ],
+            [
+              794,
+              306,
+              309
+            ],
+            [
+              795,
+              307,
+              310
+            ],
+            [
+              796,
+              308,
+              311
+            ],
+            [
+              797,
+              309,
+              313
+            ],
+            [
+              798,
+              310,
+              314
+            ],
+            [
+              799,
+              313,
+              316
+            ],
+            [
+              800,
+              313,
+              318
+            ],
+            [
+              801,
+              316,
+              319
+            ],
+            [
+              802,
+              318,
+              319
+            ],
+            [
+              803,
+              317,
+              319
+            ],
+            [
+              804,
+              318,
+              319
+            ],
+            [
+              805,
+              317,
+              318
+            ],
+            [
+              806,
+              316,
+              319
+            ],
+            [
+              807,
+              316,
+              317
+            ],
+            [
+              808,
+              315,
+              317
+            ],
+            [
+              809,
+              313,
+              316
+            ],
+            [
+              810,
+              312,
+              315
+            ],
+            [
+              811,
+              312,
+              314
+            ],
+            [
+              812,
+              310,
+              313
+            ],
+            [
+              813,
+              308,
+              312
+            ],
+            [
+              814,
+              307,
+              311
+            ],
+            [
+              815,
+              306,
+              309
+            ],
+            [
+              816,
+              305,
+              308
+            ],
+            [
+              817,
+              304,
+              306
+            ],
+            [
+              818,
+              304,
+              306
+            ],
+            [
+              819,
+              303,
+              305
+            ],
+            [
+              820,
+              303,
+              305
+            ],
+            [
+              821,
+              303,
+              304
+            ]
+          ],
+          "axis_calibration": {
+            "zero_y_pixel": 395,
+            "tick_y_pixel": 295,
+            "tick_value_km": 100,
+            "km_per_pixel": 1.0,
+            "day_zero_x_pixel": 539,
+            "day_100_x_pixel": 606.5
+          },
+          "trace_y_extrema": [
+            276,
+            356
+          ],
+          "unrounded_trace_range_km": [
+            39.0,
+            119.0
+          ],
+          "reading_allowance_km": 5,
+          "round_outward_to_km": 10,
+          "range_km": [
+            30,
+            130
+          ],
+          "selected_columns": 195,
+          "first_last_x_pixel": [
+            627,
+            821
+          ],
+          "approximate_plot_day_support": [
+            130.37037037037038,
+            417.77777777777777
+          ]
+        }
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original WHOI-hosted report; native unmodified properties-panel rasters and page 51 methods visually reviewed. Values estimated from the published graphs, not printed numeric observations.",
+      "source_id": "dwde-2020-plots",
+      "period_precision": "graph_axis_days_approximate",
+      "case_label": "Nautilus / A1A2 remerged child",
+      "range_value": [
+        30,
+        130
+      ],
+      "range_kind": "digitized_selected_plot_trace_envelope_with_reading_allowance",
+      "evidence_role": "graph_digitized_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_plot_estimate": {
+        "case_id": "nautilus-a1a2",
+        "pdf_page": 53,
+        "source_raster": {
+          "pdf_page": 53,
+          "xref": 201,
+          "width": 1430,
+          "height": 657,
+          "extension": "png",
+          "sha256": "72ba06a23ccfc01e7b347e12cabd456af7559ba195ece72aed051762c9f340f4",
+          "page_rect": [
+            73.5,
+            91.5,
+            541.4999389648438,
+            306.5999755859375
+          ]
+        },
+        "roi_xyxy_inclusive": [
+          540,
+          270,
+          824,
+          389
+        ],
+        "trace_color": "green",
+        "color_rule": "G > 180, R < 100, B < 100",
+        "column_y_extents": [
+          [
+            627,
+            347,
+            347
+          ],
+          [
+            628,
+            345,
+            348
+          ],
+          [
+            629,
+            345,
+            347
+          ],
+          [
+            630,
+            344,
+            346
+          ],
+          [
+            631,
+            344,
+            346
+          ],
+          [
+            632,
+            344,
+            345
+          ],
+          [
+            633,
+            344,
+            345
+          ],
+          [
+            634,
+            343,
+            345
+          ],
+          [
+            635,
+            343,
+            345
+          ],
+          [
+            636,
+            343,
+            344
+          ],
+          [
+            637,
+            343,
+            344
+          ],
+          [
+            638,
+            343,
+            344
+          ],
+          [
+            639,
+            343,
+            344
+          ],
+          [
+            640,
+            343,
+            345
+          ],
+          [
+            641,
+            343,
+            345
+          ],
+          [
+            642,
+            344,
+            345
+          ],
+          [
+            643,
+            344,
+            345
+          ],
+          [
+            644,
+            344,
+            345
+          ],
+          [
+            645,
+            344,
+            346
+          ],
+          [
+            646,
+            344,
+            346
+          ],
+          [
+            647,
+            343,
+            345
+          ],
+          [
+            648,
+            341,
+            345
+          ],
+          [
+            649,
+            340,
+            343
+          ],
+          [
+            650,
+            339,
+            342
+          ],
+          [
+            651,
+            338,
+            340
+          ],
+          [
+            652,
+            335,
+            339
+          ],
+          [
+            653,
+            334,
+            337
+          ],
+          [
+            654,
+            333,
+            335
+          ],
+          [
+            655,
+            332,
+            334
+          ],
+          [
+            656,
+            330,
+            333
+          ],
+          [
+            657,
+            329,
+            332
+          ],
+          [
+            658,
+            328,
+            330
+          ],
+          [
+            659,
+            328,
+            330
+          ],
+          [
+            660,
+            328,
+            329
+          ],
+          [
+            661,
+            326,
+            328
+          ],
+          [
+            662,
+            326,
+            328
+          ],
+          [
+            663,
+            325,
+            327
+          ],
+          [
+            664,
+            326,
+            327
+          ],
+          [
+            665,
+            326,
+            327
+          ],
+          [
+            666,
+            326,
+            327
+          ],
+          [
+            667,
+            326,
+            328
+          ],
+          [
+            668,
+            326,
+            328
+          ],
+          [
+            669,
+            326,
+            327
+          ],
+          [
+            670,
+            326,
+            328
+          ],
+          [
+            671,
+            327,
+            327
+          ],
+          [
+            672,
+            325,
+            327
+          ],
+          [
+            673,
+            324,
+            326
+          ],
+          [
+            674,
+            322,
+            325
+          ],
+          [
+            675,
+            321,
+            325
+          ],
+          [
+            676,
+            319,
+            323
+          ],
+          [
+            677,
+            318,
+            321
+          ],
+          [
+            678,
+            315,
+            320
+          ],
+          [
+            679,
+            311,
+            318
+          ],
+          [
+            680,
+            299,
+            316
+          ],
+          [
+            681,
+            279,
+            313
+          ],
+          [
+            682,
+            276,
+            308
+          ],
+          [
+            683,
+            277,
+            285
+          ],
+          [
+            684,
+            277,
+            281
+          ],
+          [
+            685,
+            278,
+            284
+          ],
+          [
+            686,
+            281,
+            292
+          ],
+          [
+            687,
+            283,
+            295
+          ],
+          [
+            688,
+            287,
+            299
+          ],
+          [
+            689,
+            294,
+            303
+          ],
+          [
+            690,
+            299,
+            306
+          ],
+          [
+            691,
+            303,
+            309
+          ],
+          [
+            692,
+            304,
+            312
+          ],
+          [
+            693,
+            308,
+            316
+          ],
+          [
+            694,
+            312,
+            320
+          ],
+          [
+            695,
+            315,
+            324
+          ],
+          [
+            696,
+            319,
+            327
+          ],
+          [
+            697,
+            323,
+            329
+          ],
+          [
+            698,
+            325,
+            332
+          ],
+          [
+            699,
+            329,
+            334
+          ],
+          [
+            700,
+            331,
+            336
+          ],
+          [
+            701,
+            334,
+            338
+          ],
+          [
+            702,
+            336,
+            339
+          ],
+          [
+            703,
+            338,
+            341
+          ],
+          [
+            704,
+            339,
+            342
+          ],
+          [
+            705,
+            340,
+            344
+          ],
+          [
+            706,
+            342,
+            344
+          ],
+          [
+            707,
+            343,
+            346
+          ],
+          [
+            708,
+            344,
+            348
+          ],
+          [
+            709,
+            345,
+            349
+          ],
+          [
+            710,
+            348,
+            351
+          ],
+          [
+            711,
+            349,
+            352
+          ],
+          [
+            712,
+            350,
+            353
+          ],
+          [
+            713,
+            352,
+            354
+          ],
+          [
+            714,
+            353,
+            355
+          ],
+          [
+            715,
+            353,
+            355
+          ],
+          [
+            716,
+            354,
+            355
+          ],
+          [
+            717,
+            355,
+            356
+          ],
+          [
+            718,
+            355,
+            356
+          ],
+          [
+            719,
+            354,
+            355
+          ],
+          [
+            720,
+            354,
+            355
+          ],
+          [
+            721,
+            354,
+            355
+          ],
+          [
+            722,
+            352,
+            355
+          ],
+          [
+            723,
+            351,
+            354
+          ],
+          [
+            724,
+            351,
+            352
+          ],
+          [
+            725,
+            348,
+            352
+          ],
+          [
+            726,
+            346,
+            352
+          ],
+          [
+            727,
+            343,
+            348
+          ],
+          [
+            728,
+            344,
+            347
+          ],
+          [
+            729,
+            341,
+            344
+          ],
+          [
+            730,
+            340,
+            343
+          ],
+          [
+            731,
+            340,
+            342
+          ],
+          [
+            732,
+            340,
+            341
+          ],
+          [
+            733,
+            339,
+            341
+          ],
+          [
+            734,
+            339,
+            341
+          ],
+          [
+            735,
+            340,
+            341
+          ],
+          [
+            736,
+            340,
+            341
+          ],
+          [
+            737,
+            341,
+            342
+          ],
+          [
+            738,
+            340,
+            343
+          ],
+          [
+            739,
+            341,
+            342
+          ],
+          [
+            740,
+            341,
+            343
+          ],
+          [
+            741,
+            342,
+            343
+          ],
+          [
+            742,
+            341,
+            343
+          ],
+          [
+            743,
+            342,
+            343
+          ],
+          [
+            744,
+            342,
+            343
+          ],
+          [
+            745,
+            341,
+            342
+          ],
+          [
+            746,
+            341,
+            342
+          ],
+          [
+            747,
+            341,
+            342
+          ],
+          [
+            748,
+            341,
+            342
+          ],
+          [
+            749,
+            340,
+            342
+          ],
+          [
+            750,
+            340,
+            341
+          ],
+          [
+            751,
+            340,
+            342
+          ],
+          [
+            752,
+            340,
+            342
+          ],
+          [
+            753,
+            340,
+            342
+          ],
+          [
+            754,
+            340,
+            341
+          ],
+          [
+            755,
+            340,
+            341
+          ],
+          [
+            756,
+            340,
+            341
+          ],
+          [
+            757,
+            340,
+            341
+          ],
+          [
+            758,
+            340,
+            341
+          ],
+          [
+            759,
+            340,
+            341
+          ],
+          [
+            760,
+            340,
+            341
+          ],
+          [
+            761,
+            340,
+            341
+          ],
+          [
+            762,
+            340,
+            341
+          ],
+          [
+            763,
+            340,
+            342
+          ],
+          [
+            764,
+            340,
+            342
+          ],
+          [
+            765,
+            341,
+            342
+          ],
+          [
+            766,
+            340,
+            341
+          ],
+          [
+            767,
+            340,
+            341
+          ],
+          [
+            768,
+            340,
+            341
+          ],
+          [
+            769,
+            340,
+            342
+          ],
+          [
+            770,
+            340,
+            341
+          ],
+          [
+            771,
+            340,
+            341
+          ],
+          [
+            772,
+            340,
+            342
+          ],
+          [
+            773,
+            339,
+            341
+          ],
+          [
+            774,
+            339,
+            341
+          ],
+          [
+            775,
+            338,
+            340
+          ],
+          [
+            776,
+            336,
+            339
+          ],
+          [
+            777,
+            334,
+            338
+          ],
+          [
+            778,
+            333,
+            337
+          ],
+          [
+            779,
+            331,
+            335
+          ],
+          [
+            780,
+            329,
+            334
+          ],
+          [
+            781,
+            326,
+            331
+          ],
+          [
+            782,
+            322,
+            329
+          ],
+          [
+            783,
+            319,
+            327
+          ],
+          [
+            784,
+            315,
+            323
+          ],
+          [
+            785,
+            312,
+            320
+          ],
+          [
+            786,
+            310,
+            316
+          ],
+          [
+            787,
+            307,
+            313
+          ],
+          [
+            788,
+            306,
+            309
+          ],
+          [
+            789,
+            304,
+            308
+          ],
+          [
+            790,
+            304,
+            306
+          ],
+          [
+            791,
+            304,
+            306
+          ],
+          [
+            792,
+            305,
+            307
+          ],
+          [
+            793,
+            305,
+            308
+          ],
+          [
+            794,
+            306,
+            309
+          ],
+          [
+            795,
+            307,
+            310
+          ],
+          [
+            796,
+            308,
+            311
+          ],
+          [
+            797,
+            309,
+            313
+          ],
+          [
+            798,
+            310,
+            314
+          ],
+          [
+            799,
+            313,
+            316
+          ],
+          [
+            800,
+            313,
+            318
+          ],
+          [
+            801,
+            316,
+            319
+          ],
+          [
+            802,
+            318,
+            319
+          ],
+          [
+            803,
+            317,
+            319
+          ],
+          [
+            804,
+            318,
+            319
+          ],
+          [
+            805,
+            317,
+            318
+          ],
+          [
+            806,
+            316,
+            319
+          ],
+          [
+            807,
+            316,
+            317
+          ],
+          [
+            808,
+            315,
+            317
+          ],
+          [
+            809,
+            313,
+            316
+          ],
+          [
+            810,
+            312,
+            315
+          ],
+          [
+            811,
+            312,
+            314
+          ],
+          [
+            812,
+            310,
+            313
+          ],
+          [
+            813,
+            308,
+            312
+          ],
+          [
+            814,
+            307,
+            311
+          ],
+          [
+            815,
+            306,
+            309
+          ],
+          [
+            816,
+            305,
+            308
+          ],
+          [
+            817,
+            304,
+            306
+          ],
+          [
+            818,
+            304,
+            306
+          ],
+          [
+            819,
+            303,
+            305
+          ],
+          [
+            820,
+            303,
+            305
+          ],
+          [
+            821,
+            303,
+            304
+          ]
+        ],
+        "axis_calibration": {
+          "zero_y_pixel": 395,
+          "tick_y_pixel": 295,
+          "tick_value_km": 100,
+          "km_per_pixel": 1.0,
+          "day_zero_x_pixel": 539,
+          "day_100_x_pixel": 606.5
+        },
+        "trace_y_extrema": [
+          276,
+          356
+        ],
+        "unrounded_trace_range_km": [
+          39.0,
+          119.0
+        ],
+        "reading_allowance_km": 5,
+        "round_outward_to_km": 10,
+        "range_km": [
+          30,
+          130
+        ],
+        "selected_columns": 195,
+        "first_last_x_pixel": [
+          627,
+          821
+        ],
+        "approximate_plot_day_support": [
+          130.37037037037038,
+          417.77777777777777
+        ]
+      }
+    },
+    {
+      "id": "olympus-b1-dwde-2020-digitized-mean-radius-range",
+      "entity_id": "eddy:horizon:loop-64-primary",
+      "category": "size",
+      "metric": "graph_estimated_case_mean_contour_radius_envelope",
+      "metric_label": "graph estimated case mean contour radius envelope",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": null,
+      "period_end": null,
+      "period_label": "Selected curve segment, approximately days 3-175 on the source time-since-detachment axis",
+      "definition": "Mean distance from the centroid to the maximum-circulation contour; estimated envelope of one labeled plotted trace. This is not an area-equivalent or maximum-speed radius.",
+      "scope": "Olympus / B1 child; blue curve only.",
+      "qualification": "Graph-read estimate for a named published case; physical catalogue crosswalk remains unverified. Range covers the selected plotted trace only, not a seasonal envelope, confidence interval or full lifetime extrema. A 5 km graph-reading allowance is applied before rounding both ends outward to 10 km. Measurement uncertainty in the original product is unspecified. This is a separately labeled child/merger case, not a dimension assigned to the intact original ring; child traces are not pooled.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2021/05/DWDEFinalReport_20200729.pdf",
+      "source_locator": "Figure 3-27(e), printed page 49 / PDF page 54; definition in Figure 3-25 caption and section 3.9.",
+      "source_file": "research/eddy-measurement-register-additions-v8.json",
+      "source_pointer": "/records/3",
+      "source_sha256": "4f314391ecc4f39ba16e698b90ba6572bcd2968c18fcd605461537dec594d8ef",
+      "raw_record": {
+        "id": "olympus-b1-dwde-2020-digitized-mean-radius-range",
+        "entity_id": "eddy:horizon:loop-64-primary",
+        "category": "size",
+        "metric": "graph_estimated_case_mean_contour_radius_envelope",
+        "value": null,
+        "unit": "km",
+        "source_id": "dwde-2020-plots",
+        "source_locator": "Figure 3-27(e), printed page 49 / PDF page 54; definition in Figure 3-25 caption and section 3.9.",
+        "definition": "Mean distance from the centroid to the maximum-circulation contour; estimated envelope of one labeled plotted trace. This is not an area-equivalent or maximum-speed radius.",
+        "scope": "Olympus / B1 child; blue curve only.",
+        "qualification": "Graph-read estimate for a named published case; physical catalogue crosswalk remains unverified. Range covers the selected plotted trace only, not a seasonal envelope, confidence interval or full lifetime extrema. A 5 km graph-reading allowance is applied before rounding both ends outward to 10 km. Measurement uncertainty in the original product is unspecified. This is a separately labeled child/merger case, not a dimension assigned to the intact original ring; child traces are not pooled.",
+        "range_value": [
+          40,
+          130
+        ],
+        "range_kind": "digitized_selected_plot_trace_envelope_with_reading_allowance",
+        "case_label": "Olympus / B1 child",
+        "period_label": "Selected curve segment, approximately days 3-175 on the source time-since-detachment axis",
+        "period_precision": "graph_axis_days_approximate",
+        "evidence_role": "graph_digitized_named_case_reference",
+        "rights_screened_release_eligible": false,
+        "source_plot_estimate": {
+          "case_id": "olympus-b1",
+          "pdf_page": 54,
+          "source_raster": {
+            "pdf_page": 54,
+            "xref": 205,
+            "width": 1430,
+            "height": 657,
+            "extension": "png",
+            "sha256": "83c6819c82876c9fddfdafbcee4f703ef998da1b32427a0906cc92fb6ff69dd4",
+            "page_rect": [
+              73.5,
+              381.0,
+              541.4999389648438,
+              596.0999755859375
+            ]
+          },
+          "roi_xyxy_inclusive": [
+            540,
+            270,
+            824,
+            389
+          ],
+          "trace_color": "blue",
+          "color_rule": "B > 180, R < 100, G < 100",
+          "column_y_extents": [
+            [
+              541,
+              342,
+              342
+            ],
+            [
+              542,
+              341,
+              342
+            ],
+            [
+              543,
+              341,
+              343
+            ],
+            [
+              544,
+              341,
+              344
+            ],
+            [
+              545,
+              343,
+              345
+            ],
+            [
+              546,
+              343,
+              345
+            ],
+            [
+              547,
+              344,
+              346
+            ],
+            [
+              548,
+              344,
+              346
+            ],
+            [
+              549,
+              344,
+              346
+            ],
+            [
+              550,
+              336,
+              345
+            ],
+            [
+              551,
+              306,
+              345
+            ],
+            [
+              552,
+              302,
+              344
+            ],
+            [
+              553,
+              299,
+              310
+            ],
+            [
+              554,
+              298,
+              341
+            ],
+            [
+              555,
+              298,
+              344
+            ],
+            [
+              556,
+              316,
+              343
+            ],
+            [
+              557,
+              342,
+              344
+            ],
+            [
+              558,
+              342,
+              344
+            ],
+            [
+              559,
+              343,
+              346
+            ],
+            [
+              560,
+              344,
+              348
+            ],
+            [
+              561,
+              345,
+              348
+            ],
+            [
+              562,
+              347,
+              348
+            ],
+            [
+              563,
+              347,
+              348
+            ],
+            [
+              564,
+              347,
+              349
+            ],
+            [
+              565,
+              348,
+              349
+            ],
+            [
+              566,
+              348,
+              349
+            ],
+            [
+              567,
+              348,
+              349
+            ],
+            [
+              568,
+              347,
+              349
+            ],
+            [
+              569,
+              347,
+              349
+            ],
+            [
+              570,
+              347,
+              349
+            ],
+            [
+              571,
+              347,
+              348
+            ],
+            [
+              572,
+              348,
+              349
+            ],
+            [
+              573,
+              347,
+              349
+            ],
+            [
+              574,
+              348,
+              349
+            ],
+            [
+              575,
+              347,
+              349
+            ],
+            [
+              576,
+              348,
+              348
+            ],
+            [
+              577,
+              347,
+              348
+            ],
+            [
+              578,
+              347,
+              349
+            ],
+            [
+              579,
+              347,
+              349
+            ],
+            [
+              580,
+              348,
+              349
+            ],
+            [
+              581,
+              348,
+              349
+            ],
+            [
+              582,
+              348,
+              349
+            ],
+            [
+              583,
+              348,
+              349
+            ],
+            [
+              584,
+              348,
+              349
+            ],
+            [
+              585,
+              348,
+              349
+            ],
+            [
+              586,
+              347,
+              349
+            ],
+            [
+              587,
+              346,
+              348
+            ],
+            [
+              588,
+              345,
+              347
+            ],
+            [
+              589,
+              345,
+              346
+            ],
+            [
+              590,
+              344,
+              346
+            ],
+            [
+              591,
+              343,
+              345
+            ],
+            [
+              592,
+              341,
+              344
+            ],
+            [
+              593,
+              340,
+              343
+            ],
+            [
+              594,
+              340,
+              341
+            ],
+            [
+              595,
+              339,
+              340
+            ],
+            [
+              596,
+              338,
+              340
+            ],
+            [
+              597,
+              338,
+              339
+            ],
+            [
+              598,
+              337,
+              339
+            ],
+            [
+              599,
+              336,
+              338
+            ],
+            [
+              600,
+              335,
+              337
+            ],
+            [
+              601,
+              334,
+              336
+            ],
+            [
+              602,
+              334,
+              335
+            ],
+            [
+              603,
+              333,
+              335
+            ],
+            [
+              604,
+              333,
+              334
+            ],
+            [
+              605,
+              332,
+              334
+            ],
+            [
+              606,
+              332,
+              335
+            ],
+            [
+              607,
+              331,
+              333
+            ],
+            [
+              608,
+              331,
+              332
+            ],
+            [
+              609,
+              331,
+              333
+            ],
+            [
+              610,
+              332,
+              332
+            ],
+            [
+              611,
+              332,
+              333
+            ],
+            [
+              612,
+              331,
+              333
+            ],
+            [
+              613,
+              332,
+              334
+            ],
+            [
+              614,
+              333,
+              334
+            ],
+            [
+              615,
+              333,
+              334
+            ],
+            [
+              616,
+              334,
+              334
+            ],
+            [
+              617,
+              334,
+              336
+            ],
+            [
+              618,
+              335,
+              336
+            ],
+            [
+              619,
+              335,
+              338
+            ],
+            [
+              620,
+              336,
+              338
+            ],
+            [
+              621,
+              338,
+              338
+            ],
+            [
+              622,
+              338,
+              338
+            ],
+            [
+              623,
+              338,
+              339
+            ],
+            [
+              624,
+              338,
+              339
+            ],
+            [
+              625,
+              338,
+              339
+            ],
+            [
+              626,
+              337,
+              339
+            ],
+            [
+              627,
+              338,
+              339
+            ],
+            [
+              628,
+              338,
+              340
+            ],
+            [
+              629,
+              339,
+              341
+            ],
+            [
+              630,
+              340,
+              342
+            ],
+            [
+              631,
+              341,
+              342
+            ],
+            [
+              632,
+              342,
+              342
+            ],
+            [
+              633,
+              341,
+              344
+            ],
+            [
+              634,
+              342,
+              344
+            ],
+            [
+              635,
+              343,
+              344
+            ],
+            [
+              636,
+              343,
+              344
+            ],
+            [
+              637,
+              343,
+              344
+            ],
+            [
+              638,
+              343,
+              344
+            ],
+            [
+              639,
+              343,
+              344
+            ],
+            [
+              640,
+              343,
+              343
+            ],
+            [
+              641,
+              341,
+              343
+            ],
+            [
+              642,
+              340,
+              343
+            ],
+            [
+              643,
+              339,
+              341
+            ],
+            [
+              644,
+              336,
+              341
+            ],
+            [
+              645,
+              334,
+              340
+            ],
+            [
+              646,
+              330,
+              337
+            ],
+            [
+              647,
+              328,
+              334
+            ],
+            [
+              648,
+              322,
+              331
+            ],
+            [
+              649,
+              317,
+              329
+            ],
+            [
+              650,
+              309,
+              324
+            ],
+            [
+              651,
+              301,
+              319
+            ],
+            [
+              652,
+              294,
+              313
+            ],
+            [
+              653,
+              286,
+              303
+            ],
+            [
+              654,
+              280,
+              296
+            ],
+            [
+              655,
+              277,
+              288
+            ],
+            [
+              656,
+              277,
+              281
+            ],
+            [
+              657,
+              277,
+              277
+            ]
+          ],
+          "axis_calibration": {
+            "zero_y_pixel": 395,
+            "tick_y_pixel": 300,
+            "tick_value_km": 100,
+            "km_per_pixel": 1.0526315789473684,
+            "day_zero_x_pixel": 539,
+            "day_100_x_pixel": 606.5
+          },
+          "trace_y_extrema": [
+            277,
+            349
+          ],
+          "unrounded_trace_range_km": [
+            48.421052631578945,
+            124.21052631578947
+          ],
+          "reading_allowance_km": 5,
+          "round_outward_to_km": 10,
+          "range_km": [
+            40,
+            130
+          ],
+          "selected_columns": 117,
+          "first_last_x_pixel": [
+            541,
+            657
+          ],
+          "approximate_plot_day_support": [
+            2.962962962962963,
+            174.8148148148148
+          ]
+        }
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original WHOI-hosted report; native unmodified properties-panel rasters and page 51 methods visually reviewed. Values estimated from the published graphs, not printed numeric observations.",
+      "source_id": "dwde-2020-plots",
+      "period_precision": "graph_axis_days_approximate",
+      "case_label": "Olympus / B1 child",
+      "range_value": [
+        40,
+        130
+      ],
+      "range_kind": "digitized_selected_plot_trace_envelope_with_reading_allowance",
+      "evidence_role": "graph_digitized_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_plot_estimate": {
+        "case_id": "olympus-b1",
+        "pdf_page": 54,
+        "source_raster": {
+          "pdf_page": 54,
+          "xref": 205,
+          "width": 1430,
+          "height": 657,
+          "extension": "png",
+          "sha256": "83c6819c82876c9fddfdafbcee4f703ef998da1b32427a0906cc92fb6ff69dd4",
+          "page_rect": [
+            73.5,
+            381.0,
+            541.4999389648438,
+            596.0999755859375
+          ]
+        },
+        "roi_xyxy_inclusive": [
+          540,
+          270,
+          824,
+          389
+        ],
+        "trace_color": "blue",
+        "color_rule": "B > 180, R < 100, G < 100",
+        "column_y_extents": [
+          [
+            541,
+            342,
+            342
+          ],
+          [
+            542,
+            341,
+            342
+          ],
+          [
+            543,
+            341,
+            343
+          ],
+          [
+            544,
+            341,
+            344
+          ],
+          [
+            545,
+            343,
+            345
+          ],
+          [
+            546,
+            343,
+            345
+          ],
+          [
+            547,
+            344,
+            346
+          ],
+          [
+            548,
+            344,
+            346
+          ],
+          [
+            549,
+            344,
+            346
+          ],
+          [
+            550,
+            336,
+            345
+          ],
+          [
+            551,
+            306,
+            345
+          ],
+          [
+            552,
+            302,
+            344
+          ],
+          [
+            553,
+            299,
+            310
+          ],
+          [
+            554,
+            298,
+            341
+          ],
+          [
+            555,
+            298,
+            344
+          ],
+          [
+            556,
+            316,
+            343
+          ],
+          [
+            557,
+            342,
+            344
+          ],
+          [
+            558,
+            342,
+            344
+          ],
+          [
+            559,
+            343,
+            346
+          ],
+          [
+            560,
+            344,
+            348
+          ],
+          [
+            561,
+            345,
+            348
+          ],
+          [
+            562,
+            347,
+            348
+          ],
+          [
+            563,
+            347,
+            348
+          ],
+          [
+            564,
+            347,
+            349
+          ],
+          [
+            565,
+            348,
+            349
+          ],
+          [
+            566,
+            348,
+            349
+          ],
+          [
+            567,
+            348,
+            349
+          ],
+          [
+            568,
+            347,
+            349
+          ],
+          [
+            569,
+            347,
+            349
+          ],
+          [
+            570,
+            347,
+            349
+          ],
+          [
+            571,
+            347,
+            348
+          ],
+          [
+            572,
+            348,
+            349
+          ],
+          [
+            573,
+            347,
+            349
+          ],
+          [
+            574,
+            348,
+            349
+          ],
+          [
+            575,
+            347,
+            349
+          ],
+          [
+            576,
+            348,
+            348
+          ],
+          [
+            577,
+            347,
+            348
+          ],
+          [
+            578,
+            347,
+            349
+          ],
+          [
+            579,
+            347,
+            349
+          ],
+          [
+            580,
+            348,
+            349
+          ],
+          [
+            581,
+            348,
+            349
+          ],
+          [
+            582,
+            348,
+            349
+          ],
+          [
+            583,
+            348,
+            349
+          ],
+          [
+            584,
+            348,
+            349
+          ],
+          [
+            585,
+            348,
+            349
+          ],
+          [
+            586,
+            347,
+            349
+          ],
+          [
+            587,
+            346,
+            348
+          ],
+          [
+            588,
+            345,
+            347
+          ],
+          [
+            589,
+            345,
+            346
+          ],
+          [
+            590,
+            344,
+            346
+          ],
+          [
+            591,
+            343,
+            345
+          ],
+          [
+            592,
+            341,
+            344
+          ],
+          [
+            593,
+            340,
+            343
+          ],
+          [
+            594,
+            340,
+            341
+          ],
+          [
+            595,
+            339,
+            340
+          ],
+          [
+            596,
+            338,
+            340
+          ],
+          [
+            597,
+            338,
+            339
+          ],
+          [
+            598,
+            337,
+            339
+          ],
+          [
+            599,
+            336,
+            338
+          ],
+          [
+            600,
+            335,
+            337
+          ],
+          [
+            601,
+            334,
+            336
+          ],
+          [
+            602,
+            334,
+            335
+          ],
+          [
+            603,
+            333,
+            335
+          ],
+          [
+            604,
+            333,
+            334
+          ],
+          [
+            605,
+            332,
+            334
+          ],
+          [
+            606,
+            332,
+            335
+          ],
+          [
+            607,
+            331,
+            333
+          ],
+          [
+            608,
+            331,
+            332
+          ],
+          [
+            609,
+            331,
+            333
+          ],
+          [
+            610,
+            332,
+            332
+          ],
+          [
+            611,
+            332,
+            333
+          ],
+          [
+            612,
+            331,
+            333
+          ],
+          [
+            613,
+            332,
+            334
+          ],
+          [
+            614,
+            333,
+            334
+          ],
+          [
+            615,
+            333,
+            334
+          ],
+          [
+            616,
+            334,
+            334
+          ],
+          [
+            617,
+            334,
+            336
+          ],
+          [
+            618,
+            335,
+            336
+          ],
+          [
+            619,
+            335,
+            338
+          ],
+          [
+            620,
+            336,
+            338
+          ],
+          [
+            621,
+            338,
+            338
+          ],
+          [
+            622,
+            338,
+            338
+          ],
+          [
+            623,
+            338,
+            339
+          ],
+          [
+            624,
+            338,
+            339
+          ],
+          [
+            625,
+            338,
+            339
+          ],
+          [
+            626,
+            337,
+            339
+          ],
+          [
+            627,
+            338,
+            339
+          ],
+          [
+            628,
+            338,
+            340
+          ],
+          [
+            629,
+            339,
+            341
+          ],
+          [
+            630,
+            340,
+            342
+          ],
+          [
+            631,
+            341,
+            342
+          ],
+          [
+            632,
+            342,
+            342
+          ],
+          [
+            633,
+            341,
+            344
+          ],
+          [
+            634,
+            342,
+            344
+          ],
+          [
+            635,
+            343,
+            344
+          ],
+          [
+            636,
+            343,
+            344
+          ],
+          [
+            637,
+            343,
+            344
+          ],
+          [
+            638,
+            343,
+            344
+          ],
+          [
+            639,
+            343,
+            344
+          ],
+          [
+            640,
+            343,
+            343
+          ],
+          [
+            641,
+            341,
+            343
+          ],
+          [
+            642,
+            340,
+            343
+          ],
+          [
+            643,
+            339,
+            341
+          ],
+          [
+            644,
+            336,
+            341
+          ],
+          [
+            645,
+            334,
+            340
+          ],
+          [
+            646,
+            330,
+            337
+          ],
+          [
+            647,
+            328,
+            334
+          ],
+          [
+            648,
+            322,
+            331
+          ],
+          [
+            649,
+            317,
+            329
+          ],
+          [
+            650,
+            309,
+            324
+          ],
+          [
+            651,
+            301,
+            319
+          ],
+          [
+            652,
+            294,
+            313
+          ],
+          [
+            653,
+            286,
+            303
+          ],
+          [
+            654,
+            280,
+            296
+          ],
+          [
+            655,
+            277,
+            288
+          ],
+          [
+            656,
+            277,
+            281
+          ],
+          [
+            657,
+            277,
+            277
+          ]
+        ],
+        "axis_calibration": {
+          "zero_y_pixel": 395,
+          "tick_y_pixel": 300,
+          "tick_value_km": 100,
+          "km_per_pixel": 1.0526315789473684,
+          "day_zero_x_pixel": 539,
+          "day_100_x_pixel": 606.5
+        },
+        "trace_y_extrema": [
+          277,
+          349
+        ],
+        "unrounded_trace_range_km": [
+          48.421052631578945,
+          124.21052631578947
+        ],
+        "reading_allowance_km": 5,
+        "round_outward_to_km": 10,
+        "range_km": [
+          40,
+          130
+        ],
+        "selected_columns": 117,
+        "first_last_x_pixel": [
+          541,
+          657
+        ],
+        "approximate_plot_day_support": [
+          2.962962962962963,
+          174.8148148148148
+        ]
+      }
+    },
+    {
+      "id": "olympus-b2-dwde-2020-digitized-mean-radius-range",
+      "entity_id": "eddy:horizon:loop-64-primary",
+      "category": "size",
+      "metric": "graph_estimated_case_mean_contour_radius_envelope",
+      "metric_label": "graph estimated case mean contour radius envelope",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": null,
+      "period_end": null,
+      "period_label": "Selected curve segment, approximately days 34-73 on the source time-since-detachment axis",
+      "definition": "Mean distance from the centroid to the maximum-circulation contour; estimated envelope of one labeled plotted trace. This is not an area-equivalent or maximum-speed radius.",
+      "scope": "Olympus / B2 child; red curve only.",
+      "qualification": "Graph-read estimate for a named published case; physical catalogue crosswalk remains unverified. Range covers the selected plotted trace only, not a seasonal envelope, confidence interval or full lifetime extrema. A 5 km graph-reading allowance is applied before rounding both ends outward to 10 km. Measurement uncertainty in the original product is unspecified. This is a separately labeled child/merger case, not a dimension assigned to the intact original ring; child traces are not pooled.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2021/05/DWDEFinalReport_20200729.pdf",
+      "source_locator": "Figure 3-27(e), printed page 49 / PDF page 54; definition in Figure 3-25 caption and section 3.9.",
+      "source_file": "research/eddy-measurement-register-additions-v8.json",
+      "source_pointer": "/records/4",
+      "source_sha256": "4f314391ecc4f39ba16e698b90ba6572bcd2968c18fcd605461537dec594d8ef",
+      "raw_record": {
+        "id": "olympus-b2-dwde-2020-digitized-mean-radius-range",
+        "entity_id": "eddy:horizon:loop-64-primary",
+        "category": "size",
+        "metric": "graph_estimated_case_mean_contour_radius_envelope",
+        "value": null,
+        "unit": "km",
+        "source_id": "dwde-2020-plots",
+        "source_locator": "Figure 3-27(e), printed page 49 / PDF page 54; definition in Figure 3-25 caption and section 3.9.",
+        "definition": "Mean distance from the centroid to the maximum-circulation contour; estimated envelope of one labeled plotted trace. This is not an area-equivalent or maximum-speed radius.",
+        "scope": "Olympus / B2 child; red curve only.",
+        "qualification": "Graph-read estimate for a named published case; physical catalogue crosswalk remains unverified. Range covers the selected plotted trace only, not a seasonal envelope, confidence interval or full lifetime extrema. A 5 km graph-reading allowance is applied before rounding both ends outward to 10 km. Measurement uncertainty in the original product is unspecified. This is a separately labeled child/merger case, not a dimension assigned to the intact original ring; child traces are not pooled.",
+        "range_value": [
+          50,
+          80
+        ],
+        "range_kind": "digitized_selected_plot_trace_envelope_with_reading_allowance",
+        "case_label": "Olympus / B2 child",
+        "period_label": "Selected curve segment, approximately days 34-73 on the source time-since-detachment axis",
+        "period_precision": "graph_axis_days_approximate",
+        "evidence_role": "graph_digitized_named_case_reference",
+        "rights_screened_release_eligible": false,
+        "source_plot_estimate": {
+          "case_id": "olympus-b2",
+          "pdf_page": 54,
+          "source_raster": {
+            "pdf_page": 54,
+            "xref": 205,
+            "width": 1430,
+            "height": 657,
+            "extension": "png",
+            "sha256": "83c6819c82876c9fddfdafbcee4f703ef998da1b32427a0906cc92fb6ff69dd4",
+            "page_rect": [
+              73.5,
+              381.0,
+              541.4999389648438,
+              596.0999755859375
+            ]
+          },
+          "roi_xyxy_inclusive": [
+            540,
+            270,
+            824,
+            389
+          ],
+          "trace_color": "red",
+          "color_rule": "R > 180, G < 100, B < 100",
+          "column_y_extents": [
+            [
+              562,
+              332,
+              334
+            ],
+            [
+              563,
+              332,
+              334
+            ],
+            [
+              564,
+              333,
+              335
+            ],
+            [
+              565,
+              335,
+              336
+            ],
+            [
+              566,
+              335,
+              338
+            ],
+            [
+              567,
+              336,
+              339
+            ],
+            [
+              568,
+              338,
+              339
+            ],
+            [
+              569,
+              338,
+              340
+            ],
+            [
+              570,
+              338,
+              340
+            ],
+            [
+              571,
+              339,
+              340
+            ],
+            [
+              572,
+              339,
+              340
+            ],
+            [
+              573,
+              339,
+              340
+            ],
+            [
+              574,
+              338,
+              340
+            ],
+            [
+              575,
+              339,
+              340
+            ],
+            [
+              576,
+              339,
+              340
+            ],
+            [
+              577,
+              338,
+              340
+            ],
+            [
+              578,
+              337,
+              339
+            ],
+            [
+              579,
+              337,
+              338
+            ],
+            [
+              580,
+              337,
+              338
+            ],
+            [
+              581,
+              336,
+              338
+            ],
+            [
+              582,
+              335,
+              337
+            ],
+            [
+              583,
+              335,
+              337
+            ],
+            [
+              584,
+              335,
+              336
+            ],
+            [
+              585,
+              335,
+              337
+            ],
+            [
+              586,
+              335,
+              336
+            ],
+            [
+              587,
+              335,
+              337
+            ],
+            [
+              588,
+              336,
+              336
+            ]
+          ],
+          "axis_calibration": {
+            "zero_y_pixel": 395,
+            "tick_y_pixel": 300,
+            "tick_value_km": 100,
+            "km_per_pixel": 1.0526315789473684,
+            "day_zero_x_pixel": 539,
+            "day_100_x_pixel": 606.5
+          },
+          "trace_y_extrema": [
+            332,
+            340
+          ],
+          "unrounded_trace_range_km": [
+            57.89473684210526,
+            66.3157894736842
+          ],
+          "reading_allowance_km": 5,
+          "round_outward_to_km": 10,
+          "range_km": [
+            50,
+            80
+          ],
+          "selected_columns": 27,
+          "first_last_x_pixel": [
+            562,
+            588
+          ],
+          "approximate_plot_day_support": [
+            34.074074074074076,
+            72.5925925925926
+          ]
+        }
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original WHOI-hosted report; native unmodified properties-panel rasters and page 51 methods visually reviewed. Values estimated from the published graphs, not printed numeric observations.",
+      "source_id": "dwde-2020-plots",
+      "period_precision": "graph_axis_days_approximate",
+      "case_label": "Olympus / B2 child",
+      "range_value": [
+        50,
+        80
+      ],
+      "range_kind": "digitized_selected_plot_trace_envelope_with_reading_allowance",
+      "evidence_role": "graph_digitized_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_plot_estimate": {
+        "case_id": "olympus-b2",
+        "pdf_page": 54,
+        "source_raster": {
+          "pdf_page": 54,
+          "xref": 205,
+          "width": 1430,
+          "height": 657,
+          "extension": "png",
+          "sha256": "83c6819c82876c9fddfdafbcee4f703ef998da1b32427a0906cc92fb6ff69dd4",
+          "page_rect": [
+            73.5,
+            381.0,
+            541.4999389648438,
+            596.0999755859375
+          ]
+        },
+        "roi_xyxy_inclusive": [
+          540,
+          270,
+          824,
+          389
+        ],
+        "trace_color": "red",
+        "color_rule": "R > 180, G < 100, B < 100",
+        "column_y_extents": [
+          [
+            562,
+            332,
+            334
+          ],
+          [
+            563,
+            332,
+            334
+          ],
+          [
+            564,
+            333,
+            335
+          ],
+          [
+            565,
+            335,
+            336
+          ],
+          [
+            566,
+            335,
+            338
+          ],
+          [
+            567,
+            336,
+            339
+          ],
+          [
+            568,
+            338,
+            339
+          ],
+          [
+            569,
+            338,
+            340
+          ],
+          [
+            570,
+            338,
+            340
+          ],
+          [
+            571,
+            339,
+            340
+          ],
+          [
+            572,
+            339,
+            340
+          ],
+          [
+            573,
+            339,
+            340
+          ],
+          [
+            574,
+            338,
+            340
+          ],
+          [
+            575,
+            339,
+            340
+          ],
+          [
+            576,
+            339,
+            340
+          ],
+          [
+            577,
+            338,
+            340
+          ],
+          [
+            578,
+            337,
+            339
+          ],
+          [
+            579,
+            337,
+            338
+          ],
+          [
+            580,
+            337,
+            338
+          ],
+          [
+            581,
+            336,
+            338
+          ],
+          [
+            582,
+            335,
+            337
+          ],
+          [
+            583,
+            335,
+            337
+          ],
+          [
+            584,
+            335,
+            336
+          ],
+          [
+            585,
+            335,
+            337
+          ],
+          [
+            586,
+            335,
+            336
+          ],
+          [
+            587,
+            335,
+            337
+          ],
+          [
+            588,
+            336,
+            336
+          ]
+        ],
+        "axis_calibration": {
+          "zero_y_pixel": 395,
+          "tick_y_pixel": 300,
+          "tick_value_km": 100,
+          "km_per_pixel": 1.0526315789473684,
+          "day_zero_x_pixel": 539,
+          "day_100_x_pixel": 606.5
+        },
+        "trace_y_extrema": [
+          332,
+          340
+        ],
+        "unrounded_trace_range_km": [
+          57.89473684210526,
+          66.3157894736842
+        ],
+        "reading_allowance_km": 5,
+        "round_outward_to_km": 10,
+        "range_km": [
+          50,
+          80
+        ],
+        "selected_columns": 27,
+        "first_last_x_pixel": [
+          562,
+          588
+        ],
+        "approximate_plot_day_support": [
+          34.074074074074076,
+          72.5925925925926
+        ]
+      }
+    },
+    {
+      "id": "quantum-ii-d-dwde-2020-digitized-mean-radius-range",
+      "entity_id": "eddy:horizon:loop-66-secondary",
+      "category": "size",
+      "metric": "graph_estimated_case_mean_contour_radius_envelope",
+      "metric_label": "graph estimated case mean contour radius envelope",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": null,
+      "period_end": null,
+      "period_label": "Selected curve segment, approximately days 3-228 on the source time-since-detachment axis",
+      "definition": "Mean distance from the centroid to the maximum-circulation contour; estimated envelope of one labeled plotted trace. This is not an area-equivalent or maximum-speed radius.",
+      "scope": "Quantum II / LCR D plotted segment; black curve only.",
+      "qualification": "Graph-read estimate for a named published case; physical catalogue crosswalk remains unverified. Range covers the selected plotted trace only, not a seasonal envelope, confidence interval or full lifetime extrema. A 5 km graph-reading allowance is applied before rounding both ends outward to 10 km. Measurement uncertainty in the original product is unspecified. The plot ends well before the report sampling endpoint of 2018-10-19; no extrapolation to that date. Independent Quantum II case only; no primary Quantum values inherited.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2021/05/DWDEFinalReport_20200729.pdf",
+      "source_locator": "Figure 3-31(e), printed page 51 / PDF page 56; definition in Figure 3-25 caption and section 3.9.",
+      "source_file": "research/eddy-measurement-register-additions-v8.json",
+      "source_pointer": "/records/5",
+      "source_sha256": "4f314391ecc4f39ba16e698b90ba6572bcd2968c18fcd605461537dec594d8ef",
+      "raw_record": {
+        "id": "quantum-ii-d-dwde-2020-digitized-mean-radius-range",
+        "entity_id": "eddy:horizon:loop-66-secondary",
+        "category": "size",
+        "metric": "graph_estimated_case_mean_contour_radius_envelope",
+        "value": null,
+        "unit": "km",
+        "source_id": "dwde-2020-plots",
+        "source_locator": "Figure 3-31(e), printed page 51 / PDF page 56; definition in Figure 3-25 caption and section 3.9.",
+        "definition": "Mean distance from the centroid to the maximum-circulation contour; estimated envelope of one labeled plotted trace. This is not an area-equivalent or maximum-speed radius.",
+        "scope": "Quantum II / LCR D plotted segment; black curve only.",
+        "qualification": "Graph-read estimate for a named published case; physical catalogue crosswalk remains unverified. Range covers the selected plotted trace only, not a seasonal envelope, confidence interval or full lifetime extrema. A 5 km graph-reading allowance is applied before rounding both ends outward to 10 km. Measurement uncertainty in the original product is unspecified. The plot ends well before the report sampling endpoint of 2018-10-19; no extrapolation to that date. Independent Quantum II case only; no primary Quantum values inherited.",
+        "range_value": [
+          40,
+          100
+        ],
+        "range_kind": "digitized_selected_plot_trace_envelope_with_reading_allowance",
+        "case_label": "Quantum II / LCR D plotted segment",
+        "period_label": "Selected curve segment, approximately days 3-228 on the source time-since-detachment axis",
+        "period_precision": "graph_axis_days_approximate",
+        "evidence_role": "graph_digitized_named_case_reference",
+        "rights_screened_release_eligible": false,
+        "source_plot_estimate": {
+          "case_id": "quantum-ii-d",
+          "pdf_page": 56,
+          "source_raster": {
+            "pdf_page": 56,
+            "xref": 213,
+            "width": 1430,
+            "height": 657,
+            "extension": "png",
+            "sha256": "aed05b2c277060ae689091e05cb4c0437d9dd5e215d96fe6888eecc98479d53b",
+            "page_rect": [
+              73.5,
+              381.0,
+              541.4999389648438,
+              596.0999755859375
+            ]
+          },
+          "roi_xyxy_inclusive": [
+            541,
+            274,
+            704,
+            389
+          ],
+          "trace_color": "black",
+          "color_rule": "max(R,G,B) < 80",
+          "column_y_extents": [
+            [
+              541,
+              287,
+              293
+            ],
+            [
+              542,
+              289,
+              297
+            ],
+            [
+              543,
+              292,
+              300
+            ],
+            [
+              544,
+              296,
+              303
+            ],
+            [
+              545,
+              299,
+              306
+            ],
+            [
+              546,
+              303,
+              308
+            ],
+            [
+              547,
+              305,
+              310
+            ],
+            [
+              548,
+              307,
+              310
+            ],
+            [
+              549,
+              307,
+              310
+            ],
+            [
+              550,
+              305,
+              308
+            ],
+            [
+              551,
+              303,
+              307
+            ],
+            [
+              552,
+              299,
+              306
+            ],
+            [
+              553,
+              295,
+              304
+            ],
+            [
+              554,
+              292,
+              300
+            ],
+            [
+              555,
+              291,
+              296
+            ],
+            [
+              556,
+              290,
+              293
+            ],
+            [
+              557,
+              288,
+              291
+            ],
+            [
+              558,
+              286,
+              290
+            ],
+            [
+              559,
+              284,
+              289
+            ],
+            [
+              560,
+              282,
+              287
+            ],
+            [
+              561,
+              279,
+              284
+            ],
+            [
+              562,
+              278,
+              282
+            ],
+            [
+              563,
+              277,
+              280
+            ],
+            [
+              564,
+              276,
+              279
+            ],
+            [
+              565,
+              277,
+              280
+            ],
+            [
+              566,
+              277,
+              284
+            ],
+            [
+              567,
+              280,
+              285
+            ],
+            [
+              568,
+              282,
+              290
+            ],
+            [
+              569,
+              285,
+              294
+            ],
+            [
+              570,
+              289,
+              296
+            ],
+            [
+              571,
+              293,
+              299
+            ],
+            [
+              572,
+              296,
+              302
+            ],
+            [
+              573,
+              299,
+              304
+            ],
+            [
+              574,
+              301,
+              305
+            ],
+            [
+              575,
+              304,
+              306
+            ],
+            [
+              576,
+              305,
+              307
+            ],
+            [
+              577,
+              306,
+              306
+            ],
+            [
+              578,
+              305,
+              306
+            ],
+            [
+              579,
+              304,
+              306
+            ],
+            [
+              580,
+              304,
+              305
+            ],
+            [
+              581,
+              303,
+              306
+            ],
+            [
+              582,
+              304,
+              305
+            ],
+            [
+              583,
+              303,
+              304
+            ],
+            [
+              584,
+              302,
+              304
+            ],
+            [
+              585,
+              302,
+              303
+            ],
+            [
+              586,
+              302,
+              303
+            ],
+            [
+              587,
+              301,
+              302
+            ],
+            [
+              588,
+              301,
+              302
+            ],
+            [
+              589,
+              300,
+              302
+            ],
+            [
+              590,
+              301,
+              302
+            ],
+            [
+              591,
+              301,
+              303
+            ],
+            [
+              592,
+              302,
+              305
+            ],
+            [
+              593,
+              303,
+              306
+            ],
+            [
+              594,
+              304,
+              309
+            ],
+            [
+              595,
+              306,
+              312
+            ],
+            [
+              596,
+              308,
+              313
+            ],
+            [
+              597,
+              311,
+              315
+            ],
+            [
+              598,
+              313,
+              316
+            ],
+            [
+              599,
+              315,
+              317
+            ],
+            [
+              600,
+              316,
+              317
+            ],
+            [
+              601,
+              316,
+              318
+            ],
+            [
+              602,
+              315,
+              317
+            ],
+            [
+              603,
+              314,
+              317
+            ],
+            [
+              604,
+              312,
+              316
+            ],
+            [
+              605,
+              311,
+              314
+            ],
+            [
+              606,
+              309,
+              313
+            ],
+            [
+              607,
+              307,
+              311
+            ],
+            [
+              608,
+              306,
+              309
+            ],
+            [
+              609,
+              304,
+              307
+            ],
+            [
+              610,
+              304,
+              306
+            ],
+            [
+              611,
+              304,
+              305
+            ],
+            [
+              612,
+              304,
+              305
+            ],
+            [
+              613,
+              304,
+              305
+            ],
+            [
+              614,
+              304,
+              306
+            ],
+            [
+              615,
+              304,
+              307
+            ],
+            [
+              616,
+              305,
+              308
+            ],
+            [
+              617,
+              306,
+              310
+            ],
+            [
+              618,
+              308,
+              310
+            ],
+            [
+              619,
+              310,
+              313
+            ],
+            [
+              620,
+              311,
+              315
+            ],
+            [
+              621,
+              312,
+              316
+            ],
+            [
+              622,
+              315,
+              316
+            ],
+            [
+              623,
+              315,
+              316
+            ],
+            [
+              624,
+              316,
+              317
+            ],
+            [
+              625,
+              316,
+              318
+            ],
+            [
+              626,
+              318,
+              319
+            ],
+            [
+              627,
+              318,
+              320
+            ],
+            [
+              628,
+              319,
+              321
+            ],
+            [
+              629,
+              320,
+              321
+            ],
+            [
+              630,
+              320,
+              321
+            ],
+            [
+              631,
+              320,
+              321
+            ],
+            [
+              632,
+              319,
+              320
+            ],
+            [
+              633,
+              318,
+              320
+            ],
+            [
+              634,
+              318,
+              320
+            ],
+            [
+              635,
+              318,
+              319
+            ],
+            [
+              636,
+              316,
+              319
+            ],
+            [
+              637,
+              317,
+              318
+            ],
+            [
+              638,
+              316,
+              317
+            ],
+            [
+              639,
+              316,
+              317
+            ],
+            [
+              640,
+              314,
+              317
+            ],
+            [
+              641,
+              313,
+              316
+            ],
+            [
+              642,
+              313,
+              314
+            ],
+            [
+              643,
+              312,
+              314
+            ],
+            [
+              644,
+              311,
+              313
+            ],
+            [
+              645,
+              310,
+              313
+            ],
+            [
+              646,
+              310,
+              312
+            ],
+            [
+              647,
+              309,
+              311
+            ],
+            [
+              648,
+              308,
+              311
+            ],
+            [
+              649,
+              307,
+              309
+            ],
+            [
+              650,
+              307,
+              308
+            ],
+            [
+              651,
+              307,
+              308
+            ],
+            [
+              652,
+              307,
+              311
+            ],
+            [
+              653,
+              307,
+              313
+            ],
+            [
+              654,
+              310,
+              313
+            ],
+            [
+              655,
+              313,
+              314
+            ],
+            [
+              656,
+              313,
+              315
+            ],
+            [
+              657,
+              314,
+              316
+            ],
+            [
+              658,
+              315,
+              316
+            ],
+            [
+              659,
+              315,
+              316
+            ],
+            [
+              660,
+              314,
+              315
+            ],
+            [
+              661,
+              315,
+              316
+            ],
+            [
+              662,
+              315,
+              317
+            ],
+            [
+              663,
+              315,
+              317
+            ],
+            [
+              664,
+              316,
+              319
+            ],
+            [
+              665,
+              317,
+              321
+            ],
+            [
+              666,
+              319,
+              322
+            ],
+            [
+              667,
+              320,
+              322
+            ],
+            [
+              668,
+              321,
+              323
+            ],
+            [
+              669,
+              322,
+              324
+            ],
+            [
+              670,
+              322,
+              324
+            ],
+            [
+              671,
+              322,
+              323
+            ],
+            [
+              672,
+              322,
+              323
+            ],
+            [
+              673,
+              321,
+              323
+            ],
+            [
+              674,
+              321,
+              322
+            ],
+            [
+              675,
+              321,
+              323
+            ],
+            [
+              676,
+              321,
+              323
+            ],
+            [
+              677,
+              322,
+              323
+            ],
+            [
+              678,
+              322,
+              323
+            ],
+            [
+              679,
+              322,
+              324
+            ],
+            [
+              680,
+              323,
+              325
+            ],
+            [
+              681,
+              324,
+              325
+            ],
+            [
+              682,
+              324,
+              325
+            ],
+            [
+              683,
+              324,
+              326
+            ],
+            [
+              684,
+              325,
+              326
+            ],
+            [
+              685,
+              325,
+              327
+            ],
+            [
+              686,
+              324,
+              326
+            ],
+            [
+              687,
+              324,
+              325
+            ],
+            [
+              688,
+              323,
+              325
+            ],
+            [
+              689,
+              323,
+              325
+            ],
+            [
+              690,
+              323,
+              324
+            ],
+            [
+              691,
+              323,
+              324
+            ],
+            [
+              692,
+              323,
+              324
+            ],
+            [
+              693,
+              324,
+              325
+            ]
+          ],
+          "axis_calibration": {
+            "zero_y_pixel": 395,
+            "tick_y_pixel": 260,
+            "tick_value_km": 100,
+            "km_per_pixel": 0.7407407407407407,
+            "day_zero_x_pixel": 539,
+            "day_100_x_pixel": 606.5
+          },
+          "trace_y_extrema": [
+            276,
+            327
+          ],
+          "unrounded_trace_range_km": [
+            50.37037037037037,
+            88.14814814814814
+          ],
+          "reading_allowance_km": 5,
+          "round_outward_to_km": 10,
+          "range_km": [
+            40,
+            100
+          ],
+          "selected_columns": 153,
+          "first_last_x_pixel": [
+            541,
+            693
+          ],
+          "approximate_plot_day_support": [
+            2.962962962962963,
+            228.14814814814815
+          ]
+        },
+        "independent_named_case": {
+          "source_name": "Quantum II",
+          "source_case_id": "LCR D",
+          "association_is_verified": false,
+          "primary_values_inherited": false
+        }
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original WHOI-hosted report; native unmodified properties-panel rasters and page 51 methods visually reviewed. Values estimated from the published graphs, not printed numeric observations.",
+      "source_id": "dwde-2020-plots",
+      "period_precision": "graph_axis_days_approximate",
+      "case_label": "Quantum II / LCR D plotted segment",
+      "range_value": [
+        40,
+        100
+      ],
+      "range_kind": "digitized_selected_plot_trace_envelope_with_reading_allowance",
+      "evidence_role": "graph_digitized_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "independent_named_case": {
+        "source_name": "Quantum II",
+        "source_case_id": "LCR D",
+        "association_is_verified": false,
+        "primary_values_inherited": false
+      },
+      "source_plot_estimate": {
+        "case_id": "quantum-ii-d",
+        "pdf_page": 56,
+        "source_raster": {
+          "pdf_page": 56,
+          "xref": 213,
+          "width": 1430,
+          "height": 657,
+          "extension": "png",
+          "sha256": "aed05b2c277060ae689091e05cb4c0437d9dd5e215d96fe6888eecc98479d53b",
+          "page_rect": [
+            73.5,
+            381.0,
+            541.4999389648438,
+            596.0999755859375
+          ]
+        },
+        "roi_xyxy_inclusive": [
+          541,
+          274,
+          704,
+          389
+        ],
+        "trace_color": "black",
+        "color_rule": "max(R,G,B) < 80",
+        "column_y_extents": [
+          [
+            541,
+            287,
+            293
+          ],
+          [
+            542,
+            289,
+            297
+          ],
+          [
+            543,
+            292,
+            300
+          ],
+          [
+            544,
+            296,
+            303
+          ],
+          [
+            545,
+            299,
+            306
+          ],
+          [
+            546,
+            303,
+            308
+          ],
+          [
+            547,
+            305,
+            310
+          ],
+          [
+            548,
+            307,
+            310
+          ],
+          [
+            549,
+            307,
+            310
+          ],
+          [
+            550,
+            305,
+            308
+          ],
+          [
+            551,
+            303,
+            307
+          ],
+          [
+            552,
+            299,
+            306
+          ],
+          [
+            553,
+            295,
+            304
+          ],
+          [
+            554,
+            292,
+            300
+          ],
+          [
+            555,
+            291,
+            296
+          ],
+          [
+            556,
+            290,
+            293
+          ],
+          [
+            557,
+            288,
+            291
+          ],
+          [
+            558,
+            286,
+            290
+          ],
+          [
+            559,
+            284,
+            289
+          ],
+          [
+            560,
+            282,
+            287
+          ],
+          [
+            561,
+            279,
+            284
+          ],
+          [
+            562,
+            278,
+            282
+          ],
+          [
+            563,
+            277,
+            280
+          ],
+          [
+            564,
+            276,
+            279
+          ],
+          [
+            565,
+            277,
+            280
+          ],
+          [
+            566,
+            277,
+            284
+          ],
+          [
+            567,
+            280,
+            285
+          ],
+          [
+            568,
+            282,
+            290
+          ],
+          [
+            569,
+            285,
+            294
+          ],
+          [
+            570,
+            289,
+            296
+          ],
+          [
+            571,
+            293,
+            299
+          ],
+          [
+            572,
+            296,
+            302
+          ],
+          [
+            573,
+            299,
+            304
+          ],
+          [
+            574,
+            301,
+            305
+          ],
+          [
+            575,
+            304,
+            306
+          ],
+          [
+            576,
+            305,
+            307
+          ],
+          [
+            577,
+            306,
+            306
+          ],
+          [
+            578,
+            305,
+            306
+          ],
+          [
+            579,
+            304,
+            306
+          ],
+          [
+            580,
+            304,
+            305
+          ],
+          [
+            581,
+            303,
+            306
+          ],
+          [
+            582,
+            304,
+            305
+          ],
+          [
+            583,
+            303,
+            304
+          ],
+          [
+            584,
+            302,
+            304
+          ],
+          [
+            585,
+            302,
+            303
+          ],
+          [
+            586,
+            302,
+            303
+          ],
+          [
+            587,
+            301,
+            302
+          ],
+          [
+            588,
+            301,
+            302
+          ],
+          [
+            589,
+            300,
+            302
+          ],
+          [
+            590,
+            301,
+            302
+          ],
+          [
+            591,
+            301,
+            303
+          ],
+          [
+            592,
+            302,
+            305
+          ],
+          [
+            593,
+            303,
+            306
+          ],
+          [
+            594,
+            304,
+            309
+          ],
+          [
+            595,
+            306,
+            312
+          ],
+          [
+            596,
+            308,
+            313
+          ],
+          [
+            597,
+            311,
+            315
+          ],
+          [
+            598,
+            313,
+            316
+          ],
+          [
+            599,
+            315,
+            317
+          ],
+          [
+            600,
+            316,
+            317
+          ],
+          [
+            601,
+            316,
+            318
+          ],
+          [
+            602,
+            315,
+            317
+          ],
+          [
+            603,
+            314,
+            317
+          ],
+          [
+            604,
+            312,
+            316
+          ],
+          [
+            605,
+            311,
+            314
+          ],
+          [
+            606,
+            309,
+            313
+          ],
+          [
+            607,
+            307,
+            311
+          ],
+          [
+            608,
+            306,
+            309
+          ],
+          [
+            609,
+            304,
+            307
+          ],
+          [
+            610,
+            304,
+            306
+          ],
+          [
+            611,
+            304,
+            305
+          ],
+          [
+            612,
+            304,
+            305
+          ],
+          [
+            613,
+            304,
+            305
+          ],
+          [
+            614,
+            304,
+            306
+          ],
+          [
+            615,
+            304,
+            307
+          ],
+          [
+            616,
+            305,
+            308
+          ],
+          [
+            617,
+            306,
+            310
+          ],
+          [
+            618,
+            308,
+            310
+          ],
+          [
+            619,
+            310,
+            313
+          ],
+          [
+            620,
+            311,
+            315
+          ],
+          [
+            621,
+            312,
+            316
+          ],
+          [
+            622,
+            315,
+            316
+          ],
+          [
+            623,
+            315,
+            316
+          ],
+          [
+            624,
+            316,
+            317
+          ],
+          [
+            625,
+            316,
+            318
+          ],
+          [
+            626,
+            318,
+            319
+          ],
+          [
+            627,
+            318,
+            320
+          ],
+          [
+            628,
+            319,
+            321
+          ],
+          [
+            629,
+            320,
+            321
+          ],
+          [
+            630,
+            320,
+            321
+          ],
+          [
+            631,
+            320,
+            321
+          ],
+          [
+            632,
+            319,
+            320
+          ],
+          [
+            633,
+            318,
+            320
+          ],
+          [
+            634,
+            318,
+            320
+          ],
+          [
+            635,
+            318,
+            319
+          ],
+          [
+            636,
+            316,
+            319
+          ],
+          [
+            637,
+            317,
+            318
+          ],
+          [
+            638,
+            316,
+            317
+          ],
+          [
+            639,
+            316,
+            317
+          ],
+          [
+            640,
+            314,
+            317
+          ],
+          [
+            641,
+            313,
+            316
+          ],
+          [
+            642,
+            313,
+            314
+          ],
+          [
+            643,
+            312,
+            314
+          ],
+          [
+            644,
+            311,
+            313
+          ],
+          [
+            645,
+            310,
+            313
+          ],
+          [
+            646,
+            310,
+            312
+          ],
+          [
+            647,
+            309,
+            311
+          ],
+          [
+            648,
+            308,
+            311
+          ],
+          [
+            649,
+            307,
+            309
+          ],
+          [
+            650,
+            307,
+            308
+          ],
+          [
+            651,
+            307,
+            308
+          ],
+          [
+            652,
+            307,
+            311
+          ],
+          [
+            653,
+            307,
+            313
+          ],
+          [
+            654,
+            310,
+            313
+          ],
+          [
+            655,
+            313,
+            314
+          ],
+          [
+            656,
+            313,
+            315
+          ],
+          [
+            657,
+            314,
+            316
+          ],
+          [
+            658,
+            315,
+            316
+          ],
+          [
+            659,
+            315,
+            316
+          ],
+          [
+            660,
+            314,
+            315
+          ],
+          [
+            661,
+            315,
+            316
+          ],
+          [
+            662,
+            315,
+            317
+          ],
+          [
+            663,
+            315,
+            317
+          ],
+          [
+            664,
+            316,
+            319
+          ],
+          [
+            665,
+            317,
+            321
+          ],
+          [
+            666,
+            319,
+            322
+          ],
+          [
+            667,
+            320,
+            322
+          ],
+          [
+            668,
+            321,
+            323
+          ],
+          [
+            669,
+            322,
+            324
+          ],
+          [
+            670,
+            322,
+            324
+          ],
+          [
+            671,
+            322,
+            323
+          ],
+          [
+            672,
+            322,
+            323
+          ],
+          [
+            673,
+            321,
+            323
+          ],
+          [
+            674,
+            321,
+            322
+          ],
+          [
+            675,
+            321,
+            323
+          ],
+          [
+            676,
+            321,
+            323
+          ],
+          [
+            677,
+            322,
+            323
+          ],
+          [
+            678,
+            322,
+            323
+          ],
+          [
+            679,
+            322,
+            324
+          ],
+          [
+            680,
+            323,
+            325
+          ],
+          [
+            681,
+            324,
+            325
+          ],
+          [
+            682,
+            324,
+            325
+          ],
+          [
+            683,
+            324,
+            326
+          ],
+          [
+            684,
+            325,
+            326
+          ],
+          [
+            685,
+            325,
+            327
+          ],
+          [
+            686,
+            324,
+            326
+          ],
+          [
+            687,
+            324,
+            325
+          ],
+          [
+            688,
+            323,
+            325
+          ],
+          [
+            689,
+            323,
+            325
+          ],
+          [
+            690,
+            323,
+            324
+          ],
+          [
+            691,
+            323,
+            324
+          ],
+          [
+            692,
+            323,
+            324
+          ],
+          [
+            693,
+            324,
+            325
+          ]
+        ],
+        "axis_calibration": {
+          "zero_y_pixel": 395,
+          "tick_y_pixel": 260,
+          "tick_value_km": 100,
+          "km_per_pixel": 0.7407407407407407,
+          "day_zero_x_pixel": 539,
+          "day_100_x_pixel": 606.5
+        },
+        "trace_y_extrema": [
+          276,
+          327
+        ],
+        "unrounded_trace_range_km": [
+          50.37037037037037,
+          88.14814814814814
+        ],
+        "reading_allowance_km": 5,
+        "round_outward_to_km": 10,
+        "range_km": [
+          40,
+          100
+        ],
+        "selected_columns": 153,
+        "first_last_x_pixel": [
+          541,
+          693
+        ],
+        "approximate_plot_day_support": [
+          2.962962962962963,
+          228.14814814814815
+        ]
+      }
+    },
+    {
+      "id": "revelle-f-pre-split-dwde-2020-digitized-mean-radius-range",
+      "entity_id": "eddy:horizon:loop-67-primary",
+      "category": "size",
+      "metric": "graph_estimated_case_mean_contour_radius_envelope",
+      "metric_label": "graph estimated case mean contour radius envelope",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": null,
+      "period_end": null,
+      "period_label": "Selected curve segment, approximately days 1-40 on the source time-since-detachment axis",
+      "definition": "Mean distance from the centroid to the maximum-circulation contour; estimated envelope of one labeled plotted trace. This is not an area-equivalent or maximum-speed radius.",
+      "scope": "Revelle / LCR F selected pre-split segment; black curve only.",
+      "qualification": "Graph-read estimate for a named published case; physical catalogue crosswalk remains unverified. Range covers the selected plotted trace only, not a seasonal envelope, confidence interval or full lifetime extrema. A 5 km graph-reading allowance is applied before rounding both ends outward to 10 km. Measurement uncertainty in the original product is unspecified. Only the first approximately 1-40 plotted days are selected, before the report split at day 51 (2018-08-09 relative to 2018-06-19). No post-split trace or year-round range assigned.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2021/05/DWDEFinalReport_20200729.pdf",
+      "source_locator": "Figure 3-35(e), printed page 53 / PDF page 58; definition in Figure 3-25 caption and section 3.9.",
+      "source_file": "research/eddy-measurement-register-additions-v8.json",
+      "source_pointer": "/records/6",
+      "source_sha256": "4f314391ecc4f39ba16e698b90ba6572bcd2968c18fcd605461537dec594d8ef",
+      "raw_record": {
+        "id": "revelle-f-pre-split-dwde-2020-digitized-mean-radius-range",
+        "entity_id": "eddy:horizon:loop-67-primary",
+        "category": "size",
+        "metric": "graph_estimated_case_mean_contour_radius_envelope",
+        "value": null,
+        "unit": "km",
+        "source_id": "dwde-2020-plots",
+        "source_locator": "Figure 3-35(e), printed page 53 / PDF page 58; definition in Figure 3-25 caption and section 3.9.",
+        "definition": "Mean distance from the centroid to the maximum-circulation contour; estimated envelope of one labeled plotted trace. This is not an area-equivalent or maximum-speed radius.",
+        "scope": "Revelle / LCR F selected pre-split segment; black curve only.",
+        "qualification": "Graph-read estimate for a named published case; physical catalogue crosswalk remains unverified. Range covers the selected plotted trace only, not a seasonal envelope, confidence interval or full lifetime extrema. A 5 km graph-reading allowance is applied before rounding both ends outward to 10 km. Measurement uncertainty in the original product is unspecified. Only the first approximately 1-40 plotted days are selected, before the report split at day 51 (2018-08-09 relative to 2018-06-19). No post-split trace or year-round range assigned.",
+        "range_value": [
+          100,
+          220
+        ],
+        "range_kind": "digitized_selected_plot_trace_envelope_with_reading_allowance",
+        "case_label": "Revelle / LCR F selected pre-split segment",
+        "period_label": "Selected curve segment, approximately days 1-40 on the source time-since-detachment axis",
+        "period_precision": "graph_axis_days_approximate",
+        "evidence_role": "graph_digitized_named_case_reference",
+        "rights_screened_release_eligible": false,
+        "source_plot_estimate": {
+          "case_id": "revelle-f-pre-split",
+          "pdf_page": 58,
+          "source_raster": {
+            "pdf_page": 58,
+            "xref": 221,
+            "width": 1430,
+            "height": 657,
+            "extension": "png",
+            "sha256": "0953f9004528937e1e86eb6a113098849b17a7574d56436f350900b7c6a91de4",
+            "page_rect": [
+              73.5,
+              381.0,
+              541.4999389648438,
+              596.0999755859375
+            ]
+          },
+          "roi_xyxy_inclusive": [
+            540,
+            274,
+            566,
+            389
+          ],
+          "trace_color": "black",
+          "color_rule": "max(R,G,B) < 80",
+          "column_y_extents": [
+            [
+              540,
+              278,
+              287
+            ],
+            [
+              541,
+              282,
+              292
+            ],
+            [
+              542,
+              286,
+              301
+            ],
+            [
+              543,
+              290,
+              307
+            ],
+            [
+              544,
+              299,
+              316
+            ],
+            [
+              545,
+              305,
+              321
+            ],
+            [
+              546,
+              313,
+              324
+            ],
+            [
+              547,
+              320,
+              328
+            ],
+            [
+              548,
+              323,
+              330
+            ],
+            [
+              549,
+              327,
+              331
+            ],
+            [
+              550,
+              330,
+              332
+            ],
+            [
+              551,
+              331,
+              333
+            ],
+            [
+              552,
+              331,
+              333
+            ],
+            [
+              553,
+              331,
+              333
+            ],
+            [
+              554,
+              330,
+              332
+            ],
+            [
+              555,
+              329,
+              331
+            ],
+            [
+              556,
+              328,
+              330
+            ],
+            [
+              557,
+              327,
+              330
+            ],
+            [
+              558,
+              325,
+              329
+            ],
+            [
+              559,
+              324,
+              328
+            ],
+            [
+              560,
+              322,
+              326
+            ],
+            [
+              561,
+              320,
+              324
+            ],
+            [
+              562,
+              317,
+              322
+            ],
+            [
+              563,
+              318,
+              320
+            ],
+            [
+              564,
+              316,
+              318
+            ],
+            [
+              565,
+              314,
+              318
+            ],
+            [
+              566,
+              312,
+              316
+            ]
+          ],
+          "axis_calibration": {
+            "zero_y_pixel": 395,
+            "tick_y_pixel": 285,
+            "tick_value_km": 200,
+            "km_per_pixel": 1.8181818181818181,
+            "day_zero_x_pixel": 539,
+            "day_100_x_pixel": 606.5
+          },
+          "trace_y_extrema": [
+            278,
+            333
+          ],
+          "unrounded_trace_range_km": [
+            112.72727272727272,
+            212.72727272727272
+          ],
+          "reading_allowance_km": 5,
+          "round_outward_to_km": 10,
+          "range_km": [
+            100,
+            220
+          ],
+          "selected_columns": 27,
+          "first_last_x_pixel": [
+            540,
+            566
+          ],
+          "approximate_plot_day_support": [
+            1.4814814814814814,
+            40.0
+          ]
+        }
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original WHOI-hosted report; native unmodified properties-panel rasters and page 51 methods visually reviewed. Values estimated from the published graphs, not printed numeric observations.",
+      "source_id": "dwde-2020-plots",
+      "period_precision": "graph_axis_days_approximate",
+      "case_label": "Revelle / LCR F selected pre-split segment",
+      "range_value": [
+        100,
+        220
+      ],
+      "range_kind": "digitized_selected_plot_trace_envelope_with_reading_allowance",
+      "evidence_role": "graph_digitized_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_plot_estimate": {
+        "case_id": "revelle-f-pre-split",
+        "pdf_page": 58,
+        "source_raster": {
+          "pdf_page": 58,
+          "xref": 221,
+          "width": 1430,
+          "height": 657,
+          "extension": "png",
+          "sha256": "0953f9004528937e1e86eb6a113098849b17a7574d56436f350900b7c6a91de4",
+          "page_rect": [
+            73.5,
+            381.0,
+            541.4999389648438,
+            596.0999755859375
+          ]
+        },
+        "roi_xyxy_inclusive": [
+          540,
+          274,
+          566,
+          389
+        ],
+        "trace_color": "black",
+        "color_rule": "max(R,G,B) < 80",
+        "column_y_extents": [
+          [
+            540,
+            278,
+            287
+          ],
+          [
+            541,
+            282,
+            292
+          ],
+          [
+            542,
+            286,
+            301
+          ],
+          [
+            543,
+            290,
+            307
+          ],
+          [
+            544,
+            299,
+            316
+          ],
+          [
+            545,
+            305,
+            321
+          ],
+          [
+            546,
+            313,
+            324
+          ],
+          [
+            547,
+            320,
+            328
+          ],
+          [
+            548,
+            323,
+            330
+          ],
+          [
+            549,
+            327,
+            331
+          ],
+          [
+            550,
+            330,
+            332
+          ],
+          [
+            551,
+            331,
+            333
+          ],
+          [
+            552,
+            331,
+            333
+          ],
+          [
+            553,
+            331,
+            333
+          ],
+          [
+            554,
+            330,
+            332
+          ],
+          [
+            555,
+            329,
+            331
+          ],
+          [
+            556,
+            328,
+            330
+          ],
+          [
+            557,
+            327,
+            330
+          ],
+          [
+            558,
+            325,
+            329
+          ],
+          [
+            559,
+            324,
+            328
+          ],
+          [
+            560,
+            322,
+            326
+          ],
+          [
+            561,
+            320,
+            324
+          ],
+          [
+            562,
+            317,
+            322
+          ],
+          [
+            563,
+            318,
+            320
+          ],
+          [
+            564,
+            316,
+            318
+          ],
+          [
+            565,
+            314,
+            318
+          ],
+          [
+            566,
+            312,
+            316
+          ]
+        ],
+        "axis_calibration": {
+          "zero_y_pixel": 395,
+          "tick_y_pixel": 285,
+          "tick_value_km": 200,
+          "km_per_pixel": 1.8181818181818181,
+          "day_zero_x_pixel": 539,
+          "day_100_x_pixel": 606.5
+        },
+        "trace_y_extrema": [
+          278,
+          333
+        ],
+        "unrounded_trace_range_km": [
+          112.72727272727272,
+          212.72727272727272
+        ],
+        "reading_allowance_km": 5,
+        "round_outward_to_km": 10,
+        "range_km": [
+          100,
+          220
+        ],
+        "selected_columns": 27,
+        "first_last_x_pixel": [
+          540,
+          566
+        ],
+        "approximate_plot_day_support": [
+          1.4814814814814814,
+          40.0
+        ]
       }
     }
   ],

@@ -11,7 +11,7 @@ class EddyRegister(unittest.TestCase):
         d=register.build()
         self.assertEqual(len(d['records']),136)
         self.assertEqual(len({r['entity_id'] for r in d['records']}),136)
-        self.assertEqual(len(d['evidence']),263)
+        self.assertEqual(len(d['evidence']),270)
         for path,pin in d['input_sha256'].items():self.assertEqual(hashlib.sha256((register.ROOT/path).read_bytes()).hexdigest(),pin)
         for r in d['evidence']:
             source=json.loads((register.ROOT/r['source_file']).read_bytes())
@@ -55,7 +55,7 @@ class EddyRegister(unittest.TestCase):
     def test_csv_does_not_drop_conflicts_or_rewrite_units(self):
         d=register.build();evidence={r['id']:r for r in d['evidence']}
         with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:rows=list(csv.DictReader(stream))
-        self.assertEqual(len(rows),263)
+        self.assertEqual(len(rows),270)
         for r in rows:
             original=evidence[r['id']]
             self.assertEqual(r['unit'],original['unit']);self.assertEqual(r['source_pointer'],original['source_pointer'])
@@ -125,13 +125,13 @@ class EddyRegister(unittest.TestCase):
             if r['entity_id'] in ['eddy:horizon:loop-80-primary','eddy:horizon:loop-81-primary']:
                 self.assertFalse(r['evidence_ids']);self.assertFalse(r['registry_context']['active_label_is_current_status'])
             if r['entity_id'].endswith('-secondary'):
-                self.assertEqual(len(r['evidence_ids']),1 if r['entity_id']=='eddy:horizon:loop-66-secondary' else 0);self.assertIsNone(r['registry_context'])
+                self.assertEqual(len(r['evidence_ids']),2 if r['entity_id']=='eddy:horizon:loop-66-secondary' else 0);self.assertIsNone(r['registry_context'])
                 self.assertTrue(r['linked_primary_context']['evidence_ids'])
         for r in d['evidence']:
             if r['entity_id'].startswith('eddy:horizon:'):
                 self.assertTrue(r['entity_id'].endswith('-primary') or r.get('independent_named_case'))
                 self.assertFalse(r['rights_screened_release_eligible'])
-                self.assertIn(r['evidence_role'],['registry_source_reference','qualified_published_named_case_reference','qualified_indexed_reference'])
+                self.assertIn(r['evidence_role'],['registry_source_reference','qualified_published_named_case_reference','qualified_indexed_reference','graph_digitized_named_case_reference'])
                 if r['category']=='duration' and r['evidence_role']=='registry_source_reference':self.assertIsNone(r['value']);self.assertEqual(r['calendar_support']['end_precision'],'month')
 
 
@@ -141,7 +141,7 @@ class EddyRegister(unittest.TestCase):
         self.assertEqual(prior,batch['baseline_evidence_sha256'])
         rows=d['evidence'][214:241];self.assertEqual(len(rows),27)
         self.assertEqual([r['value'] for r in rows],[24271,43199,37442,19964,24998,21530,35065,57751,92026,45049,44392,22137,48786,21318,22511,67989,23563,12421,18682,49672,12369,31304,7596,25036,52058,70659,15451])
-        self.assertEqual(d['counts']['size_owners'],55);self.assertEqual(d['counts']['size_records'],82)
+        self.assertEqual(d['counts']['size_owners'],59);self.assertEqual(d['counts']['size_records'],89)
         for r in rows:
             a=r['named_case_association'];self.assertFalse(a['physical_crosswalk_verified'])
             self.assertEqual((r['category'],r['unit']),('size','km2'))
@@ -185,7 +185,7 @@ class EddyRegister(unittest.TestCase):
         d=register.build();batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v7.json').read_bytes())
         prior=hashlib.sha256(json.dumps(d['evidence'][:248],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
         self.assertEqual(prior,batch['baseline_evidence_sha256'])
-        rows={r['id']:r for r in d['evidence'][248:]};self.assertEqual(len(rows),15)
+        rows={r['id']:r for r in d['evidence'][248:263]};self.assertEqual(len(rows),15)
         self.assertEqual(rows['triton-biggs-1996-first-orbit-west-east-major']['value'],350)
         self.assertEqual(rows['triton-biggs-1996-first-orbit-north-south-minor']['value'],200)
         self.assertEqual(rows['triton-biggs-1996-march-orbital-radii']['range_value'],[40,60])
@@ -207,6 +207,29 @@ class EddyRegister(unittest.TestCase):
         self.assertEqual(json.loads(exported['independent_named_case_json']),sample['independent_named_case'])
         for r in rows.values():
             self.assertFalse(r['whole_lifetime_inferred']);self.assertIsNone(r['geometry'])
+
+
+    def test_graph_estimates_keep_child_scope_native_radius_and_reading_precision(self):
+        d=register.build();batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v8.json').read_bytes())
+        prior=hashlib.sha256(json.dumps(d['evidence'][:263],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
+        self.assertEqual(prior,batch['baseline_evidence_sha256'])
+        rows=d['evidence'][263:];self.assertEqual(len(rows),7)
+        self.assertEqual([r['range_value'] for r in rows],[[40,80],[30,70],[30,130],[40,130],[50,80],[40,100],[100,220]])
+        self.assertEqual(len({r['entity_id'] for r in rows}),4)
+        self.assertEqual([r['source_plot_estimate']['trace_color'] for r in rows],['blue','red','green','blue','red','black','black'])
+        for r in rows:
+            self.assertEqual(r['unit'],'km');self.assertIsNone(r['value']);self.assertIsNone(r['uncertainty'])
+            self.assertIn('not an area-equivalent',r['definition']);self.assertIn('not a seasonal envelope',r['qualification'])
+            self.assertFalse(r['seasonal_playback_eligible']);self.assertFalse(r['rank_eligible']);self.assertIsNone(r['geometry'])
+            plot=r['source_plot_estimate'];self.assertEqual((plot['source_raster']['width'],plot['source_raster']['height']),(1430,657))
+            self.assertEqual(len(plot['source_raster']['sha256']),64)
+        self.assertIn('remerged child',rows[2]['case_label']);self.assertIn('not pooled',rows[2]['qualification'])
+        self.assertEqual(rows[5]['entity_id'],'eddy:horizon:loop-66-secondary')
+        self.assertFalse(rows[5]['independent_named_case']['primary_values_inherited'])
+        self.assertIn('sampling endpoint',rows[5]['qualification'])
+        self.assertLess(rows[6]['source_plot_estimate']['approximate_plot_day_support'][1]+2,51)
+        with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:exports=list(csv.DictReader(stream))[263:]
+        self.assertEqual([json.loads(r['source_plot_estimate_json']) for r in exports],[r['source_plot_estimate'] for r in rows])
 
 
 if __name__=='__main__':unittest.main()

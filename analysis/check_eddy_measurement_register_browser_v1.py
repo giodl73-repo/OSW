@@ -194,13 +194,29 @@ def run():
             page.locator('[data-evidence-id="poseidon-meunier-2018-0.6-area"]').screenshot(path=str(OUT/'poseidon-contour-area.png'))
             page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-66-secondary')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
-            assert page.locator('#eddy-rows .eddy-record').count()==1
+            assert page.locator('#eddy-rows .eddy-record').count()==2
             for needle in ['304 days','Independent named source case','no primary values inherited','2017-12-19 to 2018-10-19','physical crosswalk remains unverified']:
                 assert needle in page.locator('#eddy-rows').inner_text(),needle
             page.set_viewport_size({'width':390,'height':844})
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             page.screenshot(path=str(OUT/'mobile-independent-secondary.png'),full_page=True)
             checks.append('Triton orbital axes/radii and fragment scope; distinct Poseidon ADT contour areas and phases; Quantum II own sampling evidence without primary inheritance, deep link and mobile layout')
+            page.set_viewport_size({'width':1440,'height':1000})
+            page.fill('#eddy-search','Nautilus');page.locator('#eddy-rows summary').click()
+            for needle in ['40–80 km · graph estimate','30–70 km · graph estimate','30–130 km · graph estimate','A1A2 remerged child','5 km allowance','10 km','not pooled','not an area-equivalent']:
+                assert needle in page.locator('#eddy-rows').inner_text(),needle
+            page.locator('[data-evidence-id="nautilus-a1a2-dwde-2020-digitized-mean-radius-range"]').screenshot(path=str(OUT/'nautilus-graph-envelope.png'))
+            page.fill('#eddy-search','Revelle');page.locator('#eddy-rows summary').click()
+            for needle in ['100–220 km · graph estimate','pre-split','first approximately 1-40 plotted days','day 51']:
+                assert needle in page.locator('#eddy-rows').inner_text(),needle
+            page.locator('[data-evidence-id="revelle-f-pre-split-dwde-2020-digitized-mean-radius-range"]').screenshot(path=str(OUT/'revelle-pre-split-graph.png'))
+            page.fill('#eddy-search','Quantum II');page.locator('#eddy-rows summary').click()
+            for needle in ['40–100 km · graph estimate','304 days','no primary values inherited','plot ends well before the report sampling endpoint']:
+                assert needle in page.locator('#eddy-rows').inner_text(),needle
+            page.set_viewport_size({'width':390,'height':844})
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.screenshot(path=str(OUT/'mobile-graph-envelope.png'),full_page=True)
+            checks.append('Graph estimates labeled separately; native mean contour radius, reading allowance/outward rounding, separate child cases, selected pre-split window and Quantum II plot endpoint without extrapolation')
             with page.expect_download() as pending:page.get_by_role('link',name='Download measurement CSV').click()
             assert hashlib.sha256(Path(pending.value.path()).read_bytes()).hexdigest()==sha('research/eddy-measurement-register-v1.csv')
             for path in set(r['source_file'] for r in document['evidence'])|{'plans/eddy-measurement-register-v1.md','research/eddy-measurement-register-v1.json'}:

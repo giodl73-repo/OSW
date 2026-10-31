@@ -30,6 +30,25 @@ def registry_date_bounds(text):
     return date(year,month,1),date(year,month,calendar.monthrange(year,month)[1]),'month'
 
 
+def validate_plot_estimate(plot,interval):
+    columns=plot['column_y_extents'];roi=plot['roi_xyxy_inclusive'];axis=plot['axis_calibration']
+    assert len(columns)==plot['selected_columns']>20
+    assert [c[0] for c in columns]==sorted({c[0] for c in columns})
+    assert all(roi[0]<=x<=roi[2] and roi[1]<=lo<=hi<=roi[3] for x,lo,hi in columns)
+    assert plot['first_last_x_pixel']==[columns[0][0],columns[-1][0]]
+    lo=min(c[1] for c in columns);hi=max(c[2] for c in columns)
+    assert plot['trace_y_extrema']==[lo,hi] and roi[1]<lo<=hi<roi[3]
+    assert axis['zero_y_pixel']>axis['tick_y_pixel'] and axis['tick_value_km']>0
+    scale=axis['tick_value_km']/(axis['zero_y_pixel']-axis['tick_y_pixel'])
+    assert math.isclose(scale,axis['km_per_pixel'],abs_tol=1e-9)
+    native=[(axis['zero_y_pixel']-hi)*scale,(axis['zero_y_pixel']-lo)*scale]
+    assert all(math.isclose(a,b,abs_tol=1e-9) for a,b in zip(native,plot['unrounded_trace_range_km']))
+    assert plot['reading_allowance_km']==5 and plot['round_outward_to_km']==10
+    assert interval==plot['range_km']==[max(0,math.floor((native[0]-5)/10)*10),math.ceil((native[1]+5)/10)*10]
+    days=[(x-axis['day_zero_x_pixel'])*100/(axis['day_100_x_pixel']-axis['day_zero_x_pixel']) for x in plot['first_last_x_pixel']]
+    assert all(math.isclose(a,b,abs_tol=1e-9) for a,b in zip(days,plot['approximate_plot_day_support']))
+
+
 def build():
     pins={}
     def read(path):
@@ -156,7 +175,11 @@ def build():
                 a=r['independent_named_case']
                 assert a['source_name']==identities[r['entity_id']]['name']
                 assert a['association_is_verified'] is False and a['primary_values_inherited'] is False
-                assert r['evidence_role']=='qualified_published_named_case_reference' and r['rights_screened_release_eligible'] is False
+                assert r['evidence_role'] in ['qualified_published_named_case_reference','graph_digitized_named_case_reference'] and r['rights_screened_release_eligible'] is False
+            if r.get('source_plot_estimate'):
+                validate_plot_estimate(r['source_plot_estimate'],r['range_value'])
+                assert r['value'] is None and r['unit']=='km' and r['category']=='size'
+                assert r['evidence_role']=='graph_digitized_named_case_reference'
             if r.get('named_case_association'):
                 a=r['named_case_association'];legacy=read('research/named-loop-current-eddies.json')
                 original=next(v for v in legacy['entries'] if v['source_number']==a['registry_source_number'])
@@ -195,7 +218,7 @@ def build():
             add(r['id'],r['entity_id'],r['category'],r['metric'],r['value'],r['unit'],path,f'/records/{n}',batch,
                 source_url=source['url'],source_access=source['access'],source_id=r['source_id'],
                 definition=r['definition'],scope=r['scope'],qualification=r['qualification'],
-                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible','named_case_association','independent_named_case'] if k in r})
+                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible','named_case_association','independent_named_case','source_plot_estimate'] if k in r})
         applied.append({'file':path,'baseline_count':batch['baseline_evidence_count'],'preserved_baseline_sha256':prior,'added':len(batch['records'])})
     records=[]
     for identifier,current in identities.items():
@@ -255,9 +278,9 @@ def build():
 def main():
     document=build();(ROOT/JSON_PATH).write_bytes((json.dumps(document,indent=2,ensure_ascii=False)+'\n').encode())
     fields=['entity_id','id','category','metric','value','unit','range_value_json','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','standard_deviation','sample_count','period_start','period_end','period_label','period_precision','component_label','case_label','right_censored','value_conflict','date_conflict','source_claims_json','calculation_json','calendar_support_json','rights_screened_release_eligible','evidence_role','definition','scope','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
-    fields.extend(['named_case_association_json','independent_named_case_json'])
+    fields.extend(['named_case_association_json','independent_named_case_json','source_plot_estimate_json'])
     out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()
-    for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False),'range_value_json':json.dumps(r.get('range_value')),'calculation_json':json.dumps(r.get('calculation')),'calendar_support_json':json.dumps(r.get('calendar_support')),'named_case_association_json':json.dumps(r.get('named_case_association')),'independent_named_case_json':json.dumps(r.get('independent_named_case'))})
+    for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False),'range_value_json':json.dumps(r.get('range_value')),'calculation_json':json.dumps(r.get('calculation')),'calendar_support_json':json.dumps(r.get('calendar_support')),'named_case_association_json':json.dumps(r.get('named_case_association')),'independent_named_case_json':json.dumps(r.get('independent_named_case')),'source_plot_estimate_json':json.dumps(r.get('source_plot_estimate'))})
     (ROOT/CSV_PATH).write_bytes(out.getvalue().encode());print(json.dumps(document['counts']))
 
 
