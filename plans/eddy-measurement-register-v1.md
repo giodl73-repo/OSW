@@ -117,3 +117,18 @@ explicit Millennium alias. This does not verify the physical crosswalk, merge
 published identities, copy values to secondary names or change release eligibility.
 Keep the preceding 214 evidence records exact. Do not average alternative
 publication versions or interpret their differences as measurement uncertainty.
+
+## Regional model cases and vertical diagnostics
+
+Keep source-described typical regional diameters separate from individual
+simulated diameters or salinity-anomaly radii. Display model-case status beside
+the quantity details. A source reporting a later filament width does not provide
+another radius for its precursor peddy. Dimensions of different simulated
+instabilities must not be assigned to the PGW case by proximity in the paper.
+
+Lilian's thermohaline-anomaly depth at 15 W and significant radial-velocity depth
+at 42 W use different diagnostics and sampling locations. Store them as separate
+depth reaches. They do not establish thickness, a matched shrinkage series or
+annual depth limits. Deeper signals explicitly attributed to adjacent cyclones
+remain outside Lilian's record. Native cm/s speed ranges remain ranges without
+an inferred midpoint, drift speed or peak. Preserve all preceding 241 records.

@@ -19,6 +19,8 @@
     if(r.component_label)add('strong','Source component: '+r.component_label+' · no post-merger radius inferred.',box);
     if(r.case_label)add('strong','Source case: '+r.case_label,box);
     if(r.evidence_role==='qualified_indexed_reference')add('strong','Qualified indexed reference · full methods not independently reviewed.',box);
+    if(r.evidence_role?.includes('model_case_reference'))add('strong','Published model case · simulated quantity; not an observed regional constant.',box);
+    if(r.evidence_role==='qualified_indexed_model_case_reference')add('strong','Qualified indexed model reference · original PDF not retrieved in this pass.',box);
     for(const [label,value] of [['Definition',r.definition],['Scope',r.scope],['Period',r.period_label||(r.period_start?`${r.period_start} to ${r.period_end}`:null)],['Qualification',r.qualification]])if(value)add('p',`${label}: ${value}`,box);
     if(r.sample_count!==null)add('p',`Table sample count: ${r.sample_count}. Standard deviation describes population spread; measurement uncertainty is unspecified.`,box);
     if(r.right_censored)add('strong','Track still present at the final study snapshot; disappearance date unknown.',box);

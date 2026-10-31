@@ -1,0 +1,168 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 241,
+  "baseline_evidence_sha256": "c46cfbe5f3b917c9ea0731b31afc585666774650a1a00387f9e38efb447c2ac0",
+  "sources": {
+    "menna-2014": {
+      "url": "https://os.copernicus.org/articles/10/155/2014/os-10-155-2014.pdf",
+      "doi": "10.5194/os-10-155-2014",
+      "access": "Original published institutional PDF; specified pages visually reviewed.",
+      "original": {
+        "url": "https://os.copernicus.org/articles/10/155/2014/os-10-155-2014.pdf",
+        "bytes": 3672191,
+        "sha256": "1b0b1242058b224d6843b45b22063716d2d7ed5b9d5b336d7e680552a5cb2cf9",
+        "pages": 11
+      },
+      "reviewed_png_sha256": {
+        "9": "3e846fc9f01049dc305447092d4c65bb12df6b9f1acd9522b769107f1b6b36b0"
+      }
+    },
+    "besiktepe-2001": {
+      "url": "https://robinson.seas.harvard.edu/PAPERS/besiktepe_etal_jmr.pdf",
+      "doi": null,
+      "access": "Original published institutional PDF; specified pages visually reviewed.",
+      "original": {
+        "url": "https://robinson.seas.harvard.edu/PAPERS/besiktepe_etal_jmr.pdf",
+        "bytes": 11003131,
+        "sha256": "7d098e33d67596d41d6b719f162959052c79cde1142a482e3753677dfd4e2a4f",
+        "pages": 41
+      },
+      "reviewed_png_sha256": {
+        "25": "c7819856e6fa1a927378fc14fda1a613bc92db2f9a2c172b05eaf1534af528fe",
+        "26": "468a6bcffe030bf48e331cc6269df63e0c3740000c3b362b0d5e2742d8ab63b1"
+      }
+    },
+    "morvan-2020": {
+      "url": "https://www.mdpi.com/2227-7390/8/4/562",
+      "doi": "10.3390/math8040562",
+      "access": "Publisher indexed full-text model setup and Figure 6 discussion reviewed. Direct original PDF unavailable in this pass; qualified model reference."
+    },
+    "guerra-2018": {
+      "url": "https://data.coaps.fsu.edu/pub/eric/papers_html/Guerra_et_al_18.pdf",
+      "doi": "10.1016/j.dsr.2018.08.005",
+      "access": "Retained original institutional PDF, page 7 visually reviewed.",
+      "original": {
+        "source_url": "https://data.coaps.fsu.edu/pub/eric/papers_html/Guerra_et_al_18.pdf",
+        "bytes": 3188106,
+        "sha256": "2148b13d10dc25321c3d1abb2dcb7103365ee0045451423ac5dbfb8a8ff1aced",
+        "pages": 10
+      },
+      "reviewed_png_sha256": {
+        "7": "e339db7718104df03a03c0709a5dd33d6e2c571a5aab2b11e870b3800ea808ee"
+      }
+    }
+  },
+  "records": [
+    {
+      "id": "batumi-menna-2014-typical-diameter",
+      "entity_id": "eddy:geography:batumi-eddy-region",
+      "category": "size",
+      "metric": "source_regional_typical_diameter",
+      "value": 100,
+      "unit": "km",
+      "source_id": "menna-2014",
+      "source_locator": "Section 3.2.3, printed page 163 / PDF page 9.",
+      "definition": "Source-described typical horizontal diameter of the Batumi structure.",
+      "scope": "Regional synthesis from combined drifter and altimetry analysis, 1999-2009.",
+      "qualification": "Approximate regional reference, not a constant or a dated individual contour. Surface rotation sometimes reverses; no annual minimum/maximum or radius inferred.",
+      "period_label": "Regional analysis, 1999-2009"
+    },
+    {
+      "id": "sevastopol-besiktepe-2001-model-diameter",
+      "entity_id": "eddy:geography:sevastopol-eddy-region",
+      "category": "size",
+      "metric": "published_simulated_case_diameter",
+      "value": 70,
+      "unit": "km",
+      "source_id": "besiktepe-2001",
+      "source_locator": "Section 4.a.i, printed page 499 / PDF page 25.",
+      "definition": "Horizontal diameter reported for the data-driven primitive-equation simulation.",
+      "scope": "Summer 1992 Black Sea simulation; late August and September after the two Sevastopol centers merge.",
+      "qualification": "Model output, not an independently measured event or regional constant. Separate observational values cited by this paper are not copied into this record. No radius, footprint or uncertainty inferred.",
+      "case_label": "Sevastopol, summer 1992 model case",
+      "period_label": "Summer 1992 simulation; late August-September",
+      "evidence_role": "published_model_case_reference"
+    },
+    {
+      "id": "kaliakra-besiktepe-2001-model-diameter",
+      "entity_id": "eddy:geography:kaliakra-eddy-region",
+      "category": "size",
+      "metric": "published_simulated_case_diameter",
+      "value": 60,
+      "unit": "km",
+      "source_id": "besiktepe-2001",
+      "source_locator": "Section 4.a.i, printed page 499 / PDF page 25.",
+      "definition": "Horizontal diameter reported for the data-driven primitive-equation simulation.",
+      "scope": "Summer 1992 Black Sea simulation; northwestern shelfbreak Kaliakra case.",
+      "qualification": "Model output, not an independently measured event or regional constant. Separate observational values cited by this paper are not copied into this record. No radius, footprint or uncertainty inferred.",
+      "case_label": "Kaliakra, summer 1992 model case",
+      "period_label": "Summer 1992 simulation",
+      "evidence_role": "published_model_case_reference"
+    },
+    {
+      "id": "peddies-morvan-2020-model-salinity-radius",
+      "entity_id": "eddy:geography:persian-gulf-peddies-family",
+      "category": "size",
+      "metric": "published_simulated_case_salinity_anomaly_radius",
+      "value": 10,
+      "unit": "km",
+      "source_id": "morvan-2020",
+      "source_locator": "Figure 6 discussion, peddy advection and elongation; model setup section.",
+      "definition": "Approximate horizontal radius assessed from the simulated salinity anomaly relative to surrounding water.",
+      "scope": "Summer-monsoon peddy formed at Ras al Hamra and advected toward Ras al Hadd in the regional HYCOM simulation.",
+      "qualification": "Qualified model case within the family, not an observed family mean. The later 10 km filament extent is not this radius. The separate 15 km radius and 200 m thickness describe other instability cases and are not assigned to this peddy.",
+      "case_label": "Summer-monsoon salinity-anomaly peddy, HYCOM case",
+      "period_label": "Summer monsoon model sequence; calendar year not assigned",
+      "evidence_role": "qualified_indexed_model_case_reference"
+    },
+    {
+      "id": "sevastopol-menna-2014-spring-speed-range",
+      "entity_id": "eddy:geography:sevastopol-eddy-region",
+      "category": "kinematics",
+      "metric": "source_regional_surface_geostrophic_speed_range",
+      "value": null,
+      "unit": "cm/s",
+      "source_id": "menna-2014",
+      "source_locator": "Section 3.2.3, printed page 163 / PDF page 9; Figure 7c.",
+      "definition": "Approximate surface geostrophic speeds associated with spring generation of Sevastopol eddies.",
+      "scope": "Combined drifter and altimetry regional analysis, 1999-2009; Figure 7c snapshot 2008-05-16.",
+      "qualification": "Source range, not a peak rotational speed, translation speed, seasonal envelope or statistical uncertainty.",
+      "range_value": [
+        15,
+        20
+      ],
+      "range_kind": "source_reported_approximate_speed_range",
+      "period_label": "Spring-generation context; regional analysis 1999-2009"
+    },
+    {
+      "id": "lilian-guerra-2018-mid-atlantic-depth",
+      "entity_id": "eddy:geography:lilian-2006",
+      "category": "structure",
+      "metric": "source_case_thermohaline_anomaly_depth_reach",
+      "value": 1200,
+      "unit": "m",
+      "source_id": "guerra-2018",
+      "source_locator": "Conclusions, printed page 110 / PDF page 7.",
+      "definition": "Reported depth reach of temperature and salinity anomalies.",
+      "scope": "Ring Lilian at 15 W; Argo profiles over the Mid-Atlantic Ridge.",
+      "qualification": "Different diagnostics at different places. These values do not form a thickness range, matched vertical shrinkage measurement or year-round depth limits. The 800 m and 1500 m cyclone signatures are not assigned to Lilian.",
+      "case_label": "Lilian, 15 W temperature and salinity anomalies",
+      "period_label": "At 15 W during the transatlantic case; exact observation day unspecified"
+    },
+    {
+      "id": "lilian-guerra-2018-brazil-depth",
+      "entity_id": "eddy:geography:lilian-2006",
+      "category": "structure",
+      "metric": "source_case_significant_velocity_depth_reach",
+      "value": 400,
+      "unit": "m",
+      "source_id": "guerra-2018",
+      "source_locator": "Conclusions, printed page 110 / PDF page 7.",
+      "definition": "Reported depth reach of significant radial velocity signal.",
+      "scope": "Ring Lilian at 42 W; Brazilian-margin current measurements.",
+      "qualification": "Different diagnostics at different places. These values do not form a thickness range, matched vertical shrinkage measurement or year-round depth limits. The 800 m and 1500 m cyclone signatures are not assigned to Lilian.",
+      "case_label": "Lilian, 42 W significant radial velocity signal",
+      "period_label": "At 42 W during the transatlantic case; exact observation day unspecified"
+    }
+  ]
+}

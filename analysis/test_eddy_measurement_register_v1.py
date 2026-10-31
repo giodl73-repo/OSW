@@ -11,7 +11,7 @@ class EddyRegister(unittest.TestCase):
         d=register.build()
         self.assertEqual(len(d['records']),136)
         self.assertEqual(len({r['entity_id'] for r in d['records']}),136)
-        self.assertEqual(len(d['evidence']),241)
+        self.assertEqual(len(d['evidence']),248)
         for path,pin in d['input_sha256'].items():self.assertEqual(hashlib.sha256((register.ROOT/path).read_bytes()).hexdigest(),pin)
         for r in d['evidence']:
             source=json.loads((register.ROOT/r['source_file']).read_bytes())
@@ -55,7 +55,7 @@ class EddyRegister(unittest.TestCase):
     def test_csv_does_not_drop_conflicts_or_rewrite_units(self):
         d=register.build();evidence={r['id']:r for r in d['evidence']}
         with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:rows=list(csv.DictReader(stream))
-        self.assertEqual(len(rows),241)
+        self.assertEqual(len(rows),248)
         for r in rows:
             original=evidence[r['id']]
             self.assertEqual(r['unit'],original['unit']);self.assertEqual(r['source_pointer'],original['source_pointer'])
@@ -139,9 +139,9 @@ class EddyRegister(unittest.TestCase):
         d=register.build();batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v5.json').read_bytes())
         prior=hashlib.sha256(json.dumps(d['evidence'][:214],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
         self.assertEqual(prior,batch['baseline_evidence_sha256'])
-        rows=d['evidence'][214:];self.assertEqual(len(rows),27)
+        rows=d['evidence'][214:241];self.assertEqual(len(rows),27)
         self.assertEqual([r['value'] for r in rows],[24271,43199,37442,19964,24998,21530,35065,57751,92026,45049,44392,22137,48786,21318,22511,67989,23563,12421,18682,49672,12369,31304,7596,25036,52058,70659,15451])
-        self.assertEqual(d['counts']['size_owners'],49);self.assertEqual(d['counts']['size_records'],67)
+        self.assertEqual(d['counts']['size_owners'],53);self.assertEqual(d['counts']['size_records'],71)
         for r in rows:
             a=r['named_case_association'];self.assertFalse(a['physical_crosswalk_verified'])
             self.assertEqual((r['category'],r['unit']),('size','km2'))
@@ -153,8 +153,32 @@ class EddyRegister(unittest.TestCase):
         self.assertEqual((alias['source_name'],alias['registry_name']),('Millenium','Millennium'))
         self.assertFalse(alias['dates_equal']);self.assertEqual(alias['registry_initial_separation'],'2001-04-22')
         self.assertEqual(rows[15]['named_case_association']['dates_equal'],True)
-        with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:csvrows=list(csv.DictReader(stream))[214:]
+        with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:csvrows=list(csv.DictReader(stream))[214:241]
         self.assertEqual([json.loads(r['named_case_association_json']) for r in csvrows],[r['named_case_association'] for r in rows])
+
+
+    def test_regional_models_speed_ranges_and_different_depth_diagnostics(self):
+        d=register.build();batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v6.json').read_bytes())
+        prior=hashlib.sha256(json.dumps(d['evidence'][:241],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
+        self.assertEqual(prior,batch['baseline_evidence_sha256'])
+        rows={r['id']:r for r in d['evidence'][241:]};self.assertEqual(len(rows),7)
+        self.assertEqual(rows['batumi-menna-2014-typical-diameter']['value'],100)
+        for name,value in [('sevastopol',70),('kaliakra',60)]:
+            r=rows[f'{name}-besiktepe-2001-model-diameter'];self.assertEqual(r['value'],value)
+            self.assertEqual(r['evidence_role'],'published_model_case_reference')
+            self.assertIn('summer 1992 model case',r['case_label'])
+        peddy=rows['peddies-morvan-2020-model-salinity-radius'];self.assertEqual(peddy['value'],10)
+        self.assertEqual(peddy['evidence_role'],'qualified_indexed_model_case_reference')
+        self.assertIn('salinity anomaly',peddy['definition']);self.assertIn('other instability cases',peddy['qualification'])
+        speed=rows['sevastopol-menna-2014-spring-speed-range'];self.assertIsNone(speed['value'])
+        self.assertEqual((speed['unit'],speed['range_value']),('cm/s',[15,20]))
+        deep=rows['lilian-guerra-2018-mid-atlantic-depth'];shallow=rows['lilian-guerra-2018-brazil-depth']
+        self.assertEqual((deep['value'],shallow['value']),(1200,400));self.assertNotEqual(deep['metric'],shallow['metric'])
+        for r in [deep,shallow]:
+            self.assertEqual((r['category'],r['unit']),('structure','m'));self.assertNotIn('range_value',r)
+            self.assertIn('not form a thickness range',r['qualification'])
+            self.assertIsNone(r['period_start']);self.assertIsNone(r['geometry'])
+        self.assertEqual(d['counts']['structure_owners'],2)
 
 
 if __name__=='__main__':unittest.main()

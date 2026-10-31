@@ -166,6 +166,23 @@ def run():
             assert page.locator('.eddy-scroll').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
             page.screenshot(path=str(OUT/'mobile-published-area.png'),full_page=True)
             checks.append('27 published named separation areas: native square kilometres, study/registry date discrepancy, explicit spelling alias, unverified physical association and mobile layout')
+            page.set_viewport_size({'width':1440,'height':1000})
+            for search,needles in [
+                ('Batumi Eddy',['100 km','source regional typical diameter']),
+                ('Kaliakra Eddy',['60 km','Published model case','summer 1992 model case']),
+                ('Peddies (Persian Gulf Water eddies)',['10 km','Published model case','Qualified indexed model reference','other instability cases']),
+                ('Sevastopol Eddy',['70 km','15–20 cm/s','Published model case']),
+                ('Agulhas Ring Lilian',['1,200 m','400 m','temperature and salinity anomalies','significant radial velocity signal','not form a thickness range'])]:
+                page.fill('#eddy-search',search);assert page.locator('#eddy-rows tr').count()==1
+                page.locator('#eddy-rows summary').click()
+                for needle in needles:assert needle in page.locator('#eddy-rows').inner_text(),(search,needle)
+                if search.startswith('Peddies'):page.screenshot(path=str(OUT/'peddy-model-case.png'),full_page=True)
+            page.screenshot(path=str(OUT/'lilian-depth-diagnostics.png'),full_page=True)
+            page.set_viewport_size({'width':390,'height':844})
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            assert page.locator('.eddy-scroll').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
+            page.screenshot(path=str(OUT/'mobile-depth-diagnostics.png'),full_page=True)
+            checks.append('Regional typical size, explicit simulated cases and indexed model access, native cm/s range and separate Lilian depth diagnostics; mobile layout')
             with page.expect_download() as pending:page.get_by_role('link',name='Download measurement CSV').click()
             assert hashlib.sha256(Path(pending.value.path()).read_bytes()).hexdigest()==sha('research/eddy-measurement-register-v1.csv')
             for path in set(r['source_file'] for r in document['evidence'])|{'plans/eddy-measurement-register-v1.md','research/eddy-measurement-register-v1.json'}:
