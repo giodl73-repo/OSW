@@ -225,3 +225,19 @@ cites earlier work for these contextual sizes; its underlying size operators
 remain unverified. Original Hamilton PDF page pixels were reviewed; later
 paper access is indexed text only. No physical name crosswalk, footprint or
 release eligibility inferred. Preserve all preceding 289 evidence records.
+
+## Configuration-dependent regional model cases
+
+Dymova and Miklashevskaya (2019) experiment 2 uses EMODnet bathymetry,
+1.6 km horizontal grid and 27 vertical levels. Keep the Sukhumi 100 km
+diameter and 300 m reach separate from initial 30-35 cm/s and later 15-20 cm/s
+velocities. Its initial fields are climatological and forcing is from 2011:
+model phases must not become exact dated observations. The Kerch-origin
+anticyclone reaches 60 km after migrating west to Cape Sarych; associate it
+only as a regional-origin candidate, not an independently verified named Kerch
+eddy or size measured at Kerch. Keep its 400 m reach and formation velocity
+15-20 cm/s separate. Neither structure appears in experiment 1; this is model
+configuration dependence, not physical variability or measurement uncertainty.
+Do not infer thickness, a fixed contour, containment or annual ranges. Primary
+PDF text was accessible, but original bytes and page images were not verified.
+Preserve all preceding 292 evidence records exactly.

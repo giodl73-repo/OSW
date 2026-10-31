@@ -264,6 +264,19 @@ def run():
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             page.screenshot(path=str(OUT/'mobile-icarus-diameter.png'),full_page=True)
             checks.append('Jumbo distinct narrative phase diameters without child inheritance or pooled range; Icarus qualified contextual size without invented sampling dates; mobile layout')
+            page.set_viewport_size({'width':1440,'height':1000})
+            page.fill('#eddy-search','Sukhumi');page.locator('#eddy-rows summary').click()
+            for needle in ['100 km','300 m','30–35 cm/s','15–20 cm/s','Published model case','absent from experiment 1','not dated observations']:
+                assert needle in page.locator('#eddy-rows').inner_text(),needle
+            page.locator('[data-evidence-id="sukhumi-dymova-2019-diameter"]').screenshot(path=str(OUT/'sukhumi-model-diameter.png'))
+            page.fill('#eddy-search','Kerch');page.locator('#eddy-rows summary').click()
+            for needle in ['60 km','400 m','15–20 cm/s','regional-origin case candidate','Cape Sarych','not a size snapshot at Kerch']:
+                assert needle in page.locator('#eddy-rows').inner_text(),needle
+            page.locator('[data-evidence-id="kerch-dymova-2019-diameter"]').screenshot(path=str(OUT/'kerch-origin-model-diameter.png'))
+            page.set_viewport_size({'width':390,'height':844})
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.screenshot(path=str(OUT/'mobile-kerch-origin-case.png'),full_page=True)
+            checks.append('Sukhumi and Kerch-origin model sizes, vertical reach and distinct velocity phases; bathymetry configuration dependence, source access and migrated size location retained; no dated observation or state containment inferred')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
