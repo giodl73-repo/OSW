@@ -21,18 +21,24 @@ jobs:
     runs-on: ubuntu-24.04
     outputs:
       execute: ${{ steps.request.outputs.execute }}
+      checkout_paths: ${{ steps.request.outputs.checkout_paths }}
     steps:
       - uses: actions/checkout@v6
         with:
           sparse-checkout-cone-mode: false
-          sparse-checkout: research/current-length-register-browser-request-v1.json
+          sparse-checkout: |
+            research/current-length-register-browser-request-v1.json
+            research/current-length-register-browser-preflight-v1.json
       - id: request
         run: |
           python - <<'PY'
           import json,os,pathlib
           r=json.loads(pathlib.Path('research/current-length-register-browser-request-v1.json').read_bytes())
           assert r['schema']=='osw.current-length-register-browser-request.v1' and type(r['execute']) is bool
-          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          p=json.loads(pathlib.Path('research/current-length-register-browser-preflight-v1.json').read_bytes())
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('execute='+str(r['execute']).lower()+'\n')
+              f.write('checkout_paths<<OSW_PATHS\n'+'\n'.join(p['checkout_paths'])+'\nOSW_PATHS\n')
           PY
   browser:
     needs: select-request
@@ -41,6 +47,9 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: ${{ needs.select-request.outputs.checkout_paths }}
       - uses: actions/setup-python@v6
         with:
           python-version: "3.13"

@@ -1,4 +1,5 @@
 import hashlib
+import csv
 import json
 import unittest
 import estimate_current_reference_extents_v7 as estimates
@@ -8,6 +9,23 @@ import build_current_length_register_v1 as register
 
 
 class FinalRouteLengths(unittest.TestCase):
+    def test_csv_preserves_every_length_source_range_and_component_convention(self):
+        document=register.build();rows={r['entity_id']:r for r in document['records']}
+        with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:
+            exported=list(csv.DictReader(stream))
+        self.assertEqual({r['entity_id'] for r in exported},set(rows))
+        self.assertEqual(len(exported),111)
+        for r in exported:
+            original=rows[r['entity_id']]
+            self.assertEqual(float(r['length_estimate_km']),original['length_estimate_km'])
+            self.assertEqual(r['record_file'],original['record_file'])
+            self.assertEqual(r['scope'],original['scope'])
+            self.assertEqual(r['source_url'],original.get('source_url') or '')
+            self.assertEqual(r['reported_length_source_locator'],original.get('reported_length_source_locator') or '')
+            expected=original['route_sensitivity_km']
+            self.assertEqual([float(r['route_sensitivity_min_km']),float(r['route_sensitivity_max_km'])] if expected else None,expected)
+            self.assertEqual(r['component_ids'],'|'.join(c['entity_id'] for c in original.get('length_components',[])))
+
     def test_all_final_grids_reproduce_and_exact_geography_is_bound(self):
         document = estimates.build()
         raw = (estimates.ROOT / estimates.OUTPUT).read_bytes()

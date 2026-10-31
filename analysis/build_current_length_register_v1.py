@@ -160,8 +160,11 @@ def build():
 
 def main():
     value=build();(ROOT/JSON_PATH).write_bytes((json.dumps(value,indent=2,ensure_ascii=False)+'\n').encode())
-    output=io.StringIO(newline='');fields=['entity_id','name','basin','identity_level','status','length_estimate_km','method','scope','length_convention','selected_member_id','selected_route_id','available_regional_reach_km','needs_full_extent_estimate']
-    writer=csv.DictWriter(output,fieldnames=fields,extrasaction='ignore');writer.writeheader();writer.writerows(value['records'])
+    output=io.StringIO(newline='');fields=['entity_id','name','basin','identity_level','status','length_estimate_km','method','scope','length_convention','selected_member_id','selected_route_id','record_file','source_url','source_locator','reported_length_source_id','reported_length_source_locator','source_time_convention','route_sensitivity_min_km','route_sensitivity_max_km','conditional_extent','component_ids','available_regional_reach_km','needs_full_extent_estimate']
+    writer=csv.DictWriter(output,fieldnames=fields,extrasaction='ignore');writer.writeheader()
+    for row in value['records']:
+        bounds=row['route_sensitivity_km']
+        writer.writerow({**row,'route_sensitivity_min_km':bounds[0] if bounds else None,'route_sensitivity_max_km':bounds[1] if bounds else None,'component_ids':'|'.join(c['entity_id'] for c in row.get('length_components',[]))})
     (ROOT/CSV_PATH).write_bytes(output.getvalue().encode('utf8'))
     print(json.dumps(value['counts']))
 
