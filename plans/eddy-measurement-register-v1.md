@@ -406,3 +406,10 @@ Retain that fact; no original chart asset is republished, no release rights are
 inferred and these references remain excluded from the rights-screened release.
 The small nine-panel DOE GOMEX figure and unavailable BOEM original supply no
 measurements. Preserve all preceding 317 numeric evidence and CSV rows exactly.
+
+
+## Glider profile diagnostics (v21)
+
+Retain a named source case, sampled phase, thermal reference, aggregation axis and native units. Isotherm depth is a thermal-column diagnostic, not whole-eddy thickness. A current averaged over 0–1000 m does not establish an eddy depth, surface maximum, drift speed or time average. Heat content in kJ/cm² is energy per area of sampled water columns; do not infer total heat, volume or a boundary.
+
+Use explicit sampling dates only where the text supports them. An adjoining circuit window stays contextual when individual sample dates are unresolved. Separate transition-zone and later encounter diagnostics; neither their differences nor neighboring Loop Current core values define a Lazarus seasonal range. Preserve strict bounds and leave statistical uncertainty unspecified. Indexed manuscript references remain qualified, with original PDF pixels, raw profiles and physical identity crosswalk unverified. These records do not close numeric size gaps or enable seasonal playback or state containment.

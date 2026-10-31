@@ -1,7 +1,7 @@
 "use strict";
 (async()=>{
   const $=id=>document.getElementById(id),add=(tag,text,parent)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(parent)parent.append(n);return n;};
-  const units={km:'km',km2:'km²',day:'days',year:'years',month:'months',week:'weeks',percent:'%',degree_latitude:'degrees latitude','day/year':'days/year'},num=n=>n.toLocaleString(undefined,{maximumFractionDigits:3});
+  const units={'kJ/cm2':'kJ/cm²',km:'km',km2:'km²',day:'days',year:'years',month:'months',week:'weeks',percent:'%',degree_latitude:'degrees latitude','day/year':'days/year'},num=n=>n.toLocaleString(undefined,{maximumFractionDigits:3});
   function quantity(r){
     if(r.value_conflict)return 'Unresolved source values';
     if(r.lower_bound!==null)return `${r.lower_bound_exclusive?'>':'≥'} ${num(r.lower_bound)} ${units[r.unit]||r.unit}`;
@@ -19,6 +19,13 @@
     if(r.component_label)add('strong','Source component: '+r.component_label+' · no post-merger radius inferred.',box);
     if(r.case_label)add('strong','Source case: '+r.case_label,box);
     if(r.evidence_role==='qualified_indexed_reference')add('strong','Qualified indexed reference · full methods not independently reviewed.',add('p',undefined,box));
+    if(r.profile_context){
+      add('strong','Glider profile diagnostic · sampling support is not whole-eddy depth.',add('p',undefined,box));
+      const c=r.profile_context;
+      if(c.vertical_averaging_interval_m)add('p',`Depth averaging: ${c.vertical_averaging_interval_m.join('–')} m; averaging axis: depth.`,box);
+      if(c.thermal_reference_celsius!==undefined)add('p',`Thermal reference: ${c.thermal_reference_celsius}°C isotherm.`,box);
+      if(c.related_circuit_window)add('p',`Related circuit: ${c.related_circuit_window.join(' to ')}; context only, not exact sample dates.`,box);
+    }
     if(r.source_plot_estimate){
       add('strong','Graph-read estimate · selected plotted segment, not a seasonal range.',add('p',undefined,box));
       add('p',`Reading method: ${r.source_plot_estimate.reading_allowance_km} km allowance before rounding the lower end down and upper end up to ${r.source_plot_estimate.round_outward_to_km} km. Source measurement uncertainty is unspecified.`,box);

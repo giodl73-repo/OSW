@@ -380,6 +380,18 @@ def run():
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             page.screenshot(path=str(OUT/'mobile-michael-arrow-spans.png'),full_page=True)
             checks.append('Lazarus and Michael visible circulation-arrow spans retain date, manual source readings, rejected closed-outline extraction and explicit confidential/copyright source status; no contour, footprint or release-rights promotion')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-61-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-61-primary"]')
+            assert row.locator('details').evaluate('(e)=>e.open')
+            page.set_viewport_size({'width':1440,'height':1000})
+            for needle in ['30 m','20–30 kJ/cm²','> 100 kJ/cm²','Depth averaging: 0–1000 m; averaging axis: depth.','26°C isotherm','context only, not exact sample dates','not whole-eddy depth','full methods not independently reviewed']:
+                assert needle in row.inner_text(),needle
+            page.locator('[data-evidence-id="lazarus-perry-2015-later-depth-average-speed"]').screenshot(path=str(OUT/'lazarus-glider-depth-average.png'))
+            page.locator('[data-evidence-id="lazarus-perry-2015-transition-column-ohc"]').screenshot(path=str(OUT/'lazarus-glider-column-heat.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.locator('[data-evidence-id="lazarus-perry-2015-later-column-ohc"]').screenshot(path=str(OUT/'mobile-lazarus-glider-heat.png'))
+            checks.append('Lazarus glider diagnostics retain thermal-column depth, energy-per-area units, strict heat-content bound and depth averaging; later circuit remains context only, no whole-eddy depth or seasonal extrema inferred; mobile layout')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
