@@ -328,3 +328,23 @@ when no contour operator is specified. A proposed merger does not authorize
 inheritance of the neighboring tracked eddy measurements or identity. Publisher
 indexed text can supply a qualified reference, with missing original bytes and
 page-pixel verification stated. Preserve all preceding 312 records and CSV rows.
+
+## Retained editorial contour spans
+
+For Ursa Figure 3 on 7 March 2021, derive coarse bounding arc spans from the
+existing source-pixel contour audit, without promoting its physical boundary.
+Reproduce all six retained paths against the original figure; keep the two
+non-simple threshold-100 paths excluded. Use the four accepted stroke/threshold
+paths and the audit's nominal plus sixteen +/-3-pixel independent anchor shifts.
+Apply the retained linear axis calibration throughout the panel ROI, including
+below the lowest labeled latitude tick; labeled ticks are not plot-frame bounds.
+All curve extrema and their six-pixel reading allowance must stay inside the ROI.
+Use the same chosen 6371 km sphere, six-pixel extent allowance and outward 25 km
+rounding as the earlier map-span protocol, additionally enveloping these 68
+segmentation/calibration scenarios. The six pixels remain a declared reading
+allowance, not measured error; scenario spread is not a confidence interval.
+Serialize audit km to six decimals after calculating headline coarse bounds.
+Retain source 0.65 cm literally with unresolved unit, editorial Ursa attribution
+and scientific review pending. These spans are not physical width, radius,
+diameter, area, an admitted footprint, a seasonal range or lifetime. No values
+flow into registry Ursa. Preserve all preceding 313 evidence and CSV rows.

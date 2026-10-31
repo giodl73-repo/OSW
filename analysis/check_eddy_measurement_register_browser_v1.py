@@ -73,7 +73,7 @@ def run():
             for name in ['thor-2020','ursa-2021']:
                 tr=page.locator(f'tr[data-eddy-id="eddy:published:{name}"]');tr.locator('summary').click()
                 assert 'Paper window:' in tr.inner_text() and 'measured lifetime' in tr.inner_text()
-                assert tr.locator('.eddy-record').count()==1
+                assert tr.locator('.eddy-record').count()==(3 if name=='ursa-2021' else 1)
                 assert 'Not an individual lifespan' in tr.inner_text()
             checks.append('Eliza value/year conflicts retained; parent-ring span and paper windows not promoted to individual lifetimes')
             page.select_option('#eddy-identity','eddy_family');page.fill('#eddy-search','Agulhas')
@@ -344,6 +344,18 @@ def run():
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             page.screenshot(path=str(OUT/'mobile-crimean-dated-case.png'),full_page=True)
             checks.append('Crimean named image-case diameter retains one source date, qualified original-PDF text access and unverified merger hypothesis; no neighboring measurements inherited or seasonal range inferred')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Aursa-2021')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:published:ursa-2021"]');assert row.locator('details').evaluate('(e)=>e.open')
+            page.set_viewport_size({'width':1440,'height':1000})
+            for needle in ['300–375 km · map estimate','250–325 km · map estimate','68 axis scenarios','physical ring attribution remains pending','0.65 cm','unresolved unit','2021-03-07','Not eddy diameter','49 days']:
+                assert needle in row.inner_text(),needle
+            assert 'Size reference needed' not in row.inner_text()
+            page.locator('[data-evidence-id="ursa-exley-2022-map-east-west-span"]').screenshot(path=str(OUT/'ursa-candidate-east-west-span.png'))
+            page.locator('[data-evidence-id="ursa-exley-2022-map-north-south-span"]').screenshot(path=str(OUT/'ursa-candidate-north-south-span.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.screenshot(path=str(OUT/'mobile-ursa-candidate-spans.png'),full_page=True)
+            checks.append('Ursa dated editorial contour spans with accepted stroke/threshold and axis sensitivity, literal unresolved SSH unit and pending physical attribution; paper-stage interval stays separate; no registry inheritance or physical boundary admission')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

@@ -28,6 +28,7 @@
       add('strong','Map-read span estimate · one published snapshot, not eddy diameter.',add('p',undefined,box));
       add('p',`Reading method: ${m.component.replaceAll('_','–')} bounding span on a ${c.earth_radius_km} km radius sphere; ${c.reading_allowance_pixels} pixels at each extent, rounded outward to ${c.round_outward_km} km. This is graph-reading allowance, not instrument uncertainty.`,box);
       add('p',`Selected outline: ${c.source_name}, ${c.date}, Figure ${c.figure}, ${c.panel}. ${c.boundary_description}`,box);
+      if(c.method==='retained_contour_audit_span_v1')add('p',`Sensitivity: four accepted stroke/threshold paths, ${m.calculation.accepted_scenarios} axis scenarios with ±${c.axis_sensitivity_pixels} pixel anchor shifts, plus the reading allowance above. Two non-simple paths stay excluded. These are editorial contour spans; physical ring attribution remains pending.`,box);
     }
     if(r.independent_named_case)add('strong','Independent named source case · no primary values inherited; physical crosswalk remains unverified.',add('p',undefined,box));
     if(r.evidence_role?.includes('model_case_reference'))add('strong','Published model case · simulated quantity; not an observed regional constant.',add('p',undefined,box));
