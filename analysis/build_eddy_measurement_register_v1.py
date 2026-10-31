@@ -152,6 +152,16 @@ def build():
                 registry_contexts[owner]=context
         for n,r in enumerate(batch['records']):
             source=batch['sources'][r['source_id']]
+            if r.get('named_case_association'):
+                a=r['named_case_association'];legacy=read('research/named-loop-current-eddies.json')
+                original=next(v for v in legacy['entries'] if v['source_number']==a['registry_source_number'])
+                assert r['entity_id']==f"eddy:horizon:loop-{a['registry_source_number']:02}-primary"
+                assert (a['registry_name'],a['registry_initial_separation'])==(original['name'],original['initial_separation'])
+                assert a['source_name']==original['name'] or (a['source_name'],original['name'])==('Millenium','Millennium')
+                assert a['dates_equal']==(a['study_separation_date']==original['initial_separation'])
+                assert a['physical_crosswalk_verified'] is False and r['rights_screened_release_eligible'] is False
+                assert r['period_start']==r['period_end']==a['study_separation_date']
+                assert r['metric']=='published_named_case_separation_contour_area' and r['category']=='size' and r['unit']=='km2'
             assert r['category'] in ['size','duration','recurrence','travel','structure','kinematics']
             assert any(r.get(k) is not None for k in ['value','range_value','upper_bound','lower_bound'])
             interval=r.get('range_value')
@@ -180,7 +190,7 @@ def build():
             add(r['id'],r['entity_id'],r['category'],r['metric'],r['value'],r['unit'],path,f'/records/{n}',batch,
                 source_url=source['url'],source_access=source['access'],source_id=r['source_id'],
                 definition=r['definition'],scope=r['scope'],qualification=r['qualification'],
-                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible'] if k in r})
+                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible','named_case_association'] if k in r})
         applied.append({'file':path,'baseline_count':batch['baseline_evidence_count'],'preserved_baseline_sha256':prior,'added':len(batch['records'])})
     records=[]
     for identifier,current in identities.items():
@@ -239,8 +249,9 @@ def build():
 def main():
     document=build();(ROOT/JSON_PATH).write_bytes((json.dumps(document,indent=2,ensure_ascii=False)+'\n').encode())
     fields=['entity_id','id','category','metric','value','unit','range_value_json','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','standard_deviation','sample_count','period_start','period_end','period_label','period_precision','component_label','case_label','right_censored','value_conflict','date_conflict','source_claims_json','calculation_json','calendar_support_json','rights_screened_release_eligible','evidence_role','definition','scope','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
+    fields.append('named_case_association_json')
     out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()
-    for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False),'range_value_json':json.dumps(r.get('range_value')),'calculation_json':json.dumps(r.get('calculation')),'calendar_support_json':json.dumps(r.get('calendar_support'))})
+    for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False),'range_value_json':json.dumps(r.get('range_value')),'calculation_json':json.dumps(r.get('calculation')),'calendar_support_json':json.dumps(r.get('calendar_support')),'named_case_association_json':json.dumps(r.get('named_case_association'))})
     (ROOT/CSV_PATH).write_bytes(out.getvalue().encode());print(json.dumps(document['counts']))
 
 

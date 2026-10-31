@@ -100,3 +100,20 @@ An undated Active label supplies neither current status nor a valid age lower
 bound. Blank fields remain unknown. The 15 secondary labels link to primary-row
 context without inheriting measurements or a dissipation month. Registry and
 published named-ring identities remain separate until their crosswalk is reviewed.
+
+## Published named-case contour areas
+
+Dukhovskoy et al. (2015), Table 2, supplies 27 altimetric areas at separation,
+using the 0.17 m contour in spatially demeaned sea-surface height (section 2.2.1).
+Retain native km² and the study separation date. These are contour-defined areas,
+not radii, diameters, year-round ranges or complete occupied footprints. The
+4000 km² selection criterion is a census filter, not an area assigned to a gap.
+The separation-period column measures inter-event spacing, not individual life.
+
+The table explicitly attributes names to Horizon Marine. Associate those named
+cases with primary registry rows as qualified source references, preserving
+both dates and any differences. Preserve source spelling Millenium with an
+explicit Millennium alias. This does not verify the physical crosswalk, merge
+published identities, copy values to secondary names or change release eligibility.
+Keep the preceding 214 evidence records exact. Do not average alternative
+publication versions or interpret their differences as measurement uncertainty.

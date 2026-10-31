@@ -151,6 +151,21 @@ def run():
             assert page.locator('.eddy-scroll').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
             page.screenshot(path=str(OUT/'mobile-calendar.png'),full_page=True)
             checks.append('Registry: native knots, full-month calendar support, explicit zero chronology condition, secondary noninheritance/primary navigation and undated Active labels without ages')
+            page.set_viewport_size({'width':1440,'height':1000})
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-51-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            tr=page.locator('#eddy-rows');assert '7,596 km²' in tr.inner_text()
+            for needle in ['0.17 m','2008-03-06','2008-03-10','Dates differ','inter-event spacing','physical identity crosswalk remains unverified']:
+                assert needle in tr.inner_text(),needle
+            assert page.locator('[data-evidence-id="loop-51-dukhovskoy-2015-separation-area"]').count()==1
+            page.screenshot(path=str(OUT/'published-area.png'),full_page=True)
+            page.fill('#eddy-search','Millennium');page.locator('#eddy-rows summary').click()
+            assert '44,392 km²' in tr.inner_text() and 'Source spelling Millenium' in tr.inner_text()
+            page.set_viewport_size({'width':390,'height':844})
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            assert page.locator('.eddy-scroll').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
+            page.screenshot(path=str(OUT/'mobile-published-area.png'),full_page=True)
+            checks.append('27 published named separation areas: native square kilometres, study/registry date discrepancy, explicit spelling alias, unverified physical association and mobile layout')
             with page.expect_download() as pending:page.get_by_role('link',name='Download measurement CSV').click()
             assert hashlib.sha256(Path(pending.value.path()).read_bytes()).hexdigest()==sha('research/eddy-measurement-register-v1.csv')
             for path in set(r['source_file'] for r in document['evidence'])|{'plans/eddy-measurement-register-v1.md','research/eddy-measurement-register-v1.json'}:

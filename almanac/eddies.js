@@ -1,7 +1,7 @@
 "use strict";
 (async()=>{
   const $=id=>document.getElementById(id),add=(tag,text,parent)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(parent)parent.append(n);return n;};
-  const units={km:'km',day:'days',year:'years',month:'months',week:'weeks',percent:'%',degree_latitude:'degrees latitude','day/year':'days/year'},num=n=>n.toLocaleString(undefined,{maximumFractionDigits:3});
+  const units={km:'km',km2:'km²',day:'days',year:'years',month:'months',week:'weeks',percent:'%',degree_latitude:'degrees latitude','day/year':'days/year'},num=n=>n.toLocaleString(undefined,{maximumFractionDigits:3});
   function quantity(r){
     if(r.value_conflict)return 'Unresolved source values';
     if(r.lower_bound!==null)return `${r.lower_bound_exclusive?'>':'≥'} ${num(r.lower_bound)} ${units[r.unit]||r.unit}`;
