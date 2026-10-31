@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Eddy measurements · OSW</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    main{padding:1rem}h1{font-size:clamp(2.5rem,6vw,4rem);margin:1rem 0}.eddy-controls{display:flex;flex-wrap:wrap;gap:1rem;align-items:end;margin:1.5rem 0}label{display:grid;gap:.2rem}input,select{max-width:100%}
+    #eddy-summary{font-weight:700}.eddy-note{color:var(--muted);font-size:.85rem;display:block;margin:.35rem 0}.eddy-links{display:flex;flex-wrap:wrap;gap:1rem}.eddy-scroll{overflow:auto}table{font-size:.9rem}th,td{padding:.65rem}details{max-width:42rem}details p{line-height:1.45;margin:.6rem 0}.eddy-record{padding:.8rem 0;border-bottom:1px solid var(--line)}.eddy-value{font-weight:750;font-variant-numeric:tabular-nums}.eddy-record h3{font-size:1rem;margin:.2rem 0}.eddy-record a{display:inline-block;margin:.2rem .8rem .2rem 0}.eddy-conflict{color:#ffdc95}
+    @media(max-width:650px){.eddy-scroll table{min-width:0}thead{display:none}table,tbody,tr,td{display:block;max-width:100%;overflow-wrap:anywhere}tr{border-bottom:2px solid var(--line);padding:.6rem 0}td{border:0;padding:.35rem 0}td::before{content:attr(data-label) ': ';font-weight:700}details{max-width:100%}.eddy-controls{display:block}.eddy-controls label{margin:1rem 0}}
+  </style>
+  <script src="eddies.js" defer></script>
+</head>
+<body><main>
+  <nav><a href="index.html">Almanac</a><a href="lengths.html">Current lengths</a><a href="widths.html">Current widths</a><a href="dashboard.html">Coverage</a></nav>
+  <h1>Eddy measurements</h1>
+  <p>Size, duration and recurrence, with each source definition and observation period preserved.</p>
+  <p id="eddy-summary" role="status">Loading eddy register…</p>
+  <p>Individual rings, recurring regions and families have separate entries. Track spans, paper windows and regional averages retain their own meanings; source conflicts stay visible.</p>
+  <p class="eddy-links"><a href="../research/eddy-measurement-register-v1.csv" download>Download measurement CSV</a><a href="../research/eddy-measurement-register-v1.json">Data and source records</a><a href="../plans/eddy-measurement-register-v1.md">Measurement rules</a></p>
+  <form id="eddy-controls" class="eddy-controls">
+    <label>Find an eddy<input id="eddy-search" type="search" placeholder="Name or basin"></label>
+    <label>Identity<select id="eddy-identity"><option value="all">All source identities</option><option value="individual_eddy">Individual events</option><option value="recurrent_eddy_region">Recurring regions</option><option value="eddy_family">Families</option></select></label>
+    <label>Coverage<select id="eddy-filter"><option value="all">All records</option><option value="measured">With measurements</option><option value="gap">Measurement gaps</option><option value="size-gap">Size gaps</option><option value="duration-gap">Duration gaps</option></select></label>
+    <label>Measurement<select id="eddy-category"><option value="all">All definitions · kept separate</option><option value="size">Size references</option><option value="duration">Duration references</option><option value="recurrence">Regional recurrence</option><option value="travel">Travel references</option></select></label>
+  </form>
+  <p id="eddy-results" aria-live="polite"></p>
+  <div class="eddy-scroll"><table><thead><tr><th>Eddy / source identity</th><th>Size references</th><th>Time and movement</th><th>Details and sources</th></tr></thead><tbody id="eddy-rows"></tbody></table></div>
+  <p class="eddy-note">This full research catalogue includes Horizon registry labels excluded from the separate rights-screened release. Possible name crosswalks remain unverified. These records are not a complete global census.</p>
+</main></body></html>
