@@ -250,6 +250,8 @@ classification collection and CSV. The table supplies no thresholds, diameter
 operator or consistent sampling phase: these labels supply no numeric bounds
 and do not close numeric size gaps or count as numeric measurements. QE-2
 receives its own Small classification and no values from Quick. Keep source
+registry separation dates explicitly as primary-row context; Quick's date
+supplies no separation date for QE-2. Keep source
 spellings Titantic and Millenium with candidate spelling correspondences to
 Titanic and Millennium; no physical identity verification follows. Preserve
 Gyre's source year 1999 beside the registry's 1998 separation context; the

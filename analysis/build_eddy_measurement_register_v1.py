@@ -239,7 +239,7 @@ def build():
             assert 1900<=c['source_year']<=2100
             assert identities[owner]['name']==c['registry_name']
             original=class_legacy[int(owner.split('-')[1])]
-            assert c['registry_initial_separation']==original['initial_separation']
+            assert c['registry_primary_initial_separation']==original['initial_separation'] and c['registry_primary_name']==original['name']
             assert c['registry_name']==original['secondary_name' if owner.endswith('-secondary') else 'name']
             assert c['source_name']==c['registry_name'] or (c['source_name'],c['registry_name']) in [('Titantic','Titanic'),('Millenium','Millennium')]
             assert c['source_name_match']==('exact' if c['source_name']==c['registry_name'] else 'candidate_spelling_variant')
@@ -316,7 +316,7 @@ def main():
     out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()
     for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False),'range_value_json':json.dumps(r.get('range_value')),'calculation_json':json.dumps(r.get('calculation')),'calendar_support_json':json.dumps(r.get('calendar_support')),'named_case_association_json':json.dumps(r.get('named_case_association')),'independent_named_case_json':json.dumps(r.get('independent_named_case')),'source_plot_estimate_json':json.dumps(r.get('source_plot_estimate')),'model_context_json':json.dumps(r.get('model_context'))})
     (ROOT/CSV_PATH).write_bytes(out.getvalue().encode());print(json.dumps(document['counts']))
-    fields=['id','entity_id','source_name','source_year','label','registry_name','registry_initial_separation','source_name_match','numeric_thresholds','value','unit','association_is_verified','source_year_is_separation_year','rank_eligible','seasonal_playback_eligible','physical_state_join_eligible','rights_screened_release_eligible','definition','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
+    fields=['id','entity_id','source_name','source_year','label','registry_name','registry_primary_name','registry_primary_initial_separation','source_name_match','numeric_thresholds','value','unit','association_is_verified','source_year_is_separation_year','rank_eligible','seasonal_playback_eligible','physical_state_join_eligible','rights_screened_release_eligible','definition','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
     out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()
     writer.writerows(document['size_classifications'])
     (ROOT/'research/eddy-size-classifications-v1.csv').write_bytes(out.getvalue().encode())

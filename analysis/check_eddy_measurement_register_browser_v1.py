@@ -283,9 +283,10 @@ def run():
             page.screenshot(path=str(OUT/'source-size-class-filter.png'))
             page.fill('#eddy-search','QE-2')
             qe=page.locator('tr[data-eddy-id="eddy:horizon:loop-40-secondary"]');qe.locator('summary').click()
-            for needle in ['Small · source size class','Size reference needed','no numeric class thresholds','no values inherited','Source row: QE-2, 2002']:
+            for needle in ['Small · source size class','Size reference needed','no numeric class thresholds','no values inherited','Source row: QE-2, 2002','Associated primary registry row: Quick','This supplies no secondary separation date']:
                 assert needle in qe.inner_text(),needle
             assert 'Huge · source size class' not in qe.inner_text()
+            assert 'Registry context: QE-2, separation' not in qe.inner_text()
             page.locator('[data-classification-id="whoi-2005-03-table2-row-04"]').screenshot(path=str(OUT/'qe2-own-source-class.png'))
             page.select_option('#eddy-filter','measured');assert page.locator('#eddy-rows tr').count()==0
             page.select_option('#eddy-filter','gap');assert page.locator('#eddy-rows tr').count()==1

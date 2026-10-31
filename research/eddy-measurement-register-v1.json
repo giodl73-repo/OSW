@@ -2,8 +2,8 @@
   "schema": "osw.eddy-measurement-register.v1",
   "status": "MEASUREMENT_GAP_FILLING_IN_PROGRESS",
   "rules_file": "plans/eddy-measurement-register-v1.md",
-  "rules_sha256": "a5c8944fdd6a4509c36931d9a17cdfc52377358e877d6670dd81342fb2f696ba",
-  "generator_sha256": "e6877157d0714d008b46447c9b1fbfcc95935ee24d6361cb70a4eda95c0ee09b",
+  "rules_sha256": "342b144abcc435e0e05ee2130a1cd8728be06de6a30d4ae548d0903c55271b1a",
+  "generator_sha256": "3f90ee6a3fc468bf3b86ff12a5bc2fcc43d2da61c2c18a48980bf158e00b37b4",
   "input_sha256": {
     "research/ocean-eddy-name-inventory.json": "d78c31a96b93cc9e746562f2d5c3b0f6d37ad36c3f1d10bb769aec8aa4472015",
     "research/named-eddy-geography.json": "50f20f1f32589b780f7ff29824afa7f7af4a78bfd80a25a4784e6fc992bf3547",
@@ -15,7 +15,7 @@
     "research/eddy-measurement-register-additions-v2.json": "3bb1a6760a5e68efd41f5562425225da70e7bd78429257a8b1466937114fa62b",
     "plans/agulhas-ring-radius-protocol-v1.md": "620981e7dccd1a888083d5daa670548a6f1254825f2acda73da5a821bcb4e876",
     "plans/black-sea-eddy-recurrence-protocol-v1.md": "66fef56b5960d802df68ca35d3241912650f7fe2c58803375743b4f42a48b5cf",
-    "research/eddy-measurement-batches-v1.json": "49d7759b3cdd080bc1a87490d8719fc39bee91172855e5437c701e2f7a3b7749",
+    "research/eddy-measurement-batches-v1.json": "18da7d51eb921df60281d2a5359a808e076d3c5dd2754b2c02cb4aea4eb1195f",
     "research/eddy-measurement-register-additions-v3.json": "d1c91350952ea08a49562c5aa0b671f0624930fd73e4735c2227c1b17708fc15",
     "research/eddy-measurement-register-additions-v4.json": "359d14c7927a6fc045bce23eb8ae4f7c226caa1a5355a27045a735125bdeaa11",
     "research/named-loop-current-eddies.json": "4a41a3b4b127f42ac31b114117c0d5d2caf998b84bed6caeac58de6ef94eecca",
@@ -27,7 +27,7 @@
     "research/eddy-measurement-register-additions-v10.json": "a37d9b9c064c83a2027ea40bb0709cb4eb70bce806e1c4ab5865b3e056071314",
     "research/eddy-measurement-register-additions-v11.json": "7983361b62a311743821460d1f221d2e8b5586bdbf31b71c56519c7cb0aacbe9",
     "research/eddy-measurement-register-additions-v12.json": "742cb682dd23632d3428d773eb71dfed3bb9cf3e7a87d56ae07ba9b13d422bb9",
-    "research/eddy-measurement-register-additions-v13.json": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69"
+    "research/eddy-measurement-register-additions-v13.json": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb"
   },
   "first_batch_evidence_sha256": "702311bd7b238182a51b6160f902500e371a88eec635c6d500bc93df53373a4b",
   "first_batch_evidence_preserved": 40,
@@ -144,7 +144,6 @@
       "source_year": 2003,
       "label": "Huge",
       "registry_name": "Titanic",
-      "registry_initial_separation": "2003-10-05",
       "source_name_match": "candidate_spelling_variant",
       "association_is_verified": false,
       "source_year_is_separation_year": false,
@@ -158,11 +157,13 @@
       "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 1, PDF page 81 (unnumbered table sheet).",
       "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
       "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "registry_primary_initial_separation": "2003-10-05",
+      "registry_primary_name": "Titanic",
       "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
       "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
       "source_file": "research/eddy-measurement-register-additions-v13.json",
       "source_pointer": "/size_classifications/0",
-      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "source_sha256": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
       "raw_record": {
         "id": "whoi-2005-03-table2-row-01",
         "entity_id": "eddy:horizon:loop-43-primary",
@@ -171,7 +172,6 @@
         "source_year": 2003,
         "label": "Huge",
         "registry_name": "Titanic",
-        "registry_initial_separation": "2003-10-05",
         "source_name_match": "candidate_spelling_variant",
         "association_is_verified": false,
         "source_year_is_separation_year": false,
@@ -184,7 +184,9 @@
         "rights_screened_release_eligible": false,
         "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 1, PDF page 81 (unnumbered table sheet).",
         "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
-        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+        "registry_primary_initial_separation": "2003-10-05",
+        "registry_primary_name": "Titanic"
       }
     },
     {
@@ -195,7 +197,6 @@
       "source_year": 2003,
       "label": "Huge",
       "registry_name": "Sargassum",
-      "registry_initial_separation": "2003-05-31",
       "source_name_match": "exact",
       "association_is_verified": false,
       "source_year_is_separation_year": false,
@@ -209,11 +210,13 @@
       "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 2, PDF page 81 (unnumbered table sheet).",
       "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
       "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "registry_primary_initial_separation": "2003-05-31",
+      "registry_primary_name": "Sargassum",
       "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
       "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
       "source_file": "research/eddy-measurement-register-additions-v13.json",
       "source_pointer": "/size_classifications/1",
-      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "source_sha256": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
       "raw_record": {
         "id": "whoi-2005-03-table2-row-02",
         "entity_id": "eddy:horizon:loop-42-primary",
@@ -222,7 +225,6 @@
         "source_year": 2003,
         "label": "Huge",
         "registry_name": "Sargassum",
-        "registry_initial_separation": "2003-05-31",
         "source_name_match": "exact",
         "association_is_verified": false,
         "source_year_is_separation_year": false,
@@ -235,7 +237,9 @@
         "rights_screened_release_eligible": false,
         "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 2, PDF page 81 (unnumbered table sheet).",
         "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
-        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+        "registry_primary_initial_separation": "2003-05-31",
+        "registry_primary_name": "Sargassum"
       }
     },
     {
@@ -246,7 +250,6 @@
       "source_year": 2002,
       "label": "Small",
       "registry_name": "Rebel",
-      "registry_initial_separation": "2002-04-28",
       "source_name_match": "exact",
       "association_is_verified": false,
       "source_year_is_separation_year": false,
@@ -260,11 +263,13 @@
       "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 3, PDF page 81 (unnumbered table sheet).",
       "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
       "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "registry_primary_initial_separation": "2002-04-28",
+      "registry_primary_name": "Rebel",
       "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
       "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
       "source_file": "research/eddy-measurement-register-additions-v13.json",
       "source_pointer": "/size_classifications/2",
-      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "source_sha256": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
       "raw_record": {
         "id": "whoi-2005-03-table2-row-03",
         "entity_id": "eddy:horizon:loop-41-primary",
@@ -273,7 +278,6 @@
         "source_year": 2002,
         "label": "Small",
         "registry_name": "Rebel",
-        "registry_initial_separation": "2002-04-28",
         "source_name_match": "exact",
         "association_is_verified": false,
         "source_year_is_separation_year": false,
@@ -286,7 +290,9 @@
         "rights_screened_release_eligible": false,
         "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 3, PDF page 81 (unnumbered table sheet).",
         "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
-        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+        "registry_primary_initial_separation": "2002-04-28",
+        "registry_primary_name": "Rebel"
       }
     },
     {
@@ -297,7 +303,6 @@
       "source_year": 2002,
       "label": "Small",
       "registry_name": "QE-2",
-      "registry_initial_separation": "2002-03-10",
       "source_name_match": "exact",
       "association_is_verified": false,
       "source_year_is_separation_year": false,
@@ -311,11 +316,13 @@
       "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 4, PDF page 81 (unnumbered table sheet).",
       "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
       "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "registry_primary_initial_separation": "2002-03-10",
+      "registry_primary_name": "Quick",
       "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
       "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
       "source_file": "research/eddy-measurement-register-additions-v13.json",
       "source_pointer": "/size_classifications/3",
-      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "source_sha256": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
       "raw_record": {
         "id": "whoi-2005-03-table2-row-04",
         "entity_id": "eddy:horizon:loop-40-secondary",
@@ -324,7 +331,6 @@
         "source_year": 2002,
         "label": "Small",
         "registry_name": "QE-2",
-        "registry_initial_separation": "2002-03-10",
         "source_name_match": "exact",
         "association_is_verified": false,
         "source_year_is_separation_year": false,
@@ -337,7 +343,9 @@
         "rights_screened_release_eligible": false,
         "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 4, PDF page 81 (unnumbered table sheet).",
         "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
-        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+        "registry_primary_initial_separation": "2002-03-10",
+        "registry_primary_name": "Quick"
       }
     },
     {
@@ -348,7 +356,6 @@
       "source_year": 2002,
       "label": "Huge",
       "registry_name": "Quick",
-      "registry_initial_separation": "2002-03-10",
       "source_name_match": "exact",
       "association_is_verified": false,
       "source_year_is_separation_year": false,
@@ -362,11 +369,13 @@
       "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 5, PDF page 81 (unnumbered table sheet).",
       "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
       "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "registry_primary_initial_separation": "2002-03-10",
+      "registry_primary_name": "Quick",
       "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
       "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
       "source_file": "research/eddy-measurement-register-additions-v13.json",
       "source_pointer": "/size_classifications/4",
-      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "source_sha256": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
       "raw_record": {
         "id": "whoi-2005-03-table2-row-05",
         "entity_id": "eddy:horizon:loop-40-primary",
@@ -375,7 +384,6 @@
         "source_year": 2002,
         "label": "Huge",
         "registry_name": "Quick",
-        "registry_initial_separation": "2002-03-10",
         "source_name_match": "exact",
         "association_is_verified": false,
         "source_year_is_separation_year": false,
@@ -388,7 +396,9 @@
         "rights_screened_release_eligible": false,
         "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 5, PDF page 81 (unnumbered table sheet).",
         "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
-        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+        "registry_primary_initial_separation": "2002-03-10",
+        "registry_primary_name": "Quick"
       }
     },
     {
@@ -399,7 +409,6 @@
       "source_year": 2002,
       "label": "Huge",
       "registry_name": "Pelagic",
-      "registry_initial_separation": "2002-03-10",
       "source_name_match": "exact",
       "association_is_verified": false,
       "source_year_is_separation_year": false,
@@ -413,11 +422,13 @@
       "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 6, PDF page 81 (unnumbered table sheet).",
       "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
       "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "registry_primary_initial_separation": "2002-03-10",
+      "registry_primary_name": "Pelagic",
       "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
       "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
       "source_file": "research/eddy-measurement-register-additions-v13.json",
       "source_pointer": "/size_classifications/5",
-      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "source_sha256": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
       "raw_record": {
         "id": "whoi-2005-03-table2-row-06",
         "entity_id": "eddy:horizon:loop-39-primary",
@@ -426,7 +437,6 @@
         "source_year": 2002,
         "label": "Huge",
         "registry_name": "Pelagic",
-        "registry_initial_separation": "2002-03-10",
         "source_name_match": "exact",
         "association_is_verified": false,
         "source_year_is_separation_year": false,
@@ -439,7 +449,9 @@
         "rights_screened_release_eligible": false,
         "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 6, PDF page 81 (unnumbered table sheet).",
         "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
-        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+        "registry_primary_initial_separation": "2002-03-10",
+        "registry_primary_name": "Pelagic"
       }
     },
     {
@@ -450,7 +462,6 @@
       "source_year": 2001,
       "label": "Medium",
       "registry_name": "Odessa",
-      "registry_initial_separation": "2001-09-16",
       "source_name_match": "exact",
       "association_is_verified": false,
       "source_year_is_separation_year": false,
@@ -464,11 +475,13 @@
       "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 7, PDF page 81 (unnumbered table sheet).",
       "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
       "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "registry_primary_initial_separation": "2001-09-16",
+      "registry_primary_name": "Odessa",
       "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
       "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
       "source_file": "research/eddy-measurement-register-additions-v13.json",
       "source_pointer": "/size_classifications/6",
-      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "source_sha256": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
       "raw_record": {
         "id": "whoi-2005-03-table2-row-07",
         "entity_id": "eddy:horizon:loop-38-primary",
@@ -477,7 +490,6 @@
         "source_year": 2001,
         "label": "Medium",
         "registry_name": "Odessa",
-        "registry_initial_separation": "2001-09-16",
         "source_name_match": "exact",
         "association_is_verified": false,
         "source_year_is_separation_year": false,
@@ -490,7 +502,9 @@
         "rights_screened_release_eligible": false,
         "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 7, PDF page 81 (unnumbered table sheet).",
         "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
-        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+        "registry_primary_initial_separation": "2001-09-16",
+        "registry_primary_name": "Odessa"
       }
     },
     {
@@ -501,7 +515,6 @@
       "source_year": 2001,
       "label": "Medium",
       "registry_name": "Nansen",
-      "registry_initial_separation": "2001-04-22",
       "source_name_match": "exact",
       "association_is_verified": false,
       "source_year_is_separation_year": false,
@@ -515,11 +528,13 @@
       "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 8, PDF page 81 (unnumbered table sheet).",
       "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
       "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "registry_primary_initial_separation": "2001-04-22",
+      "registry_primary_name": "Nansen",
       "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
       "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
       "source_file": "research/eddy-measurement-register-additions-v13.json",
       "source_pointer": "/size_classifications/7",
-      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "source_sha256": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
       "raw_record": {
         "id": "whoi-2005-03-table2-row-08",
         "entity_id": "eddy:horizon:loop-37-primary",
@@ -528,7 +543,6 @@
         "source_year": 2001,
         "label": "Medium",
         "registry_name": "Nansen",
-        "registry_initial_separation": "2001-04-22",
         "source_name_match": "exact",
         "association_is_verified": false,
         "source_year_is_separation_year": false,
@@ -541,7 +555,9 @@
         "rights_screened_release_eligible": false,
         "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 8, PDF page 81 (unnumbered table sheet).",
         "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
-        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+        "registry_primary_initial_separation": "2001-04-22",
+        "registry_primary_name": "Nansen"
       }
     },
     {
@@ -552,7 +568,6 @@
       "source_year": 2001,
       "label": "Huge",
       "registry_name": "Millennium",
-      "registry_initial_separation": "2001-04-22",
       "source_name_match": "candidate_spelling_variant",
       "association_is_verified": false,
       "source_year_is_separation_year": false,
@@ -566,11 +581,13 @@
       "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 9, PDF page 81 (unnumbered table sheet).",
       "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
       "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "registry_primary_initial_separation": "2001-04-22",
+      "registry_primary_name": "Millennium",
       "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
       "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
       "source_file": "research/eddy-measurement-register-additions-v13.json",
       "source_pointer": "/size_classifications/8",
-      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "source_sha256": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
       "raw_record": {
         "id": "whoi-2005-03-table2-row-09",
         "entity_id": "eddy:horizon:loop-36-primary",
@@ -579,7 +596,6 @@
         "source_year": 2001,
         "label": "Huge",
         "registry_name": "Millennium",
-        "registry_initial_separation": "2001-04-22",
         "source_name_match": "candidate_spelling_variant",
         "association_is_verified": false,
         "source_year_is_separation_year": false,
@@ -592,7 +608,9 @@
         "rights_screened_release_eligible": false,
         "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 9, PDF page 81 (unnumbered table sheet).",
         "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
-        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+        "registry_primary_initial_separation": "2001-04-22",
+        "registry_primary_name": "Millennium"
       }
     },
     {
@@ -603,7 +621,6 @@
       "source_year": 2000,
       "label": "Small",
       "registry_name": "Lazy",
-      "registry_initial_separation": "2000-07-02",
       "source_name_match": "exact",
       "association_is_verified": false,
       "source_year_is_separation_year": false,
@@ -617,11 +634,13 @@
       "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 10, PDF page 81 (unnumbered table sheet).",
       "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
       "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "registry_primary_initial_separation": "2000-07-02",
+      "registry_primary_name": "Lazy",
       "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
       "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
       "source_file": "research/eddy-measurement-register-additions-v13.json",
       "source_pointer": "/size_classifications/9",
-      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "source_sha256": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
       "raw_record": {
         "id": "whoi-2005-03-table2-row-10",
         "entity_id": "eddy:horizon:loop-35-primary",
@@ -630,7 +649,6 @@
         "source_year": 2000,
         "label": "Small",
         "registry_name": "Lazy",
-        "registry_initial_separation": "2000-07-02",
         "source_name_match": "exact",
         "association_is_verified": false,
         "source_year_is_separation_year": false,
@@ -643,7 +661,9 @@
         "rights_screened_release_eligible": false,
         "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 10, PDF page 81 (unnumbered table sheet).",
         "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
-        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+        "registry_primary_initial_separation": "2000-07-02",
+        "registry_primary_name": "Lazy"
       }
     },
     {
@@ -654,7 +674,6 @@
       "source_year": 2000,
       "label": "Small",
       "registry_name": "Kinetic",
-      "registry_initial_separation": "2000-06-18",
       "source_name_match": "exact",
       "association_is_verified": false,
       "source_year_is_separation_year": false,
@@ -668,11 +687,13 @@
       "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 11, PDF page 81 (unnumbered table sheet).",
       "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
       "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "registry_primary_initial_separation": "2000-06-18",
+      "registry_primary_name": "Kinetic",
       "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
       "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
       "source_file": "research/eddy-measurement-register-additions-v13.json",
       "source_pointer": "/size_classifications/10",
-      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "source_sha256": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
       "raw_record": {
         "id": "whoi-2005-03-table2-row-11",
         "entity_id": "eddy:horizon:loop-34-primary",
@@ -681,7 +702,6 @@
         "source_year": 2000,
         "label": "Small",
         "registry_name": "Kinetic",
-        "registry_initial_separation": "2000-06-18",
         "source_name_match": "exact",
         "association_is_verified": false,
         "source_year_is_separation_year": false,
@@ -694,7 +714,9 @@
         "rights_screened_release_eligible": false,
         "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 11, PDF page 81 (unnumbered table sheet).",
         "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
-        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+        "registry_primary_initial_separation": "2000-06-18",
+        "registry_primary_name": "Kinetic"
       }
     },
     {
@@ -705,7 +727,6 @@
       "source_year": 1999,
       "label": "Huge",
       "registry_name": "Juggernaut",
-      "registry_initial_separation": "1999-10-10",
       "source_name_match": "exact",
       "association_is_verified": false,
       "source_year_is_separation_year": false,
@@ -719,11 +740,13 @@
       "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 12, PDF page 81 (unnumbered table sheet).",
       "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
       "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "registry_primary_initial_separation": "1999-10-10",
+      "registry_primary_name": "Juggernaut",
       "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
       "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
       "source_file": "research/eddy-measurement-register-additions-v13.json",
       "source_pointer": "/size_classifications/11",
-      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "source_sha256": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
       "raw_record": {
         "id": "whoi-2005-03-table2-row-12",
         "entity_id": "eddy:horizon:loop-33-primary",
@@ -732,7 +755,6 @@
         "source_year": 1999,
         "label": "Huge",
         "registry_name": "Juggernaut",
-        "registry_initial_separation": "1999-10-10",
         "source_name_match": "exact",
         "association_is_verified": false,
         "source_year_is_separation_year": false,
@@ -745,7 +767,9 @@
         "rights_screened_release_eligible": false,
         "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 12, PDF page 81 (unnumbered table sheet).",
         "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
-        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+        "registry_primary_initial_separation": "1999-10-10",
+        "registry_primary_name": "Juggernaut"
       }
     },
     {
@@ -756,7 +780,6 @@
       "source_year": 1999,
       "label": "Small",
       "registry_name": "Indigo",
-      "registry_initial_separation": "1999-08-22",
       "source_name_match": "exact",
       "association_is_verified": false,
       "source_year_is_separation_year": false,
@@ -770,11 +793,13 @@
       "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 13, PDF page 81 (unnumbered table sheet).",
       "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
       "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "registry_primary_initial_separation": "1999-08-22",
+      "registry_primary_name": "Indigo",
       "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
       "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
       "source_file": "research/eddy-measurement-register-additions-v13.json",
       "source_pointer": "/size_classifications/12",
-      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "source_sha256": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
       "raw_record": {
         "id": "whoi-2005-03-table2-row-13",
         "entity_id": "eddy:horizon:loop-32-primary",
@@ -783,7 +808,6 @@
         "source_year": 1999,
         "label": "Small",
         "registry_name": "Indigo",
-        "registry_initial_separation": "1999-08-22",
         "source_name_match": "exact",
         "association_is_verified": false,
         "source_year_is_separation_year": false,
@@ -796,7 +820,9 @@
         "rights_screened_release_eligible": false,
         "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 13, PDF page 81 (unnumbered table sheet).",
         "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
-        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+        "registry_primary_initial_separation": "1999-08-22",
+        "registry_primary_name": "Indigo"
       }
     },
     {
@@ -807,7 +833,6 @@
       "source_year": 1999,
       "label": "Small",
       "registry_name": "Haskell",
-      "registry_initial_separation": "1999-07-12",
       "source_name_match": "exact",
       "association_is_verified": false,
       "source_year_is_separation_year": false,
@@ -821,11 +846,13 @@
       "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 14, PDF page 81 (unnumbered table sheet).",
       "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
       "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "registry_primary_initial_separation": "1999-07-12",
+      "registry_primary_name": "Haskell",
       "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
       "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
       "source_file": "research/eddy-measurement-register-additions-v13.json",
       "source_pointer": "/size_classifications/13",
-      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "source_sha256": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
       "raw_record": {
         "id": "whoi-2005-03-table2-row-14",
         "entity_id": "eddy:horizon:loop-31-primary",
@@ -834,7 +861,6 @@
         "source_year": 1999,
         "label": "Small",
         "registry_name": "Haskell",
-        "registry_initial_separation": "1999-07-12",
         "source_name_match": "exact",
         "association_is_verified": false,
         "source_year_is_separation_year": false,
@@ -847,7 +873,9 @@
         "rights_screened_release_eligible": false,
         "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 14, PDF page 81 (unnumbered table sheet).",
         "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
-        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+        "registry_primary_initial_separation": "1999-07-12",
+        "registry_primary_name": "Haskell"
       }
     },
     {
@@ -858,7 +886,6 @@
       "source_year": 1999,
       "label": "Small",
       "registry_name": "Gyre",
-      "registry_initial_separation": "1998-05-11",
       "source_name_match": "exact",
       "association_is_verified": false,
       "source_year_is_separation_year": false,
@@ -872,11 +899,13 @@
       "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 15, PDF page 81 (unnumbered table sheet).",
       "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
       "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+      "registry_primary_initial_separation": "1998-05-11",
+      "registry_primary_name": "Gyre",
       "source_url": "https://iooc.us/sites/default/files/2023-01/10.pdf",
       "source_access": "Original IOOC-hosted published report retained; actual PDF page 81 Table 2 pixels reviewed. Table attributes the eddy list to Horizon Marine, Inc.",
       "source_file": "research/eddy-measurement-register-additions-v13.json",
       "source_pointer": "/size_classifications/14",
-      "source_sha256": "09df344f5c88b2224fcb666d1f8d0c448385796b5de6bb25e578c98838c7cf69",
+      "source_sha256": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
       "raw_record": {
         "id": "whoi-2005-03-table2-row-15",
         "entity_id": "eddy:horizon:loop-30-primary",
@@ -885,7 +914,6 @@
         "source_year": 1999,
         "label": "Small",
         "registry_name": "Gyre",
-        "registry_initial_separation": "1998-05-11",
         "source_name_match": "exact",
         "association_is_verified": false,
         "source_year_is_separation_year": false,
@@ -898,7 +926,9 @@
         "rights_screened_release_eligible": false,
         "source_locator": "Appendix B, Table 2, Eddy Events in the Gulf of Mexico, row 15, PDF page 81 (unnumbered table sheet).",
         "definition": "Verbatim qualitative size label; this table provides no numeric class thresholds or diameter operator.",
-        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited."
+        "qualification": "Source-attributed classification, not a numeric size or a global taxonomy. No kilometre bounds, midpoint, radius, area or physical name crosswalk inferred. Source year is retained as context and is not assumed to be a formation or separation year. The label is assigned only to its own named row; no parent or child values inherited.",
+        "registry_primary_initial_separation": "1998-05-11",
+        "registry_primary_name": "Gyre"
       }
     }
   ],

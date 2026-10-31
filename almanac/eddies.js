@@ -84,7 +84,7 @@
           const box=add('section',undefined,details);box.className='eddy-record';box.dataset.classificationId=entry.id;
           add('h3',entry.label+' · qualitative source size class',box);
           add('p',`Source row: ${entry.source_name}, ${entry.source_year}. Source year is not assumed to be separation year.`,box);
-          add('p',`Registry context: ${entry.registry_name}, separation ${entry.registry_initial_separation}. Physical name crosswalk unverified.`,box);
+          add('p',row.entity_id.endsWith('-secondary')?`Associated primary registry row: ${entry.registry_primary_name}, separation ${entry.registry_primary_initial_separation}. This supplies no secondary separation date. Physical name crosswalk unverified.`:`Registry context: ${entry.registry_name}, separation ${entry.registry_primary_initial_separation}. Physical name crosswalk unverified.`,box);
           add('p',entry.definition,box);add('p',entry.qualification,box);add('p',entry.source_access,box);
           link('Classification source',entry.source_url,box);link('Retained classification row','../'+entry.source_file,box);
           add('span','Source location: '+entry.source_pointer,box).className='eddy-note';
