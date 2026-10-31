@@ -309,3 +309,13 @@ identity matches. Native Figures 9 and 10 images are identical despite different
 named captions, so exclude those as independent Wilde/Wilde II size evidence.
 Do not equate the source label X with any registry name. Preserve all 305
 preceding numeric records and the 15 qualitative classes.
+
+## Named regional model cores
+
+An explicitly named model case may supply a qualified reference for its recurrent
+region. Preserve the case label, model, operator, phase and access limitation.
+A reported inner-core radius must not become an outer radius, diameter, regional
+constant or seasonal envelope. A rotation period is kinematics, not lifespan.
+Model-day panel support must not become an observed calendar interval. Retain all
+prior 309 numeric records and CSV rows exactly. Unnamed neighboring chain nodes
+remain separate leads and supply no measurements to the named regional entry.
