@@ -22,7 +22,8 @@
         const value=cell('Length estimate');
         if(row.length_estimate_km!==null){node('span',`≈ ${row.length_estimate_km.toLocaleString()} km`,value).className='length-number';const bar=node('span',undefined,value);bar.className='length-bar';bar.style.width=Math.max(2,row.length_estimate_km/25000*150)+'px';bar.setAttribute('aria-hidden','true');}
         else{node('strong','To estimate',value).className='length-missing';if(row.available_regional_reach_km!==null)node('span',`Regional reach available: ≈ ${row.available_regional_reach_km.toLocaleString()} km`,value).className='length-status';}
-        node('span',labels[row.status],cell('Basis'));
+        const basis=cell('Basis');node('span',labels[row.status],basis);
+        if(row.conditional_extent)node('strong','Conditional endpoint interpretation',basis).className='length-status';
         const evidence=cell('Extent and evidence'),details=node('details',undefined,evidence);node('summary','Extent, method and source',details);
         node('p',row.scope||'The full reference extent still needs to be defined; a regional study boundary is not automatically a current endpoint.',details);
         if(row.route_choice_rule)node('p',row.route_choice_rule,details);

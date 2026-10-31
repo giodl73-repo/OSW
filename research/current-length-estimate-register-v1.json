@@ -4,18 +4,18 @@
   "target": "A declared, reproducible length estimate for every catalogued current.",
   "counts": {
     "currents": 111,
-    "with_length_estimate": 79,
-    "remaining_full_extent_estimates": 32,
+    "with_length_estimate": 90,
+    "remaining_full_extent_estimates": 21,
     "reported": 13,
     "reference_estimate": 38,
-    "regional_only": 18,
-    "needs_route": 14,
-    "provisional_estimate": 28
+    "provisional_estimate": 39,
+    "needs_route": 13,
+    "regional_only": 8
   },
   "rules_file": "plans/current-length-estimates-v1.md",
   "rules_sha256": "00fbdec80521632251c435c7d3288f2797e79df7aec6b0a1a8599b3285fae9c8",
   "generator_file": "analysis/build_current_length_register_v1.py",
-  "generator_sha256": "fa7b226a9b461b72ba3706987207a6bbe16c67c3426acfa7aba6264e335600d7",
+  "generator_sha256": "821c79940593f583577d224803b6191599364c742a5c9e456abb61ebd1566f9b",
   "input_sha256": {
     "research/current-measurement-coverage-baseline-v1.json": "eac6175279cef24de14a17ea36ca6dd063f678d235b629a5c863498bc0c72569",
     "research/equatorial-basin-identity-query-contract-v3.json": "1486ee54bfa7b7b17bdc08ebdc788d63c93a058e4f632b23b39d79f1c74a591d",
@@ -36,7 +36,9 @@
     "research/current-length-reference-extents-v3.json": "a78b592ab32038563d0ac6bf480b37fb3fd1798e25a7b0e6aca6f9f98615ac4b",
     "research/current-length-reference-extents-geography-v3.json": "96593fede3ec3badbcfa4c4bb44838ead5db1c04e962786434c1ce221153e04f",
     "research/current-length-reference-extents-v4.json": "6f22d5dd5cd35afee56111f3865ec34677e010526511eb972f8b5b7ff60f9055",
-    "research/current-length-reference-extents-geography-v4.json": "646cbe7a822bf0ab35252d2e744f46ea835d7dc20ae97f63fef8a8ca252d7cd0"
+    "research/current-length-reference-extents-geography-v4.json": "646cbe7a822bf0ab35252d2e744f46ea835d7dc20ae97f63fef8a8ca252d7cd0",
+    "research/current-length-reference-extents-v5.json": "aa1a1cd9ab29601062c3df4e19518f484341a3312747923ced1380a3da938b71",
+    "research/current-length-reference-extents-geography-v5.json": "e2ea2d2299bb606717411b3a6395dd026315321de7a36cf9ec889e2590368188"
   },
   "interpretation": [
     "Reported values and editorial reference estimates retain different methods and extents.",
@@ -68,6 +70,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -99,6 +102,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1800,
         2200
@@ -149,6 +153,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         3900,
         4900
@@ -214,6 +219,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         700,
         1700
@@ -264,6 +270,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -278,24 +285,28 @@
       "name": "Aleutian Current",
       "basin": "Subpolar North Pacific",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 4800,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Declared historical eastward Aleutian/Subarctic principal corridor from offshore western return/feed near160E47N to eastern bifurcation handoff135W50N. Excludes Oyashio upstream, westward Alaskan Stream, Bering Sea branches and downstream Alaska/California flows.",
+      "selected_route_id": "aleutian-principal-reference-extent-v5",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "source_locator": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v5.json",
+      "source_url": "https://www.webapps.nwfsc.noaa.gov/assets/4/8131_09242014_161208_Favorite.1967-INPFC-Bull-21.pdf",
+      "source_locator": "Favorite1967 printed2,11-12, Figure27 printed19: Aleutian/Subarctic naming, eastward Subarctic flow distinguished from westward Alaskan Stream. Prior source review retained in the regional record.",
+      "figure_file": "figures/aleutian-current-length-estimates-v5.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Historical schematic geographic interpretation, not a specific-year observed complete axis.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "identity_interpretation": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "Uses the eastward Subarctic/Aleutian naming convention. Broader West Wind Drift/North Pacific usage is not an additional length to sum.",
+      "conditional_extent": false,
+      "route_sensitivity_km": [
+        4300,
+        4900
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -317,7 +328,7 @@
       "available_regional_reach_km": 3300,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Aaleutian"
     },
     {
@@ -342,6 +353,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         600,
         900
@@ -392,6 +404,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -423,6 +436,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -454,6 +468,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": "The NOAA named-flow interpretation along the northeast Bahamas margin; wider Antilles usage can have different upstream gates.",
+      "conditional_extent": false,
       "route_sensitivity_km": [
         900,
         1100
@@ -504,6 +519,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         5100,
         5500
@@ -554,6 +570,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         4100,
         4600
@@ -613,6 +630,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         3400,
         4000
@@ -646,24 +664,28 @@
       "name": "Atlantic North Equatorial Undercurrent",
       "basin": "Tropical Atlantic",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 3200,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Conditional principal NEUC envelope from offshore western retroflection handoff near44W to an assumed eastern-ventilation handoff near15W6N. Excludes NBC source legs, surface NECC, Guinea Dome recirculation and coastal currents.",
+      "selected_route_id": "atlantic-north-equatorial-undercurrent-principal-reference-extent-v5",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "source_locator": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v5.json",
+      "source_url": "https://horizon.documentation.ird.fr/exl-doc/pleins_textes/pleins_textes_7/b_fdi_51-52/010019670.pdf",
+      "source_locator": "Bourles et al.1999 section4.8 and6.1: western source/retroflection and NEUC near5N at35W. Huttl-Kabus and Boning2008 DOI10.1029/2007JC004700 discusses off-equatorial export toward eastern upwelling. Tomczak/Godfrey chapter14 printed235 identifies a separate narrow NEUC.",
+      "figure_file": "figures/atlantic-jets-current-length-estimates-v5.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Undated geographic interpretation assembled from studies with different years, not a continuous observed or year-round axis.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "identity_interpretation": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "Eastern termination and continuous western feed are unresolved. The15W handoff is an OSW working hypothesis; the retained35W-23W study reach does not establish this full extent.",
+      "conditional_extent": true,
+      "route_sensitivity_km": [
+        2300,
+        3300
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -685,7 +707,7 @@
       "available_regional_reach_km": 1300,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Aatlantic-north-equatorial-undercurrent"
     },
     {
@@ -710,6 +732,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         3900,
         4500
@@ -752,30 +775,34 @@
       "name": "Atlantic South Equatorial Countercurrent",
       "basin": "Tropical South Atlantic",
       "identity_level": "current",
-      "status": "needs_route",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 4600,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Declared eastward SECC principal envelope from near30W formation neighborhood to offshore Angola turning handoff near12E9S. Excludes southward Angola limb, SEC source recirculation and SEUC.",
+      "selected_route_id": "atlantic-south-equatorial-countercurrent-principal-reference-extent-v5",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "source_locator": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v5.json",
+      "source_url": "https://journals.ametsoc.org/view/journals/phoc/28/10/1520-0485_1998_028_1904_tapotu_2.0.co_2.xml",
+      "source_locator": "Schott et al.1998 section on SECC: apparent formation near30W, belt7-9S. Tomczak/Godfrey chapter14 printed237 and Figure14.2 describe eastward SECC turning into Angola Current; Gordon/Bosley1991 describe northern Angola Gyre limb.",
+      "figure_file": "figures/atlantic-jets-current-length-estimates-v5.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Geographic convention for the weak/variable eastward branch, not all months or a reconstructed observed axis.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "identity_interpretation": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "Westward flow can occur in sampled seasons. Reference length applies to the named eastward branch, not to a claim of permanent eastward flow.",
+      "conditional_extent": false,
+      "route_sensitivity_km": [
+        4000,
+        4700
+      ],
       "route_choice_rule": null,
       "route_options": [],
       "available_regional_reach_km": null,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Aatlantic-south-equatorial-countercurrent"
     },
     {
@@ -783,24 +810,28 @@
       "name": "Atlantic South Equatorial Undercurrent",
       "basin": "Tropical Atlantic",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 4800,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Declared western SEUC handoff near35W3S to offshore northeastern Angola Basin handoff near8E6S. Excludes NBUC source, southward Angola coast, other equatorial jets and recirculating float loops.",
+      "selected_route_id": "atlantic-south-equatorial-undercurrent-principal-reference-extent-v5",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "source_locator": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v5.json",
+      "source_url": "https://www.sciencedirect.com/science/article/abs/pii/S0924796307001704",
+      "source_locator": "Urbano et al.2008, On the interaction between the subtropical gyre and the Subtropical Cell on the shelf of the SE Atlantic: SEUC nearly across basin, transport at9W, turns south into coastal northeastern Angola Basin. Fischer et al.2008 DOI10.1029/2008GL035753 supports western-central study reach.",
+      "figure_file": "figures/atlantic-jets-current-length-estimates-v5.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Geographic principal-route convention; source study/model years differ and continuity is layer dependent.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "identity_interpretation": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "Broad transbasin interpretation informed by the eastern continuation study; the earlier35W-10W float reach stays separate.",
+      "conditional_extent": false,
+      "route_sensitivity_km": [
+        4200,
+        4800
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -822,7 +853,7 @@
       "available_regional_reach_km": 2800,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Aatlantic-south-equatorial-undercurrent"
     },
     {
@@ -847,6 +878,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -878,6 +910,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         3300,
         3700
@@ -928,6 +961,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -959,6 +993,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1500,
         1600
@@ -1009,6 +1044,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         300,
         400
@@ -1059,6 +1095,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         2200,
         2600
@@ -1109,6 +1146,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1900,
         2200
@@ -1159,6 +1197,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         2600,
         4200
@@ -1209,6 +1248,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -1240,6 +1280,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1500,
         1800
@@ -1290,6 +1331,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         2500,
         2800
@@ -1340,6 +1382,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1200,
         1400
@@ -1390,6 +1433,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -1437,6 +1481,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         700,
         800
@@ -1487,6 +1532,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": "Modern EACC/Zanzibar northward flow; not the NOAA East Africa Coast entry that aliases the Somali Current.",
+      "conditional_extent": false,
       "route_sensitivity_km": [
         900,
         1100
@@ -1521,6 +1567,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         2000,
         2300
@@ -1571,6 +1618,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         2500,
         2800
@@ -1621,6 +1669,7 @@
       "drawing_constraint": "An offshore southeast Cape Farewell control avoids clipping the headland in the coarse display geometry. This is a geographic drawing control, not a sampled current axis.",
       "source_typography_note": null,
       "identity_interpretation": "Northern extension and continuity as a separate coastal jet are uncertain; this provisional route explicitly adopts the weak68N identification.",
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1100,
         1200
@@ -1671,6 +1720,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1800,
         1900
@@ -1730,6 +1780,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -1761,6 +1812,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -1792,6 +1844,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -1823,6 +1876,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -1854,6 +1908,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         400,
         500
@@ -1904,6 +1959,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -1935,6 +1991,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         900,
         1100
@@ -1985,6 +2042,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1000,
         1200
@@ -2035,6 +2093,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -2066,6 +2125,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -2097,6 +2157,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1900,
         2500
@@ -2130,24 +2191,28 @@
       "name": "Indian Ocean Equatorial Undercurrent",
       "basin": "Equatorial Indian Ocean",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 5000,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Declared spring equatorial subsurface envelope from offshore western-basin50E handoff to95E pre-Sumatra turn handoff. Excludes southward coastal branches, surface Wyrtki jets and anomalous westward undercurrent.",
+      "selected_route_id": "indian-equatorial-undercurrent-principal-reference-extent-v5",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "source_locator": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v5.json",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2016GL069433",
+      "source_locator": "Chen et al.2016 introduction and Figure1: winter-spring EUC across equatorial Indian basin, February-April; eastern branch turns near98.5E. Schott/McCreary2001 section3.2.1 records observations53-91E.",
+      "figure_file": "figures/indian-jets-current-length-estimates-v5.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "February-April winter-spring interpretation; weaker August-September recurrence is distinct, not a permanent annual axis.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "identity_interpretation": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "The equatorial line and full-envelope gates are editorial; no actual2016 model axis has been digitized.",
+      "conditional_extent": false,
+      "route_sensitivity_km": [
+        4400,
+        5100
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -2169,7 +2234,7 @@
       "available_regional_reach_km": 4200,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Aindian-equatorial-undercurrent"
     },
     {
@@ -2194,6 +2259,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         6200,
         7000
@@ -2211,24 +2277,28 @@
       "name": "Indian Ocean South Equatorial Countercurrent",
       "basin": "Tropical South Indian Ocean",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 5100,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Declared winter principal SECC envelope from offshore western confluence near44E4S to90E return/branch handoff. Excludes EACC/Somali boundary legs, South Java coastal continuation, returning SEC and subsurface SEUC.",
+      "selected_route_id": "indian-south-equatorial-countercurrent-principal-reference-extent-v5",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "source_locator": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v5.json",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019JC015483",
+      "source_locator": "Winter circulation discussion/Figures5-6 and13: eastward SECC reaches about90E then recirculates into SEC. Schott/McCreary2001 and Tomczak/Godfrey chapter11 describe western EACC/Somali confluence feeding winter countercurrent.",
+      "figure_file": "figures/indian-jets-current-length-estimates-v5.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "December-March winter convention, not a whole-year uninterrupted axis or annual maximum.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "identity_interpretation": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "The western confluence moves seasonally.44E4S is a representative geographic handoff, not a fixed measured origin.",
+      "conditional_extent": false,
+      "route_sensitivity_km": [
+        4500,
+        5200
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -2250,7 +2320,7 @@
       "available_regional_reach_km": 4400,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Aindian-south-equatorial-countercurrent"
     },
     {
@@ -2258,24 +2328,28 @@
       "name": "Indian Ocean South Equatorial Undercurrent",
       "basin": "South Indian Ocean",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 5000,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Declared complete source-described southeastward basin-scale named-jet envelope60-105E. Connecting coordinates are editorial. Excludes upstream ridge recirculation, ITF, surface SEC and SECC.",
+      "selected_route_id": "indian-south-equatorial-undercurrent-principal-reference-extent-v5",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "source_locator": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v5.json",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL098163",
+      "source_locator": "Chen et al.2022 abstract and section3/Figure2b explicitly describe the basin-wide SEUC from about60E8S to105E10S; March-May BRAN isopycnal27.9-28.7 context, not a uniform depth or digitized axis.",
+      "figure_file": "figures/indian-jets-current-length-estimates-v5.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "March-May reference geography; source says mainly January-June and weakening July-August. No annual length range measured.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "identity_interpretation": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "Unlike the prior record classified as regional, the newly reviewed abstract explicitly characterizes60-105E as the named basin-scale extent. This is a new full-reference convention, not a promotion of the old numeric reach.",
+      "conditional_extent": false,
+      "route_sensitivity_km": [
+        4300,
+        5000
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -2297,7 +2371,7 @@
       "available_regional_reach_km": 5000,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Aindian-south-equatorial-undercurrent"
     },
     {
@@ -2322,6 +2396,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -2353,6 +2428,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         700,
         1400
@@ -2403,6 +2479,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         400,
         500
@@ -2453,6 +2530,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -2484,6 +2562,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1100,
         1600
@@ -2534,6 +2613,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1800,
         2400
@@ -2584,6 +2664,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         2400,
         3000
@@ -2634,6 +2715,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": "Catalog identity is a regional segment. This estimates the complete declared Ligurian segment, not the entire Northern Current.",
+      "conditional_extent": false,
       "route_sensitivity_km": [
         250,
         350
@@ -2684,6 +2766,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1200,
         1300
@@ -2718,6 +2801,7 @@
       "drawing_constraint": "An offshore Dakar headland control keeps the geographic passage outside the peninsula while endpoints and the remaining route vary. Initial32 failed cases across both affected owners are retained in the diagnostic archive.",
       "source_typography_note": null,
       "identity_interpretation": "Length applies to the summer surface branch. Extending to27N would change the vertical/seasonal object and is not included.",
+      "conditional_extent": false,
       "route_sensitivity_km": [
         700,
         800
@@ -2768,6 +2852,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -2815,6 +2900,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         800,
         1200
@@ -2865,6 +2951,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": "A principal SMC phase is the display convention for the named reversing monsoon-current system; opposite-phase geometry is not summed.",
+      "conditional_extent": false,
       "route_sensitivity_km": [
         3700,
         3800
@@ -2930,6 +3017,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -2977,6 +3065,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -3024,6 +3113,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -3071,6 +3161,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         3100,
         3500
@@ -3121,6 +3212,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1800,
         2500
@@ -3171,6 +3263,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         300,
         500
@@ -3221,6 +3314,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -3252,6 +3346,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -3283,6 +3378,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -3314,6 +3410,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         3900,
         5000
@@ -3364,6 +3461,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         600,
         800
@@ -3414,6 +3512,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": "NOAA northeastward off-Norway named-flow convention. No equivalence to Norwegian Coastal, Norwegian Atlantic Slope or Norwegian Atlantic Front Current is established.",
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1500,
         1700
@@ -3448,6 +3547,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -3495,6 +3595,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         2000,
         2200
@@ -3545,6 +3646,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         700,
         1200
@@ -3595,6 +3697,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -3626,6 +3729,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         14100,
         15000
@@ -3660,6 +3764,7 @@
       "drawing_constraint": null,
       "source_typography_note": "Printed116 gives the Costa Rica Dome longitude as88E; Figure8.13 on printed117 locates it in the eastern Pacific with west-longitude axes. The90W offshore reference gate is an OSW map-based choice, not a verbatim coordinate copied from that sentence.",
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         14300,
         15400
@@ -3693,24 +3798,28 @@
       "name": "Pacific North Equatorial Undercurrent",
       "basin": "Western tropical Pacific",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 12000,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Conditional southern-jet principal-route convention for the multi-jet NEUC identity, from130E8N western feed to an assumed eastern-basin dispersal handoff120W14.5N. Excludes northern/middle jets from the numerical total, MUC/LUC source legs and3N Tsuchiya jet.",
+      "selected_route_id": "pacific-north-equatorial-undercurrent-principal-reference-extent-v5",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "source_locator": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v5.json",
+      "source_url": "https://doi.org/10.1038/s41598-018-35469-2",
+      "source_locator": "Li et al.2018 Mean Structures and Figures1-2: southern/middle/northern NEUCs near8/13/18N west, tilted northeast across basin; Argo2004-2014 and LICOM1969-2007 differ. Figure1 original reviewed; no current-axis extraction.",
+      "figure_file": "figures/pacific-neuc-current-length-estimates-v5.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Long-term-mean jet geography, not a monthly or instantaneous continuous current; nearly decadal averaging needed in source.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "identity_interpretation": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "A principal member is explicitly chosen rather than summing three jets or copying their regional study reaches. Eastern dispersal gate is uncertain; this does not establish an observed termination.",
+      "conditional_extent": true,
+      "route_sensitivity_km": [
+        10600,
+        12100
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -3762,7 +3871,7 @@
       "available_regional_reach_km": 4400,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Apacific-north-equatorial-undercurrent"
     },
     {
@@ -3770,24 +3879,28 @@
       "name": "Pacific North Subsurface Countercurrent",
       "basin": "Equatorial North Pacific",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 13300,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Declared northern Tsuchiya principal envelope from western145E2.5N feed to95W6N pre-Dome turning handoff. Excludes source water pathways, northward Dome turn, NEC/EIC returns and8N NEUC.",
+      "selected_route_id": "pacific-north-subsurface-countercurrent-principal-reference-extent-v5",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "source_locator": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v5.json",
+      "source_url": "https://iprc.soest.hawaii.edu/users/zuojun/papers/MLY2002.pdf",
+      "source_locator": "McCreary/Lu/Yu2002 introduction printed2379-2381 and Figure2 original reviewed: northern Tsuchiya jet recirculates in eastern interior, turns north near Costa Rica Dome8N90W rather than continuing to eastern coast. Johnson/Moore1997 supports155W/110W cores.",
+      "figure_file": "figures/pacific-tsuchiya-current-length-estimates-v5.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Geographic synthesis of mean jet structure, not an observed dated continuous path.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "identity_interpretation": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "Eastern endpoint is an editorial pre-turn handoff. Source explicitly does not support extending this northern jet to the American coast.",
+      "conditional_extent": false,
+      "route_sensitivity_km": [
+        12700,
+        13400
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -3809,7 +3922,7 @@
       "available_regional_reach_km": 5000,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Apacific-north-subsurface-countercurrent"
     },
     {
@@ -3834,6 +3947,7 @@
       "drawing_constraint": "162E12S is the declared offshore western passage control. Keep it fixed rather than shifting that handoff onto Makira; probe the other vertices and endpoint choices. This geographic constraint is not physical-axis uncertainty.",
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         13200,
         14200
@@ -3851,24 +3965,28 @@
       "name": "Pacific South Equatorial Countercurrent",
       "basin": "Tropical South Pacific",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 3500,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Declared western mean SECC envelope from offshore Solomon source confluence163E9S to assumed eastern southward-return handoff165W12S. Excludes upstream island passages, SEC return leg, STCC and subsurface Tsuchiya jets.",
+      "selected_route_id": "pacific-south-equatorial-countercurrent-principal-reference-extent-v5",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "source_locator": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
+      "record_file": "research/current-length-reference-extents-v5.json",
+      "source_url": "https://www.soest.hawaii.edu/oceanography/bo/CQ04.pdf",
+      "source_locator": "Chen/Qiu2004 introduction and Figure1: mean SECC near8-11S in western basin, supplied near Solomons by SEC/North Queensland flow and turns south to join SEC. Map context is0-200m geostrophy relative1500dbar. Nominal path is not a digitization.",
+      "figure_file": "figures/pacific-counter-current-length-estimates-v5.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Mean-circulation convention; source contrasts seasons and datasets, no fixed monthly endpoint or annual extrema inferred.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis. Initial161E gate variants clip coarse Solomon land; revised163E/165E gates begin offshore east of the source confluence. This excludes island feeder passages and changes the estimate, rather than deleting failed cases.",
       "drawing_constraint": null,
       "source_typography_note": null,
-      "identity_interpretation": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "Eastern turning gate is an OSW approximate handoff for the western mean jet, with a five-degree alternative. Seasonal eastward extensions are not silently treated as fixed.",
+      "conditional_extent": true,
+      "route_sensitivity_km": [
+        2700,
+        3600
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -3887,7 +4005,7 @@
       "available_regional_reach_km": 1800,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Apacific-south-equatorial-countercurrent"
     },
     {
@@ -3895,24 +4013,28 @@
       "name": "Pacific South Subsurface Countercurrent",
       "basin": "Equatorial South Pacific",
       "identity_level": "current",
-      "status": "regional_only",
-      "length_estimate_km": null,
-      "method": null,
-      "scope": null,
-      "selected_route_id": null,
+      "status": "provisional_estimate",
+      "length_estimate_km": 14700,
+      "method": "WGS84_editorial_reference_route",
+      "scope": "Declared primary southern Tsuchiya principal envelope from western150E2.5S feed to offshore Peru handoff79W12S. Excludes secondary southern jet, upstream source-water route, southward Peru undercurrent and EIC recirculation.",
+      "selected_route_id": "pacific-south-subsurface-countercurrent-principal-reference-extent-v5",
       "reported_length_source_id": null,
       "reported_length_source_locator": null,
-      "record_file": null,
-      "source_url": null,
-      "source_locator": null,
-      "figure_file": null,
-      "geographic_screening": null,
-      "source_time_convention": null,
-      "gate_rationale": null,
-      "drawing_constraint": null,
+      "record_file": "research/current-length-reference-extents-v5.json",
+      "source_url": "https://iprc.soest.hawaii.edu/users/zuojun/papers/MLY2002.pdf",
+      "source_locator": "McCreary/Lu/Yu2002 introduction printed2379-2381 and Figure2: southern Tsuchiya reaches eastern boundary near12S, supplies Peru-Chile undercurrent; source distinguishes primary/secondary branches. Johnson/Moore1997 regional core context retained.",
+      "figure_file": "figures/pacific-tsuchiya-current-length-estimates-v5.svg",
+      "geographic_screening": "All36 variants clear coarse OSW land; fine coast not checked.",
+      "source_time_convention": "Mean geographic interpretation, not a dated observed trajectory or annual maximum.",
+      "gate_rationale": "OSW chooses rounded named-flow handoff gates and connecting vertices from the cited circulation context. Where termination is unresolved the gate is an explicit working hypothesis. Endpoint/drawing alternatives are retained; this is not an observed complete axis.",
+      "drawing_constraint": "Explicit north-New-Ireland offshore passage control prevents a straight interpolating leg crossing the island. Other controls and both endpoint alternatives still vary; initial failures retained.",
       "source_typography_note": null,
-      "identity_interpretation": null,
-      "route_sensitivity_km": null,
+      "identity_interpretation": "Primary branch convention avoids adding the secondary jet. Eastern boundary connection follows the cited source interpretation.",
+      "conditional_extent": false,
+      "route_sensitivity_km": [
+        14300,
+        14800
+      ],
       "route_choice_rule": null,
       "route_options": [
         {
@@ -3934,7 +4056,7 @@
       "available_regional_reach_km": 5000,
       "scenario_range_is_physical_uncertainty": false,
       "annual_length_range_km": null,
-      "needs_full_extent_estimate": true,
+      "needs_full_extent_estimate": false,
       "current_card_url": "object.html?id=current%3Apacific-south-subsurface-countercurrent"
     },
     {
@@ -3959,6 +4081,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -4006,6 +4129,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -4037,6 +4161,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1100,
         1800
@@ -4087,6 +4212,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -4149,6 +4275,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -4196,6 +4323,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1100,
         1800
@@ -4261,6 +4389,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         5300,
         5900
@@ -4311,6 +4440,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         700,
         1100
@@ -4361,6 +4491,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -4392,6 +4523,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -4423,6 +4555,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [],
@@ -4454,6 +4587,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         5200,
         6100
@@ -4504,6 +4638,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": "Uses the broader South Java coastal-system interpretation including southwest Sumatra; narrower Java-only study reaches remain separately visible.",
+      "conditional_extent": false,
       "route_sensitivity_km": [
         2100,
         2200
@@ -4551,6 +4686,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         7900,
         8700
@@ -4601,6 +4737,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": null,
       "route_choice_rule": null,
       "route_options": [
@@ -4648,6 +4785,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": "Conditional NOAA named-flow interpretation; equivalence and full-extent correspondence with modern West Spitsbergen Current remain unresolved.",
+      "conditional_extent": false,
       "route_sensitivity_km": [
         250,
         450
@@ -4682,6 +4820,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": "Tasman Front is a segment and statistical connection, not an independently additive current system.",
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1700,
         1800
@@ -4732,6 +4871,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1100,
         1300
@@ -4782,6 +4922,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": "Offshore northward West Australian named flow, not the southward Leeuwin Current or a diagnosed velocity-axis continuation.",
+      "conditional_extent": false,
       "route_sensitivity_km": [
         2000,
         2300
@@ -4816,6 +4957,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         900,
         1300
@@ -4866,6 +5008,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         1700,
         1800
@@ -4913,6 +5056,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         600,
         900
@@ -4963,6 +5107,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         700,
         800
@@ -5013,6 +5158,7 @@
       "drawing_constraint": null,
       "source_typography_note": null,
       "identity_interpretation": null,
+      "conditional_extent": false,
       "route_sensitivity_km": [
         500,
         900

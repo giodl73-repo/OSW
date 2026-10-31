@@ -60,7 +60,7 @@ def build():
         add(row,path)
     if len(routes)!=87:raise ValueError('All87 prepared reference routes required')
     provisional={}
-    for version in [1,2,3,4]:
+    for version in [1,2,3,4,5]:
         extent_path=f'research/current-length-reference-extents-v{version}.json'
         extents=read(extent_path);geography=read(f'research/current-length-reference-extents-geography-v{version}.json')
         if geography['estimate_file_sha256']!=pins[extent_path] or not all(r['all_clear'] and r['scenarios']==r['coarse_land_clear']==36 for r in geography['records']):raise ValueError('Exact geographic screening required')
@@ -95,6 +95,7 @@ def build():
             'drawing_constraint':draft.get('fixed_drawing_vertex_rationale') if draft else None,
             'source_typography_note':draft.get('source_typography_note') if draft else None,
             'identity_interpretation':draft.get('identity_interpretation') if draft else None,
+            'conditional_extent':bool(draft and draft.get('conditional_extent')),
             'route_sensitivity_km':draft['scenario_range_km'] if draft else chosen['scenario_range_km'] if chosen else None,
             'route_choice_rule':'Longest declared reference-extent route; all phase/definition alternatives retained. This is not a maximum annual length.' if chosen and not publication else None,
             'route_options':options,'available_regional_reach_km':max((r['length_km'] for r in options if r['extent_class']=='regional_reach'),default=None),
