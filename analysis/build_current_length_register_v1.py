@@ -60,7 +60,7 @@ def build():
         add(row,path)
     if len(routes)!=87:raise ValueError('All87 prepared reference routes required')
     provisional={}
-    for version in [1,2,3]:
+    for version in [1,2,3,4]:
         extent_path=f'research/current-length-reference-extents-v{version}.json'
         extents=read(extent_path);geography=read(f'research/current-length-reference-extents-geography-v{version}.json')
         if geography['estimate_file_sha256']!=pins[extent_path] or not all(r['all_clear'] and r['scenarios']==r['coarse_land_clear']==36 for r in geography['records']):raise ValueError('Exact geographic screening required')
@@ -87,6 +87,7 @@ def build():
             'reported_length_source_locator':publication.get('length_source_locator') if publication else None,
             'record_file':'research/ocean-current-live-measurements.json' if publication else chosen['record_file'] if chosen else draft['record_file'] if draft else None,
             'source_url':chosen['source_url'] if chosen and not publication else draft['source_url'] if draft else None,
+            'source_locator':chosen['source_locator'] if chosen and not publication else draft.get('source_locator') if draft else None,
             'figure_file':draft['figure_file'] if draft else None,
             'geographic_screening':'All36 variants clear coarse OSW land; fine coast not checked.' if draft else None,
             'source_time_convention':draft['source_time_convention'] if draft else None,
