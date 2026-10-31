@@ -39,6 +39,15 @@ initial empty values are a worklist, not an acceptable final deliverable.
    Every number must link to its method, extent and source/route record. Preserve
    the canonical scientific measurements and their published ranking unchanged.
 
+For the eight catalogued cross-basin families, the display convention is the
+longest nominal extent among an explicit list of admitted basin members. Retain
+all member alternatives and identify the selected member beside the method.
+This is a principal-member length, not a global continuous axis or the sum of
+member lengths. Unresolved aliases do not enter the member inventory. For the
+Gulf Stream System, sum only the strict Florida Current, Gulf Stream proper and
+North Atlantic reference segments, preserving their disjoint handoff conventions
+and mixed source methods. Neither convention creates a canonical measurement.
+
 Completion requires all 111 identities to have a positive estimate under an
 explicit convention, every calculation and source to be reproducible, and the
 ranked view and current links to be checked. A regional-only number or a hidden

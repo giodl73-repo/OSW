@@ -15,6 +15,47 @@ JSON_PATH='research/current-length-estimate-register-v1.json'
 CSV_PATH='research/current-length-estimate-register-v1.csv'
 
 
+def apply_family_conventions(rows, document):
+    by_id={r['entity_id']:r for r in rows}
+    seen=set()
+    for definition in document['conventions']:
+        owner=definition['entity_id'];ids=definition['members']
+        if owner in seen or len(ids)!=len(set(ids)) or owner in ids:
+            raise ValueError('Duplicate or recursive length components')
+        seen.add(owner);target=by_id[owner]
+        if target['length_estimate_km'] is not None:raise ValueError('Convention would overwrite an existing estimate')
+        members=[by_id[i] for i in ids]
+        if any(m['identity_level']=='family' or m['status'] in ['family_principal_member','system_segment_sum'] or not m['length_estimate_km'] for m in members):
+            raise ValueError('Every component must have an existing non-aggregate reference extent')
+        rule=definition['convention']
+        selected=None
+        if rule=='longest_catalogued_member':
+            if target['identity_level']!='family':raise ValueError('Principal-member convention requires family owner')
+            selected=sorted(members,key=lambda m:(-m['length_estimate_km'],m['entity_id']))[0]
+            value=selected['length_estimate_km'];status='family_principal_member'
+            scope=f"Principal catalogued member: {selected['name']} ({selected['entity_id']}). "+definition['scope_note']+' '+document['family_rule']
+        elif rule=='distinct_segment_sum':
+            if target['identity_level']!='system':raise ValueError('Segment sum requires a system owner')
+            value=sum(m['length_estimate_km'] for m in members);status='system_segment_sum'
+            scope=definition['scope_note']
+        else:raise ValueError('Unknown family/system length convention')
+        target.update(status=status,length_estimate_km=value,method=rule,scope=scope,
+            length_convention=rule,selected_member_id=selected['entity_id'] if selected else None,
+            record_file='research/current-length-family-conventions-v1.json',
+            selected_route_id=selected['selected_route_id'] if selected else None,
+            source_url=document['source_url'],source_locator=definition.get('source_locator','Declared member inventory and principal-member selection rule; every member source retained below.'),
+            figure_file=selected.get('figure_file') if selected else None,
+            conditional_extent=bool(selected and selected.get('conditional_extent')),
+            geographic_screening=('Selected member only: '+selected['geographic_screening']) if selected and selected.get('geographic_screening') else None,
+            source_time_convention='Member periods/phases differ; no simultaneous global axis or measured annual range. '+(selected.get('source_time_convention') or '') if selected else 'Combines segment descriptions/reference route with different source periods; not a simultaneous observed axis.',
+            identity_interpretation=document['inventory_limits'],
+            route_sensitivity_km=selected['route_sensitivity_km'] if selected else None,
+            route_choice_rule=document['family_rule'] if selected else 'Sum only the three explicitly non-overlapping strict segments; source-reported numerical descriptions stay fixed. No annual range or statistical uncertainty inferred.',
+            needs_full_extent_estimate=False,
+            length_components=[{k:m.get(k) for k in ['entity_id','name','length_estimate_km','method','scope','record_file','source_url','source_locator','selected_route_id','source_time_convention','route_sensitivity_km','conditional_extent','figure_file','current_card_url']} for m in members])
+    return rows
+
+
 def build():
     pins={}
     def read(path):
@@ -102,6 +143,7 @@ def build():
             'scenario_range_is_physical_uncertainty':False,'annual_length_range_km':None,
             'needs_full_extent_estimate':value is None,
             'current_card_url':'object.html?id='+identifier.replace(':','%3A')})
+    rows=apply_family_conventions(rows,read('research/current-length-family-conventions-v1.json'))
     counts=Counter(r['status'] for r in rows)
     return {'schema':'osw.current-length-estimate-register.v1','status':'LENGTH_FIRST_WORKING_REGISTER_INCOMPLETE',
         'target':'A declared, reproducible length estimate for every catalogued current.',
@@ -114,7 +156,7 @@ def build():
 
 def main():
     value=build();(ROOT/JSON_PATH).write_bytes((json.dumps(value,indent=2,ensure_ascii=False)+'\n').encode())
-    output=io.StringIO(newline='');fields=['entity_id','name','basin','identity_level','status','length_estimate_km','method','scope','selected_route_id','available_regional_reach_km','needs_full_extent_estimate']
+    output=io.StringIO(newline='');fields=['entity_id','name','basin','identity_level','status','length_estimate_km','method','scope','length_convention','selected_member_id','selected_route_id','available_regional_reach_km','needs_full_extent_estimate']
     writer=csv.DictWriter(output,fieldnames=fields,extrasaction='ignore');writer.writeheader();writer.writerows(value['records'])
     (ROOT/CSV_PATH).write_bytes(output.getvalue().encode('utf8'))
     print(json.dumps(value['counts']))
