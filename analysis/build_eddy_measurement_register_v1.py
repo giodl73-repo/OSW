@@ -4,6 +4,7 @@ from datetime import date
 import hashlib
 import io
 import json
+import math
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -54,7 +55,7 @@ def build():
              'rank_eligible':False,'geometry':None,'seasonal_playback_eligible':False,
              'whole_lifetime_inferred':False,'physical_state_join_eligible':False}
         row.update(kwargs)
-        assert row['value'] is None or isinstance(row['value'],(int,float)) and row['value']>0
+        assert row['value'] is None or isinstance(row['value'],(int,float)) and math.isfinite(row['value']) and row['value']>0
         assert row['source_url'] and row['source_locator'],identifier
         evidence.append(row)
     for n,r in enumerate(astrid['measurements']):
@@ -124,6 +125,30 @@ def build():
             definition=r['definition'],scope=r['scope'],qualification=r['qualification'],
             period_start=r.get('period_start'),period_end=r.get('period_end'),period_label=r.get('period_label'),
             period_precision=r.get('period_precision'),component_label=r.get('component_label'),right_censored=r.get('right_censored',False))
+    batches_path='research/eddy-measurement-batches-v1.json';batch_index=read(batches_path);applied=[]
+    for entry in batch_index['batches']:
+        path=entry['file'];batch=read(path);assert pins[path]==entry['sha256']
+        prior=hashlib.sha256(json.dumps(evidence,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
+        assert len(evidence)==batch['baseline_evidence_count'] and prior==batch['baseline_evidence_sha256']
+        for n,r in enumerate(batch['records']):
+            source=batch['sources'][r['source_id']]
+            assert r['category'] in ['size','duration','recurrence','travel','structure','kinematics']
+            assert any(r.get(k) is not None for k in ['value','range_value','upper_bound','lower_bound'])
+            interval=r.get('range_value')
+            if interval is not None:assert len(interval)==2 and 0<interval[0]<=interval[1] and r['value'] is None
+            if r.get('upper_bound') is not None:assert r['upper_bound']>0 and r['value'] is None
+            if r.get('calculation'):
+                c=r['calculation'];assert c['multiplier']*c['deformation_radius_km']==c['unrounded_km'] and round(c['unrounded_km'])==r['value']
+            if r.get('basis_source_file'):
+                basis=read(r['basis_source_file']);events=pointer(basis,r['basis_source_pointer'])
+                assert hashlib.sha256(json.dumps(events,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()==r['basis_sha256']
+                assert [v['observation_date'] for v in events]==[r['period_start'],r['period_end']]
+                assert r['value']==(date.fromisoformat(r['period_end'])-date.fromisoformat(r['period_start'])).days
+            add(r['id'],r['entity_id'],r['category'],r['metric'],r['value'],r['unit'],path,f'/records/{n}',batch,
+                source_url=source['url'],source_access=source['access'],source_id=r['source_id'],
+                definition=r['definition'],scope=r['scope'],qualification=r['qualification'],
+                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role'] if k in r})
+        applied.append({'file':path,'baseline_count':batch['baseline_evidence_count'],'preserved_baseline_sha256':prior,'added':len(batch['records'])})
     records=[]
     for identifier,current in identities.items():
         owned=[r for r in evidence if r['entity_id']==identifier]
@@ -146,16 +171,20 @@ def build():
             'current_card_url':'object.html?id='+identifier,'atlas_url':'index.html'+current['atlas_anchor'],
             'next_action':'Recover definition-qualified dated size and duration evidence; verify identity before joining satellite detections.'})
     owners=lambda category:{r['entity_id'] for r in evidence if r['category']==category}
-    return {'schema':'osw.eddy-measurement-register.v1','status':'SECOND_MEASUREMENT_BATCH_GAPS_OPEN',
+    return {'schema':'osw.eddy-measurement-register.v1','status':'MEASUREMENT_GAP_FILLING_IN_PROGRESS',
         'rules_file':RULES,'rules_sha256':hashlib.sha256((ROOT/RULES).read_bytes()).hexdigest(),
         'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'input_sha256':pins,
         'first_batch_evidence_sha256':baseline_sha,'first_batch_evidence_preserved':40,
+        'additional_batches':applied,
         'scope':inventory['scope'],'identity_rule':'Source records remain separate; possible Horizon/published matches are not verified identity joins.',
         'release_scope':'Full research candidate: 136 source identities. The separate rights-screened release excludes 96 Horizon registry labels.',
         'counts':{'identities':len(records),'individual_source_records':sum(r['identity_level']=='individual_eddy' for r in records),
             'recurrent_regions':sum(r['identity_level']=='recurrent_eddy_region' for r in records),'families':sum(r['identity_level']=='eddy_family' for r in records),
             'evidence_records':len(evidence),'size_records':sum(r['category']=='size' for r in evidence),
             'size_owners':len(owners('size')),'duration_owners':len(owners('duration')),'recurrence_owners':len(owners('recurrence')),
+            'structure_owners':len(owners('structure')),'kinematics_owners':len(owners('kinematics')),
+            'non_registry_entries':sum(r['source_collection']!='horizon_loop_current' for r in records),
+            'non_registry_entries_with_references':sum(r['source_collection']!='horizon_loop_current' and bool(r['evidence_ids']) for r in records),
             'identities_with_measurements':sum(bool(r['evidence_ids']) for r in records),
             'identities_without_measurements':sum(not r['evidence_ids'] for r in records),
             'conflicted_size_records':sum(r['value_conflict'] for r in evidence),
@@ -165,9 +194,9 @@ def build():
 
 def main():
     document=build();(ROOT/JSON_PATH).write_bytes((json.dumps(document,indent=2,ensure_ascii=False)+'\n').encode())
-    fields=['entity_id','id','category','metric','value','unit','lower_bound','lower_bound_exclusive','standard_deviation','sample_count','period_start','period_end','period_label','period_precision','component_label','right_censored','value_conflict','date_conflict','source_claims_json','definition','scope','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
+    fields=['entity_id','id','category','metric','value','unit','range_value_json','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','standard_deviation','sample_count','period_start','period_end','period_label','period_precision','component_label','case_label','right_censored','value_conflict','date_conflict','source_claims_json','calculation_json','evidence_role','definition','scope','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
     out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()
-    for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False)})
+    for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False),'range_value_json':json.dumps(r.get('range_value')),'calculation_json':json.dumps(r.get('calculation'))})
     (ROOT/CSV_PATH).write_bytes(out.getvalue().encode());print(json.dumps(document['counts']))
 
 

@@ -51,13 +51,14 @@ def run():
             assert set(ids)=={r['entity_id'] for r in document['records']}
             links=page.locator('#eddy-rows tr td:first-child>a').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))')
             assert all(parse_qs(urlsplit(link).query)['id']==[owner] for link,owner in zip(links,ids))
-            assert '48 measurement records across 23 entries' in page.locator('#eddy-summary').inner_text()
+            counts=document['counts']
+            assert f"{counts['evidence_records']} evidence records across {counts['identities_with_measurements']} entries" in page.locator('#eddy-summary').inner_text()
             page.screenshot(path=str(OUT/'desktop.png'))
             for value,expected in [('individual_eddy',112),('recurrent_eddy_region',20),('eddy_family',4),('all',136)]:
                 page.select_option('#eddy-identity',value);assert page.locator('#eddy-rows tr').count()==expected
-            for value,expected in [('measured',23),('gap',113),('size-gap',124),('duration-gap',122),('all',136)]:
+            for value,expected in [('measured',counts['identities_with_measurements']),('gap',counts['identities_without_measurements']),('size-gap',sum(r['size_gap'] for r in document['records'])),('duration-gap',sum(r['duration_gap'] for r in document['records'])),('all',136)]:
                 page.select_option('#eddy-filter',value);assert page.locator('#eddy-rows tr').count()==expected
-            for category in ['size','duration','recurrence','travel','all']:
+            for category in ['size','duration','recurrence','travel','structure','kinematics','all']:
                 page.select_option('#eddy-category',category)
                 expected=sum(category=='all' or category in r['categories'] for r in document['records'])
                 assert page.locator('#eddy-rows tr').count()==expected
@@ -73,7 +74,8 @@ def run():
             for name in ['thor-2020','ursa-2021']:
                 tr=page.locator(f'tr[data-eddy-id="eddy:published:{name}"]');tr.locator('summary').click()
                 assert 'Paper window:' in tr.inner_text() and 'measured lifetime' in tr.inner_text()
-                assert tr.locator('.eddy-record').count()==0
+                assert tr.locator('.eddy-record').count()==1
+                assert 'Not an individual lifespan' in tr.inner_text()
             checks.append('Eliza value/year conflicts retained; parent-ring span and paper windows not promoted to individual lifetimes')
             page.select_option('#eddy-identity','eddy_family');page.fill('#eddy-search','Agulhas')
             assert page.locator('#eddy-rows tr').count()==1
@@ -109,6 +111,27 @@ def run():
             assert page.locator('.eddy-scroll').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
             page.screenshot(path=str(OUT/'mobile-ulla.png'),full_page=True)
             checks.append('New Kenai/Sitka scope, right-censored Kenai span, distinct Haida components, Laura drift units and abstract-qualified Ulla months/radius')
+            page.set_viewport_size({'width':1440,'height':1000})
+            for search,needles in [
+                ('Danube Eddy',['55 %','Not annual presence days']),
+                ('Meddies (Mediterranean Water eddies)',['20–100 km','No representative midpoint inferred']),
+                ('Cuba anticyclones',['< 100 km','CA6 model case','One model case']),
+                ('Mindanao Eddy',['126 km','Model calculation:','Computed model reference']),
+                ('New Guinea Eddy',['300 km','Qualified indexed reference']),
+                ('Agulhas Eddy W',['2 weeks','5 degrees latitude','Angular displacement'])]:
+                page.fill('#eddy-search',search);assert page.locator('#eddy-rows tr').count()==1,(search,'count')
+                page.locator('#eddy-rows summary').click()
+                for needle in needles:assert needle in page.locator('#eddy-rows').inner_text(),(search,needle)
+                if search in ['Meddies (Mediterranean Water eddies)','Mindanao Eddy']:
+                    page.screenshot(path=str(OUT/('meddy-range.png' if search.startswith('Meddies') else 'mindanao-model.png')),full_page=True)
+            page.fill('#eddy-search','Peddies');page.locator('#eddy-rows summary').click()
+            assert '200–300 m' in page.locator('#eddy-rows').inner_text()
+            assert 'Not eddy thickness' in page.locator('#eddy-rows').inner_text()
+            page.set_viewport_size({'width':390,'height':844})
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            assert page.locator('.eddy-scroll').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
+            page.screenshot(path=str(OUT/'mobile-peddy-depth.png'),full_page=True)
+            checks.append('Third batch: range-only family size, depth band, strict bound, sampled/model cases, qualified indexed reference, native angular displacement and phase intervals')
             with page.expect_download() as pending:page.get_by_role('link',name='Download measurement CSV').click()
             assert hashlib.sha256(Path(pending.value.path()).read_bytes()).hexdigest()==sha('research/eddy-measurement-register-v1.csv')
             for path in set(r['source_file'] for r in document['evidence'])|{'plans/eddy-measurement-register-v1.md','research/eddy-measurement-register-v1.json'}:

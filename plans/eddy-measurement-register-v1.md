@@ -61,3 +61,19 @@ explicit, with full-paper methods still unreviewed. Eddy W's inaccessible source
 and Laura's missing size remain open leads. No new source identity merge,
 radius conversion, seasonal series or runtime installation follows from these
 records.
+
+## Continuing source batches
+
+An explicit batch index pins each additional source-facts file. Every batch
+binds the complete preceding evidence list before appending records, preserving
+the earlier 48 records as well as the original 40. Source ranges stay range-only;
+native percentages, weeks, depth bands and angular displacement retain their
+units. A depth presence band supplies no lens thickness. Source-reported bounds
+remain typed descriptions, with physical-limit caveats. Model radii retain the
+published multipliers, deformation radii, product and rounding rule; they are not
+observational contour measurements. Sampled drifter or case properties belong
+to that case within its region/family. Event-stage intervals for Thor and Ursa
+describe elapsed dates between named reported stages, not an eddy lifespan or
+continuous detachment. Qualified indexed passages retain their limited source
+access and unreviewed-method flags. Numeric reference coverage does not mean
+complete size, lifetime, track, seasonal or vertical coverage.
