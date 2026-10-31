@@ -379,3 +379,30 @@ precision. This envelope describes selection and reading sensitivity, not
 source-field error, statistical confidence, seasonal change or lifetime bounds.
 No physical width, radius, diameter, occupied area, full-ring boundary, state
 join or playback follows. Preserve all 315 preceding evidence and CSV rows.
+
+## Visible circulation-arrow extents
+
+Keep analyst circulation arrows separate from scientific contours. A rejected
+closed-outline extraction must remain rejected. Do not bridge arrowheads, gaps
+or annotations or call the resulting depiction a closed footprint. A different,
+explicit quantity may retain four independently visible directional extrema of
+the plotted arrows, selected by manual review in named native-pixel windows.
+Each window must contain >=10 source-ink pixels with every channel <=75; read
+its directional extreme and reject it if it touches the window boundary in the
+measured direction. Pin all selected-ink pixel hashes and extremal pixels. This
+is source-plot reading, not a reconstructed missing curve or a physical width.
+
+For Lazarus and Michael, use the named 22 January 2015 conference chart on slide
+20. Use eight longitude and four latitude tick anchors; the latitude anchor at
+24 N and longitude labels come from the lower native raster. Verify the PDF
+placement matrices align the two native tiles with a 527-pixel native-y offset;
+the PDF places them with rotated axes. Use the existing 6371 km sphere, six-pixel
+extent allowance and outward 25 km rounding. Reading intervals are not field
+error, confidence, seasonal ranges or lifetime extrema. The four-day drifter
+support supplies no lifespan. Registry context stays an unverified crosswalk.
+
+The publicly hosted conference chart contains a CONFIDENTIAL stamp and copyright.
+Retain that fact; no original chart asset is republished, no release rights are
+inferred and these references remain excluded from the rights-screened release.
+The small nine-panel DOE GOMEX figure and unavailable BOEM original supply no
+measurements. Preserve all preceding 317 numeric evidence and CSV rows exactly.

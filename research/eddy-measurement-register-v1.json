@@ -2,8 +2,8 @@
   "schema": "osw.eddy-measurement-register.v1",
   "status": "MEASUREMENT_GAP_FILLING_IN_PROGRESS",
   "rules_file": "plans/eddy-measurement-register-v1.md",
-  "rules_sha256": "aa4105d8555b38061191ea91c76cd7889322a809fc7d16369be5679887bfcbdb",
-  "generator_sha256": "ad181c4d019c6f9ac2197f3159d9a516143d1a147b77ed33e1258dbbaf30b290",
+  "rules_sha256": "a78d092ed1a4f44dc8a34ab0334952cd739d892490a23625209ce919a0468f2a",
+  "generator_sha256": "b49ae8020adb769932cab5ac23eab8da588c086e4c25083d79b79315bcf4be99",
   "input_sha256": {
     "research/ocean-eddy-name-inventory.json": "d78c31a96b93cc9e746562f2d5c3b0f6d37ad36c3f1d10bb769aec8aa4472015",
     "research/named-eddy-geography.json": "50f20f1f32589b780f7ff29824afa7f7af4a78bfd80a25a4784e6fc992bf3547",
@@ -15,7 +15,7 @@
     "research/eddy-measurement-register-additions-v2.json": "3bb1a6760a5e68efd41f5562425225da70e7bd78429257a8b1466937114fa62b",
     "plans/agulhas-ring-radius-protocol-v1.md": "620981e7dccd1a888083d5daa670548a6f1254825f2acda73da5a821bcb4e876",
     "plans/black-sea-eddy-recurrence-protocol-v1.md": "66fef56b5960d802df68ca35d3241912650f7fe2c58803375743b4f42a48b5cf",
-    "research/eddy-measurement-batches-v1.json": "ef785e971f56f02e3bbeefa6a46837b97596290765d3e7ee7b7536c127f3542a",
+    "research/eddy-measurement-batches-v1.json": "2637d656ccfff64e208e07cc409707230226f1bc43cd9c5495ad70309e2b2c67",
     "research/eddy-measurement-register-additions-v3.json": "d1c91350952ea08a49562c5aa0b671f0624930fd73e4735c2227c1b17708fc15",
     "research/eddy-measurement-register-additions-v4.json": "359d14c7927a6fc045bce23eb8ae4f7c226caa1a5355a27045a735125bdeaa11",
     "research/named-loop-current-eddies.json": "4a41a3b4b127f42ac31b114117c0d5d2caf998b84bed6caeac58de6ef94eecca",
@@ -41,12 +41,15 @@
     "research/source-data/exley-loop-2022/acquisition.json": "839391c69823260951a55e790b4a0bcd6e2c6ce633863b61ade144eca75cde6a",
     "plans/ursa-dated-contour-digitization-protocol-v1.md": "cc2145e3b169b2f2e9d4e2102f5cab0d8b9377ef03b0198f9dc322360bc0d77d",
     "research/eddy-measurement-register-additions-v19.json": "0ba4965170fcf5cce20fc95d52b1a0fcc3210528cb2c8c61f1b0319d1f10eb34",
-    "research/eddy-colour-span-source-verification-v1.json": "57b77a64e7a508a19621dd895b5f2037ce430150931e7af25c06cff2ae4e48b6"
+    "research/eddy-colour-span-source-verification-v1.json": "57b77a64e7a508a19621dd895b5f2037ce430150931e7af25c06cff2ae4e48b6",
+    "research/eddy-measurement-register-additions-v20.json": "c24563276b52743f71763bb565969f502c67ddf89148c9e73be034de30ca90bf",
+    "research/eddy-arrow-span-source-verification-v1.json": "5fd322096254bd573c1a8cc93d4fb6baff332bc2084d4793c06db3ae64ea8ff5"
   },
   "method_implementation_sha256": {
     "analysis/eddy_map_spans_v1.py": "b7594aa7eac20a1968e4432f2979f6b11c4f7008b3f5745753f0ad6e70f1f6e4",
     "analysis/eddy_audit_spans_v1.py": "db9db395ac3d1d52849e4d4086fecc823a5fec0ec08d0d0c10179979a6435523",
-    "analysis/eddy_colour_spans_v1.py": "8c50bd79451c8f933c329f3e23cae320351c7f94f669163162007c5fa24a5994"
+    "analysis/eddy_colour_spans_v1.py": "8c50bd79451c8f933c329f3e23cae320351c7f94f669163162007c5fa24a5994",
+    "analysis/eddy_arrow_spans_v1.py": "f97555626ece63dc373d695f9d7430ea0349bd064b1aeabd68bde1aabbeb32b9"
   },
   "first_batch_evidence_sha256": "702311bd7b238182a51b6160f902500e371a88eec635c6d500bc93df53373a4b",
   "first_batch_evidence_preserved": 40,
@@ -152,6 +155,12 @@
       "baseline_count": 315,
       "preserved_baseline_sha256": "e22e4c5531eb8c35d23a0a646de9af54d986e4434d1bb9015864b1539bae3e59",
       "added": 2
+    },
+    {
+      "file": "research/eddy-measurement-register-additions-v20.json",
+      "baseline_count": 317,
+      "preserved_baseline_sha256": "c8fa558c5a124b91972472afcffee763f4e5edc0ecf6f61151fac6a6834d66c3",
+      "added": 4
     }
   ],
   "scope": "One address for every independently named eddy label or named regional/family record currently admitted to the OSW almanac. This source-set inventory is not a complete global list of all eddies or all names. NOAA detection IDs are separate unnamed, dated observations.",
@@ -162,9 +171,9 @@
     "individual_source_records": 112,
     "recurrent_regions": 20,
     "families": 4,
-    "evidence_records": 317,
-    "size_records": 109,
-    "size_owners": 71,
+    "evidence_records": 321,
+    "size_records": 113,
+    "size_owners": 73,
     "duration_owners": 99,
     "recurrence_owners": 12,
     "structure_owners": 10,
@@ -2216,14 +2225,17 @@
       "source_pointer": "/entries/27",
       "evidence_ids": [
         "eddy:horizon:loop-62-primary-registry-maximum-surface-current",
-        "eddy:horizon:loop-62-primary-registry-calendar-span"
+        "eddy:horizon:loop-62-primary-registry-calendar-span",
+        "michael-aade-2015-arrow-east-west-span",
+        "michael-aade-2015-arrow-north-south-span"
       ],
       "categories": [
         "duration",
-        "kinematics"
+        "kinematics",
+        "size"
       ],
       "size_classification_ids": [],
-      "size_gap": true,
+      "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
       "linked_primary_context": null,
@@ -2263,14 +2275,17 @@
       "source_pointer": "/entries/28",
       "evidence_ids": [
         "eddy:horizon:loop-61-primary-registry-maximum-surface-current",
-        "eddy:horizon:loop-61-primary-registry-calendar-span"
+        "eddy:horizon:loop-61-primary-registry-calendar-span",
+        "lazarus-aade-2015-arrow-east-west-span",
+        "lazarus-aade-2015-arrow-north-south-span"
       ],
       "categories": [
         "duration",
-        "kinematics"
+        "kinematics",
+        "size"
       ],
       "size_classification_ids": [],
-      "size_gap": true,
+      "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
       "linked_primary_context": null,
@@ -40175,6 +40190,2086 @@
           "range_km": [
             75,
             150
+          ]
+        }
+      }
+    },
+    {
+      "id": "lazarus-aade-2015-arrow-east-west-span",
+      "entity_id": "eddy:horizon:loop-61-primary",
+      "category": "size",
+      "metric": "plotted_circulation_arrow_east_west_extremum_arc_span",
+      "metric_label": "plotted circulation arrow east west extremum arc span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2015-01-22",
+      "period_end": "2015-01-22",
+      "period_label": null,
+      "definition": "Not eddy diameter. East-west parallel arc at arrow-extrema bounding-box midlatitude.",
+      "scope": "Manual reading of the named circulation-arrow depiction, not an extracted closed contour or measured whole-ring dimension.",
+      "qualification": "Four visible arrow extrema are read independently in pinned native-ink windows; no gap closing, bridge, smoothing or annotation repair. Six-pixel extent allowance and outward 25 km rounding describe map reading, not instrument uncertainty, confidence or seasonal extrema. Automatic closed-outline extraction was rejected; no closed footprint follows. Chart date and four-day drifter support are not lifespan. Name/date context does not verify a physical registry crosswalk. Public conference chart contains CONFIDENTIAL stamp and copyright; retained only in research candidate, excluded from rights-screened release. Original chart not republished.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.aade.org/download_file/force/3250/509",
+      "source_locator": "Slide 20, 22 January 2015 chart; native upper raster xref 103 and lower axis-reference raster xref 104.",
+      "source_file": "research/eddy-measurement-register-additions-v20.json",
+      "source_pointer": "/records/0",
+      "source_sha256": "c24563276b52743f71763bb565969f502c67ddf89148c9e73be034de30ca90bf",
+      "raw_record": {
+        "id": "lazarus-aade-2015-arrow-east-west-span",
+        "entity_id": "eddy:horizon:loop-61-primary",
+        "source_id": "horizon-aade-2015",
+        "source_locator": "Slide 20, 22 January 2015 chart; native upper raster xref 103 and lower axis-reference raster xref 104.",
+        "category": "size",
+        "metric": "plotted_circulation_arrow_east_west_extremum_arc_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          125,
+          200
+        ],
+        "range_kind": "manual_arrow_extremum_reading_interval",
+        "evidence_role": "map_read_circulation_arrow_reference",
+        "arrow_span_case_index": 0,
+        "map_span_component": "east_west",
+        "rights_screened_release_eligible": false,
+        "case_label": "Lazarus source circulation arrows, 2015-01-22",
+        "period_start": "2015-01-22",
+        "period_end": "2015-01-22",
+        "period_precision": "day",
+        "definition": "Not eddy diameter. East-west parallel arc at arrow-extrema bounding-box midlatitude.",
+        "scope": "Manual reading of the named circulation-arrow depiction, not an extracted closed contour or measured whole-ring dimension.",
+        "qualification": "Four visible arrow extrema are read independently in pinned native-ink windows; no gap closing, bridge, smoothing or annotation repair. Six-pixel extent allowance and outward 25 km rounding describe map reading, not instrument uncertainty, confidence or seasonal extrema. Automatic closed-outline extraction was rejected; no closed footprint follows. Chart date and four-day drifter support are not lifespan. Name/date context does not verify a physical registry crosswalk. Public conference chart contains CONFIDENTIAL stamp and copyright; retained only in research candidate, excluded from rights-screened release. Original chart not republished."
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Public AADE-hosted original conference PDF retained. Actual slide 20 and native upper/lower chart rasters reviewed. Chart names Lazarus and Michael and is dated 22 January 2015, with four-day surface drifter trajectories. Black marks depict analyst circulation arrows; no SSH contour criterion specified. Chart carries CONFIDENTIAL stamp and Horizon Marine copyright. Candidate research references only; original chart not republished and no rights-screened release eligibility inferred.",
+      "source_id": "horizon-aade-2015",
+      "period_precision": "day",
+      "case_label": "Lazarus source circulation arrows, 2015-01-22",
+      "range_value": [
+        125,
+        200
+      ],
+      "range_kind": "manual_arrow_extremum_reading_interval",
+      "evidence_role": "map_read_circulation_arrow_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "method": "manual_ink_arrow_span_v1",
+          "source_name": "Lazarus",
+          "owner_id": "eddy:horizon:loop-61-primary",
+          "date": "2015-01-22",
+          "figure": "slide 20 chart",
+          "panel": "Lazarus circulation arrows, upper native chart tile",
+          "pdf_page": 20,
+          "source_raster": {
+            "xref": 103,
+            "width": 1300,
+            "height": 527,
+            "samples_sha256": "25cacb6973ec0a0bc6305f972ddae6cd6a6d3473bdfd07662fa8be5506584061"
+          },
+          "axis_reference_raster": {
+            "xref": 104,
+            "width": 1300,
+            "height": 527,
+            "samples_sha256": "fdf56db1dba51b4cad34d23a30935d049239355c0f4f286257472126a33ab8ce",
+            "y_offset_pixels": 527
+          },
+          "source_ink_max_rgb_channel": 75,
+          "extremum_readings": [
+            {
+              "direction": "west",
+              "window_xyxy_inclusive": [
+                280,
+                363,
+                300,
+                410
+              ],
+              "axis_coordinate_pixel": 287,
+              "selected_ink_pixels": 117,
+              "selected_ink_pixels_sha256": "d6cda47fe7afa65fd4cb02abd3e35d1149abb0491e7a84e5b50466ff85a80268",
+              "extreme_ink_pixels": [
+                [
+                  287,
+                  369
+                ],
+                [
+                  287,
+                  370
+                ],
+                [
+                  287,
+                  371
+                ],
+                [
+                  287,
+                  372
+                ],
+                [
+                  287,
+                  373
+                ],
+                [
+                  287,
+                  374
+                ],
+                [
+                  287,
+                  375
+                ],
+                [
+                  287,
+                  376
+                ],
+                [
+                  287,
+                  377
+                ],
+                [
+                  287,
+                  378
+                ],
+                [
+                  287,
+                  379
+                ],
+                [
+                  287,
+                  382
+                ],
+                [
+                  287,
+                  383
+                ],
+                [
+                  287,
+                  384
+                ],
+                [
+                  287,
+                  385
+                ],
+                [
+                  287,
+                  386
+                ],
+                [
+                  287,
+                  387
+                ],
+                [
+                  287,
+                  388
+                ],
+                [
+                  287,
+                  389
+                ],
+                [
+                  287,
+                  390
+                ]
+              ]
+            },
+            {
+              "direction": "east",
+              "window_xyxy_inclusive": [
+                393,
+                365,
+                410,
+                410
+              ],
+              "axis_coordinate_pixel": 402,
+              "selected_ink_pixels": 119,
+              "selected_ink_pixels_sha256": "d987f0cc7bf38ccdd653a0c887753df926f54b137d36065a6d1a048ac03a598a",
+              "extreme_ink_pixels": [
+                [
+                  402,
+                  383
+                ],
+                [
+                  402,
+                  384
+                ],
+                [
+                  402,
+                  385
+                ],
+                [
+                  402,
+                  386
+                ],
+                [
+                  402,
+                  387
+                ],
+                [
+                  402,
+                  388
+                ],
+                [
+                  402,
+                  389
+                ],
+                [
+                  402,
+                  390
+                ],
+                [
+                  402,
+                  391
+                ]
+              ]
+            },
+            {
+              "direction": "north",
+              "window_xyxy_inclusive": [
+                310,
+                311,
+                362,
+                330
+              ],
+              "axis_coordinate_pixel": 319,
+              "selected_ink_pixels": 165,
+              "selected_ink_pixels_sha256": "d3de25aadd353935e84c6fb04fa492324dbb9ac87c6f144b5a507af88f765f56",
+              "extreme_ink_pixels": [
+                [
+                  330,
+                  319
+                ],
+                [
+                  331,
+                  319
+                ],
+                [
+                  332,
+                  319
+                ],
+                [
+                  333,
+                  319
+                ],
+                [
+                  342,
+                  319
+                ],
+                [
+                  343,
+                  319
+                ],
+                [
+                  344,
+                  319
+                ],
+                [
+                  345,
+                  319
+                ],
+                [
+                  346,
+                  319
+                ],
+                [
+                  347,
+                  319
+                ],
+                [
+                  348,
+                  319
+                ]
+              ]
+            },
+            {
+              "direction": "south",
+              "window_xyxy_inclusive": [
+                323,
+                436,
+                380,
+                455
+              ],
+              "axis_coordinate_pixel": 447,
+              "selected_ink_pixels": 181,
+              "selected_ink_pixels_sha256": "842aa1e5cb26573d5cb05c4626512ebdaf33131637e1431127bc7be69c7e18fc",
+              "extreme_ink_pixels": [
+                [
+                  341,
+                  447
+                ],
+                [
+                  342,
+                  447
+                ],
+                [
+                  343,
+                  447
+                ],
+                [
+                  344,
+                  447
+                ],
+                [
+                  345,
+                  447
+                ],
+                [
+                  346,
+                  447
+                ],
+                [
+                  347,
+                  447
+                ],
+                [
+                  348,
+                  447
+                ],
+                [
+                  349,
+                  447
+                ],
+                [
+                  350,
+                  447
+                ],
+                [
+                  351,
+                  447
+                ],
+                [
+                  352,
+                  447
+                ],
+                [
+                  353,
+                  447
+                ],
+                [
+                  354,
+                  447
+                ],
+                [
+                  355,
+                  447
+                ],
+                [
+                  356,
+                  447
+                ],
+                [
+                  357,
+                  447
+                ],
+                [
+                  358,
+                  447
+                ],
+                [
+                  359,
+                  447
+                ]
+              ]
+            }
+          ],
+          "outline": {
+            "bbox_xyxy": [
+              287,
+              319,
+              402,
+              447
+            ]
+          },
+          "axes": {
+            "longitude": [
+              [
+                153,
+                -96
+              ],
+              [
+                295,
+                -94
+              ],
+              [
+                437,
+                -92
+              ],
+              [
+                579,
+                -90
+              ],
+              [
+                721,
+                -88
+              ],
+              [
+                864,
+                -86
+              ],
+              [
+                1006,
+                -84
+              ],
+              [
+                1148,
+                -82
+              ]
+            ],
+            "latitude": [
+              [
+                132,
+                30
+              ],
+              [
+                275,
+                28
+              ],
+              [
+                418,
+                26
+              ],
+              [
+                558,
+                24
+              ]
+            ]
+          },
+          "earth_radius_km": 6371,
+          "reading_allowance_pixels": 6,
+          "round_outward_km": 25,
+          "closed_contour_extraction_admitted": false,
+          "closed_outline_test_roi": [
+            275,
+            305,
+            415,
+            460
+          ],
+          "footprint_admitted": false,
+          "source_contour_level": null,
+          "source_contour_unit": null,
+          "association_is_verified": false,
+          "physical_state_join_eligible": false,
+          "rights_screened_release_eligible": false,
+          "chart_contains_confidential_stamp": true,
+          "registry_primary_name": "Lazarus",
+          "registry_primary_initial_separation": "2014-07-09",
+          "boundary_description": "Four manually selected visible circulation-arrow extrema. Not a closed scientific contour, ring edge or physical footprint; no missing segment reconstructed. Public conference chart carries CONFIDENTIAL stamp; excluded from rights-screened release."
+        },
+        "component": "east_west",
+        "calculation": {
+          "audit_span_km": 161.202471,
+          "audit_reading_interval_km": [
+            144.274693,
+            178.154709
+          ],
+          "audit_decimal_places": 6,
+          "range_km": [
+            125,
+            200
+          ]
+        }
+      }
+    },
+    {
+      "id": "lazarus-aade-2015-arrow-north-south-span",
+      "entity_id": "eddy:horizon:loop-61-primary",
+      "category": "size",
+      "metric": "plotted_circulation_arrow_north_south_extremum_arc_span",
+      "metric_label": "plotted circulation arrow north south extremum arc span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2015-01-22",
+      "period_end": "2015-01-22",
+      "period_label": null,
+      "definition": "Not eddy diameter. North-south meridional arc between the selected visible arrow extrema.",
+      "scope": "Manual reading of the named circulation-arrow depiction, not an extracted closed contour or measured whole-ring dimension.",
+      "qualification": "Four visible arrow extrema are read independently in pinned native-ink windows; no gap closing, bridge, smoothing or annotation repair. Six-pixel extent allowance and outward 25 km rounding describe map reading, not instrument uncertainty, confidence or seasonal extrema. Automatic closed-outline extraction was rejected; no closed footprint follows. Chart date and four-day drifter support are not lifespan. Name/date context does not verify a physical registry crosswalk. Public conference chart contains CONFIDENTIAL stamp and copyright; retained only in research candidate, excluded from rights-screened release. Original chart not republished.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.aade.org/download_file/force/3250/509",
+      "source_locator": "Slide 20, 22 January 2015 chart; native upper raster xref 103 and lower axis-reference raster xref 104.",
+      "source_file": "research/eddy-measurement-register-additions-v20.json",
+      "source_pointer": "/records/1",
+      "source_sha256": "c24563276b52743f71763bb565969f502c67ddf89148c9e73be034de30ca90bf",
+      "raw_record": {
+        "id": "lazarus-aade-2015-arrow-north-south-span",
+        "entity_id": "eddy:horizon:loop-61-primary",
+        "source_id": "horizon-aade-2015",
+        "source_locator": "Slide 20, 22 January 2015 chart; native upper raster xref 103 and lower axis-reference raster xref 104.",
+        "category": "size",
+        "metric": "plotted_circulation_arrow_north_south_extremum_arc_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          175,
+          225
+        ],
+        "range_kind": "manual_arrow_extremum_reading_interval",
+        "evidence_role": "map_read_circulation_arrow_reference",
+        "arrow_span_case_index": 0,
+        "map_span_component": "north_south",
+        "rights_screened_release_eligible": false,
+        "case_label": "Lazarus source circulation arrows, 2015-01-22",
+        "period_start": "2015-01-22",
+        "period_end": "2015-01-22",
+        "period_precision": "day",
+        "definition": "Not eddy diameter. North-south meridional arc between the selected visible arrow extrema.",
+        "scope": "Manual reading of the named circulation-arrow depiction, not an extracted closed contour or measured whole-ring dimension.",
+        "qualification": "Four visible arrow extrema are read independently in pinned native-ink windows; no gap closing, bridge, smoothing or annotation repair. Six-pixel extent allowance and outward 25 km rounding describe map reading, not instrument uncertainty, confidence or seasonal extrema. Automatic closed-outline extraction was rejected; no closed footprint follows. Chart date and four-day drifter support are not lifespan. Name/date context does not verify a physical registry crosswalk. Public conference chart contains CONFIDENTIAL stamp and copyright; retained only in research candidate, excluded from rights-screened release. Original chart not republished."
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Public AADE-hosted original conference PDF retained. Actual slide 20 and native upper/lower chart rasters reviewed. Chart names Lazarus and Michael and is dated 22 January 2015, with four-day surface drifter trajectories. Black marks depict analyst circulation arrows; no SSH contour criterion specified. Chart carries CONFIDENTIAL stamp and Horizon Marine copyright. Candidate research references only; original chart not republished and no rights-screened release eligibility inferred.",
+      "source_id": "horizon-aade-2015",
+      "period_precision": "day",
+      "case_label": "Lazarus source circulation arrows, 2015-01-22",
+      "range_value": [
+        175,
+        225
+      ],
+      "range_kind": "manual_arrow_extremum_reading_interval",
+      "evidence_role": "map_read_circulation_arrow_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "method": "manual_ink_arrow_span_v1",
+          "source_name": "Lazarus",
+          "owner_id": "eddy:horizon:loop-61-primary",
+          "date": "2015-01-22",
+          "figure": "slide 20 chart",
+          "panel": "Lazarus circulation arrows, upper native chart tile",
+          "pdf_page": 20,
+          "source_raster": {
+            "xref": 103,
+            "width": 1300,
+            "height": 527,
+            "samples_sha256": "25cacb6973ec0a0bc6305f972ddae6cd6a6d3473bdfd07662fa8be5506584061"
+          },
+          "axis_reference_raster": {
+            "xref": 104,
+            "width": 1300,
+            "height": 527,
+            "samples_sha256": "fdf56db1dba51b4cad34d23a30935d049239355c0f4f286257472126a33ab8ce",
+            "y_offset_pixels": 527
+          },
+          "source_ink_max_rgb_channel": 75,
+          "extremum_readings": [
+            {
+              "direction": "west",
+              "window_xyxy_inclusive": [
+                280,
+                363,
+                300,
+                410
+              ],
+              "axis_coordinate_pixel": 287,
+              "selected_ink_pixels": 117,
+              "selected_ink_pixels_sha256": "d6cda47fe7afa65fd4cb02abd3e35d1149abb0491e7a84e5b50466ff85a80268",
+              "extreme_ink_pixels": [
+                [
+                  287,
+                  369
+                ],
+                [
+                  287,
+                  370
+                ],
+                [
+                  287,
+                  371
+                ],
+                [
+                  287,
+                  372
+                ],
+                [
+                  287,
+                  373
+                ],
+                [
+                  287,
+                  374
+                ],
+                [
+                  287,
+                  375
+                ],
+                [
+                  287,
+                  376
+                ],
+                [
+                  287,
+                  377
+                ],
+                [
+                  287,
+                  378
+                ],
+                [
+                  287,
+                  379
+                ],
+                [
+                  287,
+                  382
+                ],
+                [
+                  287,
+                  383
+                ],
+                [
+                  287,
+                  384
+                ],
+                [
+                  287,
+                  385
+                ],
+                [
+                  287,
+                  386
+                ],
+                [
+                  287,
+                  387
+                ],
+                [
+                  287,
+                  388
+                ],
+                [
+                  287,
+                  389
+                ],
+                [
+                  287,
+                  390
+                ]
+              ]
+            },
+            {
+              "direction": "east",
+              "window_xyxy_inclusive": [
+                393,
+                365,
+                410,
+                410
+              ],
+              "axis_coordinate_pixel": 402,
+              "selected_ink_pixels": 119,
+              "selected_ink_pixels_sha256": "d987f0cc7bf38ccdd653a0c887753df926f54b137d36065a6d1a048ac03a598a",
+              "extreme_ink_pixels": [
+                [
+                  402,
+                  383
+                ],
+                [
+                  402,
+                  384
+                ],
+                [
+                  402,
+                  385
+                ],
+                [
+                  402,
+                  386
+                ],
+                [
+                  402,
+                  387
+                ],
+                [
+                  402,
+                  388
+                ],
+                [
+                  402,
+                  389
+                ],
+                [
+                  402,
+                  390
+                ],
+                [
+                  402,
+                  391
+                ]
+              ]
+            },
+            {
+              "direction": "north",
+              "window_xyxy_inclusive": [
+                310,
+                311,
+                362,
+                330
+              ],
+              "axis_coordinate_pixel": 319,
+              "selected_ink_pixels": 165,
+              "selected_ink_pixels_sha256": "d3de25aadd353935e84c6fb04fa492324dbb9ac87c6f144b5a507af88f765f56",
+              "extreme_ink_pixels": [
+                [
+                  330,
+                  319
+                ],
+                [
+                  331,
+                  319
+                ],
+                [
+                  332,
+                  319
+                ],
+                [
+                  333,
+                  319
+                ],
+                [
+                  342,
+                  319
+                ],
+                [
+                  343,
+                  319
+                ],
+                [
+                  344,
+                  319
+                ],
+                [
+                  345,
+                  319
+                ],
+                [
+                  346,
+                  319
+                ],
+                [
+                  347,
+                  319
+                ],
+                [
+                  348,
+                  319
+                ]
+              ]
+            },
+            {
+              "direction": "south",
+              "window_xyxy_inclusive": [
+                323,
+                436,
+                380,
+                455
+              ],
+              "axis_coordinate_pixel": 447,
+              "selected_ink_pixels": 181,
+              "selected_ink_pixels_sha256": "842aa1e5cb26573d5cb05c4626512ebdaf33131637e1431127bc7be69c7e18fc",
+              "extreme_ink_pixels": [
+                [
+                  341,
+                  447
+                ],
+                [
+                  342,
+                  447
+                ],
+                [
+                  343,
+                  447
+                ],
+                [
+                  344,
+                  447
+                ],
+                [
+                  345,
+                  447
+                ],
+                [
+                  346,
+                  447
+                ],
+                [
+                  347,
+                  447
+                ],
+                [
+                  348,
+                  447
+                ],
+                [
+                  349,
+                  447
+                ],
+                [
+                  350,
+                  447
+                ],
+                [
+                  351,
+                  447
+                ],
+                [
+                  352,
+                  447
+                ],
+                [
+                  353,
+                  447
+                ],
+                [
+                  354,
+                  447
+                ],
+                [
+                  355,
+                  447
+                ],
+                [
+                  356,
+                  447
+                ],
+                [
+                  357,
+                  447
+                ],
+                [
+                  358,
+                  447
+                ],
+                [
+                  359,
+                  447
+                ]
+              ]
+            }
+          ],
+          "outline": {
+            "bbox_xyxy": [
+              287,
+              319,
+              402,
+              447
+            ]
+          },
+          "axes": {
+            "longitude": [
+              [
+                153,
+                -96
+              ],
+              [
+                295,
+                -94
+              ],
+              [
+                437,
+                -92
+              ],
+              [
+                579,
+                -90
+              ],
+              [
+                721,
+                -88
+              ],
+              [
+                864,
+                -86
+              ],
+              [
+                1006,
+                -84
+              ],
+              [
+                1148,
+                -82
+              ]
+            ],
+            "latitude": [
+              [
+                132,
+                30
+              ],
+              [
+                275,
+                28
+              ],
+              [
+                418,
+                26
+              ],
+              [
+                558,
+                24
+              ]
+            ]
+          },
+          "earth_radius_km": 6371,
+          "reading_allowance_pixels": 6,
+          "round_outward_km": 25,
+          "closed_contour_extraction_admitted": false,
+          "closed_outline_test_roi": [
+            275,
+            305,
+            415,
+            460
+          ],
+          "footprint_admitted": false,
+          "source_contour_level": null,
+          "source_contour_unit": null,
+          "association_is_verified": false,
+          "physical_state_join_eligible": false,
+          "rights_screened_release_eligible": false,
+          "chart_contains_confidential_stamp": true,
+          "registry_primary_name": "Lazarus",
+          "registry_primary_initial_separation": "2014-07-09",
+          "boundary_description": "Four manually selected visible circulation-arrow extrema. Not a closed scientific contour, ring edge or physical footprint; no missing segment reconstructed. Public conference chart carries CONFIDENTIAL stamp; excluded from rights-screened release."
+        },
+        "component": "north_south",
+        "calculation": {
+          "audit_span_km": 200.028676,
+          "audit_reading_interval_km": [
+            181.166639,
+            218.890712
+          ],
+          "audit_decimal_places": 6,
+          "range_km": [
+            175,
+            225
+          ]
+        }
+      }
+    },
+    {
+      "id": "michael-aade-2015-arrow-east-west-span",
+      "entity_id": "eddy:horizon:loop-62-primary",
+      "category": "size",
+      "metric": "plotted_circulation_arrow_east_west_extremum_arc_span",
+      "metric_label": "plotted circulation arrow east west extremum arc span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2015-01-22",
+      "period_end": "2015-01-22",
+      "period_label": null,
+      "definition": "Not eddy diameter. East-west parallel arc at arrow-extrema bounding-box midlatitude.",
+      "scope": "Manual reading of the named circulation-arrow depiction, not an extracted closed contour or measured whole-ring dimension.",
+      "qualification": "Four visible arrow extrema are read independently in pinned native-ink windows; no gap closing, bridge, smoothing or annotation repair. Six-pixel extent allowance and outward 25 km rounding describe map reading, not instrument uncertainty, confidence or seasonal extrema. Automatic closed-outline extraction was rejected; no closed footprint follows. Chart date and four-day drifter support are not lifespan. Name/date context does not verify a physical registry crosswalk. Public conference chart contains CONFIDENTIAL stamp and copyright; retained only in research candidate, excluded from rights-screened release. Original chart not republished.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.aade.org/download_file/force/3250/509",
+      "source_locator": "Slide 20, 22 January 2015 chart; native upper raster xref 103 and lower axis-reference raster xref 104.",
+      "source_file": "research/eddy-measurement-register-additions-v20.json",
+      "source_pointer": "/records/2",
+      "source_sha256": "c24563276b52743f71763bb565969f502c67ddf89148c9e73be034de30ca90bf",
+      "raw_record": {
+        "id": "michael-aade-2015-arrow-east-west-span",
+        "entity_id": "eddy:horizon:loop-62-primary",
+        "source_id": "horizon-aade-2015",
+        "source_locator": "Slide 20, 22 January 2015 chart; native upper raster xref 103 and lower axis-reference raster xref 104.",
+        "category": "size",
+        "metric": "plotted_circulation_arrow_east_west_extremum_arc_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          375,
+          425
+        ],
+        "range_kind": "manual_arrow_extremum_reading_interval",
+        "evidence_role": "map_read_circulation_arrow_reference",
+        "arrow_span_case_index": 1,
+        "map_span_component": "east_west",
+        "rights_screened_release_eligible": false,
+        "case_label": "Michael source circulation arrows, 2015-01-22",
+        "period_start": "2015-01-22",
+        "period_end": "2015-01-22",
+        "period_precision": "day",
+        "definition": "Not eddy diameter. East-west parallel arc at arrow-extrema bounding-box midlatitude.",
+        "scope": "Manual reading of the named circulation-arrow depiction, not an extracted closed contour or measured whole-ring dimension.",
+        "qualification": "Four visible arrow extrema are read independently in pinned native-ink windows; no gap closing, bridge, smoothing or annotation repair. Six-pixel extent allowance and outward 25 km rounding describe map reading, not instrument uncertainty, confidence or seasonal extrema. Automatic closed-outline extraction was rejected; no closed footprint follows. Chart date and four-day drifter support are not lifespan. Name/date context does not verify a physical registry crosswalk. Public conference chart contains CONFIDENTIAL stamp and copyright; retained only in research candidate, excluded from rights-screened release. Original chart not republished."
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Public AADE-hosted original conference PDF retained. Actual slide 20 and native upper/lower chart rasters reviewed. Chart names Lazarus and Michael and is dated 22 January 2015, with four-day surface drifter trajectories. Black marks depict analyst circulation arrows; no SSH contour criterion specified. Chart carries CONFIDENTIAL stamp and Horizon Marine copyright. Candidate research references only; original chart not republished and no rights-screened release eligibility inferred.",
+      "source_id": "horizon-aade-2015",
+      "period_precision": "day",
+      "case_label": "Michael source circulation arrows, 2015-01-22",
+      "range_value": [
+        375,
+        425
+      ],
+      "range_kind": "manual_arrow_extremum_reading_interval",
+      "evidence_role": "map_read_circulation_arrow_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "method": "manual_ink_arrow_span_v1",
+          "source_name": "Michael",
+          "owner_id": "eddy:horizon:loop-62-primary",
+          "date": "2015-01-22",
+          "figure": "slide 20 chart",
+          "panel": "Michael circulation arrows, upper native chart tile",
+          "pdf_page": 20,
+          "source_raster": {
+            "xref": 103,
+            "width": 1300,
+            "height": 527,
+            "samples_sha256": "25cacb6973ec0a0bc6305f972ddae6cd6a6d3473bdfd07662fa8be5506584061"
+          },
+          "axis_reference_raster": {
+            "xref": 104,
+            "width": 1300,
+            "height": 527,
+            "samples_sha256": "fdf56db1dba51b4cad34d23a30935d049239355c0f4f286257472126a33ab8ce",
+            "y_offset_pixels": 527
+          },
+          "source_ink_max_rgb_channel": 75,
+          "extremum_readings": [
+            {
+              "direction": "west",
+              "window_xyxy_inclusive": [
+                500,
+                365,
+                520,
+                430
+              ],
+              "axis_coordinate_pixel": 508,
+              "selected_ink_pixels": 153,
+              "selected_ink_pixels_sha256": "15a1f1a91b670b1674ef54261dc1cf14bc2af90fa3ab4a3f1276bb0ba915eeea",
+              "extreme_ink_pixels": [
+                [
+                  508,
+                  384
+                ],
+                [
+                  508,
+                  385
+                ],
+                [
+                  508,
+                  386
+                ],
+                [
+                  508,
+                  387
+                ],
+                [
+                  508,
+                  388
+                ],
+                [
+                  508,
+                  389
+                ],
+                [
+                  508,
+                  390
+                ],
+                [
+                  508,
+                  391
+                ],
+                [
+                  508,
+                  392
+                ],
+                [
+                  508,
+                  393
+                ]
+              ]
+            },
+            {
+              "direction": "east",
+              "window_xyxy_inclusive": [
+                790,
+                290,
+                810,
+                350
+              ],
+              "axis_coordinate_pixel": 799,
+              "selected_ink_pixels": 97,
+              "selected_ink_pixels_sha256": "6867c5a0522069afba2f5a6cfc42254b6bc2ad1b4ccde9f5b045112255c22c3f",
+              "extreme_ink_pixels": [
+                [
+                  799,
+                  319
+                ],
+                [
+                  799,
+                  320
+                ],
+                [
+                  799,
+                  321
+                ],
+                [
+                  799,
+                  322
+                ],
+                [
+                  799,
+                  323
+                ],
+                [
+                  799,
+                  324
+                ],
+                [
+                  799,
+                  325
+                ],
+                [
+                  799,
+                  326
+                ],
+                [
+                  799,
+                  327
+                ],
+                [
+                  799,
+                  328
+                ],
+                [
+                  799,
+                  329
+                ],
+                [
+                  799,
+                  330
+                ],
+                [
+                  799,
+                  331
+                ]
+              ]
+            },
+            {
+              "direction": "north",
+              "window_xyxy_inclusive": [
+                630,
+                250,
+                720,
+                270
+              ],
+              "axis_coordinate_pixel": 258,
+              "selected_ink_pixels": 256,
+              "selected_ink_pixels_sha256": "c9f52b2edc8ce48726faeaf4d8634cfc36d191ca539e8535d600838b7d3025c1",
+              "extreme_ink_pixels": [
+                [
+                  669,
+                  258
+                ],
+                [
+                  670,
+                  258
+                ],
+                [
+                  671,
+                  258
+                ],
+                [
+                  672,
+                  258
+                ],
+                [
+                  673,
+                  258
+                ],
+                [
+                  674,
+                  258
+                ],
+                [
+                  675,
+                  258
+                ],
+                [
+                  676,
+                  258
+                ],
+                [
+                  677,
+                  258
+                ],
+                [
+                  678,
+                  258
+                ],
+                [
+                  679,
+                  258
+                ],
+                [
+                  680,
+                  258
+                ],
+                [
+                  681,
+                  258
+                ],
+                [
+                  682,
+                  258
+                ],
+                [
+                  683,
+                  258
+                ],
+                [
+                  684,
+                  258
+                ],
+                [
+                  685,
+                  258
+                ],
+                [
+                  686,
+                  258
+                ],
+                [
+                  687,
+                  258
+                ],
+                [
+                  688,
+                  258
+                ],
+                [
+                  689,
+                  258
+                ],
+                [
+                  690,
+                  258
+                ],
+                [
+                  691,
+                  258
+                ]
+              ]
+            },
+            {
+              "direction": "south",
+              "window_xyxy_inclusive": [
+                600,
+                450,
+                650,
+                474
+              ],
+              "axis_coordinate_pixel": 465,
+              "selected_ink_pixels": 140,
+              "selected_ink_pixels_sha256": "483b95e7c35369015b3ab11ce3c4079de290bb305dd878e01f6ce4ac38ad3475",
+              "extreme_ink_pixels": [
+                [
+                  601,
+                  465
+                ],
+                [
+                  602,
+                  465
+                ],
+                [
+                  603,
+                  465
+                ],
+                [
+                  604,
+                  465
+                ],
+                [
+                  605,
+                  465
+                ],
+                [
+                  606,
+                  465
+                ],
+                [
+                  607,
+                  465
+                ],
+                [
+                  608,
+                  465
+                ],
+                [
+                  609,
+                  465
+                ],
+                [
+                  610,
+                  465
+                ],
+                [
+                  611,
+                  465
+                ],
+                [
+                  612,
+                  465
+                ],
+                [
+                  613,
+                  465
+                ],
+                [
+                  614,
+                  465
+                ],
+                [
+                  615,
+                  465
+                ],
+                [
+                  616,
+                  465
+                ],
+                [
+                  617,
+                  465
+                ],
+                [
+                  618,
+                  465
+                ],
+                [
+                  619,
+                  465
+                ],
+                [
+                  620,
+                  465
+                ],
+                [
+                  621,
+                  465
+                ],
+                [
+                  622,
+                  465
+                ],
+                [
+                  623,
+                  465
+                ],
+                [
+                  624,
+                  465
+                ],
+                [
+                  625,
+                  465
+                ],
+                [
+                  626,
+                  465
+                ],
+                [
+                  627,
+                  465
+                ],
+                [
+                  628,
+                  465
+                ],
+                [
+                  629,
+                  465
+                ],
+                [
+                  630,
+                  465
+                ],
+                [
+                  631,
+                  465
+                ]
+              ]
+            }
+          ],
+          "outline": {
+            "bbox_xyxy": [
+              508,
+              258,
+              799,
+              465
+            ]
+          },
+          "axes": {
+            "longitude": [
+              [
+                153,
+                -96
+              ],
+              [
+                295,
+                -94
+              ],
+              [
+                437,
+                -92
+              ],
+              [
+                579,
+                -90
+              ],
+              [
+                721,
+                -88
+              ],
+              [
+                864,
+                -86
+              ],
+              [
+                1006,
+                -84
+              ],
+              [
+                1148,
+                -82
+              ]
+            ],
+            "latitude": [
+              [
+                132,
+                30
+              ],
+              [
+                275,
+                28
+              ],
+              [
+                418,
+                26
+              ],
+              [
+                558,
+                24
+              ]
+            ]
+          },
+          "earth_radius_km": 6371,
+          "reading_allowance_pixels": 6,
+          "round_outward_km": 25,
+          "closed_contour_extraction_admitted": false,
+          "closed_outline_test_roi": [
+            495,
+            245,
+            815,
+            477
+          ],
+          "footprint_admitted": false,
+          "source_contour_level": null,
+          "source_contour_unit": null,
+          "association_is_verified": false,
+          "physical_state_join_eligible": false,
+          "rights_screened_release_eligible": false,
+          "chart_contains_confidential_stamp": true,
+          "registry_primary_name": "Michael",
+          "registry_primary_initial_separation": "2015-01-19",
+          "boundary_description": "Four manually selected visible circulation-arrow extrema. Not a closed scientific contour, ring edge or physical footprint; no missing segment reconstructed. Public conference chart carries CONFIDENTIAL stamp; excluded from rights-screened release."
+        },
+        "component": "east_west",
+        "calculation": {
+          "audit_span_km": 406.087117,
+          "audit_reading_interval_km": [
+            389.077105,
+            423.121225
+          ],
+          "audit_decimal_places": 6,
+          "range_km": [
+            375,
+            425
+          ]
+        }
+      }
+    },
+    {
+      "id": "michael-aade-2015-arrow-north-south-span",
+      "entity_id": "eddy:horizon:loop-62-primary",
+      "category": "size",
+      "metric": "plotted_circulation_arrow_north_south_extremum_arc_span",
+      "metric_label": "plotted circulation arrow north south extremum arc span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2015-01-22",
+      "period_end": "2015-01-22",
+      "period_label": null,
+      "definition": "Not eddy diameter. North-south meridional arc between the selected visible arrow extrema.",
+      "scope": "Manual reading of the named circulation-arrow depiction, not an extracted closed contour or measured whole-ring dimension.",
+      "qualification": "Four visible arrow extrema are read independently in pinned native-ink windows; no gap closing, bridge, smoothing or annotation repair. Six-pixel extent allowance and outward 25 km rounding describe map reading, not instrument uncertainty, confidence or seasonal extrema. Automatic closed-outline extraction was rejected; no closed footprint follows. Chart date and four-day drifter support are not lifespan. Name/date context does not verify a physical registry crosswalk. Public conference chart contains CONFIDENTIAL stamp and copyright; retained only in research candidate, excluded from rights-screened release. Original chart not republished.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.aade.org/download_file/force/3250/509",
+      "source_locator": "Slide 20, 22 January 2015 chart; native upper raster xref 103 and lower axis-reference raster xref 104.",
+      "source_file": "research/eddy-measurement-register-additions-v20.json",
+      "source_pointer": "/records/3",
+      "source_sha256": "c24563276b52743f71763bb565969f502c67ddf89148c9e73be034de30ca90bf",
+      "raw_record": {
+        "id": "michael-aade-2015-arrow-north-south-span",
+        "entity_id": "eddy:horizon:loop-62-primary",
+        "source_id": "horizon-aade-2015",
+        "source_locator": "Slide 20, 22 January 2015 chart; native upper raster xref 103 and lower axis-reference raster xref 104.",
+        "category": "size",
+        "metric": "plotted_circulation_arrow_north_south_extremum_arc_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          300,
+          350
+        ],
+        "range_kind": "manual_arrow_extremum_reading_interval",
+        "evidence_role": "map_read_circulation_arrow_reference",
+        "arrow_span_case_index": 1,
+        "map_span_component": "north_south",
+        "rights_screened_release_eligible": false,
+        "case_label": "Michael source circulation arrows, 2015-01-22",
+        "period_start": "2015-01-22",
+        "period_end": "2015-01-22",
+        "period_precision": "day",
+        "definition": "Not eddy diameter. North-south meridional arc between the selected visible arrow extrema.",
+        "scope": "Manual reading of the named circulation-arrow depiction, not an extracted closed contour or measured whole-ring dimension.",
+        "qualification": "Four visible arrow extrema are read independently in pinned native-ink windows; no gap closing, bridge, smoothing or annotation repair. Six-pixel extent allowance and outward 25 km rounding describe map reading, not instrument uncertainty, confidence or seasonal extrema. Automatic closed-outline extraction was rejected; no closed footprint follows. Chart date and four-day drifter support are not lifespan. Name/date context does not verify a physical registry crosswalk. Public conference chart contains CONFIDENTIAL stamp and copyright; retained only in research candidate, excluded from rights-screened release. Original chart not republished."
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Public AADE-hosted original conference PDF retained. Actual slide 20 and native upper/lower chart rasters reviewed. Chart names Lazarus and Michael and is dated 22 January 2015, with four-day surface drifter trajectories. Black marks depict analyst circulation arrows; no SSH contour criterion specified. Chart carries CONFIDENTIAL stamp and Horizon Marine copyright. Candidate research references only; original chart not republished and no rights-screened release eligibility inferred.",
+      "source_id": "horizon-aade-2015",
+      "period_precision": "day",
+      "case_label": "Michael source circulation arrows, 2015-01-22",
+      "range_value": [
+        300,
+        350
+      ],
+      "range_kind": "manual_arrow_extremum_reading_interval",
+      "evidence_role": "map_read_circulation_arrow_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "method": "manual_ink_arrow_span_v1",
+          "source_name": "Michael",
+          "owner_id": "eddy:horizon:loop-62-primary",
+          "date": "2015-01-22",
+          "figure": "slide 20 chart",
+          "panel": "Michael circulation arrows, upper native chart tile",
+          "pdf_page": 20,
+          "source_raster": {
+            "xref": 103,
+            "width": 1300,
+            "height": 527,
+            "samples_sha256": "25cacb6973ec0a0bc6305f972ddae6cd6a6d3473bdfd07662fa8be5506584061"
+          },
+          "axis_reference_raster": {
+            "xref": 104,
+            "width": 1300,
+            "height": 527,
+            "samples_sha256": "fdf56db1dba51b4cad34d23a30935d049239355c0f4f286257472126a33ab8ce",
+            "y_offset_pixels": 527
+          },
+          "source_ink_max_rgb_channel": 75,
+          "extremum_readings": [
+            {
+              "direction": "west",
+              "window_xyxy_inclusive": [
+                500,
+                365,
+                520,
+                430
+              ],
+              "axis_coordinate_pixel": 508,
+              "selected_ink_pixels": 153,
+              "selected_ink_pixels_sha256": "15a1f1a91b670b1674ef54261dc1cf14bc2af90fa3ab4a3f1276bb0ba915eeea",
+              "extreme_ink_pixels": [
+                [
+                  508,
+                  384
+                ],
+                [
+                  508,
+                  385
+                ],
+                [
+                  508,
+                  386
+                ],
+                [
+                  508,
+                  387
+                ],
+                [
+                  508,
+                  388
+                ],
+                [
+                  508,
+                  389
+                ],
+                [
+                  508,
+                  390
+                ],
+                [
+                  508,
+                  391
+                ],
+                [
+                  508,
+                  392
+                ],
+                [
+                  508,
+                  393
+                ]
+              ]
+            },
+            {
+              "direction": "east",
+              "window_xyxy_inclusive": [
+                790,
+                290,
+                810,
+                350
+              ],
+              "axis_coordinate_pixel": 799,
+              "selected_ink_pixels": 97,
+              "selected_ink_pixels_sha256": "6867c5a0522069afba2f5a6cfc42254b6bc2ad1b4ccde9f5b045112255c22c3f",
+              "extreme_ink_pixels": [
+                [
+                  799,
+                  319
+                ],
+                [
+                  799,
+                  320
+                ],
+                [
+                  799,
+                  321
+                ],
+                [
+                  799,
+                  322
+                ],
+                [
+                  799,
+                  323
+                ],
+                [
+                  799,
+                  324
+                ],
+                [
+                  799,
+                  325
+                ],
+                [
+                  799,
+                  326
+                ],
+                [
+                  799,
+                  327
+                ],
+                [
+                  799,
+                  328
+                ],
+                [
+                  799,
+                  329
+                ],
+                [
+                  799,
+                  330
+                ],
+                [
+                  799,
+                  331
+                ]
+              ]
+            },
+            {
+              "direction": "north",
+              "window_xyxy_inclusive": [
+                630,
+                250,
+                720,
+                270
+              ],
+              "axis_coordinate_pixel": 258,
+              "selected_ink_pixels": 256,
+              "selected_ink_pixels_sha256": "c9f52b2edc8ce48726faeaf4d8634cfc36d191ca539e8535d600838b7d3025c1",
+              "extreme_ink_pixels": [
+                [
+                  669,
+                  258
+                ],
+                [
+                  670,
+                  258
+                ],
+                [
+                  671,
+                  258
+                ],
+                [
+                  672,
+                  258
+                ],
+                [
+                  673,
+                  258
+                ],
+                [
+                  674,
+                  258
+                ],
+                [
+                  675,
+                  258
+                ],
+                [
+                  676,
+                  258
+                ],
+                [
+                  677,
+                  258
+                ],
+                [
+                  678,
+                  258
+                ],
+                [
+                  679,
+                  258
+                ],
+                [
+                  680,
+                  258
+                ],
+                [
+                  681,
+                  258
+                ],
+                [
+                  682,
+                  258
+                ],
+                [
+                  683,
+                  258
+                ],
+                [
+                  684,
+                  258
+                ],
+                [
+                  685,
+                  258
+                ],
+                [
+                  686,
+                  258
+                ],
+                [
+                  687,
+                  258
+                ],
+                [
+                  688,
+                  258
+                ],
+                [
+                  689,
+                  258
+                ],
+                [
+                  690,
+                  258
+                ],
+                [
+                  691,
+                  258
+                ]
+              ]
+            },
+            {
+              "direction": "south",
+              "window_xyxy_inclusive": [
+                600,
+                450,
+                650,
+                474
+              ],
+              "axis_coordinate_pixel": 465,
+              "selected_ink_pixels": 140,
+              "selected_ink_pixels_sha256": "483b95e7c35369015b3ab11ce3c4079de290bb305dd878e01f6ce4ac38ad3475",
+              "extreme_ink_pixels": [
+                [
+                  601,
+                  465
+                ],
+                [
+                  602,
+                  465
+                ],
+                [
+                  603,
+                  465
+                ],
+                [
+                  604,
+                  465
+                ],
+                [
+                  605,
+                  465
+                ],
+                [
+                  606,
+                  465
+                ],
+                [
+                  607,
+                  465
+                ],
+                [
+                  608,
+                  465
+                ],
+                [
+                  609,
+                  465
+                ],
+                [
+                  610,
+                  465
+                ],
+                [
+                  611,
+                  465
+                ],
+                [
+                  612,
+                  465
+                ],
+                [
+                  613,
+                  465
+                ],
+                [
+                  614,
+                  465
+                ],
+                [
+                  615,
+                  465
+                ],
+                [
+                  616,
+                  465
+                ],
+                [
+                  617,
+                  465
+                ],
+                [
+                  618,
+                  465
+                ],
+                [
+                  619,
+                  465
+                ],
+                [
+                  620,
+                  465
+                ],
+                [
+                  621,
+                  465
+                ],
+                [
+                  622,
+                  465
+                ],
+                [
+                  623,
+                  465
+                ],
+                [
+                  624,
+                  465
+                ],
+                [
+                  625,
+                  465
+                ],
+                [
+                  626,
+                  465
+                ],
+                [
+                  627,
+                  465
+                ],
+                [
+                  628,
+                  465
+                ],
+                [
+                  629,
+                  465
+                ],
+                [
+                  630,
+                  465
+                ],
+                [
+                  631,
+                  465
+                ]
+              ]
+            }
+          ],
+          "outline": {
+            "bbox_xyxy": [
+              508,
+              258,
+              799,
+              465
+            ]
+          },
+          "axes": {
+            "longitude": [
+              [
+                153,
+                -96
+              ],
+              [
+                295,
+                -94
+              ],
+              [
+                437,
+                -92
+              ],
+              [
+                579,
+                -90
+              ],
+              [
+                721,
+                -88
+              ],
+              [
+                864,
+                -86
+              ],
+              [
+                1006,
+                -84
+              ],
+              [
+                1148,
+                -82
+              ]
+            ],
+            "latitude": [
+              [
+                132,
+                30
+              ],
+              [
+                275,
+                28
+              ],
+              [
+                418,
+                26
+              ],
+              [
+                558,
+                24
+              ]
+            ]
+          },
+          "earth_radius_km": 6371,
+          "reading_allowance_pixels": 6,
+          "round_outward_km": 25,
+          "closed_contour_extraction_admitted": false,
+          "closed_outline_test_roi": [
+            495,
+            245,
+            815,
+            477
+          ],
+          "footprint_admitted": false,
+          "source_contour_level": null,
+          "source_contour_unit": null,
+          "association_is_verified": false,
+          "physical_state_join_eligible": false,
+          "rights_screened_release_eligible": false,
+          "chart_contains_confidential_stamp": true,
+          "registry_primary_name": "Michael",
+          "registry_primary_initial_separation": "2015-01-19",
+          "boundary_description": "Four manually selected visible circulation-arrow extrema. Not a closed scientific contour, ring edge or physical footprint; no missing segment reconstructed. Public conference chart carries CONFIDENTIAL stamp; excluded from rights-screened release."
+        },
+        "component": "north_south",
+        "calculation": {
+          "audit_span_km": 323.487259,
+          "audit_reading_interval_km": [
+            304.625222,
+            342.349295
+          ],
+          "audit_decimal_places": 6,
+          "range_km": [
+            300,
+            350
           ]
         }
       }

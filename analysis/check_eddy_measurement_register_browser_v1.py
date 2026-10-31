@@ -368,6 +368,18 @@ def run():
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             page.screenshot(path=str(OUT/'mobile-lilian-colour-patch-spans.png'),full_page=True)
             checks.append('Lilian source colour-level patch spans with explicit OSW diagnostic choice, unknown legend unit and selection/reading sensitivity; no whole-ring dimensions or population-radius inheritance; existing lifetime and depth references retained')
+            for name,owner,needles in [('Lazarus','eddy:horizon:loop-61-primary',['125–200 km · map estimate','175–225 km · map estimate']),('Michael','eddy:horizon:loop-62-primary',['375–425 km · map estimate','300–350 km · map estimate'])]:
+                page.goto(base+'/almanac/eddies.html?id='+owner)
+                page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+                row=page.locator('tr[data-eddy-id="'+owner+'"]');assert row.locator('details').evaluate('(e)=>e.open')
+                page.set_viewport_size({'width':1440,'height':1000})
+                for needle in needles+['2015-01-22','Visible circulation-arrow extents','Closed-outline extraction rejected','CONFIDENTIAL','excluded from rights-screened release','not an extracted closed contour']:
+                    assert needle in row.inner_text(),needle
+                assert 'Size reference needed' not in row.inner_text()
+                page.locator('[data-evidence-id="'+name.lower()+'-aade-2015-arrow-east-west-span"]').screenshot(path=str(OUT/(name.lower()+'-source-arrow-span.png')))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.screenshot(path=str(OUT/'mobile-michael-arrow-spans.png'),full_page=True)
+            checks.append('Lazarus and Michael visible circulation-arrow spans retain date, manual source readings, rejected closed-outline extraction and explicit confidential/copyright source status; no contour, footprint or release-rights promotion')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
