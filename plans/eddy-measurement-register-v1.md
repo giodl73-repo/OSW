@@ -257,3 +257,22 @@ Titanic and Millennium; no physical identity verification follows. Preserve
 Gyre's source year 1999 beside the registry's 1998 separation context; the
 source year need not describe separation. Do not infer an annual size cycle,
 rank or geometry. Preserve all 299 numeric evidence records exactly.
+
+## Kenai named-track detection and signed motion
+
+Ueno et al. (2012) defines the detected area by Okubo-Weiss W < -2e-12
+s^-2 using weekly quarter-degree AVISO SLA after removing the regional weekly
+mean north of 45 N outside marginal seas. Preserve its narrative area levels
+15,000, 10,000 and 6,000 km2 by phase; these are not exact means, extrema or
+monthly observations. The main Kenai 2006 track continues after the February
+2009 split; do not assign its areas to Kenai 2006a or an intact parent.
+
+Keep average westward component 1.8 km/day separate from signed component
+range -0.8 to 5.0 km/day. Negative means eastward, not negative speed magnitude.
+Permit negative interval endpoints only for the explicit signed-component
+metric, units, category and positive-direction metadata. Source December 2006
+and July 2010 month bounds yield an elapsed-day support range, not exact birth
+or death days or full physical lifespan. The final event is main-track
+absorption into another eddy; the split child has a different chronology.
+No annual size range, radius conversion, child inheritance or animation.
+Preserve all preceding 299 numeric evidence records and 15 source classes.

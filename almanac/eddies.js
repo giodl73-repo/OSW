@@ -26,6 +26,12 @@
     if(r.independent_named_case)add('strong','Independent named source case · no primary values inherited; physical crosswalk remains unverified.',add('p',undefined,box));
     if(r.evidence_role?.includes('model_case_reference'))add('strong','Published model case · simulated quantity; not an observed regional constant.',add('p',undefined,box));
     if(r.evidence_role==='qualified_indexed_model_case_reference')add('strong','Qualified indexed model reference · original PDF not retrieved in this pass.',add('p',undefined,box));
+    if(r.detection_context){
+      const c=r.detection_context;
+      add('p','Detection method: '+c.area_operator,box);
+      add('p',`Input: ${c.product}, ${c.spatial_grid_degrees.join('° × ')}° grid, every ${c.cadence_days} days. Regional weekly mean removed: ${c.regional_weekly_mean_removed}.`,box);
+      add('p','Track convention: '+c.source_case_label+'. Physical name crosswalk unverified.',box);
+    }
     for(const [label,value] of [['Definition',r.definition],['Scope',r.scope],['Period',r.period_label||(r.period_start?`${r.period_start} to ${r.period_end}`:null)],['Qualification',r.qualification]])if(value)add('p',`${label}: ${value}`,box);
     if(r.sample_count!==null)add('p',`Table sample count: ${r.sample_count}. Standard deviation describes population spread; measurement uncertainty is unspecified.`,box);
     if(r.right_censored)add('strong','Track still present at the final study snapshot; disappearance date unknown.',box);

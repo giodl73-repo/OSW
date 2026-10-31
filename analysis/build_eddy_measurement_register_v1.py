@@ -49,6 +49,20 @@ def validate_plot_estimate(plot,interval):
     assert all(math.isclose(a,b,abs_tol=1e-9) for a,b in zip(days,plot['approximate_plot_day_support']))
 
 
+def validate_numeric_interval(row):
+    interval=row['range_value']
+    assert row['value'] is None and len(interval)==2
+    assert all(type(v) in (int,float) and math.isfinite(v) for v in interval)
+    assert interval[0]<=interval[1]
+    signed_metric='source_reported_signed_westward_translation_component_range'
+    signed_kind='source_reported_signed_westward_translation_component_interval'
+    if row.get('metric')==signed_metric or row.get('range_kind')==signed_kind:
+        assert row['metric']==signed_metric and row['range_kind']==signed_kind
+        assert row['category']=='kinematics' and row['unit']=='km/day'
+        assert row['detection_context']['translation_component_positive_direction']=='westward'
+    else:assert 0<=interval[0] and interval[1]>0
+
+
 def build():
     pins={}
     def read(path):
@@ -203,7 +217,15 @@ def build():
             assert r['category'] in ['size','duration','recurrence','travel','structure','kinematics']
             assert any(r.get(k) is not None for k in ['value','range_value','upper_bound','lower_bound'])
             interval=r.get('range_value')
-            if interval is not None:assert len(interval)==2 and 0<=interval[0]<=interval[1] and interval[1]>0 and r['value'] is None
+            if interval is not None:validate_numeric_interval(r)
+            if r['metric']=='source_main_track_calendar_supported_elapsed_span':
+                c=r['calendar_support'];assert r['category']=='duration' and r['unit']=='day'
+                start0,start1,end0,end1=[date.fromisoformat(c[k]) for k in ['start_date_min','start_date_max','end_date_min','end_date_max']]
+                assert c['start_precision']==c['end_precision']=='month' and not c['chronology_conditioned']
+                assert start0.day==end0.day==1
+                assert start1==date(start0.year,start0.month,calendar.monthrange(start0.year,start0.month)[1])
+                assert end1==date(end0.year,end0.month,calendar.monthrange(end0.year,end0.month)[1])
+                assert interval==c['unconditioned_elapsed_day_range']==[(end0-start1).days,(end1-start0).days]
             if r.get('upper_bound') is not None:assert r['upper_bound']>0 and r['value'] is None
             if r.get('lower_bound') is not None:
                 assert isinstance(r['lower_bound'],(int,float)) and math.isfinite(r['lower_bound']) and r['lower_bound']>0 and r['value'] is None
@@ -231,7 +253,7 @@ def build():
             add(r['id'],r['entity_id'],r['category'],r['metric'],r['value'],r['unit'],path,f'/records/{n}',batch,
                 source_url=source['url'],source_access=source['access'],source_id=r['source_id'],
                 definition=r['definition'],scope=r['scope'],qualification=r['qualification'],
-                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible','named_case_association','independent_named_case','source_plot_estimate','model_context','model_table_row_index'] if k in r})
+                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible','named_case_association','independent_named_case','source_plot_estimate','model_context','model_table_row_index','detection_context'] if k in r})
         class_legacy={v['source_number']:v for v in read('research/named-loop-current-eddies.json')['entries']} if batch.get('size_classifications') else {}
         for n,c in enumerate(batch.get('size_classifications',[])):
             owner=c['entity_id'];assert owner in identities and not any(v['id']==c['id'] for v in classifications)
@@ -312,9 +334,9 @@ def build():
 def main():
     document=build();(ROOT/JSON_PATH).write_bytes((json.dumps(document,indent=2,ensure_ascii=False)+'\n').encode())
     fields=['entity_id','id','category','metric','value','unit','range_value_json','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','standard_deviation','sample_count','period_start','period_end','period_label','period_precision','component_label','case_label','right_censored','value_conflict','date_conflict','source_claims_json','calculation_json','calendar_support_json','rights_screened_release_eligible','evidence_role','definition','scope','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
-    fields.extend(['named_case_association_json','independent_named_case_json','source_plot_estimate_json','model_context_json'])
+    fields.extend(['named_case_association_json','independent_named_case_json','source_plot_estimate_json','model_context_json','detection_context_json'])
     out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()
-    for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False),'range_value_json':json.dumps(r.get('range_value')),'calculation_json':json.dumps(r.get('calculation')),'calendar_support_json':json.dumps(r.get('calendar_support')),'named_case_association_json':json.dumps(r.get('named_case_association')),'independent_named_case_json':json.dumps(r.get('independent_named_case')),'source_plot_estimate_json':json.dumps(r.get('source_plot_estimate')),'model_context_json':json.dumps(r.get('model_context'))})
+    for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False),'range_value_json':json.dumps(r.get('range_value')),'calculation_json':json.dumps(r.get('calculation')),'calendar_support_json':json.dumps(r.get('calendar_support')),'named_case_association_json':json.dumps(r.get('named_case_association')),'independent_named_case_json':json.dumps(r.get('independent_named_case')),'source_plot_estimate_json':json.dumps(r.get('source_plot_estimate')),'model_context_json':json.dumps(r.get('model_context')),'detection_context_json':json.dumps(r.get('detection_context'))})
     (ROOT/CSV_PATH).write_bytes(out.getvalue().encode());print(json.dumps(document['counts']))
     fields=['id','entity_id','source_name','source_year','label','registry_name','registry_primary_name','registry_primary_initial_separation','source_name_match','numeric_thresholds','value','unit','association_is_verified','source_year_is_separation_year','rank_eligible','seasonal_playback_eligible','physical_state_join_eligible','rights_screened_release_eligible','definition','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
     out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()

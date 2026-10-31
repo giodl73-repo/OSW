@@ -298,6 +298,15 @@ def run():
             with page.expect_download() as pending:page.get_by_role('link',name='Download size classifications CSV').click()
             assert hashlib.sha256(Path(pending.value.path()).read_bytes()).hexdigest()==sha('research/eddy-size-classifications-v1.csv')
             checks.append('15 qualitative classes with no numeric thresholds; QE-2 own Small label does not inherit Quick Huge or close numeric gaps; Gyre source year and registry context kept distinct; separate classification CSV and mobile layout')
+            page.set_viewport_size({'width':1440,'height':1000});page.fill('#eddy-search','Kenai')
+            region=page.locator('tr[data-eddy-id="eddy:geography:kenai-eddy-region"]');region.locator('summary').click()
+            for needle in ['15,000 km²','10,000 km²','6,000 km²','1.8 km/day','-0.8–5 km/day','1,278–1,338 days','negative eastward','includes post-split main branch','not an exact period mean']:
+                assert needle in region.inner_text(),needle
+            page.locator('[data-evidence-id="kenai-ueno-2012-early-area"]').screenshot(path=str(OUT/'kenai-source-area-level.png'))
+            page.locator('[data-evidence-id="kenai-ueno-2012-signed-westward-component-range"]').screenshot(path=str(OUT/'kenai-signed-westward-component.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.screenshot(path=str(OUT/'mobile-kenai-track-reference.png'),full_page=True)
+            checks.append('Kenai source-case Okubo-Weiss area levels retain phases and split continuation; signed westward component keeps negative eastward endpoint; month-supported main-track span remains distinct from physical lifespan; mobile layout')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
