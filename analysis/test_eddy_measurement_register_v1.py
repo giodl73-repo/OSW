@@ -11,7 +11,7 @@ class EddyRegister(unittest.TestCase):
         d=register.build()
         self.assertEqual(len(d['records']),136)
         self.assertEqual(len({r['entity_id'] for r in d['records']}),136)
-        self.assertEqual(len(d['evidence']),289)
+        self.assertEqual(len(d['evidence']),292)
         for path,pin in d['input_sha256'].items():self.assertEqual(hashlib.sha256((register.ROOT/path).read_bytes()).hexdigest(),pin)
         for r in d['evidence']:
             source=json.loads((register.ROOT/r['source_file']).read_bytes())
@@ -55,7 +55,7 @@ class EddyRegister(unittest.TestCase):
     def test_csv_does_not_drop_conflicts_or_rewrite_units(self):
         d=register.build();evidence={r['id']:r for r in d['evidence']}
         with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:rows=list(csv.DictReader(stream))
-        self.assertEqual(len(rows),289)
+        self.assertEqual(len(rows),292)
         for r in rows:
             original=evidence[r['id']]
             self.assertEqual(r['unit'],original['unit']);self.assertEqual(r['source_pointer'],original['source_pointer'])
@@ -141,7 +141,7 @@ class EddyRegister(unittest.TestCase):
         self.assertEqual(prior,batch['baseline_evidence_sha256'])
         rows=d['evidence'][214:241];self.assertEqual(len(rows),27)
         self.assertEqual([r['value'] for r in rows],[24271,43199,37442,19964,24998,21530,35065,57751,92026,45049,44392,22137,48786,21318,22511,67989,23563,12421,18682,49672,12369,31304,7596,25036,52058,70659,15451])
-        self.assertEqual(d['counts']['size_owners'],60);self.assertEqual(d['counts']['size_records'],91)
+        self.assertEqual(d['counts']['size_owners'],62);self.assertEqual(d['counts']['size_records'],94)
         for r in rows:
             a=r['named_case_association'];self.assertFalse(a['physical_crosswalk_verified'])
             self.assertEqual((r['category'],r['unit']),('size','km2'))
@@ -265,7 +265,7 @@ class EddyRegister(unittest.TestCase):
         d=register.build();batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v10.json').read_bytes())
         prior=hashlib.sha256(json.dumps(d['evidence'][:285],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
         self.assertEqual(prior,batch['baseline_evidence_sha256'])
-        rows=d['evidence'][285:];self.assertEqual(len(rows),4)
+        rows=d['evidence'][285:289];self.assertEqual(len(rows),4)
         self.assertEqual([r['value'] for r in rows],[50,None,100,None])
         self.assertEqual(rows[1]['lower_bound'],30);self.assertTrue(rows[1]['lower_bound_exclusive'])
         self.assertEqual(rows[3]['range_value'],[15,30]);self.assertIsNone(rows[3]['lower_bound'])
@@ -279,7 +279,25 @@ class EddyRegister(unittest.TestCase):
             self.assertIsNone(r['uncertainty']);self.assertIn('HTTP 403',r['source_access'])
         entry=next(r for r in d['records'] if r['entity_id']==rows[0]['entity_id'])
         self.assertFalse(entry['size_gap']);self.assertIsNone(entry['whole_lifetime_days'])
-        self.assertEqual(sum(r['size_gap'] for r in d['records']),76)
+        self.assertEqual(sum(r['size_gap'] for r in d['records']),74)
+
+
+    def test_loop_narrative_diameters_do_not_become_child_or_seasonal_sizes(self):
+        d=register.build();batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v11.json').read_bytes())
+        prior=hashlib.sha256(json.dumps(d['evidence'][:289],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
+        self.assertEqual(prior,batch['baseline_evidence_sha256'])
+        rows=d['evidence'][289:];self.assertEqual(len(rows),3)
+        self.assertEqual([r['value'] for r in rows],[400,247,175])
+        self.assertEqual([r['entity_id'] for r in rows],['eddy:horizon:loop-59-primary','eddy:horizon:loop-59-primary','eddy:horizon:loop-58-primary'])
+        for r in rows:
+            self.assertEqual(r['unit'],'km');self.assertIsNone(r['period_start']);self.assertIsNone(r.get('range_value'))
+            self.assertIsNone(r['uncertainty']);self.assertIsNone(r['geometry']);self.assertFalse(r['seasonal_playback_eligible'])
+            self.assertFalse(r['rights_screened_release_eligible']);self.assertFalse(r['whole_lifetime_inferred'])
+            self.assertIn('does not specify',r['definition']);self.assertIn('physical identity crosswalk',r['qualification'])
+        self.assertIn('before split',rows[0]['case_label']);self.assertIn('August 2012',rows[1]['case_label'])
+        self.assertTrue(all('No value assigned to Jumbo Jr.' in r['qualification'] for r in rows[:2]))
+        self.assertIn('sampling date unspecified',rows[2]['period_label'])
+        self.assertIn('not independently verified',rows[2]['qualification'])
 
 
 if __name__=='__main__':unittest.main()

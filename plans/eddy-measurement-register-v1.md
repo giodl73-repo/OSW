@@ -211,3 +211,17 @@ geostrophic currents; no fixed diameter contour is specified in the paragraph.
 Institutional PDF text was accessible through web retrieval, but original bytes
 and page images were unavailable. Preserve that access limitation explicitly
 and all preceding 285 evidence records exactly.
+
+## Named narrative diameter references
+
+Keep Jumbo's approximately 400 km post-separation diameter (Hamilton et al.
+2018) separate from the approximately 247 km August 2012 description in
+Lemus-Santana et al. (2024). The phase and diameter operator do not establish
+a comparable time series. Do not average, pool as an uncertainty range, infer
+shrinkage, or assign either number to Jumbo Jr. or split/merged children.
+Retain Icarus's approximately 175 km contextual diameter without inventing a
+sampling date from its source detachment/end chronology. The latter paper
+cites earlier work for these contextual sizes; its underlying size operators
+remain unverified. Original Hamilton PDF page pixels were reviewed; later
+paper access is indexed text only. No physical name crosswalk, footprint or
+release eligibility inferred. Preserve all preceding 289 evidence records.

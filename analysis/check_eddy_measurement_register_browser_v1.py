@@ -249,6 +249,21 @@ def run():
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             page.screenshot(path=str(OUT/'mobile-latakia-cases.png'),full_page=True)
             checks.append('Latakia opposite-rotation regional cases retain separate diameters, map support, qualified source access and no pooled seasonal envelope')
+            page.set_viewport_size({'width':1440,'height':1000})
+            page.fill('#eddy-search','Jumbo')
+            jumbo=page.locator('tr[data-eddy-id="eddy:horizon:loop-59-primary"]');jumbo.locator('summary').click()
+            for needle in ['400 km','247 km','Post-separation intact case','August 2012','No value assigned to Jumbo Jr.','not independently verified']:
+                assert needle in jumbo.inner_text(),needle
+            page.locator('[data-evidence-id="jumbo-post-separation-hamilton-2018-diameter"]').screenshot(path=str(OUT/'jumbo-post-separation-diameter.png'))
+            child=page.locator('tr[data-eddy-id="eddy:horizon:loop-59-secondary"]');assert 'Size reference needed' in child.inner_text()
+            page.fill('#eddy-search','Icarus');page.locator('#eddy-rows summary').click()
+            for needle in ['175 km','diameter sampling date unspecified','Qualified indexed reference','not independently verified']:
+                assert needle in page.locator('#eddy-rows').inner_text(),needle
+            page.locator('[data-evidence-id="icarus-lemus-2024-diameter"]').screenshot(path=str(OUT/'icarus-source-diameter.png'))
+            page.set_viewport_size({'width':390,'height':844})
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.screenshot(path=str(OUT/'mobile-icarus-diameter.png'),full_page=True)
+            checks.append('Jumbo distinct narrative phase diameters without child inheritance or pooled range; Icarus qualified contextual size without invented sampling dates; mobile layout')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
