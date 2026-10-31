@@ -179,3 +179,21 @@ sampling endpoint. Display approximate support on the plot's days-since-detachme
 axis; infer no calendar endpoints or observations between samples. These are
 selected-segment envelopes, not full lifetime, seasonal or annual extrema and
 not animation-ready series. Preserve the preceding 263 records exactly.
+
+## Black Sea table-based model references
+
+Enriquez et al. (2005) Table 4 supplies model velocity intervals and approximate
+penetration depths for named structures. Keep velocities in m/s, without a
+midpoint, peak or translation interpretation. The study's 7.5 m surface-map
+convention does not establish this velocity column's sampling depth. The depth
+footnote refers specifically to the source snapshot labeled day 40 / 10 June
+2000; do not assign that date to the velocity intervals or recompute source day
+numbering. Penetration is a vertical reach, not thickness or bathymetry.
+
+Keep the three modeled Caucasus occurrence durations (6, 3 and 17 days) as
+separate cases, not a mean, seasonal range or annual recurrence count. The
+simulated Batumi pattern is often open recirculation, so it supplies no closed
+eddy footprint. Three other table names (Sakarya, Sinop and Kizilirmak) remain
+explicit unmapped source leads for inventory review; their numbers are never
+assigned to another named entry. These cases do not fill horizontal-size gaps
+or establish physical lifetimes. Preserve all preceding 270 evidence records.

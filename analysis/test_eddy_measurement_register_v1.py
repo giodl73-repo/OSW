@@ -11,7 +11,7 @@ class EddyRegister(unittest.TestCase):
         d=register.build()
         self.assertEqual(len(d['records']),136)
         self.assertEqual(len({r['entity_id'] for r in d['records']}),136)
-        self.assertEqual(len(d['evidence']),270)
+        self.assertEqual(len(d['evidence']),285)
         for path,pin in d['input_sha256'].items():self.assertEqual(hashlib.sha256((register.ROOT/path).read_bytes()).hexdigest(),pin)
         for r in d['evidence']:
             source=json.loads((register.ROOT/r['source_file']).read_bytes())
@@ -55,7 +55,7 @@ class EddyRegister(unittest.TestCase):
     def test_csv_does_not_drop_conflicts_or_rewrite_units(self):
         d=register.build();evidence={r['id']:r for r in d['evidence']}
         with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:rows=list(csv.DictReader(stream))
-        self.assertEqual(len(rows),270)
+        self.assertEqual(len(rows),285)
         for r in rows:
             original=evidence[r['id']]
             self.assertEqual(r['unit'],original['unit']);self.assertEqual(r['source_pointer'],original['source_pointer'])
@@ -178,7 +178,7 @@ class EddyRegister(unittest.TestCase):
             self.assertEqual((r['category'],r['unit']),('structure','m'));self.assertNotIn('range_value',r)
             self.assertIn('not form a thickness range',r['qualification'])
             self.assertIsNone(r['period_start']);self.assertIsNone(r['geometry'])
-        self.assertEqual(d['counts']['structure_owners'],2)
+        self.assertEqual(d['counts']['structure_owners'],8)
 
 
     def test_named_orbits_contours_and_independent_secondary_sampling(self):
@@ -213,7 +213,7 @@ class EddyRegister(unittest.TestCase):
         d=register.build();batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v8.json').read_bytes())
         prior=hashlib.sha256(json.dumps(d['evidence'][:263],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
         self.assertEqual(prior,batch['baseline_evidence_sha256'])
-        rows=d['evidence'][263:];self.assertEqual(len(rows),7)
+        rows=d['evidence'][263:270];self.assertEqual(len(rows),7)
         self.assertEqual([r['range_value'] for r in rows],[[40,80],[30,70],[30,130],[40,130],[50,80],[40,100],[100,220]])
         self.assertEqual(len({r['entity_id'] for r in rows}),4)
         self.assertEqual([r['source_plot_estimate']['trace_color'] for r in rows],['blue','red','green','blue','red','black','black'])
@@ -228,8 +228,37 @@ class EddyRegister(unittest.TestCase):
         self.assertFalse(rows[5]['independent_named_case']['primary_values_inherited'])
         self.assertIn('sampling endpoint',rows[5]['qualification'])
         self.assertLess(rows[6]['source_plot_estimate']['approximate_plot_day_support'][1]+2,51)
-        with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:exports=list(csv.DictReader(stream))[263:]
+        with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:exports=list(csv.DictReader(stream))[263:270]
         self.assertEqual([json.loads(r['source_plot_estimate_json']) for r in exports],[r['source_plot_estimate'] for r in rows])
+
+
+    def test_black_sea_model_table_keeps_depth_velocity_and_event_scopes(self):
+        d=register.build();batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v9.json').read_bytes())
+        prior=hashlib.sha256(json.dumps(d['evidence'][:270],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
+        self.assertEqual(prior,batch['baseline_evidence_sha256'])
+        rows=d['evidence'][270:];self.assertEqual(len(rows),15)
+        depths=[r for r in rows if r['category']=='structure'];speeds=[r for r in rows if r['category']=='kinematics']
+        self.assertEqual([r['value'] for r in depths],[400,130,200,350,100,400])
+        self.assertEqual([r['range_value'] for r in speeds],[[.1,.2],[.1,.25],[.15,.35],[.1,.4],[.1,.15],[.1,.18]])
+        for r in rows:
+            self.assertEqual(r['evidence_role'],'published_model_case_reference')
+            self.assertFalse(r['whole_lifetime_inferred']);self.assertIsNone(r['geometry']);self.assertIsNone(r['uncertainty'])
+        for r in depths:
+            self.assertEqual((r['unit'],r['period_start'],r['period_end']),('m','2000-06-10','2000-06-10'))
+            self.assertIn('not lens thickness',r['qualification'])
+            self.assertEqual(r['model_context']['penetration_day_as_reported'],40)
+        for r in speeds:
+            self.assertEqual(r['unit'],'m/s');self.assertIsNone(r['value']);self.assertIsNone(r['period_start'])
+            self.assertFalse(r['model_context']['surface_map_depth_is_velocity_column_depth'])
+        events=[r for r in rows if r['category']=='duration']
+        self.assertEqual([r['value'] for r in events],[6,3,17]);self.assertEqual(len({r['case_label'] for r in events}),3)
+        self.assertTrue(all(r['period_start'] is None and r['unit']=='day' for r in events))
+        self.assertIn('open return-flow',depths[-1]['qualification'])
+        self.assertEqual([r['source_name'] for r in batch['unmapped_named_source_rows']],['Sakarya','Sinop','Kizilirmak'])
+        self.assertTrue(all(not r['measurement_assigned_to_another_name'] for r in batch['unmapped_named_source_rows']))
+        with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:exports=list(csv.DictReader(stream))[270:]
+        self.assertEqual([json.loads(r['model_context_json']) for r in exports],[r['model_context'] for r in rows])
+        self.assertEqual(d['counts']['duration_owners'],98);self.assertEqual(d['counts']['kinematics_owners'],67)
 
 
 if __name__=='__main__':unittest.main()

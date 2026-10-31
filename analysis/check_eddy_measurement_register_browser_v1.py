@@ -219,6 +219,21 @@ def run():
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             page.screenshot(path=str(OUT/'mobile-graph-envelope.png'),full_page=True)
             checks.append('Graph estimates labeled separately; native mean contour radius, reading allowance/outward rounding, separate child cases, selected pre-split window and Quantum II plot endpoint without extrapolation')
+            page.set_viewport_size({'width':1440,'height':1000})
+            page.fill('#eddy-search','Bosphorus');page.locator('#eddy-rows summary').click()
+            for needle in ['200 m','0.15–0.35 m/s','Published model case','day 40, 10 June 2000','not lens thickness','not assigned as a measured sampling depth']:
+                assert needle in page.locator('#eddy-rows').inner_text(),needle
+            page.locator('[data-evidence-id="bosphorus-enriquez-2005-model-penetration"]').screenshot(path=str(OUT/'bosphorus-model-depth.png'))
+            page.fill('#eddy-search','Caucasus');page.locator('#eddy-rows summary').click()
+            for needle in ['100 m','0.1–0.15 m/s','6 days','3 days','17 days','occurrence 1','occurrence 2','occurrence 3','not a measured physical lifespan']:
+                assert needle in page.locator('#eddy-rows').inner_text(),needle
+            page.locator('[data-evidence-id="caucasus-enriquez-2005-model-event-3-duration"]').screenshot(path=str(OUT/'caucasus-model-event.png'))
+            page.set_viewport_size({'width':390,'height':844})
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.screenshot(path=str(OUT/'mobile-caucasus-model-cases.png'),full_page=True)
+            page.fill('#eddy-search','Batumi');page.locator('#eddy-rows summary').click()
+            assert 'open return-flow structure rather than a closed anticyclone' in page.locator('#eddy-rows').inner_text()
+            checks.append('Black Sea: six approximate model penetration depths and native m/s ranges; source day-40 depth date does not date velocities; separate 6/3/17-day Caucasus model events and open Batumi qualification; mobile layout')
             with page.expect_download() as pending:page.get_by_role('link',name='Download measurement CSV').click()
             assert hashlib.sha256(Path(pending.value.path()).read_bytes()).hexdigest()==sha('research/eddy-measurement-register-v1.csv')
             for path in set(r['source_file'] for r in document['evidence'])|{'plans/eddy-measurement-register-v1.md','research/eddy-measurement-register-v1.json'}:

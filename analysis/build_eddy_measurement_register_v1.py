@@ -171,6 +171,16 @@ def build():
                 registry_contexts[owner]=context
         for n,r in enumerate(batch['records']):
             source=batch['sources'][r['source_id']]
+            if r.get('model_table_row_index') is not None:
+                raw=batch['model_table_rows'][r['model_table_row_index']]
+                assert raw['mapped_entity_id']==r['entity_id']
+                assert r['evidence_role']=='published_model_case_reference' and r['model_context']['model']=='POLCOMS'
+                if r['category']=='structure':
+                    assert raw['depth_relation']=='approximately' and r['value']==raw['penetration_depth_m'] and r['unit']=='m'
+                    assert r['period_start']==r['period_end']=='2000-06-10'
+                else:
+                    assert r['category']=='kinematics' and r['value'] is None and r['unit']=='m/s'
+                    assert r['range_value']==raw['velocity_range_m_s']
             if r['entity_id'].endswith('-secondary'):
                 a=r['independent_named_case']
                 assert a['source_name']==identities[r['entity_id']]['name']
@@ -218,7 +228,7 @@ def build():
             add(r['id'],r['entity_id'],r['category'],r['metric'],r['value'],r['unit'],path,f'/records/{n}',batch,
                 source_url=source['url'],source_access=source['access'],source_id=r['source_id'],
                 definition=r['definition'],scope=r['scope'],qualification=r['qualification'],
-                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible','named_case_association','independent_named_case','source_plot_estimate'] if k in r})
+                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible','named_case_association','independent_named_case','source_plot_estimate','model_context','model_table_row_index'] if k in r})
         applied.append({'file':path,'baseline_count':batch['baseline_evidence_count'],'preserved_baseline_sha256':prior,'added':len(batch['records'])})
     records=[]
     for identifier,current in identities.items():
@@ -278,9 +288,9 @@ def build():
 def main():
     document=build();(ROOT/JSON_PATH).write_bytes((json.dumps(document,indent=2,ensure_ascii=False)+'\n').encode())
     fields=['entity_id','id','category','metric','value','unit','range_value_json','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','standard_deviation','sample_count','period_start','period_end','period_label','period_precision','component_label','case_label','right_censored','value_conflict','date_conflict','source_claims_json','calculation_json','calendar_support_json','rights_screened_release_eligible','evidence_role','definition','scope','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
-    fields.extend(['named_case_association_json','independent_named_case_json','source_plot_estimate_json'])
+    fields.extend(['named_case_association_json','independent_named_case_json','source_plot_estimate_json','model_context_json'])
     out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()
-    for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False),'range_value_json':json.dumps(r.get('range_value')),'calculation_json':json.dumps(r.get('calculation')),'calendar_support_json':json.dumps(r.get('calendar_support')),'named_case_association_json':json.dumps(r.get('named_case_association')),'independent_named_case_json':json.dumps(r.get('independent_named_case')),'source_plot_estimate_json':json.dumps(r.get('source_plot_estimate'))})
+    for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False),'range_value_json':json.dumps(r.get('range_value')),'calculation_json':json.dumps(r.get('calculation')),'calendar_support_json':json.dumps(r.get('calendar_support')),'named_case_association_json':json.dumps(r.get('named_case_association')),'independent_named_case_json':json.dumps(r.get('independent_named_case')),'source_plot_estimate_json':json.dumps(r.get('source_plot_estimate')),'model_context_json':json.dumps(r.get('model_context'))})
     (ROOT/CSV_PATH).write_bytes(out.getvalue().encode());print(json.dumps(document['counts']))
 
 
