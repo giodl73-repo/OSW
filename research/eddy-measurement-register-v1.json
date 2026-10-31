@@ -2,7 +2,7 @@
   "schema": "osw.eddy-measurement-register.v1",
   "status": "MEASUREMENT_GAP_FILLING_IN_PROGRESS",
   "rules_file": "plans/eddy-measurement-register-v1.md",
-  "rules_sha256": "470a2668007bbbf39787c9a26cc4a5904e90f076148243a6c002a17415dcb4f6",
+  "rules_sha256": "43e5da8a792ae6af6ade9a6788767b4109a2d56cf81cba6706ef0bf37150ce27",
   "generator_sha256": "15631116ce7fd35f372e35d1fd0768156b5c622245dbe83d732b70cef6aeb1b5",
   "input_sha256": {
     "research/ocean-eddy-name-inventory.json": "d78c31a96b93cc9e746562f2d5c3b0f6d37ad36c3f1d10bb769aec8aa4472015",
@@ -15,7 +15,7 @@
     "research/eddy-measurement-register-additions-v2.json": "3bb1a6760a5e68efd41f5562425225da70e7bd78429257a8b1466937114fa62b",
     "plans/agulhas-ring-radius-protocol-v1.md": "620981e7dccd1a888083d5daa670548a6f1254825f2acda73da5a821bcb4e876",
     "plans/black-sea-eddy-recurrence-protocol-v1.md": "66fef56b5960d802df68ca35d3241912650f7fe2c58803375743b4f42a48b5cf",
-    "research/eddy-measurement-batches-v1.json": "2e0a28cd2e03a6bb218f7d9ccfafe4355389ddf7e96684349923067f538ec2c6",
+    "research/eddy-measurement-batches-v1.json": "c85358e52d3bc6a56d492af86f0970c911b0258669a53171a8b3f94309434747",
     "research/eddy-measurement-register-additions-v3.json": "d1c91350952ea08a49562c5aa0b671f0624930fd73e4735c2227c1b17708fc15",
     "research/eddy-measurement-register-additions-v4.json": "359d14c7927a6fc045bce23eb8ae4f7c226caa1a5355a27045a735125bdeaa11",
     "research/named-loop-current-eddies.json": "4a41a3b4b127f42ac31b114117c0d5d2caf998b84bed6caeac58de6ef94eecca",
@@ -30,7 +30,8 @@
     "research/eddy-measurement-register-additions-v13.json": "852b3e909d7fec5f304157829f8e20b22ddd7021106a48e775fb3a92b82256eb",
     "research/eddy-measurement-register-additions-v14.json": "5572b4c6a7c022d1d822568d9376a97ee0bb669cc079077b31549c7ca16afeef",
     "research/eddy-measurement-register-additions-v15.json": "534b0a5c9906e142675c347d053b3b99cbcd91facb1a75ac1504e97957868e9a",
-    "research/eddy-measurement-register-additions-v16.json": "571fd24928e71b179546d4c6f5003baae467b4128cc4f5ae61fdcdabd7f241a0"
+    "research/eddy-measurement-register-additions-v16.json": "571fd24928e71b179546d4c6f5003baae467b4128cc4f5ae61fdcdabd7f241a0",
+    "research/eddy-measurement-register-additions-v17.json": "ae1ec3b2a0ec394dffac6dd8f4e5316b0928ecd7c20c95095257cb7045a3de99"
   },
   "method_implementation_sha256": {
     "analysis/eddy_map_spans_v1.py": "b7594aa7eac20a1968e4432f2979f6b11c4f7008b3f5745753f0ad6e70f1f6e4"
@@ -121,6 +122,12 @@
       "baseline_count": 309,
       "preserved_baseline_sha256": "b74bdcc943ba77e842af927c69e7512e586be66333f7e5f482826be5391691a9",
       "added": 3
+    },
+    {
+      "file": "research/eddy-measurement-register-additions-v17.json",
+      "baseline_count": 312,
+      "preserved_baseline_sha256": "27010d133d8d97838de05b9284007b7cc85c179fa690c536db579cbd3dd7baea",
+      "added": 1
     }
   ],
   "scope": "One address for every independently named eddy label or named regional/family record currently admitted to the OSW almanac. This source-set inventory is not a complete global list of all eddies or all names. NOAA detection IDs are separate unnamed, dated observations.",
@@ -131,9 +138,9 @@
     "individual_source_records": 112,
     "recurrent_regions": 20,
     "families": 4,
-    "evidence_records": 312,
-    "size_records": 104,
-    "size_owners": 68,
+    "evidence_records": 313,
+    "size_records": 105,
+    "size_owners": 69,
     "duration_owners": 99,
     "recurrence_owners": 12,
     "structure_owners": 10,
@@ -5915,16 +5922,18 @@
         "eddy-recurrence:korotaev-2011:crimea-presence",
         "eddy-recurrence:korotaev-2011:crimea-event-duration",
         "crimea-enriquez-2005-model-penetration",
-        "crimea-enriquez-2005-model-velocity-range"
+        "crimea-enriquez-2005-model-velocity-range",
+        "crimea-ginzburg-2001-1997-10-30-diameter"
       ],
       "categories": [
         "duration",
         "kinematics",
         "recurrence",
+        "size",
         "structure"
       ],
       "size_classification_ids": [],
-      "size_gap": true,
+      "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
       "linked_primary_context": null,
@@ -38578,6 +38587,63 @@
         "physical_crosswalk_verified": false,
         "entity_mapping_basis": "Explicit source Caucasian AE (A11) name; regional case reference only"
       }
+    },
+    {
+      "id": "crimea-ginzburg-2001-1997-10-30-diameter",
+      "entity_id": "eddy:geography:crimea-eddy-region",
+      "category": "size",
+      "metric": "source_described_dated_regional_case_diameter",
+      "metric_label": "source described dated regional case diameter",
+      "value": 100,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "1997-10-30",
+      "period_end": "1997-10-30",
+      "period_label": "1997-10-30 source image, Figure 2H",
+      "definition": "Approximate diameter reported by the authors from the infrared image; no fixed contour threshold specified.",
+      "scope": "Explicitly named Crimean anticyclone in one autumn 1997 source case, attached to the recurrent Crimea region.",
+      "qualification": "Qualified publisher-indexed primary-text reference. One image date is not a regional constant, seasonal range or lifespan. The suggested merger with CACE-1 is a source hypothesis, not a verified physical identity join; none of CACE-1 dimensions or motion is inherited. No closed footprint, statistical uncertainty, state containment or animation inferred. Original PDF bytes and page images unavailable.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.tandfonline.com/doi/pdf/10.1080/07493878.2001.10642162",
+      "source_locator": "Printed page 30, Crimean anticyclone paragraph and Figure 2H; year and NOAA infrared image series in initial-data section, printed page 22.",
+      "source_file": "research/eddy-measurement-register-additions-v17.json",
+      "source_pointer": "/records/0",
+      "source_sha256": "ae1ec3b2a0ec394dffac6dd8f4e5316b0928ecd7c20c95095257cb7045a3de99",
+      "raw_record": {
+        "id": "crimea-ginzburg-2001-1997-10-30-diameter",
+        "entity_id": "eddy:geography:crimea-eddy-region",
+        "source_id": "ginzburg-2001",
+        "source_locator": "Printed page 30, Crimean anticyclone paragraph and Figure 2H; year and NOAA infrared image series in initial-data section, printed page 22.",
+        "category": "size",
+        "metric": "source_described_dated_regional_case_diameter",
+        "value": 100,
+        "unit": "km",
+        "evidence_role": "qualified_indexed_reference",
+        "case_label": "Crimean anticyclone, 30 October 1997 infrared image",
+        "period_start": "1997-10-30",
+        "period_end": "1997-10-30",
+        "period_precision": "day",
+        "period_label": "1997-10-30 source image, Figure 2H",
+        "definition": "Approximate diameter reported by the authors from the infrared image; no fixed contour threshold specified.",
+        "scope": "Explicitly named Crimean anticyclone in one autumn 1997 source case, attached to the recurrent Crimea region.",
+        "qualification": "Qualified publisher-indexed primary-text reference. One image date is not a regional constant, seasonal range or lifespan. The suggested merger with CACE-1 is a source hypothesis, not a verified physical identity join; none of CACE-1 dimensions or motion is inherited. No closed footprint, statistical uncertainty, state containment or animation inferred. Original PDF bytes and page images unavailable."
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Publisher-indexed original-PDF text reviewed: printed page 30 Crimean-anticyclone paragraph, Figure 2H reference, and printed page 22 initial-data section identifying autumn 1997 NOAA-12/14 infrared imagery. Direct original-PDF web retrieval returned HTTP 403; no original bytes or page pixels verified.",
+      "source_id": "ginzburg-2001",
+      "period_precision": "day",
+      "case_label": "Crimean anticyclone, 30 October 1997 infrared image",
+      "evidence_role": "qualified_indexed_reference"
     }
   ],
   "runtime_changed": false,

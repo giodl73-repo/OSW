@@ -333,6 +333,17 @@ def run():
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             page.screenshot(path=str(OUT/'mobile-caucasian-model-case.png'),full_page=True)
             checks.append('Named Caucasian model case retains inner-core radius, distinct rotation period and translation speed; model support and qualified source access visible; no diameter, physical lifetime or seasonal range inferred')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ageography%3Acrimea-eddy-region')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            region=page.locator('tr[data-eddy-id="eddy:geography:crimea-eddy-region"]');assert region.locator('details').evaluate('(e)=>e.open')
+            page.set_viewport_size({'width':1440,'height':1000})
+            for needle in ['100 km','1997-10-30','source hypothesis','none of CACE-1','HTTP 403','no fixed contour threshold']:
+                assert needle in region.inner_text(),needle
+            assert 'Size reference needed' not in region.inner_text()
+            page.locator('[data-evidence-id="crimea-ginzburg-2001-1997-10-30-diameter"]').screenshot(path=str(OUT/'crimean-dated-diameter.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.screenshot(path=str(OUT/'mobile-crimean-dated-case.png'),full_page=True)
+            checks.append('Crimean named image-case diameter retains one source date, qualified original-PDF text access and unverified merger hypothesis; no neighboring measurements inherited or seasonal range inferred')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

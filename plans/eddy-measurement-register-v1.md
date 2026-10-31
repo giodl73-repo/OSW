@@ -319,3 +319,12 @@ constant or seasonal envelope. A rotation period is kinematics, not lifespan.
 Model-day panel support must not become an observed calendar interval. Retain all
 prior 309 numeric records and CSV rows exactly. Unnamed neighboring chain nodes
 remain separate leads and supply no measurements to the named regional entry.
+
+## Named dated regional imagery
+
+Keep an explicitly named regional anticyclone image date separate from any
+formation date or lifetime. Preserve author-reported diameter as approximate
+when no contour operator is specified. A proposed merger does not authorize
+inheritance of the neighboring tracked eddy measurements or identity. Publisher
+indexed text can supply a qualified reference, with missing original bytes and
+page-pixel verification stated. Preserve all preceding 312 records and CSV rows.
