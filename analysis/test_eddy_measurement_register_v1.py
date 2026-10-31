@@ -11,7 +11,7 @@ class EddyRegister(unittest.TestCase):
         d=register.build()
         self.assertEqual(len(d['records']),136)
         self.assertEqual(len({r['entity_id'] for r in d['records']}),136)
-        self.assertEqual(len(d['evidence']),248)
+        self.assertEqual(len(d['evidence']),263)
         for path,pin in d['input_sha256'].items():self.assertEqual(hashlib.sha256((register.ROOT/path).read_bytes()).hexdigest(),pin)
         for r in d['evidence']:
             source=json.loads((register.ROOT/r['source_file']).read_bytes())
@@ -41,7 +41,7 @@ class EddyRegister(unittest.TestCase):
             self.assertTrue(all(e['metric']=='source_dated_event_stage_interval' for e in d['evidence'] if e['entity_id']==r['entity_id']))
         for r in d['records']:
             self.assertFalse(r['candidate_crosswalk_is_verified']);self.assertIsNone(r['whole_lifetime_days'])
-            if r['source_collection']=='horizon_loop_current' and r['entity_id'].endswith('-secondary'):self.assertFalse(r['evidence_ids'])
+            if r['source_collection']=='horizon_loop_current' and r['entity_id'].endswith('-secondary') and r['entity_id']!='eddy:horizon:loop-66-secondary':self.assertFalse(r['evidence_ids'])
         for r in d['evidence']:
             if r['metric'] in ['source_track_elapsed_span','coherent_core_analysis_interval','source_dated_event_stage_interval']:
                 self.assertEqual(r['value'],(date.fromisoformat(r['period_end'])-date.fromisoformat(r['period_start'])).days)
@@ -55,7 +55,7 @@ class EddyRegister(unittest.TestCase):
     def test_csv_does_not_drop_conflicts_or_rewrite_units(self):
         d=register.build();evidence={r['id']:r for r in d['evidence']}
         with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:rows=list(csv.DictReader(stream))
-        self.assertEqual(len(rows),248)
+        self.assertEqual(len(rows),263)
         for r in rows:
             original=evidence[r['id']]
             self.assertEqual(r['unit'],original['unit']);self.assertEqual(r['source_pointer'],original['source_pointer'])
@@ -110,9 +110,9 @@ class EddyRegister(unittest.TestCase):
         batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v4.json').read_bytes())
         prior=hashlib.sha256(json.dumps(d['evidence'][:77],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
         self.assertEqual(prior,batch['baseline_evidence_sha256'])
-        self.assertEqual(d['counts']['registry_entries_with_own_references'],79)
-        self.assertEqual(d['counts']['identities_with_measurements'],119)
-        self.assertEqual(d['counts']['linked_primary_context_entries'],15)
+        self.assertEqual(d['counts']['registry_entries_with_own_references'],80)
+        self.assertEqual(d['counts']['identities_with_measurements'],120)
+        self.assertEqual(d['counts']['linked_primary_context_entries'],14)
         self.assertEqual(d['counts']['entries_without_numeric_or_primary_context'],2)
         self.assertEqual(sum(r['metric']=='registry_reported_maximum_surface_current' for r in d['evidence']),60)
         self.assertEqual(sum(r['metric']=='registry_separation_to_dissipation_calendar_span' for r in d['evidence']),77)
@@ -125,14 +125,14 @@ class EddyRegister(unittest.TestCase):
             if r['entity_id'] in ['eddy:horizon:loop-80-primary','eddy:horizon:loop-81-primary']:
                 self.assertFalse(r['evidence_ids']);self.assertFalse(r['registry_context']['active_label_is_current_status'])
             if r['entity_id'].endswith('-secondary'):
-                self.assertFalse(r['evidence_ids']);self.assertIsNone(r['registry_context'])
+                self.assertEqual(len(r['evidence_ids']),1 if r['entity_id']=='eddy:horizon:loop-66-secondary' else 0);self.assertIsNone(r['registry_context'])
                 self.assertTrue(r['linked_primary_context']['evidence_ids'])
         for r in d['evidence']:
             if r['entity_id'].startswith('eddy:horizon:'):
-                self.assertTrue(r['entity_id'].endswith('-primary'))
+                self.assertTrue(r['entity_id'].endswith('-primary') or r.get('independent_named_case'))
                 self.assertFalse(r['rights_screened_release_eligible'])
-                self.assertIn(r['evidence_role'],['registry_source_reference','qualified_published_named_case_reference'])
-                if r['category']=='duration':self.assertIsNone(r['value']);self.assertEqual(r['calendar_support']['end_precision'],'month')
+                self.assertIn(r['evidence_role'],['registry_source_reference','qualified_published_named_case_reference','qualified_indexed_reference'])
+                if r['category']=='duration' and r['evidence_role']=='registry_source_reference':self.assertIsNone(r['value']);self.assertEqual(r['calendar_support']['end_precision'],'month')
 
 
     def test_published_area_cases_preserve_units_dates_and_unverified_association(self):
@@ -141,7 +141,7 @@ class EddyRegister(unittest.TestCase):
         self.assertEqual(prior,batch['baseline_evidence_sha256'])
         rows=d['evidence'][214:241];self.assertEqual(len(rows),27)
         self.assertEqual([r['value'] for r in rows],[24271,43199,37442,19964,24998,21530,35065,57751,92026,45049,44392,22137,48786,21318,22511,67989,23563,12421,18682,49672,12369,31304,7596,25036,52058,70659,15451])
-        self.assertEqual(d['counts']['size_owners'],53);self.assertEqual(d['counts']['size_records'],71)
+        self.assertEqual(d['counts']['size_owners'],55);self.assertEqual(d['counts']['size_records'],82)
         for r in rows:
             a=r['named_case_association'];self.assertFalse(a['physical_crosswalk_verified'])
             self.assertEqual((r['category'],r['unit']),('size','km2'))
@@ -161,7 +161,7 @@ class EddyRegister(unittest.TestCase):
         d=register.build();batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v6.json').read_bytes())
         prior=hashlib.sha256(json.dumps(d['evidence'][:241],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
         self.assertEqual(prior,batch['baseline_evidence_sha256'])
-        rows={r['id']:r for r in d['evidence'][241:]};self.assertEqual(len(rows),7)
+        rows={r['id']:r for r in d['evidence'][241:248]};self.assertEqual(len(rows),7)
         self.assertEqual(rows['batumi-menna-2014-typical-diameter']['value'],100)
         for name,value in [('sevastopol',70),('kaliakra',60)]:
             r=rows[f'{name}-besiktepe-2001-model-diameter'];self.assertEqual(r['value'],value)
@@ -179,6 +179,34 @@ class EddyRegister(unittest.TestCase):
             self.assertIn('not form a thickness range',r['qualification'])
             self.assertIsNone(r['period_start']);self.assertIsNone(r['geometry'])
         self.assertEqual(d['counts']['structure_owners'],2)
+
+
+    def test_named_orbits_contours_and_independent_secondary_sampling(self):
+        d=register.build();batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v7.json').read_bytes())
+        prior=hashlib.sha256(json.dumps(d['evidence'][:248],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
+        self.assertEqual(prior,batch['baseline_evidence_sha256'])
+        rows={r['id']:r for r in d['evidence'][248:]};self.assertEqual(len(rows),15)
+        self.assertEqual(rows['triton-biggs-1996-first-orbit-west-east-major']['value'],350)
+        self.assertEqual(rows['triton-biggs-1996-first-orbit-north-south-minor']['value'],200)
+        self.assertEqual(rows['triton-biggs-1996-march-orbital-radii']['range_value'],[40,60])
+        bound=rows['triton-biggs-1996-april-orbital-radius-bound'];self.assertIsNone(bound['value'])
+        self.assertEqual(bound['upper_bound'],20);self.assertTrue(bound['upper_bound_exclusive'])
+        for level,diameter,area,june in [(0.7,300,67000,290),(0.6,350,87000,310)]:
+            self.assertEqual(rows[f'poseidon-meunier-2018-{level}-major-axis-diameter']['value'],diameter)
+            a=rows[f'poseidon-meunier-2018-{level}-area'];self.assertEqual((a['value'],a['unit']),(area,'km2'))
+            self.assertEqual(rows[f'poseidon-meunier-2018-{level}-june-diameter']['value'],june)
+            self.assertIn(str(level)+' m',a['definition']);self.assertIn('2015-11-26',a['qualification'])
+        sample=rows['quantum-ii-dwde-2020-rafOS-span']
+        self.assertEqual(sample['value'],304);self.assertEqual(sample['entity_id'],'eddy:horizon:loop-66-secondary')
+        self.assertFalse(sample['independent_named_case']['primary_values_inherited'])
+        self.assertFalse(sample['independent_named_case']['association_is_verified'])
+        self.assertEqual(rows['poseidon-meunier-2018-glider-span']['value'],102)
+        self.assertEqual(d['counts']['secondary_entries_with_own_references'],1)
+        with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:csvrows=list(csv.DictReader(stream))
+        exported=next(r for r in csvrows if r['id']==sample['id'])
+        self.assertEqual(json.loads(exported['independent_named_case_json']),sample['independent_named_case'])
+        for r in rows.values():
+            self.assertFalse(r['whole_lifetime_inferred']);self.assertIsNone(r['geometry'])
 
 
 if __name__=='__main__':unittest.main()

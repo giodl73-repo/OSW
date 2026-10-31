@@ -132,3 +132,23 @@ depth reaches. They do not establish thickness, a matched shrinkage series or
 annual depth limits. Deeper signals explicitly attributed to adjacent cyclones
 remain outside Lilian's record. Native cm/s speed ranges remain ranges without
 an inferred midpoint, drift speed or peak. Preserve all preceding 241 records.
+
+## Named orbits, contour cases and independent secondary evidence
+
+Triton's drifter-orbit axes and processed orbital radii describe a buoy path,
+not its outer contour. Retain the date phase, axis, strict bound and southern
+fragment scope separately. No doubling, disk area or intact-ring size follows.
+Poseidon's 0.7/0.6 m absolute dynamic topography boundaries are distinct from
+the 0.17 m demeaned SSH convention. Keep each contour and time phase explicit;
+major-axis extent, circular-stage diameter and published area are separate facts.
+Center drift speeds do not measure azimuthal circulation.
+
+A secondary label may receive its own independent named source-case reference
+when the source explicitly supplies that name and the record retains case ID,
+source dates, definition and an unverified association flag. It never inherits
+primary-row values. Quantum II / LCR D's RAFOS sampling dates qualify this way;
+the source's Quantum I/II nomenclature and dates remain explicit, with no
+physical identity merge. Context-only counts exclude such independently
+referenced entries while the primary context link remains available. Sampling
+elapsed days do not establish an eddy's physical lifespan. Preserve all 248
+preceding evidence records exactly.

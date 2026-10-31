@@ -56,7 +56,7 @@ def run():
             page.screenshot(path=str(OUT/'desktop.png'))
             for value,expected in [('individual_eddy',112),('recurrent_eddy_region',20),('eddy_family',4),('all',136)]:
                 page.select_option('#eddy-identity',value);assert page.locator('#eddy-rows tr').count()==expected
-            for value,expected in [('measured',counts['identities_with_measurements']),('gap',counts['identities_without_measurements']),('linked',15),('unlinked-gap',2),('size-gap',sum(r['size_gap'] for r in document['records'])),('duration-gap',sum(r['duration_gap'] for r in document['records'])),('all',136)]:
+            for value,expected in [('measured',counts['identities_with_measurements']),('gap',counts['identities_without_measurements']),('linked',counts['linked_primary_context_entries']),('unlinked-gap',2),('size-gap',sum(r['size_gap'] for r in document['records'])),('duration-gap',sum(r['duration_gap'] for r in document['records'])),('all',136)]:
                 page.select_option('#eddy-filter',value);assert page.locator('#eddy-rows tr').count()==expected
             for category in ['size','duration','recurrence','travel','structure','kinematics','all']:
                 page.select_option('#eddy-category',category)
@@ -109,7 +109,7 @@ def run():
             page.set_viewport_size({'width':1440,'height':1000})
             for search,needles in [
                 ('Danube Eddy',['55 %','Not annual presence days']),
-                ('Meddies (Mediterranean Water eddies)',['20–100 km','No representative midpoint inferred']),
+                ('Meddies (Mediterranean Water eddies)',['20â€“100 km','No representative midpoint inferred']),
                 ('Cuba anticyclones',['< 100 km','CA6 model case','One model case']),
                 ('Mindanao Eddy',['126 km','Model calculation:','Computed model reference']),
                 ('New Guinea Eddy',['300 km','Qualified indexed reference']),
@@ -118,7 +118,7 @@ def run():
                 page.locator('#eddy-rows summary').click()
                 for needle in needles:assert needle in page.locator('#eddy-rows').inner_text(),(search,needle)
             page.fill('#eddy-search','Peddies');page.locator('#eddy-rows summary').click()
-            assert '200–300 m' in page.locator('#eddy-rows').inner_text()
+            assert '200â€“300 m' in page.locator('#eddy-rows').inner_text()
             assert 'Not eddy thickness' in page.locator('#eddy-rows').inner_text()
             page.set_viewport_size({'width':390,'height':844})
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
@@ -126,8 +126,8 @@ def run():
             checks.append('Third batch: range-only family size, depth band, strict bound, sampled/model cases, qualified indexed reference, native angular displacement and phase intervals')
             page.set_viewport_size({'width':1440,'height':1000})
             for search,needles,name in [
-                ('Kathleen',['214–273 days','start 1988-01-01 to 1988-01-31','No midpoint'],'calendar-month.png'),
-                ('Rebel',['0–2 days','Chronology-conditioned range','not missing data'],'calendar-zero.png'),
+                ('Kathleen',['214â€“273 days','start 1988-01-01 to 1988-01-31','No midpoint'],'calendar-month.png'),
+                ('Rebel',['0â€“2 days','Chronology-conditioned range','not missing data'],'calendar-zero.png'),
                 ('Revelle',['3.9 knots','Registry maximum surface current as reported.'],None),
                 ('Yazoo II',['no independent secondary measurement assigned','no values inherited'],'secondary-context.png')]:
                 page.fill('#eddy-search',search);assert page.locator('#eddy-rows tr').count()==1
@@ -154,13 +154,13 @@ def run():
             page.set_viewport_size({'width':1440,'height':1000})
             page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-51-primary')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
-            tr=page.locator('#eddy-rows');assert '7,596 km²' in tr.inner_text()
+            tr=page.locator('#eddy-rows');assert '7,596 kmÂ²' in tr.inner_text()
             for needle in ['0.17 m','2008-03-06','2008-03-10','Dates differ','inter-event spacing','physical identity crosswalk remains unverified']:
                 assert needle in tr.inner_text(),needle
             assert page.locator('[data-evidence-id="loop-51-dukhovskoy-2015-separation-area"]').count()==1
             page.screenshot(path=str(OUT/'published-area.png'),full_page=True)
             page.fill('#eddy-search','Millennium');page.locator('#eddy-rows summary').click()
-            assert '44,392 km²' in tr.inner_text() and 'Source spelling Millenium' in tr.inner_text()
+            assert '44,392 kmÂ²' in tr.inner_text() and 'Source spelling Millenium' in tr.inner_text()
             page.set_viewport_size({'width':390,'height':844})
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             assert page.locator('.eddy-scroll').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
@@ -171,7 +171,7 @@ def run():
                 ('Batumi Eddy',['100 km','source regional typical diameter']),
                 ('Kaliakra Eddy',['60 km','Published model case','summer 1992 model case']),
                 ('Peddies (Persian Gulf Water eddies)',['10 km','Published model case','Qualified indexed model reference','other instability cases']),
-                ('Sevastopol Eddy',['70 km','15–20 cm/s','Published model case']),
+                ('Sevastopol Eddy',['70 km','15â€“20 cm/s','Published model case']),
                 ('Agulhas Ring Lilian',['1,200 m','400 m','temperature and salinity anomalies','significant radial velocity signal','not form a thickness range'])]:
                 page.fill('#eddy-search',search);assert page.locator('#eddy-rows tr').count()==1
                 page.locator('#eddy-rows summary').click()
@@ -183,6 +183,24 @@ def run():
             assert page.locator('.eddy-scroll').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
             page.screenshot(path=str(OUT/'mobile-depth-diagnostics.png'),full_page=True)
             checks.append('Regional typical size, explicit simulated cases and indexed model access, native cm/s range and separate Lilian depth diagnostics; mobile layout')
+            page.set_viewport_size({'width':1440,'height':1000})
+            page.fill('#eddy-search','Triton');page.locator('#eddy-rows summary').click()
+            for needle in ['350 km','200 km','40–60 km','< 20 km','150–200 km','drifter orbit is not an outer boundary','southern cleavage fragment']:
+                assert needle in page.locator('#eddy-rows').inner_text(),needle
+            page.locator('[data-evidence-id="triton-biggs-1996-southern-fragment-orbit-diameter"]').screenshot(path=str(OUT/'triton-fragment-orbit.png'))
+            page.fill('#eddy-search','Poseidon');page.locator('#eddy-rows summary').click()
+            for needle in ['67,000 km²','87,000 km²','300 km','350 km','290 km','310 km','0.7 m absolute','0.6 m absolute','102 days','2–7 cm/s','3–10 cm/s']:
+                assert needle in page.locator('#eddy-rows').inner_text(),needle
+            page.locator('[data-evidence-id="poseidon-meunier-2018-0.6-area"]').screenshot(path=str(OUT/'poseidon-contour-area.png'))
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-66-secondary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            assert page.locator('#eddy-rows .eddy-record').count()==1
+            for needle in ['304 days','Independent named source case','no primary values inherited','2017-12-19 to 2018-10-19','physical crosswalk remains unverified']:
+                assert needle in page.locator('#eddy-rows').inner_text(),needle
+            page.set_viewport_size({'width':390,'height':844})
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.screenshot(path=str(OUT/'mobile-independent-secondary.png'),full_page=True)
+            checks.append('Triton orbital axes/radii and fragment scope; distinct Poseidon ADT contour areas and phases; Quantum II own sampling evidence without primary inheritance, deep link and mobile layout')
             with page.expect_download() as pending:page.get_by_role('link',name='Download measurement CSV').click()
             assert hashlib.sha256(Path(pending.value.path()).read_bytes()).hexdigest()==sha('research/eddy-measurement-register-v1.csv')
             for path in set(r['source_file'] for r in document['evidence'])|{'plans/eddy-measurement-register-v1.md','research/eddy-measurement-register-v1.json'}:
