@@ -62,7 +62,7 @@ jobs:
       - name: Review width definitions, source quantities, downloads and mobile layout
         run: |
           cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
-          taskset -c "$cpu" nice -n 15 python analysis/check_current_length_register_browser_v1.py
+          taskset -c "$cpu" nice -n 15 python analysis/check_current_width_register_browser_v1.py
       - name: Retain compact review evidence only
         if: always()
         uses: actions/upload-artifact@v4
