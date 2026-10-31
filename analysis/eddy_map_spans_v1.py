@@ -68,7 +68,9 @@ def span_interval(case,component):
         cosine=[math.cos(math.radians((axis_value(y0+a*pad,lat)+axis_value(y1+b*pad,lat))/2)) for a in [-1,1] for b in [-1,1]]
         lower=max(0,axis_value(x1-pad,lon)-axis_value(x0+pad,lon))*km_per_degree*min(cosine)
         upper=(axis_value(x1+pad,lon)-axis_value(x0-pad,lon))*km_per_degree*max(cosine)
-    return {'native_span_km':native,'unrounded_reading_interval_km':[lower,upper],
+    # Canonical audit precision avoids libm last-bit differences across platforms.
+    # Headline outward rounding still uses the pre-audit full-precision bounds.
+    return {'audit_span_km':round(native,6),'audit_reading_interval_km':[round(lower,6),round(upper,6)],'audit_decimal_places':6,
         'range_km':[math.floor(lower/step)*step,math.ceil(upper/step)*step]}
 
 

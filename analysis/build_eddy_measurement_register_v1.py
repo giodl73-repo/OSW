@@ -317,6 +317,7 @@ def build():
     return {'schema':'osw.eddy-measurement-register.v1','status':'MEASUREMENT_GAP_FILLING_IN_PROGRESS',
         'rules_file':RULES,'rules_sha256':hashlib.sha256((ROOT/RULES).read_bytes()).hexdigest(),
         'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'input_sha256':pins,
+        'method_implementation_sha256':{'analysis/eddy_map_spans_v1.py':hashlib.sha256((ROOT/'analysis/eddy_map_spans_v1.py').read_bytes()).hexdigest()},
         'first_batch_evidence_sha256':baseline_sha,'first_batch_evidence_preserved':40,
         'additional_batches':applied,
         'scope':inventory['scope'],'identity_rule':'Source records remain separate; possible Horizon/published matches are not verified identity joins.',

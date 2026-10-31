@@ -403,6 +403,7 @@ class EddyRegister(unittest.TestCase):
         proof=json.loads((register.ROOT/'research/eddy-map-span-source-verification-v1.json').read_bytes())
         self.assertEqual(proof['status'],'PASS');self.assertTrue(proof['source_pixels_verified']);self.assertTrue(proof['duplicate_figure_images_verified'])
         self.assertEqual(proof['verifier_sha256'],hashlib.sha256((register.ROOT/'analysis/eddy_map_spans_v1.py').read_bytes()).hexdigest())
+        self.assertEqual(d['method_implementation_sha256']['analysis/eddy_map_spans_v1.py'],proof['verifier_sha256'])
         self.assertEqual(proof['batch_sha256'],hashlib.sha256((register.ROOT/'research/eddy-measurement-register-additions-v15.json').read_bytes()).hexdigest())
         self.assertEqual([r['selected_pixels'] for r in proof['records']],[722,551])
         self.assertEqual(batch['excluded_duplicate_figure_images']['figures'],[9,10])

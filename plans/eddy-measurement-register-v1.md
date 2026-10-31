@@ -301,7 +301,9 @@ Allow six pixels at each extent (four for contour reading, two for axis
 reading), including latitude allowance in the east-west parallel scale. Round
 interval endpoints outward to 25 km. These are deliberately coarse map-reading
 intervals, not instrument uncertainty, confidence intervals or seasonal ranges.
-Retain unrounded calculations for audit only. Preserve source day labels and
+Retain pre-display calculations to six decimal places in km for a deterministic
+cross-platform audit; this serialization precision is not measurement precision.
+Compute outward 25 km rounding before audit rounding. Preserve source day labels and
 unverified registry name/date context; do not duplicate into possible published
 identity matches. Native Figures 9 and 10 images are identical despite different
 named captions, so exclude those as independent Wilde/Wilde II size evidence.
