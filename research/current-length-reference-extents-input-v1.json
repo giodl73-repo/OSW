@@ -1,0 +1,131 @@
+{
+  "schema": "osw.current-length-reference-extents-input.v1",
+  "status": "FROZEN_EDITORIAL_GEOGRAPHIC_EXTENT_ASSUMPTIONS",
+  "method": "WGS84 shortest-geodesic leg sums. Endpoints and connecting vertices are declared OSW choices from the named-flow geography, not digitized velocity axes.",
+  "rounding_km": 100,
+  "source": {
+    "author": "S. G. Philander",
+    "year": 2001,
+    "title": "Atlantic Ocean Equatorial Currents",
+    "doi": "10.1006/rwos.2001.0361",
+    "url": "https://www.gfdl.noaa.gov/bibliography/related_files/sgp0102.pdf",
+    "pdf_sha256": "11fb11aea476fa1ab0778711837fe6a4e48d7886dfa22d815ee43e025699ad89",
+    "pdf_bytes": 113232,
+    "page_count": 4,
+    "read_support": "Time-averaged Currents, printed188; Figure1 and caption, printed189. Original Figure1 visually reviewed.",
+    "source_time_convention": "Figure1 depicts July–September conditions. No exact observation year, annual extrema or monthly path series inferred.",
+    "source_facts": [
+      "The NEC is the westward band north of the NECC and receives Canary Current water.",
+      "The SEC is the westward band south of the NECC and receives Benguela Current water.",
+      "Figure1 supplies basin-scale schematic flow context, not surveyed endpoints or a calibrated current axis."
+    ]
+  },
+  "sensitivity": {
+    "endpoint_choices": "Two declared eastern and two western approach gates per current.",
+    "uniform_latitude_offsets_degrees": [
+      -0.5,
+      0,
+      0.5
+    ],
+    "interior_latitude_offsets_degrees": [
+      -1,
+      0,
+      1
+    ],
+    "cases_per_current": 36,
+    "interpretation": "Endpoint and drawing sensitivity only; neither a confidence interval nor an annual length range. All cases retained."
+  },
+  "currents": [
+    {
+      "entity_id": "current:atlantic-north-equatorial",
+      "id": "atlantic-nec-basin-reference-extent-v1",
+      "coordinates_lon_lat": [
+        [
+          -18,
+          16
+        ],
+        [
+          -25,
+          15
+        ],
+        [
+          -35,
+          15
+        ],
+        [
+          -45,
+          15
+        ],
+        [
+          -55,
+          14
+        ],
+        [
+          -59,
+          14
+        ]
+      ],
+      "eastern_gate_longitudes": [
+        -18,
+        -20
+      ],
+      "western_gate_longitudes": [
+        -59,
+        -60
+      ],
+      "scope": "Principal Atlantic NEC geographic reference extent from the offshore Canary-feed sector west of northwest Africa to the approach east of the Lesser Antilles.",
+      "start_gate_reason": "18W16N selects the offshore northwest-African/Canary-feed sector; it is an editorial handoff, not a source-measured NEC origin.",
+      "end_gate_reason": "59W14N stops east of the Lesser Antilles approach; downstream Caribbean and Guyana currents are excluded.",
+      "not_included": [
+        "Other parallel NEC streamlines",
+        "Caribbean and Guyana currents",
+        "Actual meander-scale velocity-axis distance"
+      ]
+    },
+    {
+      "entity_id": "current:atlantic-south-equatorial",
+      "id": "atlantic-sec-basin-reference-extent-v1",
+      "coordinates_lon_lat": [
+        [
+          5,
+          -6
+        ],
+        [
+          -5,
+          -5
+        ],
+        [
+          -15,
+          -5
+        ],
+        [
+          -25,
+          -5
+        ],
+        [
+          -34,
+          -5
+        ]
+      ],
+      "eastern_gate_longitudes": [
+        5,
+        2
+      ],
+      "western_gate_longitudes": [
+        -34,
+        -35
+      ],
+      "scope": "Principal central Atlantic SEC geographic reference extent from its eastern-basin westward-flow sector to the offshore northeast-Brazil approach, using the approximately5S schematic branch.",
+      "start_gate_reason": "5E6S selects the westward SEC sector offshore southwest Africa in Figure1; upstream Benguela length is excluded.",
+      "end_gate_reason": "34W5S selects the offshore northeast-Brazil handoff. The NBC and Brazil Current are excluded.",
+      "not_included": [
+        "Northern and southern parallel SEC branches",
+        "Benguela, North Brazil and Brazil currents",
+        "Actual meander-scale velocity-axis distance"
+      ]
+    }
+  ],
+  "physical_axis_admitted": false,
+  "independent_observations_added": 0,
+  "geography_review_status": "Pending separate geographic screening; source schematic inspected."
+}

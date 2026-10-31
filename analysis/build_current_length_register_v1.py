@@ -1,0 +1,113 @@
+"""Assemble the length worklist from retained source records, without runtime I/O.
+
+This register does not turn a sampled reach into a whole-current estimate.
+It makes the existing numbers usable and identifies the routes still to finish.
+"""
+import csv
+import hashlib
+import io
+import json
+from collections import Counter
+from pathlib import Path
+
+ROOT=Path(__file__).resolve().parents[1]
+JSON_PATH='research/current-length-estimate-register-v1.json'
+CSV_PATH='research/current-length-estimate-register-v1.csv'
+
+
+def build():
+    pins={}
+    def read(path):
+        raw=(ROOT/path).read_bytes();pins[path]=hashlib.sha256(raw).hexdigest()
+        return json.loads(raw)
+    baseline=read('research/current-measurement-coverage-baseline-v1.json')
+    identities={r['id']:r for r in baseline['records']}
+    basin=read('research/equatorial-basin-identity-query-contract-v3.json')
+    for row in basin['additions']['objects']:
+        if row['id'] in identities:raise ValueError('Duplicate current identity')
+        identities[row['id']]=row
+    if len(identities)!=111:raise ValueError('The complete111-current inventory is required')
+    lengths=read('research/ocean-current-live-measurements.json')
+    reported={r['entity_id']:r for r in lengths['length_assessments'] if r.get('published_length_km') is not None}
+    if len(reported)!=13:raise ValueError('All13 existing reported-length owners required')
+    routes={}
+    def add(row,path):
+        row=dict(row);owner=row.get('current_id')
+        if not owner:return
+        if not owner.startswith('current:'):owner='current:'+owner
+        if owner not in identities:raise ValueError('Unknown route owner: '+owner)
+        identifier=row.get('id',row.get('route_id'))
+        if not identifier:raise ValueError('Missing route identity')
+        if identifier in routes:raise ValueError('Duplicate reference route: '+identifier)
+        value=row.get('approximate_reference_path_km',row.get('reported_approximate_reference_path_km'))
+        if not isinstance(value,(int,float)) or value<=0:raise ValueError('Missing positive route calculation')
+        routes[identifier]={'id':identifier,'entity_id':owner,'length_km':value,
+            'extent_class':'reference_extent' if row.get('comparison_group')=='osw_approximate_reference_routes' else 'regional_reach',
+            'scope':row.get('scope',''),'scenario_range_km':row.get('scenario_range_km',row.get('reported_scenario_range_km')),
+            'source_url':row.get('source_url'),'source_locator':row.get('source_locator'),
+            'record_file':path,'route_card_url':'reference-routes.html#'+identifier}
+    path='research/ocean-current-reference-path-candidates.json'
+    for row in read(path)['candidates']:add(row,path)
+    for path in ['research/south-java-reference-query-contract-v1.json','research/pacific-secc-reference-query-contract-v1.json','research/wicc-winter-reference-query-contract-v1.json']:
+        add(read(path)['route'],path)
+    for path in ['research/atlantic-nsec-reference-query-contract-v2.json','research/current-reference-profile-batch-query-contract-v1.json']:
+        for row in read(path)['routes']:add(row,path)
+    path='research/eicc-reference-query-contract-v1.json'
+    for row in read(path)['collections']['reference_routes']:add(row,path)
+    for path,identifier in [('research/nwasc-source-anchor-reference-route.json',None),('research/southern-east-madagascar-coastal-reference-curve.json','southern-east-madagascar-coastal-reference-curve')]:
+        row=read(path)
+        if identifier:row['id']=identifier
+        add(row,path)
+    if len(routes)!=87:raise ValueError('All87 prepared reference routes required')
+    extent_path='research/current-length-reference-extents-v1.json'
+    extents=read(extent_path)
+    geography=read('research/current-length-reference-extents-geography-v1.json')
+    if geography['estimate_file_sha256']!=pins[extent_path] or not all(r['all_clear'] and r['scenarios']==r['coarse_land_clear']==36 for r in geography['records']):raise ValueError('Exact geographic screening required')
+    provisional={r['entity_id']:r for r in extents['records']}
+    rows=[]
+    for identifier,current in sorted(identities.items()):
+        options=sorted([r for r in routes.values() if r['entity_id']==identifier],key=lambda r:(r['extent_class']!='reference_extent',-r['length_km'],r['id']))
+        full=[r for r in options if r['extent_class']=='reference_extent']
+        publication=reported.get(identifier)
+        chosen=full[0] if full else None
+        draft=provisional.get(identifier) if not publication and not chosen else None
+        status='reported' if publication else 'reference_estimate' if chosen else 'regional_only' if options else 'needs_route'
+        value=publication['published_length_km'] if publication else chosen['length_km'] if chosen else None
+        if draft:status='provisional_estimate';value=draft['length_estimate_km']
+        rows.append({'entity_id':identifier,'name':current['label'],'basin':current.get('basin'),
+            'identity_level':current.get('identity_level','current'),'status':status,'length_estimate_km':value,
+            'method':'source_reported_extent' if publication else 'WGS84_editorial_reference_route' if chosen or draft else None,
+            'scope':publication['scope'] if publication else chosen['scope'] if chosen else draft['scope'] if draft else None,
+            'selected_route_id':chosen['id'] if chosen and not publication else draft['id'] if draft else None,
+            'reported_length_source_id':publication.get('length_source_id') if publication else None,
+            'reported_length_source_locator':publication.get('length_source_locator') if publication else None,
+            'record_file':'research/ocean-current-live-measurements.json' if publication else chosen['record_file'] if chosen else extent_path if draft else None,
+            'source_url':chosen['source_url'] if chosen and not publication else draft['source_url'] if draft else None,
+            'figure_file':'figures/atlantic-basin-current-length-estimates-v1.svg' if draft else None,
+            'geographic_screening':'All36 variants clear coarse OSW land; fine coast not checked.' if draft else None,
+            'source_time_convention':draft['source_time_convention'] if draft else None,
+            'route_sensitivity_km':draft['scenario_range_km'] if draft else chosen['scenario_range_km'] if chosen else None,
+            'route_choice_rule':'Longest declared reference-extent route; all phase/definition alternatives retained. This is not a maximum annual length.' if chosen and not publication else None,
+            'route_options':options,'available_regional_reach_km':max((r['length_km'] for r in options if r['extent_class']=='regional_reach'),default=None),
+            'scenario_range_is_physical_uncertainty':False,'annual_length_range_km':None,
+            'needs_full_extent_estimate':value is None,
+            'current_card_url':'object.html?id='+identifier.replace(':','%3A')})
+    counts=Counter(r['status'] for r in rows)
+    return {'schema':'osw.current-length-estimate-register.v1','status':'LENGTH_FIRST_WORKING_REGISTER_INCOMPLETE',
+        'target':'A declared, reproducible length estimate for every catalogued current.',
+        'counts':{'currents':len(rows),'with_length_estimate':sum(r['length_estimate_km'] is not None for r in rows),'remaining_full_extent_estimates':sum(r['needs_full_extent_estimate'] for r in rows),**dict(counts)},
+        'rules_file':'plans/current-length-estimates-v1.md','rules_sha256':hashlib.sha256((ROOT/'plans/current-length-estimates-v1.md').read_bytes()).hexdigest(),
+        'generator_file':'analysis/build_current_length_register_v1.py','generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'input_sha256':pins,
+        'interpretation':['Reported values and editorial reference estimates retain different methods and extents.','Regional reaches remain visible as supporting calculations but do not fill a whole-current estimate.','Endpoint/route sensitivity is not annual variation or statistical uncertainty.','Family/system estimates require an explicit principal-route or aggregate convention before they are filled.'],
+        'full_goal_complete':False,'records':rows}
+
+
+def main():
+    value=build();(ROOT/JSON_PATH).write_bytes((json.dumps(value,indent=2,ensure_ascii=False)+'\n').encode())
+    output=io.StringIO(newline='');fields=['entity_id','name','basin','identity_level','status','length_estimate_km','method','scope','selected_route_id','available_regional_reach_km','needs_full_extent_estimate']
+    writer=csv.DictWriter(output,fieldnames=fields,extrasaction='ignore');writer.writeheader();writer.writerows(value['records'])
+    (ROOT/CSV_PATH).write_bytes(output.getvalue().encode('utf8'))
+    print(json.dumps(value['counts']))
+
+
+if __name__=='__main__':main()
