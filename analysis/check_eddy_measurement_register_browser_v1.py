@@ -202,7 +202,8 @@ def run():
             page.screenshot(path=str(OUT/'mobile-independent-secondary.png'),full_page=True)
             checks.append('Triton orbital axes/radii and fragment scope; distinct Poseidon ADT contour areas and phases; Quantum II own sampling evidence without primary inheritance, deep link and mobile layout')
             page.set_viewport_size({'width':1440,'height':1000})
-            page.fill('#eddy-search','Nautilus');page.locator('#eddy-rows summary').click()
+            page.fill('#eddy-search','Nautilus')
+            page.locator('tr[data-eddy-id="eddy:horizon:loop-63-primary"] summary').click()
             for needle in ['40–80 km · graph estimate','30–70 km · graph estimate','30–130 km · graph estimate','A1A2 remerged child','5 km allowance','10 km','not pooled','not an area-equivalent']:
                 assert needle in page.locator('#eddy-rows').inner_text(),needle
             page.locator('[data-evidence-id="nautilus-a1a2-dwde-2020-digitized-mean-radius-range"]').screenshot(path=str(OUT/'nautilus-graph-envelope.png'))
