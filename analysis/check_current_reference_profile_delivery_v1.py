@@ -25,6 +25,7 @@ def failure_report(error,source_commit):
     if stderr:
         raw=stderr.encode('utf-8') if isinstance(stderr,str) else bytes(stderr)
         result.update(stderr_text=raw[:16384].decode('utf-8',errors='replace'),
+            stderr_tail=raw[-16384:].decode('utf-8',errors='replace'),
             stderr_bytes=len(raw),stderr_sha256=hashlib.sha256(raw).hexdigest(),stderr_truncated=len(raw)>16384)
     return result
 
@@ -195,6 +196,7 @@ def run(*,engine_binding=None,expected_rust_tests=326):
     new_source=[{'kind':'query','request':{'document':path,'pointer':'','limit':500}} for path in index.DOCUMENTS]
     probe=WORK/'build/debug/examples/delivery_probe_v2'
     batches={mode:run_batch(probe,mode,payload,requests[mode]+new) for mode,payload,new in [('main',candidate,[]),('index',new_index,new_source)]}
+    write(OUT/'native-batch-timing.json',{mode:{'cases':len(batch[0]['cases']),'elapsed_seconds':batch[0]['elapsed_seconds']} for mode,batch in batches.items()})
     baseline={mode:parity('capture-'+mode,ROOT/'almanac/query-engine.wasm',payload,[item for item in requests[mode] if mode!='main' or item.get('request',{}).get('collection')!=query.COLLECTION]) for mode,payload in [('main',parent_path),('index',parent_index)]}
     def native(mode,item):return json.loads(batches[mode][1][case_key(encode_case(item))])
     for mode in ['main','index']:
@@ -232,7 +234,7 @@ def run(*,engine_binding=None,expected_rust_tests=326):
     for path,raw in generated.items():target=artifact/path;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
     shutil.copyfile(wasm,artifact/'almanac/query-engine.wasm')
     generated_paths={p.relative_to(artifact).as_posix() for p in artifact.rglob('*') if p.is_file()}
-    replacements={**inventory['rust_source_sha256'],**inventory['compile_time_data_sha256'],**contract['input_sha256'],**pref['presentation_sha256'],**{p:sha(p) for p in index.DOCUMENTS},**{p:sha(artifact/p) for p in generated_paths}}
+    replacements={**inventory['rust_source_sha256'],**inventory['compile_time_data_sha256'],**contract['input_sha256'],**pref['presentation_sha256'],**pref['native_harness_sha256'],**{p:sha(p) for p in index.DOCUMENTS},**{p:sha(artifact/p) for p in generated_paths}}
     compiler=subprocess.check_output(['rustc','+1.95.0','--version']).decode().strip()
     overlay=engine_manifest(engine,replacements,inventory=inventory,proof=proof,source_commit=os.environ['GITHUB_SHA'],logical_sha=logical,wasm_sha=sha(wasm),compiler=compiler,source_documents=index.DOCUMENTS)
     write(artifact/'almanac/query-engine.manifest.json',overlay);write(OUT/'engine-manifest.json',overlay)

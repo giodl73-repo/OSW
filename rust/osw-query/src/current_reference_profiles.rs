@@ -22,7 +22,12 @@ fn checked(c:&BTreeMap<String,Vec<Value>>,m:&Value)->Result<bool,String>{
 }
 fn checked_uncached(c:&BTreeMap<String,Vec<Value>>,m:&Value)->Result<bool,String>{
     let fail=||"Invalid source-bound regional reference/core-migration batch".to_owned();
-    let trace=c.contains_key(COLLECTION)||c.values().flatten().any(|r|["reference_routes","sources",COLLECTION].iter().any(|name|additions(name).iter().any(|x|x["id"]==r["id"])));
+    // One complete pass retains duplicate and wrong-collection detection without
+    // rescanning the entire packet separately for each of the29 new IDs.
+    let wanted:BTreeSet<&str>=["reference_routes","sources",COLLECTION].iter().flat_map(|name|additions(name)).filter_map(|r|r["id"].as_str()).collect();
+    let mut found:BTreeMap<&str,Vec<(&str,&Value)>>=BTreeMap::new();
+    for(name,records)in c{for record in records{if let Some(id)=record["id"].as_str(){if wanted.contains(id){found.entry(id).or_default().push((name.as_str(),record));}}}}
+    let trace=c.contains_key(COLLECTION)||!found.is_empty();
     if m[KEY].is_null()&&m["input_sha256"][FILE].is_null()&&!trace{return Ok(false);}
     if m[KEY]!=marker()||m["input_sha256"][FILE]!=pin(RAW){return Err(fail());}
     for(p,h)in doc()["input_sha256"].as_object().ok_or_else(fail)?{if m["input_sha256"][p]!=*h{return Err(fail());}}
@@ -41,8 +46,8 @@ fn checked_uncached(c:&BTreeMap<String,Vec<Value>>,m:&Value)->Result<bool,String
         if rows(c,"sources").iter().filter(|r|r["id"]==expected["id"]).collect::<Vec<_>>()!=vec![expected]{return Err(fail());}
     }
     for name in ["reference_routes","sources",COLLECTION]{for expected in additions(name){
-        let found=c.iter().flat_map(|(n,rs)|rs.iter().filter(|r|r["id"]==expected["id"]).map(move|r|(n.as_str(),r))).collect::<Vec<_>>();
-        if found!=vec![(name,expected)]{return Err(fail());}
+        let id=expected["id"].as_str().ok_or_else(fail)?;
+        if found.get(id).map(Vec::as_slice)!=Some(&[(name,expected)][..]){return Err(fail());}
     }}
     Ok(true)
 }

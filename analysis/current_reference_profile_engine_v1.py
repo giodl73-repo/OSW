@@ -6,6 +6,7 @@ import current_reference_profile_batch_query_v1 as query
 KEY='current_reference_profile_engine_v1'
 MODULE='rust/osw-query/src/current_reference_profiles.rs'
 RUST_CHANGED={'rust/osw-query/src/'+name+'.rs' for name in ['lib','atlas_data','seasons_data','dashboard','planning','equatorial_basin_identities','atlantic_nsec_reference','object_view']}
+HARNESS='rust/osw-query/examples/delivery_probe_v2.rs'
 PRESENTATION={'almanac/'+name for name in ['core-migration-profiles.js','core-migration-profiles.css','query.html','query.js','query-charts.js','reference-routes.html','atlas-width-evidence.js','object.html','object.js','dashboard.html','dashboard.js','dashboard-evidence-schema.js']}
 PRESENTATION|={'figures/'+name for name in ['atlantic-nec-regional-reference-reaches-v1.svg','atlantic-nec-regional-reference-reaches-compact-v1.svg','pacific-sec-sun-2025-core-migration-profile-v1.svg','pacific-sec-sun-2025-core-migration-profile-compact-v1.svg']}
 
@@ -20,7 +21,8 @@ def engine_manifest(parent,replacements,*,inventory,proof,source_commit,logical_
     c=query.read(query.FILE)
     source_bound={**c['input_sha256'],query.FILE:query.sha(query.FILE)}
     generated={p for p in replacements if p in {'almanac/query-data.json','almanac/query-engine.wasm','almanac/index-catalog.json','almanac/index-data.json.gz','almanac/index-sources.json'} or p.startswith('almanac/query-parts/')}
-    allowed=RUST_CHANGED|{MODULE}|PRESENTATION|set(source_bound)|set(source_documents)|generated
+    allowed=RUST_CHANGED|{MODULE,HARNESS}|PRESENTATION|set(source_bound)|set(source_documents)|generated
+    if replacements.get(HARNESS)!=query.sha(HARNESS):raise ValueError('Missing native harness source receipt')
     if not PRESENTATION|{MODULE,query.FILE}<=set(replacements):raise ValueError('Missing production or presentation receipt')
     for path,pin in {**rust,**data,**source_bound}.items():
         if replacements.get(path)!=pin:raise ValueError('Missing compiled/scientific input: '+path)
@@ -34,6 +36,6 @@ def engine_manifest(parent,replacements,*,inventory,proof,source_commit,logical_
         'logical_sha256':logical_sha,'matching_binary_sha256':wasm_sha,'previous_binary_sha256':parent['sha256']['almanac/query-engine.wasm'],
         'source_documents_after':696,'source_collection_rows_after':236,'reference_route_records_after':87,'reference_route_owners_after':78,
         'query_collections_after':79,'query_rows_after':110357,'reference_routes_added':2,'sources_added':3,'source_plot_core_profiles_added':24,
-        'whole_current_dimensions_added':0,'annual_ranges_added':0,'new_independent_observations':0,'dependency_proof':copy.deepcopy(proof)}
+        'whole_current_dimensions_added':0,'annual_ranges_added':0,'new_independent_observations':0,'dependency_proof':copy.deepcopy(proof),'native_harness_sha256':replacements[HARNESS]}
     if any(result[k]!=parent[k] for k in parent if k not in ('sha256','rustc')):raise ValueError('Historical engine namespace changed')
     return result

@@ -28,16 +28,20 @@ fn run() -> Result<Value, String> {
     let start = Instant::now();
     let payload = fs::read(&args[2]).map_err(|e| e.to_string())?;
     let mut responses = Vec::new();
+    eprintln!("probe mode={} loading cases={}",args[1],cases.len());
     let metadata = if args[1] == "index" {
         let store = IndexStore::load(&payload)?;
-        for case in cases {
+        eprintln!("probe mode=index loaded elapsed_s={:.3}",start.elapsed().as_secs_f64());
+        for (number,case) in cases.iter().enumerate() {
             if case["kind"] != "query" { return Err("Index probe supports queries only".into()); }
             responses.push(response(case, store.query(request_bytes(case)?)?)?);
+            eprintln!("probe mode=index completed={}/{} elapsed_s={:.3}",number+1,cases.len(),start.elapsed().as_secs_f64());
         }
         store.metadata()
     } else {
         let store = Store::load(&payload)?;
-        for case in cases {
+        eprintln!("probe mode=main loaded elapsed_s={:.3}",start.elapsed().as_secs_f64());
+        for (number,case) in cases.iter().enumerate() {
             let value = match case["kind"].as_str() {
                 Some("query") => store.execute(request_bytes(case)?),
                 Some("object") => store.object_view(request_bytes(case)?)?,
@@ -50,6 +54,7 @@ fn run() -> Result<Value, String> {
                 _ => return Err("Unknown probe case kind".into()),
             };
             responses.push(response(case, value)?);
+            eprintln!("probe mode=main completed={}/{} kind={} elapsed_s={:.3}",number+1,cases.len(),case["kind"],start.elapsed().as_secs_f64());
         }
         store.metadata()
     };
