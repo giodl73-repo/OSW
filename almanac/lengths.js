@@ -1,7 +1,7 @@
 "use strict";
 (async()=>{
   const $=id=>document.getElementById(id),node=(tag,text,parent)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(parent)parent.append(n);return n;};
-  const labels={reported:'Source-reported length',reference_estimate:'Calculated reference-route estimate',provisional_estimate:'Provisional geographic estimate',family_principal_member:'Family: longest catalogued member',system_segment_sum:'System: distinct segment sum',regional_only:'Full extent still to estimate',needs_route:'Route still to define'};
+  const labels={reported:'Source-reported length',reported_hypothesis:'Source-reported hypothesis · unconfirmed',reference_estimate:'Calculated reference-route estimate',provisional_estimate:'Provisional geographic estimate',family_principal_member:'Family: longest catalogued member',system_segment_sum:'System: distinct segment sum',regional_only:'Full extent still to estimate',needs_route:'Route still to define'};
   try{
     const response=await fetch('../research/current-length-estimate-register-v1.json');if(!response.ok)throw Error('Length register unavailable');
     const data=await response.json();
@@ -23,7 +23,7 @@
         if(row.length_estimate_km!==null){node('span',`≈ ${row.length_estimate_km.toLocaleString()} km`,value).className='length-number';const bar=node('span',undefined,value);bar.className='length-bar';bar.style.width=Math.max(2,row.length_estimate_km/25000*150)+'px';bar.setAttribute('aria-hidden','true');}
         else{node('strong','To estimate',value).className='length-missing';if(row.available_regional_reach_km!==null)node('span',`Regional reach available: ≈ ${row.available_regional_reach_km.toLocaleString()} km`,value).className='length-status';}
         const basis=cell('Basis');node('span',labels[row.status],basis);
-        if(row.conditional_extent)node('strong','Conditional endpoint interpretation',basis).className='length-status';
+        if(row.conditional_extent)node('strong','Conditional route or continuity interpretation',basis).className='length-status';
         const evidence=cell('Extent and evidence'),details=node('details',undefined,evidence);node('summary','Extent, method and source',details);
         node('p',row.scope||'The full reference extent still needs to be defined; a regional study boundary is not automatically a current endpoint.',details);
         if(row.route_choice_rule)node('p',row.route_choice_rule,details);

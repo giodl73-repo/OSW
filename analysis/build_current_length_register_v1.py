@@ -71,6 +71,8 @@ def build():
     lengths=read('research/ocean-current-live-measurements.json')
     reported={r['entity_id']:r for r in lengths['length_assessments'] if r.get('published_length_km') is not None}
     if len(reported)!=13:raise ValueError('All13 existing reported-length owners required')
+    hypotheses={r['entity_id']:r for r in lengths['length_assessments'] if r.get('proposed_system_length_km') is not None}
+    if set(hypotheses)!={'current:greenland-middle-atlantic-shelf-hypothesis'}:raise ValueError('Review proposed-system inventory before changing its length convention')
     routes={}
     def add(row,path):
         row=dict(row);owner=row.get('current_id')
@@ -101,7 +103,7 @@ def build():
         add(row,path)
     if len(routes)!=87:raise ValueError('All87 prepared reference routes required')
     provisional={}
-    for version in [1,2,3,4,5]:
+    for version in [1,2,3,4,5,7]:
         extent_path=f'research/current-length-reference-extents-v{version}.json'
         extents=read(extent_path);geography=read(f'research/current-length-reference-extents-geography-v{version}.json')
         if geography['estimate_file_sha256']!=pins[extent_path] or not all(r['all_clear'] and r['scenarios']==r['coarse_land_clear']==36 for r in geography['records']):raise ValueError('Exact geographic screening required')
@@ -113,21 +115,23 @@ def build():
     for identifier,current in sorted(identities.items()):
         options=sorted([r for r in routes.values() if r['entity_id']==identifier],key=lambda r:(r['extent_class']!='reference_extent',-r['length_km'],r['id']))
         full=[r for r in options if r['extent_class']=='reference_extent']
-        publication=reported.get(identifier)
+        publication=reported.get(identifier) or hypotheses.get(identifier)
+        is_hypothesis=identifier in hypotheses
         chosen=full[0] if full else None
         draft=provisional.get(identifier) if not publication and not chosen else None
         status='reported' if publication else 'reference_estimate' if chosen else 'regional_only' if options else 'needs_route'
-        value=publication['published_length_km'] if publication else chosen['length_km'] if chosen else None
+        value=(publication['proposed_system_length_km'] if is_hypothesis else publication['published_length_km']) if publication else chosen['length_km'] if chosen else None
+        if is_hypothesis:status='reported_hypothesis'
         if draft:status='provisional_estimate';value=draft['length_estimate_km']
         rows.append({'entity_id':identifier,'name':current['label'],'basin':current.get('basin'),
             'identity_level':current.get('identity_level','current'),'status':status,'length_estimate_km':value,
-            'method':'source_reported_extent' if publication else 'WGS84_editorial_reference_route' if chosen or draft else None,
+            'method':'source_reported_hypothesis' if is_hypothesis else 'source_reported_extent' if publication else 'WGS84_editorial_reference_route' if chosen or draft else None,
             'scope':publication['scope'] if publication else chosen['scope'] if chosen else draft['scope'] if draft else None,
             'selected_route_id':chosen['id'] if chosen and not publication else draft['id'] if draft else None,
             'reported_length_source_id':publication.get('length_source_id') if publication else None,
             'reported_length_source_locator':publication.get('length_source_locator') if publication else None,
             'record_file':'research/ocean-current-live-measurements.json' if publication else chosen['record_file'] if chosen else draft['record_file'] if draft else None,
-            'source_url':chosen['source_url'] if chosen and not publication else draft['source_url'] if draft else None,
+            'source_url':'https://doi.org/10.1175/1520-0485(1989)019<0384:OTOOSW>2.0.CO;2' if is_hypothesis else chosen['source_url'] if chosen and not publication else draft['source_url'] if draft else None,
             'source_locator':chosen['source_locator'] if chosen and not publication else draft.get('source_locator') if draft else None,
             'figure_file':draft['figure_file'] if draft else None,
             'geographic_screening':'All36 variants clear coarse OSW land; fine coast not checked.' if draft else None,
@@ -136,7 +140,7 @@ def build():
             'drawing_constraint':draft.get('fixed_drawing_vertex_rationale') if draft else None,
             'source_typography_note':draft.get('source_typography_note') if draft else None,
             'identity_interpretation':draft.get('identity_interpretation') if draft else None,
-            'conditional_extent':bool(draft and draft.get('conditional_extent')),
+            'conditional_extent':is_hypothesis or bool(draft and draft.get('conditional_extent')),
             'route_sensitivity_km':draft['scenario_range_km'] if draft else chosen['scenario_range_km'] if chosen else None,
             'route_choice_rule':'Longest declared reference-extent route; all phase/definition alternatives retained. This is not a maximum annual length.' if chosen and not publication else None,
             'route_options':options,'available_regional_reach_km':max((r['length_km'] for r in options if r['extent_class']=='regional_reach'),default=None),
@@ -145,7 +149,7 @@ def build():
             'current_card_url':'object.html?id='+identifier.replace(':','%3A')})
     rows=apply_family_conventions(rows,read('research/current-length-family-conventions-v1.json'))
     counts=Counter(r['status'] for r in rows)
-    return {'schema':'osw.current-length-estimate-register.v1','status':'LENGTH_FIRST_WORKING_REGISTER_INCOMPLETE',
+    return {'schema':'osw.current-length-estimate-register.v1','status':'ALL_LENGTH_ENTRIES_AVAILABLE_REVIEW_PENDING' if all(r['length_estimate_km'] is not None for r in rows) else 'LENGTH_FIRST_WORKING_REGISTER_INCOMPLETE',
         'target':'A declared, reproducible length estimate for every catalogued current.',
         'counts':{'currents':len(rows),'with_length_estimate':sum(r['length_estimate_km'] is not None for r in rows),'remaining_full_extent_estimates':sum(r['needs_full_extent_estimate'] for r in rows),**dict(counts)},
         'rules_file':'plans/current-length-estimates-v1.md','rules_sha256':hashlib.sha256((ROOT/'plans/current-length-estimates-v1.md').read_bytes()).hexdigest(),

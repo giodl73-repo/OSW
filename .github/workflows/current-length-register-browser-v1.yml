@@ -1,0 +1,67 @@
+name: Complete current length register browser review v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/current-length-register-browser-request-v1.json
+      - .github/workflows/current-length-register-browser-v1.yml
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+env:
+  OSW_LENGTH_REGISTER_BROWSER_V1: "1"
+  OMP_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+jobs:
+  select-request:
+    runs-on: ubuntu-24.04
+    outputs:
+      execute: ${{ steps.request.outputs.execute }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: research/current-length-register-browser-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/current-length-register-browser-request-v1.json').read_bytes())
+          assert r['schema']=='osw.current-length-register-browser-request.v1' and type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+  browser:
+    needs: select-request
+    if: needs.select-request.outputs.execute == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Check complete source register and install one browser
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python -m pip install pyproj==3.7.2 shapely==2.1.2 playwright==1.58.0
+          taskset -c "$cpu" nice -n 15 python -m unittest discover -s analysis -p 'test_current_length*.py' -v
+          taskset -c "$cpu" nice -n 15 python -m playwright install --with-deps chromium
+      - name: Review ranked UI, maps, downloads and all current targets on one CPU
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/check_current_length_register_browser_v1.py
+      - name: Retain compact review evidence only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-length-register-browser-evidence-v1
+          path: |
+            .pytest_cache/current-length-register-browser-v1/*.json
+            .pytest_cache/current-length-register-browser-v1/*.png
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90

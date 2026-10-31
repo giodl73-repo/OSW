@@ -27,6 +27,8 @@ initial empty values are a worklist, not an acceptable final deliverable.
 6. Preserve historical-name or hypothesized-route interpretations. Estimates
    under those interpretations must say so. They do not establish an alias or
    confirm a circulation hypothesis.
+   A source-reported proposed system length is retained as a reported hypothesis,
+   with that status visible beside the number. It is not a measured length.
 7. Round geographic estimates to meaningful precision. Endpoint/route alternatives
    produce a sensitivity interval; source uncertainty and seasonal extrema stay
    separate and remain unknown when unsupported. Do not invent a universal
@@ -35,6 +37,9 @@ initial empty values are a worklist, not an acceptable final deliverable.
    when moving it would shift the handoff onto land. Identify the fixed vertex
    and its rationale. Retain failed earlier grids and every case in the revised
    grid; never select only the convenient numerical outcomes.
+   A declared closed reference circuit includes its closure once in every
+   scenario. Normalize stored longitudes to CRS84 and unwrap continuously for
+   display/coast screening; an atlas seam is not an extra current segment.
 8. Deliver the completed register as JSON, CSV, and a sortable length-first view.
    Every number must link to its method, extent and source/route record. Preserve
    the canonical scientific measurements and their published ranking unchanged.
