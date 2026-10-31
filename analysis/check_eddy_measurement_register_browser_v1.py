@@ -56,7 +56,7 @@ def run():
             page.screenshot(path=str(OUT/'desktop.png'))
             for value,expected in [('individual_eddy',112),('recurrent_eddy_region',20),('eddy_family',4),('all',136)]:
                 page.select_option('#eddy-identity',value);assert page.locator('#eddy-rows tr').count()==expected
-            for value,expected in [('measured',counts['identities_with_measurements']),('gap',counts['identities_without_measurements']),('size-gap',sum(r['size_gap'] for r in document['records'])),('duration-gap',sum(r['duration_gap'] for r in document['records'])),('all',136)]:
+            for value,expected in [('measured',counts['identities_with_measurements']),('gap',counts['identities_without_measurements']),('linked',15),('unlinked-gap',2),('size-gap',sum(r['size_gap'] for r in document['records'])),('duration-gap',sum(r['duration_gap'] for r in document['records'])),('all',136)]:
                 page.select_option('#eddy-filter',value);assert page.locator('#eddy-rows tr').count()==expected
             for category in ['size','duration','recurrence','travel','structure','kinematics','all']:
                 page.select_option('#eddy-category',category)
@@ -69,7 +69,6 @@ def run():
             assert '88 km' in page.locator('#eddy-rows').inner_text() and '93 km' in page.locator('#eddy-rows').inner_text()
             assert 'Source year conflict unresolved' in page.locator('#eddy-rows').inner_text()
             assert 'parent-ring' in page.locator('#eddy-rows').inner_text()
-            page.screenshot(path=str(OUT/'eliza-conflicts.png'),full_page=True)
             page.fill('#eddy-search','')
             for name in ['thor-2020','ursa-2021']:
                 tr=page.locator(f'tr[data-eddy-id="eddy:published:{name}"]');tr.locator('summary').click()
@@ -84,7 +83,6 @@ def run():
             assert 'Table sample count: 2' in page.locator('#eddy-rows').inner_text()
             assert 'operator discrepancy' in page.locator('#eddy-rows').inner_text()
             assert '40 W' in page.locator('#eddy-rows').inner_text()
-            page.screenshot(path=str(OUT/'population.png'))
             page.select_option('#eddy-identity','all');page.fill('#eddy-search','Lilian')
             page.locator('#eddy-rows summary').click()
             text=page.locator('#eddy-rows').inner_text()
@@ -92,7 +90,6 @@ def run():
             page.set_viewport_size({'width':390,'height':844})
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             assert page.locator('.eddy-scroll').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
-            page.screenshot(path=str(OUT/'mobile-lilian.png'),full_page=True)
             checks.append('Seven population means/SD/cohorts; strict travel bound; approximate year unit; mobile expanded layout')
             page.set_viewport_size({'width':1440,'height':1000})
             for search,needles in [
@@ -102,14 +99,12 @@ def run():
                 page.fill('#eddy-search',search);assert page.locator('#eddy-rows tr').count()==1
                 page.locator('#eddy-rows summary').click()
                 for needle in needles:assert needle in page.locator('#eddy-rows').inner_text(),(search,needle)
-                if search=='Kenai Eddy (2007)':page.screenshot(path=str(OUT/'kenai-censored.png'),full_page=True)
             page.fill('#eddy-search','Meddy Ulla');page.locator('#eddy-rows summary').click()
             text=page.locator('#eddy-rows').inner_text()
             assert '15 km' in text and '18 months' in text and 'Publisher abstract' in text
             page.set_viewport_size({'width':390,'height':844})
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             assert page.locator('.eddy-scroll').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
-            page.screenshot(path=str(OUT/'mobile-ulla.png'),full_page=True)
             checks.append('New Kenai/Sitka scope, right-censored Kenai span, distinct Haida components, Laura drift units and abstract-qualified Ulla months/radius')
             page.set_viewport_size({'width':1440,'height':1000})
             for search,needles in [
@@ -122,16 +117,40 @@ def run():
                 page.fill('#eddy-search',search);assert page.locator('#eddy-rows tr').count()==1,(search,'count')
                 page.locator('#eddy-rows summary').click()
                 for needle in needles:assert needle in page.locator('#eddy-rows').inner_text(),(search,needle)
-                if search in ['Meddies (Mediterranean Water eddies)','Mindanao Eddy']:
-                    page.screenshot(path=str(OUT/('meddy-range.png' if search.startswith('Meddies') else 'mindanao-model.png')),full_page=True)
             page.fill('#eddy-search','Peddies');page.locator('#eddy-rows summary').click()
             assert '200–300 m' in page.locator('#eddy-rows').inner_text()
             assert 'Not eddy thickness' in page.locator('#eddy-rows').inner_text()
             page.set_viewport_size({'width':390,'height':844})
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             assert page.locator('.eddy-scroll').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
-            page.screenshot(path=str(OUT/'mobile-peddy-depth.png'),full_page=True)
             checks.append('Third batch: range-only family size, depth band, strict bound, sampled/model cases, qualified indexed reference, native angular displacement and phase intervals')
+            page.set_viewport_size({'width':1440,'height':1000})
+            for search,needles,name in [
+                ('Kathleen',['214–273 days','start 1988-01-01 to 1988-01-31','No midpoint'],'calendar-month.png'),
+                ('Rebel',['0–2 days','Chronology-conditioned range','not missing data'],'calendar-zero.png'),
+                ('Revelle',['3.9 knots','Registry maximum surface current as reported.'],None),
+                ('Yazoo II',['no independent secondary measurement assigned','no values inherited'],'secondary-context.png')]:
+                page.fill('#eddy-search',search);assert page.locator('#eddy-rows tr').count()==1
+                page.locator('#eddy-rows summary').click()
+                for needle in needles:assert needle in page.locator('#eddy-rows').inner_text(),(search,needle)
+                if name:page.screenshot(path=str(OUT/name),full_page=True)
+            assert page.locator('#eddy-rows .eddy-record').count()==0
+            page.get_by_role('link',name='Inspect primary Yazoo',exact=True).click()
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            primary=page.locator('tr[data-eddy-id="eddy:horizon:loop-74-primary"]')
+            assert primary.locator('details').evaluate('(e)=>e.open')
+            assert primary.locator('.eddy-record').count()==1
+            for name in ['Feldman','Edison']:
+                page.fill('#eddy-search',name);page.locator('#eddy-rows summary').click()
+                assert page.locator('#eddy-rows .eddy-record').count()==0
+                assert 'current status and age have not been established' in page.locator('#eddy-rows').inner_text()
+                if name=='Feldman':page.screenshot(path=str(OUT/'undated-active-label.png'),full_page=True)
+            page.fill('#eddy-search','Kathleen');page.locator('#eddy-rows summary').click()
+            page.set_viewport_size({'width':390,'height':844})
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            assert page.locator('.eddy-scroll').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
+            page.screenshot(path=str(OUT/'mobile-calendar.png'),full_page=True)
+            checks.append('Registry: native knots, full-month calendar support, explicit zero chronology condition, secondary noninheritance/primary navigation and undated Active labels without ages')
             with page.expect_download() as pending:page.get_by_role('link',name='Download measurement CSV').click()
             assert hashlib.sha256(Path(pending.value.path()).read_bytes()).hexdigest()==sha('research/eddy-measurement-register-v1.csv')
             for path in set(r['source_file'] for r in document['evidence'])|{'plans/eddy-measurement-register-v1.md','research/eddy-measurement-register-v1.json'}:

@@ -26,6 +26,11 @@
     if(r.source_access)add('p','Source access: '+r.source_access,box);
     if(r.range_kind)add('p','Range meaning: '+r.range_kind.replaceAll('_',' ')+'. No representative midpoint inferred.',box);
     if(r.calculation)add('p',`Model calculation: ${r.calculation.multiplier} × ${r.calculation.deformation_radius_km} km = ${num(r.calculation.unrounded_km)} km, rounded to ${num(r.value)} km.`,box);
+    if(r.calendar_support){
+      const c=r.calendar_support;
+      add('p',`Calendar support: start ${c.start_date_min} to ${c.start_date_max} (${c.start_precision}); end ${c.end_date_min} to ${c.end_date_max} (${c.end_precision}).`,box);
+      if(c.chronology_conditioned)add('strong','Chronology-conditioned range: the source month overlaps dates before separation. Zero is an allowed calendar-day difference, not missing data or a measured zero lifespan.',box);
+    }
     for(const claim of r.source_claims)add('p',`Separate source claim: ${num(claim.value_km)} km · ${claim.reported_period} · ${claim.source_locator}`,box);
     if(r.date_conflict)add('strong','Source year conflict unresolved; no normalized observation month assigned.',box);
     add('p',r.source_locator,box);link('Original source',r.source_url,box);link('Retained source record','../'+r.source_file,box);
@@ -41,7 +46,7 @@
     function render(){
       const search=$('eddy-search').value.trim().toLowerCase(),identity=$('eddy-identity').value,filter=$('eddy-filter').value,category=$('eddy-category').value;
       const selected=r=>r.evidence_ids.map(id=>byId.get(id)).filter(e=>category==='all'||e.category===category);
-      const rows=data.records.filter(r=>(!search||`${r.name} ${r.basin}`.toLowerCase().includes(search))&&(identity==='all'||r.identity_level===identity)&&(filter==='all'||filter==='measured'&&r.evidence_ids.length>0||filter==='gap'&&!r.evidence_ids.length||filter==='size-gap'&&r.size_gap||filter==='duration-gap'&&r.duration_gap)&&(category==='all'||selected(r).length)).sort((a,b)=>a.name.localeCompare(b.name)||a.entity_id.localeCompare(b.entity_id));
+      const rows=data.records.filter(r=>(!search||`${r.name} ${r.basin}`.toLowerCase().includes(search))&&(identity==='all'||r.identity_level===identity)&&(filter==='all'||filter==='measured'&&r.evidence_ids.length>0||filter==='gap'&&!r.evidence_ids.length||filter==='linked'&&r.linked_primary_context||filter==='unlinked-gap'&&!r.evidence_ids.length&&!r.linked_primary_context||filter==='size-gap'&&r.size_gap||filter==='duration-gap'&&r.duration_gap)&&(category==='all'||selected(r).length)).sort((a,b)=>a.name.localeCompare(b.name)||a.entity_id.localeCompare(b.entity_id));
       $('eddy-results').textContent=`${rows.length} source ${rows.length===1?'identity':'identities'} shown · ${c.size_owners} entries have size references; ${c.duration_owners} have duration references; ${c.recurrence_owners} have regional recurrence. No pooled size or lifetime ranking.`;
       $('eddy-rows').replaceChildren();
       for(const row of rows){
@@ -53,8 +58,14 @@
           if(!items.length)add('span',empty,target).className='eddy-note';
           for(const r of items){add('strong',quantity(r),target);add('span',(r.component_label||r.case_label?(r.component_label||r.case_label)+' · ':'')+r.metric_label+(r.period_label?' · '+r.period_label:''),target).className='eddy-note';}
         }
-        const details=add('details',undefined,body);add('summary',evidence.length?`Inspect ${evidence.length} source records`:'Inspect identity and date context',details);
+        const details=add('details',undefined,body);add('summary',evidence.length?`Inspect ${evidence.length} source ${evidence.length===1?'record':'records'}`:'Inspect identity and date context',details);
         if(row.event_date)add('p',`Registry separation date: ${row.event_date}. This supplies no lifespan or age.`,details);
+        if(row.registry_context){const c=row.registry_context;
+          add('p',`Registry dissipation label: ${c.dissipation_label||'Not supplied'}.`,details);
+          if(c.dissipation_label==='Active')add('strong','Undated source label; current status and age have not been established.',details);
+          if(c.lc_separation_count!==null)add('p',`Registry number of LC separations: ${c.lc_separation_count}. Count method and dates unspecified.`,details);
+        }
+        if(row.linked_primary_context){const c=row.linked_primary_context,p=add('p',c.relation+' ',details);link('Inspect primary '+c.name,c.url,p);add('span',` · ${c.evidence_ids.length} primary source records; no values inherited by this secondary.`,p);}
         if(row.paper_window_context){const w=row.paper_window_context;add('p',`Paper window: ${w.start} to ${w.end}. ${w.interpretation}`,details);}
         if(row.identity_note)add('p',row.identity_note,details);
         if(row.possible_same_ring_as){const p=add('p','Possible name crosswalk · identity unverified: ',details);link(row.possible_same_ring_as,'eddies.html?id='+encodeURIComponent('eddy:'+row.possible_same_ring_as),p);}

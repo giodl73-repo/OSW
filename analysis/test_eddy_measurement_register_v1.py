@@ -11,7 +11,7 @@ class EddyRegister(unittest.TestCase):
         d=register.build()
         self.assertEqual(len(d['records']),136)
         self.assertEqual(len({r['entity_id'] for r in d['records']}),136)
-        self.assertEqual(len(d['evidence']),77)
+        self.assertEqual(len(d['evidence']),214)
         for path,pin in d['input_sha256'].items():self.assertEqual(hashlib.sha256((register.ROOT/path).read_bytes()).hexdigest(),pin)
         for r in d['evidence']:
             source=json.loads((register.ROOT/r['source_file']).read_bytes())
@@ -41,7 +41,7 @@ class EddyRegister(unittest.TestCase):
             self.assertTrue(all(e['metric']=='source_dated_event_stage_interval' for e in d['evidence'] if e['entity_id']==r['entity_id']))
         for r in d['records']:
             self.assertFalse(r['candidate_crosswalk_is_verified']);self.assertIsNone(r['whole_lifetime_days'])
-            if r['source_collection']=='horizon_loop_current':self.assertFalse(r['evidence_ids'])
+            if r['source_collection']=='horizon_loop_current' and r['entity_id'].endswith('-secondary'):self.assertFalse(r['evidence_ids'])
         for r in d['evidence']:
             if r['metric'] in ['source_track_elapsed_span','coherent_core_analysis_interval','source_dated_event_stage_interval']:
                 self.assertEqual(r['value'],(date.fromisoformat(r['period_end'])-date.fromisoformat(r['period_start'])).days)
@@ -55,7 +55,7 @@ class EddyRegister(unittest.TestCase):
     def test_csv_does_not_drop_conflicts_or_rewrite_units(self):
         d=register.build();evidence={r['id']:r for r in d['evidence']}
         with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:rows=list(csv.DictReader(stream))
-        self.assertEqual(len(rows),77)
+        self.assertEqual(len(rows),214)
         for r in rows:
             original=evidence[r['id']]
             self.assertEqual(r['unit'],original['unit']);self.assertEqual(r['source_pointer'],original['source_pointer'])
@@ -63,6 +63,7 @@ class EddyRegister(unittest.TestCase):
             self.assertEqual(json.loads(r['source_claims_json']),original['source_claims'])
             self.assertEqual(json.loads(r['range_value_json']),original.get('range_value'))
             self.assertEqual(json.loads(r['calculation_json']),original.get('calculation'))
+            self.assertEqual(json.loads(r['calendar_support_json']),original.get('calendar_support'))
 
     def test_second_batch_preserves_first_batch_and_new_scopes(self):
         d=register.build();rows={r['id']:r for r in d['evidence']}
@@ -88,7 +89,7 @@ class EddyRegister(unittest.TestCase):
         prior=hashlib.sha256(json.dumps(d['evidence'][:48],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
         self.assertEqual(prior,batch['baseline_evidence_sha256'])
         self.assertEqual(d['counts']['non_registry_entries_with_references'],40)
-        self.assertEqual(d['counts']['identities_without_measurements'],96)
+        self.assertEqual(len({r['entity_id'] for r in d['evidence'][:77]}),40)
         diameter=rows['meddies-bower-1997-typical-diameter']
         self.assertIsNone(diameter['value']);self.assertEqual(diameter['range_value'],[20,100])
         depth=rows['peddies-font-2024-depth-band']
@@ -103,6 +104,35 @@ class EddyRegister(unittest.TestCase):
         for name,elapsed in [('thor-2020',56),('ursa-2021',49)]:
             r=rows[name+'-event-stage-interval'];self.assertEqual(r['value'],elapsed)
             self.assertEqual(r['metric'],'source_dated_event_stage_interval');self.assertFalse(r['whole_lifetime_inferred'])
+
+    def test_registry_calendar_precision_and_secondary_noninheritance(self):
+        d=register.build();rows={r['id']:r for r in d['evidence']}
+        batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v4.json').read_bytes())
+        prior=hashlib.sha256(json.dumps(d['evidence'][:77],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
+        self.assertEqual(prior,batch['baseline_evidence_sha256'])
+        self.assertEqual(d['counts']['registry_entries_with_own_references'],79)
+        self.assertEqual(d['counts']['identities_with_measurements'],119)
+        self.assertEqual(d['counts']['linked_primary_context_entries'],15)
+        self.assertEqual(d['counts']['entries_without_numeric_or_primary_context'],2)
+        self.assertEqual(sum(r['metric']=='registry_reported_maximum_surface_current' for r in d['evidence']),60)
+        self.assertEqual(sum(r['metric']=='registry_separation_to_dissipation_calendar_span' for r in d['evidence']),77)
+        kathleen=rows['eddy:horizon:loop-08-primary-registry-calendar-span']
+        self.assertEqual(kathleen['range_value'],[214,273]);self.assertEqual(kathleen['calendar_support']['start_precision'],'month')
+        rebel=rows['eddy:horizon:loop-41-primary-registry-calendar-span']
+        self.assertEqual(rebel['range_value'],[0,2]);self.assertEqual(rebel['calendar_support']['unconditioned_elapsed_day_range'],[-27,2])
+        self.assertTrue(rebel['calendar_support']['chronology_conditioned']);self.assertIsNone(rebel['value'])
+        for r in d['records']:
+            if r['entity_id'] in ['eddy:horizon:loop-80-primary','eddy:horizon:loop-81-primary']:
+                self.assertFalse(r['evidence_ids']);self.assertFalse(r['registry_context']['active_label_is_current_status'])
+            if r['entity_id'].endswith('-secondary'):
+                self.assertFalse(r['evidence_ids']);self.assertIsNone(r['registry_context'])
+                self.assertTrue(r['linked_primary_context']['evidence_ids'])
+        for r in d['evidence']:
+            if r['entity_id'].startswith('eddy:horizon:'):
+                self.assertTrue(r['entity_id'].endswith('-primary'))
+                self.assertFalse(r['rights_screened_release_eligible'])
+                self.assertEqual(r['evidence_role'],'registry_source_reference')
+                if r['category']=='duration':self.assertIsNone(r['value']);self.assertEqual(r['calendar_support']['end_precision'],'month')
 
 
 if __name__=='__main__':unittest.main()

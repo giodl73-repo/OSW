@@ -1,6 +1,7 @@
 """Small retained JSON only: no engine, index or ocean-field processing."""
+import calendar
 import csv
-from datetime import date
+from datetime import date,datetime
 import hashlib
 import io
 import json
@@ -19,6 +20,14 @@ def pointer(document,path):
         token=token.replace('~1','/').replace('~0','~')
         value=value[int(token)] if isinstance(value,list) else value[token]
     return value
+
+
+def registry_date_bounds(text):
+    if len(text.split('/'))==3:
+        value=datetime.strptime(text,'%m/%d/%Y').date()
+        return value,value,'day'
+    month,year=map(int,text.split('/'))
+    return date(year,month,1),date(year,month,calendar.monthrange(year,month)[1]),'month'
 
 
 def build():
@@ -125,17 +134,28 @@ def build():
             definition=r['definition'],scope=r['scope'],qualification=r['qualification'],
             period_start=r.get('period_start'),period_end=r.get('period_end'),period_label=r.get('period_label'),
             period_precision=r.get('period_precision'),component_label=r.get('component_label'),right_censored=r.get('right_censored',False))
-    batches_path='research/eddy-measurement-batches-v1.json';batch_index=read(batches_path);applied=[]
+    batches_path='research/eddy-measurement-batches-v1.json';batch_index=read(batches_path);applied=[];registry_contexts={}
     for entry in batch_index['batches']:
         path=entry['file'];batch=read(path);assert pins[path]==entry['sha256']
         prior=hashlib.sha256(json.dumps(evidence,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
         assert len(evidence)==batch['baseline_evidence_count'] and prior==batch['baseline_evidence_sha256']
+        if batch.get('registry_rows'):
+            legacy=read('research/named-loop-current-eddies.json');by_number={r['source_number']:r for r in legacy['entries']}
+            assert len(batch['registry_rows'])==81
+            for raw in batch['registry_rows']:
+                old=by_number[raw['source_number']]
+                start=raw['initial_separation_as_reported']
+                normalized=registry_date_bounds(start)[0].isoformat() if len(start.split('/'))==3 else start
+                assert (raw['name'],normalized,raw['dissipation_as_reported'],raw['secondary_name_as_reported'])==(old['name'],old['initial_separation'],old['dissipation_as_reported'],old['secondary_name'])
+            for owner,context in batch['registry_contexts'].items():
+                assert owner in identities and owner.endswith('-primary') and owner not in registry_contexts
+                registry_contexts[owner]=context
         for n,r in enumerate(batch['records']):
             source=batch['sources'][r['source_id']]
             assert r['category'] in ['size','duration','recurrence','travel','structure','kinematics']
             assert any(r.get(k) is not None for k in ['value','range_value','upper_bound','lower_bound'])
             interval=r.get('range_value')
-            if interval is not None:assert len(interval)==2 and 0<interval[0]<=interval[1] and r['value'] is None
+            if interval is not None:assert len(interval)==2 and 0<=interval[0]<=interval[1] and interval[1]>0 and r['value'] is None
             if r.get('upper_bound') is not None:assert r['upper_bound']>0 and r['value'] is None
             if r.get('calculation'):
                 c=r['calculation'];assert c['multiplier']*c['deformation_radius_km']==c['unrounded_km'] and round(c['unrounded_km'])==r['value']
@@ -144,23 +164,44 @@ def build():
                 assert hashlib.sha256(json.dumps(events,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()==r['basis_sha256']
                 assert [v['observation_date'] for v in events]==[r['period_start'],r['period_end']]
                 assert r['value']==(date.fromisoformat(r['period_end'])-date.fromisoformat(r['period_start'])).days
+            if r.get('registry_row_index') is not None:
+                raw=batch['registry_rows'][r['registry_row_index']]
+                assert r['entity_id']==f"eddy:horizon:loop-{raw['source_number']:02}-primary"
+                assert r['rights_screened_release_eligible'] is False
+                if r['metric']=='registry_reported_maximum_surface_current':
+                    assert r['unit']=='knots' and r['value']==float(raw['max_surface_current_knots_as_reported'])
+                elif r['metric']=='registry_separation_to_dissipation_calendar_span':
+                    start0,start1,precision=registry_date_bounds(raw['initial_separation_as_reported'])
+                    end0,end1,_=registry_date_bounds(raw['dissipation_as_reported'])
+                    unconstrained=[(end0-start1).days,(end1-start0).days]
+                    assert r['range_value']==[max(0,unconstrained[0]),unconstrained[1]]
+                    assert r['calendar_support']=={'start_date_min':start0.isoformat(),'start_date_max':start1.isoformat(),'end_date_min':end0.isoformat(),'end_date_max':end1.isoformat(),'start_precision':precision,'end_precision':'month','unconditioned_elapsed_day_range':unconstrained,'chronology_conditioned':unconstrained[0]<0}
+                else:raise ValueError('Unknown registry interpretation')
             add(r['id'],r['entity_id'],r['category'],r['metric'],r['value'],r['unit'],path,f'/records/{n}',batch,
                 source_url=source['url'],source_access=source['access'],source_id=r['source_id'],
                 definition=r['definition'],scope=r['scope'],qualification=r['qualification'],
-                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role'] if k in r})
+                **{k:r[k] for k in ['period_start','period_end','period_label','period_precision','case_label','component_label','right_censored','range_value','range_kind','upper_bound','upper_bound_exclusive','calculation','basis_source_file','basis_source_pointer','basis_sha256','depth_m','evidence_role','registry_row_index','registry_column','calendar_support','rights_screened_release_eligible'] if k in r})
         applied.append({'file':path,'baseline_count':batch['baseline_evidence_count'],'preserved_baseline_sha256':prior,'added':len(batch['records'])})
     records=[]
     for identifier,current in identities.items():
         owned=[r for r in evidence if r['entity_id']==identifier]
         geographic=next((r for r in geo['entries'] if 'eddy:geography:'+r['id']==identifier),None)
         published=next((r for r in loops['entries'] if 'eddy:'+r['eddy_id']==identifier),None)
+        linked_primary=None
+        if current['source_collection']=='horizon_loop_current' and current['source_record_id'].endswith('-secondary'):
+            parent='eddy:horizon:'+current['source_record_id'].removesuffix('-secondary')+'-primary'
+            assert parent in identities
+            linked_primary={'entity_id':parent,'name':identities[parent]['name'],'url':'eddies.html?id='+parent,
+                'evidence_ids':[r['id'] for r in evidence if r['entity_id']==parent],
+                'relation':'Associated primary registry row only; no independent secondary measurement assigned.'}
         records.append({'entity_id':identifier,'name':current['name'],'basin':current['basin'],
             'identity_level':current['identity_level'],'source_collection':current['source_collection'],
             'source_url':current['source_url'],'source_pointer':'/entries/'+str(inventory['entries'].index(current)),
             'evidence_ids':[r['id'] for r in owned],'categories':sorted({r['category'] for r in owned}),
             'size_gap':not any(r['category']=='size' for r in owned),
             'duration_gap':not any(r['category']=='duration' for r in owned),
-            'status':'has_measurements' if owned else 'needs_measurements',
+            'status':'has_measurements' if owned else 'linked_primary_context' if linked_primary else 'needs_measurements',
+            'linked_primary_context':linked_primary,'registry_context':registry_contexts.get(identifier),
             'event_date':current.get('source_event_date') if current['identity_evidence']=='numbered_primary_separation' else None,
             'date_context':current.get('date_evidence'),
             'paper_window_context':({'start':published['observation_start'],'end':published['observation_end'],'interpretation':published['interpretation']} if published else None),
@@ -185,6 +226,9 @@ def build():
             'structure_owners':len(owners('structure')),'kinematics_owners':len(owners('kinematics')),
             'non_registry_entries':sum(r['source_collection']!='horizon_loop_current' for r in records),
             'non_registry_entries_with_references':sum(r['source_collection']!='horizon_loop_current' and bool(r['evidence_ids']) for r in records),
+            'registry_entries_with_own_references':sum(r['source_collection']=='horizon_loop_current' and bool(r['evidence_ids']) for r in records),
+            'linked_primary_context_entries':sum(r['linked_primary_context'] is not None for r in records),
+            'entries_without_numeric_or_primary_context':sum(not r['evidence_ids'] and r['linked_primary_context'] is None for r in records),
             'identities_with_measurements':sum(bool(r['evidence_ids']) for r in records),
             'identities_without_measurements':sum(not r['evidence_ids'] for r in records),
             'conflicted_size_records':sum(r['value_conflict'] for r in evidence),
@@ -194,9 +238,9 @@ def build():
 
 def main():
     document=build();(ROOT/JSON_PATH).write_bytes((json.dumps(document,indent=2,ensure_ascii=False)+'\n').encode())
-    fields=['entity_id','id','category','metric','value','unit','range_value_json','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','standard_deviation','sample_count','period_start','period_end','period_label','period_precision','component_label','case_label','right_censored','value_conflict','date_conflict','source_claims_json','calculation_json','evidence_role','definition','scope','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
+    fields=['entity_id','id','category','metric','value','unit','range_value_json','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','standard_deviation','sample_count','period_start','period_end','period_label','period_precision','component_label','case_label','right_censored','value_conflict','date_conflict','source_claims_json','calculation_json','calendar_support_json','rights_screened_release_eligible','evidence_role','definition','scope','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
     out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()
-    for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False),'range_value_json':json.dumps(r.get('range_value')),'calculation_json':json.dumps(r.get('calculation'))})
+    for r in document['evidence']:writer.writerow({**r,'source_claims_json':json.dumps(r['source_claims'],ensure_ascii=False),'range_value_json':json.dumps(r.get('range_value')),'calculation_json':json.dumps(r.get('calculation')),'calendar_support_json':json.dumps(r.get('calendar_support'))})
     (ROOT/CSV_PATH).write_bytes(out.getvalue().encode());print(json.dumps(document['counts']))
 
 

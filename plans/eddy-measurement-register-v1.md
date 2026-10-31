@@ -77,3 +77,26 @@ describe elapsed dates between named reported stages, not an eddy lifespan or
 continuous detachment. Qualified indexed passages retain their limited source
 access and unreviewed-method flags. Numeric reference coverage does not mean
 complete size, lifetime, track, seasonal or vertical coverage.
+
+## Registry calendar spans and currents
+
+Retain the public registry's first seven table columns, excluding biographical
+name descriptions. Match all 81 primary names, initial labels, dissipation labels
+and secondary labels to the existing retained ledger before adding data. Copy
+reported maximum surface currents in native knots; method, depth and measurement
+date remain unspecified. These source records stay outside the separate
+rights-screened release.
+
+For dissipation months, calculate support for elapsed calendar-day differences
+from the initial date's own day/month precision and the entire dissipation month.
+Retain the initial and final date bounds. There is no midpoint, fabricated end
+day, exact physical lifetime or statistical confidence interval. When a source
+month overlaps dates before the initial separation, retain the unconditioned
+range and explicitly condition the displayed support on nonnegative elapsed
+days. A zero lower endpoint can therefore express date precision rather than
+zero physical lifetime. Month-only initial dates retain both start bounds.
+
+An undated Active label supplies neither current status nor a valid age lower
+bound. Blank fields remain unknown. The 15 secondary labels link to primary-row
+context without inheriting measurements or a dissipation month. Registry and
+published named-ring identities remain separate until their crosswalk is reviewed.
