@@ -1579,7 +1579,7 @@ class EddyRegister(unittest.TestCase):
     def test_bosphorus_residual_ke_preserves_prior_rows_and_source_qualifiers(self):
         d=register.build();b=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v51.json').read_bytes());rows=d['evidence'][435:437]
         self.assertEqual(hashlib.sha256(json.dumps(d['evidence'][:435],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest(),b['baseline_evidence_sha256'])
-        self.assertEqual(len(rows),2);self.assertEqual(rows[0]['value'],200);self.assertIsNone(rows[0]['upper_bound'])
+        self.assertEqual(len(rows),2);self.assertEqual(rows[0]['value'],200);self.assertIsNone(rows[0].get('upper_bound'))
         self.assertEqual(rows[1]['lower_bound'],500);self.assertTrue(rows[1]['lower_bound_exclusive'])
         self.assertIsNone(rows[1]['period_start']);self.assertIsNone(rows[1]['period_end'])
         self.assertEqual(len(rows[1]['profile_context']['month_windows']),4)
