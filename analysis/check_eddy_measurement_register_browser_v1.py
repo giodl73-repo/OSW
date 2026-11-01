@@ -736,6 +736,19 @@ def run():
                         page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
                         card.screenshot(path=str(OUT/('mobile-'+name+'-speed-core-'+component+'.png')))
                 checks.append(name+' dated speed core: fixed numerical method/ranges, own source point role/date and qualification, no inherited Deviant prose; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-05-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-05-primary"]')
+            for needle in ['300–350 km · frontal-lobe estimate','425–475 km · frontal-lobe estimate','not a closed eddy boundary','eastern lobe-neck junction','no missing line is reconstructed','1986-01-10 to 1986-01-17','8 November 1985','reading sensitivity only','not full detached-eddy dimensions']:
+                assert needle in row.inner_text(),needle
+            assert 'Size reference needed' not in row.inner_text() and 'Model calculation: undefined' not in row.inner_text()
+            for component in ['east-west','north-south']:
+                card=page.locator('[data-evidence-id="hot-core-1986-january-frontal-lobe-'+component+'"]')
+                page.set_viewport_size({'width':1440,'height':1000});card.screenshot(path=str(OUT/('hot-core-frontal-lobe-'+component+'.png')))
+                page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                card.screenshot(path=str(OUT/('mobile-hot-core-frontal-lobe-'+component+'.png')))
+            row.locator('summary').screenshot(path=str(OUT/'hot-core-frontal-lobe-summary.png'))
+            checks.append('Hot Core explicit named chart pre-detachment lobe: two landmark spans, eastern neck and parent-current exclusion, no closed-boundary/detached dimensions, source week and registry date distinction; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

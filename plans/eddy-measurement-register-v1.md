@@ -673,3 +673,21 @@ center, composite-center versus daily product date, and unreconciled Indigo
 registry dates explicitly. Kinetic September failed support gates and supplies
 no measurement. Never move seeds or relax gates to fill a gap. Preserve all
 first 414 evidence records and CSV rows/header.
+
+## Explicitly named pre-detachment frontal lobes
+
+A named source-chart lobe may supply qualified geographic landmark spans when
+its full detached-eddy outline is unavailable. Name the phase and each landmark;
+retain the eastern neck/junction choice explicitly and exclude the parent-current
+continuation. Do not assert closure, repair gaps or compute diameter, radius,
+area or principal width. A size reference here does not close the full-eddy
+boundary gap. Keep all physical geometry, state, rank and playback flags false.
+
+For the Hot Core January 10-17,1986 chart, retain the manually read original
+raster bounding landmarks, published axis labels and actual image placement.
+Apply the existing six-native-pixel extent allowance and 25km outward span
+reporting consistently. These describe reading sensitivity only. Junction
+interpretation, scan/axis distortion and physical-front error remain unquantified;
+never describe this interval as their uncertainty bound. Retain registry initial
+separation and the report final-separation definition separately. Preserve the
+first 424 evidence records and CSV rows/header.

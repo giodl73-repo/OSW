@@ -19,6 +19,7 @@ from eddy_scale_bar_spans_v1 import validate_case as validate_scale_bar_case, sp
 from eddy_visible_model_front_v1 import validate_case as validate_visible_front_case, span as visible_front_span
 from eddy_gridded_case_summary_v1 import summarize as gridded_case_summary
 from eddy_speed_core_summary_v1 import summarize as speed_core_summary
+from eddy_frontal_lobe_spans_v1 import summarize as frontal_lobe_summary
 from eddy_operational_chart_spans_v1 import validate_case as validate_operational_chart_case, spans as operational_chart_spans
 from eddy_source_bold_isoline_spans_v1 import validate_case as validate_source_isoline_case, spans as source_isoline_spans
 
@@ -90,6 +91,20 @@ def validate_gridded_case(row, report=None):
     assert row['range_value']==summary['range_value'] and row['value'] is None and row['category']=='size'
     assert row['range_kind']=='gridded_contour_method_sensitivity_not_measurement_uncertainty'
     assert row['evidence_role']=='qualified_osw_gridded_source_case_reference' and row['rights_screened_release_eligible'] is False
+
+
+def validate_frontal_lobe_reference(row,report):
+    c=row['calculation'];summary=frontal_lobe_summary(report,c['component'])
+    assert all(c[k]==v for k,v in summary.items())
+    assert row['entity_id']==report['case']['owner_id']
+    assert row['metric']=='source_chart_pre_detachment_frontal_lobe_'+c['component']+'_span'
+    assert row['category']=='size' and row['unit']=='km' and row['value'] is None
+    assert row['range_value']==summary['range_km']
+    assert [row['period_start'],row['period_end']]==summary['source_week']
+    assert row['period_precision']=='source_chart_week_not_simultaneous_observation'
+    assert row['range_kind']=='manual_landmark_reading_sensitivity_not_physical_uncertainty'
+    assert row['evidence_role']=='map_read_named_case_reference' and row['rights_screened_release_eligible'] is False
+    assert row.get('source_map_estimate') is None and row.get('depth_m') is None
 
 
 def validate_speed_core_reference(row,report):
@@ -876,6 +891,12 @@ def build():
                 c=r['calculation']
                 if c.get('method')=='spherical_sampled_station_separation_v1':validate_station_distance(r)
                 elif c.get('method')=='gridded_adt_named_source_case_v1':validate_gridded_case(r,read(c['report_file']))
+                elif c.get('method')=='source_hot_core_pre_detachment_frontal_lobe_spans_v1':
+                    report=read(c['report_file']);assert pins[c['report_file']]==c['report_sha256']==source['source_review_sha256']
+                    validate_frontal_lobe_reference(r,report)
+                    assert report['original']==source['original']
+                    for key in ['method','axis_math']:
+                        assert hashlib.sha256((ROOT/report[key+'_file']).read_bytes()).hexdigest()==report[key+'_sha256']
                 elif c.get('method')=='osw_speed_contour_named_source_case_v1':
                     report=read(c['report_file']);assert pins[c['report_file']]==c['report_sha256']==source['source_review_sha256']
                     validate_speed_core_reference(r,report)
