@@ -644,3 +644,25 @@ not principal axes, diameter or physical uncertainty bounds. Pixel margins
 do not cover attribution uncertainty. Preserve first 407 evidence/CSV rows,
 all identity flags and the Wilde II size gap. No physical geometry, state
 join, ranking, seasonal playback or release-rights inference.
+
+## Native-ADT speed-contour core references
+
+Use the separately verified speed-contour method and retain its sampled
+maximum/closure/support, native-gradient and interpolation gates. Speed-core
+area, area-equivalent radius, bounding arcs and maximum circum-averaged
+geostrophic speed are distinct from full outer eddy dimensions and local
+current maxima. Keep physical identity and footprint eligibility false.
+
+Compare the fixed 0.005/0.0025 m peak-relative level steps; round their extrema
+outward using 5000 km2 for area, 10 km for equivalent radius, 25 km for bounding
+arcs and 0.05 m/s for mean speed. Apply these increments consistently to future
+references using this method. The interval is numerical comparison/reporting
+precision only, not a physical uncertainty band or seasonal envelope.
+
+The Deviant source center is dated and explicitly named, but coarsely rounded;
+the matching grid peak is about 33 km away. This remains a qualified source-case
+reference. The source SST boundary and gridded speed contour are not equivalent.
+Keep registry separation and source snapshot distinct. Preserve all first 409
+evidence records and CSV rows/header. JSON whitespace may be reduced to retain
+all content within the existing publication byte limit; no measurements or
+source records are dropped.

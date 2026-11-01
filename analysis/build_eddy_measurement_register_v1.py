@@ -18,6 +18,7 @@ from eddy_height_profiles_v1 import validate_case as validate_height_case, span 
 from eddy_scale_bar_spans_v1 import validate_case as validate_scale_bar_case, spans as scale_bar_spans
 from eddy_visible_model_front_v1 import validate_case as validate_visible_front_case, span as visible_front_span
 from eddy_gridded_case_summary_v1 import summarize as gridded_case_summary
+from eddy_speed_core_summary_v1 import summarize as speed_core_summary
 from eddy_operational_chart_spans_v1 import validate_case as validate_operational_chart_case, spans as operational_chart_spans
 from eddy_source_bold_isoline_spans_v1 import validate_case as validate_source_isoline_case, spans as source_isoline_spans
 
@@ -89,6 +90,17 @@ def validate_gridded_case(row, report=None):
     assert row['range_value']==summary['range_value'] and row['value'] is None and row['category']=='size'
     assert row['range_kind']=='gridded_contour_method_sensitivity_not_measurement_uncertainty'
     assert row['evidence_role']=='qualified_osw_gridded_source_case_reference' and row['rights_screened_release_eligible'] is False
+
+
+def validate_speed_core_reference(row,report):
+    c=row['calculation'];summary=speed_core_summary(report,row['entity_id'],c['component'])
+    assert all(c[k]==v for k,v in summary.items())
+    assert row['metric']==summary['metric'] and row['unit']==summary['unit'] and row['range_value']==summary['range_value']
+    assert row['value'] is None and row['period_start']==row['period_end']==summary['date']
+    assert row['category']==('kinematics' if c['component']=='speed' else 'size')
+    assert row['range_kind']=='level_step_comparison_and_outward_rounding_not_physical_uncertainty'
+    assert row['evidence_role']=='qualified_osw_speed_core_source_case_reference' and row['rights_screened_release_eligible'] is False
+    assert row.get('depth_m') is None and row.get('source_map_estimate') is None
 
 
 def validate_model_event_contrast(row):
@@ -861,6 +873,21 @@ def build():
                 c=r['calculation']
                 if c.get('method')=='spherical_sampled_station_separation_v1':validate_station_distance(r)
                 elif c.get('method')=='gridded_adt_named_source_case_v1':validate_gridded_case(r,read(c['report_file']))
+                elif c.get('method')=='osw_speed_contour_named_source_case_v1':
+                    report=read(c['report_file']);assert pins[c['report_file']]==c['report_sha256']==source['source_review_sha256']
+                    validate_speed_core_reference(r,report)
+                    assert report['source_tests_passed']=={'geometry':7,'speed_core':12}
+                    for filename,pin in report['cloud_input_sha256'].items():
+                        assert hashlib.sha256((ROOT/filename).read_bytes()).hexdigest()==pin
+                    a=report['case_associations'][r['entity_id']]
+                    assert a['source_name']==identities[r['entity_id']]['name']
+                    locations=read(a['position_reference_file']);assert pins[a['position_reference_file']]==a['position_reference_sha256']
+                    position=next(v for v in locations['records'] if v['id']==a['position_reference_id'])
+                    assert position['entity_id']==r['entity_id'] and position['source_name']==a['source_name']
+                    assert position['observation_date']==a['date'] and a['source_point']==[position['navigation_candidate']['longitude_deg'],position['navigation_candidate']['latitude_deg']]
+                    assert position['physical_crosswalk_verified'] is False and position['size_inferred'] is False
+                    read(report['primary_location_source_review_file'])
+                    assert pins[report['primary_location_source_review_file']]==report['primary_location_source_review_sha256']
                 else:assert c['multiplier']*c['deformation_radius_km']==c['unrounded_km'] and round(c['unrounded_km'])==r['value']
             if r.get('basis_source_file'):
                 basis=read(r['basis_source_file']);events=pointer(basis,r['basis_source_pointer'])
@@ -963,7 +990,7 @@ def build():
 
 
 def main():
-    document=build();(ROOT/JSON_PATH).write_bytes((json.dumps(document,indent=2,ensure_ascii=False)+'\n').encode())
+    document=build();(ROOT/JSON_PATH).write_bytes((json.dumps(document,indent=1,ensure_ascii=False)+'\n').encode())
     fields=['entity_id','id','category','metric','value','unit','range_value_json','range_kind','lower_bound','lower_bound_exclusive','upper_bound','upper_bound_exclusive','standard_deviation','sample_count','period_start','period_end','period_label','period_precision','component_label','case_label','right_censored','value_conflict','date_conflict','source_claims_json','calculation_json','calendar_support_json','rights_screened_release_eligible','evidence_role','definition','scope','qualification','source_access','source_url','source_locator','source_file','source_pointer','source_sha256']
     fields.extend(['named_case_association_json','independent_named_case_json','source_plot_estimate_json','model_context_json','detection_context_json','source_map_estimate_json','profile_context_json'])
     out=io.StringIO(newline='');writer=csv.DictWriter(out,fieldnames=fields,extrasaction='ignore');writer.writeheader()

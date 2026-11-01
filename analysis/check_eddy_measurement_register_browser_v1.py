@@ -706,6 +706,20 @@ def run():
             assert 'Size reference needed' in child.inner_text() and child.locator('.eddy-record').count()==0
             child.screenshot(path=str(OUT/'wilde-ii-size-gap-retained.png'))
             checks.append('Provisional 2021 Wilde Figure 9 illustration: duplicate Figure 10 caption unresolved and visible on both cards, 10 November snapshot only, pixel margins not attribution uncertainty; no Wilde II or 2022-panel values; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-26-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-26-primary"]')
+            for needle in ['5,000–10,000 km² · speed-core estimate','50–60 km · speed-core estimate','75–100 km · speed-core estimate','100–125 km · speed-core estimate','0.3–0.35 m/s · speed-core estimate','OSW gridded speed core','not the full outer eddy','not physical uncertainty or a seasonal range','not a direct local current maximum','0.005 and 0.0025 m','50 / 52 native gridpoints','1997-03-24']:
+                assert needle in row.inner_text(),needle
+            assert 'Size reference needed' not in row.inner_text()
+            assert 'Model calculation: undefined' not in row.inner_text()
+            for component in ['area','radius','east-west','north-south','speed']:
+                card=page.locator('[data-evidence-id="deviant-1997-03-24-speed-core-'+component+'"]')
+                page.set_viewport_size({'width':1440,'height':1000});card.screenshot(path=str(OUT/('deviant-speed-core-'+component+'.png')))
+                if component in ['east-west','speed']:
+                    page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                    card.screenshot(path=str(OUT/('mobile-deviant-speed-core-'+component+'.png')))
+            checks.append('Deviant source-associated speed core: four size diagnostics and circum-averaged geostrophic speed, explicit core-versus-outer and numerical-versus-physical uncertainty limits, native support/dated source and no generic model fallback; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

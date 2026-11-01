@@ -7,7 +7,7 @@
     if(r.lower_bound!==null)return `${r.lower_bound_exclusive?'>':'≥'} ${num(r.lower_bound)} ${units[r.unit]||r.unit}`;
     if(r.upper_bound!==undefined&&r.upper_bound!==null)return `${r.upper_bound_exclusive?'<':'≤'} ${num(r.upper_bound)} ${units[r.unit]||r.unit}`;
     if(r.calendar_support?.method==='source_narrative_nautilus_ii_calendar_span')return `${r.range_value.map(num).join('–')} days · calendar bounds`;
-    if(r.range_value)return `${r.range_value.map(num).join('–')} ${units[r.unit]||r.unit} · ${r.source_plot_estimate?'graph estimate':r.source_map_estimate?.case.method==='source_operational_chart_visible_line_spans_v1'?'operational chart estimate':r.source_map_estimate?.case.method==='source_visible_model_front_meridional_span_v1'?'visible model-front estimate':r.source_map_estimate?.case.method==='source_image_scale_bar_equivalent_spans_v1'?'chart-scale equivalent':r.source_map_estimate?'map estimate':r.calculation?.method==='spherical_sampled_station_separation_v1'?'coordinate estimate':r.calculation?.method==='gridded_adt_named_source_case_v1'?'gridded contour estimate':'source range'}`;
+    if(r.range_value)return `${r.range_value.map(num).join('–')} ${units[r.unit]||r.unit} · ${r.source_plot_estimate?'graph estimate':r.source_map_estimate?.case.method==='source_operational_chart_visible_line_spans_v1'?'operational chart estimate':r.source_map_estimate?.case.method==='source_visible_model_front_meridional_span_v1'?'visible model-front estimate':r.source_map_estimate?.case.method==='source_image_scale_bar_equivalent_spans_v1'?'chart-scale equivalent':r.source_map_estimate?'map estimate':r.calculation?.method==='spherical_sampled_station_separation_v1'?'coordinate estimate':r.calculation?.method==='osw_speed_contour_named_source_case_v1'?'speed-core estimate':r.calculation?.method==='gridded_adt_named_source_case_v1'?'gridded contour estimate':'source range'}`;
     if(r.value===null)return 'Value unresolved';
     if(r.metric==='source_model_counterfactual_shedding_date_difference')return `${num(r.value)} ${r.value===1?'day':'days'}`;
     const elapsed=['source_track_elapsed_span','coherent_core_analysis_interval','source_dated_event_stage_interval','source_model_counterfactual_shedding_date_difference'].includes(r.metric);
@@ -205,6 +205,14 @@
       add('p',`Native scenario extrema: ${c.unrounded_extrema.map(num).join('–')} ${units[r.unit]||r.unit}; outward rounding to ${c.round_outward_to} ${units[r.unit]||r.unit}. Mapping and physical-front errors remain unquantified.`,box);
       add('p','First March detachment; later reattachments and August departure remain separate. Registry initial separation: 2013-04-08. Registry physical crosswalk unverified; no other Kraken values inherited.',box);
       link('Primary dated Kraken map','https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2019/09/Hamilton_etal_LoopCurrentObs_2019_JPOx.pdf',box);
+    }else if(r.calculation?.method==='osw_speed_contour_named_source_case_v1'){
+      const c=r.calculation;
+      add('strong','OSW gridded speed core · not the full outer eddy.',add('p',undefined,box));
+      add('p','The selected contour maximizes average geostrophic speed around supported closed contours. Equivalent radius is a speed-core scale; bounding arcs are not principal width. The speed is a circum-averaged estimate, not a direct local current maximum.',box);
+      add('p','Two peak-relative level steps: 0.005 and 0.0025 m. Their comparison plus outward rounding is numerical only, not physical uncertainty or a seasonal range. Mapping, MDT and gradient/interpolation errors remain unquantified.',box);
+      add('p',`Source point (longitude, latitude): ${c.source_point_lon_lat.join(', ')}; grid peak: ${c.grid_peak_lon_lat.join(', ')}. About ${num(c.peak_distance_from_source_point_km)} km apart. The source center is coarsely reported; the 150 km search rule is not position accuracy.`,box);
+      add('p',`Selected interior support: ${c.selected_interior_gridpoints.join(' / ')} native gridpoints. A 0.125° grid and the 12-point support rule do not establish effective feature resolution.`,box);
+      add('p','24 March 1997 snapshot only. Deviant / LC ring D is explicitly named in the source, but the registry physical crosswalk and SST-boundary equivalence remain unverified. No other eddy values, outer radius, physical footprint, state join or seasonal animation inferred.',box);
     }else if(r.calculation)add('p',`Model calculation: ${r.calculation.multiplier} × ${r.calculation.deformation_radius_km} km = ${num(r.calculation.unrounded_km)} km, rounded to ${num(r.value)} km.`,box);
     if(r.calendar_support){
       const c=r.calendar_support;
