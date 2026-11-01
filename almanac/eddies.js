@@ -29,8 +29,15 @@
       }
     }
     if(r.profile_context){
-      add('strong',(r.profile_context.method==='source_reported_thermal_level_enclosed_area'?'Thermal-level enclosed area':r.profile_context.method==='source_reported_multisensor_current_comparison'?'Multi-instrument current comparison':r.profile_context.method==='source_reported_operational_adcp_maximum'?'Operational ADCP current diagnostic':r.profile_context.method==='source_reported_mooring_current_diagnostic'?'Fixed-mooring current diagnostic':r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));
+      add('strong',(r.profile_context.method==='source_reported_yazoo_2022_case'?'Source-named Yazoo reference':r.profile_context.method==='source_reported_thermal_level_enclosed_area'?'Thermal-level enclosed area':r.profile_context.method==='source_reported_multisensor_current_comparison'?'Multi-instrument current comparison':r.profile_context.method==='source_reported_operational_adcp_maximum'?'Operational ADCP current diagnostic':r.profile_context.method==='source_reported_mooring_current_diagnostic'?'Fixed-mooring current diagnostic':r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));
       const c=r.profile_context;
+      if(c.method==='source_reported_yazoo_2022_case'){
+        add('strong',c.quantity==='radius'?'Approximate high-ADT-patch radius · not diameter.':'Eastern-flank cruise current · depth and statistic unspecified.',add('p',undefined,box));
+        add('p',c.quantity==='radius'?'Source map averaged 7–17 November 2022; not a daily footprint. No area or principal width derived.':'WHOI cruise 1–5 October 2022; exact current sample times and mean/maximum definition unspecified. Nearby plotted depth averages are not assigned to this prose value.',box);
+        add('p','Explicit source name: Yazoo. Registry initial separation: 2022-06-20; physical crosswalk unverified. No Yazoo II values inherited.',box);
+        add('p','October current and November radius are separate observations; no simultaneous profile or annual range inferred.',box);
+      }
+
       if(c.method==='source_reported_thermal_level_enclosed_area'){
         add('p',`Survey label: ${c.survey_label}; area within the ${c.temperature_surface_depth_contour_m} m depth contour of the 8°C temperature surface.`,box);
         add('p',`Source table: ${c.source_table_value} × 1,000 km². Planimeter measurement on hand-contoured hydrographic maps; uncertainty unspecified.`,box);

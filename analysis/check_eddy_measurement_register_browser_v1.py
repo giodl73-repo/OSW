@@ -562,6 +562,19 @@ def run():
             for month,depth in [('1985-10',550),('1986-04',600)]:
                 page.locator(f'[data-evidence-id="fast-saic-1988-thermal-area-{month}-{depth}m"]').screenshot(path=str(OUT/f'mobile-fast-thermal-area-{month}-{depth}m.png'))
             checks.append('Fast thermal-level areas: 17 positive source cells, distinct survey and contour levels, unit conversion, no filled zero or unclosed cells, no outer boundary or thickness inference; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-74-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-74-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
+            for needle in ['150 km','2.5 knots','Approximate high-ADT-patch radius','not diameter','7–17 November 2022','not a daily footprint','No Yazoo II values inherited','1–5 October 2022','physical crosswalk unverified']:
+                assert needle in row.inner_text(),needle
+            assert row.locator('[data-evidence-id^="yazoo-2022-"]').count()==2
+            assert 'Size reference needed' not in row.inner_text()
+            page.set_viewport_size({'width':1440,'height':1000})
+            for part in ['radius','current']:page.locator(f'[data-evidence-id="yazoo-2022-{part}-primary-reference"]').screenshot(path=str(OUT/f'yazoo-{part}.png'))
+            row.locator('summary').screenshot(path=str(OUT/'yazoo-summary.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            for part in ['radius','current']:page.locator(f'[data-evidence-id="yazoo-2022-{part}-primary-reference"]').screenshot(path=str(OUT/f'mobile-yazoo-{part}.png'))
+            checks.append('Yazoo explicit named primary radius and separately dated local cruise current: temporal-average limits, no diameter or Yazoo II inheritance, primary size gap closed; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

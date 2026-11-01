@@ -108,6 +108,23 @@ def validate_model_event_contrast(row):
 
 def validate_profile_context(row):
     c=row['profile_context']
+    if c['method']=='source_reported_yazoo_2022_case':
+        assert row['entity_id']=='eddy:horizon:loop-74-primary'
+        assert (c['source_name'],c['registry_name'],c['registry_source_number'],c['registry_initial_separation'])==('Yazoo','Yazoo',74,'2022-06-20')
+        assert row['rights_screened_release_eligible'] is False and row['evidence_role']=='qualified_published_named_case_reference'
+        assert row.get('depth_m') is None and c['sample_depth_m'] is None and row.get('range_value') is None
+        assert all(c[k] is False for k in ['source_uncertainty_quantified','physical_crosswalk_verified','secondary_case_values_inherited','annual_extrema_inferred','whole_eddy_maximum_inferred','is_eddy_vertical_extent','geometry_inferred','mean_or_maximum_statistic_specified'])
+        if c['quantity']=='radius':
+            assert (row['category'],row['metric'],row['value'],row['unit'])==('size','source_reported_high_adt_patch_radius',150,'km')
+            assert c['source_window']==[row['period_start'],row['period_end']]==['2022-11-07','2022-11-17']
+            assert row['period_precision']=='source_field_average_window' and c['radius_relation']=='approximately'
+            assert c['source_map_is_temporal_average'] is True and c['boundary_operator_transferred_to_osw'] is False
+        else:
+            assert c['quantity']=='current'
+            assert (row['category'],row['metric'],row['value'],row['unit'])==('kinematics','source_reported_eastern_flank_cruise_current_speed',2.5,'knots')
+            assert c['source_window']==[row['period_start'],row['period_end']]==['2022-10-01','2022-10-05']
+            assert row['period_precision']=='source_cruise_window_not_exact_sample_times'
+        return
     if c['method']=='source_reported_thermal_level_enclosed_area':
         assert row['entity_id']=='eddy:horizon:loop-03-primary' and row['category']=='size' and row['unit']=='km^2'
         assert row['metric']=='source_reported_thermal_level_enclosed_area'
@@ -405,6 +422,14 @@ def build():
                 assert report['original_pdf_retained'] is False and report['source_figure_pixels_reviewed'] is False
                 assert report['counterfactual_event_dates'][r['model_context']['experiment']]==r['period_end']
             if r.get('profile_context'):validate_profile_context(r)
+            if r.get('profile_context',{}).get('method')=='source_reported_yazoo_2022_case':
+                report=read(source['source_review_file']);assert pins[source['source_review_file']]==source['source_review_sha256']
+                assert report['status']=='ORIGINAL_PRIMARY_YAZOO_RADIUS_AND_LOCAL_CURRENT_VERIFIED'
+                assert report['registry_candidate']['entity_id']==r['entity_id'] and report['registry_candidate']['physical_crosswalk_verified'] is False
+                assert report['accepted_references']['radius_km' if r['category']=='size' else 'eastern_flank_current_knots']==r['value']
+                legacy=next(v for v in read('research/named-loop-current-eddies.json')['entries'] if v['source_number']==74)
+                assert (legacy['name'],legacy['initial_separation'])==('Yazoo','2022-06-20')
+
             if r.get('profile_context',{}).get('method')=='source_reported_thermal_level_enclosed_area':
                 report=read(source['source_review_file']);assert pins[source['source_review_file']]==source['source_review_sha256']
                 lead=report['verified_numeric_source_lead'];assert lead['source_pixels_reviewed'] is True and lead['positive_numeric_cells']==17
