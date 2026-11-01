@@ -337,7 +337,7 @@ class EddyRegister(unittest.TestCase):
         prior_csv=io.StringIO(newline='');writer=csv.DictWriter(prior_csv,fieldnames=fields,extrasaction='ignore');writer.writeheader();writer.writerows(prior_rows)
         self.assertEqual(hashlib.sha256(prior_csv.getvalue().encode()).hexdigest(),batch['baseline_measurement_csv_sha256'])
         self.assertEqual(len(d['evidence']),424)
-        self.assertEqual(d['size_classification_counts'],{'records':15,'owners':15,'owners_with_numeric_size_gap':9,'labels':{'Huge':6,'Medium':2,'Small':7}})
+        self.assertEqual(d['size_classification_counts'],{'records':15,'owners':15,'owners_with_numeric_size_gap':7,'labels':{'Huge':6,'Medium':2,'Small':7}})
         self.assertEqual((d['counts']['size_owners'],d['counts']['identities_with_measurements'],d['counts']['identities_without_measurements']),(93,122,14))
         self.assertEqual(sum(r['size_gap'] for r in d['records']),43)
         classes=d['size_classifications'];self.assertEqual(len(classes),15)

@@ -279,7 +279,7 @@ def run():
             checks.append('Sukhumi and Kerch-origin model sizes, vertical reach and distinct velocity phases; bathymetry configuration dependence, source access and migrated size location retained; no dated observation or state containment inferred')
             page.set_viewport_size({'width':1440,'height':1000});page.fill('#eddy-search','')
             page.select_option('#eddy-filter','size-class');assert page.locator('#eddy-rows tr').count()==15
-            assert '9 of these still need numeric sizes' in page.locator('#eddy-class-summary').inner_text()
+            assert '7 of these still need numeric sizes' in page.locator('#eddy-class-summary').inner_text()
             page.screenshot(path=str(OUT/'source-size-class-filter.png'))
             page.fill('#eddy-search','QE-2')
             qe=page.locator('tr[data-eddy-id="eddy:horizon:loop-40-secondary"]');qe.locator('summary').click()
