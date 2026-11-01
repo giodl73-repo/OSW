@@ -59,7 +59,7 @@ def main():
             dates=[str(v)[:10] for v in netCDF4.num2date(data['time'][:],data['time'].units,calendar=data['time'].calendar)]
             for case in r['cases']:
                 index=dates.index(case['date']);field=np.ma.filled(data['adt'][index,:,:],np.nan)
-                review={**case,'source_time_index':index,'sweeps':[]}
+                review={**case,'source_time_index':index,'input_height_reference':'native_daily_ADT_m_not_demeaned','sweeps':[]}
                 fig,(map_ax,profile_ax)=plt.subplots(1,2,figsize=(12,5),constrained_layout=True)
                 map_ax.pcolormesh(lon,lat,~np.isfinite(field),cmap='Greys',vmin=0,vmax=1,shading='nearest',alpha=.25)
                 for step,color in [(.005,'#d08c36'),(.0025,'#006d77')]:

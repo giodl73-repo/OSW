@@ -100,6 +100,8 @@ def speed_profile(lon, lat, height, source_point, step_m=.005, maximum_drop_m=.6
         enclosing = [(m,p) for m,p in loops if Path(p).contains_point(peak['lon_lat'])]
         if len(enclosing) != 1: exclude('no_unique_closed_contour_enclosing_peak'); continue
         metrics, points = enclosing[0]; path = Path(points)
+        metrics = dict(metrics)
+        metrics['peak_input_height_m'] = metrics.pop('peak_demeaned_adt_m')
         if int(np.sum(path.contains_points(maxima_positions))) != 1:
             exclude('multiple_enclosed_maxima'); continue
         if len(plateau_positions) and np.any(path.contains_points(plateau_positions)):
