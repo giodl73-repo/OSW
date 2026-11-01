@@ -6,6 +6,7 @@ import pathlib
 import time
 import urllib.request
 
+import contourpy
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -64,6 +65,11 @@ def main():
                 record = {'date': day, 'source_time_index': index, 'scenarios': []}
                 for weighted in [False, True]:
                     z, mean, count = demean(lon, lat, raw, weighted)
+                    if not weighted:
+                        context_lines = contourpy.contour_generator(x=lon, y=lat, z=np.ma.masked_invalid(z),
+                            name='serial', line_type='SeparateCode', corner_mask=False, quad_as_tri=False).lines(.17)[0]
+                        for points in context_lines:
+                            ax.plot(points[:, 0], points[:, 1], color='#75808b', lw=.65, ls='--', alpha=.8)
                     for level in [.15, .17, .19]:
                         candidates, rejected = contour_candidates(lon, lat, z, level)
                         record['scenarios'].append({'mean_method': 'cos_latitude_weighted' if weighted else 'finite_gridpoint_arithmetic',
@@ -80,12 +86,13 @@ def main():
                     if not weighted:
                         # Only the land/missing mask and extracted contours enter the retained image.
                         ax.pcolormesh(lon, lat, ~np.isfinite(z), cmap='Greys', vmin=0, vmax=1, shading='nearest', alpha=.22)
-                ax.set(xlim=(-99, -79), ylim=(17, 32), title=day, xlabel='Longitude', ylabel='Latitude')
+                primary = next(s for s in record['scenarios'] if s['mean_method'] == 'finite_gridpoint_arithmetic' and s['level_m'] == .17)
+                ax.set(xlim=(-99, -79), ylim=(17, 32), title=f"{day} — {len(primary['candidates'])} eligible closed loops", xlabel='Longitude', ylabel='Latitude')
                 ax.set_aspect(1 / np.cos(np.deg2rad(25)))
                 ax.grid(alpha=.15)
                 result['days'].append(record)
         for ax in list(axes.flat)[len(request['dates']):]: ax.set_visible(False)
-        fig.suptitle('Unnamed daily high-interior contour candidates — no named-eddy assignment\nArithmetic Gulf demean; grey 0.15 m / teal 0.17 m / brown 0.19 m; area screen ≥4,000 km²', fontsize=13)
+        fig.suptitle('Unnamed daily contour candidates — no named-eddy assignment\nArithmetic Gulf demean; teal 0.17 m / grey 0.15 m / brown 0.19 m; area screen ≥4,000 km²\nDashed: all 0.17 m paths for context, including open/rejected outlines; labels restart in every panel', fontsize=12)
         fig.savefig(OUT / 'candidate-overview.png', dpi=125); plt.close(fig)
         result['status'] = 'PASS_EXPLORATORY_CONTOUR_PILOT_NO_ADMISSION'
         result['method'] = {
