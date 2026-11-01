@@ -452,6 +452,19 @@ def run():
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             page.locator('[data-evidence-id="murphy-calman-1989-meridional-span"]').screenshot(path=str(OUT/'mobile-murphy-profile-span.png'))
             checks.append('Murphy selected satellite height-profile crossings and peak retain date, diagnostic threshold sensitivity and original pixel verification; meridional projection is not diameter or oblique track length, dynamic height is not eddy depth; mobile layout')
+            for owner,name,needles,record in [('eddy:horizon:loop-08-primary','kathleen',['75 cm/s','source direction: southward','post-coalescence context'],'post-coalescence-spring-1988-100m-site-speed'),('eddy:horizon:loop-10-primary','murphy',['80–90 cm/s','30–40 cm/s','10–20 cm/s','70–80 cm/s','instrument depth: 725 m','source direction: northeastward','source direction: eastward'],'september-1988-725m-site-speed')]:
+                page.goto(base+'/almanac/eddies.html?id='+owner)
+                page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+                row=page.locator('tr[data-eddy-id="'+owner+'"]');assert row.locator('details').evaluate('(e)=>e.open')
+                page.set_viewport_size({'width':1440,'height':1000})
+                for needle in needles+['Fixed-mooring current diagnostic','SAIC GG','mean versus maximum is unspecified','not whole-eddy depth','raw time series unavailable']:
+                    assert needle in row.inner_text(),needle
+                assert 'Glider profile diagnostic' not in row.inner_text()
+                if name=='kathleen':assert 'Size reference needed' in row.inner_text()
+                page.locator('[data-evidence-id="'+name+'-nowlin-2001-'+record+'"]').screenshot(path=str(OUT/(name+'-mooring-current.png')))
+                page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                page.locator('[data-evidence-id="'+name+'-nowlin-2001-'+record+'"]').screenshot(path=str(OUT/('mobile-'+name+'-mooring-current.png')))
+            checks.append('Kathleen and Murphy fixed-mooring speeds preserve instrument depths, native units, source directions, coalescence context and imprecise time support; no whole-eddy maximum/thickness, simultaneous depth section or seasonal envelope; desktop and mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

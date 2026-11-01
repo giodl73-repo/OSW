@@ -71,6 +71,27 @@ def validate_numeric_interval(row):
 
 def validate_profile_context(row):
     c=row['profile_context']
+    if c['method']=='source_reported_mooring_current_diagnostic':
+        assert c['station']=='SAIC GG' and c['quantity_support']=='fixed_current_meter'
+        assert c['aggregation']=='source_described_site_current_speed' and c['statistic_mean_or_maximum_specified'] is False
+        assert row['category']=='kinematics' and row['unit']=='cm/s' and row['depth_m']==c['instrument_depth_m']
+        assert row['period_start'] is None and row['period_end'] is None
+        assert row['evidence_role']=='qualified_published_named_case_reference' and row['rights_screened_release_eligible'] is False
+        assert all(c[k] is False for k in ['raw_time_series_acquired','simultaneous_vertical_profile_inferred','is_eddy_vertical_extent','window_is_lifetime','physical_crosswalk_verified','whole_eddy_maximum_inferred'])
+        if row['entity_id']=='eddy:horizon:loop-08-primary':
+            assert c['phase']=='post_coalescence_spring_1988' and c['direction_as_reported']=='southward' and c['instrument_depth_m']==100
+            assert c['source_small_anticyclone_coalescence_context'] is True
+            assert row['metric']=='source_reported_mooring_current_speed' and row['value']==75 and row.get('range_value') is None
+        else:
+            assert row['entity_id']=='eddy:horizon:loop-10-primary' and c['source_small_anticyclone_coalescence_context'] is False
+            assert row['metric']=='source_reported_mooring_current_speed_range' and row['value'] is None
+            assert row['range_kind']=='source_reported_site_current_speed_interval'
+            if c['phase']=='september_1988':
+                assert c['direction_as_reported']=='northeastward' and c['instrument_depth_m'] in [100,300,725]
+                assert row['range_value']=={100:[80,90],300:[30,40],725:[10,20]}[c['instrument_depth_m']]
+            else:
+                assert c['phase']=='late_october_1988' and c['direction_as_reported']=='eastward' and c['instrument_depth_m']==100 and row['range_value']==[70,80]
+        return
     if c['method']=='source_reported_airborne_temperature_diagnostic':
         assert row['entity_id']=='eddy:horizon:loop-31-primary'
         assert c['phase']=='single_mission_temperature_transect' and c['thermal_reference_celsius']==20

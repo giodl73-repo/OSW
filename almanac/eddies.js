@@ -25,8 +25,13 @@
       add('p',`Registry initial separation: ${a.registry_initial_separation}; report context: ${a.report_separation_context}. Separation conventions remain unreconciled.`,box);
     }
     if(r.profile_context){
-      add('strong',(r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));
+      add('strong',(r.profile_context.method==='source_reported_mooring_current_diagnostic'?'Fixed-mooring current diagnostic':r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));
       const c=r.profile_context;
+      if(c.method==='source_reported_mooring_current_diagnostic'){
+        add('p',`${c.station} · instrument depth: ${c.instrument_depth_m} m · source direction: ${c.direction_as_reported}.`,box);
+        add('p','Native cm/s site speeds; mean versus maximum is unspecified. Exact sample dates and raw time series unavailable; these readings do not establish a simultaneous vertical section, whole-eddy maximum or thickness.',box);
+        if(c.source_small_anticyclone_coalescence_context)add('p','Kathleen coalesced with a smaller anticyclone; retain the post-coalescence context.',box);
+      }
       if(c.vertical_averaging_interval_m)add('p',`Depth averaging: ${c.vertical_averaging_interval_m.join('–')} m; averaging axis: depth.`,box);
       if(c.thermal_reference_celsius!==undefined)add('p',`Thermal reference: ${c.thermal_reference_celsius}°C isotherm.`,box);
       if(c.related_circuit_window)add('p',`Related circuit: ${c.related_circuit_window.join(' to ')}; context only, not exact sample dates.`,box);

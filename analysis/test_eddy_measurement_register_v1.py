@@ -12,7 +12,7 @@ class EddyRegister(unittest.TestCase):
         d=register.build()
         self.assertEqual(len(d['records']),136)
         self.assertEqual(len({r['entity_id'] for r in d['records']}),136)
-        self.assertEqual(len(d['evidence']),338)
+        self.assertEqual(len(d['evidence']),343)
         for path,pin in d['input_sha256'].items():self.assertEqual(hashlib.sha256((register.ROOT/path).read_bytes()).hexdigest(),pin)
         for r in d['evidence']:
             source=json.loads((register.ROOT/r['source_file']).read_bytes())
@@ -59,7 +59,7 @@ class EddyRegister(unittest.TestCase):
     def test_csv_does_not_drop_conflicts_or_rewrite_units(self):
         d=register.build();evidence={r['id']:r for r in d['evidence']}
         with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:rows=list(csv.DictReader(stream))
-        self.assertEqual(len(rows),338)
+        self.assertEqual(len(rows),343)
         for r in rows:
             original=evidence[r['id']]
             self.assertEqual(r['unit'],original['unit']);self.assertEqual(r['source_pointer'],original['source_pointer'])
@@ -332,7 +332,7 @@ class EddyRegister(unittest.TestCase):
             reader=csv.DictReader(stream);fields=[k for k in reader.fieldnames if k not in ['detection_context_json','source_map_estimate_json','profile_context_json']];prior_rows=list(reader)[:299]
         prior_csv=io.StringIO(newline='');writer=csv.DictWriter(prior_csv,fieldnames=fields,extrasaction='ignore');writer.writeheader();writer.writerows(prior_rows)
         self.assertEqual(hashlib.sha256(prior_csv.getvalue().encode()).hexdigest(),batch['baseline_measurement_csv_sha256'])
-        self.assertEqual(len(d['evidence']),338)
+        self.assertEqual(len(d['evidence']),343)
         self.assertEqual(d['size_classification_counts'],{'records':15,'owners':15,'owners_with_numeric_size_gap':9,'labels':{'Huge':6,'Medium':2,'Small':7}})
         self.assertEqual((d['counts']['size_owners'],d['counts']['identities_with_measurements'],d['counts']['identities_without_measurements']),(77,120,16))
         self.assertEqual(sum(r['size_gap'] for r in d['records']),59)
@@ -778,7 +778,7 @@ class EddyRegister(unittest.TestCase):
         import hashlib,csv,io
         d=register.build();batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v25.json').read_bytes())
         self.assertEqual(hashlib.sha256(json.dumps(d['evidence'][:336],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest(),batch['baseline_evidence_sha256'])
-        rows=d['evidence'][336:];self.assertEqual(len(rows),2)
+        rows=d['evidence'][336:338];self.assertEqual(len(rows),2)
         self.assertEqual([(r['category'],r['unit'],r['range_value']) for r in rows],[('size','km',[175,225]),('structure','m',[.6,.7])])
         report=json.loads((register.ROOT/batch['source_profile_report']).read_bytes());self.assertEqual(report['status'],'PASS')
         self.assertEqual(report['batch_sha256'],hashlib.sha256((register.ROOT/'research/eddy-measurement-register-additions-v25.json').read_bytes()).hexdigest())
@@ -786,7 +786,7 @@ class EddyRegister(unittest.TestCase):
         self.assertEqual(report['original_pdf_sha256'],batch['sources']['calman-1989']['original']['sha256'])
         self.assertEqual((report['crossing_windows_verified'],report['tick_windows_verified'],report['peak_windows_verified']),(12,9,2))
         exports=list(csv.DictReader(io.StringIO((register.ROOT/'research/eddy-measurement-register-v1.csv').read_text(encoding='utf8'))))
-        self.assertEqual([json.loads(r['source_plot_estimate_json']) for r in exports[336:]],[r['source_plot_estimate'] for r in rows])
+        self.assertEqual([json.loads(r['source_plot_estimate_json']) for r in exports[336:338]],[r['source_plot_estimate'] for r in rows])
         prior=io.StringIO(newline='');writer=csv.DictWriter(prior,fieldnames=list(exports[0]));writer.writeheader();writer.writerows(exports[:336])
         self.assertEqual(hashlib.sha256(prior.getvalue().encode()).hexdigest(),batch['baseline_measurement_csv_sha256'])
         for r in rows:
@@ -804,5 +804,36 @@ class EddyRegister(unittest.TestCase):
         wrong=copy.deepcopy(c);wrong['crossings'][0]['crossings']['north']['distinct_columns']=[]
         with self.assertRaises(AssertionError):validate_case(wrong)
         with self.assertRaises(AssertionError):ink(bytes(300),10,10,[0,0,10,5],100)
+
+    def test_named_mooring_speeds_preserve_source_units_and_prior_records(self):
+        d=register.build();batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v26.json').read_bytes())
+        self.assertEqual(hashlib.sha256(json.dumps(d['evidence'][:338],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest(),batch['baseline_evidence_sha256'])
+        rows=d['evidence'][338:];self.assertEqual(len(rows),5)
+        self.assertEqual([r['depth_m'] for r in rows],[100,100,300,725,100]);self.assertEqual(rows[0]['value'],75)
+        self.assertEqual([r['range_value'] for r in rows[1:]],[[80,90],[30,40],[10,20],[70,80]])
+        self.assertEqual([r['profile_context']['direction_as_reported'] for r in rows],['southward','northeastward','northeastward','northeastward','eastward'])
+        for r in rows:
+            register.validate_profile_context(r);self.assertEqual(r['unit'],'cm/s');self.assertEqual(r['category'],'kinematics')
+            self.assertIsNone(r['period_start']);self.assertIsNone(r['period_end']);self.assertIsNone(r['uncertainty']);self.assertFalse(r['rank_eligible']);self.assertFalse(r['seasonal_playback_eligible']);self.assertFalse(r['physical_state_join_eligible'])
+        source=batch['sources']['nowlin-2001'];self.assertEqual(source['original']['sha256'],'2a41f8e02736876c5dbbd9388ddc6da789f4324e3d188c73b7fe863c4b8af192')
+        self.assertEqual((source['original']['bytes'],source['original']['pages']),(47392646,537));self.assertEqual(set(source['reviewed_page_png_sha256']),{'192','196'})
+        with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:
+            reader=csv.DictReader(stream);fields=reader.fieldnames;exports=list(reader)
+        prior=io.StringIO(newline='');writer=csv.DictWriter(prior,fieldnames=fields);writer.writeheader();writer.writerows(exports[:338])
+        self.assertEqual(hashlib.sha256(prior.getvalue().encode()).hexdigest(),batch['baseline_measurement_csv_sha256'])
+        self.assertEqual([json.loads(r['profile_context_json']) for r in exports[338:]],[r['profile_context'] for r in rows])
+        self.assertEqual(d['counts']['size_owners'],77);self.assertEqual(sum(r['size_gap'] for r in d['records']),59)
+
+    def test_mooring_diagnostics_reject_inherited_depth_and_pooled_statistics(self):
+        import copy
+        rows=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v26.json').read_bytes())['records']
+        for index,key,value in [(0,'value',120.8),(0,'unit','m/s'),(1,'entity_id','eddy:horizon:loop-08-primary'),(2,'depth_m',100),(3,'range_value',[30,40]),(4,'period_start','1988-10-01')]:
+            wrong=copy.deepcopy(rows[index]);wrong[key]=value
+            with self.assertRaises(AssertionError):register.validate_profile_context(wrong)
+        for key,value in [('station','SAIC FF'),('is_eddy_vertical_extent',True),('whole_eddy_maximum_inferred',True),('simultaneous_vertical_profile_inferred',True),('statistic_mean_or_maximum_specified',True),('raw_time_series_acquired',True)]:
+            wrong=copy.deepcopy(rows[1]);wrong['profile_context'][key]=value
+            with self.assertRaises(AssertionError):register.validate_profile_context(wrong)
+        wrong=copy.deepcopy(rows[0]);wrong['profile_context']['source_small_anticyclone_coalescence_context']=False
+        with self.assertRaises(AssertionError):register.validate_profile_context(wrong)
 
 if __name__=='__main__':unittest.main()
