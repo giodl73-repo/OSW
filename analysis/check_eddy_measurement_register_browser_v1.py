@@ -762,6 +762,19 @@ def run():
                 card.screenshot(path=str(OUT/('mobile-nelson-frontal-chart-'+component+'.png')))
             row.locator('summary').screenshot(path=str(OUT/'nelson-frontal-chart-summary.png'))
             checks.append('Nelson explicitly named historical chart: two manual frontal extents, original dashed front retained, drifter/Loop Current exclusions, source-table week, no closed physical boundary, earlier local current cards preserved; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-78-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-78-primary"]')
+            for needle in ['250–325 km · circulation arrow estimate','225–275 km · circulation arrow estimate','Cardone provider circulation arrows','Observation date unspecified','27 May 2024','not sampling dates','Both closed-ink tests rejected','64 scenarios','illustration spans, not diameter']:
+                assert needle in row.inner_text(),needle
+            assert 'Size reference needed' not in row.inner_text() and 'Model calculation: undefined' not in row.inner_text()
+            for component in ['east-west','north-south']:
+                card=page.locator('[data-evidence-id="cardone-whg-public-circulation-arrow-'+component+'"]')
+                page.set_viewport_size({'width':1440,'height':1000});card.screenshot(path=str(OUT/('cardone-provider-arrow-'+component+'.png')))
+                page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                card.screenshot(path=str(OUT/('mobile-cardone-provider-arrow-'+component+'.png')))
+            row.locator('summary').screenshot(path=str(OUT/'cardone-provider-arrow-summary.png'))
+            checks.append('Cardone explicit provider graphic: two circulation-arrow spans, unknown observation date distinct from publication/screenshot, rejected closure and no physical-boundary inference, displayed-grid reading sensitivity; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

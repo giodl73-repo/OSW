@@ -702,3 +702,17 @@ physical uncertainty or annual extrema. Obtain chart-data periods from the
 source table instead of substituting the report separation date. Nelson uses
 26August-1September1989 from Table5.2-2, separately from registry24February1989.
 Preserve the first426 evidence records and CSV rows/header.
+
+For publicly reproduced provider circulation graphics, keep the provider credit,
+original linked image bytes and host publication context separately. An explicit
+source name supports a qualified graphic reference; a publication date, copyright
+year or screenshot filename must never become an observation date. Keep start
+and end dates null when the graphic does not provide an observation time.
+
+Cardone uses the existing RGB<=75 isolated-ink extremum reader, with six native
+pixels per extent and two-pixel shifts of six displayed-grid anchors across
+64 scenarios. Round outward to25km using the existing spherical span operator.
+Closed-ink tests at150/175 reject this graphic; do not join the arrow gaps.
+Report circulation-arrow spans only, not current-speed contours, diameter,
+principal width or a physical boundary. Media prose supplies no numeric input.
+Preserve all first428 evidence records and CSV rows/header.

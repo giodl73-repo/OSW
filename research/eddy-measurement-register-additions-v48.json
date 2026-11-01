@@ -1,0 +1,132 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 428,
+  "baseline_evidence_sha256": "508f97a6770f08b35b514a20921510344677bd486ad2a97d0cabcb7499e05c72",
+  "baseline_measurement_csv_sha256": "c2797ca8e8d6a7f4247006b675f46b0b5eb0be923dd73ee01ad1381ca19975f0",
+  "sources": {
+    "whg-cardone-public-arrow": {
+      "url": "https://npr-brightspot.s3.amazonaws.com/50/19/7c796be549e9b1ccce45a5cd6e9c/screenshot-2024-05-24-at-4-32-33-pm.png",
+      "citation": "Woods Hole Group (2024), EddyWatch circulation chart explicitly labeling Eddy Cardone; original provider image reproduced by WLRN in How an eddy in the Gulf of Mexico could supercharge hurricanes in a busy season, published 27 May 2024.",
+      "original": {
+        "url": "https://npr-brightspot.s3.amazonaws.com/50/19/7c796be549e9b1ccce45a5cd6e9c/screenshot-2024-05-24-at-4-32-33-pm.png",
+        "bytes": 835456,
+        "sha256": "465c66af8fa1e6e9bd3ef5398777800dcf2ed627a31c47b6c283101670848d05",
+        "width": 1988,
+        "height": 1530,
+        "host_article": "https://www.wlrn.org/hurricane-coverage/2024-05-27/eddy-hurricane-season-florida-atlantic-gulf-mexico",
+        "provider_credit": "Woods Hole Group / EddyWatch",
+        "raw_ocean_fields": false
+      },
+      "access": "Original public 1988 × 1530 provider chart acquired from the image linked by WLRN; SHA-verified and actual pixels reviewed. Visible Woods Hole Group / EddyWatch credit and EDDY CARDONE label. No observation date printed. Four black-ink extrema verified on one idle local CPU; closed-ink tests rejected and no gaps repaired.",
+      "source_review_file": "research/eddy-cardone-provider-arrow-source-review-v1.json",
+      "source_review_sha256": "50e5b5e4dc9ec4a798860a4ea36692d62db4f216a711d7f5d9ccd09b77783932",
+      "original_assets_republished": false
+    }
+  },
+  "records": [
+    {
+      "id": "cardone-whg-public-circulation-arrow-east-west",
+      "entity_id": "eddy:horizon:loop-78-primary",
+      "source_id": "whg-cardone-public-arrow",
+      "category": "size",
+      "metric": "source_provider_circulation_arrow_east_west_span",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        250,
+        325
+      ],
+      "range_kind": "source_arrow_reading_and_axis_sensitivity_not_physical_uncertainty",
+      "period_start": null,
+      "period_end": null,
+      "period_precision": "undated_provider_chart_publication_context_only",
+      "period_label": "Observation date unspecified. Provider chart reproduced in an article published 27 May 2024; publication and screenshot filename are not sampling dates.",
+      "case_label": "Cardone explicitly named provider circulation-arrow graphic; physical identity unverified",
+      "evidence_role": "map_read_circulation_arrow_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Original Woods Hole Group / EddyWatch image linked by WLRN, published 27 May 2024. EDDY CARDONE appears beside the black circulation arrows. No observation date or arrow contour threshold is printed.",
+      "definition": "Geographic east–west bounding span of the plotted Cardone black circulation arrows, using four isolated native-ink extremum windows.",
+      "scope": "Provider circulation-arrow illustration only, not a measured physical outer boundary, closed contour, diameter or principal width.",
+      "qualification": "Four native-ink extremum windows exclude coloured drifter tracks and text. Black arrows fail both closed-ink tests; no gaps are joined or repaired. Six pixels per extremum, ±2 pixels on six grid anchors, 64 axis scenarios and outward 25 km reporting describe reading/axis sensitivity only. Physical extent, map projection distortion and field/product error remain unquantified. The chart has no observation date: 27 May 2024 is publication context only, and the screenshot filename is not a sample timestamp. No current threshold, exact center, radius, diameter, area, footprint, state join, rank or seasonal envelope inferred.",
+      "calculation": {
+        "method": "source_public_cardone_circulation_arrow_spans_v1",
+        "component": "east_west",
+        "source_case_name": "Cardone",
+        "range_km": [
+          250,
+          325
+        ],
+        "nominal_audit_span_km": 286.623032,
+        "audit_reading_extrema_km": [
+          272.324047,
+          301.193251
+        ],
+        "axis_shift_scenarios": 64,
+        "reading_allowance_native_pixels": 6,
+        "axis_allowance_native_pixels": 2,
+        "round_outward_km": 25,
+        "range_is_reading_only": true,
+        "physical_uncertainty_quantified": false,
+        "observation_date": null,
+        "publication_context_date": "2024-05-27",
+        "publication_date_is_observation_date": false,
+        "closed_boundary_inferred": false,
+        "whole_physical_eddy_extent_inferred": false,
+        "report_file": "research/eddy-cardone-provider-arrow-source-review-v1.json",
+        "report_sha256": "50e5b5e4dc9ec4a798860a4ea36692d62db4f216a711d7f5d9ccd09b77783932"
+      }
+    },
+    {
+      "id": "cardone-whg-public-circulation-arrow-north-south",
+      "entity_id": "eddy:horizon:loop-78-primary",
+      "source_id": "whg-cardone-public-arrow",
+      "category": "size",
+      "metric": "source_provider_circulation_arrow_north_south_span",
+      "value": null,
+      "unit": "km",
+      "range_value": [
+        225,
+        275
+      ],
+      "range_kind": "source_arrow_reading_and_axis_sensitivity_not_physical_uncertainty",
+      "period_start": null,
+      "period_end": null,
+      "period_precision": "undated_provider_chart_publication_context_only",
+      "period_label": "Observation date unspecified. Provider chart reproduced in an article published 27 May 2024; publication and screenshot filename are not sampling dates.",
+      "case_label": "Cardone explicitly named provider circulation-arrow graphic; physical identity unverified",
+      "evidence_role": "map_read_circulation_arrow_reference",
+      "rights_screened_release_eligible": false,
+      "source_locator": "Original Woods Hole Group / EddyWatch image linked by WLRN, published 27 May 2024. EDDY CARDONE appears beside the black circulation arrows. No observation date or arrow contour threshold is printed.",
+      "definition": "Geographic north–south bounding span of the plotted Cardone black circulation arrows, using four isolated native-ink extremum windows.",
+      "scope": "Provider circulation-arrow illustration only, not a measured physical outer boundary, closed contour, diameter or principal width.",
+      "qualification": "Four native-ink extremum windows exclude coloured drifter tracks and text. Black arrows fail both closed-ink tests; no gaps are joined or repaired. Six pixels per extremum, ±2 pixels on six grid anchors, 64 axis scenarios and outward 25 km reporting describe reading/axis sensitivity only. Physical extent, map projection distortion and field/product error remain unquantified. The chart has no observation date: 27 May 2024 is publication context only, and the screenshot filename is not a sample timestamp. No current threshold, exact center, radius, diameter, area, footprint, state join, rank or seasonal envelope inferred.",
+      "calculation": {
+        "method": "source_public_cardone_circulation_arrow_spans_v1",
+        "component": "north_south",
+        "source_case_name": "Cardone",
+        "range_km": [
+          225,
+          275
+        ],
+        "nominal_audit_span_km": 253.726605,
+        "audit_reading_extrema_km": [
+          239.375961,
+          268.30924
+        ],
+        "axis_shift_scenarios": 64,
+        "reading_allowance_native_pixels": 6,
+        "axis_allowance_native_pixels": 2,
+        "round_outward_km": 25,
+        "range_is_reading_only": true,
+        "physical_uncertainty_quantified": false,
+        "observation_date": null,
+        "publication_context_date": "2024-05-27",
+        "publication_date_is_observation_date": false,
+        "closed_boundary_inferred": false,
+        "whole_physical_eddy_extent_inferred": false,
+        "report_file": "research/eddy-cardone-provider-arrow-source-review-v1.json",
+        "report_sha256": "50e5b5e4dc9ec4a798860a4ea36692d62db4f216a711d7f5d9ccd09b77783932"
+      }
+    }
+  ]
+}
