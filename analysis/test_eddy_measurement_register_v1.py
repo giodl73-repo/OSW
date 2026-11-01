@@ -88,7 +88,8 @@ class EddyRegister(unittest.TestCase):
             self.assertIn('before the June 1998 merger',r['scope'])
         laura=rows['laura-1999-van-aken-maximum-drift-speed']
         self.assertEqual((laura['value'],laura['unit']),(8.6,'km/day'))
-        self.assertFalse(any(r['category']=='size' and r['entity_id']=='eddy:geography:laura-1999' for r in d['evidence']))
+        self.assertFalse(any(r['category']=='size' and r['entity_id']=='eddy:geography:laura-1999' for r in d['evidence'][:48]))
+        self.assertEqual([r['evidence_role'] for r in d['evidence'] if r['category']=='size' and r['entity_id']=='eddy:geography:laura-1999'],['source_illustration_extent_reference']*2)
 
     def test_regional_ranges_models_and_phase_intervals_are_not_whole_feature_measurements(self):
         d=register.build();rows={r['id']:r for r in d['evidence']}

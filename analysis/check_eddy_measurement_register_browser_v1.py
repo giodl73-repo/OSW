@@ -95,7 +95,7 @@ def run():
             for search,needles in [
                 ('Kenai Eddy (2007)',['40 km','378 days','Track still present at the final study snapshot','disappearance date unknown']),
                 ('Haida-1998',['Haida-1998a','Haida-1998b','no post-merger radius inferred','Approaches 50 km']),
-                ('Agulhas Ring Laura',['8.6 km/day','Size reference needed'])]:
+                ('Agulhas Ring Laura',['8.6 km/day','Laura cartographic extent-circle span','not assumed geodesically circular'])]:
                 page.fill('#eddy-search',search);assert page.locator('#eddy-rows tr').count()==1
                 page.locator('#eddy-rows summary').click()
                 for needle in needles:assert needle in page.locator('#eddy-rows').inner_text(),(search,needle)
