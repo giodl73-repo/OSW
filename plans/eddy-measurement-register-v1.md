@@ -729,3 +729,13 @@ square root to invent a total or swirl speed. Generally-below references are
 not absolute bounds. Joint interaction excesses are not allocated to either
 eddy independently. Disjoint month windows remain disjoint; they establish
 no lifetime or seasonal envelope. Preserve first435 evidence and CSV rows.
+
+For a provider chart with an explicit printed map date, retain that date as
+map-label support and keep exact observation time unknown. A four-day drifter
+legend does not date the black arrow geometry. Feldman uses the same six-pixel
+extremum allowance, two-pixel shifts of six anchors,64 scenarios and outward
+25km reporting as Cardone; anchors must bracket the extents for every shift.
+Delivered JPEG resolution is not verified original-export resolution. Retain
+source markings and attribution in the review; do not republish the source
+asset or infer release rights, a physical boundary or seasonal range.
+Preserve all first437 evidence records and CSV rows/header.

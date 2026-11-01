@@ -56,7 +56,7 @@ def run():
             page.screenshot(path=str(OUT/'desktop.png'))
             for value,expected in [('individual_eddy',112),('recurrent_eddy_region',20),('eddy_family',4),('all',136)]:
                 page.select_option('#eddy-identity',value);assert page.locator('#eddy-rows tr').count()==expected
-            for value,expected in [('measured',counts['identities_with_measurements']),('gap',counts['identities_without_measurements']),('linked',counts['linked_primary_context_entries']),('unlinked-gap',1),('size-gap',sum(r['size_gap'] for r in document['records'])),('duration-gap',sum(r['duration_gap'] for r in document['records'])),('all',136)]:
+            for value,expected in [('measured',counts['identities_with_measurements']),('gap',counts['identities_without_measurements']),('linked',counts['linked_primary_context_entries']),('unlinked-gap',0),('size-gap',sum(r['size_gap'] for r in document['records'])),('duration-gap',sum(r['duration_gap'] for r in document['records'])),('all',136)]:
                 page.select_option('#eddy-filter',value);assert page.locator('#eddy-rows tr').count()==expected
             for category in ['size','duration','recurrence','travel','structure','kinematics','all']:
                 page.select_option('#eddy-category',category)
@@ -142,7 +142,7 @@ def run():
             assert primary.locator('.eddy-record').count()==3
             for name in ['Feldman','Edison']:
                 page.fill('#eddy-search',name);page.locator('#eddy-rows summary').click()
-                assert page.locator('#eddy-rows .eddy-record').count()==(0 if name=='Feldman' else 3)
+                assert page.locator('#eddy-rows .eddy-record').count()==(2 if name=='Feldman' else 3)
                 assert 'current status and age have not been established' in page.locator('#eddy-rows').inner_text()
                 if name=='Feldman':page.screenshot(path=str(OUT/'undated-active-label.png'),full_page=True)
             page.fill('#eddy-search','Kathleen');page.locator('#eddy-rows summary').click()
@@ -802,6 +802,19 @@ def run():
                 card.screenshot(path=str(OUT/('mobile-bosphorus-ke-'+key+'.png')))
             page.set_viewport_size({'width':1440,'height':1000});row.locator('summary').screenshot(path=str(OUT/'bosphorus-ke-summary.png'))
             checks.append('Bosphorus regional residual KE: typical qualifier is not an absolute bound, joint interaction not individual speed, four disjoint month windows, unchanged size gap; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-81-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-81-primary"]');text=row.inner_text()
+            for value in ['225–325 km · dated circulation arrow estimate','250–325 km · dated circulation arrow estimate','Feldman provider circulation arrows','January 6, 2026','not exact simultaneous observation time','four-day legend applies to drifter tracks','64 scenarios','Both closed-ink tests rejected','not diameter','800×648']:
+                assert value in text,value
+            assert 'Size reference needed' not in text and 'Model calculation: undefined' not in text
+            for component in ['east-west','north-south']:
+                card=page.locator('[data-evidence-id="feldman-whg-2026-01-06-circulation-arrow-'+component+'"]')
+                page.set_viewport_size({'width':1440,'height':1000});card.screenshot(path=str(OUT/('feldman-dated-arrow-'+component+'.png')))
+                page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                card.screenshot(path=str(OUT/('mobile-feldman-dated-arrow-'+component+'.png')))
+            page.set_viewport_size({'width':1440,'height':1000});row.locator('summary').screenshot(path=str(OUT/'feldman-dated-arrow-summary.png'))
+            checks.append('Feldman dated provider arrow spans: map-label date distinct from exact observation/four-day drifter support, unchanged ink/axis allowances, no physical geometry, source asset not republished; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
