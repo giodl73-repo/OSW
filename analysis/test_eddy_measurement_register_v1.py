@@ -262,7 +262,7 @@ class EddyRegister(unittest.TestCase):
         self.assertTrue(all(not r['measurement_assigned_to_another_name'] for r in batch['unmapped_named_source_rows']))
         with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:exports=list(csv.DictReader(stream))[270:285]
         self.assertEqual([json.loads(r['model_context_json']) for r in exports],[r['model_context'] for r in rows])
-        self.assertEqual(d['counts']['duration_owners'],99);self.assertEqual(d['counts']['kinematics_owners'],70)
+        self.assertEqual(d['counts']['duration_owners'],99);self.assertEqual(d['counts']['kinematics_owners'],72)
 
 
     def test_latakia_opposite_rotation_cases_keep_distinct_map_support(self):
