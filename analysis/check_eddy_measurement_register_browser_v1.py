@@ -575,6 +575,20 @@ def run():
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             for part in ['radius','current']:page.locator(f'[data-evidence-id="yazoo-2022-{part}-primary-reference"]').screenshot(path=str(OUT/f'mobile-yazoo-{part}.png'))
             checks.append('Yazoo explicit named primary radius and separately dated local cruise current: temporal-average limits, no diameter or Yazoo II inheritance, primary size gap closed; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-75-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-75-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
+            for needle in ['350–400 km','450–525 km','325–375 km','250–325 km','Source 17 cm SSH isoline span','not principal width or diameter','not an SST warm-patch size','128 scenarios','year typo','physical crosswalk unverified']:
+                assert needle in row.inner_text(),needle
+            assert row.locator('[data-evidence-id^="zodiac-lsu-"]').count()==4
+            assert 'Size reference needed' not in row.inner_text()
+            page.set_viewport_size({'width':1440,'height':1000})
+            for date in ['2022-12-29','2023-01-13']:
+                for component in ['east_west','north_south']:
+                    page.locator(f'[data-evidence-id="zodiac-lsu-{date}-{component}-isoline-span"]').screenshot(path=str(OUT/f'zodiac-{date}-{component}.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.locator('[data-evidence-id="zodiac-lsu-2023-01-13-north_south-isoline-span"]').screenshot(path=str(OUT/'mobile-zodiac-2023-01-13-north_south.png'))
+            checks.append('Zodiac original dated 17 cm SSH chart isolines: four bounding spans, reading/axis sensitivity, original map year over prose typo, no SST patch, principal width, physical footprint or seasonal envelope; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

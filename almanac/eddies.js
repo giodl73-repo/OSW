@@ -72,7 +72,16 @@
     }
     if(r.source_map_estimate){
       const m=r.source_map_estimate,c=m.case;
-      if(c.method==='source_operational_chart_visible_line_spans_v1'){
+
+      if(c.method==='source_bold_ssh_isoline_spans_v1'){
+        add('strong','Source 17 cm SSH isoline span · not principal width or diameter.',add('p',undefined,box));
+        add('p',`Zodiac · published map label ${c.date}. Bold closed line supplied by Robert Leben / CCAR; source SSH reference and exact composite/acquisition times unspecified.`,box);
+        add('p',`${m.component==='east_west'?'East–west parallel arc at the bounding mid-latitude':'North–south meridional arc'} on a ${c.earth_radius_km} km sphere. This is not an SST warm-patch size or the OSW gridded contour operator.`,box);
+        add('p',`Reading margins: ${c.reading_allowance_pixels} native pixels at each extent, ±${c.axis_sensitivity_pixels} pixel shifts of six labeled grid anchors, two neutral-ink gates and ${m.calculation.total_scenarios} scenarios. Rounded outward to ${c.round_outward_km} km; source uncertainty and seasonal extremes remain unquantified.`,box);
+        add('p','Closed source ink verified without gap repair. No physical footprint, area or state containment inferred. Source detachment around 2022-12-28 and registry 2022-12-27 remain unreconciled; physical crosswalk unverified.',box);
+        if(c.date==='2023-01-13')add('p','The source prose has a year typo; the linked original filename and map header both label 13 January 2023.',box);
+      }else if(c.method==='source_operational_chart_visible_line_spans_v1'){
+
         add('strong','Visible operational frontal-line span · low-resolution chart.',add('p',undefined,box));
         add('p',`Printed map date: ${c.date}; ${c.source_name}. Native panel: 303 × 240 pixels. Selected visible segments only; no missing ink or closed boundary reconstructed.`,box);
         add('p',`Reading method: two neutral-ink gates, six-pixel extent allowance, ±2 pixel axis anchors and ${m.calculation.total_scenarios} sensitivity cases; rounded outward to 25 km. This is reading sensitivity, not measured uncertainty or a seasonal range.`,box);
