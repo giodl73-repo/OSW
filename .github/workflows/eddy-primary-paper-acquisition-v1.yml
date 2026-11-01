@@ -1,0 +1,42 @@
+name: Eddy primary paper acquisition v1
+"on":
+  push:
+    branches: [codex/current-measurement-gaps]
+    paths:
+      - research/eddy-primary-paper-acquisition-request-v1.json
+concurrency:
+  group: osw-current-gap-delivery
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            analysis/acquire_eddy_primary_paper_v1.py
+            research/eddy-primary-paper-acquisition-request-v1.json
+      - id: request
+        run: |
+          python - <<'PY'
+          import json,os,pathlib
+          r=json.loads(pathlib.Path('research/eddy-primary-paper-acquisition-request-v1.json').read_bytes())
+          assert r['schema']=='osw.eddy-primary-paper-acquisition-request.v1' and type(r['execute']) is bool
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('execute='+str(r['execute']).lower()+'\n')
+          PY
+      - name: Fetch one bounded public paper without ocean-field processing
+        if: steps.request.outputs.execute == 'true'
+        run: |
+          cpu=$(python -c "import os; print(min(os.sched_getaffinity(0)))")
+          taskset -c "$cpu" nice -n 15 python analysis/acquire_eddy_primary_paper_v1.py
+      - uses: actions/upload-artifact@v6
+        if: steps.request.outputs.execute == 'true'
+        with:
+          name: eddy-primary-paper-acquisition-v1
+          path: .pytest_cache/eddy-primary-paper-acquisition-v1/
+          retention-days: 3
+          if-no-files-found: error
