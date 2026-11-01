@@ -1,7 +1,7 @@
 {
   "schema": "osw.eddy-altimetry-contour-pilot-request.v1",
-  "execute": false,
-  "revision": 4,
+  "execute": true,
+  "revision": 5,
   "maximum_cloud_jobs": 1,
   "maximum_local_heavy_jobs": 0,
   "measurement_admission_permitted": false,
@@ -16,114 +16,73 @@
   },
   "source_product_version": "cmems_obs-sl_glo_phy-ssh_my_allsat-l4-duacs-0.125deg_P1D_202411",
   "dates": [
-    "2011-06-20",
-    "2011-06-21",
-    "2011-06-22",
-    "2011-06-28",
-    "2011-07-28",
-    "2011-07-29",
-    "2011-07-30",
-    "2011-07-31",
-    "2011-08-01",
-    "2011-08-02",
-    "2011-08-08",
-    "2011-08-21"
+    "1997-03-23",
+    "1997-03-24",
+    "1997-03-25"
   ],
   "date_selection_context": {
-    "2011-06-21": "Brickley et al. 2012 OTC23343 Figure 5 left map date; explicit Galileo source case.",
-    "2011-08-01": "Same source Figure 5 right map date and page3 narrative. Caption says shed by July30, which is not the map date. Explicit Hadal source case."
+    "1997-03-24": "Berger et al. (2000), DeSoto Canyon Eddy Intrusion Study, MMS 2000-080, printed page 127/PDF page 147 explicitly names Deviant / LC ring D at 28 N, 88.7 W in the March 24, 1997 SST image.",
+    "1997-03-23": "Adjacent daily-product diagnostic only; no independently dated named position.",
+    "1997-03-25": "Adjacent daily-product diagnostic only; no independently dated named position."
   },
-  "scope": "Sparse-day diagnostic and sensitivity only. All loops unnamed. Prior published dates/areas are different-product comparison evidence, never a calibration target used to tune the level. No numerical or physical identity admission.",
+  "scope": "Sparse-day candidate diagnostics at unchanged levels and demeaning methods. March 24 probes are selected from the explicitly named source center. Neighbor days provide temporal context only. No physical identity, measurement, whole lifetime, state containment, source-error estimate or seasonal envelope admitted in this job.",
   "input_sha256": {
     "analysis/eddy_altimetry_contours_v1.py": "0d22d60c43bb4882001864b9ba52fdd8482a9db5c7653a4a49573b983aed74e0",
     "analysis/test_eddy_altimetry_contours_v1.py": "7285225017d983bbb1b7478ae76fe53345c85872fa130a98ed6328aae52054ef",
     "analysis/run_eddy_altimetry_contour_pilot_v1.py": "356354a184d64b37c08f32b3c896b78682fa0dfaf6bc1c086ae2c5dc4f12f5f7",
     ".github/workflows/eddy-altimetry-contour-pilot-v1.yml": "d401b88eb5a98ecd6d6a4a1c7c1f13ce80dd5045ab10f5502bcd98b7c6ab16ca"
   },
-  "review_refinement": "Compare primary provider dated Galileo/Hadal maps against daily product using approximate interior probes; no name/physical identity assignment in the extraction job.",
-  "completed_run_id": 41279891623,
-  "completed_source_commit": "6ba77568a374d35875e62cea50f58ef0c155351a",
+  "review_refinement": "Independent source text supplies a dated center, not a physical contour. Compare against gridded ADT candidates without changing levels, area screen, closure rules or frozen operator.",
   "review_control_points": {
-    "2011-06-21": {
-      "brickley-2012-galileo-june21-map-interior": [
+    "1997-03-24": {
+      "berger-2000-deviant-march24-source-center-probes": [
         [
-          -92.375,
-          25.625
+          -88.825,
+          27.875
         ],
         [
-          -92.375,
-          25.75
+          -88.825,
+          28
         ],
         [
-          -92.375,
-          25.875
+          -88.825,
+          28.125
         ],
         [
-          -92.25,
-          25.625
+          -88.7,
+          27.875
         ],
         [
-          -92.25,
-          25.75
+          -88.7,
+          28
         ],
         [
-          -92.25,
-          25.875
+          -88.7,
+          28.125
         ],
         [
-          -92.125,
-          25.625
+          -88.575,
+          27.875
         ],
         [
-          -92.125,
-          25.75
+          -88.575,
+          28
         ],
         [
-          -92.125,
-          25.875
-        ]
-      ]
-    },
-    "2011-08-01": {
-      "brickley-2012-hadal-august1-map-interior": [
-        [
-          -89.25,
-          26.25
-        ],
-        [
-          -89.25,
-          26.5
-        ],
-        [
-          -89.25,
-          26.75
-        ],
-        [
-          -89.0,
-          26.25
-        ],
-        [
-          -89.0,
-          26.5
-        ],
-        [
-          -89.0,
-          26.75
-        ],
-        [
-          -88.75,
-          26.25
-        ],
-        [
-          -88.75,
-          26.5
-        ],
-        [
-          -88.75,
-          26.75
+          -88.575,
+          28.125
         ]
       ]
     }
   },
-  "control_point_reading_qualification": "Approximate OSW interior-map probes: Galileo at 92.25 W,25.75 N with 0.125-degree offsets; Hadal at 89 W,26.5 N with 0.25-degree offsets. Selection probes, not measured centers, boundaries or confidence regions."
+  "control_point_reading_qualification": "Nine diagnostic probes at the reported 88.7 W,28 N center and +/-0.125 degree offsets (one product grid interval). These are selection probes, not source-reported uncertainty, a confidence region, verified eddy interior, or a measured center at the added decimal precision. The source latitude is reported as an integer degree; matching these probes cannot independently verify physical identity.",
+  "prior_completed_run_id": 41279891623,
+  "prior_completed_source_commit": "6ba77568a374d35875e62cea50f58ef0c155351a",
+  "source_position_reference": {
+    "file": "research/eddy-source-position-references-v1.json",
+    "sha256": "daab240f6f9fbb2ffd497d1e6625385fbcffe62645970914e0c7e2bd818d2f9f",
+    "record_id": "deviant-berger-2000-source-image-center-1997-03-24",
+    "review_file": "research/eddy-deviant-position-and-size-gap-source-review-v1.json",
+    "review_sha256": "e13bd42b30f9323e2027ca25909ddfdff32e6696cd2ea0dd3f524a81e03d84e6"
+  }
 }
