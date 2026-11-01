@@ -1,0 +1,240 @@
+{
+  "schema": "osw.eddy-source-gap-review.v1",
+  "review_date": "2026-11-01",
+  "status": "HISTORICAL_ALIASES_AND_EXCLUSIONS_REVIEWED_NO_NEW_MEASUREMENTS",
+  "baseline": {
+    "identities": 136,
+    "evidence_records": 368,
+    "size_reference_owners": 83,
+    "remaining_size_reference_gaps": 53
+  },
+  "register_sha256_unchanged": "9c057b5b630deb8a94b7003e6c1e96361c576a9657766f2caf97ec2f3ae0c19f",
+  "measurements_admitted": 0,
+  "sources": [
+    {
+      "id": "nowlin-2001",
+      "title": "Deepwater Physical Oceanography Reanalysis and Synthesis of Historical Data: Synthesis Report",
+      "report": "MMS 2001-064",
+      "url": "https://espis.boem.gov/Final%20Reports/3129.pdf",
+      "original_pdf": {
+        "bytes": 47392646,
+        "sha256": "2a41f8e02736876c5dbbd9388ddc6da789f4324e3d188c73b7fe863c4b8af192"
+      },
+      "pages": 537,
+      "source_pixels_reviewed": [
+        399
+      ],
+      "page_text_reviewed": [
+        166,
+        181,
+        399,
+        403,
+        404,
+        440,
+        454
+      ]
+    },
+    {
+      "id": "saic-1988-year3",
+      "title": "Gulf of Mexico Physical Oceanography Program, Final Report: Year 3, Volume II: Technical Report",
+      "report": "MMS 88-0046",
+      "url": "https://www.govinfo.gov/content/pkg/GOVPUB-I-02ed3b0fe62b7c5fb7c79e5082bca54a/pdf/GOVPUB-I-02ed3b0fe62b7c5fb7c79e5082bca54a.pdf",
+      "original_pdf": {
+        "bytes": 10631825,
+        "sha256": "a9a225ca12a668ecfdf193a20a74afc36fa37180ddd819cf8977d17626eb2850"
+      },
+      "pages": 266,
+      "source_pixels_reviewed": [
+        84,
+        88,
+        162,
+        230,
+        252,
+        194
+      ],
+      "page_text_reviewed": [
+        35,
+        84,
+        162,
+        190,
+        230,
+        245,
+        252,
+        194
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "candidate": "Arnold / Slim Chance",
+      "source_id": "nowlin-2001",
+      "pdf_page": 399,
+      "printed_page": 377,
+      "locator": "Table A-1, 1984 Loop Current Eddy separations",
+      "finding": "The source explicitly identifies Slim Chance as an alias of Eddy Arnold.",
+      "date_conflict": "Source lists August 1984; the registry lists initial separation on 1984-09-16. Neither date is overwritten.",
+      "decision": "Retain as an alias research lead. No dimensions, whole lifetime, physical identity crosswalk, or registry alias installed."
+    },
+    {
+      "candidate": "Hot Core / Eddy C",
+      "source_id": "saic-1988-year3",
+      "pdf_page": 84,
+      "printed_page": 60,
+      "finding": "The approximately 330 km drifter loops occur in July-August 1986 after possible coalescence of B and C.",
+      "decision": "Exclude as an individual Hot Core dimension."
+    },
+    {
+      "candidate": "Hot Core / Eddy C",
+      "source_id": "saic-1988-year3",
+      "pdf_page": 230,
+      "printed_page": 206,
+      "finding": "The 80 km radius and 75 cm/s swirl speed refer to Eddy B in mid-February 1986.",
+      "decision": "Do not transfer these measurements to Eddy C."
+    },
+    {
+      "candidate": "Hot Core / Eddy C",
+      "source_id": "saic-1988-year3",
+      "pdf_page": 190,
+      "printed_page": 166,
+      "finding": "The approximately 200 km diameter refers to companion cyclone Eddy Z.",
+      "decision": "Exclude as a Hot Core measurement; this page was checked as text only in this review."
+    },
+    {
+      "candidate": "Hot Core / Eddy C",
+      "source_id": "saic-1988-year3",
+      "pdf_page": 162,
+      "printed_page": 138,
+      "finding": "The western warm zone has no identified southern boundary and does not specifically delineate the embedded eddies.",
+      "decision": "Do not derive a full eddy width from the warm-zone latitude extent."
+    },
+    {
+      "candidate": "Instant or Little Jupiter",
+      "source_id": "saic-1988-year3",
+      "pdf_page": 252,
+      "printed_page": 228,
+      "finding": "An approximately 450 km hydrographic diameter is described for an unnamed feature surveyed in May 1987.",
+      "decision": "Retain unassigned. A nearby year or registry separation date does not establish its name."
+    },
+    {
+      "candidate": "Hot Core / Eddy C",
+      "source_id": "saic-1988-year3",
+      "pdf_page": 88,
+      "printed_page": 64,
+      "locator": "Figure 4.2-12",
+      "finding": "Drifter 3379 has separate March and April 1986 track panels with daily markers. The plotted monthly envelopes combine orbital motion and translation.",
+      "decision": "Potential trajectory digitization source only. No track-envelope width is admitted as a closed eddy boundary or diameter. Caption dates begin March 8; placement in prose is March 7."
+    }
+  ],
+  "date_cautions": [
+    "SAIC describes Eddy C separation as January 1986 in some passages and February 1986 on PDF page 84; its registry initial-separation date is 1985-11-08. These are unresolved event definitions, not an inferred lifetime.",
+    "The source synthesis associates Hot Eddy with Eddy C and separately lists Hot Core in January 1986. This context is insufficient to transfer unrelated B, Z, or merged B/C measurements."
+  ],
+  "next_source_targets": [
+    "Transcribe the verified Fast/Eddy B hydrographic area table into qualified thermal-level size references, keeping each survey and temperature-surface depth contour distinct; zero and unclosed levels require explicit handling.",
+    "Locate the original 1984 Slim Chance/Arnold survey or operational chart using the explicit alias, with dimensions or a dated traceable boundary.",
+    "Seek unmerged Eddy C hydrography or an explicit orbital radius before the possible B/C coalescence; preserve orbit versus outer-boundary semantics.",
+    "Resolve the name of the May 1987 surveyed anticyclone from a primary alias or explicit trajectory chronology before assigning its reported 450 km scale."
+  ],
+  "review_artifacts": {
+    "local_only": true,
+    "original_source_figures_republished": false,
+    "rendered_page_sha256": {
+      "nowlin-399.png": "8eb1750b1bab360929b9d581336fbb26f54b9bd17cf20cf26688536c00f6afeb",
+      "saic-162.png": "3fc45c2c380b2b3ba887939f2a338373aa83c29ce03f7f8c0f42e44a0eda82ac",
+      "saic-194.png": "340cab0c3907f05270cda94c846df91a8cba50ffb06e9351f12daee4ac0d543e",
+      "saic-230.png": "7ce6fe9f9900fd76d9626df01dc0ff38f8dce6e1136a0fe9a72aeec18fda182b",
+      "saic-252.png": "f1092df3757571859db463d7c72f991e6e414bdab6898d2207c004aef0c9e232",
+      "saic-84.png": "5de25d85182c83371dde5c57393b6e114cb12a1c9188953822f7e47c163bf3a7",
+      "saic-88.png": "b0eb9c48166cdc502f6af1ee56a84a766e4e779ee91f22f9b1db18b8a1478cce"
+    }
+  },
+  "execution": {
+    "local_cpu_affinity": 1,
+    "local_priority": "IDLE",
+    "browser_runs": 0,
+    "ocean_field_processing": false,
+    "runtime_or_wasm_parsing": false,
+    "source_unit_tests_required": false,
+    "reason": "Evidence review only; no source register, builder, browser, runtime, or release behavior changed."
+  },
+  "release": {
+    "new_measurements_installed": false,
+    "runtime_installed": false,
+    "ranking_enabled": false,
+    "state_join_enabled": false,
+    "seasonal_playback_enabled": false,
+    "full_goal_complete": false
+  },
+  "verified_numeric_source_lead": {
+    "source_id": "saic-1988-year3",
+    "pdf_page": 194,
+    "printed_page": 170,
+    "table": "4.4-2",
+    "source_label": "Eddy B",
+    "candidate_registry_label": "Fast",
+    "alias_status": "Existing explicit B/Fast alias; preserve the already qualified date and identity association.",
+    "quantity": "Area enclosed by a specified depth contour of the 8 degree Celsius temperature surface",
+    "source_units": "10^3 km^2",
+    "depth_contours_m": [
+      750,
+      700,
+      650,
+      600,
+      550
+    ],
+    "source_rows": [
+      {
+        "survey_month": "1985-10",
+        "values": [
+          1.3,
+          9.0,
+          26.0,
+          50.0,
+          97.0
+        ]
+      },
+      {
+        "survey_month": "1985-11",
+        "values": [
+          0.0,
+          2.7,
+          26.0,
+          48.0,
+          85.0
+        ]
+      },
+      {
+        "survey_month": "1986-01",
+        "values": [
+          2.6,
+          7.8,
+          17.0,
+          50.0,
+          null
+        ]
+      },
+      {
+        "survey_month": "1986-04",
+        "values": [
+          0.3,
+          2.4,
+          8.1,
+          24.0,
+          null
+        ]
+      }
+    ],
+    "positive_numeric_cells": 17,
+    "zero_cells": 1,
+    "source_dash_cells": 2,
+    "source_pixels_reviewed": true,
+    "admitted_to_register": false,
+    "cautions": [
+      "Depth headers label the depth of the 8 degree Celsius temperature surface, not a measured whole-eddy thickness or sampling depth.",
+      "Different depth contours are nested thermal-level areas, not interchangeable full outer-boundary areas or principal widths.",
+      "The November 750 m cell is printed as zero. Do not interpret it as disappearance of Eddy B or silently convert it into missing data.",
+      "The January and April 550 m cells are printed as dashes; accompanying prose says contours shallower than 600 m no longer closed around the eddy. Do not fill them with zero or interpolate.",
+      "Monthly survey rows do not establish an annual envelope or complete lifetime; some surveys span multiple weeks."
+    ]
+  }
+}
