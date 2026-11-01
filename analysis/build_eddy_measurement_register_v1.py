@@ -13,6 +13,7 @@ from eddy_colour_spans_v1 import validate_case as validate_colour_span_case,span
 from eddy_arrow_spans_v1 import validate_case as validate_arrow_span_case
 from eddy_pdf_line_spans_v1 import validate_case as validate_pdf_line_case
 from eddy_height_profiles_v1 import validate_case as validate_height_case, span as height_span, peak as height_peak
+from eddy_scale_bar_spans_v1 import validate_case as validate_scale_bar_case, spans as scale_bar_spans
 
 ROOT=Path(__file__).resolve().parents[1]
 JSON_PATH='research/eddy-measurement-register-v1.json'
@@ -71,6 +72,13 @@ def validate_numeric_interval(row):
 
 def validate_profile_context(row):
     c=row['profile_context']
+    if c['method']=='source_reported_operational_adcp_maximum':
+        assert row['metric']=='source_reported_operational_local_maximum_current_speed' and row['category']=='kinematics' and row['unit']=='knots'
+        assert (row['entity_id'],row['value'],c['phase']) in [('eddy:horizon:loop-71-primary',3.5,'early_september_2021_verne'),('eddy:horizon:loop-72-primary',4.25,'october_2021_wilde')]
+        assert row['period_start'] is None and row['period_end'] is None and c['sample_depth_m'] is None
+        assert row['rights_screened_release_eligible'] is False and row['evidence_role']=='qualified_published_named_case_reference'
+        assert all(c[k] is False for k in ['raw_profiles_acquired','whole_eddy_maximum_inferred','is_eddy_vertical_extent','window_is_lifetime','physical_crosswalk_verified'])
+        return
     if c['method']=='source_reported_mooring_current_diagnostic':
         assert c['station']=='SAIC GG' and c['quantity_support']=='fixed_current_meter'
         assert c['aggregation']=='source_described_site_current_speed' and c['statistic_mean_or_maximum_specified'] is False
@@ -331,6 +339,21 @@ def build():
                 assert (association['registry_name'],association['registry_initial_separation'])==(original['name'],original['initial_separation'])
                 assert association['alias_reference_source_id'] in batch['sources']
             map_values={}
+            if r.get('scale_bar_case_index') is not None:
+                assert all(r.get(k) is None for k in ['map_case_index','audit_span_case_index','colour_span_case_index','arrow_span_case_index','pdf_line_case_index','height_profile_case_index'])
+                case=batch['scale_bar_cases'][r['scale_bar_case_index']];validate_scale_bar_case(case)
+                report=read(batch['source_scale_bar_report'])
+                assert report['status']=='PASS' and report['source_pixels_verified'] and report['manual_name_date_and_curve_selection_required']
+                assert report['missing_ink_reconstructed'] is False and report['physical_footprint_admitted'] is False
+                assert report['batch_sha256']==pins[path] and report['original_chart_sha256']==source['chart']['sha256']
+                assert report['verifier_sha256']==hashlib.sha256((ROOT/'analysis/eddy_scale_bar_spans_v1.py').read_bytes()).hexdigest()
+                assert r['entity_id']==case['owner_id'] and r['period_start']==r['period_end']==case['date']
+                assert r['category']=='size' and r['unit']=='km' and r['value'] is None and r['rights_screened_release_eligible'] is False
+                assert r['evidence_role']=='map_read_named_case_reference'
+                component=r['scale_bar_component'];calculation=scale_bar_spans(case,component)
+                assert r['metric']=='source_scale_bar_equivalent_'+component+'_span'
+                assert calculation==report['spans'][component] and r['range_value']==calculation['range_km']
+                map_values={'source_map_estimate':{'case':case,'component':component,'calculation':calculation}}
             if r.get('height_profile_case_index') is not None:
                 assert all(r.get(k) is None for k in ['map_case_index','audit_span_case_index','colour_span_case_index','arrow_span_case_index','pdf_line_case_index','source_plot_estimate'])
                 case=batch['height_profile_cases'][r['height_profile_case_index']];validate_height_case(case)
@@ -548,7 +571,7 @@ def build():
     return {'schema':'osw.eddy-measurement-register.v1','status':'MEASUREMENT_GAP_FILLING_IN_PROGRESS',
         'rules_file':RULES,'rules_sha256':hashlib.sha256((ROOT/RULES).read_bytes()).hexdigest(),
         'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'input_sha256':pins,
-        'method_implementation_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['analysis/eddy_map_spans_v1.py','analysis/eddy_audit_spans_v1.py','analysis/eddy_colour_spans_v1.py','analysis/eddy_arrow_spans_v1.py','analysis/eddy_pdf_line_spans_v1.py','analysis/eddy_height_profiles_v1.py']},
+        'method_implementation_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['analysis/eddy_map_spans_v1.py','analysis/eddy_audit_spans_v1.py','analysis/eddy_colour_spans_v1.py','analysis/eddy_arrow_spans_v1.py','analysis/eddy_pdf_line_spans_v1.py','analysis/eddy_height_profiles_v1.py','analysis/eddy_scale_bar_spans_v1.py']},
         'first_batch_evidence_sha256':baseline_sha,'first_batch_evidence_preserved':40,
         'additional_batches':applied,
         'scope':inventory['scope'],'identity_rule':'Source records remain separate; possible Horizon/published matches are not verified identity joins.',

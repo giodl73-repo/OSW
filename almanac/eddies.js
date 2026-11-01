@@ -6,7 +6,7 @@
     if(r.value_conflict)return 'Unresolved source values';
     if(r.lower_bound!==null)return `${r.lower_bound_exclusive?'>':'≥'} ${num(r.lower_bound)} ${units[r.unit]||r.unit}`;
     if(r.upper_bound!==undefined&&r.upper_bound!==null)return `${r.upper_bound_exclusive?'<':'≤'} ${num(r.upper_bound)} ${units[r.unit]||r.unit}`;
-    if(r.range_value)return `${r.range_value.map(num).join('–')} ${units[r.unit]||r.unit} · ${r.source_plot_estimate?'graph estimate':r.source_map_estimate?'map estimate':r.calculation?.method==='spherical_sampled_station_separation_v1'?'coordinate estimate':'source range'}`;
+    if(r.range_value)return `${r.range_value.map(num).join('–')} ${units[r.unit]||r.unit} · ${r.source_plot_estimate?'graph estimate':r.source_map_estimate?.case.method==='source_image_scale_bar_equivalent_spans_v1'?'chart-scale equivalent':r.source_map_estimate?'map estimate':r.calculation?.method==='spherical_sampled_station_separation_v1'?'coordinate estimate':'source range'}`;
     if(r.value===null)return 'Value unresolved';
     const elapsed=['source_track_elapsed_span','coherent_core_analysis_interval','source_dated_event_stage_interval'].includes(r.metric);
     return `${elapsed?'':'≈ '}${num(r.value)}${r.standard_deviation!==null?' ± '+num(r.standard_deviation)+' SD':''} ${units[r.unit]||r.unit}`;
@@ -28,8 +28,9 @@
       }
     }
     if(r.profile_context){
-      add('strong',(r.profile_context.method==='source_reported_mooring_current_diagnostic'?'Fixed-mooring current diagnostic':r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));
+      add('strong',(r.profile_context.method==='source_reported_operational_adcp_maximum'?'Operational ADCP current diagnostic':r.profile_context.method==='source_reported_mooring_current_diagnostic'?'Fixed-mooring current diagnostic':r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));
       const c=r.profile_context;
+      if(c.method==='source_reported_operational_adcp_maximum')add('p','Provider-reported local maximum. Sample depth, exact dates and averaging interval unspecified; raw profiles unavailable. This does not establish the whole-eddy maximum.',box);
       if(c.method==='source_reported_mooring_current_diagnostic'){
         add('p',`${c.station} · instrument depth: ${c.instrument_depth_m} m · source direction: ${c.direction_as_reported}.`,box);
         add('p','Native cm/s site speeds; mean versus maximum is unspecified. Exact sample dates and raw time series unavailable; these readings do not establish a simultaneous vertical section, whole-eddy maximum or thickness.',box);
@@ -51,7 +52,11 @@
     }
     if(r.source_map_estimate){
       const m=r.source_map_estimate,c=m.case;
-      if(c.method==='source_native_pdf_frontal_line_spans_v1'){
+      if(c.method==='source_image_scale_bar_equivalent_spans_v1'){
+        add('strong','Chart-scale equivalent · projection and contour threshold unspecified.',add('p',undefined,box));
+        add('p',`Selected line: ${c.source_name}, ${c.date}; black date-legend entry. ${m.component} span at the displayed ${c.scale_bar_km} km scale bar, not a calibrated geodesic distance or eddy diameter.`,box);
+        add('p',`Reading method: ${c.reading_allowance_pixels} pixels at each extent, ±${c.axis_sensitivity_pixels} pixel scale-anchor shifts and two ink gates; ${m.calculation.total_scenarios} sensitivity cases, rounded outward to ${c.round_outward_km} km. Geographic scale variation at the eddy remains unquantified.`,box);
+      }else if(c.method==='source_native_pdf_frontal_line_spans_v1'){
         add('strong','Native PDF line span · contour observation date unspecified.',add('p',undefined,box));
         add('p',`Source legend: ${c.source_legend_speed_knots}-knot frontal-analysis contour. SSH background: ${c.background_ssh_date}; this does not date the frontal line.`,box);
         add('p',`Original native path: ${c.native_path.segments.toLocaleString()} continuous line segments, explicit endpoint closure, no reconstructed gaps. ${c.poster_overlay_qualification}`,box);

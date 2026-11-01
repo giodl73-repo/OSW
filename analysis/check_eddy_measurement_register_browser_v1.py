@@ -477,6 +477,19 @@ def run():
                 page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
                 page.locator('[data-evidence-id="'+name+'-saic-1989-'+record+'"]').screenshot(path=str(OUT/('mobile-'+name+'-year5-size.png')))
             checks.append('Kathleen sampled-axis extrema and Murphy ellipse dimensions, baroclinic influence radius and definition-unspecified diameter preserve source operators, E/F alias references and unreconciled separation conventions; no seasonal envelope, radius conversion or front inference; desktop/mobile')
+            for owner,name,needles,record in [('eddy:horizon:loop-71-primary','verne',['125–225 km','100–200 km','Chart-scale equivalent','not a calibrated geodesic distance','Geographic scale variation at the eddy remains unquantified','2021-11-23','3.5 knots'],'verne-cls-2021-scale-bar-horizontal-span'),('eddy:horizon:loop-72-primary','wilde',['4.25 knots','western front of Wilde','October 2021'],'wilde-cls-2021-local-maximum-current')]:
+                page.goto(base+'/almanac/eddies.html?id='+owner)
+                page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+                row=page.locator('tr[data-eddy-id="'+owner+'"]');assert row.locator('details').evaluate('(e)=>e.open')
+                page.set_viewport_size({'width':1440,'height':1000})
+                for needle in needles+['Operational ADCP current diagnostic','Provider-reported local maximum','Sample depth, exact dates and averaging interval unspecified']:
+                    assert needle in row.inner_text(),needle
+                assert 'undefined km' not in row.inner_text() and 'Glider profile diagnostic' not in row.inner_text()
+                assert ('Size reference needed' in row.inner_text())==(name=='wilde')
+                page.locator('[data-evidence-id="'+record+'"]').screenshot(path=str(OUT/(name+'-cls-reference.png')))
+                page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                page.locator('[data-evidence-id="'+record+'"]').screenshot(path=str(OUT/('mobile-'+name+'-cls-reference.png')))
+            checks.append('Verne source-chart scale-bar equivalents retain unknown projection and contour definition, date and unquantified geographic scale error; Verne/Wilde local operational ADCP maxima retain native knots and unspecified sample depths; Wilde size gap remains; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
