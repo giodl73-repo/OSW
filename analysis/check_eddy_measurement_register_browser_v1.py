@@ -638,6 +638,7 @@ def run():
             for needle in ['< 0.4 knots','1.4 knots','2.2–2.7 knots','3.6 knots','2.6 knots','Instrument depth: 45 m','1989-09-25','most sampled sites','not an eddy-wide speed limit','500–1,000 m are seabed contours','not sampling depth','Exact sampling depth unspecified','do not form a seasonal range','Size reference needed']:
                 assert needle in row.inner_text(),needle
             assert row.locator('[data-evidence-id^="nelson-koch-1991-"]').count()==5
+            assert row.inner_text().count('Nelson local current phase')==5, 'Exactly one diagnostic heading per Nelson source card'
             page.set_viewport_size({'width':1440,'height':1000})
             for key in ['post-severe-45m-bound','september-25-45m-maximum','august-surface-band','early-september-local-maximum','final-phase-local-maximum']:page.locator(f'[data-evidence-id="nelson-koch-1991-{key}"]').screenshot(path=str(OUT/f'nelson-{key}.png'))
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
