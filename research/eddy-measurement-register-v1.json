@@ -2,8 +2,8 @@
   "schema": "osw.eddy-measurement-register.v1",
   "status": "MEASUREMENT_GAP_FILLING_IN_PROGRESS",
   "rules_file": "plans/eddy-measurement-register-v1.md",
-  "rules_sha256": "4f3a7be58a08c925245a8863dd7c171d469ba9196591894212870f8fde519741",
-  "generator_sha256": "41960957032bff926fda35eda515bf17d00487aa5622291582cf86787934c7fb",
+  "rules_sha256": "4e5412fda240c131d41f0e504175c86b58530b212fe50a26871e96b7e39979e6",
+  "generator_sha256": "b704fbef7ea9808abed35b67a8b5585f30c1652af98c61c328b75b85a3cbed1e",
   "input_sha256": {
     "research/ocean-eddy-name-inventory.json": "d78c31a96b93cc9e746562f2d5c3b0f6d37ad36c3f1d10bb769aec8aa4472015",
     "research/named-eddy-geography.json": "50f20f1f32589b780f7ff29824afa7f7af4a78bfd80a25a4784e6fc992bf3547",
@@ -15,7 +15,7 @@
     "research/eddy-measurement-register-additions-v2.json": "3bb1a6760a5e68efd41f5562425225da70e7bd78429257a8b1466937114fa62b",
     "plans/agulhas-ring-radius-protocol-v1.md": "620981e7dccd1a888083d5daa670548a6f1254825f2acda73da5a821bcb4e876",
     "plans/black-sea-eddy-recurrence-protocol-v1.md": "66fef56b5960d802df68ca35d3241912650f7fe2c58803375743b4f42a48b5cf",
-    "research/eddy-measurement-batches-v1.json": "b64be03b3db645cd33dd2c918ec86cb17b108b868a191c800e57fab12c5b1fc2",
+    "research/eddy-measurement-batches-v1.json": "6a9825e45e9f8d55f6cefaa52ad598a59654d38c6f2fc51e5e7b86874de56c48",
     "research/eddy-measurement-register-additions-v3.json": "d1c91350952ea08a49562c5aa0b671f0624930fd73e4735c2227c1b17708fc15",
     "research/eddy-measurement-register-additions-v4.json": "359d14c7927a6fc045bce23eb8ae4f7c226caa1a5355a27045a735125bdeaa11",
     "research/named-loop-current-eddies.json": "4a41a3b4b127f42ac31b114117c0d5d2caf998b84bed6caeac58de6ef94eecca",
@@ -54,7 +54,9 @@
     "research/eddy-measurement-register-additions-v26.json": "2dd0e3b0f9a500faba8569200d85f180291cfd53a0eebf461b7b2a7fd07170d4",
     "research/eddy-measurement-register-additions-v27.json": "289c4d8881a9dd4886a9b00dd681cd77a3ba5022a34e6f85b6b2f8672e63f8bc",
     "research/eddy-measurement-register-additions-v28.json": "15ae8a52bc51275a0812398c8a5bc16ac06fda73566e929e23092607a9229b97",
-    "research/eddy-scale-bar-source-verification-v1.json": "ca3d1e2c8a6c2e9638467c874c4c5dbd35c8ba8fbbe06c024ed10a36a3e25b22"
+    "research/eddy-scale-bar-source-verification-v1.json": "ca3d1e2c8a6c2e9638467c874c4c5dbd35c8ba8fbbe06c024ed10a36a3e25b22",
+    "research/eddy-measurement-register-additions-v29.json": "e48e4c2da84923eb7ae051165c1ab4b0b64ce1eff889f18f8591a294d17e4934",
+    "research/eddy-visible-model-front-source-verification-v1.json": "bcecfaec70f9de65250e98ce4570877d7d2e5cc7150945b1534e7f99d436a9f4"
   },
   "method_implementation_sha256": {
     "analysis/eddy_map_spans_v1.py": "b7594aa7eac20a1968e4432f2979f6b11c4f7008b3f5745753f0ad6e70f1f6e4",
@@ -63,7 +65,8 @@
     "analysis/eddy_arrow_spans_v1.py": "f97555626ece63dc373d695f9d7430ea0349bd064b1aeabd68bde1aabbeb32b9",
     "analysis/eddy_pdf_line_spans_v1.py": "a341c3527e78650801ad6d55d824ccb474df2594d415b5bd59077e76906ecd48",
     "analysis/eddy_height_profiles_v1.py": "94bd3af3f64998f908fad69efb6eeae9b8bc4a30c35406914e6d73e77972d4dc",
-    "analysis/eddy_scale_bar_spans_v1.py": "9792593f29653ca90cafba1bd190b7dc527fb5d85ad1fc5852b6adfd9c9e5125"
+    "analysis/eddy_scale_bar_spans_v1.py": "9792593f29653ca90cafba1bd190b7dc527fb5d85ad1fc5852b6adfd9c9e5125",
+    "analysis/eddy_visible_model_front_v1.py": "b1f8393106df469b52b051ae8a75bec87ebea01ac36461772c0dc163cad07b60"
   },
   "first_batch_evidence_sha256": "702311bd7b238182a51b6160f902500e371a88eec635c6d500bc93df53373a4b",
   "first_batch_evidence_preserved": 40,
@@ -223,6 +226,12 @@
       "baseline_count": 348,
       "preserved_baseline_sha256": "4d18fadcf8415fd7f008d7a305dc15ed8ee74d493f26424491107d1855d404a1",
       "added": 4
+    },
+    {
+      "file": "research/eddy-measurement-register-additions-v29.json",
+      "baseline_count": 352,
+      "preserved_baseline_sha256": "5af302dbf1f01fab4e6845a8f0428aee96428c356addcdc4c289f6a269d733ef",
+      "added": 5
     }
   ],
   "scope": "One address for every independently named eddy label or named regional/family record currently admitted to the OSW almanac. This source-set inventory is not a complete global list of all eddies or all names. NOAA detection IDs are separate unnamed, dated observations.",
@@ -233,9 +242,9 @@
     "individual_source_records": 112,
     "recurrent_regions": 20,
     "families": 4,
-    "evidence_records": 352,
-    "size_records": 128,
-    "size_owners": 79,
+    "evidence_records": 357,
+    "size_records": 129,
+    "size_owners": 80,
     "duration_owners": 99,
     "recurrence_owners": 12,
     "structure_owners": 14,
@@ -1961,14 +1970,20 @@
       "source_pointer": "/entries/20",
       "evidence_ids": [
         "eddy:horizon:loop-66-primary-registry-maximum-surface-current",
-        "eddy:horizon:loop-66-primary-registry-calendar-span"
+        "eddy:horizon:loop-66-primary-registry-calendar-span",
+        "quantum-rodriguez-2020-visible-model-front-meridional-span",
+        "quantum-rodriguez-2020-2018-03-26-5m-adcp",
+        "quantum-rodriguez-2020-2018-03-26-remote-shared-speed",
+        "quantum-rodriguez-2020-2018-03-25-5m-adcp",
+        "quantum-rodriguez-2020-2018-03-25-remote-shared-speed"
       ],
       "categories": [
         "duration",
-        "kinematics"
+        "kinematics",
+        "size"
       ],
       "size_classification_ids": [],
-      "size_gap": true,
+      "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
       "linked_primary_context": null,
@@ -2024,7 +2039,12 @@
         "url": "eddies.html?id=eddy:horizon:loop-66-primary",
         "evidence_ids": [
           "eddy:horizon:loop-66-primary-registry-maximum-surface-current",
-          "eddy:horizon:loop-66-primary-registry-calendar-span"
+          "eddy:horizon:loop-66-primary-registry-calendar-span",
+          "quantum-rodriguez-2020-visible-model-front-meridional-span",
+          "quantum-rodriguez-2020-2018-03-26-5m-adcp",
+          "quantum-rodriguez-2020-2018-03-26-remote-shared-speed",
+          "quantum-rodriguez-2020-2018-03-25-5m-adcp",
+          "quantum-rodriguez-2020-2018-03-25-remote-shared-speed"
         ],
         "relation": "Associated primary registry row; this entry has independent named source-case references. No primary measurements assigned."
       },
@@ -46926,6 +46946,647 @@
         "whole_eddy_maximum_inferred": false,
         "is_eddy_vertical_extent": false,
         "window_is_lifetime": false,
+        "physical_crosswalk_verified": false
+      }
+    },
+    {
+      "id": "quantum-rodriguez-2020-visible-model-front-meridional-span",
+      "entity_id": "eddy:horizon:loop-66-primary",
+      "category": "size",
+      "metric": "source_visible_model_front_meridional_span",
+      "metric_label": "source visible model front meridional span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2018-03-26",
+      "period_end": "2018-03-26",
+      "period_label": "2018-03-26 model-inferred front as plotted",
+      "definition": "Meridional arc span between the manually isolated northern and southern extrema of the visible black model-inferred current front within the Figure 2 frame.",
+      "scope": "Quantum field-study source case explicitly identifying the northern post-split Quantum I component. Registry physical crosswalk unverified. Not a pre-split parent or Quantum II measurement.",
+      "qualification": "Eastern side clipped; this measures only the visible plotted line and does not establish the full front or whole-eddy north–south extent. Source contour threshold/model-front error unspecified. Six-pixel extent allowance, two-pixel latitude-anchor shifts, two ink gates and outward 25 km rounding represent image-reading choices, not model accuracy. No observed boundary, east–west width, diameter, footprint or seasonal envelope inferred.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.mdpi.com/2072-4292/12/15/2388",
+      "source_locator": "Figure 2 caption and map, PDF page 7; case/component explanation in Section 2.3, PDF page 6.",
+      "source_file": "research/eddy-measurement-register-additions-v29.json",
+      "source_pointer": "/records/0",
+      "source_sha256": "e48e4c2da84923eb7ae051165c1ab4b0b64ce1eff889f18f8591a294d17e4934",
+      "raw_record": {
+        "entity_id": "eddy:horizon:loop-66-primary",
+        "source_id": "rodriguez-2020",
+        "component_label": "Northern post-split Quantum I source case",
+        "rights_screened_release_eligible": false,
+        "scope": "Quantum field-study source case explicitly identifying the northern post-split Quantum I component. Registry physical crosswalk unverified. Not a pre-split parent or Quantum II measurement.",
+        "id": "quantum-rodriguez-2020-visible-model-front-meridional-span",
+        "category": "size",
+        "metric": "source_visible_model_front_meridional_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          225,
+          275
+        ],
+        "range_kind": "visible_model_front_image_reading_sensitivity",
+        "source_locator": "Figure 2 caption and map, PDF page 7; case/component explanation in Section 2.3, PDF page 6.",
+        "case_label": "Quantum / northern Quantum I, visible model-inferred front, 26 March 2018",
+        "period_start": "2018-03-26",
+        "period_end": "2018-03-26",
+        "period_precision": "day_as_plotted",
+        "period_label": "2018-03-26 model-inferred front as plotted",
+        "definition": "Meridional arc span between the manually isolated northern and southern extrema of the visible black model-inferred current front within the Figure 2 frame.",
+        "qualification": "Eastern side clipped; this measures only the visible plotted line and does not establish the full front or whole-eddy north–south extent. Source contour threshold/model-front error unspecified. Six-pixel extent allowance, two-pixel latitude-anchor shifts, two ink gates and outward 25 km rounding represent image-reading choices, not model accuracy. No observed boundary, east–west width, diameter, footprint or seasonal envelope inferred.",
+        "visible_model_front_case_index": 0,
+        "evidence_role": "map_read_named_case_reference"
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original publisher-hosted PDF acquired and SHA-verified. Actual pages 6, 7 and 29–31 visually reviewed; Figure 2 native RGB image inspected and pixel-verified. PDF parser emitted color-space warnings on some operations; numeric comparison values are transcribed from readable source text, not inferred from affected color rendering. Raw ocean fields, model/front data and instrument profiles not acquired.",
+      "source_id": "rodriguez-2020",
+      "period_precision": "day_as_plotted",
+      "case_label": "Quantum / northern Quantum I, visible model-inferred front, 26 March 2018",
+      "component_label": "Northern post-split Quantum I source case",
+      "range_value": [
+        225,
+        275
+      ],
+      "range_kind": "visible_model_front_image_reading_sensitivity",
+      "evidence_role": "map_read_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "ticks": [
+            {
+              "latitude_north_degrees": 29.5,
+              "window_xyxy": [
+                48,
+                20,
+                54,
+                30
+              ],
+              "coordinate_y": 25,
+              "ink_pixels": 7,
+              "pixels_sha256": "96cadab96839ba04e64a038d3ef60d2ac6f7ca2c1957b54950422a5bf92000f8"
+            },
+            {
+              "latitude_north_degrees": 29,
+              "window_xyxy": [
+                48,
+                146,
+                54,
+                156
+              ],
+              "coordinate_y": 151.0,
+              "ink_pixels": 6,
+              "pixels_sha256": "b94d9bde4c8d3ebe9fc0f7d5cdffa311740b9e507cf886a212a008179ce82d2a"
+            },
+            {
+              "latitude_north_degrees": 28.5,
+              "window_xyxy": [
+                48,
+                272,
+                54,
+                282
+              ],
+              "coordinate_y": 277.0,
+              "ink_pixels": 6,
+              "pixels_sha256": "8b9a69018cb5215ed8ffbc090c40698bbe667c69a4089d386e6cc6b4edc09454"
+            },
+            {
+              "latitude_north_degrees": 28,
+              "window_xyxy": [
+                48,
+                397,
+                54,
+                407
+              ],
+              "coordinate_y": 402,
+              "ink_pixels": 7,
+              "pixels_sha256": "5acdac0fdfdff3161de5306d32521e889f64a921cdfa9f5fea0bc0d3d7922065"
+            },
+            {
+              "latitude_north_degrees": 27.5,
+              "window_xyxy": [
+                48,
+                521,
+                54,
+                531
+              ],
+              "coordinate_y": 527.0,
+              "ink_pixels": 6,
+              "pixels_sha256": "5a58fd3a55713577482505e89f0f04ff0568b34f2291a74497bbc53af7762fe5"
+            },
+            {
+              "latitude_north_degrees": 27,
+              "window_xyxy": [
+                48,
+                645,
+                54,
+                655
+              ],
+              "coordinate_y": 651.0,
+              "ink_pixels": 6,
+              "pixels_sha256": "53de10171a8d49236d0961b8445a460f21b9b4468c5440588e9ee35025c0f368"
+            },
+            {
+              "latitude_north_degrees": 26.5,
+              "window_xyxy": [
+                48,
+                769,
+                54,
+                779
+              ],
+              "coordinate_y": 774,
+              "ink_pixels": 7,
+              "pixels_sha256": "1f7fc99b627630784d692a851d25e3b6a55f8f28c1d7b1656fa9dc7ac7c16d0d"
+            },
+            {
+              "latitude_north_degrees": 26,
+              "window_xyxy": [
+                48,
+                892,
+                54,
+                902
+              ],
+              "coordinate_y": 897,
+              "ink_pixels": 13,
+              "pixels_sha256": "d0928857af8864c5dcef2c577ef1c90c31fa0b8a7130c782d4b25e4b2e2c0fe3"
+            }
+          ],
+          "readings": [
+            {
+              "maximum_rgb_channel": 75,
+              "extrema": {
+                "north": {
+                  "window_xyxy": [
+                    390,
+                    312,
+                    515,
+                    335
+                  ],
+                  "coordinate_y": 320,
+                  "ink_pixels": 414,
+                  "pixels_sha256": "2d71b7f3693b726dabee6a4d8e42865e75149b650e170453d2754430aac78683",
+                  "extreme_x_range": [
+                    445,
+                    455
+                  ]
+                },
+                "south": {
+                  "window_xyxy": [
+                    420,
+                    868,
+                    585,
+                    885
+                  ],
+                  "coordinate_y": 882,
+                  "ink_pixels": 542,
+                  "pixels_sha256": "b5ea2d3832f64d21dac51bd712654bd6b6c72dd2e6798ff725cf7d4f705a5899",
+                  "extreme_x_range": [
+                    484,
+                    497
+                  ]
+                }
+              }
+            },
+            {
+              "maximum_rgb_channel": 100,
+              "extrema": {
+                "north": {
+                  "window_xyxy": [
+                    390,
+                    312,
+                    515,
+                    335
+                  ],
+                  "coordinate_y": 320,
+                  "ink_pixels": 444,
+                  "pixels_sha256": "e04e901f94916b0c99521d61ecd1b83ba36325a0baae02281b55074b08565e36",
+                  "extreme_x_range": [
+                    442,
+                    459
+                  ]
+                },
+                "south": {
+                  "window_xyxy": [
+                    420,
+                    868,
+                    585,
+                    885
+                  ],
+                  "coordinate_y": 882,
+                  "ink_pixels": 590,
+                  "pixels_sha256": "2e1f2481b58ab5bafb922a9fb83a58b5a741223b452c45671ab367e868137c37",
+                  "extreme_x_range": [
+                    472,
+                    509
+                  ]
+                }
+              }
+            }
+          ],
+          "method": "source_visible_model_front_meridional_span_v1",
+          "owner_id": "eddy:horizon:loop-66-primary",
+          "source_name": "Quantum / northern Quantum I",
+          "date": "2018-03-26",
+          "pdf_page": 7,
+          "figure": 2,
+          "front_basis": "model_inferred_per_source_caption",
+          "east_side_clipped": true,
+          "earth_radius_km": 6371,
+          "reading_allowance_pixels": 6,
+          "axis_sensitivity_pixels": 2,
+          "round_outward_km": 25,
+          "source_raster": {
+            "xref": 235,
+            "width": 835,
+            "height": 1014,
+            "components": 3,
+            "samples_sha256": "754bc0de08c33d14d740b71f6da563f8ef6192d63d1bc76159ac1502ebbcac95"
+          },
+          "east_west_span_admitted": false,
+          "full_front_extent_inferred": false,
+          "observed_front_inferred": false,
+          "front_threshold_known": false,
+          "missing_geometry_reconstructed": false,
+          "physical_footprint_admitted": false,
+          "physical_state_join_eligible": false,
+          "association_is_verified": false,
+          "rights_screened_release_eligible": false,
+          "quantum_ii_values_inherited": false
+        },
+        "component": "north_south",
+        "calculation": {
+          "audit_visible_meridional_span_km": 252.081611,
+          "audit_reading_interval_km": [
+            244.907278,
+            259.255944
+          ],
+          "range_km": [
+            225,
+            275
+          ],
+          "total_scenarios": 512,
+          "full_front_extent_inferred": false
+        }
+      }
+    },
+    {
+      "id": "quantum-rodriguez-2020-2018-03-26-5m-adcp",
+      "entity_id": "eddy:horizon:loop-66-primary",
+      "category": "kinematics",
+      "metric": "source_reported_local_multisensor_current_comparison_speed",
+      "metric_label": "source reported local multisensor current comparison speed",
+      "value": 0.8,
+      "unit": "m/s",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2018-03-26",
+      "period_end": "2018-03-26",
+      "period_label": "2018-03-26 local comparison; exact observation times unspecified",
+      "definition": "Approximate 5 m buoy ADCP current speed in the source comparison.",
+      "scope": "Quantum field-study source case explicitly identifying the northern post-split Quantum I component. Registry physical crosswalk unverified. Not a pre-split parent or Quantum II measurement.",
+      "qualification": "Local comparison reference, not mean, maximum or whole-eddy velocity. Instrument-dependent near-surface weighting and measurement times differ; the source allows roughly hour-scale offsets. No simultaneous vertical section, quantitative shear, annual range or whole-eddy depth inferred. Raw instrument profiles and observation-specific uncertainty unavailable.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.mdpi.com/2072-4292/12/15/2388",
+      "source_locator": "Section 3.3, PDF page 29, paragraph beginning On March 26; Figure 4 / Figures 23–24 comparison context.",
+      "source_file": "research/eddy-measurement-register-additions-v29.json",
+      "source_pointer": "/records/1",
+      "source_sha256": "e48e4c2da84923eb7ae051165c1ab4b0b64ce1eff889f18f8591a294d17e4934",
+      "raw_record": {
+        "entity_id": "eddy:horizon:loop-66-primary",
+        "source_id": "rodriguez-2020",
+        "component_label": "Northern post-split Quantum I source case",
+        "rights_screened_release_eligible": false,
+        "scope": "Quantum field-study source case explicitly identifying the northern post-split Quantum I component. Registry physical crosswalk unverified. Not a pre-split parent or Quantum II measurement.",
+        "id": "quantum-rodriguez-2020-2018-03-26-5m-adcp",
+        "category": "kinematics",
+        "metric": "source_reported_local_multisensor_current_comparison_speed",
+        "value": 0.8,
+        "unit": "m/s",
+        "source_locator": "Section 3.3, PDF page 29, paragraph beginning On March 26; Figure 4 / Figures 23–24 comparison context.",
+        "case_label": "Quantum / northern Quantum I local buoy comparison, 2018-03-26",
+        "period_start": "2018-03-26",
+        "period_end": "2018-03-26",
+        "period_precision": "day",
+        "period_label": "2018-03-26 local comparison; exact observation times unspecified",
+        "definition": "Approximate 5 m buoy ADCP current speed in the source comparison.",
+        "qualification": "Local comparison reference, not mean, maximum or whole-eddy velocity. Instrument-dependent near-surface weighting and measurement times differ; the source allows roughly hour-scale offsets. No simultaneous vertical section, quantitative shear, annual range or whole-eddy depth inferred. Raw instrument profiles and observation-specific uncertainty unavailable.",
+        "profile_context": {
+          "method": "source_reported_multisensor_current_comparison",
+          "instrument": "ADCP",
+          "sample_depth_m": 5,
+          "shared_source_approximation": false,
+          "aggregation": "source_comparison_reference_not_mean_or_maximum",
+          "is_eddy_vertical_extent": false,
+          "raw_profiles_acquired": false,
+          "whole_eddy_maximum_inferred": false,
+          "simultaneous_vertical_section_inferred": false,
+          "vertical_shear_computed": false,
+          "physical_crosswalk_verified": false
+        },
+        "evidence_role": "qualified_published_named_case_reference",
+        "depth_m": 5
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original publisher-hosted PDF acquired and SHA-verified. Actual pages 6, 7 and 29–31 visually reviewed; Figure 2 native RGB image inspected and pixel-verified. PDF parser emitted color-space warnings on some operations; numeric comparison values are transcribed from readable source text, not inferred from affected color rendering. Raw ocean fields, model/front data and instrument profiles not acquired.",
+      "source_id": "rodriguez-2020",
+      "period_precision": "day",
+      "case_label": "Quantum / northern Quantum I local buoy comparison, 2018-03-26",
+      "component_label": "Northern post-split Quantum I source case",
+      "depth_m": 5,
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "profile_context": {
+        "method": "source_reported_multisensor_current_comparison",
+        "instrument": "ADCP",
+        "sample_depth_m": 5,
+        "shared_source_approximation": false,
+        "aggregation": "source_comparison_reference_not_mean_or_maximum",
+        "is_eddy_vertical_extent": false,
+        "raw_profiles_acquired": false,
+        "whole_eddy_maximum_inferred": false,
+        "simultaneous_vertical_section_inferred": false,
+        "vertical_shear_computed": false,
+        "physical_crosswalk_verified": false
+      }
+    },
+    {
+      "id": "quantum-rodriguez-2020-2018-03-26-remote-shared-speed",
+      "entity_id": "eddy:horizon:loop-66-primary",
+      "category": "kinematics",
+      "metric": "source_reported_local_multisensor_current_comparison_speed",
+      "metric_label": "source reported local multisensor current comparison speed",
+      "value": 1.1,
+      "unit": "m/s",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2018-03-26",
+      "period_end": "2018-03-26",
+      "period_label": "2018-03-26 local comparison; exact observation times unspecified",
+      "definition": "Approximate speed jointly described for ROCIS and DopplerScatt; a shared source approximation, not an arithmetic average or two independently resolved values in the source comparison.",
+      "scope": "Quantum field-study source case explicitly identifying the northern post-split Quantum I component. Registry physical crosswalk unverified. Not a pre-split parent or Quantum II measurement.",
+      "qualification": "Local comparison reference, not mean, maximum or whole-eddy velocity. Instrument-dependent near-surface weighting and measurement times differ; the source allows roughly hour-scale offsets. No simultaneous vertical section, quantitative shear, annual range or whole-eddy depth inferred. Raw instrument profiles and observation-specific uncertainty unavailable.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.mdpi.com/2072-4292/12/15/2388",
+      "source_locator": "Section 3.3, PDF page 29, paragraph beginning On March 26; Figure 4 / Figures 23–24 comparison context.",
+      "source_file": "research/eddy-measurement-register-additions-v29.json",
+      "source_pointer": "/records/2",
+      "source_sha256": "e48e4c2da84923eb7ae051165c1ab4b0b64ce1eff889f18f8591a294d17e4934",
+      "raw_record": {
+        "entity_id": "eddy:horizon:loop-66-primary",
+        "source_id": "rodriguez-2020",
+        "component_label": "Northern post-split Quantum I source case",
+        "rights_screened_release_eligible": false,
+        "scope": "Quantum field-study source case explicitly identifying the northern post-split Quantum I component. Registry physical crosswalk unverified. Not a pre-split parent or Quantum II measurement.",
+        "id": "quantum-rodriguez-2020-2018-03-26-remote-shared-speed",
+        "category": "kinematics",
+        "metric": "source_reported_local_multisensor_current_comparison_speed",
+        "value": 1.1,
+        "unit": "m/s",
+        "source_locator": "Section 3.3, PDF page 29, paragraph beginning On March 26; Figure 4 / Figures 23–24 comparison context.",
+        "case_label": "Quantum / northern Quantum I local buoy comparison, 2018-03-26",
+        "period_start": "2018-03-26",
+        "period_end": "2018-03-26",
+        "period_precision": "day",
+        "period_label": "2018-03-26 local comparison; exact observation times unspecified",
+        "definition": "Approximate speed jointly described for ROCIS and DopplerScatt; a shared source approximation, not an arithmetic average or two independently resolved values in the source comparison.",
+        "qualification": "Local comparison reference, not mean, maximum or whole-eddy velocity. Instrument-dependent near-surface weighting and measurement times differ; the source allows roughly hour-scale offsets. No simultaneous vertical section, quantitative shear, annual range or whole-eddy depth inferred. Raw instrument profiles and observation-specific uncertainty unavailable.",
+        "profile_context": {
+          "method": "source_reported_multisensor_current_comparison",
+          "instrument": "ROCIS and DopplerScatt shared source approximation",
+          "sample_depth_m": null,
+          "shared_source_approximation": true,
+          "aggregation": "source_comparison_reference_not_mean_or_maximum",
+          "is_eddy_vertical_extent": false,
+          "raw_profiles_acquired": false,
+          "whole_eddy_maximum_inferred": false,
+          "simultaneous_vertical_section_inferred": false,
+          "vertical_shear_computed": false,
+          "physical_crosswalk_verified": false
+        },
+        "evidence_role": "qualified_published_named_case_reference"
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original publisher-hosted PDF acquired and SHA-verified. Actual pages 6, 7 and 29–31 visually reviewed; Figure 2 native RGB image inspected and pixel-verified. PDF parser emitted color-space warnings on some operations; numeric comparison values are transcribed from readable source text, not inferred from affected color rendering. Raw ocean fields, model/front data and instrument profiles not acquired.",
+      "source_id": "rodriguez-2020",
+      "period_precision": "day",
+      "case_label": "Quantum / northern Quantum I local buoy comparison, 2018-03-26",
+      "component_label": "Northern post-split Quantum I source case",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "profile_context": {
+        "method": "source_reported_multisensor_current_comparison",
+        "instrument": "ROCIS and DopplerScatt shared source approximation",
+        "sample_depth_m": null,
+        "shared_source_approximation": true,
+        "aggregation": "source_comparison_reference_not_mean_or_maximum",
+        "is_eddy_vertical_extent": false,
+        "raw_profiles_acquired": false,
+        "whole_eddy_maximum_inferred": false,
+        "simultaneous_vertical_section_inferred": false,
+        "vertical_shear_computed": false,
+        "physical_crosswalk_verified": false
+      }
+    },
+    {
+      "id": "quantum-rodriguez-2020-2018-03-25-5m-adcp",
+      "entity_id": "eddy:horizon:loop-66-primary",
+      "category": "kinematics",
+      "metric": "source_reported_local_multisensor_current_comparison_speed",
+      "metric_label": "source reported local multisensor current comparison speed",
+      "value": 0.6,
+      "unit": "m/s",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2018-03-25",
+      "period_end": "2018-03-25",
+      "period_label": "2018-03-25 local comparison; exact observation times unspecified",
+      "definition": "Approximate 5 m buoy ADCP current speed in the source comparison.",
+      "scope": "Quantum field-study source case explicitly identifying the northern post-split Quantum I component. Registry physical crosswalk unverified. Not a pre-split parent or Quantum II measurement.",
+      "qualification": "Local comparison reference, not mean, maximum or whole-eddy velocity. Instrument-dependent near-surface weighting and measurement times differ; the source allows roughly hour-scale offsets. No simultaneous vertical section, quantitative shear, annual range or whole-eddy depth inferred. Raw instrument profiles and observation-specific uncertainty unavailable.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.mdpi.com/2072-4292/12/15/2388",
+      "source_locator": "Section 3.3, PDF page 31, opening paragraph continuing the March 25 discussion on page 30; Figure 4 / Figures 23–24 comparison context.",
+      "source_file": "research/eddy-measurement-register-additions-v29.json",
+      "source_pointer": "/records/3",
+      "source_sha256": "e48e4c2da84923eb7ae051165c1ab4b0b64ce1eff889f18f8591a294d17e4934",
+      "raw_record": {
+        "entity_id": "eddy:horizon:loop-66-primary",
+        "source_id": "rodriguez-2020",
+        "component_label": "Northern post-split Quantum I source case",
+        "rights_screened_release_eligible": false,
+        "scope": "Quantum field-study source case explicitly identifying the northern post-split Quantum I component. Registry physical crosswalk unverified. Not a pre-split parent or Quantum II measurement.",
+        "id": "quantum-rodriguez-2020-2018-03-25-5m-adcp",
+        "category": "kinematics",
+        "metric": "source_reported_local_multisensor_current_comparison_speed",
+        "value": 0.6,
+        "unit": "m/s",
+        "source_locator": "Section 3.3, PDF page 31, opening paragraph continuing the March 25 discussion on page 30; Figure 4 / Figures 23–24 comparison context.",
+        "case_label": "Quantum / northern Quantum I local buoy comparison, 2018-03-25",
+        "period_start": "2018-03-25",
+        "period_end": "2018-03-25",
+        "period_precision": "day",
+        "period_label": "2018-03-25 local comparison; exact observation times unspecified",
+        "definition": "Approximate 5 m buoy ADCP current speed in the source comparison.",
+        "qualification": "Local comparison reference, not mean, maximum or whole-eddy velocity. Instrument-dependent near-surface weighting and measurement times differ; the source allows roughly hour-scale offsets. No simultaneous vertical section, quantitative shear, annual range or whole-eddy depth inferred. Raw instrument profiles and observation-specific uncertainty unavailable.",
+        "profile_context": {
+          "method": "source_reported_multisensor_current_comparison",
+          "instrument": "ADCP",
+          "sample_depth_m": 5,
+          "shared_source_approximation": false,
+          "aggregation": "source_comparison_reference_not_mean_or_maximum",
+          "is_eddy_vertical_extent": false,
+          "raw_profiles_acquired": false,
+          "whole_eddy_maximum_inferred": false,
+          "simultaneous_vertical_section_inferred": false,
+          "vertical_shear_computed": false,
+          "physical_crosswalk_verified": false
+        },
+        "evidence_role": "qualified_published_named_case_reference",
+        "depth_m": 5
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original publisher-hosted PDF acquired and SHA-verified. Actual pages 6, 7 and 29–31 visually reviewed; Figure 2 native RGB image inspected and pixel-verified. PDF parser emitted color-space warnings on some operations; numeric comparison values are transcribed from readable source text, not inferred from affected color rendering. Raw ocean fields, model/front data and instrument profiles not acquired.",
+      "source_id": "rodriguez-2020",
+      "period_precision": "day",
+      "case_label": "Quantum / northern Quantum I local buoy comparison, 2018-03-25",
+      "component_label": "Northern post-split Quantum I source case",
+      "depth_m": 5,
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "profile_context": {
+        "method": "source_reported_multisensor_current_comparison",
+        "instrument": "ADCP",
+        "sample_depth_m": 5,
+        "shared_source_approximation": false,
+        "aggregation": "source_comparison_reference_not_mean_or_maximum",
+        "is_eddy_vertical_extent": false,
+        "raw_profiles_acquired": false,
+        "whole_eddy_maximum_inferred": false,
+        "simultaneous_vertical_section_inferred": false,
+        "vertical_shear_computed": false,
+        "physical_crosswalk_verified": false
+      }
+    },
+    {
+      "id": "quantum-rodriguez-2020-2018-03-25-remote-shared-speed",
+      "entity_id": "eddy:horizon:loop-66-primary",
+      "category": "kinematics",
+      "metric": "source_reported_local_multisensor_current_comparison_speed",
+      "metric_label": "source reported local multisensor current comparison speed",
+      "value": 1.2,
+      "unit": "m/s",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2018-03-25",
+      "period_end": "2018-03-25",
+      "period_label": "2018-03-25 local comparison; exact observation times unspecified",
+      "definition": "Approximate speed jointly described for ROCIS and DopplerScatt; a shared source approximation, not an arithmetic average or two independently resolved values in the source comparison.",
+      "scope": "Quantum field-study source case explicitly identifying the northern post-split Quantum I component. Registry physical crosswalk unverified. Not a pre-split parent or Quantum II measurement.",
+      "qualification": "Local comparison reference, not mean, maximum or whole-eddy velocity. Instrument-dependent near-surface weighting and measurement times differ; the source allows roughly hour-scale offsets. No simultaneous vertical section, quantitative shear, annual range or whole-eddy depth inferred. Raw instrument profiles and observation-specific uncertainty unavailable.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.mdpi.com/2072-4292/12/15/2388",
+      "source_locator": "Section 3.3, PDF page 31, opening paragraph continuing the March 25 discussion on page 30; Figure 4 / Figures 23–24 comparison context.",
+      "source_file": "research/eddy-measurement-register-additions-v29.json",
+      "source_pointer": "/records/4",
+      "source_sha256": "e48e4c2da84923eb7ae051165c1ab4b0b64ce1eff889f18f8591a294d17e4934",
+      "raw_record": {
+        "entity_id": "eddy:horizon:loop-66-primary",
+        "source_id": "rodriguez-2020",
+        "component_label": "Northern post-split Quantum I source case",
+        "rights_screened_release_eligible": false,
+        "scope": "Quantum field-study source case explicitly identifying the northern post-split Quantum I component. Registry physical crosswalk unverified. Not a pre-split parent or Quantum II measurement.",
+        "id": "quantum-rodriguez-2020-2018-03-25-remote-shared-speed",
+        "category": "kinematics",
+        "metric": "source_reported_local_multisensor_current_comparison_speed",
+        "value": 1.2,
+        "unit": "m/s",
+        "source_locator": "Section 3.3, PDF page 31, opening paragraph continuing the March 25 discussion on page 30; Figure 4 / Figures 23–24 comparison context.",
+        "case_label": "Quantum / northern Quantum I local buoy comparison, 2018-03-25",
+        "period_start": "2018-03-25",
+        "period_end": "2018-03-25",
+        "period_precision": "day",
+        "period_label": "2018-03-25 local comparison; exact observation times unspecified",
+        "definition": "Approximate speed jointly described for ROCIS and DopplerScatt; a shared source approximation, not an arithmetic average or two independently resolved values in the source comparison.",
+        "qualification": "Local comparison reference, not mean, maximum or whole-eddy velocity. Instrument-dependent near-surface weighting and measurement times differ; the source allows roughly hour-scale offsets. No simultaneous vertical section, quantitative shear, annual range or whole-eddy depth inferred. Raw instrument profiles and observation-specific uncertainty unavailable.",
+        "profile_context": {
+          "method": "source_reported_multisensor_current_comparison",
+          "instrument": "ROCIS and DopplerScatt shared source approximation",
+          "sample_depth_m": null,
+          "shared_source_approximation": true,
+          "aggregation": "source_comparison_reference_not_mean_or_maximum",
+          "is_eddy_vertical_extent": false,
+          "raw_profiles_acquired": false,
+          "whole_eddy_maximum_inferred": false,
+          "simultaneous_vertical_section_inferred": false,
+          "vertical_shear_computed": false,
+          "physical_crosswalk_verified": false
+        },
+        "evidence_role": "qualified_published_named_case_reference"
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original publisher-hosted PDF acquired and SHA-verified. Actual pages 6, 7 and 29–31 visually reviewed; Figure 2 native RGB image inspected and pixel-verified. PDF parser emitted color-space warnings on some operations; numeric comparison values are transcribed from readable source text, not inferred from affected color rendering. Raw ocean fields, model/front data and instrument profiles not acquired.",
+      "source_id": "rodriguez-2020",
+      "period_precision": "day",
+      "case_label": "Quantum / northern Quantum I local buoy comparison, 2018-03-25",
+      "component_label": "Northern post-split Quantum I source case",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "profile_context": {
+        "method": "source_reported_multisensor_current_comparison",
+        "instrument": "ROCIS and DopplerScatt shared source approximation",
+        "sample_depth_m": null,
+        "shared_source_approximation": true,
+        "aggregation": "source_comparison_reference_not_mean_or_maximum",
+        "is_eddy_vertical_extent": false,
+        "raw_profiles_acquired": false,
+        "whole_eddy_maximum_inferred": false,
+        "simultaneous_vertical_section_inferred": false,
+        "vertical_shear_computed": false,
         "physical_crosswalk_verified": false
       }
     }
