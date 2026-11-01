@@ -776,11 +776,11 @@ class EddyRegister(unittest.TestCase):
 
     def test_murphy_profile_source_custody_and_quantities(self):
         import hashlib,csv,io
-        d=register.build();batch=register.read('research/eddy-measurement-register-additions-v25.json')
+        d=register.build();batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v25.json').read_bytes())
         self.assertEqual(hashlib.sha256(json.dumps(d['evidence'][:336],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest(),batch['baseline_evidence_sha256'])
         rows=d['evidence'][336:];self.assertEqual(len(rows),2)
         self.assertEqual([(r['category'],r['unit'],r['range_value']) for r in rows],[('size','km',[175,225]),('structure','m',[.6,.7])])
-        report=register.read(batch['source_profile_report']);self.assertEqual(report['status'],'PASS')
+        report=json.loads((register.ROOT/batch['source_profile_report']).read_bytes());self.assertEqual(report['status'],'PASS')
         self.assertEqual(report['batch_sha256'],hashlib.sha256((register.ROOT/'research/eddy-measurement-register-additions-v25.json').read_bytes()).hexdigest())
         self.assertEqual(report['verifier_sha256'],hashlib.sha256((register.ROOT/'analysis/eddy_height_profiles_v1.py').read_bytes()).hexdigest())
         self.assertEqual(report['original_pdf_sha256'],batch['sources']['calman-1989']['original']['sha256'])
@@ -796,7 +796,7 @@ class EddyRegister(unittest.TestCase):
     def test_murphy_profile_rejects_physical_boundary_and_wrong_case(self):
         import copy
         from eddy_height_profiles_v1 import validate_case,span,peak,ink
-        c=register.read('research/eddy-measurement-register-additions-v25.json')['height_profile_cases'][0]
+        c=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v25.json').read_bytes())['height_profile_cases'][0]
         self.assertEqual(span(c)['total_scenarios'],384);self.assertEqual(peak(c)['total_scenarios'],8)
         for key,value in [('date','2015-01-01'),('owner_id','eddy:horizon:loop-11-primary'),('dynamic_topography_unit','cm'),('diameter_inferred',True),('author_eddy_boundary',True),('axbt_trace_combined',True),('diagnostic_level_m',.5),('rights_screened_release_eligible',True)]:
             wrong=copy.deepcopy(c);wrong[key]=value
