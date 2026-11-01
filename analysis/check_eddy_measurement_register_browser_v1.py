@@ -73,7 +73,7 @@ def run():
             for name in ['thor-2020','ursa-2021']:
                 tr=page.locator(f'tr[data-eddy-id="eddy:published:{name}"]');tr.locator('summary').click()
                 assert 'Paper window:' in tr.inner_text() and 'measured lifetime' in tr.inner_text()
-                assert tr.locator('.eddy-record').count()==(3 if name=='ursa-2021' else 1)
+                assert tr.locator('.eddy-record').count()==(3 if name=='ursa-2021' else 2)
                 assert 'Not an individual lifespan' in tr.inner_text()
             checks.append('Eliza value/year conflicts retained; parent-ring span and paper windows not promoted to individual lifetimes')
             page.select_option('#eddy-identity','eddy_family');page.fill('#eddy-search','Agulhas')
