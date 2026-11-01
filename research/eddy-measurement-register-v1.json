@@ -2,8 +2,8 @@
   "schema": "osw.eddy-measurement-register.v1",
   "status": "MEASUREMENT_GAP_FILLING_IN_PROGRESS",
   "rules_file": "plans/eddy-measurement-register-v1.md",
-  "rules_sha256": "8e13a9cb5b3757d8f304ded5883f575acf4e2c2c4c85efc242ebb488df13e0df",
-  "generator_sha256": "a9f14f151af163e9699aa74432f8cc6d6c6a72fc7c229cd9b20069c058ee260f",
+  "rules_sha256": "19ab82b4da2cc32e4f38db81ce30d06d6e17acddff77ec43a421fb243cc53e25",
+  "generator_sha256": "455a3176f8643fe8ceb02a4a28ecf37c7712db3041134a1e49bbde3ba6604978",
   "input_sha256": {
     "research/ocean-eddy-name-inventory.json": "d78c31a96b93cc9e746562f2d5c3b0f6d37ad36c3f1d10bb769aec8aa4472015",
     "research/named-eddy-geography.json": "50f20f1f32589b780f7ff29824afa7f7af4a78bfd80a25a4784e6fc992bf3547",
@@ -15,7 +15,7 @@
     "research/eddy-measurement-register-additions-v2.json": "3bb1a6760a5e68efd41f5562425225da70e7bd78429257a8b1466937114fa62b",
     "plans/agulhas-ring-radius-protocol-v1.md": "620981e7dccd1a888083d5daa670548a6f1254825f2acda73da5a821bcb4e876",
     "plans/black-sea-eddy-recurrence-protocol-v1.md": "66fef56b5960d802df68ca35d3241912650f7fe2c58803375743b4f42a48b5cf",
-    "research/eddy-measurement-batches-v1.json": "7626641b599a42d54b7453e41dce4f152fec44ba3573950c428a8abc13d818f4",
+    "research/eddy-measurement-batches-v1.json": "120a66af8b0d229f80cfc03da5f2621b3bb92d2c8cd0c0032683acf830e1975f",
     "research/eddy-measurement-register-additions-v3.json": "d1c91350952ea08a49562c5aa0b671f0624930fd73e4735c2227c1b17708fc15",
     "research/eddy-measurement-register-additions-v4.json": "359d14c7927a6fc045bce23eb8ae4f7c226caa1a5355a27045a735125bdeaa11",
     "research/named-loop-current-eddies.json": "4a41a3b4b127f42ac31b114117c0d5d2caf998b84bed6caeac58de6ef94eecca",
@@ -48,14 +48,17 @@
     "research/eddy-measurement-register-additions-v22.json": "1d12d3480ab149f68534f44780c82dac3b706d479a717dd74efa52d8764d43e8",
     "research/eddy-measurement-register-additions-v23.json": "3e43eedc23cdb9f6c0a7b3a2236b653882cd40106423dae8f31f4f595faffdc8",
     "research/eddy-pdf-line-source-verification-v1.json": "a44b92d53cb98a290f52ccdc96bae2acad3d8feacc8cb213503e02bd4d3b81f4",
-    "research/eddy-measurement-register-additions-v24.json": "86781f5806c94a6b625ee0ec733785cc9a8a05adfdb5038aaef0a1073f65c645"
+    "research/eddy-measurement-register-additions-v24.json": "86781f5806c94a6b625ee0ec733785cc9a8a05adfdb5038aaef0a1073f65c645",
+    "research/eddy-measurement-register-additions-v25.json": "948bc3faa0ecf0fcb4af590b7d2db1eaa2a4bf7e5873c70d2c6ace88abfb5558",
+    "research/eddy-height-profile-source-verification-v1.json": "59ee39d5c81445928c9cabd64360a2e4a6ea0c14da836188ce2876a65db41500"
   },
   "method_implementation_sha256": {
     "analysis/eddy_map_spans_v1.py": "b7594aa7eac20a1968e4432f2979f6b11c4f7008b3f5745753f0ad6e70f1f6e4",
     "analysis/eddy_audit_spans_v1.py": "db9db395ac3d1d52849e4d4086fecc823a5fec0ec08d0d0c10179979a6435523",
     "analysis/eddy_colour_spans_v1.py": "8c50bd79451c8f933c329f3e23cae320351c7f94f669163162007c5fa24a5994",
     "analysis/eddy_arrow_spans_v1.py": "f97555626ece63dc373d695f9d7430ea0349bd064b1aeabd68bde1aabbeb32b9",
-    "analysis/eddy_pdf_line_spans_v1.py": "a341c3527e78650801ad6d55d824ccb474df2594d415b5bd59077e76906ecd48"
+    "analysis/eddy_pdf_line_spans_v1.py": "a341c3527e78650801ad6d55d824ccb474df2594d415b5bd59077e76906ecd48",
+    "analysis/eddy_height_profiles_v1.py": "94bd3af3f64998f908fad69efb6eeae9b8bc4a30c35406914e6d73e77972d4dc"
   },
   "first_batch_evidence_sha256": "702311bd7b238182a51b6160f902500e371a88eec635c6d500bc93df53373a4b",
   "first_batch_evidence_preserved": 40,
@@ -191,6 +194,12 @@
       "baseline_count": 329,
       "preserved_baseline_sha256": "d0769a88b6453f079c22ac3a04cec2d6e71e2d099db52d20b98629cbfca9b833",
       "added": 7
+    },
+    {
+      "file": "research/eddy-measurement-register-additions-v25.json",
+      "baseline_count": 336,
+      "preserved_baseline_sha256": "74b9bbb2ae9a7881d965040fdbc005e637c7064b22701b966b2a93947ae1f4b8",
+      "added": 2
     }
   ],
   "scope": "One address for every independently named eddy label or named regional/family record currently admitted to the OSW almanac. This source-set inventory is not a complete global list of all eddies or all names. NOAA detection IDs are separate unnamed, dated observations.",
@@ -201,12 +210,12 @@
     "individual_source_records": 112,
     "recurrent_regions": 20,
     "families": 4,
-    "evidence_records": 336,
-    "size_records": 120,
-    "size_owners": 76,
+    "evidence_records": 338,
+    "size_records": 121,
+    "size_owners": 77,
     "duration_owners": 99,
     "recurrence_owners": 12,
-    "structure_owners": 13,
+    "structure_owners": 14,
     "kinematics_owners": 70,
     "non_registry_entries": 40,
     "non_registry_entries_with_references": 40,
@@ -5098,14 +5107,18 @@
       "source_pointer": "/entries/86",
       "evidence_ids": [
         "eddy:horizon:loop-10-primary-registry-maximum-surface-current",
-        "eddy:horizon:loop-10-primary-registry-calendar-span"
+        "eddy:horizon:loop-10-primary-registry-calendar-span",
+        "murphy-calman-1989-meridional-span",
+        "murphy-calman-1989-peak-height"
       ],
       "categories": [
         "duration",
-        "kinematics"
+        "kinematics",
+        "size",
+        "structure"
       ],
       "size_classification_ids": [],
-      "size_gap": true,
+      "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
       "linked_primary_context": null,
@@ -44079,6 +44092,1213 @@
         "eddy_total_heat_inferred": false,
         "raw_profiles_acquired": false,
         "physical_crosswalk_verified": false
+      }
+    },
+    {
+      "id": "murphy-calman-1989-meridional-span",
+      "entity_id": "eddy:horizon:loop-10-primary",
+      "category": "size",
+      "metric": "source_profile_selected_height_level_meridional_span",
+      "metric_label": "source profile selected height level meridional span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "1988-06-20",
+      "period_end": "1988-06-20",
+      "period_label": "1988-06-20 satellite pass; AXBT comparison several days apart",
+      "definition": "Meridional projection between two manually selected bracketing crossings of the Altimeter height signal at an OSW-chosen 0.30 m level; sensitivity levels 0.25 and 0.35 m.",
+      "scope": "Named Gulf Murphy source case; registry physical identity crosswalk unverified. Finite satellite profile, not a whole-eddy boundary.",
+      "qualification": "Selected crossing span is not continuously above the level: local recrossings and troughs are not filled. Latitude gives a meridional projection, not oblique along-track distance, radius or diameter. Peak dynamic topography is not eddy depth. Six-pixel reading allowance, two-pixel anchor shifts and outward rounding express reading/choice sensitivity, not source physical error or a confidence interval. AXBT trace and schematic inset are excluded; no footprint, state containment, lifetime or seasonal envelope inferred.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.jhuapl.edu/content/techdigest/pdf/V10-N04/10-04-Calman.pdf",
+      "source_locator": "Figure 4, printed page 383 / PDF page 4; Altimeter trace, north latitude and dynamic topography axes.",
+      "source_file": "research/eddy-measurement-register-additions-v25.json",
+      "source_pointer": "/records/0",
+      "source_sha256": "948bc3faa0ecf0fcb4af590b7d2db1eaa2a4bf7e5873c70d2c6ace88abfb5558",
+      "raw_record": {
+        "id": "murphy-calman-1989-meridional-span",
+        "entity_id": "eddy:horizon:loop-10-primary",
+        "source_id": "calman-1989",
+        "category": "size",
+        "metric": "source_profile_selected_height_level_meridional_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          175,
+          225
+        ],
+        "range_kind": "source_plot_reading_sensitivity",
+        "height_profile_case_index": 0,
+        "profile_component": "meridional_span",
+        "evidence_role": "graph_digitized_named_case_reference",
+        "rights_screened_release_eligible": false,
+        "case_label": "Murphy, Gulf of Mexico, 20 June 1988 altimeter profile",
+        "period_start": "1988-06-20",
+        "period_end": "1988-06-20",
+        "period_precision": "day",
+        "period_label": "1988-06-20 satellite pass; AXBT comparison several days apart",
+        "source_locator": "Figure 4, printed page 383 / PDF page 4; Altimeter trace, north latitude and dynamic topography axes.",
+        "definition": "Meridional projection between two manually selected bracketing crossings of the Altimeter height signal at an OSW-chosen 0.30 m level; sensitivity levels 0.25 and 0.35 m.",
+        "scope": "Named Gulf Murphy source case; registry physical identity crosswalk unverified. Finite satellite profile, not a whole-eddy boundary.",
+        "qualification": "Selected crossing span is not continuously above the level: local recrossings and troughs are not filled. Latitude gives a meridional projection, not oblique along-track distance, radius or diameter. Peak dynamic topography is not eddy depth. Six-pixel reading allowance, two-pixel anchor shifts and outward rounding express reading/choice sensitivity, not source physical error or a confidence interval. AXBT trace and schematic inset are excluded; no footprint, state containment, lifetime or seasonal envelope inferred."
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original institutional PDF acquired. Printed page 383 / PDF page 4, Figure 4 and its native raster inspected. Altimeter curve selected separately from the AXBT comparison; inset ring circle is schematic.",
+      "source_id": "calman-1989",
+      "period_precision": "day",
+      "case_label": "Murphy, Gulf of Mexico, 20 June 1988 altimeter profile",
+      "range_value": [
+        175,
+        225
+      ],
+      "range_kind": "source_plot_reading_sensitivity",
+      "evidence_role": "graph_digitized_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_plot_estimate": {
+        "method": "source_height_profile_readings_v1",
+        "case": {
+          "ticks": [
+            {
+              "axis": "latitude",
+              "value": 23,
+              "window_xyxy": [
+                1760,
+                405,
+                1777,
+                417
+              ],
+              "coordinate": 1767,
+              "ink_pixels": 13,
+              "bbox_xyxy": [
+                1767,
+                405,
+                1767,
+                417
+              ]
+            },
+            {
+              "axis": "latitude",
+              "value": 24,
+              "window_xyxy": [
+                1970,
+                405,
+                1989,
+                417
+              ],
+              "coordinate": 1978.5,
+              "ink_pixels": 24,
+              "bbox_xyxy": [
+                1978,
+                405,
+                1979,
+                416
+              ]
+            },
+            {
+              "axis": "latitude",
+              "value": 25,
+              "window_xyxy": [
+                2182,
+                405,
+                2202,
+                417
+              ],
+              "coordinate": 2191.0,
+              "ink_pixels": 12,
+              "bbox_xyxy": [
+                2191,
+                405,
+                2191,
+                416
+              ]
+            },
+            {
+              "axis": "latitude",
+              "value": 26,
+              "window_xyxy": [
+                2390,
+                405,
+                2415,
+                417
+              ],
+              "coordinate": 2401,
+              "ink_pixels": 13,
+              "bbox_xyxy": [
+                2401,
+                405,
+                2402,
+                416
+              ]
+            },
+            {
+              "axis": "latitude",
+              "value": 27,
+              "window_xyxy": [
+                2600,
+                405,
+                2625,
+                417
+              ],
+              "coordinate": 2612.0,
+              "ink_pixels": 22,
+              "bbox_xyxy": [
+                2611,
+                405,
+                2612,
+                416
+              ]
+            },
+            {
+              "axis": "latitude",
+              "value": 28,
+              "window_xyxy": [
+                2810,
+                405,
+                2835,
+                417
+              ],
+              "coordinate": 2820.5,
+              "ink_pixels": 26,
+              "bbox_xyxy": [
+                2820,
+                405,
+                2821,
+                417
+              ]
+            },
+            {
+              "axis": "height",
+              "value": 0,
+              "window_xyxy": [
+                1775,
+                1060,
+                1789,
+                1085
+              ],
+              "coordinate": 1073.5,
+              "ink_pixels": 20,
+              "bbox_xyxy": [
+                1775,
+                1073,
+                1784,
+                1074
+              ]
+            },
+            {
+              "axis": "height",
+              "value": 0.5,
+              "window_xyxy": [
+                1775,
+                725,
+                1789,
+                750
+              ],
+              "coordinate": 736,
+              "ink_pixels": 19,
+              "bbox_xyxy": [
+                1775,
+                736,
+                1784,
+                737
+              ]
+            },
+            {
+              "axis": "height",
+              "value": 1,
+              "window_xyxy": [
+                1775,
+                390,
+                1789,
+                415
+              ],
+              "coordinate": 399.5,
+              "ink_pixels": 30,
+              "bbox_xyxy": [
+                1775,
+                399,
+                1789,
+                400
+              ]
+            }
+          ],
+          "crossings": [
+            {
+              "height_m": 0.25,
+              "row_pixel": 905,
+              "maximum_rgb_channel": 75,
+              "crossings": {
+                "south": {
+                  "window_xyxy": [
+                    2035,
+                    904,
+                    2075,
+                    906
+                  ],
+                  "x_range": [
+                    2041,
+                    2044
+                  ],
+                  "ink_pixels": 10,
+                  "distinct_columns": [
+                    2041,
+                    2042,
+                    2043,
+                    2044
+                  ]
+                },
+                "north": {
+                  "window_xyxy": [
+                    2380,
+                    904,
+                    2425,
+                    906
+                  ],
+                  "x_range": [
+                    2414,
+                    2417
+                  ],
+                  "ink_pixels": 12,
+                  "distinct_columns": [
+                    2414,
+                    2415,
+                    2416,
+                    2417
+                  ]
+                }
+              }
+            },
+            {
+              "height_m": 0.25,
+              "row_pixel": 905,
+              "maximum_rgb_channel": 100,
+              "crossings": {
+                "south": {
+                  "window_xyxy": [
+                    2035,
+                    904,
+                    2075,
+                    906
+                  ],
+                  "x_range": [
+                    2041,
+                    2045
+                  ],
+                  "ink_pixels": 15,
+                  "distinct_columns": [
+                    2041,
+                    2042,
+                    2043,
+                    2044,
+                    2045
+                  ]
+                },
+                "north": {
+                  "window_xyxy": [
+                    2380,
+                    904,
+                    2425,
+                    906
+                  ],
+                  "x_range": [
+                    2414,
+                    2418
+                  ],
+                  "ink_pixels": 15,
+                  "distinct_columns": [
+                    2414,
+                    2415,
+                    2416,
+                    2417,
+                    2418
+                  ]
+                }
+              }
+            },
+            {
+              "height_m": 0.3,
+              "row_pixel": 871,
+              "maximum_rgb_channel": 75,
+              "crossings": {
+                "south": {
+                  "window_xyxy": [
+                    2035,
+                    870,
+                    2075,
+                    872
+                  ],
+                  "x_range": [
+                    2045,
+                    2047
+                  ],
+                  "ink_pixels": 9,
+                  "distinct_columns": [
+                    2045,
+                    2046,
+                    2047
+                  ]
+                },
+                "north": {
+                  "window_xyxy": [
+                    2380,
+                    870,
+                    2425,
+                    872
+                  ],
+                  "x_range": [
+                    2410,
+                    2413
+                  ],
+                  "ink_pixels": 12,
+                  "distinct_columns": [
+                    2410,
+                    2411,
+                    2412,
+                    2413
+                  ]
+                }
+              }
+            },
+            {
+              "height_m": 0.3,
+              "row_pixel": 871,
+              "maximum_rgb_channel": 100,
+              "crossings": {
+                "south": {
+                  "window_xyxy": [
+                    2035,
+                    870,
+                    2075,
+                    872
+                  ],
+                  "x_range": [
+                    2044,
+                    2048
+                  ],
+                  "ink_pixels": 15,
+                  "distinct_columns": [
+                    2044,
+                    2045,
+                    2046,
+                    2047,
+                    2048
+                  ]
+                },
+                "north": {
+                  "window_xyxy": [
+                    2380,
+                    870,
+                    2425,
+                    872
+                  ],
+                  "x_range": [
+                    2410,
+                    2414
+                  ],
+                  "ink_pixels": 13,
+                  "distinct_columns": [
+                    2410,
+                    2411,
+                    2412,
+                    2413,
+                    2414
+                  ]
+                }
+              }
+            },
+            {
+              "height_m": 0.35,
+              "row_pixel": 837,
+              "maximum_rgb_channel": 75,
+              "crossings": {
+                "south": {
+                  "window_xyxy": [
+                    2035,
+                    836,
+                    2075,
+                    838
+                  ],
+                  "x_range": [
+                    2048,
+                    2052
+                  ],
+                  "ink_pixels": 13,
+                  "distinct_columns": [
+                    2048,
+                    2049,
+                    2050,
+                    2051,
+                    2052
+                  ]
+                },
+                "north": {
+                  "window_xyxy": [
+                    2380,
+                    836,
+                    2425,
+                    838
+                  ],
+                  "x_range": [
+                    2406,
+                    2409
+                  ],
+                  "ink_pixels": 12,
+                  "distinct_columns": [
+                    2406,
+                    2407,
+                    2408,
+                    2409
+                  ]
+                }
+              }
+            },
+            {
+              "height_m": 0.35,
+              "row_pixel": 837,
+              "maximum_rgb_channel": 100,
+              "crossings": {
+                "south": {
+                  "window_xyxy": [
+                    2035,
+                    836,
+                    2075,
+                    838
+                  ],
+                  "x_range": [
+                    2048,
+                    2052
+                  ],
+                  "ink_pixels": 15,
+                  "distinct_columns": [
+                    2048,
+                    2049,
+                    2050,
+                    2051,
+                    2052
+                  ]
+                },
+                "north": {
+                  "window_xyxy": [
+                    2380,
+                    836,
+                    2425,
+                    838
+                  ],
+                  "x_range": [
+                    2406,
+                    2410
+                  ],
+                  "ink_pixels": 14,
+                  "distinct_columns": [
+                    2406,
+                    2407,
+                    2408,
+                    2409,
+                    2410
+                  ]
+                }
+              }
+            }
+          ],
+          "peaks": [
+            {
+              "maximum_rgb_channel": 75,
+              "window_xyxy": [
+                2035,
+                500,
+                2425,
+                730
+              ],
+              "minimum_y_pixel": 637,
+              "minimum_row_x_range": [
+                2133,
+                2134
+              ],
+              "ink_pixels": 1792
+            },
+            {
+              "maximum_rgb_channel": 100,
+              "window_xyxy": [
+                2035,
+                500,
+                2425,
+                730
+              ],
+              "minimum_y_pixel": 636,
+              "minimum_row_x_range": [
+                2133,
+                2134
+              ],
+              "ink_pixels": 2118
+            }
+          ],
+          "method": "source_height_profile_readings_v1",
+          "owner_id": "eddy:horizon:loop-10-primary",
+          "source_name": "Murphy",
+          "date": "1988-06-20",
+          "pdf_page": 4,
+          "figure": 4,
+          "dynamic_topography_unit": "m",
+          "horizontal_coordinate": "north_latitude_degrees",
+          "earth_radius_km": 6371,
+          "reading_allowance_pixels": 6,
+          "axis_sensitivity_pixels": 2,
+          "round_span_outward_km": 25,
+          "round_height_outward_m": 0.05,
+          "diagnostic_level_m": 0.3,
+          "level_choice_by_osw": true,
+          "sensitivity_levels_m": [
+            0.25,
+            0.3,
+            0.35
+          ],
+          "curve": "Altimeter",
+          "axbt_trace_combined": false,
+          "source_raster": {
+            "xref": 119,
+            "width": 3234,
+            "height": 4403,
+            "components": 3,
+            "samples_sha256": "19dd097f0900b67600f916ec01c74aa9350c518c14766040dd143fe445c8b5d6"
+          },
+          "author_eddy_boundary": false,
+          "along_track_distance_inferred": false,
+          "diameter_inferred": false,
+          "physical_state_join_eligible": false,
+          "association_is_verified": false,
+          "seasonal_playback_eligible": false,
+          "rights_screened_release_eligible": false,
+          "missing_ink_reconstructed": false
+        },
+        "component": "meridional_span",
+        "calculation": {
+          "audit_span_km": 192.866004,
+          "audit_reading_interval_km": [
+            178.184521,
+            207.046379
+          ],
+          "range_km": [
+            175,
+            225
+          ],
+          "axis_scenarios_per_level_gate": 64,
+          "level_gate_cases": 6,
+          "total_scenarios": 384,
+          "height_levels_m": [
+            0.25,
+            0.3,
+            0.35
+          ]
+        }
+      }
+    },
+    {
+      "id": "murphy-calman-1989-peak-height",
+      "entity_id": "eddy:horizon:loop-10-primary",
+      "category": "structure",
+      "metric": "source_profile_selected_main_lobe_peak_dynamic_topography",
+      "metric_label": "source profile selected main lobe peak dynamic topography",
+      "value": null,
+      "unit": "m",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "1988-06-20",
+      "period_end": "1988-06-20",
+      "period_label": "1988-06-20 satellite pass; AXBT comparison several days apart",
+      "definition": "Dynamic topography at the selected main-lobe peak of the Altimeter trace, relative to the source mean-height reference.",
+      "scope": "Named Gulf Murphy source case; registry physical identity crosswalk unverified. Finite satellite profile, not a whole-eddy boundary.",
+      "qualification": "Selected crossing span is not continuously above the level: local recrossings and troughs are not filled. Latitude gives a meridional projection, not oblique along-track distance, radius or diameter. Peak dynamic topography is not eddy depth. Six-pixel reading allowance, two-pixel anchor shifts and outward rounding express reading/choice sensitivity, not source physical error or a confidence interval. AXBT trace and schematic inset are excluded; no footprint, state containment, lifetime or seasonal envelope inferred.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.jhuapl.edu/content/techdigest/pdf/V10-N04/10-04-Calman.pdf",
+      "source_locator": "Figure 4, printed page 383 / PDF page 4; Altimeter trace, north latitude and dynamic topography axes.",
+      "source_file": "research/eddy-measurement-register-additions-v25.json",
+      "source_pointer": "/records/1",
+      "source_sha256": "948bc3faa0ecf0fcb4af590b7d2db1eaa2a4bf7e5873c70d2c6ace88abfb5558",
+      "raw_record": {
+        "id": "murphy-calman-1989-peak-height",
+        "entity_id": "eddy:horizon:loop-10-primary",
+        "source_id": "calman-1989",
+        "category": "structure",
+        "metric": "source_profile_selected_main_lobe_peak_dynamic_topography",
+        "value": null,
+        "unit": "m",
+        "range_value": [
+          0.6,
+          0.7
+        ],
+        "range_kind": "source_plot_reading_sensitivity",
+        "height_profile_case_index": 0,
+        "profile_component": "peak_height",
+        "evidence_role": "graph_digitized_named_case_reference",
+        "rights_screened_release_eligible": false,
+        "case_label": "Murphy, Gulf of Mexico, 20 June 1988 altimeter profile",
+        "period_start": "1988-06-20",
+        "period_end": "1988-06-20",
+        "period_precision": "day",
+        "period_label": "1988-06-20 satellite pass; AXBT comparison several days apart",
+        "source_locator": "Figure 4, printed page 383 / PDF page 4; Altimeter trace, north latitude and dynamic topography axes.",
+        "definition": "Dynamic topography at the selected main-lobe peak of the Altimeter trace, relative to the source mean-height reference.",
+        "scope": "Named Gulf Murphy source case; registry physical identity crosswalk unverified. Finite satellite profile, not a whole-eddy boundary.",
+        "qualification": "Selected crossing span is not continuously above the level: local recrossings and troughs are not filled. Latitude gives a meridional projection, not oblique along-track distance, radius or diameter. Peak dynamic topography is not eddy depth. Six-pixel reading allowance, two-pixel anchor shifts and outward rounding express reading/choice sensitivity, not source physical error or a confidence interval. AXBT trace and schematic inset are excluded; no footprint, state containment, lifetime or seasonal envelope inferred."
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original institutional PDF acquired. Printed page 383 / PDF page 4, Figure 4 and its native raster inspected. Altimeter curve selected separately from the AXBT comparison; inset ring circle is schematic.",
+      "source_id": "calman-1989",
+      "period_precision": "day",
+      "case_label": "Murphy, Gulf of Mexico, 20 June 1988 altimeter profile",
+      "range_value": [
+        0.6,
+        0.7
+      ],
+      "range_kind": "source_plot_reading_sensitivity",
+      "evidence_role": "graph_digitized_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_plot_estimate": {
+        "method": "source_height_profile_readings_v1",
+        "case": {
+          "ticks": [
+            {
+              "axis": "latitude",
+              "value": 23,
+              "window_xyxy": [
+                1760,
+                405,
+                1777,
+                417
+              ],
+              "coordinate": 1767,
+              "ink_pixels": 13,
+              "bbox_xyxy": [
+                1767,
+                405,
+                1767,
+                417
+              ]
+            },
+            {
+              "axis": "latitude",
+              "value": 24,
+              "window_xyxy": [
+                1970,
+                405,
+                1989,
+                417
+              ],
+              "coordinate": 1978.5,
+              "ink_pixels": 24,
+              "bbox_xyxy": [
+                1978,
+                405,
+                1979,
+                416
+              ]
+            },
+            {
+              "axis": "latitude",
+              "value": 25,
+              "window_xyxy": [
+                2182,
+                405,
+                2202,
+                417
+              ],
+              "coordinate": 2191.0,
+              "ink_pixels": 12,
+              "bbox_xyxy": [
+                2191,
+                405,
+                2191,
+                416
+              ]
+            },
+            {
+              "axis": "latitude",
+              "value": 26,
+              "window_xyxy": [
+                2390,
+                405,
+                2415,
+                417
+              ],
+              "coordinate": 2401,
+              "ink_pixels": 13,
+              "bbox_xyxy": [
+                2401,
+                405,
+                2402,
+                416
+              ]
+            },
+            {
+              "axis": "latitude",
+              "value": 27,
+              "window_xyxy": [
+                2600,
+                405,
+                2625,
+                417
+              ],
+              "coordinate": 2612.0,
+              "ink_pixels": 22,
+              "bbox_xyxy": [
+                2611,
+                405,
+                2612,
+                416
+              ]
+            },
+            {
+              "axis": "latitude",
+              "value": 28,
+              "window_xyxy": [
+                2810,
+                405,
+                2835,
+                417
+              ],
+              "coordinate": 2820.5,
+              "ink_pixels": 26,
+              "bbox_xyxy": [
+                2820,
+                405,
+                2821,
+                417
+              ]
+            },
+            {
+              "axis": "height",
+              "value": 0,
+              "window_xyxy": [
+                1775,
+                1060,
+                1789,
+                1085
+              ],
+              "coordinate": 1073.5,
+              "ink_pixels": 20,
+              "bbox_xyxy": [
+                1775,
+                1073,
+                1784,
+                1074
+              ]
+            },
+            {
+              "axis": "height",
+              "value": 0.5,
+              "window_xyxy": [
+                1775,
+                725,
+                1789,
+                750
+              ],
+              "coordinate": 736,
+              "ink_pixels": 19,
+              "bbox_xyxy": [
+                1775,
+                736,
+                1784,
+                737
+              ]
+            },
+            {
+              "axis": "height",
+              "value": 1,
+              "window_xyxy": [
+                1775,
+                390,
+                1789,
+                415
+              ],
+              "coordinate": 399.5,
+              "ink_pixels": 30,
+              "bbox_xyxy": [
+                1775,
+                399,
+                1789,
+                400
+              ]
+            }
+          ],
+          "crossings": [
+            {
+              "height_m": 0.25,
+              "row_pixel": 905,
+              "maximum_rgb_channel": 75,
+              "crossings": {
+                "south": {
+                  "window_xyxy": [
+                    2035,
+                    904,
+                    2075,
+                    906
+                  ],
+                  "x_range": [
+                    2041,
+                    2044
+                  ],
+                  "ink_pixels": 10,
+                  "distinct_columns": [
+                    2041,
+                    2042,
+                    2043,
+                    2044
+                  ]
+                },
+                "north": {
+                  "window_xyxy": [
+                    2380,
+                    904,
+                    2425,
+                    906
+                  ],
+                  "x_range": [
+                    2414,
+                    2417
+                  ],
+                  "ink_pixels": 12,
+                  "distinct_columns": [
+                    2414,
+                    2415,
+                    2416,
+                    2417
+                  ]
+                }
+              }
+            },
+            {
+              "height_m": 0.25,
+              "row_pixel": 905,
+              "maximum_rgb_channel": 100,
+              "crossings": {
+                "south": {
+                  "window_xyxy": [
+                    2035,
+                    904,
+                    2075,
+                    906
+                  ],
+                  "x_range": [
+                    2041,
+                    2045
+                  ],
+                  "ink_pixels": 15,
+                  "distinct_columns": [
+                    2041,
+                    2042,
+                    2043,
+                    2044,
+                    2045
+                  ]
+                },
+                "north": {
+                  "window_xyxy": [
+                    2380,
+                    904,
+                    2425,
+                    906
+                  ],
+                  "x_range": [
+                    2414,
+                    2418
+                  ],
+                  "ink_pixels": 15,
+                  "distinct_columns": [
+                    2414,
+                    2415,
+                    2416,
+                    2417,
+                    2418
+                  ]
+                }
+              }
+            },
+            {
+              "height_m": 0.3,
+              "row_pixel": 871,
+              "maximum_rgb_channel": 75,
+              "crossings": {
+                "south": {
+                  "window_xyxy": [
+                    2035,
+                    870,
+                    2075,
+                    872
+                  ],
+                  "x_range": [
+                    2045,
+                    2047
+                  ],
+                  "ink_pixels": 9,
+                  "distinct_columns": [
+                    2045,
+                    2046,
+                    2047
+                  ]
+                },
+                "north": {
+                  "window_xyxy": [
+                    2380,
+                    870,
+                    2425,
+                    872
+                  ],
+                  "x_range": [
+                    2410,
+                    2413
+                  ],
+                  "ink_pixels": 12,
+                  "distinct_columns": [
+                    2410,
+                    2411,
+                    2412,
+                    2413
+                  ]
+                }
+              }
+            },
+            {
+              "height_m": 0.3,
+              "row_pixel": 871,
+              "maximum_rgb_channel": 100,
+              "crossings": {
+                "south": {
+                  "window_xyxy": [
+                    2035,
+                    870,
+                    2075,
+                    872
+                  ],
+                  "x_range": [
+                    2044,
+                    2048
+                  ],
+                  "ink_pixels": 15,
+                  "distinct_columns": [
+                    2044,
+                    2045,
+                    2046,
+                    2047,
+                    2048
+                  ]
+                },
+                "north": {
+                  "window_xyxy": [
+                    2380,
+                    870,
+                    2425,
+                    872
+                  ],
+                  "x_range": [
+                    2410,
+                    2414
+                  ],
+                  "ink_pixels": 13,
+                  "distinct_columns": [
+                    2410,
+                    2411,
+                    2412,
+                    2413,
+                    2414
+                  ]
+                }
+              }
+            },
+            {
+              "height_m": 0.35,
+              "row_pixel": 837,
+              "maximum_rgb_channel": 75,
+              "crossings": {
+                "south": {
+                  "window_xyxy": [
+                    2035,
+                    836,
+                    2075,
+                    838
+                  ],
+                  "x_range": [
+                    2048,
+                    2052
+                  ],
+                  "ink_pixels": 13,
+                  "distinct_columns": [
+                    2048,
+                    2049,
+                    2050,
+                    2051,
+                    2052
+                  ]
+                },
+                "north": {
+                  "window_xyxy": [
+                    2380,
+                    836,
+                    2425,
+                    838
+                  ],
+                  "x_range": [
+                    2406,
+                    2409
+                  ],
+                  "ink_pixels": 12,
+                  "distinct_columns": [
+                    2406,
+                    2407,
+                    2408,
+                    2409
+                  ]
+                }
+              }
+            },
+            {
+              "height_m": 0.35,
+              "row_pixel": 837,
+              "maximum_rgb_channel": 100,
+              "crossings": {
+                "south": {
+                  "window_xyxy": [
+                    2035,
+                    836,
+                    2075,
+                    838
+                  ],
+                  "x_range": [
+                    2048,
+                    2052
+                  ],
+                  "ink_pixels": 15,
+                  "distinct_columns": [
+                    2048,
+                    2049,
+                    2050,
+                    2051,
+                    2052
+                  ]
+                },
+                "north": {
+                  "window_xyxy": [
+                    2380,
+                    836,
+                    2425,
+                    838
+                  ],
+                  "x_range": [
+                    2406,
+                    2410
+                  ],
+                  "ink_pixels": 14,
+                  "distinct_columns": [
+                    2406,
+                    2407,
+                    2408,
+                    2409,
+                    2410
+                  ]
+                }
+              }
+            }
+          ],
+          "peaks": [
+            {
+              "maximum_rgb_channel": 75,
+              "window_xyxy": [
+                2035,
+                500,
+                2425,
+                730
+              ],
+              "minimum_y_pixel": 637,
+              "minimum_row_x_range": [
+                2133,
+                2134
+              ],
+              "ink_pixels": 1792
+            },
+            {
+              "maximum_rgb_channel": 100,
+              "window_xyxy": [
+                2035,
+                500,
+                2425,
+                730
+              ],
+              "minimum_y_pixel": 636,
+              "minimum_row_x_range": [
+                2133,
+                2134
+              ],
+              "ink_pixels": 2118
+            }
+          ],
+          "method": "source_height_profile_readings_v1",
+          "owner_id": "eddy:horizon:loop-10-primary",
+          "source_name": "Murphy",
+          "date": "1988-06-20",
+          "pdf_page": 4,
+          "figure": 4,
+          "dynamic_topography_unit": "m",
+          "horizontal_coordinate": "north_latitude_degrees",
+          "earth_radius_km": 6371,
+          "reading_allowance_pixels": 6,
+          "axis_sensitivity_pixels": 2,
+          "round_span_outward_km": 25,
+          "round_height_outward_m": 0.05,
+          "diagnostic_level_m": 0.3,
+          "level_choice_by_osw": true,
+          "sensitivity_levels_m": [
+            0.25,
+            0.3,
+            0.35
+          ],
+          "curve": "Altimeter",
+          "axbt_trace_combined": false,
+          "source_raster": {
+            "xref": 119,
+            "width": 3234,
+            "height": 4403,
+            "components": 3,
+            "samples_sha256": "19dd097f0900b67600f916ec01c74aa9350c518c14766040dd143fe445c8b5d6"
+          },
+          "author_eddy_boundary": false,
+          "along_track_distance_inferred": false,
+          "diameter_inferred": false,
+          "physical_state_join_eligible": false,
+          "association_is_verified": false,
+          "seasonal_playback_eligible": false,
+          "rights_screened_release_eligible": false,
+          "missing_ink_reconstructed": false
+        },
+        "component": "peak_height",
+        "calculation": {
+          "audit_height_m": 0.648148,
+          "audit_reading_interval_m": [
+            0.633236,
+            0.661919
+          ],
+          "range_m": [
+            0.6,
+            0.7
+          ],
+          "total_scenarios": 8
+        }
       }
     }
   ],

@@ -440,6 +440,18 @@ def run():
             page.locator('[data-evidence-id="haskell-noaa-1999-20c-isotherm-maximum-depth"]').screenshot(path=str(OUT/'haskell-airborne-isotherm-depth.png'))
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             checks.append('Haskell NOAA airborne mission retains sampled maximum depth of the 20°C isotherm, flight date and qualified original-figure access; no other feature values or whole-eddy depth inferred; size gap remains')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-10-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-10-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
+            page.set_viewport_size({'width':1440,'height':1000})
+            for needle in ['175–225 km · graph estimate','0.6–0.7 m · graph estimate','OSW-chosen 0.30 m','sensitivity 0.25 and 0.35 m','Meridional projection, not diameter','not eddy depth','384 sensitivity cases','8 sensitivity cases','AXBT comparison was several days apart']:
+                assert needle in row.inner_text(),needle
+            assert 'Size reference needed' not in row.inner_text() and 'undefined km' not in row.inner_text()
+            for component in ['meridional-span','peak-height']:
+                page.locator('[data-evidence-id="murphy-calman-1989-'+component+'"]').screenshot(path=str(OUT/('murphy-profile-'+component+'.png')))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.locator('[data-evidence-id="murphy-calman-1989-meridional-span"]').screenshot(path=str(OUT/'mobile-murphy-profile-span.png'))
+            checks.append('Murphy selected satellite height-profile crossings and peak retain date, diagnostic threshold sensitivity and original pixel verification; meridional projection is not diameter or oblique track length, dynamic height is not eddy depth; mobile layout')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

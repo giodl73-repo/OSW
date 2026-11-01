@@ -31,7 +31,13 @@
       if(c.thermal_reference_celsius!==undefined)add('p',`Thermal reference: ${c.thermal_reference_celsius}°C isotherm.`,box);
       if(c.related_circuit_window)add('p',`Related circuit: ${c.related_circuit_window.join(' to ')}; context only, not exact sample dates.`,box);
     }
-    if(r.source_plot_estimate){
+    if(r.source_plot_estimate?.method==='source_height_profile_readings_v1'){
+      const m=r.source_plot_estimate;
+      add('strong','Satellite height-profile diagnostic · not whole-eddy dimensions.',add('p',undefined,box));
+      add('p',m.component==='meridional_span'?'Selected bracketing crossings: OSW-chosen 0.30 m level; sensitivity 0.25 and 0.35 m. Meridional projection, not diameter or along-track distance. Local recrossings are not filled.':'Selected main-lobe peak dynamic topography, relative to the source mean-height reference; not eddy depth.',box);
+      add('p',`Reading method: six-pixel allowance and ±2-pixel anchor shifts; ${m.calculation.total_scenarios} sensitivity cases. Rounded outward; these are reading/choice margins, not physical uncertainty or a confidence interval.`,box);
+      add('p','Altimeter trace only, 20 June 1988. AXBT comparison was several days apart and is excluded; schematic inset is not an eddy boundary.',box);
+    }else if(r.source_plot_estimate){
       add('strong','Graph-read estimate · selected plotted segment, not a seasonal range.',add('p',undefined,box));
       add('p',`Reading method: ${r.source_plot_estimate.reading_allowance_km} km allowance before rounding the lower end down and upper end up to ${r.source_plot_estimate.round_outward_to_km} km. Source measurement uncertainty is unspecified.`,box);
     }

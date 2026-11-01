@@ -12,6 +12,7 @@ from eddy_audit_spans_v1 import validate_case as validate_audit_span_case,spans 
 from eddy_colour_spans_v1 import validate_case as validate_colour_span_case,spans as colour_spans
 from eddy_arrow_spans_v1 import validate_case as validate_arrow_span_case
 from eddy_pdf_line_spans_v1 import validate_case as validate_pdf_line_case
+from eddy_height_profiles_v1 import validate_case as validate_height_case, span as height_span, peak as height_peak
 
 ROOT=Path(__file__).resolve().parents[1]
 JSON_PATH='research/eddy-measurement-register-v1.json'
@@ -291,6 +292,22 @@ def build():
                 assert (association['registry_name'],association['registry_initial_separation'])==(original['name'],original['initial_separation'])
                 assert association['alias_reference_source_id'] in batch['sources']
             map_values={}
+            if r.get('height_profile_case_index') is not None:
+                assert all(r.get(k) is None for k in ['map_case_index','audit_span_case_index','colour_span_case_index','arrow_span_case_index','pdf_line_case_index','source_plot_estimate'])
+                case=batch['height_profile_cases'][r['height_profile_case_index']];validate_height_case(case)
+                report=read(batch['source_profile_report'])
+                assert report['status']=='PASS' and report['source_pixels_verified'] and report['manual_curve_selection_required']
+                assert report['missing_ink_reconstructed'] is False and report['physical_boundary_admitted'] is False
+                assert report['batch_sha256']==pins[path] and report['original_pdf_sha256']==source['original']['sha256']
+                assert report['verifier_sha256']==hashlib.sha256((ROOT/'analysis/eddy_height_profiles_v1.py').read_bytes()).hexdigest()
+                assert report['axis_math_sha256']==hashlib.sha256((ROOT/'analysis/eddy_map_spans_v1.py').read_bytes()).hexdigest()
+                assert r['entity_id']==case['owner_id'] and r['period_start']==r['period_end']==case['date'] and r['value'] is None
+                assert r['rights_screened_release_eligible'] is False and r['evidence_role']=='graph_digitized_named_case_reference'
+                component=r['profile_component'];assert component in ['meridional_span','peak_height']
+                category,unit,metric,calculation,key=('size','km','source_profile_selected_height_level_meridional_span',height_span(case),'range_km') if component=='meridional_span' else ('structure','m','source_profile_selected_main_lobe_peak_dynamic_topography',height_peak(case),'range_m')
+                assert (r['category'],r['unit'],r['metric'])==(category,unit,metric)
+                assert calculation==report[component] and r['range_value']==calculation[key]
+                map_values={'source_plot_estimate':{'method':case['method'],'case':case,'component':component,'calculation':calculation}}
             if r.get('pdf_line_case_index') is not None:
                 assert all(r.get(k) is None for k in ['map_case_index','audit_span_case_index','colour_span_case_index','arrow_span_case_index'])
                 case=batch['pdf_line_cases'][r['pdf_line_case_index']];validate_pdf_line_case(case)
@@ -492,7 +509,7 @@ def build():
     return {'schema':'osw.eddy-measurement-register.v1','status':'MEASUREMENT_GAP_FILLING_IN_PROGRESS',
         'rules_file':RULES,'rules_sha256':hashlib.sha256((ROOT/RULES).read_bytes()).hexdigest(),
         'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'input_sha256':pins,
-        'method_implementation_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['analysis/eddy_map_spans_v1.py','analysis/eddy_audit_spans_v1.py','analysis/eddy_colour_spans_v1.py','analysis/eddy_arrow_spans_v1.py','analysis/eddy_pdf_line_spans_v1.py']},
+        'method_implementation_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['analysis/eddy_map_spans_v1.py','analysis/eddy_audit_spans_v1.py','analysis/eddy_colour_spans_v1.py','analysis/eddy_arrow_spans_v1.py','analysis/eddy_pdf_line_spans_v1.py','analysis/eddy_height_profiles_v1.py']},
         'first_batch_evidence_sha256':baseline_sha,'first_batch_evidence_preserved':40,
         'additional_batches':applied,
         'scope':inventory['scope'],'identity_rule':'Source records remain separate; possible Horizon/published matches are not verified identity joins.',
