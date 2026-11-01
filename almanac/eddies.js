@@ -6,7 +6,7 @@
     if(r.value_conflict)return 'Unresolved source values';
     if(r.lower_bound!==null)return `${r.lower_bound_exclusive?'>':'≥'} ${num(r.lower_bound)} ${units[r.unit]||r.unit}`;
     if(r.upper_bound!==undefined&&r.upper_bound!==null)return `${r.upper_bound_exclusive?'<':'≤'} ${num(r.upper_bound)} ${units[r.unit]||r.unit}`;
-    if(r.range_value)return `${r.range_value.map(num).join('–')} ${units[r.unit]||r.unit} · ${r.source_plot_estimate?'graph estimate':r.source_map_estimate?.case.method==='source_visible_model_front_meridional_span_v1'?'visible model-front estimate':r.source_map_estimate?.case.method==='source_image_scale_bar_equivalent_spans_v1'?'chart-scale equivalent':r.source_map_estimate?'map estimate':r.calculation?.method==='spherical_sampled_station_separation_v1'?'coordinate estimate':'source range'}`;
+    if(r.range_value)return `${r.range_value.map(num).join('–')} ${units[r.unit]||r.unit} · ${r.source_plot_estimate?'graph estimate':r.source_map_estimate?.case.method==='source_visible_model_front_meridional_span_v1'?'visible model-front estimate':r.source_map_estimate?.case.method==='source_image_scale_bar_equivalent_spans_v1'?'chart-scale equivalent':r.source_map_estimate?'map estimate':r.calculation?.method==='spherical_sampled_station_separation_v1'?'coordinate estimate':r.calculation?.method==='gridded_adt_named_source_case_v1'?'gridded contour estimate':'source range'}`;
     if(r.value===null)return 'Value unresolved';
     const elapsed=['source_track_elapsed_span','coherent_core_analysis_interval','source_dated_event_stage_interval'].includes(r.metric);
     return `${elapsed?'':'≈ '}${num(r.value)}${r.standard_deviation!==null?' ± '+num(r.standard_deviation)+' SD':''} ${units[r.unit]||r.unit}`;
@@ -99,6 +99,13 @@
       add('strong','Sampled station separation · not whole-eddy radius or diameter.',add('p',undefined,box));
       add('p',`Station ${c.center_station.id} (sampled center): ${c.center_station.latitude}°, ${c.center_station.longitude}°. Station ${c.edge_station.id} (sampled edge): ${c.edge_station.latitude}°, ${c.edge_station.longitude}°. Coordinates are latitude, longitude.`,box);
       add('p',`Nominal coordinate separation: ${num(c.unrounded_nominal_km)} km on a ${num(c.earth_radius_km)} km sphere. OSW assumes ±${c.coordinate_allowance_degrees}° per coordinate; sensitivity allowance ${num(c.triangle_inequality_allowance_km)} km, rounded outward to ${c.round_outward_km} km. Source accuracy and simultaneity unverified.`,box);
+    }else if(r.calculation?.method==='gridded_adt_named_source_case_v1'){
+      const c=r.calculation;
+      add('strong','OSW gridded contour estimate · method sensitivity only.',add('p',undefined,box));
+      add('p','Six scenarios: 0.15 / 0.17 / 0.19 m contours, with arithmetic and cosine-latitude Gulf demeaning. Nine primary-map interior probes uniquely select one candidate in each scenario.',box);
+      add('p',`Native scenario extrema: ${c.unrounded_extrema.map(num).join('–')} ${units[r.unit]||r.unit}; outward rounding to ${c.round_outward_to} ${units[r.unit]||r.unit}. Mapping and physical-front errors remain unquantified.`,box);
+      add('p','First March detachment; later reattachments and August departure remain separate. Registry initial separation: 2013-04-08. Registry physical crosswalk unverified; no other Kraken values inherited.',box);
+      link('Primary dated Kraken map','https://www2.whoi.edu/site/bower-lab/wp-content/uploads/sites/12/2019/09/Hamilton_etal_LoopCurrentObs_2019_JPOx.pdf',box);
     }else if(r.calculation)add('p',`Model calculation: ${r.calculation.multiplier} × ${r.calculation.deformation_radius_km} km = ${num(r.calculation.unrounded_km)} km, rounded to ${num(r.value)} km.`,box);
     if(r.calendar_support){
       const c=r.calendar_support;

@@ -504,6 +504,22 @@ def run():
             for record,name in [('quantum-rodriguez-2020-visible-model-front-meridional-span','mobile-quantum-visible-model-front'),('quantum-rodriguez-2020-2018-03-25-remote-shared-speed','mobile-quantum-remote-shared-speed')]:
                 page.locator('[data-evidence-id="'+record+'"]').screenshot(path=str(OUT/(name+'.png')))
             checks.append('Quantum northern post-split component retains visible model-front meridional extent, eastern clipping and no reconstructed geometry; ADCP 5 m and shared ROCIS/DopplerScatt comparison values retain dates and instrument-dependent support, no arithmetic averaging or simultaneous shear; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-60-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-60-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
+            page.set_viewport_size({'width':1440,'height':1000})
+            for needle in ['60,000–70,000 km²','275–300 km','300–325 km','325–375 km','gridded contour estimate','method sensitivity only','Nine primary-map interior probes','First March detachment','2013-04-08','Registry physical crosswalk unverified','not a minimum width']:
+                assert needle in row.inner_text(),needle
+            assert 'Size reference needed' not in row.inner_text()
+            for part in ['area','equivalent-diameter','east-west','north-south']:
+                card=page.locator('[data-evidence-id="kraken-2013-03-31-gridded-'+part+'"]')
+                assert 'Model calculation:' not in card.inner_text()
+            for part in ['area','equivalent-diameter','north-south']:
+                page.locator('[data-evidence-id="kraken-2013-03-31-gridded-'+part+'"]').screenshot(path=str(OUT/('kraken-gridded-'+part+'.png')))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            for part in ['area','north-south']:
+                page.locator('[data-evidence-id="kraken-2013-03-31-gridded-'+part+'"]').screenshot(path=str(OUT/('mobile-kraken-gridded-'+part+'.png')))
+            checks.append('Kraken source-case comparison retains original daily gridded area, equivalent diameter and bounding spans as six-scenario method sensitivity, registry/date conflict, later reattachments and no inherited physical identity; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

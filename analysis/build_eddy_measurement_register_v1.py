@@ -15,6 +15,7 @@ from eddy_pdf_line_spans_v1 import validate_case as validate_pdf_line_case
 from eddy_height_profiles_v1 import validate_case as validate_height_case, span as height_span, peak as height_peak
 from eddy_scale_bar_spans_v1 import validate_case as validate_scale_bar_case, spans as scale_bar_spans
 from eddy_visible_model_front_v1 import validate_case as validate_visible_front_case, span as visible_front_span
+from eddy_gridded_case_summary_v1 import summarize as gridded_case_summary
 
 ROOT=Path(__file__).resolve().parents[1]
 JSON_PATH='research/eddy-measurement-register-v1.json'
@@ -69,6 +70,21 @@ def validate_numeric_interval(row):
         assert row['category']=='kinematics' and row['unit']=='km/day'
         assert row['detection_context']['translation_component_positive_direction']=='westward'
     else:assert 0<=interval[0] and interval[1]>0
+
+
+def validate_gridded_case(row, report=None):
+    c=row['calculation'];report=report if report is not None else json.loads((ROOT/c['report_file']).read_bytes())
+    assert c['report_sha256']==hashlib.sha256((ROOT/c['report_file']).read_bytes()).hexdigest()
+    assert report['summarizer_sha256']==hashlib.sha256((ROOT/'analysis/eddy_gridded_case_summary_v1.py').read_bytes()).hexdigest()
+    assert report['operator_sha256']==hashlib.sha256((ROOT/'analysis/eddy_altimetry_contours_v1.py').read_bytes()).hexdigest()
+    summary=gridded_case_summary(report,c['component'])
+    assert all(c[k]==v for k,v in summary.items())
+    assert row['entity_id']==report['case']['owner_id']
+    assert row['period_start']==row['period_end']==report['case']['date']
+    assert row['metric']==summary['metric'] and row['unit']==summary['unit']
+    assert row['range_value']==summary['range_value'] and row['value'] is None and row['category']=='size'
+    assert row['range_kind']=='gridded_contour_method_sensitivity_not_measurement_uncertainty'
+    assert row['evidence_role']=='qualified_osw_gridded_source_case_reference' and row['rights_screened_release_eligible'] is False
 
 
 def validate_profile_context(row):
@@ -526,6 +542,7 @@ def build():
             if r.get('calculation'):
                 c=r['calculation']
                 if c.get('method')=='spherical_sampled_station_separation_v1':validate_station_distance(r)
+                elif c.get('method')=='gridded_adt_named_source_case_v1':validate_gridded_case(r,read(c['report_file']))
                 else:assert c['multiplier']*c['deformation_radius_km']==c['unrounded_km'] and round(c['unrounded_km'])==r['value']
             if r.get('basis_source_file'):
                 basis=read(r['basis_source_file']);events=pointer(basis,r['basis_source_pointer'])
@@ -600,7 +617,7 @@ def build():
     return {'schema':'osw.eddy-measurement-register.v1','status':'MEASUREMENT_GAP_FILLING_IN_PROGRESS',
         'rules_file':RULES,'rules_sha256':hashlib.sha256((ROOT/RULES).read_bytes()).hexdigest(),
         'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'input_sha256':pins,
-        'method_implementation_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['analysis/eddy_map_spans_v1.py','analysis/eddy_audit_spans_v1.py','analysis/eddy_colour_spans_v1.py','analysis/eddy_arrow_spans_v1.py','analysis/eddy_pdf_line_spans_v1.py','analysis/eddy_height_profiles_v1.py','analysis/eddy_scale_bar_spans_v1.py','analysis/eddy_visible_model_front_v1.py']},
+        'method_implementation_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['analysis/eddy_map_spans_v1.py','analysis/eddy_audit_spans_v1.py','analysis/eddy_colour_spans_v1.py','analysis/eddy_arrow_spans_v1.py','analysis/eddy_pdf_line_spans_v1.py','analysis/eddy_height_profiles_v1.py','analysis/eddy_scale_bar_spans_v1.py','analysis/eddy_visible_model_front_v1.py','analysis/eddy_gridded_case_summary_v1.py','analysis/eddy_altimetry_contours_v1.py']},
         'first_batch_evidence_sha256':baseline_sha,'first_batch_evidence_preserved':40,
         'additional_batches':applied,
         'scope':inventory['scope'],'identity_rule':'Source records remain separate; possible Horizon/published matches are not verified identity joins.',
