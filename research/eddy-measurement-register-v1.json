@@ -2,8 +2,8 @@
  "schema": "osw.eddy-measurement-register.v1",
  "status": "MEASUREMENT_GAP_FILLING_IN_PROGRESS",
  "rules_file": "plans/eddy-measurement-register-v1.md",
- "rules_sha256": "db7212c092da0c1bc488e19369d6fba1f72a84345c6d0c9a7557ebf3db26cbfd",
- "generator_sha256": "c1a7d169966b12f725e80356be83c2dd1a473100d819599d8a401619acc9a4c4",
+ "rules_sha256": "e9f1d2d6c56af00f863dd5172256bdea6177a1576050ff9b03215337411e59e8",
+ "generator_sha256": "90ed70c35fa6c2780b54dfdc035601c5ef04bf42be354db930ad230fcd057a2d",
  "input_sha256": {
   "research/ocean-eddy-name-inventory.json": "d78c31a96b93cc9e746562f2d5c3b0f6d37ad36c3f1d10bb769aec8aa4472015",
   "research/named-eddy-geography.json": "50f20f1f32589b780f7ff29824afa7f7af4a78bfd80a25a4784e6fc992bf3547",
@@ -114,7 +114,9 @@
   "research/eddy-measurement-register-additions-v54.json": "08ff968b7802ec653f8b2991931612084ae05f314f0f4f074e4399a5d26d4d86",
   "research/eddy-qe2-manual-isoline-source-review-v1.json": "fb7e1d3cf123046f671d10492bb0b98608403997068a79257a59ff5a1b0117c4",
   "research/eddy-measurement-register-additions-v56.json": "6a106a956e2bd14b68def7d90dd1625d35cfb7458facadba9ff99009209eb16d",
-  "research/eddy-u2-contour-area-source-review-v1.json": "93bf7539c1ae3a53fea8a707e74c7f10a18ce1dcab115a21e0a46c920ae8ad6f"
+  "research/eddy-u2-contour-area-source-review-v1.json": "93bf7539c1ae3a53fea8a707e74c7f10a18ce1dcab115a21e0a46c920ae8ad6f",
+  "research/eddy-source-clarifications-v1.json": "250e58ab9c6e089f850d14d698699aa5c3a2185eccb5f980dece6c65a9f634b6",
+  "research/eddy-u2-altimetry-method-and-date-review-v1.json": "b64e6133792b967e140469c6e24f9b131d0e6fa56ea11fb8f383417377957989"
  },
  "method_implementation_sha256": {
   "analysis/eddy_cartographic_circle_spans_v1.py": "c077b21e533f935d39dbdb63e39bffbff827038a3116f78b2279f6ec8089425a",
@@ -1273,6 +1275,45 @@
     "registry_primary_initial_separation": "1998-05-11",
     "registry_primary_name": "Gyre"
    }
+  }
+ ],
+ "source_clarifications": [
+  {
+   "id": "u2-source-ssh-reference-clarified",
+   "entity_id": "eddy:horizon:loop-44-secondary",
+   "kind": "source_reference_clarification",
+   "evidence_ids": [
+    "u2-donohue-2008-2005-01-01-10cm-contour-area",
+    "u2-donohue-2008-2005-02-01-10cm-contour-area",
+    "u2-donohue-2008-2005-04-14-10cm-contour-area"
+   ],
+   "source_reference": "GSFC00.1_MSS",
+   "title": "Source reference clarified: GSFC00.1_MSS",
+   "text": "The methods section identifies the Goddard Spaceflight Center mean sea surface as the reference for these SSH anomaly maps. The original area transcriptions remain unchanged; their earlier reference-unspecified note is superseded by this review. Scalar uncertainty remains unspecified.",
+   "source_locator": "Section 3.1.5, printed page 3-17 / PDF page 125",
+   "review_file": "research/eddy-u2-altimetry-method-and-date-review-v1.json",
+   "review_sha256": "b64e6133792b967e140469c6e24f9b131d0e6fa56ea11fb8f383417377957989",
+   "physical_identity_verified": false,
+   "numeric_values_changed": false,
+   "source_file": "research/eddy-source-clarifications-v1.json",
+   "source_pointer": "/entries/0",
+   "source_sha256": "250e58ab9c6e089f850d14d698699aa5c3a2185eccb5f980dece6c65a9f634b6"
+  },
+  {
+   "id": "u2-source-duration-conflict",
+   "entity_id": "eddy:horizon:loop-44-secondary",
+   "kind": "unresolved_duration_source_conflict",
+   "evidence_ids": [],
+   "title": "Duration unresolved: table and final-date figure disagree",
+   "text": "Table 3.1-2 reports 216 days from the split and 328 days including the parent interval. Figure 3.1-22 labels the last tracked date November 6, 2005. From the reported split on December 13, 2004, that date gives 328 elapsed days; from parent separation on August 23, 2004 it gives 440. No preferred lifespan or uncertainty range is assigned; the duration-reference gap remains open.",
+   "source_locator": "Table 3.1-2, printed page 3-32 / PDF page 140; Figure 3.1-22, printed page 3-33 / PDF page 141.",
+   "review_file": "research/eddy-u2-altimetry-method-and-date-review-v1.json",
+   "review_sha256": "b64e6133792b967e140469c6e24f9b131d0e6fa56ea11fb8f383417377957989",
+   "physical_identity_verified": false,
+   "numeric_values_changed": false,
+   "source_file": "research/eddy-source-clarifications-v1.json",
+   "source_pointer": "/entries/1",
+   "source_sha256": "250e58ab9c6e089f850d14d698699aa5c3a2185eccb5f980dece6c65a9f634b6"
   }
  ],
  "records": [
@@ -3644,6 +3685,10 @@
     "size"
    ],
    "size_classification_ids": [],
+   "source_clarification_ids": [
+    "u2-source-ssh-reference-clarified",
+    "u2-source-duration-conflict"
+   ],
    "size_gap": false,
    "duration_gap": true,
    "status": "has_measurements",
