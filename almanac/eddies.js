@@ -29,8 +29,15 @@
       }
     }
     if(r.profile_context){
-      add('strong',(r.profile_context.method==='source_reported_yazoo_2022_case'?'Source-named Yazoo reference':r.profile_context.method==='source_reported_thermal_level_enclosed_area'?'Thermal-level enclosed area':r.profile_context.method==='source_reported_multisensor_current_comparison'?'Multi-instrument current comparison':r.profile_context.method==='source_reported_operational_adcp_maximum'?'Operational ADCP current diagnostic':r.profile_context.method==='source_reported_mooring_current_diagnostic'?'Fixed-mooring current diagnostic':r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));
+      add('strong',(r.profile_context.method==='source_reported_assimilative_analysis_parent_extent'?'Assimilative model-analysis extent':r.profile_context.method==='source_reported_yazoo_2022_case'?'Source-named Yazoo reference':r.profile_context.method==='source_reported_thermal_level_enclosed_area'?'Thermal-level enclosed area':r.profile_context.method==='source_reported_multisensor_current_comparison'?'Multi-instrument current comparison':r.profile_context.method==='source_reported_operational_adcp_maximum'?'Operational ADCP current diagnostic':r.profile_context.method==='source_reported_mooring_current_diagnostic'?'Fixed-mooring current diagnostic':r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));
       const c=r.profile_context;
+      if(c.method==='source_reported_assimilative_analysis_parent_extent'){
+        add('strong','Approximate parent zonal extent · model analysis, not directly observed length.',add('p',undefined,box));
+        add('p','Thor before near-splitting · analysis dated 24 February 2020. Weekly ensemble-mean verifying analysis from NCOM / NCODA / COAMPS, with 3 km model resolution and 32 members.',box);
+        add('p','The source calls analysis truth for forecast verification. It remains an assimilative model product; this scalar is not a forecast-member result, principal width or diameter.',box);
+        add('p','Boundary threshold and uncertainty for this scalar are unspecified. No values transferred to the March anticyclones or registry Thor; no annual envelope or physical footprint inferred.',box);
+      }
+
       if(c.method==='source_reported_yazoo_2022_case'){
         add('strong',c.quantity==='radius'?'Approximate high-ADT-patch radius · not diameter.':'Eastern-flank cruise current · depth and statistic unspecified.',add('p',undefined,box));
         add('p',c.quantity==='radius'?'Source map averaged 7–17 November 2022; not a daily footprint. No area or principal width derived.':'WHOI cruise 1–5 October 2022; exact current sample times and mean/maximum definition unspecified. Nearby plotted depth averages are not assigned to this prose value.',box);

@@ -109,6 +109,18 @@ def validate_model_event_contrast(row):
 
 def validate_profile_context(row):
     c=row['profile_context']
+    if c['method']=='source_reported_assimilative_analysis_parent_extent':
+        assert row['entity_id']=='eddy:published:thor-2020' and row['category']=='size' and row['unit']=='km'
+        assert row['metric']=='source_reported_assimilative_analysis_parent_zonal_extent' and row['value']==550
+        assert row['rights_screened_release_eligible'] is False and row['evidence_role']=='published_model_case_reference'
+        assert row['period_start']==row['period_end']==c['source_analysis_date']=='2020-02-24'
+        assert row['period_precision']=='source_analysis_date_not_observation_timestamp'
+        assert row.get('depth_m') is None and row.get('range_value') is None
+        assert (c['source_case_name'],c['model'],c['horizontal_resolution_km'],c['ensemble_members'])==('Thor','NCOM / NCODA / COAMPS',3,32)
+        assert c['field']=='weekly_ensemble_mean_verifying_analysis' and c['extent_axis']=='zonal' and c['relation']=='approximately'
+        assert c['source_boundary_threshold']=='unspecified for scalar extent' and c['phase']=='elongated_parent_before_near_split'
+        assert all(c[k] is False for k in ['analysis_is_direct_observation','forecast_member_value','source_uncertainty_quantified','principal_width_inferred','diameter_inferred','child_values_inherited','registry_values_inherited','physical_crosswalk_verified','geometry_inferred','annual_extrema_inferred','raw_model_fields_acquired'])
+        return
     if c['method']=='source_reported_yazoo_2022_case':
         assert row['entity_id']=='eddy:horizon:loop-74-primary'
         assert (c['source_name'],c['registry_name'],c['registry_source_number'],c['registry_initial_separation'])==('Yazoo','Yazoo',74,'2022-06-20')
@@ -423,6 +435,14 @@ def build():
                 assert report['original_pdf_retained'] is False and report['source_figure_pixels_reviewed'] is False
                 assert report['counterfactual_event_dates'][r['model_context']['experiment']]==r['period_end']
             if r.get('profile_context'):validate_profile_context(r)
+            if r.get('profile_context',{}).get('method')=='source_reported_assimilative_analysis_parent_extent':
+                report=read(source['source_review_file']);assert pins[source['source_review_file']]==source['source_review_sha256']
+                assert report['status']=='ORIGINAL_THOR_PARENT_ANALYSIS_EXTENT_VERIFIED' and report['owner_id']==r['entity_id']
+                assert report['quantity']['zonal_extent_km']==r['value'] and report['quantity']['date']==r['period_start']
+                prior_case=read('research/named-loop-eddy-published-observations.json')['entries'][1]
+                assert prior_case['eddy_id']=='published:thor-2020' and prior_case['name']=='Thor'
+                assert all(v['source_url']=='https://repository.library.noaa.gov/view/noaa/71031' for v in prior_case['independent_event_observations'])
+
             if r.get('profile_context',{}).get('method')=='source_reported_yazoo_2022_case':
                 report=read(source['source_review_file']);assert pins[source['source_review_file']]==source['source_review_sha256']
                 assert report['status']=='ORIGINAL_PRIMARY_YAZOO_RADIUS_AND_LOCAL_CURRENT_VERIFIED'

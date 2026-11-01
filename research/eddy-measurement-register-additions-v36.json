@@ -1,0 +1,73 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 391,
+  "baseline_evidence_sha256": "62eb8295bf7686ad4d1d744c61a094cc0595e11a5c76e2224176028dda83dad4",
+  "baseline_measurement_csv_sha256": "a83455ca8199d8da02b99cb8f5200a9afafd2ec38cc16d0174af130fd7c1166b",
+  "sources": {
+    "thoppil-2025-analysis": {
+      "url": "https://repository.library.noaa.gov/view/noaa/71031/noaa_71031_DS1.pdf",
+      "doi": "10.1016/j.pocean.2025.103529",
+      "citation": "Thoppil, Rowley, Hogan and Stear (2025), Evaluating the performance of an ensemble forecast system in predicting Loop Current Eddy separation in the Gulf of Mexico, Progress in Oceanography 237, 103529.",
+      "access": "Original published article acquired from NOAA repository. Actual PDF pages 2, 5, 15 and 18 visually reviewed for model/analysis semantics, dated parent evolution, explicit approximate 550 km zonal extent and source identification as Thor. Printed source scalar retained; no graph digitization.",
+      "original": {
+        "bytes": 24801078,
+        "sha256": "051dc76cf47b625c040576a2d75f27c1979e188ca1c35904af5a6d24bd018ad5",
+        "pages": 23
+      },
+      "reviewed_page_png_sha256": {
+        "2": "300ed314ba4223e7ab4979b9eb0c92ba8c069038b383242de05510b1a109f3c0",
+        "5": "d9a0b302f300d77afc74d8033b7762cc9c7602a295296cc3a4d2f0575496604f",
+        "15": "2b3a1c7e7c02bd90178667c52ffd272e7458c37ddb476df7adab37782fd14a58",
+        "18": "cc7b4c247b208fc53253454d22dcc8e8ee328d345894dff6e6b14c7d2f51ca1b"
+      },
+      "source_review_file": "research/eddy-thor-analysis-extent-source-review-v1.json",
+      "source_review_sha256": "c845c045bb5f8fec451576d9d235b27606b7a8eeb50c12940afbfe3cd87f05d1"
+    }
+  },
+  "records": [
+    {
+      "id": "thor-thoppil-2025-parent-analysis-zonal-extent",
+      "entity_id": "eddy:published:thor-2020",
+      "source_id": "thoppil-2025-analysis",
+      "category": "size",
+      "metric": "source_reported_assimilative_analysis_parent_zonal_extent",
+      "value": 550,
+      "unit": "km",
+      "evidence_role": "published_model_case_reference",
+      "rights_screened_release_eligible": false,
+      "case_label": "Thor elongated parent, verifying analysis on 2020-02-24",
+      "period_start": "2020-02-24",
+      "period_end": "2020-02-24",
+      "period_precision": "source_analysis_date_not_observation_timestamp",
+      "period_label": "Verifying analysis dated 24 February 2020; source weekly analysis context",
+      "source_locator": "Section 3.5, PDF page 15, paragraph beginning Between February 24 and March 23; Figure 3l and caption, PDF page 5; model and analysis description, PDF page 2; explicit Thor name, section 3.6, PDF page 18.",
+      "definition": "Approximate source-reported zonal extent of the elongated parent LCE in the assimilative verifying analysis before its near-splitting.",
+      "scope": "Published Thor winter 2019–2020 source case, already referenced by the existing January and March event observations. No registry physical identity join or transfer to later anticyclones.",
+      "qualification": "Model-analysis scalar reported by the authors, not a directly observed length, principal width, diameter or precise traced contour. The paper calls analyses truth for forecast verification; this does not make them direct observations. Boundary threshold and source uncertainty for the scalar are unspecified. No annual range, child dimensions, area, lifetime, physical footprint, state containment, ranking or seasonal playback inferred.",
+      "profile_context": {
+        "method": "source_reported_assimilative_analysis_parent_extent",
+        "source_case_name": "Thor",
+        "source_analysis_date": "2020-02-24",
+        "model": "NCOM / NCODA / COAMPS",
+        "horizontal_resolution_km": 3,
+        "ensemble_members": 32,
+        "field": "weekly_ensemble_mean_verifying_analysis",
+        "extent_axis": "zonal",
+        "relation": "approximately",
+        "source_boundary_threshold": "unspecified for scalar extent",
+        "phase": "elongated_parent_before_near_split",
+        "analysis_is_direct_observation": false,
+        "forecast_member_value": false,
+        "source_uncertainty_quantified": false,
+        "principal_width_inferred": false,
+        "diameter_inferred": false,
+        "child_values_inherited": false,
+        "registry_values_inherited": false,
+        "physical_crosswalk_verified": false,
+        "geometry_inferred": false,
+        "annual_extrema_inferred": false,
+        "raw_model_fields_acquired": false
+      }
+    }
+  ]
+}
