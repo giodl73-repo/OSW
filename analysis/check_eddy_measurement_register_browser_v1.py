@@ -460,11 +460,23 @@ def run():
                 for needle in needles+['Fixed-mooring current diagnostic','SAIC GG','mean versus maximum is unspecified','not whole-eddy depth','raw time series unavailable']:
                     assert needle in row.inner_text(),needle
                 assert 'Glider profile diagnostic' not in row.inner_text()
-                if name=='kathleen':assert 'Size reference needed' in row.inner_text()
+                if name=='kathleen':assert 'Size reference needed' not in row.inner_text()
                 page.locator('[data-evidence-id="'+name+'-nowlin-2001-'+record+'"]').screenshot(path=str(OUT/(name+'-mooring-current.png')))
                 page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
                 page.locator('[data-evidence-id="'+name+'-nowlin-2001-'+record+'"]').screenshot(path=str(OUT/('mobile-'+name+'-mooring-current.png')))
             checks.append('Kathleen and Murphy fixed-mooring speeds preserve instrument depths, native units, source directions, coalescence context and imprecise time support; no whole-eddy maximum/thickness, simultaneous depth section or seasonal envelope; desktop and mobile')
+            for owner,name,needles,record in [('eddy:horizon:loop-08-primary','kathleen',['50–170 km','Sampled drifter-axis change','not a seasonal size range','Published alias: Kathleen / Eddy E','does not assign each endpoint separately'],'sampled-axes-length-extrema'),('eddy:horizon:loop-10-primary','murphy',['244 km','148 km','180 km','300 km','Sampled ellipse dimension','Baroclinic radius of influence','boundary and observation date unspecified','Published alias: Murphy / Eddy F'],'baroclinic-radius-of-influence')]:
+                page.goto(base+'/almanac/eddies.html?id='+owner)
+                page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+                row=page.locator('tr[data-eddy-id="'+owner+'"]');assert row.locator('details').evaluate('(e)=>e.open')
+                page.set_viewport_size({'width':1440,'height':1000})
+                for needle in needles+['Separation conventions remain unreconciled','not digitized graph values']:
+                    assert needle in row.inner_text(),needle
+                assert 'Size reference needed' not in row.inner_text()
+                page.locator('[data-evidence-id="'+name+'-saic-1989-'+record+'"]').screenshot(path=str(OUT/(name+'-year5-size.png')))
+                page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                page.locator('[data-evidence-id="'+name+'-saic-1989-'+record+'"]').screenshot(path=str(OUT/('mobile-'+name+'-year5-size.png')))
+            checks.append('Kathleen sampled-axis extrema and Murphy ellipse dimensions, baroclinic influence radius and definition-unspecified diameter preserve source operators, E/F alias references and unreconciled separation conventions; no seasonal envelope, radius conversion or front inference; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

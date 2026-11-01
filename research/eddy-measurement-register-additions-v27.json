@@ -1,0 +1,224 @@
+{
+  "schema": "osw.eddy-measurement-additional-batch.v1",
+  "baseline_evidence_count": 343,
+  "baseline_evidence_sha256": "6ed1fffb41ff86c4808d6af30e19a9e2f49efa8d186db4aae53a6e9bd59b27c9",
+  "baseline_measurement_csv_sha256": "442a76bcd4b02bf13ba52f8c860d1fd63d7d17bba383e047961825b7ffbd0a05",
+  "sources": {
+    "saic-1989": {
+      "url": "https://espis.boem.gov/final%20reports/3673.pdf",
+      "citation": "Science Applications International Corporation (1989), Gulf of Mexico Physical Oceanography Program, Final Report: Year 5. Volume II: Technical Report. OCS Report MMS 89-0068, U.S. Department of the Interior, Minerals Management Service, Gulf of Mexico OCS Regional Office, New Orleans, 333 pp.",
+      "access": "Original government field report acquired and SHA-verified. Actual printed pages 110, 123, 174 and 242 (PDF pages 141, 154, 205 and 273) visually reviewed. Quantities below are printed source statements, not digitized graph values.",
+      "original": {
+        "url": "https://espis.boem.gov/final%20reports/3673.pdf",
+        "bytes": 14824003,
+        "sha256": "04ba07ca114b8d1ed52921d4d935fff5c1c18c319210bd3813959e70de91a882",
+        "pages": 364
+      },
+      "reviewed_page_png_sha256": {
+        "141": "61de8e435366b777791054eb8c91e4a6370c50319b81fc38a2a09b7bafa7fe23",
+        "154": "07d00adde75a0837024cfa958c0f9c65a04f56471817cad21aea87afe17dbac1",
+        "205": "00606e105d1939da96a5ec91119336bbf38190aae06f81e77189a687e803a255",
+        "273": "8f64e0a14d7361be8e22508bef6aa816224302d4bf86208cc3c65aa2c8224c18"
+      },
+      "original_assets_republished": false
+    },
+    "nowlin-2001": {
+      "url": "https://espis.boem.gov/Final%20Reports/3129.pdf",
+      "citation": "Nowlin, W. D., Jr., A. E. Jochens, S. F. DiMarco, R. O. Reid, and M. K. Howard (2001), Deepwater Physical Oceanography Reanalysis and Synthesis of Historical Data: Synthesis Report. OCS Study MMS 2001-064, U.S. Department of the Interior, Minerals Management Service, Gulf of Mexico OCS Region, New Orleans, 528 pp.",
+      "access": "Original government synthesis report acquired and SHA-verified. Actual printed pages 170 and 174 (PDF pages 192 and 196) visually reviewed. Source interprets SAIC 1987–1988 current-meter observations; raw time series and contemporaneous closed eddy boundaries not acquired.",
+      "original": {
+        "url": "https://espis.boem.gov/Final%20Reports/3129.pdf",
+        "bytes": 47392646,
+        "sha256": "2a41f8e02736876c5dbbd9388ddc6da789f4324e3d188c73b7fe863c4b8af192",
+        "pages": 537
+      },
+      "reviewed_page_png_sha256": {
+        "192": "9d66d29fbeff742808fd0def7093ae0ecdcedb1fd7b1d6456f21453310475c91",
+        "196": "c04b11b588516a255ee45499da1bd8ee49c1f8c04359c92e620e7b6d9a050207"
+      },
+      "original_assets_republished": false,
+      "use_in_this_batch": "Explicit Kathleen / E and Murphy / F associations on printed page 170 / PDF page 192; not a source of copied size values."
+    }
+  },
+  "records": [
+    {
+      "id": "kathleen-saic-1989-sampled-axes-length-extrema",
+      "entity_id": "eddy:horizon:loop-08-primary",
+      "source_id": "saic-1989",
+      "category": "size",
+      "metric": "source_reported_sampled_drifter_axes_length_extrema",
+      "value": null,
+      "unit": "km",
+      "source_locator": "Section 4.3.2, printed page 123 / PDF page 154, initial Eddy E kinematics paragraph.",
+      "case_label": "Kathleen / Eddy E, 1987–1988 field-report case",
+      "case_alias_association": {
+        "method": "source_reported_1988_letter_case_reference",
+        "source_label": "Eddy E",
+        "published_alias": "Kathleen",
+        "registry_name": "Kathleen",
+        "registry_source_number": 8,
+        "registry_initial_separation": "01/1988",
+        "report_separation_context": "September 1987 source event; registry initial-separation label differs",
+        "alias_reference_source_id": "nowlin-2001",
+        "physical_crosswalk_verified": false,
+        "separation_conventions_reconciled": false,
+        "other_eddy_values_inherited": false
+      },
+      "period_start": null,
+      "period_end": null,
+      "period_label": "Initial Drifter 3344 interval; mid-November 1987 to late-March 1988 deployment context, not exact extrema dates",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "definition": "Reported approximate change in axes lengths as sampled by Drifter 3344, decreasing from a maximum about 170 km to a minimum about 50 km.",
+      "scope": "Named source-case reference through the explicit E/F association in Nowlin et al. (2001). Registry physical identity crosswalk and separation-date conventions remain unreconciled.",
+      "qualification": "Sampled drifter-axis extrema, not outer-eddy dimensions. The text does not assign each endpoint separately to major or minor axis; neither axis-specific extrema nor a 50–170 km seasonal envelope is inferred. Exact extrema dates unspecified. Source figure reference is printed as 4.2-26b in the paragraph; the matching figure caption is 4.3-26b. No whole-lifetime, annual envelope, physical footprint, radius conversion or state containment inferred.",
+      "range_value": [
+        50,
+        170
+      ],
+      "range_kind": "source_reported_sampled_axes_extrema_not_seasonal_range"
+    },
+    {
+      "id": "murphy-saic-1989-sampled-ellipse-long-dimension",
+      "entity_id": "eddy:horizon:loop-10-primary",
+      "source_id": "saic-1989",
+      "category": "size",
+      "metric": "source_reported_sampled_drifter_ellipse_long_dimension",
+      "value": 244,
+      "unit": "km",
+      "source_locator": "Section 4.3.1, printed page 110 / PDF page 141, July XBT composite and Drifter 3345 paragraph.",
+      "case_label": "Murphy / Eddy F, 1987–1988 field-report case",
+      "case_alias_association": {
+        "method": "source_reported_1988_letter_case_reference",
+        "source_label": "Eddy F",
+        "published_alias": "Murphy",
+        "registry_name": "Murphy",
+        "registry_source_number": 10,
+        "registry_initial_separation": "1988-06-03",
+        "report_separation_context": "April–May 1988 report shedding context; registry initial-separation label differs",
+        "alias_reference_source_id": "nowlin-2001",
+        "physical_crosswalk_verified": false,
+        "separation_conventions_reconciled": false,
+        "other_eddy_values_inherited": false
+      },
+      "period_start": null,
+      "period_end": null,
+      "period_label": "Mid-July to early August 1988; exact ellipse-fit dates unspecified",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "definition": "The larger of the two approximately 244 by 148 km elliptical dimensions described for Drifter 3345.",
+      "scope": "Named source-case reference through the explicit E/F association in Nowlin et al. (2001). Registry physical identity crosswalk and separation-date conventions remain unreconciled.",
+      "qualification": "The source explicitly warns that the 100 m drogued drifter need not be at the eddy front or follow the same parcel continuously. The pair is not assigned east–west/north–south orientations or a physical boundary. No whole-lifetime, annual envelope, physical footprint, radius conversion or state containment inferred."
+    },
+    {
+      "id": "murphy-saic-1989-sampled-ellipse-short-dimension",
+      "entity_id": "eddy:horizon:loop-10-primary",
+      "source_id": "saic-1989",
+      "category": "size",
+      "metric": "source_reported_sampled_drifter_ellipse_short_dimension",
+      "value": 148,
+      "unit": "km",
+      "source_locator": "Section 4.3.1, printed page 110 / PDF page 141, July XBT composite and Drifter 3345 paragraph.",
+      "case_label": "Murphy / Eddy F, 1987–1988 field-report case",
+      "case_alias_association": {
+        "method": "source_reported_1988_letter_case_reference",
+        "source_label": "Eddy F",
+        "published_alias": "Murphy",
+        "registry_name": "Murphy",
+        "registry_source_number": 10,
+        "registry_initial_separation": "1988-06-03",
+        "report_separation_context": "April–May 1988 report shedding context; registry initial-separation label differs",
+        "alias_reference_source_id": "nowlin-2001",
+        "physical_crosswalk_verified": false,
+        "separation_conventions_reconciled": false,
+        "other_eddy_values_inherited": false
+      },
+      "period_start": null,
+      "period_end": null,
+      "period_label": "Mid-July to early August 1988; exact ellipse-fit dates unspecified",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "definition": "The smaller of the two approximately 244 by 148 km elliptical dimensions described for Drifter 3345.",
+      "scope": "Named source-case reference through the explicit E/F association in Nowlin et al. (2001). Registry physical identity crosswalk and separation-date conventions remain unreconciled.",
+      "qualification": "The source explicitly warns that the 100 m drogued drifter need not be at the eddy front or follow the same parcel continuously. The pair is not assigned east–west/north–south orientations or a physical boundary. No whole-lifetime, annual envelope, physical footprint, radius conversion or state containment inferred."
+    },
+    {
+      "id": "murphy-saic-1989-baroclinic-radius-of-influence",
+      "entity_id": "eddy:horizon:loop-10-primary",
+      "source_id": "saic-1989",
+      "category": "size",
+      "metric": "source_reported_baroclinic_radius_of_influence",
+      "value": 180,
+      "unit": "km",
+      "source_locator": "Section 4.4, printed page 174 / PDF page 205, discussion of Figure 4.4-19 and baroclinic influence at GG.",
+      "case_label": "Murphy / Eddy F, 1987–1988 field-report case",
+      "case_alias_association": {
+        "method": "source_reported_1988_letter_case_reference",
+        "source_label": "Eddy F",
+        "published_alias": "Murphy",
+        "registry_name": "Murphy",
+        "registry_source_number": 10,
+        "registry_initial_separation": "1988-06-03",
+        "report_separation_context": "April–May 1988 report shedding context; registry initial-separation label differs",
+        "alias_reference_source_id": "nowlin-2001",
+        "physical_crosswalk_verified": false,
+        "separation_conventions_reconciled": false,
+        "other_eddy_values_inherited": false
+      },
+      "period_start": null,
+      "period_end": null,
+      "period_label": "Late August 1988 composite; exact boundary observation date unspecified",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "definition": "Approximate radius of influence of the baroclinic component of Eddy F, inferred by the source from the 8°C temperature surface in Year 5 Composite Four.",
+      "scope": "Named source-case reference through the explicit E/F association in Nowlin et al. (2001). Registry physical identity crosswalk and separation-date conventions remain unreconciled.",
+      "qualification": "Late-August 1988 thermal-composite diagnostic, not a drifter orbit, velocity-maximum radius, coherent-core radius or universal outer radius. Nearby 120 km center-to-mooring separation is not substituted for radius. No whole-lifetime, annual envelope, physical footprint, radius conversion or state containment inferred."
+    },
+    {
+      "id": "murphy-saic-1989-reported-diameter",
+      "entity_id": "eddy:horizon:loop-10-primary",
+      "source_id": "saic-1989",
+      "category": "size",
+      "metric": "source_reported_eddy_diameter_definition_unspecified",
+      "value": 300,
+      "unit": "km",
+      "source_locator": "Section 4.5, printed page 242 / PDF page 273, description of Eddy F in the 1987–1988 central-Gulf record.",
+      "case_label": "Murphy / Eddy F, 1987–1988 field-report case",
+      "case_alias_association": {
+        "method": "source_reported_1988_letter_case_reference",
+        "source_label": "Eddy F",
+        "published_alias": "Murphy",
+        "registry_name": "Murphy",
+        "registry_source_number": 10,
+        "registry_initial_separation": "1988-06-03",
+        "report_separation_context": "April–May 1988 report shedding context; registry initial-separation label differs",
+        "alias_reference_source_id": "nowlin-2001",
+        "physical_crosswalk_verified": false,
+        "separation_conventions_reconciled": false,
+        "other_eddy_values_inherited": false
+      },
+      "period_start": null,
+      "period_end": null,
+      "period_label": "1988 named Eddy F case; precise diameter observation date unspecified",
+      "evidence_role": "qualified_published_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "definition": "Approximate 300 km diameter reported in the Eddy F description.",
+      "scope": "Named source-case reference through the explicit E/F association in Nowlin et al. (2001). Registry physical identity crosswalk and separation-date conventions remain unreconciled.",
+      "qualification": "The source does not specify the diameter boundary or observation date in this statement. Keep distinct from the sampled 244 by 148 km ellipse and the separately defined 180 km baroclinic radius. The April shedding statement does not date the diameter measurement. No whole-lifetime, annual envelope, physical footprint, radius conversion or state containment inferred."
+    }
+  ],
+  "excluded_context": [
+    {
+      "quantity": "General 234 km average diameter and 405 km largest-eddy equivalent diameter in Table 4.2-3",
+      "reason": "Population summary and unnamed 1981 eddy, not dimensions of Kathleen or Murphy."
+    },
+    {
+      "quantity": "340 km temperature-section length, 100 m window-shade drogue, front rule 20°C at 125 m",
+      "reason": "Section and sampling support plus diagnostic rule. Authors could not locate the front within that section; no diameter lower bound or eddy thickness inferred."
+    },
+    {
+      "quantity": "Generic 600–750 m 8°C isotherm depths and 5–8 cm/s westward translation",
+      "reason": "General Gulf eddy process discussion, not measurements of each named individual."
+    }
+  ]
+}

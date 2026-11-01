@@ -23,6 +23,9 @@
       const a=r.case_alias_association;
       add('strong',`Published alias: ${a.published_alias} / ${a.source_label} · registry physical crosswalk unverified.`,add('p',undefined,box));
       add('p',`Registry initial separation: ${a.registry_initial_separation}; report context: ${a.report_separation_context}. Separation conventions remain unreconciled.`,box);
+      if(a.method==='source_reported_1988_letter_case_reference'){
+        add('strong',r.metric==='source_reported_sampled_drifter_axes_length_extrema'?'Sampled drifter-axis change · not a seasonal size range.':r.metric.includes('sampled_drifter_ellipse')?'Sampled ellipse dimension · the drifter need not follow the eddy front.':r.metric==='source_reported_baroclinic_radius_of_influence'?'Baroclinic radius of influence · 8°C temperature-surface diagnostic.':'Source-reported diameter · boundary and observation date unspecified.',add('p',undefined,box));
+      }
     }
     if(r.profile_context){
       add('strong',(r.profile_context.method==='source_reported_mooring_current_diagnostic'?'Fixed-mooring current diagnostic':r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));

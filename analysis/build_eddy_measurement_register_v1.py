@@ -127,6 +127,23 @@ def validate_profile_context(row):
             assert c['thermal_reference_celsius']==26 and c['quantity_support']=='local_water_column'
 
 
+def validate_year5_alias_reference(row):
+    a=row['case_alias_association']
+    assert a['method']=='source_reported_1988_letter_case_reference'
+    assert (a['registry_source_number'],a['registry_name'],a['published_alias'],a['source_label']) in [(8,'Kathleen','Kathleen','Eddy E'),(10,'Murphy','Murphy','Eddy F')]
+    assert row['entity_id']==f"eddy:horizon:loop-{a['registry_source_number']:02}-primary"
+    assert a['alias_reference_source_id']=='nowlin-2001'
+    assert all(a[k] is False for k in ['physical_crosswalk_verified','separation_conventions_reconciled','other_eddy_values_inherited'])
+    assert row['category']=='size' and row['unit']=='km' and row['period_start'] is None and row['period_end'] is None
+    assert row['rights_screened_release_eligible'] is False and row['evidence_role']=='qualified_published_named_case_reference'
+    if a['registry_source_number']==8:
+        assert row['metric']=='source_reported_sampled_drifter_axes_length_extrema' and row['value'] is None and row['range_value']==[50,170]
+        assert row['range_kind']=='source_reported_sampled_axes_extrema_not_seasonal_range'
+    else:
+        values={'source_reported_sampled_drifter_ellipse_long_dimension':244,'source_reported_sampled_drifter_ellipse_short_dimension':148,'source_reported_baroclinic_radius_of_influence':180,'source_reported_eddy_diameter_definition_unspecified':300}
+        assert row['metric'] in values and row['value']==values[row['metric']] and row.get('range_value') is None
+
+
 def validate_fast_alias_reference(row):
     a=row['case_alias_association']
     assert row['entity_id']=='eddy:horizon:loop-03-primary'
@@ -308,7 +325,8 @@ def build():
             source=batch['sources'][r['source_id']]
             if r.get('profile_context'):validate_profile_context(r)
             if r.get('case_alias_association'):
-                validate_fast_alias_reference(r)
+                if r['case_alias_association'].get('method')=='source_reported_1988_letter_case_reference':validate_year5_alias_reference(r)
+                else:validate_fast_alias_reference(r)
                 association=r['case_alias_association'];original=next(v for v in read('research/named-loop-current-eddies.json')['entries'] if v['source_number']==association['registry_source_number'])
                 assert (association['registry_name'],association['registry_initial_separation'])==(original['name'],original['initial_separation'])
                 assert association['alias_reference_source_id'] in batch['sources']
