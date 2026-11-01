@@ -440,10 +440,10 @@ def run():
             page.set_viewport_size({'width':1440,'height':1000})
             for needle in ['200 m','Airborne temperature diagnostic','20°C isotherm','1999-08-03','finite sampling','HTTP 403','full methods not independently reviewed']:
                 assert needle in row.inner_text(),needle
-            assert 'Glider profile diagnostic' not in row.inner_text() and 'Size reference needed' in row.inner_text()
+            assert 'Glider profile diagnostic' not in row.inner_text() and 'Size reference needed' not in row.inner_text()
             page.locator('[data-evidence-id="haskell-noaa-1999-20c-isotherm-maximum-depth"]').screenshot(path=str(OUT/'haskell-airborne-isotherm-depth.png'))
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
-            checks.append('Haskell NOAA airborne mission retains sampled maximum depth of the 20°C isotherm, flight date and qualified original-figure access; no other feature values or whole-eddy depth inferred; size gap remains')
+            checks.append('Haskell NOAA airborne mission retains sampled maximum depth of the 20°C isotherm, flight date and qualified original-figure access; no other feature values or whole-eddy depth inferred; separate archived-chart speed-core references now supply size context')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-10-primary')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             row=page.locator('tr[data-eddy-id="eddy:horizon:loop-10-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
