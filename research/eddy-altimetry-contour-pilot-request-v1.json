@@ -1,7 +1,7 @@
 {
   "schema": "osw.eddy-altimetry-contour-pilot-request.v1",
-  "execute": false,
-  "revision": 3,
+  "execute": true,
+  "revision": 4,
   "maximum_cloud_jobs": 1,
   "maximum_local_heavy_jobs": 0,
   "measurement_admission_permitted": false,
@@ -16,27 +16,22 @@
   },
   "source_product_version": "cmems_obs-sl_glo_phy-ssh_my_allsat-l4-duacs-0.125deg_P1D_202411",
   "dates": [
-    "1993-07-10",
-    "2001-04-03",
-    "2001-09-20",
-    "2008-07-01",
-    "2010-09-28",
-    "2011-07-21",
-    "2011-07-22",
-    "2011-07-23",
+    "2011-06-20",
+    "2011-06-21",
+    "2011-06-22",
+    "2011-06-28",
+    "2011-07-28",
     "2011-07-29",
-    "2013-03-23",
-    "2013-03-24",
-    "2013-03-31"
+    "2011-07-30",
+    "2011-07-31",
+    "2011-08-01",
+    "2011-08-02",
+    "2011-08-08",
+    "2011-08-21"
   ],
   "date_selection_context": {
-    "1993-07-10": "Dukhovskoy 2015 Whopper source-case area/date; comparison context only, no candidate assignment.",
-    "2008-07-01": "Dukhovskoy 2015 Cameron source-case area/date; comparison context only, no candidate assignment.",
-    "2010-09-28": "Dukhovskoy 2015 Franklin source-case area/date; comparison context only, no candidate assignment.",
-    "2001-04-03": "Larranaga 2026 Table A1 Nansen final-separation date. Name/registry association unresolved; do not assign to Millennium or any other registry entry.",
-    "2001-09-20": "Larranaga 2026 Table A1 Odessa final-separation date; context only.",
-    "2011-07-22": "Larranaga 2026 Table A1 Hadal final-separation date; include adjacent days and +7 days for topology review.",
-    "2013-03-24": "Larranaga 2026 Table A1 Kraken final-separation date; include preceding day and +7 days for topology review."
+    "2011-06-21": "Brickley et al. 2012 OTC23343 Figure 5 left map date; explicit Galileo source case.",
+    "2011-08-01": "Same source Figure 5 right map date and page3 narrative. Caption says shed by July30, which is not the map date. Explicit Hadal source case."
   },
   "scope": "Sparse-day diagnostic and sensitivity only. All loops unnamed. Prior published dates/areas are different-product comparison evidence, never a calibration target used to tune the level. No numerical or physical identity admission.",
   "input_sha256": {
@@ -45,50 +40,90 @@
     "analysis/run_eddy_altimetry_contour_pilot_v1.py": "356354a184d64b37c08f32b3c896b78682fa0dfaf6bc1c086ae2c5dc4f12f5f7",
     ".github/workflows/eddy-altimetry-contour-pilot-v1.yml": "d401b88eb5a98ecd6d6a4a1c7c1f13ce80dd5045ab10f5502bcd98b7c6ab16ca"
   },
-  "review_refinement": "Test nine OSW-selected interior control points from the source-labeled Kraken map, Hamilton 2019 Figure 2, 31 March panel. They identify a source-case comparison region only, not a registered physical identity or a source boundary.",
+  "review_refinement": "Compare primary provider dated Galileo/Hadal maps against daily product using approximate interior probes; no name/physical identity assignment in the extraction job.",
   "completed_run_id": 41278617375,
   "completed_source_commit": "67a8cb06a0567e2700cb04518c7c91545d03b3a4",
   "review_control_points": {
-    "2013-03-31": {
-      "hamilton-2019-march31-map-interior": [
+    "2011-06-21": {
+      "brickley-2012-galileo-june21-map-interior": [
         [
-          -87.25,
+          -92.375,
+          25.625
+        ],
+        [
+          -92.375,
+          25.75
+        ],
+        [
+          -92.375,
+          25.875
+        ],
+        [
+          -92.25,
+          25.625
+        ],
+        [
+          -92.25,
+          25.75
+        ],
+        [
+          -92.25,
+          25.875
+        ],
+        [
+          -92.125,
+          25.625
+        ],
+        [
+          -92.125,
+          25.75
+        ],
+        [
+          -92.125,
+          25.875
+        ]
+      ]
+    },
+    "2011-08-01": {
+      "brickley-2012-hadal-august1-map-interior": [
+        [
+          -89.25,
+          26.25
+        ],
+        [
+          -89.25,
+          26.5
+        ],
+        [
+          -89.25,
           26.75
         ],
         [
-          -87.25,
-          27.0
+          -89.0,
+          26.25
         ],
         [
-          -87.25,
-          27.25
+          -89.0,
+          26.5
         ],
         [
-          -87.0,
+          -89.0,
           26.75
         ],
         [
-          -87.0,
-          27.0
+          -88.75,
+          26.25
         ],
         [
-          -87.0,
-          27.25
+          -88.75,
+          26.5
         ],
         [
-          -86.75,
+          -88.75,
           26.75
-        ],
-        [
-          -86.75,
-          27.0
-        ],
-        [
-          -86.75,
-          27.25
         ]
       ]
     }
   },
-  "control_point_reading_qualification": "OSW approximate interior map reading centered at 87 W, 27 N, with 0.25-degree offsets in each direction. These are selection probes and not measured eddy centers, boundaries or a confidence region."
+  "control_point_reading_qualification": "Approximate OSW interior-map probes: Galileo at 92.25 W,25.75 N with 0.125-degree offsets; Hadal at 89 W,26.5 N with 0.25-degree offsets. Selection probes, not measured centers, boundaries or confidence regions."
 }
