@@ -48,7 +48,8 @@ def main():
         'physical_identity_joins_created':0,'operator_changed':False,'runtime_changed':False}
     try:
         count = 0; digest = hashlib.sha256()
-        with urllib.request.urlopen(source['url'], timeout=45) as response, original.open('wb') as target:
+        request = urllib.request.Request(source['url'], headers={'User-Agent':'OSW source-centered eddy contour review'})
+        with urllib.request.urlopen(request, timeout=45) as response, original.open('wb') as target:
             while True:
                 assert time.monotonic() - started < 480
                 chunk = response.read(min(1048576, source['bytes'] + 1 - count))
