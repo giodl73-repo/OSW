@@ -783,3 +783,10 @@ the pre-split interval; never assign the parent span to an independent secondary
 The Donohue 2008 U2 duration disagreement remains excluded. Preserve the first 444
 numeric evidence records and CSV rows/header. Generated JSON uses zero indentation
 to stay within the existing publication byte limit; no records or precision removed.
+
+Haskell August 1, 1999 uses the unchanged named-source speed-core method.
+The recovered NOAA satellite chart supplies a survey-waypoint proxy, not an
+observed center. Keep its nominal August 1 date, August 3 mission naming and
+registry May separation separate. These core ranges are numerical comparisons,
+not outer boundaries, seasonal envelopes or volume inputs. Preserve the first
+461 numeric evidence records and CSV rows/header.
