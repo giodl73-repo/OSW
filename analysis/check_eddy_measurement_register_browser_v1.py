@@ -56,7 +56,7 @@ def run():
             page.screenshot(path=str(OUT/'desktop.png'))
             for value,expected in [('individual_eddy',112),('recurrent_eddy_region',20),('eddy_family',4),('all',136)]:
                 page.select_option('#eddy-identity',value);assert page.locator('#eddy-rows tr').count()==expected
-            for value,expected in [('measured',counts['identities_with_measurements']),('gap',counts['identities_without_measurements']),('linked',counts['linked_primary_context_entries']),('unlinked-gap',2),('size-gap',sum(r['size_gap'] for r in document['records'])),('duration-gap',sum(r['duration_gap'] for r in document['records'])),('all',136)]:
+            for value,expected in [('measured',counts['identities_with_measurements']),('gap',counts['identities_without_measurements']),('linked',counts['linked_primary_context_entries']),('unlinked-gap',1),('size-gap',sum(r['size_gap'] for r in document['records'])),('duration-gap',sum(r['duration_gap'] for r in document['records'])),('all',136)]:
                 page.select_option('#eddy-filter',value);assert page.locator('#eddy-rows tr').count()==expected
             for category in ['size','duration','recurrence','travel','structure','kinematics','all']:
                 page.select_option('#eddy-category',category)
@@ -142,7 +142,7 @@ def run():
             assert primary.locator('.eddy-record').count()==1
             for name in ['Feldman','Edison']:
                 page.fill('#eddy-search',name);page.locator('#eddy-rows summary').click()
-                assert page.locator('#eddy-rows .eddy-record').count()==0
+                assert page.locator('#eddy-rows .eddy-record').count()==(0 if name=='Feldman' else 3)
                 assert 'current status and age have not been established' in page.locator('#eddy-rows').inner_text()
                 if name=='Feldman':page.screenshot(path=str(OUT/'undated-active-label.png'),full_page=True)
             page.fill('#eddy-search','Kathleen');page.locator('#eddy-rows summary').click()
@@ -533,6 +533,20 @@ def run():
                 page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
                 page.locator('[data-evidence-id="'+name+'-brickley-2012-operational-chart-east-west-span"]').screenshot(path=str(OUT/('mobile-'+name+'-operational-chart-east-west.png')))
             checks.append('Galileo and Hadal retain low-resolution operational chart line spans, native map dates and Hadal caption/date discrepancy, pixel/axis sensitivity and no gridded or secondary inheritance; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-80-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-80-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
+            page.set_viewport_size({'width':1440,'height':1000})
+            for needle in ['6 days','1 day','No-Hurricane','No-Helene','No-Milton','Preprint model event-date contrast','not eddy lifetime','Different simulated worlds','not additive','not peer-reviewed','Size reference needed','2024-10-16','2024-10-11']:
+                assert needle in row.inner_text(),needle
+            for part in ['both-hurricanes-removed','helene-removed','milton-removed']:
+                card=page.locator('[data-evidence-id="edison-deng-2026-model-detachment-contrast-'+part+'"]')
+                assert 'Published model case' not in card.inner_text()
+                card.screenshot(path=str(OUT/('edison-model-'+part+'.png')))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            for part in ['both-hurricanes-removed','milton-removed']:
+                page.locator('[data-evidence-id="edison-deng-2026-model-detachment-contrast-'+part+'"]').screenshot(path=str(OUT/('mobile-edison-model-'+part+'.png')))
+            checks.append('Edison preprint model date contrasts retain three forcing experiments, different simulated worlds, non-additivity, no observed lifespan or physical effect, and an open size gap; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

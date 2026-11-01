@@ -8,7 +8,8 @@
     if(r.upper_bound!==undefined&&r.upper_bound!==null)return `${r.upper_bound_exclusive?'<':'≤'} ${num(r.upper_bound)} ${units[r.unit]||r.unit}`;
     if(r.range_value)return `${r.range_value.map(num).join('–')} ${units[r.unit]||r.unit} · ${r.source_plot_estimate?'graph estimate':r.source_map_estimate?.case.method==='source_operational_chart_visible_line_spans_v1'?'operational chart estimate':r.source_map_estimate?.case.method==='source_visible_model_front_meridional_span_v1'?'visible model-front estimate':r.source_map_estimate?.case.method==='source_image_scale_bar_equivalent_spans_v1'?'chart-scale equivalent':r.source_map_estimate?'map estimate':r.calculation?.method==='spherical_sampled_station_separation_v1'?'coordinate estimate':r.calculation?.method==='gridded_adt_named_source_case_v1'?'gridded contour estimate':'source range'}`;
     if(r.value===null)return 'Value unresolved';
-    const elapsed=['source_track_elapsed_span','coherent_core_analysis_interval','source_dated_event_stage_interval'].includes(r.metric);
+    if(r.metric==='source_model_counterfactual_shedding_date_difference')return `${num(r.value)} ${r.value===1?'day':'days'}`;
+    const elapsed=['source_track_elapsed_span','coherent_core_analysis_interval','source_dated_event_stage_interval','source_model_counterfactual_shedding_date_difference'].includes(r.metric);
     return `${elapsed?'':'≈ '}${num(r.value)}${r.standard_deviation!==null?' ± '+num(r.standard_deviation)+' SD':''} ${units[r.unit]||r.unit}`;
   }
   function link(label,url,parent){const a=add('a',label,parent);a.href=url;return a;}
@@ -86,7 +87,14 @@
       if(c.method==='manual_ink_arrow_span_v1')add('p','Visible circulation-arrow extents · four manual source-ink readings. Closed-outline extraction rejected; no missing segment repaired and no footprint inferred. Source chart carries CONFIDENTIAL stamp and copyright despite public conference hosting. Research candidate only; excluded from rights-screened release.',box);
     }
     if(r.independent_named_case)add('strong','Independent named source case · no primary values inherited; physical crosswalk remains unverified.',add('p',undefined,box));
-    if(r.evidence_role?.includes('model_case_reference'))add('strong','Published model case · simulated quantity; not an observed regional constant.',add('p',undefined,box));
+    if(r.evidence_role?.includes('model_case_reference')&&r.model_context?.method!=='source_reported_model_event_date_contrast')add('strong','Published model case · simulated quantity; not an observed regional constant.',add('p',undefined,box));
+    if(r.model_context?.method==='source_reported_model_event_date_contrast'){
+      const c=r.model_context;
+      add('strong','Preprint model event-date contrast · not eddy lifetime.',add('p',undefined,box));
+      add('p',`Control: ${c.control_event_date}; ${c.experiment}: ${c.counterfactual_event_date}. Counterfactual minus Control = ${c.calendar_day_difference} calendar ${c.calendar_day_difference===1?'day':'days'}. Removed forcing: ${c.removed_hurricanes}.`,box);
+      add('p','Different simulated worlds, not observations of an eddy aging. The three contrasts are not additive and do not form an uncertainty range.',box);
+      add('p','June 2026 preprint, not peer-reviewed. Indexed primary text only; original PDF, figure pixels and raw fields were not independently verified. Size and observed causal effect remain unestablished.',box);
+    }
     if(r.evidence_role==='qualified_indexed_model_case_reference')add('strong','Qualified indexed model reference · original PDF not retrieved in this pass.',add('p',undefined,box));
     if(r.detection_context){
       const c=r.detection_context;

@@ -12,7 +12,7 @@ class EddyRegister(unittest.TestCase):
         d=register.build()
         self.assertEqual(len(d['records']),136)
         self.assertEqual(len({r['entity_id'] for r in d['records']}),136)
-        self.assertEqual(len(d['evidence']),365)
+        self.assertEqual(len(d['evidence']),368)
         for path,pin in d['input_sha256'].items():self.assertEqual(hashlib.sha256((register.ROOT/path).read_bytes()).hexdigest(),pin)
         for r in d['evidence']:
             source=json.loads((register.ROOT/r['source_file']).read_bytes())
@@ -59,7 +59,7 @@ class EddyRegister(unittest.TestCase):
     def test_csv_does_not_drop_conflicts_or_rewrite_units(self):
         d=register.build();evidence={r['id']:r for r in d['evidence']}
         with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:rows=list(csv.DictReader(stream))
-        self.assertEqual(len(rows),365)
+        self.assertEqual(len(rows),368)
         for r in rows:
             original=evidence[r['id']]
             self.assertEqual(r['unit'],original['unit']);self.assertEqual(r['source_pointer'],original['source_pointer'])
@@ -114,10 +114,10 @@ class EddyRegister(unittest.TestCase):
         batch=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v4.json').read_bytes())
         prior=hashlib.sha256(json.dumps(d['evidence'][:77],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
         self.assertEqual(prior,batch['baseline_evidence_sha256'])
-        self.assertEqual(d['counts']['registry_entries_with_own_references'],80)
-        self.assertEqual(d['counts']['identities_with_measurements'],120)
+        self.assertEqual(d['counts']['registry_entries_with_own_references'],81)
+        self.assertEqual(d['counts']['identities_with_measurements'],121)
         self.assertEqual(d['counts']['linked_primary_context_entries'],14)
-        self.assertEqual(d['counts']['entries_without_numeric_or_primary_context'],2)
+        self.assertEqual(d['counts']['entries_without_numeric_or_primary_context'],1)
         self.assertEqual(sum(r['metric']=='registry_reported_maximum_surface_current' for r in d['evidence']),60)
         self.assertEqual(sum(r['metric']=='registry_separation_to_dissipation_calendar_span' for r in d['evidence']),77)
         kathleen=rows['eddy:horizon:loop-08-primary-registry-calendar-span']
@@ -126,7 +126,7 @@ class EddyRegister(unittest.TestCase):
         self.assertEqual(rebel['range_value'],[0,2]);self.assertEqual(rebel['calendar_support']['unconditioned_elapsed_day_range'],[-27,2])
         self.assertTrue(rebel['calendar_support']['chronology_conditioned']);self.assertIsNone(rebel['value'])
         for r in d['records']:
-            if r['entity_id'] in ['eddy:horizon:loop-80-primary','eddy:horizon:loop-81-primary']:
+            if r['entity_id']=='eddy:horizon:loop-81-primary':
                 self.assertFalse(r['evidence_ids']);self.assertFalse(r['registry_context']['active_label_is_current_status'])
             if r['entity_id'].endswith('-secondary'):
                 self.assertEqual(len(r['evidence_ids']),2 if r['entity_id']=='eddy:horizon:loop-66-secondary' else 0);self.assertIsNone(r['registry_context'])
@@ -135,7 +135,7 @@ class EddyRegister(unittest.TestCase):
             if r['entity_id'].startswith('eddy:horizon:'):
                 self.assertTrue(r['entity_id'].endswith('-primary') or r.get('independent_named_case'))
                 self.assertFalse(r['rights_screened_release_eligible'])
-                self.assertIn(r['evidence_role'],['registry_source_reference','qualified_published_named_case_reference','qualified_indexed_reference','graph_digitized_named_case_reference','map_read_named_case_reference','map_read_circulation_arrow_reference','map_read_native_frontal_line_reference','qualified_osw_gridded_source_case_reference'])
+                self.assertIn(r['evidence_role'],['registry_source_reference','qualified_published_named_case_reference','qualified_indexed_reference','graph_digitized_named_case_reference','map_read_named_case_reference','map_read_circulation_arrow_reference','map_read_native_frontal_line_reference','qualified_osw_gridded_source_case_reference','qualified_indexed_model_case_reference'])
                 if r['category']=='duration' and r['evidence_role']=='registry_source_reference':self.assertIsNone(r['value']);self.assertEqual(r['calendar_support']['end_precision'],'month')
 
 
@@ -262,7 +262,7 @@ class EddyRegister(unittest.TestCase):
         self.assertTrue(all(not r['measurement_assigned_to_another_name'] for r in batch['unmapped_named_source_rows']))
         with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:exports=list(csv.DictReader(stream))[270:285]
         self.assertEqual([json.loads(r['model_context_json']) for r in exports],[r['model_context'] for r in rows])
-        self.assertEqual(d['counts']['duration_owners'],99);self.assertEqual(d['counts']['kinematics_owners'],72)
+        self.assertEqual(d['counts']['duration_owners'],100);self.assertEqual(d['counts']['kinematics_owners'],72)
 
 
     def test_latakia_opposite_rotation_cases_keep_distinct_map_support(self):
@@ -332,9 +332,9 @@ class EddyRegister(unittest.TestCase):
             reader=csv.DictReader(stream);fields=[k for k in reader.fieldnames if k not in ['detection_context_json','source_map_estimate_json','profile_context_json']];prior_rows=list(reader)[:299]
         prior_csv=io.StringIO(newline='');writer=csv.DictWriter(prior_csv,fieldnames=fields,extrasaction='ignore');writer.writeheader();writer.writerows(prior_rows)
         self.assertEqual(hashlib.sha256(prior_csv.getvalue().encode()).hexdigest(),batch['baseline_measurement_csv_sha256'])
-        self.assertEqual(len(d['evidence']),365)
+        self.assertEqual(len(d['evidence']),368)
         self.assertEqual(d['size_classification_counts'],{'records':15,'owners':15,'owners_with_numeric_size_gap':9,'labels':{'Huge':6,'Medium':2,'Small':7}})
-        self.assertEqual((d['counts']['size_owners'],d['counts']['identities_with_measurements'],d['counts']['identities_without_measurements']),(83,120,16))
+        self.assertEqual((d['counts']['size_owners'],d['counts']['identities_with_measurements'],d['counts']['identities_without_measurements']),(83,121,15))
         self.assertEqual(sum(r['size_gap'] for r in d['records']),53)
         classes=d['size_classifications'];self.assertEqual(len(classes),15)
         self.assertEqual([(r['source_name'],r['label']) for r in classes],[('Titantic','Huge'),('Sargassum','Huge'),('Rebel','Small'),('QE-2','Small'),('Quick','Huge'),('Pelagic','Huge'),('Odessa','Medium'),('Nansen','Medium'),('Millenium','Huge'),('Lazy','Small'),('Kinetic','Small'),('Juggernaut','Huge'),('Indigo','Small'),('Haskell','Small'),('Gyre','Small')])
@@ -1013,5 +1013,33 @@ class EddyRegister(unittest.TestCase):
         for row in rows:
             self.assertEqual([row['extrema'][s]['coordinate'] for s in ['west','north','east','south']],[88,74,119,106])
             self.assertEqual(row['extrema']['west']['selected_pixels'],len(points))
+
+
+    def test_edison_preprint_model_event_contrasts_preserve_prefix_and_do_not_close_size(self):
+        d=register.build();b=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v32.json').read_bytes())
+        self.assertEqual(hashlib.sha256(json.dumps(d['evidence'][:365],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest(),b['baseline_evidence_sha256'])
+        rows=d['evidence'][365:368];self.assertEqual([r['value'] for r in rows],[6,1,1])
+        self.assertEqual([r['model_context']['experiment'] for r in rows],['No-Hurricane','No-Helene','No-Milton'])
+        for r in rows:
+            register.validate_model_event_contrast(r);self.assertFalse(r['whole_lifetime_inferred']);self.assertFalse(r['rank_eligible']);self.assertIsNone(r['geometry'])
+        with (register.ROOT/register.CSV_PATH).open(encoding='utf8',newline='') as stream:
+            reader=csv.DictReader(stream);fields=reader.fieldnames;exports=list(reader)
+        prior=io.StringIO(newline='');writer=csv.DictWriter(prior,fieldnames=fields);writer.writeheader();writer.writerows(exports[:365])
+        self.assertEqual(hashlib.sha256(prior.getvalue().encode()).hexdigest(),b['baseline_measurement_csv_sha256'])
+        self.assertEqual([json.loads(r['model_context_json']) for r in exports[365:368]],[r['model_context'] for r in rows])
+        edison=next(r for r in d['records'] if r['entity_id']=='eddy:horizon:loop-80-primary')
+        self.assertEqual(len(edison['evidence_ids']),3);self.assertTrue(edison['size_gap']);self.assertIsNone(edison['whole_lifetime_days']);self.assertFalse(edison['registry_context']['active_label_is_current_status'])
+        self.assertEqual((d['counts']['identities_with_measurements'],d['counts']['identities_without_measurements'],d['counts']['size_owners']),(121,15,83))
+
+    def test_edison_model_event_contrasts_reject_observed_life_and_experiment_swaps(self):
+        import copy
+        b=json.loads((register.ROOT/'research/eddy-measurement-register-additions-v32.json').read_bytes())
+        for row in b['records']:
+            for key,value in [('entity_id','eddy:horizon:loop-81-primary'),('value',7),('category','size'),('period_start','2024-10-09'),('rights_screened_release_eligible',True)]:
+                wrong=copy.deepcopy(row);wrong[key]=value
+                with self.assertRaises(AssertionError):register.validate_model_event_contrast(wrong)
+            for key,value in [('observed_lifetime_inferred',True),('observed_causal_effect_inferred',True),('physical_crosswalk_verified',True),('contrasts_are_additive',True),('preprint_not_peer_reviewed',False),('raw_model_fields_acquired',True),('source_figure_pixels_reviewed',True),('comparison_is_between_simulated_worlds',False),('removed_hurricanes','both'),('counterfactual_event_date','2024-10-12')]:
+                wrong=copy.deepcopy(row);wrong['model_context'][key]=value
+                with self.assertRaises(AssertionError):register.validate_model_event_contrast(wrong)
 
 if __name__=='__main__':unittest.main()

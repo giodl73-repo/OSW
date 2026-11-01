@@ -88,6 +88,24 @@ def validate_gridded_case(row, report=None):
     assert row['evidence_role']=='qualified_osw_gridded_source_case_reference' and row['rights_screened_release_eligible'] is False
 
 
+def validate_model_event_contrast(row):
+    c=row['model_context']
+    assert c['method']=='source_reported_model_event_date_contrast'
+    assert row['entity_id']=='eddy:horizon:loop-80-primary' and c['source_case_name']=='Edison'
+    assert row['metric']=='source_model_counterfactual_shedding_date_difference' and row['category']=='duration' and row['unit']=='day'
+    assert row['evidence_role']=='qualified_indexed_model_case_reference' and row['rights_screened_release_eligible'] is False
+    expected={'No-Hurricane':('2024-10-16','Helene and Milton',6),'No-Helene':('2024-10-11','Helene only',1),'No-Milton':('2024-10-11','Milton only',1)}
+    event,removed,days=expected[c['experiment']]
+    assert c['control_experiment']=='Control' and c['model']=='CNAPS2-derived regional ocean model'
+    assert c['control_event_date']==c['registry_initial_separation']==row['period_start']=='2024-10-10'
+    assert c['counterfactual_event_date']==row['period_end']==event and c['removed_hurricanes']==removed
+    assert c['calendar_day_difference']==row['value']==days==(date.fromisoformat(event)-date(2024,10,10)).days
+    assert c['calculation']=='counterfactual_calendar_date_minus_control_calendar_date'
+    assert c['comparison_is_between_simulated_worlds'] is True and c['preprint_not_peer_reviewed'] is True
+    assert row['period_precision']=='reported_model_calendar_day'
+    assert all(c[k] is False for k in ['observed_lifetime_inferred','observed_causal_effect_inferred','physical_crosswalk_verified','contrasts_are_additive','raw_model_fields_acquired','source_figure_pixels_reviewed'])
+
+
 def validate_profile_context(row):
     c=row['profile_context']
     if c['method']=='source_reported_multisensor_current_comparison':
@@ -363,6 +381,13 @@ def build():
                 registry_contexts[owner]=context
         for n,r in enumerate(batch['records']):
             source=batch['sources'][r['source_id']]
+            if r.get('model_context',{}).get('method')=='source_reported_model_event_date_contrast':
+                validate_model_event_contrast(r)
+                report=read(source['source_review_file'])
+                assert pins[source['source_review_file']]==source['source_review_sha256']
+                assert report['status']=='QUALIFIED_INDEXED_PREPRINT_DATES_ONLY' and report['preprint_not_peer_reviewed']
+                assert report['original_pdf_retained'] is False and report['source_figure_pixels_reviewed'] is False
+                assert report['counterfactual_event_dates'][r['model_context']['experiment']]==r['period_end']
             if r.get('profile_context'):validate_profile_context(r)
             if r.get('case_alias_association'):
                 if r['case_alias_association'].get('method')=='source_reported_1988_letter_case_reference':validate_year5_alias_reference(r)
