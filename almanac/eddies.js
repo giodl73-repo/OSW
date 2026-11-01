@@ -6,7 +6,7 @@
     if(r.value_conflict)return 'Unresolved source values';
     if(r.lower_bound!==null)return `${r.lower_bound_exclusive?'>':'≥'} ${num(r.lower_bound)} ${units[r.unit]||r.unit}`;
     if(r.upper_bound!==undefined&&r.upper_bound!==null)return `${r.upper_bound_exclusive?'<':'≤'} ${num(r.upper_bound)} ${units[r.unit]||r.unit}`;
-    if(r.range_value)return `${r.range_value.map(num).join('–')} ${units[r.unit]||r.unit} · ${r.source_plot_estimate?'graph estimate':r.source_map_estimate?.case.method==='source_image_scale_bar_equivalent_spans_v1'?'chart-scale equivalent':r.source_map_estimate?'map estimate':r.calculation?.method==='spherical_sampled_station_separation_v1'?'coordinate estimate':'source range'}`;
+    if(r.range_value)return `${r.range_value.map(num).join('–')} ${units[r.unit]||r.unit} · ${r.source_plot_estimate?'graph estimate':r.source_map_estimate?.case.method==='source_visible_model_front_meridional_span_v1'?'visible model-front estimate':r.source_map_estimate?.case.method==='source_image_scale_bar_equivalent_spans_v1'?'chart-scale equivalent':r.source_map_estimate?'map estimate':r.calculation?.method==='spherical_sampled_station_separation_v1'?'coordinate estimate':'source range'}`;
     if(r.value===null)return 'Value unresolved';
     const elapsed=['source_track_elapsed_span','coherent_core_analysis_interval','source_dated_event_stage_interval'].includes(r.metric);
     return `${elapsed?'':'≈ '}${num(r.value)}${r.standard_deviation!==null?' ± '+num(r.standard_deviation)+' SD':''} ${units[r.unit]||r.unit}`;
@@ -16,7 +16,7 @@
     const box=add('section',undefined,parent);box.className='eddy-record';box.dataset.evidenceId=r.id;
     add('h3',quantity(r),box).className=r.value_conflict?'eddy-value eddy-conflict':'eddy-value';
     add('p',r.metric_label,box);
-    if(r.component_label)add('strong','Source component: '+r.component_label+(r.component_label==='Northern post-split Quantum I source case'?' · no pre-split parent or Quantum II values inferred.':' · no post-merger radius inferred.'),box);
+    if(r.component_label)add('strong','Source component: '+r.component_label+(r.component_label==='Northern post-split Quantum I source case'?' · no pre-split parent or Quantum II values inferred.':' · no post-merger radius inferred.'),add('p',undefined,box));
     if(r.case_label)add('strong','Source case: '+r.case_label,box);
     if(r.evidence_role==='qualified_indexed_reference')add('strong','Qualified indexed reference · full methods not independently reviewed.',add('p',undefined,box));
     if(r.case_alias_association){
