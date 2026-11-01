@@ -30,7 +30,14 @@
         add('strong',r.metric==='source_reported_sampled_drifter_axes_length_extrema'?'Sampled drifter-axis change · not a seasonal size range.':r.metric.includes('sampled_drifter_ellipse')?'Sampled ellipse dimension · the drifter need not follow the eddy front.':r.metric==='source_reported_baroclinic_radius_of_influence'?'Baroclinic radius of influence · 8°C temperature-surface diagnostic.':'Source-reported diameter · boundary and observation date unspecified.',add('p',undefined,box));
       }
     }
-    if(r.profile_context?.method==='source_reported_bosphorus_residual_ke'){
+    if(r.profile_context?.method==='source_reported_u2_10cm_contour_area'){
+      const c=r.profile_context;
+      add('strong','U2 northern branch · area within a 10 cm SSH-anomaly contour.',add('p',undefined,box));
+      add('p',`Source analysis date: ${c.source_analysis_date}. Exact simultaneous sampling time and scalar uncertainty are unspecified. Values are reported by the authors, not measured from chart pixels.`,box);
+      add('p','The report explicitly identifies U2 as the northern piece and Ulysses as the southern piece. January 1 has a named comparison; February and April follow the source-defined northern branch of the Ulysses-before/U2-after composite path.',box);
+      add('p','Pre-split parent areas and the southern Ulysses area are excluded. The 10 cm SSH-anomaly level is not equated to modern native ADT or an OSW speed-core boundary.',box);
+      add('p','Contour streamlines need not be material boundaries. These three dates do not establish annual extrema, continuous shrinkage, formation dates or lifetime. No width, diameter, radius, thickness, physical footprint, state join or ranking inferred.',box);
+    }else if(r.profile_context?.method==='source_reported_bosphorus_residual_ke'){
       const c=r.profile_context;
       add('strong','Regional residual kinetic energy per unit mass · not current speed.',add('p',undefined,box));
       add('p','Mean flow removed before squaring velocity residuals. Source Hovmoller values are meridionally averaged over 41–42.5°N; no square-root conversion to total or swirl speed.',box);

@@ -753,3 +753,13 @@ QE2 uses the visible 5 cm line in the August 8, 2002 source chart; the text-cove
 10 cm inner line is excluded. No source-SSH/native-ADT equivalence, diameter,
 area, principal width, annual envelope or exact simultaneous observation inferred.
 Preserve the first 439 evidence records and CSV rows/header without changes.
+
+For a split eddy, retain explicitly named branch-specific source contour areas
+with their native contour level, height reference and source analysis dates.
+A composite trajectory can change identity at a split: Ulysses before the split
+and northern U2 afterward. Earlier parent values are not secondary observations;
+keep the southern piece distinct. For U2, preserve the reported 10 cm SSH-anomaly
+areas for January 1, February 1 and April 14, 2005, without interpreting the level
+as a modern native-ADT or maximum-speed boundary. Unspecified source uncertainty
+stays unknown. No equivalent radius, width, diameter, material footprint or annual
+range is inferred. Preserve all first 441 evidence records and CSV rows/header.

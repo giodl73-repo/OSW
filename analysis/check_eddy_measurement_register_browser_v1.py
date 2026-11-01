@@ -828,6 +828,21 @@ def run():
                 card.screenshot(path=str(OUT/('mobile-qe2-manual-isoline-'+component+'.png')))
             page.set_viewport_size({'width':1440,'height':1000});row.locator('summary').screenshot(path=str(OUT/'qe2-manual-isoline-summary.png'))
             checks.append('QE2 manual plotted 5 cm isoline spans: source-case association, unknown SSH reference and exact sampling time, independent Small class, prior speed-core/ink rejections preserved, no physical geometry; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-44-secondary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-44-secondary"]');text=row.inner_text()
+            for value in ['42,100 km²','37,000 km²','18,900 km²','U2 northern branch','10 cm SSH-anomaly contour','2005-01-01','2005-02-01','2005-04-14','Ulysses-before/U2-after composite path','Pre-split parent areas and the southern Ulysses area are excluded','do not establish annual extrema','not equated to modern native ADT']:
+                assert value in text,value
+            assert 'Size reference needed' not in text and 'Glider profile diagnostic' not in text
+            assert row.locator('[data-evidence-id^="u2-donohue-2008-"]').count()==3
+            for date in ['2005-01-01','2005-02-01','2005-04-14']:
+                card=page.locator('[data-evidence-id="u2-donohue-2008-'+date+'-10cm-contour-area"]')
+                page.set_viewport_size({'width':1440,'height':1000});card.screenshot(path=str(OUT/('u2-contour-area-'+date+'.png')))
+                if date!='2005-02-01':
+                    page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                    card.screenshot(path=str(OUT/('mobile-u2-contour-area-'+date+'.png')))
+            page.set_viewport_size({'width':1440,'height':1000})
+            checks.append('U2 three source-reported 10 cm SSH-anomaly areas: named northern branch, source-defined composite path, pre-split/southern exclusions, no primary inheritance, diameter/annual range/physical boundary inferred; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

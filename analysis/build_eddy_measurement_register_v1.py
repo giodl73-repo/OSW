@@ -243,6 +243,20 @@ def validate_wilde_provisional_map(row,case):
 
 def validate_profile_context(row):
     c=row['profile_context']
+    if c['method']=='source_reported_u2_10cm_contour_area':
+        assert row['entity_id']=='eddy:horizon:loop-44-secondary' and row['category']=='size' and row['unit']=='km2'
+        assert row['metric']=='source_reported_named_branch_ssh_anomaly_contour_area'
+        assert row['rights_screened_release_eligible'] is False and row['evidence_role']=='qualified_published_named_case_reference'
+        assert c['source_case_name']=='U2' and c['source_branch']=='northern_post_split' and c['contour_height_cm']==10
+        assert c['height_reference']=='source SSH anomaly; reference surface unspecified in reviewed prose'
+        expected={'2005-01-01':42100,'2005-02-01':37000,'2005-04-14':18900}
+        assert c['source_analysis_date'] in expected and row['value']==expected[c['source_analysis_date']]
+        assert row['period_start']==row['period_end']==c['source_analysis_date']
+        assert row['period_precision']=='source_analysis_date_not_exact_sampling_time'
+        assert all(c[k] is False for k in ['source_uncertainty_quantified','source_date_is_exact_sampling_time','primary_values_inherited','physical_crosswalk_verified','source_operator_equated_to_osw','material_boundary_inferred','diameter_or_width_derived','annual_extrema_inferred'])
+        assert row.get('range_value') is None and row.get('depth_m') is None and row.get('lower_bound') is None and row.get('upper_bound') is None
+        assert row['independent_named_case']=={'source_name':'U2','source_case_id':'Northern post-split Ulysses branch','association_is_verified':False,'primary_values_inherited':False}
+        return
     if c['method']=='source_reported_bosphorus_residual_ke':
         assert row['entity_id']=='eddy:geography:bosphorus-eddy-region' and row['category']=='kinematics' and row['unit']=='cm2/s2'
         assert row['evidence_role']=='qualified_published_regional_residual_energy_reference' and row['rights_screened_release_eligible'] is False
@@ -644,6 +658,14 @@ def build():
                 assert report['original_pdf_retained'] is False and report['source_figure_pixels_reviewed'] is False
                 assert report['counterfactual_event_dates'][r['model_context']['experiment']]==r['period_end']
             if r.get('profile_context'):validate_profile_context(r)
+            if r.get('profile_context',{}).get('method')=='source_reported_u2_10cm_contour_area':
+                c=r['profile_context'];report=read(c['source_review_file'])
+                assert pins[c['source_review_file']]==c['source_review_sha256']==source['source_review_sha256']
+                assert report['status']=='REVIEWED_PRIMARY_SOURCE_NORTHERN_BRANCH_CONTOUR_AREAS' and report['original']==source['original']
+                assert report['operator']['contour_height_cm']==10 and report['operator']['is_material_boundary'] is False
+                source_row=next(v for v in report['accepted_area_rows'] if v['date']==c['source_analysis_date'])
+                assert source_row['area_km2']==r['value'] and source_row['locator']==r['source_locator']
+
             if r.get('profile_context',{}).get('method')=='source_reported_bosphorus_residual_ke':
                 c=r['profile_context'];report=read(c['source_review_file'])
                 assert pins[c['source_review_file']]==c['source_review_sha256']==source['source_review_sha256']
