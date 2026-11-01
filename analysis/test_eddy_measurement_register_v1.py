@@ -42,7 +42,10 @@ class EddyRegister(unittest.TestCase):
             own=[e for e in d['evidence'] if e['entity_id']==r['entity_id']]
             self.assertEqual(sum(e['metric']=='source_dated_event_stage_interval' for e in own),1)
             self.assertEqual(sum(e.get('source_map_estimate') is not None for e in own),2 if name=='ursa-2021' else 0)
-            self.assertTrue(all(e['metric']=='source_dated_event_stage_interval' or e['evidence_role']=='map_read_editorial_candidate_reference' for e in own))
+            analysis_rows=[e for e in own if e['metric']=='source_reported_assimilative_analysis_parent_zonal_extent']
+            self.assertEqual(len(analysis_rows),1 if name=='thor-2020' else 0)
+            for e in analysis_rows:register.validate_profile_context(e)
+            self.assertTrue(all(e['metric']=='source_dated_event_stage_interval' or e['evidence_role']=='map_read_editorial_candidate_reference' or (name=='thor-2020' and e in analysis_rows and e['evidence_role']=='published_model_case_reference') for e in own))
         for r in d['records']:
             self.assertFalse(r['candidate_crosswalk_is_verified']);self.assertIsNone(r['whole_lifetime_days'])
             if r['source_collection']=='horizon_loop_current' and r['entity_id'].endswith('-secondary') and r['entity_id']!='eddy:horizon:loop-66-secondary':self.assertFalse(r['evidence_ids'])
