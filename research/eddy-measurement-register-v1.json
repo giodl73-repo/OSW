@@ -2,8 +2,8 @@
   "schema": "osw.eddy-measurement-register.v1",
   "status": "MEASUREMENT_GAP_FILLING_IN_PROGRESS",
   "rules_file": "plans/eddy-measurement-register-v1.md",
-  "rules_sha256": "09e9a5fffa38cf18ea3f2d4c7870e2f73276b635d1372cd8d4f7aefa85dc11bf",
-  "generator_sha256": "32e48d5fe0426ff0fc3c002ae8e701f4fcdc3c3f11242f560e1b991eeefa6a6e",
+  "rules_sha256": "cac1cc9eff4b17d83c2ab01bdc60842fe3f18c3e9ca84013260658ad8ff19057",
+  "generator_sha256": "54244839bdcf9501348bd1b39f061f5ce6d1f9b814c36c230b381f301eeaab5e",
   "input_sha256": {
     "research/ocean-eddy-name-inventory.json": "d78c31a96b93cc9e746562f2d5c3b0f6d37ad36c3f1d10bb769aec8aa4472015",
     "research/named-eddy-geography.json": "50f20f1f32589b780f7ff29824afa7f7af4a78bfd80a25a4784e6fc992bf3547",
@@ -15,7 +15,7 @@
     "research/eddy-measurement-register-additions-v2.json": "3bb1a6760a5e68efd41f5562425225da70e7bd78429257a8b1466937114fa62b",
     "plans/agulhas-ring-radius-protocol-v1.md": "620981e7dccd1a888083d5daa670548a6f1254825f2acda73da5a821bcb4e876",
     "plans/black-sea-eddy-recurrence-protocol-v1.md": "66fef56b5960d802df68ca35d3241912650f7fe2c58803375743b4f42a48b5cf",
-    "research/eddy-measurement-batches-v1.json": "3aaca6d2dc49ca580fbf87cf9d5c75162563a63446141bfbd995f870d1b17777",
+    "research/eddy-measurement-batches-v1.json": "6bce04437ec0b0c2e93a1526de77495d247a30fe467c7d3952fd3f1b1eca2e54",
     "research/eddy-measurement-register-additions-v3.json": "d1c91350952ea08a49562c5aa0b671f0624930fd73e4735c2227c1b17708fc15",
     "research/eddy-measurement-register-additions-v4.json": "359d14c7927a6fc045bce23eb8ae4f7c226caa1a5355a27045a735125bdeaa11",
     "research/named-loop-current-eddies.json": "4a41a3b4b127f42ac31b114117c0d5d2caf998b84bed6caeac58de6ef94eecca",
@@ -85,7 +85,10 @@
     "research/eddy-laura-cartographic-and-ssh-source-review-v1.json": "8e6db5adfae904f43e7ebd77072bb466b1d339c73e15d3d2d3317e06c98ac8af",
     "research/eddy-cartographic-circle-source-verification-v1.json": "829b00f813f9b36dee974e5564435292f6027bdbcc5eb6063e8bca89c4f42e0a",
     "research/eddy-measurement-register-additions-v42.json": "bb3cfcb4d25e72aa52699957de84678d763259f61171706171c3dc29eda990e4",
-    "research/eddy-nautilus-ii-calendar-source-review-v1.json": "2580e5962bc9439a1d491ad31dc1ab7cc5092574df92216b9fcf1a2e5073e3be"
+    "research/eddy-nautilus-ii-calendar-source-review-v1.json": "2580e5962bc9439a1d491ad31dc1ab7cc5092574df92216b9fcf1a2e5073e3be",
+    "research/eddy-measurement-register-additions-v43.json": "184ac4cf526e0a3cbdf95b2ef97ea31d86d5bceb363b15b21165859c5dd37f7c",
+    "research/eddy-wilde-2021-duplicate-figure-source-review-v1.json": "9c3c9051c8353dee29a2dc0daca157e6ec4bee5eaafa0c9932812da5b060c101",
+    "research/eddy-wilde-map-source-pixel-verification-v1.json": "7d0ad4098b1f26cf7ad342da7871487229771ea5d48a9c668e0a384e607a4815"
   },
   "method_implementation_sha256": {
     "analysis/eddy_cartographic_circle_spans_v1.py": "c077b21e533f935d39dbdb63e39bffbff827038a3116f78b2279f6ec8089425a",
@@ -345,6 +348,12 @@
       "baseline_count": 406,
       "preserved_baseline_sha256": "4717f202510b11a8439980c64df48d10fcbd6d8553d0df12ab664391e98a0549",
       "added": 1
+    },
+    {
+      "file": "research/eddy-measurement-register-additions-v43.json",
+      "baseline_count": 407,
+      "preserved_baseline_sha256": "10c70b0c9a5bb1d1413f14c6c18c7f43b8d71ba28970aa25908daf1487f7f264",
+      "added": 2
     }
   ],
   "scope": "One address for every independently named eddy label or named regional/family record currently admitted to the OSW almanac. This source-set inventory is not a complete global list of all eddies or all names. NOAA detection IDs are separate unnamed, dated observations.",
@@ -355,9 +364,9 @@
     "individual_source_records": 112,
     "recurrent_regions": 20,
     "families": 4,
-    "evidence_records": 407,
-    "size_records": 166,
-    "size_owners": 89,
+    "evidence_records": 409,
+    "size_records": 168,
+    "size_owners": 90,
     "duration_owners": 101,
     "recurrence_owners": 12,
     "structure_owners": 15,
@@ -1733,14 +1742,17 @@
       "source_pointer": "/entries/12",
       "evidence_ids": [
         "eddy:horizon:loop-72-primary-registry-calendar-span",
-        "wilde-cls-2021-local-maximum-current"
+        "wilde-cls-2021-local-maximum-current",
+        "wilde-trott-2024-provisional-2021-east-west-span",
+        "wilde-trott-2024-provisional-2021-north-south-span"
       ],
       "categories": [
         "duration",
-        "kinematics"
+        "kinematics",
+        "size"
       ],
       "size_classification_ids": [],
-      "size_gap": true,
+      "size_gap": false,
       "duration_gap": false,
       "status": "has_measurements",
       "linked_primary_context": null,
@@ -1790,7 +1802,9 @@
         "url": "eddies.html?id=eddy:horizon:loop-72-primary",
         "evidence_ids": [
           "eddy:horizon:loop-72-primary-registry-calendar-span",
-          "wilde-cls-2021-local-maximum-current"
+          "wilde-cls-2021-local-maximum-current",
+          "wilde-trott-2024-provisional-2021-east-west-span",
+          "wilde-trott-2024-provisional-2021-north-south-span"
         ],
         "relation": "Associated primary registry row only; no independent secondary measurement assigned."
       },
@@ -58374,6 +58388,804 @@
         "whole_physical_lifetime_verified": false,
         "shared_figure_contour_is_child_boundary": false,
         "parent_registry_dates_used": false
+      }
+    },
+    {
+      "id": "wilde-trott-2024-provisional-2021-east-west-span",
+      "entity_id": "eddy:horizon:loop-72-primary",
+      "category": "size",
+      "metric": "map_read_east_west_bounding_span",
+      "metric_label": "map read east west bounding span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2021-11-10",
+      "period_end": "2021-11-10",
+      "period_label": "10 November 2021 source image label; provisional Figure 9 attribution",
+      "definition": "East-west parallel-arc span at the outline bounding-box midlatitude of the selected plotted outline. Not eddy diameter, perimeter, area-equivalent radius or maximum point-to-point distance.",
+      "scope": "Selected dated source illustration only; not a verified physical eddy or Wilde II boundary.",
+      "qualification": "Provisional Figure 9 chart reading. The identical image appears under Figure 10 with a contradictory Wilde II caption; this defect remains unresolved. The selected panel says 10-Nov-2021 and Figure 9 identifies 2021 Wilde. Independent 2021 provider context does not authenticate this image. No Wilde II measurement, later 2022 panel, independent duplicate confirmation or parent-to-child transfer. Six-pixel reading margins and outward 25 km rounding concern image resolution only, not attribution uncertainty. Not eddy diameter, principal width, seasonal extrema, physical footprint, state containment, ranking or playback.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.mdpi.com/2072-4292/16/12/2234",
+      "source_locator": "Figure 9, original publisher PDF page 13, Altimetry / 10-Nov-2021 panel. Identical raster under Figure 10 Wilde II caption remains an unresolved source defect.",
+      "source_file": "research/eddy-measurement-register-additions-v43.json",
+      "source_pointer": "/records/0",
+      "source_sha256": "184ac4cf526e0a3cbdf95b2ef97ea31d86d5bceb363b15b21165859c5dd37f7c",
+      "raw_record": {
+        "id": "wilde-trott-2024-provisional-2021-east-west-span",
+        "entity_id": "eddy:horizon:loop-72-primary",
+        "category": "size",
+        "metric": "map_read_east_west_bounding_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          150,
+          300
+        ],
+        "range_kind": "map_reading_allowance_and_outward_rounding",
+        "source_id": "trott-2024",
+        "source_locator": "Figure 9, original publisher PDF page 13, Altimetry / 10-Nov-2021 panel. Identical raster under Figure 10 Wilde II caption remains an unresolved source defect.",
+        "case_label": "2021 Wilde Figure 9 illustration; duplicated Figure 10 attribution unresolved",
+        "period_start": "2021-11-10",
+        "period_end": "2021-11-10",
+        "period_label": "10 November 2021 source image label; provisional Figure 9 attribution",
+        "period_precision": "day_as_plotted",
+        "definition": "East-west parallel-arc span at the outline bounding-box midlatitude of the selected plotted outline. Not eddy diameter, perimeter, area-equivalent radius or maximum point-to-point distance.",
+        "scope": "Selected dated source illustration only; not a verified physical eddy or Wilde II boundary.",
+        "qualification": "Provisional Figure 9 chart reading. The identical image appears under Figure 10 with a contradictory Wilde II caption; this defect remains unresolved. The selected panel says 10-Nov-2021 and Figure 9 identifies 2021 Wilde. Independent 2021 provider context does not authenticate this image. No Wilde II measurement, later 2022 panel, independent duplicate confirmation or parent-to-child transfer. Six-pixel reading margins and outward 25 km rounding concern image resolution only, not attribution uncertainty. Not eddy diameter, principal width, seasonal extrema, physical footprint, state containment, ranking or playback.",
+        "map_case_index": 0,
+        "map_span_component": "east_west",
+        "evidence_role": "map_read_named_case_reference",
+        "rights_screened_release_eligible": false
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original publisher PDF, actual pages 13–14 and native raster reviewed. Figure 9 identifies 2021 Wilde; Figure 10 identifies 2022 Wilde II but reuses the identical image. Only the dated 10-Nov-2021 Altimetry panel is retained as a provisional source illustration estimate. The duplication is unresolved and is not independent confirmation. No Wilde II or later 2022-panel dimensions admitted.",
+      "source_id": "trott-2024",
+      "period_precision": "day_as_plotted",
+      "case_label": "2021 Wilde Figure 9 illustration; duplicated Figure 10 attribution unresolved",
+      "range_value": [
+        150,
+        300
+      ],
+      "range_kind": "map_reading_allowance_and_outward_rounding",
+      "evidence_role": "map_read_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "axes": {
+            "longitude": [
+              [
+                128,
+                -96
+              ],
+              [
+                184,
+                -93
+              ],
+              [
+                240,
+                -90
+              ],
+              [
+                295,
+                -87
+              ],
+              [
+                350,
+                -84
+              ]
+            ],
+            "latitude": [
+              [
+                359,
+                30
+              ],
+              [
+                416,
+                27
+              ],
+              [
+                472,
+                24
+              ],
+              [
+                527,
+                21
+              ],
+              [
+                579,
+                18
+              ]
+            ]
+          },
+          "earth_radius_km": 6371,
+          "reading_allowance_pixels": 6,
+          "round_outward_km": 25,
+          "outline": {
+            "bbox_xyxy": [
+              220,
+              400,
+              261,
+              442
+            ],
+            "selected_pixels": 302,
+            "selected_pixels_sha256": "f9f3a7554b41c55ce28a9ddf25df977dbfa41fd7c5248cabae59930cdc8aa74e",
+            "column_y_extents": [
+              [
+                220,
+                424,
+                426
+              ],
+              [
+                221,
+                418,
+                431
+              ],
+              [
+                222,
+                412,
+                433
+              ],
+              [
+                223,
+                410,
+                435
+              ],
+              [
+                224,
+                407,
+                437
+              ],
+              [
+                225,
+                406,
+                437
+              ],
+              [
+                226,
+                406,
+                438
+              ],
+              [
+                227,
+                405,
+                438
+              ],
+              [
+                228,
+                403,
+                439
+              ],
+              [
+                229,
+                403,
+                439
+              ],
+              [
+                230,
+                402,
+                439
+              ],
+              [
+                231,
+                402,
+                439
+              ],
+              [
+                232,
+                402,
+                439
+              ],
+              [
+                233,
+                401,
+                439
+              ],
+              [
+                234,
+                400,
+                439
+              ],
+              [
+                235,
+                400,
+                439
+              ],
+              [
+                236,
+                400,
+                439
+              ],
+              [
+                237,
+                400,
+                438
+              ],
+              [
+                238,
+                400,
+                438
+              ],
+              [
+                239,
+                400,
+                437
+              ],
+              [
+                240,
+                400,
+                437
+              ],
+              [
+                241,
+                400,
+                437
+              ],
+              [
+                242,
+                400,
+                437
+              ],
+              [
+                243,
+                401,
+                438
+              ],
+              [
+                244,
+                402,
+                438
+              ],
+              [
+                245,
+                402,
+                439
+              ],
+              [
+                246,
+                402,
+                439
+              ],
+              [
+                247,
+                403,
+                439
+              ],
+              [
+                248,
+                404,
+                439
+              ],
+              [
+                249,
+                405,
+                440
+              ],
+              [
+                250,
+                406,
+                440
+              ],
+              [
+                251,
+                407,
+                440
+              ],
+              [
+                252,
+                408,
+                440
+              ],
+              [
+                253,
+                409,
+                440
+              ],
+              [
+                254,
+                410,
+                441
+              ],
+              [
+                255,
+                411,
+                441
+              ],
+              [
+                256,
+                414,
+                441
+              ],
+              [
+                257,
+                417,
+                441
+              ],
+              [
+                258,
+                423,
+                442
+              ],
+              [
+                259,
+                440,
+                442
+              ],
+              [
+                260,
+                440,
+                442
+              ],
+              [
+                261,
+                440,
+                442
+              ]
+            ],
+            "other_component_sizes": [],
+            "enclosed_background_pixels": 995
+          },
+          "source_name": "Wilde",
+          "owner_id": "eddy:horizon:loop-72-primary",
+          "date": "2021-11-10",
+          "figure": 9,
+          "panel": "Altimetry column, LCE separation-date row; dated 10-Nov-2021 in the source image",
+          "pdf_page": 13,
+          "source_raster": {
+            "xref": 89,
+            "width": 1294,
+            "height": 1269,
+            "samples_sha256": "4667397fbf0b2036303233486de00c1ff44f8eb15cf591ad92d1c11ec1129116"
+          },
+          "roi_xyxy_inclusive": [
+            208,
+            390,
+            267,
+            454
+          ],
+          "color_gate": {
+            "minimum_rgb_channel": 180,
+            "maximum_rgb_spread": 75
+          },
+          "registry_primary_name": "Wilde",
+          "registry_primary_initial_separation": "2021-09-06",
+          "association_is_verified": false,
+          "physical_state_join_eligible": false,
+          "boundary_description": "White source-algorithm outline in Figure 9, 2021 Wilde case. The same raster is reused for Figure 10 under a Wilde II caption. Attribution remains provisional; only the internally dated 2021 panel is read. Not a verified physical boundary or a Wilde II measurement.",
+          "source_attribution": {
+            "method": "dated_2021_figure9_with_unresolved_duplicate_caption",
+            "duplicate_caption_resolved": false,
+            "source_figure9_case_year": 2021,
+            "source_figure10_case_year": 2022,
+            "retained_snapshot_date": "2021-11-10",
+            "independent_2021_provider_context_used_as_size_input": false,
+            "wilde_ii_values_inherited": false,
+            "later_2022_panels_admitted": false,
+            "duplicate_is_independent_measurement": false
+          }
+        },
+        "component": "east_west",
+        "calculation": {
+          "audit_span_km": 220.173925,
+          "audit_reading_interval_km": [
+            155.308471,
+            285.393331
+          ],
+          "audit_decimal_places": 6,
+          "range_km": [
+            150,
+            300
+          ]
+        }
+      }
+    },
+    {
+      "id": "wilde-trott-2024-provisional-2021-north-south-span",
+      "entity_id": "eddy:horizon:loop-72-primary",
+      "category": "size",
+      "metric": "map_read_north_south_bounding_span",
+      "metric_label": "map read north south bounding span",
+      "value": null,
+      "unit": "km",
+      "lower_bound": null,
+      "lower_bound_exclusive": false,
+      "standard_deviation": null,
+      "uncertainty": null,
+      "sample_count": null,
+      "period_start": "2021-11-10",
+      "period_end": "2021-11-10",
+      "period_label": "10 November 2021 source image label; provisional Figure 9 attribution",
+      "definition": "North-south meridional span of the selected plotted outline. Not eddy diameter, principal axis, perimeter, area-equivalent radius or maximum point-to-point distance.",
+      "scope": "Selected dated source illustration only; not a verified physical eddy or Wilde II boundary.",
+      "qualification": "Provisional Figure 9 chart reading. The identical image appears under Figure 10 with a contradictory Wilde II caption; this defect remains unresolved. The selected panel says 10-Nov-2021 and Figure 9 identifies 2021 Wilde. Independent 2021 provider context does not authenticate this image. No Wilde II measurement, later 2022 panel, independent duplicate confirmation or parent-to-child transfer. Six-pixel reading margins and outward 25 km rounding concern image resolution only, not attribution uncertainty. Not eddy diameter, principal width, seasonal extrema, physical footprint, state containment, ranking or playback.",
+      "source_claims": [],
+      "value_conflict": false,
+      "date_conflict": false,
+      "source_url": "https://www.mdpi.com/2072-4292/16/12/2234",
+      "source_locator": "Figure 9, original publisher PDF page 13, Altimetry / 10-Nov-2021 panel. Identical raster under Figure 10 Wilde II caption remains an unresolved source defect.",
+      "source_file": "research/eddy-measurement-register-additions-v43.json",
+      "source_pointer": "/records/1",
+      "source_sha256": "184ac4cf526e0a3cbdf95b2ef97ea31d86d5bceb363b15b21165859c5dd37f7c",
+      "raw_record": {
+        "id": "wilde-trott-2024-provisional-2021-north-south-span",
+        "entity_id": "eddy:horizon:loop-72-primary",
+        "category": "size",
+        "metric": "map_read_north_south_bounding_span",
+        "value": null,
+        "unit": "km",
+        "range_value": [
+          175,
+          325
+        ],
+        "range_kind": "map_reading_allowance_and_outward_rounding",
+        "source_id": "trott-2024",
+        "source_locator": "Figure 9, original publisher PDF page 13, Altimetry / 10-Nov-2021 panel. Identical raster under Figure 10 Wilde II caption remains an unresolved source defect.",
+        "case_label": "2021 Wilde Figure 9 illustration; duplicated Figure 10 attribution unresolved",
+        "period_start": "2021-11-10",
+        "period_end": "2021-11-10",
+        "period_label": "10 November 2021 source image label; provisional Figure 9 attribution",
+        "period_precision": "day_as_plotted",
+        "definition": "North-south meridional span of the selected plotted outline. Not eddy diameter, principal axis, perimeter, area-equivalent radius or maximum point-to-point distance.",
+        "scope": "Selected dated source illustration only; not a verified physical eddy or Wilde II boundary.",
+        "qualification": "Provisional Figure 9 chart reading. The identical image appears under Figure 10 with a contradictory Wilde II caption; this defect remains unresolved. The selected panel says 10-Nov-2021 and Figure 9 identifies 2021 Wilde. Independent 2021 provider context does not authenticate this image. No Wilde II measurement, later 2022 panel, independent duplicate confirmation or parent-to-child transfer. Six-pixel reading margins and outward 25 km rounding concern image resolution only, not attribution uncertainty. Not eddy diameter, principal width, seasonal extrema, physical footprint, state containment, ranking or playback.",
+        "map_case_index": 0,
+        "map_span_component": "north_south",
+        "evidence_role": "map_read_named_case_reference",
+        "rights_screened_release_eligible": false
+      },
+      "rank_eligible": false,
+      "geometry": null,
+      "seasonal_playback_eligible": false,
+      "whole_lifetime_inferred": false,
+      "physical_state_join_eligible": false,
+      "source_access": "Original publisher PDF, actual pages 13–14 and native raster reviewed. Figure 9 identifies 2021 Wilde; Figure 10 identifies 2022 Wilde II but reuses the identical image. Only the dated 10-Nov-2021 Altimetry panel is retained as a provisional source illustration estimate. The duplication is unresolved and is not independent confirmation. No Wilde II or later 2022-panel dimensions admitted.",
+      "source_id": "trott-2024",
+      "period_precision": "day_as_plotted",
+      "case_label": "2021 Wilde Figure 9 illustration; duplicated Figure 10 attribution unresolved",
+      "range_value": [
+        175,
+        325
+      ],
+      "range_kind": "map_reading_allowance_and_outward_rounding",
+      "evidence_role": "map_read_named_case_reference",
+      "rights_screened_release_eligible": false,
+      "source_map_estimate": {
+        "case": {
+          "axes": {
+            "longitude": [
+              [
+                128,
+                -96
+              ],
+              [
+                184,
+                -93
+              ],
+              [
+                240,
+                -90
+              ],
+              [
+                295,
+                -87
+              ],
+              [
+                350,
+                -84
+              ]
+            ],
+            "latitude": [
+              [
+                359,
+                30
+              ],
+              [
+                416,
+                27
+              ],
+              [
+                472,
+                24
+              ],
+              [
+                527,
+                21
+              ],
+              [
+                579,
+                18
+              ]
+            ]
+          },
+          "earth_radius_km": 6371,
+          "reading_allowance_pixels": 6,
+          "round_outward_km": 25,
+          "outline": {
+            "bbox_xyxy": [
+              220,
+              400,
+              261,
+              442
+            ],
+            "selected_pixels": 302,
+            "selected_pixels_sha256": "f9f3a7554b41c55ce28a9ddf25df977dbfa41fd7c5248cabae59930cdc8aa74e",
+            "column_y_extents": [
+              [
+                220,
+                424,
+                426
+              ],
+              [
+                221,
+                418,
+                431
+              ],
+              [
+                222,
+                412,
+                433
+              ],
+              [
+                223,
+                410,
+                435
+              ],
+              [
+                224,
+                407,
+                437
+              ],
+              [
+                225,
+                406,
+                437
+              ],
+              [
+                226,
+                406,
+                438
+              ],
+              [
+                227,
+                405,
+                438
+              ],
+              [
+                228,
+                403,
+                439
+              ],
+              [
+                229,
+                403,
+                439
+              ],
+              [
+                230,
+                402,
+                439
+              ],
+              [
+                231,
+                402,
+                439
+              ],
+              [
+                232,
+                402,
+                439
+              ],
+              [
+                233,
+                401,
+                439
+              ],
+              [
+                234,
+                400,
+                439
+              ],
+              [
+                235,
+                400,
+                439
+              ],
+              [
+                236,
+                400,
+                439
+              ],
+              [
+                237,
+                400,
+                438
+              ],
+              [
+                238,
+                400,
+                438
+              ],
+              [
+                239,
+                400,
+                437
+              ],
+              [
+                240,
+                400,
+                437
+              ],
+              [
+                241,
+                400,
+                437
+              ],
+              [
+                242,
+                400,
+                437
+              ],
+              [
+                243,
+                401,
+                438
+              ],
+              [
+                244,
+                402,
+                438
+              ],
+              [
+                245,
+                402,
+                439
+              ],
+              [
+                246,
+                402,
+                439
+              ],
+              [
+                247,
+                403,
+                439
+              ],
+              [
+                248,
+                404,
+                439
+              ],
+              [
+                249,
+                405,
+                440
+              ],
+              [
+                250,
+                406,
+                440
+              ],
+              [
+                251,
+                407,
+                440
+              ],
+              [
+                252,
+                408,
+                440
+              ],
+              [
+                253,
+                409,
+                440
+              ],
+              [
+                254,
+                410,
+                441
+              ],
+              [
+                255,
+                411,
+                441
+              ],
+              [
+                256,
+                414,
+                441
+              ],
+              [
+                257,
+                417,
+                441
+              ],
+              [
+                258,
+                423,
+                442
+              ],
+              [
+                259,
+                440,
+                442
+              ],
+              [
+                260,
+                440,
+                442
+              ],
+              [
+                261,
+                440,
+                442
+              ]
+            ],
+            "other_component_sizes": [],
+            "enclosed_background_pixels": 995
+          },
+          "source_name": "Wilde",
+          "owner_id": "eddy:horizon:loop-72-primary",
+          "date": "2021-11-10",
+          "figure": 9,
+          "panel": "Altimetry column, LCE separation-date row; dated 10-Nov-2021 in the source image",
+          "pdf_page": 13,
+          "source_raster": {
+            "xref": 89,
+            "width": 1294,
+            "height": 1269,
+            "samples_sha256": "4667397fbf0b2036303233486de00c1ff44f8eb15cf591ad92d1c11ec1129116"
+          },
+          "roi_xyxy_inclusive": [
+            208,
+            390,
+            267,
+            454
+          ],
+          "color_gate": {
+            "minimum_rgb_channel": 180,
+            "maximum_rgb_spread": 75
+          },
+          "registry_primary_name": "Wilde",
+          "registry_primary_initial_separation": "2021-09-06",
+          "association_is_verified": false,
+          "physical_state_join_eligible": false,
+          "boundary_description": "White source-algorithm outline in Figure 9, 2021 Wilde case. The same raster is reused for Figure 10 under a Wilde II caption. Attribution remains provisional; only the internally dated 2021 panel is read. Not a verified physical boundary or a Wilde II measurement.",
+          "source_attribution": {
+            "method": "dated_2021_figure9_with_unresolved_duplicate_caption",
+            "duplicate_caption_resolved": false,
+            "source_figure9_case_year": 2021,
+            "source_figure10_case_year": 2022,
+            "retained_snapshot_date": "2021-11-10",
+            "independent_2021_provider_context_used_as_size_input": false,
+            "wilde_ii_values_inherited": false,
+            "later_2022_panels_admitted": false,
+            "duplicate_is_independent_measurement": false
+          }
+        },
+        "component": "north_south",
+        "calculation": {
+          "audit_span_km": 248.516481,
+          "audit_reading_interval_km": [
+            177.661067,
+            319.371895
+          ],
+          "audit_decimal_places": 6,
+          "range_km": [
+            175,
+            325
+          ]
+        }
       }
     }
   ],
