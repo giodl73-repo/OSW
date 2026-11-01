@@ -9,6 +9,7 @@ import math
 from pathlib import Path
 from eddy_map_spans_v1 import validate_map_case,span_interval
 from eddy_audit_spans_v1 import validate_case as validate_audit_span_case,spans as audit_spans
+from eddy_cartographic_circle_spans_v1 import validate_record as validate_cartographic_record, validate_ssh_record as validate_laura_ssh_record, spans as cartographic_spans
 from eddy_author_animation_patch_v1 import validate_record as validate_author_patch_record, spans as author_patch_spans
 from eddy_colour_spans_v1 import validate_case as validate_colour_span_case,spans as colour_spans
 from eddy_arrow_spans_v1 import validate_case as validate_arrow_span_case
@@ -110,6 +111,8 @@ def validate_model_event_contrast(row):
 
 def validate_profile_context(row):
     c=row['profile_context']
+    if c['method']=='source_reported_laura_survey_ssh_anomaly':
+        validate_laura_ssh_record(row);return
     if c['method']=='source_reported_nelson_1989_local_current_phases':
         assert row['entity_id']=='eddy:horizon:loop-11-primary' and row['category']=='kinematics' and row['unit']=='knots'
         assert row['metric']=='source_reported_local_phase_current_speed' and row.get('lower_bound') is None
@@ -544,7 +547,25 @@ def build():
                 association=r['case_alias_association'];original=next(v for v in read('research/named-loop-current-eddies.json')['entries'] if v['source_number']==association['registry_source_number'])
                 assert (association['registry_name'],association['registry_initial_separation'])==(original['name'],original['initial_separation'])
                 assert association['alias_reference_source_id'] in batch['sources']
+            if r['source_id']=='van-aken-2003-laura':
+                report=read(source['source_review_file']);proof=read(batch['source_pixel_report'])
+                assert pins[source['source_review_file']]==source['source_review_sha256']
+                assert report['status']=='ORIGINAL_LAURA_CARTOGRAPHIC_EXTENT_AND_SSH_VERIFIED' and report['owner_id']==r['entity_id']
+                assert report['source']['original']==source['original']
+                assert proof['status']=='PASS' and proof['source_pixels_verified'] and proof['source_caption_and_ssh_text_verified']
+                assert proof['batch_sha256']==pins[path] and proof['original_pdf_sha256']==source['original']['sha256']
+                assert proof['verifier_sha256']==hashlib.sha256((ROOT/'analysis/eddy_cartographic_circle_spans_v1.py').read_bytes()).hexdigest()
+                assert proof['span_math_sha256']==hashlib.sha256((ROOT/'analysis/eddy_map_spans_v1.py').read_bytes()).hexdigest()
+                assert proof['physical_boundary_admitted'] is False and report['whole_eddy_dimensions_admitted']==0
+                if r.get('profile_context'):
+                    assert r['value']==report['ssh_maximum']['value'] and r['unit']==report['ssh_maximum']['unit']
             map_values={}
+            if r.get('cartographic_circle_case_index') is not None:
+                case=batch['cartographic_circle_cases'][r['cartographic_circle_case_index']];validate_cartographic_record(case,r)
+                assert proof['stroke_cases']==case['stroke_cases']
+                calculation=cartographic_spans(case,r['map_span_component'])
+                assert calculation==proof['spans'][r['map_span_component']]==report['operator']['spans'][r['map_span_component']]
+                map_values={'source_map_estimate':{'case':case,'component':r['map_span_component'],'calculation':calculation}}
             if r.get('isoline_case_index') is not None:
                 case=batch['isoline_cases'][r['isoline_case_index']];validate_source_isoline_case(case)
                 report=read(batch['source_isoline_report'])
@@ -845,7 +866,7 @@ def build():
     return {'schema':'osw.eddy-measurement-register.v1','status':'MEASUREMENT_GAP_FILLING_IN_PROGRESS',
         'rules_file':RULES,'rules_sha256':hashlib.sha256((ROOT/RULES).read_bytes()).hexdigest(),
         'generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'input_sha256':pins,
-        'method_implementation_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['analysis/eddy_author_animation_patch_v1.py','analysis/eddy_map_spans_v1.py','analysis/eddy_audit_spans_v1.py','analysis/eddy_colour_spans_v1.py','analysis/eddy_arrow_spans_v1.py','analysis/eddy_pdf_line_spans_v1.py','analysis/eddy_height_profiles_v1.py','analysis/eddy_scale_bar_spans_v1.py','analysis/eddy_visible_model_front_v1.py','analysis/eddy_gridded_case_summary_v1.py','analysis/eddy_altimetry_contours_v1.py','analysis/eddy_operational_chart_spans_v1.py','analysis/eddy_source_bold_isoline_spans_v1.py']},
+        'method_implementation_sha256':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['analysis/eddy_cartographic_circle_spans_v1.py','analysis/eddy_author_animation_patch_v1.py','analysis/eddy_map_spans_v1.py','analysis/eddy_audit_spans_v1.py','analysis/eddy_colour_spans_v1.py','analysis/eddy_arrow_spans_v1.py','analysis/eddy_pdf_line_spans_v1.py','analysis/eddy_height_profiles_v1.py','analysis/eddy_scale_bar_spans_v1.py','analysis/eddy_visible_model_front_v1.py','analysis/eddy_gridded_case_summary_v1.py','analysis/eddy_altimetry_contours_v1.py','analysis/eddy_operational_chart_spans_v1.py','analysis/eddy_source_bold_isoline_spans_v1.py']},
         'first_batch_evidence_sha256':baseline_sha,'first_batch_evidence_preserved':40,
         'additional_batches':applied,
         'scope':inventory['scope'],'identity_rule':'Source records remain separate; possible Horizon/published matches are not verified identity joins.',

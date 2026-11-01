@@ -584,3 +584,24 @@ as separate map-patch diagnostics. These margins describe only image reading
 and choices. No whole-eddy diameter, physical width/area, seasonal extrema,
 confidence interval, state containment, ranking or playback is inferred. Keep
 all 401 preceding evidence and CSV rows byte/canonically identical.
+
+## Source cartographic extent-circle and SSH references
+
+Figure 3 of van Aken et al. (2003) identifies Laura by its dashed track and
+Mar 00 marker; its caption calls the circles ring extensions. Retain this as an
+author illustration with an unspecified boundary operator, not a physical
+diameter, principal width or geodesic circle. Read separate parallel/meridional
+arcs from four manually located ink windows. Use native grayscale gates 150/190,
+independent +/-2 pixel shifts of eight labelled axis anchors, six-pixel extent
+allowances and 25 km outward rounding on a 6371 km sphere (512 scenarios).
+Pin source/raster/pixel hashes and all windows; no circle fitting, closed-path
+reconstruction, source asset republication or inferred area/physical footprint.
+
+The adjacent March label supplies month context only, not an exact survey day.
+The source cautions that hydrographic and SSH centers differ and that Laura was
+not surveyed completely. Do not merge the circle, SSH center and CTD stations
+into a synchronized boundary. Preserve the separate prose maximum SSH anomaly
+of about +40 cm in its native unit: unknown anomaly reference, exact composite
+time and uncertainty remain unknown. Surface anomaly height is not eddy depth,
+thickness, a chosen contour threshold, a whole-life maximum or annual extrema.
+Retain all 403 preceding evidence and CSV rows.

@@ -28,7 +28,11 @@
         add('strong',r.metric==='source_reported_sampled_drifter_axes_length_extrema'?'Sampled drifter-axis change · not a seasonal size range.':r.metric.includes('sampled_drifter_ellipse')?'Sampled ellipse dimension · the drifter need not follow the eddy front.':r.metric==='source_reported_baroclinic_radius_of_influence'?'Baroclinic radius of influence · 8°C temperature-surface diagnostic.':'Source-reported diameter · boundary and observation date unspecified.',add('p',undefined,box));
       }
     }
-    if(r.profile_context){
+    if(r.profile_context?.method==='source_reported_laura_survey_ssh_anomaly'){
+      add('strong','Laura sea-surface-height anomaly · not eddy depth.',add('p',undefined,box));
+      add('p','Source reports about +40 cm maximum SSH anomaly at the time of MARE-1, March 2000. Exact altimeter acquisition/composite time and anomaly reference unspecified.',box);
+      add('p','Hydrographic and SSH centers differ; Laura was not surveyed completely. This is not a full-life or annual maximum, vertical thickness, contour threshold or physical footprint.',box);
+    }else if(r.profile_context){
       add('strong',(r.profile_context.method==='source_reported_nelson_1989_local_current_phases'?'Nelson local current phase':r.profile_context.method==='source_reported_quiet_sst_ellipse_axes'?'Source-reported SST ellipse axis':r.profile_context.method==='source_reported_k_2000_mooring_current'?'Interaction-site mooring current':r.profile_context.method==='source_reported_assimilative_analysis_parent_extent'?'Assimilative model-analysis extent':r.profile_context.method==='source_reported_yazoo_2022_case'?'Source-named Yazoo reference':r.profile_context.method==='source_reported_thermal_level_enclosed_area'?'Thermal-level enclosed area':r.profile_context.method==='source_reported_multisensor_current_comparison'?'Multi-instrument current comparison':r.profile_context.method==='source_reported_operational_adcp_maximum'?'Operational ADCP current diagnostic':r.profile_context.method==='source_reported_mooring_current_diagnostic'?'Fixed-mooring current diagnostic':r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+(r.profile_context.method==='source_reported_quiet_sst_ellipse_axes'?' · approximate surface expression.':' · sampling support is not whole-eddy depth.'),add('p',undefined,box));
       const c=r.profile_context;
       if(c.method==='source_reported_nelson_1989_local_current_phases'){
@@ -103,7 +107,13 @@
     if(r.source_map_estimate){
       const m=r.source_map_estimate,c=m.case;
 
-      if(c.method==='source_author_animation_ssh_patch_v1'){
+      if(c.method==='source_cartographic_extent_circle_spans_v1'){
+        add('strong','Laura cartographic extent-circle span · author illustration.',add('p',undefined,box));
+        add('p','Figure 3 identifies Laura by the dashed track and Mar 00 marker. The caption says the circles indicate ring extension; the boundary operator and physical accuracy are unspecified.',box);
+        add('p',`${m.component==='east_west'?'East–west parallel arc at illustrated-circle midlatitude':'North–south meridional arc'} on a 6371 km sphere. The drawn circle is not assumed geodesically circular; no physical diameter, principal width, radius, fitted circle or area inferred.`,box);
+        add('p',`Reading margins: four native ink windows, two grayscale gates, ±2 pixel shifts of eight axis anchors and six-pixel extent allowance; ${m.calculation.total_scenarios} scenarios, rounded outward to 25 km. These margins describe image reading, not physical uncertainty or seasonal variation.`,box);
+        add('p','March 2000 context only; exact survey instant unknown. The source warns that hydrographic and SSH centers differ and Laura was not surveyed completely. No synchronized boundary, footprint, state containment, ranking or animation inferred.',box);
+      }else if(c.method==='source_author_animation_ssh_patch_v1'){
         add('strong','Qualified Atwater image-patch estimate · not whole-eddy dimensions.',add('p',undefined,box));
         add('p','Original author animation, 30 July 2023, first of four frames. The image has no Atwater label; the primary preprint names Atwater southwest of the transect. Candidate association and registry physical crosswalk remain unverified.',box);
         add('p','OSW-chosen 0.75 m level on the literal SSH (m) legend; 0.70/0.80 m selection sensitivity. Field datum and exact HYCOM product/export unverified: no absolute ADT or anomaly conversion.',box);

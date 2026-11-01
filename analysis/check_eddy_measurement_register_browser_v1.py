@@ -657,6 +657,20 @@ def run():
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             for axis in ['east-west','north-south']:page.locator(f'[data-evidence-id="atwater-hu-2026-author-ssh-patch-{axis}-span"]').screenshot(path=str(OUT/f'mobile-atwater-author-patch-{axis}.png'))
             checks.append('Atwater original-author-image diagnostic patch: dated frame, qualified unnamed-image association and preprint status; literal metre legend without datum/product promotion, 384 selection/calibration/reading scenarios; not whole-eddy size, seasonal range or footprint; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ageography%3Alaura-1999')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:geography:laura-1999"]');assert row.locator('details').evaluate('(e)=>e.open')
+            for needle in ['125–200 km','100–150 km','40 cm','8.6 km/day','Laura cartographic extent-circle span','author illustration','512 scenarios','not assumed geodesically circular','exact survey instant unknown','about +40 cm','not eddy depth','anomaly reference unspecified','Laura was not surveyed completely']:
+                assert needle in row.inner_text(),needle
+            assert row.locator('[data-evidence-id^="laura-van-aken-2003-"]').count()==3
+            assert 'Size reference needed' not in row.inner_text()
+            page.set_viewport_size({'width':1440,'height':1000})
+            for axis in ['east-west','north-south']:page.locator(f'[data-evidence-id="laura-van-aken-2003-cartographic-circle-{axis}-span"]').screenshot(path=str(OUT/f'laura-cartographic-circle-{axis}.png'))
+            page.locator('[data-evidence-id="laura-van-aken-2003-mare-1-ssh-anomaly-maximum"]').screenshot(path=str(OUT/'laura-mare-1-ssh-anomaly.png'))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            page.locator('[data-evidence-id="laura-van-aken-2003-cartographic-circle-east-west-span"]').screenshot(path=str(OUT/'mobile-laura-cartographic-circle-east-west.png'))
+            page.locator('[data-evidence-id="laura-van-aken-2003-mare-1-ssh-anomaly-maximum"]').screenshot(path=str(OUT/'mobile-laura-mare-1-ssh-anomaly.png'))
+            checks.append('Laura source illustration extent-circle spans: month-only support, unspecified boundary operator, 512 ink/axis/reading scenarios, not a physical/geodesic circle or diameter; separate positive 40 cm SSH anomaly, not eddy depth, annual or full-life maximum; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
