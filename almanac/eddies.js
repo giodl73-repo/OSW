@@ -16,7 +16,7 @@
     const box=add('section',undefined,parent);box.className='eddy-record';box.dataset.evidenceId=r.id;
     add('h3',quantity(r),box).className=r.value_conflict?'eddy-value eddy-conflict':'eddy-value';
     add('p',r.metric_label,box);
-    if(r.component_label)add('strong','Source component: '+r.component_label+' · no post-merger radius inferred.',box);
+    if(r.component_label)add('strong','Source component: '+r.component_label+(r.component_label==='Northern post-split Quantum I source case'?' · no pre-split parent or Quantum II values inferred.':' · no post-merger radius inferred.'),box);
     if(r.case_label)add('strong','Source case: '+r.case_label,box);
     if(r.evidence_role==='qualified_indexed_reference')add('strong','Qualified indexed reference · full methods not independently reviewed.',add('p',undefined,box));
     if(r.case_alias_association){
@@ -28,8 +28,13 @@
       }
     }
     if(r.profile_context){
-      add('strong',(r.profile_context.method==='source_reported_operational_adcp_maximum'?'Operational ADCP current diagnostic':r.profile_context.method==='source_reported_mooring_current_diagnostic'?'Fixed-mooring current diagnostic':r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));
+      add('strong',(r.profile_context.method==='source_reported_multisensor_current_comparison'?'Multi-instrument current comparison':r.profile_context.method==='source_reported_operational_adcp_maximum'?'Operational ADCP current diagnostic':r.profile_context.method==='source_reported_mooring_current_diagnostic'?'Fixed-mooring current diagnostic':r.profile_context.method==='source_reported_airborne_temperature_diagnostic'?'Airborne temperature diagnostic':'Glider profile diagnostic')+' · sampling support is not whole-eddy depth.',add('p',undefined,box));
       const c=r.profile_context;
+      if(c.method==='source_reported_multisensor_current_comparison'){
+        add('p',`Instrument: ${c.instrument}; ${c.sample_depth_m===null?'effective near-surface weighting, no single assigned depth':`sample depth: ${c.sample_depth_m} m`}.`,box);
+        add('p',c.shared_source_approximation?'The authors give one approximate speed for both remote instruments; this is not an arithmetic average or two independently resolved values.':'Approximate local buoy comparison value, not a mean or maximum.',box);
+        add('p','Measurement times can differ by about an hour. No simultaneous vertical section or quantitative shear is calculated.',box);
+      }
       if(c.method==='source_reported_operational_adcp_maximum')add('p','Provider-reported local maximum. Sample depth, exact dates and averaging interval unspecified; raw profiles unavailable. This does not establish the whole-eddy maximum.',box);
       if(c.method==='source_reported_mooring_current_diagnostic'){
         add('p',`${c.station} · instrument depth: ${c.instrument_depth_m} m · source direction: ${c.direction_as_reported}.`,box);
@@ -52,7 +57,11 @@
     }
     if(r.source_map_estimate){
       const m=r.source_map_estimate,c=m.case;
-      if(c.method==='source_image_scale_bar_equivalent_spans_v1'){
+      if(c.method==='source_visible_model_front_meridional_span_v1'){
+        add('strong','Visible model-inferred front · eastern side clipped.',add('p',undefined,box));
+        add('p','Only the visible north–south plotted extent is measured. This does not establish the full front, observed eddy boundary, diameter or east–west width.',box);
+        add('p',`Source date: ${c.date}; northern post-split Quantum I. Reading method: ${c.reading_allowance_pixels} pixels at each selected extremum, ±${c.axis_sensitivity_pixels} pixel latitude-anchor shifts, two ink gates and ${m.calculation.total_scenarios} sensitivity cases; rounded outward to ${c.round_outward_km} km. Model/front error is unspecified.`,box);
+      }else if(c.method==='source_image_scale_bar_equivalent_spans_v1'){
         add('strong','Chart-scale equivalent · projection and contour threshold unspecified.',add('p',undefined,box));
         add('p',`Selected line: ${c.source_name}, ${c.date}; black date-legend entry. ${m.component} span at the displayed ${c.scale_bar_km} km scale bar, not a calibrated geodesic distance or eddy diameter.`,box);
         add('p',`Reading method: ${c.reading_allowance_pixels} pixels at each extent, ±${c.axis_sensitivity_pixels} pixel scale-anchor shifts and two ink gates; ${m.calculation.total_scenarios} sensitivity cases, rounded outward to ${c.round_outward_km} km. Geographic scale variation at the eddy remains unquantified.`,box);

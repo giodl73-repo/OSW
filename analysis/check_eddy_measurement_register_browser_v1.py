@@ -491,6 +491,19 @@ def run():
                 page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
                 page.locator('[data-evidence-id="'+record+'"]').screenshot(path=str(OUT/('mobile-'+name+'-cls-reference.png')))
             checks.append('Verne source-chart scale-bar equivalents retain unknown projection and contour definition, date and unquantified geographic scale error; Verne/Wilde local operational ADCP maxima retain native knots and unspecified sample depths; Wilde size gap remains; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-66-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-66-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
+            page.set_viewport_size({'width':1440,'height':1000})
+            for needle in ['225–275 km','Visible model-inferred front','eastern side clipped','512 sensitivity cases','no pre-split parent or Quantum II values inferred','Multi-instrument current comparison','0.8 m/s','1.1 m/s','0.6 m/s','1.2 m/s','sample depth: 5 m','no single assigned depth','not an arithmetic average','about an hour']:
+                assert needle in row.inner_text(),needle
+            assert 'Size reference needed' not in row.inner_text() and 'Glider profile diagnostic' not in row.inner_text()
+            for record,name in [('quantum-rodriguez-2020-visible-model-front-meridional-span','quantum-visible-model-front'),('quantum-rodriguez-2020-2018-03-26-5m-adcp','quantum-adcp-5m'),('quantum-rodriguez-2020-2018-03-25-remote-shared-speed','quantum-remote-shared-speed')]:
+                page.locator('[data-evidence-id="'+record+'"]').screenshot(path=str(OUT/(name+'.png')))
+            page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+            for record,name in [('quantum-rodriguez-2020-visible-model-front-meridional-span','mobile-quantum-visible-model-front'),('quantum-rodriguez-2020-2018-03-25-remote-shared-speed','mobile-quantum-remote-shared-speed')]:
+                page.locator('[data-evidence-id="'+record+'"]').screenshot(path=str(OUT/(name+'.png')))
+            checks.append('Quantum northern post-split component retains visible model-front meridional extent, eastern clipping and no reconstructed geometry; ADCP 5 m and shared ROCIS/DopplerScatt comparison values retain dates and instrument-dependent support, no arithmetic averaging or simultaneous shear; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')
