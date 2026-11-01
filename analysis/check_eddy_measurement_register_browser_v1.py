@@ -315,7 +315,11 @@ def run():
             child=page.locator('tr[data-eddy-id="eddy:horizon:loop-68-secondary"]');assert 'Size reference needed' in child.inner_text()
             page.fill('#eddy-search','Thor');primary=page.locator('tr[data-eddy-id="eddy:horizon:loop-69-primary"]');primary.locator('summary').click()
             assert '325–500 km · map estimate' in primary.inner_text()
-            published=page.locator('tr[data-eddy-id="eddy:published:thor-2020"]');assert 'Size reference needed' in published.inner_text()
+            published=page.locator('tr[data-eddy-id="eddy:published:thor-2020"]');published.locator('summary').click()
+            assert 'Size reference needed' not in published.inner_text() and '550 km' in published.inner_text()
+            assert published.locator('[data-evidence-id="thor-thoppil-2025-parent-analysis-zonal-extent"]').count()==1
+            assert published.locator('[data-evidence-id^="thor-trott-2024-"]').count()==0
+            published.locator('summary').click()
             page.locator('[data-evidence-id="thor-trott-2024-map-east-west-span"]').screenshot(path=str(OUT/'thor-map-span.png'))
             page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
             page.screenshot(path=str(OUT/'mobile-thor-map-span.png'),full_page=True)
