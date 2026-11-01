@@ -739,3 +739,17 @@ Delivered JPEG resolution is not verified original-export resolution. Retain
 source markings and attribution in the review; do not republish the source
 asset or infer release rights, a physical boundary or seasonal range.
 Preserve all first437 evidence records and CSV rows/header.
+
+A specified plotted SSH isoline may support manual geographic spans when the
+source identifies the named feature and all four extrema are visible. Declare
+the chosen height level, its source reference (unknown if unspecified), and how
+an unlabeled level is assigned from adjacent labels and the color-key interval.
+Retain native-raster extrema, three anchors on each axis, six native pixels per
+extremum, two-pixel shifts on all six anchors and outward 25 km reporting.
+This is reading sensitivity only. Manual spans do not validate closed topology,
+repair masked lines or establish a physical outer boundary. They do not overturn
+rejected automated contour or speed-core results. Keep these operators separate.
+QE2 uses the visible 5 cm line in the August 8, 2002 source chart; the text-covered
+10 cm inner line is excluded. No source-SSH/native-ADT equivalence, diameter,
+area, principal width, annual envelope or exact simultaneous observation inferred.
+Preserve the first 439 evidence records and CSV rows/header without changes.

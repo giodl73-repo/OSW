@@ -279,17 +279,17 @@ def run():
             checks.append('Sukhumi and Kerch-origin model sizes, vertical reach and distinct velocity phases; bathymetry configuration dependence, source access and migrated size location retained; no dated observation or state containment inferred')
             page.set_viewport_size({'width':1440,'height':1000});page.fill('#eddy-search','')
             page.select_option('#eddy-filter','size-class');assert page.locator('#eddy-rows tr').count()==15
-            assert '6 of these still need numeric sizes' in page.locator('#eddy-class-summary').inner_text()
+            assert '5 of these still need numeric sizes' in page.locator('#eddy-class-summary').inner_text()
             page.screenshot(path=str(OUT/'source-size-class-filter.png'))
             page.fill('#eddy-search','QE-2')
             qe=page.locator('tr[data-eddy-id="eddy:horizon:loop-40-secondary"]');qe.locator('summary').click()
-            for needle in ['Small · source size class','Size reference needed','no numeric class thresholds','no values inherited','Source row: QE-2, 2002','Associated primary registry row: Quick','This supplies no secondary separation date']:
+            for needle in ['Small · source size class','plotted 5 cm isoline estimate','no numeric class thresholds','no values inherited','Source row: QE-2, 2002','Associated primary registry row: Quick','This supplies no secondary separation date']:
                 assert needle in qe.inner_text(),needle
             assert 'Huge · source size class' not in qe.inner_text()
             assert 'Registry context: QE-2, separation' not in qe.inner_text()
             page.locator('[data-classification-id="whoi-2005-03-table2-row-04"]').screenshot(path=str(OUT/'qe2-own-source-class.png'))
-            page.select_option('#eddy-filter','measured');assert page.locator('#eddy-rows tr').count()==0
-            page.select_option('#eddy-filter','gap');assert page.locator('#eddy-rows tr').count()==1
+            page.select_option('#eddy-filter','measured');assert page.locator('#eddy-rows tr').count()==1
+            page.select_option('#eddy-filter','gap');assert page.locator('#eddy-rows tr').count()==0
             page.select_option('#eddy-filter','all');page.fill('#eddy-search','Gyre');page.locator('#eddy-rows summary').click()
             for needle in ['Source row: Gyre, 1999','separation 1998-05-11','not assumed to be separation year']:
                 assert needle in page.locator('#eddy-rows').inner_text(),needle
@@ -297,7 +297,7 @@ def run():
             page.screenshot(path=str(OUT/'mobile-gyre-source-class.png'),full_page=True)
             with page.expect_download() as pending:page.get_by_role('link',name='Download size classifications CSV').click()
             assert hashlib.sha256(Path(pending.value.path()).read_bytes()).hexdigest()==sha('research/eddy-size-classifications-v1.csv')
-            checks.append('15 qualitative classes with no numeric thresholds; QE-2 own Small label does not inherit Quick Huge or close numeric gaps; Gyre source year and registry context kept distinct; separate classification CSV and mobile layout')
+            checks.append('15 qualitative classes with no numeric thresholds; QE-2 own Small label remains separate from its manual 5 cm chart-isoline spans and does not inherit Quick Huge; Gyre source year and registry context kept distinct; separate classification CSV and mobile layout')
             page.set_viewport_size({'width':1440,'height':1000});page.fill('#eddy-search','Kenai')
             region=page.locator('tr[data-eddy-id="eddy:geography:kenai-eddy-region"]');region.locator('summary').click()
             for needle in ['15,000 km²','10,000 km²','6,000 km²','1.8 km/day','-0.8–5 km/day','1,278–1,338 days','negative eastward','includes post-split main branch','not an exact period mean']:
@@ -815,6 +815,19 @@ def run():
                 card.screenshot(path=str(OUT/('mobile-feldman-dated-arrow-'+component+'.png')))
             page.set_viewport_size({'width':1440,'height':1000});row.locator('summary').screenshot(path=str(OUT/'feldman-dated-arrow-summary.png'))
             checks.append('Feldman dated provider arrow spans: map-label date distinct from exact observation/four-day drifter support, unchanged ink/axis allowances, no physical geometry, source asset not republished; desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-40-secondary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-40-secondary"]');text=row.inner_text()
+            for value in ['150–225 km · plotted 5 cm isoline estimate','125–200 km · plotted 5 cm isoline estimate','QE2 plotted 5 cm SSH isoline','August 8, 2002','intermediate contour between labeled 0 and 10 cm','64 scenarios','multiple-peak speed-core and closed-ink rejections remain unchanged','not whole-eddy diameter','Small · source size class']:
+                assert value in text,value
+            assert 'Size reference needed' not in text and 'Model calculation: undefined' not in text
+            for component in ['east-west','north-south']:
+                card=page.locator('[data-evidence-id="qe2-2002-08-08-plotted-5cm-isoline-'+component+'"]')
+                page.set_viewport_size({'width':1440,'height':1000});card.screenshot(path=str(OUT/('qe2-manual-isoline-'+component+'.png')))
+                page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                card.screenshot(path=str(OUT/('mobile-qe2-manual-isoline-'+component+'.png')))
+            page.set_viewport_size({'width':1440,'height':1000});row.locator('summary').screenshot(path=str(OUT/'qe2-manual-isoline-summary.png'))
+            checks.append('QE2 manual plotted 5 cm isoline spans: source-case association, unknown SSH reference and exact sampling time, independent Small class, prior speed-core/ink rejections preserved, no physical geometry; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

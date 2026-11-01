@@ -23,6 +23,7 @@ from eddy_frontal_lobe_spans_v1 import summarize as frontal_lobe_summary
 from eddy_named_frontal_chart_spans_v1 import summarize as named_frontal_chart_summary
 from eddy_public_provider_arrow_spans_v1 import summarize as public_provider_arrow_summary
 from eddy_dated_provider_arrow_spans_v1 import summarize as dated_provider_arrow_summary
+from eddy_manual_ssh_isoline_spans_v1 import summarize as manual_ssh_isoline_summary
 from eddy_operational_chart_spans_v1 import validate_case as validate_operational_chart_case, spans as operational_chart_spans
 from eddy_source_bold_isoline_spans_v1 import validate_case as validate_source_isoline_case, spans as source_isoline_spans
 
@@ -94,6 +95,21 @@ def validate_gridded_case(row, report=None):
     assert row['range_value']==summary['range_value'] and row['value'] is None and row['category']=='size'
     assert row['range_kind']=='gridded_contour_method_sensitivity_not_measurement_uncertainty'
     assert row['evidence_role']=='qualified_osw_gridded_source_case_reference' and row['rights_screened_release_eligible'] is False
+
+
+def validate_manual_ssh_isoline_reference(row,report):
+    c=row['calculation'];summary=manual_ssh_isoline_summary(report,c['component'])
+    assert all(c[k]==v for k,v in summary.items())
+    assert row['entity_id']==report['case']['owner_id']
+    assert row['metric']=='source_manual_ssh_isoline_'+c['component']+'_span'
+    assert row['category']=='size' and row['unit']=='km' and row['value'] is None
+    assert row['range_value']==summary['range_km']
+    assert row['period_start']==row['period_end']==summary['source_map_date']
+    assert row['period_precision']=='source_map_label_not_simultaneous_observation'
+    assert row['range_kind']=='manual_isoline_reading_and_axis_sensitivity_not_physical_uncertainty'
+    assert row['independent_named_case']=={'source_name':'QE-2','source_case_id':'QE2 eastern split feature, Figure 8-5, 2002-08-08','published_name':'QE2','name_normalization':'hyphen insertion only','association_is_verified':False,'primary_values_inherited':False}
+    assert row['evidence_role']=='qualified_published_named_case_reference' and row['rights_screened_release_eligible'] is False
+    assert row.get('source_map_estimate') is None and row.get('depth_m') is None
 
 
 def validate_dated_provider_arrow_reference(row,report):
@@ -961,6 +977,12 @@ def build():
                 c=r['calculation']
                 if c.get('method')=='spherical_sampled_station_separation_v1':validate_station_distance(r)
                 elif c.get('method')=='gridded_adt_named_source_case_v1':validate_gridded_case(r,read(c['report_file']))
+                elif c.get('method')=='source_manual_qe2_5cm_isoline_spans_v1':
+                    report=read(c['report_file']);assert pins[c['report_file']]==c['report_sha256']==source['source_review_sha256']
+                    validate_manual_ssh_isoline_reference(r,report)
+                    assert report['original']==source['original']
+                    for key in ['method','axis_math','prior_position_review','prior_speed_core_rejection']:
+                        assert hashlib.sha256((ROOT/report[key+'_file']).read_bytes()).hexdigest()==report[key+'_sha256']
                 elif c.get('method')=='source_public_feldman_dated_circulation_arrow_spans_v1':
                     report=read(c['report_file']);assert pins[c['report_file']]==c['report_sha256']==source['source_review_sha256']
                     validate_dated_provider_arrow_reference(r,report)
