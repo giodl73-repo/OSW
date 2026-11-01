@@ -489,12 +489,12 @@ def run():
                 for needle in needles+['Operational ADCP current diagnostic','Provider-reported local maximum','Sample depth, exact dates and averaging interval unspecified']:
                     assert needle in row.inner_text(),needle
                 assert 'undefined km' not in row.inner_text() and 'Glider profile diagnostic' not in row.inner_text()
-                assert ('Size reference needed' in row.inner_text())==(name=='wilde')
+                assert 'Size reference needed' not in row.inner_text()
                 page.locator('[data-evidence-id="'+record+'"]').screenshot(path=str(OUT/(name+'-cls-reference.png')))
                 if name=='verne':page.locator('[data-evidence-id="verne-cls-2021-local-maximum-current"]').screenshot(path=str(OUT/'verne-cls-local-maximum.png'))
                 page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
                 page.locator('[data-evidence-id="'+record+'"]').screenshot(path=str(OUT/('mobile-'+name+'-cls-reference.png')))
-            checks.append('Verne source-chart scale-bar equivalents retain unknown projection and contour definition, date and unquantified geographic scale error; Verne/Wilde local operational ADCP maxima retain native knots and unspecified sample depths; Wilde size gap remains; desktop/mobile')
+            checks.append('Verne source-chart scale-bar equivalents retain unknown projection and contour definition, date and unquantified geographic scale error; Verne/Wilde local operational ADCP maxima retain native knots and unspecified sample depths; Wilde provisional illustration now supplies a qualified size reference; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-66-primary')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             row=page.locator('tr[data-eddy-id="eddy:horizon:loop-66-primary"]');assert row.locator('details').evaluate('(e)=>e.open')
@@ -690,6 +690,22 @@ def run():
             page.select_option('#eddy-category','size');assert page.locator('#eddy-rows tr').count()==0
             page.select_option('#eddy-category','all')
             checks.append('Nautilus II own month-precision narrative: 184–275 calendar days without exact event dates, measured lifespan or parent-value inheritance; grouped contour and unresolved reconnections visible, size gap retained; own/linked/category filters and desktop/mobile')
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-72-primary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            row=page.locator('tr[data-eddy-id="eddy:horizon:loop-72-primary"]')
+            for needle in ['150–300 km · map estimate','175–325 km · map estimate','Provisional Wilde illustration','duplicated caption unresolved','10-Nov-2021','does not authenticate the image','Pixel-reading margins do not cover attribution uncertainty','No Wilde II measurement','not seasonal width ranges']:
+                assert needle in row.inner_text(),needle
+            for component in ['east-west','north-south']:
+                card=page.locator('[data-evidence-id="wilde-trott-2024-provisional-2021-'+component+'-span"]')
+                page.set_viewport_size({'width':1440,'height':1000});card.screenshot(path=str(OUT/('wilde-provisional-'+component+'.png')))
+                page.set_viewport_size({'width':390,'height':844});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+                card.screenshot(path=str(OUT/('mobile-wilde-provisional-'+component+'.png')))
+            page.goto(base+'/almanac/eddies.html?id=eddy%3Ahorizon%3Aloop-72-secondary')
+            page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
+            child=page.locator('tr[data-eddy-id="eddy:horizon:loop-72-secondary"]')
+            assert 'Size reference needed' in child.inner_text() and child.locator('.eddy-record').count()==0
+            child.screenshot(path=str(OUT/'wilde-ii-size-gap-retained.png'))
+            checks.append('Provisional 2021 Wilde Figure 9 illustration: duplicate Figure 10 caption unresolved and visible on both cards, 10 November snapshot only, pixel margins not attribution uncertainty; no Wilde II or 2022-panel values; desktop/mobile')
             page.goto(base+'/almanac/eddies.html?id=eddy%3Apublished%3Akraken-2013')
             page.wait_for_function('window.oswEddyMeasurementRegister?.records.length===136')
             target=page.locator('tr[data-eddy-id="eddy:published:kraken-2013"]')

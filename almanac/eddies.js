@@ -107,6 +107,13 @@
     }
     if(r.source_map_estimate){
       const m=r.source_map_estimate,c=m.case;
+      if(c.source_attribution?.method==='dated_2021_figure9_with_unresolved_duplicate_caption'){
+        add('strong','Provisional Wilde illustration · duplicated caption unresolved.',add('p',undefined,box));
+        add('p','Figure 9 names 2021 Wilde and the selected panel is dated 10-Nov-2021. The identical raster also appears under the Figure 10 Wilde II caption. This source defect remains unresolved.',box);
+        add('p','These chart spans describe one provisional Figure 9 reading. Independent 2021 provider context does not authenticate the image. Pixel-reading margins do not cover attribution uncertainty.',box);
+        add('p','No Wilde II measurement, later 2022-panel value or independent duplicate confirmation. Physical identity and boundary remain unverified; these are not seasonal width ranges.',box);
+      }
+
 
       if(c.method==='source_cartographic_extent_circle_spans_v1'){
         add('strong','Laura cartographic extent-circle span · author illustration.',add('p',undefined,box));

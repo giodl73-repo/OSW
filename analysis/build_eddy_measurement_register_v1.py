@@ -131,6 +131,25 @@ def validate_nautilus_calendar_reference(row):
     assert row.get('depth_m') is None and row.get('source_map_estimate') is None
 
 
+def validate_wilde_provisional_map(row,case):
+    validate_map_case(case)
+    assert row['entity_id']==case['owner_id']=='eddy:horizon:loop-72-primary' and case['source_name']=='Wilde'
+    assert row['category']=='size' and row['unit']=='km' and row['value'] is None
+    assert row['period_start']==row['period_end']==case['date']=='2021-11-10'
+    assert row['evidence_role']=='map_read_named_case_reference' and row['rights_screened_release_eligible'] is False
+    assert case['figure']==9 and case['pdf_page']==13 and case['source_raster']['xref']==89
+    assert case['source_raster']['samples_sha256']=='4667397fbf0b2036303233486de00c1ff44f8eb15cf591ad92d1c11ec1129116'
+    assert case['roi_xyxy_inclusive']==[208,390,267,454]
+    assert case['axes']=={'longitude':[[128,-96],[184,-93],[240,-90],[295,-87],[350,-84]],'latitude':[[359,30],[416,27],[472,24],[527,21],[579,18]]}
+    a=case['source_attribution']
+    assert a['method']=='dated_2021_figure9_with_unresolved_duplicate_caption'
+    assert (a['source_figure9_case_year'],a['source_figure10_case_year'],a['retained_snapshot_date'])==(2021,2022,'2021-11-10')
+    assert all(a[k] is False for k in ['duplicate_caption_resolved','independent_2021_provider_context_used_as_size_input','wilde_ii_values_inherited','later_2022_panels_admitted','duplicate_is_independent_measurement'])
+    component=row['map_span_component'];assert component in ['east_west','north_south']
+    assert row['metric']=='map_read_'+component+'_bounding_span'
+    assert row['range_value']==span_interval(case,component)['range_km']
+
+
 def validate_profile_context(row):
     c=row['profile_context']
     if c['method']=='source_reported_laura_survey_ssh_anomaly':
@@ -776,6 +795,21 @@ def build():
                 assert r['evidence_role']=='map_read_named_case_reference' and r['rights_screened_release_eligible'] is False
                 registry=next(v for v in read('research/named-loop-current-eddies.json')['entries'] if v['source_number']==int(r['entity_id'].split('-')[1]))
                 assert (case['registry_primary_name'],case['registry_primary_initial_separation'])==(registry['name'],registry['initial_separation'])
+                if case.get('source_attribution',{}).get('method')=='dated_2021_figure9_with_unresolved_duplicate_caption':
+                    validate_wilde_provisional_map(r,case)
+                    review=read(source['source_review_file']);proof=read(batch['source_pixel_report'])
+                    assert pins[source['source_review_file']]==source['source_review_sha256']
+                    assert review['status']=='PROVISIONAL_2021_FIGURE9_ONLY_DUPLICATE_UNRESOLVED'
+                    assert review['source_case']==case and review['duplicate_caption_resolved'] is False
+                    assert review['wilde_ii_measurements_admitted']==0 and review['later_2022_panels_admitted'] is False
+                    assert review['physical_identity_established'] is False and review['physical_boundary_established'] is False
+                    assert review['prior_exclusion_preserved']['sha256']==pins[review['prior_exclusion_preserved']['file']]
+                    assert proof['status']=='PASS' and proof['batch_sha256']==pins[path]
+                    assert proof['verifier_sha256']==hashlib.sha256((ROOT/'analysis/eddy_map_spans_v1.py').read_bytes()).hexdigest()
+                    assert proof['original_pdf_sha256']==source['original']['sha256']=='9b4bcb00763d730773f8cf71a1ab1e22e1b932f5aeafd81282f331045375149a'
+                    assert proof['source_pixels_verified'] is True and proof['duplicate_figure_images_verified'] is True
+                    assert len(proof['records'])==1 and proof['records'][0]['name']=='Wilde' and proof['records'][0]['date']==case['date']
+                    assert proof['records'][0]['spans']=={c:span_interval(case,c)['range_km'] for c in ['east_west','north_south']}
                 calculation=span_interval(case,r['map_span_component']);assert r['range_value']==calculation['range_km']
                 map_values={'source_map_estimate':{'case':case,'component':r['map_span_component'],'calculation':calculation}}
             if r.get('model_table_row_index') is not None:

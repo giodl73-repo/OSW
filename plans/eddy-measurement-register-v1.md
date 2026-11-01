@@ -624,3 +624,23 @@ primary registry May 1 separation and November dissipation are excluded from
 inputs and not reconciled by silently changing either source. No physical
 footprint, child size/current inheritance, state join or seasonal playback.
 Preserve all 406 earlier evidence and CSV rows.
+
+## Provisional dated illustration with a duplicated caption
+
+A duplicated figure cannot independently establish two named eddy dimensions.
+Trott 2024 publisher Figures 9 and 10 share the same raster under 2021 Wilde
+and 2022 Wilde II captions. Preserve the earlier exclusion and expose this
+unresolved source defect on every new reference. The 10-Nov-2021 panel can
+only be retained as a provisional Figure 9 illustration reading because its
+internal date agrees with that caption. Independent 2021 provider prose is
+context, not image authentication or another size measurement. No Wilde II
+or later 2022-panel values are admitted, and no erratum is implied.
+
+Reuse the frozen closed-outline pixel operator: RGB minimum 180, spread 75,
+closed largest connected outline; common-column longitude calibration and
+selected-row latitude ticks; Earth 6371 km, six pixels at each extent and
+25 km outward rounding. These are east-west and north-south chart spans,
+not principal axes, diameter or physical uncertainty bounds. Pixel margins
+do not cover attribution uncertainty. Preserve first 407 evidence/CSV rows,
+all identity flags and the Wilde II size gap. No physical geometry, state
+join, ranking, seasonal playback or release-rights inference.
